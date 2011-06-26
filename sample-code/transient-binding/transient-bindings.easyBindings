@@ -1,0 +1,13 @@
+entity MyEntity class MyEntityClass {
+  property NSString mName default "" ;
+  property NSString mFirstName default "" ;
+  transient NSString mFullName dependsFrom .mName, .mFirstName ;
+}
+
+preferences Prefs root MyEntity {
+  outlet NSTextField mNameTextField $value root.mName ;
+  outlet NSTextField mFirstNameTextField $value root.mFirstName ;
+  outlet NSTextField mFullNameTextField $value root.mFullName ;
+}
+
+end

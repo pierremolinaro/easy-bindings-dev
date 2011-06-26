@@ -1,0 +1,33 @@
+class MyClass {
+  property bool myBool ;
+  property integer32 myInteger32 ;
+  property NSString myString ;
+  
+  transient NSString schmurtz dependsFrom .myInteger32, .myString ;
+  transient NSString truc dependsFrom .schmurtz ;
+}
+
+class MyOtherClass : MyClass {
+  property bool chose ;
+  transient NSString bidule dependsFrom .chose, .schmurtz ;
+}
+
+
+entity MyEntity class MyEntityClass {
+  property NSString myString ;
+}
+
+entity MyOtherEntity : MyEntity class MyOtherEntityClass {
+  property NSString myOtherString ;
+  property integer32 myInteger ;
+
+  transient NSString theSum dependsFrom .myString, .myOtherString ;
+}
+
+
+preferences PMPrefs root MyOtherEntity {
+  outlet NSTextField myTextField $value root.myString ;
+  outlet NSTextField myOtherTextField $value root.myString {NSContinuouslyUpdatesValue:YES} ;
+}
+
+end

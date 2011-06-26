@@ -1,0 +1,36 @@
+#import <Cocoa/Cocoa.h>
+
+//----------------------------------------------------------------------------*
+
+@class %!PREFERENCES_NAME% ;
+@class %!ROOT_ENTITY_CLASS_NAME% ;
+
+//----------------------------------------------------------------------------*
+
+extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
+
+//----------------------------------------------------------------------------*
+
+@interface %!PREFERENCES_NAME% : NSObject {
+//--- Managed Object context
+  @private NSManagedObjectContext * mManagedObjectContext ;
+//--- Root Object
+  @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
+//--- Root Object Controller
+  @protected NSObjectController * mRootObjectController ;
+//--- Temporary file URL
+  @protected NSURL * mTemporaryFileURL ;
+%
+foreach OUTLET_DECLARATION_LIST do
+%//--- '%!mOutletName%' outlet
+  @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
+end foreach
+%}
+
+//- (NSManagedObjectContext *) managedObjectContext ;
+
+- (NSObjectController *) rootObjectController ;
+@end
+
+//----------------------------------------------------------------------------*
+

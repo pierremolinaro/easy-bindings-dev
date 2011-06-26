@@ -1,0 +1,35 @@
+#import "managed-object-model.h"
+#import "easy-bindings-utilities.h"
+
+//----------------------------------------------------------------------------*
+
+static NSManagedObjectModel * buildManagedObjectModel (void) {
+  NSMutableDictionary * entityDictionary = [NSMutableDictionary new] ;
+  NSEntityDescription * entity = nil ;
+%
+foreach ENTITY_MAP do
+  %  entity = [NSEntityDescription new] ;\n%
+  %  [entity setName:@"%![lkey string]%"] ;\n%
+  %  [entityDictionary setObject:entity forKey:@"%![lkey string]%"] ;\n%
+end foreach
+%//--------------------------
+%!ENTITY_DEFINITIONS%//--------------------------
+  NSManagedObjectModel * mom = [NSManagedObjectModel new] ;
+  [mom setEntities:[entityDictionary allValues]] ;
+  return mom ;
+}
+
+//----------------------------------------------------------------------------*
+
+static NSManagedObjectModel * gManagedObjectModel = nil ;
+
+//----------------------------------------------------------------------------*
+
+NSManagedObjectModel * managedObjectModel (void) {
+  if (nil == gManagedObjectModel) {
+    gManagedObjectModel = buildManagedObjectModel () ;
+  }
+  return gManagedObjectModel ;
+}
+
+//----------------------------------------------------------------------------*

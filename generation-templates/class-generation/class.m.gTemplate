@@ -1,0 +1,107 @@
+#import "%!CLASS_NAME%.h"
+%
+if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
+  %#import "%!CLASS_NAME%-transient-computations.h"%
+end if
+%
+//----------------------------------------------------------------------------*
+
+@implementation %!CLASS_NAME%
+
+//----------------------------------------------------------------------------*
+//    Synthesize properties                                                   *
+//----------------------------------------------------------------------------*
+
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%@synthesize %!mPropertyName% ;\n%
+end foreach
+%
+//----------------------------------------------------------------------------*
+//    Init Method                                                             *
+//----------------------------------------------------------------------------*
+
+%foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+  before %- (id) %?^%initWith%
+  do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]
+  between %\n%!^%with%
+  after % {\n%
+end foreach
+if [INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL length] == 0 then
+  %  self = [super init] ;\n%
+else
+foreach INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+  before %  self = [super\n%
+    %    initWith%
+  do ![mPropertyName stringByCapitalizingFirstCharacter]%:in%![mPropertyName stringByCapitalizingFirstCharacter]
+  between %\n    with%
+  after %\n  ] ;\n%
+end foreach
+end if
+%  if (self) {  
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+  %    %!mPropertyName% = in%![mPropertyName stringByCapitalizingFirstCharacter]% ;\n%
+end foreach
+%  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    willChangeValueForKey                                                   *
+//----------------------------------------------------------------------------*
+
+- (void) willChangeValueForKey:(NSString *) inKey {
+  // NSLog (@"\%s:'\%@'", __PRETTY_FUNCTION__, inKey) ;
+%
+foreach TRIGGERED_KEYS
+  before %  if %
+  do
+  %([inKey isEqualToString:@"%!key%"]) {\n%
+  foreach mList do
+    %    %!mValue%_hasBeenComputed = NO ;\n%
+  end foreach
+  %  }%
+  between
+    %else if %
+  after
+    %\n%
+end foreach
+%  [super willChangeValueForKey:inKey] ;
+}
+
+%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %//----------------------------------------------------------------------------*\n%
+  %//    '%!mTransientName%' transient                                  *\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %+ (NSSet *) keyPathsForValuesAffecting%![mTransientName stringByCapitalizingFirstCharacter]% {\n%
+  %  return [NSSet setWithObjects:%
+  foreach mDependencyList do
+    % @"%!mMasterName%", %
+  end foreach
+  %nil] ;\n%
+  %}\n\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %- (%![mType ocTypeName]%) %!mTransientName% {\n%
+  %  if (!%!mTransientName%_hasBeenComputed) {\n%
+  %    %!mTransientName%_hasBeenComputed = YES ;\n%
+  %    %!mTransientName%_cachedValue = %
+  if [mType copyOnAssign] then %[% end if
+  %compute_%!CLASS_NAME%_%!mTransientName% (%
+  foreach mDependencyList
+  do %[self %!mMasterName%]%
+  between %, %
+  end foreach
+  %)%
+  if [mType copyOnAssign] then % copy]% end if
+  % ;\n%
+  %  }\n%
+  %  return %!mTransientName%_cachedValue ;\n%
+  %}\n\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %- (void) set%![mTransientName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inUnusedValue {\n%
+  %  // A transient property cannot be set: this method has no effect\n%
+  %}\n\n%
+end foreach
+%//----------------------------------------------------------------------------*
+
+@end
+

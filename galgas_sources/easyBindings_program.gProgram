@@ -1,0 +1,69 @@
+program easyBindings_program "1.0.0":
+import "abstractSyntaxTree.gSemantics" ;
+import "semanticAnalysis.gSemantics" ;
+import "classGeneration.gSemantics" ;
+import "entityGeneration.gSemantics" ;
+import "preferencesGeneration.gSemantics" ;
+import "easyBindings_grammar.gGrammar" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper predefinedOutletClasses in "../generation-templates/predefined-outlet-classes" {
+}{
+}{
+  template sourceFile "predefinedOutletClasses.easyBindings" ;
+}
+
+#----------------------------------------------------------------------------*
+
+local filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
+  "m", "h"
+}{
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+when . "easyBindings"
+message "a source text file with the .easyBindings extension"
+??@lstring inSourceFile {
+#--- Parse predefined outlets
+  @ASTstruct ast ;
+  grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile] ?ast ;
+#--- Parse source file
+  @ASTstruct sourceAST ;
+  grammar easyBindings_grammar in inSourceFile ?sourceAST ;
+#--- Combine ASTs
+  ast->mClassList .= sourceAST->mClassList ;
+  ast->mEntityList .= sourceAST->mEntityList ;
+  ast->mPreferencesList .= sourceAST->mPreferencesList ;
+  ast->mOutletClassList .= sourceAST->mOutletClassList ;
+#--- Semantic Analysis
+  @classMap classMap ;
+  @entityMap entityMap ;
+  @preferencesMap preferencesMap ;
+  @outletClassMap outletClassMap ;
+  semanticAnalysis !ast ?outletClassMap ?classMap ?entityMap ?preferencesMap ;
+#--- Code generation
+  const @string sourceDir := [inSourceFile stringByDeletingLastPathComponent] ;
+  generateClassCode !classMap !sourceDir ;
+  generateEntityCode !entityMap !sourceDir ;
+  generatePreferencesCode !preferencesMap !sourceDir ;
+#--- Add embedded sources
+  @filewrapper fw := [filewrapper objective_c_sources] ;
+  foreach [fw allTextFilePathes] do
+    [@string generateFile
+      !sourceDir . [mValue stringByDeletingLastPathComponent]
+      ![mValue lastPathComponent]
+      !"//"
+      !"\n\n" # Defaut user zone1
+      ![fw textFileContentsAtPath !mValue]
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end foreach ;
+}
+
+#----------------------------------------------------------------------------*
+
+end program ;

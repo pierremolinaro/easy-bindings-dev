@@ -1,0 +1,13 @@
+entity MyPrefsEntity class MyPrefsEntityClass {
+  property NSString myString default "hello" ;
+}
+
+#--------------------------------------------------------------*
+
+preferences PMPrefs root MyPrefsEntity {
+  outlet NSTextField myTextField $value root.myString ;
+}
+
+#--------------------------------------------------------------*
+
+end

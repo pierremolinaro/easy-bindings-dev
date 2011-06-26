@@ -1,0 +1,48 @@
+%if SUPER_CLASS_NAME == "" then
+  %#import <Cocoa/Cocoa.h>\n%
+else
+  %#import "%!SUPER_CLASS_NAME%.h"\n%
+end if
+%
+//----------------------------------------------------------------------------*
+
+@interface %!CLASS_NAME% : %
+if SUPER_CLASS_NAME == "" then
+  %NSObject%
+else
+  !SUPER_CLASS_NAME
+end if
+% {
+
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mPropertyName%' property\n%
+%  @private %![mType ocTypeName]% %!mPropertyName% ;\n\n%
+end foreach%
+%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient\n%
+%  @private BOOL %!mTransientName%_hasBeenComputed ;\n%
+%  @private %![mType ocTypeName]% %!mTransientName%_cachedValue ;\n\n%
+end foreach%
+}
+
+//--- Init method
+%foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+  before %-(id) initWith%
+  do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]
+  between %\n      with%
+  after % ;%
+end foreach%
+
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mPropertyName%' property\n%
+%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n\n%
+end foreach
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' getter\n%
+%- (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+end foreach%
+
+@end
+
+//----------------------------------------------------------------------------*
+

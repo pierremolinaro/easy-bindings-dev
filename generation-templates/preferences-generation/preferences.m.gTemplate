@@ -1,0 +1,215 @@
+#import "%!PREFERENCES_NAME%.h"
+#import "%!ROOT_ENTITY_CLASS_NAME%.h"
+#import "managed-object-model.h"
+#import "easy-bindings-utilities.h"
+
+//----------------------------------------------------------------------------*
+
+%!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
+
+//----------------------------------------------------------------------------*
+
+@implementation %!PREFERENCES_NAME%
+
+//----------------------------------------------------------------------------*
+//    Init                                                                    *
+//----------------------------------------------------------------------------*
+
+- (id) init {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+  self = [super init] ;
+  if (self) {
+    #ifdef PM_COCOA_DEBUG
+      objectHasBeenAllocated (self) ;
+    #endif
+    g_%!PREFERENCES_NAME% = self ;
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    managedObjectContext                                                    *
+//----------------------------------------------------------------------------*
+
+//- (NSManagedObjectContext *) managedObjectContext {
+//  return mManagedObjectContext ;
+//}
+
+//----------------------------------------------------------------------------*
+//    rootObjectController                                                    *
+//----------------------------------------------------------------------------*
+
+- (NSObjectController *) rootObjectController {
+  return mRootObjectController ;
+}
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                    presentOutletErrorOnLine:message:                      *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (void) presentOutletErrorOnLine: (int) inLineNumber message: (NSString *) inMessage {
+  NSString * f = [[NSString stringWithCString:__FILE__ encoding:NSASCIIStringEncoding] lastPathComponent] ;
+  NSMutableString * message = [NSMutableString stringWithCapacity:1000] ;
+  [message appendFormat:@"File: \%@\\n", f] ;
+  [message appendFormat:@"Line: \%d\\n\\n", inLineNumber] ;
+  [message appendFormat:@"Message: \%@", inMessage] ;
+  static NSPoint origin = {20.0F, 20.0F} ;
+  const NSRect r = {origin, {300.0F, 200.0F}} ;
+  origin.x += 20.0F ;
+  origin.y += 20.0F ;
+  NSWindow * window = [[NSWindow alloc] initWithContentRect:r
+    styleMask:NSTitledWindowMask | NSClosableWindowMask
+    backing:NSBackingStoreBuffered
+    defer:YES
+    screen:nil
+  ] ;
+  [window setTitle:@"Outlet Error"] ;
+  NSView * contentView = [window contentView] ;
+  const NSRect tfRect = NSInsetRect ([contentView bounds], 10.0F, 10.0F) ;
+  NSTextField * tf = [[NSTextField alloc] initWithFrame:tfRect] ;
+  [tf setEditable:NO] ;
+  [tf setSelectable:YES] ;
+  [tf setFont:[NSFont boldSystemFontOfSize:0.0F]] ;
+  [tf setTextColor:[NSColor redColor]] ;
+  [tf setStringValue:message] ;
+  [contentView addSubview:tf] ;
+  NSBeep () ;
+  [window makeKeyAndOrderFront:nil] ;
+}
+
+//----------------------------------------------------------------------------*
+//    awakeFromNib                                                            *
+//----------------------------------------------------------------------------*
+
+- (void) awakeFromNib {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+//--- Get temporary file path
+  NSString * temporaryFilePath = [NSString
+    stringWithFormat:@"\%@/\%@",
+    NSTemporaryDirectory (),
+    [[NSProcessInfo processInfo] globallyUniqueString]
+  ] ;
+//--- Get corresponding URL
+  mTemporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath] ;
+  // NSLog (@"mTemporaryFileURL \%@", mTemporaryFileURL) ;
+//--- Load saved preferences
+  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
+  NSData * prefsXML = [ud valueForKey:@"%!PREFERENCES_NAME%"] ;
+  // NSLog (@"prefsXML \%@", prefsXML) ;
+  [prefsXML writeToURL:mTemporaryFileURL atomically:YES] ;
+//--- Create a managed object context
+  NSManagedObjectModel * mom = managedObjectModel () ;
+  NSPersistentStoreCoordinator * psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] ;
+  mManagedObjectContext = [NSManagedObjectContext new] ;
+  [mManagedObjectContext setPersistentStoreCoordinator:psc] ;
+  NSDictionary * readOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+    [NSNumber numberWithBool:YES], NSIgnorePersistentStoreVersioningOption,
+    nil
+  ] ;
+  [psc 
+    addPersistentStoreWithType:NSXMLStoreType
+    configuration:nil
+    URL:mTemporaryFileURL
+    options:readOptions
+    error:nil
+  ] ;
+//--- Root entity controller creation
+  mRootObjectController = [[NSObjectController alloc] init] ;
+  [mRootObjectController setAutomaticallyPreparesContent:YES] ;
+  [mRootObjectController setEditable:YES] ;
+  [mRootObjectController setEntityName:@"%!ROOT_ENTITY_NAME%"] ;
+  [mRootObjectController setManagedObjectContext:mManagedObjectContext] ;
+
+  [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
+  mRootObject = [mRootObjectController content] ;
+  if (nil == mRootObject) {
+    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% insertNewObjectIntoManagedObjectContext:mManagedObjectContext] ;
+    [mRootObjectController setContent:mRootObject] ;
+    // NSLog (@"Root object creation") ;
+  }
+  
+  [mManagedObjectContext processPendingChanges] ;
+
+  [[NSNotificationCenter defaultCenter]
+    addObserver:self
+    selector:@selector (prefsDidChange:)
+    name:NSManagedObjectContextObjectsDidChangeNotification
+    object:mManagedObjectContext
+  ] ;  
+%
+foreach OUTLET_DECLARATION_LIST do
+   %//--- check %!mOutletName%' outlet not nil\n%
+   %  if (nil == %!mOutletName%) {\n%
+   %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet is nil"] ;\n%
+   %  }\n%
+  foreach mOutletBindingList do
+   %//--- '%!mOutletName%' outlet: %!mBindingName%' binding\n%
+   %  [%!mOutletName%\n%
+   %    bind:@"%!mBindingName%"\n%
+   %    toObject:mRootObject\n%
+   %    withKeyPath:@"%!mRootObservablePropertyName%"\n%
+   %    options:%
+   if [mOutletBindingOptionList length] == 0 then
+     %nil\n%
+   else
+     %[NSDictionary dictionaryWithObjectsAndKeys:\n%
+     foreach mOutletBindingOptionList do
+       %      %!mValue1%, @%![mValue0 utf8Representation]%,\n%
+     end foreach
+     %      nil\n%
+     %    ]\n%
+   end if
+   %  ] ;\n%
+  end foreach
+end foreach
+%}
+
+//---------------------------------------------------------------------------*
+//                              prefsDidChange                               *
+//---------------------------------------------------------------------------*
+
+- (void) prefsDidChange: (NSNotification *) inNotification {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+  [[NSRunLoop currentRunLoop]
+    performSelector: @selector (performSave:)
+    target:self
+    argument:nil
+    order:0
+    modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+  ] ;
+}
+
+//---------------------------------------------------------------------------*
+//                               performSave                                 *
+//---------------------------------------------------------------------------*
+
+- (void) performSave: (id) inUnusedNilArgument {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+//---
+  [mManagedObjectContext save:nil] ;
+//--- Load saved preferences
+  NSData * XMLprefs = [NSData
+    dataWithContentsOfURL:mTemporaryFileURL
+    options:NSDataReadingMapped
+    error:nil
+  ] ;
+  // NSLog (@"XMLprefs \%@", XMLprefs) ;
+//--- Save in user defaults
+  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
+  [ud setValue:XMLprefs forKey:@"%!PREFERENCES_NAME%"] ;
+}
+
+//----------------------------------------------------------------------------*
+
+@end
+

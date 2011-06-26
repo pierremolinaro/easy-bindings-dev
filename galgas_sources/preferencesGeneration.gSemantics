@@ -1,0 +1,71 @@
+semantics preferencesGeneration :
+  import "easyBindings_options.gOption" ;
+  import "semanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
+}{
+}{
+  template preferencesDeclaration "preferences.h.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@string ROOT_ENTITY_CLASS_NAME
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+  ;
+  
+  template preferencesImplementation "preferences.m.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@string ROOT_ENTITY_CLASS_NAME
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+  ;
+  
+}
+
+#----------------------------------------------------------------------------*
+
+routine generatePreferencesCode
+  ??@preferencesMap inPreferencesMap
+  ??@string inOutputDirectory
+:
+  foreach inPreferencesMap do
+  #--- Header
+    @string s := [filewrapper prefsGenerationTemplate.preferencesDeclaration
+      ![lkey string]
+      !mRootEntityName
+      !mRootEntityImplementationClassName
+      !mOutletDeclarationList
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Implementation
+    s := [filewrapper prefsGenerationTemplate.preferencesImplementation
+      ![lkey string]
+      !mRootEntityName
+      !mRootEntityImplementationClassName
+      !mOutletDeclarationList
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;
