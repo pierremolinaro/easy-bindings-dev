@@ -1,0 +1,433 @@
+syntax easyBindings_syntax ("easyBindings_lexique.gLexique") :
+import "easyBindings_options.gOption" ;
+import "abstractSyntaxTree.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+rule <start_symbol> !@ASTstruct outAST :
+  @classList classList [emptyList] ;
+  @entityList entityList [emptyList] ;
+  @preferencesList preferencesList [emptyList] ;
+  @outletClassList outletClassList [emptyList] ;
+  repeat
+  while
+    <class_declaration> !?classList ;
+  while
+    <entity_declaration> !?entityList ;
+  while
+    <preferences_declaration> !?preferencesList ;
+  while
+    <outlet_class_declaration> !?outletClassList ;
+  end repeat ;
+  $end$ ;
+  outAST := [@ASTstruct new
+    !classList
+    !entityList
+    !preferencesList
+    !outletClassList
+  ] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <outlet_declaration>
+  ?!@outletDeclarationList ioOutletDeclarationList
+:
+  $outlet$ ;
+  $Identifier$ ? @lstring outletTypeName ;
+  $identifier$ ? @lstring outletName ;
+  @outletBindingList outletBindingList [emptyList] ;
+  repeat
+  while
+    $binding$ ? @lstring bindingName ;
+    $root$ ;
+    $.$ ;
+    $identifier$ ? @lstring rootObservablePropertyName ;
+    @outletBindingOptionList outletBindingOptionList [emptyList] ;
+    select
+    or
+      ${$ ;
+      repeat
+        $Identifier$ ? @lstring optionName ;
+        $:$ ;
+        @easyBindingTypeList correspondingAcceptableTypes ;
+        @string defaultValueObjectiveCObject ;
+        <explicite_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ;
+        outletBindingOptionList +=
+          !optionName
+          !correspondingAcceptableTypes
+          !defaultValueObjectiveCObject
+        ;
+      while
+        $,$ ;
+      end repeat ;
+      $}$ ;
+    end select ;
+    outletBindingList += !bindingName !rootObservablePropertyName !outletBindingOptionList ;
+  end repeat ;
+  $;$ ;
+  ioOutletDeclarationList += !outletTypeName !outletName !outletBindingList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <preferences_declaration>
+  ?!@preferencesList ioPreferencesList
+:
+  $preferences$ ;
+  $Identifier$ ? @lstring preferencesName ;
+  $root$ ;
+  $Identifier$ ? @lstring rootEntityName ;
+  ${$ ;
+  @outletDeclarationList outletDeclarationList [emptyList] ;
+  repeat
+  while
+    <outlet_declaration> !?outletDeclarationList ;
+  end repeat ;
+  $}$ ;
+  ioPreferencesList += !preferencesName !rootEntityName !outletDeclarationList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <default_property_value>
+  !@easyBindingTypeList outCorrespondingAcceptableTypes
+  !@string outDefaultValueObjectiveCObject
+:
+  select
+    outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
+    outDefaultValueObjectiveCObject := "" ; # No default value
+  or
+    $default$ ;
+    <explicite_value>
+      ?outCorrespondingAcceptableTypes
+      ?outDefaultValueObjectiveCObject
+    ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+once predefinedColors -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"blackColor" ;
+  outResult += !"blueColor" ;
+  outResult += !"brownColor" ;
+  outResult += !"clearColor" ;
+  outResult += !"controlColor" ;
+  outResult += !"controlDarkShadowColor" ;
+  outResult += !"controlHighlightColor" ;
+  outResult += !"controlLightHighlightColor" ;
+  outResult += !"controlShadowColor" ;
+  outResult += !"controlTextColor" ;
+  outResult += !"cyanColor" ;
+  outResult += !"darkGrayColor" ;
+  outResult += !"disabledControlTextColor" ;
+  outResult += !"grayColor" ;
+  outResult += !"greenColor" ;
+  outResult += !"gridColor" ;
+  outResult += !"headerColor" ;
+  outResult += !"headerTextColor" ;
+  outResult += !"highlightColor" ;
+  outResult += !"keyboardFocusIndicatorColor" ;
+  outResult += !"knobColor" ;
+  outResult += !"lightGrayColor" ;
+  outResult += !"magentaColor" ;
+  outResult += !"orangeColor" ;
+  outResult += !"purpleColor" ;
+  outResult += !"redColor" ;
+  outResult += !"scrollBarColor" ;
+  outResult += !"selectedControlColor" ;
+  outResult += !"selectedControlTextColor" ;
+  outResult += !"selectedKnobColor" ;
+  outResult += !"selectedMenuItemColor" ;
+  outResult += !"selectedMenuItemTextColor" ;
+  outResult += !"selectedTextBackgroundColor" ;
+  outResult += !"selectedTextColor" ;
+  outResult += !"shadowColor" ;
+  outResult += !"textBackgroundColor" ;
+  outResult += !"textColor" ;
+  outResult += !"whiteColor" ;
+  outResult += !"windowBackgroundColor" ;
+  outResult += !"windowFrameColor" ;
+  outResult += !"windowFrameTextColor" ;
+  outResult += !"yellowColor" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+
+rule <explicite_value>
+  !@easyBindingTypeList outCorrespondingAcceptableTypes
+  !@string outDefaultValueObjectiveCObject
+:
+  outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
+  select
+    $YES$ ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:YES]" ;
+    outCorrespondingAcceptableTypes += ![@boolType new] ;
+  or
+    $NO$ ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:NO]" ;
+    outCorrespondingAcceptableTypes += ![@boolType new] ;
+  or
+    $literal_integer$ ? @luint integerValue ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithInt:" . [integerValue string] . "]" ;
+    outCorrespondingAcceptableTypes += ![@integer16Type new] ;
+    outCorrespondingAcceptableTypes += ![@integer32Type new] ;
+    outCorrespondingAcceptableTypes += ![@integer64Type new] ;
+  or
+    $literal_string$ ? @lstring stringValue ;
+    outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
+    outCorrespondingAcceptableTypes += ![@stringType new] ;
+  or
+    $identifier$ ? @lstring stringValue ;
+    if [predefinedColors [] hasKey ![stringValue string]] then
+      outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
+      outCorrespondingAcceptableTypes += ![@colorType new] ;
+    else
+      error stringValue: "unknown contant value" : outDefaultValueObjectiveCObject, outCorrespondingAcceptableTypes ;
+    end if ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <class_declaration>
+  ?!@classList ioClassList
+:
+  $class$ ;
+  $Identifier$ ? @lstring className ;
+  @lstring superClassName ;
+  select
+    superClassName := ["" nowhere] ;
+  or
+    $:$ ;
+    $Identifier$ ? superClassName ;
+  end select ;
+  ${$ ;
+  @classPropertyList classPropertyList [emptyList] ;
+  @classTransientList classTransientList [emptyList] ;
+  repeat
+  while
+    $property$ ;
+    @easyBindingType propertyType ;
+    <attribute_type> ?propertyType ;
+    $identifier$ ? @lstring propertyName ;
+    $;$ ;
+    classPropertyList +=
+      !propertyType
+      !propertyName
+      ![@easyBindingTypeList emptyList]
+      !""
+    ;
+  while
+    $transient$ ;
+    @easyBindingType type ;
+    <attribute_type> ?type ;
+    $identifier$ ? @lstring transientName ;
+    $dependsFrom$ ;
+    @lstringlist dependanceList [emptyList] ;
+    repeat
+      $.$ ;
+      $identifier$ ? @lstring dependencyName ;
+      dependanceList += !dependencyName ;
+    while
+      $,$ ;
+    end repeat ;
+    $;$ ;
+    classTransientList += !type !transientName !dependanceList ;
+  end repeat ;
+  $}$ ;
+  ioClassList += !className !superClassName !classPropertyList !classTransientList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <entity_declaration>
+  ?!@entityList ioEntityList
+:
+  $entity$ ;
+  $Identifier$ ? @lstring entityName ;
+  @lstring superEntityName ;
+  select
+    superEntityName := ["" nowhere] ;
+  or
+    $:$ ;
+    $Identifier$ ? superEntityName ;
+  end select ;
+  $class$ ;
+  $Identifier$ ? @lstring implementationClassName ;
+  ${$ ;
+  @classPropertyList classPropertyList [emptyList] ;
+  @classTransientList classTransientList [emptyList] ;
+  repeat
+  while
+    $property$ ;
+    @easyBindingType propertyType ;
+    <attribute_type> ?propertyType ;
+    $identifier$ ? @lstring propertyName ;
+    @easyBindingTypeList correspondingAcceptableTypes ;
+    @string defaultValueObjectiveCObject ;
+    <default_property_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ;
+    $;$ ;
+    classPropertyList +=
+      !propertyType
+      !propertyName
+      !correspondingAcceptableTypes
+      !defaultValueObjectiveCObject
+    ;
+  while
+    $transient$ ;
+    @easyBindingType type ;
+    <attribute_type> ?type ;
+    $identifier$ ? @lstring transientName ;
+    $dependsFrom$ ;
+    @lstringlist dependanceList [emptyList] ;
+    repeat
+      $.$ ;
+      $identifier$ ? @lstring dependencyName ;
+      dependanceList += !dependencyName ;
+    while
+      $,$ ;
+    end repeat ;
+    $;$ ;
+    classTransientList += !type !transientName !dependanceList ;
+  end repeat ;
+  $}$ ;
+  ioEntityList +=
+    !entityName
+    !superEntityName
+    !implementationClassName
+    !classPropertyList
+    !classTransientList
+   ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <attribute_type>
+  !@easyBindingType outPropertyType
+:
+  select
+    $bool$ ;
+    outPropertyType := [@boolType new] ;
+  or
+    $integer16$ ;
+    outPropertyType := [@integer16Type new] ;
+  or
+    $integer32$ ;
+    outPropertyType := [@integer32Type new] ;
+  or
+    $integer64$ ;
+    outPropertyType := [@integer64Type new] ;
+  or
+    $float$ ;
+    outPropertyType := [@floatType new] ;
+  or
+    $double$ ;
+    outPropertyType := [@doubleType new] ;
+  or
+    $decimal$ ;
+    outPropertyType := [@decimalType new] ;
+  or
+    $NSString$ ;
+    outPropertyType := [@stringType new] ;
+  or
+    $NSFont$ ;
+    outPropertyType := [@fontType new] ;
+  or
+    $NSImage$ ;
+    outPropertyType := [@imageType new] ;
+  or
+    $NSColor$ ;
+    outPropertyType := [@colorType new] ;
+  or
+    $NSData$ ;
+    outPropertyType := [@dataType new] ;
+  or
+    $NSDate$ ;
+    outPropertyType := [@dateType new] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <type_list>
+  !@easyBindingTypeList outEasyBindingTypeList
+:
+  outEasyBindingTypeList := [@easyBindingTypeList emptyList] ;
+  repeat
+    select
+      @easyBindingType bindingType ;
+      <attribute_type> ? bindingType ;
+      outEasyBindingTypeList += !bindingType ;
+    or
+      $integer$ ;
+      outEasyBindingTypeList += ![@integer16Type new] ;
+      outEasyBindingTypeList += ![@integer32Type new] ;
+      outEasyBindingTypeList += ![@integer64Type new] ;
+    or
+      $number$ ;
+      outEasyBindingTypeList += ![@integer16Type new] ;
+      outEasyBindingTypeList += ![@integer32Type new] ;
+      outEasyBindingTypeList += ![@integer64Type new] ;
+      outEasyBindingTypeList += ![@decimalType new] ;
+      outEasyBindingTypeList += ![@floatType new] ;
+      outEasyBindingTypeList += ![@doubleType new] ;
+    end select ;
+  while
+    $,$ ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <outlet_class_declaration>
+  ?!@outletClassList ioOutletClassList
+:
+  $outletClass$ ;
+  $Identifier$ ? @lstring outletClassName ;
+  @bool generateCode ;
+  select
+    generateCode := true ;
+  or
+    $noGeneration$ ;
+    generateCode := false ;
+  end select ;
+  ${$ ;
+  @outletClassBindingList outletClassBindingList [emptyList] ;
+  repeat
+  while
+    @lstring bindingName ;
+    select
+      $binding$ ? bindingName ;
+    or
+      $hidden$ ;
+      bindingName := [@lstring new !"hidden" !here] ;
+    or
+      $enabled$ ;
+      bindingName := [@lstring new !"enabled" !here] ;
+    end select ;
+    $:$ ;
+    @easyBindingTypeList easyBindingTypeList ;
+    <type_list> ? easyBindingTypeList ;
+    ${$ ;
+    @bindingOptionList bindingOptionList [emptyList] ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      bindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
+    outletClassBindingList += !bindingName !easyBindingTypeList !bindingOptionList ;
+  end repeat ;
+  $}$ ;
+  ioOutletClassList += !outletClassName !generateCode !outletClassBindingList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+end syntax ;

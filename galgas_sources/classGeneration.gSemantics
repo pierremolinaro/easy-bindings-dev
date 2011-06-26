@@ -1,0 +1,122 @@
+semantics classGeneration :
+  import "easyBindings_options.gOption" ;
+  import "semanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
+}{
+}{
+  template classDeclaration "class.h.gTemplate"
+    ?@string CLASS_NAME
+    ?@string SUPER_CLASS_NAME
+    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+  ;
+  
+  template classImplementation "class.m.gTemplate"
+    ?@string CLASS_NAME
+    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@triggeredKeys TRIGGERED_KEYS
+    ?@propertyListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+  ;
+  
+  template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
+    ?@string CLASS_NAME
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+  ;
+  
+  template classTransientComputationImplementationFile "class-transient-computation-function.m.gTemplate"
+    ?@string CLASS_NAME
+    ?@easyBindingType RESULT_TYPE
+    ?@string TRANSIENT_NAME
+    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateClassCode
+  ??@classMap inClassMap
+  ??@string inOutputDirectory
+:
+  foreach inClassMap do
+  #--- Header
+    @string s := [filewrapper classGenerationTemplate.classDeclaration
+      ![lkey string]
+      !mSuperClassName
+      !mPropertyListForImplementation
+      !mTransientListForImplementation
+      !mPropertyListForInitMethodHeader
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Implementation
+    s := [filewrapper classGenerationTemplate.classImplementation
+      ![lkey string]
+      !mPropertyListForImplementation
+      !mTransientListForImplementation
+      !mPropertyListForInitMethodHeader
+      !mTriggeredKeys
+      !mInheritedPropertyListForImplementation
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Transient computation function header file
+    if [mTransientListForImplementation length] > 0 then
+      s := [filewrapper classGenerationTemplate.classTransientComputationsHeaderFile
+        ![lkey string]
+        !mTransientListForImplementation
+      ] ;
+      [@string generateFile
+        !inOutputDirectory
+        ![lkey string] . "-transient-computations.h"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    end if ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper classGenerationTemplate.classTransientComputationImplementationFile
+          ![lkey string]
+          !mType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFile
+          !inOutputDirectory
+          !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

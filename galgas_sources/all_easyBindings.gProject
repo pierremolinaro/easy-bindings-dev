@@ -1,0 +1,24 @@
+project all_easyBindings -> "easyBindings":
+#--- Targets
+  feature "makefile_macosx" ;
+  feature "project_xcode" ;
+#lexiqueIdentifier  feature "xcode_arch:i386" ;
+  feature "xcode_arch:x86_64" ;
+
+#--- Source files (relative path from 'galgas_sources' directory)
+  lexique "easyBindings_lexique.gLexique" ;
+  option "easyBindings_options.gOption" ;
+  gui "easyBindings_cocoa.gGui" ;
+
+  semantics "abstractSyntaxTree.gSemantics" ;
+  syntax "easyBindings_syntax.gSyntax" ;
+  grammar "easyBindings_grammar.gGrammar" ;
+
+  semantics "semanticAnalysis.gSemantics" ;
+
+  semantics "classGeneration.gSemantics" ;
+  semantics "entityGeneration.gSemantics" ;
+  semantics "preferencesGeneration.gSemantics" ;
+
+  program "easyBindings_program.gProgram" ;
+end project ;

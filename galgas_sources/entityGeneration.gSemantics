@@ -1,0 +1,282 @@
+semantics entityGeneration :
+  import "easyBindings_options.gOption" ;
+  import "semanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+reader customGetterMethod -> @string outResult
+abstract @easyBindingType
+override @boolType { outResult := "boolValue" ; }
+override @integer16Type, @integer32Type, @integer64Type { outResult := "intValue" ; }
+override @floatType { outResult := "floatValue" ; }
+override @doubleType { outResult := "doubleValue" ; }
+override @stringType, @fontType, @imageType,
+         @colorType, @dataType, @dateType, @decimalType { outResult := "" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader customSetterTransformer -> @string outResult
+abstract @easyBindingType
+override @boolType { outResult := "[NSNumber numberWithBool:inValue]" ; }
+override @integer16Type { outResult := "[NSNumber numberWithInt:inValue]" ; }
+override @integer32Type { outResult := "[NSNumber numberWithInt:inValue]" ; }
+override @integer64Type { outResult := "[NSNumber numberWithInteger:inValue]" ; }
+override @floatType { outResult := "[NSNumber numberWithFloat:inValue]" ; }
+override @doubleType { outResult := "[NSNumber numberWithDouble:inValue]" ; }
+override @stringType, @fontType, @imageType, @colorType,
+         @decimalType,
+         @dataType, @dateType { outResult := "" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader isClass -> @bool outResult
+abstract @easyBindingType
+override @boolType, @decimalType,
+         @integer16Type, @integer32Type, @integer64Type,
+         @floatType, @doubleType { outResult := false ; }
+override @stringType, @fontType, @imageType,
+         @colorType, @dataType, @dateType { outResult := true ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper momGenerationTemplate in "../generation-templates/managed-object-model" {
+}{
+}{
+  template momHeader "managed-object-model.h.gTemplate" ;
+  template momImplementation "managed-object-model.m.gTemplate"
+   ?@entityMap ENTITY_MAP
+   ?@string ENTITY_DEFINITIONS
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+local filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
+}{
+}{
+  template entityDeclaration "entity.h.gTemplate"
+    ?@string CLASS_NAME
+    ?@string SUPER_CLASS_NAME
+    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+  ;
+  
+  template entityImplementation "entity.m.gTemplate"
+    ?@string ENTITY_NAME
+    ?@string CLASS_NAME
+    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@triggeredKeys TRIGGERED_KEYS
+    ?@propertyListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+  ;
+  
+  template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
+    ?@string CLASS_NAME
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+  ;
+  
+  template entityTransientComputationImplementationFile "entity-transient-computation-function.m.gTemplate"
+    ?@string CLASS_NAME
+    ?@easyBindingType RESULT_TYPE
+    ?@string TRANSIENT_NAME
+    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+listmap @subEntitiesMap (@stringlist) ;
+
+#----------------------------------------------------------------------------*
+
+reader typeForEntityDescription -> @string outResult
+abstract @easyBindingType
+override @boolType { outResult := "NSBooleanAttributeType" ; }
+override @integer16Type { outResult := "NSInteger16AttributeType" ; }
+override @integer32Type { outResult := "NSInteger32AttributeType" ; }
+override @integer64Type { outResult := "NSInteger64AttributeType" ; }
+override @decimalType { outResult := "NSDecimalAttributeType" ; }
+override @floatType { outResult := "NSFloatAttributeType" ; }
+override @doubleType { outResult := "NSDoubleAttributeType" ; }
+override @stringType { outResult := "NSStringAttributeType" ; }
+override @dataType, @colorType { outResult := "NSBinaryDataAttributeType" ; }
+override @dateType { outResult := "NSDateAttributeType" ; }
+override @fontType, @imageType { outResult := "??" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader nonStandardAttributeNamePrefix -> @string outResult
+abstract @easyBindingType
+override @boolType,
+         @integer16Type, @integer32Type, @integer64Type,
+         @decimalType, @floatType, @doubleType,
+         @stringType, @dataType, @dateType, @fontType,
+         @imageType { outResult := "" ; }
+override @colorType { outResult := "data:" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader attributeValueEncoder -> @string outResult
+abstract @easyBindingType
+override @boolType,
+         @integer16Type, @integer32Type, @integer64Type,
+         @decimalType, @floatType, @doubleType,
+         @stringType, @dataType, @dateType, @fontType,
+         @imageType { outResult := "" ; }
+override @colorType { outResult := "dataEncodedValue" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader attributeValueDecoder -> @string outResult
+abstract @easyBindingType
+override @boolType,
+         @integer16Type, @integer32Type, @integer64Type,
+         @decimalType, @floatType, @doubleType,
+         @stringType, @dataType, @dateType, @fontType,
+         @imageType { outResult := "" ; }
+override @colorType { outResult := "valueFromData" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+routine generateEntityCode
+  ??@entityMap inEntityMap
+  ??@string inOutputDirectory
+:
+  @subEntitiesMap subEntitiesMap [emptyMap] ;
+  foreach inEntityMap do
+    if mSuperEntityName != "" then
+      subEntitiesMap += !mSuperEntityName ![lkey string]  ;
+    end if ;
+  #--- Header
+    @string s := [filewrapper entityGenerationTemplate.entityDeclaration
+      !mImplementationClassName
+      !mSuperImplementationClassName
+      !mPropertyListForImplementation
+      !mTransientListForImplementation
+      !mPropertyListForInitMethodHeader
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      !mImplementationClassName . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Implementation
+    s := [filewrapper entityGenerationTemplate.entityImplementation
+      ![lkey string]
+      !mImplementationClassName
+      !mPropertyListForImplementation
+      !mTransientListForImplementation
+      !mPropertyListForInitMethodHeader
+      !mTriggeredKeys
+      !mInheritedPropertyListForImplementation
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      !mImplementationClassName . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Transient computation function header file
+    if [mTransientListForImplementation length] > 0 then
+      s := [filewrapper entityGenerationTemplate.entityTransientComputationsHeaderFile
+        !mImplementationClassName
+        !mTransientListForImplementation
+      ] ;
+      [@string generateFile
+        !inOutputDirectory
+        !mImplementationClassName . "-transient-computations.h"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    end if ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFile
+          !mImplementationClassName
+          !mType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFile
+          !inOutputDirectory
+          !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  end foreach ;
+#--- Generate managed object model header file
+  [@string generateFile
+    !inOutputDirectory
+    !"managed-object-model.h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    ![filewrapper momGenerationTemplate.momHeader]
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+#--- Generate managed object model header file
+  @string s := "  NSAttributeDescription * attribute = nil ;\n" ;
+  s .= "  NSMutableArray * properties = nil ;\n" ;
+  foreach inEntityMap do
+    s .= "//-------------------------- Entity '" . lkey . "'\n" ;
+    s .= "  entity = [entityDictionary objectForKey:@\"" . lkey . "\"] ;\n" ;
+    s .= "  [entity setManagedObjectClassName:@\"" . mImplementationClassName . "\"] ;\n" ;
+    const @stringlist subEntities := [subEntitiesMap listForKey ![lkey string]] ;
+    foreach subEntities
+    before s .= "  [entity setSubentities:[NSArray arrayWithObjects:" ;
+    do s .= "[entityDictionary objectForKey:@\"" . mValue . "\"], " ;    
+    after s .= "nil]] ;\n" ;
+    end foreach ;
+  #--- Properties
+    s .= "  properties = [NSMutableArray new] ;\n" ;
+    foreach mPropertyListForImplementation do
+      s .= "//--- '" . mPropertyName . "' property\n" ;
+      s .= "  attribute = [NSAttributeDescription new] ;\n" ;
+      s .= "  [attribute setName:@\"" . [mType nonStandardAttributeNamePrefix] .  mPropertyName . "\"] ;\n" ;
+      s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;
+      if mDefaultValueAsObjectiveCObject != "" then
+        s .= "  [attribute setDefaultValue:" . [mType attributeValueEncoder] . "(" . mDefaultValueAsObjectiveCObject . ")] ;\n" ;
+      end if ;
+      s .= "  [properties addObject:attribute] ;\n" ;
+    end foreach ;
+    s .= "//---\n" ;
+    s .= "  [entity setProperties:properties] ;\n" ;
+  end foreach ;  
+  [@string generateFile
+    !inOutputDirectory
+    !"managed-object-model.m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    ![filewrapper momGenerationTemplate.momImplementation !inEntityMap !s]
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

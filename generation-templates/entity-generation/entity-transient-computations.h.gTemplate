@@ -1,0 +1,16 @@
+#import <Cocoa/Cocoa.h>
+
+%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %//----------------------------------------------------------------------------*\n%
+  %//    '%!mTransientName%' transient                                  *\n%
+  %//----------------------------------------------------------------------------*\n\n%
+![mType ocTypeName]% compute_%!CLASS_NAME%_%!mTransientName% (%?^
+  foreach mDependencyList
+  do ![mMasterType ocTypeName]% in%![mMasterName stringByCapitalizingFirstCharacter]
+  between %,\n%!^
+  end foreach
+  %) ;\n\n%
+end foreach
+%
+//----------------------------------------------------------------------------*
+

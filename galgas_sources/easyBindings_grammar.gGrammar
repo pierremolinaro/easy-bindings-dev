@@ -1,0 +1,6 @@
+grammar easyBindings_grammar "LL1":
+with "easyBindings_syntax.gSyntax" ;
+
+root <start_symbol> !@ASTstruct outAST ;
+
+end grammar ;

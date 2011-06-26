@@ -1,0 +1,167 @@
+lexique easyBindings_lexique :
+
+#----------------------------------------------------------------------------*
+#   Identifiers and keywords                                                 *
+#----------------------------------------------------------------------------*
+
+@string tokenString ;
+
+style keywordsStyle -> "Keywords" ;
+
+$identifier$ ! tokenString error message "an identifier (beginning with a lower-case letter)" ;
+$Identifier$ ! tokenString error message "an identifier (beginning with a upper-case letter)" ;
+
+list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+  "entity",
+  "outletClass",
+  "class",
+  "end",
+  "property",
+  "outlet",
+  "transient",
+  "dependsFrom",
+  "bool",
+  "integer16",
+  "integer32",
+  "integer64",
+  "preferences",
+  "integer",
+  "decimal",
+  "float",
+  "double",
+  "root",
+  "number",
+  "noGeneration",
+  "default"
+;
+
+rule 'a'->'z' :
+  repeat
+    enterCharacterIntoString !?tokenString !* ;
+  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  end repeat ;
+  send search tokenString in lowerCaseKeyWordList default $identifier$ ;
+end rule ;
+
+list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+  "NSFont",
+  "NSData",
+  "NSDate",
+  "NSColor",
+  "NSImage",
+  "NSString",
+  "YES",
+  "NO"
+;
+
+
+rule 'A'->'Z' :
+  repeat
+    enterCharacterIntoString !?tokenString !* ;
+  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  end repeat ;
+  send search tokenString in upperCaseKeyWordList default $Identifier$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+#   Binding name                                                             *
+#----------------------------------------------------------------------------*
+
+style bindingNameStyle -> "Binding Names" ;
+style reservedBindingNameStyle -> "Reserved binding names" ;
+
+$binding$ ! tokenString error message "a binding name (identifier prefixed by '$')" style bindingNameStyle ;
+
+list bindingKeyWordList error message "the '%K' binding keyword" style reservedBindingNameStyle :
+  "enabled",
+  "hidden"
+;
+
+rule '$' :
+  repeat
+  while
+   'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+    enterCharacterIntoString !?tokenString !* ;
+  end repeat ;
+  send search tokenString in bindingKeyWordList default $binding$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+#   Literal decimal integers                                                 *
+#----------------------------------------------------------------------------*
+
+style integerStyle -> "Integer Constants" ;
+@uint uint32value ;
+$literal_integer$ !uint32value error message "a 32-bit unsigned decimal number" style integerStyle ;
+
+message decimalNumberTooLarge : "decimal number too large" ;
+message internalError : "internal error" ;
+
+rule '0'->'9' :
+  enterCharacterIntoString !?tokenString !* ;
+  repeat
+  while '0'->'9' :
+    enterCharacterIntoString !?tokenString !* ;
+  while '_' :
+  end repeat ;
+  convertDecimalStringIntoUInt !tokenString !?uint32value error decimalNumberTooLarge, internalError ;
+  send $integer$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+#   Literal character strings                                                *
+#----------------------------------------------------------------------------*
+
+style stringStyle -> "String Constants" ;
+$literal_string$ ! tokenString error message "a character string constant \"...\"" style stringStyle feature nonAtomicSelection ;
+
+
+message incorrectStringEnd : "string does not end with '\"'" ;
+
+rule '"' :
+  repeat
+   while ' ' | '!' | '#'-> '\uFFFD' :
+    enterCharacterIntoString !?tokenString !* ;
+  end repeat ;
+  select
+  when '"' :
+    send $literal_string$ ;
+  default
+    error incorrectStringEnd ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+#   Delimiters                                                               *
+#----------------------------------------------------------------------------*
+
+style delimitersStyle -> "Delimiters" ;
+list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
+  ":",    ",",    ";",   "!",  "{",  "}", "." ;
+
+rule list delimitorsList ;
+
+#----------------------------------------------------------------------------*
+#   Comments                                                                 *
+#----------------------------------------------------------------------------*
+
+style commentStyle -> "Comments" ;
+$comment$ error message "a comment" style commentStyle feature nonAtomicSelection ;
+rule '#' :
+  repeat
+  while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :
+  end repeat ;
+  drop $comment$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+#   Separators                                                               *
+#----------------------------------------------------------------------------*
+
+rule '\u0001' -> ' ' :
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+end lexique ;
+

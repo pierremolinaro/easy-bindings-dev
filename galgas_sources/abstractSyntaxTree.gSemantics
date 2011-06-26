@@ -1,0 +1,145 @@
+semantics abstractSyntaxTree :
+  import "easyBindings_options.gOption" ;
+
+#----------------------------------------------------------------------------*
+
+abstract class @easyBindingType {
+}
+
+#----------------------------------------------------------------------------*
+
+class @boolType, @integer16Type, @integer32Type, @integer64Type,
+      @decimalType, @floatType, @doubleType,
+      @stringType, @dataType, @dateType,
+      @fontType, @imageType, @colorType
+extends @easyBindingType {
+}
+
+#----------------------------------------------------------------------------*
+
+reader ebTypeName -> @string outResult
+abstract @easyBindingType
+override @boolType { outResult := "bool" ; }
+override @integer16Type { outResult := "integer16" ; }
+override @integer32Type { outResult := "integer32" ; }
+override @integer64Type { outResult := "integer64" ; }
+override @decimalType { outResult := "decimal" ; }
+override @floatType { outResult := "float" ; }
+override @doubleType { outResult := "double" ; }
+override @stringType { outResult := "NSString" ; }
+override @dataType { outResult := "NSData" ; }
+override @dateType { outResult := "NSDate" ; }
+override @fontType { outResult := "NSFont" ; }
+override @imageType { outResult := "NSImage" ; }
+override @colorType { outResult := "NSColor" ; }
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+list @classPropertyList {
+  @easyBindingType mType ;
+  @lstring mPropertyName ;
+  @easyBindingTypeList mDefaultValueCorrespondingAcceptableTypes ;
+  @string mDefaultValueObjectiveCObject ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @classTransientList {
+  @easyBindingType mType ;
+  @lstring mTransientName ;
+  @lstringlist mDependencyList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @classList {
+  @lstring mClassName ;
+  @lstring mSuperClassName ;
+  @classPropertyList mPropertyList ;
+  @classTransientList mClassTransientList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @entityList {
+  @lstring mEntityName ;
+  @lstring mSuperEntityName ;
+  @lstring mImplementationClassName ;
+  @classPropertyList mPropertyList ;
+  @classTransientList mClassTransientList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletBindingOptionList {
+  @lstring mOptionName ;
+  @easyBindingTypeList mOptionValuePossibleTypes ;
+  @string mOptionValueObjectiveCObject ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletBindingList {
+  @lstring mBindingName ;
+  @lstring mRootObservablePropertyName ;
+  @outletBindingOptionList mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletDeclarationList {
+  @lstring mOutletType ;
+  @lstring mOutletName ;
+  @outletBindingList mOutletBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @preferencesList {
+  @lstring mPreferencesName ;
+  @lstring mRootEntityName ;
+  @outletDeclarationList mOutletDeclarationList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @easyBindingTypeList {
+  @easyBindingType mType ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletClassBindingList {
+  @lstring mBindingName ;
+  @easyBindingTypeList mAcceptableTypeList ;
+  @bindingOptionList mBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @bindingOptionList {
+  @lstring mBindingOptionName ;
+  @easyBindingTypeList mAcceptableTypeList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletClassList {
+  @lstring mOutletClassName ;
+  @bool mGenerateCode ;
+  @outletClassBindingList mOutletClassBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ASTstruct {
+  @classList mClassList ;
+  @entityList mEntityList ;
+  @preferencesList mPreferencesList ;
+  @outletClassList mOutletClassList ;
+}
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
