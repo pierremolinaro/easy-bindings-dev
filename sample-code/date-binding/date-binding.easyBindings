@@ -1,0 +1,9 @@
+entity MyEntity class MyEntityClass {
+  property NSDate mDate ;
+}
+
+preferences Prefs root MyEntity {
+  outlet NSDatePicker mDatePicker $value root.mDate ;
+}
+
+end
