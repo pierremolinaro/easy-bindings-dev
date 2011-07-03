@@ -28,8 +28,8 @@ abstract @easyBindingType
 override @boolType, @integer16Type, @integer32Type, @integer64Type,
          @floatType, @doubleType, @decimalType { outResult := "" ; }
 override @stringType { outResult := "(copy)" ; }
-override @fontType, @imageType, @dataType , @dateType { outResult := "" ; }
-override @colorType { outResult := "(assign)" ; }
+override @fontType, @imageType, @dataType { outResult := "" ; }
+override @colorType, @dateType { outResult := "(assign)" ; }
 end reader ;
 
 #----------------------------------------------------------------------------*
