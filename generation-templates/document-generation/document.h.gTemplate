@@ -1,0 +1,26 @@
+#import <Cocoa/Cocoa.h>
+
+//----------------------------------------------------------------------------*
+
+@class %!ROOT_ENTITY_CLASS_NAME% ;
+
+//----------------------------------------------------------------------------*
+
+@interface %!DOCUMENT_NAME% : NSPersistentDocument {
+//--- Root Object
+  @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
+//--- Root Object Controller
+  @protected NSObjectController * mRootObjectController ;
+%
+foreach OUTLET_DECLARATION_LIST do
+%//--- '%!mOutletName%' outlet
+  @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
+end foreach
+%}
+
+//--- Retrieve custom managed object model
+- (NSManagedObjectModel *) managedObjectModel ;
+@end
+
+//----------------------------------------------------------------------------*
+

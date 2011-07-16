@@ -1,0 +1,140 @@
+#import "%!DOCUMENT_NAME%.h"
+#import "%!ROOT_ENTITY_CLASS_NAME%.h"
+#import "managed-object-model.h"
+#import "easy-bindings-utilities.h"
+
+//----------------------------------------------------------------------------*
+
+@implementation %!DOCUMENT_NAME%
+
+//----------------------------------------------------------------------------*
+//    Init                                                                    *
+//----------------------------------------------------------------------------*
+
+- (id) init {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+  self = [super init] ;
+  if (self) {
+    #ifdef PM_COCOA_DEBUG
+      objectHasBeenAllocated (self) ;
+    #endif
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    windowNibName                                                           *
+//----------------------------------------------------------------------------*
+
+- (NSString *) windowNibName {
+  return @"%!DOCUMENT_NAME%" ;
+}
+
+//----------------------------------------------------------------------------*
+//    managedObjectModel                                                      *
+//----------------------------------------------------------------------------*
+
+- (NSManagedObjectModel *) managedObjectModel {
+  return managedObjectModel () ;
+}
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                    presentOutletErrorOnLine:message:                      *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (void) presentOutletErrorOnLine: (int) inLineNumber message: (NSString *) inMessage {
+  NSString * f = [[NSString stringWithCString:__FILE__ encoding:NSASCIIStringEncoding] lastPathComponent] ;
+  NSMutableString * message = [NSMutableString stringWithCapacity:1000] ;
+  [message appendFormat:@"File: \%@\\n", f] ;
+  [message appendFormat:@"Line: \%d\\n\\n", inLineNumber] ;
+  [message appendFormat:@"Message: \%@", inMessage] ;
+  static NSPoint origin = {20.0F, 20.0F} ;
+  const NSRect r = {origin, {300.0F, 200.0F}} ;
+  origin.x += 20.0F ;
+  origin.y += 20.0F ;
+  NSWindow * window = [[NSWindow alloc] initWithContentRect:r
+    styleMask:NSTitledWindowMask | NSClosableWindowMask
+    backing:NSBackingStoreBuffered
+    defer:YES
+    screen:nil
+  ] ;
+  [window setTitle:@"Outlet Error"] ;
+  NSView * contentView = [window contentView] ;
+  const NSRect tfRect = NSInsetRect ([contentView bounds], 10.0F, 10.0F) ;
+  NSTextField * tf = [[NSTextField alloc] initWithFrame:tfRect] ;
+  [tf setEditable:NO] ;
+  [tf setSelectable:YES] ;
+  [tf setFont:[NSFont boldSystemFontOfSize:0.0F]] ;
+  [tf setTextColor:[NSColor redColor]] ;
+  [tf setStringValue:message] ;
+  [contentView addSubview:tf] ;
+  NSBeep () ;
+  [window makeKeyAndOrderFront:nil] ;
+}
+
+//----------------------------------------------------------------------------*
+//    windowControllerDidLoadNib                                              *
+//----------------------------------------------------------------------------*
+
+- (void) windowControllerDidLoadNib: (NSWindowController *) inWindowController { 
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+  [super windowControllerDidLoadNib:inWindowController] ;
+//--- Disable undo registrations
+  NSManagedObjectContext * moc = [self managedObjectContext] ;
+  [[moc undoManager] disableUndoRegistration];
+//--- Root entity controller creation
+  mRootObjectController = [[NSObjectController alloc] init] ;
+  [mRootObjectController setAutomaticallyPreparesContent:YES] ;
+  [mRootObjectController setEditable:YES] ;
+  [mRootObjectController setEntityName:@"%!ROOT_ENTITY_NAME%"] ;
+  [mRootObjectController setManagedObjectContext:moc] ;
+
+  [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
+  mRootObject = [mRootObjectController content] ;
+  if (nil == mRootObject) {
+    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% insertNewObjectIntoManagedObjectContext:moc] ;
+    [mRootObjectController setContent:mRootObject] ;
+    // NSLog (@"Root object creation") ;
+  }
+  
+//--- Enable undo registrations
+  [moc processPendingChanges] ;
+  [[moc undoManager] enableUndoRegistration];
+%
+foreach OUTLET_DECLARATION_LIST do
+   %//--- check %!mOutletName%' outlet not nil\n%
+   %  if (nil == %!mOutletName%) {\n%
+   %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet is nil"] ;\n%
+   %  }\n%
+  foreach mOutletBindingList do
+   %//--- '%!mOutletName%' outlet: %!mBindingName%' binding\n%
+   %  [%!mOutletName%\n%
+   %    bind:@"%!mBindingName%"\n%
+   %    toObject:%!mObservedObjectName%\n%
+   %    withKeyPath:@"%!mObservableAttributeName%"\n%
+   %    options:%
+   if [mOutletBindingOptionList length] == 0 then
+     %nil\n%
+   else
+     %[NSDictionary dictionaryWithObjectsAndKeys:\n%
+     foreach mOutletBindingOptionList do
+       %      %!mValue1%, @%![mValue0 utf8Representation]%,\n%
+     end foreach
+     %      nil\n%
+     %    ]\n%
+   end if
+   %  ] ;\n%
+  end foreach
+end foreach
+%}
+
+//----------------------------------------------------------------------------*
+
+@end
+
