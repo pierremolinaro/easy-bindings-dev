@@ -3,7 +3,6 @@
 //----------------------------------------------------------------------------*
 
 @class %!PREFERENCES_NAME% ;
-@class %!ROOT_ENTITY_CLASS_NAME% ;
 
 //----------------------------------------------------------------------------*
 
@@ -12,24 +11,29 @@ extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
 //----------------------------------------------------------------------------*
 
 @interface %!PREFERENCES_NAME% : NSObject {
-//--- Managed Object context
-  @private NSManagedObjectContext * mManagedObjectContext ;
-//--- Root Object
-  @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
-//--- Root Object Controller
-  @protected NSObjectController * mRootObjectController ;
-//--- Temporary file URL
-  @protected NSURL * mTemporaryFileURL ;
 %
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end foreach
+foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%//--- '%!mPropertyName%' attribute\n%
+%  @private %![mType ocTypeName]% %!mPropertyName% ; // Needed by 32-bit compilation\n\n%
+end foreach
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient\n%
+%  @private BOOL %!mTransientName%_hasBeenComputed ;\n%
+%  @private %![mType ocTypeName]% %!mTransientName%_cachedValue ;\n\n%
+end foreach
 %}
-
-//- (NSManagedObjectContext *) managedObjectContext ;
-
-- (NSObjectController *) rootObjectController ;
+%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%//--- '%!mPropertyName%' property\n%
+%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n\n%
+end foreach
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' getter\n%
+%- (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+end foreach%
 @end
 
 //----------------------------------------------------------------------------*

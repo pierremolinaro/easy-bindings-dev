@@ -36,7 +36,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-list @classPropertyList {
+list @attributeList {
   @easyBindingType mType ;
   @lstring mPropertyName ;
   @easyBindingTypeList mDefaultValueCorrespondingAcceptableTypes ;
@@ -45,7 +45,7 @@ list @classPropertyList {
 
 #----------------------------------------------------------------------------*
 
-list @classTransientList {
+list @transientList {
   @easyBindingType mType ;
   @lstring mTransientName ;
   @lstringlist mDependencyList ;
@@ -56,8 +56,8 @@ list @classTransientList {
 list @classList {
   @lstring mClassName ;
   @lstring mSuperClassName ;
-  @classPropertyList mPropertyList ;
-  @classTransientList mClassTransientList ;
+  @attributeList mPropertyList ;
+  @transientList mClassTransientList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -66,8 +66,8 @@ list @entityList {
   @lstring mEntityName ;
   @lstring mSuperEntityName ;
   @lstring mImplementationClassName ;
-  @classPropertyList mPropertyList ;
-  @classTransientList mClassTransientList ;
+  @attributeList mPropertyList ;
+  @transientList mClassTransientList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -82,7 +82,8 @@ list @outletBindingOptionList {
 
 list @outletBindingList {
   @lstring mBindingName ;
-  @lstring mRootObservablePropertyName ;
+  @lstring mObservedObjectName ;
+  @lstring mObservableAttributeName ;
   @outletBindingOptionList mOutletBindingOptionList ;
 }
 
@@ -96,8 +97,17 @@ list @outletDeclarationList {
 
 #----------------------------------------------------------------------------*
 
-list @preferencesList {
+list @preferencesDeclarationList {
   @lstring mPreferencesName ;
+  @outletDeclarationList mOutletDeclarationList ;
+  @attributeList mAttributeList ;
+  @transientList mTransientList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @documentDeclarationList {
+  @lstring mDocumentName ;
   @lstring mRootEntityName ;
   @outletDeclarationList mOutletDeclarationList ;
 }
@@ -136,8 +146,9 @@ list @outletClassList {
 struct @ASTstruct {
   @classList mClassList ;
   @entityList mEntityList ;
-  @preferencesList mPreferencesList ;
+  @preferencesDeclarationList mPreferencesList ;
   @outletClassList mOutletClassList ;
+  @documentDeclarationList mDocumentDeclarationList ;
 }
 
 #----------------------------------------------------------------------------*

@@ -34,6 +34,7 @@ SOURCES += semanticAnalysis.cpp
 SOURCES += classGeneration.cpp
 SOURCES += entityGeneration.cpp
 SOURCES += preferencesGeneration.cpp
+SOURCES += documentGeneration.cpp
 SOURCES += easyBindings_program.cpp
 
 

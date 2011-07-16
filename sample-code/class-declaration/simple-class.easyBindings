@@ -1,25 +1,25 @@
 class MyClass {
-  property bool myBool ;
-  property integer32 myInteger32 ;
-  property NSString myString ;
+  attribute bool myBool ;
+  attribute integer32 myInteger32 ;
+  attribute NSString myString ;
   
   transient NSString schmurtz dependsFrom .myInteger32, .myString ;
   transient NSString truc dependsFrom .schmurtz ;
 }
 
 class MyOtherClass : MyClass {
-  property bool chose ;
+  attribute bool chose ;
   transient NSString bidule dependsFrom .chose, .schmurtz ;
 }
 
 
 entity MyEntity class MyEntityClass {
-  property NSString myString ;
+  attribute NSString myString ;
 }
 
 entity MyOtherEntity : MyEntity class MyOtherEntityClass {
-  property NSString myOtherString ;
-  property integer32 myInteger ;
+  attribute NSString myOtherString ;
+  attribute integer32 myInteger ;
 
   transient NSString theSum dependsFrom .myString, .myOtherString ;
 }

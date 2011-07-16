@@ -12,11 +12,12 @@ $identifier$ ! tokenString error message "an identifier (beginning with a lower-
 $Identifier$ ! tokenString error message "an identifier (beginning with a upper-case letter)" ;
 
 list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+  "document",
   "entity",
   "outletClass",
   "class",
   "end",
-  "property",
+  "attribute",
   "outlet",
   "transient",
   "dependsFrom",

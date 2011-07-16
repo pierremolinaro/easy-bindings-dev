@@ -1,10 +1,8 @@
-entity MyEntity class MyEntityClass {
-  property NSString myString ;
-}
 
-preferences MyPrefs root MyEntity {
-  outlet NSTextField myTextField $value root.myString ;
-  outlet NSTextField myOtherTextField $value root.myString {NSContinuouslyUpdatesValue:YES} ;
+preferences MyPrefs {
+  attribute NSString myString default "def" ;
+  outlet NSTextField myTextField $value .myString ;
+  outlet NSTextField myOtherTextField $value .myString {NSContinuouslyUpdatesValue:YES} ;
 }
 
 end

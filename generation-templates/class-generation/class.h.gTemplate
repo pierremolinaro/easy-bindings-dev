@@ -15,7 +15,7 @@ end if
 % {
 
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mPropertyName%' property\n%
+%//--- '%!mPropertyName%' attribute\n%
 %  @private %![mType ocTypeName]% %!mPropertyName% ;\n\n%
 end foreach%
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do

@@ -13,7 +13,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		CF32C6EF13B48B7700BDB0B1 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32C6EE13B48B7700BDB0B1 /* managed-object-model.m */; };
-		CF32C6F413B48B8100BDB0B1 /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32C6F113B48B8100BDB0B1 /* MyEntityClass.m */; };
 		CF32C6F513B48B8100BDB0B1 /* Prefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32C6F313B48B8100BDB0B1 /* Prefs.m */; };
 		CF32C73313B490CB00BDB0B1 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32C73213B490CB00BDB0B1 /* easy-bindings-utilities.m */; };
 /* End PBXBuildFile section */
@@ -33,8 +32,6 @@
 		8D1107320486CEB800E47090 /* color-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "color-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF32C6ED13B48B7700BDB0B1 /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
 		CF32C6EE13B48B7700BDB0B1 /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
-		CF32C6F013B48B8100BDB0B1 /* MyEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEntityClass.h; sourceTree = "<group>"; };
-		CF32C6F113B48B8100BDB0B1 /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
 		CF32C6F213B48B8100BDB0B1 /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		CF32C6F313B48B8100BDB0B1 /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
 		CF32C73113B490CB00BDB0B1 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
@@ -56,8 +53,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CF32C6F013B48B8100BDB0B1 /* MyEntityClass.h */,
-				CF32C6F113B48B8100BDB0B1 /* MyEntityClass.m */,
 				CF32C6F213B48B8100BDB0B1 /* Prefs.h */,
 				CF32C6F313B48B8100BDB0B1 /* Prefs.m */,
 				256AC3D80F4B6AC300CF3369 /* color_bindingAppDelegate.h */,
@@ -203,7 +198,6 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* color_bindingAppDelegate.m in Sources */,
 				CF32C6EF13B48B7700BDB0B1 /* managed-object-model.m in Sources */,
-				CF32C6F413B48B8100BDB0B1 /* MyEntityClass.m in Sources */,
 				CF32C6F513B48B8100BDB0B1 /* Prefs.m in Sources */,
 				CF32C73313B490CB00BDB0B1 /* easy-bindings-utilities.m in Sources */,
 			);

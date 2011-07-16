@@ -19,6 +19,7 @@ project all_easyBindings -> "easyBindings":
   semantics "classGeneration.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;
+  semantics "documentGeneration.gSemantics" ;
 
   program "easyBindings_program.gProgram" ;
 end project ;
