@@ -41,7 +41,7 @@ end foreach%
   do
     %    value = [ud objectForKey:@"%!PREFERENCES_NAME%:%!mPropertyName%"] ;\n%
     %    if (nil == value) {\n%
-    %      %!mPropertyName% = %!mDefaultValueAsObjectiveCObject% ;\n%
+    %      %!mPropertyName% = %!mDirectDefaultValue% ;\n%
     %    }else{\n%
     %      %!mPropertyName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
     %    }\n%
@@ -118,7 +118,22 @@ foreach OUTLET_DECLARATION_LIST do
    %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet is nil"] ;\n%
    %  }\n%
   foreach mOutletBindingList do
-   %//--- '%!mOutletName%' outlet: %!mBindingName%' binding\n%
+   %//--- '%!mOutletName%' outlet: '%!mBindingName%' binding\n%
+   switch mRequiredFormatter
+   when noFormatter :
+   when numberFormatter :
+     %  if ((nil != %!mOutletName%) && (nil == [%!mOutletName% formatter])) {\n%
+     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has no formatter, it should have an NSNumberFormatter"] ;\n%
+     %  }else if ((nil != %!mOutletName%) && ![[%!mOutletName% formatter] isKindOfClass:[NSNumberFormatter class]]) {\n%
+     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has a formatter that is not kind of NSNumberFormatter class"] ;\n%
+     %  }\n%
+   when dateFormatter :
+     %  if ((nil != %!mOutletName%) && (nil == [%!mOutletName% formatter])) {\n%
+     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has no formatter, it should have an NSDateFormatter"] ;\n%
+     %  }else if ((nil != %!mOutletName%) && ![[%!mOutletName% formatter] isKindOfClass:[NSDateFormatter class]]) {\n%
+     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has a formatter that is not kind of NSDateFormatter class"] ;\n%
+     %  }\n%
+   end switch
    %  [%!mOutletName%\n%
    %    bind:@"%!mBindingName%"\n%
    %    toObject:%!mObservedObjectName%\n%

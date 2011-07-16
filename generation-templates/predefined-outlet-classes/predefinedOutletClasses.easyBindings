@@ -2653,7 +2653,7 @@ outletClass NSTextField noGeneration {
     NSNoSelectionPlaceholder : integer ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $value : NSString {
+  $value : NSString, number NSNumberFormatter {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSContinuouslyUpdatesValue : bool ;

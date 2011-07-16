@@ -5,9 +5,11 @@
 
 static NSManagedObjectModel * buildManagedObjectModel (void) {
   NSMutableDictionary * entityDictionary = [NSMutableDictionary new] ;
-  NSEntityDescription * entity = nil ;
 %
-foreach ENTITY_MAP do
+foreach ENTITY_MAP
+before
+%  NSEntityDescription * entity = nil ;\n%
+do
   %  entity = [NSEntityDescription new] ;\n%
   %  [entity setName:@"%![lkey string]%"] ;\n%
   %  [entityDictionary setObject:entity forKey:@"%![lkey string]%"] ;\n%
