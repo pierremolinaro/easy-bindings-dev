@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'number-binding-in-preferences' target in the 'number-binding-in-preferences' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

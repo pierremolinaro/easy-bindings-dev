@@ -45,6 +45,8 @@ rule 'a'->'z' :
 end rule ;
 
 list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+  "NSNumberFormatter",
+  "NSDateFormatter",
   "NSFont",
   "NSData",
   "NSDate",
@@ -106,7 +108,7 @@ rule '0'->'9' :
   while '_' :
   end repeat ;
   convertDecimalStringIntoUInt !tokenString !?uint32value error decimalNumberTooLarge, internalError ;
-  send $integer$ ;
+  send $literal_integer$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*

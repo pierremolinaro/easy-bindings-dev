@@ -238,8 +238,15 @@ routine generateEntityCode
     !"\n"
   ] ;
 #--- Generate managed object model header file
-  @string s := "  NSAttributeDescription * attribute = nil ;\n" ;
-  s .= "  NSMutableArray * properties = nil ;\n" ;
+  @string s := "" ;
+  @bool hasAttributes := false ;
+  foreach inEntityMap while not hasAttributes do
+    hasAttributes := [mPropertyListForImplementation length] > 0 ;
+  end foreach ;
+  if hasAttributes then
+    s .= "  NSAttributeDescription * attribute = nil ;\n" ;
+    s .= "  NSMutableArray * properties = nil ;\n" ;
+  end if ;
   foreach inEntityMap do
     s .= "//-------------------------- Entity '" . lkey . "'\n" ;
     s .= "  entity = [entityDictionary objectForKey:@\"" . lkey . "\"] ;\n" ;
@@ -253,7 +260,7 @@ routine generateEntityCode
   #--- Properties
     s .= "  properties = [NSMutableArray new] ;\n" ;
     foreach mPropertyListForImplementation do
-      s .= "//--- '" . mPropertyName . "' property\n" ;
+      s .= "//--- '" . mPropertyName . "' attribute\n" ;
       s .= "  attribute = [NSAttributeDescription new] ;\n" ;
       s .= "  [attribute setName:@\"" . [mType nonStandardAttributeNamePrefix] .  mPropertyName . "\"] ;\n" ;
       s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;

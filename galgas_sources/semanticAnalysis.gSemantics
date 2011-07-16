@@ -57,6 +57,7 @@ list @attributeListForImplementation {
   @easyBindingType mType ;
   @string mPropertyName ;
   @string mDefaultValueAsObjectiveCObject ;
+  @string mDirectDefaultValue ;
 }
 
 #----------------------------------------------------------------------------*
@@ -112,6 +113,7 @@ map @entityMap {
 
 list @outletBindingListForGeneration {
   @string mBindingName ;
+  @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
   @string mObservableAttributeName ;
   @2stringlist mOutletBindingOptionList ;
@@ -157,7 +159,7 @@ map @outletClassBindingOptionMap {
 #----------------------------------------------------------------------------*
 
 map @outletClassBindingMap {
-  @easyBindingTypeList mAcceptableTypeList ;
+  @easyBindingTypeAndFormatterList mAcceptableTypeList ;
   @outletClassBindingOptionMap mOutletClassBindingOptionMap ;
   insert insertKey error message "the '%K' binding is already declared" ;
   search searchKey error message "the '%K' binding is not declared" ;
@@ -197,7 +199,7 @@ routine semanticAnalysis
 #        
 #        end foreach ;
       end foreach ;
-      [!?bindingMap insertKey !mBindingName !mAcceptableTypeList !outletClassBindingOptionMap] ;
+      [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
     end foreach ;
   #---
     [!?outOutletClassMap insertKey !mOutletClassName !mGenerateCode !bindingMap] ;
@@ -218,8 +220,8 @@ routine semanticAnalysis
     const @attributeListForImplementation inheritedPropertyListForImplementation := propertyListForInitMethodHeader ;
     @triggeredKeys triggeredKeys [emptyMap] ;
     foreach mPropertyList do
-      propertyListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject ;
-      propertyListForInitMethodHeader += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject ;
+      propertyListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+      propertyListForInitMethodHeader += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       [!?classObservablePropertyMap insertKey !mPropertyName !mType ![@stringlist listWithValue![mPropertyName string]]] ;    
     end foreach ;
   #--- Analyze transient properties
@@ -270,8 +272,8 @@ routine semanticAnalysis
     const @attributeListForImplementation inheritedPropertyListForImplementation := propertyListForInitMethodHeader ;
   #--- Analyze attributes
     foreach mPropertyList do
-      propertyListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject ;
-      propertyListForInitMethodHeader += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject ;
+      propertyListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+      propertyListForInitMethodHeader += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       [!?classObservablePropertyMap insertKey !mPropertyName !mType ![@stringlist listWithValue![mPropertyName string]]] ;    
     end foreach ;
   #--- Analyze transient properties
@@ -314,8 +316,8 @@ routine semanticAnalysis
     @attributeListForImplementation attributeListForImplementation [emptyList] ;
     @transientListForImplementation transientListForImplementation [emptyList] ;
     foreach mAttributeList do
-      attributeListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject ;
-      [!?observableAttributeMap insertKey !mPropertyName !mType ![@stringlist listWithValue![mPropertyName string]]] ;    
+      attributeListForImplementation += !mType ![mPropertyName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+      [!?observableAttributeMap insertKey !mPropertyName !mType ![@stringlist listWithValue![mPropertyName string]]] ;
     end foreach ;
   #--- Analyze transient properties
     @triggeredKeys triggeredKeys [emptyMap] ;
@@ -343,8 +345,8 @@ routine semanticAnalysis
       @outletBindingListForGeneration outletBindingList [emptyList] ;
       foreach mOutletBindingList do
         @outletClassBindingOptionMap outletClassBindingOptionMap ;
-        @easyBindingTypeList acceptableTypeList ;
-        [bindingMap searchKey !mBindingName ?acceptableTypeList ?outletClassBindingOptionMap] ;
+        @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
+        [bindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
       #--- Find preferences observable property
         if mObservedObjectName->string != "" then
           error mObservedObjectName:"no prefix allowed here" ;
@@ -353,12 +355,14 @@ routine semanticAnalysis
         [observableAttributeMap searchKey !mObservableAttributeName ?observablePropertyType ?*] ;
       #--- check model belongs to an acceptable type
         @bool found := false ;
-        foreach acceptableTypeList while not found do
+        @formatterEnum requiredFormatter [noFormatter] ;
+        foreach acceptableTypeFormatterList while not found do
+          requiredFormatter := mRequiredFormatter ;
           found := mType == observablePropertyType ;
         end foreach ;
         if not found then
           @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
-          foreach acceptableTypeList while not found do
+          foreach acceptableTypeFormatterList while not found do
             s .= "\n  - '" . [mType ebTypeName] . "'" ;
           end foreach ;
           error mObservableAttributeName:s ;
@@ -383,7 +387,7 @@ routine semanticAnalysis
           end if ;
           bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
         end foreach ;
-        outletBindingList += ![mBindingName string] !"self" ![mObservableAttributeName string] !bindingOptionList ;
+        outletBindingList += ![mBindingName string] !requiredFormatter !"self" ![mObservableAttributeName string] !bindingOptionList ;
       end foreach ;
       outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
     end foreach ;
@@ -410,8 +414,8 @@ routine semanticAnalysis
       @outletBindingListForGeneration outletBindingList [emptyList] ;
       foreach mOutletBindingList do
         @outletClassBindingOptionMap outletClassBindingOptionMap ;
-        @easyBindingTypeList acceptableTypeList ;
-        [bindingMap searchKey !mBindingName ?acceptableTypeList ?outletClassBindingOptionMap] ;
+        @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
+        [bindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
       #--- Find root observable attribute
         if mObservedObjectName->string != "root" then
           error mObservedObjectName:"'root' missing" ;
@@ -420,12 +424,14 @@ routine semanticAnalysis
         [observablePropertyMap searchKey !mObservableAttributeName ?observablePropertyType ?*] ;
       #--- check model belongs to an acceptable type
         @bool found := false ;
-        foreach acceptableTypeList while not found do
+        @formatterEnum requiredFormatter [noFormatter] ;
+        foreach acceptableTypeFormatterList while not found do
+          requiredFormatter := mRequiredFormatter ;
           found := mType == observablePropertyType ;
         end foreach ;
         if not found then
           @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
-          foreach acceptableTypeList while not found do
+          foreach acceptableTypeFormatterList while not found do
             s .= "\n  - '" . [mType ebTypeName] . "'" ;
           end foreach ;
           error mObservableAttributeName:s ;
@@ -450,7 +456,7 @@ routine semanticAnalysis
           end if ;
           bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
         end foreach ;
-        outletBindingList += ![mBindingName string] !"mRootObject" ![mObservableAttributeName string] !bindingOptionList ;
+        outletBindingList += ![mBindingName string] !requiredFormatter !"mRootObject" ![mObservableAttributeName string] !bindingOptionList ;
       end foreach ;
       outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
     end foreach ;

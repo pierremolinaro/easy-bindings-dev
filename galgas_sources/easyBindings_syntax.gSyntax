@@ -62,7 +62,7 @@ rule <outlet_declaration>
         $:$ ;
         @easyBindingTypeList correspondingAcceptableTypes ;
         @string defaultValueObjectiveCObject ;
-        <explicite_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ;
+        <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
         outletBindingOptionList +=
           !optionName
           !correspondingAcceptableTypes
@@ -178,21 +178,25 @@ end once ;
 
 #----------------------------------------------------------------------------*
 
-rule <explicite_value>
+rule <explicit_value>
   !@easyBindingTypeList outCorrespondingAcceptableTypes
   !@string outDefaultValueObjectiveCObject
+  !@string outDirectDefaultValue
 :
   outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
   select
     $YES$ ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:YES]" ;
+    outDirectDefaultValue := "YES" ;
     outCorrespondingAcceptableTypes += ![@boolType new] ;
   or
     $NO$ ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:NO]" ;
+    outDirectDefaultValue := "NO" ;
     outCorrespondingAcceptableTypes += ![@boolType new] ;
   or
     $literal_integer$ ? @luint integerValue ;
+    outDirectDefaultValue := [integerValue string] ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithInt:" . [integerValue string] . "]" ;
     outCorrespondingAcceptableTypes += ![@integer16Type new] ;
     outCorrespondingAcceptableTypes += ![@integer32Type new] ;
@@ -200,17 +204,23 @@ rule <explicite_value>
   or
     $literal_string$ ? @lstring stringValue ;
     outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
+    outDirectDefaultValue := outDefaultValueObjectiveCObject ;
     outCorrespondingAcceptableTypes += ![@stringType new] ;
   or
     $identifier$ ? @lstring stringValue ;
     if [predefinedColors [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
+      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
       outCorrespondingAcceptableTypes += ![@colorType new] ;
     elsif [predefinedDates [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSDate " . stringValue . "]" ;
+      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
       outCorrespondingAcceptableTypes += ![@dateType new] ;
     else
-      error stringValue: "unknown constant value" : outDefaultValueObjectiveCObject, outCorrespondingAcceptableTypes ;
+      error stringValue
+      : "unknown constant value"
+      : outDefaultValueObjectiveCObject, outDirectDefaultValue, outCorrespondingAcceptableTypes
+      ;
     end if ;
   end select ;
 end rule ;
@@ -248,13 +258,13 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $attribute$ ;
-  @easyBindingType propertyType ;
-  <attribute_type> ?propertyType ;
+  <attribute_type> ?@easyBindingType propertyType ;
   $identifier$ ? @lstring propertyName ;
   $default$ ;
-  <explicite_value>
+  <explicit_value>
     ?@easyBindingTypeList correspondingAcceptableTypes
     ?@string defaultValueObjectiveCObject
+    ?@string directDefaultValue
   ;
   $;$ ;
   ioAttributeList +=
@@ -262,6 +272,7 @@ rule <attribute_declaration>
     !propertyName
     !correspondingAcceptableTypes
     !defaultValueObjectiveCObject
+    !directDefaultValue
   ;
 end rule ;
 
@@ -401,6 +412,55 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <formatter> 
+  !@formatterEnum outRequiredFormatter
+:
+  select
+    outRequiredFormatter := [@formatterEnum noFormatter] ;
+  or
+    $NSDateFormatter$ ;
+    outRequiredFormatter := [@formatterEnum dateFormatter] ;
+  or
+    $NSNumberFormatter$ ;
+    outRequiredFormatter := [@formatterEnum numberFormatter] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <type_formatter_list>
+  !@easyBindingTypeAndFormatterList outEasyBindingTypeFormatterList
+:
+  outEasyBindingTypeFormatterList := [@easyBindingTypeAndFormatterList emptyList] ;
+  repeat
+    select
+      @easyBindingType bindingType ;
+      <attribute_type> ? bindingType ;
+      <formatter> ?@formatterEnum requiredFormatter ;
+      outEasyBindingTypeFormatterList += !bindingType !requiredFormatter ;
+    or
+      $integer$ ;
+      <formatter> ?@formatterEnum requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer16Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer32Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer64Type new] !requiredFormatter ;
+    or
+      $number$ ;
+      <formatter> ?@formatterEnum requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer16Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer32Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integer64Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@decimalType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@floatType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
+    end select ;
+  while
+    $,$ ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <outlet_class_declaration>
   ?!@outletClassList ioOutletClassList
 :
@@ -428,8 +488,8 @@ rule <outlet_class_declaration>
       bindingName := [@lstring new !"enabled" !here] ;
     end select ;
     $:$ ;
-    @easyBindingTypeList easyBindingTypeList ;
-    <type_list> ? easyBindingTypeList ;
+    @easyBindingTypeAndFormatterList easyBindingTypeFormatterList ;
+    <type_formatter_list> ? easyBindingTypeFormatterList ;
     ${$ ;
     @bindingOptionList bindingOptionList [emptyList] ;
     repeat
@@ -441,7 +501,7 @@ rule <outlet_class_declaration>
       bindingOptionList += !optionName !optionTypeList ;
     end repeat ;
     $}$ ;
-    outletClassBindingList += !bindingName !easyBindingTypeList !bindingOptionList ;
+    outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
   ioOutletClassList += !outletClassName !generateCode !outletClassBindingList ;
