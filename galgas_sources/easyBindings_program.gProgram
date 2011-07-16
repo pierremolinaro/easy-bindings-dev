@@ -4,6 +4,7 @@ import "semanticAnalysis.gSemantics" ;
 import "classGeneration.gSemantics" ;
 import "entityGeneration.gSemantics" ;
 import "preferencesGeneration.gSemantics" ;
+import "documentGeneration.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 
 #----------------------------------------------------------------------------*
@@ -37,18 +38,21 @@ message "a source text file with the .easyBindings extension"
   ast->mClassList .= sourceAST->mClassList ;
   ast->mEntityList .= sourceAST->mEntityList ;
   ast->mPreferencesList .= sourceAST->mPreferencesList ;
+  ast->mDocumentDeclarationList .= sourceAST->mDocumentDeclarationList ;
   ast->mOutletClassList .= sourceAST->mOutletClassList ;
 #--- Semantic Analysis
   @classMap classMap ;
   @entityMap entityMap ;
   @preferencesMap preferencesMap ;
   @outletClassMap outletClassMap ;
-  semanticAnalysis !ast ?outletClassMap ?classMap ?entityMap ?preferencesMap ;
+  @documentMap documentMap ;
+  semanticAnalysis !ast ?outletClassMap ?classMap ?entityMap ?preferencesMap ?documentMap ;
 #--- Code generation
   const @string sourceDir := [inSourceFile stringByDeletingLastPathComponent] ;
   generateClassCode !classMap !sourceDir ;
   generateEntityCode !entityMap !sourceDir ;
   generatePreferencesCode !preferencesMap !sourceDir ;
+  generateDocumentCode !documentMap !sourceDir ;
 #--- Add embedded sources
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do

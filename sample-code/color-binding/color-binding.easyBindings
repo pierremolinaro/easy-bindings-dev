@@ -1,9 +1,6 @@
-entity MyEntity class MyEntityClass {
-  property NSColor mColor default yellowColor ;
-}
-
-preferences Prefs root MyEntity {
-  outlet NSColorWell mColorWell $value root.mColor ;
+preferences Prefs {
+  attribute NSColor mColor default yellowColor ;
+  outlet NSColorWell mColorWell $value .mColor ;
 }
 
 end

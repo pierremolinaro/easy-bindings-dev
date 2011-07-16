@@ -1,0 +1,71 @@
+semantics documentGeneration :
+  import "easyBindings_options.gOption" ;
+  import "semanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper documentGenerationTemplate in "../generation-templates/document-generation" {
+}{
+}{
+  template documentDeclaration "document.h.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@string ROOT_ENTITY_CLASS_NAME
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+  ;
+  
+  template documentImplementation "document.m.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@string ROOT_ENTITY_CLASS_NAME
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+  ;
+  
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateDocumentCode
+  ??@documentMap inDocumentMap
+  ??@string inOutputDirectory
+:
+  foreach inDocumentMap do
+  #--- Header
+    @string s := [filewrapper documentGenerationTemplate.documentDeclaration
+      ![lkey string]
+      !mRootEntityName
+      !mRootEntityImplementationClassName
+      !mOutletDeclarationList
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Implementation
+    s := [filewrapper documentGenerationTemplate.documentImplementation
+      ![lkey string]
+      !mRootEntityName
+      !mRootEntityImplementationClassName
+      !mOutletDeclarationList
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      ![lkey string] . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

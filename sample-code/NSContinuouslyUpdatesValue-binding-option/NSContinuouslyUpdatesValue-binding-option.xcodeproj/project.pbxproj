@@ -14,7 +14,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		CF32C77913B4960100BDB0B1 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32C77813B4960100BDB0B1 /* easy-bindings-utilities.m */; };
 		CFC1476D13B388110046291B /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC1476813B388110046291B /* managed-object-model.m */; };
-		CFC1476E13B388110046291B /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC1476A13B388110046291B /* MyEntityClass.m */; };
 		CFC1476F13B388110046291B /* MyPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC1476C13B388110046291B /* MyPrefs.m */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +34,6 @@
 		CF32C77813B4960100BDB0B1 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
 		CFC1476713B388110046291B /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
 		CFC1476813B388110046291B /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
-		CFC1476913B388110046291B /* MyEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEntityClass.h; sourceTree = "<group>"; };
-		CFC1476A13B388110046291B /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
 		CFC1476B13B388110046291B /* MyPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPrefs.h; sourceTree = "<group>"; };
 		CFC1476C13B388110046291B /* MyPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,8 +57,6 @@
 				CF32C77813B4960100BDB0B1 /* easy-bindings-utilities.m */,
 				CFC1476713B388110046291B /* managed-object-model.h */,
 				CFC1476813B388110046291B /* managed-object-model.m */,
-				CFC1476913B388110046291B /* MyEntityClass.h */,
-				CFC1476A13B388110046291B /* MyEntityClass.m */,
 				CFC1476B13B388110046291B /* MyPrefs.h */,
 				CFC1476C13B388110046291B /* MyPrefs.m */,
 				256AC3F00F4B6AF500CF3369 /* NSContinuouslyUpdatesValue_binding_option_Prefix.pch */,
@@ -193,7 +188,6 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* NSContinuouslyUpdatesValue_binding_optionAppDelegate.m in Sources */,
 				CFC1476D13B388110046291B /* managed-object-model.m in Sources */,
-				CFC1476E13B388110046291B /* MyEntityClass.m in Sources */,
 				CFC1476F13B388110046291B /* MyPrefs.m in Sources */,
 				CF32C77913B4960100BDB0B1 /* easy-bindings-utilities.m in Sources */,
 			);

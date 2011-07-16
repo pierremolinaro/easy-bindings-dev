@@ -10,18 +10,18 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
   template classDeclaration "class.h.gTemplate"
     ?@string CLASS_NAME
     ?@string SUPER_CLASS_NAME
-    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
   ;
   
   template classImplementation "class.m.gTemplate"
     ?@string CLASS_NAME
-    ?@propertyListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@propertyListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@triggeredKeys TRIGGERED_KEYS
-    ?@propertyListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+    ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
   ;
   
   template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"

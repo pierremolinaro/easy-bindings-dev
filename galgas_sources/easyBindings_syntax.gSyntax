@@ -7,8 +7,9 @@ import "abstractSyntaxTree.gSemantics" ;
 rule <start_symbol> !@ASTstruct outAST :
   @classList classList [emptyList] ;
   @entityList entityList [emptyList] ;
-  @preferencesList preferencesList [emptyList] ;
+  @preferencesDeclarationList preferencesList [emptyList] ;
   @outletClassList outletClassList [emptyList] ;
+  @documentDeclarationList documentDeclarationList [emptyList] ;
   repeat
   while
     <class_declaration> !?classList ;
@@ -16,6 +17,8 @@ rule <start_symbol> !@ASTstruct outAST :
     <entity_declaration> !?entityList ;
   while
     <preferences_declaration> !?preferencesList ;
+  while
+    <document_declaration> !?documentDeclarationList ;
   while
     <outlet_class_declaration> !?outletClassList ;
   end repeat ;
@@ -25,6 +28,7 @@ rule <start_symbol> !@ASTstruct outAST :
     !entityList
     !preferencesList
     !outletClassList
+    !documentDeclarationList
   ] ;
 end rule ;
 
@@ -40,7 +44,13 @@ rule <outlet_declaration>
   repeat
   while
     $binding$ ? @lstring bindingName ;
-    $root$ ;
+    @lstring observedObjectName ;
+    select
+      $root$ ;
+      observedObjectName := [@lstring new !"root" !here] ;
+    or
+      observedObjectName := [@lstring new !"" !here] ;
+    end select ;
     $.$ ;
     $identifier$ ? @lstring rootObservablePropertyName ;
     @outletBindingOptionList outletBindingOptionList [emptyList] ;
@@ -63,7 +73,7 @@ rule <outlet_declaration>
       end repeat ;
       $}$ ;
     end select ;
-    outletBindingList += !bindingName !rootObservablePropertyName !outletBindingOptionList ;
+    outletBindingList += !bindingName !observedObjectName !rootObservablePropertyName !outletBindingOptionList ;
   end repeat ;
   $;$ ;
   ioOutletDeclarationList += !outletTypeName !outletName !outletBindingList ;
@@ -72,9 +82,32 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <preferences_declaration>
-  ?!@preferencesList ioPreferencesList
+  ?!@preferencesDeclarationList ioPreferencesList
 :
   $preferences$ ;
+  $Identifier$ ? @lstring preferencesName ;
+  ${$ ;
+  @outletDeclarationList outletDeclarationList [emptyList] ;
+  @attributeList attributeList [emptyList] ;
+  @transientList transientList [emptyList] ;
+  repeat
+  while
+    <attribute_declaration> !?attributeList ;
+  while
+    <outlet_declaration> !?outletDeclarationList ;
+  while
+    <transient_declaration> !?transientList ;
+  end repeat ;
+  $}$ ;
+  ioPreferencesList += !preferencesName !outletDeclarationList !attributeList !transientList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <document_declaration>
+  ?!@documentDeclarationList ioDocumentList
+:
+  $document$ ;
   $Identifier$ ? @lstring preferencesName ;
   $root$ ;
   $Identifier$ ? @lstring rootEntityName ;
@@ -85,26 +118,15 @@ rule <preferences_declaration>
     <outlet_declaration> !?outletDeclarationList ;
   end repeat ;
   $}$ ;
-  ioPreferencesList += !preferencesName !rootEntityName !outletDeclarationList ;
+  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <default_property_value>
-  !@easyBindingTypeList outCorrespondingAcceptableTypes
-  !@string outDefaultValueObjectiveCObject
-:
-  select
-    outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
-    outDefaultValueObjectiveCObject := "" ; # No default value
-  or
-    $default$ ;
-    <explicite_value>
-      ?outCorrespondingAcceptableTypes
-      ?outDefaultValueObjectiveCObject
-    ;
-  end select ;
-end rule ;
+once predefinedDates -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"date" ;
+end once ;
 
 #----------------------------------------------------------------------------*
 
@@ -184,8 +206,11 @@ rule <explicite_value>
     if [predefinedColors [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
       outCorrespondingAcceptableTypes += ![@colorType new] ;
+    elsif [predefinedDates [] hasKey ![stringValue string]] then
+      outDefaultValueObjectiveCObject := "[NSDate " . stringValue . "]" ;
+      outCorrespondingAcceptableTypes += ![@dateType new] ;
     else
-      error stringValue: "unknown contant value" : outDefaultValueObjectiveCObject, outCorrespondingAcceptableTypes ;
+      error stringValue: "unknown constant value" : outDefaultValueObjectiveCObject, outCorrespondingAcceptableTypes ;
     end if ;
   end select ;
 end rule ;
@@ -205,40 +230,61 @@ rule <class_declaration>
     $Identifier$ ? superClassName ;
   end select ;
   ${$ ;
-  @classPropertyList classPropertyList [emptyList] ;
-  @classTransientList classTransientList [emptyList] ;
+  @attributeList attributeList [emptyList] ;
+  @transientList classTransientList [emptyList] ;
   repeat
   while
-    $property$ ;
-    @easyBindingType propertyType ;
-    <attribute_type> ?propertyType ;
-    $identifier$ ? @lstring propertyName ;
-    $;$ ;
-    classPropertyList +=
-      !propertyType
-      !propertyName
-      ![@easyBindingTypeList emptyList]
-      !""
-    ;
+    <attribute_declaration> !?attributeList ;
   while
-    $transient$ ;
-    @easyBindingType type ;
-    <attribute_type> ?type ;
-    $identifier$ ? @lstring transientName ;
-    $dependsFrom$ ;
-    @lstringlist dependanceList [emptyList] ;
-    repeat
-      $.$ ;
-      $identifier$ ? @lstring dependencyName ;
-      dependanceList += !dependencyName ;
-    while
-      $,$ ;
-    end repeat ;
-    $;$ ;
-    classTransientList += !type !transientName !dependanceList ;
+    <transient_declaration> !?classTransientList ;
   end repeat ;
   $}$ ;
-  ioClassList += !className !superClassName !classPropertyList !classTransientList ;
+  ioClassList += !className !superClassName !attributeList !classTransientList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <attribute_declaration>
+  ?!@attributeList ioAttributeList
+:
+  $attribute$ ;
+  @easyBindingType propertyType ;
+  <attribute_type> ?propertyType ;
+  $identifier$ ? @lstring propertyName ;
+  $default$ ;
+  <explicite_value>
+    ?@easyBindingTypeList correspondingAcceptableTypes
+    ?@string defaultValueObjectiveCObject
+  ;
+  $;$ ;
+  ioAttributeList +=
+    !propertyType
+    !propertyName
+    !correspondingAcceptableTypes
+    !defaultValueObjectiveCObject
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <transient_declaration>
+  ?!@transientList ioTransientList
+:
+  $transient$ ;
+  @easyBindingType type ;
+  <attribute_type> ?type ;
+  $identifier$ ? @lstring transientName ;
+  $dependsFrom$ ;
+  @lstringlist dependanceList [emptyList] ;
+  repeat
+    $.$ ;
+    $identifier$ ? @lstring dependencyName ;
+    dependanceList += !dependencyName ;
+  while
+    $,$ ;
+  end repeat ;
+  $;$ ;
+  ioTransientList += !type !transientName !dependanceList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -258,47 +304,20 @@ rule <entity_declaration>
   $class$ ;
   $Identifier$ ? @lstring implementationClassName ;
   ${$ ;
-  @classPropertyList classPropertyList [emptyList] ;
-  @classTransientList classTransientList [emptyList] ;
+  @attributeList attributeList [emptyList] ;
+  @transientList classTransientList [emptyList] ;
   repeat
   while
-    $property$ ;
-    @easyBindingType propertyType ;
-    <attribute_type> ?propertyType ;
-    $identifier$ ? @lstring propertyName ;
-    @easyBindingTypeList correspondingAcceptableTypes ;
-    @string defaultValueObjectiveCObject ;
-    <default_property_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ;
-    $;$ ;
-    classPropertyList +=
-      !propertyType
-      !propertyName
-      !correspondingAcceptableTypes
-      !defaultValueObjectiveCObject
-    ;
+    <attribute_declaration> !?attributeList ;
   while
-    $transient$ ;
-    @easyBindingType type ;
-    <attribute_type> ?type ;
-    $identifier$ ? @lstring transientName ;
-    $dependsFrom$ ;
-    @lstringlist dependanceList [emptyList] ;
-    repeat
-      $.$ ;
-      $identifier$ ? @lstring dependencyName ;
-      dependanceList += !dependencyName ;
-    while
-      $,$ ;
-    end repeat ;
-    $;$ ;
-    classTransientList += !type !transientName !dependanceList ;
+    <transient_declaration> !?classTransientList ;
   end repeat ;
   $}$ ;
   ioEntityList +=
     !entityName
     !superEntityName
     !implementationClassName
-    !classPropertyList
+    !attributeList
     !classTransientList
    ;
 end rule ;

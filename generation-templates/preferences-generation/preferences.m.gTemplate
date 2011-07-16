@@ -1,7 +1,8 @@
 #import "%!PREFERENCES_NAME%.h"
-#import "%!ROOT_ENTITY_CLASS_NAME%.h"
-#import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
+%if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
+  %#import "%!PREFERENCES_NAME%-transient-computations.h"%
+end if%
 
 //----------------------------------------------------------------------------*
 
@@ -11,6 +12,13 @@
 
 @implementation %!PREFERENCES_NAME%
 
+//----------------------------------------------------------------------------*
+//    Synthesize properties                                                   *
+//----------------------------------------------------------------------------*
+
+%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%@synthesize %!mPropertyName% ;\n%
+end foreach%
 //----------------------------------------------------------------------------*
 //    Init                                                                    *
 //----------------------------------------------------------------------------*
@@ -25,31 +33,45 @@
       objectHasBeenAllocated (self) ;
     #endif
     g_%!PREFERENCES_NAME% = self ;
+  //---
+%foreach ATTRIBUTE_LIST_FOR_GENERATION
+  before
+    %    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
+    %    id value ;\n%
+  do
+    %    value = [ud objectForKey:@"%!PREFERENCES_NAME%:%!mPropertyName%"] ;\n%
+    %    if (nil == value) {\n%
+    %      %!mPropertyName% = %!mDefaultValueAsObjectiveCObject% ;\n%
+    %    }else{\n%
+    %      %!mPropertyName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
+    %    }\n%
+end foreach
+%  //---
+    [[NSNotificationCenter defaultCenter]
+      addObserver:self
+      selector:@selector(applicationWillTerminateAction:)
+      name:NSApplicationWillTerminateNotification
+      object:nil
+    ] ;
   }
   return self ;
 }
 
 //----------------------------------------------------------------------------*
-//    managedObjectContext                                                    *
+//    applicationWillTerminateAction:                                         *
 //----------------------------------------------------------------------------*
 
-//- (NSManagedObjectContext *) managedObjectContext {
-//  return mManagedObjectContext ;
-//}
+- (void) applicationWillTerminateAction: (NSNotification *) inNotification {
+%foreach ATTRIBUTE_LIST_FOR_GENERATION
+  before
+    %  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
+  do
+    %  [ud setObject:%![mType preferencesSetterTransformerFunctionName]% (%!mPropertyName%) forKey:@"%!PREFERENCES_NAME%:%!mPropertyName%"] ;\n%
+end foreach%}
 
 //----------------------------------------------------------------------------*
-//    rootObjectController                                                    *
+//                    presentOutletErrorOnLine:message:                       *
 //----------------------------------------------------------------------------*
-
-- (NSObjectController *) rootObjectController {
-  return mRootObjectController ;
-}
-
-//---------------------------------------------------------------------------*
-//                                                                           *
-//                    presentOutletErrorOnLine:message:                      *
-//                                                                           *
-//---------------------------------------------------------------------------*
 
 - (void) presentOutletErrorOnLine: (int) inLineNumber message: (NSString *) inMessage {
   NSString * f = [[NSString stringWithCString:__FILE__ encoding:NSASCIIStringEncoding] lastPathComponent] ;
@@ -89,59 +111,6 @@
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
-//--- Get temporary file path
-  NSString * temporaryFilePath = [NSString
-    stringWithFormat:@"\%@/\%@",
-    NSTemporaryDirectory (),
-    [[NSProcessInfo processInfo] globallyUniqueString]
-  ] ;
-//--- Get corresponding URL
-  mTemporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath] ;
-  // NSLog (@"mTemporaryFileURL \%@", mTemporaryFileURL) ;
-//--- Load saved preferences
-  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
-  NSData * prefsXML = [ud valueForKey:@"%!PREFERENCES_NAME%"] ;
-  // NSLog (@"prefsXML \%@", prefsXML) ;
-  [prefsXML writeToURL:mTemporaryFileURL atomically:YES] ;
-//--- Create a managed object context
-  NSManagedObjectModel * mom = managedObjectModel () ;
-  NSPersistentStoreCoordinator * psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] ;
-  mManagedObjectContext = [NSManagedObjectContext new] ;
-  [mManagedObjectContext setPersistentStoreCoordinator:psc] ;
-  NSDictionary * readOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-    [NSNumber numberWithBool:YES], NSIgnorePersistentStoreVersioningOption,
-    nil
-  ] ;
-  [psc 
-    addPersistentStoreWithType:NSXMLStoreType
-    configuration:nil
-    URL:mTemporaryFileURL
-    options:readOptions
-    error:nil
-  ] ;
-//--- Root entity controller creation
-  mRootObjectController = [[NSObjectController alloc] init] ;
-  [mRootObjectController setAutomaticallyPreparesContent:YES] ;
-  [mRootObjectController setEditable:YES] ;
-  [mRootObjectController setEntityName:@"%!ROOT_ENTITY_NAME%"] ;
-  [mRootObjectController setManagedObjectContext:mManagedObjectContext] ;
-
-  [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
-  mRootObject = [mRootObjectController content] ;
-  if (nil == mRootObject) {
-    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% insertNewObjectIntoManagedObjectContext:mManagedObjectContext] ;
-    [mRootObjectController setContent:mRootObject] ;
-    // NSLog (@"Root object creation") ;
-  }
-  
-  [mManagedObjectContext processPendingChanges] ;
-
-  [[NSNotificationCenter defaultCenter]
-    addObserver:self
-    selector:@selector (prefsDidChange:)
-    name:NSManagedObjectContextObjectsDidChangeNotification
-    object:mManagedObjectContext
-  ] ;  
 %
 foreach OUTLET_DECLARATION_LIST do
    %//--- check %!mOutletName%' outlet not nil\n%
@@ -152,8 +121,8 @@ foreach OUTLET_DECLARATION_LIST do
    %//--- '%!mOutletName%' outlet: %!mBindingName%' binding\n%
    %  [%!mOutletName%\n%
    %    bind:@"%!mBindingName%"\n%
-   %    toObject:mRootObject\n%
-   %    withKeyPath:@"%!mRootObservablePropertyName%"\n%
+   %    toObject:%!mObservedObjectName%\n%
+   %    withKeyPath:@"%!mObservableAttributeName%"\n%
    %    options:%
    if [mOutletBindingOptionList length] == 0 then
      %nil\n%
@@ -170,46 +139,63 @@ foreach OUTLET_DECLARATION_LIST do
 end foreach
 %}
 
-//---------------------------------------------------------------------------*
-//                              prefsDidChange                               *
-//---------------------------------------------------------------------------*
-
-- (void) prefsDidChange: (NSNotification *) inNotification {
-  #ifdef EASY_BINDINGS_DEBUG
-    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
-  #endif
-  [[NSRunLoop currentRunLoop]
-    performSelector: @selector (performSave:)
-    target:self
-    argument:nil
-    order:0
-    modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
-  ] ;
-}
-
-//---------------------------------------------------------------------------*
-//                               performSave                                 *
-//---------------------------------------------------------------------------*
-
-- (void) performSave: (id) inUnusedNilArgument {
-  #ifdef EASY_BINDINGS_DEBUG
-    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
-  #endif
-//---
-  [mManagedObjectContext save:nil] ;
-//--- Load saved preferences
-  NSData * XMLprefs = [NSData
-    dataWithContentsOfURL:mTemporaryFileURL
-    options:NSDataReadingMapped
-    error:nil
-  ] ;
-  // NSLog (@"XMLprefs \%@", XMLprefs) ;
-//--- Save in user defaults
-  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
-  [ud setValue:XMLprefs forKey:@"%!PREFERENCES_NAME%"] ;
-}
-
 //----------------------------------------------------------------------------*
+//    willChangeValueForKey                                                   *
+//----------------------------------------------------------------------------*
+
+- (void) willChangeValueForKey:(NSString *) inKey {
+  // NSLog (@"\%s:'\%@'", __PRETTY_FUNCTION__, inKey) ;
+%
+foreach TRIGGERED_KEYS
+  before %  if %
+  do
+  %([inKey isEqualToString:@"%!key%"]) {\n%
+  foreach mList do
+    %    %!mValue%_hasBeenComputed = NO ;\n%
+  end foreach
+  %  }%
+  between
+    %else if %
+  after
+    %\n%
+end foreach
+%  [super willChangeValueForKey:inKey] ;
+}
+
+%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %//----------------------------------------------------------------------------*\n%
+  %//    '%!mTransientName%' transient                                  *\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %+ (NSSet *) keyPathsForValuesAffecting%![mTransientName stringByCapitalizingFirstCharacter]% {\n%
+  %  return [NSSet setWithObjects:%
+  foreach mDependencyList do
+    % @"%!mMasterName%", %
+  end foreach
+  %nil] ;\n%
+  %}\n\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %- (%![mType ocTypeName]%) %!mTransientName% {\n%
+  %  if (!%!mTransientName%_hasBeenComputed) {\n%
+  %    %!mTransientName%_hasBeenComputed = YES ;\n%
+  %    %!mTransientName%_cachedValue = %
+  if [mType copyOnAssign] then %[% end if
+  %compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  foreach mDependencyList
+  do %[self %!mMasterName%]%
+  between %, %
+  end foreach
+  %)%
+  if [mType copyOnAssign] then % copy]% end if
+  % ;\n%
+  %  }\n%
+  %  return %!mTransientName%_cachedValue ;\n%
+  %}\n\n%
+  %//----------------------------------------------------------------------------*\n\n%
+  %- (void) set%![mTransientName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inUnusedValue {\n%
+  %  // A transient property cannot be set: this method has no effect\n%
+  %}\n\n%
+end foreach
+%//----------------------------------------------------------------------------*
 
 @end
 

@@ -3,6 +3,8 @@
 #import "easy-bindings-utilities.h"
 
 //---------------------------------------------------------------------------*
+//   NSData encoding                                                         *
+//---------------------------------------------------------------------------*
 
 NSData * dataEncodedValue (id inValue) {
   return [NSArchiver archivedDataWithRootObject:inValue] ;
@@ -12,6 +14,90 @@ NSData * dataEncodedValue (id inValue) {
 
 id valueFromData (NSData * inData) {
   return (inData  == nil) ? nil : [NSUnarchiver unarchiveObjectWithData:inData] ;
+}
+
+//---------------------------------------------------------------------------*
+//   BOOL                                                                    *
+//---------------------------------------------------------------------------*
+
+BOOL boolFromNSNumber (id inValue) {
+  return [inValue boolValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedBool (BOOL inValue) {
+  return [NSNumber numberWithBool:inValue] ;
+}
+
+//---------------------------------------------------------------------------*
+//   SInt16                                                                  *
+//---------------------------------------------------------------------------*
+
+SInt16 sint16FromNSNumber (id inValue) {
+  return [inValue intValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedSInt16 (SInt16 inValue) {
+  return [NSNumber numberWithInt:inValue] ;
+}
+
+//---------------------------------------------------------------------------*
+//   SInt32                                                                  *
+//---------------------------------------------------------------------------*
+
+SInt32 sint32FromNSNumber (id inValue) {
+  return [inValue intValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedSInt32 (SInt32 inValue) {
+  return [NSNumber numberWithInt:inValue] ;
+}
+
+//---------------------------------------------------------------------------*
+//   SInt64                                                                  *
+//---------------------------------------------------------------------------*
+
+SInt64 sint64FromNSNumber (id inValue) {
+  return [inValue longLongValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedSInt64 (SInt64 inValue) {
+  return [NSNumber numberWithLongLong:inValue] ;
+}
+
+//---------------------------------------------------------------------------*
+//   float                                                                   *
+//---------------------------------------------------------------------------*
+
+float floatFromNSNumber (id inValue) {
+  return [inValue floatValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedFloat (float inValue) {
+  return [NSNumber numberWithFloat:inValue] ;
+}
+
+//---------------------------------------------------------------------------*
+//   double                                                                  *
+//---------------------------------------------------------------------------*
+
+double doubleFromNSNumber (id inValue) {
+  return [inValue doubleValue] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSNumber * numberEncodedDouble (double inValue) {
+  return [NSNumber numberWithDouble:inValue] ;
 }
 
 //---------------------------------------------------------------------------*
