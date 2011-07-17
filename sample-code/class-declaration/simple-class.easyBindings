@@ -1,33 +1,41 @@
 class MyClass {
-  attribute bool myBool ;
-  attribute integer32 myInteger32 ;
-  attribute NSString myString ;
+  attribute bool myBool default YES ;
+  attribute integer32 myInteger32 default 123 ;
+  attribute NSString myString default 555 ;
   
   transient NSString schmurtz dependsFrom .myInteger32, .myString ;
   transient NSString truc dependsFrom .schmurtz ;
 }
 
 class MyOtherClass : MyClass {
-  attribute bool chose ;
+  attribute bool chose default NO ;
   transient NSString bidule dependsFrom .chose, .schmurtz ;
 }
 
 
+entity MyThirdEntity class MyThirdEntityClass {
+  attribute NSString myThirdString default "third" ;
+  toMany MyEntity mInverseRelation inverse mRelation nullify ;
+}
+
+
 entity MyEntity class MyEntityClass {
-  attribute NSString myString ;
+  attribute NSString myString default "&&&" ;
+  toMany MyThirdEntity mRelation inverse mInverseRelation cascade ;
 }
 
 entity MyOtherEntity : MyEntity class MyOtherEntityClass {
-  attribute NSString myOtherString ;
-  attribute integer32 myInteger ;
+  attribute NSString myOtherString default "azerty" ;
+  attribute integer32 myInteger default 0 ;
 
   transient NSString theSum dependsFrom .myString, .myOtherString ;
 }
 
 
-preferences PMPrefs root MyOtherEntity {
-  outlet NSTextField myTextField $value root.myString ;
-  outlet NSTextField myOtherTextField $value root.myString {NSContinuouslyUpdatesValue:YES} ;
+preferences PMPrefs {
+  attribute NSString myString default "&&&" ;
+  outlet NSTextField myTextField $value .myString ;
+  outlet NSTextField myOtherTextField $value .myString {NSContinuouslyUpdatesValue:YES} ;
 }
 
 end

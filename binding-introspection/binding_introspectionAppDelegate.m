@@ -211,7 +211,8 @@
     nil
   ] ;
   mGeneratedCode = [NSMutableString new] ;
-//  [self enumerateBindingsForClass:[NSArrayController class]] ;
+  [self enumerateBindingsForClass:[NSArrayController class]] ;
+  [self enumerateBindingsForClass:[NSObjectController class]] ;
   [self enumerateBindingsForClass:[NSBox class]] ;
   [self enumerateBindingsForClass:[NSBrowser class]] ;
   [self enumerateBindingsForClass:[NSButton class]] ;
@@ -232,7 +233,6 @@
   [self enumerateBindingsForClass:[NSMatrix class]] ;
   [self enumerateBindingsForClass:[NSMenuItem class]] ;
 //  [self enumerateBindingsForClass:[NSMovieView class]] ;
-//  [self enumerateBindingsForClass:[NSObjectController class]] ;
   [self enumerateBindingsForClass:[NSOutlineView class]] ;
   [self enumerateBindingsForClass:[NSPanel class]] ;
   [self enumerateBindingsForClass:[NSPathCell class]] ;
@@ -267,12 +267,13 @@
   [self enumerateBindingsForClass:[NSView class]] ;
 //  [self enumerateBindingsForClass:[NSWindow class]] ;
   NSLog (@"***************** Terminé ********************") ;
-  [mGeneratedCode
-    writeToURL:[NSURL URLWithString:@"file://localhost/Volumes/dev-svn/easyBindings/binding-introspection/predefinedOutletClasses.easyBindings"]
-    atomically:YES
-    encoding:NSASCIIStringEncoding
-    error:nil
-  ] ;
+  /* [mGeneratedCode
+      writeToURL:[NSURL URLWithString:@"file://localhost/Volumes/dev-svn/easyBindings/binding-introspection/predefinedOutletClasses.easyBindings"]
+      atomically:YES
+      encoding:NSASCIIStringEncoding
+      error:nil
+    ] ; */
+  NSLog (@"%@", mGeneratedCode) ;
 }
 
 //-------------------------------------------------------------------------------------*

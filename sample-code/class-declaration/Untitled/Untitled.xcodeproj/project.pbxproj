@@ -22,6 +22,9 @@
 		CF5CA04A13AE6BE400BC3E6E /* MyOtherEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5CA04913AE6BE400BC3E6E /* MyOtherEntityClass.m */; };
 		CF5CA07A13AE76EE00BC3E6E /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5CA07913AE76EE00BC3E6E /* managed-object-model.m */; };
 		CF5CA15613AE86B100BC3E6E /* compute_MyOtherEntity_theSum.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5CA15513AE86B100BC3E6E /* compute_MyOtherEntity_theSum.m */; };
+		CFDECF5F13D30330009D8992 /* compute_MyOtherEntity_theSum2.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDECF5C13D30330009D8992 /* compute_MyOtherEntity_theSum2.m */; };
+		CFDECF6013D30330009D8992 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDECF5E13D30330009D8992 /* easy-bindings-utilities.m */; };
+		CFDECF6913D30398009D8992 /* MyThirdEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDECF6813D30398009D8992 /* MyThirdEntityClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,11 @@
 		CF5CA07813AE76EE00BC3E6E /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
 		CF5CA07913AE76EE00BC3E6E /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF5CA15513AE86B100BC3E6E /* compute_MyOtherEntity_theSum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyOtherEntity_theSum.m; sourceTree = "<group>"; };
+		CFDECF5C13D30330009D8992 /* compute_MyOtherEntity_theSum2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyOtherEntity_theSum2.m; sourceTree = "<group>"; };
+		CFDECF5D13D30330009D8992 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CFDECF5E13D30330009D8992 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CFDECF6713D30398009D8992 /* MyThirdEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyThirdEntityClass.h; sourceTree = "<group>"; };
+		CFDECF6813D30398009D8992 /* MyThirdEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyThirdEntityClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CFDECF6713D30398009D8992 /* MyThirdEntityClass.h */,
+				CFDECF6813D30398009D8992 /* MyThirdEntityClass.m */,
 				CF27E7FB13AE9ADD00187C0F /* PMPrefs.h */,
 				CF27E7FC13AE9ADD00187C0F /* PMPrefs.m */,
 				CF5CA15513AE86B100BC3E6E /* compute_MyOtherEntity_theSum.m */,
@@ -139,6 +149,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CFDECF5C13D30330009D8992 /* compute_MyOtherEntity_theSum2.m */,
+				CFDECF5D13D30330009D8992 /* easy-bindings-utilities.h */,
+				CFDECF5E13D30330009D8992 /* easy-bindings-utilities.m */,
 				256AC3F00F4B6AF500CF3369 /* Untitled_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -238,6 +251,9 @@
 				CF5CA07A13AE76EE00BC3E6E /* managed-object-model.m in Sources */,
 				CF5CA15613AE86B100BC3E6E /* compute_MyOtherEntity_theSum.m in Sources */,
 				CF27E7FD13AE9ADD00187C0F /* PMPrefs.m in Sources */,
+				CFDECF5F13D30330009D8992 /* compute_MyOtherEntity_theSum2.m in Sources */,
+				CFDECF6013D30330009D8992 /* easy-bindings-utilities.m in Sources */,
+				CFDECF6913D30398009D8992 /* MyThirdEntityClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

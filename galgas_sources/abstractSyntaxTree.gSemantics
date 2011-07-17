@@ -3,35 +3,33 @@ semantics abstractSyntaxTree :
 
 #----------------------------------------------------------------------------*
 
-abstract class @easyBindingType {
+enum @easyBindingType {
+ boolType, integer16Type, integer32Type, integer64Type,
+ decimalType, floatType, doubleType,
+ stringType, dataType, dateType,
+ fontType, imageType, colorType, toManyEntitiesType
+}{
 }
 
 #----------------------------------------------------------------------------*
 
-class @boolType, @integer16Type, @integer32Type, @integer64Type,
-      @decimalType, @floatType, @doubleType,
-      @stringType, @dataType, @dateType,
-      @fontType, @imageType, @colorType
-extends @easyBindingType {
-}
-
-#----------------------------------------------------------------------------*
-
-reader ebTypeName -> @string outResult
-abstract @easyBindingType
-override @boolType { outResult := "bool" ; }
-override @integer16Type { outResult := "integer16" ; }
-override @integer32Type { outResult := "integer32" ; }
-override @integer64Type { outResult := "integer64" ; }
-override @decimalType { outResult := "decimal" ; }
-override @floatType { outResult := "float" ; }
-override @doubleType { outResult := "double" ; }
-override @stringType { outResult := "NSString" ; }
-override @dataType { outResult := "NSData" ; }
-override @dateType { outResult := "NSDate" ; }
-override @fontType { outResult := "NSFont" ; }
-override @imageType { outResult := "NSImage" ; }
-override @colorType { outResult := "NSColor" ; }
+reader @easyBindingType ebTypeName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "bool" ;
+  when integer16Type : outResult := "integer16" ;
+  when integer32Type : outResult := "integer32" ;
+  when integer64Type : outResult := "integer64" ;
+  when decimalType : outResult := "decimal" ;
+  when floatType : outResult := "float" ;
+  when doubleType : outResult := "double" ;
+  when stringType : outResult := "NSString" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when fontType : outResult := "NSFont" ;
+  when imageType : outResult := "NSImage" ;
+  when colorType : outResult := "NSColor" ;
+  when toManyEntitiesType : outResult := "??" ;
+  end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -42,6 +40,23 @@ list @attributeList {
   @easyBindingTypeList mDefaultValueCorrespondingAcceptableTypes ;
   @string mDefaultValueObjectiveCObject ;
   @string mDirectDefaultValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+enum @deleteRuleEnum {
+  nullifyDeleteRule, cascadeDeleteRule, denyDeleteRule
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+list @relationshipList {
+  @bool mIsToMany ;
+  @lstring mDestinationEntityName ;
+  @lstring mRelationshipName ;
+  @lstring mInverseRelationshipName ;
+  @deleteRuleEnum mDeleteRule ;
 }
 
 #----------------------------------------------------------------------------*
@@ -57,8 +72,8 @@ list @transientList {
 list @classList {
   @lstring mClassName ;
   @lstring mSuperClassName ;
-  @attributeList mPropertyList ;
-  @transientList mClassTransientList ;
+  @attributeList mAttributeList ;
+  @transientList mTransientList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -67,8 +82,9 @@ list @entityList {
   @lstring mEntityName ;
   @lstring mSuperEntityName ;
   @lstring mImplementationClassName ;
-  @attributeList mPropertyList ;
-  @transientList mClassTransientList ;
+  @attributeList mAttributeList ;
+  @transientList mTransientList ;
+  @relationshipList mRelationshipList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -81,7 +97,7 @@ list @outletBindingOptionList {
 
 #----------------------------------------------------------------------------*
 
-list @outletBindingList {
+list @bindingList {
   @lstring mBindingName ;
   @lstring mObservedObjectName ;
   @lstring mObservableAttributeName ;
@@ -93,7 +109,7 @@ list @outletBindingList {
 list @outletDeclarationList {
   @lstring mOutletType ;
   @lstring mOutletName ;
-  @outletBindingList mOutletBindingList ;
+  @bindingList mOutletBindingList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -107,10 +123,20 @@ list @preferencesDeclarationList {
 
 #----------------------------------------------------------------------------*
 
+list @controllerList {
+  @lstring mControllerClassName ;
+  @lstring mControllerName ;
+  @lstring mControlledClassOrEntityName ;
+  @bindingList mControllerBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @documentDeclarationList {
   @lstring mDocumentName ;
   @lstring mRootEntityName ;
   @outletDeclarationList mOutletDeclarationList ;
+  @controllerList mControllerList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -158,11 +184,20 @@ list @outletClassList {
 
 #----------------------------------------------------------------------------*
 
+list @controllerClassList {
+  @lstring mOutletClassName ;
+  @bool mGenerateCode ;
+  @outletClassBindingList mBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
 struct @ASTstruct {
   @classList mClassList ;
   @entityList mEntityList ;
   @preferencesDeclarationList mPreferencesList ;
   @outletClassList mOutletClassList ;
+  @controllerClassList mControllerClassList ;
   @documentDeclarationList mDocumentDeclarationList ;
 }
 

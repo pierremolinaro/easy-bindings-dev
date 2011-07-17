@@ -1,0 +1,22 @@
+entity MyEntity class MyEntityClass {
+  toMany PathEntity mPathes inverse mRoot cascade ;
+}
+
+#--------------------------------------------------------------*
+
+entity PathEntity class MyClassForPathEntity {
+  toOne MyEntity mRoot inverse mPathes nullify ;
+  attribute NSString path default "" ;
+}
+
+#--------------------------------------------------------------*
+
+document MyDocument root MyEntity {
+  controller pathesController : NSArrayController PathEntity
+    $contentSet root.mPathes { NSDeletesObjectsOnRemoveBindingsOption : YES }
+  ;
+}
+
+#--------------------------------------------------------------*
+
+end

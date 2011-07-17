@@ -40,13 +40,15 @@ message "a source text file with the .easyBindings extension"
   ast->mPreferencesList .= sourceAST->mPreferencesList ;
   ast->mDocumentDeclarationList .= sourceAST->mDocumentDeclarationList ;
   ast->mOutletClassList .= sourceAST->mOutletClassList ;
+  ast->mControllerClassList .= sourceAST->mControllerClassList ;
 #--- Semantic Analysis
   @classMap classMap ;
   @entityMap entityMap ;
   @preferencesMap preferencesMap ;
   @outletClassMap outletClassMap ;
   @documentMap documentMap ;
-  semanticAnalysis !ast ?outletClassMap ?classMap ?entityMap ?preferencesMap ?documentMap ;
+  @controllerClassMap controllerClassMap ;
+  semanticAnalysis !ast ?outletClassMap ?controllerClassMap ?classMap ?entityMap ?preferencesMap ?documentMap ;
 #--- Code generation
   const @string sourceDir := [inSourceFile stringByDeletingLastPathComponent] ;
   generateClassCode !classMap !sourceDir ;

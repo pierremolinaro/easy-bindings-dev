@@ -19,7 +19,7 @@ NSString * compute_MyOtherEntityClass_theSum2 (NSString * inMyString,
                                                NSString * inMyOtherString) {
 
 //--- START OF USER ZONE 2
-  return what ? ; // ADD YOUR CODE HERE
+  return inMyString ; // ADD YOUR CODE HERE
 //--- END OF USER ZONE 2
 
 }
