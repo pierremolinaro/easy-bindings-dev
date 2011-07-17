@@ -5,7 +5,6 @@ project all_easyBindings -> "easyBindings":
 #lexiqueIdentifier  feature "xcode_arch:i386" ;
   feature "xcode_arch:x86_64" ;
 
-#--- Source files (relative path from 'galgas_sources' directory)
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
   gui "easyBindings_cocoa.gGui" ;
@@ -20,6 +19,9 @@ project all_easyBindings -> "easyBindings":
   semantics "entityGeneration.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
+
+  semantics "baseForXcodeProjectGeneration.gSemantics" ;
+  semantics "XcodeProjectGeneration.gSemantics" ;
 
   program "easyBindings_program.gProgram" ;
 end project ;

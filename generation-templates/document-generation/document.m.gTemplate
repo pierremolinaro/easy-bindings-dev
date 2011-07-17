@@ -89,12 +89,12 @@
   NSManagedObjectContext * moc = [self managedObjectContext] ;
   [[moc undoManager] disableUndoRegistration];
 //--- Root entity controller creation
-  mRootObjectController = [[NSObjectController alloc] init] ;
+  mRootObjectController = [NSObjectController new] ;
   [mRootObjectController setAutomaticallyPreparesContent:YES] ;
   [mRootObjectController setEditable:YES] ;
   [mRootObjectController setEntityName:@"%!ROOT_ENTITY_NAME%"] ;
   [mRootObjectController setManagedObjectContext:moc] ;
-
+//--- Root Object
   [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
   mRootObject = [mRootObjectController content] ;
   if (nil == mRootObject) {
@@ -102,11 +102,41 @@
     [mRootObjectController setContent:mRootObject] ;
     // NSLog (@"Root object creation") ;
   }
-  
 //--- Enable undo registrations
   [moc processPendingChanges] ;
   [[moc undoManager] enableUndoRegistration];
 %
+foreach CONTROLLER_MAP do
+  %//--- '%!lkey->string%' controller instanciation\n%
+  %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
+  %  [%!lkey->string% setEntityName:@"%!mControlledClassOrEntityName%"] ;\n%
+  %  [%!lkey->string% setManagedObjectContext:moc] ;\n%
+end foreach
+
+foreach CONTROLLER_MAP do
+  foreach mControllerBindingList
+  before 
+    %//--- '%!lkey->string%' controller bindings\n%
+  do
+   %  [%!lkey->string%\n%
+   %    bind:@"%!mBindingName%"\n%
+   %    toObject:%!mObservedObjectName%\n%
+   %    withKeyPath:@"%!mObservableAttributeName%"\n%
+   %    options:%
+   if [mOutletBindingOptionList length] == 0 then
+     %nil\n%
+   else
+     %[NSDictionary dictionaryWithObjectsAndKeys:\n%
+     foreach mOutletBindingOptionList do
+       %      %!mValue1%, @%![mValue0 utf8Representation]%,\n%
+     end foreach
+     %      nil\n%
+     %    ]\n%
+   end if
+   %  ] ;\n%
+  end foreach
+end foreach
+
 foreach OUTLET_DECLARATION_LIST do
    %//--- check %!mOutletName%' outlet not nil\n%
    %  if (nil == %!mOutletName%) {\n%

@@ -12,6 +12,14 @@ $identifier$ ! tokenString error message "an identifier (beginning with a lower-
 $Identifier$ ! tokenString error message "an identifier (beginning with a upper-case letter)" ;
 
 list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+  "toOne",
+  "toMany",
+  "inverse",
+  "nullify",
+  "cascade",
+  "deny",
+  "controller",
+  "controllerClass",
   "document",
   "entity",
   "outletClass",
@@ -33,7 +41,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "root",
   "number",
   "noGeneration",
-  "default"
+  "default",
+  "toManyEntities"
 ;
 
 rule 'a'->'z' :

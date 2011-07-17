@@ -10,6 +10,7 @@ rule <start_symbol> !@ASTstruct outAST :
   @preferencesDeclarationList preferencesList [emptyList] ;
   @outletClassList outletClassList [emptyList] ;
   @documentDeclarationList documentDeclarationList [emptyList] ;
+  @controllerClassList controllerClassList [emptyList] ;
   repeat
   while
     <class_declaration> !?classList ;
@@ -21,6 +22,8 @@ rule <start_symbol> !@ASTstruct outAST :
     <document_declaration> !?documentDeclarationList ;
   while
     <outlet_class_declaration> !?outletClassList ;
+  while
+    <controller_class_declaration> !?controllerClassList ;
   end repeat ;
   $end$ ;
   outAST := [@ASTstruct new
@@ -28,19 +31,17 @@ rule <start_symbol> !@ASTstruct outAST :
     !entityList
     !preferencesList
     !outletClassList
+    !controllerClassList
     !documentDeclarationList
   ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <outlet_declaration>
-  ?!@outletDeclarationList ioOutletDeclarationList
+rule <bindings>
+  !@bindingList outOutletBindingList
 :
-  $outlet$ ;
-  $Identifier$ ? @lstring outletTypeName ;
-  $identifier$ ? @lstring outletName ;
-  @outletBindingList outletBindingList [emptyList] ;
+  outOutletBindingList := [@bindingList emptyList] ;
   repeat
   while
     $binding$ ? @lstring bindingName ;
@@ -73,8 +74,19 @@ rule <outlet_declaration>
       end repeat ;
       $}$ ;
     end select ;
-    outletBindingList += !bindingName !observedObjectName !rootObservablePropertyName !outletBindingOptionList ;
+    outOutletBindingList += !bindingName !observedObjectName !rootObservablePropertyName !outletBindingOptionList ;
   end repeat ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <outlet_declaration>
+  ?!@outletDeclarationList ioOutletDeclarationList
+:
+  $outlet$ ;
+  $Identifier$ ? @lstring outletTypeName ;
+  $identifier$ ? @lstring outletName ;
+  <bindings> ?@bindingList outletBindingList ;
   $;$ ;
   ioOutletDeclarationList += !outletTypeName !outletName !outletBindingList ;
 end rule ;
@@ -113,12 +125,15 @@ rule <document_declaration>
   $Identifier$ ? @lstring rootEntityName ;
   ${$ ;
   @outletDeclarationList outletDeclarationList [emptyList] ;
+  @controllerList controllerList [emptyList] ;
   repeat
   while
     <outlet_declaration> !?outletDeclarationList ;
+  while
+    <controller_declaration> !?controllerList ;
   end repeat ;
   $}$ ;
-  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList ;
+  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList !controllerList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -188,34 +203,34 @@ rule <explicit_value>
     $YES$ ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:YES]" ;
     outDirectDefaultValue := "YES" ;
-    outCorrespondingAcceptableTypes += ![@boolType new] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
   or
     $NO$ ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:NO]" ;
     outDirectDefaultValue := "NO" ;
-    outCorrespondingAcceptableTypes += ![@boolType new] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
   or
     $literal_integer$ ? @luint integerValue ;
     outDirectDefaultValue := [integerValue string] ;
     outDefaultValueObjectiveCObject := "[NSNumber numberWithInt:" . [integerValue string] . "]" ;
-    outCorrespondingAcceptableTypes += ![@integer16Type new] ;
-    outCorrespondingAcceptableTypes += ![@integer32Type new] ;
-    outCorrespondingAcceptableTypes += ![@integer64Type new] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType integer16Type] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType integer32Type] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType integer64Type] ;
   or
     $literal_string$ ? @lstring stringValue ;
     outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
     outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-    outCorrespondingAcceptableTypes += ![@stringType new] ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType stringType] ;
   or
     $identifier$ ? @lstring stringValue ;
     if [predefinedColors [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
       outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-      outCorrespondingAcceptableTypes += ![@colorType new] ;
+      outCorrespondingAcceptableTypes += ![@easyBindingType colorType] ;
     elsif [predefinedDates [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSDate " . stringValue . "]" ;
       outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-      outCorrespondingAcceptableTypes += ![@dateType new] ;
+      outCorrespondingAcceptableTypes += ![@easyBindingType dateType] ;
     else
       error stringValue
       : "unknown constant value"
@@ -300,6 +315,26 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <controller_declaration>
+  ?!@controllerList ioControllerList
+:
+  $controller$ ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  $Identifier$ ? @lstring controllerClassName ;
+  $Identifier$ ? @lstring controlledClassOrEntityName ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $;$ ;
+  ioControllerList +=
+    !controllerClassName
+    !controllerName
+    !controlledClassOrEntityName
+    !controllerBindingList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <entity_declaration>
   ?!@entityList ioEntityList
 :
@@ -317,11 +352,44 @@ rule <entity_declaration>
   ${$ ;
   @attributeList attributeList [emptyList] ;
   @transientList classTransientList [emptyList] ;
+  @relationshipList relationshipList [emptyList] ;
   repeat
   while
     <attribute_declaration> !?attributeList ;
   while
     <transient_declaration> !?classTransientList ;
+  while
+    @bool isToMany ;
+    select
+      $toOne$ ;
+      isToMany := false ;
+    or
+      $toMany$ ;
+      isToMany := true ;
+    end select ;
+    $Identifier$ ? @lstring destinationEntityName ;
+    $identifier$ ? @lstring relationshipName ;
+    $inverse$ ;
+    $identifier$ ? @lstring inverseRelationshipName ;
+    @deleteRuleEnum deleteRule ;
+    select
+      $nullify$ ;
+      deleteRule := [@deleteRuleEnum nullifyDeleteRule] ;
+    or
+      $cascade$ ;
+      deleteRule := [@deleteRuleEnum cascadeDeleteRule] ;
+    or
+      $deny$ ;
+      deleteRule := [@deleteRuleEnum denyDeleteRule] ;
+    end select ;
+    $;$ ;
+    relationshipList +=
+      !isToMany
+      !destinationEntityName
+      !relationshipName
+      !inverseRelationshipName
+      !deleteRule
+    ;
   end repeat ;
   $}$ ;
   ioEntityList +=
@@ -330,6 +398,7 @@ rule <entity_declaration>
     !implementationClassName
     !attributeList
     !classTransientList
+    !relationshipList
    ;
 end rule ;
 
@@ -340,43 +409,43 @@ rule <attribute_type>
 :
   select
     $bool$ ;
-    outPropertyType := [@boolType new] ;
+    outPropertyType := [@easyBindingType boolType] ;
   or
     $integer16$ ;
-    outPropertyType := [@integer16Type new] ;
+    outPropertyType := [@easyBindingType integer16Type] ;
   or
     $integer32$ ;
-    outPropertyType := [@integer32Type new] ;
+    outPropertyType := [@easyBindingType integer32Type] ;
   or
     $integer64$ ;
-    outPropertyType := [@integer64Type new] ;
+    outPropertyType := [@easyBindingType integer64Type] ;
   or
     $float$ ;
-    outPropertyType := [@floatType new] ;
+    outPropertyType := [@easyBindingType floatType] ;
   or
     $double$ ;
-    outPropertyType := [@doubleType new] ;
+    outPropertyType := [@easyBindingType doubleType] ;
   or
     $decimal$ ;
-    outPropertyType := [@decimalType new] ;
+    outPropertyType := [@easyBindingType decimalType] ;
   or
     $NSString$ ;
-    outPropertyType := [@stringType new] ;
+    outPropertyType := [@easyBindingType stringType] ;
   or
     $NSFont$ ;
-    outPropertyType := [@fontType new] ;
+    outPropertyType := [@easyBindingType fontType] ;
   or
     $NSImage$ ;
-    outPropertyType := [@imageType new] ;
+    outPropertyType := [@easyBindingType imageType] ;
   or
     $NSColor$ ;
-    outPropertyType := [@colorType new] ;
+    outPropertyType := [@easyBindingType colorType] ;
   or
     $NSData$ ;
-    outPropertyType := [@dataType new] ;
+    outPropertyType := [@easyBindingType dataType] ;
   or
     $NSDate$ ;
-    outPropertyType := [@dateType new] ;
+    outPropertyType := [@easyBindingType dateType] ;
   end select ;
 end rule ;
 
@@ -393,17 +462,17 @@ rule <type_list>
       outEasyBindingTypeList += !bindingType ;
     or
       $integer$ ;
-      outEasyBindingTypeList += ![@integer16Type new] ;
-      outEasyBindingTypeList += ![@integer32Type new] ;
-      outEasyBindingTypeList += ![@integer64Type new] ;
+      outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
+      outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
+      outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
     or
       $number$ ;
-      outEasyBindingTypeList += ![@integer16Type new] ;
-      outEasyBindingTypeList += ![@integer32Type new] ;
-      outEasyBindingTypeList += ![@integer64Type new] ;
-      outEasyBindingTypeList += ![@decimalType new] ;
-      outEasyBindingTypeList += ![@floatType new] ;
-      outEasyBindingTypeList += ![@doubleType new] ;
+      outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
+      outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
+      outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
+      outEasyBindingTypeList += ![@easyBindingType decimalType] ;
+      outEasyBindingTypeList += ![@easyBindingType floatType] ;
+      outEasyBindingTypeList += ![@easyBindingType doubleType] ;
     end select ;
   while
     $,$ ;
@@ -441,18 +510,21 @@ rule <type_formatter_list>
     or
       $integer$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer16Type new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer32Type new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer64Type new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
     or
       $number$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer16Type new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer32Type new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integer64Type new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@decimalType new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@floatType new] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType decimalType] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType floatType] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType doubleType] !requiredFormatter ;
+    or
+      $toManyEntities$ ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType toManyEntitiesType] ![@formatterEnum noFormatter] ;
     end select ;
   while
     $,$ ;
@@ -505,6 +577,54 @@ rule <outlet_class_declaration>
   end repeat ;
   $}$ ;
   ioOutletClassList += !outletClassName !generateCode !outletClassBindingList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_class_declaration>
+  ?!@controllerClassList ioControllerClassList
+:
+  $controllerClass$ ;
+  $Identifier$ ? @lstring controllerClassName ;
+  @bool generateCode ;
+  select
+    generateCode := true ;
+  or
+    $noGeneration$ ;
+    generateCode := false ;
+  end select ;
+  ${$ ;
+  @outletClassBindingList controllerClassBindingList [emptyList] ;
+  repeat
+  while
+    @lstring bindingName ;
+    select
+      $binding$ ? bindingName ;
+    or
+      $hidden$ ;
+      bindingName := [@lstring new !"hidden" !here] ;
+    or
+      $enabled$ ;
+      bindingName := [@lstring new !"enabled" !here] ;
+    end select ;
+    $:$ ;
+    @easyBindingTypeAndFormatterList easyBindingTypeFormatterList ;
+    <type_formatter_list> ? easyBindingTypeFormatterList ;
+    ${$ ;
+    @bindingOptionList bindingOptionList [emptyList] ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      bindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
+    controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
+  end repeat ;
+  $}$ ;
+  ioControllerClassList += !controllerClassName !generateCode !controllerClassBindingList ;
 end rule ;
 
 #----------------------------------------------------------------------------*

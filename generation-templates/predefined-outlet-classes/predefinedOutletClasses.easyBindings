@@ -1,3 +1,66 @@
+controllerClass NSArrayController {
+  $editable : bool {
+    NSMultipleValuesPlaceholder : bool ;
+    NSNullPlaceholder : bool ;
+    NSNotApplicablePlaceholder : bool ;
+    NSNoSelectionPlaceholder : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
+  $contentSet : toManyEntities {
+    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+    NSConditionallySetsEditableBindingOption : bool ;
+    NSDeletesObjectsOnRemoveBindingsOption : bool ;    NSHandlesContentAsCompoundValueBindingOption : bool ;    NSRaisesForNotApplicableKeysBindingOption : bool ;    NSSelectsAllWhenSettingContentBindingOption : bool ;    NSValidatesImmediatelyBindingOption : bool ;  }
+  
+  # Warning: skipped $contentArray binding
+#  $selectionIndexes : NSIndexSet {
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+#  $contentArrayForMultipleSelection : NSObject {
+#    NSConditionallySetsEditable : bool ;
+#    NSSelectsAllWhenSettingContent : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+  # Warning: skipped $contentSet binding
+  # Warning: skipped $managedObjectContext binding
+#  $sortDescriptors : NSArray {
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+#  $contentObject : NSObject {
+#    NSDeletesObjectsOnRemove : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSConditionallySetsEditable : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSSelectsAllWhenSettingContent : bool ;
+#    NSHandlesContentAsCompoundValue : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+  # Warning: skipped $filterPredicate binding
+}
+
+controllerClass NSObjectController {
+  $editable : bool {
+    NSMultipleValuesPlaceholder : bool ;
+    NSNullPlaceholder : bool ;
+    NSNotApplicablePlaceholder : bool ;
+    NSNoSelectionPlaceholder : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
+#  $contentObject : NSObject {
+#    NSDeletesObjectsOnRemove : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSConditionallySetsEditable : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSHandlesContentAsCompoundValue : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+  # Warning: skipped $managedObjectContext binding
+}
+
+
 outletClass NSBox noGeneration {
   $hidden : bool {
     NSMultipleValuesPlaceholder : bool ;

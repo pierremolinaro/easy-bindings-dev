@@ -4,32 +4,34 @@ semantics preferencesGeneration :
 
 #----------------------------------------------------------------------------*
 
-reader preferencesGetterTransformerFunctionName -> @string outResult
-abstract @easyBindingType
-override @boolType { outResult := "boolFromNSNumber" ; }
-override @integer16Type { outResult := "sint16FromNSNumber" ; }
-override @integer32Type { outResult := "sint32FromNSNumber" ; }
-override @integer64Type { outResult := "sint64FromNSNumber" ; }
-override @floatType { outResult := "floatFromNSNumber" ; }
-override @doubleType { outResult := "doubleFromNSNumber" ; }
-override @colorType { outResult := "valueFromData" ; }
-override @stringType, @fontType, @imageType,
-         @dataType, @dateType, @decimalType { outResult := "" ; }
+reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "boolFromNSNumber" ;
+  when integer16Type : outResult := "sint16FromNSNumber" ;
+  when integer32Type : outResult := "sint32FromNSNumber" ;
+  when integer64Type : outResult := "sint64FromNSNumber" ;
+  when floatType : outResult := "floatFromNSNumber" ;
+  when doubleType : outResult := "doubleFromNSNumber" ;
+  when colorType : outResult := "valueFromData" ;
+  when stringType, fontType, imageType, toManyEntitiesType,
+       dataType, dateType, decimalType : outResult := "" ;
+  end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader preferencesSetterTransformerFunctionName -> @string outResult
-abstract @easyBindingType
-override @boolType { outResult := "numberEncodedBool" ; }
-override @integer16Type { outResult := "numberEncodedSInt16" ; }
-override @integer32Type { outResult := "numberEncodedSInt32" ; }
-override @integer64Type { outResult := "numberEncodedSInt64" ; }
-override @floatType { outResult := "numberEncodedFloat" ; }
-override @doubleType { outResult := "numberEncodedDouble" ; }
-override @colorType { outResult := "dataEncodedValue" ; }
-override @stringType, @fontType, @imageType,
-         @dataType, @dateType, @decimalType { outResult := "" ; }
+reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "numberEncodedBool" ;
+  when integer16Type : outResult := "numberEncodedSInt16" ;
+  when integer32Type : outResult := "numberEncodedSInt32" ;
+  when integer64Type : outResult := "numberEncodedSInt64" ;
+  when floatType : outResult := "numberEncodedFloat" ;
+  when doubleType : outResult := "numberEncodedDouble" ;
+  when colorType : outResult := "dataEncodedValue" ;
+  when stringType, fontType, imageType, toManyEntitiesType,
+       dataType, dateType, decimalType : outResult := "" ;
+  end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -71,75 +73,77 @@ routine generatePreferencesCode
   ??@preferencesMap inPreferencesMap
   ??@string inOutputDirectory
 :
-  foreach inPreferencesMap do
-  #--- Header
-    @string s := [filewrapper prefsGenerationTemplate.preferencesDeclaration
-      ![lkey string]
-      !mAttributeListForImplementation
-      !mTransientListForImplementation
-      !mOutletDeclarationList
-    ] ;
-    [@string generateFile
-      !inOutputDirectory
-      ![lkey string] . ".h"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-  #--- Implementation
-    s := [filewrapper prefsGenerationTemplate.preferencesImplementation
-      ![lkey string]
-      !mAttributeListForImplementation
-      !mTransientListForImplementation
-      !mOutletDeclarationList
-      !mTriggeredKeys
-    ] ;
-    [@string generateFile
-      !inOutputDirectory
-      ![lkey string] . ".m"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-  #--- Transient computation function header file
-    if [mTransientListForImplementation length] > 0 then
-      s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
+  if [@uint errorCount] == 0 then
+    foreach inPreferencesMap do
+    #--- Header
+      @string s := [filewrapper prefsGenerationTemplate.preferencesDeclaration
         ![lkey string]
+        !mAttributeListForImplementation
         !mTransientListForImplementation
+        !mOutletDeclarationList
       ] ;
       [@string generateFile
         !inOutputDirectory
-        ![lkey string] . "-transient-computations.h"
+        ![lkey string] . ".h"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
         !"\n\n" # Defaut user zone2
         !"\n"
       ] ;
-    end if ;
-  #--- Transient computation function implementation files
-    foreach mTransientListForImplementation do
-        s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
+    #--- Implementation
+      s := [filewrapper prefsGenerationTemplate.preferencesImplementation
+        ![lkey string]
+        !mAttributeListForImplementation
+        !mTransientListForImplementation
+        !mOutletDeclarationList
+        !mTriggeredKeys
+      ] ;
+      [@string generateFile
+        !inOutputDirectory
+        ![lkey string] . ".m"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    #--- Transient computation function header file
+      if [mTransientListForImplementation length] > 0 then
+        s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
           ![lkey string]
-          !mType
-          !mTransientName
-          !mDependencyList
+          !mTransientListForImplementation
         ] ;
         [@string generateFile
           !inOutputDirectory
-          !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+          ![lkey string] . "-transient-computations.h"
           !"//"
           !"\n\n" # Defaut user zone1
           !s
-          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+          !"\n\n" # Defaut user zone2
+          !"\n"
         ] ;
+      end if ;
+    #--- Transient computation function implementation files
+      foreach mTransientListForImplementation do
+          s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
+            ![lkey string]
+            !mType
+            !mTransientName
+            !mDependencyList
+          ] ;
+          [@string generateFile
+            !inOutputDirectory
+            !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+            !"//"
+            !"\n\n" # Defaut user zone1
+            !s
+            !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+          ] ;
+      end foreach ;
     end foreach ;
-  end foreach ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*

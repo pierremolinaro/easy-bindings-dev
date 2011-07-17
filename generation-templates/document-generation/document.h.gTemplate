@@ -16,6 +16,10 @@ foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end foreach
+foreach CONTROLLER_MAP do
+%//--- '%!lkey->string%' controller
+  @private %!mControllerClassName% * %!lkey->string% ;\n\n%
+end foreach
 %}
 
 //--- Retrieve custom managed object model
