@@ -180,6 +180,7 @@ list @outletClassList {
   @lstring mOutletClassName ;
   @bool mGenerateCode ;
   @outletClassBindingList mOutletClassBindingList ;
+  @bool mHasTableValueBinding ;
 }
 
 #----------------------------------------------------------------------------*

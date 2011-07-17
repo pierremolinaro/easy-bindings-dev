@@ -44,6 +44,21 @@ rule <bindings>
   outOutletBindingList := [@bindingList emptyList] ;
   repeat
   while
+    $tableValue$ ;
+    $.$ ;
+    $identifier$ ?@lstring controllerName ;
+    ${$ ;
+    repeat
+    while
+      $column$ ;
+      $literal_string$ ?@lstring columnName ;
+      $:$ ;
+      $Identifier$ ?@lstring cellTypeName ;
+      $identifier$ ?@lstring boundPropertyName ;
+      $;$ ;
+    end repeat ;
+    $}$ ;
+  while
     $binding$ ? @lstring bindingName ;
     @lstring observedObjectName ;
     select
@@ -297,8 +312,7 @@ rule <transient_declaration>
   ?!@transientList ioTransientList
 :
   $transient$ ;
-  @easyBindingType type ;
-  <attribute_type> ?type ;
+  <attribute_type> ?@easyBindingType type ;
   $identifier$ ? @lstring transientName ;
   $dependsFrom$ ;
   @lstringlist dependanceList [emptyList] ;
@@ -319,9 +333,9 @@ rule <controller_declaration>
   ?!@controllerList ioControllerList
 :
   $controller$ ;
+  $Identifier$ ? @lstring controllerClassName ;
   $identifier$ ? @lstring controllerName ;
   $:$ ;
-  $Identifier$ ? @lstring controllerClassName ;
   $Identifier$ ? @lstring controlledClassOrEntityName ;
   <bindings> ?@bindingList controllerBindingList ;
   $;$ ;
@@ -547,7 +561,12 @@ rule <outlet_class_declaration>
   end select ;
   ${$ ;
   @outletClassBindingList outletClassBindingList [emptyList] ;
+  @bool hasTableValueBinding := false ;
   repeat
+  while
+    $tableValue$ ;
+    $;$ ;
+    hasTableValueBinding := true ;
   while
     @lstring bindingName ;
     select
@@ -576,7 +595,7 @@ rule <outlet_class_declaration>
     outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioOutletClassList += !outletClassName !generateCode !outletClassBindingList ;
+  ioOutletClassList += !outletClassName !generateCode !outletClassBindingList !hasTableValueBinding ;
 end rule ;
 
 #----------------------------------------------------------------------------*
