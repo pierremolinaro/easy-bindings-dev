@@ -49,6 +49,7 @@
 //----------------------------------------------------------------------------*
 
 + (MyClassForPathEntity *) insertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
+   NSLog (@"%s", __PRETTY_FUNCTION__) ;
   return [NSEntityDescription insertNewObjectForEntityForName:@"PathEntity" inManagedObjectContext:inContext] ;
 }
 
@@ -57,7 +58,7 @@
 //----------------------------------------------------------------------------*
 
 - (void) willChangeValueForKey:(NSString *) inKey {
-  // NSLog (@"%s:'%@'", __PRETTY_FUNCTION__, inKey) ;
+   NSLog (@"%s:'%@'", __PRETTY_FUNCTION__, inKey) ;
   [super willChangeValueForKey:inKey] ;
 }
 

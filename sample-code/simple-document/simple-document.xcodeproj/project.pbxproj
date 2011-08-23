@@ -14,6 +14,10 @@
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		CF776AE213FE8096003F30B4 /* compute_MyPrefsEntity_myStringConcat.m in Sources */ = {isa = PBXBuildFile; fileRef = CF776AE013FE8096003F30B4 /* compute_MyPrefsEntity_myStringConcat.m */; };
+		CF776AE313FE8096003F30B4 /* compute_MyPrefsEntity_myStringMin.m in Sources */ = {isa = PBXBuildFile; fileRef = CF776AE113FE8096003F30B4 /* compute_MyPrefsEntity_myStringMin.m */; };
+		CFBB0E0613FE5AF700DA78D3 /* PMManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBB0E0513FE5AF700DA78D3 /* PMManagedObjectContext.m */; };
+		CFBB0E5313FE68B700DA78D3 /* compute_MyPrefsEntity_myStringMaj.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBB0E5113FE68B700DA78D3 /* compute_MyPrefsEntity_myStringMaj.m */; };
 		CFD4906C13D06B8B004D9631 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD4906713D06B8B004D9631 /* easy-bindings-utilities.m */; };
 		CFD4906D13D06B8B004D9631 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD4906913D06B8B004D9631 /* managed-object-model.m */; };
 		CFD4906E13D06B8B004D9631 /* MyPrefsEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD4906B13D06B8B004D9631 /* MyPrefsEntityClass.m */; };
@@ -34,6 +38,12 @@
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* simple_document-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "simple_document-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF776AE013FE8096003F30B4 /* compute_MyPrefsEntity_myStringConcat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefsEntity_myStringConcat.m; sourceTree = "<group>"; };
+		CF776AE113FE8096003F30B4 /* compute_MyPrefsEntity_myStringMin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefsEntity_myStringMin.m; sourceTree = "<group>"; };
+		CFBB0E0413FE5AF700DA78D3 /* PMManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObjectContext.h; sourceTree = "<group>"; };
+		CFBB0E0513FE5AF700DA78D3 /* PMManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObjectContext.m; sourceTree = "<group>"; };
+		CFBB0E5113FE68B700DA78D3 /* compute_MyPrefsEntity_myStringMaj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefsEntity_myStringMaj.m; sourceTree = "<group>"; };
+		CFBB0E5213FE68B700DA78D3 /* MyPrefsEntityClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyPrefsEntityClass-transient-computations.h"; sourceTree = "<group>"; };
 		CFD4906613D06B8B004D9631 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CFD4906713D06B8B004D9631 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
 		CFD4906813D06B8B004D9631 /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
@@ -95,6 +105,10 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF776AE013FE8096003F30B4 /* compute_MyPrefsEntity_myStringConcat.m */,
+				CF776AE113FE8096003F30B4 /* compute_MyPrefsEntity_myStringMin.m */,
+				CFBB0E5113FE68B700DA78D3 /* compute_MyPrefsEntity_myStringMaj.m */,
+				CFBB0E5213FE68B700DA78D3 /* MyPrefsEntityClass-transient-computations.h */,
 				CFD4906613D06B8B004D9631 /* easy-bindings-utilities.h */,
 				CFD4906713D06B8B004D9631 /* easy-bindings-utilities.m */,
 				CFD4906813D06B8B004D9631 /* managed-object-model.h */,
@@ -103,6 +117,8 @@
 				CFD4906B13D06B8B004D9631 /* MyPrefsEntityClass.m */,
 				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
+				CFBB0E0413FE5AF700DA78D3 /* PMManagedObjectContext.h */,
+				CFBB0E0513FE5AF700DA78D3 /* PMManagedObjectContext.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -206,6 +222,10 @@
 				CFD4906C13D06B8B004D9631 /* easy-bindings-utilities.m in Sources */,
 				CFD4906D13D06B8B004D9631 /* managed-object-model.m in Sources */,
 				CFD4906E13D06B8B004D9631 /* MyPrefsEntityClass.m in Sources */,
+				CFBB0E0613FE5AF700DA78D3 /* PMManagedObjectContext.m in Sources */,
+				CFBB0E5313FE68B700DA78D3 /* compute_MyPrefsEntity_myStringMaj.m in Sources */,
+				CF776AE213FE8096003F30B4 /* compute_MyPrefsEntity_myStringConcat.m in Sources */,
+				CF776AE313FE8096003F30B4 /* compute_MyPrefsEntity_myStringMin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

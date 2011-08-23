@@ -1,27 +1,29 @@
-entity MyEntity class MyEntityClass {
+entity MyRootEntity class MyEntityClass {
   toMany PathEntity mPathes inverse mRoot cascade ;
 }
 
 #--------------------------------------------------------------*
 
 entity PathEntity class MyClassForPathEntity {
-  toOne MyEntity mRoot inverse mPathes nullify ;
+  toOne MyRootEntity mRoot inverse mPathes nullify ;
   attribute NSString path default "" ;
   attribute bool recursive default YES ;
 }
 
 #--------------------------------------------------------------*
 
-document MyDocument root MyEntity {
+document MyDocument root MyRootEntity {
   controller NSArrayController pathesController : PathEntity
     $contentSet root.mPathes { NSDeletesObjectsOnRemoveBindingsOption : YES }
   ;
   outlet NSTableView pathesTableView
   $tableValue .pathesController {
+    column "visible" : NSTextFieldCell recursive ;
     column "path" : NSTextFieldCell path ;
   }
   ;
   outlet NSButton addPathButton ;
+  outlet NSButton removePathButton ;
 }
 
 #--------------------------------------------------------------*
