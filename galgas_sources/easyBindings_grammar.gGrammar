@@ -1,4 +1,4 @@
-grammar easyBindings_grammar "LL1":
+grammar easyBindings_grammar "SLR":
 with "easyBindings_syntax.gSyntax" ;
 
 root <start_symbol> !@ASTstruct outAST ;

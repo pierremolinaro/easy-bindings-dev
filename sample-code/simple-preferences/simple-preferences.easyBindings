@@ -1,7 +1,7 @@
 
 preferences PMPrefs {
-  attribute NSString myString default "hello" ;
-  outlet NSTextField myTextField $value .myString ;
+  attribute myString : NSString default "hello" ;
+  outlet myTextField : NSTextField $value .myString ;
 }
 
 #--------------------------------------------------------------*

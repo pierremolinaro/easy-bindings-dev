@@ -1,10 +1,10 @@
 preferences Prefs {
-  attribute NSString mName default "Amédée" ;
-  attribute NSString mFirstName default "Schmurtz" ;
-  transient NSString mFullName dependsFrom .mName, .mFirstName ;
-  outlet NSTextField mNameTextField $value .mName ;
-  outlet NSTextField mFirstNameTextField $value .mFirstName ;
-  outlet NSTextField mFullNameTextField $value .mFullName ;
+  attribute mName : NSString default "Amédée" ;
+  attribute mFirstName : NSString default "Schmurtz" ;
+  transient mFullName : NSString dependsFrom .mName, .mFirstName ;
+  outlet mNameTextField : NSTextField $value .mName ;
+  outlet mFirstNameTextField : NSTextField $value .mFirstName ;
+  outlet mFullNameTextField : NSTextField $value .mFullName ;
 }
 
 end
