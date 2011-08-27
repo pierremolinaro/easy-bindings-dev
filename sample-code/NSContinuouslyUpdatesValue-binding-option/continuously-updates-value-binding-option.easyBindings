@@ -1,8 +1,8 @@
 
 preferences MyPrefs {
-  attribute NSString myString default "def" ;
-  outlet NSTextField myTextField $value .myString ;
-  outlet NSTextField myOtherTextField $value .myString {NSContinuouslyUpdatesValue:YES} ;
+  attribute myString : NSString default "def" ;
+  outlet myTextField : NSTextField $value .myString ;
+  outlet myOtherTextField : NSTextField $value .myString {NSContinuouslyUpdatesValue:YES} ;
 }
 
 end

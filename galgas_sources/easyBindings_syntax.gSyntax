@@ -99,8 +99,9 @@ rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
   $outlet$ ;
-  $Identifier$ ? @lstring outletTypeName ;
   $identifier$ ? @lstring outletName ;
+  $:$ ;
+  $Identifier$ ? @lstring outletTypeName ;
   <bindings> ?@bindingList outletBindingList ;
   $;$ ;
   ioOutletDeclarationList += !outletTypeName !outletName !outletBindingList ;
@@ -208,6 +209,22 @@ end once ;
 
 #----------------------------------------------------------------------------*
 
+once predefinedFonts -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"boldSystemFontOfSize" ;
+  outResult += !"controlContentFontOfSize" ;
+  outResult += !"labelFontOfSize" ;
+  outResult += !"menuFontOfSize" ;
+  outResult += !"menuBarFontOfSize" ;
+  outResult += !"messageFontOfSize" ;
+  outResult += !"paletteFontOfSize" ;
+  outResult += !"systemFontOfSize" ;
+  outResult += !"titleBarFontOfSize" ;
+  outResult += !"toolTipsFontOfSize" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+
 rule <explicit_value>
   !@easyBindingTypeList outCorrespondingAcceptableTypes
   !@string outDefaultValueObjectiveCObject
@@ -238,14 +255,34 @@ rule <explicit_value>
     outCorrespondingAcceptableTypes += ![@easyBindingType stringType] ;
   or
     $identifier$ ? @lstring stringValue ;
+    @luint additionalIntegerValue ;
+    select
+      additionalIntegerValue := [@luint new !0 ![@location nowhere]] ;
+    or
+      $:$ ;
+      $literal_integer$ ? additionalIntegerValue ;
+    end select ;
     if [predefinedColors [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
       outDirectDefaultValue := outDefaultValueObjectiveCObject ;
       outCorrespondingAcceptableTypes += ![@easyBindingType colorType] ;
+      if additionalIntegerValue->location != [@location nowhere] then
+        error additionalIntegerValue:"an integer value is not allowed for a color" ;
+      end if ;
     elsif [predefinedDates [] hasKey ![stringValue string]] then
       outDefaultValueObjectiveCObject := "[NSDate " . stringValue . "]" ;
       outDirectDefaultValue := outDefaultValueObjectiveCObject ;
       outCorrespondingAcceptableTypes += ![@easyBindingType dateType] ;
+      if additionalIntegerValue->location != [@location nowhere] then
+        error additionalIntegerValue:"an integer value is not allowed for a date" ;
+      end if ;
+    elsif [predefinedFonts [] hasKey ![stringValue string]] then
+      outDefaultValueObjectiveCObject := "[NSFont " . stringValue . ":" . additionalIntegerValue->uint . "]" ;
+      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
+      outCorrespondingAcceptableTypes += ![@easyBindingType fontType] ;
+      if additionalIntegerValue->location == [@location nowhere] then
+        error stringValue:"an integer value is needed for a font" ;
+      end if ;
     else
       error stringValue
       : "unknown constant value"
@@ -288,8 +325,9 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $attribute$ ;
-  <attribute_type> ?@easyBindingType propertyType ;
   $identifier$ ? @lstring propertyName ;
+  $:$ ;
+  <attribute_type> ?@easyBindingType propertyType ;
   $default$ ;
   <explicit_value>
     ?@easyBindingTypeList correspondingAcceptableTypes
@@ -312,8 +350,9 @@ rule <transient_declaration>
   ?!@transientList ioTransientList
 :
   $transient$ ;
-  <attribute_type> ?@easyBindingType type ;
   $identifier$ ? @lstring transientName ;
+  $:$ ;
+  <attribute_type> ?@easyBindingType type ;
   $dependsFrom$ ;
   @lstringlist dependanceList [emptyList] ;
   repeat
@@ -550,14 +589,21 @@ end rule ;
 rule <outlet_class_declaration>
   ?!@outletClassList ioOutletClassList
 :
-  $outletClass$ ;
-  $Identifier$ ? @lstring outletClassName ;
   @bool generateCode ;
   select
     generateCode := true ;
   or
-    $noGeneration$ ;
+    $extern$ ;
     generateCode := false ;
+  end select ;
+  $outletClass$ ;
+  $Identifier$ ? @lstring outletClassName ;
+  @lstring superClass ;
+  select
+    superClass := ["" nowhere] ;
+  or
+    $:$ ;
+    $Identifier$ ?superClass ;
   end select ;
   ${$ ;
   @outletClassBindingList outletClassBindingList [emptyList] ;
@@ -595,7 +641,7 @@ rule <outlet_class_declaration>
     outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioOutletClassList += !outletClassName !generateCode !outletClassBindingList !hasTableValueBinding ;
+  ioOutletClassList += !outletClassName !superClass !generateCode !outletClassBindingList !hasTableValueBinding ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -603,15 +649,15 @@ end rule ;
 rule <controller_class_declaration>
   ?!@controllerClassList ioControllerClassList
 :
-  $controllerClass$ ;
-  $Identifier$ ? @lstring controllerClassName ;
   @bool generateCode ;
   select
     generateCode := true ;
   or
-    $noGeneration$ ;
+    $extern$ ;
     generateCode := false ;
   end select ;
+  $controllerClass$ ;
+  $Identifier$ ? @lstring controllerClassName ;
   ${$ ;
   @outletClassBindingList controllerClassBindingList [emptyList] ;
   repeat
