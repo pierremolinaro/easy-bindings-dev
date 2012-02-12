@@ -125,8 +125,6 @@ OC_GGS_PreferencesController * gCocoaGalgasPreferencesController ;
   NSMutableArray * arguments = [NSMutableArray new] ;
 //--- Add tool path
   [arguments addObject:[self compilerToolPath]] ;
-//--- Add --xml option
- [arguments addObject: @"--xml"] ;
 //--- Add boolean options
   for (NSUInteger i=0 ; i<[mBoolOptionArray count] ; i++) {
     OC_GGS_CommandLineOption * option = [mBoolOptionArray objectAtIndex:i HERE] ;
@@ -1306,7 +1304,7 @@ OC_GGS_PreferencesController * gCocoaGalgasPreferencesController ;
     }
   }
   if (! canTerminateApplication) {
-    const NSInteger response = NSRunAlertPanel (@"Application cannot terminate while some tasks are running.",
+    const NSInteger response = NSRunAlertPanel (@"Application cannot terminate while build tasks are running.",
                                     @"You can cancel termination, or force tasks to terminate.",
                                     @"Cancel", @"Stop Tasks and Quit", nil) ;
     canTerminateApplication = response == NSAlertAlternateReturn ;
