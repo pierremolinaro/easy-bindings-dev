@@ -17,11 +17,12 @@ document PMDocument root MyRootEntity {
     $contentSet root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
   ;
   outlet NSTableView namesTableView
-  $tableValue nameController {
-    column "name" : NSTextFieldCell name ;
-    column "firstName" : NSTextFieldCell firstName ;
-  }
+    $tableValue nameController {
+      column "name" : NSTextFieldCell name ;
+      column "firstName" : NSTextFieldCell firstName ;
+    }
   ;
+
   outlet NSButton addPathButton $run nameController.add ;
   outlet NSButton removePathButton $run nameController.remove ;
 }

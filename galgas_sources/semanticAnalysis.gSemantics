@@ -193,6 +193,7 @@ map @outletClassMap {
 map @controllerClassMap {
   @bool mGenerateCode ;
   @outletClassBindingMap mBindingMap ;
+  @actionMap mActionMap ;
   insert insertKey error message "the '%K' controller class is already declared" ;
   search searchKey error message "the '%K' controller class is not declared" ;
 }
@@ -203,6 +204,7 @@ map @controllerMap {
   @string mControllerClassName ;
   @string mControlledClassOrEntityName ;
   @outletBindingListForGeneration mControllerBindingList ;
+  @actionMap mActionMap ;
   insert insertKey error message "the '%K' controller is already declared" ;
   search searchKey error message "the '%K' controller is not declared" ;
 }
@@ -228,7 +230,7 @@ map @propertyMap {
 
 map @actionMap {
   insert insertKey error message "there is already a '%K' action" ;
-  insert searchKey error message "the '%K' action is not defined" ;
+  search searchKey error message "the '%K' action is not defined" ;
 }
 
 #----------------------------------------------------------------------------*
@@ -356,6 +358,8 @@ end routine ;
 abstract method @abstractBinding analyzeOutletBinding
   ??@classObservablePropertyMap inObservableAttributeMap
   ??@outletClassBindingMap inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap inActionMap
   ??@string inRequiredPrefix
   ??@string inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
@@ -364,13 +368,28 @@ abstract method @abstractBinding analyzeOutletBinding
 #----------------------------------------------------------------------------*
 
 override method @runBinding analyzeOutletBinding
-  ??@classObservablePropertyMap inObservableAttributeMap
-  ??@outletClassBindingMap inBindingMap
-  ??@string inRequiredPrefix
-  ??@string inRequiredPrefixErrorMessage
+  ??@classObservablePropertyMap unused inObservableAttributeMap
+  ??@outletClassBindingMap unused inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap inActionMap
+  ??@string unused inRequiredPrefix
+  ??@string unused inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
 :
-
+  if mTargetName->string == "self" then
+    [inActionMap searchKey !mActionName] ;
+  else
+    @actionMap actionMap ;
+    [inControllerMap searchKey !mTargetName ?3* ?actionMap] ;
+    [actionMap searchKey !mActionName] ;
+  end if ;
+  ioOutletBindingListForGeneration +=
+    !"run"
+    ![@formatterEnum noFormatter]
+    !mTargetName->string
+    !mActionName->string
+    ![@2stringlist emptyList]
+  ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -378,6 +397,8 @@ end method ;
 override method @regularBinding analyzeOutletBinding
   ??@classObservablePropertyMap inObservableAttributeMap
   ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
   ??@string inRequiredPrefix
   ??@string inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
@@ -485,6 +506,8 @@ local routine analyzePreferences
         [mBinding analyzeOutletBinding
           !observableAttributeMap
           !bindingMap
+          ![@controllerMap emptyMap]
+          !actionMap
           !""
           !"no prefix allowed here"
           !?outletBindingList
@@ -524,46 +547,6 @@ reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @strin
   when toManyEntitiesType : outResult := "toMany[" . inClassOrEntityName . "]" ;
   end switch ;
 end reader ;
-
-#----------------------------------------------------------------------------*
-
-local routine analyzeBoundProperty
-  ??@lstring inObservedObjectName
-  ??@lstring inObservedPropertyName
-  ??@relationshipMap inAllRelationshipMap
-  ??@classObservablePropertyMap inAllObservablePropertyMap
-  !@string outTypeIdentifierString
-  !@string outResultingObservedObjectName
-  !@string outResultingObservedPropertyPath
-:
-  if inObservedObjectName->string == "root" then
-    outResultingObservedObjectName := "mRootObjectController" ;
-    outResultingObservedPropertyPath := "selection." . inObservedPropertyName ;
-  else
-    error inObservedObjectName
-    : "observed object should be 'root'"
-    : outResultingObservedObjectName, outResultingObservedPropertyPath
-    ;
-  end if ;
-  if [inAllObservablePropertyMap hasKey !inObservedPropertyName->string] then
-    @easyBindingType t ;
-    [inAllObservablePropertyMap searchKey !inObservedPropertyName ?t ?*] ;
-    outTypeIdentifierString := [t ebTypeIdentifier !""] ;
-  elsif [inAllRelationshipMap hasKey !inObservedPropertyName->string] then
-    @bool isToMany ;
-    @lstring destinationEntityName ;
-    [inAllRelationshipMap searchKey !inObservedPropertyName ?isToMany ?destinationEntityName ?2*] ;
-    if isToMany then
-      outTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
-    else
-      outTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
-    end if ;
-  else
-    error inObservedPropertyName
-    :"unknown property"
-    : outTypeIdentifierString ;
-  end if ;
-end routine ;
 
 #----------------------------------------------------------------------------*
 
@@ -707,15 +690,16 @@ local routine analyzeDocuments
       ?allRelationshipMap
     ] ;
   #--- Analyze actions
-    @actionMap actionMap [emptyMap] ;
+    @actionMap documentActionMap [emptyMap] ;
     for actionName in mActionDeclarationList do
-      [!?actionMap insertKey !actionName->mValue] ;
+      [!?documentActionMap insertKey !actionName->mValue] ;
     end for ;
   #--- Analyze controllers
     @controllerMap controllerMap [emptyMap] ;
     foreach mControllerList do
       @outletClassBindingMap controllerClassBindingMap ;
-      [inControllerClassMap searchKey !mControllerClassName ?* ?controllerClassBindingMap] ;
+      @actionMap controllerActionMap ;
+      [inControllerClassMap searchKey !mControllerClassName ?* ?controllerClassBindingMap ?controllerActionMap] ;
       [inEntityMap searchKey !mControlledClassOrEntityName ?14*] ;
       @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
       foreach mControllerBindingList do
@@ -732,6 +716,7 @@ local routine analyzeDocuments
         !mControllerClassName->string
         !mControlledClassOrEntityName->string
         !bindingListForGeneration
+        !controllerActionMap
       ] ;
     end foreach ;
   #--- Analyze outlets
@@ -744,6 +729,8 @@ local routine analyzeDocuments
         [mBinding analyzeOutletBinding
           !observablePropertyMap
           !bindingMap
+          !controllerMap
+          !documentActionMap
           !"root"
           !"'root' prefix is required here"
           !?outletBindingList
@@ -875,6 +862,11 @@ local routine analyzeControllerClasses
 :
   outControllerClassMap := [@controllerClassMap emptyMap] ;
   foreach inControllerClassList do
+  #--- Analyze actions
+    @actionMap actionMap [emptyMap] ;
+    for actionName in mActionDeclarationList do
+      [!?actionMap insertKey !actionName->mValue] ;
+    end for ;
   #---
     @outletClassBindingMap bindingMap [emptyMap] ;
     foreach mBindingList do
@@ -889,7 +881,12 @@ local routine analyzeControllerClasses
       [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
     end foreach ;
   #---
-    [!?outControllerClassMap insertKey !mOutletClassName !mGenerateCode !bindingMap] ;
+    [!?outControllerClassMap insertKey
+      !mOutletClassName
+      !mGenerateCode
+      !bindingMap
+      !actionMap
+    ] ;
   end foreach ;
 end routine ;
 
