@@ -44,6 +44,9 @@
 #endif
 {
 
+  @private NSArrayController * mIssueArrayController ;
+//  @private NSArray * mIssueArray ; // Bound to 'content' of mIssueArrayController
+  
   @private IBOutlet NSSplitView * mIssueSplitView ;
 
   @private IBOutlet NSView * mSourceHostView ;
@@ -91,6 +94,11 @@
   @private IBOutlet NSTextView * mContextualHelpTextView ;
   @private IBOutlet NSScrollView * mContextualHelpScrollView ;
 }
+
+@property(assign, atomic) NSArray * mIssueArray ;
+
+- (void) setDocumentIssueArray: (NSArray *) issueArray ;
+- (NSArray *) documentIssueArray ;
 
 - (OC_GGS_TextDisplayDescriptor *) findOrAddNewTabForFile: (NSString *) inDocumentPath ;
 

@@ -1,0 +1,15 @@
+class MyClass {
+  attribute bool myBool default YES ;
+  attribute integer32 myInteger32 default 123 ;
+  attribute NSString myString default "555" ;
+  
+  transient NSString schmurtz dependsFrom .myInteger32, .myString ;
+  transient NSString truc dependsFrom .schmurtz ;
+}
+
+class MyOtherClass : MyClass {
+  attribute bool chose default NO ;
+  transient NSString bidule dependsFrom .chose, .schmurtz ;
+}
+
+end

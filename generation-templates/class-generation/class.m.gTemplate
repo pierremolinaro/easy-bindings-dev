@@ -1,7 +1,7 @@
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
-  %#import "%!CLASS_NAME%-transient-computations.h"%
+  %#import "%!CLASS_NAME%-transient-computations.h"\n%
 end if
 %
 //----------------------------------------------------------------------------*

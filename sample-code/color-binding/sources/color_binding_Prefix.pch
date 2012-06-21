@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'color-binding' target in the 'color-binding' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

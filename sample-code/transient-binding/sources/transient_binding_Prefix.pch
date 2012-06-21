@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'transient-binding' target in the 'transient-binding' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
