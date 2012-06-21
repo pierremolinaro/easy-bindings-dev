@@ -24,6 +24,11 @@ end foreach
 
 //--- Retrieve custom managed object model
 - (NSManagedObjectModel *) managedObjectModel ;
+
+//--- Actions
+%foreach ACTION_LIST do
+%- (IBAction) %!mValue->string%: (id) inSender ;\n%
+end foreach%
 @end
 
 //----------------------------------------------------------------------------*

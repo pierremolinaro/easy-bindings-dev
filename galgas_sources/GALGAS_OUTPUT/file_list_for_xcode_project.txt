@@ -1465,7 +1465,7 @@
 					"../hand_coded_sources/**",
 				);
 				PREBINDING = NO;
-				SDKROOT = macosx10.7 ;
+				SDKROOT = macosx10.6 ;
 			};
 			name = Default;
 		};

@@ -45,8 +45,22 @@ rule <bindings>
   outOutletBindingList := [@bindingList emptyList] ;
   repeat
   while
-    $tableValue$ ;
+    $run$ ;
+    @lstring targetName ;
+    select
+      $self$ ;
+      targetName := [@lstring new !"self" !here] ;
+    or
+      $identifier$ ?targetName ;
+    end select ;
     $.$ ;
+    $identifier$ ?@lstring actionName ;
+    outOutletBindingList += ![@runBinding new
+      !targetName
+      !actionName
+    ] ;
+  while
+    $tableValue$ ;
     $identifier$ ?@lstring controllerName ;
     ${$ ;
     repeat
@@ -64,11 +78,11 @@ rule <bindings>
     @lstring observedObjectName ;
     select
       $root$ ;
+      $.$ ;
       observedObjectName := [@lstring new !"root" !here] ;
     or
       observedObjectName := [@lstring new !"" !here] ;
     end select ;
-    $.$ ;
     $identifier$ ? @lstring rootObservablePropertyName ;
     @outletBindingOptionList outletBindingOptionList [emptyList] ;
     select
@@ -90,7 +104,12 @@ rule <bindings>
       end repeat ;
       $}$ ;
     end select ;
-    outOutletBindingList += !bindingName !observedObjectName !rootObservablePropertyName !outletBindingOptionList ;
+    outOutletBindingList += ![@regularBinding new
+      !bindingName
+      !observedObjectName
+      !rootObservablePropertyName
+      !outletBindingOptionList
+    ] ;
   end repeat ;
 end rule ;
 
@@ -109,6 +128,17 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <action_declaration>
+  ?!@lstringlist ioActionDeclarationList
+:
+  $action$ ;
+  $identifier$ ? @lstring actionName ;
+  $;$ ;
+  ioActionDeclarationList += !actionName ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <preferences_declaration>
   ?!@preferencesDeclarationList ioPreferencesList
 :
@@ -118,7 +148,10 @@ rule <preferences_declaration>
   @outletDeclarationList outletDeclarationList [emptyList] ;
   @attributeList attributeList [emptyList] ;
   @transientList transientList [emptyList] ;
+  @lstringlist actionDeclarationList [emptyList] ;
   repeat
+  while
+    <action_declaration> !?actionDeclarationList ;
   while
     <attribute_declaration> !?attributeList ;
   while
@@ -127,7 +160,7 @@ rule <preferences_declaration>
     <transient_declaration> !?transientList ;
   end repeat ;
   $}$ ;
-  ioPreferencesList += !preferencesName !outletDeclarationList !attributeList !transientList ;
+  ioPreferencesList += !preferencesName !outletDeclarationList !attributeList !transientList !actionDeclarationList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -142,14 +175,17 @@ rule <document_declaration>
   ${$ ;
   @outletDeclarationList outletDeclarationList [emptyList] ;
   @controllerList controllerList [emptyList] ;
+  @lstringlist actionDeclarationList [emptyList] ;
   repeat
+  while
+    <action_declaration> !?actionDeclarationList ;
   while
     <outlet_declaration> !?outletDeclarationList ;
   while
     <controller_declaration> !?controllerList ;
   end repeat ;
   $}$ ;
-  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList !controllerList ;
+  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList !controllerList !actionDeclarationList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -354,7 +390,6 @@ rule <transient_declaration>
   $dependsFrom$ ;
   @lstringlist dependanceList [emptyList] ;
   repeat
-    $.$ ;
     $identifier$ ? @lstring dependencyName ;
     dependanceList += !dependencyName ;
   while

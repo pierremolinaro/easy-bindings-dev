@@ -6,8 +6,8 @@ entity MyRootEntity class MyEntityClass {
 
 entity NameEntity class NameEntityClass {
   toOne MyRootEntity mRoot inverse mNames nullify ;
-  attribute NSString name default "" ;
-  attribute NSString firstName default "" ;
+  attribute NSString name default "Name" ;
+  attribute NSString firstName default "First name" ;
 }
 
 #--------------------------------------------------------------*
@@ -17,13 +17,13 @@ document PMDocument root MyRootEntity {
     $contentSet root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
   ;
   outlet NSTableView namesTableView
-  $tableValue .nameController {
+  $tableValue nameController {
     column "name" : NSTextFieldCell name ;
     column "firstName" : NSTextFieldCell firstName ;
   }
   ;
-  outlet NSButton addPathButton ;
-  outlet NSButton removePathButton ;
+  outlet NSButton addPathButton $run nameController.add ;
+  outlet NSButton removePathButton $run nameController.remove ;
 }
 
 #--------------------------------------------------------------*

@@ -16,11 +16,6 @@ foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end foreach
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mTransientName%' transient\n%
-%  @private BOOL %!mTransientName%_hasBeenComputed ;\n%
-%  @private %![mType ocTypeName]% %!mTransientName%_cachedValue ;\n\n%
-end foreach
 %}
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %//--- '%!mPropertyName%' property\n%
@@ -29,6 +24,11 @@ end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
 %- (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+end foreach%
+
+//--- Actions
+%foreach ACTION_LIST do
+%- (IBAction) %!mValue->string%: (id) inSender ;\n%
 end foreach%
 @end
 

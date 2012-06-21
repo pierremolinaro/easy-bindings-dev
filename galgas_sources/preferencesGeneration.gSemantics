@@ -44,6 +44,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
+    ?@lstringlist ACTION_LIST
   ;
   
   template preferencesImplementation "preferences.m.gTemplate"
@@ -52,11 +53,13 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@triggeredKeys TRIGGERED_KEYS
+    ?@lstringlist ACTION_LIST
   ;
   
-  template preferencesTransientComputationsHeaderFile "preferences-transient-computations.h.gTemplate"
+  template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
     ?@string PREFERENCES_NAME
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@lstringlist ACTION_LIST
   ;
   
   template preferencesTransientComputationImplementationFile "preferences-transient-computation-function.m.gTemplate"
@@ -64,6 +67,11 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@easyBindingType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+
+  template preferencesActionImplementationFile "preferences-action.m.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@string ACTION_NAME
   ;
 }
 
@@ -81,6 +89,7 @@ routine generatePreferencesCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mOutletDeclarationList
+        !mActionList
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -98,6 +107,7 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mTriggeredKeys
+        !mActionList
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -106,17 +116,18 @@ routine generatePreferencesCode
         !"\n\n" # Defaut user zone1
         !s
         !"\n\n" # Defaut user zone2
-        !"\n"
+        !"@end\n\n"
       ] ;
     #--- Transient computation function header file
-      if [mTransientListForImplementation length] > 0 then
+      if ([mTransientListForImplementation length] + [mActionList length]) > 0 then
         s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
           ![lkey string]
           !mTransientListForImplementation
+          !mActionList
         ] ;
         [@string generateFile
           !inOutputDirectory
-          ![lkey string] . "-transient-computations.h"
+          ![lkey string] . "-computations.h"
           !"//"
           !"\n\n" # Defaut user zone1
           !s
@@ -139,6 +150,22 @@ routine generatePreferencesCode
             !"\n\n" # Defaut user zone1
             !s
             !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+          ] ;
+      end foreach ;
+    #--- Action computation function implementation files
+      foreach mActionList do
+          s := [filewrapper prefsGenerationTemplate.preferencesActionImplementationFile
+            ![lkey string]
+            !mValue->string
+          ] ;
+          [@string generateFile
+            !inOutputDirectory
+            ![lkey string] . "_" . mValue->string . "_action.m"
+            !"//"
+            !"\n\n" # Defaut user zone1
+            !s
+            !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
             !"}\n\n" . "//----------------------------------------------------------------------------*\n"
           ] ;
       end foreach ;

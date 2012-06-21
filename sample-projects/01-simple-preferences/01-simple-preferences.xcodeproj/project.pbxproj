@@ -16,6 +16,8 @@
 		CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA6159357CB008662EA /* easy-bindings-utilities.m */; };
 		CF721AAC159357CB008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA8159357CB008662EA /* managed-object-model.m */; };
 		CF721AAD159357CB008662EA /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AAA159357CB008662EA /* PMPrefs.m */; };
+		CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */; };
+		CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,9 @@
 		CF721AA8159357CB008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF721AA9159357CB008662EA /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
 		CF721AAA159357CB008662EA /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
+		CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMPrefs-computations.h"; sourceTree = "<group>"; };
+		CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs_autreAction_action.m; sourceTree = "<group>"; };
+		CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs_monAction_action.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +96,9 @@
 		CF721A861593572A008662EA /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
+				CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */,
+				CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */,
+				CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */,
 				CF721AA5159357CB008662EA /* easy-bindings-utilities.h */,
 				CF721AA6159357CB008662EA /* easy-bindings-utilities.m */,
 				CF721AA7159357CB008662EA /* managed-object-model.h */,
@@ -187,6 +195,8 @@
 				CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */,
 				CF721AAC159357CB008662EA /* managed-object-model.m in Sources */,
 				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,
+				CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */,
+				CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +318,7 @@
 				CF721A9C1593572A008662EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

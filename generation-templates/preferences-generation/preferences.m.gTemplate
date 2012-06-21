@@ -1,7 +1,7 @@
 #import "%!PREFERENCES_NAME%.h"
 #import "easy-bindings-utilities.h"
-%if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
-  %#import "%!PREFERENCES_NAME%-transient-computations.h"%
+%if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [ACTION_LIST length]) > 0 then
+  %#import "%!PREFERENCES_NAME%-computations.h"%
 end if%
 
 //----------------------------------------------------------------------------*
@@ -120,29 +120,6 @@ foreach OUTLET_DECLARATION_LIST do
 end foreach
 %}
 
-//----------------------------------------------------------------------------*
-//    willChangeValueForKey                                                   *
-//----------------------------------------------------------------------------*
-
-- (void) willChangeValueForKey:(NSString *) inKey {
-  // NSLog (@"\%s:'\%@'", __PRETTY_FUNCTION__, inKey) ;
-%
-foreach TRIGGERED_KEYS
-  before %  if %
-  do
-  %([inKey isEqualToString:@"%!key%"]) {\n%
-  foreach mList do
-    %    %!mValue%_hasBeenComputed = NO ;\n%
-  end foreach
-  %  }%
-  between
-    %else if %
-  after
-    %\n%
-end foreach
-%  [super willChangeValueForKey:inKey] ;
-}
-
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %//----------------------------------------------------------------------------*\n%
   %//    '%!mTransientName%' transient                                  *\n%
@@ -156,27 +133,26 @@ end foreach
   %}\n\n%
   %//----------------------------------------------------------------------------*\n\n%
   %- (%![mType ocTypeName]%) %!mTransientName% {\n%
-  %  if (!%!mTransientName%_hasBeenComputed) {\n%
-  %    %!mTransientName%_hasBeenComputed = YES ;\n%
-  %    %!mTransientName%_cachedValue = %
-  if [mType copyOnAssign] then %[% end if
+  %  return %
   %compute_%!PREFERENCES_NAME%_%!mTransientName% (%
   foreach mDependencyList
-  do %[self %!mMasterName%]%
+  do %self.%!mMasterName%%
   between %, %
   end foreach
   %)%
-  if [mType copyOnAssign] then % copy]% end if
+  if [mType copyOnAssign] then %.copy% end if
   % ;\n%
-  %  }\n%
-  %  return %!mTransientName%_cachedValue ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (void) set%![mTransientName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inUnusedValue {\n%
-  %  // A transient property cannot be set: this method has no effect\n%
   %}\n\n%
 end foreach
 %//----------------------------------------------------------------------------*
+//    Actions                                                                 *
+//----------------------------------------------------------------------------*
+%foreach ACTION_LIST do
+%
+- (IBAction) %!mValue->string%: (id) inSender {
+  %!mValue->string%_%!PREFERENCES_NAME%_action (self, inSender) ;
+}\n\n%
+%//----------------------------------------------------------------------------*\n%
+end foreach%
 
-@end
 

@@ -2,7 +2,7 @@ project all_easyBindings -> "easyBindings":
 #--- Targets
   feature "makefile_macosx" ;
   feature "project_xcode" ;
-  feature "xcode_arch:Lion-64" ;
+  feature "xcode_arch:SnowLeopard-64" ;
 
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
