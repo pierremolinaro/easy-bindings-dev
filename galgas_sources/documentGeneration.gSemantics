@@ -24,6 +24,16 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@controllerMap CONTROLLER_MAP
     ?@lstringlist ACTION_LIST
   ;
+
+  template documentComputationsHeaderFile "document-computations.h.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@lstringlist ACTION_LIST
+  ;
+  
+  template documentActionImplementationFile "document-action.m.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ACTION_NAME
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -70,6 +80,38 @@ routine generateDocumentCode
         !"\n\n" # Defaut user zone2
         !"@end\n"
       ] ;
+    #--- action header file
+      if ([mActionList length]) > 0 then
+        s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
+          ![lkey string]
+          !mActionList
+        ] ;
+        [@string generateFile
+          !inOutputDirectory
+          ![lkey string] . "-computations.h"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"\n\n" # Defaut user zone2
+          !"\n"
+        ] ;
+      #--- Action computation function implementation files
+        foreach mActionList do
+            s := [filewrapper documentGenerationTemplate.documentActionImplementationFile
+              ![lkey string]
+              !mValue->string
+            ] ;
+            [@string generateFile
+              !inOutputDirectory
+              ![lkey string] . "_" . mValue->string . "_action.m"
+              !"//"
+              !"\n\n" # Defaut user zone1
+              !s
+              !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+              !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+            ] ;
+        end foreach ;
+      end if ;
     end foreach ;
   end if ;
 end routine ;

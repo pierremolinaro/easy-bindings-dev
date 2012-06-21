@@ -2,7 +2,9 @@
 #import "%!ROOT_ENTITY_CLASS_NAME%.h"
 #import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
-
+%if [ACTION_LIST length] > 0 then
+%#import "%!DOCUMENT_NAME%-computations.h"\n%
+end if%
 //----------------------------------------------------------------------------*
 
 @implementation %!DOCUMENT_NAME%
@@ -149,7 +151,7 @@ end foreach
 %foreach ACTION_LIST do
 %
 - (IBAction) %!mValue->string%: (id) inSender {
-
+  %!mValue->string%_%!DOCUMENT_NAME%_action (self, inSender) ;
 }\n\n%
 %//----------------------------------------------------------------------------*\n%
 end foreach%
