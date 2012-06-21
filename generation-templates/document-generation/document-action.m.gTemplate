@@ -1,0 +1,7 @@
+#import "%!DOCUMENT_NAME%-computations.h"
+#import "%!DOCUMENT_NAME%.h"
+
+//----------------------------------------------------------------------------*
+
+void %!ACTION_NAME%_%!DOCUMENT_NAME%_action (%?^!DOCUMENT_NAME% * inPreferencesObject,
+  %!^%id inSender) {
