@@ -674,7 +674,13 @@ rule <outlet_class_declaration>
     outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioOutletClassList += !outletClassName !superClass !generateCode !outletClassBindingList !hasTableValueBinding ;
+  ioOutletClassList +=
+    !outletClassName
+    !superClass
+    !generateCode
+    !outletClassBindingList
+    !hasTableValueBinding
+  ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -693,7 +699,10 @@ rule <controller_class_declaration>
   $Identifier$ ? @lstring controllerClassName ;
   ${$ ;
   @outletClassBindingList controllerClassBindingList [emptyList] ;
+  @lstringlist actionDeclarationList [emptyList] ;
   repeat
+  while
+    <action_declaration> !?actionDeclarationList ;
   while
     @lstring bindingName ;
     select
@@ -722,7 +731,7 @@ rule <controller_class_declaration>
     controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioControllerClassList += !controllerClassName !generateCode !controllerClassBindingList ;
+  ioControllerClassList += !controllerClassName !generateCode !controllerClassBindingList !actionDeclarationList ;
 end rule ;
 
 #----------------------------------------------------------------------------*

@@ -1,4 +1,6 @@
 controllerClass NSArrayController {
+  action add ;
+  action remove ;
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -46,6 +48,8 @@ controllerClass NSArrayController {
 }
 
 controllerClass NSObjectController {
+  action add ;
+  action remove ;
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;

@@ -112,7 +112,7 @@ class @regularBinding extends @abstractBinding {
 #----------------------------------------------------------------------------*
 
 class @runBinding extends @abstractBinding {
-  @lstring mTarget ;
+  @lstring mTargetName ;
   @lstring mActionName ;
 }
 
@@ -210,6 +210,7 @@ list @controllerClassList {
   @lstring mOutletClassName ;
   @bool mGenerateCode ;
   @outletClassBindingList mBindingList ;
+  @lstringlist mActionDeclarationList ;
 }
 
 #----------------------------------------------------------------------------*
