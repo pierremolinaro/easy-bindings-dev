@@ -97,11 +97,29 @@ list @outletBindingOptionList {
 
 #----------------------------------------------------------------------------*
 
-list @bindingList {
+abstract class @abstractBinding {
+}
+
+#----------------------------------------------------------------------------*
+
+class @regularBinding extends @abstractBinding {
   @lstring mBindingName ;
   @lstring mObservedObjectName ;
   @lstring mObservableAttributeName ;
   @outletBindingOptionList mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @runBinding extends @abstractBinding {
+  @lstring mTarget ;
+  @lstring mActionName ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @bindingList {
+  @abstractBinding mBinding ;
 }
 
 #----------------------------------------------------------------------------*
@@ -119,6 +137,7 @@ list @preferencesDeclarationList {
   @outletDeclarationList mOutletDeclarationList ;
   @attributeList mAttributeList ;
   @transientList mTransientList ;
+  @lstringlist mActionDeclarationList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -137,6 +156,7 @@ list @documentDeclarationList {
   @lstring mRootEntityName ;
   @outletDeclarationList mOutletDeclarationList ;
   @controllerList mControllerList ;
+  @lstringlist mActionDeclarationList ;
 }
 
 #----------------------------------------------------------------------------*

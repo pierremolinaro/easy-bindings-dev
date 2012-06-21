@@ -208,7 +208,7 @@ routine generateEntityCode
         !"\n\n" # Defaut user zone1
         !s
         !"\n\n" # Defaut user zone2
-        !"\n"
+        !"@end\n"
       ] ;
     #--- Transient computation function header file
       if [mTransientListForImplementation length] > 0 then

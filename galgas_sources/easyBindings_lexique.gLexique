@@ -39,11 +39,13 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "float",
   "double",
   "root",
+  "self",
   "number",
   "extern",
   "default",
   "toManyEntities",
-  "column"
+  "column",
+  "action"
 ;
 
 rule 'a'->'z' :
@@ -88,7 +90,8 @@ $binding$ ! tokenString error message "a binding name (identifier prefixed by '$
 list bindingKeyWordList error message "the '%K' binding keyword" style reservedBindingNameStyle :
   "enabled",
   "hidden",
-  "tableValue"
+  "tableValue",
+  "run"
 ;
 
 rule '$' :

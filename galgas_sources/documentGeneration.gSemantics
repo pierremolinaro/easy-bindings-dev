@@ -13,6 +13,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string ROOT_ENTITY_CLASS_NAME
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
+    ?@lstringlist ACTION_LIST
   ;
   
   template documentImplementation "document.m.gTemplate"
@@ -21,8 +22,8 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string ROOT_ENTITY_CLASS_NAME
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
+    ?@lstringlist ACTION_LIST
   ;
-  
 }
 
 #----------------------------------------------------------------------------*
@@ -40,6 +41,7 @@ routine generateDocumentCode
         !mRootEntityImplementationClassName
         !mOutletDeclarationList
         !mControllerMap
+        !mActionList
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -57,6 +59,7 @@ routine generateDocumentCode
         !mRootEntityImplementationClassName
         !mOutletDeclarationList
         !mControllerMap
+        !mActionList
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -65,7 +68,7 @@ routine generateDocumentCode
         !"\n\n" # Defaut user zone1
         !s
         !"\n\n" # Defaut user zone2
-        !"\n"
+        !"@end\n"
       ] ;
     end foreach ;
   end if ;

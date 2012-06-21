@@ -1,9 +1,9 @@
 entity MyRootEntity class MyRootEntityClass {
   attribute NSString myString default "hello" ;
   
-  transient NSString myStringMaj dependsFrom .myString ;
-  transient NSString myStringMin dependsFrom .myString ;
-  transient NSString myStringConcat dependsFrom .myStringMaj, .myStringMin ;
+  transient NSString myStringMaj dependsFrom myString ;
+  transient NSString myStringMin dependsFrom myString ;
+  transient NSString myStringConcat dependsFrom myStringMaj, myStringMin ;
 }
 
 #--------------------------------------------------------------*
@@ -13,6 +13,9 @@ document PMDocument root MyRootEntity {
   outlet NSTextField myTextMajField $value root.myStringMaj ;
   outlet NSTextField myTextMinField $value root.myStringMin ;
   outlet NSTextField myTextConcatField $value root.myStringConcat ;
+  
+  action monAction ;
+  action autreAction ;
 }
 
 #--------------------------------------------------------------*
