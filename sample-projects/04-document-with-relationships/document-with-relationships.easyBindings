@@ -1,0 +1,31 @@
+entity MyRootEntity class MyEntityClass {
+  toMany NameEntity mNames inverse mRoot cascade ;
+}
+
+#--------------------------------------------------------------*
+
+entity NameEntity class NameEntityClass {
+  toOne MyRootEntity mRoot inverse mNames nullify ;
+  attribute NSString name default "" ;
+  attribute NSString firstName default "" ;
+}
+
+#--------------------------------------------------------------*
+
+document PMDocument root MyRootEntity {
+  controller NSArrayController nameController : NameEntity
+    $contentSet root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
+  ;
+  outlet NSTableView namesTableView
+  $tableValue .nameController {
+    column "name" : NSTextFieldCell name ;
+    column "firstName" : NSTextFieldCell firstName ;
+  }
+  ;
+  outlet NSButton addPathButton ;
+  outlet NSButton removePathButton ;
+}
+
+#--------------------------------------------------------------*
+
+end

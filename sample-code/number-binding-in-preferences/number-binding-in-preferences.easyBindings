@@ -1,6 +1,0 @@
-preferences Prefs {
-  attribute mInteger32Value : integer32 default 123 ;
-  outlet mInteger32TextField : NSTextField $value .mInteger32Value ;
-}
-
-end

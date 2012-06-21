@@ -1,6 +1,0 @@
-preferences Prefs {
-  attribute mColor : NSColor default yellowColor ;
-  outlet mColorWell : NSColorWell $value .mColor ;
-}
-
-end

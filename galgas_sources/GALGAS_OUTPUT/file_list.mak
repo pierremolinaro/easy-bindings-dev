@@ -35,8 +35,6 @@ SOURCES += classGeneration.cpp
 SOURCES += entityGeneration.cpp
 SOURCES += preferencesGeneration.cpp
 SOURCES += documentGeneration.cpp
-SOURCES += baseForXcodeProjectGeneration.cpp
-SOURCES += XcodeProjectGeneration.cpp
 SOURCES += easyBindings_program.cpp
 
 

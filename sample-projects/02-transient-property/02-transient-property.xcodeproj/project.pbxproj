@@ -1,0 +1,322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF721ADA1593605D008662EA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF721AD91593605D008662EA /* Cocoa.framework */; };
+		CF721AE41593605D008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721AE21593605D008662EA /* InfoPlist.strings */; };
+		CF721AE61593605D008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AE51593605D008662EA /* main.m */; };
+		CF721AEA1593605D008662EA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF721AE81593605D008662EA /* Credits.rtf */; };
+		CF721AED1593605D008662EA /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AEC1593605D008662EA /* PMAppDelegate.m */; };
+		CF721AF01593605D008662EA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF721AEE1593605D008662EA /* MainMenu.xib */; };
+		CF721B01159360A8008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AFB159360A8008662EA /* easy-bindings-utilities.m */; };
+		CF721B02159360A8008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AFD159360A8008662EA /* managed-object-model.m */; };
+		CF721B03159360A8008662EA /* Prefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B00159360A8008662EA /* Prefs.m */; };
+		CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF721AD51593605D008662EA /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF721AD91593605D008662EA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF721ADC1593605D008662EA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF721ADD1593605D008662EA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF721ADE1593605D008662EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF721AE11593605D008662EA /* 02-transient-property-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "02-transient-property-Info.plist"; sourceTree = "<group>"; };
+		CF721AE31593605D008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF721AE51593605D008662EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF721AE71593605D008662EA /* 02-transient-property-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "02-transient-property-Prefix.pch"; sourceTree = "<group>"; };
+		CF721AE91593605D008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF721AEB1593605D008662EA /* PMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
+		CF721AEC1593605D008662EA /* PMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
+		CF721AEF1593605D008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF721AFA159360A8008662EA /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CF721AFB159360A8008662EA /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CF721AFC159360A8008662EA /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
+		CF721AFD159360A8008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
+		CF721AFE159360A8008662EA /* Prefs-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-transient-computations.h"; sourceTree = "<group>"; };
+		CF721AFF159360A8008662EA /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
+		CF721B00159360A8008662EA /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
+		CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_Prefs_mFullName.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF721AD21593605D008662EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721ADA1593605D008662EA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF721ACA1593605D008662EA = {
+			isa = PBXGroup;
+			children = (
+				CF721ADF1593605D008662EA /* 02-transient-property */,
+				CF721AD81593605D008662EA /* Frameworks */,
+				CF721AD61593605D008662EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF721AD61593605D008662EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF721AD51593605D008662EA /* 02-transient-property.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF721AD81593605D008662EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF721AD91593605D008662EA /* Cocoa.framework */,
+				CF721ADB1593605D008662EA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF721ADB1593605D008662EA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF721ADC1593605D008662EA /* AppKit.framework */,
+				CF721ADD1593605D008662EA /* CoreData.framework */,
+				CF721ADE1593605D008662EA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF721ADF1593605D008662EA /* 02-transient-property */ = {
+			isa = PBXGroup;
+			children = (
+				CF721AFA159360A8008662EA /* easy-bindings-utilities.h */,
+				CF721AFB159360A8008662EA /* easy-bindings-utilities.m */,
+				CF721AFC159360A8008662EA /* managed-object-model.h */,
+				CF721AFD159360A8008662EA /* managed-object-model.m */,
+				CF721AFE159360A8008662EA /* Prefs-transient-computations.h */,
+				CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */,
+				CF721AFF159360A8008662EA /* Prefs.h */,
+				CF721B00159360A8008662EA /* Prefs.m */,
+				CF721AEB1593605D008662EA /* PMAppDelegate.h */,
+				CF721AEC1593605D008662EA /* PMAppDelegate.m */,
+				CF721AEE1593605D008662EA /* MainMenu.xib */,
+				CF721AE01593605D008662EA /* Supporting Files */,
+			);
+			path = "02-transient-property";
+			sourceTree = "<group>";
+		};
+		CF721AE01593605D008662EA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF721AE11593605D008662EA /* 02-transient-property-Info.plist */,
+				CF721AE21593605D008662EA /* InfoPlist.strings */,
+				CF721AE51593605D008662EA /* main.m */,
+				CF721AE71593605D008662EA /* 02-transient-property-Prefix.pch */,
+				CF721AE81593605D008662EA /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF721AD41593605D008662EA /* 02-transient-property */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF721AF31593605D008662EA /* Build configuration list for PBXNativeTarget "02-transient-property" */;
+			buildPhases = (
+				CF721AD11593605D008662EA /* Sources */,
+				CF721AD21593605D008662EA /* Frameworks */,
+				CF721AD31593605D008662EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "02-transient-property";
+			productName = "02-transient-property";
+			productReference = CF721AD51593605D008662EA /* 02-transient-property.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF721ACC1593605D008662EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "ECN / IRCCyN";
+			};
+			buildConfigurationList = CF721ACF1593605D008662EA /* Build configuration list for PBXProject "02-transient-property" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF721ACA1593605D008662EA;
+			productRefGroup = CF721AD61593605D008662EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF721AD41593605D008662EA /* 02-transient-property */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF721AD31593605D008662EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721AE41593605D008662EA /* InfoPlist.strings in Resources */,
+				CF721AEA1593605D008662EA /* Credits.rtf in Resources */,
+				CF721AF01593605D008662EA /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF721AD11593605D008662EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721AE61593605D008662EA /* main.m in Sources */,
+				CF721AED1593605D008662EA /* PMAppDelegate.m in Sources */,
+				CF721B01159360A8008662EA /* easy-bindings-utilities.m in Sources */,
+				CF721B02159360A8008662EA /* managed-object-model.m in Sources */,
+				CF721B03159360A8008662EA /* Prefs.m in Sources */,
+				CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF721AE21593605D008662EA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721AE31593605D008662EA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF721AE81593605D008662EA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721AE91593605D008662EA /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF721AEE1593605D008662EA /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721AEF1593605D008662EA /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF721AF11593605D008662EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF721AF21593605D008662EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF721AF41593605D008662EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "02-transient-property/02-transient-property-Prefix.pch";
+				INFOPLIST_FILE = "02-transient-property/02-transient-property-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF721AF51593605D008662EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "02-transient-property/02-transient-property-Prefix.pch";
+				INFOPLIST_FILE = "02-transient-property/02-transient-property-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF721ACF1593605D008662EA /* Build configuration list for PBXProject "02-transient-property" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF721AF11593605D008662EA /* Debug */,
+				CF721AF21593605D008662EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF721AF31593605D008662EA /* Build configuration list for PBXNativeTarget "02-transient-property" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF721AF41593605D008662EA /* Debug */,
+				CF721AF51593605D008662EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF721ACC1593605D008662EA /* Project object */;
+}

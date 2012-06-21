@@ -2,7 +2,7 @@ project all_easyBindings -> "easyBindings":
 #--- Targets
   feature "makefile_macosx" ;
   feature "project_xcode" ;
-  feature "xcode_arch:SnowLeopard-64" ;
+  feature "xcode_arch:Lion-64" ;
 
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
@@ -18,9 +18,6 @@ project all_easyBindings -> "easyBindings":
   semantics "entityGeneration.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
-
-  semantics "baseForXcodeProjectGeneration.gSemantics" ;
-  semantics "XcodeProjectGeneration.gSemantics" ;
 
   program "easyBindings_program.gProgram" ;
 end project ;

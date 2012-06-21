@@ -1,7 +1,0 @@
-
-preferences Prefs {
-  attribute mDate : NSDate default date ;
-  outlet mDatePicker : NSDatePicker $value .mDate ;
-}
-
-end

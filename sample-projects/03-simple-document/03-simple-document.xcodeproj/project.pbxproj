@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF6080FB159364A90021D873 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6080FA159364A90021D873 /* Cocoa.framework */; };
+		CF608105159364A90021D873 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF608103159364A90021D873 /* InfoPlist.strings */; };
+		CF608107159364A90021D873 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608106159364A90021D873 /* main.m */; };
+		CF60810B159364A90021D873 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF608109159364A90021D873 /* Credits.rtf */; };
+		CF60810E159364A90021D873 /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60810D159364A90021D873 /* PMDocument.m */; };
+		CF608111159364A90021D873 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF60810F159364A90021D873 /* PMDocument.xib */; };
+		CF608114159364A90021D873 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF608112159364A90021D873 /* MainMenu.xib */; };
+		CF60812D159365410021D873 /* compute_MyRootEntity_myStringConcat.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608121159365410021D873 /* compute_MyRootEntity_myStringConcat.m */; };
+		CF60812E159365410021D873 /* compute_MyRootEntity_myStringMaj.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608122159365410021D873 /* compute_MyRootEntity_myStringMaj.m */; };
+		CF60812F159365410021D873 /* compute_MyRootEntity_myStringMin.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608123159365410021D873 /* compute_MyRootEntity_myStringMin.m */; };
+		CF608130159365410021D873 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608125159365410021D873 /* easy-bindings-utilities.m */; };
+		CF608131159365410021D873 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608127159365410021D873 /* managed-object-model.m */; };
+		CF608133159365410021D873 /* MyRootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60812C159365410021D873 /* MyRootEntityClass.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF6080F6159364A90021D873 /* 03-simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "03-simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF6080FA159364A90021D873 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF6080FD159364A90021D873 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF6080FE159364A90021D873 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF6080FF159364A90021D873 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF608102159364A90021D873 /* 03-simple-document-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "03-simple-document-Info.plist"; sourceTree = "<group>"; };
+		CF608104159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF608106159364A90021D873 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF608108159364A90021D873 /* 03-simple-document-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "03-simple-document-Prefix.pch"; sourceTree = "<group>"; };
+		CF60810A159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF60810C159364A90021D873 /* PMDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMDocument.h; sourceTree = "<group>"; };
+		CF60810D159364A90021D873 /* PMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMDocument.m; sourceTree = "<group>"; };
+		CF608110159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CF608113159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF608121159365410021D873 /* compute_MyRootEntity_myStringConcat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringConcat.m; sourceTree = "<group>"; };
+		CF608122159365410021D873 /* compute_MyRootEntity_myStringMaj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringMaj.m; sourceTree = "<group>"; };
+		CF608123159365410021D873 /* compute_MyRootEntity_myStringMin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringMin.m; sourceTree = "<group>"; };
+		CF608124159365410021D873 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CF608125159365410021D873 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CF608126159365410021D873 /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
+		CF608127159365410021D873 /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
+		CF60812A159365410021D873 /* MyRootEntityClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyRootEntityClass-transient-computations.h"; sourceTree = "<group>"; };
+		CF60812B159365410021D873 /* MyRootEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRootEntityClass.h; sourceTree = "<group>"; };
+		CF60812C159365410021D873 /* MyRootEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntityClass.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF6080F3159364A90021D873 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF6080FB159364A90021D873 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF6080EB159364A90021D873 = {
+			isa = PBXGroup;
+			children = (
+				CF608100159364A90021D873 /* 03-simple-document */,
+				CF6080F9159364A90021D873 /* Frameworks */,
+				CF6080F7159364A90021D873 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF6080F7159364A90021D873 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF6080F6159364A90021D873 /* 03-simple-document.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF6080F9159364A90021D873 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF6080FA159364A90021D873 /* Cocoa.framework */,
+				CF6080FC159364A90021D873 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF6080FC159364A90021D873 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF6080FD159364A90021D873 /* AppKit.framework */,
+				CF6080FE159364A90021D873 /* CoreData.framework */,
+				CF6080FF159364A90021D873 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF608100159364A90021D873 /* 03-simple-document */ = {
+			isa = PBXGroup;
+			children = (
+				CF608121159365410021D873 /* compute_MyRootEntity_myStringConcat.m */,
+				CF608122159365410021D873 /* compute_MyRootEntity_myStringMaj.m */,
+				CF608123159365410021D873 /* compute_MyRootEntity_myStringMin.m */,
+				CF608124159365410021D873 /* easy-bindings-utilities.h */,
+				CF608125159365410021D873 /* easy-bindings-utilities.m */,
+				CF608126159365410021D873 /* managed-object-model.h */,
+				CF608127159365410021D873 /* managed-object-model.m */,
+				CF60812A159365410021D873 /* MyRootEntityClass-transient-computations.h */,
+				CF60812B159365410021D873 /* MyRootEntityClass.h */,
+				CF60812C159365410021D873 /* MyRootEntityClass.m */,
+				CF60810C159364A90021D873 /* PMDocument.h */,
+				CF60810D159364A90021D873 /* PMDocument.m */,
+				CF60810F159364A90021D873 /* PMDocument.xib */,
+				CF608112159364A90021D873 /* MainMenu.xib */,
+				CF608101159364A90021D873 /* Supporting Files */,
+			);
+			path = "03-simple-document";
+			sourceTree = "<group>";
+		};
+		CF608101159364A90021D873 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF608102159364A90021D873 /* 03-simple-document-Info.plist */,
+				CF608103159364A90021D873 /* InfoPlist.strings */,
+				CF608106159364A90021D873 /* main.m */,
+				CF608108159364A90021D873 /* 03-simple-document-Prefix.pch */,
+				CF608109159364A90021D873 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF6080F5159364A90021D873 /* 03-simple-document */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF60811A159364A90021D873 /* Build configuration list for PBXNativeTarget "03-simple-document" */;
+			buildPhases = (
+				CF6080F2159364A90021D873 /* Sources */,
+				CF6080F3159364A90021D873 /* Frameworks */,
+				CF6080F4159364A90021D873 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "03-simple-document";
+			productName = "03-simple-document";
+			productReference = CF6080F6159364A90021D873 /* 03-simple-document.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF6080ED159364A90021D873 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "ECN / IRCCyN";
+			};
+			buildConfigurationList = CF6080F0159364A90021D873 /* Build configuration list for PBXProject "03-simple-document" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF6080EB159364A90021D873;
+			productRefGroup = CF6080F7159364A90021D873 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF6080F5159364A90021D873 /* 03-simple-document */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF6080F4159364A90021D873 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF608105159364A90021D873 /* InfoPlist.strings in Resources */,
+				CF60810B159364A90021D873 /* Credits.rtf in Resources */,
+				CF608111159364A90021D873 /* PMDocument.xib in Resources */,
+				CF608114159364A90021D873 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF6080F2159364A90021D873 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF608107159364A90021D873 /* main.m in Sources */,
+				CF60810E159364A90021D873 /* PMDocument.m in Sources */,
+				CF60812D159365410021D873 /* compute_MyRootEntity_myStringConcat.m in Sources */,
+				CF60812E159365410021D873 /* compute_MyRootEntity_myStringMaj.m in Sources */,
+				CF60812F159365410021D873 /* compute_MyRootEntity_myStringMin.m in Sources */,
+				CF608130159365410021D873 /* easy-bindings-utilities.m in Sources */,
+				CF608131159365410021D873 /* managed-object-model.m in Sources */,
+				CF608133159365410021D873 /* MyRootEntityClass.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF608103159364A90021D873 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF608104159364A90021D873 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF608109159364A90021D873 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF60810A159364A90021D873 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF60810F159364A90021D873 /* PMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF608110159364A90021D873 /* en */,
+			);
+			name = PMDocument.xib;
+			sourceTree = "<group>";
+		};
+		CF608112159364A90021D873 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF608113159364A90021D873 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF608118159364A90021D873 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF608119159364A90021D873 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF60811B159364A90021D873 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "03-simple-document/03-simple-document-Prefix.pch";
+				INFOPLIST_FILE = "03-simple-document/03-simple-document-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF60811C159364A90021D873 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "03-simple-document/03-simple-document-Prefix.pch";
+				INFOPLIST_FILE = "03-simple-document/03-simple-document-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF6080F0159364A90021D873 /* Build configuration list for PBXProject "03-simple-document" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF608118159364A90021D873 /* Debug */,
+				CF608119159364A90021D873 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF60811A159364A90021D873 /* Build configuration list for PBXNativeTarget "03-simple-document" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF60811B159364A90021D873 /* Debug */,
+				CF60811C159364A90021D873 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF6080ED159364A90021D873 /* Project object */;
+}

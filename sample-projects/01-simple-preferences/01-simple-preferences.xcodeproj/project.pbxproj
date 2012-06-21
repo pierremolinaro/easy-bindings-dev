@@ -1,0 +1,315 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF721A811593572A008662EA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF721A801593572A008662EA /* Cocoa.framework */; };
+		CF721A8B1593572A008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721A891593572A008662EA /* InfoPlist.strings */; };
+		CF721A8D1593572A008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721A8C1593572A008662EA /* main.m */; };
+		CF721A911593572A008662EA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF721A8F1593572A008662EA /* Credits.rtf */; };
+		CF721A941593572A008662EA /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721A931593572A008662EA /* PMAppDelegate.m */; };
+		CF721A971593572A008662EA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF721A951593572A008662EA /* MainMenu.xib */; };
+		CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA6159357CB008662EA /* easy-bindings-utilities.m */; };
+		CF721AAC159357CB008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA8159357CB008662EA /* managed-object-model.m */; };
+		CF721AAD159357CB008662EA /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AAA159357CB008662EA /* PMPrefs.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF721A7C1593572A008662EA /* 01-simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF721A801593572A008662EA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF721A831593572A008662EA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF721A841593572A008662EA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF721A851593572A008662EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF721A881593572A008662EA /* 01-simple-preferences-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "01-simple-preferences-Info.plist"; sourceTree = "<group>"; };
+		CF721A8A1593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF721A8C1593572A008662EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF721A8E1593572A008662EA /* 01-simple-preferences-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "01-simple-preferences-Prefix.pch"; sourceTree = "<group>"; };
+		CF721A901593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF721A921593572A008662EA /* PMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
+		CF721A931593572A008662EA /* PMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
+		CF721A961593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF721AA5159357CB008662EA /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CF721AA6159357CB008662EA /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CF721AA7159357CB008662EA /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
+		CF721AA8159357CB008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
+		CF721AA9159357CB008662EA /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
+		CF721AAA159357CB008662EA /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF721A791593572A008662EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721A811593572A008662EA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF721A711593572A008662EA = {
+			isa = PBXGroup;
+			children = (
+				CF721A861593572A008662EA /* 01-simple-preferences */,
+				CF721A7F1593572A008662EA /* Frameworks */,
+				CF721A7D1593572A008662EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF721A7D1593572A008662EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF721A7C1593572A008662EA /* 01-simple-preferences.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF721A7F1593572A008662EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF721A801593572A008662EA /* Cocoa.framework */,
+				CF721A821593572A008662EA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF721A821593572A008662EA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF721A831593572A008662EA /* AppKit.framework */,
+				CF721A841593572A008662EA /* CoreData.framework */,
+				CF721A851593572A008662EA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF721A861593572A008662EA /* 01-simple-preferences */ = {
+			isa = PBXGroup;
+			children = (
+				CF721AA5159357CB008662EA /* easy-bindings-utilities.h */,
+				CF721AA6159357CB008662EA /* easy-bindings-utilities.m */,
+				CF721AA7159357CB008662EA /* managed-object-model.h */,
+				CF721AA8159357CB008662EA /* managed-object-model.m */,
+				CF721AA9159357CB008662EA /* PMPrefs.h */,
+				CF721AAA159357CB008662EA /* PMPrefs.m */,
+				CF721A921593572A008662EA /* PMAppDelegate.h */,
+				CF721A931593572A008662EA /* PMAppDelegate.m */,
+				CF721A951593572A008662EA /* MainMenu.xib */,
+				CF721A871593572A008662EA /* Supporting Files */,
+			);
+			path = "01-simple-preferences";
+			sourceTree = "<group>";
+		};
+		CF721A871593572A008662EA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF721A881593572A008662EA /* 01-simple-preferences-Info.plist */,
+				CF721A891593572A008662EA /* InfoPlist.strings */,
+				CF721A8C1593572A008662EA /* main.m */,
+				CF721A8E1593572A008662EA /* 01-simple-preferences-Prefix.pch */,
+				CF721A8F1593572A008662EA /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF721A7B1593572A008662EA /* 01-simple-preferences */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF721A9A1593572A008662EA /* Build configuration list for PBXNativeTarget "01-simple-preferences" */;
+			buildPhases = (
+				CF721A781593572A008662EA /* Sources */,
+				CF721A791593572A008662EA /* Frameworks */,
+				CF721A7A1593572A008662EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "01-simple-preferences";
+			productName = "01-simple-preferences";
+			productReference = CF721A7C1593572A008662EA /* 01-simple-preferences.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF721A731593572A008662EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "ECN / IRCCyN";
+			};
+			buildConfigurationList = CF721A761593572A008662EA /* Build configuration list for PBXProject "01-simple-preferences" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF721A711593572A008662EA;
+			productRefGroup = CF721A7D1593572A008662EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF721A7B1593572A008662EA /* 01-simple-preferences */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF721A7A1593572A008662EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721A8B1593572A008662EA /* InfoPlist.strings in Resources */,
+				CF721A911593572A008662EA /* Credits.rtf in Resources */,
+				CF721A971593572A008662EA /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF721A781593572A008662EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF721A8D1593572A008662EA /* main.m in Sources */,
+				CF721A941593572A008662EA /* PMAppDelegate.m in Sources */,
+				CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */,
+				CF721AAC159357CB008662EA /* managed-object-model.m in Sources */,
+				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF721A891593572A008662EA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721A8A1593572A008662EA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF721A8F1593572A008662EA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721A901593572A008662EA /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF721A951593572A008662EA /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF721A961593572A008662EA /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF721A981593572A008662EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF721A991593572A008662EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF721A9B1593572A008662EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
+				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF721A9C1593572A008662EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
+				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF721A761593572A008662EA /* Build configuration list for PBXProject "01-simple-preferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF721A981593572A008662EA /* Debug */,
+				CF721A991593572A008662EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF721A9A1593572A008662EA /* Build configuration list for PBXNativeTarget "01-simple-preferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF721A9B1593572A008662EA /* Debug */,
+				CF721A9C1593572A008662EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF721A731593572A008662EA /* Project object */;
+}

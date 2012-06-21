@@ -16,10 +16,6 @@ foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end foreach
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%//--- '%!mPropertyName%' attribute\n%
-%  @private %![mType ocTypeName]% %!mPropertyName% ; // Needed by 32-bit compilation\n\n%
-end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient\n%
 %  @private BOOL %!mTransientName%_hasBeenComputed ;\n%

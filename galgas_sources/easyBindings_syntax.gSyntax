@@ -5,6 +5,7 @@ import "abstractSyntaxTree.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 rule <start_symbol> !@ASTstruct outAST :
+#---
   @classList classList [emptyList] ;
   @entityList entityList [emptyList] ;
   @preferencesDeclarationList preferencesList [emptyList] ;
@@ -99,9 +100,8 @@ rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
   $outlet$ ;
-  $identifier$ ? @lstring outletName ;
-  $:$ ;
   $Identifier$ ? @lstring outletTypeName ;
+  $identifier$ ? @lstring outletName ;
   <bindings> ?@bindingList outletBindingList ;
   $;$ ;
   ioOutletDeclarationList += !outletTypeName !outletName !outletBindingList ;
@@ -325,9 +325,8 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $attribute$ ;
-  $identifier$ ? @lstring propertyName ;
-  $:$ ;
   <attribute_type> ?@easyBindingType propertyType ;
+  $identifier$ ? @lstring propertyName ;
   $default$ ;
   <explicit_value>
     ?@easyBindingTypeList correspondingAcceptableTypes
@@ -350,9 +349,8 @@ rule <transient_declaration>
   ?!@transientList ioTransientList
 :
   $transient$ ;
-  $identifier$ ? @lstring transientName ;
-  $:$ ;
   <attribute_type> ?@easyBindingType type ;
+  $identifier$ ? @lstring transientName ;
   $dependsFrom$ ;
   @lstringlist dependanceList [emptyList] ;
   repeat

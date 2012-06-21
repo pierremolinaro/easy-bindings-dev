@@ -40,42 +40,6 @@
   return managedObjectModel () ;
 }
 
-//---------------------------------------------------------------------------*
-//                                                                           *
-//                    presentOutletErrorOnLine:message:                      *
-//                                                                           *
-//---------------------------------------------------------------------------*
-
-- (void) presentOutletErrorOnLine: (int) inLineNumber message: (NSString *) inMessage {
-  NSString * f = [[NSString stringWithCString:__FILE__ encoding:NSASCIIStringEncoding] lastPathComponent] ;
-  NSMutableString * message = [NSMutableString stringWithCapacity:1000] ;
-  [message appendFormat:@"File: \%@\\n", f] ;
-  [message appendFormat:@"Line: \%d\\n\\n", inLineNumber] ;
-  [message appendFormat:@"Message: \%@", inMessage] ;
-  static NSPoint origin = {20.0F, 20.0F} ;
-  const NSRect r = {origin, {300.0F, 200.0F}} ;
-  origin.x += 20.0F ;
-  origin.y += 20.0F ;
-  NSWindow * window = [[NSWindow alloc] initWithContentRect:r
-    styleMask:NSTitledWindowMask | NSClosableWindowMask
-    backing:NSBackingStoreBuffered
-    defer:YES
-    screen:nil
-  ] ;
-  [window setTitle:@"Outlet Error"] ;
-  NSView * contentView = [window contentView] ;
-  const NSRect tfRect = NSInsetRect ([contentView bounds], 10.0F, 10.0F) ;
-  NSTextField * tf = [[NSTextField alloc] initWithFrame:tfRect] ;
-  [tf setEditable:NO] ;
-  [tf setSelectable:YES] ;
-  [tf setFont:[NSFont boldSystemFontOfSize:0.0F]] ;
-  [tf setTextColor:[NSColor redColor]] ;
-  [tf setStringValue:message] ;
-  [contentView addSubview:tf] ;
-  NSBeep () ;
-  [window makeKeyAndOrderFront:nil] ;
-}
-
 //----------------------------------------------------------------------------*
 //    windowControllerDidLoadNib                                              *
 //----------------------------------------------------------------------------*
@@ -140,7 +104,7 @@ end foreach
 foreach OUTLET_DECLARATION_LIST do
    %//--- check %!mOutletName%' outlet not nil\n%
    %  if (nil == %!mOutletName%) {\n%
-   %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet is nil"] ;\n%
+   %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet is nil") ;\n%
    %  }\n%
   foreach mOutletBindingList do
    %//--- '%!mOutletName%' outlet: %!mBindingName%' binding\n%
@@ -148,15 +112,15 @@ foreach OUTLET_DECLARATION_LIST do
    when noFormatter :
    when numberFormatter :
      %  if ((nil != %!mOutletName%) && (nil == [%!mOutletName% formatter])) {\n%
-     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has no formatter, it should have an NSNumberFormatter"] ;\n%
+     %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet has no formatter, it should have an NSNumberFormatter") ;\n%
      %  }else if ((nil != %!mOutletName%) && ![[%!mOutletName% formatter] isKindOfClass:[NSNumberFormatter class]]) {\n%
-     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has a formatter that is not kind of NSNumberFormatter class"] ;\n%
+     %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet has a formatter that is not kind of NSNumberFormatter class") ;\n%
      %  }\n%
    when dateFormatter :
      %  if ((nil != %!mOutletName%) && (nil == [%!mOutletName% formatter])) {\n%
-     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has no formatter, it should have an NSDateFormatter"] ;\n%
+     %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet has no formatter, it should have an NSDateFormatter") ;\n%
      %  }else if ((nil != %!mOutletName%) && ![[%!mOutletName% formatter] isKindOfClass:[NSDateFormatter class]]) {\n%
-     %    [self presentOutletErrorOnLine:__LINE__ message:@"the '%!mOutletName%' outlet has a formatter that is not kind of NSDateFormatter class"] ;\n%
+     %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet has a formatter that is not kind of NSDateFormatter class") ;\n%
      %  }\n%
    end switch
    %  [%!mOutletName%\n%
