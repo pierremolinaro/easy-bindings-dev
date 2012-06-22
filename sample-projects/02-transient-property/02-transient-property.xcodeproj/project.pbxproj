@@ -37,10 +37,10 @@
 		CF721AFB159360A8008662EA /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
 		CF721AFC159360A8008662EA /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
 		CF721AFD159360A8008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
-		CF721AFE159360A8008662EA /* Prefs-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-transient-computations.h"; sourceTree = "<group>"; };
 		CF721AFF159360A8008662EA /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		CF721B00159360A8008662EA /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
 		CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_Prefs_mFullName.m; sourceTree = "<group>"; };
+		CFAAC0151594691E00B59575 /* Prefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-computations.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +94,11 @@
 		CF721ADF1593605D008662EA /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
+				CFAAC0151594691E00B59575 /* Prefs-computations.h */,
 				CF721AFA159360A8008662EA /* easy-bindings-utilities.h */,
 				CF721AFB159360A8008662EA /* easy-bindings-utilities.m */,
 				CF721AFC159360A8008662EA /* managed-object-model.h */,
 				CF721AFD159360A8008662EA /* managed-object-model.m */,
-				CF721AFE159360A8008662EA /* Prefs-transient-computations.h */,
 				CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */,
 				CF721AFF159360A8008662EA /* Prefs.h */,
 				CF721B00159360A8008662EA /* Prefs.m */,

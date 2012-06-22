@@ -118,6 +118,21 @@ class @runBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
+list @tableValueColumnBinding {
+  @lstring mColumnName ;
+  @lstring mCellTypeName ;
+  @lstring mBoundPropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @tableValueBinding extends @abstractBinding {
+  @lstring mControllerName ;
+  @tableValueColumnBinding mTableValueColumnBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
   @abstractBinding mBinding ;
 }

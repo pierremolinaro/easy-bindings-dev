@@ -49,6 +49,48 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+reader @easyBindingType allowedCellTypeInTableColumnBinding -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "" ; # Empty string: not allowed
+  when integer16Type : outResult := "NSTextFieldCell" ;
+  when integer32Type : outResult := "NSTextFieldCell" ;
+  when integer64Type : outResult := "NSTextFieldCell" ;
+  when decimalType : outResult := "NSTextFieldCell" ;
+  when floatType : outResult := "NSTextFieldCell" ;
+  when doubleType : outResult := "NSTextFieldCell" ;
+  when stringType : outResult := "NSTextFieldCell" ;
+  when dataType : outResult := "" ;
+  when dateType : outResult := "NSTextFieldCell" ;
+  when fontType : outResult := "" ;
+  when imageType : outResult := "" ;
+  when colorType : outResult := "" ;
+  when toManyEntitiesType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType requiredFormatterInTableColumnBinding -> @formatterEnum outResult :
+  switch selfcopy
+  when boolType : outResult := [@formatterEnum noFormatter] ; # Empty string: not allowed
+  when integer16Type : outResult := [@formatterEnum numberFormatter] ;
+  when integer32Type : outResult := [@formatterEnum numberFormatter] ;
+  when integer64Type : outResult := [@formatterEnum numberFormatter] ;
+  when decimalType : outResult := [@formatterEnum numberFormatter] ;
+  when floatType : outResult := [@formatterEnum numberFormatter] ;
+  when doubleType : outResult :=  [@formatterEnum numberFormatter] ;
+  when stringType : outResult :=  [@formatterEnum noFormatter] ;
+  when dataType : outResult :=  [@formatterEnum noFormatter] ;
+  when dateType : outResult :=  [@formatterEnum dateFormatter] ;
+  when fontType : outResult :=  [@formatterEnum noFormatter] ;
+  when imageType : outResult :=  [@formatterEnum noFormatter] ;
+  when colorType : outResult :=  [@formatterEnum noFormatter] ;
+  when toManyEntitiesType : outResult :=  [@formatterEnum noFormatter] ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 map @classObservablePropertyMap {
   @easyBindingType mType ;
   @stringlist mPropertyDependancyList ; # Empty for a property
@@ -104,7 +146,7 @@ map @entityMap {
   @string mSuperEntityName ;
   @string mImplementationClassName ;
   @string mSuperImplementationClassName ;
-  @classObservablePropertyMap mPropertyMap ;
+  @classObservablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
@@ -121,13 +163,149 @@ map @entityMap {
 
 #----------------------------------------------------------------------------*
 
-list @outletBindingListForGeneration {
+abstract class @abstractBindingForGeneration {
+}
+
+#----------------------------------------------------------------------------*
+
+class @runBindingForGeneration extends @abstractBindingForGeneration {
+  @string mTargetName ;
+  @string mActionName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @regularBindingForGeneration extends @abstractBindingForGeneration {
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
   @string mObservableAttributeName ;
   @2stringlist mOutletBindingOptionList ;
 }
+
+#----------------------------------------------------------------------------*
+
+list @columnBindingForTableValueBindingForGeneration {
+  @string mColumnIdentifier ;
+  @formatterEnum mRequiredFormatter ;
+  @string mObservableAttributeName ;
+  @2stringlist mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @tableValueBindingForGeneration extends @abstractBindingForGeneration {
+  @string mControllerName ;
+  @columnBindingForTableValueBindingForGeneration mColumnBindingForTableValueBindingForGeneration ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletBindingListForGeneration {
+  @abstractBindingForGeneration mBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @runBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "  " . inOutletName . ".target = " . mTargetName . " ;\n" ;
+  outResult .= "  " . inOutletName . ".action = @selector (" . mActionName . ":) ;\n" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .=  "  if (nil == [" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]) {\n"
+     . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' NSTableView outlet has no formatter has no column with the " . column->mColumnIdentifier . " identifier\") ;\n"
+     . "  }\n" ;
+    switch column->mRequiredFormatter
+    when noFormatter :
+    when numberFormatter :
+     outResult .=  "if ((nil != [" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]) && (nil == " . inOutletName . ".formatter)) {\n"
+     . "  presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
+     . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSNumberFormatter class]]) {\n"
+     . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
+     . "  }\n" ;
+    when dateFormatter :
+      outResult .= "  if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+      . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
+      . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSDateFormatter class]]) {\n"
+      . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"
+      . "  }\n" ;
+    end switch ;
+    outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]\n"
+              . "    bind:@\"value\"\n"
+              . "    toObject:" . mControllerName . "\n"
+              . "    withKeyPath:@\"arrangedObjects." . column->mObservableAttributeName . "\"\n"
+              . "    options:" ;
+     if [column->mOutletBindingOptionList length] == 0 then
+       outResult .= "nil\n" ;
+     else
+       outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
+       foreach column->mOutletBindingOptionList do
+         outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
+       end foreach ;
+       outResult .= "      nil\n"
+                    "    ]\n" ;
+     end if ;
+     outResult .= "  ] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @regularBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  switch mRequiredFormatter
+  when noFormatter :
+  when numberFormatter :
+   outResult .=  "if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+   . "  presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
+   . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSNumberFormatter class]]) {\n"
+   . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
+   . "  }\n" ;
+  when dateFormatter :
+    outResult .= "  if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+    . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
+    . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSDateFormatter class]]) {\n"
+    . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"
+    . "  }\n" ;
+  end switch ;
+  outResult .= "  [" . inOutletName . "\n"
+            . "    bind:@\"" . mBindingName . "\"\n"
+            . "    toObject:" . mObservedObjectName . "\n"
+            . "    withKeyPath:@\"" . mObservableAttributeName . "\"\n"
+            . "    options:" ;
+   if [mOutletBindingOptionList length] == 0 then
+     outResult .= "nil\n" ;
+   else
+     outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
+     foreach mOutletBindingOptionList do
+       outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
+     end foreach ;
+     outResult .= "      nil\n"
+                  "    ]\n" ;
+   end if ;
+   outResult .= "  ] ;\n" ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -184,6 +362,7 @@ map @outletClassMap {
   @bool mGenerateCode ;
   @string mSuperClassName ;
   @outletClassBindingMap mBindingMap ;
+  @bool mHasTableValueBinding ;
   insert insertKey error message "the '%K' outlet class is already declared" ;
   search searchKey error message "the '%K' outlet class is not declared" ;
 }
@@ -356,10 +535,12 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 abstract method @abstractBinding analyzeOutletBinding
+  ??@entityMap inEntityMap
   ??@classObservablePropertyMap inObservableAttributeMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
+  ??@bool inHasTableValueBinding
   ??@string inRequiredPrefix
   ??@string inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
@@ -367,11 +548,73 @@ abstract method @abstractBinding analyzeOutletBinding
 
 #----------------------------------------------------------------------------*
 
+override method @tableValueBinding analyzeOutletBinding
+  ??@entityMap inEntityMap
+  ??@classObservablePropertyMap unused inObservableAttributeMap
+  ??@outletClassBindingMap unused inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool inHasTableValueBinding
+  ??@string unused inRequiredPrefix
+  ??@string unused inRequiredPrefixErrorMessage
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+:
+  if not inHasTableValueBinding then
+    error mControllerName: "this outlet does not support $tableValue binding" ;
+  else
+    @string controlledClassOrEntityName ;
+    @outletBindingListForGeneration controllerBindingList ;
+    [inControllerMap searchKey
+      !mControllerName
+      ?*
+      ?controlledClassOrEntityName
+      ?controllerBindingList
+      ?*
+    ] ;
+    [inEntityMap searchKey
+      ![@lstring new !controlledClassOrEntityName !here]
+      ?3*
+      ?@classObservablePropertyMap observablePropertyMap
+      ?10*
+    ] ;
+    @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
+    for column in mTableValueColumnBinding do
+      @easyBindingType type ;
+      [observablePropertyMap searchKey
+        !column->mBoundPropertyName
+        ?type
+        ?*
+      ] ;
+      const @string allowedCellTypeInTableColumnBinding := [type allowedCellTypeInTableColumnBinding] ;
+      if allowedCellTypeInTableColumnBinding == "" then
+        error column->mBoundPropertyName:"this property cannot be named in a $tableValue binding" ;
+      elsif allowedCellTypeInTableColumnBinding != column->mCellTypeName->string then
+        error column->mCellTypeName:"this property requires a " . allowedCellTypeInTableColumnBinding . " cell class" ;
+      end if ;
+      const @formatterEnum requiredFormatter := [type requiredFormatterInTableColumnBinding] ;
+      columnBindingForTableValueBindingForGeneration +=
+        !column->mColumnName->string
+        !requiredFormatter
+        !column->mBoundPropertyName->string
+        ![@2stringlist emptyList]
+      ;
+    end for ;
+    ioOutletBindingListForGeneration += ![@tableValueBindingForGeneration new
+      !mControllerName->string
+      !columnBindingForTableValueBindingForGeneration
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @runBinding analyzeOutletBinding
+  ??@entityMap unused inEntityMap
   ??@classObservablePropertyMap unused inObservableAttributeMap
   ??@outletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
+  ??@bool unused inHasTableValueBinding
   ??@string unused inRequiredPrefix
   ??@string unused inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
@@ -383,22 +626,21 @@ override method @runBinding analyzeOutletBinding
     [inControllerMap searchKey !mTargetName ?3* ?actionMap] ;
     [actionMap searchKey !mActionName] ;
   end if ;
-  ioOutletBindingListForGeneration +=
-    !"run"
-    ![@formatterEnum noFormatter]
+  ioOutletBindingListForGeneration += ![@runBindingForGeneration new
     !mTargetName->string
     !mActionName->string
-    ![@2stringlist emptyList]
-  ;
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @regularBinding analyzeOutletBinding
+  ??@entityMap unused inEntityMap
   ??@classObservablePropertyMap inObservableAttributeMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
   ??@string inRequiredPrefix
   ??@string inRequiredPrefixErrorMessage
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
@@ -446,18 +688,19 @@ override method @regularBinding analyzeOutletBinding
     end if ;
     bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
   end foreach ;
-  ioOutletBindingListForGeneration +=
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
     ![mBindingName string]
     !requiredFormatter
     !"self"
     ![mObservableAttributeName string]
     !bindingOptionList
-  ;
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 local routine analyzePreferences
+  ??@entityMap inEntityMap
   ??@preferencesDeclarationList inPreferencesList
   ??@outletClassMap inOutletClassMap
   !@preferencesMap outPreferencesMap
@@ -500,14 +743,17 @@ local routine analyzePreferences
     @outletGenerationList outletGenerationList [emptyList] ;
     foreach mOutletDeclarationList do
       @outletClassBindingMap bindingMap ;
-      [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap] ;
+      @bool hasTableValueBinding ;
+      [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
       @outletBindingListForGeneration outletBindingList [emptyList] ;
       foreach mOutletBindingList do
         [mBinding analyzeOutletBinding
+          !inEntityMap
           !observableAttributeMap
           !bindingMap
           ![@controllerMap emptyMap]
           !actionMap
+          !hasTableValueBinding
           !""
           !"no prefix allowed here"
           !?outletBindingList
@@ -588,14 +834,26 @@ abstract method @abstractBinding analyzeControllerBinding
 
 #----------------------------------------------------------------------------*
 
-override method @runBinding analyzeControllerBinding
-  ??@relationshipMap inAllRelationshipMap
-  ??@outletClassBindingMap inControllerClassBindingMap
-  ??@lstring inControlledClassOrEntityName
-  ??@classObservablePropertyMap inAllObservablePropertyMap
-  ?!@outletBindingListForGeneration ioBindingListForGeneration
+override method @tableValueBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@classObservablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
 :
+  error mControllerName: "a controller does not implement $tableValue binding" ;
+end method ;
 
+#----------------------------------------------------------------------------*
+
+override method @runBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@classObservablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mTargetName: "a controller does not implement $run action" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -657,13 +915,13 @@ override method @regularBinding analyzeControllerBinding
     !availableBindingOptionMap
     ?@2stringlist bindingOptionListForGeneration
   ;
-  ioBindingListForGeneration +=
+  ioBindingListForGeneration += ![@regularBindingForGeneration new
     !mBindingName->string
     ![@formatterEnum noFormatter]
     !resultingObservedObjectName
     !resultingObservedPropertyPath
     !bindingOptionListForGeneration
-  ;
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -723,14 +981,17 @@ local routine analyzeDocuments
     @outletGenerationList outletGenerationList [emptyList] ;
     foreach mOutletDeclarationList do
       @outletClassBindingMap bindingMap ;
-      [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap] ;
+      @bool hasTableValueBinding ;
+      [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
       @outletBindingListForGeneration outletBindingList [emptyList] ;
       foreach mOutletBindingList do
         [mBinding analyzeOutletBinding
+          !inEntityMap
           !observablePropertyMap
           !bindingMap
           !controllerMap
           !documentActionMap
+          !hasTableValueBinding
           !"root"
           !"'root' prefix is required here"
           !?outletBindingList
@@ -850,6 +1111,7 @@ local routine analyzeOutletClasses
       !mGenerateCode
       !mSuperClassName->string
       !bindingMap
+      !mHasTableValueBinding
     ] ;
   end foreach ;
 end routine ;
@@ -905,7 +1167,7 @@ routine semanticAnalysis
   analyzeControllerClasses !inAST->mControllerClassList ?outControllerClassMap ;
   analyzeClasses !inAST->mClassList ?outClassMap ;
   analyzeEntities !inAST->mEntityList ?outEntityMap ;
-  analyzePreferences !inAST->mPreferencesList !outOutletClassMap ?outPreferencesMap ;
+  analyzePreferences !outEntityMap !inAST->mPreferencesList !outOutletClassMap ?outPreferencesMap ;
   analyzeDocuments !inAST->mDocumentDeclarationList !outOutletClassMap !outControllerClassMap !outEntityMap ?outDocumentMap ;
 end routine ;
 
