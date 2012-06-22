@@ -1,0 +1,240 @@
+semantics transient_analysis_generation :
+  import "abstractSyntaxTree.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType ocTypeName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "BOOL" ;
+  when integer16Type : outResult := "SInt16" ;
+  when integer32Type : outResult := "SInt32" ;
+  when integer64Type : outResult := "SInt64" ;
+  when decimalType : outResult := "NSDecimal" ;
+  when floatType : outResult := "float" ;
+  when doubleType : outResult := "double" ;
+  when stringType : outResult := "NSString *" ;
+  when fontType : outResult := "NSFont *" ;
+  when imageType : outResult := "NSImage *" ;
+  when colorType : outResult := "NSColor *" ;
+  when dataType : outResult := "NSData *" ;
+  when dateType : outResult := "NSDate *" ;
+  when toManyEntitiesType : outResult := "??" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType copyOnAssign -> @bool outResult :
+  switch selfcopy
+  when boolType, integer16Type, integer32Type, integer64Type,
+       floatType, doubleType, decimalType, toManyEntitiesType : outResult := false ;
+  when stringType : outResult := true ;
+  when fontType, imageType, colorType, dataType, dateType : outResult := false ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+map @classObservablePropertyMap {
+  @easyBindingType mType ;
+  @stringlist mPropertyDependancyList ; # Empty for an attribute
+  insert insertKey error message "the '%K' attribute is already declared" ;
+  search searchKey error message "the '%K' attribute is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @classObservableObjectMap {
+  @string mObservableObjectOCName ;
+  @classObservablePropertyMap mObservableProperties ;
+  insert insertKey error message "the '%K' observable object is already declared" ;
+  search searchKey error message "the '%K' observable object is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @directDependancyList {
+  @easyBindingType mMasterType ;
+  @string mMasterObjectName ;
+  @string mMasterPropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @transientListForImplementation {
+  @easyBindingType mType ;
+  @string mTransientName ;
+  @directDependancyList mDependencyList ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine analyzeTransientProperties
+  ??@transientList inTransientList
+  ??@classObservableObjectMap inObservableObjectMap
+  ?!@classObservablePropertyMap ioSelfObjectObservablePropertyMap
+  !@transientListForImplementation outTransientListForImplementation
+:
+  outTransientListForImplementation := [@transientListForImplementation emptyList] ;
+  foreach inTransientList do
+    @stringlist allPropertyDependancyList [emptyList] ;
+    @directDependancyList directDependancyList [emptyList] ;
+    foreach mDependencyList do
+      @classObservableObjectMap observableObjectMap := inObservableObjectMap ;
+      [!?observableObjectMap insertKey
+        !["self" nowhere]
+        !"self"
+        !ioSelfObjectObservablePropertyMap
+      ] ;
+      @classObservablePropertyMap observableAttributeMap ;
+      @string observableObjectOCName ;
+      [observableObjectMap searchKey !mObjectName ?observableObjectOCName ?observableAttributeMap] ;
+      @easyBindingType type ;
+      @stringlist propertyDependancyList ;
+      [observableAttributeMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
+      directDependancyList += !type !observableObjectOCName !mPropertyName->string ;
+      allPropertyDependancyList .= propertyDependancyList ;
+    end foreach ;
+    outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
+    [!?ioSelfObjectObservablePropertyMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+function generateTransientFunctionDeclarations
+  ??@string inKindName
+  ??@transientListForImplementation inTransientListForImplementation
+  ->@string outResult
+:
+  outResult :=
+    "//----------------------------------------------------------------------------*\n"
+  . "//   T R A N S I E N T    P R O P E R T I E S                                 *\n"
+  . "//----------------------------------------------------------------------------*\n\n" ;
+
+  foreach inTransientListForImplementation do
+    outResult .= [mType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
+    foreach mDependencyList
+    do
+      outResult .= "    " . [mMasterType ocTypeName] . " in" . [mMasterPropertyName stringByCapitalizingFirstCharacter] ;
+    between
+      outResult .= ",\n" ;
+    end foreach ;
+    outResult .= ") ;\n\n" ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+listmap @triggeredKeysForSelfObject (@stringlist) ;
+
+#----------------------------------------------------------------------------*
+
+listmap @triggeredKeysForOtherObjects (@2stringlist) ;
+
+#----------------------------------------------------------------------------*
+
+function generateTransientImplementation
+  ??@string inKindName
+  ??@transientListForImplementation inTransientListForImplementation
+  ->@string outResult
+:
+#--- Note all properties of self object that trigger a transient
+  @triggeredKeysForSelfObject triggeredKeys [emptyMap] ;
+  @triggeredKeysForOtherObjects triggeredKeysFromOtherObjects [emptyMap] ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      if mMasterObjectName == "self" then
+        triggeredKeys += !mMasterPropertyName !mTransientName ;
+      else
+        triggeredKeysFromOtherObjects += !mMasterObjectName !mMasterPropertyName !mTransientName ;
+      end if ;
+    end foreach ;
+  end foreach ;
+#---
+  outResult :=
+    "//----------------------------------------------------------------------------*\n"
+  . "//   T R A N S I E N T    I M P L E M E N T A T I O N                         *\n" ;
+#---
+  if [triggeredKeysFromOtherObjects count] > 0 then
+    outResult .=
+    "//----------------------------------------------------------------------------*\n\n"
+    "- (void) pmInstallObserversForTransients {\n"
+    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n" ;
+    for element in triggeredKeysFromOtherObjects do
+      for name in element->mList do
+        outResult .=
+        "  [" . element->key . "\n"
+        "    addObserver:self\n"
+        "    forKeyPath:@\"" . name->mValue0 . "\"\n"
+        "    options:0\n"
+        "    context:NULL\n"
+        "  ] ;\n" ;
+      end for ;
+    end for ;
+    outResult .=
+    "}\n\n"
+    "//----------------------------------------------------------------------------*\n\n"
+    "- (void) observeValueForKeyPath:(NSString *) inKeyPath\n"
+    "         ofObject:(id) inObject\n"
+    "         change:(NSDictionary *) inChange\n"
+    "         context:(void *) inContext {\n"
+    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKey) ;\n"
+    " " ;
+    for element in triggeredKeysFromOtherObjects
+    do
+      outResult .= " if (inObject == " . element->key . ") {\n" ;
+      for name in element->mList
+      do
+        outResult .=
+        "    if ([inKeyPath isEqualToString:@\"" . name->mValue0 . "\"]) {\n"
+        "      [self pmNotifyChangeForTransientProperty:@\"" . name->mValue1 . "\"] ;\n"
+        "    }\n" ;
+      end for ;
+    between
+      outResult .= "  }else" ;
+    end for ;
+    outResult .= "  }\n"
+    "}\n\n" ;
+  end if ;
+#---
+  if [triggeredKeys count] > 0 then
+    outResult .=
+    "//----------------------------------------------------------------------------*\n\n"
+    "- (void) didChangeValueForKey:(NSString *) inKey {\n"
+    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKey) ;\n"
+    "  [super didChangeValueForKey:inKey] ;\n"
+    " " ;
+    for element in triggeredKeys
+    do
+      outResult .= " if ([inKey isEqualToString:@\"" . element->key . "\"]) {\n" ;
+      for name in element->mList do
+        outResult .= "    [self pmNotifyChangeForTransientProperty:@\"" . name->mValue . "\"] ;\n" ;
+      end for ;
+    between
+      outResult .= "  }else" ;
+    end for ;
+    outResult .= "  }\n"
+    "}\n\n" ;
+  end if ;
+#---
+  foreach inTransientListForImplementation do
+    outResult .=
+    "//----------------------------------------------------------------------------*\n\n"   
+    "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
+    "  return compute_" . inKindName . "_" . mTransientName . " (" ;
+    foreach mDependencyList
+    do outResult .= mMasterObjectName . "." . mMasterPropertyName ;
+    between outResult .= ", " ;
+    end foreach ;
+    outResult .= ")" ;
+    if [mType copyOnAssign] then outResult .= ".copy" ; end if ;
+    outResult .= " ;\n"
+    "}\n\n" ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

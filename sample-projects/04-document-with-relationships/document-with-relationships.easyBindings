@@ -22,7 +22,8 @@ document PMDocument root MyRootEntity {
       column "int" : NSTextFieldCell aValue ;
     }
   ;
-  transient NSString truc dependsFrom nameController.canRemove ;
+  transient NSString canRemoveString dependsFrom nameController.canRemove ;
+  outlet NSTextField canRemoveTextField $value self.canRemoveString ;
   outlet NSButton addPathButton $run nameController.add ;
   outlet NSButton removePathButton $run nameController.remove ;
 }

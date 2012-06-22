@@ -4,7 +4,7 @@
 
 %![RESULT_TYPE ocTypeName]% compute_%!CLASS_NAME%_%!TRANSIENT_NAME% (%?^
  foreach DIRECT_DEPENDANCY_LIST
-  do ![mMasterType ocTypeName]% in%![mMasterName stringByCapitalizingFirstCharacter]
+  do ![mMasterType ocTypeName]% in%![mMasterPropertyName stringByCapitalizingFirstCharacter]
   between %,\n%!^
  end foreach
  %) {

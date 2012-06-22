@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import "PMAbstractPersistentDocument.h"
 
 //----------------------------------------------------------------------------*
 
@@ -6,7 +6,7 @@
 
 //----------------------------------------------------------------------------*
 
-@interface %!DOCUMENT_NAME% : NSPersistentDocument {
+@interface %!DOCUMENT_NAME% : PMAbstractPersistentDocument {
 //--- Root Object
   @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
 //--- Root Object Controller

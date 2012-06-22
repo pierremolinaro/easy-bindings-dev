@@ -97,32 +97,12 @@ foreach OUTLET_DECLARATION_LIST do
     ![mBinding generateBinding !mOutletName]
   end foreach
 end foreach
-%}
+%
+//--- Install transients observers
+  [self pmInstallObserversForTransients] ;
+}
 
-%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %//----------------------------------------------------------------------------*\n%
-  %//    '%!mTransientName%' transient                                  *\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %+ (NSSet *) keyPathsForValuesAffecting%![mTransientName stringByCapitalizingFirstCharacter]% {\n%
-  %  return [NSSet setWithObjects:%
-  foreach mDependencyList do
-    % @"%!mMasterName%", %
-  end foreach
-  %nil] ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (%![mType ocTypeName]%) %!mTransientName% {\n%
-  %  return %
-  %compute_%!DOCUMENT_NAME%_%!mTransientName% (%
-  foreach mDependencyList
-  do %self.%!mMasterName%%
-  between %, %
-  end foreach
-  %)%
-  if [mType copyOnAssign] then %.copy% end if
-  % ;\n%
-  %}\n\n%
-end foreach
+%!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//----------------------------------------------------------------------------*
 //    Actions                                                                 *
 //----------------------------------------------------------------------------*
