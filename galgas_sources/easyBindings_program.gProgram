@@ -56,17 +56,30 @@ message "a source text file with the .easyBindings extension"
   generatePreferencesCode !preferencesMap !sourceDir ;
   generateDocumentCode !documentMap !sourceDir ;
 #--- Add embedded sources
+  @stringset sources [setWithString !"easy-bindings-utilities"] ;
+  if [preferencesMap count] > 0 then
+    sources += !"PMAbstractPreferences" ;
+  end if ;
+  if [documentMap count] > 0 then
+    sources += !"PMAbstractPersistentDocument" ;
+  end if ;
+  if [entityMap count] > 0 then
+    sources += !"PMAbstractManagedObject" ;
+  end if ;
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
-    [@string generateFile
-      !sourceDir . [mValue stringByDeletingLastPathComponent]
-      ![mValue lastPathComponent]
-      !"//"
-      !"\n\n" # Defaut user zone1
-      ![fw textFileContentsAtPath !mValue]
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
+    const @string sourceName := [mValue lastPathComponent] ;
+    if [sources hasKey ![sourceName stringByDeletingPathExtension]] then
+      [@string generateFile
+        !sourceDir . [mValue stringByDeletingLastPathComponent]
+        !sourceName
+        !"//"
+        !"\n\n" # Defaut user zone1
+        ![fw textFileContentsAtPath !mValue]
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    end if ;
   end foreach ;
 }
 

@@ -18,6 +18,10 @@
 		CF608175159368350021D873 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816F159368350021D873 /* managed-object-model.m */; };
 		CF608176159368350021D873 /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608171159368350021D873 /* MyEntityClass.m */; };
 		CF608177159368350021D873 /* NameEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608173159368350021D873 /* NameEntityClass.m */; };
+		CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */; };
+		CF68C3DA1595136F008B63F1 /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */; };
+		CF68C3DB1595136F008B63F1 /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */; };
+		CF68C3EF15951963008B63F1 /* compute_PMDocument_canRemoveString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,13 @@
 		CF608171159368350021D873 /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
 		CF608172159368350021D873 /* NameEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEntityClass.h; sourceTree = "<group>"; };
 		CF608173159368350021D873 /* NameEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEntityClass.m; sourceTree = "<group>"; };
+		CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDocument_monAction_action.m; sourceTree = "<group>"; };
+		CF68C3D51595136F008B63F1 /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
+		CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
+		CF68C3D71595136F008B63F1 /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
+		CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
+		CF68C3D91595136F008B63F1 /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
+		CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_canRemoveString.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +107,13 @@
 		CF60814A159367210021D873 /* 04-document-with-relationships */ = {
 			isa = PBXGroup;
 			children = (
+				CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */,
+				CF68C3D51595136F008B63F1 /* PMAbstractManagedObject.h */,
+				CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */,
+				CF68C3D71595136F008B63F1 /* PMAbstractPersistentDocument.h */,
+				CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */,
+				CF68C3D91595136F008B63F1 /* PMDocument-computations.h */,
+				CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */,
 				CF60816C159368350021D873 /* easy-bindings-utilities.h */,
 				CF60816D159368350021D873 /* easy-bindings-utilities.m */,
 				CF60816E159368350021D873 /* managed-object-model.h */,
@@ -197,6 +215,10 @@
 				CF608175159368350021D873 /* managed-object-model.m in Sources */,
 				CF608176159368350021D873 /* MyEntityClass.m in Sources */,
 				CF608177159368350021D873 /* NameEntityClass.m in Sources */,
+				CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */,
+				CF68C3DA1595136F008B63F1 /* PMAbstractManagedObject.m in Sources */,
+				CF68C3DB1595136F008B63F1 /* PMAbstractPersistentDocument.m in Sources */,
+				CF68C3EF15951963008B63F1 /* compute_PMDocument_canRemoveString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

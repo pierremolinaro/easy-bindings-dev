@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF68C37315950E02008B63F1 /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C37215950E02008B63F1 /* PMAbstractPreferences.m */; };
 		CF721ADA1593605D008662EA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF721AD91593605D008662EA /* Cocoa.framework */; };
 		CF721AE41593605D008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721AE21593605D008662EA /* InfoPlist.strings */; };
 		CF721AE61593605D008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AE51593605D008662EA /* main.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF68C37115950E02008B63F1 /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
+		CF68C37215950E02008B63F1 /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
 		CF721AD51593605D008662EA /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF721AD91593605D008662EA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF721ADC1593605D008662EA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -94,6 +97,8 @@
 		CF721ADF1593605D008662EA /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
+				CF68C37115950E02008B63F1 /* PMAbstractPreferences.h */,
+				CF68C37215950E02008B63F1 /* PMAbstractPreferences.m */,
 				CFAAC0151594691E00B59575 /* Prefs-computations.h */,
 				CF721AFA159360A8008662EA /* easy-bindings-utilities.h */,
 				CF721AFB159360A8008662EA /* easy-bindings-utilities.m */,
@@ -193,6 +198,7 @@
 				CF721B02159360A8008662EA /* managed-object-model.m in Sources */,
 				CF721B03159360A8008662EA /* Prefs.m in Sources */,
 				CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */,
+				CF68C37315950E02008B63F1 /* PMAbstractPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

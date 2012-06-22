@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import "PMAbstractPreferences.h"
 
 //----------------------------------------------------------------------------*
 
@@ -10,7 +10,7 @@ extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
 
 //----------------------------------------------------------------------------*
 
-@interface %!PREFERENCES_NAME% : NSObject {
+@interface %!PREFERENCES_NAME% : PMAbstractPreferences {
 %
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet

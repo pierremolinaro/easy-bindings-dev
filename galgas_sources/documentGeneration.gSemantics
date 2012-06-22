@@ -36,6 +36,14 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string DOCUMENT_NAME
     ?@string ACTION_NAME
   ;
+
+  template documentTransientComputationImplementationFile "document-transient-computation-function.m.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@easyBindingType RESULT_TYPE
+    ?@string TRANSIENT_NAME
+    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+
 }
 
 #----------------------------------------------------------------------------*
@@ -84,7 +92,7 @@ routine generateDocumentCode
         !"@end\n"
       ] ;
     #--- action header file
-      if ([mActionList length]) > 0 then
+      if ([mActionList length] + [mTransientListForImplementation length]) > 0 then
         s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
           ![lkey string]
           !mActionList
@@ -99,23 +107,41 @@ routine generateDocumentCode
           !"\n\n" # Defaut user zone2
           !"\n"
         ] ;
-      #--- Action computation function implementation files
-        foreach mActionList do
-            s := [filewrapper documentGenerationTemplate.documentActionImplementationFile
-              ![lkey string]
-              !mValue->string
-            ] ;
-            [@string generateFile
-              !inOutputDirectory
-              ![lkey string] . "_" . mValue->string . "_action.m"
-              !"//"
-              !"\n\n" # Defaut user zone1
-              !s
-              !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-              !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-            ] ;
-        end foreach ;
       end if ;
+    #--- Action computation function implementation files
+      foreach mActionList do
+          s := [filewrapper documentGenerationTemplate.documentActionImplementationFile
+            ![lkey string]
+            !mValue->string
+          ] ;
+          [@string generateFile
+            !inOutputDirectory
+            ![lkey string] . "_" . mValue->string . "_action.m"
+            !"//"
+            !"\n\n" # Defaut user zone1
+            !s
+            !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+          ] ;
+      end foreach ;
+    #--- Transient computation function implementation files
+      foreach mTransientListForImplementation do
+          s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFile
+            ![lkey string]
+            !mType
+            !mTransientName
+            !mDependencyList
+          ] ;
+          [@string generateFile
+            !inOutputDirectory
+            !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+            !"//"
+            !"\n\n" # Defaut user zone1
+            !s
+            !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+          ] ;
+      end foreach ;
     end foreach ;
   end if ;
 end routine ;

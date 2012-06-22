@@ -1,27 +1,7 @@
 semantics semanticAnalysis :
   import "easyBindings_options.gOption" ;
   import "abstractSyntaxTree.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType ocTypeName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "BOOL" ;
-  when integer16Type : outResult := "SInt16" ;
-  when integer32Type : outResult := "SInt32" ;
-  when integer64Type : outResult := "SInt64" ;
-  when decimalType : outResult := "NSDecimal" ;
-  when floatType : outResult := "float" ;
-  when doubleType : outResult := "double" ;
-  when stringType : outResult := "NSString *" ;
-  when fontType : outResult := "NSFont *" ;
-  when imageType : outResult := "NSImage *" ;
-  when colorType : outResult := "NSColor *" ;
-  when dataType : outResult := "NSData *" ;
-  when dateType : outResult := "NSDate *" ;
-  when toManyEntitiesType : outResult := "??" ;
-  end switch ;
-end reader ;
+  import "transient_analysis_generation.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -33,17 +13,6 @@ reader @easyBindingType propertyAttributeString -> @string outResult :
   when stringType : outResult := "(copy)" ;
   when fontType, imageType, dataType : outResult := "" ;
   when colorType, dateType : outResult := "(assign)" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType copyOnAssign -> @bool outResult :
-  switch selfcopy
-  when boolType, integer16Type, integer32Type, integer64Type,
-       floatType, doubleType, decimalType, toManyEntitiesType : outResult := false ;
-  when stringType : outResult := true ;
-  when fontType, imageType, colorType, dataType, dateType : outResult := false ;
   end switch ;
 end reader ;
 
@@ -70,49 +39,12 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-map @classObservablePropertyMap {
-  @easyBindingType mType ;
-  @stringlist mPropertyDependancyList ; # Empty for an attribute
-  insert insertKey error message "the '%K' attribute is already declared" ;
-  search searchKey error message "the '%K' attribute is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @classObservableObjectMap {
-  @string mObservableObjectOCName ;
-  @classObservablePropertyMap mObservableProperties ;
-  insert insertKey error message "the '%K' observable object is already declared" ;
-  search searchKey error message "the '%K' observable object is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
 list @attributeListForImplementation {
   @easyBindingType mType ;
   @string mPropertyName ;
   @string mDefaultValueAsObjectiveCObject ;
   @string mDirectDefaultValue ;
 }
-
-#----------------------------------------------------------------------------*
-
-list @directDependancyList {
-  @easyBindingType mMasterType ;
-  @string mMasterName ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @transientListForImplementation {
-  @easyBindingType mType ;
-  @string mTransientName ;
-  @directDependancyList mDependencyList ;
-}
-
-#----------------------------------------------------------------------------*
-
-listmap @triggeredKeys (@stringlist) ;
 
 #----------------------------------------------------------------------------*
 
@@ -123,7 +55,6 @@ map @classMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
-  @triggeredKeys mTriggeredKeys ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -139,7 +70,6 @@ map @entityMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
-  @triggeredKeys mTriggeredKeys ;
   @relationshipList mCurrentRelationshipList ;
   @relationshipList mAllRelationshipList ;
   @propertyMap mAllPropertyMap ;
@@ -299,8 +229,8 @@ map @preferencesMap {
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
   @outletGenerationList mOutletDeclarationList ;
-  @triggeredKeys mTriggeredKeys ;
   @lstringlist mActionList ;
+  @classObservablePropertyMap mObservablePropertyMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -314,7 +244,6 @@ map @documentMap {
   @controllerMap mControllerMap ;
   @lstringlist mActionList ;
   @transientListForImplementation mTransientListForImplementation ;
-  @triggeredKeys mTriggeredKeys ;
   insert insertKey error message "the '%K' document is already declared" ;
   search searchKey error message "the '%K' document is not declared" ;
 }
@@ -417,7 +346,7 @@ local routine analyzeEntities
         ?*
         ?classObservablePropertyMap
         ?propertyListForInitMethodHeader
-        ?5*
+        ?4*
         ?allRelationshipList
         ?allPropertyMap
         ?*
@@ -432,7 +361,6 @@ local routine analyzeEntities
       allRelationshipMap := [@relationshipMap emptyMap] ;
     end if ;
     @attributeListForImplementation attributeListForImplementation [emptyList] ;
-    @transientListForImplementation transientListForImplementation [emptyList] ;
     const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
   #--- Analyze attributes
     foreach mAttributeList do
@@ -462,24 +390,13 @@ local routine analyzeEntities
       [!?allPropertyMap insertKey !mRelationshipName] ;
     end foreach ;
   #--- Analyze transient properties
-    @triggeredKeys triggeredKeys [emptyMap] ;
-    foreach mTransientList do
-      [!?allPropertyMap insertKey !mTransientName] ;
-      @stringlist allPropertyDependancyList [emptyList] ;
-      @directDependancyList directDependancyList [emptyList] ;
-      foreach mDependencyList do
-        @easyBindingType type ;
-        @stringlist propertyDependancyList ;
-        [classObservablePropertyMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
-        directDependancyList += !type !mPropertyName->string ;
-        foreach propertyDependancyList do 
-          triggeredKeys += !mValue ![mTransientName string] ;
-        end foreach ;
-        allPropertyDependancyList .= propertyDependancyList ;
-      end foreach ;
-      transientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
-      [!?classObservablePropertyMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
-    end foreach ;
+    @transientListForImplementation transientListForImplementation ;
+    analyzeTransientProperties
+      !mTransientList
+      ![@classObservableObjectMap emptyMap]
+      !?classObservablePropertyMap
+      ?transientListForImplementation
+    ;
   #---
     [!?outEntityMap insertKey
       !mEntityName
@@ -491,7 +408,6 @@ local routine analyzeEntities
       !inheritedAttributeListForImplementation
       !attributeListForImplementation
       !transientListForImplementation
-      !triggeredKeys
       !mRelationshipList
       !allRelationshipList . mRelationshipList
       !allPropertyMap
@@ -503,7 +419,7 @@ local routine analyzeEntities
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?13* ?destinationEntityRelationshipMap] ;
+      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
@@ -552,7 +468,7 @@ override method @tableValueBinding analyzeOutletBinding
       ![@lstring new !controlledClassOrEntityName !here]
       ?3*
       ?@classObservablePropertyMap observablePropertyMap
-      ?10*
+      ?9*
     ] ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
     for column in mTableValueColumnBinding do
@@ -698,30 +614,19 @@ local routine analyzePreferences
     end for ;
   #--- Analyze attributes
     @attributeListForImplementation attributeListForImplementation [emptyList] ;
-    @transientListForImplementation transientListForImplementation [emptyList] ;
     foreach mAttributeList do
       checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       [!?observableAttributeMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;
     end foreach ;
   #--- Analyze transient properties
-    @triggeredKeys triggeredKeys [emptyMap] ;
-    foreach mTransientList do
-      @stringlist allPropertyDependancyList [emptyList] ;
-      @directDependancyList directDependancyList [emptyList] ;
-      foreach mDependencyList do
-        @easyBindingType type ;
-        @stringlist propertyDependancyList ;
-        [observableAttributeMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
-        directDependancyList += !type !mPropertyName->string ;
-        foreach propertyDependancyList do 
-          triggeredKeys += !mValue ![mTransientName string] ;
-        end foreach ;
-        allPropertyDependancyList .= propertyDependancyList ;
-      end foreach ;
-      transientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
-      [!?observableAttributeMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
-    end foreach ;
+    @transientListForImplementation transientListForImplementation ;
+    analyzeTransientProperties
+      !mTransientList
+      ![@classObservableObjectMap emptyMap]
+      !?observableAttributeMap
+      ?transientListForImplementation
+    ;
   #--- Build observable object map
     @classObservableObjectMap observableObjectMap [emptyMap] ;
     [!?observableObjectMap insertKey
@@ -755,8 +660,8 @@ local routine analyzePreferences
       !attributeListForImplementation
       !transientListForImplementation
       !outletGenerationList
-      !triggeredKeys
       !mActionDeclarationList
+      !observableAttributeMap
     ] ;
   end foreach ;
 end routine ;
@@ -919,6 +824,7 @@ local routine analyzeDocuments
   ??@outletClassMap inOutletClassMap
   ??@controllerClassMap inControllerClassMap
   ??@entityMap inEntityMap
+  ??@preferencesMap inPreferencesMap
   !@documentMap outDocumentMap
 :
   outDocumentMap := [@documentMap emptyMap] ;
@@ -932,33 +838,9 @@ local routine analyzeDocuments
       ?rootEntityImplementationClassName
       ?*
       ?observablePropertyMap
-      ?9*
+      ?8*
       ?allRelationshipMap
     ] ;
-  #--- Analyze transient properties
-    @transientListForImplementation transientListForImplementation [emptyList] ;
-    @triggeredKeys triggeredKeys [emptyMap] ;
-    foreach mTransientList do
-      @stringlist allPropertyDependancyList [emptyList] ;
-      @directDependancyList directDependancyList [emptyList] ;
-      foreach mDependencyList do
-        @easyBindingType type ;
-        @stringlist propertyDependancyList ;
-        [observablePropertyMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
-        directDependancyList += !type !mPropertyName->string ;
-        foreach propertyDependancyList do 
-          triggeredKeys += !mValue ![mTransientName string] ;
-        end foreach ;
-        allPropertyDependancyList .= propertyDependancyList ;
-      end foreach ;
-      transientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
-      [!?observablePropertyMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
-    end foreach ;
-  #--- Analyze actions
-    @actionMap documentActionMap [emptyMap] ;
-    for actionName in mActionDeclarationList do
-      [!?documentActionMap insertKey !actionName->mValue] ;
-    end for ;
   #--- Build observable object map
     @classObservableObjectMap observableObjectMap [emptyMap] ;
     [!?observableObjectMap insertKey
@@ -966,6 +848,13 @@ local routine analyzeDocuments
       !"mRootObject"
       !observablePropertyMap
     ] ;
+    for pref in inPreferencesMap do
+      [!?observableObjectMap insertKey
+        !pref->lkey
+        !pref->lkey->string
+        !pref->mObservablePropertyMap
+      ] ;
+    end for ;
   #--- Analyze controllers
     @controllerMap controllerMap [emptyMap] ;
     foreach mControllerList do
@@ -980,11 +869,11 @@ local routine analyzeDocuments
         ?controllerObservablePropertyMap
       ] ;
       [!?observableObjectMap insertKey
-        !mControllerClassName
-        !mControllerClassName->string
+        !mControllerName
+        !mControllerName->string
         !controllerObservablePropertyMap
       ] ;
-      [inEntityMap searchKey !mControlledClassOrEntityName ?14*] ;
+      [inEntityMap searchKey !mControlledClassOrEntityName ?13*] ;
       @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
       foreach mControllerBindingList do
         [mBinding analyzeControllerBinding
@@ -1003,7 +892,25 @@ local routine analyzeDocuments
         !controllerActionMap
       ] ;
     end foreach ;
+  #--- Analyze transient properties
+    @transientListForImplementation transientListForImplementation ;
+    analyzeTransientProperties
+      !mTransientList
+      !observableObjectMap
+      !?observablePropertyMap
+      ?transientListForImplementation
+    ;
+  #--- Analyze actions
+    @actionMap documentActionMap [emptyMap] ;
+    for actionName in mActionDeclarationList do
+      [!?documentActionMap insertKey !actionName->mValue] ;
+    end for ;
   #--- Analyze outlets
+    [!?observableObjectMap insertKey
+      !["self" nowhere]
+      !"self"
+      !observablePropertyMap
+    ] ;
     @outletGenerationList outletGenerationList [emptyList] ;
     foreach mOutletDeclarationList do
       @outletClassBindingMap bindingMap ;
@@ -1032,7 +939,6 @@ local routine analyzeDocuments
       !controllerMap
       !mActionDeclarationList
       !transientListForImplementation
-      !triggeredKeys
     ] ;
   end foreach ;
 end routine ;
@@ -1064,7 +970,7 @@ local routine analyzeClasses
     @classObservablePropertyMap classObservablePropertyMap ;
     @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
     if [mSuperClassName string] != "" then
-      [outClassMap searchKey !mSuperClassName ?* ?classObservablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+      [outClassMap searchKey !mSuperClassName ?* ?classObservablePropertyMap ?propertyListForInitMethodHeader ?3*] ;
     else
       classObservablePropertyMap := [@classObservablePropertyMap emptyMap] ;
       propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
@@ -1078,24 +984,13 @@ local routine analyzeClasses
       [!?classObservablePropertyMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;    
     end foreach ;
   #--- Analyze transient properties
-    @transientListForImplementation transientListForImplementation [emptyList] ;
-    @triggeredKeys triggeredKeys [emptyMap] ;
-    foreach mTransientList do
-      @stringlist allPropertyDependancyList [emptyList] ;
-      @directDependancyList directDependancyList [emptyList] ;
-      foreach mDependencyList do
-        @easyBindingType type ;
-        @stringlist propertyDependancyList ;
-        [classObservablePropertyMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
-        directDependancyList += !type !mPropertyName->string ;
-        foreach propertyDependancyList do 
-          triggeredKeys += !mValue ![mTransientName string] ;
-        end foreach ;
-        allPropertyDependancyList .= propertyDependancyList ;
-      end foreach ;
-      transientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
-      [!?classObservablePropertyMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
-    end foreach ;
+    @transientListForImplementation transientListForImplementation ;
+    analyzeTransientProperties
+      !mTransientList
+      ![@classObservableObjectMap emptyMap]
+      !?classObservablePropertyMap
+      ?transientListForImplementation
+    ;
   #---
     [!?outClassMap insertKey
       !mClassName
@@ -1105,7 +1000,6 @@ local routine analyzeClasses
       !inheritedAttributeListForImplementation
       !attributeListForImplementation
       !transientListForImplementation
-      !triggeredKeys
     ] ;
   end foreach ;
 end routine ;
@@ -1200,7 +1094,7 @@ routine semanticAnalysis
   analyzeClasses !inAST->mClassList ?outClassMap ;
   analyzeEntities !inAST->mEntityList ?outEntityMap ;
   analyzePreferences !outEntityMap !inAST->mPreferencesList !outOutletClassMap ?outPreferencesMap ;
-  analyzeDocuments !inAST->mDocumentDeclarationList !outOutletClassMap !outControllerClassMap !outEntityMap ?outDocumentMap ;
+  analyzeDocuments !inAST->mDocumentDeclarationList !outOutletClassMap !outControllerClassMap !outEntityMap !outPreferencesMap ?outDocumentMap ;
 end routine ;
 
 #----------------------------------------------------------------------------*

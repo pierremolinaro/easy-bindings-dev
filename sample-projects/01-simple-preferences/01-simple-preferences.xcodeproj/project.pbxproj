@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF68C38315950F65008B63F1 /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C38215950F65008B63F1 /* PMAbstractPreferences.m */; };
 		CF721A811593572A008662EA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF721A801593572A008662EA /* Cocoa.framework */; };
 		CF721A8B1593572A008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721A891593572A008662EA /* InfoPlist.strings */; };
 		CF721A8D1593572A008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721A8C1593572A008662EA /* main.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF68C38115950F65008B63F1 /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
+		CF68C38215950F65008B63F1 /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
 		CF721A7C1593572A008662EA /* 01-simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF721A801593572A008662EA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF721A831593572A008662EA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,8 @@
 		CF721A861593572A008662EA /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
+				CF68C38115950F65008B63F1 /* PMAbstractPreferences.h */,
+				CF68C38215950F65008B63F1 /* PMAbstractPreferences.m */,
 				CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */,
 				CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */,
 				CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */,
@@ -197,6 +202,7 @@
 				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,
 				CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */,
 				CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */,
+				CF68C38315950F65008B63F1 /* PMAbstractPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,6 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-    ?@triggeredKeys TRIGGERED_KEYS
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
   ;
   
@@ -68,7 +67,6 @@ routine generateClassCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
-        !mTriggeredKeys
         !mInheritedAttributeListForImplementation
       ] ;
       [@string generateFile

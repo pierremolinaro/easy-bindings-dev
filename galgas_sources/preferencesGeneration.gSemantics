@@ -52,7 +52,6 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
-    ?@triggeredKeys TRIGGERED_KEYS
     ?@lstringlist ACTION_LIST
   ;
   
@@ -106,7 +105,6 @@ routine generatePreferencesCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mOutletDeclarationList
-        !mTriggeredKeys
         !mActionList
       ] ;
       [@string generateFile

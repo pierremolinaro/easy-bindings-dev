@@ -59,61 +59,6 @@ end foreach
   return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
 }
 
-//----------------------------------------------------------------------------*
-//    willChangeValueForKey                                                   *
-//----------------------------------------------------------------------------*
-
-- (void) willChangeValueForKey:(NSString *) inKey {
-  // NSLog (@"\%s:'\%@'", __PRETTY_FUNCTION__, inKey) ;
-%
-foreach TRIGGERED_KEYS
-  before %  if %
-  do
-  %([inKey isEqualToString:@"%!key%"]) {\n%
-  foreach mList do
-    %    %!mValue%_hasBeenComputed = NO ;\n%
-  end foreach
-  %  }%
-  between
-    %else if %
-  after
-    %\n%
-end foreach
-%  [super willChangeValueForKey:inKey] ;
-}
-
-%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %//----------------------------------------------------------------------------*\n%
-  %//    '%!mTransientName%' transient                                  *\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %+ (NSSet *) keyPathsForValuesAffecting%![mTransientName stringByCapitalizingFirstCharacter]% {\n%
-  %  return [NSSet setWithObjects:%
-  foreach mDependencyList do
-    % @"%!mMasterName%", %
-  end foreach
-  %nil] ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (%![mType ocTypeName]%) %!mTransientName% {\n%
-  %  if (!%!mTransientName%_hasBeenComputed) {\n%
-  %    %!mTransientName%_hasBeenComputed = YES ;\n%
-  %    %!mTransientName%_cachedValue = %
-  if [mType copyOnAssign] then %[% end if
-  %compute_%!CLASS_NAME%_%!mTransientName% (%
-  foreach mDependencyList
-  do %[self %!mMasterName%]%
-  between %, %
-  end foreach
-  %)%
-  if [mType copyOnAssign] then % copy]% end if
-  % ;\n%
-  %  }\n%
-  %  return %!mTransientName%_cachedValue ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (void) set%![mTransientName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inUnusedValue {\n%
-  %  // A transient property cannot be set: this method has no effect\n%
-  %}\n\n%
-end foreach
+%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//----------------------------------------------------------------------------*
 

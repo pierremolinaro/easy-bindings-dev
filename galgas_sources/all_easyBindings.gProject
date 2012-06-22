@@ -2,7 +2,7 @@ project all_easyBindings -> "easyBindings":
 #--- Targets
   feature "makefile_macosx" ;
   feature "project_xcode" ;
-  feature "xcode_arch:SnowLeopard-64" ;
+  feature "xcode_arch:Lion-64" ;
 
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
@@ -13,7 +13,8 @@ project all_easyBindings -> "easyBindings":
   grammar "easyBindings_grammar.gGrammar" ;
 
   semantics "semanticAnalysis.gSemantics" ;
-
+  semantics "transient_analysis_generation.gSemantics" ;
+  
   semantics "classGeneration.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;

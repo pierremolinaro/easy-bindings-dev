@@ -45,33 +45,6 @@ end foreach
   return self ;
 }
 
-%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %//----------------------------------------------------------------------------*\n%
-  %//    '%!mTransientName%' transient                                  *\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %+ (NSSet *) keyPathsForValuesAffecting%![mTransientName stringByCapitalizingFirstCharacter]% {\n%
-  %  return [NSSet setWithObjects:%
-  foreach mDependencyList do
-    % @"%!mMasterName%", %
-  end foreach
-  %nil] ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (%![mType ocTypeName]%) %!mTransientName% {\n%
-  %  return %
-  %compute_%!CLASS_NAME%_%!mTransientName% (%
-  foreach mDependencyList
-  do %self.%!mMasterName
-  between %, %
-  end foreach
-  %)%
-  if [mType copyOnAssign] then %.copy% end if
-  % ;\n%
-  %}\n\n%
-  %//----------------------------------------------------------------------------*\n\n%
-  %- (void) set%![mTransientName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inUnusedValue {\n%
-  %  // A transient property cannot be set: this method has no effect\n%
-  %}\n\n%
-end foreach
+%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//----------------------------------------------------------------------------*
 
