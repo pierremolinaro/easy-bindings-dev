@@ -63,6 +63,7 @@ rule <bindings>
     $tableValue$ ;
     $identifier$ ?@lstring controllerName ;
     ${$ ;
+    @tableValueColumnBinding tableValueColumnBinding [emptyList] ;
     repeat
     while
       $column$ ;
@@ -70,8 +71,10 @@ rule <bindings>
       $:$ ;
       $Identifier$ ?@lstring cellTypeName ;
       $identifier$ ?@lstring boundPropertyName ;
+      tableValueColumnBinding += !columnName !cellTypeName !boundPropertyName ;
       $;$ ;
     end repeat ;
+    outOutletBindingList += ![@tableValueBinding new !controllerName !tableValueColumnBinding] ;
     $}$ ;
   while
     $binding$ ? @lstring bindingName ;
