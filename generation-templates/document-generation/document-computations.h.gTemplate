@@ -5,6 +5,20 @@
 @class %!DOCUMENT_NAME% ;
 
 //----------------------------------------------------------------------------*
+//   T R A N S I E N T    P R O P E R T I E S                                 *
+//----------------------------------------------------------------------------*
+
+%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+![mType ocTypeName]% compute_%!DOCUMENT_NAME%_%!mTransientName% (%?^
+  foreach mDependencyList
+  do ![mMasterType ocTypeName]% in%![mMasterName stringByCapitalizingFirstCharacter]
+  between %,\n%!^
+  end foreach
+  %) ;\n\n%
+end foreach
+%
+
+//----------------------------------------------------------------------------*
 //   A C T I O N S                                                            *
 //----------------------------------------------------------------------------*
 

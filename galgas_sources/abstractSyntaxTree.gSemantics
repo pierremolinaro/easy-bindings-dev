@@ -61,10 +61,17 @@ list @relationshipList {
 
 #----------------------------------------------------------------------------*
 
+list @dependanceList {
+  @lstring mObjectName ;
+  @lstring mPropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @transientList {
   @easyBindingType mType ;
   @lstring mTransientName ;
-  @lstringlist mDependencyList ;
+  @dependanceList mDependencyList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -172,6 +179,7 @@ list @documentDeclarationList {
   @outletDeclarationList mOutletDeclarationList ;
   @controllerList mControllerList ;
   @lstringlist mActionDeclarationList ;
+  @transientList mTransientList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -221,11 +229,19 @@ list @outletClassList {
 
 #----------------------------------------------------------------------------*
 
+list @controllerObservablePropertyList {
+  @easyBindingType mType ;
+  @lstring mPropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @controllerClassList {
   @lstring mOutletClassName ;
   @bool mGenerateCode ;
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
+  @controllerObservablePropertyList mControllerObservablePropertyList ;
 }
 
 #----------------------------------------------------------------------------*

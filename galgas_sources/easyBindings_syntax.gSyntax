@@ -81,11 +81,12 @@ rule <bindings>
     @lstring observedObjectName ;
     select
       $root$ ;
-      $.$ ;
       observedObjectName := [@lstring new !"root" !here] ;
     or
-      observedObjectName := [@lstring new !"" !here] ;
+      $self$ ;
+      observedObjectName := [@lstring new !"self" !here] ;
     end select ;
+    $.$ ;
     $identifier$ ? @lstring rootObservablePropertyName ;
     @outletBindingOptionList outletBindingOptionList [emptyList] ;
     select
@@ -179,16 +180,26 @@ rule <document_declaration>
   @outletDeclarationList outletDeclarationList [emptyList] ;
   @controllerList controllerList [emptyList] ;
   @lstringlist actionDeclarationList [emptyList] ;
+  @transientList transientList [emptyList] ;
   repeat
   while
     <action_declaration> !?actionDeclarationList ;
+  while
+    <transient_declaration> !?transientList ;
   while
     <outlet_declaration> !?outletDeclarationList ;
   while
     <controller_declaration> !?controllerList ;
   end repeat ;
   $}$ ;
-  ioDocumentList += !preferencesName !rootEntityName !outletDeclarationList !controllerList !actionDeclarationList ;
+  ioDocumentList +=
+    !preferencesName
+    !rootEntityName
+    !outletDeclarationList
+    !controllerList
+    !actionDeclarationList
+    !transientList
+  ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -391,10 +402,18 @@ rule <transient_declaration>
   <attribute_type> ?@easyBindingType type ;
   $identifier$ ? @lstring transientName ;
   $dependsFrom$ ;
-  @lstringlist dependanceList [emptyList] ;
+  @dependanceList dependanceList [emptyList] ;
   repeat
+    @lstring objectName ;
+    select
+      $self$ ;
+      objectName := [@lstring new !"self" !here] ;
+    or
+      $identifier$ ?objectName ;
+    end select ;
+    $.$ ;
     $identifier$ ? @lstring dependencyName ;
-    dependanceList += !dependencyName ;
+    dependanceList += !objectName !dependencyName ;
   while
     $,$ ;
   end repeat ;
@@ -703,7 +722,14 @@ rule <controller_class_declaration>
   ${$ ;
   @outletClassBindingList controllerClassBindingList [emptyList] ;
   @lstringlist actionDeclarationList [emptyList] ;
+  @controllerObservablePropertyList controllerObservablePropertyList [emptyList] ;
   repeat
+  while
+    $attribute$ ;
+    <attribute_type> ?@easyBindingType attributeType ;
+    $identifier$ ? @lstring attributeName ;
+    $;$ ;
+    controllerObservablePropertyList += !attributeType !attributeName ;
   while
     <action_declaration> !?actionDeclarationList ;
   while
@@ -734,7 +760,13 @@ rule <controller_class_declaration>
     controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioControllerClassList += !controllerClassName !generateCode !controllerClassBindingList !actionDeclarationList ;
+  ioControllerClassList +=
+    !controllerClassName
+    !generateCode
+    !controllerClassBindingList
+    !actionDeclarationList
+    !controllerObservablePropertyList
+  ;
 end rule ;
 
 #----------------------------------------------------------------------------*

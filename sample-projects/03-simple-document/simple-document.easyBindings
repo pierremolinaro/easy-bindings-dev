@@ -1,9 +1,9 @@
 entity MyRootEntity class MyRootEntityClass {
   attribute NSString myString default "hello" ;
   
-  transient NSString myStringMaj dependsFrom myString ;
-  transient NSString myStringMin dependsFrom myString ;
-  transient NSString myStringConcat dependsFrom myStringMaj, myStringMin ;
+  transient NSString myStringMaj dependsFrom self.myString ;
+  transient NSString myStringMin dependsFrom self.myString ;
+  transient NSString myStringConcat dependsFrom self.myStringMaj, self.myStringMin ;
 }
 
 #--------------------------------------------------------------*
