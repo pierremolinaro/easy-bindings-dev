@@ -7,7 +7,7 @@ entity MyRootEntity class MyEntityClass {
 entity NameEntity class NameEntityClass {
   toOne MyRootEntity mRoot inverse mNames nullify ;
   attribute NSString name default "Name" ;
-  attribute NSString firstName default "First name" ;
+  attribute integer32 aValue default 123 ;
 }
 
 #--------------------------------------------------------------*
@@ -19,7 +19,7 @@ document PMDocument root MyRootEntity {
   outlet NSTableView namesTableView
     $tableValue nameController {
       column "name" : NSTextFieldCell name ;
-      column "firstName" : NSTextFieldCell firstName ;
+      column "int" : NSTextFieldCell aValue ;
     }
   ;
 
