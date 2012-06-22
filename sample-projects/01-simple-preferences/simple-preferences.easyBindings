@@ -1,17 +1,17 @@
 preferences PMPrefs {
 #--- String
   attribute NSString myString default "hello" ;
-  outlet NSTextField myTextField $value myString ;
-  outlet NSTextField myOtherTextField $value myString  {NSContinuouslyUpdatesValue:YES} ;
+  outlet NSTextField myTextField $value self.myString ;
+  outlet NSTextField myOtherTextField $value self.myString  {NSContinuouslyUpdatesValue:YES} ;
 #--- Color
   attribute NSColor mColor default yellowColor ;
-  outlet NSColorWell mColorWell $value mColor ;
+  outlet NSColorWell mColorWell $value self.mColor ;
 #--- Date
   attribute NSDate mDate default date ;
-  outlet NSDatePicker mDatePicker $value mDate ;
+  outlet NSDatePicker mDatePicker $value self.mDate ;
 #--- Number
   attribute integer32 mInteger32Value default 123 ;
-  outlet NSTextField mInteger32TextField $value mInteger32Value ;
+  outlet NSTextField mInteger32TextField $value self.mInteger32Value ;
 
   
   action monAction ;

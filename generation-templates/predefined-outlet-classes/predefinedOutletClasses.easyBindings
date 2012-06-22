@@ -1,6 +1,7 @@
 controllerClass NSArrayController {
   action add ;
   action remove ;
+  attribute bool canRemove ;
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;

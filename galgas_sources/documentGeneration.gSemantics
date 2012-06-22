@@ -23,11 +23,13 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
     ?@lstringlist ACTION_LIST
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
   ;
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
     ?@string DOCUMENT_NAME
     ?@lstringlist ACTION_LIST
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
   ;
   
   template documentActionImplementationFile "document-action.m.gTemplate"
@@ -70,6 +72,7 @@ routine generateDocumentCode
         !mOutletDeclarationList
         !mControllerMap
         !mActionList
+        !mTransientListForImplementation
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -85,6 +88,7 @@ routine generateDocumentCode
         s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
           ![lkey string]
           !mActionList
+          !mTransientListForImplementation
         ] ;
         [@string generateFile
           !inOutputDirectory
