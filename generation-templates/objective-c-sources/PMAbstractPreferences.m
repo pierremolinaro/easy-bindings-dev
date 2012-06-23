@@ -1,12 +1,7 @@
-//
-//  PMAbstractPreferences.m
-//
-//  Created by Pierre Molinaro on 22/06/12.
-//  Copyright (c) 2012 ECN / IRCCyN. All rights reserved.
-//
 //----------------------------------------------------------------------------*
 
 #import "PMAbstractPreferences.h"
+#import "PMDebug.h"
 
 //----------------------------------------------------------------------------*
 
@@ -17,9 +12,16 @@
 - (PMAbstractPreferences *) init {
   self = [super init] ;
   if (self) {
+    macroNoteObjectAllocation (self) ;
     mTriggeredTransientSet = [NSMutableSet new] ;
   }
   return self ;
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
 }
 
 //----------------------------------------------------------------------------*
@@ -38,7 +40,7 @@
       performSelector:@selector (triggerTransient)
       target:self
       argument:nil
-      order:1000000
+      order:NSUIntegerMax
       modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
     ] ;
   }

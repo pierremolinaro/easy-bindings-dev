@@ -66,7 +66,7 @@ end foreach
 //    Creation Class Method                                                   *
 //----------------------------------------------------------------------------*
 
-+ (%!CLASS_NAME% *) insertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
++ (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
   return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
 }
 

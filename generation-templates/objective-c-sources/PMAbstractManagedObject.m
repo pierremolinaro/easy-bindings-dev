@@ -1,12 +1,7 @@
-//
-//  PMAbstractManagedObject.m
-//
-//  Created by Pierre Molinaro on 22/06/12.
-//  Copyright (c) 2012 ECN / IRCCyN. All rights reserved.
-//
 //----------------------------------------------------------------------------*
 
 #import "PMAbstractManagedObject.h"
+#import "PMDebug.h"
 
 //----------------------------------------------------------------------------*
 
@@ -21,10 +16,17 @@
     insertIntoManagedObjectContext:inMangedObjectContext
   ] ;
   if (self) {
+    macroNoteObjectAllocation (self) ;
     mTriggeredTransientSet = [NSMutableSet new] ;
     [self pmInstallObserversForTransients] ;
   }
   return self ;
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
 }
 
 //----------------------------------------------------------------------------*
@@ -43,7 +45,7 @@
       performSelector:@selector (triggerTransient)
       target:self
       argument:nil
-      order:1000000
+      order:NSUIntegerMax
       modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
     ] ;
   }

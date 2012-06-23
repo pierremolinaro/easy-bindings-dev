@@ -1,20 +1,23 @@
-//
-//  PMAppDelegate.m
-//  02-transient-property
-//
-//  Created by Pierre Molinaro on 21/06/12.
-//  Copyright (c) 2012 ECN / IRCCyN. All rights reserved.
-//
+//----------------------------------------------------------------------------*
 
 #import "PMAppDelegate.h"
+#import "PMDebug.h"
+#import "easy-bindings-utilities.h"
+
+//----------------------------------------------------------------------------*
 
 @implementation PMAppDelegate
 
-@synthesize window = _window;
+//----------------------------------------------------------------------------*
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-  // Insert code here to initialize your application
+- (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
+  mDebugObject = [PMDebug new] ;
+  const BOOL ok = [NSBundle loadNibNamed:@"PMDebug" owner:mDebugObject] ;
+  if (! ok) {
+    presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMDebug' nib file") ;
+  }
 }
+
+//----------------------------------------------------------------------------*
 
 @end

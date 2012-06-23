@@ -188,7 +188,7 @@ routine generateEntityCode
         !mAttributeListForInitMethodHeader
         !mToManyRelationshipList
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         !mImplementationClassName . ".h"
         !"//"
@@ -208,7 +208,7 @@ routine generateEntityCode
         !mImplementationFileInclusionSet
         !mToManyRelationshipList
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         !mImplementationClassName . ".m"
         !"//"
@@ -223,7 +223,7 @@ routine generateEntityCode
           !mImplementationClassName
           !mTransientListForImplementation
         ] ;
-        [@string generateFile
+        [@string generateFileWithPattern
           !inOutputDirectory
           !mImplementationClassName . "-transient-computations.h"
           !"//"
@@ -241,7 +241,7 @@ routine generateEntityCode
             !mTransientName
             !mDependencyList
           ] ;
-          [@string generateFile
+          [@string generateFileWithPattern
             !inOutputDirectory
             !"compute_" . [lkey string] . "_" . mTransientName . ".m"
             !"//"
@@ -253,7 +253,7 @@ routine generateEntityCode
       end foreach ;
     end foreach ;
   #--- Generate managed object model header file
-    [@string generateFile
+    [@string generateFileWithPattern
       !inOutputDirectory
       !"managed-object-model.h"
       !"//"
@@ -336,7 +336,7 @@ routine generateEntityCode
       end foreach ;
     end foreach ;  
   #--- Generate file
-    [@string generateFile
+    [@string generateFileWithPattern
       !inOutputDirectory
       !"managed-object-model.m"
       !"//"

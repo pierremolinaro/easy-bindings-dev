@@ -18,7 +18,7 @@ local filewrapper predefinedOutletClasses in "../generation-templates/predefined
 #----------------------------------------------------------------------------*
 
 local filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
-  "m", "h"
+  "m", "h", "xib"
 }{
 }{
 }
@@ -57,6 +57,8 @@ message "a source text file with the .easyBindings extension"
   generateDocumentCode !documentMap !sourceDir ;
 #--- Add embedded sources
   @stringset sources [setWithString !"easy-bindings-utilities"] ;
+  sources += !"PMDebug" ;
+  sources += !"PMAppDelegate" ;
   if [preferencesMap count] > 0 then
     sources += !"PMAbstractPreferences" ;
   end if ;
@@ -73,12 +75,8 @@ message "a source text file with the .easyBindings extension"
       [@string generateFile
         !sourceDir . [mValue stringByDeletingLastPathComponent]
         !sourceName
-        !"//"
-        !"\n\n" # Defaut user zone1
         ![fw textFileContentsAtPath !mValue]
-        !"\n\n" # Defaut user zone2
-        !"\n"
-      ] ;
+       ] ;
     end if ;
   end foreach ;
 }

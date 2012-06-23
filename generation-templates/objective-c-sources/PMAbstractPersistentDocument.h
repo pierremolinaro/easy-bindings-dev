@@ -1,10 +1,3 @@
-//
-//  PMAbstractPersistentDocument.h
-//
-//  Created by Pierre Molinaro on 22/06/12.
-//  Copyright (c) 2012 ECN / IRCCyN. All rights reserved.
-//
-
 //----------------------------------------------------------------------------*
 
 #import <Cocoa/Cocoa.h>
@@ -19,6 +12,7 @@
 
 - (void) pmNotifyChangeForTransientProperty: (NSString *) inPropertyName ;
 - (void) pmInstallObserversForTransients ;
+- (void) pmUninstallObserversForTransients ;
 @end
 
 //----------------------------------------------------------------------------*
