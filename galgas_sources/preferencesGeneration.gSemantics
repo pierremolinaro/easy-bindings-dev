@@ -13,7 +13,7 @@ reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outR
   when floatType : outResult := "floatFromNSNumber" ;
   when doubleType : outResult := "doubleFromNSNumber" ;
   when colorType : outResult := "valueFromData" ;
-  when stringType, fontType, imageType, toManyEntitiesType,
+  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
        dataType, dateType, decimalType : outResult := "" ;
   end switch ;
 end reader ;
@@ -29,7 +29,7 @@ reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outR
   when floatType : outResult := "numberEncodedFloat" ;
   when doubleType : outResult := "numberEncodedDouble" ;
   when colorType : outResult := "dataEncodedValue" ;
-  when stringType, fontType, imageType, toManyEntitiesType,
+  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
        dataType, dateType, decimalType : outResult := "" ;
   end switch ;
 end reader ;

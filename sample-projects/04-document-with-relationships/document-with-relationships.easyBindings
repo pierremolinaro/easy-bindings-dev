@@ -1,4 +1,4 @@
-entity MyRootEntity class MyEntityClass {
+entity MyRootEntity class RootEntityClass {
   toMany NameEntity mNames inverse mRoot cascade ;
 }
 
@@ -26,6 +26,9 @@ document PMDocument root MyRootEntity {
   outlet NSTextField canRemoveTextField $value self.canRemoveString ;
   outlet NSButton addPathButton $run nameController.add ;
   outlet NSButton removePathButton $run nameController.remove ;
+  outlet NSTextField countItemTextField $value root.mNames.count ;
+  transient NSString countItemMessage dependsFrom root.mNames.count ;
+  outlet NSTextField countItemMessageTextField $value self.countItemMessage ;
 }
 
 #--------------------------------------------------------------*

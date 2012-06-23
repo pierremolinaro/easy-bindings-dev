@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>04-document-with-relationships copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>04-document-with-relationships.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CF4628611595F38700BF70CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CF60813F159367210021D873</key>
 		<dict>
 			<key>primary</key>

@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CF60813F159367210021D873"
-               BuildableName = "04-document-with-relationships.app"
+               BuildableName = "Release.app"
                BlueprintName = "04-document-with-relationships"
                ReferencedContainer = "container:04-document-with-relationships.xcodeproj">
             </BuildableReference>
@@ -25,14 +25,14 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Default">
       <Testables>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF60813F159367210021D873"
-            BuildableName = "04-document-with-relationships.app"
+            BuildableName = "Release.app"
             BlueprintName = "04-document-with-relationships"
             ReferencedContainer = "container:04-document-with-relationships.xcodeproj">
          </BuildableReference>
@@ -43,7 +43,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Default"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF60813F159367210021D873"
-            BuildableName = "04-document-with-relationships.app"
+            BuildableName = "Release.app"
             BlueprintName = "04-document-with-relationships"
             ReferencedContainer = "container:04-document-with-relationships.xcodeproj">
          </BuildableReference>
@@ -63,23 +63,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Default"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF60813F159367210021D873"
-            BuildableName = "04-document-with-relationships.app"
+            BuildableName = "Release.app"
             BlueprintName = "04-document-with-relationships"
             ReferencedContainer = "container:04-document-with-relationships.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Default">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Default"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

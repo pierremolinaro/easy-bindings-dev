@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF4628281595DA3800BF70CD /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4628271595DA3800BF70CD /* RootEntityClass.m */; };
+		CF4628631595F38700BF70CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608150159367210021D873 /* main.m */; };
+		CF4628641595F38700BF70CD /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608157159367210021D873 /* PMDocument.m */; };
+		CF4628651595F38700BF70CD /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816D159368350021D873 /* easy-bindings-utilities.m */; };
+		CF4628661595F38700BF70CD /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816F159368350021D873 /* managed-object-model.m */; };
+		CF4628671595F38700BF70CD /* NameEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608173159368350021D873 /* NameEntityClass.m */; };
+		CF4628681595F38700BF70CD /* PMDocument_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */; };
+		CF4628691595F38700BF70CD /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */; };
+		CF46286A1595F38700BF70CD /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */; };
+		CF46286B1595F38700BF70CD /* compute_PMDocument_canRemoveString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */; };
+		CF46286C1595F38700BF70CD /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4628271595DA3800BF70CD /* RootEntityClass.m */; };
+		CF46286E1595F38700BF70CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF608144159367210021D873 /* Cocoa.framework */; };
+		CF4628701595F38700BF70CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF60814D159367210021D873 /* InfoPlist.strings */; };
+		CF4628711595F38700BF70CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF608153159367210021D873 /* Credits.rtf */; };
+		CF4628721595F38700BF70CD /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF608159159367210021D873 /* PMDocument.xib */; };
+		CF4628731595F38700BF70CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF60815C159367210021D873 /* MainMenu.xib */; };
+		CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */; };
 		CF608145159367210021D873 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF608144159367210021D873 /* Cocoa.framework */; };
 		CF60814F159367210021D873 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF60814D159367210021D873 /* InfoPlist.strings */; };
 		CF608151159367210021D873 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608150159367210021D873 /* main.m */; };
@@ -16,7 +33,6 @@
 		CF60815E159367210021D873 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF60815C159367210021D873 /* MainMenu.xib */; };
 		CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816D159368350021D873 /* easy-bindings-utilities.m */; };
 		CF608175159368350021D873 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816F159368350021D873 /* managed-object-model.m */; };
-		CF608176159368350021D873 /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608171159368350021D873 /* MyEntityClass.m */; };
 		CF608177159368350021D873 /* NameEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608173159368350021D873 /* NameEntityClass.m */; };
 		CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */; };
 		CF68C3DA1595136F008B63F1 /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */; };
@@ -25,7 +41,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF608140159367210021D873 /* 04-document-with-relationships.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "04-document-with-relationships.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4628261595DA3800BF70CD /* RootEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootEntityClass.h; sourceTree = "<group>"; };
+		CF4628271595DA3800BF70CD /* RootEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootEntityClass.m; sourceTree = "<group>"; };
+		CF4628761595F38700BF70CD /* 04-document-with-relationships copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "04-document-with-relationships copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4628781595F38800BF70CD /* 04-document-with-relationships copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "04-document-with-relationships copy-Info.plist"; path = "/Volumes/dev-svn/easy-bindings/sample-projects/04-document-with-relationships/04-document-with-relationships copy-Info.plist"; sourceTree = "<absolute>"; };
+		CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_countItemMessage.m; sourceTree = "<group>"; };
+		CF608140159367210021D873 /* 04-document-with-relationships.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "04-document-with-relationships.app"; path = Release.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF608144159367210021D873 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF608147159367210021D873 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		CF608148159367210021D873 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -43,8 +64,6 @@
 		CF60816D159368350021D873 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
 		CF60816E159368350021D873 /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
 		CF60816F159368350021D873 /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
-		CF608170159368350021D873 /* MyEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEntityClass.h; sourceTree = "<group>"; };
-		CF608171159368350021D873 /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
 		CF608172159368350021D873 /* NameEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEntityClass.h; sourceTree = "<group>"; };
 		CF608173159368350021D873 /* NameEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEntityClass.m; sourceTree = "<group>"; };
 		CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDocument_monAction_action.m; sourceTree = "<group>"; };
@@ -57,6 +76,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CF46286D1595F38700BF70CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF46286E1595F38700BF70CD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF60813D159367210021D873 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,6 +101,7 @@
 				CF60814A159367210021D873 /* 04-document-with-relationships */,
 				CF608143159367210021D873 /* Frameworks */,
 				CF608141159367210021D873 /* Products */,
+				CF4628781595F38800BF70CD /* 04-document-with-relationships copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CF608140159367210021D873 /* 04-document-with-relationships.app */,
+				CF4628761595F38700BF70CD /* 04-document-with-relationships copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +136,9 @@
 		CF60814A159367210021D873 /* 04-document-with-relationships */ = {
 			isa = PBXGroup;
 			children = (
+				CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */,
+				CF4628261595DA3800BF70CD /* RootEntityClass.h */,
+				CF4628271595DA3800BF70CD /* RootEntityClass.m */,
 				CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */,
 				CF68C3D51595136F008B63F1 /* PMAbstractManagedObject.h */,
 				CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */,
@@ -118,8 +150,6 @@
 				CF60816D159368350021D873 /* easy-bindings-utilities.m */,
 				CF60816E159368350021D873 /* managed-object-model.h */,
 				CF60816F159368350021D873 /* managed-object-model.m */,
-				CF608170159368350021D873 /* MyEntityClass.h */,
-				CF608171159368350021D873 /* MyEntityClass.m */,
 				CF608172159368350021D873 /* NameEntityClass.h */,
 				CF608173159368350021D873 /* NameEntityClass.m */,
 				CF608156159367210021D873 /* PMDocument.h */,
@@ -146,6 +176,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CF4628611595F38700BF70CD /* 04-document-with-relationships DEBUG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF4628741595F38700BF70CD /* Build configuration list for PBXNativeTarget "04-document-with-relationships DEBUG" */;
+			buildPhases = (
+				CF4628621595F38700BF70CD /* Sources */,
+				CF46286D1595F38700BF70CD /* Frameworks */,
+				CF46286F1595F38700BF70CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "04-document-with-relationships DEBUG";
+			productName = "04-document-with-relationships";
+			productReference = CF4628761595F38700BF70CD /* 04-document-with-relationships copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CF60813F159367210021D873 /* 04-document-with-relationships */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF608164159367210021D873 /* Build configuration list for PBXNativeTarget "04-document-with-relationships" */;
@@ -186,11 +233,23 @@
 			projectRoot = "";
 			targets = (
 				CF60813F159367210021D873 /* 04-document-with-relationships */,
+				CF4628611595F38700BF70CD /* 04-document-with-relationships DEBUG */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CF46286F1595F38700BF70CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4628701595F38700BF70CD /* InfoPlist.strings in Resources */,
+				CF4628711595F38700BF70CD /* Credits.rtf in Resources */,
+				CF4628721595F38700BF70CD /* PMDocument.xib in Resources */,
+				CF4628731595F38700BF70CD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF60813E159367210021D873 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +264,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CF4628621595F38700BF70CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4628631595F38700BF70CD /* main.m in Sources */,
+				CF4628641595F38700BF70CD /* PMDocument.m in Sources */,
+				CF4628651595F38700BF70CD /* easy-bindings-utilities.m in Sources */,
+				CF4628661595F38700BF70CD /* managed-object-model.m in Sources */,
+				CF4628671595F38700BF70CD /* NameEntityClass.m in Sources */,
+				CF4628681595F38700BF70CD /* PMDocument_monAction_action.m in Sources */,
+				CF4628691595F38700BF70CD /* PMAbstractManagedObject.m in Sources */,
+				CF46286A1595F38700BF70CD /* PMAbstractPersistentDocument.m in Sources */,
+				CF46286B1595F38700BF70CD /* compute_PMDocument_canRemoveString.m in Sources */,
+				CF46286C1595F38700BF70CD /* RootEntityClass.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF60813C159367210021D873 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,12 +289,13 @@
 				CF608158159367210021D873 /* PMDocument.m in Sources */,
 				CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */,
 				CF608175159368350021D873 /* managed-object-model.m in Sources */,
-				CF608176159368350021D873 /* MyEntityClass.m in Sources */,
 				CF608177159368350021D873 /* NameEntityClass.m in Sources */,
 				CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */,
 				CF68C3DA1595136F008B63F1 /* PMAbstractManagedObject.m in Sources */,
 				CF68C3DB1595136F008B63F1 /* PMAbstractPersistentDocument.m in Sources */,
 				CF68C3EF15951963008B63F1 /* compute_PMDocument_canRemoveString.m in Sources */,
+				CF4628281595DA3800BF70CD /* RootEntityClass.m in Sources */,
+				CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +337,18 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CF608162159367210021D873 /* Debug */ = {
+		CF4628751595F38700BF70CD /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = PM_EASY_BINDINGS_DEBUG;
+				INFOPLIST_FILE = "04-document-with-relationships copy-Info.plist";
+				PRODUCT_NAME = "04-document-with-relationships copy";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		CF608162159367210021D873 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,10 +359,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -285,70 +369,47 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
-			name = Debug;
+			name = Default;
 		};
-		CF608163159367210021D873 /* Release */ = {
+		CF608165159367210021D873 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		CF608165159367210021D873 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "04-document-with-relationships/04-document-with-relationships-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "04-document-with-relationships/04-document-with-relationships-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Debug;
-		};
-		CF608166159367210021D873 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "04-document-with-relationships/04-document-with-relationships-Prefix.pch";
-				INFOPLIST_FILE = "04-document-with-relationships/04-document-with-relationships-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
+			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CF4628741595F38700BF70CD /* Build configuration list for PBXNativeTarget "04-document-with-relationships DEBUG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF4628751595F38700BF70CD /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
 		CF60813A159367210021D873 /* Build configuration list for PBXProject "04-document-with-relationships" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF608162159367210021D873 /* Debug */,
-				CF608163159367210021D873 /* Release */,
+				CF608162159367210021D873 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Default;
 		};
 		CF608164159367210021D873 /* Build configuration list for PBXNativeTarget "04-document-with-relationships" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF608165159367210021D873 /* Debug */,
-				CF608166159367210021D873 /* Release */,
+				CF608165159367210021D873 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Default;
 		};
 /* End XCConfigurationList section */
 	};

@@ -48,10 +48,18 @@ end foreach
 //    Synthesize properties                                                   *
 //----------------------------------------------------------------------------*
 
+//--- Attributes
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   if [mType isClass] then
     %@dynamic %!mPropertyName% ;\n%
   end if
+end foreach
+%
+
+//--- To-many relationships
+%
+foreach TO_MANY_RELATIONSHIPS do
+%@dynamic %!mValue0% ; // Set of %!mValue1% entities\n%
 end foreach
 %
 //----------------------------------------------------------------------------*
