@@ -24,6 +24,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@controllerMap CONTROLLER_MAP
     ?@lstringlist ACTION_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@stringset INCLUSION_SET
   ;
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
@@ -81,6 +82,7 @@ routine generateDocumentCode
         !mControllerMap
         !mActionList
         !mTransientListForImplementation
+        !mImplementationFileInclusionSet
       ] ;
       [@string generateFile
         !inOutputDirectory

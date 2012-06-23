@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF4627A71595B53B00BF70CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4627A61595B53B00BF70CD /* Cocoa.framework */; };
+		CF4627B11595B53B00BF70CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF4627AF1595B53B00BF70CD /* InfoPlist.strings */; };
+		CF4627B31595B53B00BF70CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627B21595B53B00BF70CD /* main.m */; };
+		CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF4627B51595B53B00BF70CD /* Credits.rtf */; };
+		CF4627BA1595B53B00BF70CD /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627B91595B53B00BF70CD /* PMDocument.m */; };
+		CF4627BD1595B53B00BF70CD /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4627BB1595B53B00BF70CD /* PMDocument.xib */; };
+		CF4627C01595B53B00BF70CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4627BE1595B53B00BF70CD /* MainMenu.xib */; };
+		CF4627DD1595B7DA00BF70CD /* compute_PMDocument_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627D91595B7DA00BF70CD /* compute_PMDocument_transientConcatString.m */; };
+		CF4627DE1595B7DA00BF70CD /* compute_PMPrefs_prefTransientString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627DA1595B7DA00BF70CD /* compute_PMPrefs_prefTransientString.m */; };
+		CF4627DF1595B7DA00BF70CD /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627DC1595B7DA00BF70CD /* easy-bindings-utilities.m */; };
+		CF4627EE1595B7E500BF70CD /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E11595B7E500BF70CD /* managed-object-model.m */; };
+		CF4627EF1595B7E500BF70CD /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E31595B7E500BF70CD /* MyEntityClass.m */; };
+		CF4627F01595B7E500BF70CD /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */; };
+		CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */; };
+		CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */; };
+		CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627ED1595B7E500BF70CD /* PMPrefs.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF4627A21595B53B00BF70CD /* 05-observing-pref-in-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "05-observing-pref-in-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4627A61595B53B00BF70CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF4627A91595B53B00BF70CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF4627AA1595B53B00BF70CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF4627AB1595B53B00BF70CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF4627AE1595B53B00BF70CD /* 05-observing-pref-in-document-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "05-observing-pref-in-document-Info.plist"; sourceTree = "<group>"; };
+		CF4627B01595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF4627B21595B53B00BF70CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF4627B41595B53B00BF70CD /* 05-observing-pref-in-document-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "05-observing-pref-in-document-Prefix.pch"; sourceTree = "<group>"; };
+		CF4627B61595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF4627B81595B53B00BF70CD /* PMDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMDocument.h; sourceTree = "<group>"; };
+		CF4627B91595B53B00BF70CD /* PMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMDocument.m; sourceTree = "<group>"; };
+		CF4627BC1595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CF4627BF1595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF4627D91595B7DA00BF70CD /* compute_PMDocument_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_transientConcatString.m; sourceTree = "<group>"; };
+		CF4627DA1595B7DA00BF70CD /* compute_PMPrefs_prefTransientString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMPrefs_prefTransientString.m; sourceTree = "<group>"; };
+		CF4627DB1595B7DA00BF70CD /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CF4627DC1595B7DA00BF70CD /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CF4627E01595B7E500BF70CD /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
+		CF4627E11595B7E500BF70CD /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
+		CF4627E21595B7E500BF70CD /* MyEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEntityClass.h; sourceTree = "<group>"; };
+		CF4627E31595B7E500BF70CD /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
+		CF4627E41595B7E500BF70CD /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
+		CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
+		CF4627E61595B7E500BF70CD /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
+		CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
+		CF4627E81595B7E500BF70CD /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
+		CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
+		CF4627EA1595B7E500BF70CD /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
+		CF4627EB1595B7E500BF70CD /* PMPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMPrefs-computations.h"; sourceTree = "<group>"; };
+		CF4627EC1595B7E500BF70CD /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
+		CF4627ED1595B7E500BF70CD /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF46279F1595B53B00BF70CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4627A71595B53B00BF70CD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF4627971595B53A00BF70CD = {
+			isa = PBXGroup;
+			children = (
+				CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */,
+				CF4627A51595B53B00BF70CD /* Frameworks */,
+				CF4627A31595B53B00BF70CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF4627A31595B53B00BF70CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF4627A21595B53B00BF70CD /* 05-observing-pref-in-document.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF4627A51595B53B00BF70CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF4627A61595B53B00BF70CD /* Cocoa.framework */,
+				CF4627A81595B53B00BF70CD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF4627A81595B53B00BF70CD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF4627A91595B53B00BF70CD /* AppKit.framework */,
+				CF4627AA1595B53B00BF70CD /* CoreData.framework */,
+				CF4627AB1595B53B00BF70CD /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
+			isa = PBXGroup;
+			children = (
+				CF4627E01595B7E500BF70CD /* managed-object-model.h */,
+				CF4627E11595B7E500BF70CD /* managed-object-model.m */,
+				CF4627E21595B7E500BF70CD /* MyEntityClass.h */,
+				CF4627E31595B7E500BF70CD /* MyEntityClass.m */,
+				CF4627E41595B7E500BF70CD /* PMAbstractManagedObject.h */,
+				CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */,
+				CF4627E61595B7E500BF70CD /* PMAbstractPersistentDocument.h */,
+				CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */,
+				CF4627E81595B7E500BF70CD /* PMAbstractPreferences.h */,
+				CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */,
+				CF4627EA1595B7E500BF70CD /* PMDocument-computations.h */,
+				CF4627EB1595B7E500BF70CD /* PMPrefs-computations.h */,
+				CF4627EC1595B7E500BF70CD /* PMPrefs.h */,
+				CF4627ED1595B7E500BF70CD /* PMPrefs.m */,
+				CF4627D91595B7DA00BF70CD /* compute_PMDocument_transientConcatString.m */,
+				CF4627DA1595B7DA00BF70CD /* compute_PMPrefs_prefTransientString.m */,
+				CF4627DB1595B7DA00BF70CD /* easy-bindings-utilities.h */,
+				CF4627DC1595B7DA00BF70CD /* easy-bindings-utilities.m */,
+				CF4627B81595B53B00BF70CD /* PMDocument.h */,
+				CF4627B91595B53B00BF70CD /* PMDocument.m */,
+				CF4627BB1595B53B00BF70CD /* PMDocument.xib */,
+				CF4627BE1595B53B00BF70CD /* MainMenu.xib */,
+				CF4627AD1595B53B00BF70CD /* Supporting Files */,
+			);
+			path = "05-observing-pref-in-document";
+			sourceTree = "<group>";
+		};
+		CF4627AD1595B53B00BF70CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF4627AE1595B53B00BF70CD /* 05-observing-pref-in-document-Info.plist */,
+				CF4627AF1595B53B00BF70CD /* InfoPlist.strings */,
+				CF4627B21595B53B00BF70CD /* main.m */,
+				CF4627B41595B53B00BF70CD /* 05-observing-pref-in-document-Prefix.pch */,
+				CF4627B51595B53B00BF70CD /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF4627A11595B53B00BF70CD /* 05-observing-pref-in-document */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF4627C61595B53B00BF70CD /* Build configuration list for PBXNativeTarget "05-observing-pref-in-document" */;
+			buildPhases = (
+				CF46279E1595B53B00BF70CD /* Sources */,
+				CF46279F1595B53B00BF70CD /* Frameworks */,
+				CF4627A01595B53B00BF70CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "05-observing-pref-in-document";
+			productName = "05-observing-pref-in-document";
+			productReference = CF4627A21595B53B00BF70CD /* 05-observing-pref-in-document.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF4627991595B53A00BF70CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CF46279C1595B53A00BF70CD /* Build configuration list for PBXProject "05-observing-pref-in-document" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF4627971595B53A00BF70CD;
+			productRefGroup = CF4627A31595B53B00BF70CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF4627A11595B53B00BF70CD /* 05-observing-pref-in-document */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF4627A01595B53B00BF70CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4627B11595B53B00BF70CD /* InfoPlist.strings in Resources */,
+				CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */,
+				CF4627BD1595B53B00BF70CD /* PMDocument.xib in Resources */,
+				CF4627C01595B53B00BF70CD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF46279E1595B53B00BF70CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4627B31595B53B00BF70CD /* main.m in Sources */,
+				CF4627BA1595B53B00BF70CD /* PMDocument.m in Sources */,
+				CF4627DD1595B7DA00BF70CD /* compute_PMDocument_transientConcatString.m in Sources */,
+				CF4627DE1595B7DA00BF70CD /* compute_PMPrefs_prefTransientString.m in Sources */,
+				CF4627DF1595B7DA00BF70CD /* easy-bindings-utilities.m in Sources */,
+				CF4627EE1595B7E500BF70CD /* managed-object-model.m in Sources */,
+				CF4627EF1595B7E500BF70CD /* MyEntityClass.m in Sources */,
+				CF4627F01595B7E500BF70CD /* PMAbstractManagedObject.m in Sources */,
+				CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */,
+				CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */,
+				CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF4627AF1595B53B00BF70CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF4627B01595B53B00BF70CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF4627B51595B53B00BF70CD /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF4627B61595B53B00BF70CD /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF4627BB1595B53B00BF70CD /* PMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF4627BC1595B53B00BF70CD /* en */,
+			);
+			name = PMDocument.xib;
+			sourceTree = "<group>";
+		};
+		CF4627BE1595B53B00BF70CD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF4627BF1595B53B00BF70CD /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF4627C41595B53B00BF70CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF4627C51595B53B00BF70CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF4627C71595B53B00BF70CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "05-observing-pref-in-document/05-observing-pref-in-document-Prefix.pch";
+				INFOPLIST_FILE = "05-observing-pref-in-document/05-observing-pref-in-document-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF4627C81595B53B00BF70CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "05-observing-pref-in-document/05-observing-pref-in-document-Prefix.pch";
+				INFOPLIST_FILE = "05-observing-pref-in-document/05-observing-pref-in-document-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF46279C1595B53A00BF70CD /* Build configuration list for PBXProject "05-observing-pref-in-document" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF4627C41595B53B00BF70CD /* Debug */,
+				CF4627C51595B53B00BF70CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF4627C61595B53B00BF70CD /* Build configuration list for PBXNativeTarget "05-observing-pref-in-document" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF4627C71595B53B00BF70CD /* Debug */,
+				CF4627C81595B53B00BF70CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF4627991595B53A00BF70CD /* Project object */;
+}

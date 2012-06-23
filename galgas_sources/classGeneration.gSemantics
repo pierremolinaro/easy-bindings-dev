@@ -21,6 +21,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+    ?@stringset INCLUSION_SET
   ;
   
   template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
@@ -68,6 +69,7 @@ routine generateClassCode
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
         !mInheritedAttributeListForImplementation
+        !mImplementationFileInclusionSet
       ] ;
       [@string generateFile
         !inOutputDirectory

@@ -55,6 +55,7 @@ map @classMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
+  @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -75,6 +76,7 @@ map @entityMap {
   @propertyMap mAllPropertyMap ;
   @relationshipMap mCurrentRelationshipMap ;
   @relationshipMap mAllRelationshipMap ;
+  @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' entity is already declared" ;
   search searchKey error message "the '%K' entity is not declared" ;
 }
@@ -231,6 +233,7 @@ map @preferencesMap {
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
   @classObservablePropertyMap mObservablePropertyMap ;
+  @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -244,6 +247,7 @@ map @documentMap {
   @controllerMap mControllerMap ;
   @lstringlist mActionList ;
   @transientListForImplementation mTransientListForImplementation ;
+  @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' document is already declared" ;
   search searchKey error message "the '%K' document is not declared" ;
 }
@@ -351,6 +355,7 @@ local routine analyzeEntities
         ?allPropertyMap
         ?*
         ?allRelationshipMap
+        ?*
       ] ;
     else
       classObservablePropertyMap := [@classObservablePropertyMap emptyMap] ;
@@ -390,14 +395,17 @@ local routine analyzeEntities
       [!?allPropertyMap insertKey !mRelationshipName] ;
     end foreach ;
   #--- Analyze transient properties
+    @stringset implementationFileInclusionSet [emptySet] ;
     @transientListForImplementation transientListForImplementation ;
     analyzeTransientProperties
       !mTransientList
       ![@classObservableObjectMap emptyMap]
       !?classObservablePropertyMap
+      !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #---
+    [!?implementationFileInclusionSet removeKey !""] ;
     [!?outEntityMap insertKey
       !mEntityName
       ![mSuperEntityName string]
@@ -413,13 +421,14 @@ local routine analyzeEntities
       !allPropertyMap
       !currentRelationshipMap
       !allRelationshipMap
+      !implementationFileInclusionSet
     ] ;
   end foreach ;
 #--- Check relationships
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap] ;
+      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
@@ -439,6 +448,7 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@actionMap inActionMap
   ??@bool inHasTableValueBinding
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
 ;
 
 #----------------------------------------------------------------------------*
@@ -451,6 +461,7 @@ override method @tableValueBinding analyzeOutletBinding
   ??@actionMap unused inActionMap
   ??@bool inHasTableValueBinding
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
 :
   if not inHasTableValueBinding then
     error mControllerName: "this outlet does not support $tableValue binding" ;
@@ -468,7 +479,7 @@ override method @tableValueBinding analyzeOutletBinding
       ![@lstring new !controlledClassOrEntityName !here]
       ?3*
       ?@classObservablePropertyMap observablePropertyMap
-      ?9*
+      ?10*
     ] ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
     for column in mTableValueColumnBinding do
@@ -508,6 +519,7 @@ override method @runBinding analyzeOutletBinding
   ??@actionMap inActionMap
   ??@bool unused inHasTableValueBinding
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
 :
   if mTargetName->string == "self" then
     [inActionMap searchKey !mActionName] ;
@@ -532,19 +544,23 @@ override method @regularBinding analyzeOutletBinding
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
 :
   @outletClassBindingOptionMap outletClassBindingOptionMap ;
   @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
   [inBindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
-#--- Find preferences observable property
+#--- Find observable property
   @string observedObjectOCName ;
   @classObservablePropertyMap observablePropertyMap ;
   if [inObservableObjectMap hasKey !mObservedObjectName->string] then
+    @string includeFile ;
     [inObservableObjectMap searchKey
       ![@lstring new !mObservedObjectName->string !here]
       ?observedObjectOCName
+      ?includeFile
       ?observablePropertyMap
      ] ;
+     ioImplementationFileInclusionSet += !includeFile ;
   else
     error mObservedObjectName
       : "the '" . mObservedObjectName . "' object is not observable"
@@ -621,10 +637,12 @@ local routine analyzePreferences
     end foreach ;
   #--- Analyze transient properties
     @transientListForImplementation transientListForImplementation ;
+    @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       !mTransientList
       ![@classObservableObjectMap emptyMap]
       !?observableAttributeMap
+      !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #--- Build observable object map
@@ -632,6 +650,7 @@ local routine analyzePreferences
     [!?observableObjectMap insertKey
       !["self" nowhere]
       !"self"
+      !"" # No file to include
       !observableAttributeMap
     ] ;
   #--- Analyze outlets
@@ -650,11 +669,13 @@ local routine analyzePreferences
           !actionMap
           !hasTableValueBinding
           !?outletBindingList
+          !?implementationFileInclusionSet
         ] ;
       end foreach ;
       outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
     end foreach ;
   #---
+    [!?implementationFileInclusionSet removeKey !""] ;
     [!?outPreferencesMap insertKey
       !mPreferencesName
       !attributeListForImplementation
@@ -662,6 +683,7 @@ local routine analyzePreferences
       !outletGenerationList
       !mActionDeclarationList
       !observableAttributeMap
+      !implementationFileInclusionSet
     ] ;
   end foreach ;
 end routine ;
@@ -830,32 +852,36 @@ local routine analyzeDocuments
   outDocumentMap := [@documentMap emptyMap] ;
   foreach inDocumentDeclarationList do
     @string rootEntityImplementationClassName ;
-    @classObservablePropertyMap observablePropertyMap ;
+    @classObservablePropertyMap rootObjectObservablePropertyMap ;
     @relationshipMap allRelationshipMap ;
     [inEntityMap searchKey
       !mRootEntityName
       ?*
       ?rootEntityImplementationClassName
       ?*
-      ?observablePropertyMap
+      ?rootObjectObservablePropertyMap
       ?8*
       ?allRelationshipMap
+      ?*
     ] ;
   #--- Build observable object map
     @classObservableObjectMap observableObjectMap [emptyMap] ;
     [!?observableObjectMap insertKey
       !["root" nowhere]
       !"mRootObject"
-      !observablePropertyMap
+      !"" # No file to include
+      !rootObjectObservablePropertyMap
     ] ;
     for pref in inPreferencesMap do
       [!?observableObjectMap insertKey
         !pref->lkey
+        !"g_" . pref->lkey->string
         !pref->lkey->string
         !pref->mObservablePropertyMap
       ] ;
     end for ;
   #--- Analyze controllers
+    @classObservablePropertyMap observablePropertyMap [emptyMap] ;
     @controllerMap controllerMap [emptyMap] ;
     foreach mControllerList do
       @outletClassBindingMap controllerClassBindingMap ;
@@ -871,9 +897,10 @@ local routine analyzeDocuments
       [!?observableObjectMap insertKey
         !mControllerName
         !mControllerName->string
+        !"" # No file to include
         !controllerObservablePropertyMap
       ] ;
-      [inEntityMap searchKey !mControlledClassOrEntityName ?13*] ;
+      [inEntityMap searchKey !mControlledClassOrEntityName ?14*] ;
       @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
       foreach mControllerBindingList do
         [mBinding analyzeControllerBinding
@@ -894,10 +921,12 @@ local routine analyzeDocuments
     end foreach ;
   #--- Analyze transient properties
     @transientListForImplementation transientListForImplementation ;
+    @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       !mTransientList
       !observableObjectMap
       !?observablePropertyMap
+      !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #--- Analyze actions
@@ -909,6 +938,7 @@ local routine analyzeDocuments
     [!?observableObjectMap insertKey
       !["self" nowhere]
       !"self"
+      !"" # No file to include
       !observablePropertyMap
     ] ;
     @outletGenerationList outletGenerationList [emptyList] ;
@@ -926,11 +956,13 @@ local routine analyzeDocuments
           !documentActionMap
           !hasTableValueBinding
           !?outletBindingList
+          !?implementationFileInclusionSet
         ] ;
       end foreach ;
       outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
     end foreach ;
   #---
+    [!?implementationFileInclusionSet removeKey !""] ;
     [!?outDocumentMap insertKey
       !mDocumentName
       ![mRootEntityName string]
@@ -939,6 +971,7 @@ local routine analyzeDocuments
       !controllerMap
       !mActionDeclarationList
       !transientListForImplementation
+      !implementationFileInclusionSet
     ] ;
   end foreach ;
 end routine ;
@@ -970,7 +1003,7 @@ local routine analyzeClasses
     @classObservablePropertyMap classObservablePropertyMap ;
     @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
     if [mSuperClassName string] != "" then
-      [outClassMap searchKey !mSuperClassName ?* ?classObservablePropertyMap ?propertyListForInitMethodHeader ?3*] ;
+      [outClassMap searchKey !mSuperClassName ?* ?classObservablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
     else
       classObservablePropertyMap := [@classObservablePropertyMap emptyMap] ;
       propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
@@ -985,13 +1018,16 @@ local routine analyzeClasses
     end foreach ;
   #--- Analyze transient properties
     @transientListForImplementation transientListForImplementation ;
+    @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       !mTransientList
       ![@classObservableObjectMap emptyMap]
       !?classObservablePropertyMap
+      !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #---
+    [!?implementationFileInclusionSet removeKey !""] ;
     [!?outClassMap insertKey
       !mClassName
       ![mSuperClassName string]
@@ -1000,6 +1036,7 @@ local routine analyzeClasses
       !inheritedAttributeListForImplementation
       !attributeListForImplementation
       !transientListForImplementation
+      !implementationFileInclusionSet
     ] ;
   end foreach ;
 end routine ;
