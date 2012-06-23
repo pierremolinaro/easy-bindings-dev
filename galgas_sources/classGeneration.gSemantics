@@ -53,7 +53,7 @@ routine generateClassCode
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         ![lkey string] . ".h"
         !"//"
@@ -71,7 +71,7 @@ routine generateClassCode
         !mInheritedAttributeListForImplementation
         !mImplementationFileInclusionSet
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         ![lkey string] . ".m"
         !"//"
@@ -86,7 +86,7 @@ routine generateClassCode
           ![lkey string]
           !mTransientListForImplementation
         ] ;
-        [@string generateFile
+        [@string generateFileWithPattern
           !inOutputDirectory
           ![lkey string] . "-transient-computations.h"
           !"//"
@@ -104,7 +104,7 @@ routine generateClassCode
             !mTransientName
             !mDependencyList
           ] ;
-          [@string generateFile
+          [@string generateFileWithPattern
             !inOutputDirectory
             !"compute_" . [lkey string] . "_" . mTransientName . ".m"
             !"//"

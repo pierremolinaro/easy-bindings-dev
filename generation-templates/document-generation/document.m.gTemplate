@@ -68,7 +68,7 @@ end foreach
   [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
   mRootObject = [mRootObjectController content] ;
   if (nil == mRootObject) {
-    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% insertNewObjectIntoManagedObjectContext:moc] ;
+    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% pmInsertNewObjectIntoManagedObjectContext:moc] ;
     [mRootObjectController setContent:mRootObject] ;
     // NSLog (@"Root object creation") ;
   }
@@ -104,6 +104,30 @@ end foreach
 %
 //--- Install transients observers
   [self pmInstallObserversForTransients] ;
+}
+
+//----------------------------------------------------------------------------*
+//   R E M O V E    W I N D O W    C O N T R O L L E R                        *
+//----------------------------------------------------------------------------*
+
+- (void) removeWindowController:(NSWindowController *) inWindowController {
+  //NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+//--- Unbind Outlets
+%foreach OUTLET_DECLARATION_LIST do
+  foreach mOutletBindingList do
+    ![mBinding generateRemoveBinding !mOutletName]
+  end foreach
+end foreach
+%//--- Unbind Controllers
+%foreach CONTROLLER_MAP do
+  foreach mControllerBindingList do
+   ![mBinding generateRemoveBinding !lkey->string]
+  end foreach
+end foreach
+%//--- Uninstall observers for transients
+  [self pmUninstallObserversForTransients] ;
+//---
+  [super removeWindowController:inWindowController] ;
 }
 
 %!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]

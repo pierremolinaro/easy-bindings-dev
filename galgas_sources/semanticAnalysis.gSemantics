@@ -218,6 +218,46 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+abstract reader @abstractBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @runBindingForGeneration generateRemoveBinding
+  ??@string unused inOutletName
+  -> @string outResult
+:
+  outResult := "" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]\n"
+     . "    unbind:@\"value\"\n"
+     . "  ] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @regularBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult :=
+    "  [" . inOutletName . " unbind:@\"" . mBindingName . "\"] ;\n" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 list @outletGenerationList {
   @string mOutletType ;
   @string mOutletName ;

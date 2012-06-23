@@ -18,6 +18,8 @@
 		CF721B02159360A8008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AFD159360A8008662EA /* managed-object-model.m */; };
 		CF721B03159360A8008662EA /* Prefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B00159360A8008662EA /* Prefs.m */; };
 		CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */; };
+		CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A6715963D4A006D876D /* PMDebug.m */; };
+		CF9D9A6A15963D4A006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A6815963D4A006D876D /* PMDebug.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,9 @@
 		CF721AFF159360A8008662EA /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		CF721B00159360A8008662EA /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
 		CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_Prefs_mFullName.m; sourceTree = "<group>"; };
+		CF9D9A6615963D4A006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
+		CF9D9A6715963D4A006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
+		CF9D9A6815963D4A006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
 		CFAAC0151594691E00B59575 /* Prefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-computations.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +102,9 @@
 		CF721ADF1593605D008662EA /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
+				CF9D9A6615963D4A006D876D /* PMDebug.h */,
+				CF9D9A6715963D4A006D876D /* PMDebug.m */,
+				CF9D9A6815963D4A006D876D /* PMDebug.xib */,
 				CF68C37115950E02008B63F1 /* PMAbstractPreferences.h */,
 				CF68C37215950E02008B63F1 /* PMAbstractPreferences.m */,
 				CFAAC0151594691E00B59575 /* Prefs-computations.h */,
@@ -182,6 +190,7 @@
 				CF721AE41593605D008662EA /* InfoPlist.strings in Resources */,
 				CF721AEA1593605D008662EA /* Credits.rtf in Resources */,
 				CF721AF01593605D008662EA /* MainMenu.xib in Resources */,
+				CF9D9A6A15963D4A006D876D /* PMDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +208,7 @@
 				CF721B03159360A8008662EA /* Prefs.m in Sources */,
 				CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */,
 				CF68C37315950E02008B63F1 /* PMAbstractPreferences.m in Sources */,
+				CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

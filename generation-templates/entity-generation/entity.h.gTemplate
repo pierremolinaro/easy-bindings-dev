@@ -22,19 +22,17 @@ foreach TO_MANY_RELATIONSHIPS do
 %@property(strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
 end foreach
 %
-//--- Creation
-+ (%!CLASS_NAME% *) insertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext ;
-
 //--- Attributes
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n\n%
 end foreach
 %
-
 //--- Transient properties
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %- (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
+//--- Creation
++ (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext ;
 
 @end
 

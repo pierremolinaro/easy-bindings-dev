@@ -192,6 +192,20 @@ function generateTransientImplementation
     outResult .=
     "}\n\n"
     "//----------------------------------------------------------------------------*\n\n"
+    "- (void) pmUninstallObserversForTransients {\n"
+    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n" ;
+    for element in triggeredKeysFromOtherObjects do
+      for name in element->mList do
+        outResult .=
+        "  [" . element->key . "\n"
+        "    removeObserver:self\n"
+        "    forKeyPath:@\"" . name->mValue0 . "\"\n"
+        "  ] ;\n" ;
+      end for ;
+    end for ;
+    outResult .=
+    "}\n\n"
+    "//----------------------------------------------------------------------------*\n\n"
     "- (void) observeValueForKeyPath:(NSString *) inKeyPath\n"
     "         ofObject:(id) inObject\n"
     "         change:(NSDictionary *) inChange\n"

@@ -1,12 +1,7 @@
-//
-//  PMAbstractPersistentDocument.m
-//
-//  Created by Pierre Molinaro on 22/06/12.
-//  Copyright (c) 2012 ECN / IRCCyN. All rights reserved.
-//
 //----------------------------------------------------------------------------*
 
 #import "PMAbstractPersistentDocument.h"
+#import "PMDebug.h"
 
 //----------------------------------------------------------------------------*
 
@@ -17,6 +12,7 @@
 - (PMAbstractPersistentDocument *) init {
   self = [super init] ;
   if (self) {
+    macroNoteObjectAllocation (self) ;
     mTriggeredTransientSet = [NSMutableSet new] ;
   }
   return self ;
@@ -24,7 +20,18 @@
 
 //----------------------------------------------------------------------------*
 
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
+}
+
+//----------------------------------------------------------------------------*
+
 - (void) pmInstallObserversForTransients {
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) pmUninstallObserversForTransients {
 }
 
 //----------------------------------------------------------------------------*
@@ -38,7 +45,7 @@
       performSelector:@selector (triggerTransient)
       target:self
       argument:nil
-      order:1000000
+      order:NSUIntegerMax
       modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
     ] ;
   }

@@ -64,7 +64,7 @@ routine generateDocumentCode
         !mControllerMap
         !mActionList
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         ![lkey string] . ".h"
         !"//"
@@ -84,7 +84,7 @@ routine generateDocumentCode
         !mTransientListForImplementation
         !mImplementationFileInclusionSet
       ] ;
-      [@string generateFile
+      [@string generateFileWithPattern
         !inOutputDirectory
         ![lkey string] . ".m"
         !"//"
@@ -100,7 +100,7 @@ routine generateDocumentCode
           !mActionList
           !mTransientListForImplementation
         ] ;
-        [@string generateFile
+        [@string generateFileWithPattern
           !inOutputDirectory
           ![lkey string] . "-computations.h"
           !"//"
@@ -116,7 +116,7 @@ routine generateDocumentCode
             ![lkey string]
             !mValue->string
           ] ;
-          [@string generateFile
+          [@string generateFileWithPattern
             !inOutputDirectory
             ![lkey string] . "_" . mValue->string . "_action.m"
             !"//"
@@ -134,7 +134,7 @@ routine generateDocumentCode
             !mTransientName
             !mDependencyList
           ] ;
-          [@string generateFile
+          [@string generateFileWithPattern
             !inOutputDirectory
             !"compute_" . [lkey string] . "_" . mTransientName . ".m"
             !"//"
