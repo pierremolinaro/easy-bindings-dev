@@ -7,7 +7,7 @@ semantics semanticAnalysis :
 
 reader @easyBindingType propertyAttributeString -> @string outResult :
   switch selfcopy
-  when boolType, integer16Type, integer32Type, integer64Type,
+  when boolType, integer16Type, integer32Type, integer64Type, uintegerType,
        floatType, doubleType, decimalType,
        toManyEntitiesType : outResult := "" ;
   when stringType : outResult := "(copy)" ;
@@ -21,9 +21,7 @@ end reader ;
 reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult :
   switch selfcopy
   when boolType : outResult := "" ; # Empty string: not allowed
-  when integer16Type : outResult := "NSTextFieldCell" ;
-  when integer32Type : outResult := "NSTextFieldCell" ;
-  when integer64Type : outResult := "NSTextFieldCell" ;
+  when integer16Type, integer32Type, integer64Type, uintegerType : outResult := "NSTextFieldCell" ;
   when decimalType : outResult := "NSTextFieldCell" ;
   when floatType : outResult := "NSTextFieldCell" ;
   when doubleType : outResult := "NSTextFieldCell" ;
@@ -50,7 +48,7 @@ list @attributeListForImplementation {
 
 map @classMap {
   @string mSuperClassName ;
-  @classObservablePropertyMap mPropertyMap ;
+  @observablePropertyMap mPropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
@@ -66,7 +64,7 @@ map @entityMap {
   @string mSuperEntityName ;
   @string mImplementationClassName ;
   @string mSuperImplementationClassName ;
-  @classObservablePropertyMap mObservablePropertyMap ;
+  @observablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
@@ -77,6 +75,7 @@ map @entityMap {
   @relationshipMap mCurrentRelationshipMap ;
   @relationshipMap mAllRelationshipMap ;
   @stringset mImplementationFileInclusionSet ;
+  @2stringlist mToManyRelationshipList ;
   insert insertKey error message "the '%K' entity is already declared" ;
   search searchKey error message "the '%K' entity is not declared" ;
 }
@@ -187,8 +186,8 @@ override reader @regularBindingForGeneration generateBinding
   switch mRequiredFormatter
   when noFormatter :
   when numberFormatter :
-   outResult .=  "if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
-   . "  presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
+   outResult .=  "  if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+   . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
    . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSNumberFormatter class]]) {\n"
    . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
    . "  }\n" ;
@@ -232,7 +231,7 @@ map @preferencesMap {
   @transientListForImplementation mTransientListForImplementation ;
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
-  @classObservablePropertyMap mObservablePropertyMap ;
+  @observablePropertyMap mObservablePropertyMap ;
   @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
@@ -286,7 +285,7 @@ map @controllerClassMap {
   @bool mGenerateCode ;
   @outletClassBindingMap mBindingMap ;
   @actionMap mActionMap ;
-  @classObservablePropertyMap mObservablePropertyMap ;
+  @observablePropertyMap mObservablePropertyMap ;
   insert insertKey error message "the '%K' controller class is already declared" ;
   search searchKey error message "the '%K' controller class is not declared" ;
 }
@@ -336,7 +335,7 @@ local routine analyzeEntities
 :
   outEntityMap := [@entityMap emptyMap] ;
   foreach inEntityList do
-    @classObservablePropertyMap classObservablePropertyMap ;
+    @observablePropertyMap observablePropertyMap ;
     @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
     @relationshipList allRelationshipList ;
     @string implementationSuperClassName ;
@@ -348,17 +347,17 @@ local routine analyzeEntities
         ?*
         ?implementationSuperClassName
         ?*
-        ?classObservablePropertyMap
+        ?observablePropertyMap
         ?propertyListForInitMethodHeader
         ?4*
         ?allRelationshipList
         ?allPropertyMap
         ?*
         ?allRelationshipMap
-        ?*
+        ?2*
       ] ;
     else
-      classObservablePropertyMap := [@classObservablePropertyMap emptyMap] ;
+      observablePropertyMap := [@observablePropertyMap emptyMap] ;
       propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
       implementationSuperClassName := "" ;
       allRelationshipList := [@relationshipList emptyList] ;
@@ -373,7 +372,7 @@ local routine analyzeEntities
       [!?allPropertyMap insertKey !mAttributeName] ;
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-      [!?classObservablePropertyMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;    
+      [!?observablePropertyMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;    
     end foreach ;
   #--- Analyze relationship (only check name is unique)
     @relationshipMap currentRelationshipMap [emptyMap] ;
@@ -393,25 +392,34 @@ local routine analyzeEntities
         !mDeleteRule
       ] ;
       [!?allPropertyMap insertKey !mRelationshipName] ;
+      [!?observablePropertyMap insertKey !mRelationshipName ![@easyBindingType toManyEntitiesType] ![@stringlist emptyList]] ;    
     end foreach ;
   #--- Analyze transient properties
     @stringset implementationFileInclusionSet [emptySet] ;
     @transientListForImplementation transientListForImplementation ;
     analyzeTransientProperties
       !mTransientList
-      ![@classObservableObjectMap emptyMap]
-      !?classObservablePropertyMap
+      ![@observableObjectMap emptyMap]
+      !?observablePropertyMap
       !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #---
+    @2stringlist toManyRelationshipList [emptyList] ;
+    foreach mRelationshipList do
+      if mIsToMany then
+        toManyRelationshipList += !mRelationshipName->string !mDestinationEntityName-> string ;
+      else
+      
+      end if ;
+    end foreach ;
     [!?implementationFileInclusionSet removeKey !""] ;
     [!?outEntityMap insertKey
       !mEntityName
       ![mSuperEntityName string]
       ![mImplementationClassName string]
       !implementationSuperClassName
-      !classObservablePropertyMap
+      !observablePropertyMap
       !propertyListForInitMethodHeader
       !inheritedAttributeListForImplementation
       !attributeListForImplementation
@@ -422,13 +430,14 @@ local routine analyzeEntities
       !currentRelationshipMap
       !allRelationshipMap
       !implementationFileInclusionSet
+      !toManyRelationshipList
     ] ;
   end foreach ;
 #--- Check relationships
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?*] ;
+      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?2*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
@@ -442,7 +451,7 @@ end routine ;
 
 abstract method @abstractBinding analyzeOutletBinding
   ??@entityMap inEntityMap
-  ??@classObservableObjectMap inObservableObjectMap
+  ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
@@ -455,7 +464,7 @@ abstract method @abstractBinding analyzeOutletBinding
 
 override method @tableValueBinding analyzeOutletBinding
   ??@entityMap inEntityMap
-  ??@classObservableObjectMap unused inObservableObjectMap
+  ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
@@ -478,8 +487,8 @@ override method @tableValueBinding analyzeOutletBinding
     [inEntityMap searchKey
       ![@lstring new !controlledClassOrEntityName !here]
       ?3*
-      ?@classObservablePropertyMap observablePropertyMap
-      ?10*
+      ?@observablePropertyMap observablePropertyMap
+      ?11*
     ] ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
     for column in mTableValueColumnBinding do
@@ -513,7 +522,7 @@ end method ;
 
 override method @runBinding analyzeOutletBinding
   ??@entityMap unused inEntityMap
-  ??@classObservableObjectMap unused inObservableObjectMap
+  ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
@@ -538,7 +547,7 @@ end method ;
 
 override method @regularBinding analyzeOutletBinding
   ??@entityMap unused inEntityMap
-  ??@classObservableObjectMap inObservableObjectMap
+  ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
@@ -551,7 +560,7 @@ override method @regularBinding analyzeOutletBinding
   [inBindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
 #--- Find observable property
   @string observedObjectOCName ;
-  @classObservablePropertyMap observablePropertyMap ;
+  @observablePropertyMap observablePropertyMap ;
   if [inObservableObjectMap hasKey !mObservedObjectName->string] then
     @string includeFile ;
     [inObservableObjectMap searchKey
@@ -569,6 +578,16 @@ override method @regularBinding analyzeOutletBinding
   end if ;
   @easyBindingType observablePropertyType ;
   [observablePropertyMap searchKey !mObservableAttributeName ?observablePropertyType ?*] ;
+  @string observableKeyPath := mObservableAttributeName->string ;
+#--- count option ?
+  if mNamesCountOption then
+    if observablePropertyType == [@easyBindingType toManyEntitiesType] then
+      observableKeyPath .= ".@count" ;
+      observablePropertyType := [@easyBindingType uintegerType] ;
+    else
+      error mObservableAttributeName: "the 'count' path is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
 #--- check model belongs to an acceptable type
   @bool found := false ;
   @formatterEnum requiredFormatter [noFormatter] ;
@@ -607,7 +626,7 @@ override method @regularBinding analyzeOutletBinding
     ![mBindingName string]
     !requiredFormatter
     !observedObjectOCName
-    ![mObservableAttributeName string]
+    !observableKeyPath
     !bindingOptionList
   ] ;
 end method ;
@@ -622,7 +641,7 @@ local routine analyzePreferences
 :
   outPreferencesMap := [@preferencesMap emptyMap] ;
   foreach inPreferencesList do
-    @classObservablePropertyMap observableAttributeMap [emptyMap] ;
+    @observablePropertyMap observableAttributeMap [emptyMap] ;
   #--- Analyze actions
     @actionMap actionMap [emptyMap] ;
     for actionName in mActionDeclarationList do
@@ -640,13 +659,13 @@ local routine analyzePreferences
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       !mTransientList
-      ![@classObservableObjectMap emptyMap]
+      ![@observableObjectMap emptyMap]
       !?observableAttributeMap
       !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
   #--- Build observable object map
-    @classObservableObjectMap observableObjectMap [emptyMap] ;
+    @observableObjectMap observableObjectMap [emptyMap] ;
     [!?observableObjectMap insertKey
       !["self" nowhere]
       !"self"
@@ -696,6 +715,7 @@ reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @strin
   when integer16Type : outResult := "integer16" ;
   when integer32Type : outResult := "integer32" ;
   when integer64Type : outResult := "integer64" ;
+  when uintegerType : outResult := "unsignedInteger" ;
   when decimalType : outResult := "decimal" ;
   when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
@@ -743,7 +763,7 @@ abstract method @abstractBinding analyzeControllerBinding
   ??@relationshipMap inAllRelationshipMap
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
-  ??@classObservablePropertyMap inAllObservablePropertyMap
+  ??@observablePropertyMap inAllObservablePropertyMap
   ?!@outletBindingListForGeneration ioBindingListForGeneration
 ;
 
@@ -753,7 +773,7 @@ override method @tableValueBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
-  ??@classObservablePropertyMap unused inAllObservablePropertyMap
+  ??@observablePropertyMap unused inAllObservablePropertyMap
   ?!@outletBindingListForGeneration unused ioBindingListForGeneration
 :
   error mControllerName: "a controller does not implement $tableValue binding" ;
@@ -765,7 +785,7 @@ override method @runBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
-  ??@classObservablePropertyMap unused inAllObservablePropertyMap
+  ??@observablePropertyMap unused inAllObservablePropertyMap
   ?!@outletBindingListForGeneration unused ioBindingListForGeneration
 :
   error mTargetName: "a controller does not implement $run action" ;
@@ -777,7 +797,7 @@ override method @regularBinding analyzeControllerBinding
   ??@relationshipMap inAllRelationshipMap
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
-  ??@classObservablePropertyMap inAllObservablePropertyMap
+  ??@observablePropertyMap inAllObservablePropertyMap
   ?!@outletBindingListForGeneration ioBindingListForGeneration
 :
   @string resultingObservedObjectName ;
@@ -852,7 +872,7 @@ local routine analyzeDocuments
   outDocumentMap := [@documentMap emptyMap] ;
   foreach inDocumentDeclarationList do
     @string rootEntityImplementationClassName ;
-    @classObservablePropertyMap rootObjectObservablePropertyMap ;
+    @observablePropertyMap rootObjectObservablePropertyMap ;
     @relationshipMap allRelationshipMap ;
     [inEntityMap searchKey
       !mRootEntityName
@@ -862,10 +882,10 @@ local routine analyzeDocuments
       ?rootObjectObservablePropertyMap
       ?8*
       ?allRelationshipMap
-      ?*
+      ?2*
     ] ;
   #--- Build observable object map
-    @classObservableObjectMap observableObjectMap [emptyMap] ;
+    @observableObjectMap observableObjectMap [emptyMap] ;
     [!?observableObjectMap insertKey
       !["root" nowhere]
       !"mRootObject"
@@ -881,12 +901,12 @@ local routine analyzeDocuments
       ] ;
     end for ;
   #--- Analyze controllers
-    @classObservablePropertyMap observablePropertyMap [emptyMap] ;
+    @observablePropertyMap observablePropertyMap [emptyMap] ;
     @controllerMap controllerMap [emptyMap] ;
     foreach mControllerList do
       @outletClassBindingMap controllerClassBindingMap ;
       @actionMap controllerActionMap ;
-      @classObservablePropertyMap controllerObservablePropertyMap ;
+      @observablePropertyMap controllerObservablePropertyMap ;
       [inControllerClassMap searchKey
         !mControllerClassName
         ?*
@@ -900,7 +920,7 @@ local routine analyzeDocuments
         !"" # No file to include
         !controllerObservablePropertyMap
       ] ;
-      [inEntityMap searchKey !mControlledClassOrEntityName ?14*] ;
+      [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
       @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
       foreach mControllerBindingList do
         [mBinding analyzeControllerBinding
@@ -1000,12 +1020,12 @@ local routine analyzeClasses
 :
   outClassMap := [@classMap emptyMap] ;
   foreach inClassList do
-    @classObservablePropertyMap classObservablePropertyMap ;
+    @observablePropertyMap observablePropertyMap ;
     @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
     if [mSuperClassName string] != "" then
-      [outClassMap searchKey !mSuperClassName ?* ?classObservablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+      [outClassMap searchKey !mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
     else
-      classObservablePropertyMap := [@classObservablePropertyMap emptyMap] ;
+      observablePropertyMap := [@observablePropertyMap emptyMap] ;
       propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
     end if ;
     @attributeListForImplementation attributeListForImplementation [emptyList] ;
@@ -1014,15 +1034,15 @@ local routine analyzeClasses
       checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-      [!?classObservablePropertyMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;    
+      [!?observablePropertyMap insertKey !mAttributeName !mType ![@stringlist listWithValue![mAttributeName string]]] ;    
     end foreach ;
   #--- Analyze transient properties
     @transientListForImplementation transientListForImplementation ;
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       !mTransientList
-      ![@classObservableObjectMap emptyMap]
-      !?classObservablePropertyMap
+      ![@observableObjectMap emptyMap]
+      !?observablePropertyMap
       !?implementationFileInclusionSet
       ?transientListForImplementation
     ;
@@ -1031,7 +1051,7 @@ local routine analyzeClasses
     [!?outClassMap insertKey
       !mClassName
       ![mSuperClassName string]
-      !classObservablePropertyMap
+      !observablePropertyMap
       !propertyListForInitMethodHeader
       !inheritedAttributeListForImplementation
       !attributeListForImplementation
@@ -1100,7 +1120,7 @@ local routine analyzeControllerClasses
       [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
     end foreach ;
   #---
-    @classObservablePropertyMap observablePropertyMap [emptyMap] ;
+    @observablePropertyMap observablePropertyMap [emptyMap] ;
     for property in mControllerObservablePropertyList do
       [!?observablePropertyMap insertKey !property->mPropertyName !property->mType ![@stringlist emptyList]] ;
     end for ;

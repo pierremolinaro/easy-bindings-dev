@@ -90,6 +90,16 @@ rule <bindings>
     end select ;
     $.$ ;
     $identifier$ ? @lstring rootObservablePropertyName ;
+  #---
+    @bool namesCountOption ;
+    select
+      namesCountOption := false ;
+    or
+      $.$ ;
+      $count$ ;
+      namesCountOption := true ;
+    end select ;
+  #---
     @outletBindingOptionList outletBindingOptionList [emptyList] ;
     select
     or
@@ -115,6 +125,7 @@ rule <bindings>
       !observedObjectName
       !rootObservablePropertyName
       !outletBindingOptionList
+      !namesCountOption
     ] ;
   end repeat ;
 end rule ;
@@ -420,7 +431,17 @@ rule <transient_declaration>
     end select ;
     $.$ ;
     $identifier$ ? @lstring dependencyName ;
-    dependanceList += !objectName !dependencyName ;
+  #---
+    @bool namesCountOption ;
+    select
+      namesCountOption := false ;
+    or
+      $.$ ;
+      $count$ ;
+      namesCountOption := true ;
+    end select ;
+  #---
+    dependanceList += !objectName !dependencyName !namesCountOption ;
   while
     $,$ ;
   end repeat ;
@@ -580,11 +601,13 @@ rule <type_list>
       outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
       outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
       outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
+      outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
     or
       $number$ ;
       outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
       outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
       outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
+      outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
       outEasyBindingTypeList += ![@easyBindingType decimalType] ;
       outEasyBindingTypeList += ![@easyBindingType floatType] ;
       outEasyBindingTypeList += ![@easyBindingType doubleType] ;
@@ -628,12 +651,14 @@ rule <type_formatter_list>
       outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
     or
       $number$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType decimalType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType floatType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType doubleType] !requiredFormatter ;

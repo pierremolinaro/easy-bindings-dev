@@ -9,6 +9,7 @@ reader @easyBindingType ocTypeName -> @string outResult :
   when integer16Type : outResult := "SInt16" ;
   when integer32Type : outResult := "SInt32" ;
   when integer64Type : outResult := "SInt64" ;
+  when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "NSDecimal" ;
   when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
@@ -26,7 +27,7 @@ end reader ;
 
 reader @easyBindingType copyOnAssign -> @bool outResult :
   switch selfcopy
-  when boolType, integer16Type, integer32Type, integer64Type,
+  when boolType, integer16Type, integer32Type, integer64Type, uintegerType,
        floatType, doubleType, decimalType, toManyEntitiesType : outResult := false ;
   when stringType : outResult := true ;
   when fontType, imageType, colorType, dataType, dateType : outResult := false ;
@@ -35,7 +36,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-map @classObservablePropertyMap {
+map @observablePropertyMap {
   @easyBindingType mType ;
   @stringlist mPropertyDependancyList ; # Empty for an attribute
   insert insertKey error message "the '%K' attribute is already declared" ;
@@ -44,10 +45,10 @@ map @classObservablePropertyMap {
 
 #----------------------------------------------------------------------------*
 
-map @classObservableObjectMap {
+map @observableObjectMap {
   @string mObservableObjectOCName ;
   @string mIncludeFileName ; # Empty string if no file to include
-  @classObservablePropertyMap mObservableProperties ;
+  @observablePropertyMap mObservableProperties ;
   insert insertKey error message "the '%K' observable object is already declared" ;
   search searchKey error message "the '%K' observable object is not declared" ;
 }
@@ -72,8 +73,8 @@ list @transientListForImplementation {
 
 routine analyzeTransientProperties
   ??@transientList inTransientList
-  ??@classObservableObjectMap inObservableObjectMap
-  ?!@classObservablePropertyMap ioSelfObjectObservablePropertyMap
+  ??@observableObjectMap inObservableObjectMap
+  ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
   ?!@stringset ioImplementationFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
 :
@@ -82,14 +83,14 @@ routine analyzeTransientProperties
     @stringlist allPropertyDependancyList [emptyList] ;
     @directDependancyList directDependancyList [emptyList] ;
     foreach mDependencyList do
-      @classObservableObjectMap observableObjectMap := inObservableObjectMap ;
+      @observableObjectMap observableObjectMap := inObservableObjectMap ;
       [!?observableObjectMap insertKey
         !["self" nowhere]
         !"self"
         !"" # No file to include
         !ioSelfObjectObservablePropertyMap
       ] ;
-      @classObservablePropertyMap observableAttributeMap ;
+      @observablePropertyMap observableAttributeMap ;
       @string observableObjectOCName ;
       @string includeFileName ;
       [observableObjectMap searchKey !mObjectName ?observableObjectOCName ?includeFileName ?observableAttributeMap] ;
@@ -97,7 +98,17 @@ routine analyzeTransientProperties
       @easyBindingType type ;
       @stringlist propertyDependancyList ;
       [observableAttributeMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
-      directDependancyList += !type !observableObjectOCName !mPropertyName->string ;
+      @string observableKeyPath := mPropertyName->string ;
+    #--- count option ?
+      if mNamesCountOption then
+        if type == [@easyBindingType toManyEntitiesType] then
+          observableKeyPath .= ".@count" ;
+          type := [@easyBindingType uintegerType] ;
+        else
+          error mPropertyName: "the 'count' path is only allowed for to-many relationships" ;
+        end if ;
+      end if ;
+      directDependancyList += !type !observableObjectOCName !observableKeyPath ;
       allPropertyDependancyList .= propertyDependancyList ;
     end foreach ;
     outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
@@ -121,7 +132,8 @@ function generateTransientFunctionDeclarations
     outResult .= [mType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
     foreach mDependencyList
     do
-      outResult .= "    " . [mMasterType ocTypeName] . " in" . [mMasterPropertyName stringByCapitalizingFirstCharacter] ;
+      outResult .= "    " . [mMasterType ocTypeName]
+      . " in" . [[mMasterPropertyName stringByReplacingStringByString !".@" !"_"] stringByCapitalizingFirstCharacter] ;
     between
       outResult .= ",\n" ;
     end foreach ;
@@ -229,7 +241,7 @@ function generateTransientImplementation
     "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
     "  return compute_" . inKindName . "_" . mTransientName . " (" ;
     foreach mDependencyList
-    do outResult .= mMasterObjectName . "." . mMasterPropertyName ;
+    do outResult .= mMasterObjectName . "." . [mMasterPropertyName stringByReplacingStringByString !"@" !""] ;
     between outResult .= ", " ;
     end foreach ;
     outResult .= ")" ;

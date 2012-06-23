@@ -8,6 +8,7 @@ reader @easyBindingType customGetterMethod -> @string outResult :
   switch selfcopy
   when boolType : outResult := "boolValue" ;
   when integer16Type, integer32Type, integer64Type : outResult := "intValue" ;
+  when uintegerType : outResult := "unsignedIntegerValue" ;
   when floatType : outResult := "floatValue" ;
   when doubleType : outResult := "doubleValue" ;
   when stringType, fontType, imageType, toManyEntitiesType,
@@ -23,6 +24,7 @@ reader @easyBindingType customSetterTransformer -> @string outResult :
   when integer16Type : outResult := "[NSNumber numberWithInt:inValue]" ;
   when integer32Type : outResult := "[NSNumber numberWithInt:inValue]" ;
   when integer64Type : outResult := "[NSNumber numberWithInteger:inValue]" ;
+  when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
   when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
   when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
   when stringType, fontType, imageType, colorType,
@@ -37,6 +39,7 @@ reader @easyBindingType isClass -> @bool outResult :
   switch selfcopy
   when boolType, decimalType,
        integer16Type, integer32Type, integer64Type,
+       uintegerType,
        floatType, doubleType : outResult := false ;
   when stringType, fontType, imageType, toManyEntitiesType,
        colorType, dataType, dateType : outResult := true ;
@@ -66,6 +69,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@2stringlist TO_MANY_RELATIONSHIPS
   ;
   
   template entityImplementation "entity.m.gTemplate"
@@ -76,6 +80,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
     ?@stringset INCLUSION_SET
+    ?@2stringlist TO_MANY_RELATIONSHIPS
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -109,7 +114,7 @@ reader @easyBindingType typeForEntityDescription -> @string outResult :
   when stringType : outResult := "NSStringAttributeType" ;
   when dataType, colorType : outResult := "NSBinaryDataAttributeType" ;
   when dateType : outResult := "NSDateAttributeType" ;
-  when fontType, imageType, toManyEntitiesType : outResult := "??" ;
+  when fontType, imageType, toManyEntitiesType, uintegerType : outResult := "??" ;
   end switch ;
 end reader ;
 
@@ -118,7 +123,7 @@ end reader ;
 reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
   switch selfcopy
   when boolType,
-       integer16Type, integer32Type, integer64Type,
+       integer16Type, integer32Type, integer64Type, uintegerType,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ; 
@@ -131,7 +136,7 @@ end reader ;
 reader @easyBindingType attributeValueEncoder -> @string outResult :
   switch selfcopy
   when boolType,
-       integer16Type, integer32Type, integer64Type,
+       integer16Type, integer32Type, integer64Type, uintegerType,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ;
@@ -143,7 +148,7 @@ end reader ;
 
 reader @easyBindingType attributeValueDecoder -> @string outResult :
   switch selfcopy
-  when boolType, toManyEntitiesType,
+  when boolType, toManyEntitiesType, uintegerType,
        integer16Type, integer32Type, integer64Type,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
@@ -181,6 +186,7 @@ routine generateEntityCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
+        !mToManyRelationshipList
       ] ;
       [@string generateFile
         !inOutputDirectory
@@ -200,6 +206,7 @@ routine generateEntityCode
         !mAttributeListForInitMethodHeader
         !mInheritedAttributeListForImplementation
         !mImplementationFileInclusionSet
+        !mToManyRelationshipList
       ] ;
       [@string generateFile
         !inOutputDirectory

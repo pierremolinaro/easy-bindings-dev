@@ -5,6 +5,7 @@ semantics abstractSyntaxTree :
 
 enum @easyBindingType {
  boolType, integer16Type, integer32Type, integer64Type,
+ uintegerType,
  decimalType, floatType, doubleType,
  stringType, dataType, dateType,
  fontType, imageType, colorType, toManyEntitiesType
@@ -19,6 +20,7 @@ reader @easyBindingType ebTypeName -> @string outResult :
   when integer16Type : outResult := "integer16" ;
   when integer32Type : outResult := "integer32" ;
   when integer64Type : outResult := "integer64" ;
+  when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "decimal" ;
   when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
@@ -28,7 +30,7 @@ reader @easyBindingType ebTypeName -> @string outResult :
   when fontType : outResult := "NSFont" ;
   when imageType : outResult := "NSImage" ;
   when colorType : outResult := "NSColor" ;
-  when toManyEntitiesType : outResult := "??" ;
+  when toManyEntitiesType : outResult := "NSSet" ;
   end switch ;
 end reader ;
 
@@ -64,6 +66,7 @@ list @relationshipList {
 list @dependanceList {
   @lstring mObjectName ;
   @lstring mPropertyName ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
@@ -114,6 +117,7 @@ class @regularBinding extends @abstractBinding {
   @lstring mObservedObjectName ;
   @lstring mObservableAttributeName ;
   @outletBindingOptionList mOutletBindingOptionList ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
