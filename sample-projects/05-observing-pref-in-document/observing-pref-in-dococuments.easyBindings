@@ -1,0 +1,25 @@
+entity MyRootEntity class MyEntityClass {
+  attribute NSString docString default "doc string" ;
+}
+
+#--------------------------------------------------------------*
+
+preferences PMPrefs {
+  attribute NSString myPrefString default "pref string" ;
+  outlet NSTextField myPrefStringTextField $value self.myPrefString ;
+  transient NSString prefTransientString dependsFrom self.myPrefString ;
+}
+
+#--------------------------------------------------------------*
+
+document PMDocument root MyRootEntity {
+  outlet NSTextField docStringTextField $value root.docString ;
+  outlet NSTextField prefStringTextField $value PMPrefs.myPrefString ;
+  outlet NSTextField prefTransientStringTextField $value PMPrefs.prefTransientString ;
+  transient NSString transientConcatString dependsFrom root.docString, PMPrefs.myPrefString, PMPrefs.prefTransientString ;
+  outlet NSTextField transientConcatStringTextField $value self.transientConcatString ;
+}
+
+#--------------------------------------------------------------*
+
+end

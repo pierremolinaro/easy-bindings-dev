@@ -4,7 +4,11 @@
 #import "easy-bindings-utilities.h"
 %if ([ACTION_LIST length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %#import "%!DOCUMENT_NAME%-computations.h"\n%
-end if%
+end if
+foreach INCLUSION_SET do
+  %#import "%!key%.h"\n%
+end foreach
+%
 //----------------------------------------------------------------------------*
 
 @implementation %!DOCUMENT_NAME%

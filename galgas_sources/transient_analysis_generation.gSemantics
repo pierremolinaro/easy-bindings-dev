@@ -46,6 +46,7 @@ map @classObservablePropertyMap {
 
 map @classObservableObjectMap {
   @string mObservableObjectOCName ;
+  @string mIncludeFileName ; # Empty string if no file to include
   @classObservablePropertyMap mObservableProperties ;
   insert insertKey error message "the '%K' observable object is already declared" ;
   search searchKey error message "the '%K' observable object is not declared" ;
@@ -73,6 +74,7 @@ routine analyzeTransientProperties
   ??@transientList inTransientList
   ??@classObservableObjectMap inObservableObjectMap
   ?!@classObservablePropertyMap ioSelfObjectObservablePropertyMap
+  ?!@stringset ioImplementationFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
 :
   outTransientListForImplementation := [@transientListForImplementation emptyList] ;
@@ -84,11 +86,14 @@ routine analyzeTransientProperties
       [!?observableObjectMap insertKey
         !["self" nowhere]
         !"self"
+        !"" # No file to include
         !ioSelfObjectObservablePropertyMap
       ] ;
       @classObservablePropertyMap observableAttributeMap ;
       @string observableObjectOCName ;
-      [observableObjectMap searchKey !mObjectName ?observableObjectOCName ?observableAttributeMap] ;
+      @string includeFileName ;
+      [observableObjectMap searchKey !mObjectName ?observableObjectOCName ?includeFileName ?observableAttributeMap] ;
+      ioImplementationFileInclusionSet += !includeFileName ;
       @easyBindingType type ;
       @stringlist propertyDependancyList ;
       [observableAttributeMap searchKey !mPropertyName ?type ?propertyDependancyList] ;

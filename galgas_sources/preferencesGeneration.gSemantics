@@ -53,6 +53,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
+    ?@stringset INCLUSION_SET
   ;
   
   template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
@@ -106,6 +107,7 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mActionList
+        !mImplementationFileInclusionSet
       ] ;
       [@string generateFile
         !inOutputDirectory

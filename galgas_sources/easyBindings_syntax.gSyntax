@@ -85,6 +85,8 @@ rule <bindings>
     or
       $self$ ;
       observedObjectName := [@lstring new !"self" !here] ;
+    or
+      $Identifier$ ? observedObjectName ;
     end select ;
     $.$ ;
     $identifier$ ? @lstring rootObservablePropertyName ;
@@ -409,7 +411,12 @@ rule <transient_declaration>
       $self$ ;
       objectName := [@lstring new !"self" !here] ;
     or
+      $root$ ;
+      objectName := [@lstring new !"root" !here] ;
+    or
       $identifier$ ?objectName ;
+    or
+      $Identifier$ ?objectName ;
     end select ;
     $.$ ;
     $identifier$ ? @lstring dependencyName ;

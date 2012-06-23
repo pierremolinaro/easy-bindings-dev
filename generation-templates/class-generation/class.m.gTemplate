@@ -3,6 +3,9 @@
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!CLASS_NAME%-transient-computations.h"\n%
 end if
+foreach INCLUSION_SET do
+  %#import "%!key%.h"\n%
+end foreach
 %
 //----------------------------------------------------------------------------*
 
