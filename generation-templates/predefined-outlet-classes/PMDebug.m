@@ -1,6 +1,7 @@
 //----------------------------------------------------------------------------*
 
 #import "PMDebug.h"
+#import "easy-bindings-utilities.h"
 
 //----------------------------------------------------------------------------*
 
@@ -9,6 +10,13 @@ static PMDebug * gDebugObject ;
 //----------------------------------------------------------------------------*
 
 void macroNoteObjectAllocation (NSObject * inObject) {
+  if (nil == gDebugObject) {
+    gDebugObject = [PMDebug new] ;
+    const BOOL ok = [NSBundle loadNibNamed:@"PMDebug" owner:gDebugObject] ;
+    if (! ok) {
+      presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMDebug' nib file") ;
+    }
+  }
   [gDebugObject pmNoteObjectAllocation:inObject] ;
 }
 
@@ -25,16 +33,17 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 
 //----------------------------------------------------------------------------*
 
-@synthesize mAllocationStatsWindowVisible ;
+@synthesize mAllocationStatsWindowVisibleAtLaunch ;
 @synthesize mAllocatedObjectCount ;
+@synthesize mTotalAllocatedObjectCount ;
+@synthesize mDisplayFilter ;
 
 //----------------------------------------------------------------------------*
 
 - (id) init {
-//  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
+  //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
   self = [super init] ;
   if (self) {
-    gDebugObject = self ;
     mAllocatedObjectCountByClass = [NSCountedSet new] ;
     mTotalAllocatedObjectCountByClass = [NSCountedSet new] ;
   //---
@@ -44,24 +53,23 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
       name:NSApplicationWillTerminateNotification
       object:nil
     ] ;
+  //---
+    [[NSNotificationCenter defaultCenter]
+      addObserver:self
+      selector:@selector(applicationDidFinishLaunching:)
+      name:NSApplicationDidFinishLaunchingNotification
+      object:nil
+    ] ;
   }
   return self ;
 }
 
 //----------------------------------------------------------------------------*
-
-- (void) setAllocationStatsWindowVisibility {
-  if (self.mAllocationStatsWindowVisible) {
-    [mAllocationStatsWindow makeKeyAndOrderFront:nil] ;
-  }else{
-    [mAllocationStatsWindow orderOut:nil] ;
-  }
-}
-
+//    applicationDidFinishLaunching:                                          *
 //----------------------------------------------------------------------------*
 
-- (void) awakeFromNib {
-  // NSLog (@"%s %p %p %p", __PRETTY_FUNCTION__, self, mDebugMenu, [NSApp mainMenu]) ;
+- (void) applicationDidFinishLaunching: (NSNotification *) inNotification {
+  // NSLog (@"%s %p", __PRETTY_FUNCTION__,  [NSApp mainMenu]) ;
   NSMenuItem * item = [[NSMenuItem alloc]
     initWithTitle:@"Schmutrz"
     action:NULL
@@ -69,25 +77,50 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   ] ;
   [item setSubmenu:mDebugMenu] ;
   [[NSApp mainMenu] addItem:item] ;
+}
+
+//----------------------------------------------------------------------------*
+//    awakeFromNib                                                            *
+//----------------------------------------------------------------------------*
+
+- (void) awakeFromNib {
+  // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
 //--- Allocation Window visibility
-  self.mAllocationStatsWindowVisible = [[NSUserDefaults standardUserDefaults]
+  self.mAllocationStatsWindowVisibleAtLaunch = [[NSUserDefaults standardUserDefaults]
     boolForKey:@"PMDebug:allocationStatsWindowVisible"
   ] ;
-  [self setAllocationStatsWindowVisibility] ;
-//--- Allocation count text field
-  [mAllocatedObjectCountTextField
+  self.mDisplayFilter = [[NSUserDefaults standardUserDefaults]
+    integerForKey:@"PMDebug:allocationStatsDisplayFilter"
+  ] ;
+//--- Allocation stats window visibility at Launch
+  if (self.mAllocationStatsWindowVisibleAtLaunch) {
+    [mAllocationStatsWindow makeKeyAndOrderFront:nil] ;
+  }
+//--- Bindings
+  [mAllocationStatsWindowVisibleAtLaunchCheckbox
+    bind:@"value"
+    toObject:self
+    withKeyPath:@"mAllocationStatsWindowVisibleAtLaunch"
+    options:nil
+  ] ;
+  [mCurrentlyAllocatedObjectCountTextField
     bind:@"value"
     toObject:self
     withKeyPath:@"mAllocatedObjectCount"
     options:nil
   ] ;
-}
-
-//----------------------------------------------------------------------------*
-
-- (IBAction) allocationStatsAction:(id)sender {
-  self.mAllocationStatsWindowVisible = ! self.mAllocationStatsWindowVisible ;
-  [self setAllocationStatsWindowVisibility] ;
+  [mTotalAllocatedObjectCountTextField
+    bind:@"value"
+    toObject:self
+    withKeyPath:@"mTotalAllocatedObjectCount"
+    options:nil
+  ] ;
+  [mDisplayFilterPopUpButton
+    bind:@"selectedIndex"
+    toObject:self
+    withKeyPath:@"mDisplayFilter"
+    options:nil
+  ] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -95,10 +128,16 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 //----------------------------------------------------------------------------*
 
 - (void) applicationWillTerminateAction: (NSNotification *) inNotification {
+  // NSLog (@"%s", __PRETTY_FUNCTION__) ;
+  // NSLog (@"%d", self.mAllocationStatsWindowVisibleAtLaunch) ;
   NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
   [ud
-    setBool:self.mAllocationStatsWindowVisible
+    setBool:self.mAllocationStatsWindowVisibleAtLaunch
     forKey:@"PMDebug:allocationStatsWindowVisible"
+  ] ;
+  [ud
+    setInteger:self.mDisplayFilter
+    forKey:@"PMDebug:allocationStatsDisplayFilter"
   ] ;
 }
 
@@ -119,12 +158,25 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   }
 }
 
+
+//----------------------------------------------------------------------------*
+//    didChangeValueForKey:                                                   *
+//----------------------------------------------------------------------------*
+
+- (void) didChangeValueForKey: (NSString *) inKey {
+  [super didChangeValueForKey:inKey] ;
+  if ([inKey isEqualToString:@"mDisplayFilter"]) {
+    [self triggerRefreshAllocationStatsDisplay] ;
+  }
+}
+
 //----------------------------------------------------------------------------*
 //    pmNoteObjectAllocation:                                                 *
 //----------------------------------------------------------------------------*
 
 - (void) pmNoteObjectAllocation: (NSObject *) inObject {
   mLiveAllocatedObjectCount ++ ;
+  mLiveTotalObjectCount ++ ;
   NSString * objectClassName = inObject.className ;
   //NSLog (@"objectClassName %@", objectClassName) ;
   [mAllocatedObjectCountByClass addObject:objectClassName] ;
@@ -152,17 +204,21 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   mRefreshStatsHasTriggered = NO ;
 //---
   self.mAllocatedObjectCount = mLiveAllocatedObjectCount ;
+  self.mTotalAllocatedObjectCount = mLiveTotalObjectCount ;
 //---
   NSMutableArray * array = [NSMutableArray new] ;
   for (NSString * className in [mTotalAllocatedObjectCountByClass.allObjects sortedArrayUsingSelector:@selector(compare:)]) {
-    [array addObject: [NSDictionary
-      dictionaryWithObjectsAndKeys:
-        className, @"classname",
-        [NSNumber numberWithUnsignedInteger:[mTotalAllocatedObjectCountByClass countForObject:className]], @"live",
-        [NSNumber numberWithUnsignedInteger:[mAllocatedObjectCountByClass countForObject:className]], @"allCount",
-        nil
-      ]
-    ] ;
+    const NSUInteger currentlyAllocated = [mAllocatedObjectCountByClass countForObject:className] ;
+    if ((currentlyAllocated != 0) || (self.mDisplayFilter == 0)) {
+      [array addObject: [NSDictionary
+        dictionaryWithObjectsAndKeys:
+          className, @"classname",
+          [NSNumber numberWithUnsignedInteger:[mTotalAllocatedObjectCountByClass countForObject:className]], @"allCount",
+          [NSNumber numberWithUnsignedInteger:currentlyAllocated], @"live",
+          nil
+        ]
+      ] ;
+    }
   }
 //---
   mAllocationStatsDataSource = array ;
