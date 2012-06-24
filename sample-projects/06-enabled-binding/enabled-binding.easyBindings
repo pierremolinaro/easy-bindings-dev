@@ -13,6 +13,7 @@ preferences MyPrefs {
 
 document PMDocument root MyRootEntity {
   outlet NSButton docBoolCheckBox $value root.docBool ;
+  outlet NSButton myButton $enabled ! root.docBool & MyPrefs.prefBoolean ;
 }
 
 #--------------------------------------------------------------*
