@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
+		CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCAA159725BF00F6B52D /* InfoPlist.strings */; };
+		CF86CCAE159725BF00F6B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCAD159725BF00F6B52D /* main.m */; };
+		CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB0159725BF00F6B52D /* Credits.rtf */; };
+		CF86CCB5159725BF00F6B52D /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCB4159725BF00F6B52D /* PMDocument.m */; };
+		CF86CCB8159725BF00F6B52D /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB6159725BF00F6B52D /* PMDocument.xib */; };
+		CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB9159725BF00F6B52D /* MainMenu.xib */; };
+		CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */; };
+		CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC81597272200F6B52D /* managed-object-model.m */; };
+		CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCA1597272200F6B52D /* MyPrefs.m */; };
+		CF86CCDA1597272200F6B52D /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */; };
+		CF86CCDB1597272200F6B52D /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */; };
+		CF86CCDC1597272200F6B52D /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */; };
+		CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD41597272200F6B52D /* PMDebug.m */; };
+		CF86CCDF1597272200F6B52D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCD51597272200F6B52D /* PMDebug.xib */; };
+		CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* RootEntityClass.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF86CCA1159725BF00F6B52D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF86CCA4159725BF00F6B52D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF86CCA5159725BF00F6B52D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF86CCA6159725BF00F6B52D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "06-enabled-binding-Info.plist"; sourceTree = "<group>"; };
+		CF86CCAB159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF86CCAD159725BF00F6B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "06-enabled-binding-Prefix.pch"; sourceTree = "<group>"; };
+		CF86CCB1159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF86CCB3159725BF00F6B52D /* PMDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMDocument.h; sourceTree = "<group>"; };
+		CF86CCB4159725BF00F6B52D /* PMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMDocument.m; sourceTree = "<group>"; };
+		CF86CCB7159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CF86CCBA159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF86CCC41597271900F6B52D /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
+		CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
+		CF86CCC71597272200F6B52D /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
+		CF86CCC81597272200F6B52D /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
+		CF86CCC91597272200F6B52D /* MyPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPrefs.h; sourceTree = "<group>"; };
+		CF86CCCA1597272200F6B52D /* MyPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs.m; sourceTree = "<group>"; };
+		CF86CCCB1597272200F6B52D /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
+		CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
+		CF86CCCD1597272200F6B52D /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
+		CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
+		CF86CCCF1597272200F6B52D /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
+		CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
+		CF86CCD31597272200F6B52D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
+		CF86CCD41597272200F6B52D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
+		CF86CCD51597272200F6B52D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
+		CF86CCD61597272200F6B52D /* RootEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootEntityClass.h; sourceTree = "<group>"; };
+		CF86CCD71597272200F6B52D /* RootEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootEntityClass.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF86CC9A159725BF00F6B52D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF86CC92159725BE00F6B52D = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA7159725BF00F6B52D /* 06-enabled-binding */,
+				CF86CCA0159725BF00F6B52D /* Frameworks */,
+				CF86CC9E159725BF00F6B52D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF86CC9E159725BF00F6B52D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF86CCA0159725BF00F6B52D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA1159725BF00F6B52D /* Cocoa.framework */,
+				CF86CCA3159725BF00F6B52D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF86CCA3159725BF00F6B52D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA4159725BF00F6B52D /* AppKit.framework */,
+				CF86CCA5159725BF00F6B52D /* CoreData.framework */,
+				CF86CCA6159725BF00F6B52D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCC71597272200F6B52D /* managed-object-model.h */,
+				CF86CCC81597272200F6B52D /* managed-object-model.m */,
+				CF86CCC91597272200F6B52D /* MyPrefs.h */,
+				CF86CCCA1597272200F6B52D /* MyPrefs.m */,
+				CF86CCCB1597272200F6B52D /* PMAbstractManagedObject.h */,
+				CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */,
+				CF86CCCD1597272200F6B52D /* PMAbstractPersistentDocument.h */,
+				CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */,
+				CF86CCCF1597272200F6B52D /* PMAbstractPreferences.h */,
+				CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */,
+				CF86CCD31597272200F6B52D /* PMDebug.h */,
+				CF86CCD41597272200F6B52D /* PMDebug.m */,
+				CF86CCD51597272200F6B52D /* PMDebug.xib */,
+				CF86CCD61597272200F6B52D /* RootEntityClass.h */,
+				CF86CCD71597272200F6B52D /* RootEntityClass.m */,
+				CF86CCC41597271900F6B52D /* easy-bindings-utilities.h */,
+				CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */,
+				CF86CCB3159725BF00F6B52D /* PMDocument.h */,
+				CF86CCB4159725BF00F6B52D /* PMDocument.m */,
+				CF86CCB6159725BF00F6B52D /* PMDocument.xib */,
+				CF86CCB9159725BF00F6B52D /* MainMenu.xib */,
+				CF86CCA8159725BF00F6B52D /* Supporting Files */,
+			);
+			path = "06-enabled-binding";
+			sourceTree = "<group>";
+		};
+		CF86CCA8159725BF00F6B52D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */,
+				CF86CCAA159725BF00F6B52D /* InfoPlist.strings */,
+				CF86CCAD159725BF00F6B52D /* main.m */,
+				CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */,
+				CF86CCB0159725BF00F6B52D /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF86CC9C159725BF00F6B52D /* 06-enabled-binding */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */;
+			buildPhases = (
+				CF86CC99159725BF00F6B52D /* Sources */,
+				CF86CC9A159725BF00F6B52D /* Frameworks */,
+				CF86CC9B159725BF00F6B52D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "06-enabled-binding";
+			productName = "06-enabled-binding";
+			productReference = CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF86CC94159725BE00F6B52D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "06-enabled-binding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF86CC92159725BE00F6B52D;
+			productRefGroup = CF86CC9E159725BF00F6B52D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF86CC9C159725BF00F6B52D /* 06-enabled-binding */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF86CC9B159725BF00F6B52D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */,
+				CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */,
+				CF86CCB8159725BF00F6B52D /* PMDocument.xib in Resources */,
+				CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */,
+				CF86CCDF1597272200F6B52D /* PMDebug.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF86CC99159725BF00F6B52D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF86CCAE159725BF00F6B52D /* main.m in Sources */,
+				CF86CCB5159725BF00F6B52D /* PMDocument.m in Sources */,
+				CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */,
+				CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */,
+				CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */,
+				CF86CCDA1597272200F6B52D /* PMAbstractManagedObject.m in Sources */,
+				CF86CCDB1597272200F6B52D /* PMAbstractPersistentDocument.m in Sources */,
+				CF86CCDC1597272200F6B52D /* PMAbstractPreferences.m in Sources */,
+				CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */,
+				CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF86CCAA159725BF00F6B52D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCAB159725BF00F6B52D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF86CCB0159725BF00F6B52D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCB1159725BF00F6B52D /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF86CCB6159725BF00F6B52D /* PMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCB7159725BF00F6B52D /* en */,
+			);
+			name = PMDocument.xib;
+			sourceTree = "<group>";
+		};
+		CF86CCB9159725BF00F6B52D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCBA159725BF00F6B52D /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF86CCBF159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF86CCC0159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF86CCC2159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
+				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF86CCC3159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
+				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "06-enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCBF159725BF00F6B52D /* Debug */,
+				CF86CCC0159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCC2159725BF00F6B52D /* Debug */,
+				CF86CCC3159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF86CC94159725BE00F6B52D /* Project object */;
+}

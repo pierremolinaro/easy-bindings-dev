@@ -241,6 +241,14 @@ extern outletClass NSButton {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
+  $value : integer, bool {
+    NSAllowsEditingMultipleValuesSelectionBindingOption : bool ;
+    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+    NSConditionallySetsEnabledBindingOption : bool ;
+    NSConditionallySetsHiddenBindingOption : bool ;
+    NSRaisesForNotApplicableKeysBindingOption : bool ;
+    NSValidatesImmediatelyBindingOption : bool ;
+  }
 }
 
 extern outletClass NSButtonCell {

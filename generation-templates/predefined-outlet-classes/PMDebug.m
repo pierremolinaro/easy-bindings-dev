@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------------*
 
 #import "PMDebug.h"
-#import "easy-bindings-utilities.h"
 
 //----------------------------------------------------------------------------*
 
@@ -10,13 +9,6 @@ static PMDebug * gDebugObject ;
 //----------------------------------------------------------------------------*
 
 void macroNoteObjectAllocation (NSObject * inObject) {
-  if (nil == gDebugObject) {
-    gDebugObject = [PMDebug new] ;
-    const BOOL ok = [NSBundle loadNibNamed:@"PMDebug" owner:gDebugObject] ;
-    if (! ok) {
-      presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMDebug' nib file") ;
-    }
-  }
   [gDebugObject pmNoteObjectAllocation:inObject] ;
 }
 
@@ -42,6 +34,7 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
   self = [super init] ;
   if (self) {
+    gDebugObject = self ;
     mAllocatedObjectCountByClass = [NSCountedSet new] ;
     mTotalAllocatedObjectCountByClass = [NSCountedSet new] ;
   //---

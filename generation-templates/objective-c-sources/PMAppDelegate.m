@@ -10,8 +10,17 @@
 
 //----------------------------------------------------------------------------*
 
+- (id) init {
+  self = [super init] ;
+  if (self) {
+    mDebugObject = [PMDebug new] ;
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
-  mDebugObject = [PMDebug new] ;
   const BOOL ok = [NSBundle loadNibNamed:@"PMDebug" owner:mDebugObject] ;
   if (! ok) {
     presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMDebug' nib file") ;
