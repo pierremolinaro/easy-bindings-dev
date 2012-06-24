@@ -122,6 +122,22 @@ class @regularBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
+list @multiValuedBindingList {
+  @bool mNegate ;
+  @lstring mBoundObjectName ;
+  @lstring mBoundPropertyName ;
+  @outletBindingOptionList mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @multiValuedBinding extends @abstractBinding {
+  @lstring mBindingName ;
+  @multiValuedBindingList mMultiValuedBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @runBinding extends @abstractBinding {
   @lstring mTargetName ;
   @lstring mActionName ;

@@ -45,6 +45,122 @@ rule <bindings>
   outOutletBindingList := [@bindingList emptyList] ;
   repeat
   while
+    @lstring bindingName ;
+    select
+      $enabled$ ;
+      bindingName := [@lstring new !"enabled" !here] ;
+    or
+      $editable$ ;
+      bindingName := [@lstring new !"editable" !here] ;
+    end select ;
+    @multiValuedBindingList multiValuedBindingList [emptyList] ;
+    repeat 
+      @bool negate ;
+      select
+        negate := false ;
+      or
+        $!$ ;
+        negate := true ;
+      end select ;
+      @lstring mBoundObject ;
+      select
+        $self$ ;
+        mBoundObject := [@lstring new !"self" !here] ;
+      or
+        $root$ ;
+        mBoundObject := [@lstring new !"root" !here] ;
+      or
+        $identifier$ ?mBoundObject ;
+      or
+        $Identifier$ ?mBoundObject ;
+      end select ;
+      $.$ ;
+      $identifier$ ?@lstring boundPropertyName ;
+    #---
+      @outletBindingOptionList outletBindingOptionList [emptyList] ;
+      select
+      or
+        ${$ ;
+        repeat
+          $Identifier$ ? @lstring optionName ;
+          $:$ ;
+          @easyBindingTypeList correspondingAcceptableTypes ;
+          @string defaultValueObjectiveCObject ;
+          <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
+          outletBindingOptionList +=
+            !optionName
+            !correspondingAcceptableTypes
+            !defaultValueObjectiveCObject
+          ;
+        while
+          $,$ ;
+        end repeat ;
+        $}$ ;
+      end select ;
+      multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
+    while
+      $&$ ;
+    end repeat ;
+    outOutletBindingList += ![@multiValuedBinding new
+      !bindingName
+      !multiValuedBindingList
+    ] ;
+  while
+    $hidden$ ;
+    const @lstring bindingName [new !"hidden" !here] ;
+    @multiValuedBindingList multiValuedBindingList [emptyList] ;
+    repeat 
+      @bool negate ;
+      select
+        negate := false ;
+      or
+        $!$ ;
+        negate := true ;
+      end select ;
+      @lstring mBoundObject ;
+      select
+        $self$ ;
+        mBoundObject := [@lstring new !"self" !here] ;
+      or
+        $root$ ;
+        mBoundObject := [@lstring new !"root" !here] ;
+      or
+        $identifier$ ?mBoundObject ;
+      or
+        $Identifier$ ?mBoundObject ;
+      end select ;
+      $.$ ;
+      $identifier$ ?@lstring boundPropertyName ;
+    #---
+      @outletBindingOptionList outletBindingOptionList [emptyList] ;
+      select
+      or
+        ${$ ;
+        repeat
+          $Identifier$ ? @lstring optionName ;
+          $:$ ;
+          @easyBindingTypeList correspondingAcceptableTypes ;
+          @string defaultValueObjectiveCObject ;
+          <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
+          outletBindingOptionList +=
+            !optionName
+            !correspondingAcceptableTypes
+            !defaultValueObjectiveCObject
+          ;
+        while
+          $,$ ;
+        end repeat ;
+        $}$ ;
+      end select ;
+      multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
+    while
+      $|$ ;
+    end repeat ;
+    outOutletBindingList += ![@multiValuedBinding new
+      !bindingName
+      !multiValuedBindingList
+    ] ;
+  while
     $run$ ;
     @lstring targetName ;
     select
@@ -85,6 +201,8 @@ rule <bindings>
     or
       $self$ ;
       observedObjectName := [@lstring new !"self" !here] ;
+    or
+      $identifier$ ? observedObjectName ;
     or
       $Identifier$ ? observedObjectName ;
     end select ;
@@ -708,6 +826,9 @@ rule <outlet_class_declaration>
       $hidden$ ;
       bindingName := [@lstring new !"hidden" !here] ;
     or
+      $editable$ ;
+      bindingName := [@lstring new !"editable" !here] ;
+    or
       $enabled$ ;
       bindingName := [@lstring new !"enabled" !here] ;
     end select ;
@@ -771,6 +892,9 @@ rule <controller_class_declaration>
     or
       $hidden$ ;
       bindingName := [@lstring new !"hidden" !here] ;
+    or
+      $editable$ ;
+      bindingName := [@lstring new !"editable" !here] ;
     or
       $enabled$ ;
       bindingName := [@lstring new !"enabled" !here] ;
