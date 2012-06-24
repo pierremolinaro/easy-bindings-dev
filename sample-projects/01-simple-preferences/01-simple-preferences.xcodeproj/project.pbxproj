@@ -12,7 +12,6 @@
 		CF721A8B1593572A008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721A891593572A008662EA /* InfoPlist.strings */; };
 		CF721A8D1593572A008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721A8C1593572A008662EA /* main.m */; };
 		CF721A911593572A008662EA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF721A8F1593572A008662EA /* Credits.rtf */; };
-		CF721A941593572A008662EA /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721A931593572A008662EA /* PMAppDelegate.m */; };
 		CF721A971593572A008662EA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF721A951593572A008662EA /* MainMenu.xib */; };
 		CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA6159357CB008662EA /* easy-bindings-utilities.m */; };
 		CF721AAC159357CB008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA8159357CB008662EA /* managed-object-model.m */; };
@@ -36,8 +35,6 @@
 		CF721A8C1593572A008662EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF721A8E1593572A008662EA /* 01-simple-preferences-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "01-simple-preferences-Prefix.pch"; sourceTree = "<group>"; };
 		CF721A901593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		CF721A921593572A008662EA /* PMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
-		CF721A931593572A008662EA /* PMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
 		CF721A961593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF721AA5159357CB008662EA /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CF721AA6159357CB008662EA /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
@@ -118,8 +115,6 @@
 				CF721AA8159357CB008662EA /* managed-object-model.m */,
 				CF721AA9159357CB008662EA /* PMPrefs.h */,
 				CF721AAA159357CB008662EA /* PMPrefs.m */,
-				CF721A921593572A008662EA /* PMAppDelegate.h */,
-				CF721A931593572A008662EA /* PMAppDelegate.m */,
 				CF721A951593572A008662EA /* MainMenu.xib */,
 				CF721A871593572A008662EA /* Supporting Files */,
 			);
@@ -205,7 +200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF721A8D1593572A008662EA /* main.m in Sources */,
-				CF721A941593572A008662EA /* PMAppDelegate.m in Sources */,
 				CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */,
 				CF721AAC159357CB008662EA /* managed-object-model.m in Sources */,
 				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,

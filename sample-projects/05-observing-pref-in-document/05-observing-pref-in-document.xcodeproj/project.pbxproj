@@ -23,7 +23,6 @@
 		CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */; };
 		CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */; };
 		CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627ED1595B7E500BF70CD /* PMPrefs.m */; };
-		CF9D9A8B15963FF1006D876D /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8715963FF1006D876D /* PMAppDelegate.m */; };
 		CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8915963FF1006D876D /* PMDebug.m */; };
 		CF9D9A8D15963FF1006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A8A15963FF1006D876D /* PMDebug.xib */; };
 /* End PBXBuildFile section */
@@ -61,8 +60,6 @@
 		CF4627EB1595B7E500BF70CD /* PMPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMPrefs-computations.h"; sourceTree = "<group>"; };
 		CF4627EC1595B7E500BF70CD /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
 		CF4627ED1595B7E500BF70CD /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
-		CF9D9A8615963FF1006D876D /* PMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
-		CF9D9A8715963FF1006D876D /* PMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
 		CF9D9A8815963FF1006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF9D9A8915963FF1006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A8A15963FF1006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
@@ -119,8 +116,6 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
-				CF9D9A8615963FF1006D876D /* PMAppDelegate.h */,
-				CF9D9A8715963FF1006D876D /* PMAppDelegate.m */,
 				CF9D9A8815963FF1006D876D /* PMDebug.h */,
 				CF9D9A8915963FF1006D876D /* PMDebug.m */,
 				CF9D9A8A15963FF1006D876D /* PMDebug.xib */,
@@ -240,7 +235,6 @@
 				CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */,
 				CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */,
 				CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */,
-				CF9D9A8B15963FF1006D876D /* PMAppDelegate.m in Sources */,
 				CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

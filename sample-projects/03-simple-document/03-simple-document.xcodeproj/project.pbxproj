@@ -22,7 +22,6 @@
 		CF608133159365410021D873 /* MyRootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60812C159365410021D873 /* MyRootEntityClass.m */; };
 		CF68C39715951095008B63F1 /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C39615951095008B63F1 /* PMAbstractPersistentDocument.m */; };
 		CF68C3AF159511F0008B63F1 /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3AE159511F0008B63F1 /* PMAbstractManagedObject.m */; };
-		CF9D9A7515963D8D006D876D /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A7115963D8D006D876D /* PMAppDelegate.m */; };
 		CF9D9A7615963D8D006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A7315963D8D006D876D /* PMDebug.m */; };
 		CF9D9A7715963D8D006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A7415963D8D006D876D /* PMDebug.xib */; };
 		CFFB84201593AA95001B08B8 /* PMDocument_autreAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB841E1593AA95001B08B8 /* PMDocument_autreAction_action.m */; };
@@ -58,8 +57,6 @@
 		CF68C39615951095008B63F1 /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
 		CF68C3AD159511F0008B63F1 /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
 		CF68C3AE159511F0008B63F1 /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
-		CF9D9A7015963D8D006D876D /* PMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
-		CF9D9A7115963D8D006D876D /* PMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
 		CF9D9A7215963D8D006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF9D9A7315963D8D006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A7415963D8D006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
@@ -119,8 +116,6 @@
 		CF608100159364A90021D873 /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
-				CF9D9A7015963D8D006D876D /* PMAppDelegate.h */,
-				CF9D9A7115963D8D006D876D /* PMAppDelegate.m */,
 				CF9D9A7215963D8D006D876D /* PMDebug.h */,
 				CF9D9A7315963D8D006D876D /* PMDebug.m */,
 				CF9D9A7415963D8D006D876D /* PMDebug.xib */,
@@ -241,7 +236,6 @@
 				CFFB84211593AA95001B08B8 /* PMDocument_monAction_action.m in Sources */,
 				CF68C39715951095008B63F1 /* PMAbstractPersistentDocument.m in Sources */,
 				CF68C3AF159511F0008B63F1 /* PMAbstractManagedObject.m in Sources */,
-				CF9D9A7515963D8D006D876D /* PMAppDelegate.m in Sources */,
 				CF9D9A7615963D8D006D876D /* PMDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

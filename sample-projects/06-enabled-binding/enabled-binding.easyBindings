@@ -1,0 +1,20 @@
+entity MyRootEntity class RootEntityClass {
+  attribute bool docBool default YES ;
+}
+
+#--------------------------------------------------------------*
+
+preferences MyPrefs {
+  attribute bool prefBoolean default YES ;
+  outlet NSButton prefBoolCheckBox $value self.prefBoolean ;
+}
+
+#--------------------------------------------------------------*
+
+document PMDocument root MyRootEntity {
+  outlet NSButton docBoolCheckBox $value root.docBool ;
+}
+
+#--------------------------------------------------------------*
+
+end
