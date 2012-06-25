@@ -39,6 +39,22 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 @synthesize mDisplayFilter ;
 
 //----------------------------------------------------------------------------*
+//    pmInstallDebugMenu                                                      *
+//----------------------------------------------------------------------------*
+
+- (void) pmInstallDebugMenu {
+  NSMenuItem * item = [[NSMenuItem alloc]
+    initWithTitle:@"Schmutrz"
+    action:NULL
+    keyEquivalent:@""
+  ] ;
+  [item setSubmenu:mDebugMenu] ;
+  [[NSApp mainMenu] addItem:item] ;
+}
+
+//----------------------------------------------------------------------------*
+//    init                                                                    *
+//----------------------------------------------------------------------------*
 
 - (id) init {
   //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
@@ -54,12 +70,16 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
       object:nil
     ] ;
   //---
-    [[NSNotificationCenter defaultCenter]
-      addObserver:self
-      selector:@selector(applicationDidFinishLaunching:)
-      name:NSApplicationDidFinishLaunchingNotification
-      object:nil
-    ] ;
+    if (nil != [NSApp mainMenu]) {
+      [self pmInstallDebugMenu] ;
+    }else{
+      [[NSNotificationCenter defaultCenter]
+        addObserver:self
+        selector:@selector(applicationDidFinishLaunching:)
+        name:NSApplicationDidFinishLaunchingNotification
+        object:nil
+      ] ;
+    }
   }
   return self ;
 }
@@ -69,14 +89,7 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 //----------------------------------------------------------------------------*
 
 - (void) applicationDidFinishLaunching: (NSNotification *) inNotification {
-  // NSLog (@"%s %p", __PRETTY_FUNCTION__,  [NSApp mainMenu]) ;
-  NSMenuItem * item = [[NSMenuItem alloc]
-    initWithTitle:@"Schmutrz"
-    action:NULL
-    keyEquivalent:@""
-  ] ;
-  [item setSubmenu:mDebugMenu] ;
-  [[NSApp mainMenu] addItem:item] ;
+  [self pmInstallDebugMenu] ;
 }
 
 //----------------------------------------------------------------------------*
