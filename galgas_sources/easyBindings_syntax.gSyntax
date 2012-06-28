@@ -26,7 +26,6 @@ rule <start_symbol> !@ASTstruct outAST :
   while
     <controller_class_declaration> !?controllerClassList ;
   end repeat ;
-  $end$ ;
   outAST := [@ASTstruct new
     !classList
     !entityList
@@ -34,7 +33,9 @@ rule <start_symbol> !@ASTstruct outAST :
     !outletClassList
     !controllerClassList
     !documentDeclarationList
+    !here
   ] ;
+  $end$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*

@@ -39,6 +39,7 @@ end reader ;
 map @observablePropertyMap {
   @easyBindingType mType ;
   @stringlist mPropertyDependancyList ; # Empty for an attribute
+  @lstring mObservationDependancyKey ;
   insert insertKey error message "the '%K' attribute is already declared" ;
   search searchKey error message "the '%K' attribute is not declared" ;
 }
@@ -71,17 +72,30 @@ list @transientListForImplementation {
 
 #----------------------------------------------------------------------------*
 
+graph @transientDependencyGraph (@stringlist) {
+  insert addNode error message "the '%K' transient is already declared at %L" ;
+}
+
+#----------------------------------------------------------------------------*
+
 routine analyzeTransientProperties
+  ??@string inObervationDependencyPrefix
   ??@transientList inTransientList
   ??@observableObjectMap inObservableObjectMap
   ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
   ?!@stringset ioImplementationFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
+  ?!@transientDependencyGraph ioTransientDependencyGraph
 :
   outTransientListForImplementation := [@transientListForImplementation emptyList] ;
   foreach inTransientList do
     @stringlist allPropertyDependancyList [emptyList] ;
     @directDependancyList directDependancyList [emptyList] ;
+    const @lstring transientObservationKey [new
+      !inObervationDependencyPrefix . mTransientName
+      !mTransientName->location
+    ] ;
+    [!?ioTransientDependencyGraph addNode !transientObservationKey !transientObservationKey->string] ;
     foreach mDependencyList do
       @observableObjectMap observableObjectMap := inObservableObjectMap ;
       [!?observableObjectMap insertKey
@@ -97,7 +111,13 @@ routine analyzeTransientProperties
       ioImplementationFileInclusionSet += !includeFileName ;
       @easyBindingType type ;
       @stringlist propertyDependancyList ;
-      [observableAttributeMap searchKey !mPropertyName ?type ?propertyDependancyList] ;
+      @lstring observationDependencyKey ;
+      [observableAttributeMap searchKey
+        !mPropertyName
+        ?type
+        ?propertyDependancyList
+        ?observationDependencyKey
+      ] ;
       @string observableKeyPath := mPropertyName->string ;
     #--- count option ?
       if mNamesCountOption then
@@ -110,9 +130,18 @@ routine analyzeTransientProperties
       end if ;
       directDependancyList += !type !observableObjectOCName !observableKeyPath ;
       allPropertyDependancyList .= propertyDependancyList ;
+      [!?ioTransientDependencyGraph addArc
+        !observationDependencyKey
+        ![@lstring new !inObervationDependencyPrefix . mTransientName !mTransientName->location]
+      ] ;
     end foreach ;
     outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
-    [!?ioSelfObjectObservablePropertyMap insertKey !mTransientName !mType !allPropertyDependancyList] ;    
+    [!?ioSelfObjectObservablePropertyMap insertKey
+      !mTransientName
+      !mType
+      !allPropertyDependancyList
+      !transientObservationKey
+    ] ;    
   end foreach ;
 end routine ;
 

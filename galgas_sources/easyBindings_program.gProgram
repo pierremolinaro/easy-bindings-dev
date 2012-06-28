@@ -48,13 +48,33 @@ message "a source text file with the .easyBindings extension"
   @outletClassMap outletClassMap ;
   @documentMap documentMap ;
   @controllerClassMap controllerClassMap ;
-  semanticAnalysis !ast ?outletClassMap ?controllerClassMap ?classMap ?entityMap ?preferencesMap ?documentMap ;
+  @stringlist sortedTransientOrderedList ;
+  semanticAnalysis
+    !ast
+    ?outletClassMap
+    ?controllerClassMap
+    ?classMap
+    ?entityMap
+    ?preferencesMap
+    ?documentMap
+    ?sortedTransientOrderedList
+  ;
 #--- Code generation
   const @string sourceDir := [inSourceFile stringByDeletingLastPathComponent] ;
   generateClassCode !classMap !sourceDir ;
   generateEntityCode !entityMap !sourceDir ;
   generatePreferencesCode !preferencesMap !sourceDir ;
   generateDocumentCode !documentMap !sourceDir ;
+#--- Output dependency order definition file
+  @string dependencyDefinitionString := "" ;
+  foreach sortedTransientOrderedList do
+    dependencyDefinitionString .= "// " . mValue . "\n" ;
+  end foreach ;
+  [@string generateFile
+    !sourceDir
+    !"dependancy-order.h"
+    !dependencyDefinitionString
+   ] ;
 #--- Add embedded sources
   @stringset sources [setWithString !"easy-bindings-utilities"] ;
   sources += !"PMDebug" ;

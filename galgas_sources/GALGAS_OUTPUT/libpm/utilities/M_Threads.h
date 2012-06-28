@@ -39,9 +39,13 @@
 //---------------------------------------------------------------------------*
 
 #if LIBPM_MULTI_THREADING_ENABLED == 1
-  #define macroDeclareMutex(MUTEX_NAME) static std::mutex MUTEX_NAME ;
+  #define macroDeclareStaticMutex(MUTEX_NAME) static std::mutex MUTEX_NAME ;
+  #define macroDeclareMutex(MUTEX_NAME)              std::mutex MUTEX_NAME ;
+  #define macroDeclareExternMutex(MUTEX_NAME) extern std::mutex MUTEX_NAME ;
 #else
+  #define macroDeclareStaticMutex(MUTEX_NAME)
   #define macroDeclareMutex(MUTEX_NAME)
+  #define macroDeclareExternMutex(MUTEX_NAME)
 #endif
 
 //---------------------------------------------------------------------------*
