@@ -273,6 +273,7 @@ struct @ASTstruct {
   @outletClassList mOutletClassList ;
   @controllerClassList mControllerClassList ;
   @documentDeclarationList mDocumentDeclarationList ;
+  @location mEndOfSourceFile ;
 }
 
 #----------------------------------------------------------------------------*
