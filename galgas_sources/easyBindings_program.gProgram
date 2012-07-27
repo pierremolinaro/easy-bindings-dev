@@ -49,8 +49,10 @@ message "a source text file with the .easyBindings extension"
   @documentMap documentMap ;
   @controllerClassMap controllerClassMap ;
   @stringlist sortedTransientOrderedList ;
+  @2stringlist transientDependencyArcList ;
   semanticAnalysis
     !ast
+    !inSourceFile->string
     ?outletClassMap
     ?controllerClassMap
     ?classMap
@@ -58,23 +60,20 @@ message "a source text file with the .easyBindings extension"
     ?preferencesMap
     ?documentMap
     ?sortedTransientOrderedList
+    ?transientDependencyArcList
   ;
 #--- Code generation
-  const @string sourceDir := [inSourceFile stringByDeletingLastPathComponent] ;
-  generateClassCode !classMap !sourceDir ;
-  generateEntityCode !entityMap !sourceDir ;
-  generatePreferencesCode !preferencesMap !sourceDir ;
-  generateDocumentCode !documentMap !sourceDir ;
+  const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
+  generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
+  generateEntityCode !transientDependencyArcList !entityMap !sourceDirectoryPath ;
+  generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
+  generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
 #--- Output dependency order definition file
-  @string dependencyDefinitionString := "" ;
-  foreach sortedTransientOrderedList do
-    dependencyDefinitionString .= "// " . mValue . "\n" ;
-  end foreach ;
-  [@string generateFile
-    !sourceDir
-    !"dependancy-order.h"
-    !dependencyDefinitionString
-   ] ;
+  generateTransientDependencyFiles
+    !transientDependencyArcList
+    !sourceDirectoryPath
+    !sortedTransientOrderedList
+  ;
 #--- Add embedded sources
   @stringset sources [setWithString !"easy-bindings-utilities"] ;
   sources += !"PMDebug" ;
@@ -92,7 +91,7 @@ message "a source text file with the .easyBindings extension"
     const @string sourceName := [mValue lastPathComponent] ;
     if [sources hasKey ![sourceName stringByDeletingPathExtension]] then
       [@string generateFile
-        !sourceDir . [mValue stringByDeletingLastPathComponent]
+        !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
         !sourceName
         ![fw textFileContentsAtPath !mValue]
        ] ;

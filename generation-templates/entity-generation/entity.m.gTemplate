@@ -1,3 +1,5 @@
+#import "easy-bindings-utilities.h"
+#import "PMTransientDependancyManager.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
@@ -6,8 +8,7 @@ end if
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
-%#import "easy-bindings-utilities.h"
-
+%
 //----------------------------------------------------------------------------*
 
 @implementation %!CLASS_NAME%
@@ -70,6 +71,6 @@ end foreach
   return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
 }
 
-%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"entity"]
 %//----------------------------------------------------------------------------*
 

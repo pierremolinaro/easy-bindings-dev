@@ -1,5 +1,6 @@
-#import "%!PREFERENCES_NAME%.h"
 #import "easy-bindings-utilities.h"
+#import "PMTransientDependancyManager.h"
+#import "%!PREFERENCES_NAME%.h"
 %if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [ACTION_LIST length]) > 0 then
   %#import "%!PREFERENCES_NAME%-computations.h"%
 end if
@@ -96,7 +97,7 @@ end foreach
   [self pmInstallObserversForTransients] ;
 }
 
-%!generateTransientImplementation [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateTransientImplementation [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"preferences"]
 %//----------------------------------------------------------------------------*
 //    Actions                                                                 *
 //----------------------------------------------------------------------------*

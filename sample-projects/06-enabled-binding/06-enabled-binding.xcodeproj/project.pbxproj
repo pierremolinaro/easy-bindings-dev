@@ -23,6 +23,7 @@
 		CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD41597272200F6B52D /* PMDebug.m */; };
 		CF86CCDF1597272200F6B52D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCD51597272200F6B52D /* PMDebug.xib */; };
 		CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* RootEntityClass.m */; };
+		CFF1C93B15C3312E0054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		CF86CCD51597272200F6B52D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
 		CF86CCD61597272200F6B52D /* RootEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootEntityClass.h; sourceTree = "<group>"; };
 		CF86CCD71597272200F6B52D /* RootEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootEntityClass.m; sourceTree = "<group>"; };
+		CFF1C93915C3312E0054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
+		CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1C93915C3312E0054F1DA /* PMTransientDependancyManager.h */,
+				CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */,
 				CF86CCC71597272200F6B52D /* managed-object-model.h */,
 				CF86CCC81597272200F6B52D /* managed-object-model.m */,
 				CF86CCC91597272200F6B52D /* MyPrefs.h */,
@@ -224,6 +229,7 @@
 				CF86CCDC1597272200F6B52D /* PMAbstractPreferences.m in Sources */,
 				CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */,
 				CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */,
+				CFF1C93B15C3312E0054F1DA /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +359,7 @@
 				CF86CCC3159725BF00F6B52D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

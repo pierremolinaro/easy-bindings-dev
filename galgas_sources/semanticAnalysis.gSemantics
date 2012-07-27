@@ -413,8 +413,9 @@ local routine analyzeEntities
       [!?allPropertyMap insertKey !mAttributeName] ;
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+      [!?ioTransientDependencyGraph addNode ![@lstring new !"entity." . mEntityName . "." . mAttributeName !mAttributeName->location] !""] ;
       const @lstring observationDependencyKey [new
-        !"entity." . mEntityName . "." . mAttributeName
+        !"entity/" . mEntityName . "/self." . mAttributeName
         !mAttributeName->location
       ] ;
       [!?observablePropertyMap insertKey
@@ -422,7 +423,11 @@ local routine analyzeEntities
         !mType
         ![@stringlist listWithValue![mAttributeName string]]
         !observationDependencyKey
-      ] ;    
+      ] ;
+      [!?ioTransientDependencyGraph addNode
+        !observationDependencyKey
+        !observationDependencyKey->string
+      ] ;
     end foreach ;
   #--- Analyze relationship (only check name is unique)
     @relationshipMap currentRelationshipMap [emptyMap] ;
@@ -443,7 +448,7 @@ local routine analyzeEntities
       ] ;
       [!?allPropertyMap insertKey !mRelationshipName] ;
       const @lstring observationDependencyKey [new
-        !"entity." . mEntityName . "." . mRelationshipName
+        !"entity/" . mEntityName . "/self." . mRelationshipName
         !mRelationshipName->location
       ] ;
       [!?observablePropertyMap insertKey
@@ -452,12 +457,16 @@ local routine analyzeEntities
         ![@stringlist emptyList]
         !observationDependencyKey
       ] ;    
+      [!?ioTransientDependencyGraph addNode
+        !observationDependencyKey
+        !observationDependencyKey->string
+      ] ;
     end foreach ;
   #--- Analyze transient properties
     @stringset implementationFileInclusionSet [emptySet] ;
     @transientListForImplementation transientListForImplementation ;
     analyzeTransientProperties
-      !"entity." . mEntityName . "."
+      !"entity/" . mEntityName . "."
       !mTransientList
       ![@observableObjectMap emptyMap]
       !?observablePropertyMap
@@ -804,7 +813,7 @@ local routine analyzePreferences
       checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       const @lstring observationDependancyKey [new
-        !"preferences." . mPreferencesName->string . "." . mAttributeName
+        !"preferences/" . mPreferencesName->string . "/self." . mAttributeName
         !mAttributeName->location
       ] ;
       [!?observableAttributeMap insertKey
@@ -822,7 +831,7 @@ local routine analyzePreferences
     @transientListForImplementation transientListForImplementation ;
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
-      !"preferences." . mPreferencesName . "."
+      !"preferences/" . mPreferencesName . "/self."
       !mTransientList
       ![@observableObjectMap emptyMap]
       !?observableAttributeMap
@@ -1093,11 +1102,28 @@ local routine analyzeDocuments
         ?controllerActionMap
         ?controllerObservablePropertyMap
       ] ;
+      @observablePropertyMap prefixedControllerObservablePropertyMap [emptyMap] ;
+      foreach controllerObservablePropertyMap do
+        const @lstring observedKey [new
+          !"document/" . mDocumentName . "/" . mControllerName . "." . mObservationDependancyKey
+          !mObservationDependancyKey->location
+        ] ;
+        [!?prefixedControllerObservablePropertyMap insertKey
+          !lkey
+          !mType
+          !mPropertyDependancyList
+          !observedKey
+        ] ;
+        [!?ioTransientDependencyGraph addNode
+          !observedKey
+          !observedKey->string
+        ] ;
+      end foreach ;
       [!?observableObjectMap insertKey
         !mControllerName
         !mControllerName->string
         !"" # No file to include
-        !controllerObservablePropertyMap
+        !prefixedControllerObservablePropertyMap
       ] ;
       [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
       @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
@@ -1122,7 +1148,7 @@ local routine analyzeDocuments
     @transientListForImplementation transientListForImplementation ;
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
-      !"document." . mDocumentName . "."
+      !"document/" . mDocumentName . "/self."
       !mTransientList
       !observableObjectMap
       !?observablePropertyMap
@@ -1231,7 +1257,7 @@ local routine analyzeClasses
     @transientListForImplementation transientListForImplementation ;
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
-      !"class." . mClassName . "."
+      !"class/" . mClassName . "."
       !mTransientList
       ![@observableObjectMap emptyMap]
       !?observablePropertyMap
@@ -1315,15 +1341,15 @@ local routine analyzeControllerClasses
   #---
     @observablePropertyMap observablePropertyMap [emptyMap] ;
     for property in mControllerObservablePropertyList do
-      const @lstring observationDependencyKey [new
-        !"controller." . mOutletClassName . "." . property->mPropertyName
-        !property->mPropertyName->location
-      ] ;
+#      const @lstring observationDependencyKey [new
+#        !"controller." . mOutletClassName . "." . property->mPropertyName
+#        !property->mPropertyName->location
+#      ] ;
       [!?observablePropertyMap insertKey
         !property->mPropertyName
         !property->mType
         ![@stringlist emptyList]
-        !observationDependencyKey
+        !property->mPropertyName
       ] ;
     end for ;
   #---
@@ -1341,6 +1367,7 @@ end routine ;
 
 routine semanticAnalysis
   ??@ASTstruct inAST
+  ?@string inSourceFilePath
   !@outletClassMap outOutletClassMap
   !@controllerClassMap outControllerClassMap
   !@classMap outClassMap
@@ -1348,6 +1375,7 @@ routine semanticAnalysis
   !@preferencesMap outPreferencesMap
   !@documentMap outDocumentMap
   !@stringlist outSortedTransientOrderedList
+  !@2stringlist outTransientDependencyArcList
 :
   outSortedTransientOrderedList := [@stringlist emptyList] ;
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
@@ -1379,20 +1407,26 @@ routine semanticAnalysis
     ?outDocumentMap
     !?transientDependencyGraph
   ;
+#--- Output graphviz file ?
+  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+    const @string s := [transientDependencyGraph graphviz] ;
+    const @string path := inSourceFilePath . ".transientDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
 #--- Analyze transient dependencies
+  outTransientDependencyArcList := [transientDependencyGraph arcs] ;
   if [@uint errorCount] == 0 then
     if [transientDependencyGraph undefinedNodeCount] > 0 then
-      foreach [transientDependencyGraph undefinedNodeReferenceList] do
-        error mValue : "the '" . mValue . "' transient node is not defined" ;
+      foreach [transientDependencyGraph undefinedNodeKeyList] do
+        error inAST->mEndOfSourceFile : "the '" . mValue . "' property is not defined" ;
       end foreach ;
     else
       @stringlist unsortedTransientList ;
-      @lstringlist unsortedNodeKeyList ;
       [transientDependencyGraph topologicalSort
         ?outSortedTransientOrderedList
         ?*
         ?unsortedTransientList
-        ?unsortedNodeKeyList
+        ?*
       ] ;
       if [unsortedTransientList length] > 0 then
         @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
@@ -1401,7 +1435,6 @@ routine semanticAnalysis
         end foreach ;
         error inAST->mEndOfSourceFile : s ;
       else # all defined, no circularity
-
       end if ;
     end if ;
   end if ;

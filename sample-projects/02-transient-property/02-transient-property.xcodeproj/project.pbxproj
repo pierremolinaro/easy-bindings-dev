@@ -20,6 +20,7 @@
 		CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */; };
 		CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A6715963D4A006D876D /* PMDebug.m */; };
 		CF9D9A6A15963D4A006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A6815963D4A006D876D /* PMDebug.xib */; };
+		CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		CF9D9A6715963D4A006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A6815963D4A006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
 		CFAAC0151594691E00B59575 /* Prefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-computations.h"; sourceTree = "<group>"; };
+		CFF1C90715C302970054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
+		CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 		CF721ADF1593605D008662EA /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1C90715C302970054F1DA /* PMTransientDependancyManager.h */,
+				CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */,
 				CF9D9A6615963D4A006D876D /* PMDebug.h */,
 				CF9D9A6715963D4A006D876D /* PMDebug.m */,
 				CF9D9A6815963D4A006D876D /* PMDebug.xib */,
@@ -209,6 +214,7 @@
 				CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */,
 				CF68C37315950E02008B63F1 /* PMAbstractPreferences.m in Sources */,
 				CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */,
+				CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

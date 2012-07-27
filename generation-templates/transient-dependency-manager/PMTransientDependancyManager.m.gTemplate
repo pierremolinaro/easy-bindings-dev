@@ -1,0 +1,75 @@
+
+#import "PMTransientDependancyManager.h"
+
+//-----------------------------------------------------------------------------*
+
+static PMTransientDependancyManager * gDependancyTrigger ;
+static NSArray * gTriggeredPropertyArray ;
+
+//-----------------------------------------------------------------------------*
+
+@implementation PMTransientDependancyManager
+
+//-----------------------------------------------------------------------------*
+
++ (void) enterTriggerForObject: (NSObject *) inObject
+         transientIndex: (const NSUInteger) inIndex {
+  if (nil == gDependancyTrigger) {
+    gDependancyTrigger = [PMTransientDependancyManager new] ;
+  }
+  [gDependancyTrigger
+    enterTriggerForObject:inObject
+    transientIndex:inIndex
+  ] ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (id) init {
+  self = [super init] ;
+  if (self) {
+    for (NSUInteger i=0 ; i<TRANSIENT_COUNT ; i++) {
+      mObserverObjectArray [i] = [NSMutableSet new] ;
+    }
+    gTriggeredPropertyArray = [NSArray arrayWithObjects:
+%!TRANSIENT_LIST
+%      nil
+    ] ;
+  }
+  return self ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (void) enterTriggerForObject: (NSObject *) inObject
+         transientIndex: (const NSUInteger) inIndex {
+  [mObserverObjectArray [inIndex] addObject:inObject] ;
+  if (! mDeferredMessageSent) {
+    mDeferredMessageSent = YES ;
+    [[NSRunLoop currentRunLoop]
+      performSelector:@selector (triggerChange)
+      target:self
+      argument:nil
+      order:NSUIntegerMax
+      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+    ] ;
+  }
+}
+
+//-----------------------------------------------------------------------------*
+
+- (void) triggerChange {
+  for (NSUInteger i=0 ; i<TRANSIENT_COUNT ; i++) {
+    NSMutableSet * s = mObserverObjectArray [i] ;
+    mObserverObjectArray [i] = [NSMutableSet new] ;
+    for (NSObject * object in s) {
+      [object willChangeValueForKey:[gTriggeredPropertyArray objectAtIndex:i]] ;
+      [object  didChangeValueForKey:[gTriggeredPropertyArray objectAtIndex:i]] ;
+    }
+  }
+  mDeferredMessageSent = NO ;
+}
+
+//-----------------------------------------------------------------------------*
+
+@end

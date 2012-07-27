@@ -1,5 +1,5 @@
 option easyBindings_options :
 
-# ADD YOUR CODE HERE
+  @bool outputTransientDependencyGraph: 't', "output-transient-graph" -> "Output a graphviz file for transient dependancy graph" ;
 
 end option ;

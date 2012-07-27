@@ -2,6 +2,7 @@
 #import "%!ROOT_ENTITY_CLASS_NAME%.h"
 #import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
+#import "PMTransientDependancyManager.h"
 %if ([ACTION_LIST length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %#import "%!DOCUMENT_NAME%-computations.h"\n%
 end if
@@ -130,7 +131,7 @@ end foreach
   [super removeWindowController:inWindowController] ;
 }
 
-%!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"document"]
 %//----------------------------------------------------------------------------*
 //    Actions                                                                 *
 //----------------------------------------------------------------------------*

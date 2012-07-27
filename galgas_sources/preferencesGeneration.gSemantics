@@ -54,6 +54,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
     ?@stringset INCLUSION_SET
+    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
   ;
   
   template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
@@ -78,6 +79,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
 #----------------------------------------------------------------------------*
 
 routine generatePreferencesCode
+  ??@2stringlist inTransientDependencyArcList
   ??@preferencesMap inPreferencesMap
   ??@string inOutputDirectory
 :
@@ -108,6 +110,7 @@ routine generatePreferencesCode
         !mOutletDeclarationList
         !mActionList
         !mImplementationFileInclusionSet
+        !inTransientDependencyArcList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
