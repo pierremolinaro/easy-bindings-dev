@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF2ACB1315A315A300E68339 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2ACB1215A315A300E68339 /* Cocoa.framework */; };
+		CF2ACB1D15A315A300E68339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF2ACB1B15A315A300E68339 /* InfoPlist.strings */; };
+		CF2ACB1F15A315A300E68339 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2ACB1E15A315A300E68339 /* main.m */; };
+		CF2ACB2315A315A300E68339 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF2ACB2115A315A300E68339 /* Credits.rtf */; };
+		CF2ACB2615A315A300E68339 /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2ACB2515A315A300E68339 /* PMAppDelegate.m */; };
+		CF2ACB2915A315A300E68339 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF2ACB2715A315A300E68339 /* MainMenu.xib */; };
+		CFF1C8B815C2CD1E0054F1DA /* PMDependancyTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C8B715C2CD1E0054F1DA /* PMDependancyTrigger.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF2ACB0E15A315A300E68339 /* ExempleTransientMultipleDependances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExempleTransientMultipleDependances.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF2ACB1215A315A300E68339 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF2ACB1515A315A300E68339 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF2ACB1615A315A300E68339 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF2ACB1715A315A300E68339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF2ACB1A15A315A300E68339 /* ExempleTransientMultipleDependances-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExempleTransientMultipleDependances-Info.plist"; sourceTree = "<group>"; };
+		CF2ACB1C15A315A300E68339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF2ACB1E15A315A300E68339 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		CF2ACB2015A315A300E68339 /* ExempleTransientMultipleDependances-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExempleTransientMultipleDependances-Prefix.pch"; sourceTree = "<group>"; };
+		CF2ACB2215A315A300E68339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF2ACB2415A315A300E68339 /* PMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		CF2ACB2515A315A300E68339 /* PMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		CF2ACB2815A315A300E68339 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CFF1C8B615C2CD1E0054F1DA /* PMDependancyTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDependancyTrigger.h; sourceTree = SOURCE_ROOT; };
+		CFF1C8B715C2CD1E0054F1DA /* PMDependancyTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDependancyTrigger.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF2ACB0B15A315A300E68339 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2ACB1315A315A300E68339 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF2ACB0315A315A200E68339 = {
+			isa = PBXGroup;
+			children = (
+				CF2ACB1815A315A300E68339 /* ExempleTransientMultipleDependances */,
+				CF2ACB1115A315A300E68339 /* Frameworks */,
+				CF2ACB0F15A315A300E68339 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF2ACB0F15A315A300E68339 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF2ACB0E15A315A300E68339 /* ExempleTransientMultipleDependances.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF2ACB1115A315A300E68339 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF2ACB1215A315A300E68339 /* Cocoa.framework */,
+				CF2ACB1415A315A300E68339 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF2ACB1415A315A300E68339 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF2ACB1515A315A300E68339 /* AppKit.framework */,
+				CF2ACB1615A315A300E68339 /* CoreData.framework */,
+				CF2ACB1715A315A300E68339 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF2ACB1815A315A300E68339 /* ExempleTransientMultipleDependances */ = {
+			isa = PBXGroup;
+			children = (
+				CFF1C8B615C2CD1E0054F1DA /* PMDependancyTrigger.h */,
+				CFF1C8B715C2CD1E0054F1DA /* PMDependancyTrigger.m */,
+				CF2ACB2415A315A300E68339 /* PMAppDelegate.h */,
+				CF2ACB2515A315A300E68339 /* PMAppDelegate.m */,
+				CF2ACB2715A315A300E68339 /* MainMenu.xib */,
+				CF2ACB1915A315A300E68339 /* Supporting Files */,
+			);
+			path = ExempleTransientMultipleDependances;
+			sourceTree = "<group>";
+		};
+		CF2ACB1915A315A300E68339 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF2ACB1A15A315A300E68339 /* ExempleTransientMultipleDependances-Info.plist */,
+				CF2ACB1B15A315A300E68339 /* InfoPlist.strings */,
+				CF2ACB1E15A315A300E68339 /* main.m */,
+				CF2ACB2015A315A300E68339 /* ExempleTransientMultipleDependances-Prefix.pch */,
+				CF2ACB2115A315A300E68339 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF2ACB0D15A315A300E68339 /* ExempleTransientMultipleDependances */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF2ACB2C15A315A300E68339 /* Build configuration list for PBXNativeTarget "ExempleTransientMultipleDependances" */;
+			buildPhases = (
+				CF2ACB0A15A315A300E68339 /* Sources */,
+				CF2ACB0B15A315A300E68339 /* Frameworks */,
+				CF2ACB0C15A315A300E68339 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExempleTransientMultipleDependances;
+			productName = ExempleTransientMultipleDependances;
+			productReference = CF2ACB0E15A315A300E68339 /* ExempleTransientMultipleDependances.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF2ACB0515A315A200E68339 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "ECN / IRCCyN";
+			};
+			buildConfigurationList = CF2ACB0815A315A200E68339 /* Build configuration list for PBXProject "ExempleTransientMultipleDependances" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF2ACB0315A315A200E68339;
+			productRefGroup = CF2ACB0F15A315A300E68339 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF2ACB0D15A315A300E68339 /* ExempleTransientMultipleDependances */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF2ACB0C15A315A300E68339 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2ACB1D15A315A300E68339 /* InfoPlist.strings in Resources */,
+				CF2ACB2315A315A300E68339 /* Credits.rtf in Resources */,
+				CF2ACB2915A315A300E68339 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF2ACB0A15A315A300E68339 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2ACB1F15A315A300E68339 /* main.m in Sources */,
+				CF2ACB2615A315A300E68339 /* PMAppDelegate.m in Sources */,
+				CFF1C8B815C2CD1E0054F1DA /* PMDependancyTrigger.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF2ACB1B15A315A300E68339 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF2ACB1C15A315A300E68339 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = SOURCE_ROOT;
+		};
+		CF2ACB2115A315A300E68339 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF2ACB2215A315A300E68339 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = SOURCE_ROOT;
+		};
+		CF2ACB2715A315A300E68339 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF2ACB2815A315A300E68339 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF2ACB2B15A315A300E68339 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "";
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		CF2ACB2E15A315A300E68339 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExempleTransientMultipleDependances-Prefix.pch";
+				INFOPLIST_FILE = "ExempleTransientMultipleDependances-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF2ACB0815A315A200E68339 /* Build configuration list for PBXProject "ExempleTransientMultipleDependances" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF2ACB2B15A315A300E68339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF2ACB2C15A315A300E68339 /* Build configuration list for PBXNativeTarget "ExempleTransientMultipleDependances" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF2ACB2E15A315A300E68339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF2ACB0515A315A200E68339 /* Project object */;
+}

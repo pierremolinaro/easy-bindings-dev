@@ -81,6 +81,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
     ?@stringset INCLUSION_SET
     ?@2stringlist TO_MANY_RELATIONSHIPS
+    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -170,6 +171,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 routine generateEntityCode
+  ??@2stringlist inTransientDependencyArcList
   ??@entityMap inEntityMap
   ??@string inOutputDirectory
 :
@@ -207,6 +209,7 @@ routine generateEntityCode
         !mInheritedAttributeListForImplementation
         !mImplementationFileInclusionSet
         !mToManyRelationshipList
+        !inTransientDependencyArcList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

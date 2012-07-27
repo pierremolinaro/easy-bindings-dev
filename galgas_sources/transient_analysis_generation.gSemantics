@@ -181,8 +181,10 @@ listmap @triggeredKeysForOtherObjects (@2stringlist) ;
 #----------------------------------------------------------------------------*
 
 function generateTransientImplementation
-  ??@string inKindName
+  ??@string inKindName 
   ??@transientListForImplementation inTransientListForImplementation
+  ??@2stringlist inTransientDependencyArcList
+  ??@string inPrefix # entity, class, preferences
   ->@string outResult
 :
 #--- Note all properties of self object that trigger a transient
@@ -197,6 +199,8 @@ function generateTransientImplementation
       end if ;
     end foreach ;
   end foreach ;
+  const @string partialPrefix := inPrefix . "/" . inKindName ;
+  const @string fullPrefix := partialPrefix . "/self" ;
 #---
   outResult :=
     "//----------------------------------------------------------------------------*\n"
@@ -239,7 +243,7 @@ function generateTransientImplementation
     "         ofObject:(id) inObject\n"
     "         change:(NSDictionary *) inChange\n"
     "         context:(void *) inContext {\n"
-    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKey) ;\n"
+    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKeyPath) ;\n"
     " " ;
     for element in triggeredKeysFromOtherObjects
     do
@@ -248,7 +252,11 @@ function generateTransientImplementation
       do
         outResult .=
         "    if ([inKeyPath isEqualToString:@\"" . name->mValue0 . "\"]) {\n"
-        "      [self pmNotifyChangeForTransientProperty:@\"" . name->mValue1 . "\"] ;\n"
+        "      " . name->mValue1 . "__computed = NO ;\n"
+        "      [PMTransientDependancyManager\n"
+        "        enterTriggerForObject:self\n"
+        "        transientIndex:" . [fullPrefix. "." . name->mValue1 identifierRepresentation] . "\n"
+        "      ] ;\n"
         "    }\n" ;
       end for ;
     between
@@ -258,18 +266,32 @@ function generateTransientImplementation
     "}\n\n" ;
   end if ;
 #---
-  if [triggeredKeys count] > 0 then
+#  @triggeredKeysForSelfObject triggeredKeysForAttributes [emptyMap] ;
+  @triggeredKeysForSelfObject triggeredKeysForSelfObject [emptyMap] ;
+  foreach inTransientDependencyArcList do
+    if ([mValue0 stringByDeletingPathExtension] == fullPrefix) & ([mValue1 stringByDeletingPathExtension] == fullPrefix) then
+      triggeredKeysForSelfObject += ![mValue0 pathExtension] !mValue1 ;  
+#    elsif [mValue0 stringByDeletingLastPathComponent] == partialPrefix then
+#      triggeredKeysForAttributes += ![mValue0 lastPathComponent] !mValue1 ;  
+    end if ;
+  end foreach ;
+#---
+  if [triggeredKeysForSelfObject count] > 0 then
     outResult .=
     "//----------------------------------------------------------------------------*\n\n"
     "- (void) didChangeValueForKey:(NSString *) inKey {\n"
     "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKey) ;\n"
     "  [super didChangeValueForKey:inKey] ;\n"
     " " ;
-    for element in triggeredKeys
+    for element in triggeredKeysForSelfObject
     do
       outResult .= " if ([inKey isEqualToString:@\"" . element->key . "\"]) {\n" ;
       for name in element->mList do
-        outResult .= "    [self pmNotifyChangeForTransientProperty:@\"" . name->mValue . "\"] ;\n" ;
+        outResult .= "    " . [name->mValue pathExtension] . "__computed = NO ;\n"
+                     "    [PMTransientDependancyManager\n"
+                     "      enterTriggerForObject:self\n"
+                     "      transientIndex:" . [name->mValue identifierRepresentation] . "\n"
+                     "    ] ;\n" ;
       end for ;
     between
       outResult .= "  }else" ;
@@ -282,12 +304,16 @@ function generateTransientImplementation
     outResult .=
     "//----------------------------------------------------------------------------*\n\n"   
     "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
-    "  return compute_" . inKindName . "_" . mTransientName . " (" ;
+    "  if (! " . mTransientName . "__computed) {\n"
+    "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
     foreach mDependencyList
     do outResult .= mMasterObjectName . "." . [mMasterPropertyName stringByReplacingStringByString !"@" !""] ;
     between outResult .= ", " ;
     end foreach ;
-    outResult .= ")" ;
+    outResult .= ") ;\n"
+    "    " . mTransientName . "__computed = YES ;\n"
+    "  }\n"
+    "  return " . mTransientName . "__cache" ;
     if [mType copyOnAssign] then outResult .= ".copy" ; end if ;
     outResult .= " ;\n"
     "}\n\n" ;
@@ -296,5 +322,81 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
+local filewrapper transientManager in "../generation-templates/transient-dependency-manager" {
+}{
+}{
+  template managerDeclaration "PMTransientDependancyManager.h.gTemplate"
+    ?@string GRAPH_STRING
+    ?@string TRANSIENT_LIST_STRING
+    ?@string TRANSIENT_INDEXES
+    ?@uint TRANSIENT_COUNT
+  ;
+  
+  template managerImplementation "PMTransientDependancyManager.m.gTemplate"
+    ?@string TRANSIENT_LIST
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateTransientDependencyFiles
+  ??@2stringlist inTransientDependencyArcList
+  ??@string inSourceDirectoryPath
+  ??@stringlist inSortedTransientOrderedList
+:
+#--- Output dependency order definition file
+  @string graphString := "" ;
+  @stringset dependentSet [emptySet] ;
+  foreach inTransientDependencyArcList do
+    graphString .= "// " . mValue0 . " -> " . mValue1 . "\n" ;
+    dependentSet += !mValue1 ;
+  end foreach ;
+  @string transientOrderedList := "" ;
+  foreach \down inSortedTransientOrderedList do
+    transientOrderedList .= "// " . mValue . "\n" ;
+  end foreach ;
+  @string transientIndexesString := "" ;
+  @string transientList := "" ;
+  @uint idx := 0 ;
+  foreach \down inSortedTransientOrderedList do
+    if [dependentSet hasKey !mValue] then
+      transientIndexesString .= "#define " . [mValue identifierRepresentation] . " (" . idx . ")\n" ;
+      transientList .= "      @" . [[mValue pathExtension] utf8Representation] . ", // " . mValue . "\n" ;
+      idx ++ ;
+    end if ;
+  end foreach ;
+  const @uint transientCount := idx ;
+#--- Header
+  @string s := [filewrapper transientManager.managerDeclaration
+    !graphString
+    !transientOrderedList
+    !transientIndexesString
+    !transientCount
+  ] ;
+  [@string generateFileWithPattern
+    !inSourceDirectoryPath
+    !"PMTransientDependancyManager.h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !""
+  ] ;
+#--- Implementation
+  s := [filewrapper transientManager.managerImplementation
+    !transientList
+  ] ;
+  [@string generateFileWithPattern
+    !inSourceDirectoryPath
+    !"PMTransientDependancyManager.m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !""
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
 
 end semantics ;

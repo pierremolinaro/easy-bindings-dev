@@ -25,6 +25,7 @@
 		CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627ED1595B7E500BF70CD /* PMPrefs.m */; };
 		CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8915963FF1006D876D /* PMDebug.m */; };
 		CF9D9A8D15963FF1006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A8A15963FF1006D876D /* PMDebug.xib */; };
+		CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		CF9D9A8815963FF1006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF9D9A8915963FF1006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A8A15963FF1006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
+		CFF1C93115C32D950054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
+		CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1C93115C32D950054F1DA /* PMTransientDependancyManager.h */,
+				CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */,
 				CF9D9A8815963FF1006D876D /* PMDebug.h */,
 				CF9D9A8915963FF1006D876D /* PMDebug.m */,
 				CF9D9A8A15963FF1006D876D /* PMDebug.xib */,
@@ -236,6 +241,7 @@
 				CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */,
 				CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */,
 				CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */,
+				CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +307,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
@@ -325,7 +331,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "";
 			};
 			name = Release;
 		};

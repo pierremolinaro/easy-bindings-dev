@@ -14,11 +14,17 @@
 %
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
-  @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
+  @private IBOutlet %!mOutletType% * %!mOutletName% ;\n%
 end foreach
 foreach CONTROLLER_MAP do
 %//--- '%!lkey->string%' controller
-  @private %!mControllerClassName% * %!lkey->string% ;\n\n%
+  @private %!mControllerClassName% * %!lkey->string% ;\n%
+end foreach
+
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient cache\n%
+%  @private %![mType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private BOOL %!mTransientName%__computed ;\n%
 end foreach
 %}
 

@@ -14,6 +14,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
     ?@lstringlist ACTION_LIST
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
   ;
   
   template documentImplementation "document.m.gTemplate"
@@ -25,6 +26,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@lstringlist ACTION_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset INCLUSION_SET
+    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
   ;
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
@@ -50,6 +52,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
 #----------------------------------------------------------------------------*
 
 routine generateDocumentCode
+  ??@2stringlist inTransientDependencyArcList
   ??@documentMap inDocumentMap
   ??@string inOutputDirectory
 :
@@ -63,6 +66,7 @@ routine generateDocumentCode
         !mOutletDeclarationList
         !mControllerMap
         !mActionList
+        !mTransientListForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -83,6 +87,7 @@ routine generateDocumentCode
         !mActionList
         !mTransientListForImplementation
         !mImplementationFileInclusionSet
+        !inTransientDependencyArcList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

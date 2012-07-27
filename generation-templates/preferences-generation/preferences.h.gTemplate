@@ -16,7 +16,13 @@ foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end foreach
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient cache\n%
+%  @private %![mType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private BOOL %!mTransientName%__computed ;\n\n%
+end foreach
 %}
+
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %//--- '%!mPropertyName%' property\n%
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n\n%

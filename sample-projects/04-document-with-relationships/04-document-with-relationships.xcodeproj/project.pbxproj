@@ -25,6 +25,7 @@
 		CF68C3DA1595136F008B63F1 /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D61595136F008B63F1 /* PMAbstractManagedObject.m */; };
 		CF68C3DB1595136F008B63F1 /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */; };
 		CF68C3EF15951963008B63F1 /* compute_PMDocument_canRemoveString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */; };
+		CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		CF68C3D81595136F008B63F1 /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
 		CF68C3D91595136F008B63F1 /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
 		CF68C3ED15951963008B63F1 /* compute_PMDocument_canRemoveString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_canRemoveString.m; sourceTree = "<group>"; };
+		CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
+		CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 		CF60814A159367210021D873 /* 04-document-with-relationships */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */,
+				CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */,
 				CF46293315961D8400BF70CD /* PMDebug.h */,
 				CF46293415961D8400BF70CD /* PMDebug.m */,
 				CF4628C6159600DE00BF70CD /* PMDebug.xib */,
@@ -233,6 +238,7 @@
 				CF4628281595DA3800BF70CD /* RootEntityClass.m in Sources */,
 				CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */,
 				CF46293515961D8400BF70CD /* PMDebug.m in Sources */,
+				CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
