@@ -27,15 +27,20 @@
 
 //---------------------------------------------------------------------------*
 //                                                                           *
-//  T E M P L A T E    D E L I M I T E R S     S T R U C T                   *
+//  T E M P L A T E    D E L I M I T E R     C L A S S                       *
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-typedef struct {
-  NSString * mStartString ;
-  NSString * mEndString ;
-  const BOOL mDiscardStartString ;
-} templateDelimiterStructForCocoa ;
+@interface OC_GGS_TemplateDelimiter : NSObject
+
+@property (assign, readonly PROPERTY_COMMA_ATOMIC) NSString * startString ;
+@property (assign, readonly PROPERTY_COMMA_ATOMIC) NSString * endString ;
+@property (assign, readonly PROPERTY_COMMA_ATOMIC) BOOL discardStartString ;
+
+- (id) initWithStartString: (NSString *) inStartString
+       endString: (NSString *) inEndString
+       discardStartString: (BOOL) inDiscardStartString ;
+@end
 
 //---------------------------------------------------------------------------*
 //                                                                           *
@@ -64,11 +69,14 @@ typedef struct {
   @protected NSUInteger mCurrentLocation ;
   @protected BOOL mLoop ;
   @protected NSInteger mMatchedTemplateDelimiterIndex ; //--- Scanner mode for template scanner
-  @protected NSMenu * mMenuForEntryPopUpButton ;
   @private NSDictionary * mCustomSyntaxColoringDictionary ;
 }
 
-- (void) searchForReplacementPattern:(NSString * *) inReplacementPatternArray ;
+@property (retain, readonly PROPERTY_COMMA_ATOMIC) NSMenu * menuForEntryPopUpButton ;
+
+- (void) detach ;
+
+- (void) searchForReplacementPattern:(NSArray *) inReplacementPatternArray ;
 
 - (void) advance ;
 
@@ -86,8 +94,7 @@ typedef struct {
 
 - (void) restoreScanningPoint: (scanningPointStructForCocoa *) inScanningPoint ;
 
-- (SInt32) findTemplateDelimiterIndex: (const templateDelimiterStructForCocoa *)  inTemplateDelimiterList
-           listLength: (SInt32) inLength ;
+- (SInt32) findTemplateDelimiterIndex: (NSArray *)  inTemplateDelimiterArray ; // Array of OC_GGS_TemplateDelimiter
 
 - (NSString *) blockComment ;
 
@@ -122,8 +129,6 @@ typedef struct {
          eraseRangeStart: (NSInteger *) outEraseRangeStart
          eraseRangeEnd: (NSInteger *) outEraseRangeEnd ;
 
-- (NSMenu *) menuForEntryPopUpButton ;
-
 - (NSString *) indexingDirectory ;
 
 - (NSArray *) indexingTitles ; // Array of NSString
@@ -134,7 +139,7 @@ typedef struct {
 //---------------------------------------------------------------------------*
 
 typedef struct {
-  NSString * mEntry ;
+  const char * mEntry ;
   UInt32 mTokenCode ;
 } C_cocoa_lexique_table_entry ;
 

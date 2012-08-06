@@ -9,7 +9,6 @@
 #import "OC_GGS_searchInFolders.h"
 #import "OC_GGS_Document.h"
 #import "OC_GGS_TextDisplayDescriptor.h"
-#import "PMCocoaCallsDebug.h"
 
 //---------------------------------------------------------------------------*
 
@@ -366,7 +365,7 @@
 //---------------------------------------------------------------------------*
 
 - (void) extensionChoiceDidChange {
-  NSArray * allSubviews = [[mSelectedExtensionView subviews] copy] ;
+  NSArray * allSubviews = mSelectedExtensionView.subviews.copy ;
   for (NSView * view in allSubviews) {
     [view removeFromSuperview] ;
   }
@@ -383,7 +382,7 @@
 //---------------------------------------------------------------------------*
 
 - (void) folderChoiceDidChange {
-  NSArray * allSubviews = [[mSelectedFolderChoiceView subviews] copy] ;
+  NSArray * allSubviews = mSelectedExtensionView.subviews.copy ;
   for (NSView * view in allSubviews) {
     [view removeFromSuperview] ;
   }
