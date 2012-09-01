@@ -2,8 +2,6 @@ project all_easyBindings -> "easyBindings":
 #--- Targets
   feature "makefile_macosx" ;
   feature "Lion" ;
-#  feature "MountainLion" ;
-#  feature "SnowLeopard" ;
 
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
