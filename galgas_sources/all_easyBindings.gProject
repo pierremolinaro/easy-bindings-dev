@@ -3,6 +3,8 @@ project all_easyBindings -> "easyBindings":
   feature "makefile_macosx" ;
   feature "Lion" ;
 
+  feature applicationBundleBase : "fr.irccyn" ;
+
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
   gui "easyBindings_cocoa.gGui" ;
