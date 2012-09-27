@@ -1,4 +1,4 @@
-project all_easyBindings -> "easyBindings":
+project all_easyBindings (0:0:1) -> "easyBindings":
 #--- Targets
   feature "makefile_macosx" ;
   feature "Lion" ;

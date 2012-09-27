@@ -1,4 +1,4 @@
-program easyBindings_program "1.0.0":
+program easyBindings_program :
 import "abstractSyntaxTree.gSemantics" ;
 import "semanticAnalysis.gSemantics" ;
 import "classGeneration.gSemantics" ;
