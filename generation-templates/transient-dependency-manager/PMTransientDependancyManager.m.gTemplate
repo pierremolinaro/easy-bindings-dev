@@ -31,10 +31,7 @@ static NSArray * gTriggeredPropertyArray ;
     for (NSUInteger i=0 ; i<TRANSIENT_COUNT ; i++) {
       mObserverObjectArray [i] = [NSMutableSet new] ;
     }
-    gTriggeredPropertyArray = [NSArray arrayWithObjects:
-%!TRANSIENT_LIST
-%      nil
-    ] ;
+    gTriggeredPropertyArray = @[%!TRANSIENT_LIST%] ;
   }
   return self ;
 }
@@ -51,7 +48,7 @@ static NSArray * gTriggeredPropertyArray ;
       target:self
       argument:nil
       order:NSUIntegerMax
-      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+      modes:@[NSDefaultRunLoopMode]
     ] ;
   }
 }
@@ -63,8 +60,8 @@ static NSArray * gTriggeredPropertyArray ;
     NSMutableSet * s = mObserverObjectArray [i] ;
     mObserverObjectArray [i] = [NSMutableSet new] ;
     for (NSObject * object in s) {
-      [object willChangeValueForKey:[gTriggeredPropertyArray objectAtIndex:i]] ;
-      [object  didChangeValueForKey:[gTriggeredPropertyArray objectAtIndex:i]] ;
+      [object willChangeValueForKey:gTriggeredPropertyArray [i]] ;
+      [object  didChangeValueForKey:gTriggeredPropertyArray [i]] ;
     }
   }
   mDeferredMessageSent = NO ;
