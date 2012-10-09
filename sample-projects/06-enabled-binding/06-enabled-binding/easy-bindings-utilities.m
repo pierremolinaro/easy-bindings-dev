@@ -17,7 +17,7 @@ void presentErrorWindow (const char * inFile,
     gErrorWindows = [NSMutableArray new] ;
   }
 //---
-  NSString * f = [[NSString stringWithCString:inFile encoding:NSASCIIStringEncoding] lastPathComponent] ;
+  NSString * f = [@(inFile) lastPathComponent] ;
   NSMutableString * message = [NSMutableString stringWithCapacity:1000] ;
   [message appendFormat:@"File: %@\n", f] ;
   [message appendFormat:@"Line: %d\n\n", inLineNumber] ;
@@ -73,7 +73,7 @@ BOOL boolFromNSNumber (id inValue) {
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedBool (BOOL inValue) {
-  return [NSNumber numberWithBool:inValue] ;
+  return @(inValue) ;
 }
 
 //---------------------------------------------------------------------------*
@@ -81,13 +81,13 @@ NSNumber * numberEncodedBool (BOOL inValue) {
 //---------------------------------------------------------------------------*
 
 SInt16 sint16FromNSNumber (id inValue) {
-  return [inValue intValue] ;
+  return (SInt16) [inValue intValue] ;
 }
 
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedSInt16 (SInt16 inValue) {
-  return [NSNumber numberWithInt:inValue] ;
+  return @((SInt32) inValue) ;
 }
 
 //---------------------------------------------------------------------------*
@@ -101,7 +101,7 @@ SInt32 sint32FromNSNumber (id inValue) {
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedSInt32 (SInt32 inValue) {
-  return [NSNumber numberWithInt:inValue] ;
+  return @(inValue) ;
 }
 
 //---------------------------------------------------------------------------*
@@ -115,7 +115,7 @@ SInt64 sint64FromNSNumber (id inValue) {
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedSInt64 (SInt64 inValue) {
-  return [NSNumber numberWithLongLong:inValue] ;
+  return @(inValue) ;
 }
 
 //---------------------------------------------------------------------------*
@@ -129,7 +129,7 @@ float floatFromNSNumber (id inValue) {
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedFloat (float inValue) {
-  return [NSNumber numberWithFloat:inValue] ;
+  return @(inValue) ;
 }
 
 //---------------------------------------------------------------------------*
@@ -143,7 +143,7 @@ double doubleFromNSNumber (id inValue) {
 //---------------------------------------------------------------------------*
 
 NSNumber * numberEncodedDouble (double inValue) {
-  return [NSNumber numberWithDouble:inValue] ;
+  return @(inValue) ;
 }
 
 //---------------------------------------------------------------------------*

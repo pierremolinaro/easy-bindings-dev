@@ -20,13 +20,13 @@ end reader ;
 
 reader @easyBindingType customSetterTransformer -> @string outResult :
   switch selfcopy
-  when boolType : outResult := "[NSNumber numberWithBool:inValue]" ;
-  when integer16Type : outResult := "[NSNumber numberWithInt:inValue]" ;
-  when integer32Type : outResult := "[NSNumber numberWithInt:inValue]" ;
-  when integer64Type : outResult := "[NSNumber numberWithInteger:inValue]" ;
-  when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
-  when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
-  when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
+  when boolType : outResult := "@(inValue)" ;
+  when integer16Type : outResult := "@((SInt32) inValue)" ;
+  when integer32Type : outResult := "@(inValue)" ;
+  when integer64Type : outResult := "@(inValue)" ;
+  when uintegerType : outResult := "@(inValue)" ;
+  when floatType : outResult := "@(inValue)" ;
+  when doubleType : outResult := "@(inValue)" ;
   when stringType, fontType, imageType, colorType,
        decimalType, toManyEntitiesType,
        dataType, dateType : outResult := "" ;
@@ -289,12 +289,12 @@ routine generateEntityCode
     end if ;
     foreach inEntityMap do
       s .= "//-------------------------- Entity '" . lkey . "'\n" ;
-      s .= "  entity = [entityDictionary objectForKey:@\"" . lkey . "\"] ;\n" ;
+      s .= "  entity = entityDictionary [@\"" . lkey . "\"] ;\n" ;
       s .= "  [entity setManagedObjectClassName:@\"" . mImplementationClassName . "\"] ;\n" ;
       const @stringlist subEntities := [subEntitiesMap listForKey ![lkey string]] ;
       foreach subEntities
       before s .= "  [entity setSubentities:[NSArray arrayWithObjects:" ;
-      do s .= "[entityDictionary objectForKey:@\"" . mValue . "\"], " ;    
+      do s .= "entityDictionary [@\"" . mValue . "\"], " ;    
       after s .= "nil]] ;\n" ;
       end foreach ;
       s .= "  properties = [NSMutableArray new] ;\n" ;
@@ -314,7 +314,7 @@ routine generateEntityCode
         s .= "//--- '" . lkey . "' relationship\n" ;
         s .= "  relationship = [NSRelationshipDescription new] ;\n" ;
         s .= "  [relationship setName:@\"" . lkey . "\"] ;\n" ;
-        s .= "  [relationship setDestinationEntity:[entityDictionary objectForKey:@\"" . mDestinationEntityName . "\"]] ;\n" ;
+        s .= "  [relationship setDestinationEntity:entityDictionary [@\"" . mDestinationEntityName . "\"]] ;\n" ;
         s .= "  [relationship setDeleteRule:" . [mDeleteRule name] . "] ;\n" ;
         s .= "  [relationship setMinCount:0] ;\n" ;
         s .= "  [relationship setMaxCount:" . if mIsToMany then "NSUIntegerMax" else "1" end . "] ;\n" ;
@@ -329,12 +329,12 @@ routine generateEntityCode
       foreach entity_mCurrentRelationshipMap
       before
         s .= "//------ Entity '" . entity_lkey . "'\n" ;
-        s .= "  entityDescription = [entityDictionary objectForKey:@\"" . entity_lkey . "\"] ;\n" ;
+        s .= "  entityDescription = entityDictionary [@\"" . entity_lkey . "\"] ;\n" ;
       do
         s .= "//--- '" . lkey . "' relationship\n" ;
-        s .= "  relationship = [[entityDescription relationshipsByName] objectForKey:@\"" . lkey . "\"] ;\n" ;
-        s .= "  inverseEntityDescription = [entityDictionary objectForKey:@\"" . mDestinationEntityName . "\"] ;\n" ;
-        s .= "  inverseRelationship = [[inverseEntityDescription relationshipsByName] objectForKey:@\"" . mInverseRelationshipName . "\"] ;\n" ;
+        s .= "  relationship = [entityDescription relationshipsByName] [@\"" . lkey . "\"] ;\n" ;
+        s .= "  inverseEntityDescription = entityDictionary [@\"" . mDestinationEntityName . "\"] ;\n" ;
+        s .= "  inverseRelationship = [inverseEntityDescription relationshipsByName] [@\"" . mInverseRelationshipName . "\"] ;\n" ;
         s .= "  [relationship setInverseRelationship:inverseRelationship] ;\n" ;
       end foreach ;
     end foreach ;  

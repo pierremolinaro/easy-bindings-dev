@@ -166,7 +166,7 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
       target:self
       argument:nil
       order:NSUIntegerMax
-      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+      modes:@[NSDefaultRunLoopMode]
     ] ;
   }
 }
@@ -223,13 +223,11 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   for (NSString * className in [mTotalAllocatedObjectCountByClass.allObjects sortedArrayUsingSelector:@selector(compare:)]) {
     const NSUInteger currentlyAllocated = [mAllocatedObjectCountByClass countForObject:className] ;
     if ((currentlyAllocated != 0) || (self.mDisplayFilter == 0)) {
-      [array addObject: [NSDictionary
-        dictionaryWithObjectsAndKeys:
-          className, @"classname",
-          [NSNumber numberWithUnsignedInteger:[mTotalAllocatedObjectCountByClass countForObject:className]], @"allCount",
-          [NSNumber numberWithUnsignedInteger:currentlyAllocated], @"live",
-          nil
-        ]
+      [array addObject: @{
+          @"classname" : className,
+          @"allCount" : @([mTotalAllocatedObjectCountByClass countForObject:className]),
+          @"live" : @(currentlyAllocated),
+        }
       ] ;
     }
   }
@@ -246,7 +244,7 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 - (id) tableView: (NSTableView *) aTableView
        objectValueForTableColumn: (NSTableColumn *) aTableColumn
        row: (NSInteger) rowIndex {
-  NSDictionary * theRecord = [mAllocationStatsDataSource objectAtIndex:(NSUInteger) rowIndex];
+  NSDictionary * theRecord = mAllocationStatsDataSource [(NSUInteger) rowIndex] ;
   return [theRecord valueForKey:aTableColumn.identifier] ;
 }
 

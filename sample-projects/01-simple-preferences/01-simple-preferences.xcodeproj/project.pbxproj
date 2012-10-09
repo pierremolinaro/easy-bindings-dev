@@ -165,7 +165,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PM;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "ECN / IRCCyN";
 			};
 			buildConfigurationList = CF721A761593572A008662EA /* Build configuration list for PBXProject "01-simple-preferences" */;
@@ -297,6 +297,7 @@
 		CF721A9B1593572A008662EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
 				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
@@ -308,6 +309,7 @@
 		CF721A9C1593572A008662EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
 				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
