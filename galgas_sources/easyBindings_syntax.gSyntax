@@ -415,18 +415,18 @@ rule <explicit_value>
   outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
   select
     $YES$ ;
-    outDefaultValueObjectiveCObject := "@YES" ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:YES]" ;
     outDirectDefaultValue := "YES" ;
     outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
   or
     $NO$ ;
-    outDefaultValueObjectiveCObject := "@NO" ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:NO]" ;
     outDirectDefaultValue := "NO" ;
     outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
   or
     $literal_integer$ ? @luint integerValue ;
     outDirectDefaultValue := [integerValue string] ;
-    outDefaultValueObjectiveCObject := "@(" . [integerValue string] . ")" ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithInt:" . [integerValue string] . "]" ;
     outCorrespondingAcceptableTypes += ![@easyBindingType integer16Type] ;
     outCorrespondingAcceptableTypes += ![@easyBindingType integer32Type] ;
     outCorrespondingAcceptableTypes += ![@easyBindingType integer64Type] ;

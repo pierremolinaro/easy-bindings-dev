@@ -41,7 +41,7 @@
       target:self
       argument:nil
       order:NSUIntegerMax
-      modes:@[NSDefaultRunLoopMode]
+      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
     ] ;
   }
 }
