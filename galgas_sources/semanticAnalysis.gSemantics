@@ -165,11 +165,12 @@ override reader @tableValueBindingForGeneration generateBinding
      if [column->mOutletBindingOptionList length] == 0 then
        outResult .= "nil\n" ;
      else
-       outResult .= "@{\n" ;
+       outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
        foreach column->mOutletBindingOptionList do
-         outResult .= "      @" . [mValue0 utf8Representation] . " : " . mValue1 . ",\n" ;
+         outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
        end foreach ;
-       outResult .= "    }\n" ;
+       outResult .= "      nil\n"
+                    "    ]\n" ;
      end if ;
      outResult .= "  ] ;\n" ;
    end for ;
@@ -205,11 +206,12 @@ override reader @regularBindingForGeneration generateBinding
    if [mOutletBindingOptionList length] == 0 then
      outResult .= "nil\n" ;
    else
-     outResult .= "@{\n" ;
+     outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
      foreach mOutletBindingOptionList do
-       outResult .= "      @" . [mValue0 utf8Representation] . " : " . mValue1 . ",\n" ;
+       outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
      end foreach ;
-     outResult .= "    }\n" ;
+     outResult .= "      nil\n"
+                  "    ]\n" ;
    end if ;
    outResult .= "  ] ;\n" ;
 end reader ;

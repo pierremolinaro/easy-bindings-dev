@@ -12,7 +12,7 @@ before
 do
   %  entity = [NSEntityDescription new] ;\n%
   %  [entity setName:@"%![lkey string]%"] ;\n%
-  %  entityDictionary [@"%![lkey string]%"] = entity ;\n%
+  %  [entityDictionary setObject:entity forKey:@"%![lkey string]%"] ;\n%
 end foreach
 %//--------------------------
 %!ENTITY_DEFINITIONS%//--------------------------
