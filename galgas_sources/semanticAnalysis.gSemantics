@@ -1243,7 +1243,7 @@ local routine analyzeClasses
       attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
       const @lstring observationDependencyKey [new
-        !"class." . mClassName . "." . mAttributeName
+        !"class/" . mClassName . "/self." . mAttributeName
         !mAttributeName->location
       ] ;
       [!?observablePropertyMap insertKey
@@ -1252,6 +1252,10 @@ local routine analyzeClasses
         ![@stringlist listWithValue![mAttributeName string]]
         !observationDependencyKey
       ] ;    
+      [!?ioTransientDependencyGraph addNode
+        !observationDependencyKey
+        !observationDependencyKey->string
+      ] ;
     end foreach ;
   #--- Analyze transient properties
     @transientListForImplementation transientListForImplementation ;
