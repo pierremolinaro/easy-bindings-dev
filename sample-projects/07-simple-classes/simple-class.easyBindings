@@ -3,13 +3,13 @@ class MyClass {
   attribute integer32 myInteger32 default 123 ;
   attribute NSString myString default "555" ;
   
-  transient NSString schmurtz dependsFrom .myInteger32, .myString ;
-  transient NSString truc dependsFrom .schmurtz ;
+  transient NSString schmurtz dependsFrom self.myInteger32, self.myString ;
+  transient NSString truc dependsFrom self.schmurtz ;
 }
 
 class MyOtherClass : MyClass {
   attribute bool chose default NO ;
-  transient NSString bidule dependsFrom .chose, .schmurtz ;
+  transient NSString bidule dependsFrom self.chose, self.schmurtz ;
 }
 
 end

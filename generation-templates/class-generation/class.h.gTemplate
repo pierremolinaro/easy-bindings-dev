@@ -17,7 +17,14 @@ end if
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mPropertyName%' attribute\n%
 %  @private %![mType ocTypeName]% %!mPropertyName% ;\n\n%
-end foreach%
+end foreach
+
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient cache\n%
+%  @private %![mType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private BOOL %!mTransientName%__computed ;\n%
+end foreach
+%
 }
 
 //--- Init method
