@@ -1,3 +1,4 @@
+#import "PMTransientDependancyManager.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
@@ -44,7 +45,8 @@ end if
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   %    %!mPropertyName% = in%![mPropertyName stringByCapitalizingFirstCharacter]% ;\n%
 end foreach
-%  }
+%    [self pmInstallObserversForTransients] ;
+  }
   return self ;
 }
 

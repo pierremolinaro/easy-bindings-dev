@@ -4,14 +4,10 @@
 
 //----------------------------------------------------------------------------*
 
-@interface PMAbstractPreferences : NSObject {
-//--- Handle transient properties
-  @private NSMutableSet * mTriggeredTransientSet ;
-  @private BOOL mActionPosted ;
-}
+@interface PMAbstractPreferences : NSObject
 
-- (void) pmNotifyChangeForTransientProperty: (NSString *) inPropertyName ;
 - (void) pmInstallObserversForTransients ;
+- (void) pmUninstallObserversForTransients ;
 @end
 
 //----------------------------------------------------------------------------*

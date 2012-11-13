@@ -8,8 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PMAppDelegate : NSObject <NSApplicationDelegate>
+@class MyOtherClass ;
+
+@interface PMAppDelegate : NSObject <NSApplicationDelegate> {
+  @private MyOtherClass * mObject ;
+  @private IBOutlet NSTextField * mSchmurtzTextField ;
+}
 
 @property (assign) IBOutlet NSWindow *window;
+
+- (IBAction) incrementMyInteger32: (id) inSender ;
 
 @end

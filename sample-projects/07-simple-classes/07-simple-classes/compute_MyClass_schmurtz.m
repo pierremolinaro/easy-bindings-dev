@@ -19,7 +19,7 @@ NSString * compute_MyClass_schmurtz (SInt32 inMyInteger32,
                                      NSString * inMyString) {
 
 //--- START OF USER ZONE 2
-  return [inMyString stringByAppendingFormat:@"BOOL:%d", inMyInteger32] ;
+  return [inMyString stringByAppendingFormat:@" myInteger32:%d", inMyInteger32] ;
 //--- END OF USER ZONE 2
 
 }

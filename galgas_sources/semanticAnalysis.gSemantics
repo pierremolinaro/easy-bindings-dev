@@ -1261,7 +1261,7 @@ local routine analyzeClasses
     @transientListForImplementation transientListForImplementation ;
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
-      !"class/" . mClassName . "."
+      !"class/" . mClassName . "/self."
       !mTransientList
       ![@observableObjectMap emptyMap]
       !?observablePropertyMap

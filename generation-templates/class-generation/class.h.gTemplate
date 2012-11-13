@@ -1,5 +1,5 @@
 %if SUPER_CLASS_NAME == "" then
-  %#import <Cocoa/Cocoa.h>\n%
+  %#import "PMClass.h"\n%
 else
   %#import "%!SUPER_CLASS_NAME%.h"\n%
 end if
@@ -8,7 +8,7 @@ end if
 
 @interface %!CLASS_NAME% : %
 if SUPER_CLASS_NAME == "" then
-  %NSObject%
+  %PMClass%
 else
   !SUPER_CLASS_NAME
 end if
