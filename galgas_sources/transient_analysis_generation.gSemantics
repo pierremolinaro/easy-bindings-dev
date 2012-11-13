@@ -202,15 +202,23 @@ function generateTransientImplementation
   const @string partialPrefix := inPrefix . "/" . inKindName ;
   const @string fullPrefix := partialPrefix . "/self" ;
 #---
+  @triggeredKeysForSelfObject triggeredKeysForSelfObject [emptyMap] ;
+  foreach inTransientDependencyArcList do
+    if ([mValue0 stringByDeletingPathExtension] == fullPrefix) & ([mValue1 stringByDeletingPathExtension] == fullPrefix) then
+      triggeredKeysForSelfObject += ![mValue0 pathExtension] !mValue1 ;  
+    end if ;
+  end foreach ;
+#---
   outResult :=
     "//----------------------------------------------------------------------------*\n"
   . "//   T R A N S I E N T    I M P L E M E N T A T I O N                         *\n" ;
 #---
-  if [triggeredKeysFromOtherObjects count] > 0 then
+  if ([triggeredKeysFromOtherObjects count] + [triggeredKeysForSelfObject count]) > 0 then
     outResult .=
     "//----------------------------------------------------------------------------*\n\n"
     "- (void) pmInstallObserversForTransients {\n"
-    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n" ;
+    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
+    "  [super pmInstallObserversForTransients] ;\n" ;
     for element in triggeredKeysFromOtherObjects do
       for name in element->mList do
         outResult .=
@@ -222,11 +230,21 @@ function generateTransientImplementation
         "  ] ;\n" ;
       end for ;
     end for ;
+    for element in triggeredKeysForSelfObject do
+      outResult .=
+      "  [self\n"
+      "    addObserver:self\n"
+      "    forKeyPath:@\"" . element->key . "\"\n"
+      "    options:0\n"
+      "    context:NULL\n"
+      "  ] ;\n" ;
+    end for ;
     outResult .=
     "}\n\n"
     "//----------------------------------------------------------------------------*\n\n"
     "- (void) pmUninstallObserversForTransients {\n"
-    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n" ;
+    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
+    "  [super pmUninstallObserversForTransients] ;\n" ;
     for element in triggeredKeysFromOtherObjects do
       for name in element->mList do
         outResult .=
@@ -236,6 +254,13 @@ function generateTransientImplementation
         "  ] ;\n" ;
       end for ;
     end for ;
+    for element in triggeredKeysForSelfObject do
+      outResult .=
+      "  [self\n"
+      "    removeObserver:self\n"
+      "    forKeyPath:@\"" . element->key . "\"\n"
+      "  ] ;\n" ;
+    end for ;
     outResult .=
     "}\n\n"
     "//----------------------------------------------------------------------------*\n\n"
@@ -243,60 +268,44 @@ function generateTransientImplementation
     "         ofObject:(id) inObject\n"
     "         change:(NSDictionary *) inChange\n"
     "         context:(void *) inContext {\n"
-    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKeyPath) ;\n"
-    " " ;
+    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKeyPath) ;\n" ;
+    outResult .= " " ;
     for element in triggeredKeysFromOtherObjects
     do
-      outResult .= " if (inObject == " . element->key . ") {\n" ;
       for name in element->mList
       do
         outResult .=
-        "    if ([inKeyPath isEqualToString:@\"" . name->mValue0 . "\"]) {\n"
-        "      " . name->mValue1 . "__computed = NO ;\n"
-        "      [PMTransientDependancyManager\n"
-        "        enterTriggerForObject:self\n"
-        "        transientIndex:" . [fullPrefix. "." . name->mValue1 identifierRepresentation] . "\n"
-        "      ] ;\n"
-        "    }\n" ;
+        " if ((inObject == " . element->key . ") && [inKeyPath isEqualToString:@\"" . name->mValue0 . "\"]) {\n"
+        "    " . name->mValue1 . "__computed = NO ;\n"
+        "    [PMTransientDependancyManager\n"
+        "      enterTriggerForObject:self\n"
+        "      transientIndex:" . [fullPrefix. "." . name->mValue1 identifierRepresentation] . "\n"
+        "    ] ;\n"
+        "  }else" ;
       end for ;
-    between
-      outResult .= "  }else" ;
     end for ;
-    outResult .= "  }\n"
-    "}\n\n" ;
-  end if ;
-#---
-#  @triggeredKeysForSelfObject triggeredKeysForAttributes [emptyMap] ;
-  @triggeredKeysForSelfObject triggeredKeysForSelfObject [emptyMap] ;
-  foreach inTransientDependencyArcList do
-    if ([mValue0 stringByDeletingPathExtension] == fullPrefix) & ([mValue1 stringByDeletingPathExtension] == fullPrefix) then
-      triggeredKeysForSelfObject += ![mValue0 pathExtension] !mValue1 ;  
-#    elsif [mValue0 stringByDeletingLastPathComponent] == partialPrefix then
-#      triggeredKeysForAttributes += ![mValue0 lastPathComponent] !mValue1 ;  
-    end if ;
-  end foreach ;
-#---
-  if [triggeredKeysForSelfObject count] > 0 then
-    outResult .=
-    "//----------------------------------------------------------------------------*\n\n"
-    "- (void) didChangeValueForKey:(NSString *) inKey {\n"
-    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKey) ;\n"
-    "  [super didChangeValueForKey:inKey] ;\n"
-    " " ;
     for element in triggeredKeysForSelfObject
     do
-      outResult .= " if ([inKey isEqualToString:@\"" . element->key . "\"]) {\n" ;
+      outResult .= " if ([inKeyPath isEqualToString:@\"" . element->key . "\"]) {\n" ;
       for name in element->mList do
-        outResult .= "    " . [name->mValue pathExtension] . "__computed = NO ;\n"
-                     "    [PMTransientDependancyManager\n"
-                     "      enterTriggerForObject:self\n"
-                     "      transientIndex:" . [name->mValue identifierRepresentation] . "\n"
-                     "    ] ;\n" ;
+        outResult .=
+        "    " . [name->mValue pathExtension] . "__computed = NO ;\n"
+        "    [PMTransientDependancyManager\n"
+        "      enterTriggerForObject:self\n"
+        "      transientIndex:" . [name->mValue identifierRepresentation] . "\n"
+        "    ] ;\n"
+        "  }else" ;
       end for ;
-    between
-      outResult .= "  }else" ;
     end for ;
-    outResult .= "  }\n"
+    outResult .=
+    "{\n"
+    "    [super\n"
+    "      observeValueForKeyPath:inKeyPath\n"
+    "      ofObject:inObject\n"
+    "      change:inChange\n"
+    "      context:inContext\n"
+    "    ] ;\n"
+    "  }\n"
     "}\n\n" ;
   end if ;
 #---

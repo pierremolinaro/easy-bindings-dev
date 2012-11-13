@@ -23,6 +23,7 @@
 		CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */; };
 		CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */; };
 		CFBFD5EC1652C648006EAD0D /* compute_MyOtherClass_bidule.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E91652C648006EAD0D /* compute_MyOtherClass_bidule.m */; };
+		CFF613AA1652F4C100A97BE2 /* PMClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF613A91652F4C100A97BE2 /* PMClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyClass_schmurtz.m; sourceTree = "<group>"; };
 		CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyClass_truc.m; sourceTree = "<group>"; };
 		CFBFD5E91652C648006EAD0D /* compute_MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyOtherClass_bidule.m; sourceTree = "<group>"; };
+		CFF613A81652F4C100A97BE2 /* PMClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMClass.h; sourceTree = "<group>"; };
+		CFF613A91652F4C100A97BE2 /* PMClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */,
+				CFF613A81652F4C100A97BE2 /* PMClass.h */,
+				CFF613A91652F4C100A97BE2 /* PMClass.m */,
 				CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */,
 				CFBFD5C71652C4CE006EAD0D /* managed-object-model.h */,
 				CFBFD5C81652C4CE006EAD0D /* managed-object-model.m */,
@@ -224,6 +229,7 @@
 				CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */,
 				CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */,
 				CFBFD5EC1652C648006EAD0D /* compute_MyOtherClass_bidule.m in Sources */,
+				CFF613AA1652F4C100A97BE2 /* PMClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +351,7 @@
 				CFBFD5C41652C483006EAD0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
