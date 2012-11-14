@@ -1,4 +1,4 @@
-#import "PMAbstractPreferences.h"
+#import <Cocoa/Cocoa.h>
 
 //----------------------------------------------------------------------------*
 
@@ -10,7 +10,12 @@ extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
 
 //----------------------------------------------------------------------------*
 
-@interface %!PREFERENCES_NAME% : PMAbstractPreferences {
+@interface %!PREFERENCES_NAME% : NSObject {
+//--- Attribute observers
+%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
+end foreach
+%
 %
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
@@ -24,17 +29,19 @@ end foreach
 %}
 
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%//--- '%!mPropertyName%' property\n%
-%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n\n%
+%//--- '%!mPropertyName%' attribute\n%
+%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
+%  - (void) addObserverFor_%!mPropertyName% ;\n%
+%  - (void) removeObserverFor_%!mPropertyName% ;\n\n%
 end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
-%- (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+%  - (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 
 //--- Actions
 %foreach ACTION_LIST do
-%- (IBAction) %!mValue->string%: (id) inSender ;\n%
+%  - (IBAction) %!mValue->string%: (id) inSender ;\n%
 end foreach%
 @end
 

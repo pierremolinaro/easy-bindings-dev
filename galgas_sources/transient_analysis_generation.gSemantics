@@ -172,6 +172,36 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
+function generateTransientCacheRoutine
+  ??@string inKindName 
+  ??@transientListForImplementation inTransientListForImplementation
+  ->@string outResult
+:
+  outResult := "" ;
+  foreach inTransientListForImplementation do
+    outResult .=
+    "//----------------------------------------------------------------------------*\n"
+    "// Cache routine of '" . mTransientName . "' transient     *\n"
+    "//----------------------------------------------------------------------------*\n\n"   
+    "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
+    "  if (! " . mTransientName . "__computed) {\n"
+    "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
+    foreach mDependencyList
+    do outResult .= mMasterObjectName . "." . [mMasterPropertyName stringByReplacingStringByString !"@" !""] ;
+    between outResult .= ", " ;
+    end foreach ;
+    outResult .= ") ;\n"
+    "    " . mTransientName . "__computed = YES ;\n"
+    "  }\n"
+    "  return " . mTransientName . "__cache" ;
+    if [mType copyOnAssign] then outResult .= ".copy" ; end if ;
+    outResult .= " ;\n"
+    "}\n\n" ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
 listmap @triggeredKeysForSelfObject (@stringlist) ;
 
 #----------------------------------------------------------------------------*
@@ -208,6 +238,9 @@ function generateTransientImplementation
       triggeredKeysForSelfObject += ![mValue0 pathExtension] !mValue1 ;  
     end if ;
   end foreach ;
+#---
+#  log triggeredKeysFromOtherObjects, triggeredKeysForSelfObject, triggeredKeys ;
+#--- 
 #---
   outResult :=
     "//----------------------------------------------------------------------------*\n"
@@ -309,23 +342,32 @@ function generateTransientImplementation
     "}\n\n" ;
   end if ;
 #---
+  outResult .= generateTransientCacheRoutine [!inKindName !inTransientListForImplementation] ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function generateTransientTriggering
+  ??@string inPropertyName
+  ??@string inKindName # self, root
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inPrefix # entity, class, preferences
+  ->@string outResult
+:
+  log inPropertyName, inTransientListForImplementation ;
+  outResult := "" ;
+#----
   foreach inTransientListForImplementation do
-    outResult .=
-    "//----------------------------------------------------------------------------*\n\n"   
-    "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
-    "  if (! " . mTransientName . "__computed) {\n"
-    "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
-    foreach mDependencyList
-    do outResult .= mMasterObjectName . "." . [mMasterPropertyName stringByReplacingStringByString !"@" !""] ;
-    between outResult .= ", " ;
+    foreach mDependencyList do
+      if (mMasterObjectName == "self") & (inPropertyName == mMasterPropertyName) then
+        outResult .=
+        "    " . mTransientName . "__computed = NO ;\n"
+        "    [PMTransientDependancyManager\n"
+        "      enterTriggerForObject:self\n"
+        "      transientIndex:" . [inPrefix . "/" . inKindName ."/" . mMasterObjectName. "." . mTransientName identifierRepresentation] . "\n"
+        "    ] ;\n" ;
+      end if ;
     end foreach ;
-    outResult .= ") ;\n"
-    "    " . mTransientName . "__computed = YES ;\n"
-    "  }\n"
-    "  return " . mTransientName . "__cache" ;
-    if [mType copyOnAssign] then outResult .= ".copy" ; end if ;
-    outResult .= " ;\n"
-    "}\n\n" ;
   end foreach ;
 end function ;
 

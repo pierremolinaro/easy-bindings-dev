@@ -77,9 +77,9 @@ message "a source text file with the .easyBindings extension"
 #--- Add embedded sources
   @stringset sources [setWithString !"easy-bindings-utilities"] ;
   sources += !"PMDebug" ;
-  if [preferencesMap count] > 0 then
-    sources += !"PMAbstractPreferences" ;
-  end if ;
+#  if [preferencesMap count] > 0 then
+#    sources += !"PMAbstractPreferences" ;
+#  end if ;
   if [documentMap count] > 0 then
     sources += !"PMAbstractPersistentDocument" ;
   end if ;
