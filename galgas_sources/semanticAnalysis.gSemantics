@@ -37,6 +37,25 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+reader @easyBindingType equalMethod -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "" ; # Empty string: use == operator
+  when integer16Type, integer32Type, integer64Type, uintegerType : outResult := "" ;
+  when decimalType : outResult := "" ;
+  when floatType : outResult := "" ;
+  when doubleType : outResult := "" ;
+  when stringType : outResult := "isEqualToString" ;
+  when dataType : outResult := "isEqual" ;
+  when dateType : outResult := "isEqual" ;
+  when fontType : outResult := "isEqual" ;
+  when imageType : outResult := "isEqual" ;
+  when colorType : outResult := "isEqual" ;
+  when toManyEntitiesType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 list @attributeListForImplementation {
   @easyBindingType mType ;
   @string mPropertyName ;
