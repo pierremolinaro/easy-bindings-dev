@@ -1,4 +1,5 @@
 #import "easy-bindings-utilities.h"
+#import "PMDebug.h"
 #import "PMTransientDependancyManager.h"
 #import "%!CLASS_NAME%.h"
 %
@@ -9,9 +10,59 @@ foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
+
 //----------------------------------------------------------------------------*
 
 @implementation %!CLASS_NAME%
+
+//----------------------------------------------------------------------------*
+//    Synthesize properties                                                   *
+//----------------------------------------------------------------------------*
+
+//--- Attributes
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+  if [mType isClass] then
+    %@dynamic %!mPropertyName% ;\n%
+  end if
+end foreach
+%
+//--- To-many relationships
+%
+foreach TO_MANY_RELATIONSHIPS do
+%@dynamic %!mValue0% ; // Set of %!mValue1% entities\n%
+end foreach
+%
+//----------------------------------------------------------------------------*
+//    Creation Class Method                                                   *
+//----------------------------------------------------------------------------*
+
++ (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
+  return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
+}
+
+//----------------------------------------------------------------------------*
+//    initWithEntity:insertIntoManagedObjectContext:                          *
+//----------------------------------------------------------------------------*
+
+- (id) initWithEntity:(NSEntityDescription *) inEntity
+       insertIntoManagedObjectContext:(NSManagedObjectContext *) inManagedObjectContext {
+  self = [super 
+    initWithEntity:inEntity
+    insertIntoManagedObjectContext:inManagedObjectContext
+  ] ;
+  if (self) {
+    macroNoteObjectAllocation (self) ;
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    Dealloc                                                                 *
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
+}
 
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   if [mType nonStandardAttributeNamePrefix] != "" then
@@ -44,33 +95,44 @@ end foreach
     %}\n%
   end if
 end foreach
-%
-//----------------------------------------------------------------------------*
-//    Synthesize properties                                                   *
+
+if [PROPERTY_LIST_FOR_IMPLEMENTATION length] > 0 then
+%//----------------------------------------------------------------------------*
+//    didChangeValueForKey                                                    *
 //----------------------------------------------------------------------------*
 
-//--- Attributes
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  if [mType isClass] then
-    %@dynamic %!mPropertyName% ;\n%
-  end if
+- (void) didChangeValueForKey: (NSString *) inKey {
+  [super didChangeValueForKey:inKey] ;
+ %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+% if ([inKey isEqualToString:@"%!mPropertyName%"]) {
+    [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
+%!generateTransientTriggering [!mPropertyName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+between %  }else%
 end foreach
-%
-
-//--- To-many relationships
-%
-foreach TO_MANY_RELATIONSHIPS do
-%@dynamic %!mValue0% ; // Set of %!mValue1% entities\n%
-end foreach
-%
-//----------------------------------------------------------------------------*
-//    Creation Class Method                                                   *
+%  }
+}
+%end if
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 //----------------------------------------------------------------------------*
 
-+ (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
-  return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
+- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
+  if (nil == %!mPropertyName%_observers) {
+    %!mPropertyName%_observers = [NSMutableSet new] ;
+  }
+  [%!mPropertyName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
 }
 
-%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"entity"]
+//----------------------------------------------------------------------------*
+
+- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
+  [%!mPropertyName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
+}
+
+%
+end foreach
+
+!generateTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//----------------------------------------------------------------------------*
 

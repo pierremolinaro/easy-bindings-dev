@@ -357,18 +357,29 @@ function generateTransientTriggering
   log inPropertyName, inTransientListForImplementation ;
   outResult := "" ;
 #----
-  foreach inTransientListForImplementation do
-    foreach mDependencyList do
-      if (mMasterObjectName == "self") & (inPropertyName == mMasterPropertyName) then
-        outResult .=
-        "    " . mTransientName . "__computed = NO ;\n"
-        "    [PMTransientDependancyManager\n"
-        "      enterTriggerForObject:self\n"
-        "      transientIndex:" . [inPrefix . "/" . inKindName ."/" . mMasterObjectName. "." . mTransientName identifierRepresentation] . "\n"
-        "    ] ;\n" ;
-      end if ;
+  @stringset masterSet [setWithString !inPropertyName] ;
+  @stringset registeredTransientSet [emptySet] ;
+  @bool looping := true ;
+  loop [inTransientListForImplementation length] + 1 while looping do
+    looping := false ;
+    foreach inTransientListForImplementation do
+      foreach mDependencyList do
+        if (mMasterObjectName == "self")
+         & ([masterSet hasKey !mMasterPropertyName])
+         & not [registeredTransientSet hasKey !mTransientName] then
+          registeredTransientSet += !mTransientName ;
+          masterSet += !mTransientName ;
+          looping := true ;
+          outResult .=
+          "    " . mTransientName . "__computed = NO ;\n"
+          "    [PMTransientDependancyManager\n"
+          "      enterTriggerForObject:self\n"
+          "      transientIndex:" . [inPrefix . "/" . inKindName . "/" . mMasterObjectName . "." . mTransientName identifierRepresentation] . "\n"
+          "    ] ;\n" ;
+        end if ;
+      end foreach ;
     end foreach ;
-  end foreach ;
+  end loop ;
 end function ;
 
 #----------------------------------------------------------------------------*

@@ -177,13 +177,7 @@ class C_String : public AC_OutputStream {
   public : PMUInt32 LevenshteinDistanceFromString (const C_String & inOtherString) const ;
 
 //--- Get lines array
-  public : void linesArray (TC_UniqueArray <C_String> & outStringArray) const ;
-
-//--- Get line from index
-  public : void lineAndColumnFromIndex (const PMSInt32 inIndex,
-                                        PMSInt32 & outLineNumber,
-                                        PMSInt32 & outColumnNumber,
-                                        C_String & outLineContents) const ;
+  public : void getLinesArray (TC_UniqueArray <C_String> & outStringArray) const ;
 
 //--- Subsitute 'inCharacter' by 'inString' ; if the character occurs twice, suppress one
   public : C_String stringByReplacingCharacterByString (const utf32 inCharacter,
@@ -203,7 +197,7 @@ class C_String : public AC_OutputStream {
 //    - at the beginning of the string,
 //    - within the string (replace a sequence of white spaces with a single space),
 //    - at end at the end of string.
-  public : C_String stringByTrimmingSeparators (void) const ;
+  public : C_String stringByTrimmingWhiteSpaces (void) const ;
 
 //--- Get a sub string
   public : C_String subString (const PMSInt32 inStartIndex,

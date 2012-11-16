@@ -31,8 +31,8 @@ end foreach
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %//--- '%!mPropertyName%' attribute\n%
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
-%  - (void) addObserverFor_%!mPropertyName% ;\n%
-%  - (void) removeObserverFor_%!mPropertyName% ;\n\n%
+%  - (void) addObserverOf_%!mPropertyName%: (id) inObserver ;\n%
+%  - (void) removeObserverOf_%!mPropertyName%: (id) inObserver ;\n\n%
 end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%

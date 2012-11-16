@@ -485,7 +485,7 @@ local routine analyzeEntities
     @stringset implementationFileInclusionSet [emptySet] ;
     @transientListForImplementation transientListForImplementation ;
     analyzeTransientProperties
-      !"entity/" . mEntityName . "."
+      !"entity/" . mEntityName . "/self."
       !mTransientList
       ![@observableObjectMap emptyMap]
       !?observablePropertyMap

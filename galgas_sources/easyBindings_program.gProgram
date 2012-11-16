@@ -80,12 +80,12 @@ message "a source text file with the .easyBindings extension"
 #  if [preferencesMap count] > 0 then
 #    sources += !"PMAbstractPreferences" ;
 #  end if ;
-  if [documentMap count] > 0 then
-    sources += !"PMAbstractPersistentDocument" ;
-  end if ;
-  if [entityMap count] > 0 then
-    sources += !"PMAbstractManagedObject" ;
-  end if ;
+#  if [documentMap count] > 0 then
+#    sources += !"PMAbstractPersistentDocument" ;
+#  end if ;
+#  if [entityMap count] > 0 then
+#    sources += !"PMAbstractManagedObject" ;
+#  end if ;
   if [classMap count] > 0 then
     sources += !"PMClass" ;
   end if ;
