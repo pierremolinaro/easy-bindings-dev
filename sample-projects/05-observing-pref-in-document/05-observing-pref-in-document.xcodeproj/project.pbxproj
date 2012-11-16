@@ -19,10 +19,9 @@
 		CF4627DF1595B7DA00BF70CD /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627DC1595B7DA00BF70CD /* easy-bindings-utilities.m */; };
 		CF4627EE1595B7E500BF70CD /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E11595B7E500BF70CD /* managed-object-model.m */; };
 		CF4627EF1595B7E500BF70CD /* MyEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E31595B7E500BF70CD /* MyEntityClass.m */; };
-		CF4627F01595B7E500BF70CD /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */; };
-		CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */; };
-		CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */; };
 		CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627ED1595B7E500BF70CD /* PMPrefs.m */; };
+		CF7C15601656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C155D1656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m */; };
+		CF7C156B1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C156A1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m */; };
 		CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8915963FF1006D876D /* PMDebug.m */; };
 		CF9D9A8D15963FF1006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A8A15963FF1006D876D /* PMDebug.xib */; };
 		CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */; };
@@ -51,16 +50,13 @@
 		CF4627E11595B7E500BF70CD /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF4627E21595B7E500BF70CD /* MyEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEntityClass.h; sourceTree = "<group>"; };
 		CF4627E31595B7E500BF70CD /* MyEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEntityClass.m; sourceTree = "<group>"; };
-		CF4627E41595B7E500BF70CD /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
-		CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
-		CF4627E61595B7E500BF70CD /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
-		CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
-		CF4627E81595B7E500BF70CD /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
-		CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
 		CF4627EA1595B7E500BF70CD /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
 		CF4627EB1595B7E500BF70CD /* PMPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMPrefs-computations.h"; sourceTree = "<group>"; };
 		CF4627EC1595B7E500BF70CD /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
 		CF4627ED1595B7E500BF70CD /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
+		CF7C155D1656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
+		CF7C155F1656EC8600CFB81D /* MyEntityClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyEntityClass-transient-computations.h"; sourceTree = "<group>"; };
+		CF7C156A1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
 		CF9D9A8815963FF1006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF9D9A8915963FF1006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A8A15963FF1006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
@@ -119,6 +115,9 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
+				CF7C156A1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m */,
+				CF7C155D1656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m */,
+				CF7C155F1656EC8600CFB81D /* MyEntityClass-transient-computations.h */,
 				CFF1C93115C32D950054F1DA /* PMTransientDependancyManager.h */,
 				CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */,
 				CF9D9A8815963FF1006D876D /* PMDebug.h */,
@@ -128,12 +127,6 @@
 				CF4627E11595B7E500BF70CD /* managed-object-model.m */,
 				CF4627E21595B7E500BF70CD /* MyEntityClass.h */,
 				CF4627E31595B7E500BF70CD /* MyEntityClass.m */,
-				CF4627E41595B7E500BF70CD /* PMAbstractManagedObject.h */,
-				CF4627E51595B7E500BF70CD /* PMAbstractManagedObject.m */,
-				CF4627E61595B7E500BF70CD /* PMAbstractPersistentDocument.h */,
-				CF4627E71595B7E500BF70CD /* PMAbstractPersistentDocument.m */,
-				CF4627E81595B7E500BF70CD /* PMAbstractPreferences.h */,
-				CF4627E91595B7E500BF70CD /* PMAbstractPreferences.m */,
 				CF4627EA1595B7E500BF70CD /* PMDocument-computations.h */,
 				CF4627EB1595B7E500BF70CD /* PMPrefs-computations.h */,
 				CF4627EC1595B7E500BF70CD /* PMPrefs.h */,
@@ -236,12 +229,11 @@
 				CF4627DF1595B7DA00BF70CD /* easy-bindings-utilities.m in Sources */,
 				CF4627EE1595B7E500BF70CD /* managed-object-model.m in Sources */,
 				CF4627EF1595B7E500BF70CD /* MyEntityClass.m in Sources */,
-				CF4627F01595B7E500BF70CD /* PMAbstractManagedObject.m in Sources */,
-				CF4627F11595B7E500BF70CD /* PMAbstractPersistentDocument.m in Sources */,
-				CF4627F21595B7E500BF70CD /* PMAbstractPreferences.m in Sources */,
 				CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */,
 				CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */,
 				CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */,
+				CF7C15601656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m in Sources */,
+				CF7C156B1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

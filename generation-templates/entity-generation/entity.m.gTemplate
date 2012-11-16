@@ -52,7 +52,9 @@ end foreach
   ] ;
   if (self) {
     macroNoteObjectAllocation (self) ;
-  }
+  //--- Add Transient observers
+%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%  }
   return self ;
 }
 
@@ -62,6 +64,17 @@ end foreach
 
 - (void) dealloc {
   macroNoteObjectDeallocation (self) ;
+}
+
+//----------------------------------------------------------------------------*
+//    didTurnIntoFault                                                        *
+//----------------------------------------------------------------------------*
+
+- (void) didTurnIntoFault {
+//--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%//---
+  [super didTurnIntoFault] ;
 }
 
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
@@ -132,6 +145,8 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 
 %
 end foreach
+
+!generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 
 !generateTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//----------------------------------------------------------------------------*

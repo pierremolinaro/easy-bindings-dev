@@ -3,6 +3,47 @@ semantics transient_analysis_generation :
 
 #----------------------------------------------------------------------------*
 
+list @attributeListForImplementation {
+  @easyBindingType mType ;
+  @string mPropertyName ;
+  @string mDefaultValueAsObjectiveCObject ;
+  @string mDirectDefaultValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractBindingForGeneration {
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletBindingListForGeneration {
+  @abstractBindingForGeneration mBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletGenerationList {
+  @string mOutletType ;
+  @string mOutletName ;
+  @outletBindingListForGeneration mOutletBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @preferencesMap {
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @outletGenerationList mOutletDeclarationList ;
+  @lstringlist mActionList ;
+  @observablePropertyMap mObservablePropertyMap ;
+  @stringset mImplementationFileInclusionSet ;
+  insert insertKey error message "the '%K' preference is already declared" ;
+  search searchKey error message "the '%K' preference is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 reader @easyBindingType ocTypeName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "BOOL" ;
@@ -38,8 +79,7 @@ end reader ;
 
 map @observablePropertyMap {
   @easyBindingType mType ;
-  @stringlist mPropertyDependancyList ; # Empty for an attribute
-  @lstring mObservationDependancyKey ;
+  @bool mIsTransient ;
   insert insertKey error message "the '%K' attribute is already declared" ;
   search searchKey error message "the '%K' attribute is not declared" ;
 }
@@ -48,6 +88,7 @@ map @observablePropertyMap {
 
 map @observableObjectMap {
   @string mObservableObjectOCName ;
+  @string mObservableObjectTypeOCName ;
   @string mIncludeFileName ; # Empty string if no file to include
   @observablePropertyMap mObservableProperties ;
   insert insertKey error message "the '%K' observable object is already declared" ;
@@ -56,16 +97,79 @@ map @observableObjectMap {
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractTransientDependencyForImplementation {
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientDependencyFromSelfForImplementation extends @abstractTransientDependencyForImplementation {
+  @string mMasterAttributeName ;
+  @easyBindingType mMasterAttributeType ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientDependencyFromPreferenceForImplementation extends @abstractTransientDependencyForImplementation {
+  @string mPreferenceName ;
+  @string mMasterAttributeName ;
+  @bool mMasterIsTransient ;
+  @easyBindingType mMasterAttributeType ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractTransientDependencyForImplementation generateFormalArgument
+  ->@string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromSelfForImplementation generateFormalArgument
+  ->@string outResult
+:
+  outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromPreferenceForImplementation generateFormalArgument
+  ->@string outResult
+:
+  outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractTransientDependencyForImplementation generateMasterAttributeCall
+  ->@string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromSelfForImplementation generateMasterAttributeCall
+  ->@string outResult
+:
+  outResult := "self." . mMasterAttributeName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromPreferenceForImplementation generateMasterAttributeCall
+  ->@string outResult
+:
+  outResult := "g_" . mPreferenceName . "." . mMasterAttributeName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 list @directDependancyList {
-  @easyBindingType mMasterType ;
-  @string mMasterObjectName ;
-  @string mMasterPropertyName ;
+  @abstractTransientDependencyForImplementation mDependency ;
 }
 
 #----------------------------------------------------------------------------*
 
 list @transientListForImplementation {
-  @easyBindingType mType ;
+  @easyBindingType mTransientType ;
   @string mTransientName ;
   @directDependancyList mDependencyList ;
 }
@@ -78,10 +182,81 @@ graph @transientDependencyGraph (@stringlist) {
 
 #----------------------------------------------------------------------------*
 
+abstract method @abstractTransientDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap inLocalObservablePropertyMap
+  ??@preferencesMap inPreferencesMap
+  ??@string inObervationDependencyPrefix
+  ?!@stringset ioImplementationFileInclusionSet
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@abstractTransientDependencyForImplementation outImplementation
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientLocalDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap inLocalObservablePropertyMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@string inObervationDependencyPrefix
+  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@abstractTransientDependencyForImplementation outImplementation
+:
+  [inLocalObservablePropertyMap searchKey
+    !mMasterName
+    ?@easyBindingType masterType
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addArc
+    ![@lstring new !inObervationDependencyPrefix . mMasterName !mMasterName->location]
+    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
+  ] ;
+#---
+  outImplementation := [@transientDependencyFromSelfForImplementation new !mMasterName->string !masterType] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientPreferenceDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@preferencesMap inPreferencesMap
+  ??@string inObervationDependencyPrefix
+  ?!@stringset ioImplementationFileInclusionSet
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@abstractTransientDependencyForImplementation outImplementation
+:
+  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?*] ;
+  [observablePropertyMap searchKey
+    !mMasterName
+    ?@easyBindingType masterType
+    ?@bool isTransient
+  ] ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addArc
+    ![@lstring new !"preference." . mPreferencesName . "." . mMasterName !mMasterName->location]
+    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
+  ] ;
+#--- Add preference header
+  ioImplementationFileInclusionSet += !mPreferencesName->string ;
+#---
+  outImplementation := [@transientDependencyFromPreferenceForImplementation new
+    !mPreferencesName->string
+    !mMasterName->string
+    !isTransient
+    !masterType
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 routine analyzeTransientProperties
+  ??@preferencesMap inPreferencesMap
   ??@string inObervationDependencyPrefix
   ??@transientList inTransientList
-  ??@observableObjectMap inObservableObjectMap
+  ??@observableObjectMap unused inObservableObjectMap
   ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
   ?!@stringset ioImplementationFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
@@ -89,59 +264,34 @@ routine analyzeTransientProperties
 :
   outTransientListForImplementation := [@transientListForImplementation emptyList] ;
   foreach inTransientList do
-    @stringlist allPropertyDependancyList [emptyList] ;
-    @directDependancyList directDependancyList [emptyList] ;
+  #--- Define transient as a new node in dependency graph
     const @lstring transientObservationKey [new
       !inObervationDependencyPrefix . mTransientName
       !mTransientName->location
     ] ;
     [!?ioTransientDependencyGraph addNode !transientObservationKey !transientObservationKey->string] ;
+  #--- Analyze dependencies
+    @directDependancyList directDependancyList [emptyList] ;
     foreach mDependencyList do
-      @observableObjectMap observableObjectMap := inObservableObjectMap ;
-      [!?observableObjectMap insertKey
-        !["self" nowhere]
-        !"self"
-        !"" # No file to include
+      [mDependency analyze
+        !mTransientName
         !ioSelfObjectObservablePropertyMap
+        !inPreferencesMap
+        !inObervationDependencyPrefix
+        !?ioImplementationFileInclusionSet
+        !?ioTransientDependencyGraph
+        ?@abstractTransientDependencyForImplementation implementation
       ] ;
-      @observablePropertyMap observableAttributeMap ;
-      @string observableObjectOCName ;
-      @string includeFileName ;
-      [observableObjectMap searchKey !mObjectName ?observableObjectOCName ?includeFileName ?observableAttributeMap] ;
-      ioImplementationFileInclusionSet += !includeFileName ;
-      @easyBindingType type ;
-      @stringlist propertyDependancyList ;
-      @lstring observationDependencyKey ;
-      [observableAttributeMap searchKey
-        !mPropertyName
-        ?type
-        ?propertyDependancyList
-        ?observationDependencyKey
-      ] ;
-      @string observableKeyPath := mPropertyName->string ;
-    #--- count option ?
-      if mNamesCountOption then
-        if type == [@easyBindingType toManyEntitiesType] then
-          observableKeyPath .= ".@count" ;
-          type := [@easyBindingType uintegerType] ;
-        else
-          error mPropertyName: "the 'count' path is only allowed for to-many relationships" ;
-        end if ;
-      end if ;
-      directDependancyList += !type !observableObjectOCName !observableKeyPath ;
-      allPropertyDependancyList .= propertyDependancyList ;
-      [!?ioTransientDependencyGraph addArc
-        !observationDependencyKey
-        ![@lstring new !inObervationDependencyPrefix . mTransientName !mTransientName->location]
-      ] ;
+      directDependancyList += !implementation ;
     end foreach ;
-    outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
+  #--- Add transient to observable attribute map
     [!?ioSelfObjectObservablePropertyMap insertKey
       !mTransientName
       !mType
-      !allPropertyDependancyList
-      !transientObservationKey
-    ] ;    
+      !true # is transient
+    ] ;
+  #--- Add transient implementation
+    outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
   end foreach ;
 end routine ;
 
@@ -158,11 +308,10 @@ function generateTransientFunctionDeclarations
   . "//----------------------------------------------------------------------------*\n\n" ;
 
   foreach inTransientListForImplementation do
-    outResult .= [mType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
+    outResult .= [mTransientType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
     foreach mDependencyList
     do
-      outResult .= "    " . [mMasterType ocTypeName]
-      . " in" . [[mMasterPropertyName stringByReplacingStringByString !".@" !"_"] stringByCapitalizingFirstCharacter] ;
+      outResult .= "    " . [mDependency generateFormalArgument] ;
     between
       outResult .= ",\n" ;
     end foreach ;
@@ -183,18 +332,18 @@ function generateTransientCacheRoutine
     "//----------------------------------------------------------------------------*\n"
     "// Cache routine of '" . mTransientName . "' transient     *\n"
     "//----------------------------------------------------------------------------*\n\n"   
-    "- (" . [mType ocTypeName] . ") " . mTransientName . " {\n"
+    "- (" . [mTransientType ocTypeName] . ") " . mTransientName . " {\n"
     "  if (! " . mTransientName . "__computed) {\n"
     "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
     foreach mDependencyList
-    do outResult .= mMasterObjectName . "." . [mMasterPropertyName stringByReplacingStringByString !"@" !""] ;
+    do outResult .= [mDependency generateMasterAttributeCall] ;
     between outResult .= ", " ;
     end foreach ;
     outResult .= ") ;\n"
     "    " . mTransientName . "__computed = YES ;\n"
     "  }\n"
     "  return " . mTransientName . "__cache" ;
-    if [mType copyOnAssign] then outResult .= ".copy" ; end if ;
+    if [mTransientType copyOnAssign] then outResult .= ".copy" ; end if ;
     outResult .= " ;\n"
     "}\n\n" ;
   end foreach ;
@@ -222,11 +371,11 @@ function generateTransientImplementation
   @triggeredKeysForOtherObjects triggeredKeysFromOtherObjects [emptyMap] ;
   foreach inTransientListForImplementation do
     foreach mDependencyList do
-      if mMasterObjectName == "self" then
-        triggeredKeys += !mMasterPropertyName !mTransientName ;
-      else
-        triggeredKeysFromOtherObjects += !mMasterObjectName !mMasterPropertyName !mTransientName ;
-      end if ;
+#      if mMasterObjectName == "self" then
+#        triggeredKeys += !mMasterPropertyName !mTransientName ;
+#      else
+#        triggeredKeysFromOtherObjects += !mMasterObjectName !mMasterPropertyName !mTransientName ;
+#      end if ;
     end foreach ;
   end foreach ;
   const @string partialPrefix := inPrefix . "/" . inKindName ;
@@ -239,9 +388,6 @@ function generateTransientImplementation
     end if ;
   end foreach ;
 #---
-#  log triggeredKeysFromOtherObjects, triggeredKeysForSelfObject, triggeredKeys ;
-#--- 
-#---
   outResult :=
     "//----------------------------------------------------------------------------*\n"
   . "//   T R A N S I E N T    I M P L E M E N T A T I O N                         *\n" ;
@@ -251,7 +397,7 @@ function generateTransientImplementation
     "//----------------------------------------------------------------------------*\n\n"
     "- (void) pmInstallObserversForTransients {\n"
     "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
-    "  [super pmInstallObserversForTransients] ;\n" ;
+    "  //[super pmInstallObserversForTransients] ;\n" ;
     for element in triggeredKeysFromOtherObjects do
       for name in element->mList do
         outResult .=
@@ -277,7 +423,7 @@ function generateTransientImplementation
     "//----------------------------------------------------------------------------*\n\n"
     "- (void) pmUninstallObserversForTransients {\n"
     "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
-    "  [super pmUninstallObserversForTransients] ;\n" ;
+    " // [super pmUninstallObserversForTransients] ;\n" ;
     for element in triggeredKeysFromOtherObjects do
       for name in element->mList do
         outResult .=
@@ -347,14 +493,65 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
+abstract method @abstractTransientDependencyForImplementation generateTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromSelfForImplementation generateTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+:
+  if [ioMasterAttributeSet hasKey !mMasterAttributeName] then
+    ioMasterAttributeSet += !inTransientName ;
+    ioRegisteredTransientSet += !inTransientName ;
+    ioContinue := true ;
+    ioResult .=
+    "  //--- Trigger '" . inTransientName . " transient'\n"
+    "    if (" . inTransientName . "__computed) {\n"
+    "      " . inTransientName . "__computed = NO ;\n"
+    "      [PMTransientDependancyManager\n"
+    "        enterTriggerForObject:self\n"
+    "        transientIndex:" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . "\n"
+    "      ] ;\n"
+    "    }\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation generateTransientTriggerFromSelfAttribute
+  ??@string unused inPrefix # entity, class, preference
+  ??@string unused inClassName
+  ??@string unused inTransientName
+  ?!@stringset unused ioMasterAttributeSet
+  ?!@stringset unused ioRegisteredTransientSet
+  ?!@bool unused ioContinue
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 function generateTransientTriggering
   ??@string inPropertyName
-  ??@string inKindName # self, root
+  ??@string inClassName
   ??@transientListForImplementation inTransientListForImplementation
-  ??@string inPrefix # entity, class, preferences
+  ??@string inPrefix # entity, class, preference
   ->@string outResult
 :
-  log inPropertyName, inTransientListForImplementation ;
   outResult := "" ;
 #----
   @stringset masterSet [setWithString !inPropertyName] ;
@@ -364,22 +561,174 @@ function generateTransientTriggering
     looping := false ;
     foreach inTransientListForImplementation do
       foreach mDependencyList do
-        if (mMasterObjectName == "self")
-         & ([masterSet hasKey !mMasterPropertyName])
-         & not [registeredTransientSet hasKey !mTransientName] then
-          registeredTransientSet += !mTransientName ;
-          masterSet += !mTransientName ;
-          looping := true ;
-          outResult .=
-          "    " . mTransientName . "__computed = NO ;\n"
-          "    [PMTransientDependancyManager\n"
-          "      enterTriggerForObject:self\n"
-          "      transientIndex:" . [inPrefix . "/" . inKindName . "/" . mMasterObjectName . "." . mTransientName identifierRepresentation] . "\n"
-          "    ] ;\n" ;
+        if (not [registeredTransientSet hasKey !mTransientName]) then
+          [mDependency generateTransientTriggerFromSelfAttribute
+            !inPrefix
+            !inClassName
+            !mTransientName
+            !?masterSet
+            !?registeredTransientSet
+            !?looping
+            !?outResult
+          ] ;
         end if ;
       end foreach ;
     end foreach ;
   end loop ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependencyForImplementation generateAddObserverForTransient
+  ??@string inLeadingSpaces
+  ?!@string ioResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromSelfForImplementation generateAddObserverForTransient
+  ??@string unused inLeadingSpaces
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation generateAddObserverForTransient
+  ??@string inLeadingSpaces
+  ?!@string ioResult
+:
+  if not mMasterIsTransient then
+    ioResult .= inLeadingSpaces . "  [g_" . mPreferenceName . " addObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+function generateAddObserverForTransients
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inLeadingSpaces
+  ->@string outResult
+:
+  outResult := "" ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      [mDependency generateAddObserverForTransient
+        !inLeadingSpaces
+        !?outResult
+      ] ;
+    end foreach ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependencyForImplementation generateRemoveObserverForTransient
+  ?!@string ioResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromSelfForImplementation generateRemoveObserverForTransient
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation generateRemoveObserverForTransient
+  ?!@string ioResult
+:
+  if not mMasterIsTransient then
+    ioResult .= "  [g_" . mPreferenceName . " removeObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+function generateRemoveObserverForTransients
+  ??@transientListForImplementation inTransientListForImplementation
+  ->@string outResult
+:
+  outResult := "" ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      [mDependency generateRemoveObserverForTransient
+        !?outResult
+      ] ;
+    end foreach ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+listmap @observerListMap (@stringlist) ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependencyForImplementation generateObserverRoutineForTransient
+  ??@string inTransientName
+  ?!@observerListMap ioObserverListMap
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromSelfForImplementation generateObserverRoutineForTransient
+  ??@string unused inTransientName
+  ?!@observerListMap unused ioObserverListMap
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation generateObserverRoutineForTransient
+  ??@string inTransientName
+  ?!@observerListMap ioObserverListMap
+:
+  if not mMasterIsTransient then
+    ioObserverListMap += !mPreferenceName . "_" . mMasterAttributeName !inTransientName ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+function generateObserverRoutinesForTransient
+  ??@string inKindName 
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inPrefix # entity, class, preference
+  ->@string outResult
+:
+  outResult := "" ;
+  @observerListMap observerListMap [emptyMap] ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      [mDependency generateObserverRoutineForTransient
+        !mTransientName
+        !?observerListMap
+      ] ;
+    end foreach ;
+  end foreach ;
+#---
+  const @string fullPrefix := inPrefix . "." . inKindName . "." ;
+  foreach observerListMap do
+    outResult .=
+    "//----------------------------------------------------------------------------*\n"
+    "//  " . key . "_didChange   *\n"
+    "//----------------------------------------------------------------------------*\n\n"
+    "- (void) " . key . "_didChange {\n" ;
+    foreach mList do
+    outResult .=
+      "  //--- Trigger '" . mValue . " transient'\n"
+      "  if (" . mValue . "__computed) {\n"
+      "    " . mValue . "__computed = NO ;\n"
+      "    [PMTransientDependancyManager\n"
+      "      enterTriggerForObject:self\n"
+      "      transientIndex:" . [fullPrefix . mValue identifierRepresentation] . "\n"
+      "    ] ;\n"
+      "  }\n" ;
+    end foreach ;
+    outResult .= "}\n\n" ;
+  end foreach ;
 end function ;
 
 #----------------------------------------------------------------------------*

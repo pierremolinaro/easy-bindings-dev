@@ -536,31 +536,22 @@ rule <transient_declaration>
   $dependsFrom$ ;
   @dependanceList dependanceList [emptyList] ;
   repeat
-    @lstring objectName ;
     select
       $self$ ;
-      objectName := [@lstring new !"self" !here] ;
-    or
-      $root$ ;
-      objectName := [@lstring new !"root" !here] ;
-    or
-      $identifier$ ?objectName ;
-    or
-      $Identifier$ ?objectName ;
-    end select ;
-    $.$ ;
-    $identifier$ ? @lstring dependencyName ;
-  #---
-    @bool namesCountOption ;
-    select
-      namesCountOption := false ;
-    or
       $.$ ;
-      $count$ ;
-      namesCountOption := true ;
+      $identifier$ ? @lstring masterName ;
+      dependanceList += ![@transientLocalDependency new !masterName] ;
+    or
+      $identifier$ ?@lstring controllerName ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+#      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
+    or
+      $Identifier$ ?@lstring preferenceName ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      dependanceList += ![@transientPreferenceDependency new !preferenceName !masterName] ;
     end select ;
-  #---
-    dependanceList += !objectName !dependencyName !namesCountOption ;
   while
     $,$ ;
   end repeat ;

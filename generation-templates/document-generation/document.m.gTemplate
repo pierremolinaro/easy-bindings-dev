@@ -109,8 +109,9 @@ foreach OUTLET_DECLARATION_LIST do
     ![mBinding generateBinding !mOutletName]
   end foreach
 end foreach
-%
-}
+%//--- Add Transient observers
+%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
+%}
 
 //----------------------------------------------------------------------------*
 //   R E M O V E    W I N D O W    C O N T R O L L E R                        *
@@ -130,11 +131,15 @@ end foreach
    ![mBinding generateRemoveBinding !lkey->string]
   end foreach
 end foreach
+%//--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//---
   [super removeWindowController:inWindowController] ;
 }
 
-%!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"document"]
+% !generateObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
+
+!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"document"]
 %//----------------------------------------------------------------------------*
 //    Actions                                                                 *
 //----------------------------------------------------------------------------*

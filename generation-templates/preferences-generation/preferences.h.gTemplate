@@ -23,7 +23,7 @@ foreach OUTLET_DECLARATION_LIST do
 end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
-%  @private %![mType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n\n%
 end foreach
 %}
@@ -36,7 +36,7 @@ end foreach
 end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
-%  - (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+%  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 
 //--- Actions
