@@ -30,11 +30,11 @@ SOURCES += easyBindings_options.cpp
 SOURCES += abstractSyntaxTree.cpp
 SOURCES += easyBindings_syntax.cpp
 SOURCES += easyBindings_grammar.cpp
+SOURCES += preferencesGeneration.cpp
 SOURCES += semanticAnalysis.cpp
 SOURCES += transient_analysis_generation.cpp
 SOURCES += classGeneration.cpp
 SOURCES += entityGeneration.cpp
-SOURCES += preferencesGeneration.cpp
 SOURCES += documentGeneration.cpp
 SOURCES += easyBindings_program.cpp
 

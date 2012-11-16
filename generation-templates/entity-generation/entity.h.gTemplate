@@ -21,7 +21,7 @@ end foreach
 %
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
-%  @private %![mType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n%
 end foreach
 %
@@ -40,7 +40,7 @@ end foreach
 end foreach
 %//--- Transient properties
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  - (%![mType ocTypeName]%) %!mTransientName% ;\n\n%
+%  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 //--- Creation
   + (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext ;

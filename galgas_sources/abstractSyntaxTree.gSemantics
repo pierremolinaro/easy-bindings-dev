@@ -63,10 +63,26 @@ list @relationshipList {
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractTransientDependency {
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientLocalDependency extends @abstractTransientDependency {
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientPreferenceDependency extends @abstractTransientDependency {
+  @lstring mPreferencesName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @dependanceList {
-  @lstring mObjectName ;
-  @lstring mPropertyName ;
-  @bool mNamesCountOption ;
+  @abstractTransientDependency mDependency ;
 }
 
 #----------------------------------------------------------------------------*

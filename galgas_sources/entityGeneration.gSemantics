@@ -240,7 +240,7 @@ routine generateEntityCode
       foreach mTransientListForImplementation do
           s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFile
             !mImplementationClassName
-            !mType
+            !mTransientType
             !mTransientName
             !mDependencyList
           ] ;

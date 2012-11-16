@@ -1,5 +1,7 @@
 entity MyRootEntity class MyEntityClass {
   attribute NSString docString default "doc string" ;
+  transient NSString transientConcatString dependsFrom self.docString, PMPrefs.myPrefString, PMPrefs.prefTransientString ;
+  transient NSString otherTransientConcatString dependsFrom PMPrefs.myPrefString ;
 }
 
 #--------------------------------------------------------------*
@@ -16,8 +18,7 @@ document PMDocument root MyRootEntity {
   outlet NSTextField docStringTextField $value root.docString ;
   outlet NSTextField prefStringTextField $value PMPrefs.myPrefString ;
   outlet NSTextField prefTransientStringTextField $value PMPrefs.prefTransientString ;
-  transient NSString transientConcatString dependsFrom root.docString, PMPrefs.myPrefString, PMPrefs.prefTransientString ;
-  outlet NSTextField transientConcatStringTextField $value self.transientConcatString ;
+  outlet NSTextField transientConcatStringTextField $value root.transientConcatString ;
 }
 
 #--------------------------------------------------------------*

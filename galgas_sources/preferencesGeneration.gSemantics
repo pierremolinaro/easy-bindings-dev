@@ -142,7 +142,7 @@ routine generatePreferencesCode
       foreach mTransientListForImplementation do
           s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
             ![lkey string]
-            !mType
+            !mTransientType
             !mTransientName
             !mDependencyList
           ] ;

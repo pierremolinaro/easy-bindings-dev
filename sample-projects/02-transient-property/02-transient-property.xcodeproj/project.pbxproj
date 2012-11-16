@@ -17,6 +17,7 @@
 		CF721B02159360A8008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AFD159360A8008662EA /* managed-object-model.m */; };
 		CF721B03159360A8008662EA /* Prefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B00159360A8008662EA /* Prefs.m */; };
 		CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */; };
+		CF7C15431656DA6700CFB81D /* compute_Prefs_mUpperCaseFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C15411656DA6700CFB81D /* compute_Prefs_mUpperCaseFullName.m */; };
 		CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A6715963D4A006D876D /* PMDebug.m */; };
 		CF9D9A6A15963D4A006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A6815963D4A006D876D /* PMDebug.xib */; };
 		CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */; };
@@ -43,6 +44,7 @@
 		CF721AFF159360A8008662EA /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		CF721B00159360A8008662EA /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
 		CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_Prefs_mFullName.m; sourceTree = "<group>"; };
+		CF7C15411656DA6700CFB81D /* compute_Prefs_mUpperCaseFullName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_Prefs_mUpperCaseFullName.m; sourceTree = "<group>"; };
 		CF9D9A6615963D4A006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF9D9A6715963D4A006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF9D9A6815963D4A006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				CF721AFC159360A8008662EA /* managed-object-model.h */,
 				CF721AFD159360A8008662EA /* managed-object-model.m */,
 				CF721B05159360C7008662EA /* compute_Prefs_mFullName.m */,
+				CF7C15411656DA6700CFB81D /* compute_Prefs_mUpperCaseFullName.m */,
 				CF721AFF159360A8008662EA /* Prefs.h */,
 				CF721B00159360A8008662EA /* Prefs.m */,
 				CF721AEB1593605D008662EA /* PMAppDelegate.h */,
@@ -209,6 +212,7 @@
 				CF721B06159360C7008662EA /* compute_Prefs_mFullName.m in Sources */,
 				CF9D9A6915963D4A006D876D /* PMDebug.m in Sources */,
 				CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */,
+				CF7C15431656DA6700CFB81D /* compute_Prefs_mUpperCaseFullName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

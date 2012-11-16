@@ -135,7 +135,7 @@ routine generateDocumentCode
       foreach mTransientListForImplementation do
           s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFile
             ![lkey string]
-            !mType
+            !mTransientType
             !mTransientName
             !mDependencyList
           ] ;

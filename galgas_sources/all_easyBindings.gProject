@@ -13,12 +13,13 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   syntax "easyBindings_syntax.gSyntax" ;
   grammar "easyBindings_grammar.gGrammar" ;
 
+  semantics "preferencesGeneration.gSemantics" ;
+  
   semantics "semanticAnalysis.gSemantics" ;
   semantics "transient_analysis_generation.gSemantics" ;
   
   semantics "classGeneration.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
-  semantics "preferencesGeneration.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
 
   program "easyBindings_program.gProgram" ;

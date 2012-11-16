@@ -2,7 +2,7 @@
 #import "PMTransientDependancyManager.h"
 #import "%!PREFERENCES_NAME%.h"
 %if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [ACTION_LIST length]) > 0 then
-  %#import "%!PREFERENCES_NAME%-computations.h"%
+  %#import "%!PREFERENCES_NAME%-computations.h"\n%
 end if
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
@@ -98,8 +98,7 @@ end foreach
 }
 
 %if [ATTRIBUTE_LIST_FOR_GENERATION length] > 0 then
-%
-//----------------------------------------------------------------------------*
+%//----------------------------------------------------------------------------*
 //    Swizzle                                                                 *
 //----------------------------------------------------------------------------*
 
@@ -112,6 +111,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
   method_exchangeImplementations (original, swizzled) ;
 %end foreach
 %}
+
 %
 end if
 
@@ -127,7 +127,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %  if (! [self.%!mPropertyName% %![mType equalMethod]%:inObject]) {
 %end if%    [self set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
     [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!PREFERENCES_NAME%_%!mPropertyName%_didChange)] ;
-%!generateTransientTriggering [!mPropertyName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preferences"]
+%!generateTransientTriggering [!mPropertyName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 
 %  }
 }

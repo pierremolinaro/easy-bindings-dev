@@ -103,7 +103,7 @@ routine generateClassCode
       foreach mTransientListForImplementation do
           s := [filewrapper classGenerationTemplate.classTransientComputationImplementationFile
             ![lkey string]
-            !mType
+            !mTransientType
             !mTransientName
             !mDependencyList
           ] ;
