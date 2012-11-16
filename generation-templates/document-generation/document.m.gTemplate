@@ -1,8 +1,9 @@
-#import "%!DOCUMENT_NAME%.h"
-#import "%!ROOT_ENTITY_CLASS_NAME%.h"
+#import "PMDebug.h"
 #import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
 #import "PMTransientDependancyManager.h"
+#import "%!DOCUMENT_NAME%.h"
+#import "%!ROOT_ENTITY_CLASS_NAME%.h"
 %if ([ACTION_LIST length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %#import "%!DOCUMENT_NAME%-computations.h"\n%
 end if
@@ -24,11 +25,17 @@ end foreach
   #endif
   self = [super init] ;
   if (self) {
-    #ifdef PM_COCOA_DEBUG
-      objectHasBeenAllocated (self) ;
-    #endif
+    macroNoteObjectAllocation (self) ;
   }
   return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    Dealloc                                                                 *
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
 }
 
 //----------------------------------------------------------------------------*
@@ -57,8 +64,8 @@ end foreach
   #endif
   [super windowControllerDidLoadNib:inWindowController] ;
 //--- Disable undo registrations
-  NSManagedObjectContext * moc = [self managedObjectContext] ;
-  [[moc undoManager] disableUndoRegistration];
+  NSManagedObjectContext * moc = self.managedObjectContext ;
+  [moc.undoManager disableUndoRegistration];
 //--- Root entity controller creation
   mRootObjectController = [NSObjectController new] ;
   [mRootObjectController setAutomaticallyPreparesContent:YES] ;
@@ -75,7 +82,7 @@ end foreach
   }
 //--- Enable undo registrations
   [moc processPendingChanges] ;
-  [[moc undoManager] enableUndoRegistration];
+  [moc.undoManager enableUndoRegistration];
 %
 foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
@@ -103,8 +110,6 @@ foreach OUTLET_DECLARATION_LIST do
   end foreach
 end foreach
 %
-//--- Install transients observers
-  [self pmInstallObserversForTransients] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -125,9 +130,7 @@ end foreach
    ![mBinding generateRemoveBinding !lkey->string]
   end foreach
 end foreach
-%//--- Uninstall observers for transients
-  [self pmUninstallObserversForTransients] ;
-//---
+%//---
   [super removeWindowController:inWindowController] ;
 }
 

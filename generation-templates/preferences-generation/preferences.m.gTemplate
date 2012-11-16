@@ -134,7 +134,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 
 //----------------------------------------------------------------------------*
 
-- (void) addObserver_%!mPropertyName%: (id) inObserver {
+- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
   if (nil == %!mPropertyName%_observers) {
     %!mPropertyName%_observers = [NSMutableSet new] ;
   }
@@ -144,7 +144,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 
 //----------------------------------------------------------------------------*
 
-- (void) removeObserver_%!mPropertyName%: (id) inObserver {
+- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
   [%!mPropertyName%_observers removeObject:inObserver] ;
   [inObserver performSelector:@selector (%!PREFERENCES_NAME%_%!mPropertyName%_didChange)] ;
 }

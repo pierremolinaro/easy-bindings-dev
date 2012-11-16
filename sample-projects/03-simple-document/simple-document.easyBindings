@@ -1,5 +1,5 @@
 entity MyRootEntity class MyRootEntityClass {
-  attribute NSString myString default "hello" ;
+  attribute NSString myString default "Hello" ;
   
   transient NSString myStringMaj dependsFrom self.myString ;
   transient NSString myStringMin dependsFrom self.myString ;
