@@ -237,18 +237,15 @@ rule <bindings>
         !namesCountOption
       ] ;
     or
-      @lstring observedObjectName ;
-      $Identifier$ ? observedObjectName ;
+      $Identifier$ ?@lstring preferenceName ;
       $.$ ;
-      $identifier$ ? @lstring rootObservablePropertyName ;
-      <count_option> ?@bool namesCountOption ;
+      $identifier$ ? @lstring preferenceObservablePropertyName ;
       <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-      outOutletBindingList += ![@regularBinding new
+      outOutletBindingList += ![@regularPreferenceBinding new
         !bindingName
-        !observedObjectName
-        !rootObservablePropertyName
+        !preferenceName
+        !preferenceObservablePropertyName
         !outletBindingOptionList
-        !namesCountOption
       ] ;
     end select ;
   end repeat ;
