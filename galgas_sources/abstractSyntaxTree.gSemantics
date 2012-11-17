@@ -151,10 +151,10 @@ class @regularRootBinding, @regularSelfBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
-class @regularBinding extends @abstractBinding {
+class @regularControllerBinding extends @abstractBinding {
   @lstring mBindingName ;
-  @lstring mObservedObjectName ;
-  @lstring mObservableAttributeName ;
+  @lstring mControllerName ;
+  @lstring mControllerAttributeName ;
   @outletBindingOptionList mOutletBindingOptionList ;
   @bool mNamesCountOption ;
 }
