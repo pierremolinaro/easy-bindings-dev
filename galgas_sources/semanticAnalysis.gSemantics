@@ -310,17 +310,6 @@ map @controllerClassMap {
 
 #----------------------------------------------------------------------------*
 
-map @controllerMap {
-  @string mControllerClassName ;
-  @string mControlledClassOrEntityName ;
-  @outletBindingListForGeneration mControllerBindingList ;
-  @actionMap mActionMap ;
-  insert insertKey error message "the '%K' controller is already declared" ;
-  search searchKey error message "the '%K' controller is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
 map @relationshipMap {
   @bool mIsToMany ;
   @lstring mDestinationEntityName ;
@@ -334,13 +323,6 @@ map @relationshipMap {
 
 map @propertyMap {
   insert insertKey error message "there is already a '%K' property (attribute, transient or relationship)" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @actionMap {
-  insert insertKey error message "there is already a '%K' action" ;
-  search searchKey error message "the '%K' action is not defined" ;
 }
 
 #----------------------------------------------------------------------------*
@@ -399,6 +381,7 @@ local routine analyzeEntity
       !mAttributeName
       !mType
       !false # is not transient
+      !observationDependencyKey->string
     ] ;
     [!?ioTransientDependencyGraph addNode
       !observationDependencyKey
@@ -431,6 +414,7 @@ local routine analyzeEntity
       !mRelationshipName
       ![@easyBindingType toManyEntitiesType]
       !false # is not transient
+      !observationDependencyKey->string
     ] ;    
     [!?ioTransientDependencyGraph addNode
       !observationDependencyKey
@@ -444,7 +428,9 @@ local routine analyzeEntity
     !inPreferencesMap
     !"entity." . inEntity->mEntityName . "."
     !inEntity->mTransientList
-    ![@observableObjectMap emptyMap]
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
     !?observablePropertyMap
     !?implementationFileInclusionSet
     ?transientListForImplementation
@@ -516,6 +502,8 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 abstract method @abstractBinding analyzeOutletBinding
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
   ??@entityMap inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -529,6 +517,8 @@ abstract method @abstractBinding analyzeOutletBinding
 #----------------------------------------------------------------------------*
 
 override method @tableValueBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@entityMap inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
@@ -549,6 +539,7 @@ override method @tableValueBinding analyzeOutletBinding
       ?controlledClassOrEntityName
       ?controllerBindingList
       ?*
+      ?*
     ] ;
     [inEntityMap searchKey
       ![@lstring new !controlledClassOrEntityName !here]
@@ -561,6 +552,7 @@ override method @tableValueBinding analyzeOutletBinding
       [observablePropertyMap searchKey
         !column->mBoundPropertyName
         ?@easyBindingType type
+        ?*
         ?*
       ] ;
       const @string requiredCellTypeInTableColumnBinding := [type requiredCellTypeInTableColumnBinding] ;
@@ -586,6 +578,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @runBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
@@ -599,7 +593,7 @@ override method @runBinding analyzeOutletBinding
     [inActionMap searchKey !mActionName] ;
   else
     @actionMap actionMap ;
-    [inControllerMap searchKey !mTargetName ?3* ?actionMap] ;
+    [inControllerMap searchKey !mTargetName ?3* ?actionMap ?*] ;
     [actionMap searchKey !mActionName] ;
   end if ;
   ioOutletBindingListForGeneration += ![@runBindingForGeneration new
@@ -611,6 +605,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @regularBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -643,7 +639,7 @@ override method @regularBinding analyzeOutletBinding
     ;
   end if ;
   @easyBindingType observablePropertyType ;
-  [observablePropertyMap searchKey !mObservableAttributeName ?observablePropertyType ?*] ;
+  [observablePropertyMap searchKey !mObservableAttributeName ?observablePropertyType ?2*] ;
   @string observableKeyPath := mObservableAttributeName->string ;
 #--- count option ?
   if mNamesCountOption then
@@ -699,7 +695,171 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @regularRootBinding analyzeOutletBinding
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@observableObjectMap unused inObservableObjectMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Find observable property in root entity observable property map
+  [inRootEntityObservableAttributeMap searchKey
+    !mObservableAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+  @string observableKeyPath := mObservableAttributeName->string ;
+#--------------------------------------- count option ?
+  if mNamesCountOption then
+    if observablePropertyType == [@easyBindingType toManyEntitiesType] then
+      observableKeyPath .= ".@count" ;
+      observablePropertyType := [@easyBindingType uintegerType] ;
+    else
+      error mObservableAttributeName: "the 'count' path is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mObservableAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"mRootObject"
+    !observableKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularSelfBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@observableObjectMap unused inObservableObjectMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Find observable property in local observable property map
+  [inSelfObservableAttributeMap searchKey
+    !mObservableAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+  @string observableKeyPath := mObservableAttributeName->string ;
+#--------------------------------------- count option ?
+  if mNamesCountOption then
+    if observablePropertyType == [@easyBindingType toManyEntitiesType] then
+      observableKeyPath .= ".@count" ;
+      observablePropertyType := [@easyBindingType uintegerType] ;
+    else
+      error mObservableAttributeName: "the 'count' path is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mObservableAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"self"
+    !observableKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @multiValuedBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -735,7 +895,7 @@ override method @multiValuedBinding analyzeOutletBinding
       ;
     end if ;
     @easyBindingType observablePropertyType ;
-    [observablePropertyMap searchKey !mBoundPropertyName ?observablePropertyType ?*] ;
+    [observablePropertyMap searchKey !mBoundPropertyName ?observablePropertyType ?2*] ;
     @string observableKeyPath := mBoundPropertyName->string ;
   #--- check model belongs to an acceptable type
     @bool found := false ;
@@ -806,7 +966,7 @@ local routine analyzePreference
   foreach inPreference->mAttributeList do
     checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
     attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-    const @lstring observationDependancyKey [new
+    const @lstring observationDependencyKey [new
       !"preference." . inPreference->mPreferencesName->string . "." . mAttributeName
       !mAttributeName->location
     ] ;
@@ -814,10 +974,11 @@ local routine analyzePreference
       !mAttributeName
       !mType
       !false # is not transient
+      !observationDependencyKey->string
     ] ;
     [!?ioTransientDependencyGraph addNode
-      !observationDependancyKey
-      !observationDependancyKey->string
+      !observationDependencyKey
+      !observationDependencyKey->string
     ] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
@@ -827,7 +988,9 @@ local routine analyzePreference
     ![@preferencesMap emptyMap]
     !"preference." . inPreference->mPreferencesName . "."
     !inPreference->mTransientList
-    ![@observableObjectMap emptyMap]
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
     !?observableAttributeMap
     !?implementationFileInclusionSet
     ?transientListForImplementation
@@ -851,6 +1014,8 @@ local routine analyzePreference
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
+        ![@observablePropertyMap emptyMap]
+        !observableAttributeMap
         ![@entityMap emptyMap]
         !observableObjectMap
         !bindingMap
@@ -1014,7 +1179,7 @@ override method @regularBinding analyzeControllerBinding
   @string boundTypeIdentifierString ;
   if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
     @easyBindingType t ;
-    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?*] ;
+    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
     boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
   elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
     @bool isToMany ;
@@ -1061,6 +1226,264 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @regularRootBinding analyzeControllerBinding
+  ??@relationshipMap inAllRelationshipMap
+  ??@outletClassBindingMap inControllerClassBindingMap
+  ??@lstring inControlledClassOrEntityName
+  ??@observablePropertyMap inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration ioBindingListForGeneration
+:
+  @string boundTypeIdentifierString ;
+  if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
+    @easyBindingType t ;
+    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
+    boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
+  elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
+    @bool isToMany ;
+    @lstring destinationEntityName ;
+    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
+    if isToMany then
+      boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
+    else
+      boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
+    end if ;
+  else
+    error mObservableAttributeName
+    :"unknown property"
+    : boundTypeIdentifierString ;
+  end if ;
+  @easyBindingTypeAndFormatterList acceptableTypeList ;
+  @outletClassBindingOptionMap availableBindingOptionMap ;
+  [inControllerClassBindingMap searchKey !mBindingName ?acceptableTypeList ?availableBindingOptionMap] ;
+  @bool found := false ;
+  @string acceptableTypesString := "" ;
+  foreach acceptableTypeList while not found do
+     const @string acceptableType := [mType ebTypeIdentifier !inControlledClassOrEntityName->string] ;
+     acceptableTypesString .= "\n-  '" . acceptableType . "'" ;
+     found := boundTypeIdentifierString == acceptableType ;
+  end foreach ;
+  if not found then
+    error mObservableAttributeName
+    :"cannot bind: property type is '" . boundTypeIdentifierString . "', acceptable type(s):" . acceptableTypesString
+    ;
+  end if ;
+  checkBindingOptions
+    !mOutletBindingOptionList
+    !availableBindingOptionMap
+    ?@2stringlist bindingOptionListForGeneration
+  ;
+  ioBindingListForGeneration += ![@regularBindingForGeneration new
+    !mBindingName->string
+    ![@formatterEnum noFormatter]
+    !"mRootObjectController"
+    !"selection." . mObservableAttributeName
+    !bindingOptionListForGeneration
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularSelfBinding analyzeControllerBinding
+  ??@relationshipMap inAllRelationshipMap
+  ??@outletClassBindingMap inControllerClassBindingMap
+  ??@lstring inControlledClassOrEntityName
+  ??@observablePropertyMap inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration ioBindingListForGeneration
+:
+  @string boundTypeIdentifierString ;
+  if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
+    @easyBindingType t ;
+    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
+    boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
+  elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
+    @bool isToMany ;
+    @lstring destinationEntityName ;
+    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
+    if isToMany then
+      boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
+    else
+      boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
+    end if ;
+  else
+    error mObservableAttributeName
+    :"unknown property"
+    : boundTypeIdentifierString ;
+  end if ;
+  @easyBindingTypeAndFormatterList acceptableTypeList ;
+  @outletClassBindingOptionMap availableBindingOptionMap ;
+  [inControllerClassBindingMap searchKey !mBindingName ?acceptableTypeList ?availableBindingOptionMap] ;
+  @bool found := false ;
+  @string acceptableTypesString := "" ;
+  foreach acceptableTypeList while not found do
+     const @string acceptableType := [mType ebTypeIdentifier !inControlledClassOrEntityName->string] ;
+     acceptableTypesString .= "\n-  '" . acceptableType . "'" ;
+     found := boundTypeIdentifierString == acceptableType ;
+  end foreach ;
+  if not found then
+    error mObservableAttributeName
+    :"cannot bind: property type is '" . boundTypeIdentifierString . "', acceptable type(s):" . acceptableTypesString
+    ;
+  end if ;
+  checkBindingOptions
+    !mOutletBindingOptionList
+    !availableBindingOptionMap
+    ?@2stringlist bindingOptionListForGeneration
+  ;
+  ioBindingListForGeneration += ![@regularBindingForGeneration new
+    !mBindingName->string
+    ![@formatterEnum noFormatter]
+    !"self"
+    !mObservableAttributeName->string
+    !bindingOptionListForGeneration
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzeDocument
+  ??@documentDeclarationList.element inDocument
+  ??@outletClassMap inOutletClassMap
+  ??@controllerClassMap inControllerClassMap
+  ??@entityMap inEntityMap
+  ??@preferencesMap inPreferencesMap
+  ?!@documentMap ioDocumentMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------------------------ Get root object features
+  [inEntityMap searchKey
+    !inDocument->mRootEntityName
+    ?*
+    ?@string rootEntityImplementationClassName
+    ?*
+    ?@observablePropertyMap rootObjectObservablePropertyMap
+    ?8*
+    ?@relationshipMap allRelationshipMap
+    ?2*
+  ] ;
+#-------------------------------------------------- Analyze controllers
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @controllerMap controllerMap [emptyMap] ;
+  foreach inDocument->mControllerList do
+    @outletClassBindingMap controllerClassBindingMap ;
+    @actionMap controllerActionMap ;
+    @observablePropertyMap controllerObservablePropertyMap ;
+    [inControllerClassMap searchKey
+      !mControllerClassName
+      ?*
+      ?controllerClassBindingMap
+      ?controllerActionMap
+      ?controllerObservablePropertyMap
+    ] ;
+    @observablePropertyMap prefixedControllerObservablePropertyMap [emptyMap] ;
+    foreach controllerObservablePropertyMap do
+#        const @lstring observedKey [new
+#          !"controller." . mControllerName . "." . mObservationDependancyKey
+#          !mObservationDependancyKey->location
+#        ] ;
+#        [!?prefixedControllerObservablePropertyMap insertKey
+#          !lkey
+#          !mType
+#          !false
+#        ] ;
+#        [!?ioTransientDependencyGraph addNode
+#          !observedKey
+#          !observedKey->string
+#        ] ;
+    end foreach ;
+#    [!?observableObjectMap insertKey
+#      !mControllerName
+#      !mControllerName->string
+#      !"?"
+#      !"" # No file to include
+#      !prefixedControllerObservablePropertyMap
+#    ] ;
+    [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    foreach mControllerBindingList do
+      [mBinding analyzeControllerBinding
+        !allRelationshipMap
+        !controllerClassBindingMap
+        !mControlledClassOrEntityName
+        !observablePropertyMap
+        !?bindingListForGeneration
+      ] ;
+    end foreach ;
+    [!?controllerMap insertKey
+      !mControllerName
+      !mControllerClassName->string
+      !mControlledClassOrEntityName->string
+      !bindingListForGeneration
+      !controllerActionMap
+      !controllerObservablePropertyMap
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeTransientProperties
+    !inPreferencesMap
+    !"document." . inDocument->mDocumentName . "."
+    !inDocument->mTransientList
+    !rootObjectObservablePropertyMap
+    !inDocument->mRootEntityName->string
+    !controllerMap
+    !?observablePropertyMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#--------------------------------------------------- Analyze actions
+  @actionMap documentActionMap [emptyMap] ;
+  for actionName in inDocument->mActionDeclarationList do
+    [!?documentActionMap insertKey !actionName->mValue] ;
+  end for ;
+#--- Analyze outlets
+#  [!?observableObjectMap insertKey
+#    !["self" nowhere]
+#    !"self"
+#    !inDocument->mDocumentName->string
+#    !"" # No file to include
+#    !observablePropertyMap
+#  ] ;
+#--------------------------------------------------- Analyze outlets and bindings
+  @outletGenerationList outletGenerationList [emptyList] ;
+  foreach inDocument->mOutletDeclarationList do
+    @outletClassBindingMap bindingMap ;
+    @bool hasTableValueBinding ;
+    [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
+    @outletBindingListForGeneration outletBindingList [emptyList] ;
+    foreach mOutletBindingList do
+      [mBinding analyzeOutletBinding
+        !rootObjectObservablePropertyMap
+        !observablePropertyMap
+        !inEntityMap
+        ![@observableObjectMap emptyMap]
+        !bindingMap
+        !controllerMap
+        !documentActionMap
+        !hasTableValueBinding
+        !?outletBindingList
+        !?implementationFileInclusionSet
+      ] ;
+    end foreach ;
+    outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
+  end foreach ;
+#--------------------------------------------------- Enter in document map
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioDocumentMap insertKey
+    !inDocument->mDocumentName
+    !inDocument->mRootEntityName->string
+    !rootEntityImplementationClassName
+    !outletGenerationList
+    !controllerMap
+    !inDocument->mActionDeclarationList
+    !transientListForImplementation
+    !implementationFileInclusionSet
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 local routine analyzeDocuments
   ??@documentDeclarationList inDocumentDeclarationList
   ??@outletClassMap inOutletClassMap
@@ -1071,154 +1494,17 @@ local routine analyzeDocuments
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
   outDocumentMap := [@documentMap emptyMap] ;
-  foreach inDocumentDeclarationList do
-    @string rootEntityImplementationClassName ;
-    @observablePropertyMap rootObjectObservablePropertyMap ;
-    @relationshipMap allRelationshipMap ;
-    [inEntityMap searchKey
-      !mRootEntityName
-      ?*
-      ?rootEntityImplementationClassName
-      ?*
-      ?rootObjectObservablePropertyMap
-      ?8*
-      ?allRelationshipMap
-      ?2*
-    ] ;
-  #--- Build observable object map
-    @observableObjectMap observableObjectMap [emptyMap] ;
-    [!?observableObjectMap insertKey
-      !["root" nowhere]
-      !"mRootObject"
-      !mRootEntityName->string
-      !"" # No file to include
-      !rootObjectObservablePropertyMap
-    ] ;
-    for pref in inPreferencesMap do
-      [!?observableObjectMap insertKey
-        !pref->lkey
-        !"g_" . pref->lkey->string
-        !pref->lkey->string
-        !pref->lkey->string
-        !pref->mObservablePropertyMap
-      ] ;
-    end for ;
-  #--- Analyze controllers
-    @observablePropertyMap observablePropertyMap [emptyMap] ;
-    @controllerMap controllerMap [emptyMap] ;
-    foreach mControllerList do
-      @outletClassBindingMap controllerClassBindingMap ;
-      @actionMap controllerActionMap ;
-      @observablePropertyMap controllerObservablePropertyMap ;
-      [inControllerClassMap searchKey
-        !mControllerClassName
-        ?*
-        ?controllerClassBindingMap
-        ?controllerActionMap
-        ?controllerObservablePropertyMap
-      ] ;
-      @observablePropertyMap prefixedControllerObservablePropertyMap [emptyMap] ;
-      foreach controllerObservablePropertyMap do
-#        const @lstring observedKey [new
-#          !"document/" . mDocumentName . "/" . mControllerName . "." . mObservationDependancyKey
-#          !mObservationDependancyKey->location
-#        ] ;
-#        [!?prefixedControllerObservablePropertyMap insertKey
-#          !lkey
-#          !mType
-#          !mPropertyDependancyList
-#          !observedKey
-#        ] ;
-#        [!?ioTransientDependencyGraph addNode
-#          !observedKey
-#          !observedKey->string
-#        ] ;
-      end foreach ;
-      [!?observableObjectMap insertKey
-        !mControllerName
-        !mControllerName->string
-        !"?"
-        !"" # No file to include
-        !prefixedControllerObservablePropertyMap
-      ] ;
-      [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
-      @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
-      foreach mControllerBindingList do
-        [mBinding analyzeControllerBinding
-          !allRelationshipMap
-          !controllerClassBindingMap
-          !mControlledClassOrEntityName
-          !observablePropertyMap
-          !?bindingListForGeneration
-        ] ;
-      end foreach ;
-      [!?controllerMap insertKey
-        !mControllerName
-        !mControllerClassName->string
-        !mControlledClassOrEntityName->string
-        !bindingListForGeneration
-        !controllerActionMap
-      ] ;
-    end foreach ;
-  #--- Analyze transient properties
-    @transientListForImplementation transientListForImplementation ;
-    @stringset implementationFileInclusionSet [emptySet] ;
-    analyzeTransientProperties
-      ![@preferencesMap emptyMap]
-      !"document/" . mDocumentName . "/self."
-      !mTransientList
-      !observableObjectMap
-      !?observablePropertyMap
-      !?implementationFileInclusionSet
-      ?transientListForImplementation
+  for document in inDocumentDeclarationList do
+    analyzeDocument
+      !document
+      !inOutletClassMap
+      !inControllerClassMap
+      !inEntityMap
+      !inPreferencesMap
+      !?outDocumentMap
       !?ioTransientDependencyGraph
     ;
-  #--- Analyze actions
-    @actionMap documentActionMap [emptyMap] ;
-    for actionName in mActionDeclarationList do
-      [!?documentActionMap insertKey !actionName->mValue] ;
-    end for ;
-  #--- Analyze outlets
-    [!?observableObjectMap insertKey
-      !["self" nowhere]
-      !"self"
-      !mDocumentName->string
-      !"" # No file to include
-      !observablePropertyMap
-    ] ;
-    @outletGenerationList outletGenerationList [emptyList] ;
-    foreach mOutletDeclarationList do
-      @outletClassBindingMap bindingMap ;
-      @bool hasTableValueBinding ;
-      [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
-      @outletBindingListForGeneration outletBindingList [emptyList] ;
-      foreach mOutletBindingList do
-        [mBinding analyzeOutletBinding
-          !inEntityMap
-          !observableObjectMap
-          !bindingMap
-          !controllerMap
-          !documentActionMap
-          !hasTableValueBinding
-          !?outletBindingList
-          !?implementationFileInclusionSet
-        ] ;
-      end foreach ;
-      outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
-    end foreach ;
-  #---
-    [!?implementationFileInclusionSet removeKey !""] ;
-    [!?outDocumentMap insertKey
-      !mDocumentName
-      ![mRootEntityName string]
-      !rootEntityImplementationClassName
-      !outletGenerationList
-      !controllerMap
-      !mActionDeclarationList
-      !transientListForImplementation
-      !implementationFileInclusionSet
-    ] ;
-  end foreach ;
+  end for ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -1268,6 +1554,7 @@ local routine analyzeClasses
         !mAttributeName
         !mType
         !false # is not transient
+        !observationDependencyKey->string
       ] ;    
       [!?ioTransientDependencyGraph addNode
         !observationDependencyKey
@@ -1279,9 +1566,11 @@ local routine analyzeClasses
     @stringset implementationFileInclusionSet [emptySet] ;
     analyzeTransientProperties
       ![@preferencesMap emptyMap]
-      !"class/" . mClassName . "/self."
+      !"class" . mClassName . "."
       !mTransientList
-      ![@observableObjectMap emptyMap]
+      ![@observablePropertyMap emptyMap] # Root property map
+      !"" # No Root entity
+      ![@controllerMap emptyMap]
       !?observablePropertyMap
       !?implementationFileInclusionSet
       ?transientListForImplementation
@@ -1336,52 +1625,72 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine analyzeControllerClasses
-  ??@controllerClassList inControllerClassList
-  !@controllerClassMap outControllerClassMap
+local routine analyzeControllerClass
+  ??@controllerClassList.element inController
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@controllerClassMap ioControllerClassMap
 :
-  outControllerClassMap := [@controllerClassMap emptyMap] ;
-  foreach inControllerClassList do
-  #--- Analyze actions
-    @actionMap actionMap [emptyMap] ;
-    for actionName in mActionDeclarationList do
-      [!?actionMap insertKey !actionName->mValue] ;
-    end for ;
-  #---
-    @outletClassBindingMap bindingMap [emptyMap] ;
-    foreach mBindingList do
-      @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
-      foreach mBindingOptionList do
-        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
+#--- Analyze actions
+  @actionMap actionMap [emptyMap] ;
+  for actionName in inController->mActionDeclarationList do
+    [!?actionMap insertKey !actionName->mValue] ;
+  end for ;
+#---
+  @outletClassBindingMap bindingMap [emptyMap] ;
+  foreach inController->mBindingList do
+    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+    foreach mBindingOptionList do
+      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
 #        foreach mAcceptableTypeList do
 #        
 #        
 #        end foreach ;
-      end foreach ;
-      [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
     end foreach ;
-  #---
-    @observablePropertyMap observablePropertyMap [emptyMap] ;
-    for property in mControllerObservablePropertyList do
-#      const @lstring observationDependencyKey [new
-#        !"controller." . mOutletClassName . "." . property->mPropertyName
-#        !property->mPropertyName->location
-#      ] ;
-      [!?observablePropertyMap insertKey
-        !property->mPropertyName
-        !property->mType
-        !false # is not transient
-      ] ;
-    end for ;
-  #---
-    [!?outControllerClassMap insertKey
-      !mOutletClassName
-      !mGenerateCode
-      !bindingMap
-      !actionMap
-      !observablePropertyMap
-    ] ;
+    [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
   end foreach ;
+#---
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  for property in inController->mControllerObservablePropertyList do
+    const @lstring observationDependencyKey [new
+      !"controller." . inController->mControllerClassName . "." . property->mPropertyName
+      !property->mPropertyName->location
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+    [!?observablePropertyMap insertKey
+      !property->mPropertyName
+      !property->mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+  end for ;
+#---
+  [!?ioControllerClassMap insertKey
+    !inController->mControllerClassName
+    !inController->mGenerateCode
+    !bindingMap
+    !actionMap
+    !observablePropertyMap
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzeControllerClasses
+  ??@controllerClassList inControllerClassList
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@controllerClassMap outControllerClassMap
+:
+  outControllerClassMap := [@controllerClassMap emptyMap] ;
+  for controller in inControllerClassList do
+    analyzeControllerClass
+      !controller
+      !?ioTransientDependencyGraph
+      !?outControllerClassMap
+    ;
+  end for ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -1401,7 +1710,7 @@ routine semanticAnalysis
   outSortedTransientOrderedList := [@stringlist emptyList] ;
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
   analyzeOutletClasses !inAST->mOutletClassList ?outOutletClassMap ;
-  analyzeControllerClasses !inAST->mControllerClassList ?outControllerClassMap ;
+  analyzeControllerClasses !inAST->mControllerClassList !?transientDependencyGraph ?outControllerClassMap ;
   analyzePreferences
     !inAST->mPreferencesList
     !outOutletClassMap

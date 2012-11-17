@@ -50,6 +50,5 @@ end foreach
   return self ;
 }
 
-%!generateTransientImplementation [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"class"]
-%//----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

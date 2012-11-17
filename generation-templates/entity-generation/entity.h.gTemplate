@@ -18,7 +18,11 @@ end if
 %  @private NSMutableSet * %!mPropertyName%_observers ;\n%
 end foreach
 %
-%
+//--- To-many relationships observers
+%foreach TO_MANY_RELATIONSHIPS do
+%  @private NSMutableSet * %!mValue0%_observers ;\n%
+end foreach
+
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
@@ -30,9 +34,11 @@ end foreach
 //--- To-many relationships
 %foreach TO_MANY_RELATIONSHIPS do
 %  @property(strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
+%  - (void) addObserverOf_%!mValue0%: (id) inObserver ;\n%
+%  - (void) removeObserverOf_%!mValue0%: (id) inObserver ;\n\n%
 end foreach
-%
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mPropertyName%' attribute\n%
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
 %  - (void) addObserverOf_%!mPropertyName%: (id) inObserver ;\n%

@@ -109,22 +109,26 @@ end foreach
   end if
 end foreach
 
-if [PROPERTY_LIST_FOR_IMPLEMENTATION length] > 0 then
+if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
 %//----------------------------------------------------------------------------*
 //    didChangeValueForKey                                                    *
 //----------------------------------------------------------------------------*
 
 - (void) didChangeValueForKey: (NSString *) inKey {
   [super didChangeValueForKey:inKey] ;
- %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-% if ([inKey isEqualToString:@"%!mPropertyName%"]) {
-    [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
-%!generateTransientTriggering [!mPropertyName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+ %foreach PROPERTY_TOMANY_RELATIONSHIP_SET do
+% if ([inKey isEqualToString:@"%!key%"]) {
+    [%!key%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . key identifierRepresentation]%_didChange)] ;
+%!generateTransientTriggering [!key !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 between %  }else%
 end foreach
 %  }
 }
 %end if
+
+
+
+
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 //----------------------------------------------------------------------------*
 
@@ -141,6 +145,27 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 - (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
   [%!mPropertyName%_observers removeObject:inObserver] ;
   [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
+}
+
+%
+end foreach
+
+foreach TO_MANY_RELATIONSHIPS do%
+//----------------------------------------------------------------------------*
+
+- (void) addObserverOf_%!mValue0%: (id) inObserver {
+  if (nil == %!mValue0%_observers) {
+    %!mValue0%_observers = [NSMutableSet new] ;
+  }
+  [%!mValue0%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) removeObserverOf_%!mValue0%: (id) inObserver {
+  [%!mValue0%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
 %

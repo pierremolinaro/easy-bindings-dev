@@ -82,6 +82,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@stringset INCLUSION_SET
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+    ?@stringset PROPERTY_TOMANY_RELATIONSHIP_SET
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -199,6 +200,16 @@ routine generateEntityCode
         !"\n\n" # Defaut user zone2
         !"\n"
       ] ;
+    #---
+      @stringset propertyAndTomanyRelationshipSet [emptySet] ;
+      foreach mAttributeListForImplementation do
+        propertyAndTomanyRelationshipSet += !mPropertyName ;
+      end foreach ;
+      foreach mToManyRelationshipList do
+        propertyAndTomanyRelationshipSet += !mValue0 ;
+        log mValue0 ;
+      end foreach ;
+      log propertyAndTomanyRelationshipSet ;
     #--- Implementation
       s := [filewrapper entityGenerationTemplate.entityImplementation
         ![lkey string]
@@ -210,6 +221,7 @@ routine generateEntityCode
         !mImplementationFileInclusionSet
         !mToManyRelationshipList
         !inTransientDependencyArcList
+        !propertyAndTomanyRelationshipSet
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
