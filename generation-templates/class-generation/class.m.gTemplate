@@ -1,4 +1,5 @@
 #import "PMTransientDependancyManager.h"
+#import "PMDebug.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
@@ -8,6 +9,8 @@ foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
+#import <objc/runtime.h>
+
 //----------------------------------------------------------------------------*
 
 @implementation %!CLASS_NAME%
@@ -42,13 +45,95 @@ foreach INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
 end foreach
 end if
 %  if (self) {  
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%
+if SUPER_CLASS_NAME == "" then
+%    macroNoteObjectAllocation (self) ;
+%end if
+
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   %    %!mPropertyName% = in%![mPropertyName stringByCapitalizingFirstCharacter]% ;\n%
 end foreach
-%    [self pmInstallObserversForTransients] ;
-  }
+%  //--- Add Transient observers
+%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%  }
   return self ;
 }
+%if SUPER_CLASS_NAME == "" then
+%
+//----------------------------------------------------------------------------*
+//    Dealloc                                                                 *
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
+}
+%end if%
+//----------------------------------------------------------------------------*
+//    removeObservers                                                         *
+//----------------------------------------------------------------------------*
+
+- (void) removeObservers {
+//--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+if SUPER_CLASS_NAME != "" then
+%  [super removeObservers] ;
+%end if%}
+
+%if [PROPERTY_LIST_FOR_IMPLEMENTATION length] > 0 then
+%//----------------------------------------------------------------------------*
+//    Swizzle                                                                 *
+//----------------------------------------------------------------------------*
+
++ (void) load {
+  Method original, swizzled ;
+%
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%  original = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%:));
+  swizzled = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:));
+  method_exchangeImplementations (original, swizzled) ;
+%end foreach
+%}
+
+%
+end if
+
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%//----------------------------------------------------------------------------*
+//    '%!mPropertyName%' attribute                                            *
+//----------------------------------------------------------------------------*
+
+- (void) set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
+%if [mType equalMethod] == "" then
+%  if (%!mPropertyName% != inObject) {
+%else
+%  if (! [self.%!mPropertyName% %![mType equalMethod]%:inObject]) {
+%end if%    [self set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
+    [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+%!generateTransientTriggering [!mPropertyName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
+
+%  }
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
+  if (nil == %!mPropertyName%_observers) {
+    %!mPropertyName%_observers = [NSMutableSet new] ;
+  }
+  [%!mPropertyName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
+  [%!mPropertyName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+}
+
+%end foreach
+
+!generateTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
 
 //----------------------------------------------------------------------------*
 

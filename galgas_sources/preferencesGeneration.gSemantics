@@ -7,9 +7,7 @@ semantics preferencesGeneration :
 reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "boolFromNSNumber" ;
-  when integer16Type : outResult := "sint16FromNSNumber" ;
-  when integer32Type : outResult := "sint32FromNSNumber" ;
-  when integer64Type : outResult := "sint64FromNSNumber" ;
+  when integerType : outResult := "sint64FromNSNumber" ;
   when floatType : outResult := "floatFromNSNumber" ;
   when doubleType : outResult := "doubleFromNSNumber" ;
   when colorType : outResult := "valueFromData" ;
@@ -23,9 +21,7 @@ end reader ;
 reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "numberEncodedBool" ;
-  when integer16Type : outResult := "numberEncodedSInt16" ;
-  when integer32Type : outResult := "numberEncodedSInt32" ;
-  when integer64Type : outResult := "numberEncodedSInt64" ;
+  when integerType : outResult := "numberEncodedSInt64" ;
   when floatType : outResult := "numberEncodedFloat" ;
   when doubleType : outResult := "numberEncodedDouble" ;
   when colorType : outResult := "dataEncodedValue" ;

@@ -47,9 +47,7 @@ map @preferencesMap {
 reader @easyBindingType ocTypeName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "BOOL" ;
-  when integer16Type : outResult := "SInt16" ;
-  when integer32Type : outResult := "SInt32" ;
-  when integer64Type : outResult := "SInt64" ;
+  when integerType : outResult := "NSInteger" ;
   when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "NSDecimal" ;
   when floatType : outResult := "float" ;
@@ -68,7 +66,7 @@ end reader ;
 
 reader @easyBindingType copyOnAssign -> @bool outResult :
   switch selfcopy
-  when boolType, integer16Type, integer32Type, integer64Type, uintegerType,
+  when boolType, integerType, uintegerType,
        floatType, doubleType, decimalType, toManyEntitiesType : outResult := false ;
   when stringType : outResult := true ;
   when fontType, imageType, colorType, dataType, dateType : outResult := false ;
@@ -289,11 +287,11 @@ override method @transientLocalDependency analyze
     !mMasterName
     ?@easyBindingType masterType
     ?*
-    ?*
+    ?@string masterPropertySignature
   ] ;
 #--- Add dependency arc
   [!?ioTransientDependencyGraph addArc
-    ![@lstring new !inObervationDependencyPrefix . mMasterName !mMasterName->location]
+    ![@lstring new !masterPropertySignature !mMasterName->location]
     ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
   ] ;
 #---

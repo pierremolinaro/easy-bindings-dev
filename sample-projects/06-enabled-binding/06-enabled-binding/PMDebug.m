@@ -39,20 +39,6 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 @synthesize mDisplayFilter ;
 
 //----------------------------------------------------------------------------*
-//    pmInstallDebugMenu                                                      *
-//----------------------------------------------------------------------------*
-
-- (void) pmInstallDebugMenu {
-  NSMenuItem * item = [[NSMenuItem alloc]
-    initWithTitle:@"Schmutrz"
-    action:NULL
-    keyEquivalent:@""
-  ] ;
-  [item setSubmenu:mDebugMenu] ;
-  [[NSApp mainMenu] addItem:item] ;
-}
-
-//----------------------------------------------------------------------------*
 //    init                                                                    *
 //----------------------------------------------------------------------------*
 
@@ -70,26 +56,29 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
       object:nil
     ] ;
   //---
-    if (nil != [NSApp mainMenu]) {
-      [self pmInstallDebugMenu] ;
-    }else{
-      [[NSNotificationCenter defaultCenter]
-        addObserver:self
-        selector:@selector(applicationDidFinishLaunching:)
-        name:NSApplicationDidFinishLaunchingNotification
-        object:nil
-      ] ;
-    }
+    [[NSRunLoop mainRunLoop]
+      performSelector:@selector (pmInstallDebugMenu)
+      target:self
+      argument:nil
+      order:NSUIntegerMax
+      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+    ] ;
   }
   return self ;
 }
 
 //----------------------------------------------------------------------------*
-//    applicationDidFinishLaunching:                                          *
+//    pmInstallDebugMenu                                                      *
 //----------------------------------------------------------------------------*
 
-- (void) applicationDidFinishLaunching: (NSNotification *) inNotification {
-  [self pmInstallDebugMenu] ;
+- (void) pmInstallDebugMenu {
+  NSMenuItem * item = [[NSMenuItem alloc]
+    initWithTitle:@""
+    action:NULL
+    keyEquivalent:@""
+  ] ;
+  [item setSubmenu:mDebugMenu] ;
+  [[NSApp mainMenu] addItem:item] ;
 }
 
 //----------------------------------------------------------------------------*

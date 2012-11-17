@@ -435,10 +435,8 @@ rule <explicit_value>
   or
     $literal_integer$ ? @luint integerValue ;
     outDirectDefaultValue := [integerValue string] ;
-    outDefaultValueObjectiveCObject := "[NSNumber numberWithInt:" . [integerValue string] . "]" ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType integer16Type] ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType integer32Type] ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType integer64Type] ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithInteger:" . [integerValue string] . "]" ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType integerType] ;
   or
     $literal_string$ ? @lstring stringValue ;
     outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
@@ -672,14 +670,8 @@ rule <attribute_type>
     $bool$ ;
     outPropertyType := [@easyBindingType boolType] ;
   or
-    $integer16$ ;
-    outPropertyType := [@easyBindingType integer16Type] ;
-  or
-    $integer32$ ;
-    outPropertyType := [@easyBindingType integer32Type] ;
-  or
-    $integer64$ ;
-    outPropertyType := [@easyBindingType integer64Type] ;
+    $integer$ ;
+    outPropertyType := [@easyBindingType integerType] ;
   or
     $float$ ;
     outPropertyType := [@easyBindingType floatType] ;
@@ -722,16 +714,12 @@ rule <type_list>
       <attribute_type> ? bindingType ;
       outEasyBindingTypeList += !bindingType ;
     or
-      $integer$ ;
-      outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
-      outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
-      outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
+      $int$ ;
+      outEasyBindingTypeList += ![@easyBindingType integerType] ;
       outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
     or
       $number$ ;
-      outEasyBindingTypeList += ![@easyBindingType integer16Type] ;
-      outEasyBindingTypeList += ![@easyBindingType integer32Type] ;
-      outEasyBindingTypeList += ![@easyBindingType integer64Type] ;
+      outEasyBindingTypeList += ![@easyBindingType integerType] ;
       outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
       outEasyBindingTypeList += ![@easyBindingType decimalType] ;
       outEasyBindingTypeList += ![@easyBindingType floatType] ;
@@ -771,18 +759,14 @@ rule <type_formatter_list>
       <formatter> ?@formatterEnum requiredFormatter ;
       outEasyBindingTypeFormatterList += !bindingType !requiredFormatter ;
     or
-      $integer$ ;
+      $int$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integerType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
     or
       $number$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer16Type] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer32Type] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integer64Type] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType integerType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType decimalType] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@easyBindingType floatType] !requiredFormatter ;

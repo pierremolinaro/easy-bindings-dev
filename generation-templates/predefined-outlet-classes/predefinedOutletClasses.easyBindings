@@ -151,11 +151,11 @@ extern outletClass NSBrowser {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $fontSize : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $fontSize : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontName : NSString {
@@ -241,7 +241,7 @@ extern outletClass NSButton {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $value : integer, bool {
+  $value : int, bool {
     NSAllowsEditingMultipleValuesSelectionBindingOption : bool ;
     NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
     NSConditionallySetsEnabledBindingOption : bool ;
@@ -385,18 +385,18 @@ extern outletClass NSComboBox {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   # Warning: skipped $value binding
-  $alignment : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $alignment : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $textColor : NSColor {
@@ -434,11 +434,11 @@ extern outletClass NSComboBox {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $fontSize : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $fontSize : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontName : NSString {
@@ -461,10 +461,10 @@ extern outletClass NSDatePicker {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $maxValue : NSDate {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontBold : bool {
@@ -482,10 +482,10 @@ extern outletClass NSDatePicker {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $value : NSDate {
@@ -497,10 +497,10 @@ extern outletClass NSDatePicker {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $minValue : NSDate {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontFamilyName : NSString {
@@ -531,11 +531,11 @@ extern outletClass NSDatePicker {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $fontSize : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $fontSize : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontName : NSString {
@@ -556,10 +556,10 @@ extern outletClass NSDatePickerCell {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $maxValue : NSDate {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontBold : bool {
@@ -584,10 +584,10 @@ extern outletClass NSDatePickerCell {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $minValue : NSDate {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $value : NSDate {
@@ -599,10 +599,10 @@ extern outletClass NSDatePickerCell {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontFamilyName : NSString {
@@ -619,11 +619,11 @@ extern outletClass NSDatePickerCell {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $fontSize : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $fontSize : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontName : NSString {
@@ -655,11 +655,11 @@ extern outletClass NSForm {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $fontSize : integer32 {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $fontSize : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontBold : bool {
@@ -980,7 +980,7 @@ extern outletClass NSLevelIndicatorCell {
 }
 
 extern outletClass NSMatrix {
-  $selectedIndex : integer {
+  $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -1012,13 +1012,13 @@ extern outletClass NSMatrix {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedTag : integer {
+  $selectedTag : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -1097,10 +1097,10 @@ extern outletClass NSMenuItem {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $offStateImage : NSImage {
@@ -1191,10 +1191,10 @@ extern outletClass NSOutlineView {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   # Warning: skipped $sortDescriptors binding
@@ -1242,10 +1242,10 @@ extern outletClass NSOutlineView {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $rowHeight : number {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $toolTip : NSString {
@@ -1353,10 +1353,10 @@ extern outletClass NSPathCell {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
 }
@@ -1427,16 +1427,16 @@ extern outletClass NSPathControl {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
 }
 
 extern outletClass NSPopUpButton {
-  $selectedIndex : integer {
+  $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -1468,13 +1468,13 @@ extern outletClass NSPopUpButton {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedTag : integer {
+  $selectedTag : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -1564,13 +1564,13 @@ extern outletClass NSPopUpButtonCell {
   # Warning: skipped $offStateImage binding
   # Warning: skipped $mixedStateImage binding
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedTag : integer {
+  $selectedTag : int {
     NSConditionallySetsEnabled : bool ;
     NSValidatesImmediately : bool ;
     NSConditionallySetsEditable : bool ;
@@ -1608,7 +1608,7 @@ extern outletClass NSPopUpButtonCell {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedIndex : integer {
+  $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSValidatesImmediately : bool ;
     NSConditionallySetsEditable : bool ;
@@ -1685,10 +1685,10 @@ extern outletClass NSPredicateEditor {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
 }
@@ -1810,11 +1810,11 @@ extern outletClass NSSearchField {
 #    NSValidatesImmediately : bool ;
 #    NSRaisesForNotApplicableKeys : bool ;
 #  }
-  $alignment : integer {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $alignment : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $textColor : NSColor {
@@ -1914,11 +1914,11 @@ extern outletClass NSSecureTextField {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $alignment : integer {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+  $alignment : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $value : NSString {
@@ -1985,10 +1985,10 @@ extern outletClass NSSecureTextFieldCell {
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontItalic : bool {
-    NSMultipleValuesPlaceholder : integer32 ;
-    NSNullPlaceholder : integer32 ;
-    NSNotApplicablePlaceholder : integer32 ;
-    NSNoSelectionPlaceholder : integer32 ;
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $fontBold : bool {
@@ -2103,7 +2103,7 @@ extern outletClass NSSegmentedCell {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedTag : integer {
+  $selectedTag : int {
     NSConditionallySetsEnabled : bool ;
     NSValidatesImmediately : bool ;
     NSConditionallySetsEditable : bool ;
@@ -2118,7 +2118,7 @@ extern outletClass NSSegmentedCell {
     NSNoSelectionPlaceholder : NSFont ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedIndex : integer {
+  $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSValidatesImmediately : bool ;
     NSConditionallySetsEditable : bool ;
@@ -2165,7 +2165,7 @@ extern outletClass NSSegmentedControl {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedTag : integer {
+  $selectedTag : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -2215,7 +2215,7 @@ extern outletClass NSSegmentedControl {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $selectedIndex : integer {
+  $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
     NSValidatesImmediately : bool ;
@@ -2727,11 +2727,11 @@ extern outletClass NSTextField {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $alignment : integer {
-    NSMultipleValuesPlaceholder : integer ;
-    NSNullPlaceholder : integer ;
-    NSNotApplicablePlaceholder : integer ;
-    NSNoSelectionPlaceholder : integer ;
+  $alignment : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
   $value : NSString, number NSNumberFormatter {
@@ -2949,11 +2949,11 @@ extern outletClass NSTokenField {
     NSNoSelectionPlaceholder : NSString ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $alignment : integer {
-    NSMultipleValuesPlaceholder : integer ;
-    NSNullPlaceholder : integer ;
-    NSNotApplicablePlaceholder : integer ;
-    NSNoSelectionPlaceholder : integer ;
+  $alignment : int {
+    NSMultipleValuesPlaceholder : int ;
+    NSNullPlaceholder : int ;
+    NSNotApplicablePlaceholder : int ;
+    NSNoSelectionPlaceholder : int ;
     NSRaisesForNotApplicableKeys : bool ;
   }
 #  $value : NSArray {

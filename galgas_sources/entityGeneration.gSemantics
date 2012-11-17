@@ -7,7 +7,7 @@ semantics entityGeneration :
 reader @easyBindingType customGetterMethod -> @string outResult :
   switch selfcopy
   when boolType : outResult := "boolValue" ;
-  when integer16Type, integer32Type, integer64Type : outResult := "intValue" ;
+  when integerType : outResult := "integerValue" ;
   when uintegerType : outResult := "unsignedIntegerValue" ;
   when floatType : outResult := "floatValue" ;
   when doubleType : outResult := "doubleValue" ;
@@ -21,9 +21,7 @@ end reader ;
 reader @easyBindingType customSetterTransformer -> @string outResult :
   switch selfcopy
   when boolType : outResult := "[NSNumber numberWithBool:inValue]" ;
-  when integer16Type : outResult := "[NSNumber numberWithInt:inValue]" ;
-  when integer32Type : outResult := "[NSNumber numberWithInt:inValue]" ;
-  when integer64Type : outResult := "[NSNumber numberWithInteger:inValue]" ;
+  when integerType : outResult := "[NSNumber numberWithInteger:inValue]" ;
   when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
   when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
   when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
@@ -38,7 +36,7 @@ end reader ;
 reader @easyBindingType isClass -> @bool outResult :
   switch selfcopy
   when boolType, decimalType,
-       integer16Type, integer32Type, integer64Type,
+       integerType,
        uintegerType,
        floatType, doubleType : outResult := false ;
   when stringType, fontType, imageType, toManyEntitiesType,
@@ -107,9 +105,7 @@ listmap @subEntitiesMap (@stringlist) ;
 reader @easyBindingType typeForEntityDescription -> @string outResult :
   switch selfcopy
   when boolType : outResult := "NSBooleanAttributeType" ;
-  when integer16Type : outResult := "NSInteger16AttributeType" ;
-  when integer32Type : outResult := "NSInteger32AttributeType" ;
-  when integer64Type : outResult := "NSInteger64AttributeType" ;
+  when integerType : outResult := "NSInteger64AttributeType" ;
   when decimalType : outResult := "NSDecimalAttributeType" ;
   when floatType : outResult := "NSFloatAttributeType" ;
   when doubleType : outResult := "NSDoubleAttributeType" ;
@@ -125,7 +121,7 @@ end reader ;
 reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
   switch selfcopy
   when boolType,
-       integer16Type, integer32Type, integer64Type, uintegerType,
+       integerType, uintegerType,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ; 
@@ -138,7 +134,7 @@ end reader ;
 reader @easyBindingType attributeValueEncoder -> @string outResult :
   switch selfcopy
   when boolType,
-       integer16Type, integer32Type, integer64Type, uintegerType,
+       integerType, uintegerType,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ;
@@ -151,7 +147,7 @@ end reader ;
 reader @easyBindingType attributeValueDecoder -> @string outResult :
   switch selfcopy
   when boolType, toManyEntitiesType, uintegerType,
-       integer16Type, integer32Type, integer64Type,
+       integerType,
        decimalType, floatType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType : outResult := "" ;

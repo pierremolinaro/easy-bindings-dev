@@ -10,6 +10,6 @@ do
   if [ -d $d ] && [ -e $d/build.command ]
   then
     echo "----- Building in '`dirname $0`/$d' directory"
-    $d/build.command
+    $d/build.command || exit
   fi
 done
