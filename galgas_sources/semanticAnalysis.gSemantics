@@ -7,7 +7,7 @@ semantics semanticAnalysis :
 
 reader @easyBindingType propertyAttributeString -> @string outResult :
   switch selfcopy
-  when boolType, integer16Type, integer32Type, integer64Type, uintegerType,
+  when boolType, integerType, uintegerType,
        floatType, doubleType, decimalType,
        toManyEntitiesType : outResult := "" ;
   when stringType : outResult := "(copy)" ;
@@ -21,7 +21,7 @@ end reader ;
 reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult :
   switch selfcopy
   when boolType : outResult := "" ; # Empty string: not allowed
-  when integer16Type, integer32Type, integer64Type, uintegerType : outResult := "NSTextFieldCell" ;
+  when integerType, uintegerType : outResult := "NSTextFieldCell" ;
   when decimalType : outResult := "NSTextFieldCell" ;
   when floatType : outResult := "NSTextFieldCell" ;
   when doubleType : outResult := "NSTextFieldCell" ;
@@ -40,7 +40,7 @@ end reader ;
 reader @easyBindingType equalMethod -> @string outResult :
   switch selfcopy
   when boolType : outResult := "" ; # Empty string: use == operator
-  when integer16Type, integer32Type, integer64Type, uintegerType : outResult := "" ;
+  when integerType, uintegerType : outResult := "" ;
   when decimalType : outResult := "" ;
   when floatType : outResult := "" ;
   when doubleType : outResult := "" ;
@@ -1161,9 +1161,7 @@ end routine ;
 reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "bool" ;
-  when integer16Type : outResult := "integer16" ;
-  when integer32Type : outResult := "integer32" ;
-  when integer64Type : outResult := "integer64" ;
+  when integerType : outResult := "integer" ;
   when uintegerType : outResult := "unsignedInteger" ;
   when decimalType : outResult := "decimal" ;
   when floatType : outResult := "float" ;
@@ -1626,70 +1624,86 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
+local routine analyzeClass
+  ??@classList.element inClass
+  ?!@classMap ioClassMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super class ?
+  @observablePropertyMap observablePropertyMap ;
+  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+  if [inClass->mSuperClassName string] != "" then
+    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+  end if ;
+#---------------------------------- Analyze attributes
+  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+  foreach inClass->mAttributeList do
+    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
+    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    const @lstring observationDependencyKey [new
+      !"class." . inClass->mClassName . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;    
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#---------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeTransientProperties
+    ![@preferencesMap emptyMap]
+    !"class." . inClass->mClassName . "."
+    !inClass->mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
+    !?observablePropertyMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#----------------------------------
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioClassMap insertKey
+    !inClass->mClassName
+    !inClass->mSuperClassName->string
+    !observablePropertyMap
+    !propertyListForInitMethodHeader
+    !inheritedAttributeListForImplementation
+    !attributeListForImplementation
+    !transientListForImplementation
+    !implementationFileInclusionSet
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 local routine analyzeClasses
   ??@classList inClassList
   !@classMap outClassMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
   outClassMap := [@classMap emptyMap] ;
-  foreach inClassList do
-    @observablePropertyMap observablePropertyMap ;
-    @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
-    if [mSuperClassName string] != "" then
-      [outClassMap searchKey !mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
-    else
-      observablePropertyMap := [@observablePropertyMap emptyMap] ;
-      propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
-    end if ;
-    @attributeListForImplementation attributeListForImplementation [emptyList] ;
-    const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
-    foreach mAttributeList do
-      checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
-      attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-      propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-      const @lstring observationDependencyKey [new
-        !"class/" . mClassName . "/self." . mAttributeName
-        !mAttributeName->location
-      ] ;
-      [!?observablePropertyMap insertKey
-        !mAttributeName
-        !mType
-        !false # is not transient
-        !observationDependencyKey->string
-      ] ;    
-      [!?ioTransientDependencyGraph addNode
-        !observationDependencyKey
-        !observationDependencyKey->string
-      ] ;
-    end foreach ;
-  #--- Analyze transient properties
-    @transientListForImplementation transientListForImplementation ;
-    @stringset implementationFileInclusionSet [emptySet] ;
-    analyzeTransientProperties
-      ![@preferencesMap emptyMap]
-      !"class" . mClassName . "."
-      !mTransientList
-      ![@observablePropertyMap emptyMap] # Root property map
-      !"" # No Root entity
-      ![@controllerMap emptyMap]
-      !?observablePropertyMap
-      !?implementationFileInclusionSet
-      ?transientListForImplementation
+  for aClass in inClassList do
+    analyzeClass
+      !aClass
+      !?outClassMap
       !?ioTransientDependencyGraph
     ;
-  #---
-    [!?implementationFileInclusionSet removeKey !""] ;
-    [!?outClassMap insertKey
-      !mClassName
-      ![mSuperClassName string]
-      !observablePropertyMap
-      !propertyListForInitMethodHeader
-      !inheritedAttributeListForImplementation
-      !attributeListForImplementation
-      !transientListForImplementation
-      !implementationFileInclusionSet
-    ] ;
-  end foreach ;
+  end for ;
 end routine ;
 
 #----------------------------------------------------------------------------*

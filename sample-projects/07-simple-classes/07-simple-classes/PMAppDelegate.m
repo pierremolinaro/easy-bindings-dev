@@ -26,7 +26,7 @@
 - (void) awakeFromNib {
   mObject = [[MyOtherClass alloc]
     initWithMyBool:YES
-    withMyInteger32:0
+    withMyInteger:0
     withMyString:@"azerty"
     withChose:NO
   ] ;
@@ -42,7 +42,7 @@
 //----------------------------------------------------------------------------*
 
 - (IBAction) incrementMyInteger32: (id) inSender {
-  mObject.myInteger32 = mObject.myInteger32 + 1 ;
+  mObject.myInteger ++ ;
   mObject.chose = YES ;
 }
 

@@ -86,9 +86,9 @@ message "a source text file with the .easyBindings extension"
 #  if [entityMap count] > 0 then
 #    sources += !"PMAbstractManagedObject" ;
 #  end if ;
-  if [classMap count] > 0 then
-    sources += !"PMClass" ;
-  end if ;
+#  if [classMap count] > 0 then
+#    sources += !"PMClass" ;
+#  end if ;
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
     const @string sourceName := [mValue lastPathComponent] ;

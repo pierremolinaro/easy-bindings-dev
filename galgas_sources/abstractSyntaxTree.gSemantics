@@ -4,7 +4,7 @@ semantics abstractSyntaxTree :
 #----------------------------------------------------------------------------*
 
 enum @easyBindingType {
- boolType, integer16Type, integer32Type, integer64Type,
+ boolType, integerType,
  uintegerType,
  decimalType, floatType, doubleType,
  stringType, dataType, dateType,
@@ -17,9 +17,7 @@ enum @easyBindingType {
 reader @easyBindingType ebTypeName -> @string outResult :
   switch selfcopy
   when boolType : outResult := "bool" ;
-  when integer16Type : outResult := "integer16" ;
-  when integer32Type : outResult := "integer32" ;
-  when integer64Type : outResult := "integer64" ;
+  when integerType : outResult := "NSInteger" ;
   when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "decimal" ;
   when floatType : outResult := "float" ;
