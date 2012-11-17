@@ -81,53 +81,61 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <enabled_editable_bindings>
+  ?!@bindingList ioBindingList
+:
+  @lstring bindingName ;
+  select
+    $enabled$ ;
+    bindingName := [@lstring new !"enabled" !here] ;
+  or
+    $editable$ ;
+    bindingName := [@lstring new !"editable" !here] ;
+  end select ;
+  @multiValuedBindingList multiValuedBindingList [emptyList] ;
+  repeat 
+    @bool negate ;
+    select
+      negate := false ;
+    or
+      $!$ ;
+      negate := true ;
+    end select ;
+    @lstring mBoundObject ;
+    select
+      $self$ ;
+      mBoundObject := [@lstring new !"self" !here] ;
+    or
+      $root$ ;
+      mBoundObject := [@lstring new !"root" !here] ;
+    or
+      $identifier$ ?mBoundObject ;
+    or
+      $Identifier$ ?mBoundObject ;
+    end select ;
+    $.$ ;
+    $identifier$ ?@lstring boundPropertyName ;
+  #---
+    <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+    multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
+  while
+    $&$ ;
+  end repeat ;
+  ioBindingList += ![@multiValuedBinding new
+    !bindingName
+    !multiValuedBindingList
+  ] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <bindings>
   !@bindingList outOutletBindingList
 :
   outOutletBindingList := [@bindingList emptyList] ;
   repeat
   while
-    @lstring bindingName ;
-    select
-      $enabled$ ;
-      bindingName := [@lstring new !"enabled" !here] ;
-    or
-      $editable$ ;
-      bindingName := [@lstring new !"editable" !here] ;
-    end select ;
-    @multiValuedBindingList multiValuedBindingList [emptyList] ;
-    repeat 
-      @bool negate ;
-      select
-        negate := false ;
-      or
-        $!$ ;
-        negate := true ;
-      end select ;
-      @lstring mBoundObject ;
-      select
-        $self$ ;
-        mBoundObject := [@lstring new !"self" !here] ;
-      or
-        $root$ ;
-        mBoundObject := [@lstring new !"root" !here] ;
-      or
-        $identifier$ ?mBoundObject ;
-      or
-        $Identifier$ ?mBoundObject ;
-      end select ;
-      $.$ ;
-      $identifier$ ?@lstring boundPropertyName ;
-    #---
-      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-      multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
-    while
-      $&$ ;
-    end repeat ;
-    outOutletBindingList += ![@multiValuedBinding new
-      !bindingName
-      !multiValuedBindingList
-    ] ;
+    <enabled_editable_bindings> !?outOutletBindingList ;
   while
     $hidden$ ;
     const @lstring bindingName [new !"hidden" !here] ;
@@ -223,16 +231,15 @@ rule <bindings>
         !namesCountOption
       ] ;
     or
-      @lstring observedObjectName ;
-      $identifier$ ? observedObjectName ;
+      $identifier$ ? @lstring controllerName ;
       $.$ ;
-      $identifier$ ? @lstring rootObservablePropertyName ;
+      $identifier$ ? @lstring controllerObservablePropertyName ;
       <count_option> ?@bool namesCountOption ;
       <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-      outOutletBindingList += ![@regularBinding new
+      outOutletBindingList += ![@regularControllerBinding new
         !bindingName
-        !observedObjectName
-        !rootObservablePropertyName
+        !controllerName
+        !controllerObservablePropertyName
         !outletBindingOptionList
         !namesCountOption
       ] ;

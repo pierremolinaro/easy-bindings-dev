@@ -207,9 +207,7 @@ routine generateEntityCode
       end foreach ;
       foreach mToManyRelationshipList do
         propertyAndTomanyRelationshipSet += !mValue0 ;
-        log mValue0 ;
       end foreach ;
-      log propertyAndTomanyRelationshipSet ;
     #--- Implementation
       s := [filewrapper entityGenerationTemplate.entityImplementation
         ![lkey string]

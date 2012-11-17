@@ -17,9 +17,6 @@
 		CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */; };
 		CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC81597272200F6B52D /* managed-object-model.m */; };
 		CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCA1597272200F6B52D /* MyPrefs.m */; };
-		CF86CCDA1597272200F6B52D /* PMAbstractManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */; };
-		CF86CCDB1597272200F6B52D /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */; };
-		CF86CCDC1597272200F6B52D /* PMAbstractPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */; };
 		CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD41597272200F6B52D /* PMDebug.m */; };
 		CF86CCDF1597272200F6B52D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCD51597272200F6B52D /* PMDebug.xib */; };
 		CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* RootEntityClass.m */; };
@@ -47,12 +44,6 @@
 		CF86CCC81597272200F6B52D /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF86CCC91597272200F6B52D /* MyPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPrefs.h; sourceTree = "<group>"; };
 		CF86CCCA1597272200F6B52D /* MyPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs.m; sourceTree = "<group>"; };
-		CF86CCCB1597272200F6B52D /* PMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractManagedObject.h; sourceTree = "<group>"; };
-		CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractManagedObject.m; sourceTree = "<group>"; };
-		CF86CCCD1597272200F6B52D /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
-		CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
-		CF86CCCF1597272200F6B52D /* PMAbstractPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPreferences.h; sourceTree = "<group>"; };
-		CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPreferences.m; sourceTree = "<group>"; };
 		CF86CCD31597272200F6B52D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
 		CF86CCD41597272200F6B52D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
 		CF86CCD51597272200F6B52D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
@@ -119,12 +110,6 @@
 				CF86CCC81597272200F6B52D /* managed-object-model.m */,
 				CF86CCC91597272200F6B52D /* MyPrefs.h */,
 				CF86CCCA1597272200F6B52D /* MyPrefs.m */,
-				CF86CCCB1597272200F6B52D /* PMAbstractManagedObject.h */,
-				CF86CCCC1597272200F6B52D /* PMAbstractManagedObject.m */,
-				CF86CCCD1597272200F6B52D /* PMAbstractPersistentDocument.h */,
-				CF86CCCE1597272200F6B52D /* PMAbstractPersistentDocument.m */,
-				CF86CCCF1597272200F6B52D /* PMAbstractPreferences.h */,
-				CF86CCD01597272200F6B52D /* PMAbstractPreferences.m */,
 				CF86CCD31597272200F6B52D /* PMDebug.h */,
 				CF86CCD41597272200F6B52D /* PMDebug.m */,
 				CF86CCD51597272200F6B52D /* PMDebug.xib */,
@@ -224,9 +209,6 @@
 				CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */,
 				CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */,
 				CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */,
-				CF86CCDA1597272200F6B52D /* PMAbstractManagedObject.m in Sources */,
-				CF86CCDB1597272200F6B52D /* PMAbstractPersistentDocument.m in Sources */,
-				CF86CCDC1597272200F6B52D /* PMAbstractPreferences.m in Sources */,
 				CF86CCDE1597272200F6B52D /* PMDebug.m in Sources */,
 				CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */,
 				CFF1C93B15C3312E0054F1DA /* PMTransientDependancyManager.m in Sources */,
