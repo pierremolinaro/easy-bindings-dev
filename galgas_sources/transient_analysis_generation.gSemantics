@@ -80,6 +80,7 @@ end reader ;
 map @observablePropertyMap {
   @easyBindingType mType ;
   @bool mIsTransient ;
+  @string mPropertySignature ;
   insert insertKey error message "the '%K' attribute is already declared" ;
   search searchKey error message "the '%K' attribute is not declared" ;
 }
@@ -97,6 +98,25 @@ map @observableObjectMap {
 
 #----------------------------------------------------------------------------*
 
+map @actionMap {
+  insert insertKey error message "there is already a '%K' action" ;
+  search searchKey error message "the '%K' action is not defined" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @controllerMap {
+  @string mControllerClassName ;
+  @string mControlledClassOrEntityName ;
+  @outletBindingListForGeneration mControllerBindingList ;
+  @actionMap mActionMap ;
+  @observablePropertyMap mObservableAttributeMap ;
+  insert insertKey error message "the '%K' controller is already declared" ;
+  search searchKey error message "the '%K' controller is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 abstract class @abstractTransientDependencyForImplementation {
 }
 
@@ -105,6 +125,23 @@ abstract class @abstractTransientDependencyForImplementation {
 class @transientDependencyFromSelfForImplementation extends @abstractTransientDependencyForImplementation {
   @string mMasterAttributeName ;
   @easyBindingType mMasterAttributeType ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientDependencyFromControllerForImplementation extends @abstractTransientDependencyForImplementation {
+  @string mControllerName ;
+  @string mMasterAttributeName ;
+  @easyBindingType mMasterAttributeType ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientDependencyFromRootForImplementation extends @abstractTransientDependencyForImplementation {
+  @string mMasterAttributeName ;
+  @easyBindingType mMasterAttributeType ;
+  @bool mNamesCountOption ;
+  @string mTriggerRoutineName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -132,6 +169,26 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override reader @transientDependencyFromControllerForImplementation generateFormalArgument
+  ->@string outResult
+:
+  outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromRootForImplementation generateFormalArgument
+  ->@string outResult
+:
+  if mNamesCountOption then
+    outResult := "const NSUInteger in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] . "_count" ;
+  else
+    outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 override reader @transientDependencyFromPreferenceForImplementation generateFormalArgument
   ->@string outResult
 :
@@ -150,6 +207,25 @@ override reader @transientDependencyFromSelfForImplementation generateMasterAttr
   ->@string outResult
 :
   outResult := "self." . mMasterAttributeName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromRootForImplementation generateMasterAttributeCall
+  ->@string outResult
+:
+  outResult := "mRootObject." . mMasterAttributeName ;
+  if mNamesCountOption then
+    outResult .= ".count" ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromControllerForImplementation generateMasterAttributeCall
+  ->@string outResult
+:
+  outResult := mControllerName . "." . mMasterAttributeName ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -186,6 +262,9 @@ abstract method @abstractTransientDependency analyze
   ??@lstring inTransientName
   ??@observablePropertyMap inLocalObservablePropertyMap
   ??@preferencesMap inPreferencesMap
+  ??@controllerMap inControllerMap
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@string inRootEntityName
   ??@string inObervationDependencyPrefix
   ?!@stringset ioImplementationFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -198,6 +277,9 @@ override method @transientLocalDependency analyze
   ??@lstring inTransientName
   ??@observablePropertyMap inLocalObservablePropertyMap
   ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
   ??@string inObervationDependencyPrefix
   ?!@stringset unused ioImplementationFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -206,6 +288,7 @@ override method @transientLocalDependency analyze
   [inLocalObservablePropertyMap searchKey
     !mMasterName
     ?@easyBindingType masterType
+    ?*
     ?*
   ] ;
 #--- Add dependency arc
@@ -219,10 +302,88 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @transientControllerDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap inControllerMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
+  ??@string inObervationDependencyPrefix
+  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@abstractTransientDependencyForImplementation outImplementation
+:
+#--- Search controller in controller map
+  [inControllerMap searchKey
+    !mControllerName
+    ?@string controllerClassName
+    ?3*
+    ?@observablePropertyMap controllerObservablePropertyMap
+  ] ;
+#--- Search controller observed attribute
+  [controllerObservablePropertyMap searchKey
+    !mMasterName
+    ?@easyBindingType masterType
+    ?*
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addArc
+    ![@lstring new !"controller." . controllerClassName . "." . mMasterName !mMasterName->location]
+    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
+  ] ;
+#---
+  outImplementation := [@transientDependencyFromControllerForImplementation new !mControllerName->string !mMasterName->string !masterType] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientRootDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@string inRootEntityName
+  ??@string inObervationDependencyPrefix
+  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@abstractTransientDependencyForImplementation outImplementation
+:
+  [inRootObjectObservablePropertyMap searchKey
+    !mMasterName
+    ?@easyBindingType masterType
+    ?*
+    ?@string masterDependencyKey
+  ] ;
+#--- Has 'count' option ?
+  if mNamesCountOption & (masterType != [@easyBindingType toManyEntitiesType]) then
+    error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
+  end if ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addArc
+    ![@lstring new !"entity." . inRootEntityName . "." . mMasterName !mMasterName->location]
+    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
+  ] ;
+#---
+  outImplementation := [@transientDependencyFromRootForImplementation new
+    !mMasterName->string
+    !masterType
+    !mNamesCountOption
+    ![masterDependencyKey identifierRepresentation]
+ ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @transientPreferenceDependency analyze
   ??@lstring inTransientName
   ??@observablePropertyMap unused inLocalObservablePropertyMap
   ??@preferencesMap inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
   ??@string inObervationDependencyPrefix
   ?!@stringset ioImplementationFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -233,6 +394,7 @@ override method @transientPreferenceDependency analyze
     !mMasterName
     ?@easyBindingType masterType
     ?@bool isTransient
+    ?*
   ] ;
 #--- Add dependency arc
   [!?ioTransientDependencyGraph addArc
@@ -256,7 +418,9 @@ routine analyzeTransientProperties
   ??@preferencesMap inPreferencesMap
   ??@string inObervationDependencyPrefix
   ??@transientList inTransientList
-  ??@observableObjectMap unused inObservableObjectMap
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@string inRootEntityName
+  ??@controllerMap inControllerMap
   ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
   ?!@stringset ioImplementationFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
@@ -277,6 +441,9 @@ routine analyzeTransientProperties
         !mTransientName
         !ioSelfObjectObservablePropertyMap
         !inPreferencesMap
+        !inControllerMap
+        !inRootObjectObservablePropertyMap
+        !inRootEntityName
         !inObervationDependencyPrefix
         !?ioImplementationFileInclusionSet
         !?ioTransientDependencyGraph
@@ -289,6 +456,7 @@ routine analyzeTransientProperties
       !mTransientName
       !mType
       !true # is transient
+      !transientObservationKey->string
     ] ;
   #--- Add transient implementation
     outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList ;
@@ -359,140 +527,6 @@ listmap @triggeredKeysForOtherObjects (@2stringlist) ;
 
 #----------------------------------------------------------------------------*
 
-function generateTransientImplementation
-  ??@string inKindName 
-  ??@transientListForImplementation inTransientListForImplementation
-  ??@2stringlist inTransientDependencyArcList
-  ??@string inPrefix # entity, class, preferences
-  ->@string outResult
-:
-#--- Note all properties of self object that trigger a transient
-  @triggeredKeysForSelfObject triggeredKeys [emptyMap] ;
-  @triggeredKeysForOtherObjects triggeredKeysFromOtherObjects [emptyMap] ;
-  foreach inTransientListForImplementation do
-    foreach mDependencyList do
-#      if mMasterObjectName == "self" then
-#        triggeredKeys += !mMasterPropertyName !mTransientName ;
-#      else
-#        triggeredKeysFromOtherObjects += !mMasterObjectName !mMasterPropertyName !mTransientName ;
-#      end if ;
-    end foreach ;
-  end foreach ;
-  const @string partialPrefix := inPrefix . "/" . inKindName ;
-  const @string fullPrefix := partialPrefix . "/self" ;
-#---
-  @triggeredKeysForSelfObject triggeredKeysForSelfObject [emptyMap] ;
-  foreach inTransientDependencyArcList do
-    if ([mValue0 stringByDeletingPathExtension] == fullPrefix) & ([mValue1 stringByDeletingPathExtension] == fullPrefix) then
-      triggeredKeysForSelfObject += ![mValue0 pathExtension] !mValue1 ;  
-    end if ;
-  end foreach ;
-#---
-  outResult :=
-    "//----------------------------------------------------------------------------*\n"
-  . "//   T R A N S I E N T    I M P L E M E N T A T I O N                         *\n" ;
-#---
-  if ([triggeredKeysFromOtherObjects count] + [triggeredKeysForSelfObject count]) > 0 then
-    outResult .=
-    "//----------------------------------------------------------------------------*\n\n"
-    "- (void) pmInstallObserversForTransients {\n"
-    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
-    "  //[super pmInstallObserversForTransients] ;\n" ;
-    for element in triggeredKeysFromOtherObjects do
-      for name in element->mList do
-        outResult .=
-        "  [" . element->key . "\n"
-        "    addObserver:self\n"
-        "    forKeyPath:@\"" . name->mValue0 . "\"\n"
-        "    options:0\n"
-        "    context:NULL\n"
-        "  ] ;\n" ;
-      end for ;
-    end for ;
-    for element in triggeredKeysForSelfObject do
-      outResult .=
-      "  [self\n"
-      "    addObserver:self\n"
-      "    forKeyPath:@\"" . element->key . "\"\n"
-      "    options:0\n"
-      "    context:NULL\n"
-      "  ] ;\n" ;
-    end for ;
-    outResult .=
-    "}\n\n"
-    "//----------------------------------------------------------------------------*\n\n"
-    "- (void) pmUninstallObserversForTransients {\n"
-    "  // NSLog (@\"%s\", __PRETTY_FUNCTION__) ;\n"
-    " // [super pmUninstallObserversForTransients] ;\n" ;
-    for element in triggeredKeysFromOtherObjects do
-      for name in element->mList do
-        outResult .=
-        "  [" . element->key . "\n"
-        "    removeObserver:self\n"
-        "    forKeyPath:@\"" . name->mValue0 . "\"\n"
-        "  ] ;\n" ;
-      end for ;
-    end for ;
-    for element in triggeredKeysForSelfObject do
-      outResult .=
-      "  [self\n"
-      "    removeObserver:self\n"
-      "    forKeyPath:@\"" . element->key . "\"\n"
-      "  ] ;\n" ;
-    end for ;
-    outResult .=
-    "}\n\n"
-    "//----------------------------------------------------------------------------*\n\n"
-    "- (void) observeValueForKeyPath:(NSString *) inKeyPath\n"
-    "         ofObject:(id) inObject\n"
-    "         change:(NSDictionary *) inChange\n"
-    "         context:(void *) inContext {\n"
-    "  // NSLog (@\"%s, key %@\", __PRETTY_FUNCTION__, inKeyPath) ;\n" ;
-    outResult .= " " ;
-    for element in triggeredKeysFromOtherObjects
-    do
-      for name in element->mList
-      do
-        outResult .=
-        " if ((inObject == " . element->key . ") && [inKeyPath isEqualToString:@\"" . name->mValue0 . "\"]) {\n"
-        "    " . name->mValue1 . "__computed = NO ;\n"
-        "    [PMTransientDependancyManager\n"
-        "      enterTriggerForObject:self\n"
-        "      transientIndex:" . [fullPrefix. "." . name->mValue1 identifierRepresentation] . "\n"
-        "    ] ;\n"
-        "  }else" ;
-      end for ;
-    end for ;
-    for element in triggeredKeysForSelfObject
-    do
-      outResult .= " if ([inKeyPath isEqualToString:@\"" . element->key . "\"]) {\n" ;
-      for name in element->mList do
-        outResult .=
-        "    " . [name->mValue pathExtension] . "__computed = NO ;\n"
-        "    [PMTransientDependancyManager\n"
-        "      enterTriggerForObject:self\n"
-        "      transientIndex:" . [name->mValue identifierRepresentation] . "\n"
-        "    ] ;\n"
-        "  }else" ;
-      end for ;
-    end for ;
-    outResult .=
-    "{\n"
-    "    [super\n"
-    "      observeValueForKeyPath:inKeyPath\n"
-    "      ofObject:inObject\n"
-    "      change:inChange\n"
-    "      context:inContext\n"
-    "    ] ;\n"
-    "  }\n"
-    "}\n\n" ;
-  end if ;
-#---
-  outResult .= generateTransientCacheRoutine [!inKindName !inTransientListForImplementation] ;
-end function ;
-
-#----------------------------------------------------------------------------*
-
 abstract method @abstractTransientDependencyForImplementation generateTransientTriggerFromSelfAttribute
   ??@string inPrefix # entity, class, preference
   ??@string inClassName
@@ -532,7 +566,47 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @transientDependencyFromRootForImplementation generateTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+:
+  if [ioMasterAttributeSet hasKey !mMasterAttributeName] then
+    ioMasterAttributeSet += !inTransientName ;
+    ioRegisteredTransientSet += !inTransientName ;
+    ioContinue := true ;
+    ioResult .=
+    "  //--- Trigger '" . inTransientName . " transient'\n"
+    "    if (" . inTransientName . "__computed) {\n"
+    "      " . inTransientName . "__computed = NO ;\n"
+    "      [PMTransientDependancyManager\n"
+    "        enterTriggerForObject:self\n"
+    "        transientIndex:" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . "\n"
+    "      ] ;\n"
+    "    }\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @transientDependencyFromPreferenceForImplementation generateTransientTriggerFromSelfAttribute
+  ??@string unused inPrefix # entity, class, preference
+  ??@string unused inClassName
+  ??@string unused inTransientName
+  ?!@stringset unused ioMasterAttributeSet
+  ?!@stringset unused ioRegisteredTransientSet
+  ?!@bool unused ioContinue
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromControllerForImplementation generateTransientTriggerFromSelfAttribute
   ??@string unused inPrefix # entity, class, preference
   ??@string unused inClassName
   ??@string unused inTransientName
@@ -594,6 +668,21 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @transientDependencyFromControllerForImplementation generateAddObserverForTransient
+  ??@string inLeadingSpaces
+  ?!@string ioResult
+:
+  ioResult .= inLeadingSpaces .
+  "  [" . mControllerName . "\n"
+  "    addObserver:self\n"
+  "    forKeyPath:@\"" . mMasterAttributeName . "\"\n"
+  "    options:0\n"
+  "    context:NULL\n"
+  "  ] ;\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @transientDependencyFromPreferenceForImplementation generateAddObserverForTransient
   ??@string inLeadingSpaces
   ?!@string ioResult
@@ -601,6 +690,15 @@ override method @transientDependencyFromPreferenceForImplementation generateAddO
   if not mMasterIsTransient then
     ioResult .= inLeadingSpaces . "  [g_" . mPreferenceName . " addObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
   end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromRootForImplementation generateAddObserverForTransient
+  ??@string inLeadingSpaces
+  ?!@string ioResult
+:
+  ioResult .= inLeadingSpaces . "  [mRootObject addObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -636,12 +734,32 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @transientDependencyFromControllerForImplementation generateRemoveObserverForTransient
+  ?!@string ioResult
+:
+  ioResult .=
+  "  [" . mControllerName . "\n"
+  "    removeObserver:self\n"
+  "    forKeyPath:@\"" . mMasterAttributeName . "\"\n"
+  "  ] ;\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @transientDependencyFromPreferenceForImplementation generateRemoveObserverForTransient
   ?!@string ioResult
 :
   if not mMasterIsTransient then
     ioResult .= "  [g_" . mPreferenceName . " removeObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
   end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromRootForImplementation generateRemoveObserverForTransient
+  ?!@string ioResult
+:
+  ioResult .= "  [mRootObject removeObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -668,26 +786,49 @@ listmap @observerListMap (@stringlist) ;
 
 abstract method @abstractTransientDependencyForImplementation generateObserverRoutineForTransient
   ??@string inTransientName
-  ?!@observerListMap ioObserverListMap
+  ?!@observerListMap didChangeTriggeredRoutineListMap
+  ?!@observerListMap ioObserveForKeyPathRoutineElementListMap
 ;
 
 #----------------------------------------------------------------------------*
 
 override method @transientDependencyFromSelfForImplementation generateObserverRoutineForTransient
   ??@string unused inTransientName
-  ?!@observerListMap unused ioObserverListMap
+  ?!@observerListMap unused didChangeTriggeredRoutineListMap
+  ?!@observerListMap unused ioObserveForKeyPathRoutineElementListMap
 :
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromControllerForImplementation generateObserverRoutineForTransient
+  ??@string inTransientName
+  ?!@observerListMap unused didChangeTriggeredRoutineListMap
+  ?!@observerListMap ioObserveForKeyPathRoutineElementListMap
+:
+  ioObserveForKeyPathRoutineElementListMap += !mControllerName . "." . mMasterAttributeName !inTransientName ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @transientDependencyFromPreferenceForImplementation generateObserverRoutineForTransient
   ??@string inTransientName
-  ?!@observerListMap ioObserverListMap
+  ?!@observerListMap didChangeTriggeredRoutineListMap
+  ?!@observerListMap unused ioObserveForKeyPathRoutineElementListMap
 :
   if not mMasterIsTransient then
-    ioObserverListMap += !mPreferenceName . "_" . mMasterAttributeName !inTransientName ;
+    didChangeTriggeredRoutineListMap += !["preference." . mPreferenceName . "." . mMasterAttributeName identifierRepresentation] !inTransientName ;
   end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromRootForImplementation generateObserverRoutineForTransient
+  ??@string inTransientName
+  ?!@observerListMap didChangeTriggeredRoutineListMap
+  ?!@observerListMap unused ioObserveForKeyPathRoutineElementListMap
+:
+  didChangeTriggeredRoutineListMap += !mTriggerRoutineName !inTransientName ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -699,18 +840,20 @@ function generateObserverRoutinesForTransient
   ->@string outResult
 :
   outResult := "" ;
-  @observerListMap observerListMap [emptyMap] ;
+  @observerListMap didChangeTriggeredRoutineListMap [emptyMap] ;
+  @observerListMap observeForKeyPathRoutineElementListMap [emptyMap] ;
   foreach inTransientListForImplementation do
     foreach mDependencyList do
       [mDependency generateObserverRoutineForTransient
         !mTransientName
-        !?observerListMap
+        !?didChangeTriggeredRoutineListMap
+        !?observeForKeyPathRoutineElementListMap
       ] ;
     end foreach ;
   end foreach ;
-#---
+#------------------------ Generate xxx_xxx_didChange methods
   const @string fullPrefix := inPrefix . "." . inKindName . "." ;
-  foreach observerListMap do
+  foreach didChangeTriggeredRoutineListMap do
     outResult .=
     "//----------------------------------------------------------------------------*\n"
     "//  " . key . "_didChange   *\n"
@@ -728,6 +871,45 @@ function generateObserverRoutinesForTransient
       "  }\n" ;
     end foreach ;
     outResult .= "}\n\n" ;
+  end foreach ;
+#------------------------ Generate observeValueForKeyPath method
+  foreach observeForKeyPathRoutineElementListMap
+  before
+    outResult .=
+    "//----------------------------------------------------------------------------*\n"
+    "//  observeValueForKeyPath:ofObject:change:context:                           *\n"
+    "//----------------------------------------------------------------------------*\n\n"
+    "- (void) observeValueForKeyPath: (NSString *) inKeyPath\n"
+    "         ofObject: (id) inObject\n"
+    "         change: (NSDictionary *) inChange\n"
+    "         context: (void *) inContext {\n"
+    " " ;
+  do
+    outResult .=
+    " if ((inObject == " . [key stringByDeletingPathExtension] .") && [inKeyPath isEqualToString:@\"" . [key pathExtension] . "\"]) {\n" ;
+    foreach mList do
+      outResult .=
+      "  //--- Trigger '" . mValue . " transient'\n"
+      "    if (" . mValue . "__computed) {\n"
+      "      " . mValue . "__computed = NO ;\n"
+      "      [PMTransientDependancyManager\n"
+      "        enterTriggerForObject:self\n"
+      "        transientIndex:" . [fullPrefix . mValue identifierRepresentation] . "\n"
+      "      ] ;\n"
+      "    }\n" ;
+    end foreach ;
+    outResult .= "  }else" ;
+  after
+    outResult .=
+    "{\n"
+    "    [super\n"
+    "     observeValueForKeyPath:inKeyPath\n"
+    "     ofObject:inObject\n"
+    "     change:inChange\n"
+    "     context:inContext\n"
+    "    ] ;\n"
+    "  }\n"
+    "}\n\n" ;
   end foreach ;
 end function ;
 

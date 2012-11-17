@@ -139,14 +139,14 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
     %!mPropertyName%_observers = [NSMutableSet new] ;
   }
   [%!mPropertyName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!PREFERENCES_NAME%_%!mPropertyName%_didChange)] ;
+  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
   [%!mPropertyName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!PREFERENCES_NAME%_%!mPropertyName%_didChange)] ;
+  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
 }
 
 %end foreach

@@ -40,6 +40,47 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <binding_options>
+  !@outletBindingOptionList outBindingOptionList
+:
+  outBindingOptionList := [@outletBindingOptionList emptyList] ;
+  select
+  or
+    ${$ ;
+    repeat
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      @easyBindingTypeList correspondingAcceptableTypes ;
+      @string defaultValueObjectiveCObject ;
+      <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
+      outBindingOptionList +=
+        !optionName
+        !correspondingAcceptableTypes
+        !defaultValueObjectiveCObject
+      ;
+    while
+      $,$ ;
+    end repeat ;
+    $}$ ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <count_option>
+  !@bool outCountOptionOn
+:
+  select
+    outCountOptionOn := false ;
+  or
+    $.$ ;
+    $count$ ;
+    outCountOptionOn := true ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <bindings>
   !@bindingList outOutletBindingList
 :
@@ -78,26 +119,7 @@ rule <bindings>
       $.$ ;
       $identifier$ ?@lstring boundPropertyName ;
     #---
-      @outletBindingOptionList outletBindingOptionList [emptyList] ;
-      select
-      or
-        ${$ ;
-        repeat
-          $Identifier$ ? @lstring optionName ;
-          $:$ ;
-          @easyBindingTypeList correspondingAcceptableTypes ;
-          @string defaultValueObjectiveCObject ;
-          <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
-          outletBindingOptionList +=
-            !optionName
-            !correspondingAcceptableTypes
-            !defaultValueObjectiveCObject
-          ;
-        while
-          $,$ ;
-        end repeat ;
-        $}$ ;
-      end select ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
       multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
     while
       $&$ ;
@@ -133,26 +155,7 @@ rule <bindings>
       $.$ ;
       $identifier$ ?@lstring boundPropertyName ;
     #---
-      @outletBindingOptionList outletBindingOptionList [emptyList] ;
-      select
-      or
-        ${$ ;
-        repeat
-          $Identifier$ ? @lstring optionName ;
-          $:$ ;
-          @easyBindingTypeList correspondingAcceptableTypes ;
-          @string defaultValueObjectiveCObject ;
-          <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
-          outletBindingOptionList +=
-            !optionName
-            !correspondingAcceptableTypes
-            !defaultValueObjectiveCObject
-          ;
-        while
-          $,$ ;
-        end repeat ;
-        $}$ ;
-      end select ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
       multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
     while
       $|$ ;
@@ -195,57 +198,59 @@ rule <bindings>
     $}$ ;
   while
     $binding$ ? @lstring bindingName ;
-    @lstring observedObjectName ;
     select
       $root$ ;
-      observedObjectName := [@lstring new !"root" !here] ;
+      $.$ ;
+      $identifier$ ? @lstring rootObservablePropertyName ;
+      <count_option> ?@bool namesCountOption ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+      outOutletBindingList += ![@regularRootBinding new
+        !bindingName
+        !rootObservablePropertyName
+        !outletBindingOptionList
+        !namesCountOption
+      ] ;
     or
       $self$ ;
-      observedObjectName := [@lstring new !"self" !here] ;
-    or
-      $identifier$ ? observedObjectName ;
-    or
-      $Identifier$ ? observedObjectName ;
-    end select ;
-    $.$ ;
-    $identifier$ ? @lstring rootObservablePropertyName ;
-  #---
-    @bool namesCountOption ;
-    select
-      namesCountOption := false ;
-    or
       $.$ ;
-      $count$ ;
-      namesCountOption := true ;
-    end select ;
-  #---
-    @outletBindingOptionList outletBindingOptionList [emptyList] ;
-    select
+      $identifier$ ? @lstring rootObservablePropertyName ;
+      <count_option> ?@bool namesCountOption ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+      outOutletBindingList += ![@regularSelfBinding new
+        !bindingName
+        !rootObservablePropertyName
+        !outletBindingOptionList
+        !namesCountOption
+      ] ;
     or
-      ${$ ;
-      repeat
-        $Identifier$ ? @lstring optionName ;
-        $:$ ;
-        @easyBindingTypeList correspondingAcceptableTypes ;
-        @string defaultValueObjectiveCObject ;
-        <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
-        outletBindingOptionList +=
-          !optionName
-          !correspondingAcceptableTypes
-          !defaultValueObjectiveCObject
-        ;
-      while
-        $,$ ;
-      end repeat ;
-      $}$ ;
+      @lstring observedObjectName ;
+      $identifier$ ? observedObjectName ;
+      $.$ ;
+      $identifier$ ? @lstring rootObservablePropertyName ;
+      <count_option> ?@bool namesCountOption ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+      outOutletBindingList += ![@regularBinding new
+        !bindingName
+        !observedObjectName
+        !rootObservablePropertyName
+        !outletBindingOptionList
+        !namesCountOption
+      ] ;
+    or
+      @lstring observedObjectName ;
+      $Identifier$ ? observedObjectName ;
+      $.$ ;
+      $identifier$ ? @lstring rootObservablePropertyName ;
+      <count_option> ?@bool namesCountOption ;
+      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+      outOutletBindingList += ![@regularBinding new
+        !bindingName
+        !observedObjectName
+        !rootObservablePropertyName
+        !outletBindingOptionList
+        !namesCountOption
+      ] ;
     end select ;
-    outOutletBindingList += ![@regularBinding new
-      !bindingName
-      !observedObjectName
-      !rootObservablePropertyName
-      !outletBindingOptionList
-      !namesCountOption
-    ] ;
   end repeat ;
 end rule ;
 
@@ -542,10 +547,16 @@ rule <transient_declaration>
       $identifier$ ? @lstring masterName ;
       dependanceList += ![@transientLocalDependency new !masterName] ;
     or
+      $root$ ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      <count_option> ?@bool namesCountOption ;
+      dependanceList += ![@transientRootDependency new !masterName !namesCountOption] ;
+    or
       $identifier$ ?@lstring controllerName ;
       $.$ ;
       $identifier$ ? @lstring masterName ;
-#      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
+      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
     or
       $Identifier$ ?@lstring preferenceName ;
       $.$ ;

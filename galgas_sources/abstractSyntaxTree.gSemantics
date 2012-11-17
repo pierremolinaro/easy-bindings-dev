@@ -74,6 +74,20 @@ class @transientLocalDependency extends @abstractTransientDependency {
 
 #----------------------------------------------------------------------------*
 
+class @transientRootDependency extends @abstractTransientDependency {
+  @lstring mMasterName ;
+  @bool mNamesCountOption ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientControllerDependency extends @abstractTransientDependency {
+  @lstring mControllerName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @transientPreferenceDependency extends @abstractTransientDependency {
   @lstring mPreferencesName ;
   @lstring mMasterName ;
@@ -124,6 +138,15 @@ list @outletBindingOptionList {
 #----------------------------------------------------------------------------*
 
 abstract class @abstractBinding {
+}
+
+#----------------------------------------------------------------------------*
+
+class @regularRootBinding, @regularSelfBinding extends @abstractBinding {
+  @lstring mBindingName ;
+  @lstring mObservableAttributeName ;
+  @outletBindingOptionList mOutletBindingOptionList ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
@@ -273,7 +296,7 @@ list @controllerObservablePropertyList {
 #----------------------------------------------------------------------------*
 
 list @controllerClassList {
-  @lstring mOutletClassName ;
+  @lstring mControllerClassName ;
   @bool mGenerateCode ;
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;

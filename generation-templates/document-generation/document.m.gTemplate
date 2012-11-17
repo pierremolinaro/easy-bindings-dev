@@ -139,7 +139,8 @@ end foreach
 
 % !generateObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
 
-!generateTransientImplementation [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !TRANSIENT_DEPENDENCY_ARCS !"document"]
+!generateTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+
 %//----------------------------------------------------------------------------*
 //    Actions                                                                 *
 //----------------------------------------------------------------------------*
