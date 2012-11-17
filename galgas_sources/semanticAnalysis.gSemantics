@@ -504,6 +504,7 @@ end routine ;
 abstract method @abstractBinding analyzeOutletBinding
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@preferencesMap inPreferencesMap
   ??@entityMap inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -519,6 +520,7 @@ abstract method @abstractBinding analyzeOutletBinding
 override method @tableValueBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
@@ -580,6 +582,7 @@ end method ;
 override method @runBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap unused inBindingMap
@@ -607,6 +610,7 @@ end method ;
 override method @regularBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -698,6 +702,7 @@ end method ;
 override method @regularRootBinding analyzeOutletBinding
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -779,6 +784,7 @@ end method ;
 override method @regularSelfBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap unused inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -857,9 +863,90 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @regularPreferenceBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@observableObjectMap unused inObservableObjectMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
+:
+  ioImplementationFileInclusionSet += !mPreferenceName->string ;
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Search preference in preferences map
+  [inPreferencesMap searchKey
+    !mPreferenceName
+    ?4*
+    ?@observablePropertyMap observablePropertyMap
+    ?*
+  ] ;
+#---------------------------------------- Find observable property in local observable property map
+  [observablePropertyMap searchKey
+    !mPreferenceAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mPreferenceAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"g_" . mPreferenceName
+    !mPreferenceAttributeName->string
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @multiValuedBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@observableObjectMap inObservableObjectMap
   ??@outletClassBindingMap inBindingMap
@@ -1016,6 +1103,7 @@ local routine analyzePreference
       [mBinding analyzeOutletBinding
         ![@observablePropertyMap emptyMap]
         !observableAttributeMap
+        ![@preferencesMap emptyMap]
         ![@entityMap emptyMap]
         !observableObjectMap
         !bindingMap
@@ -1119,6 +1207,18 @@ abstract method @abstractBinding analyzeControllerBinding
   ??@observablePropertyMap inAllObservablePropertyMap
   ?!@outletBindingListForGeneration ioBindingListForGeneration
 ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularPreferenceBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mBindingName: "a preference does not implement the $" . mBindingName . " binding" ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -1437,14 +1537,6 @@ local routine analyzeDocument
   for actionName in inDocument->mActionDeclarationList do
     [!?documentActionMap insertKey !actionName->mValue] ;
   end for ;
-#--- Analyze outlets
-#  [!?observableObjectMap insertKey
-#    !["self" nowhere]
-#    !"self"
-#    !inDocument->mDocumentName->string
-#    !"" # No file to include
-#    !observablePropertyMap
-#  ] ;
 #--------------------------------------------------- Analyze outlets and bindings
   @outletGenerationList outletGenerationList [emptyList] ;
   foreach inDocument->mOutletDeclarationList do
@@ -1456,6 +1548,7 @@ local routine analyzeDocument
       [mBinding analyzeOutletBinding
         !rootObjectObservablePropertyMap
         !observablePropertyMap
+        !inPreferencesMap
         !inEntityMap
         ![@observableObjectMap emptyMap]
         !bindingMap

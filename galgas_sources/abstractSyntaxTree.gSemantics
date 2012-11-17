@@ -161,6 +161,15 @@ class @regularBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
+class @regularPreferenceBinding extends @abstractBinding {
+  @lstring mBindingName ;
+  @lstring mPreferenceName ;
+  @lstring mPreferenceAttributeName ;
+  @outletBindingOptionList mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @multiValuedBindingList {
   @bool mNegate ;
   @lstring mBoundObjectName ;
