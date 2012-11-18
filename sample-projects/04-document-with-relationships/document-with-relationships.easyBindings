@@ -25,7 +25,7 @@ document PMDocument root MyRootEntity {
   transient NSString canRemoveString dependsFrom nameController.canRemove ;
   outlet NSTextField canRemoveTextField $value self.canRemoveString ;
   outlet NSButton addPathButton $run nameController.add ;
-  outlet NSButton removePathButton $run nameController.remove ;
+  outlet NSButton removePathButton $run nameController.remove $enabled nameController.canRemove ;
   outlet NSTextField countItemTextField $value root.mNames.count ;
   transient NSString countItemMessage dependsFrom root.mNames.count ;
   outlet NSTextField countItemMessageTextField $value self.countItemMessage ;
