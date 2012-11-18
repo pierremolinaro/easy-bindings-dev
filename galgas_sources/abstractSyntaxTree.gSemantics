@@ -168,10 +168,33 @@ class @regularPreferenceBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
+abstract class @multiValuedBindingBoundModel {
+  @lstring mPropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @multiValuedBindingBoundToRoot,
+      @multiValuedBindingBoundToSelf extends @multiValuedBindingBoundModel {
+}
+
+#----------------------------------------------------------------------------*
+
+class @multiValuedBindingBoundToPref extends @multiValuedBindingBoundModel {
+  @lstring mPreferenceName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @multiValuedBindingBoundToController extends @multiValuedBindingBoundModel {
+  @lstring mControllerName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @multiValuedBindingList {
   @bool mNegate ;
-  @lstring mBoundObjectName ;
-  @lstring mBoundPropertyName ;
+  @multiValuedBindingBoundModel mBoundModel ;
   @outletBindingOptionList mOutletBindingOptionList ;
 }
 

@@ -81,6 +81,44 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <multi_value_binding_element>
+  ?!@multiValuedBindingList ioMultiValuedBindingList
+:
+  @bool negate ;
+  select
+    negate := false ;
+  or
+    $!$ ;
+    negate := true ;
+  end select ;
+  @multiValuedBindingBoundModel boundModel ;
+  select
+    $self$ ;
+    $.$ ;
+    $identifier$ ?@lstring boundPropertyName ;
+    boundModel := [@multiValuedBindingBoundToSelf new !boundPropertyName] ;
+  or
+    $root$ ;
+    $.$ ;
+    $identifier$ ?@lstring boundPropertyName ;
+    boundModel := [@multiValuedBindingBoundToRoot new !boundPropertyName] ;
+  or
+    $identifier$ ?@lstring controllerName ;
+    $.$ ;
+    $identifier$ ?@lstring boundPropertyName ;
+    boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
+  or
+    $Identifier$ ?@lstring preferenceName ;
+    $.$ ;
+    $identifier$ ?@lstring boundPropertyName ;
+    boundModel := [@multiValuedBindingBoundToPref new !boundPropertyName !preferenceName] ;
+  end select ;
+  <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+  ioMultiValuedBindingList += !negate !boundModel !outletBindingOptionList ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <enabled_editable_bindings>
   ?!@bindingList ioBindingList
 :
@@ -93,31 +131,8 @@ rule <enabled_editable_bindings>
     bindingName := [@lstring new !"editable" !here] ;
   end select ;
   @multiValuedBindingList multiValuedBindingList [emptyList] ;
-  repeat 
-    @bool negate ;
-    select
-      negate := false ;
-    or
-      $!$ ;
-      negate := true ;
-    end select ;
-    @lstring mBoundObject ;
-    select
-      $self$ ;
-      mBoundObject := [@lstring new !"self" !here] ;
-    or
-      $root$ ;
-      mBoundObject := [@lstring new !"root" !here] ;
-    or
-      $identifier$ ?mBoundObject ;
-    or
-      $Identifier$ ?mBoundObject ;
-    end select ;
-    $.$ ;
-    $identifier$ ?@lstring boundPropertyName ;
-  #---
-    <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-    multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
+  repeat
+    <multi_value_binding_element> !?multiValuedBindingList ;
   while
     $&$ ;
   end repeat ;
@@ -141,30 +156,7 @@ rule <bindings>
     const @lstring bindingName [new !"hidden" !here] ;
     @multiValuedBindingList multiValuedBindingList [emptyList] ;
     repeat 
-      @bool negate ;
-      select
-        negate := false ;
-      or
-        $!$ ;
-        negate := true ;
-      end select ;
-      @lstring mBoundObject ;
-      select
-        $self$ ;
-        mBoundObject := [@lstring new !"self" !here] ;
-      or
-        $root$ ;
-        mBoundObject := [@lstring new !"root" !here] ;
-      or
-        $identifier$ ?mBoundObject ;
-      or
-        $Identifier$ ?mBoundObject ;
-      end select ;
-      $.$ ;
-      $identifier$ ?@lstring boundPropertyName ;
-    #---
-      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-      multiValuedBindingList += !negate !mBoundObject !boundPropertyName !outletBindingOptionList ;
+      <multi_value_binding_element> !?multiValuedBindingList ;
     while
       $|$ ;
     end repeat ;
