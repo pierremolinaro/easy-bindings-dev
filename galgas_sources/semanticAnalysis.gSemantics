@@ -5,6 +5,15 @@ semantics semanticAnalysis :
 
 #----------------------------------------------------------------------------*
 
+map @cursorMap {
+  @double mHotSpotX ;
+  @double mHotSpotY ;
+  insert insertKey error message "the '%K' cursor is already declared" ;
+  search searchKey error message "the '%K' cursor is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @classMap {
   @string mSuperClassName ;
   @observablePropertyMap mPropertyMap ;
@@ -1821,6 +1830,7 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 routine semanticAnalysis
+  ??@cursorList inCursorList
   ??@classList inClassList
   ??@entityList inEntityList
   ??@preferencesDeclarationList inPreferencesList
@@ -1830,6 +1840,7 @@ routine semanticAnalysis
   ??@protocolList inProtocolList
   ??@location inEndOfSourceFile
   ?@string inSourceFilePath
+  !@cursorMap outCursorMap
   !@outletClassMap outOutletClassMap
   !@controllerClassMap outControllerClassMap
   !@classMap outClassMap
@@ -1839,6 +1850,11 @@ routine semanticAnalysis
   !@stringlist outSortedTransientOrderedList
   !@2stringlist outTransientDependencyArcList
 :
+#--- Build cursor map
+  outCursorMap := [@cursorMap emptyMap] ;
+  foreach inCursorList do
+    [!?outCursorMap insertKey !mCursorName !mHotSpotX->double !mHotSpotY->double] ;
+  end foreach ;
 #--- Build protocol map
   @protocolMap protocolMap [emptyMap] ;
   foreach inProtocolList do

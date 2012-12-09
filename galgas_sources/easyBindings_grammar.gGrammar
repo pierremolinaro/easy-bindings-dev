@@ -9,6 +9,7 @@ root <start_symbol>
   ?!@documentDeclarationList ioDocumentDeclarationList
   ?!@controllerClassList ioControllerClassList
   ?!@protocolList ioProtocolList
+  ?!@cursorList ioCursorList
   !@location outEndOfFile
 ;
 

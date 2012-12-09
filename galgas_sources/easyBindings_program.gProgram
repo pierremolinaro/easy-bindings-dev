@@ -7,6 +7,7 @@ import "entityGeneration.gSemantics" ;
 import "preferencesGeneration.gSemantics" ;
 import "documentGeneration.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
+import "cursors_generation.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -37,6 +38,7 @@ message "a source text file with the .easyBindings extension"
   @documentDeclarationList documentDeclarationList [emptyList] ;
   @controllerClassList controllerClassList [emptyList] ;
   @protocolList protocolList [emptyList] ;
+  @cursorList cursorList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !?classList
     !?entityList
@@ -45,6 +47,7 @@ message "a source text file with the .easyBindings extension"
     !?documentDeclarationList
     !?controllerClassList
     !?protocolList
+    !?cursorList
     ?*
   ;
 #--- Parse source file
@@ -56,18 +59,12 @@ message "a source text file with the .easyBindings extension"
     !?documentDeclarationList
     !?controllerClassList
     !?protocolList
+    !?cursorList
     ?@location endOfSourceFile
   ;
 #--- Semantic Analysis
-  @classMap classMap ;
-  @entityMap entityMap ;
-  @preferencesMap preferencesMap ;
-  @outletClassMap outletClassMap ;
-  @documentMap documentMap ;
-  @controllerClassMap controllerClassMap ;
-  @stringlist sortedTransientOrderedList ;
-  @2stringlist transientDependencyArcList ;
   semanticAnalysis
+    !cursorList
     !classList
     !entityList
     !preferencesList
@@ -77,14 +74,15 @@ message "a source text file with the .easyBindings extension"
     !protocolList
     !endOfSourceFile
     !inSourceFile->string
-    ?outletClassMap
-    ?controllerClassMap
-    ?classMap
-    ?entityMap
-    ?preferencesMap
-    ?documentMap
-    ?sortedTransientOrderedList
-    ?transientDependencyArcList
+    ?@cursorMap cursorMap
+    ?@outletClassMap outletClassMap
+    ?@controllerClassMap controllerClassMap
+    ?@classMap classMap
+    ?@entityMap entityMap
+    ?@preferencesMap preferencesMap
+    ?@documentMap documentMap
+    ?@stringlist sortedTransientOrderedList
+    ?@2stringlist transientDependencyArcList
   ;
 #--- Code generation
   const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
@@ -93,6 +91,7 @@ message "a source text file with the .easyBindings extension"
   generateEntityCode !transientDependencyArcList !entityMap !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
+  generateCursorCode !cursorMap !sourceDirectoryPath ;
 #--- Output dependency order definition file
   generateTransientDependencyFiles
     !transientDependencyArcList

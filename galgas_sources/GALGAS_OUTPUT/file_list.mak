@@ -38,6 +38,7 @@ SOURCES += classGeneration.cpp
 SOURCES += outletClassGeneration.cpp
 SOURCES += entityGeneration.cpp
 SOURCES += documentGeneration.cpp
+SOURCES += cursors_generation.cpp
 SOURCES += easyBindings_program.cpp
 
 

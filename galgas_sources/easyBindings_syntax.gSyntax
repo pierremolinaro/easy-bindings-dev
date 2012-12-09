@@ -13,6 +13,7 @@ rule <start_symbol>
   ?!@documentDeclarationList ioDocumentDeclarationList
   ?!@controllerClassList ioControllerClassList
   ?!@protocolList ioProtocolList
+  ?!@cursorList ioCursorList
   !@location outEndOfFile
 :
   repeat
@@ -32,8 +33,11 @@ rule <start_symbol>
       !?ioDocumentDeclarationList
       !?ioControllerClassList
       !?ioProtocolList
+      !?ioCursorList
       ?*
     ;
+  while
+    <cursor_declaration> !?ioCursorList ;
   while
     <protocol_declaration> !?ioProtocolList ;
   while
@@ -903,6 +907,22 @@ rule <protocol_declaration>
   $Identifier$ ? @lstring protocolName ;
   $;$ ;
   ioProtocolList += !protocolName ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <cursor_declaration>
+  ?!@cursorList ioCursorList
+:
+  $cursor$ ;
+  $identifier$ ? @lstring cursorName ;
+  $($ ;
+  $literal_double$ ?@ldouble hotSpotX ?* ;
+  $,$ ;
+  $literal_double$ ?@ldouble hotSpotY ?* ;
+  $)$ ;
+  $;$ ;
+  ioCursorList += !cursorName !hotSpotX !hotSpotY ;
 end rule ;
 
 #----------------------------------------------------------------------------*
