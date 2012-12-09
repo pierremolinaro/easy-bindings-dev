@@ -1,0 +1,58 @@
+semantics cursors_generation :
+  import "easyBindings_options.gOption" ;
+  import "semanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
+}{
+}{
+  template cursorsDeclaration "cursors.h.gTemplate"
+    ?@cursorMap CURSOR_MAP
+  ;
+  
+  template cursorsImplementation "cursors.m.gTemplate"
+    ?@cursorMap CURSOR_MAP
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateCursorCode
+  ??@cursorMap inCursorMap
+  ??@string inOutputDirectory
+:
+  if ([@uint errorCount] == 0) & ([inCursorMap count] > 0) then
+  #--- Header
+    @string s := [filewrapper cursorsGenerationTemplate.cursorsDeclaration
+      !inCursorMap
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !"cursors.h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  #--- Implementation
+    s := [filewrapper cursorsGenerationTemplate.cursorsImplementation
+      !inCursorMap
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !"cursors.m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

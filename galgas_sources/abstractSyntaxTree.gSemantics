@@ -287,6 +287,14 @@ enum @generationKind {
 
 #----------------------------------------------------------------------------*
 
+list @cursorList {
+  @lstring mCursorName ;
+  @ldouble mHotSpotX ;
+  @ldouble mHotSpotY ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @outletClassList {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
