@@ -1,0 +1,26 @@
+
+#import "cursors.h"
+
+//---------------------------------------------------------------------------*
+
+%foreach CURSOR_MAP do
+%//---------------------------------------------------------------------------*
+
+//---------------------------------------------------------------------------*
+
+NSCursor * %!lkey->string%_cursor (void) {
+  NSCursor * cursor ;
+  NSImage * image = [NSImage imageNamed:@"%!lkey->string%"] ;
+  if (image == nil) {
+    cursor = [NSCursor arrowCursor] ;
+  }else{
+    cursor = [[NSCursor alloc]
+      initWithImage:image hotSpot:NSMakePoint (%![mHotSpotX string]%, %![mHotSpotY string]%)
+    ] ;
+  }
+  return cursor ;
+}
+%end foreach%
+
+//---------------------------------------------------------------------------*
+

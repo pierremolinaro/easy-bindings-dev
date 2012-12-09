@@ -1,0 +1,19 @@
+#import <Cocoa/Cocoa.h>
+
+//---------------------------------------------------------------------------*
+
+@interface %!OUTLET_CLASS_NAME% : %!SUPER_CLASS_NAME
+foreach ADOPTED_PROTOCOL_LIST
+before % <%
+do !mValue->string
+between %, %
+after %>%
+end foreach
+% {
+
+%foreach BINDING_MAP do%
+//--- Attributes for '%!lkey->string%' binding
+  @protected id mBoundObjectFor_%!lkey->string% ;
+  @protected NSString * mKeyPathFor_%!lkey->string% ;
+%end foreach%
+
