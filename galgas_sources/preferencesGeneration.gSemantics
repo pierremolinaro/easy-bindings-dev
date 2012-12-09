@@ -7,7 +7,16 @@ semantics preferencesGeneration :
 local filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
 }{
 }{
-  template preferencesDeclaration "preferences.h.gTemplate"
+  template preferencesDeclarationPart1 "preferences-1.h.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+    ?@lstringlist ACTION_LIST
+    ?@stringset CLASS_PREDECLARATION_SET
+  ;
+  
+  template preferencesDeclarationPart2 "preferences-2.h.gTemplate"
     ?@string PREFERENCES_NAME
     ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
@@ -54,7 +63,15 @@ routine generatePreferencesCode
   if [@uint errorCount] == 0 then
     foreach inPreferencesMap do
     #--- Header
-      @string s := [filewrapper prefsGenerationTemplate.preferencesDeclaration
+      @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1
+        ![lkey string]
+        !mAttributeListForImplementation
+        !mTransientListForImplementation
+        !mOutletDeclarationList
+        !mActionList
+        !mImplementationFileInclusionSet
+      ] ;
+      @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
         ![lkey string]
         !mAttributeListForImplementation
         !mTransientListForImplementation
@@ -67,8 +84,8 @@ routine generatePreferencesCode
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
+        !"\n\n}\n\n" # Defaut user zone2
+        !s2
       ] ;
     #--- Implementation
       s := [filewrapper prefsGenerationTemplate.preferencesImplementation

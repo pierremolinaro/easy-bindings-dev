@@ -245,7 +245,7 @@ map @outletClassBindingMap {
 #----------------------------------------------------------------------------*
 
 map @outletClassMap {
-  @bool mGenerateCode ;
+  @generationKind mGenerationKind ;
   @string mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
   @outletClassBindingMap mBindingMap ;
@@ -1121,9 +1121,16 @@ local routine analyzePreference
 #------------------------------------- Analyze outlets
   @outletGenerationList outletGenerationList [emptyList] ;
   foreach inPreference->mOutletDeclarationList do
-    @outletClassBindingMap bindingMap ;
-    @bool hasTableValueBinding ;
-    [inOutletClassMap searchKey !mOutletType ?3* ?bindingMap ?hasTableValueBinding] ;
+    [inOutletClassMap searchKey
+      !mOutletType
+      ?@generationKind generationKind
+      ?2*
+      ?@outletClassBindingMap bindingMap
+      ?@bool hasTableValueBinding
+    ] ;
+    if generationKind != [@generationKind noGeneration] then
+      implementationFileInclusionSet += !mOutletType->string ;
+    end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
@@ -1139,7 +1146,7 @@ local routine analyzePreference
         !?implementationFileInclusionSet
       ] ;
     end foreach ;
-    outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
+    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
   end foreach ;
 #------------------------------------- Enter in preference map
   [!?implementationFileInclusionSet removeKey !""] ;
@@ -1544,9 +1551,13 @@ local routine analyzeDocument
 #--------------------------------------------------- Analyze outlets and bindings
   @outletGenerationList outletGenerationList [emptyList] ;
   foreach inDocument->mOutletDeclarationList do
-    @outletClassBindingMap bindingMap ;
-    @bool hasTableValueBinding ;
-    [inOutletClassMap searchKey !mOutletType ?3* ?bindingMap ?hasTableValueBinding] ;
+    [inOutletClassMap searchKey
+      !mOutletType
+      ?@generationKind generationKind
+      ?2*
+      ?@outletClassBindingMap bindingMap
+      ?@bool hasTableValueBinding
+    ] ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
@@ -1562,7 +1573,7 @@ local routine analyzeDocument
         !?implementationFileInclusionSet
       ] ;
     end foreach ;
-    outletGenerationList += ![mOutletType string] ![mOutletName string] !outletBindingList ;
+    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
   end foreach ;
 #--------------------------------------------------- Enter in document map
   [!?implementationFileInclusionSet removeKey !""] ;
@@ -1728,7 +1739,7 @@ local routine analyzeOutletClasses
   #---
     [!?outOutletClassMap insertKey
       !mOutletClassName
-      !mGenerateCode
+      !mGeneration
       !mSuperClassName->string
       !mAdoptedProtocolList
       !bindingMap
