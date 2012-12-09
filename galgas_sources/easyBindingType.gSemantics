@@ -1,0 +1,326 @@
+semantics easyBindingType :
+
+#----------------------------------------------------------------------------*
+
+enum @easyBindingType {
+ boolType, integerType,
+ uintegerType,
+ decimalType, floatType, doubleType,
+ stringType, dataType, dateType,
+ fontType, imageType, colorType, toManyEntitiesType,
+ valueType, arrayType,
+ bezierPathType, menuType
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType ebTypeName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "bool" ;
+  when integerType : outResult := "NSInteger" ;
+  when uintegerType : outResult := "NSUInteger" ;
+  when decimalType : outResult := "decimal" ;
+  when floatType : outResult := "float" ;
+  when doubleType : outResult := "double" ;
+  when stringType : outResult := "NSString" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when fontType : outResult := "NSFont" ;
+  when imageType : outResult := "NSImage" ;
+  when colorType : outResult := "NSColor" ;
+  when valueType : outResult := "NSValue" ;
+  when arrayType : outResult := "NSArray" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when menuType : outResult := "NSMenu" ;
+  when toManyEntitiesType : outResult := "NSSet" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType customGetterMethod -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "boolValue" ;
+  when integerType : outResult := "integerValue" ;
+  when uintegerType : outResult := "unsignedIntegerValue" ;
+  when floatType : outResult := "floatValue" ;
+  when doubleType : outResult := "doubleValue" ;
+  when stringType, fontType, imageType, toManyEntitiesType,
+       colorType, dataType, dateType, decimalType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType customSetterTransformer -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "[NSNumber numberWithBool:inValue]" ;
+  when integerType : outResult := "[NSNumber numberWithInteger:inValue]" ;
+  when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
+  when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
+  when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
+  when stringType, fontType, imageType, colorType,
+       decimalType, toManyEntitiesType,
+       dataType, dateType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType isClass -> @bool outResult :
+  switch selfcopy
+  when boolType, decimalType,
+       integerType,
+       uintegerType,
+       floatType, doubleType : outResult := false ;
+  when stringType, fontType, imageType, toManyEntitiesType,
+       colorType, dataType, dateType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := true ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType typeForEntityDescription -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "NSBooleanAttributeType" ;
+  when integerType : outResult := "NSInteger64AttributeType" ;
+  when decimalType : outResult := "NSDecimalAttributeType" ;
+  when floatType : outResult := "NSFloatAttributeType" ;
+  when doubleType : outResult := "NSDoubleAttributeType" ;
+  when stringType : outResult := "NSStringAttributeType" ;
+  when dataType, colorType : outResult := "NSBinaryDataAttributeType" ;
+  when dateType : outResult := "NSDateAttributeType" ;
+  when fontType, imageType, toManyEntitiesType, uintegerType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "??" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
+  switch selfcopy
+  when boolType,
+       integerType, uintegerType,
+       decimalType, floatType, doubleType,
+       stringType, dataType, dateType, fontType,
+       imageType, toManyEntitiesType : outResult := "" ; 
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "data:" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType attributeValueEncoder -> @string outResult :
+  switch selfcopy
+  when boolType,
+       integerType, uintegerType,
+       decimalType, floatType, doubleType,
+       stringType, dataType, dateType, fontType,
+       imageType, toManyEntitiesType : outResult := "" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "dataEncodedValue" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType attributeValueDecoder -> @string outResult :
+  switch selfcopy
+  when boolType, toManyEntitiesType, uintegerType,
+       integerType,
+       decimalType, floatType, doubleType,
+       stringType, dataType, dateType, fontType,
+       imageType : outResult := "" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "valueFromData" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "boolFromNSNumber" ;
+  when integerType : outResult := "NSIntegerFromNSNumber" ;
+  when floatType : outResult := "floatFromNSNumber" ;
+  when doubleType : outResult := "doubleFromNSNumber" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "valueFromData" ;
+  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
+       dataType, dateType, decimalType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "numberEncodedBool" ;
+  when integerType : outResult := "numberEncodedNSInteger" ;
+  when floatType : outResult := "numberEncodedFloat" ;
+  when doubleType : outResult := "numberEncodedDouble" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "dataEncodedValue" ;
+  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
+       dataType, dateType, decimalType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType propertyAttributeString -> @string outResult :
+  switch selfcopy
+  when boolType, integerType, uintegerType,
+       floatType, doubleType, decimalType,
+       toManyEntitiesType : outResult := "" ;
+  when stringType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "(copy)" ;
+  when fontType, imageType, dataType : outResult := "" ;
+  when colorType, dateType : outResult := "(assign)" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "" ; # Empty string: not allowed
+  when integerType, uintegerType : outResult := "NSTextFieldCell" ;
+  when decimalType : outResult := "NSTextFieldCell" ;
+  when floatType : outResult := "NSTextFieldCell" ;
+  when doubleType : outResult := "NSTextFieldCell" ;
+  when stringType : outResult := "NSTextFieldCell" ;
+  when dataType : outResult := "" ;
+  when dateType : outResult := "NSDateFieldCell" ;
+  when fontType : outResult := "" ;
+  when imageType : outResult := "" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "" ;
+  when toManyEntitiesType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType equalMethod -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "" ; # Empty string: use == operator
+  when integerType, uintegerType : outResult := "" ;
+  when decimalType : outResult := "" ;
+  when floatType : outResult := "" ;
+  when doubleType : outResult := "" ;
+  when stringType : outResult := "isEqualToString" ;
+  when dataType : outResult := "isEqual" ;
+  when dateType : outResult := "isEqual" ;
+  when fontType : outResult := "isEqual" ;
+  when imageType : outResult := "isEqual" ;
+  when colorType,
+       arrayType, valueType,
+       bezierPathType, menuType : outResult := "isEqual" ;
+  when toManyEntitiesType : outResult := "" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "bool" ;
+  when integerType : outResult := "integer" ;
+  when uintegerType : outResult := "unsignedInteger" ;
+  when decimalType : outResult := "decimal" ;
+  when floatType : outResult := "float" ;
+  when doubleType : outResult := "double" ;
+  when stringType : outResult := "NSString" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when fontType : outResult := "NSFont" ;
+  when imageType : outResult := "NSImage" ;
+  when colorType : outResult := "NSColor" ;
+  when arrayType : outResult := "NSArray" ;
+  when valueType : outResult := "NSValue" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when toManyEntitiesType : outResult := "toMany[" . inClassOrEntityName . "]" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType ocTypeName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "BOOL" ;
+  when integerType : outResult := "NSInteger" ;
+  when uintegerType : outResult := "NSUInteger" ;
+  when decimalType : outResult := "NSDecimal" ;
+  when floatType : outResult := "float" ;
+  when doubleType : outResult := "double" ;
+  when stringType : outResult := "NSString *" ;
+  when fontType : outResult := "NSFont *" ;
+  when imageType : outResult := "NSImage *" ;
+  when colorType : outResult := "NSColor *" ;
+  when dataType : outResult := "NSData *" ;
+  when dateType : outResult := "NSDate *" ;
+  when arrayType : outResult := "NSArray *" ;
+  when valueType : outResult := "NSValue *" ;
+  when menuType : outResult := "NSMenu *" ;
+  when bezierPathType : outResult := "NSBezierPath *" ;
+  when toManyEntitiesType : outResult := "??" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType ocClassName -> @string outResult :
+  switch selfcopy
+  when boolType : outResult := "NSNumber" ;
+  when integerType : outResult := "NSNumber" ;
+  when uintegerType : outResult := "NSNumber" ;
+  when decimalType : outResult := "NSNumber" ;
+  when floatType : outResult := "NSNumber" ;
+  when doubleType : outResult := "NSNumber" ;
+  when stringType : outResult := "NSString" ;
+  when fontType : outResult := "NSFont" ;
+  when imageType : outResult := "NSImage" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when arrayType : outResult := "NSArray" ;
+  when valueType : outResult := "NSValue" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when toManyEntitiesType : outResult := "??" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType copyOnAssign -> @bool outResult :
+  switch selfcopy
+  when boolType, integerType, uintegerType,
+       floatType, doubleType, decimalType, toManyEntitiesType,
+       fontType, imageType, colorType, dataType, dateType : outResult := false ;
+  when stringType, arrayType, valueType,
+       bezierPathType, menuType : outResult := true ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

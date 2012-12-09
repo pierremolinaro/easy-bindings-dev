@@ -22,8 +22,8 @@
 		CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4627ED1595B7E500BF70CD /* PMPrefs.m */; };
 		CF7C15601656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C155D1656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m */; };
 		CF7C156B1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C156A1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m */; };
-		CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8915963FF1006D876D /* PMDebug.m */; };
-		CF9D9A8D15963FF1006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A8A15963FF1006D876D /* PMDebug.xib */; };
+		CF9D9A8C15963FF1006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A8915963FF1006D876D /* PMAllocationDebug.m */; };
+		CF9D9A8D15963FF1006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A8A15963FF1006D876D /* PMAllocationDebug.xib */; };
 		CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
@@ -57,9 +57,9 @@
 		CF7C155D1656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
 		CF7C155F1656EC8600CFB81D /* MyEntityClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyEntityClass-transient-computations.h"; sourceTree = "<group>"; };
 		CF7C156A1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
-		CF9D9A8815963FF1006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
-		CF9D9A8915963FF1006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
-		CF9D9A8A15963FF1006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
+		CF9D9A8815963FF1006D876D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMAllocationDebug.h; sourceTree = "<group>"; };
+		CF9D9A8915963FF1006D876D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
+		CF9D9A8A15963FF1006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFF1C93115C32D950054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,9 +120,9 @@
 				CF7C155F1656EC8600CFB81D /* MyEntityClass-transient-computations.h */,
 				CFF1C93115C32D950054F1DA /* PMTransientDependancyManager.h */,
 				CFF1C93215C32D950054F1DA /* PMTransientDependancyManager.m */,
-				CF9D9A8815963FF1006D876D /* PMDebug.h */,
-				CF9D9A8915963FF1006D876D /* PMDebug.m */,
-				CF9D9A8A15963FF1006D876D /* PMDebug.xib */,
+				CF9D9A8815963FF1006D876D /* PMAllocationDebug.h */,
+				CF9D9A8915963FF1006D876D /* PMAllocationDebug.m */,
+				CF9D9A8A15963FF1006D876D /* PMAllocationDebug.xib */,
 				CF4627E01595B7E500BF70CD /* managed-object-model.h */,
 				CF4627E11595B7E500BF70CD /* managed-object-model.m */,
 				CF4627E21595B7E500BF70CD /* MyEntityClass.h */,
@@ -211,7 +211,7 @@
 				CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */,
 				CF4627BD1595B53B00BF70CD /* PMDocument.xib in Resources */,
 				CF4627C01595B53B00BF70CD /* MainMenu.xib in Resources */,
-				CF9D9A8D15963FF1006D876D /* PMDebug.xib in Resources */,
+				CF9D9A8D15963FF1006D876D /* PMAllocationDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +230,7 @@
 				CF4627EE1595B7E500BF70CD /* managed-object-model.m in Sources */,
 				CF4627EF1595B7E500BF70CD /* MyEntityClass.m in Sources */,
 				CF4627F31595B7E500BF70CD /* PMPrefs.m in Sources */,
-				CF9D9A8C15963FF1006D876D /* PMDebug.m in Sources */,
+				CF9D9A8C15963FF1006D876D /* PMAllocationDebug.m in Sources */,
 				CFF1C93315C32D950054F1DA /* PMTransientDependancyManager.m in Sources */,
 				CF7C15601656EC8600CFB81D /* compute_MyRootEntity_transientConcatString.m in Sources */,
 				CF7C156B1656FB2E00CFB81D /* compute_MyRootEntity_otherTransientConcatString.m in Sources */,

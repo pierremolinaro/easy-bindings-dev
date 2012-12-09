@@ -1,35 +1,17 @@
+#ifdef PM_COCOA_DEBUG
+
 //----------------------------------------------------------------------------*
 
-#import "PMDebug.h"
+#import "PMAllocationDebug.h"
 #import "easy-bindings-utilities.h"
 
 //----------------------------------------------------------------------------*
 
-static PMDebug * gDebugObject ;
+static PMAllocationDebug * gDebugObject ;
 
 //----------------------------------------------------------------------------*
 
-void macroNoteObjectAllocation (NSObject * inObject) {
-  if (nil == gDebugObject) {
-    gDebugObject = [PMDebug new] ;
-    const BOOL ok = [NSBundle loadNibNamed:@"PMDebug" owner:gDebugObject] ;
-    if (! ok) {
-      presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMDebug' nib file") ;
-    }
-  }
-  [gDebugObject pmNoteObjectAllocation:inObject] ;
-}
-
-//----------------------------------------------------------------------------*
-
-void macroNoteObjectDeallocation (NSObject * inObject) {
-  [gDebugObject pmNoteObjectDeallocation:inObject] ;
-}
-
-//----------------------------------------------------------------------------*
-
-
-@implementation PMDebug
+@implementation PMAllocationDebug
 
 //----------------------------------------------------------------------------*
 
@@ -89,10 +71,10 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
 //--- Allocation Window visibility
   self.mAllocationStatsWindowVisibleAtLaunch = [[NSUserDefaults standardUserDefaults]
-    boolForKey:@"PMDebug:allocationStatsWindowVisible"
+    boolForKey:@"PMAllocationDebug:allocationStatsWindowVisible"
   ] ;
   self.mDisplayFilter = [[NSUserDefaults standardUserDefaults]
-    integerForKey:@"PMDebug:allocationStatsDisplayFilter"
+    integerForKey:@"PMAllocationDebug:allocationStatsDisplayFilter"
   ] ;
 //--- Allocation stats window visibility at Launch
   if (self.mAllocationStatsWindowVisibleAtLaunch) {
@@ -135,11 +117,11 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
   NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
   [ud
     setBool:self.mAllocationStatsWindowVisibleAtLaunch
-    forKey:@"PMDebug:allocationStatsWindowVisible"
+    forKey:@"PMAllocationDebug:allocationStatsWindowVisible"
   ] ;
   [ud
     setInteger:self.mDisplayFilter
-    forKey:@"PMDebug:allocationStatsDisplayFilter"
+    forKey:@"PMAllocationDebug:allocationStatsDisplayFilter"
   ] ;
 }
 
@@ -246,6 +228,45 @@ void macroNoteObjectDeallocation (NSObject * inObject) {
 }
 
 //----------------------------------------------------------------------------*
+//    S H O W     A L L O C A T I O N    S T A T S    W I N D O W             *
+//----------------------------------------------------------------------------*
+
+- (void) pmShowAllocationStatsWindow {
+  [mStatsTableView.window makeKeyAndOrderFront:nil] ;
+}
+
+//----------------------------------------------------------------------------*
 
 @end
+
+//----------------------------------------------------------------------------*
+//    R O U T I N E S                                                         *
+//----------------------------------------------------------------------------*
+
+void routineNoteObjectAllocation (NSObject * inObject) {
+  if (nil == gDebugObject) {
+    gDebugObject = [PMAllocationDebug new] ;
+    const BOOL ok = [NSBundle loadNibNamed:@"PMAllocationDebug" owner:gDebugObject] ;
+    if (! ok) {
+      presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMAllocationDebug' nib file") ;
+    }
+  }
+  [gDebugObject pmNoteObjectAllocation:inObject] ;
+}
+
+//----------------------------------------------------------------------------*
+
+void routineNoteObjectDeallocation (NSObject * inObject) {
+  [gDebugObject pmNoteObjectDeallocation:inObject] ;
+}
+
+//----------------------------------------------------------------------------*
+
+void routineShowAllocationStatsWindow (void) {
+  [gDebugObject pmShowAllocationStatsWindow] ;
+}
+
+//----------------------------------------------------------------------------*
+
+#endif
 

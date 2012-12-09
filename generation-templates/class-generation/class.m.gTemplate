@@ -1,5 +1,5 @@
 #import "PMTransientDependancyManager.h"
-#import "PMDebug.h"
+#import "PMAllocationDebug.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then

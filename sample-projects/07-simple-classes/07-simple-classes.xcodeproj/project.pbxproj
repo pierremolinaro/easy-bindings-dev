@@ -17,8 +17,8 @@
 		CFBFD5D51652C4CE006EAD0D /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5C81652C4CE006EAD0D /* managed-object-model.m */; };
 		CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CB1652C4CE006EAD0D /* MyClass.m */; };
 		CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */; };
-		CFBFD5D81652C4CE006EAD0D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMDebug.m */; };
-		CFBFD5D91652C4CE006EAD0D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5D11652C4CE006EAD0D /* PMDebug.xib */; };
+		CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */; };
+		CFBFD5D91652C4CE006EAD0D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */; };
 		CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */; };
 		CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */; };
 		CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */; };
@@ -49,9 +49,9 @@
 		CFBFD5CC1652C4CE006EAD0D /* MyOtherClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyOtherClass-transient-computations.h"; sourceTree = "<group>"; };
 		CFBFD5CD1652C4CE006EAD0D /* MyOtherClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOtherClass.h; sourceTree = "<group>"; };
 		CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOtherClass.m; sourceTree = "<group>"; };
-		CFBFD5CF1652C4CE006EAD0D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
-		CFBFD5D01652C4CE006EAD0D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
-		CFBFD5D11652C4CE006EAD0D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
+		CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMAllocationDebug.h; sourceTree = "<group>"; };
+		CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
+		CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFBFD5D21652C4CE006EAD0D /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyClass_schmurtz.m; sourceTree = "<group>"; };
@@ -120,9 +120,9 @@
 				CFBFD5CC1652C4CE006EAD0D /* MyOtherClass-transient-computations.h */,
 				CFBFD5CD1652C4CE006EAD0D /* MyOtherClass.h */,
 				CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */,
-				CFBFD5CF1652C4CE006EAD0D /* PMDebug.h */,
-				CFBFD5D01652C4CE006EAD0D /* PMDebug.m */,
-				CFBFD5D11652C4CE006EAD0D /* PMDebug.xib */,
+				CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */,
+				CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */,
+				CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */,
 				CFBFD5D21652C4CE006EAD0D /* PMTransientDependancyManager.h */,
 				CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */,
 				CFBFD5BA1652C483006EAD0D /* PMAppDelegate.h */,
@@ -202,7 +202,7 @@
 				CFBFD5B31652C483006EAD0D /* InfoPlist.strings in Resources */,
 				CFBFD5B91652C483006EAD0D /* Credits.rtf in Resources */,
 				CFBFD5BF1652C483006EAD0D /* MainMenu.xib in Resources */,
-				CFBFD5D91652C4CE006EAD0D /* PMDebug.xib in Resources */,
+				CFBFD5D91652C4CE006EAD0D /* PMAllocationDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +219,7 @@
 				CFBFD5D51652C4CE006EAD0D /* managed-object-model.m in Sources */,
 				CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */,
 				CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */,
-				CFBFD5D81652C4CE006EAD0D /* PMDebug.m in Sources */,
+				CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */,
 				CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */,
 				CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */,
 				CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */,

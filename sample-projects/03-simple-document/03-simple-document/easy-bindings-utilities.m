@@ -77,59 +77,17 @@ NSNumber * numberEncodedBool (BOOL inValue) {
 }
 
 //---------------------------------------------------------------------------*
-//   SInt16                                                                  *
+//   NSInteger                                                               *
 //---------------------------------------------------------------------------*
 
-SInt16 sint16FromNSNumber (id inValue) {
-  return [inValue intValue] ;
+NSInteger NSIntegerFromNSNumber (id inValue) {
+  return [inValue integerValue] ;
 }
 
 //---------------------------------------------------------------------------*
 
-NSNumber * numberEncodedSInt16 (SInt16 inValue) {
-  return [NSNumber numberWithInt:inValue] ;
-}
-
-//---------------------------------------------------------------------------*
-//   SInt32                                                                  *
-//---------------------------------------------------------------------------*
-
-SInt32 sint32FromNSNumber (id inValue) {
-  return [inValue intValue] ;
-}
-
-//---------------------------------------------------------------------------*
-
-NSNumber * numberEncodedSInt32 (SInt32 inValue) {
-  return [NSNumber numberWithInt:inValue] ;
-}
-
-//---------------------------------------------------------------------------*
-//   SInt64                                                                  *
-//---------------------------------------------------------------------------*
-
-SInt64 sint64FromNSNumber (id inValue) {
-  return [inValue longLongValue] ;
-}
-
-//---------------------------------------------------------------------------*
-
-NSNumber * numberEncodedSInt64 (SInt64 inValue) {
-  return [NSNumber numberWithLongLong:inValue] ;
-}
-
-//---------------------------------------------------------------------------*
-//   float                                                                   *
-//---------------------------------------------------------------------------*
-
-float floatFromNSNumber (id inValue) {
-  return [inValue floatValue] ;
-}
-
-//---------------------------------------------------------------------------*
-
-NSNumber * numberEncodedFloat (float inValue) {
-  return [NSNumber numberWithFloat:inValue] ;
+NSNumber * numberEncodedNSInteger (NSInteger inValue) {
+  return [NSNumber numberWithInteger:inValue] ;
 }
 
 //---------------------------------------------------------------------------*

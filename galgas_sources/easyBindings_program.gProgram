@@ -1,6 +1,7 @@
 program easyBindings_program :
 import "abstractSyntaxTree.gSemantics" ;
 import "semanticAnalysis.gSemantics" ;
+import "outletClassGeneration.gSemantics" ;
 import "classGeneration.gSemantics" ;
 import "entityGeneration.gSemantics" ;
 import "preferencesGeneration.gSemantics" ;
@@ -29,18 +30,34 @@ when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
 #--- Parse predefined outlets
-  @ASTstruct ast ;
-  grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile] ?ast ;
+  @classList classList [emptyList] ;
+  @entityList entityList [emptyList] ;
+  @preferencesDeclarationList preferencesList [emptyList] ;
+  @outletClassList outletClassList [emptyList] ;
+  @documentDeclarationList documentDeclarationList [emptyList] ;
+  @controllerClassList controllerClassList [emptyList] ;
+  @protocolList protocolList [emptyList] ;
+  grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
+    !?classList
+    !?entityList
+    !?preferencesList
+    !?outletClassList
+    !?documentDeclarationList
+    !?controllerClassList
+    !?protocolList
+    ?*
+  ;
 #--- Parse source file
-  @ASTstruct sourceAST ;
-  grammar easyBindings_grammar in inSourceFile ?sourceAST ;
-#--- Combine ASTs
-  ast->mClassList .= sourceAST->mClassList ;
-  ast->mEntityList .= sourceAST->mEntityList ;
-  ast->mPreferencesList .= sourceAST->mPreferencesList ;
-  ast->mDocumentDeclarationList .= sourceAST->mDocumentDeclarationList ;
-  ast->mOutletClassList .= sourceAST->mOutletClassList ;
-  ast->mControllerClassList .= sourceAST->mControllerClassList ;
+  grammar easyBindings_grammar in inSourceFile
+    !?classList
+    !?entityList
+    !?preferencesList
+    !?outletClassList
+    !?documentDeclarationList
+    !?controllerClassList
+    !?protocolList
+    ?@location endOfSourceFile
+  ;
 #--- Semantic Analysis
   @classMap classMap ;
   @entityMap entityMap ;
@@ -51,7 +68,14 @@ message "a source text file with the .easyBindings extension"
   @stringlist sortedTransientOrderedList ;
   @2stringlist transientDependencyArcList ;
   semanticAnalysis
-    !ast
+    !classList
+    !entityList
+    !preferencesList
+    !outletClassList
+    !documentDeclarationList
+    !controllerClassList
+    !protocolList
+    !endOfSourceFile
     !inSourceFile->string
     ?outletClassMap
     ?controllerClassMap
@@ -64,6 +88,7 @@ message "a source text file with the .easyBindings extension"
   ;
 #--- Code generation
   const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
+  generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
   generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
   generateEntityCode !transientDependencyArcList !entityMap !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
@@ -76,19 +101,7 @@ message "a source text file with the .easyBindings extension"
   ;
 #--- Add embedded sources
   @stringset sources [setWithString !"easy-bindings-utilities"] ;
-  sources += !"PMDebug" ;
-#  if [preferencesMap count] > 0 then
-#    sources += !"PMAbstractPreferences" ;
-#  end if ;
-#  if [documentMap count] > 0 then
-#    sources += !"PMAbstractPersistentDocument" ;
-#  end if ;
-#  if [entityMap count] > 0 then
-#    sources += !"PMAbstractManagedObject" ;
-#  end if ;
-#  if [classMap count] > 0 then
-#    sources += !"PMClass" ;
-#  end if ;
+  sources += !"PMAllocationDebug" ;
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
     const @string sourceName := [mValue lastPathComponent] ;

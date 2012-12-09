@@ -1,6 +1,15 @@
 grammar easyBindings_grammar "SLR":
 with "easyBindings_syntax.gSyntax" ;
 
-root <start_symbol> !@ASTstruct outAST ;
+root <start_symbol>
+  ?!@classList ioClassList
+  ?!@entityList ioEntityList
+  ?!@preferencesDeclarationList ioPreferencesList
+  ?!@outletClassList ioOutletClassList
+  ?!@documentDeclarationList ioDocumentDeclarationList
+  ?!@controllerClassList ioControllerClassList
+  ?!@protocolList ioProtocolList
+  !@location outEndOfFile
+;
 
 end grammar ;

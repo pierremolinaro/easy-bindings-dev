@@ -15,8 +15,8 @@
 		CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA6159357CB008662EA /* easy-bindings-utilities.m */; };
 		CF721AAC159357CB008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA8159357CB008662EA /* managed-object-model.m */; };
 		CF721AAD159357CB008662EA /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AAA159357CB008662EA /* PMPrefs.m */; };
-		CF9D9A4F15963A96006D876D /* PMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A4D15963A96006D876D /* PMDebug.m */; };
-		CF9D9A5015963A96006D876D /* PMDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A4E15963A96006D876D /* PMDebug.xib */; };
+		CF9D9A4F15963A96006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A4D15963A96006D876D /* PMAllocationDebug.m */; };
+		CF9D9A5015963A96006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A4E15963A96006D876D /* PMAllocationDebug.xib */; };
 		CFF1C8FD15C2FFC50054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C8FC15C2FFC50054F1DA /* PMTransientDependancyManager.m */; };
 		CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */; };
 		CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */; };
@@ -40,9 +40,9 @@
 		CF721AA8159357CB008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF721AA9159357CB008662EA /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
 		CF721AAA159357CB008662EA /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
-		CF9D9A4C15963A96006D876D /* PMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDebug.h; sourceTree = "<group>"; };
-		CF9D9A4D15963A96006D876D /* PMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDebug.m; sourceTree = "<group>"; };
-		CF9D9A4E15963A96006D876D /* PMDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDebug.xib; sourceTree = "<group>"; };
+		CF9D9A4C15963A96006D876D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMAllocationDebug.h; sourceTree = "<group>"; };
+		CF9D9A4D15963A96006D876D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
+		CF9D9A4E15963A96006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFF1C8FB15C2FFC50054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFF1C8FC15C2FFC50054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMPrefs-computations.h"; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 			children = (
 				CFF1C8FB15C2FFC50054F1DA /* PMTransientDependancyManager.h */,
 				CFF1C8FC15C2FFC50054F1DA /* PMTransientDependancyManager.m */,
-				CF9D9A4C15963A96006D876D /* PMDebug.h */,
-				CF9D9A4D15963A96006D876D /* PMDebug.m */,
-				CF9D9A4E15963A96006D876D /* PMDebug.xib */,
+				CF9D9A4C15963A96006D876D /* PMAllocationDebug.h */,
+				CF9D9A4D15963A96006D876D /* PMAllocationDebug.m */,
+				CF9D9A4E15963A96006D876D /* PMAllocationDebug.xib */,
 				CFFB83EB1593A64E001B08B8 /* PMPrefs_autreAction_action.m */,
 				CFFB83EC1593A64E001B08B8 /* PMPrefs_monAction_action.m */,
 				CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */,
@@ -188,7 +188,7 @@
 				CF721A8B1593572A008662EA /* InfoPlist.strings in Resources */,
 				CF721A911593572A008662EA /* Credits.rtf in Resources */,
 				CF721A971593572A008662EA /* MainMenu.xib in Resources */,
-				CF9D9A5015963A96006D876D /* PMDebug.xib in Resources */,
+				CF9D9A5015963A96006D876D /* PMAllocationDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +205,7 @@
 				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,
 				CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */,
 				CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */,
-				CF9D9A4F15963A96006D876D /* PMDebug.m in Sources */,
+				CF9D9A4F15963A96006D876D /* PMAllocationDebug.m in Sources */,
 				CFF1C8FD15C2FFC50054F1DA /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   option "easyBindings_options.gOption" ;
   gui "easyBindings_cocoa.gGui" ;
 
+  semantics "easyBindingType.gSemantics" ;
   semantics "abstractSyntaxTree.gSemantics" ;
   syntax "easyBindings_syntax.gSyntax" ;
   grammar "easyBindings_grammar.gGrammar" ;
@@ -19,8 +20,10 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "transient_analysis_generation.gSemantics" ;
   
   semantics "classGeneration.gSemantics" ;
+  semantics "outletClassGeneration.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
 
   program "easyBindings_program.gProgram" ;
 end project ;
+

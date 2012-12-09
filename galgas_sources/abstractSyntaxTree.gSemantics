@@ -1,36 +1,8 @@
 semantics abstractSyntaxTree :
-  import "easyBindings_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
-enum @easyBindingType {
- boolType, integerType,
- uintegerType,
- decimalType, floatType, doubleType,
- stringType, dataType, dateType,
- fontType, imageType, colorType, toManyEntitiesType
-}{
-}
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType ebTypeName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "bool" ;
-  when integerType : outResult := "NSInteger" ;
-  when uintegerType : outResult := "NSUInteger" ;
-  when decimalType : outResult := "decimal" ;
-  when floatType : outResult := "float" ;
-  when doubleType : outResult := "double" ;
-  when stringType : outResult := "NSString" ;
-  when dataType : outResult := "NSData" ;
-  when dateType : outResult := "NSDate" ;
-  when fontType : outResult := "NSFont" ;
-  when imageType : outResult := "NSImage" ;
-  when colorType : outResult := "NSColor" ;
-  when toManyEntitiesType : outResult := "NSSet" ;
-  end switch ;
-end reader ;
+import "easyBindingType.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -311,6 +283,7 @@ list @bindingOptionList {
 list @outletClassList {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
+  @lstringlist mAdoptedProtocolList ;
   @bool mGenerateCode ;
   @outletClassBindingList mOutletClassBindingList ;
   @bool mHasTableValueBinding ;
@@ -325,24 +298,18 @@ list @controllerObservablePropertyList {
 
 #----------------------------------------------------------------------------*
 
+list @protocolList {
+  @lstring mProtocolName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @controllerClassList {
   @lstring mControllerClassName ;
   @bool mGenerateCode ;
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
   @controllerObservablePropertyList mControllerObservablePropertyList ;
-}
-
-#----------------------------------------------------------------------------*
-
-struct @ASTstruct {
-  @classList mClassList ;
-  @entityList mEntityList ;
-  @preferencesDeclarationList mPreferencesList ;
-  @outletClassList mOutletClassList ;
-  @controllerClassList mControllerClassList ;
-  @documentDeclarationList mDocumentDeclarationList ;
-  @location mEndOfSourceFile ;
 }
 
 #----------------------------------------------------------------------------*

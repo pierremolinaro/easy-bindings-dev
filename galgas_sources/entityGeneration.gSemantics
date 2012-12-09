@@ -4,48 +4,6 @@ semantics entityGeneration :
 
 #----------------------------------------------------------------------------*
 
-reader @easyBindingType customGetterMethod -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "boolValue" ;
-  when integerType : outResult := "integerValue" ;
-  when uintegerType : outResult := "unsignedIntegerValue" ;
-  when floatType : outResult := "floatValue" ;
-  when doubleType : outResult := "doubleValue" ;
-  when stringType, fontType, imageType, toManyEntitiesType,
-       colorType, dataType, dateType, decimalType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType customSetterTransformer -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "[NSNumber numberWithBool:inValue]" ;
-  when integerType : outResult := "[NSNumber numberWithInteger:inValue]" ;
-  when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
-  when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
-  when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
-  when stringType, fontType, imageType, colorType,
-       decimalType, toManyEntitiesType,
-       dataType, dateType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType isClass -> @bool outResult :
-  switch selfcopy
-  when boolType, decimalType,
-       integerType,
-       uintegerType,
-       floatType, doubleType : outResult := false ;
-  when stringType, fontType, imageType, toManyEntitiesType,
-       colorType, dataType, dateType : outResult := true ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 local filewrapper momGenerationTemplate in "../generation-templates/managed-object-model" {
 }{
 }{
@@ -99,61 +57,6 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
 #----------------------------------------------------------------------------*
 
 listmap @subEntitiesMap (@stringlist) ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType typeForEntityDescription -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "NSBooleanAttributeType" ;
-  when integerType : outResult := "NSInteger64AttributeType" ;
-  when decimalType : outResult := "NSDecimalAttributeType" ;
-  when floatType : outResult := "NSFloatAttributeType" ;
-  when doubleType : outResult := "NSDoubleAttributeType" ;
-  when stringType : outResult := "NSStringAttributeType" ;
-  when dataType, colorType : outResult := "NSBinaryDataAttributeType" ;
-  when dateType : outResult := "NSDateAttributeType" ;
-  when fontType, imageType, toManyEntitiesType, uintegerType : outResult := "??" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
-  switch selfcopy
-  when boolType,
-       integerType, uintegerType,
-       decimalType, floatType, doubleType,
-       stringType, dataType, dateType, fontType,
-       imageType, toManyEntitiesType : outResult := "" ; 
-  when colorType : outResult := "data:" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType attributeValueEncoder -> @string outResult :
-  switch selfcopy
-  when boolType,
-       integerType, uintegerType,
-       decimalType, floatType, doubleType,
-       stringType, dataType, dateType, fontType,
-       imageType, toManyEntitiesType : outResult := "" ;
-  when colorType : outResult := "dataEncodedValue" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType attributeValueDecoder -> @string outResult :
-  switch selfcopy
-  when boolType, toManyEntitiesType, uintegerType,
-       integerType,
-       decimalType, floatType, doubleType,
-       stringType, dataType, dateType, fontType,
-       imageType : outResult := "" ;
-  when colorType : outResult := "valueFromData" ;
-  end switch ;
-end reader ;
 
 #----------------------------------------------------------------------------*
 

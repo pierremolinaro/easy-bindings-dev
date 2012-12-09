@@ -1,5 +1,5 @@
 #import "easy-bindings-utilities.h"
-#import "PMDebug.h"
+#import "PMAllocationDebug.h"
 #import "PMTransientDependancyManager.h"
 #import "%!PREFERENCES_NAME%.h"
 %if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [ACTION_LIST length]) > 0 then
