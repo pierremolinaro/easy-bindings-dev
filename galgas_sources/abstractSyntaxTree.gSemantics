@@ -280,11 +280,18 @@ list @bindingOptionList {
 
 #----------------------------------------------------------------------------*
 
+enum @generationKind {
+  fullGeneration, generateImport, noGeneration
+}{
+}
+
+#----------------------------------------------------------------------------*
+
 list @outletClassList {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
-  @bool mGenerateCode ;
+  @generationKind mGeneration ;
   @outletClassBindingList mOutletClassBindingList ;
   @bool mHasTableValueBinding ;
 }

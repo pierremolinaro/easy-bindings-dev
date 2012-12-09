@@ -445,6 +445,11 @@ rule <explicit_value>
     outDefaultValueObjectiveCObject := "[NSNumber numberWithInteger:" . [integerValue string] . "]" ;
     outCorrespondingAcceptableTypes += ![@easyBindingType integerType] ;
   or
+    $literal_double$ ? @ldouble doubleValue ?* ;
+    outDirectDefaultValue := [doubleValue->double string] ;
+    outDefaultValueObjectiveCObject := "[NSNumber numberWithDouble:" . doubleValue->double . "]" ;
+    outCorrespondingAcceptableTypes += ![@easyBindingType doubleType] ;
+  or
     $literal_string$ ? @lstring stringValue ;
     outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
     outDirectDefaultValue := outDefaultValueObjectiveCObject ;
@@ -804,12 +809,15 @@ end rule ;
 rule <outlet_class_declaration>
   ?!@outletClassList ioOutletClassList
 :
-  @bool generateCode ;
+  @generationKind generationKind ;
   select
-    generateCode := true ;
+    generationKind := [@generationKind fullGeneration] ;
   or
     $extern$ ;
-    generateCode := false ;
+    generationKind := [@generationKind generateImport] ;
+  or
+    $predefined$ ;
+    generationKind := [@generationKind noGeneration] ;
   end select ;
   $outletClass$ ;
   $Identifier$ ? @lstring outletClassName ;
@@ -879,7 +887,7 @@ rule <outlet_class_declaration>
     !outletClassName
     !superClass
     !adoptedProtocolList
-    !generateCode
+    !generationKind
     !outletClassBindingList
     !hasTableValueBinding
   ;

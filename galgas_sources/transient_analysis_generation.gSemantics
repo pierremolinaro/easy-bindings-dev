@@ -25,6 +25,7 @@ list @outletBindingListForGeneration {
 
 list @outletGenerationList {
   @string mOutletType ;
+  @generationKind mGenerationKind ;
   @string mOutletName ;
   @outletBindingListForGeneration mOutletBindingList ;
 }

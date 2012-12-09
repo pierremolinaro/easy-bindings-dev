@@ -70,7 +70,7 @@ controllerClass NSObjectController {
 }
 
 
-extern outletClass NSBox {
+predefined outletClass NSBox {
   $hidden : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -102,7 +102,7 @@ extern outletClass NSBox {
   }
 }
 
-extern outletClass NSBrowser {
+predefined outletClass NSBrowser {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -176,7 +176,7 @@ extern outletClass NSBrowser {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSButton {
+predefined outletClass NSButton {
   $alternateImage : NSImage {
     NSRaisesForNotApplicableKeys : bool ;
   }
@@ -251,7 +251,7 @@ extern outletClass NSButton {
   }
 }
 
-extern outletClass NSButtonCell {
+predefined outletClass NSButtonCell {
   $alternateImage : NSImage {
     NSRaisesForNotApplicableKeys : bool ;
   }
@@ -311,7 +311,7 @@ extern outletClass NSButtonCell {
   # Warning: skipped $fontName binding
 }
 
-extern outletClass NSCollectionView {
+predefined outletClass NSCollectionView {
   # Warning: skipped $selectionIndexes binding
   # Warning: skipped $content binding
   $toolTip : NSString {
@@ -330,7 +330,7 @@ extern outletClass NSCollectionView {
   }
 }
 
-extern outletClass NSColorWell {
+predefined outletClass NSColorWell {
   $value : NSColor {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
@@ -362,7 +362,7 @@ extern outletClass NSColorWell {
   }
 }
 
-extern outletClass NSComboBox {
+predefined outletClass NSComboBox {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -452,7 +452,7 @@ extern outletClass NSComboBox {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSDatePicker {
+predefined outletClass NSDatePicker {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -547,7 +547,7 @@ extern outletClass NSDatePicker {
   }
 }
 
-extern outletClass NSDatePickerCell {
+predefined outletClass NSDatePickerCell {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -635,7 +635,7 @@ extern outletClass NSDatePickerCell {
   }
 }
 
-extern outletClass NSDrawer {
+predefined outletClass NSDrawer {
   $visible : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSAlwaysPresentsApplicationModalAlerts : bool ;
@@ -647,7 +647,7 @@ extern outletClass NSDrawer {
   }
 }
 
-extern outletClass NSForm {
+predefined outletClass NSForm {
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
@@ -713,7 +713,7 @@ extern outletClass NSForm {
   }
 }
 
-extern outletClass NSFormCell {
+predefined outletClass NSFormCell {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -781,7 +781,7 @@ extern outletClass NSFormCell {
   }
 }
 
-extern outletClass NSImageCell {
+predefined outletClass NSImageCell {
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -823,7 +823,7 @@ extern outletClass NSImageCell {
   }
 }
 
-extern outletClass NSImageView {
+predefined outletClass NSImageView {
   $valuePath : NSString {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
@@ -882,7 +882,7 @@ extern outletClass NSImageView {
   }
 }
 
-extern outletClass NSLevelIndicator {
+predefined outletClass NSLevelIndicator {
   $hidden : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -934,7 +934,7 @@ extern outletClass NSLevelIndicator {
   }
 }
 
-extern outletClass NSLevelIndicatorCell {
+predefined outletClass NSLevelIndicatorCell {
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -979,7 +979,7 @@ extern outletClass NSLevelIndicatorCell {
   }
 }
 
-extern outletClass NSMatrix {
+predefined outletClass NSMatrix {
   $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
@@ -1073,7 +1073,7 @@ extern outletClass NSMatrix {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSMenuItem {
+predefined outletClass NSMenuItem {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -1167,7 +1167,7 @@ extern outletClass NSMenuItem {
   # Warning: skipped $value binding
 }
 
-extern outletClass NSOutlineView {
+predefined outletClass NSOutlineView {
   # Warning: skipped $selectionIndexPaths binding
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
@@ -1258,7 +1258,7 @@ extern outletClass NSOutlineView {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSPanel {
+predefined outletClass NSPanel {
   $visible : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSAlwaysPresentsApplicationModalAlerts : bool ;
@@ -1294,7 +1294,7 @@ extern outletClass NSPanel {
   # Warning: skipped $displayPatternTitle1 binding
 }
 
-extern outletClass NSPathCell {
+predefined outletClass NSPathCell {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -1361,7 +1361,7 @@ extern outletClass NSPathCell {
   }
 }
 
-extern outletClass NSPathControl {
+predefined outletClass NSPathControl {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -1435,7 +1435,7 @@ extern outletClass NSPathControl {
   }
 }
 
-extern outletClass NSPopUpButton {
+predefined outletClass NSPopUpButton {
   $selectedIndex : int {
     NSConditionallySetsEnabled : bool ;
     NSConditionallySetsHidden : bool ;
@@ -1529,7 +1529,7 @@ extern outletClass NSPopUpButton {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSPopUpButtonCell {
+predefined outletClass NSPopUpButtonCell {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -1619,7 +1619,7 @@ extern outletClass NSPopUpButtonCell {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSPredicateEditor {
+predefined outletClass NSPredicateEditor {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -1693,7 +1693,7 @@ extern outletClass NSPredicateEditor {
   }
 }
 
-extern outletClass NSProgressIndicator {
+predefined outletClass NSProgressIndicator {
   $hidden : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -1752,7 +1752,7 @@ extern outletClass NSProgressIndicator {
   }
 }
 
-extern outletClass NSScrollView {
+predefined outletClass NSScrollView {
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
@@ -1769,7 +1769,7 @@ extern outletClass NSScrollView {
   }
 }
 
-extern outletClass NSSearchField {
+predefined outletClass NSSearchField {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -1878,7 +1878,7 @@ extern outletClass NSSearchField {
   }
 }
 
-extern outletClass NSSecureTextField {
+predefined outletClass NSSecureTextField {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -1976,7 +1976,7 @@ extern outletClass NSSecureTextField {
   }
 }
 
-extern outletClass NSSecureTextFieldCell {
+predefined outletClass NSSecureTextFieldCell {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -2052,7 +2052,7 @@ extern outletClass NSSecureTextFieldCell {
   }
 }
 
-extern outletClass NSSegmentedCell {
+predefined outletClass NSSegmentedCell {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -2135,7 +2135,7 @@ extern outletClass NSSegmentedCell {
   }
 }
 
-extern outletClass NSSegmentedControl {
+predefined outletClass NSSegmentedControl {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -2225,7 +2225,7 @@ extern outletClass NSSegmentedControl {
   }
 }
 
-extern outletClass NSSlider {
+predefined outletClass NSSlider {
   $maxValue : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -2271,7 +2271,7 @@ extern outletClass NSSlider {
   }
 }
 
-extern outletClass NSSliderCell {
+predefined outletClass NSSliderCell {
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -2310,7 +2310,7 @@ extern outletClass NSSliderCell {
   }
 }
 
-extern outletClass NSSplitView {
+predefined outletClass NSSplitView {
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
@@ -2327,7 +2327,7 @@ extern outletClass NSSplitView {
   }
 }
 
-extern outletClass NSStepper {
+predefined outletClass NSStepper {
   $maxValue : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -2373,7 +2373,7 @@ extern outletClass NSStepper {
   }
 }
 
-extern outletClass NSStepperCell {
+predefined outletClass NSStepperCell {
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -2412,7 +2412,7 @@ extern outletClass NSStepperCell {
   }
 }
 
-extern outletClass NSTabView {
+predefined outletClass NSTabView {
   $fontSize : number {
     NSMultipleValuesPlaceholder : number ;
     NSNullPlaceholder : number ;
@@ -2482,7 +2482,7 @@ extern outletClass NSTabView {
   }
 }
 
-extern outletClass NSTabViewItem {
+predefined outletClass NSTabViewItem {
   $label : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
@@ -2492,7 +2492,7 @@ extern outletClass NSTabViewItem {
   }
 }
 
-extern outletClass NSTableColumn {
+predefined outletClass NSTableColumn {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -2599,7 +2599,7 @@ extern outletClass NSTableColumn {
   }
 }
 
-extern outletClass NSTableView {
+predefined outletClass NSTableView {
   # Warning: skipped $selectionIndexes binding
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
@@ -2691,7 +2691,7 @@ extern outletClass NSTableView {
   # Warning: skipped $content binding
 }
 
-extern outletClass NSTextField {
+predefined outletClass NSTextField {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -2789,7 +2789,7 @@ extern outletClass NSTextField {
   }
 }
 
-extern outletClass NSTextFieldCell {
+predefined outletClass NSTextFieldCell {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -2865,7 +2865,7 @@ extern outletClass NSTextFieldCell {
   }
 }
 
-extern outletClass NSTextView {
+predefined outletClass NSTextView {
   $valuePath : NSData {
     NSContinuouslyUpdatesValue : bool ;
     NSConditionallySetsHidden : bool ;
@@ -2913,7 +2913,7 @@ extern outletClass NSTextView {
   }
 }
 
-extern outletClass NSTokenField {
+predefined outletClass NSTokenField {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -3011,7 +3011,7 @@ extern outletClass NSTokenField {
   }
 }
 
-extern outletClass NSTokenFieldCell {
+predefined outletClass NSTokenFieldCell {
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
@@ -3087,7 +3087,7 @@ extern outletClass NSTokenFieldCell {
   }
 }
 
-extern outletClass NSToolbarItem {
+predefined outletClass NSToolbarItem {
   $enabled : bool {
     NSMultipleValuesPlaceholder : bool ;
     NSNullPlaceholder : bool ;
@@ -3097,7 +3097,7 @@ extern outletClass NSToolbarItem {
   }
 }
 
-extern outletClass NSView {
+predefined outletClass NSView {
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;

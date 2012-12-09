@@ -29,7 +29,7 @@ routine generateOutletClassCode
 :
   if [@uint errorCount] == 0 then
     foreach inOutletClassMap do
-      if mGenerateCode then
+      if mGenerationKind == [@generationKind fullGeneration] then
       #--- Header
         @string s := [filewrapper outletClassGenerationTemplate.outletClassDeclaration
           ![lkey string]

@@ -46,7 +46,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toManyEntities",
   "column",
   "action",
-  "protocol"
+  "protocol",
+  "predefined"
 ;
 
 rule 'a'->'z' :
@@ -114,8 +115,12 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 style integerStyle -> "Integer Constants" ;
+style float_csts -> "Floating Point Constants" ;
 @uint uint32value ;
 $literal_integer$ !uint32value error message "a 32-bit unsigned decimal number" style integerStyle ;
+@double floatValue ;
+$literal_double$ !floatValue !tokenString error message "a float number" style float_csts ;
+message floatNumberConversionError : "invalid float number" ;
 
 message decimalNumberTooLarge : "decimal number too large" ;
 message internalError : "internal error" ;
@@ -127,8 +132,20 @@ rule '0'->'9' :
     enterCharacterIntoString !?tokenString !* ;
   while '_' :
   end repeat ;
-  convertDecimalStringIntoUInt !tokenString !?uint32value error decimalNumberTooLarge, internalError ;
-  send $literal_integer$ ;
+  select
+  when '.' :
+    enterCharacterIntoString !?tokenString !'.' ;
+    repeat
+    while '0'->'9' :
+      enterCharacterIntoString !?tokenString !* ;
+    while '_' :
+    end repeat ;
+    convertStringToDouble !tokenString !?floatValue error floatNumberConversionError ;
+    send $literal_double$ ;
+  default
+    convertDecimalStringIntoUInt !tokenString !?uint32value error decimalNumberTooLarge, internalError ;
+    send $literal_integer$ ;
+  end select ;
 end rule ;
 
 #----------------------------------------------------------------------------*
