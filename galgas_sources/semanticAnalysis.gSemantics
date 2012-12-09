@@ -5,57 +5,6 @@ semantics semanticAnalysis :
 
 #----------------------------------------------------------------------------*
 
-reader @easyBindingType propertyAttributeString -> @string outResult :
-  switch selfcopy
-  when boolType, integerType, uintegerType,
-       floatType, doubleType, decimalType,
-       toManyEntitiesType : outResult := "" ;
-  when stringType : outResult := "(copy)" ;
-  when fontType, imageType, dataType : outResult := "" ;
-  when colorType, dateType : outResult := "(assign)" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "" ; # Empty string: not allowed
-  when integerType, uintegerType : outResult := "NSTextFieldCell" ;
-  when decimalType : outResult := "NSTextFieldCell" ;
-  when floatType : outResult := "NSTextFieldCell" ;
-  when doubleType : outResult := "NSTextFieldCell" ;
-  when stringType : outResult := "NSTextFieldCell" ;
-  when dataType : outResult := "" ;
-  when dateType : outResult := "NSDateFieldCell" ;
-  when fontType : outResult := "" ;
-  when imageType : outResult := "" ;
-  when colorType : outResult := "" ;
-  when toManyEntitiesType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType equalMethod -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "" ; # Empty string: use == operator
-  when integerType, uintegerType : outResult := "" ;
-  when decimalType : outResult := "" ;
-  when floatType : outResult := "" ;
-  when doubleType : outResult := "" ;
-  when stringType : outResult := "isEqualToString" ;
-  when dataType : outResult := "isEqual" ;
-  when dateType : outResult := "isEqual" ;
-  when fontType : outResult := "isEqual" ;
-  when imageType : outResult := "isEqual" ;
-  when colorType : outResult := "isEqual" ;
-  when toManyEntitiesType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 map @classMap {
   @string mSuperClassName ;
   @observablePropertyMap mPropertyMap ;
@@ -257,6 +206,13 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+map @protocolMap {
+  insert insertKey error message "the '%K' protocol is already declared" ;
+  search searchKey error message "the '%K' protocol is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @documentMap {
   @string mRootEntityName ;
   @string mRootEntityImplementationClassName ;
@@ -291,6 +247,7 @@ map @outletClassBindingMap {
 map @outletClassMap {
   @bool mGenerateCode ;
   @string mSuperClassName ;
+  @lstringlist mAdoptedProtocolList ;
   @outletClassBindingMap mBindingMap ;
   @bool mHasTableValueBinding ;
   insert insertKey error message "the '%K' outlet class is already declared" ;
@@ -1166,7 +1123,7 @@ local routine analyzePreference
   foreach inPreference->mOutletDeclarationList do
     @outletClassBindingMap bindingMap ;
     @bool hasTableValueBinding ;
-    [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
+    [inOutletClassMap searchKey !mOutletType ?3* ?bindingMap ?hasTableValueBinding] ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
@@ -1215,26 +1172,6 @@ local routine analyzePreferences
     ;
   end for ;
 end routine ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "bool" ;
-  when integerType : outResult := "integer" ;
-  when uintegerType : outResult := "unsignedInteger" ;
-  when decimalType : outResult := "decimal" ;
-  when floatType : outResult := "float" ;
-  when doubleType : outResult := "double" ;
-  when stringType : outResult := "NSString" ;
-  when dataType : outResult := "NSData" ;
-  when dateType : outResult := "NSDate" ;
-  when fontType : outResult := "NSFont" ;
-  when imageType : outResult := "NSImage" ;
-  when colorType : outResult := "NSColor" ;
-  when toManyEntitiesType : outResult := "toMany[" . inClassOrEntityName . "]" ;
-  end switch ;
-end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -1609,7 +1546,7 @@ local routine analyzeDocument
   foreach inDocument->mOutletDeclarationList do
     @outletClassBindingMap bindingMap ;
     @bool hasTableValueBinding ;
-    [inOutletClassMap searchKey !mOutletType ?2* ?bindingMap ?hasTableValueBinding] ;
+    [inOutletClassMap searchKey !mOutletType ?3* ?bindingMap ?hasTableValueBinding] ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
@@ -1770,6 +1707,7 @@ end routine ;
 
 local routine analyzeOutletClasses
   ??@outletClassList inOutletClassList
+  ??@protocolMap inProtocolMap
   !@outletClassMap outOutletClassMap
 :
   outOutletClassMap := [@outletClassMap emptyMap] ;
@@ -1780,18 +1718,19 @@ local routine analyzeOutletClasses
       @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
       foreach mBindingOptionList do
         [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
-#        foreach mAcceptableTypeList do
-#        
-#        
-#        end foreach ;
       end foreach ;
       [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
+    end foreach ;
+  #--- Analyze protocols
+    foreach mAdoptedProtocolList do
+      [inProtocolMap searchKey !mValue] ;
     end foreach ;
   #---
     [!?outOutletClassMap insertKey
       !mOutletClassName
       !mGenerateCode
       !mSuperClassName->string
+      !mAdoptedProtocolList
       !bindingMap
       !mHasTableValueBinding
     ] ;
@@ -1871,7 +1810,14 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 routine semanticAnalysis
-  ??@ASTstruct inAST
+  ??@classList inClassList
+  ??@entityList inEntityList
+  ??@preferencesDeclarationList inPreferencesList
+  ??@outletClassList inOutletClassList
+  ??@documentDeclarationList inDocumentDeclarationList
+  ??@controllerClassList inControllerClassList
+  ??@protocolList inProtocolList
+  ??@location inEndOfSourceFile
   ?@string inSourceFilePath
   !@outletClassMap outOutletClassMap
   !@controllerClassMap outControllerClassMap
@@ -1882,29 +1828,35 @@ routine semanticAnalysis
   !@stringlist outSortedTransientOrderedList
   !@2stringlist outTransientDependencyArcList
 :
+#--- Build protocol map
+  @protocolMap protocolMap [emptyMap] ;
+  foreach inProtocolList do
+    [!?protocolMap insertKey !mProtocolName] ;
+  end foreach ;
+#---
   outSortedTransientOrderedList := [@stringlist emptyList] ;
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
-  analyzeOutletClasses !inAST->mOutletClassList ?outOutletClassMap ;
-  analyzeControllerClasses !inAST->mControllerClassList !?transientDependencyGraph ?outControllerClassMap ;
+  analyzeOutletClasses !inOutletClassList !protocolMap ?outOutletClassMap ;
+  analyzeControllerClasses !inControllerClassList !?transientDependencyGraph ?outControllerClassMap ;
   analyzePreferences
-    !inAST->mPreferencesList
+    !inPreferencesList
     !outOutletClassMap
     ?outPreferencesMap
     !?transientDependencyGraph
   ;
   analyzeClasses 
-    !inAST->mClassList
+    !inClassList
     ?outClassMap
     !?transientDependencyGraph
   ;
   analyzeEntities
-    !inAST->mEntityList
+    !inEntityList
     ?outEntityMap
     !outPreferencesMap
     !?transientDependencyGraph
   ;
   analyzeDocuments
-    !inAST->mDocumentDeclarationList
+    !inDocumentDeclarationList
     !outOutletClassMap
     !outControllerClassMap
     !outEntityMap
@@ -1923,7 +1875,7 @@ routine semanticAnalysis
   if [@uint errorCount] == 0 then
     if [transientDependencyGraph undefinedNodeCount] > 0 then
       foreach [transientDependencyGraph undefinedNodeKeyList] do
-        error inAST->mEndOfSourceFile : "the '" . mValue . "' property is not defined" ;
+        error inEndOfSourceFile : "the '" . mValue . "' property is not defined" ;
       end foreach ;
     else
       @stringlist unsortedTransientList ;
@@ -1938,7 +1890,7 @@ routine semanticAnalysis
         foreach unsortedTransientList do
           s .= "\n-  " . mValue ;
         end foreach ;
-        error inAST->mEndOfSourceFile : s ;
+        error inEndOfSourceFile : s ;
       else # all defined, no circularity
       end if ;
     end if ;

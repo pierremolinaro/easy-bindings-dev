@@ -1,40 +1,55 @@
 syntax easyBindings_syntax ("easyBindings_lexique.gLexique") :
 import "easyBindings_options.gOption" ;
 import "abstractSyntaxTree.gSemantics" ;
+import "easyBindings_grammar.gGrammar" ;
 
 #----------------------------------------------------------------------------*
 
-rule <start_symbol> !@ASTstruct outAST :
-#---
-  @classList classList [emptyList] ;
-  @entityList entityList [emptyList] ;
-  @preferencesDeclarationList preferencesList [emptyList] ;
-  @outletClassList outletClassList [emptyList] ;
-  @documentDeclarationList documentDeclarationList [emptyList] ;
-  @controllerClassList controllerClassList [emptyList] ;
+rule <start_symbol>
+  ?!@classList ioClassList
+  ?!@entityList ioEntityList
+  ?!@preferencesDeclarationList ioPreferencesList
+  ?!@outletClassList ioOutletClassList
+  ?!@documentDeclarationList ioDocumentDeclarationList
+  ?!@controllerClassList ioControllerClassList
+  ?!@protocolList ioProtocolList
+  !@location outEndOfFile
+:
   repeat
   while
-    <class_declaration> !?classList ;
+    $include$ ;
+    $literal_string$ ?@lstring filePath ;
+    $;$ ;
+    const @lstring sourceFile [new
+      ![filePath->string absolutePathFromPath ![[@string stringWithSourceFilePath] stringByDeletingLastPathComponent]]
+      !filePath->location
+    ] ;
+    grammar easyBindings_grammar in sourceFile
+      !?ioClassList
+      !?ioEntityList
+      !?ioPreferencesList
+      !?ioOutletClassList
+      !?ioDocumentDeclarationList
+      !?ioControllerClassList
+      !?ioProtocolList
+      ?*
+    ;
   while
-    <entity_declaration> !?entityList ;
+    <protocol_declaration> !?ioProtocolList ;
   while
-    <preferences_declaration> !?preferencesList ;
+    <class_declaration> !?ioClassList ;
   while
-    <document_declaration> !?documentDeclarationList ;
+    <entity_declaration> !?ioEntityList ;
   while
-    <outlet_class_declaration> !?outletClassList ;
+    <preferences_declaration> !?ioPreferencesList ;
   while
-    <controller_class_declaration> !?controllerClassList ;
+    <document_declaration> !?ioDocumentDeclarationList ;
+  while
+    <outlet_class_declaration> !?ioOutletClassList ;
+  while
+    <controller_class_declaration> !?ioControllerClassList ;
   end repeat ;
-  outAST := [@ASTstruct new
-    !classList
-    !entityList
-    !preferencesList
-    !outletClassList
-    !controllerClassList
-    !documentDeclarationList
-    !here
-  ] ;
+  outEndOfFile := here ;
   $end$ ;
 end rule ;
 
@@ -691,6 +706,18 @@ rule <attribute_type>
   or
     $NSDate$ ;
     outPropertyType := [@easyBindingType dateType] ;
+  or
+    $NSValue$ ;
+    outPropertyType := [@easyBindingType valueType] ;
+  or
+    $NSArray$ ;
+    outPropertyType := [@easyBindingType arrayType] ;
+  or
+    $NSBezierPath$ ;
+    outPropertyType := [@easyBindingType bezierPathType] ;
+  or
+    $NSMenu$ ;
+    outPropertyType := [@easyBindingType menuType] ;
   end select ;
 end rule ;
 
@@ -793,6 +820,18 @@ rule <outlet_class_declaration>
     $:$ ;
     $Identifier$ ?superClass ;
   end select ;
+  @lstringlist adoptedProtocolList [emptyList] ;
+  select
+  or
+    $<$ ;
+    repeat
+      $Identifier$ ? @lstring protocolName ;
+      adoptedProtocolList += !protocolName ;
+    while
+      $,$ ;
+    end repeat ;
+    $>$ ;
+  end select ;
   ${$ ;
   @outletClassBindingList outletClassBindingList [emptyList] ;
   @bool hasTableValueBinding := false ;
@@ -818,27 +857,44 @@ rule <outlet_class_declaration>
     $:$ ;
     @easyBindingTypeAndFormatterList easyBindingTypeFormatterList ;
     <type_formatter_list> ? easyBindingTypeFormatterList ;
-    ${$ ;
     @bindingOptionList bindingOptionList [emptyList] ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@easyBindingTypeList optionTypeList ;
+    select
       $;$ ;
-      bindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
+    or
+      ${$ ;
+      repeat
+      while
+        $Identifier$ ? @lstring optionName ;
+        $:$ ;
+        <type_list> ?@easyBindingTypeList optionTypeList ;
+        $;$ ;
+        bindingOptionList += !optionName !optionTypeList ;
+      end repeat ;
     $}$ ;
+    end select ;
     outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
   ioOutletClassList +=
     !outletClassName
     !superClass
+    !adoptedProtocolList
     !generateCode
     !outletClassBindingList
     !hasTableValueBinding
   ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <protocol_declaration>
+  ?!@protocolList ioProtocolList
+:
+  $extern$ ;
+  $protocol$ ;
+  $Identifier$ ? @lstring protocolName ;
+  $;$ ;
+  ioProtocolList += !protocolName ;
 end rule ;
 
 #----------------------------------------------------------------------------*

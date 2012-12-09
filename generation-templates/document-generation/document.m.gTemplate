@@ -1,4 +1,4 @@
-#import "PMDebug.h"
+#import "PMAllocationDebug.h"
 #import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
 #import "PMTransientDependancyManager.h"

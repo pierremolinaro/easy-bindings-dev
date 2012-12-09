@@ -4,34 +4,6 @@ semantics preferencesGeneration :
 
 #----------------------------------------------------------------------------*
 
-reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "boolFromNSNumber" ;
-  when integerType : outResult := "sint64FromNSNumber" ;
-  when floatType : outResult := "floatFromNSNumber" ;
-  when doubleType : outResult := "doubleFromNSNumber" ;
-  when colorType : outResult := "valueFromData" ;
-  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
-       dataType, dateType, decimalType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "numberEncodedBool" ;
-  when integerType : outResult := "numberEncodedSInt64" ;
-  when floatType : outResult := "numberEncodedFloat" ;
-  when doubleType : outResult := "numberEncodedDouble" ;
-  when colorType : outResult := "dataEncodedValue" ;
-  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
-       dataType, dateType, decimalType : outResult := "" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 local filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
 }{
 }{

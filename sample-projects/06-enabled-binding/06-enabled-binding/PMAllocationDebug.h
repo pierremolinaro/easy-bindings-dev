@@ -1,0 +1,60 @@
+//----------------------------------------------------------------------------*
+
+#import <Foundation/Foundation.h>
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  #define macroNoteObjectAllocation(object) routineNoteObjectAllocation (object)
+  void routineNoteObjectAllocation (NSObject * inObject) ;
+#else
+  #define macroNoteObjectAllocation(object)
+#endif
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  #define macroNoteObjectDeallocation(object) routineNoteObjectDeallocation (object)
+  void routineNoteObjectDeallocation (NSObject * inObject) ;
+#else
+  #define macroNoteObjectDeallocation(object)
+#endif
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  #define macroShowAllocationStatsWindow routineShowAllocationStatsWindow ()
+  void routineShowAllocationStatsWindow (void) ;
+#else
+  #define macroShowAllocationStatsWindow
+#endif
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  @interface PMAllocationDebug : NSObject <NSTableViewDataSource> {
+    @private IBOutlet NSButton * mAllocationStatsWindowVisibleAtLaunchCheckbox ;
+    @private IBOutlet NSPopUpButton * mDisplayFilterPopUpButton ;
+    @private IBOutlet NSMenu * mDebugMenu ;
+    @private IBOutlet NSWindow * mAllocationStatsWindow ;
+    @private IBOutlet NSTextField * mCurrentlyAllocatedObjectCountTextField ;
+    @private IBOutlet NSTextField * mTotalAllocatedObjectCountTextField ;
+    @private IBOutlet NSTableView * mStatsTableView ;
+    
+    @private NSCountedSet * mAllocatedObjectCountByClass ;
+    @private NSCountedSet * mTotalAllocatedObjectCountByClass ;
+    @private BOOL mRefreshStatsHasTriggered ;
+    @private NSUInteger mLiveAllocatedObjectCount ;
+    @private NSUInteger mLiveTotalObjectCount ;
+    @private NSArray * mAllocationStatsDataSource ;
+  }
+
+  @property BOOL mAllocationStatsWindowVisibleAtLaunch ;
+  @property NSUInteger mAllocatedObjectCount ;
+  @property NSUInteger mTotalAllocatedObjectCount ;
+  @property NSInteger mDisplayFilter ;
+  
+  @end
+#endif
+
+//----------------------------------------------------------------------------*

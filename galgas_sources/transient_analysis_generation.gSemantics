@@ -44,37 +44,6 @@ map @preferencesMap {
 
 #----------------------------------------------------------------------------*
 
-reader @easyBindingType ocTypeName -> @string outResult :
-  switch selfcopy
-  when boolType : outResult := "BOOL" ;
-  when integerType : outResult := "NSInteger" ;
-  when uintegerType : outResult := "NSUInteger" ;
-  when decimalType : outResult := "NSDecimal" ;
-  when floatType : outResult := "float" ;
-  when doubleType : outResult := "double" ;
-  when stringType : outResult := "NSString *" ;
-  when fontType : outResult := "NSFont *" ;
-  when imageType : outResult := "NSImage *" ;
-  when colorType : outResult := "NSColor *" ;
-  when dataType : outResult := "NSData *" ;
-  when dateType : outResult := "NSDate *" ;
-  when toManyEntitiesType : outResult := "??" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType copyOnAssign -> @bool outResult :
-  switch selfcopy
-  when boolType, integerType, uintegerType,
-       floatType, doubleType, decimalType, toManyEntitiesType : outResult := false ;
-  when stringType : outResult := true ;
-  when fontType, imageType, colorType, dataType, dateType : outResult := false ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 map @observablePropertyMap {
   @easyBindingType mType ;
   @bool mIsTransient ;

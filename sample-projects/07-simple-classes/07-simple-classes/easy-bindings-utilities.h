@@ -27,36 +27,12 @@ BOOL boolFromNSNumber (id inValue) ;
 NSNumber * numberEncodedBool (BOOL inValue) ;
 
 //---------------------------------------------------------------------------*
-//   SInt16                                                                  *
+//   NSInteger                                                               *
 //---------------------------------------------------------------------------*
 
-SInt16 sint16FromNSNumber (id inValue) ;
+NSInteger NSIntegerFromNSNumber (id inValue) ;
 
-NSNumber * numberEncodedSInt16 (SInt16 inValue) ;
-
-//---------------------------------------------------------------------------*
-//   SInt32                                                                  *
-//---------------------------------------------------------------------------*
-
-SInt32 sint32FromNSNumber (id inValue) ;
-
-NSNumber * numberEncodedSInt32 (SInt32 inValue) ;
-
-//---------------------------------------------------------------------------*
-//   SInt64                                                                  *
-//---------------------------------------------------------------------------*
-
-SInt64 sint64FromNSNumber (id inValue) ;
-
-NSNumber * numberEncodedSInt64 (SInt64 inValue) ;
-
-//---------------------------------------------------------------------------*
-//   float                                                                   *
-//---------------------------------------------------------------------------*
-
-float floatFromNSNumber (id inValue) ;
-
-NSNumber * numberEncodedFloat (float inValue) ;
+NSNumber * numberEncodedNSInteger (NSInteger inValue) ;
 
 //---------------------------------------------------------------------------*
 //   double                                                                  *
