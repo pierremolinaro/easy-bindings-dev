@@ -1,0 +1,8 @@
+#import <Cocoa/Cocoa.h>
+
+//---------------------------------------------------------------------------*
+
+%foreach CURSOR_MAP do%
+NSCursor * %!lkey->string%_cursor (void) ;
+%end foreach%
+
