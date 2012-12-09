@@ -5,6 +5,10 @@
 %  - (void) addObserverOf_%!mPropertyName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mPropertyName%: (id) inObserver ;\n\n%
 end foreach
+foreach ARRAY_MAP do
+%//--- '%!lkey->string%' array\n%
+%  @property NSMutableArray * %!lkey->string% ;\n\n%
+end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%

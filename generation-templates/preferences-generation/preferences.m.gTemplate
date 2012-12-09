@@ -26,6 +26,9 @@ end foreach
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %@synthesize %!mPropertyName% ;\n%
 end foreach
+foreach ARRAY_MAP do
+%@synthesize %!lkey->string% ;\n%
+end foreach
 %
 //----------------------------------------------------------------------------*
 //    Init                                                                    *

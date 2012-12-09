@@ -18,6 +18,15 @@ controllerClass NSArrayController {
     NSSelectsAllWhenSettingContentBindingOption : bool ;
     NSValidatesImmediatelyBindingOption : bool ;
   }
+  $contentArray : NSArray {
+    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+    NSConditionallySetsEditableBindingOption : bool ;
+    NSDeletesObjectsOnRemoveBindingsOption : bool ;
+    NSHandlesContentAsCompoundValueBindingOption : bool ;
+    NSRaisesForNotApplicableKeysBindingOption : bool ;
+    NSSelectsAllWhenSettingContentBindingOption : bool ;
+    NSValidatesImmediatelyBindingOption : bool ;
+  }
   # Warning: skipped $contentArray binding
 #  $selectionIndexes : NSIndexSet {
 #    NSAlwaysPresentsApplicationModalAlerts : bool ;
@@ -3111,6 +3120,50 @@ predefined outletClass NSView {
     NSNotApplicablePlaceholder : bool ;
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
+  }
+}
+
+predefined outletClass NSWindow {
+  $contentHeight : double {
+    NSAlwaysPresentsApplicationModalAlerts : bool ;
+    NSValidatesImmediately : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : number ;
+    NSNoSelectionPlaceholder : number ;
+    NSNullPlaceholder : number ;
+    NSNotApplicablePlaceholder : number ;
+  }
+  $contentWidth : double {
+    NSAlwaysPresentsApplicationModalAlerts : bool ;
+    NSValidatesImmediately : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : number ;
+    NSNoSelectionPlaceholder : number ;
+    NSNullPlaceholder : number ;
+    NSNotApplicablePlaceholder : number ;
+  }
+  $documentEdited : bool {
+    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : number ;
+    NSNoSelectionPlaceholder : number ;
+    NSNullPlaceholder : number ;
+    NSNotApplicablePlaceholder : number ;
+  }
+  $visible : double {
+    NSAlwaysPresentsApplicationModalAlerts : bool ;
+    NSValidatesImmediately : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : number ;
+    NSNoSelectionPlaceholder : number ;
+    NSNullPlaceholder : number ;
+    NSNotApplicablePlaceholder : number ;
+  }
+  $representedFileName : NSString {
+    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : NSString ;
+    NSNoSelectionPlaceholder : NSString ;
+    NSNullPlaceholder : NSString ;
+    NSNotApplicablePlaceholder : NSString ;
   }
 }
 

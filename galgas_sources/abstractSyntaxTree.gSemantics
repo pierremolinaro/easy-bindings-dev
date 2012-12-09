@@ -79,6 +79,13 @@ list @transientList {
 
 #----------------------------------------------------------------------------*
 
+list @classArrayList {
+  @lstring mClassName ;
+  @lstring mArrayName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @classList {
   @lstring mClassName ;
   @lstring mSuperClassName ;
@@ -221,6 +228,8 @@ list @preferencesDeclarationList {
   @attributeList mAttributeList ;
   @transientList mTransientList ;
   @lstringlist mActionDeclarationList ;
+  @controllerList mControllerList ;
+  @classArrayList mClassArrayList ;
 }
 
 #----------------------------------------------------------------------------*
