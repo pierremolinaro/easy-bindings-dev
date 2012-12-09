@@ -22,6 +22,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
+    ?@preferenceArrayMap ARRAY_MAP
   ;
   
   template preferencesImplementation "preferences.m.gTemplate"
@@ -32,6 +33,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@lstringlist ACTION_LIST
     ?@stringset INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+    ?@preferenceArrayMap ARRAY_MAP
   ;
   
   template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
@@ -77,6 +79,7 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mActionList
+        !mArrayMap
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -96,6 +99,7 @@ routine generatePreferencesCode
         !mActionList
         !mImplementationFileInclusionSet
         !inTransientDependencyArcList
+        !mArrayMap
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

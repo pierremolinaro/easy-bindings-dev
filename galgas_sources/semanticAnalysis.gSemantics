@@ -841,7 +841,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
     !mPreferenceName
     ?4*
     ?@observablePropertyMap observablePropertyMap
-    ?*
+    ?3*
   ] ;
 #---------------------------------------- Find observable property in local observable property map
   [observablePropertyMap searchKey
@@ -961,7 +961,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
     !mPreferenceName
     ?4*
     ?@observablePropertyMap preferenceObservableAttributeMap
-    ?*
+    ?3*
   ] ;
   [preferenceObservableAttributeMap searchKey
     !mPropertyName
@@ -1082,6 +1082,8 @@ end method ;
 
 local routine analyzePreference
   ??@preferencesDeclarationList.element inPreference
+  ??@controllerClassMap inControllerClassMap
+  ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
   ?!@preferencesMap ioPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -1110,6 +1112,52 @@ local routine analyzePreference
     [!?ioTransientDependencyGraph addNode
       !observationDependencyKey
       !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#------------------------------------- Analyze arraies
+  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
+  foreach inPreference->mClassArrayList do
+    [inClassMap searchKey
+      !mClassName
+      ?*
+      ?@observablePropertyMap classObservablePropertyMap
+      ?5*
+    ] ;
+    [!?preferenceArrayMap insertKey
+      !mArrayName
+      !mClassName->string
+      !classObservablePropertyMap
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze controllers
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @controllerMap controllerMap [emptyMap] ;
+  foreach inPreference->mControllerList do
+    [inControllerClassMap searchKey
+      !mControllerClassName
+      ?*
+      ?@outletClassBindingMap controllerClassBindingMap
+      ?@actionMap controllerActionMap
+      ?@observablePropertyMap controllerObservablePropertyMap
+    ] ;
+    [inClassMap searchKey !mControlledClassOrEntityName ?7*] ;
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    foreach mControllerBindingList do
+      [mBinding analyzeControllerBinding
+        ![@relationshipMap emptyMap]
+        !controllerClassBindingMap
+        !mControlledClassOrEntityName
+        !observablePropertyMap
+        !?bindingListForGeneration
+      ] ;
+    end foreach ;
+    [!?controllerMap insertKey
+      !mControllerName
+      !mControllerClassName->string
+      !mControlledClassOrEntityName->string
+      !bindingListForGeneration
+      !controllerActionMap
+      !controllerObservablePropertyMap
     ] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
@@ -1167,6 +1215,8 @@ local routine analyzePreference
     !inPreference->mActionDeclarationList
     !observableAttributeMap
     !implementationFileInclusionSet
+    !controllerMap
+    !preferenceArrayMap
   ] ;
 end routine ;
 
@@ -1174,6 +1224,8 @@ end routine ;
 
 local routine analyzePreferences
   ??@preferencesDeclarationList inPreferencesList
+  ??@controllerClassMap inControllerClassMap
+  ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
   !@preferencesMap outPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -1182,6 +1234,8 @@ local routine analyzePreferences
   for preference in inPreferencesList do
     analyzePreference
       !preference
+      !inControllerClassMap
+      !inClassMap
       !inOutletClassMap
       !?outPreferencesMap
       !?ioTransientDependencyGraph
@@ -1494,29 +1548,6 @@ local routine analyzeDocument
       ?controllerActionMap
       ?controllerObservablePropertyMap
     ] ;
-    @observablePropertyMap prefixedControllerObservablePropertyMap [emptyMap] ;
-    foreach controllerObservablePropertyMap do
-#        const @lstring observedKey [new
-#          !"controller." . mControllerName . "." . mObservationDependancyKey
-#          !mObservationDependancyKey->location
-#        ] ;
-#        [!?prefixedControllerObservablePropertyMap insertKey
-#          !lkey
-#          !mType
-#          !false
-#        ] ;
-#        [!?ioTransientDependencyGraph addNode
-#          !observedKey
-#          !observedKey->string
-#        ] ;
-    end foreach ;
-#    [!?observableObjectMap insertKey
-#      !mControllerName
-#      !mControllerName->string
-#      !"?"
-#      !"" # No file to include
-#      !prefixedControllerObservablePropertyMap
-#    ] ;
     [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     foreach mControllerBindingList do
@@ -1865,15 +1896,17 @@ routine semanticAnalysis
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
   analyzeOutletClasses !inOutletClassList !protocolMap ?outOutletClassMap ;
   analyzeControllerClasses !inControllerClassList !?transientDependencyGraph ?outControllerClassMap ;
-  analyzePreferences
-    !inPreferencesList
-    !outOutletClassMap
-    ?outPreferencesMap
-    !?transientDependencyGraph
-  ;
   analyzeClasses 
     !inClassList
     ?outClassMap
+    !?transientDependencyGraph
+  ;
+  analyzePreferences
+    !inPreferencesList
+    !outControllerClassMap
+    !outClassMap
+    !outOutletClassMap
+    ?outPreferencesMap
     !?transientDependencyGraph
   ;
   analyzeEntities

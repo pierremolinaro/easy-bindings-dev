@@ -14,6 +14,7 @@ $Identifier$ ! tokenString error message "an identifier (beginning with a upper-
 list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toOne",
   "toMany",
+  "array",
   "count",
   "cursor",
   "inverse",
@@ -37,7 +38,6 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "integer",
   "int",
   "decimal",
-  "float",
   "double",
   "root",
   "self",

@@ -32,6 +32,15 @@ list @outletGenerationList {
 
 #----------------------------------------------------------------------------*
 
+map @preferenceArrayMap {
+  @string mClassName ;
+  @observablePropertyMap mClassObservablePropertyMap ;
+  insert insertKey error message "the '%K' array is already declared" ;
+  search searchKey error message "the '%K' array is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @preferencesMap {
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
@@ -39,6 +48,8 @@ map @preferencesMap {
   @lstringlist mActionList ;
   @observablePropertyMap mObservablePropertyMap ;
   @stringset mImplementationFileInclusionSet ;
+  @controllerMap mControllerMap ;
+  @preferenceArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -357,7 +368,7 @@ override method @transientPreferenceDependency analyze
   ?!@transientDependencyGraph ioTransientDependencyGraph
   !@abstractTransientDependencyForImplementation outImplementation
 :
-  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?*] ;
+  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?3*] ;
   [observablePropertyMap searchKey
     !mMasterName
     ?@easyBindingType masterType

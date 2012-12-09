@@ -5,7 +5,7 @@ semantics easyBindingType :
 enum @easyBindingType {
  boolType, integerType,
  uintegerType,
- decimalType, floatType, doubleType,
+ decimalType, doubleType,
  stringType, dataType, dateType,
  fontType, imageType, colorType, toManyEntitiesType,
  valueType, arrayType,
@@ -21,7 +21,6 @@ reader @easyBindingType ebTypeName -> @string outResult :
   when integerType : outResult := "NSInteger" ;
   when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "decimal" ;
-  when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
   when stringType : outResult := "NSString" ;
   when dataType : outResult := "NSData" ;
@@ -44,7 +43,6 @@ reader @easyBindingType customGetterMethod -> @string outResult :
   when boolType : outResult := "boolValue" ;
   when integerType : outResult := "integerValue" ;
   when uintegerType : outResult := "unsignedIntegerValue" ;
-  when floatType : outResult := "floatValue" ;
   when doubleType : outResult := "doubleValue" ;
   when stringType, fontType, imageType, toManyEntitiesType,
        colorType, dataType, dateType, decimalType,
@@ -60,7 +58,6 @@ reader @easyBindingType customSetterTransformer -> @string outResult :
   when boolType : outResult := "[NSNumber numberWithBool:inValue]" ;
   when integerType : outResult := "[NSNumber numberWithInteger:inValue]" ;
   when uintegerType : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ;
-  when floatType : outResult := "[NSNumber numberWithFloat:inValue]" ;
   when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
   when stringType, fontType, imageType, colorType,
        decimalType, toManyEntitiesType,
@@ -77,7 +74,7 @@ reader @easyBindingType isClass -> @bool outResult :
   when boolType, decimalType,
        integerType,
        uintegerType,
-       floatType, doubleType : outResult := false ;
+       doubleType : outResult := false ;
   when stringType, fontType, imageType, toManyEntitiesType,
        colorType, dataType, dateType,
        arrayType, valueType,
@@ -92,7 +89,6 @@ reader @easyBindingType typeForEntityDescription -> @string outResult :
   when boolType : outResult := "NSBooleanAttributeType" ;
   when integerType : outResult := "NSInteger64AttributeType" ;
   when decimalType : outResult := "NSDecimalAttributeType" ;
-  when floatType : outResult := "NSFloatAttributeType" ;
   when doubleType : outResult := "NSDoubleAttributeType" ;
   when stringType : outResult := "NSStringAttributeType" ;
   when dataType, colorType : outResult := "NSBinaryDataAttributeType" ;
@@ -109,7 +105,7 @@ reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
   switch selfcopy
   when boolType,
        integerType, uintegerType,
-       decimalType, floatType, doubleType,
+       decimalType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ; 
   when colorType,
@@ -124,7 +120,7 @@ reader @easyBindingType attributeValueEncoder -> @string outResult :
   switch selfcopy
   when boolType,
        integerType, uintegerType,
-       decimalType, floatType, doubleType,
+       decimalType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ;
   when colorType,
@@ -139,7 +135,7 @@ reader @easyBindingType attributeValueDecoder -> @string outResult :
   switch selfcopy
   when boolType, toManyEntitiesType, uintegerType,
        integerType,
-       decimalType, floatType, doubleType,
+       decimalType, doubleType,
        stringType, dataType, dateType, fontType,
        imageType : outResult := "" ;
   when colorType,
@@ -154,7 +150,6 @@ reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outR
   switch selfcopy
   when boolType : outResult := "boolFromNSNumber" ;
   when integerType : outResult := "NSIntegerFromNSNumber" ;
-  when floatType : outResult := "floatFromNSNumber" ;
   when doubleType : outResult := "doubleFromNSNumber" ;
   when colorType,
        arrayType, valueType,
@@ -170,7 +165,6 @@ reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outR
   switch selfcopy
   when boolType : outResult := "numberEncodedBool" ;
   when integerType : outResult := "numberEncodedNSInteger" ;
-  when floatType : outResult := "numberEncodedFloat" ;
   when doubleType : outResult := "numberEncodedDouble" ;
   when colorType,
        arrayType, valueType,
@@ -185,7 +179,7 @@ end reader ;
 reader @easyBindingType propertyAttributeString -> @string outResult :
   switch selfcopy
   when boolType, integerType, uintegerType,
-       floatType, doubleType, decimalType,
+       doubleType, decimalType,
        toManyEntitiesType : outResult := "" ;
   when stringType,
        arrayType, valueType,
@@ -202,7 +196,6 @@ reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResul
   when boolType : outResult := "" ; # Empty string: not allowed
   when integerType, uintegerType : outResult := "NSTextFieldCell" ;
   when decimalType : outResult := "NSTextFieldCell" ;
-  when floatType : outResult := "NSTextFieldCell" ;
   when doubleType : outResult := "NSTextFieldCell" ;
   when stringType : outResult := "NSTextFieldCell" ;
   when dataType : outResult := "" ;
@@ -223,7 +216,6 @@ reader @easyBindingType equalMethod -> @string outResult :
   when boolType : outResult := "" ; # Empty string: use == operator
   when integerType, uintegerType : outResult := "" ;
   when decimalType : outResult := "" ;
-  when floatType : outResult := "" ;
   when doubleType : outResult := "" ;
   when stringType : outResult := "isEqualToString" ;
   when dataType : outResult := "isEqual" ;
@@ -245,7 +237,6 @@ reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @strin
   when integerType : outResult := "integer" ;
   when uintegerType : outResult := "unsignedInteger" ;
   when decimalType : outResult := "decimal" ;
-  when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
   when stringType : outResult := "NSString" ;
   when dataType : outResult := "NSData" ;
@@ -269,7 +260,6 @@ reader @easyBindingType ocTypeName -> @string outResult :
   when integerType : outResult := "NSInteger" ;
   when uintegerType : outResult := "NSUInteger" ;
   when decimalType : outResult := "NSDecimal" ;
-  when floatType : outResult := "float" ;
   when doubleType : outResult := "double" ;
   when stringType : outResult := "NSString *" ;
   when fontType : outResult := "NSFont *" ;
@@ -293,7 +283,6 @@ reader @easyBindingType ocClassName -> @string outResult :
   when integerType : outResult := "NSNumber" ;
   when uintegerType : outResult := "NSNumber" ;
   when decimalType : outResult := "NSNumber" ;
-  when floatType : outResult := "NSNumber" ;
   when doubleType : outResult := "NSNumber" ;
   when stringType : outResult := "NSString" ;
   when fontType : outResult := "NSFont" ;
@@ -314,7 +303,7 @@ end reader ;
 reader @easyBindingType copyOnAssign -> @bool outResult :
   switch selfcopy
   when boolType, integerType, uintegerType,
-       floatType, doubleType, decimalType, toManyEntitiesType,
+       doubleType, decimalType, toManyEntitiesType,
        fontType, imageType, colorType, dataType, dateType : outResult := false ;
   when stringType, arrayType, valueType,
        bezierPathType, menuType : outResult := true ;
