@@ -7,7 +7,7 @@ enum @easyBindingType {
  uintegerType,
  decimalType, doubleType,
  stringType, dataType, dateType,
- fontType, imageType, colorType, toManyEntitiesType,
+ fontType, imageType, colorType, toManyEntitiesType, objectArrayType,
  valueType, arrayType,
  bezierPathType, menuType
 }{
@@ -30,6 +30,7 @@ reader @easyBindingType ebTypeName -> @string outResult :
   when colorType : outResult := "NSColor" ;
   when valueType : outResult := "NSValue" ;
   when arrayType : outResult := "NSArray" ;
+  when objectArrayType : outResult := "NSArray" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when menuType : outResult := "NSMenu" ;
   when toManyEntitiesType : outResult := "NSSet" ;
@@ -46,7 +47,7 @@ reader @easyBindingType customGetterMethod -> @string outResult :
   when doubleType : outResult := "doubleValue" ;
   when stringType, fontType, imageType, toManyEntitiesType,
        colorType, dataType, dateType, decimalType,
-       arrayType, valueType,
+       arrayType, valueType, objectArrayType,
        bezierPathType, menuType : outResult := "" ;
   end switch ;
 end reader ;
@@ -61,7 +62,7 @@ reader @easyBindingType customSetterTransformer -> @string outResult :
   when doubleType : outResult := "[NSNumber numberWithDouble:inValue]" ;
   when stringType, fontType, imageType, colorType,
        decimalType, toManyEntitiesType,
-       dataType, dateType,
+       dataType, dateType, objectArrayType,
        arrayType, valueType,
        bezierPathType, menuType : outResult := "" ;
   end switch ;
@@ -77,7 +78,7 @@ reader @easyBindingType isClass -> @bool outResult :
        doubleType : outResult := false ;
   when stringType, fontType, imageType, toManyEntitiesType,
        colorType, dataType, dateType,
-       arrayType, valueType,
+       arrayType, valueType, objectArrayType,
        bezierPathType, menuType : outResult := true ;
   end switch ;
 end reader ;
@@ -94,7 +95,7 @@ reader @easyBindingType typeForEntityDescription -> @string outResult :
   when dataType, colorType : outResult := "NSBinaryDataAttributeType" ;
   when dateType : outResult := "NSDateAttributeType" ;
   when fontType, imageType, toManyEntitiesType, uintegerType,
-       arrayType, valueType,
+       arrayType, valueType, objectArrayType,
        bezierPathType, menuType : outResult := "??" ;
   end switch ;
 end reader ;
@@ -105,7 +106,7 @@ reader @easyBindingType nonStandardAttributeNamePrefix -> @string outResult :
   switch selfcopy
   when boolType,
        integerType, uintegerType,
-       decimalType, doubleType,
+       decimalType, doubleType, objectArrayType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ; 
   when colorType,
@@ -120,7 +121,7 @@ reader @easyBindingType attributeValueEncoder -> @string outResult :
   switch selfcopy
   when boolType,
        integerType, uintegerType,
-       decimalType, doubleType,
+       decimalType, doubleType, objectArrayType,
        stringType, dataType, dateType, fontType,
        imageType, toManyEntitiesType : outResult := "" ;
   when colorType,
@@ -135,7 +136,7 @@ reader @easyBindingType attributeValueDecoder -> @string outResult :
   switch selfcopy
   when boolType, toManyEntitiesType, uintegerType,
        integerType,
-       decimalType, doubleType,
+       decimalType, doubleType, objectArrayType,
        stringType, dataType, dateType, fontType,
        imageType : outResult := "" ;
   when colorType,
@@ -155,7 +156,7 @@ reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outR
        arrayType, valueType,
        bezierPathType, menuType : outResult := "valueFromData" ;
   when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
-       dataType, dateType, decimalType : outResult := "" ;
+       dataType, dateType, decimalType, objectArrayType : outResult := "" ;
   end switch ;
 end reader ;
 
@@ -170,7 +171,7 @@ reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outR
        arrayType, valueType,
        bezierPathType, menuType : outResult := "dataEncodedValue" ;
   when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
-       dataType, dateType, decimalType : outResult := "" ;
+       dataType, dateType, decimalType, objectArrayType : outResult := "" ;
   end switch ;
 end reader ;
 
@@ -179,7 +180,7 @@ end reader ;
 reader @easyBindingType propertyAttributeString -> @string outResult :
   switch selfcopy
   when boolType, integerType, uintegerType,
-       doubleType, decimalType,
+       doubleType, decimalType, objectArrayType,
        toManyEntitiesType : outResult := "" ;
   when stringType,
        arrayType, valueType,
@@ -205,7 +206,7 @@ reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResul
   when colorType,
        arrayType, valueType,
        bezierPathType, menuType : outResult := "" ;
-  when toManyEntitiesType : outResult := "" ;
+  when toManyEntitiesType, objectArrayType : outResult := "" ;
   end switch ;
 end reader ;
 
@@ -223,7 +224,7 @@ reader @easyBindingType equalMethod -> @string outResult :
   when fontType : outResult := "isEqual" ;
   when imageType : outResult := "isEqual" ;
   when colorType,
-       arrayType, valueType,
+       arrayType, valueType, objectArrayType,
        bezierPathType, menuType : outResult := "isEqual" ;
   when toManyEntitiesType : outResult := "" ;
   end switch ;
@@ -249,6 +250,7 @@ reader @easyBindingType ebTypeIdentifier ??@string inClassOrEntityName -> @strin
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when toManyEntitiesType : outResult := "toMany[" . inClassOrEntityName . "]" ;
+  when objectArrayType : outResult := "array[" . inClassOrEntityName . "]" ;
   end switch ;
 end reader ;
 
@@ -268,6 +270,7 @@ reader @easyBindingType ocTypeName -> @string outResult :
   when dataType : outResult := "NSData *" ;
   when dateType : outResult := "NSDate *" ;
   when arrayType : outResult := "NSArray *" ;
+  when objectArrayType : outResult := "NSArray *" ;
   when valueType : outResult := "NSValue *" ;
   when menuType : outResult := "NSMenu *" ;
   when bezierPathType : outResult := "NSBezierPath *" ;
@@ -291,6 +294,7 @@ reader @easyBindingType ocClassName -> @string outResult :
   when dataType : outResult := "NSData" ;
   when dateType : outResult := "NSDate" ;
   when arrayType : outResult := "NSArray" ;
+  when objectArrayType : outResult := "NSArray" ;
   when valueType : outResult := "NSValue" ;
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
@@ -305,7 +309,7 @@ reader @easyBindingType copyOnAssign -> @bool outResult :
   when boolType, integerType, uintegerType,
        doubleType, decimalType, toManyEntitiesType,
        fontType, imageType, colorType, dataType, dateType : outResult := false ;
-  when stringType, arrayType, valueType,
+  when stringType, arrayType, valueType, objectArrayType,
        bezierPathType, menuType : outResult := true ;
   end switch ;
 end reader ;

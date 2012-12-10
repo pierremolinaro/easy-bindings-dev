@@ -823,6 +823,9 @@ rule <type_formatter_list>
     or
       $toManyEntities$ ;
       outEasyBindingTypeFormatterList += ![@easyBindingType toManyEntitiesType] ![@formatterEnum noFormatter] ;
+    or
+      $array$ ;
+      outEasyBindingTypeFormatterList += ![@easyBindingType objectArrayType] ![@formatterEnum noFormatter] ;
     end select ;
   while
     $,$ ;

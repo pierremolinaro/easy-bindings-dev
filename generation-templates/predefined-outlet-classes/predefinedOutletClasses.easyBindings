@@ -18,7 +18,7 @@ controllerClass NSArrayController {
     NSSelectsAllWhenSettingContentBindingOption : bool ;
     NSValidatesImmediatelyBindingOption : bool ;
   }
-  $contentArray : NSArray {
+  $contentArray : array {
     NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
     NSConditionallySetsEditableBindingOption : bool ;
     NSDeletesObjectsOnRemoveBindingsOption : bool ;

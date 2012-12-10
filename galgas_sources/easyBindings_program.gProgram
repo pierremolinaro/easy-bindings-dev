@@ -74,7 +74,8 @@ message "a source text file with the .easyBindings extension"
     !protocolList
     !endOfSourceFile
     !inSourceFile->string
-    ?@cursorMap cursorMap
+    ?@userCursorMap userCursorMap
+    ?@stringlist predefinedCursorList
     ?@outletClassMap outletClassMap
     ?@controllerClassMap controllerClassMap
     ?@classMap classMap
@@ -91,7 +92,7 @@ message "a source text file with the .easyBindings extension"
   generateEntityCode !transientDependencyArcList !entityMap !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
-  generateCursorCode !cursorMap !sourceDirectoryPath ;
+  generateCursorCode !userCursorMap !predefinedCursorList !sourceDirectoryPath ;
 #--- Output dependency order definition file
   generateTransientDependencyFiles
     !transientDependencyArcList
