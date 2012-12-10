@@ -8,24 +8,28 @@ local filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-
 }{
 }{
   template cursorsDeclaration "cursors.h.gTemplate"
-    ?@cursorMap CURSOR_MAP
+    ?@userCursorMap CURSOR_MAP
+    ?@stringlist PREDEFINED_CURSOR_LIST
   ;
   
   template cursorsImplementation "cursors.m.gTemplate"
-    ?@cursorMap CURSOR_MAP
+    ?@userCursorMap CURSOR_MAP
+    ?@stringlist PREDEFINED_CURSOR_LIST
   ;
 }
 
 #----------------------------------------------------------------------------*
 
 routine generateCursorCode
-  ??@cursorMap inCursorMap
+  ??@userCursorMap inUserCursorMap
+  ??@stringlist inPredefinedCursorList
   ??@string inOutputDirectory
 :
-  if ([@uint errorCount] == 0) & ([inCursorMap count] > 0) then
+  if ([@uint errorCount] == 0) & ([inUserCursorMap count] > 0) then
   #--- Header
     @string s := [filewrapper cursorsGenerationTemplate.cursorsDeclaration
-      !inCursorMap
+      !inUserCursorMap
+      !inPredefinedCursorList
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory
@@ -38,7 +42,8 @@ routine generateCursorCode
     ] ;
   #--- Implementation
     s := [filewrapper cursorsGenerationTemplate.cursorsImplementation
-      !inCursorMap
+      !inUserCursorMap
+      !inPredefinedCursorList
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory

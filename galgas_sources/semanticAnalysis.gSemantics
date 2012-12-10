@@ -5,7 +5,7 @@ semantics semanticAnalysis :
 
 #----------------------------------------------------------------------------*
 
-map @cursorMap {
+map @userCursorMap {
   @double mHotSpotX ;
   @double mHotSpotY ;
   insert insertKey error message "the '%K' cursor is already declared" ;
@@ -1871,7 +1871,8 @@ routine semanticAnalysis
   ??@protocolList inProtocolList
   ??@location inEndOfSourceFile
   ?@string inSourceFilePath
-  !@cursorMap outCursorMap
+  !@userCursorMap outCursorMap
+  !@stringlist outPredefinedCursorList
   !@outletClassMap outOutletClassMap
   !@controllerClassMap outControllerClassMap
   !@classMap outClassMap
@@ -1882,10 +1883,24 @@ routine semanticAnalysis
   !@2stringlist outTransientDependencyArcList
 :
 #--- Build cursor map
-  outCursorMap := [@cursorMap emptyMap] ;
+  outCursorMap := [@userCursorMap emptyMap] ;
   foreach inCursorList do
     [!?outCursorMap insertKey !mCursorName !mHotSpotX->double !mHotSpotY->double] ;
   end foreach ;
+  outPredefinedCursorList := [@stringlist emptyList] ;
+  outPredefinedCursorList += !"arrowCursor" ;
+  outPredefinedCursorList += !"IBeamCursor" ;
+  outPredefinedCursorList += !"crosshairCursor" ;
+  outPredefinedCursorList += !"closedHandCursor" ;
+  outPredefinedCursorList += !"openHandCursor" ;
+  outPredefinedCursorList += !"pointingHandCursor" ;
+  outPredefinedCursorList += !"resizeLeftCursor" ;
+  outPredefinedCursorList += !"resizeRightCursor" ;
+  outPredefinedCursorList += !"resizeLeftRightCursor" ;
+  outPredefinedCursorList += !"resizeUpCursor" ;
+  outPredefinedCursorList += !"resizeDownCursor" ;
+  outPredefinedCursorList += !"resizeUpDownCursor" ;
+  outPredefinedCursorList += !"disappearingItemCursor" ;
 #--- Build protocol map
   @protocolMap protocolMap [emptyMap] ;
   foreach inProtocolList do
