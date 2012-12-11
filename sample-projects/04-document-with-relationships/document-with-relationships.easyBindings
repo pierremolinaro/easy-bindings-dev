@@ -18,8 +18,8 @@ document PMDocument root MyRootEntity {
   ;
   outlet NSTableView namesTableView
     $tableValue nameController {
-      column "name" : NSTextFieldCell name ;
-      column "int" : NSTextFieldCell aValue ;
+      column "name" NSTextFieldCell name ;
+      column "int"  NSTextFieldCell aValue ;
     }
   ;
   transient NSString canRemoveString dependsFrom nameController.canRemove ;

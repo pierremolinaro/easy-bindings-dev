@@ -10,7 +10,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   gui "easyBindings_cocoa.gGui" ;
 
   semantics "easyBindingType.gSemantics" ;
-  semantics "abstractSyntaxTree.gSemantics" ;
+  semantics "abstractSyntaxTypes.gSemantics" ;
   syntax "easyBindings_syntax.gSyntax" ;
   grammar "easyBindings_grammar.gGrammar" ;
 

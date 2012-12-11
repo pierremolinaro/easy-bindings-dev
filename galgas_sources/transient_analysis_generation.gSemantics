@@ -1,5 +1,5 @@
 semantics transient_analysis_generation :
-  import "abstractSyntaxTree.gSemantics" ;
+  import "abstractSyntaxTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -87,6 +87,7 @@ map @actionMap {
 map @controllerMap {
   @string mControllerClassName ;
   @string mControlledClassOrEntityName ;
+  @bool mIsEntity ;
   @outletBindingListForGeneration mControllerBindingList ;
   @actionMap mActionMap ;
   @observablePropertyMap mObservableAttributeMap ;
@@ -297,7 +298,7 @@ override method @transientControllerDependency analyze
   [inControllerMap searchKey
     !mControllerName
     ?@string controllerClassName
-    ?3*
+    ?4*
     ?@observablePropertyMap controllerObservablePropertyMap
   ] ;
 #--- Search controller observed attribute

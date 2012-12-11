@@ -20,6 +20,13 @@ extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
 %  @private NSMutableSet * %!mPropertyName%_observers ;\n%
 end foreach
 
+
+foreach CONTROLLER_MAP do
+%//--- '%!lkey->string%' controller
+  @private %!mControllerClassName% * %!lkey->string% ;\n%
+end foreach
+
+
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
