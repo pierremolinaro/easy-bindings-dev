@@ -1,6 +1,6 @@
 syntax easyBindings_syntax ("easyBindings_lexique.gLexique") :
 import "easyBindings_options.gOption" ;
-import "abstractSyntaxTree.gSemantics" ;
+import "abstractSyntaxTypes.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 
 #----------------------------------------------------------------------------*
@@ -207,7 +207,6 @@ rule <bindings>
     while
       $column$ ;
       $literal_string$ ?@lstring columnName ;
-      $:$ ;
       $Identifier$ ?@lstring cellTypeName ;
       $identifier$ ?@lstring boundPropertyName ;
       tableValueColumnBinding += !columnName !cellTypeName !boundPropertyName ;

@@ -1,6 +1,6 @@
 semantics semanticAnalysis :
   import "easyBindings_options.gOption" ;
-  import "abstractSyntaxTree.gSemantics" ;
+  import "abstractSyntaxTypes.gSemantics" ;
   import "transient_analysis_generation.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -472,6 +472,7 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@observablePropertyMap inSelfObservableAttributeMap
   ??@preferencesMap inPreferencesMap
   ??@entityMap inEntityMap
+  ??@classMap inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
@@ -487,6 +488,7 @@ override method @tableValueBinding analyzeOutletBinding
   ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap inEntityMap
+  ??@classMap inClassMap
   ??@outletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
@@ -497,22 +499,31 @@ override method @tableValueBinding analyzeOutletBinding
   if not inHasTableValueBinding then
     error mControllerName: "this outlet does not support $tableValue binding" ;
   else
-    @string controlledClassOrEntityName ;
-    @outletBindingListForGeneration controllerBindingList ;
     [inControllerMap searchKey
       !mControllerName
       ?*
-      ?controlledClassOrEntityName
-      ?controllerBindingList
+      ?@string controlledClassOrEntityName
+      ?@bool isEntity
+      ?@outletBindingListForGeneration controllerBindingList
       ?*
       ?*
     ] ;
-    [inEntityMap searchKey
-      ![@lstring new !controlledClassOrEntityName !here]
-      ?3*
-      ?@observablePropertyMap observablePropertyMap
-      ?11*
-    ] ;
+    @observablePropertyMap observablePropertyMap ;
+    if isEntity then
+      [inEntityMap searchKey
+        ![@lstring new !controlledClassOrEntityName !here]
+        ?3*
+        ?observablePropertyMap
+        ?11*
+      ] ;
+    else
+      [inClassMap searchKey
+        ![@lstring new !controlledClassOrEntityName !here]
+        ?*
+        ?observablePropertyMap
+        ?5*
+      ] ;
+    end if ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
     for column in mTableValueColumnBinding do
       [observablePropertyMap searchKey
@@ -548,6 +559,7 @@ override method @runBinding analyzeOutletBinding
   ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
@@ -559,7 +571,7 @@ override method @runBinding analyzeOutletBinding
     [inActionMap searchKey !mActionName] ;
   else
     @actionMap actionMap ;
-    [inControllerMap searchKey !mTargetName ?3* ?actionMap ?*] ;
+    [inControllerMap searchKey !mTargetName ?4* ?actionMap ?*] ;
     [actionMap searchKey !mActionName] ;
   end if ;
   ioOutletBindingListForGeneration += ![@runBindingForGeneration new
@@ -575,6 +587,7 @@ override method @regularControllerBinding analyzeOutletBinding
   ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
@@ -591,7 +604,7 @@ override method @regularControllerBinding analyzeOutletBinding
 #---------------------------------- Search controller in controller map
   [inControllerMap searchKey
     !mControllerName
-    ?4*
+    ?5*
     ?@observablePropertyMap observableAttributeMap
   ] ;
 #---------------------------------- Search property
@@ -660,6 +673,7 @@ override method @regularRootBinding analyzeOutletBinding
   ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
@@ -741,6 +755,7 @@ override method @regularSelfBinding analyzeOutletBinding
   ??@observablePropertyMap inSelfObservableAttributeMap
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
@@ -822,6 +837,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
   ??@observablePropertyMap unused inSelfObservableAttributeMap
   ??@preferencesMap inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
@@ -986,7 +1002,7 @@ override method @multiValuedBindingBoundToController analyzeModel
 :
   [inControllerMap searchKey
     !mControllerName
-    ?4*
+    ?5*
     ?@observablePropertyMap controllerObservableAttributeMap
   ] ;
   [controllerObservableAttributeMap searchKey
@@ -1005,6 +1021,7 @@ override method @multiValuedBinding analyzeOutletBinding
   ??@observablePropertyMap inSelfObservableAttributeMap
   ??@preferencesMap inPreferencesMap
   ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
@@ -1145,6 +1162,7 @@ local routine analyzePreference
     foreach mControllerBindingList do
       [mBinding analyzeControllerBinding
         ![@relationshipMap emptyMap]
+        !preferenceArrayMap
         !controllerClassBindingMap
         !mControlledClassOrEntityName
         !observablePropertyMap
@@ -1155,6 +1173,7 @@ local routine analyzePreference
       !mControllerName
       !mControllerClassName->string
       !mControlledClassOrEntityName->string
+      !false # Is not an entity : it is a class
       !bindingListForGeneration
       !controllerActionMap
       !controllerObservablePropertyMap
@@ -1195,8 +1214,9 @@ local routine analyzePreference
         !observableAttributeMap
         ![@preferencesMap emptyMap]
         ![@entityMap emptyMap]
+        !inClassMap
         !bindingMap
-        ![@controllerMap emptyMap]
+        !controllerMap
         !actionMap
         !hasTableValueBinding
         !?outletBindingList
@@ -1275,6 +1295,7 @@ end routine ;
 
 abstract method @abstractBinding analyzeControllerBinding
   ??@relationshipMap inAllRelationshipMap
+  ??@preferenceArrayMap inPreferenceArrayMap
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
   ??@observablePropertyMap inAllObservablePropertyMap
@@ -1285,6 +1306,7 @@ abstract method @abstractBinding analyzeControllerBinding
 
 override method @regularPreferenceBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
   ??@observablePropertyMap unused inAllObservablePropertyMap
@@ -1297,6 +1319,7 @@ end method ;
 
 override method @multiValuedBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
   ??@observablePropertyMap unused inAllObservablePropertyMap
@@ -1309,6 +1332,7 @@ end method ;
 
 override method @tableValueBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
   ??@observablePropertyMap unused inAllObservablePropertyMap
@@ -1321,6 +1345,7 @@ end method ;
 
 override method @runBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
   ??@observablePropertyMap unused inAllObservablePropertyMap
@@ -1333,75 +1358,20 @@ end method ;
 
 override method @regularControllerBinding analyzeControllerBinding
   ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap unused inControllerClassBindingMap
   ??@lstring unused inControlledClassOrEntityName
   ??@observablePropertyMap unused inAllObservablePropertyMap
   ?!@outletBindingListForGeneration unused ioBindingListForGeneration
 :
   error mBindingName: "a controller does not implement $" . mBindingName . " binding" ;
-#  @string resultingObservedObjectName ;
-#  @string resultingObservedPropertyPath ;
-#  if mObservedObjectName->string == "root" then
-#    resultingObservedObjectName := "mRootObjectController" ;
-#    resultingObservedPropertyPath := "selection." . mObservableAttributeName ;
-#  else
-#    error mObservedObjectName
-#    : "observed object should be 'root'"
-#    : resultingObservedObjectName, resultingObservedPropertyPath
-#    ;
-#  end if ;
-#  @string boundTypeIdentifierString ;
-#  if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
-#    @easyBindingType t ;
-#    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
-#    boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
-#  elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
-#    @bool isToMany ;
-#    @lstring destinationEntityName ;
-#    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
-#    if isToMany then
-#      boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
-#    else
-#      boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
-#    end if ;
-#  else
-#    error mObservableAttributeName
-#    :"unknown property"
-#    : boundTypeIdentifierString ;
-#  end if ;
-#  @easyBindingTypeAndFormatterList acceptableTypeList ;
-#  @outletClassBindingOptionMap availableBindingOptionMap ;
-#  [inControllerClassBindingMap searchKey !mBindingName ?acceptableTypeList ?availableBindingOptionMap] ;
-#  @bool found := false ;
-#  @string acceptableTypesString := "" ;
-#  foreach acceptableTypeList while not found do
-#     const @string acceptableType := [mType ebTypeIdentifier !inControlledClassOrEntityName->string] ;
-#     acceptableTypesString .= "\n-  '" . acceptableType . "'" ;
-#     found := boundTypeIdentifierString == acceptableType ;
-#  end foreach ;
-#  if not found then
-#    error mObservableAttributeName
-#    :"cannot bind: property type is '" . boundTypeIdentifierString . "', acceptable type(s):" . acceptableTypesString
-#    ;
-#  end if ;
-#  checkBindingOptions
-#    !mOutletBindingOptionList
-#    !availableBindingOptionMap
-#    ?@2stringlist bindingOptionListForGeneration
-#  ;
-#  ioBindingListForGeneration += ![@regularBindingForGeneration new
-#    !mBindingName->string
-#    ![@formatterEnum noFormatter]
-#    !resultingObservedObjectName
-#    !resultingObservedPropertyPath
-#    !bindingOptionListForGeneration
-#  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @regularRootBinding analyzeControllerBinding
   ??@relationshipMap inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
   ??@observablePropertyMap inAllObservablePropertyMap
@@ -1459,6 +1429,7 @@ end method ;
 
 override method @regularSelfBinding analyzeControllerBinding
   ??@relationshipMap inAllRelationshipMap
+  ??@preferenceArrayMap inPreferenceArrayMap
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
   ??@observablePropertyMap inAllObservablePropertyMap
@@ -1478,6 +1449,9 @@ override method @regularSelfBinding analyzeControllerBinding
     else
       boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
     end if ;
+  elsif [inPreferenceArrayMap hasKey !mObservableAttributeName->string] then
+    [inPreferenceArrayMap searchKey !mObservableAttributeName ?@string className ?*] ;
+    boundTypeIdentifierString := "array[" . className . "]" ;
   else
     error mObservableAttributeName
     :"unknown property"
@@ -1553,6 +1527,7 @@ local routine analyzeDocument
     foreach mControllerBindingList do
       [mBinding analyzeControllerBinding
         !allRelationshipMap
+        ![@preferenceArrayMap emptyMap]
         !controllerClassBindingMap
         !mControlledClassOrEntityName
         !observablePropertyMap
@@ -1563,6 +1538,7 @@ local routine analyzeDocument
       !mControllerName
       !mControllerClassName->string
       !mControlledClassOrEntityName->string
+      !true # Is an entity
       !bindingListForGeneration
       !controllerActionMap
       !controllerObservablePropertyMap
@@ -1605,6 +1581,7 @@ local routine analyzeDocument
         !observablePropertyMap
         !inPreferencesMap
         !inEntityMap
+        ![@classMap emptyMap]
         !bindingMap
         !controllerMap
         !documentActionMap

@@ -14,6 +14,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
     ?@stringset CLASS_PREDECLARATION_SET
+    ?@controllerMap CONTROLLER_MAP
   ;
   
   template preferencesDeclarationPart2 "preferences-2.h.gTemplate"
@@ -34,6 +35,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@stringset INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@preferenceArrayMap ARRAY_MAP
+    ?@controllerMap CONTROLLER_MAP
   ;
   
   template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
@@ -72,6 +74,7 @@ routine generatePreferencesCode
         !mOutletDeclarationList
         !mActionList
         !mImplementationFileInclusionSet
+        !mControllerMap
       ] ;
       @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
         ![lkey string]
@@ -100,6 +103,7 @@ routine generatePreferencesCode
         !mImplementationFileInclusionSet
         !inTransientDependencyArcList
         !mArrayMap
+        !mControllerMap
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
