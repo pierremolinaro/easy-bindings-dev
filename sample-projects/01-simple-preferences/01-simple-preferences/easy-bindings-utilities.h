@@ -43,6 +43,14 @@ double doubleFromNSNumber (id inValue) ;
 NSNumber * numberEncodedDouble (double inValue) ;
 
 //---------------------------------------------------------------------------*
+//   Font                                                                    *
+//---------------------------------------------------------------------------*
+
+NSData * dataFromFont (NSFont * inFont) ;
+
+NSFont * fontFromData (NSData * inDataEncodeFont) ;
+
+//---------------------------------------------------------------------------*
 //   enterSignatureValue                                                     *
 //---------------------------------------------------------------------------*
 

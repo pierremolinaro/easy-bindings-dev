@@ -66,6 +66,8 @@ end foreach
       name:NSApplicationWillTerminateNotification
       object:nil
     ] ;
+  //---
+    [self %!PREFERENCES_NAME%_did_init] ;
   }
   return self ;
 }
@@ -115,6 +117,8 @@ foreach OUTLET_DECLARATION_LIST do
   end foreach
 end foreach
 %
+//---
+  [self %!PREFERENCES_NAME%_did_awakeFromNib] ;
 }
 
 %if [ATTRIBUTE_LIST_FOR_GENERATION length] > 0 then

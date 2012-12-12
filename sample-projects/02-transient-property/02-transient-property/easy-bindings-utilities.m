@@ -105,6 +105,23 @@ NSNumber * numberEncodedDouble (double inValue) {
 }
 
 //---------------------------------------------------------------------------*
+//   Font                                                                    *
+//---------------------------------------------------------------------------*
+
+NSData * dataFromFont (NSFont * inFont) {
+  return [NSArchiver archivedDataWithRootObject:inFont] ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSFont * fontFromData (NSData * inDataEncodeFont) {
+  return (inDataEncodeFont == nil)
+    ? nil
+    : [NSUnarchiver unarchiveObjectWithData:inDataEncodeFont]
+  ;
+}
+
+//---------------------------------------------------------------------------*
 //   enterSignatureValue                                                     *
 //---------------------------------------------------------------------------*
 
