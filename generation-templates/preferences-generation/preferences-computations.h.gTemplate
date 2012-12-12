@@ -6,12 +6,3 @@
 
 %!generateTransientFunctionDeclarations [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
 //----------------------------------------------------------------------------*
-//   A C T I O N S                                                            *
-//----------------------------------------------------------------------------*
-
-%foreach ACTION_LIST do
-%void %!mValue->string%_%!PREFERENCES_NAME%_action (%?^!PREFERENCES_NAME% * inPreferencesObject,
-  %!^%id inSender) ;\n\n%
-%//----------------------------------------------------------------------------*\n\n%
-end foreach%
-

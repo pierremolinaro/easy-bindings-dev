@@ -2,7 +2,7 @@
 #import "PMAllocationDebug.h"
 #import "PMTransientDependancyManager.h"
 #import "%!PREFERENCES_NAME%.h"
-%if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [ACTION_LIST length]) > 0 then
+%if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!PREFERENCES_NAME%-computations.h"\n%
 end if
 foreach INCLUSION_SET do
@@ -172,15 +172,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %end foreach
 
 !generateTransientCacheRoutine [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+
 %//----------------------------------------------------------------------------*
-//    Actions                                                                 *
-//----------------------------------------------------------------------------*
-%foreach ACTION_LIST do
-%
-- (IBAction) %!mValue->string%: (id) inSender {
-  %!mValue->string%_%!PREFERENCES_NAME%_action (self, inSender) ;
-}\n\n%
-%//----------------------------------------------------------------------------*\n%
-end foreach%
 
 
