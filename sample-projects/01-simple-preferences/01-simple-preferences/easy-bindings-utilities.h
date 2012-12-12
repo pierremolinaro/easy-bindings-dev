@@ -43,3 +43,10 @@ double doubleFromNSNumber (id inValue) ;
 NSNumber * numberEncodedDouble (double inValue) ;
 
 //---------------------------------------------------------------------------*
+//   enterSignatureValue                                                     *
+//---------------------------------------------------------------------------*
+
+NSInteger enterSignatureValue (const NSInteger inSignature,
+                               const NSInteger inValue) ;
+
+//---------------------------------------------------------------------------*

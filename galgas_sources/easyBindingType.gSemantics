@@ -194,7 +194,7 @@ end reader ;
 
 reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult :
   switch selfcopy
-  when boolType : outResult := "" ; # Empty string: not allowed
+  when boolType : outResult := "NSButtonCell" ; # Empty string: not allowed
   when integerType, uintegerType : outResult := "NSTextFieldCell" ;
   when decimalType : outResult := "NSTextFieldCell" ;
   when doubleType : outResult := "NSTextFieldCell" ;
@@ -202,7 +202,7 @@ reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResul
   when dataType : outResult := "" ;
   when dateType : outResult := "NSDateFieldCell" ;
   when fontType : outResult := "" ;
-  when imageType : outResult := "" ;
+  when imageType : outResult := "NSImageCell" ;
   when colorType,
        arrayType, valueType,
        bezierPathType, menuType : outResult := "" ;

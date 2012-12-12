@@ -24,6 +24,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
     ?@preferenceArrayMap ARRAY_MAP
+    ?@controllerMap CONTROLLER_MAP
   ;
   
   template preferencesImplementation "preferences.m.gTemplate"
@@ -41,7 +42,6 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
   template preferencesTransientComputationsHeaderFile "preferences-computations.h.gTemplate"
     ?@string PREFERENCES_NAME
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@lstringlist ACTION_LIST
   ;
   
   template preferencesTransientComputationImplementationFile "preferences-transient-computation-function.m.gTemplate"
@@ -83,6 +83,7 @@ routine generatePreferencesCode
         !mOutletDeclarationList
         !mActionList
         !mArrayMap
+        !mControllerMap
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -115,11 +116,10 @@ routine generatePreferencesCode
         !"@end\n\n"
       ] ;
     #--- Transient computation function header file
-      if ([mTransientListForImplementation length] + [mActionList length]) > 0 then
+      if [mTransientListForImplementation length] > 0 then
         s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
           ![lkey string]
           !mTransientListForImplementation
-          !mActionList
         ] ;
         [@string generateFileWithPattern
           !inOutputDirectory
@@ -146,22 +146,6 @@ routine generatePreferencesCode
             !"\n\n" # Defaut user zone1
             !s
             !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-          ] ;
-      end foreach ;
-    #--- Action computation function implementation files
-      foreach mActionList do
-          s := [filewrapper prefsGenerationTemplate.preferencesActionImplementationFile
-            ![lkey string]
-            !mValue->string
-          ] ;
-          [@string generateFileWithPattern
-            !inOutputDirectory
-            ![lkey string] . "_" . mValue->string . "_action.m"
-            !"//"
-            !"\n\n" # Defaut user zone1
-            !s
-            !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
             !"}\n\n" . "//----------------------------------------------------------------------------*\n"
           ] ;
       end foreach ;

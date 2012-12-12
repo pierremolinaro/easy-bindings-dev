@@ -1,0 +1,26 @@
+%if SUPER_CLASS_NAME == "" then
+  %#import <Cocoa/Cocoa.h>\n%
+else
+  %#import "%!SUPER_CLASS_NAME%.h"\n%
+end if
+%
+//----------------------------------------------------------------------------*
+
+@interface %!CLASS_NAME% : %
+if SUPER_CLASS_NAME == "" then
+  %NSObject%
+else
+  !SUPER_CLASS_NAME
+end if
+% {
+//--- Attribute observers
+%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
+end foreach
+
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mTransientName%' transient cache\n%
+%  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
+%  @private BOOL %!mTransientName%__computed ;\n%
+end foreach
+%

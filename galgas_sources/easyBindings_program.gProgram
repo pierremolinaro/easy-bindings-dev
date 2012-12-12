@@ -99,18 +99,14 @@ message "a source text file with the .easyBindings extension"
     !sortedTransientOrderedList
   ;
 #--- Add embedded sources
-  @stringset sources [setWithString !"easy-bindings-utilities"] ;
-  sources += !"PMAllocationDebug" ;
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
     const @string sourceName := [mValue lastPathComponent] ;
-    if [sources hasKey ![sourceName stringByDeletingPathExtension]] then
-      [@string generateFile
-        !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
-        !sourceName
-        ![fw textFileContentsAtPath !mValue]
-       ] ;
-    end if ;
+    [@string generateFile
+      !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
+      !sourceName
+      ![fw textFileContentsAtPath !mValue]
+     ] ;
   end foreach ;
 }
 
