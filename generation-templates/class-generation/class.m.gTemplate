@@ -55,7 +55,8 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 end foreach
 %  //--- Add Transient observers
 %!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
-%  }
+%    [self %!CLASS_NAME%_did_init] ;
+  }
   return self ;
 }
 %if SUPER_CLASS_NAME == "" then

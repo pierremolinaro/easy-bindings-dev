@@ -152,10 +152,11 @@ reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outR
   when boolType : outResult := "boolFromNSNumber" ;
   when integerType : outResult := "NSIntegerFromNSNumber" ;
   when doubleType : outResult := "doubleFromNSNumber" ;
+  when fontType : outResult := "fontFromData" ;
   when colorType,
        arrayType, valueType,
        bezierPathType, menuType : outResult := "valueFromData" ;
-  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
+  when stringType, imageType, toManyEntitiesType, uintegerType,
        dataType, dateType, decimalType, objectArrayType : outResult := "" ;
   end switch ;
 end reader ;
@@ -167,10 +168,11 @@ reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outR
   when boolType : outResult := "numberEncodedBool" ;
   when integerType : outResult := "numberEncodedNSInteger" ;
   when doubleType : outResult := "numberEncodedDouble" ;
+  when fontType : outResult := "dataFromFont" ;
   when colorType,
        arrayType, valueType,
        bezierPathType, menuType : outResult := "dataEncodedValue" ;
-  when stringType, fontType, imageType, toManyEntitiesType, uintegerType,
+  when stringType, imageType, toManyEntitiesType, uintegerType,
        dataType, dateType, decimalType, objectArrayType : outResult := "" ;
   end switch ;
 end reader ;
