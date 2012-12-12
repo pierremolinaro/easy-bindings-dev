@@ -1138,12 +1138,15 @@ local routine analyzePreference
       !mClassName
       ?*
       ?@observablePropertyMap classObservablePropertyMap
-      ?5*
+      ?2*
+      ?@attributeListForImplementation attributeListForImplementation
+      ?2*
     ] ;
     [!?preferenceArrayMap insertKey
       !mArrayName
       !mClassName->string
       !classObservablePropertyMap
+      !attributeListForImplementation
     ] ;
   end foreach ;
 #-------------------------------------------------- Analyze controllers
@@ -1450,7 +1453,7 @@ override method @regularSelfBinding analyzeControllerBinding
       boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
     end if ;
   elsif [inPreferenceArrayMap hasKey !mObservableAttributeName->string] then
-    [inPreferenceArrayMap searchKey !mObservableAttributeName ?@string className ?*] ;
+    [inPreferenceArrayMap searchKey !mObservableAttributeName ?@string className ?2*] ;
     boundTypeIdentifierString := "array[" . className . "]" ;
   else
     error mObservableAttributeName

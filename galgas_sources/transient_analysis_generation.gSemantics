@@ -35,6 +35,7 @@ list @outletGenerationList {
 map @preferenceArrayMap {
   @string mClassName ;
   @observablePropertyMap mClassObservablePropertyMap ;
+  @attributeListForImplementation mAttributeListForImplementation ;
   insert insertKey error message "the '%K' array is already declared" ;
   search searchKey error message "the '%K' array is not declared" ;
 }
