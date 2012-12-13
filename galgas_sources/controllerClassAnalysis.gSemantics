@@ -1,0 +1,76 @@
+semantics controllerClassAnalysis :
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzeControllerClass
+  ??@controllerClassList.element inController
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@controllerClassMap ioControllerClassMap
+:
+#--- Analyze actions
+  @actionMap actionMap [emptyMap] ;
+  for actionName in inController->mActionDeclarationList do
+    [!?actionMap insertKey !actionName->mValue] ;
+  end for ;
+#---
+  @outletClassBindingMap bindingMap [emptyMap] ;
+  foreach inController->mBindingList do
+    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+    foreach mBindingOptionList do
+      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
+#        foreach mAcceptableTypeList do
+#        
+#        
+#        end foreach ;
+    end foreach ;
+    [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
+  end foreach ;
+#---
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  for property in inController->mControllerObservablePropertyList do
+    const @lstring observationDependencyKey [new
+      !"controller." . inController->mControllerClassName . "." . property->mPropertyName
+      !property->mPropertyName->location
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+    [!?observablePropertyMap insertKey
+      !property->mPropertyName
+      !property->mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+  end for ;
+#---
+  [!?ioControllerClassMap insertKey
+    !inController->mControllerClassName
+    !inController->mGenerationKind
+    !bindingMap
+    !actionMap
+    !observablePropertyMap
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeControllerClasses
+  ??@controllerClassList inControllerClassList
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  !@controllerClassMap outControllerClassMap
+:
+  outControllerClassMap := [@controllerClassMap emptyMap] ;
+  for controller in inControllerClassList do
+    analyzeControllerClass
+      !controller
+      !?ioTransientDependencyGraph
+      !?outControllerClassMap
+    ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

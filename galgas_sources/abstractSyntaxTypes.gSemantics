@@ -330,7 +330,7 @@ list @protocolList {
 
 list @controllerClassList {
   @lstring mControllerClassName ;
-  @bool mGenerateCode ;
+  @generationKind mGenerationKind ;
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
   @controllerObservablePropertyList mControllerObservablePropertyList ;

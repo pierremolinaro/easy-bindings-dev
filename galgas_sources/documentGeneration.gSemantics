@@ -1,6 +1,6 @@
 semantics documentGeneration :
-  import "easyBindings_options.gOption" ;
-  import "semanticAnalysis.gSemantics" ;
+  import "decoratedTypes.gSemantics" ;
+  import "transientGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

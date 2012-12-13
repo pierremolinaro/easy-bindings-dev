@@ -1,0 +1,151 @@
+semantics documentAnalysis :
+  import "transientAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzeDocument
+  ??@documentDeclarationList.element inDocument
+  ??@outletClassMap inOutletClassMap
+  ??@controllerClassMap inControllerClassMap
+  ??@entityMap inEntityMap
+  ??@preferencesMap inPreferencesMap
+  ?!@documentMap ioDocumentMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------------------------ Get root object features
+  [inEntityMap searchKey
+    !inDocument->mRootEntityName
+    ?*
+    ?@string rootEntityImplementationClassName
+    ?*
+    ?@observablePropertyMap rootObjectObservablePropertyMap
+    ?8*
+    ?@relationshipMap allRelationshipMap
+    ?2*
+  ] ;
+#-------------------------------------------------- Analyze controllers
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @controllerMap controllerMap [emptyMap] ;
+  foreach inDocument->mControllerList do
+    @outletClassBindingMap controllerClassBindingMap ;
+    @actionMap controllerActionMap ;
+    @observablePropertyMap controllerObservablePropertyMap ;
+    [inControllerClassMap searchKey
+      !mControllerClassName
+      ?*
+      ?controllerClassBindingMap
+      ?controllerActionMap
+      ?controllerObservablePropertyMap
+    ] ;
+    [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    foreach mControllerBindingList do
+      [mBinding analyzeControllerBinding
+        !allRelationshipMap
+        ![@preferenceArrayMap emptyMap]
+        !controllerClassBindingMap
+        !mControlledClassOrEntityName
+        !observablePropertyMap
+        !?bindingListForGeneration
+      ] ;
+    end foreach ;
+    [!?controllerMap insertKey
+      !mControllerName
+      !mControllerClassName->string
+      !mControlledClassOrEntityName->string
+      !true # Is an entity
+      !bindingListForGeneration
+      !controllerActionMap
+      !controllerObservablePropertyMap
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeTransientProperties
+    !inPreferencesMap
+    !"document." . inDocument->mDocumentName . "."
+    !inDocument->mTransientList
+    !rootObjectObservablePropertyMap
+    !inDocument->mRootEntityName->string
+    !controllerMap
+    !?observablePropertyMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#--------------------------------------------------- Analyze actions
+  @actionMap documentActionMap [emptyMap] ;
+  for actionName in inDocument->mActionDeclarationList do
+    [!?documentActionMap insertKey !actionName->mValue] ;
+  end for ;
+#--------------------------------------------------- Analyze outlets and bindings
+  @outletGenerationList outletGenerationList [emptyList] ;
+  foreach inDocument->mOutletDeclarationList do
+    [inOutletClassMap searchKey
+      !mOutletType
+      ?@generationKind generationKind
+      ?2*
+      ?@outletClassBindingMap bindingMap
+      ?@bool hasTableValueBinding
+    ] ;
+    @outletBindingListForGeneration outletBindingList [emptyList] ;
+    foreach mOutletBindingList do
+      [mBinding analyzeOutletBinding
+        !rootObjectObservablePropertyMap
+        !observablePropertyMap
+        !inPreferencesMap
+        !inEntityMap
+        ![@classMap emptyMap]
+        !bindingMap
+        !controllerMap
+        !documentActionMap
+        !hasTableValueBinding
+        !?outletBindingList
+        !?implementationFileInclusionSet
+      ] ;
+    end foreach ;
+    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
+  end foreach ;
+#--------------------------------------------------- Enter in document map
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioDocumentMap insertKey
+    !inDocument->mDocumentName
+    !inDocument->mRootEntityName->string
+    !rootEntityImplementationClassName
+    !outletGenerationList
+    !controllerMap
+    !inDocument->mActionDeclarationList
+    !transientListForImplementation
+    !implementationFileInclusionSet
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeDocuments
+  ??@documentDeclarationList inDocumentDeclarationList
+  ??@outletClassMap inOutletClassMap
+  ??@controllerClassMap inControllerClassMap
+  ??@entityMap inEntityMap
+  ??@preferencesMap inPreferencesMap
+  !@documentMap outDocumentMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  outDocumentMap := [@documentMap emptyMap] ;
+  for document in inDocumentDeclarationList do
+    analyzeDocument
+      !document
+      !inOutletClassMap
+      !inControllerClassMap
+      !inEntityMap
+      !inPreferencesMap
+      !?outDocumentMap
+      !?ioTransientDependencyGraph
+    ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

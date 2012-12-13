@@ -1,5 +1,4 @@
 project all_easyBindings (0:0:1) -> "easyBindings":
-#--- Targets
   feature "makefile_macosx" ;
   feature "Lion" ;
 
@@ -7,22 +6,39 @@ project all_easyBindings (0:0:1) -> "easyBindings":
 
   lexique "easyBindings_lexique.gLexique" ;
   option "easyBindings_options.gOption" ;
+  syntax "easyBindings_syntax.gSyntax" ;
+  grammar "easyBindings_grammar.gGrammar" ;
   gui "easyBindings_cocoa.gGui" ;
 
   semantics "easyBindingType.gSemantics" ;
   semantics "abstractSyntaxTypes.gSemantics" ;
-  syntax "easyBindings_syntax.gSyntax" ;
-  grammar "easyBindings_grammar.gGrammar" ;
+  semantics "decoratedTypes.gSemantics" ;
 
-  semantics "preferencesGeneration.gSemantics" ;
-  
-  semantics "semanticAnalysis.gSemantics" ;
-  semantics "transient_analysis_generation.gSemantics" ;
-  
+  semantics "bindingSemanticAnalysis.gSemantics" ;
+  semantics "bindingsGeneration.gSemantics" ;
+
+  semantics "classAnalysis.gSemantics" ;
   semantics "classGeneration.gSemantics" ;
-  semantics "outletClassGeneration.gSemantics" ;
+
+  semantics "preferencesAnalysis.gSemantics" ;
+  semantics "preferencesGeneration.gSemantics" ;
+
+  semantics "entityAnalysis.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
+
+  semantics "documentAnalysis.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
+  
+  semantics "outletClassAnalysis.gSemantics" ;
+  semantics "outletClassGeneration.gSemantics" ;
+
+  semantics "controllerClassAnalysis.gSemantics" ;
+
+  semantics "transientAnalysis.gSemantics" ;
+  semantics "transientGeneration.gSemantics" ;
+
+  semantics "semanticAnalysis.gSemantics" ;
+  
   semantics "cursors_generation.gSemantics" ;
   
   program "easyBindings_program.gProgram" ;

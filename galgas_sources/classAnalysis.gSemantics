@@ -1,0 +1,90 @@
+semantics classAnalysis :
+  import "transientAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzeClass
+  ??@classList.element inClass
+  ?!@classMap ioClassMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super class ?
+  @observablePropertyMap observablePropertyMap ;
+  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+  if [inClass->mSuperClassName string] != "" then
+    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+  end if ;
+#---------------------------------- Analyze attributes
+  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+  foreach inClass->mAttributeList do
+    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
+    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    const @lstring observationDependencyKey [new
+      !"class." . inClass->mClassName . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;    
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#---------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeTransientProperties
+    ![@preferencesMap emptyMap]
+    !"class." . inClass->mClassName . "."
+    !inClass->mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
+    !?observablePropertyMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#----------------------------------
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioClassMap insertKey
+    !inClass->mClassName
+    !inClass->mSuperClassName->string
+    !observablePropertyMap
+    !propertyListForInitMethodHeader
+    !inheritedAttributeListForImplementation
+    !attributeListForImplementation
+    !transientListForImplementation
+    !implementationFileInclusionSet
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeClasses
+  ??@classList inClassList
+  !@classMap outClassMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  outClassMap := [@classMap emptyMap] ;
+  for aClass in inClassList do
+    analyzeClass
+      !aClass
+      !?outClassMap
+      !?ioTransientDependencyGraph
+    ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

@@ -1,6 +1,7 @@
 semantics preferencesGeneration :
   import "easyBindings_options.gOption" ;
   import "semanticAnalysis.gSemantics" ;
+  import "transientGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

@@ -1,0 +1,124 @@
+semantics bindingsGeneration :
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+override reader @runBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "  " . inOutletName . ".target = " . mTargetName . " ;\n" ;
+  outResult .= "  " . inOutletName . ".action = @selector (" . mActionName . ":) ;\n" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .=  "  if (nil == [" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]) {\n"
+     . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' NSTableView outlet has no formatter has no column with the " . column->mColumnIdentifier . " identifier\") ;\n"
+     . "  }else{\n"
+     . "    NSActionCell * cell = [" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"].dataCell ;\n"
+     . "    if (! [cell isKindOfClass:[" . column->mRequiredCellClass . " class]]) {\n"
+     . "      presentErrorWindow (__FILE__, __LINE__, @\"the dataCell is '" . column->mColumnIdentifier . "' column of the '" . inOutletName . "' should be an '" . column->mRequiredCellClass . " instance\") ;\n"
+     . "    }\n"
+     . "  }\n"
+     . "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]\n"
+     . "    bind:@\"value\"\n"
+     . "    toObject:" . mControllerName . "\n"
+     . "    withKeyPath:@\"arrangedObjects." . column->mObservableAttributeName . "\"\n"
+     . "    options:" ;
+     if [column->mOutletBindingOptionList length] == 0 then
+       outResult .= "nil\n" ;
+     else
+       outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
+       foreach column->mOutletBindingOptionList do
+         outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
+       end foreach ;
+       outResult .= "      nil\n"
+                    "    ]\n" ;
+     end if ;
+     outResult .= "  ] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @regularBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  switch mRequiredFormatter
+  when noFormatter :
+  when numberFormatter :
+   outResult .=  "  if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+   . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
+   . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSNumberFormatter class]]) {\n"
+   . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
+   . "  }\n" ;
+  when dateFormatter :
+    outResult .= "  if ((nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter)) {\n"
+    . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
+    . "  }else if ((nil != " . inOutletName . ") && ![" . inOutletName . ".formatter isKindOfClass:[NSDateFormatter class]]) {\n"
+    . "    presentErrorWindow (__FILE__, __LINE__, @\"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"
+    . "  }\n" ;
+  end switch ;
+  outResult .= "  [" . inOutletName . "\n"
+            . "    bind:@\"" . mBindingName . "\"\n"
+            . "    toObject:" . mObservedObjectName . "\n"
+            . "    withKeyPath:@\"" . mObservableAttributeName . "\"\n"
+            . "    options:" ;
+   if [mOutletBindingOptionList length] == 0 then
+     outResult .= "nil\n" ;
+   else
+     outResult .= "[NSDictionary dictionaryWithObjectsAndKeys:\n" ;
+     foreach mOutletBindingOptionList do
+       outResult .= "      " . mValue1 . ", @" . [mValue0 utf8Representation] . ",\n" ;
+     end foreach ;
+     outResult .= "      nil\n"
+                  "    ]\n" ;
+   end if ;
+   outResult .= "  ] ;\n" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @runBindingForGeneration generateRemoveBinding
+  ??@string unused inOutletName
+  -> @string outResult
+:
+  outResult := "" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]\n"
+     . "    unbind:@\"value\"\n"
+     . "  ] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @regularBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult :=
+    "  [" . inOutletName . " unbind:@\"" . mBindingName . "\"] ;\n" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
