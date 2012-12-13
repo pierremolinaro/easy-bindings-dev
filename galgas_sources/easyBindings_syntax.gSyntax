@@ -953,12 +953,15 @@ end rule ;
 rule <controller_class_declaration>
   ?!@controllerClassList ioControllerClassList
 :
-  @bool generateCode ;
+  @generationKind generationKind ;
   select
-    generateCode := true ;
+    generationKind := [@generationKind fullGeneration] ;
+  or
+    $predefined$ ;
+    generationKind := [@generationKind noGeneration] ;
   or
     $extern$ ;
-    generateCode := false ;
+    generationKind := [@generationKind generateImport] ;
   end select ;
   $controllerClass$ ;
   $Identifier$ ? @lstring controllerClassName ;
@@ -992,23 +995,27 @@ rule <controller_class_declaration>
     $:$ ;
     @easyBindingTypeAndFormatterList easyBindingTypeFormatterList ;
     <type_formatter_list> ? easyBindingTypeFormatterList ;
-    ${$ ;
     @bindingOptionList bindingOptionList [emptyList] ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@easyBindingTypeList optionTypeList ;
+    select
       $;$ ;
-      bindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
+    or
+      ${$ ;
+      repeat
+      while
+        $Identifier$ ? @lstring optionName ;
+        $:$ ;
+        <type_list> ?@easyBindingTypeList optionTypeList ;
+        $;$ ;
+        bindingOptionList += !optionName !optionTypeList ;
+      end repeat ;
+      $}$ ;
+    end select ;
     controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
   ioControllerClassList +=
     !controllerClassName
-    !generateCode
+    !generationKind
     !controllerClassBindingList
     !actionDeclarationList
     !controllerObservablePropertyList

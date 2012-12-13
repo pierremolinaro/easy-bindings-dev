@@ -1,0 +1,180 @@
+semantics entityAnalysis :
+  import "transientAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#   ANALYZE ENTITIES                                                         *
+#----------------------------------------------------------------------------*
+
+local routine analyzeEntity
+  ??@entityList.element inEntity
+  ?!@entityMap ioEntityMap
+  ??@preferencesMap inPreferencesMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#--------------------------------------------- Get super entity (if any)
+  @observablePropertyMap observablePropertyMap ;
+  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+  @relationshipList allRelationshipList ;
+  @string implementationSuperClassName ;
+  @propertyMap allPropertyMap ;
+  @relationshipMap allRelationshipMap ;
+  if [inEntity->mSuperEntityName string] != "" then
+    [ioEntityMap searchKey
+      !inEntity->mSuperEntityName
+      ?*
+      ?implementationSuperClassName
+      ?*
+      ?observablePropertyMap
+      ?propertyListForInitMethodHeader
+      ?4*
+      ?allRelationshipList
+      ?allPropertyMap
+      ?*
+      ?allRelationshipMap
+      ?2*
+    ] ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+    implementationSuperClassName := "" ;
+    allRelationshipList := [@relationshipList emptyList] ;
+    allPropertyMap := [@propertyMap emptyMap] ;
+    allRelationshipMap := [@relationshipMap emptyMap] ;
+  end if ;
+  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+#--------------------------------------- Analyze attributes
+  foreach inEntity->mAttributeList do
+    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
+    [!?allPropertyMap insertKey !mAttributeName] ;
+    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    const @lstring observationDependencyKey [new
+      !"entity." . inEntity->mEntityName . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#---------------------------------------- Analyze relationship (only check name is unique)
+  @relationshipMap currentRelationshipMap [emptyMap] ;
+  foreach inEntity->mRelationshipList do
+    [!?allRelationshipMap insertKey
+      !mRelationshipName
+      !mIsToMany
+      !mDestinationEntityName
+      !mInverseRelationshipName
+      !mDeleteRule
+    ] ;
+    [!?currentRelationshipMap insertKey
+      !mRelationshipName
+      !mIsToMany
+      !mDestinationEntityName
+      !mInverseRelationshipName
+      !mDeleteRule
+    ] ;
+    [!?allPropertyMap insertKey !mRelationshipName] ;
+    const @lstring observationDependencyKey [new
+      !"entity." . inEntity->mEntityName . "." . mRelationshipName
+      !mRelationshipName->location
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mRelationshipName
+      ![@easyBindingType toManyEntitiesType]
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;    
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#----------------------------------------- Analyze transient properties
+  @stringset implementationFileInclusionSet [emptySet] ;
+  @transientListForImplementation transientListForImplementation ;
+  analyzeTransientProperties
+    !inPreferencesMap
+    !"entity." . inEntity->mEntityName . "."
+    !inEntity->mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
+    !?observablePropertyMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#----------------------------------------- Build 'to-many' relation ship list
+  @2stringlist toManyRelationshipList [emptyList] ;
+  foreach inEntity->mRelationshipList do
+    if mIsToMany then
+      toManyRelationshipList += !mRelationshipName->string !mDestinationEntityName-> string ;
+    else
+    
+    end if ;
+  end foreach ;
+#----------------------------------------- Enter entity in entity map
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioEntityMap insertKey
+    !inEntity->mEntityName
+    !inEntity->mSuperEntityName->string
+    !inEntity->mImplementationClassName->string
+    !implementationSuperClassName
+    !observablePropertyMap
+    !propertyListForInitMethodHeader
+    !inheritedAttributeListForImplementation
+    !attributeListForImplementation
+    !transientListForImplementation
+    !inEntity->mRelationshipList
+    !allRelationshipList . inEntity->mRelationshipList
+    !allPropertyMap
+    !currentRelationshipMap
+    !allRelationshipMap
+    !implementationFileInclusionSet
+    !toManyRelationshipList
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeEntities
+  ??@entityList inEntityList
+  !@entityMap outEntityMap
+  ??@preferencesMap inPreferencesMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Analyze entities
+  outEntityMap := [@entityMap emptyMap] ;
+  for entity in inEntityList do
+    analyzeEntity
+      !entity
+      !?outEntityMap
+      !inPreferencesMap
+      !?ioTransientDependencyGraph
+    ;
+  end for ;
+#------------------------------- Check relationships
+  foreach outEntityMap do
+    foreach mCurrentRelationshipMap do
+      @relationshipMap destinationEntityRelationshipMap ;
+      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?2*] ;
+      @lstring inverseOfInverseRelationshipName ;
+      [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
+      if lkey->string != inverseOfInverseRelationshipName->string then
+        error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
+      end if ;
+    end foreach ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

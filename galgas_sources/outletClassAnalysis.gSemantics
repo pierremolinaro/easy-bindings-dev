@@ -1,0 +1,40 @@
+semantics outletClassAnalysis :
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeOutletClasses
+  ??@outletClassList inOutletClassList
+  ??@protocolMap inProtocolMap
+  !@outletClassMap outOutletClassMap
+:
+  outOutletClassMap := [@outletClassMap emptyMap] ;
+  foreach inOutletClassList do
+  #---
+    @outletClassBindingMap bindingMap [emptyMap] ;
+    foreach mOutletClassBindingList do
+      @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+      foreach mBindingOptionList do
+        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
+      end foreach ;
+      [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
+    end foreach ;
+  #--- Analyze protocols
+    foreach mAdoptedProtocolList do
+      [inProtocolMap searchKey !mValue] ;
+    end foreach ;
+  #---
+    [!?outOutletClassMap insertKey
+      !mOutletClassName
+      !mGeneration
+      !mSuperClassName->string
+      !mAdoptedProtocolList
+      !bindingMap
+      !mHasTableValueBinding
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

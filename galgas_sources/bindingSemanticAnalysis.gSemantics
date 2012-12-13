@@ -1,0 +1,820 @@
+semantics bindingSemanticAnalysis :
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+override method @tableValueBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
+  ??@outletClassBindingMap unused inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+  if not inHasTableValueBinding then
+    error mControllerName: "this outlet does not support $tableValue binding" ;
+  else
+    [inControllerMap searchKey
+      !mControllerName
+      ?*
+      ?@string controlledClassOrEntityName
+      ?@bool isEntity
+      ?@outletBindingListForGeneration controllerBindingList
+      ?*
+      ?*
+    ] ;
+    @observablePropertyMap observablePropertyMap ;
+    if isEntity then
+      [inEntityMap searchKey
+        ![@lstring new !controlledClassOrEntityName !here]
+        ?3*
+        ?observablePropertyMap
+        ?11*
+      ] ;
+    else
+      [inClassMap searchKey
+        ![@lstring new !controlledClassOrEntityName !here]
+        ?*
+        ?observablePropertyMap
+        ?5*
+      ] ;
+    end if ;
+    @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
+    for column in mTableValueColumnBinding do
+      [observablePropertyMap searchKey
+        !column->mBoundPropertyName
+        ?@easyBindingType type
+        ?*
+        ?*
+      ] ;
+      const @string requiredCellTypeInTableColumnBinding := [type requiredCellTypeInTableColumnBinding] ;
+      if requiredCellTypeInTableColumnBinding == "" then
+        error column->mBoundPropertyName:"this property cannot be named in a $tableValue binding" ;
+      elsif requiredCellTypeInTableColumnBinding != column->mCellTypeName->string then
+        error column->mCellTypeName:"this property requires a " . requiredCellTypeInTableColumnBinding . " cell class" ;
+      end if ;
+      columnBindingForTableValueBindingForGeneration +=
+        !column->mColumnName->string
+        !requiredCellTypeInTableColumnBinding
+        !column->mBoundPropertyName->string
+        ![@2stringlist emptyList]
+      ;
+    end for ;
+    ioOutletBindingListForGeneration += ![@tableValueBindingForGeneration new
+      !mControllerName->string
+      !columnBindingForTableValueBindingForGeneration
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @runBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap unused inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+  if mTargetName->string == "self" then
+    [inActionMap searchKey !mActionName] ;
+  else
+    @actionMap actionMap ;
+    [inControllerMap searchKey !mTargetName ?4* ?actionMap ?*] ;
+    [actionMap searchKey !mActionName] ;
+  end if ;
+  ioOutletBindingListForGeneration += ![@runBindingForGeneration new
+    !mTargetName->string
+    !mActionName->string
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularControllerBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#---------------------------------- Search binding
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------- Search controller in controller map
+  [inControllerMap searchKey
+    !mControllerName
+    ?5*
+    ?@observablePropertyMap observableAttributeMap
+  ] ;
+#---------------------------------- Search property
+  [observableAttributeMap searchKey
+    !mControllerAttributeName
+    ?@easyBindingType observablePropertyType
+    ?@bool isTransient
+    ?@string propertySignature
+  ] ;
+#------------------------------------------------- count option ?
+  @string observedKeyPath := mControllerAttributeName->string ;
+  if mNamesCountOption then
+    observedKeyPath .= ".@count" ;
+    if observablePropertyType != [@easyBindingType toManyEntitiesType] then
+      error mControllerAttributeName: "the 'count' option is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
+  
+#-------------------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mControllerAttributeName:s ;
+  end if ;
+#--- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !mControllerName->string
+    !observedKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularRootBinding analyzeOutletBinding
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Find observable property in root entity observable property map
+  [inRootEntityObservableAttributeMap searchKey
+    !mObservableAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+  @string observableKeyPath := mObservableAttributeName->string ;
+#--------------------------------------- count option ?
+  if mNamesCountOption then
+    if observablePropertyType == [@easyBindingType toManyEntitiesType] then
+      observableKeyPath .= ".@count" ;
+      observablePropertyType := [@easyBindingType uintegerType] ;
+    else
+      error mObservableAttributeName: "the 'count' path is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mObservableAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"mRootObject"
+    !observableKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularSelfBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Find observable property in local observable property map
+  [inSelfObservableAttributeMap searchKey
+    !mObservableAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+  @string observableKeyPath := mObservableAttributeName->string ;
+#--------------------------------------- count option ?
+  if mNamesCountOption then
+    if observablePropertyType == [@easyBindingType toManyEntitiesType] then
+      observableKeyPath .= ".@count" ;
+      observablePropertyType := [@easyBindingType uintegerType] ;
+    else
+      error mObservableAttributeName: "the 'count' path is only allowed for to-many relationships" ;
+    end if ;
+  end if ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mObservableAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"self"
+    !observableKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularPreferenceBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap unused inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
+:
+  ioImplementationFileInclusionSet += !mPreferenceName->string ;
+#--------------------------------------- Search binding in outlet class binding map
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------------- Search preference in preferences map
+  [inPreferencesMap searchKey
+    !mPreferenceName
+    ?4*
+    ?@observablePropertyMap observablePropertyMap
+    ?3*
+  ] ;
+#---------------------------------------- Find observable property in local observable property map
+  [observablePropertyMap searchKey
+    !mPreferenceAttributeName
+    ?@easyBindingType observablePropertyType
+    ?*
+    ?*
+  ] ;
+#----------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mPreferenceAttributeName:s ;
+  end if ;
+#----------------------------------------- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+#----------------------------------------- Generate binding
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !"g_" . mPreferenceName
+    !mPreferenceAttributeName->string
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBindingBoundToRoot analyzeModel
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ?!@stringset unused ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+:
+  [inRootEntityObservableAttributeMap searchKey
+    !mPropertyName
+    ?outObservablePropertyType
+    ?*
+    ?*
+  ] ;
+  outObservedObjectName := "mRootObject" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBindingBoundToSelf analyzeModel
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ?!@stringset unused ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+:
+  [inSelfObservableAttributeMap searchKey
+    !mPropertyName
+    ?outObservablePropertyType
+    ?*
+    ?*
+  ] ;
+  outObservedObjectName := "self" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBindingBoundToPref analyzeModel
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap inPreferencesMap
+  ??@controllerMap unused inControllerMap
+  ?!@stringset ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+:
+  [inPreferencesMap searchKey
+    !mPreferenceName
+    ?4*
+    ?@observablePropertyMap preferenceObservableAttributeMap
+    ?3*
+  ] ;
+  [preferenceObservableAttributeMap searchKey
+    !mPropertyName
+    ?outObservablePropertyType
+    ?*
+    ?*
+  ] ;
+  outObservedObjectName := "g_" . mPreferenceName ;
+  ioImplementationFileInclusionSet += !mPreferenceName->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBindingBoundToController analyzeModel
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap inControllerMap
+  ?!@stringset unused ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+:
+  [inControllerMap searchKey
+    !mControllerName
+    ?5*
+    ?@observablePropertyMap controllerObservableAttributeMap
+  ] ;
+  [controllerObservableAttributeMap searchKey
+    !mPropertyName
+    ?outObservablePropertyType
+    ?*
+    ?*
+  ] ;
+  outObservedObjectName := mControllerName->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBinding analyzeOutletBinding
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@preferencesMap inPreferencesMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
+:
+  @outletClassBindingOptionMap outletClassBindingOptionMap ;
+  @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
+  [inBindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
+#--- Find observable property
+  @string generatedBindingName := mBindingName->string ;
+  @uint idx := 1 ;
+  foreach mMultiValuedBindingList do
+    [mBoundModel analyzeModel
+      !inRootEntityObservableAttributeMap
+      !inSelfObservableAttributeMap
+      !inPreferencesMap
+      !inControllerMap
+      !?ioImplementationFileInclusionSet
+      ?@string observedObjectName
+      ?@easyBindingType observablePropertyType
+    ] ;
+  #----------------------------------------- check model belongs to an acceptable type
+    @bool found := false ;
+    @formatterEnum requiredFormatter [noFormatter] ;
+    foreach acceptableTypeFormatterList while not found do
+      requiredFormatter := mRequiredFormatter ;
+      found := mType == observablePropertyType ;
+    end foreach ;
+    if not found then
+      @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+      foreach acceptableTypeFormatterList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error [mBoundModel mPropertyName] :s ;
+    end if ;
+  #--- Check options
+    @2stringlist bindingOptionList [emptyList] ;
+    if mNegate then
+      bindingOptionList += !"NSValueTransformerName" !"NSNegateBooleanTransformerName" ;
+    end if ;
+    foreach mOutletBindingOptionList do
+      @easyBindingTypeList acceptableTypeList ;
+      [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+      @bool found := false ;
+      foreach acceptableTypeList while not found do
+        foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+          found := mType == optionValue_mType ;
+        end foreach ;
+      end foreach ;
+      if not found then
+        @string s := "the option value acceptable types are:" ;
+        foreach acceptableTypeList while not found do
+          s .= "\n  - '" . [mType ebTypeName] . "'" ;
+        end foreach ;
+        error mOptionName:s ;
+      end if ;
+      bindingOptionList += ![mOptionName string] !mOptionValueObjectiveCObject ;
+    end foreach ;
+    ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+      !generatedBindingName
+      !requiredFormatter
+      !observedObjectName
+      ![mBoundModel mPropertyName]->string
+      !bindingOptionList
+    ] ;
+  #---
+    idx ++ ;
+    generatedBindingName := mBindingName->string . idx ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularPreferenceBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mBindingName: "a preference does not implement the $" . mBindingName . " binding" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @multiValuedBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mBindingName: "a controller does not implement the $" . mBindingName . " binding" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine checkBindingOptions
+  ??@outletBindingOptionList inBindingOptionListAST
+  ??@outletClassBindingOptionMap inAvailableBindingOptionMap
+  !@2stringlist outBindingOptionListForGeneration
+:
+  outBindingOptionListForGeneration := [@2stringlist emptyList] ;
+  foreach inBindingOptionListAST do
+    @easyBindingTypeList acceptableTypeList ;
+    [inAvailableBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    foreach acceptableTypeList while not found do
+      foreach mOptionValuePossibleTypes prefixedby optionValue_ while not found do
+        found := mType == optionValue_mType ;
+      end foreach ;
+    end foreach ;
+    if not found then
+      @string s := "the option value acceptable types are:" ;
+      foreach acceptableTypeList while not found do
+        s .= "\n  - '" . [mType ebTypeName] . "'" ;
+      end foreach ;
+      error mOptionName:s ;
+    end if ;
+    outBindingOptionListForGeneration += ![mOptionName string] !mOptionValueObjectiveCObject ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @tableValueBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mControllerName: "a controller does not implement $tableValue binding" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @runBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mTargetName: "a controller does not implement $run action" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularControllerBinding analyzeControllerBinding
+  ??@relationshipMap unused inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap unused inControllerClassBindingMap
+  ??@lstring unused inControlledClassOrEntityName
+  ??@observablePropertyMap unused inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration unused ioBindingListForGeneration
+:
+  error mBindingName: "a controller does not implement $" . mBindingName . " binding" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularRootBinding analyzeControllerBinding
+  ??@relationshipMap inAllRelationshipMap
+  ??@preferenceArrayMap unused inPreferenceArrayMap
+  ??@outletClassBindingMap inControllerClassBindingMap
+  ??@lstring inControlledClassOrEntityName
+  ??@observablePropertyMap inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration ioBindingListForGeneration
+:
+  @string boundTypeIdentifierString ;
+  if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
+    @easyBindingType t ;
+    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
+    boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
+  elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
+    @bool isToMany ;
+    @lstring destinationEntityName ;
+    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
+    if isToMany then
+      boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
+    else
+      boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
+    end if ;
+  else
+    error mObservableAttributeName
+    :"unknown property"
+    : boundTypeIdentifierString ;
+  end if ;
+  @easyBindingTypeAndFormatterList acceptableTypeList ;
+  @outletClassBindingOptionMap availableBindingOptionMap ;
+  [inControllerClassBindingMap searchKey !mBindingName ?acceptableTypeList ?availableBindingOptionMap] ;
+  @bool found := false ;
+  @string acceptableTypesString := "" ;
+  foreach acceptableTypeList while not found do
+     const @string acceptableType := [mType ebTypeIdentifier !inControlledClassOrEntityName->string] ;
+     acceptableTypesString .= "\n-  '" . acceptableType . "'" ;
+     found := boundTypeIdentifierString == acceptableType ;
+  end foreach ;
+  if not found then
+    error mObservableAttributeName
+    :"cannot bind: property type is '" . boundTypeIdentifierString . "', acceptable type(s):" . acceptableTypesString
+    ;
+  end if ;
+  checkBindingOptions
+    !mOutletBindingOptionList
+    !availableBindingOptionMap
+    ?@2stringlist bindingOptionListForGeneration
+  ;
+  ioBindingListForGeneration += ![@regularBindingForGeneration new
+    !mBindingName->string
+    ![@formatterEnum noFormatter]
+    !"mRootObjectController"
+    !"selection." . mObservableAttributeName
+    !bindingOptionListForGeneration
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularSelfBinding analyzeControllerBinding
+  ??@relationshipMap inAllRelationshipMap
+  ??@preferenceArrayMap inPreferenceArrayMap
+  ??@outletClassBindingMap inControllerClassBindingMap
+  ??@lstring inControlledClassOrEntityName
+  ??@observablePropertyMap inAllObservablePropertyMap
+  ?!@outletBindingListForGeneration ioBindingListForGeneration
+:
+  @string boundTypeIdentifierString ;
+  if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
+    @easyBindingType t ;
+    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
+    boundTypeIdentifierString := [t ebTypeIdentifier !""] ;
+  elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
+    @bool isToMany ;
+    @lstring destinationEntityName ;
+    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
+    if isToMany then
+      boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
+    else
+      boundTypeIdentifierString := "toOne[" . destinationEntityName . "]" ;
+    end if ;
+  elsif [inPreferenceArrayMap hasKey !mObservableAttributeName->string] then
+    [inPreferenceArrayMap searchKey !mObservableAttributeName ?@string className ?2*] ;
+    boundTypeIdentifierString := "array[" . className . "]" ;
+  else
+    error mObservableAttributeName
+    :"unknown property"
+    : boundTypeIdentifierString ;
+  end if ;
+  @easyBindingTypeAndFormatterList acceptableTypeList ;
+  @outletClassBindingOptionMap availableBindingOptionMap ;
+  [inControllerClassBindingMap searchKey !mBindingName ?acceptableTypeList ?availableBindingOptionMap] ;
+  @bool found := false ;
+  @string acceptableTypesString := "" ;
+  foreach acceptableTypeList while not found do
+     const @string acceptableType := [mType ebTypeIdentifier !inControlledClassOrEntityName->string] ;
+     acceptableTypesString .= "\n-  '" . acceptableType . "'" ;
+     found := boundTypeIdentifierString == acceptableType ;
+  end foreach ;
+  if not found then
+    error mObservableAttributeName
+    :"cannot bind: property type is '" . boundTypeIdentifierString . "', acceptable type(s):" . acceptableTypesString
+    ;
+  end if ;
+  checkBindingOptions
+    !mOutletBindingOptionList
+    !availableBindingOptionMap
+    ?@2stringlist bindingOptionListForGeneration
+  ;
+  ioBindingListForGeneration += ![@regularBindingForGeneration new
+    !mBindingName->string
+    ![@formatterEnum noFormatter]
+    !"self"
+    !mObservableAttributeName->string
+    !bindingOptionListForGeneration
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

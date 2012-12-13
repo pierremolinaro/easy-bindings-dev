@@ -1,0 +1,177 @@
+semantics preferencesAnalysis :
+  import "transientAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local routine analyzePreference
+  ??@preferencesDeclarationList.element inPreference
+  ??@controllerClassMap inControllerClassMap
+  ??@classMap inClassMap
+  ??@outletClassMap inOutletClassMap
+  ?!@preferencesMap ioPreferencesMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------------- Analyze actions
+  @actionMap actionMap [emptyMap] ;
+  for actionName in inPreference->mActionDeclarationList do
+    [!?actionMap insertKey !actionName->mValue] ;
+  end for ;
+#------------------------------------- Analyze attributes
+  @observablePropertyMap observableAttributeMap [emptyMap] ;
+  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+  foreach inPreference->mAttributeList do
+    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
+    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    const @lstring observationDependencyKey [new
+      !"preference." . inPreference->mPreferencesName->string . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?observableAttributeMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#------------------------------------- Analyze arraies
+  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
+  foreach inPreference->mClassArrayList do
+    [inClassMap searchKey
+      !mClassName
+      ?*
+      ?@observablePropertyMap classObservablePropertyMap
+      ?2*
+      ?@attributeListForImplementation attributeListForImplementation
+      ?2*
+    ] ;
+    [!?preferenceArrayMap insertKey
+      !mArrayName
+      !mClassName->string
+      !classObservablePropertyMap
+      !attributeListForImplementation
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze controllers
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @controllerMap controllerMap [emptyMap] ;
+  foreach inPreference->mControllerList do
+    [inControllerClassMap searchKey
+      !mControllerClassName
+      ?*
+      ?@outletClassBindingMap controllerClassBindingMap
+      ?@actionMap controllerActionMap
+      ?@observablePropertyMap controllerObservablePropertyMap
+    ] ;
+    [inClassMap searchKey !mControlledClassOrEntityName ?7*] ;
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    foreach mControllerBindingList do
+      [mBinding analyzeControllerBinding
+        ![@relationshipMap emptyMap]
+        !preferenceArrayMap
+        !controllerClassBindingMap
+        !mControlledClassOrEntityName
+        !observablePropertyMap
+        !?bindingListForGeneration
+      ] ;
+    end foreach ;
+    [!?controllerMap insertKey
+      !mControllerName
+      !mControllerClassName->string
+      !mControlledClassOrEntityName->string
+      !false # Is not an entity : it is a class
+      !bindingListForGeneration
+      !controllerActionMap
+      !controllerObservablePropertyMap
+    ] ;
+  end foreach ;
+#------------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeTransientProperties
+    ![@preferencesMap emptyMap]
+    !"preference." . inPreference->mPreferencesName . "."
+    !inPreference->mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !"" # No Root entity
+    ![@controllerMap emptyMap]
+    !?observableAttributeMap
+    !?implementationFileInclusionSet
+    ?transientListForImplementation
+    !?ioTransientDependencyGraph
+  ;
+#------------------------------------- Analyze outlets
+  @outletGenerationList outletGenerationList [emptyList] ;
+  foreach inPreference->mOutletDeclarationList do
+    [inOutletClassMap searchKey
+      !mOutletType
+      ?@generationKind generationKind
+      ?2*
+      ?@outletClassBindingMap bindingMap
+      ?@bool hasTableValueBinding
+    ] ;
+    if generationKind != [@generationKind noGeneration] then
+      implementationFileInclusionSet += !mOutletType->string ;
+    end if ;
+    @outletBindingListForGeneration outletBindingList [emptyList] ;
+    foreach mOutletBindingList do
+      [mBinding analyzeOutletBinding
+        ![@observablePropertyMap emptyMap]
+        !observableAttributeMap
+        ![@preferencesMap emptyMap]
+        ![@entityMap emptyMap]
+        !inClassMap
+        !bindingMap
+        !controllerMap
+        !actionMap
+        !hasTableValueBinding
+        !?outletBindingList
+        !?implementationFileInclusionSet
+      ] ;
+    end foreach ;
+    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
+  end foreach ;
+#------------------------------------- Enter in preference map
+  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?ioPreferencesMap insertKey
+    !inPreference->mPreferencesName
+    !attributeListForImplementation
+    !transientListForImplementation
+    !outletGenerationList
+    !inPreference->mActionDeclarationList
+    !observableAttributeMap
+    !implementationFileInclusionSet
+    !controllerMap
+    !preferenceArrayMap
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzePreferences
+  ??@preferencesDeclarationList inPreferencesList
+  ??@controllerClassMap inControllerClassMap
+  ??@classMap inClassMap
+  ??@outletClassMap inOutletClassMap
+  !@preferencesMap outPreferencesMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  outPreferencesMap := [@preferencesMap emptyMap] ;
+  for preference in inPreferencesList do
+    analyzePreference
+      !preference
+      !inControllerClassMap
+      !inClassMap
+      !inOutletClassMap
+      !?outPreferencesMap
+      !?ioTransientDependencyGraph
+    ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

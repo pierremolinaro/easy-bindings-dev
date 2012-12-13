@@ -1,4 +1,4 @@
-controllerClass NSArrayController {
+predefined controllerClass NSArrayController {
   action add ;
   action remove ;
   attribute bool canRemove ;
@@ -57,7 +57,7 @@ controllerClass NSArrayController {
   # Warning: skipped $filterPredicate binding
 }
 
-controllerClass NSObjectController {
+predefined controllerClass NSObjectController {
   action add ;
   action remove ;
   $editable : bool {
