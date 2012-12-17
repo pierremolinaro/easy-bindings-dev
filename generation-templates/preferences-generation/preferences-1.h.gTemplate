@@ -1,5 +1,8 @@
 #import <Cocoa/Cocoa.h>
-
+%foreach HEADER_INCLUSION_SET do
+  %#import "%!key%.h"\n%
+end foreach
+%
 //----------------------------------------------------------------------------*
 
 @class %!PREFERENCES_NAME% ;

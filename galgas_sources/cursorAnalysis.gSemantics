@@ -1,0 +1,34 @@
+semantics cursorAnalysis :
+  import "easyBindings_options.gOption" ;
+  import "transientAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine cursorAnalysis
+  ??@cursorList inCursorList
+  !@userCursorMap outCursorMap
+  !@stringlist outPredefinedCursorList
+:
+  outCursorMap := [@userCursorMap emptyMap] ;
+  foreach inCursorList do
+    [!?outCursorMap insertKey !mCursorName !mHotSpotX->double !mHotSpotY->double] ;
+  end foreach ;
+  outPredefinedCursorList := [@stringlist emptyList] ;
+  outPredefinedCursorList += !"arrowCursor" ;
+  outPredefinedCursorList += !"IBeamCursor" ;
+  outPredefinedCursorList += !"crosshairCursor" ;
+  outPredefinedCursorList += !"closedHandCursor" ;
+  outPredefinedCursorList += !"openHandCursor" ;
+  outPredefinedCursorList += !"pointingHandCursor" ;
+  outPredefinedCursorList += !"resizeLeftCursor" ;
+  outPredefinedCursorList += !"resizeRightCursor" ;
+  outPredefinedCursorList += !"resizeLeftRightCursor" ;
+  outPredefinedCursorList += !"resizeUpCursor" ;
+  outPredefinedCursorList += !"resizeDownCursor" ;
+  outPredefinedCursorList += !"resizeUpDownCursor" ;
+  outPredefinedCursorList += !"disappearingItemCursor" ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

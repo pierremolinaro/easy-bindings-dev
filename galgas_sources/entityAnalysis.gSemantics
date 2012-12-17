@@ -7,6 +7,7 @@ semantics entityAnalysis :
 
 local routine analyzeEntity
   ??@entityList.element inEntity
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@entityMap ioEntityMap
   ??@preferencesMap inPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -31,7 +32,7 @@ local routine analyzeEntity
       ?allPropertyMap
       ?*
       ?allRelationshipMap
-      ?2*
+      ?3*
     ] ;
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
@@ -44,11 +45,18 @@ local routine analyzeEntity
   @attributeListForImplementation attributeListForImplementation [emptyList] ;
   const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
 #--------------------------------------- Analyze attributes
+  @stringset headerFileInclusionSet [emptySet] ;
   foreach inEntity->mAttributeList do
-    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
+    [mDefaultValue analyzeDefaultValueType
+      ![@easyBindingTypeList listWithValue !mType]
+      !inGlobalEnumConstantMap
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+    ] ;
+    [mType addFileInclusion !?headerFileInclusionSet] ;
     [!?allPropertyMap insertKey !mAttributeName] ;
-    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-    propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+    propertyListForInitMethodHeader += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
     const @lstring observationDependencyKey [new
       !"entity." . inEntity->mEntityName . "." . mAttributeName
       !mAttributeName->location
@@ -88,7 +96,7 @@ local routine analyzeEntity
     ] ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
-      ![@easyBindingType toManyEntitiesType]
+      ![@toManyEntitiesType new !inEntity->mEntityName->string]
       !false # is not transient
       !observationDependencyKey->string
     ] ;    
@@ -138,6 +146,7 @@ local routine analyzeEntity
     !allPropertyMap
     !currentRelationshipMap
     !allRelationshipMap
+    !headerFileInclusionSet
     !implementationFileInclusionSet
     !toManyRelationshipList
   ] ;
@@ -147,6 +156,7 @@ end routine ;
 
 routine analyzeEntities
   ??@entityList inEntityList
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   !@entityMap outEntityMap
   ??@preferencesMap inPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -156,6 +166,7 @@ routine analyzeEntities
   for entity in inEntityList do
     analyzeEntity
       !entity
+      !inGlobalEnumConstantMap
       !?outEntityMap
       !inPreferencesMap
       !?ioTransientDependencyGraph
@@ -165,7 +176,7 @@ routine analyzeEntities
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?2*] ;
+      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?3*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then

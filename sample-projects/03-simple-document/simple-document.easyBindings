@@ -1,5 +1,12 @@
+
+enum MonEnumeration {premier, deuxieme, troisieme}
+
+#--------------------------------------------------------------*
+
 entity MyRootEntity class MyRootEntityClass {
   attribute NSString myString default "Hello" ;
+  attribute MonEnumeration myEnumeration default deuxieme ;
+  attribute NSColor myColor default yellowColor ;
   
   transient NSString myStringMaj dependsFrom self.myString ;
   transient NSString myStringMin dependsFrom self.myString ;
@@ -13,6 +20,8 @@ document PMDocument root MyRootEntity {
   outlet NSTextField myTextMajField $value root.myStringMaj ;
   outlet NSTextField myTextMinField $value root.myStringMin ;
   outlet NSTextField myTextConcatField $value root.myStringConcat ;
+  outlet NSMatrix myMatrix $selectedIndex root.myEnumeration ;
+  outlet NSColorWell myColorWell $value root.myColor ;
   
   action monAction ;
   action autreAction ;

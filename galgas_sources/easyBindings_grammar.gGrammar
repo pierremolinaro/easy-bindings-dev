@@ -10,6 +10,7 @@ root <start_symbol>
   ?!@controllerClassList ioControllerClassList
   ?!@protocolList ioProtocolList
   ?!@cursorList ioCursorList
+  ?!@enumList ioEnumList
   !@location outEndOfFile
 ;
 

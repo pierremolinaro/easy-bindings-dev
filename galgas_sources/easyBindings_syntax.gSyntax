@@ -14,6 +14,7 @@ rule <start_symbol>
   ?!@controllerClassList ioControllerClassList
   ?!@protocolList ioProtocolList
   ?!@cursorList ioCursorList
+  ?!@enumList ioEnumList
   !@location outEndOfFile
 :
   repeat
@@ -34,8 +35,11 @@ rule <start_symbol>
       !?ioControllerClassList
       !?ioProtocolList
       !?ioCursorList
+      !?ioEnumList
       ?*
     ;
+  while
+    <enum_declaration> !?ioEnumList ;
   while
     <cursor_declaration> !?ioCursorList ;
   while
@@ -69,13 +73,10 @@ rule <binding_options>
     repeat
       $Identifier$ ? @lstring optionName ;
       $:$ ;
-      @easyBindingTypeList correspondingAcceptableTypes ;
-      @string defaultValueObjectiveCObject ;
-      <explicit_value> ?correspondingAcceptableTypes ?defaultValueObjectiveCObject ?* ;
+      <explicit_value> ?@abstractDefaultValue defaultValue ;
       outBindingOptionList +=
         !optionName
-        !correspondingAcceptableTypes
-        !defaultValueObjectiveCObject
+        !defaultValue
       ;
     while
       $,$ ;
@@ -381,144 +382,33 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-once predefinedDates -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"date" ;
-end once ;
-
-#----------------------------------------------------------------------------*
-
-once predefinedColors -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"blackColor" ;
-  outResult += !"blueColor" ;
-  outResult += !"brownColor" ;
-  outResult += !"clearColor" ;
-  outResult += !"controlColor" ;
-  outResult += !"controlDarkShadowColor" ;
-  outResult += !"controlHighlightColor" ;
-  outResult += !"controlLightHighlightColor" ;
-  outResult += !"controlShadowColor" ;
-  outResult += !"controlTextColor" ;
-  outResult += !"cyanColor" ;
-  outResult += !"darkGrayColor" ;
-  outResult += !"disabledControlTextColor" ;
-  outResult += !"grayColor" ;
-  outResult += !"greenColor" ;
-  outResult += !"gridColor" ;
-  outResult += !"headerColor" ;
-  outResult += !"headerTextColor" ;
-  outResult += !"highlightColor" ;
-  outResult += !"keyboardFocusIndicatorColor" ;
-  outResult += !"knobColor" ;
-  outResult += !"lightGrayColor" ;
-  outResult += !"magentaColor" ;
-  outResult += !"orangeColor" ;
-  outResult += !"purpleColor" ;
-  outResult += !"redColor" ;
-  outResult += !"scrollBarColor" ;
-  outResult += !"selectedControlColor" ;
-  outResult += !"selectedControlTextColor" ;
-  outResult += !"selectedKnobColor" ;
-  outResult += !"selectedMenuItemColor" ;
-  outResult += !"selectedMenuItemTextColor" ;
-  outResult += !"selectedTextBackgroundColor" ;
-  outResult += !"selectedTextColor" ;
-  outResult += !"shadowColor" ;
-  outResult += !"textBackgroundColor" ;
-  outResult += !"textColor" ;
-  outResult += !"whiteColor" ;
-  outResult += !"windowBackgroundColor" ;
-  outResult += !"windowFrameColor" ;
-  outResult += !"windowFrameTextColor" ;
-  outResult += !"yellowColor" ;
-end once ;
-
-#----------------------------------------------------------------------------*
-
-once predefinedFonts -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"boldSystemFontOfSize" ;
-  outResult += !"controlContentFontOfSize" ;
-  outResult += !"labelFontOfSize" ;
-  outResult += !"menuFontOfSize" ;
-  outResult += !"menuBarFontOfSize" ;
-  outResult += !"messageFontOfSize" ;
-  outResult += !"paletteFontOfSize" ;
-  outResult += !"systemFontOfSize" ;
-  outResult += !"titleBarFontOfSize" ;
-  outResult += !"toolTipsFontOfSize" ;
-end once ;
-
-#----------------------------------------------------------------------------*
-
 rule <explicit_value>
-  !@easyBindingTypeList outCorrespondingAcceptableTypes
-  !@string outDefaultValueObjectiveCObject
-  !@string outDirectDefaultValue
+  !@abstractDefaultValue outDefaultValue
 :
-  outCorrespondingAcceptableTypes := [@easyBindingTypeList emptyList] ;
   select
     $YES$ ;
-    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:YES]" ;
-    outDirectDefaultValue := "YES" ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
+    outDefaultValue := [@boolDefaultValue new ![@lbool new !true !here]] ;
   or
     $NO$ ;
-    outDefaultValueObjectiveCObject := "[NSNumber numberWithBool:NO]" ;
-    outDirectDefaultValue := "NO" ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType boolType] ;
+    outDefaultValue := [@boolDefaultValue new ![@lbool new !false !here]] ;
   or
     $literal_integer$ ? @luint integerValue ;
-    outDirectDefaultValue := [integerValue string] ;
-    outDefaultValueObjectiveCObject := "[NSNumber numberWithInteger:" . [integerValue string] . "]" ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType integerType] ;
+    outDefaultValue := [@integerDefaultValue new !integerValue] ;
   or
     $literal_double$ ? @ldouble doubleValue ?* ;
-    outDirectDefaultValue := [doubleValue->double string] ;
-    outDefaultValueObjectiveCObject := "[NSNumber numberWithDouble:" . doubleValue->double . "]" ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType doubleType] ;
+    outDefaultValue := [@doubleDefaultValue new !doubleValue] ;
   or
-    $literal_string$ ? @lstring stringValue ;
-    outDefaultValueObjectiveCObject := "@" . [stringValue utf8Representation] ;
-    outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-    outCorrespondingAcceptableTypes += ![@easyBindingType stringType] ;
+    $literal_string$ ?@lstring stringValue ;
+    outDefaultValue := [@stringDefaultValue new !stringValue] ;
   or
     $identifier$ ? @lstring stringValue ;
-    @luint additionalIntegerValue ;
     select
-      additionalIntegerValue := [@luint new !0 ![@location nowhere]] ;
+      outDefaultValue := [@identifierDefaultValue new !stringValue] ;
     or
       $:$ ;
-      $literal_integer$ ? additionalIntegerValue ;
+      $literal_integer$ ?@luint additionalIntegerValue ;
+      outDefaultValue := [@identifierIntegerDefaultValue new !stringValue !additionalIntegerValue] ;
     end select ;
-    if [predefinedColors [] hasKey ![stringValue string]] then
-      outDefaultValueObjectiveCObject := "[NSColor " . stringValue . "]" ;
-      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-      outCorrespondingAcceptableTypes += ![@easyBindingType colorType] ;
-      if additionalIntegerValue->location != [@location nowhere] then
-        error additionalIntegerValue:"an integer value is not allowed for a color" ;
-      end if ;
-    elsif [predefinedDates [] hasKey ![stringValue string]] then
-      outDefaultValueObjectiveCObject := "[NSDate " . stringValue . "]" ;
-      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-      outCorrespondingAcceptableTypes += ![@easyBindingType dateType] ;
-      if additionalIntegerValue->location != [@location nowhere] then
-        error additionalIntegerValue:"an integer value is not allowed for a date" ;
-      end if ;
-    elsif [predefinedFonts [] hasKey ![stringValue string]] then
-      outDefaultValueObjectiveCObject := "[NSFont " . stringValue . ":" . additionalIntegerValue->uint . "]" ;
-      outDirectDefaultValue := outDefaultValueObjectiveCObject ;
-      outCorrespondingAcceptableTypes += ![@easyBindingType fontType] ;
-      if additionalIntegerValue->location == [@location nowhere] then
-        error stringValue:"an integer value is needed for a font" ;
-      end if ;
-    else
-      error stringValue
-      : "unknown constant value"
-      : outDefaultValueObjectiveCObject, outDirectDefaultValue, outCorrespondingAcceptableTypes
-      ;
-    end if ;
   end select ;
 end rule ;
 
@@ -555,21 +445,21 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $attribute$ ;
-  <attribute_type> ?@easyBindingType propertyType ;
+  @easyBindingType propertyType ;
+  select
+    $Identifier$ ? @lstring enumTypeName ;
+    propertyType := [@enumType new !enumTypeName->string] ;
+  or
+    <attribute_type> ?propertyType ;
+  end select ;
   $identifier$ ? @lstring propertyName ;
   $default$ ;
-  <explicit_value>
-    ?@easyBindingTypeList correspondingAcceptableTypes
-    ?@string defaultValueObjectiveCObject
-    ?@string directDefaultValue
-  ;
+  <explicit_value> ?@abstractDefaultValue defaultValue ;
   $;$ ;
   ioAttributeList +=
     !propertyType
     !propertyName
-    !correspondingAcceptableTypes
-    !defaultValueObjectiveCObject
-    !directDefaultValue
+    !defaultValue
   ;
 end rule ;
 
@@ -709,46 +599,46 @@ rule <attribute_type>
 :
   select
     $bool$ ;
-    outPropertyType := [@easyBindingType boolType] ;
+    outPropertyType := [@boolType new] ;
   or
     $integer$ ;
-    outPropertyType := [@easyBindingType integerType] ;
+    outPropertyType := [@integerType new] ;
   or
     $double$ ;
-    outPropertyType := [@easyBindingType doubleType] ;
+    outPropertyType := [@doubleType new] ;
   or
     $decimal$ ;
-    outPropertyType := [@easyBindingType decimalType] ;
+    outPropertyType := [@decimalType new] ;
   or
     $NSString$ ;
-    outPropertyType := [@easyBindingType stringType] ;
+    outPropertyType := [@stringType new] ;
   or
     $NSFont$ ;
-    outPropertyType := [@easyBindingType fontType] ;
+    outPropertyType := [@fontType new] ;
   or
     $NSImage$ ;
-    outPropertyType := [@easyBindingType imageType] ;
+    outPropertyType := [@imageType new] ;
   or
     $NSColor$ ;
-    outPropertyType := [@easyBindingType colorType] ;
+    outPropertyType := [@colorType new] ;
   or
     $NSData$ ;
-    outPropertyType := [@easyBindingType dataType] ;
+    outPropertyType := [@dataType new] ;
   or
     $NSDate$ ;
-    outPropertyType := [@easyBindingType dateType] ;
+    outPropertyType := [@dateType new] ;
   or
     $NSValue$ ;
-    outPropertyType := [@easyBindingType valueType] ;
+    outPropertyType := [@valueType new] ;
   or
     $NSArray$ ;
-    outPropertyType := [@easyBindingType arrayType] ;
+    outPropertyType := [@arrayType new] ;
   or
     $NSBezierPath$ ;
-    outPropertyType := [@easyBindingType bezierPathType] ;
+    outPropertyType := [@bezierPathType new] ;
   or
     $NSMenu$ ;
-    outPropertyType := [@easyBindingType menuType] ;
+    outPropertyType := [@menuType new] ;
   end select ;
 end rule ;
 
@@ -765,14 +655,16 @@ rule <type_list>
       outEasyBindingTypeList += !bindingType ;
     or
       $int$ ;
-      outEasyBindingTypeList += ![@easyBindingType integerType] ;
-      outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
+      outEasyBindingTypeList += ![@integerType new] ;
+      outEasyBindingTypeList += ![@uintegerType new] ;
+      outEasyBindingTypeList += ![@enumType new !"unknow enum type"] ;
     or
       $number$ ;
-      outEasyBindingTypeList += ![@easyBindingType integerType] ;
-      outEasyBindingTypeList += ![@easyBindingType uintegerType] ;
-      outEasyBindingTypeList += ![@easyBindingType decimalType] ;
-      outEasyBindingTypeList += ![@easyBindingType doubleType] ;
+      outEasyBindingTypeList += ![@integerType new] ;
+      outEasyBindingTypeList += ![@uintegerType new] ;
+      outEasyBindingTypeList += ![@decimalType new] ;
+      outEasyBindingTypeList += ![@doubleType new] ;
+      outEasyBindingTypeList += ![@enumType new !"unknow enum type"] ;
     end select ;
   while
     $,$ ;
@@ -810,21 +702,23 @@ rule <type_formatter_list>
     or
       $int$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integerType] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integerType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@uintegerType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@enumType new !"unknow enum type"] !requiredFormatter  ;
     or
       $number$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType integerType] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType uintegerType] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType decimalType] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType doubleType] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@integerType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@uintegerType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@decimalType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@enumType new !"unknow enum type"] !requiredFormatter  ;
     or
       $toManyEntities$ ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType toManyEntitiesType] ![@formatterEnum noFormatter] ;
+      outEasyBindingTypeFormatterList += ![@toManyEntitiesType new !"??"] ![@formatterEnum noFormatter] ;
     or
       $array$ ;
-      outEasyBindingTypeFormatterList += ![@easyBindingType objectArrayType] ![@formatterEnum noFormatter] ;
+      outEasyBindingTypeFormatterList += ![@objectArrayType new !"??"] ![@formatterEnum noFormatter] ;
     end select ;
   while
     $,$ ;
@@ -946,6 +840,25 @@ rule <cursor_declaration>
   $)$ ;
   $;$ ;
   ioCursorList += !cursorName !hotSpotX !hotSpotY ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <enum_declaration>
+  ?!@enumList ioEnumList
+:
+  $enum$ ;
+  $Identifier$ ? @lstring enumName ;
+  ${$ ;
+  @lstringlist enumConstants [emptyList] ;
+  repeat
+    $identifier$ ? @lstring constantName ;
+    enumConstants += !constantName ;
+  while
+    $,$ ;
+  end repeat ;
+  $}$ ;
+  ioEnumList += !enumName !enumConstants ;
 end rule ;
 
 #----------------------------------------------------------------------------*

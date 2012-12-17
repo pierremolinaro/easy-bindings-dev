@@ -103,7 +103,7 @@ override method @transientRootDependency analyze
     ?@string masterDependencyKey
   ] ;
 #--- Has 'count' option ?
-  if mNamesCountOption & (masterType != [@easyBindingType toManyEntitiesType]) then
+  if mNamesCountOption & not [masterType isToManyEntitiesType] then
     error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
   end if ;
 #--- Add dependency arc
@@ -134,7 +134,7 @@ override method @transientPreferenceDependency analyze
   ?!@transientDependencyGraph ioTransientDependencyGraph
   !@abstractTransientDependencyForImplementation outImplementation
 :
-  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?3*] ;
+  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?4*] ;
   [observablePropertyMap searchKey
     !mMasterName
     ?@easyBindingType masterType

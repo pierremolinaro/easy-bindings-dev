@@ -1,6 +1,6 @@
-semantics cursors_generation :
+semantics cursorGeneration :
   import "easyBindings_options.gOption" ;
-  import "semanticAnalysis.gSemantics" ;
+  import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

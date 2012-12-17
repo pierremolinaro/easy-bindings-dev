@@ -1,5 +1,7 @@
 
-//--- Init method
+//--- Init methods
+- (id) init ;
+
 %foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
   before %-(id) initWith%
   do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]

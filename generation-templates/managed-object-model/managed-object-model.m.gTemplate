@@ -1,6 +1,9 @@
 #import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
-
+%foreach FILE_INCLUSION_SET do
+  %#import "%!key%.h"\n%
+end foreach
+%
 //----------------------------------------------------------------------------*
 
 static NSManagedObjectModel * buildManagedObjectModel (void) {

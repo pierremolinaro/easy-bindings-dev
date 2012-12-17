@@ -32,6 +32,10 @@ SOURCES += easyBindings_grammar.cpp
 SOURCES += easyBindingType.cpp
 SOURCES += abstractSyntaxTypes.cpp
 SOURCES += decoratedTypes.cpp
+SOURCES += enumAnalysis.cpp
+SOURCES += enumGeneration.cpp
+SOURCES += cursorAnalysis.cpp
+SOURCES += cursorGeneration.cpp
 SOURCES += bindingSemanticAnalysis.cpp
 SOURCES += bindingsGeneration.cpp
 SOURCES += classAnalysis.cpp
@@ -47,8 +51,6 @@ SOURCES += outletClassGeneration.cpp
 SOURCES += controllerClassAnalysis.cpp
 SOURCES += transientAnalysis.cpp
 SOURCES += transientGeneration.cpp
-SOURCES += semanticAnalysis.cpp
-SOURCES += cursors_generation.cpp
 SOURCES += easyBindings_program.cpp
 
 

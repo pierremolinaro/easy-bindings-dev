@@ -20,6 +20,7 @@ map @classMap {
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
   @stringset mImplementationFileInclusionSet ;
+  @stringset mHeaderFileInclusionSet ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -40,6 +41,7 @@ map @entityMap {
   @propertyMap mAllPropertyMap ;
   @relationshipMap mCurrentRelationshipMap ;
   @relationshipMap mAllRelationshipMap ;
+  @stringset mHeaderFileInclusionSet ;
   @stringset mImplementationFileInclusionSet ;
   @2stringlist mToManyRelationshipList ;
   insert insertKey error message "the '%K' entity is already declared" ;
@@ -204,6 +206,7 @@ map @preferencesMap {
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
   @observablePropertyMap mObservablePropertyMap ;
+  @stringset mHeaderFileInclusionSet ;
   @stringset mImplementationFileInclusionSet ;
   @controllerMap mControllerMap ;
   @preferenceArrayMap mArrayMap ;
@@ -329,6 +332,7 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool inHasTableValueBinding
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
   ?!@stringset ioImplementationFileInclusionSet
 ;
@@ -353,6 +357,7 @@ abstract method @abstractBinding analyzeControllerBinding
   ??@outletClassBindingMap inControllerClassBindingMap
   ??@lstring inControlledClassOrEntityName
   ??@observablePropertyMap inAllObservablePropertyMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@outletBindingListForGeneration ioBindingListForGeneration
 ;
 
@@ -365,19 +370,302 @@ abstract reader @abstractBindingForGeneration generateRemoveBinding
 
 #----------------------------------------------------------------------------*
 
-routine checkDefaultValueType
-  ??@easyBindingTypeList inDefaultValueCorrespondingAcceptableTypes
-  ??@easyBindingType inAttributeActualType
-  ??@lstring inAttributeName
+map @globalEnumConstantMap {
+  @lstring mEnumTypeName ;
+  insert insertKey error message "the '%K' enumeration constant is already declared" ;
+  search searchKey error message "the '%K' enumeration constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumConstantMap {
+  insert insertKey error message "the '%K' enumeration constant is already declared" ;
+  search searchKey error message "the '%K' enumeration constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumMap {
+  @lstringlist mConstantOrderedList ;
+  @enumConstantMap mEnumConstantMap ;
+  insert insertKey error message "the '%K' enumeration is already declared" ;
+  search searchKey error message "the '%K' enumeration is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+;
+
+#----------------------------------------------------------------------------*
+  
+override method @boolDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
 :
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
   @bool found := false ;
-  foreach inDefaultValueCorrespondingAcceptableTypes while not found do
-    found := inAttributeActualType == mType ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isBoolType] then
+      outDirectDefaultValueAsString := if mValue->bool then "YES" else "NO" end ;
+      outObjectiveCDefaultValueAsString := "[NSNumber numberWithBool:" . outDirectDefaultValueAsString . "]" ;
+      found := true ;
+    end if ;
   end foreach ;
   if not found then
-    error inAttributeName: "the default value is invalue for this attribute" ;
+    error mValue
+    : "only a boolean attribute can be initialized by YES or NO"
+    ;  
   end if ;
-end routine ;
+end method ;
+
+#----------------------------------------------------------------------------*
+  
+override method @integerDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+:
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
+  @bool found := false ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isIntegerType] then
+      outDirectDefaultValueAsString := [mValue->uint string] ;
+      outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . outDirectDefaultValueAsString . "]" ;
+      found := true ;
+    end if ;
+  end foreach ;
+  if not found then
+    error mValue
+    : "only an integer attribute can be initialized by an integer constant"
+    ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+  
+override method @doubleDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+:
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
+  @bool found := false ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isDoubleType] then
+      outDirectDefaultValueAsString := [mValue->double string] ;
+      outObjectiveCDefaultValueAsString := "[NSNumber numberWithDouble:" . outDirectDefaultValueAsString . "]" ;
+      found := true ;
+    end if ;
+  end foreach ;
+  if not found then
+    error mValue
+    : "only a double attribute can be initialized by a floating point constant"
+    ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+  
+override method @stringDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+:
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
+  @bool found := false ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isStringType] then
+      outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
+      outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      found := true ;
+    end if ;
+  end foreach ;
+  if not found then
+    error mValue
+    : "only a string attribute can be initialized by a string constant"
+    ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local once predefinedColors -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"blackColor" ;
+  outResult += !"blueColor" ;
+  outResult += !"brownColor" ;
+  outResult += !"clearColor" ;
+  outResult += !"controlColor" ;
+  outResult += !"controlDarkShadowColor" ;
+  outResult += !"controlHighlightColor" ;
+  outResult += !"controlLightHighlightColor" ;
+  outResult += !"controlShadowColor" ;
+  outResult += !"controlTextColor" ;
+  outResult += !"cyanColor" ;
+  outResult += !"darkGrayColor" ;
+  outResult += !"disabledControlTextColor" ;
+  outResult += !"grayColor" ;
+  outResult += !"greenColor" ;
+  outResult += !"gridColor" ;
+  outResult += !"headerColor" ;
+  outResult += !"headerTextColor" ;
+  outResult += !"highlightColor" ;
+  outResult += !"keyboardFocusIndicatorColor" ;
+  outResult += !"knobColor" ;
+  outResult += !"lightGrayColor" ;
+  outResult += !"magentaColor" ;
+  outResult += !"orangeColor" ;
+  outResult += !"purpleColor" ;
+  outResult += !"redColor" ;
+  outResult += !"scrollBarColor" ;
+  outResult += !"selectedControlColor" ;
+  outResult += !"selectedControlTextColor" ;
+  outResult += !"selectedKnobColor" ;
+  outResult += !"selectedMenuItemColor" ;
+  outResult += !"selectedMenuItemTextColor" ;
+  outResult += !"selectedTextBackgroundColor" ;
+  outResult += !"selectedTextColor" ;
+  outResult += !"shadowColor" ;
+  outResult += !"textBackgroundColor" ;
+  outResult += !"textColor" ;
+  outResult += !"whiteColor" ;
+  outResult += !"windowBackgroundColor" ;
+  outResult += !"windowFrameColor" ;
+  outResult += !"windowFrameTextColor" ;
+  outResult += !"yellowColor" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+
+local once predefinedDates -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"date" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+  
+override method @identifierDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+:
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
+  @bool found := false ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isColorType] then
+      found := true ;
+      if [predefinedColors [] hasKey !mValue->string] then
+        outDirectDefaultValueAsString := "[NSColor " . mValue->string . "]" ;
+        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      else
+        error mValue
+        : "unknown predefined color"
+        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+        ;  
+      end if ;
+    elsif [mType isDateType] then
+      found := true ;
+      if [predefinedDates [] hasKey !mValue->string] then
+        outDirectDefaultValueAsString := "[NSDate " . mValue->string . "]" ;
+        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      else
+        error mValue
+        : "unknown predefined date"
+        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+        ;  
+      end if ;
+    elsif [mType isEnumType] then
+      found := true ;
+      if [inGlobalEnumConstantMap hasKey !mValue->string] then
+        [inGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
+        if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName->string] ebTypeIdentifier] then
+          outDirectDefaultValueAsString := mValue->string ;
+          outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
+        else
+          error mValue
+          : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"
+          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+          ;  
+        end if ;
+      else
+        error mValue
+        : "unknown predefined date"
+        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+        ;  
+      end if ;
+    end if ;
+  end foreach ;
+  if not found then
+    error mValue
+    : "unknow type for this identifier"
+    : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+    ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local once predefinedFonts -> @stringset outResult :
+  outResult := [@stringset emptySet] ;
+  outResult += !"boldSystemFontOfSize" ;
+  outResult += !"controlContentFontOfSize" ;
+  outResult += !"labelFontOfSize" ;
+  outResult += !"menuFontOfSize" ;
+  outResult += !"menuBarFontOfSize" ;
+  outResult += !"messageFontOfSize" ;
+  outResult += !"paletteFontOfSize" ;
+  outResult += !"systemFontOfSize" ;
+  outResult += !"titleBarFontOfSize" ;
+  outResult += !"toolTipsFontOfSize" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+ 
+override method @identifierIntegerDefaultValue analyzeDefaultValueType 
+  ??@easyBindingTypeList inAttributeActualTypeList
+  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  !@string outDirectDefaultValueAsString
+  !@string outObjectiveCDefaultValueAsString
+:
+  outObjectiveCDefaultValueAsString := "" ;
+  outDirectDefaultValueAsString := "" ;
+  @bool found := false ;
+  foreach inAttributeActualTypeList while not found do
+    if [mType isFontType] then
+      found := true ;
+      if [predefinedFonts [] hasKey !mIdentifier->string] then
+        outDirectDefaultValueAsString := "[NSFont " . mIdentifier->string . ":" . [mInteger->uint string] . "]" ;
+        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      else
+        error mIdentifier
+        : "unknown predefined font name"
+        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+        ;  
+      end if ;
+    end if ;
+  end foreach ;
+  if not found then
+    error mIdentifier
+    : "only a font attribute can be initialized by an identifier followed by an integer constant"
+    ;  
+  end if ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

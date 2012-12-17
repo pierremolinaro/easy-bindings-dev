@@ -9,6 +9,7 @@ local routine analyzeDocument
   ??@controllerClassMap inControllerClassMap
   ??@entityMap inEntityMap
   ??@preferencesMap inPreferencesMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@documentMap ioDocumentMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -21,7 +22,7 @@ local routine analyzeDocument
     ?@observablePropertyMap rootObjectObservablePropertyMap
     ?8*
     ?@relationshipMap allRelationshipMap
-    ?2*
+    ?3*
   ] ;
 #-------------------------------------------------- Analyze controllers
   @observablePropertyMap observablePropertyMap [emptyMap] ;
@@ -37,7 +38,7 @@ local routine analyzeDocument
       ?controllerActionMap
       ?controllerObservablePropertyMap
     ] ;
-    [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
+    [inEntityMap searchKey !mControlledClassOrEntityName ?16*] ;
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     foreach mControllerBindingList do
       [mBinding analyzeControllerBinding
@@ -46,6 +47,7 @@ local routine analyzeDocument
         !controllerClassBindingMap
         !mControlledClassOrEntityName
         !observablePropertyMap
+        !inGlobalEnumConstantMap
         !?bindingListForGeneration
       ] ;
     end foreach ;
@@ -101,6 +103,7 @@ local routine analyzeDocument
         !controllerMap
         !documentActionMap
         !hasTableValueBinding
+        !inGlobalEnumConstantMap
         !?outletBindingList
         !?implementationFileInclusionSet
       ] ;
@@ -129,6 +132,7 @@ routine analyzeDocuments
   ??@controllerClassMap inControllerClassMap
   ??@entityMap inEntityMap
   ??@preferencesMap inPreferencesMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   !@documentMap outDocumentMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -140,6 +144,7 @@ routine analyzeDocuments
       !inControllerClassMap
       !inEntityMap
       !inPreferencesMap
+      !inGlobalEnumConstantMap
       !?outDocumentMap
       !?ioTransientDependencyGraph
     ;
