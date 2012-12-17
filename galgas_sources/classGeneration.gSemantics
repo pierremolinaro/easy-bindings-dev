@@ -1,6 +1,5 @@
 semantics classGeneration :
   import "easyBindings_options.gOption" ;
-  import "semanticAnalysis.gSemantics" ;
   import "transientGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -14,6 +13,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@stringset HEADER_INCLUSION_SET
   ;
   
   template classDeclarationPart2 "class-2.h.gTemplate"
@@ -31,7 +31,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
-    ?@stringset INCLUSION_SET
+    ?@stringset IMPLEMENTATION_INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
   ;
   
@@ -64,6 +64,7 @@ routine generateClassCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
+        !mHeaderFileInclusionSet
       ] ;
       @string s2 := [filewrapper classGenerationTemplate.classDeclarationPart2
         ![lkey string]

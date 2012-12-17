@@ -5,6 +5,7 @@ semantics classAnalysis :
 
 local routine analyzeClass
   ??@classList.element inClass
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@classMap ioClassMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -12,18 +13,25 @@ local routine analyzeClass
   @observablePropertyMap observablePropertyMap ;
   @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
   if [inClass->mSuperClassName string] != "" then
-    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?5*] ;
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
     propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
   end if ;
 #---------------------------------- Analyze attributes
+  @stringset headerFileInclusionSet [emptySet] ;
   @attributeListForImplementation attributeListForImplementation [emptyList] ;
   const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
   foreach inClass->mAttributeList do
-    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
-    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
-    propertyListForInitMethodHeader += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    [mDefaultValue analyzeDefaultValueType
+      ![@easyBindingTypeList listWithValue !mType]
+      !inGlobalEnumConstantMap
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+    ] ;
+    [mType addFileInclusion !?headerFileInclusionSet] ;
+    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+    propertyListForInitMethodHeader += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
     const @lstring observationDependencyKey [new
       !"class." . inClass->mClassName . "." . mAttributeName
       !mAttributeName->location
@@ -40,8 +48,8 @@ local routine analyzeClass
     ] ;
   end foreach ;
 #---------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
   @stringset implementationFileInclusionSet [emptySet] ;
+  @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
     ![@preferencesMap emptyMap]
     !"class." . inClass->mClassName . "."
@@ -65,6 +73,7 @@ local routine analyzeClass
     !attributeListForImplementation
     !transientListForImplementation
     !implementationFileInclusionSet
+    !headerFileInclusionSet
   ] ;
 end routine ;
 
@@ -72,6 +81,7 @@ end routine ;
 
 routine analyzeClasses
   ??@classList inClassList
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   !@classMap outClassMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -79,6 +89,7 @@ routine analyzeClasses
   for aClass in inClassList do
     analyzeClass
       !aClass
+      !inGlobalEnumConstantMap
       !?outClassMap
       !?ioTransientDependencyGraph
     ;

@@ -83,7 +83,12 @@ if [BINDING_MAP count] > 0 then
   between %}else%
 end foreach
 %  }else{
-    [super bind:inBindingName toObject:inObservableObject withKeyPath:inObservableKeyPath options:inOptions] ;
+    [super
+      bind:inBindingName
+      toObject:inObservableObject
+      withKeyPath:inObservableKeyPath
+      options:inOptions
+    ] ;
   }
 }
 
@@ -125,7 +130,7 @@ if [BINDING_MAP count] > 0 then
          change:(NSDictionary *) inChangeDictionary
          context:(void *) inContext {
  %foreach BINDING_MAP do
-% if ((mBoundObjectFor_%!lkey->string% == inObject) && [inKeyPath isEqualToString:@%![lkey utf8Representation]%]) {
+% if ((mBoundObjectFor_%!lkey->string% == inObject) && [inKeyPath isEqualToString:mKeyPathFor_%!lkey->string%]) {
     id value = [inObject valueForKeyPath:inKeyPath] ;
     [self valueFor_%!lkey->string%_didChange:value] ;
 %

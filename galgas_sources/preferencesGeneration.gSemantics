@@ -1,6 +1,5 @@
 semantics preferencesGeneration :
   import "easyBindings_options.gOption" ;
-  import "semanticAnalysis.gSemantics" ;
   import "transientGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -14,6 +13,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
+    ?@stringset HEADER_INCLUSION_SET
     ?@stringset CLASS_PREDECLARATION_SET
     ?@controllerMap CONTROLLER_MAP
   ;
@@ -74,6 +74,7 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mActionList
+        !mHeaderFileInclusionSet
         !mImplementationFileInclusionSet
         !mControllerMap
       ] ;

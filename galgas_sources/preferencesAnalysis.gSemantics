@@ -8,6 +8,7 @@ local routine analyzePreference
   ??@controllerClassMap inControllerClassMap
   ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@preferencesMap ioPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -18,10 +19,17 @@ local routine analyzePreference
   end for ;
 #------------------------------------- Analyze attributes
   @observablePropertyMap observableAttributeMap [emptyMap] ;
+  @stringset headerFileInclusionSet [emptySet] ;
   @attributeListForImplementation attributeListForImplementation [emptyList] ;
   foreach inPreference->mAttributeList do
-    checkDefaultValueType !mDefaultValueCorrespondingAcceptableTypes !mType !mAttributeName ;
-    attributeListForImplementation += !mType ![mAttributeName string] !mDefaultValueObjectiveCObject !mDirectDefaultValue ;
+    [mDefaultValue analyzeDefaultValueType
+      ![@easyBindingTypeList listWithValue !mType]
+      !inGlobalEnumConstantMap
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+    ] ;
+    [mType addFileInclusion !?headerFileInclusionSet] ;
+    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
     const @lstring observationDependencyKey [new
       !"preference." . inPreference->mPreferencesName->string . "." . mAttributeName
       !mAttributeName->location
@@ -46,7 +54,7 @@ local routine analyzePreference
       ?@observablePropertyMap classObservablePropertyMap
       ?2*
       ?@attributeListForImplementation attributeListForImplementation
-      ?2*
+      ?3*
     ] ;
     [!?preferenceArrayMap insertKey
       !mArrayName
@@ -66,7 +74,7 @@ local routine analyzePreference
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
     ] ;
-    [inClassMap searchKey !mControlledClassOrEntityName ?7*] ;
+    [inClassMap searchKey !mControlledClassOrEntityName ?8*] ;
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     foreach mControllerBindingList do
       [mBinding analyzeControllerBinding
@@ -75,6 +83,7 @@ local routine analyzePreference
         !controllerClassBindingMap
         !mControlledClassOrEntityName
         !observablePropertyMap
+        !inGlobalEnumConstantMap
         !?bindingListForGeneration
       ] ;
     end foreach ;
@@ -128,6 +137,7 @@ local routine analyzePreference
         !controllerMap
         !actionMap
         !hasTableValueBinding
+        !inGlobalEnumConstantMap
         !?outletBindingList
         !?implementationFileInclusionSet
       ] ;
@@ -143,6 +153,7 @@ local routine analyzePreference
     !outletGenerationList
     !inPreference->mActionDeclarationList
     !observableAttributeMap
+    !headerFileInclusionSet
     !implementationFileInclusionSet
     !controllerMap
     !preferenceArrayMap
@@ -156,6 +167,7 @@ routine analyzePreferences
   ??@controllerClassMap inControllerClassMap
   ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
   !@preferencesMap outPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -166,6 +178,7 @@ routine analyzePreferences
       !inControllerClassMap
       !inClassMap
       !inOutletClassMap
+      !inGlobalEnumConstantMap
       !?outPreferencesMap
       !?ioTransientDependencyGraph
     ;

@@ -1,0 +1,31 @@
+semantics enumAnalysis :
+  import "easyBindings_options.gOption" ;
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine enumAnalysis
+  ??@enumList inEnumList
+  !@enumMap outEnumMap
+  !@globalEnumConstantMap outGlobalEnumConstantMap
+:
+  outEnumMap := [@enumMap emptyMap] ;
+  foreach inEnumList do
+    @enumConstantMap enumConstantMap [emptyMap] ;
+    foreach mEnumConstantNameList do
+      [!?enumConstantMap insertKey !mValue] ;
+    end foreach ;
+    [!?outEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
+  end foreach ;
+#---
+  outGlobalEnumConstantMap := [@globalEnumConstantMap emptyMap] ;
+  foreach outEnumMap do
+    foreach mConstantOrderedList do
+      [!?outGlobalEnumConstantMap insertKey !mValue !lkey] ;
+    end foreach ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

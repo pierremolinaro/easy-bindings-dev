@@ -3,6 +3,9 @@
 else
   %#import "%!SUPER_CLASS_NAME%.h"\n%
 end if
+foreach HEADER_INCLUSION_SET do
+  %#import "%!key%.h"\n%
+end foreach
 %
 //----------------------------------------------------------------------------*
 

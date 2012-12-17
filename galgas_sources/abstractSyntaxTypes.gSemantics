@@ -9,9 +9,7 @@ import "easyBindingType.gSemantics" ;
 list @attributeList {
   @easyBindingType mType ;
   @lstring mAttributeName ;
-  @easyBindingTypeList mDefaultValueCorrespondingAcceptableTypes ;
-  @string mDefaultValueObjectiveCObject ;
-  @string mDirectDefaultValue ;
+  @abstractDefaultValue mDefaultValue ;
 }
 
 #----------------------------------------------------------------------------*
@@ -108,8 +106,7 @@ list @entityList {
 
 list @outletBindingOptionList {
   @lstring mOptionName ;
-  @easyBindingTypeList mOptionValuePossibleTypes ;
-  @string mOptionValueObjectiveCObject ;
+  @abstractDefaultValue mDefaultValue ;
 }
 
 #----------------------------------------------------------------------------*
@@ -334,6 +331,55 @@ list @controllerClassList {
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
   @controllerObservablePropertyList mControllerObservablePropertyList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @enumList {
+  @lstring mEnumTypeName ;
+  @lstringlist mEnumConstantNameList ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractDefaultValue {
+}
+
+#----------------------------------------------------------------------------*
+
+class @boolDefaultValue extends @abstractDefaultValue {
+  @lbool mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @doubleDefaultValue extends @abstractDefaultValue {
+  @ldouble mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @integerDefaultValue extends @abstractDefaultValue {
+  @luint mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @stringDefaultValue extends @abstractDefaultValue {
+  @lstring mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @identifierDefaultValue extends @abstractDefaultValue {
+  @lstring mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @identifierIntegerDefaultValue extends @abstractDefaultValue {
+  @lstring mIdentifier ;
+  @luint mInteger ;
 }
 
 #----------------------------------------------------------------------------*

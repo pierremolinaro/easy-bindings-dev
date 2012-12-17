@@ -21,9 +21,7 @@ end foreach
 
 //--- Attributes
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  if [mType isClass] then
-    %@dynamic %!mPropertyName% ;\n%
-  end if
+  %@dynamic %!mPropertyName% ;\n%
 end foreach
 %
 //--- To-many relationships
@@ -77,37 +75,7 @@ end foreach
   [super didTurnIntoFault] ;
 }
 
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  if [mType nonStandardAttributeNamePrefix] != "" then
-    %//----------------------------------------------------------------------------*\n%
-    %//    Custom accessors for '%!mPropertyName%'                                 *\n%
-    %//----------------------------------------------------------------------------*\n\n%
-    %- (void) set%![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inValue {\n%
-    %  [self setValue:%![mType attributeValueEncoder]% (inValue) forKey:@"%![mType nonStandardAttributeNamePrefix]!mPropertyName%"] ;\n%
-    %}\n\n%
-    %//----------------------------------------------------------------------------*\n\n%
-    %- (%![mType ocTypeName]%) %!mPropertyName% {\n%
-    %  return %![mType attributeValueDecoder]% ([self valueForKey:@"%![mType nonStandardAttributeNamePrefix]!mPropertyName%"]) ;\n%
-    %}\n%
-  elsif not [mType isClass] then
-    %//----------------------------------------------------------------------------*\n%
-    %//    Custom accessors for '%!mPropertyName%'                                 *\n%
-    %//----------------------------------------------------------------------------*\n\n%
-    %- (void) set%![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) inValue {\n%
-    %  id value = %![mType customSetterTransformer]% ;\n%
-    %  [self willChangeValueForKey:@"%!mPropertyName%"] ;\n%
-    %  [self setPrimitiveValue:value forKey:@"%!mPropertyName%"] ;\n%
-    %  [self didChangeValueForKey:@"%!mPropertyName%"] ;\n%
-    %}\n\n%
-    %//----------------------------------------------------------------------------*\n\n%
-    %- (%![mType ocTypeName]%) %!mPropertyName% {\n%
-    %  [self willAccessValueForKey:@"%!mPropertyName%"] ;\n%
-    %  const %![mType ocTypeName]% value = [[self primitiveValueForKey:@"%!mPropertyName%"] %![mType customGetterMethod]%] ;\n%
-    %  [self didAccessValueForKey:@"%!mPropertyName%"] ;\n%
-    %  return value ;\n%
-    %}\n%
-  end if
-end foreach
+%
 
 if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
 %//----------------------------------------------------------------------------*

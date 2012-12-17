@@ -5,7 +5,7 @@
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!CLASS_NAME%-transient-computations.h"\n%
 end if
-foreach INCLUSION_SET do
+foreach IMPLEMENTATION_INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
@@ -24,7 +24,24 @@ end foreach
 end foreach
 %
 //----------------------------------------------------------------------------*
-//    Init Method                                                             *
+//    Init Methods                                                            *
+//----------------------------------------------------------------------------*
+
+- (id) init {
+  self = [super init] ;
+  if (self) {
+%if SUPER_CLASS_NAME == "" then
+%    macroNoteObjectAllocation (self) ;
+%end if
+foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+  %    %!mPropertyName% = %!mDirectDefaultValue% ;\n%
+end foreach
+!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%    [self %!CLASS_NAME%_did_init] ;
+  }
+  return self ;
+}
+
 //----------------------------------------------------------------------------*
 
 %foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
@@ -53,8 +70,8 @@ if SUPER_CLASS_NAME == "" then
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   %    %!mPropertyName% = in%![mPropertyName stringByCapitalizingFirstCharacter]% ;\n%
 end foreach
-%  //--- Add Transient observers
-%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+
+!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
   }
   return self ;

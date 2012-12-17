@@ -29,6 +29,7 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "outletClass",
   "class",
   "end",
+  "enum",
   "attribute",
   "outlet",
   "transient",

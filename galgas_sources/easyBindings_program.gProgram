@@ -1,12 +1,21 @@
 program easyBindings_program :
-import "semanticAnalysis.gSemantics" ;
+import "cursorAnalysis.gSemantics" ;
+import "outletClassAnalysis.gSemantics" ;
+import "classAnalysis.gSemantics" ;
+import "controllerClassAnalysis.gSemantics" ;
+import "entityAnalysis.gSemantics" ;
+import "preferencesAnalysis.gSemantics" ;
+import "documentAnalysis.gSemantics" ;
+import "enumAnalysis.gSemantics" ;
+
 import "outletClassGeneration.gSemantics" ;
 import "classGeneration.gSemantics" ;
 import "entityGeneration.gSemantics" ;
 import "preferencesGeneration.gSemantics" ;
 import "documentGeneration.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
-import "cursors_generation.gSemantics" ;
+import "cursorGeneration.gSemantics" ;
+import "enumGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -38,6 +47,7 @@ message "a source text file with the .easyBindings extension"
   @controllerClassList controllerClassList [emptyList] ;
   @protocolList protocolList [emptyList] ;
   @cursorList cursorList [emptyList] ;
+  @enumList enumList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !?classList
     !?entityList
@@ -47,6 +57,7 @@ message "a source text file with the .easyBindings extension"
     !?controllerClassList
     !?protocolList
     !?cursorList
+    !?enumList
     ?*
   ;
 #--- Parse source file
@@ -59,32 +70,109 @@ message "a source text file with the .easyBindings extension"
     !?controllerClassList
     !?protocolList
     !?cursorList
+    !?enumList
     ?@location endOfSourceFile
   ;
-#--- Semantic Analysis
-  semanticAnalysis
+#------------------------------------------------------- Semantic Analysis
+#--- Cursors
+  cursorAnalysis
     !cursorList
-    !classList
-    !entityList
-    !preferencesList
-    !outletClassList
-    !documentDeclarationList
-    !controllerClassList
-    !protocolList
-    !endOfSourceFile
-    !inSourceFile->string
     ?@userCursorMap userCursorMap
     ?@stringlist predefinedCursorList
-    ?@outletClassMap outletClassMap
-    ?@controllerClassMap controllerClassMap
-    ?@classMap classMap
-    ?@entityMap entityMap
-    ?@preferencesMap preferencesMap
-    ?@documentMap documentMap
-    ?@stringlist sortedTransientOrderedList
-    ?@2stringlist transientDependencyArcList
   ;
-#--- Code generation
+#--- Enumerations
+  enumAnalysis
+    !enumList
+    ?@enumMap enumMap
+    ?@globalEnumConstantMap globalEnumConstantMap
+  ;
+#--- Protocol
+  @protocolMap protocolMap [emptyMap] ;
+  foreach protocolList do
+    [!?protocolMap insertKey !mProtocolName] ;
+  end foreach ;
+#--- Classes
+  @stringlist sortedTransientOrderedList [emptyList] ;
+  @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
+  analyzeOutletClasses
+    !outletClassList
+    !protocolMap
+    ?@outletClassMap outletClassMap
+  ;
+#--- Controller classes
+  analyzeControllerClasses
+    !controllerClassList
+    !?transientDependencyGraph
+    ?@controllerClassMap controllerClassMap
+  ;
+#--- Classes
+  analyzeClasses 
+    !classList
+    !globalEnumConstantMap
+    ?@classMap classMap
+    !?transientDependencyGraph
+  ;
+#--- Preferences
+  analyzePreferences
+    !preferencesList
+    !controllerClassMap
+    !classMap
+    !outletClassMap
+    !globalEnumConstantMap
+    ?@preferencesMap preferencesMap
+    !?transientDependencyGraph
+  ;
+#--- Entities
+  analyzeEntities
+    !entityList
+    !globalEnumConstantMap
+    ?@entityMap entityMap
+    !preferencesMap
+    !?transientDependencyGraph
+  ;
+#--- Documents
+  analyzeDocuments
+    !documentDeclarationList
+    !outletClassMap
+    !controllerClassMap
+    !entityMap
+    !preferencesMap
+    !globalEnumConstantMap
+    ?@documentMap documentMap
+    !?transientDependencyGraph
+  ;
+#--- Output graphviz file ?
+  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+    const @string s := [transientDependencyGraph graphviz] ;
+    const @string path := inSourceFile->string . ".transientDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
+#--- Analyze transient dependencies
+  @2stringlist transientDependencyArcList := [transientDependencyGraph arcs] ;
+  if [@uint errorCount] == 0 then
+    if [transientDependencyGraph undefinedNodeCount] > 0 then
+      foreach [transientDependencyGraph undefinedNodeKeyList] do
+        error endOfSourceFile : "the '" . mValue . "' property is not defined" ;
+      end foreach ;
+    else
+      @stringlist unsortedTransientList ;
+      [transientDependencyGraph topologicalSort
+        ?sortedTransientOrderedList
+        ?*
+        ?unsortedTransientList
+        ?*
+      ] ;
+      if [unsortedTransientList length] > 0 then
+        @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
+        foreach unsortedTransientList do
+          s .= "\n-  " . mValue ;
+        end foreach ;
+        error endOfSourceFile : s ;
+      else # all defined, no circularity
+      end if ;
+    end if ;
+  end if ;
+#----------------------------------------------------- Code generation
   const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
   generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
   generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
@@ -92,7 +180,8 @@ message "a source text file with the .easyBindings extension"
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
   generateCursorCode !userCursorMap !predefinedCursorList !sourceDirectoryPath ;
-#--- Output dependency order definition file
+  generateEnumerations !enumMap !sourceDirectoryPath ;
+#------------------------------ Output dependency order definition file
   generateTransientDependencyFiles
     !transientDependencyArcList
     !sourceDirectoryPath

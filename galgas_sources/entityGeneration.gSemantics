@@ -1,6 +1,5 @@
 semantics entityGeneration :
   import "easyBindings_options.gOption" ;
-  import "semanticAnalysis.gSemantics" ;
   import "transientGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -12,6 +11,7 @@ local filewrapper momGenerationTemplate in "../generation-templates/managed-obje
   template momImplementation "managed-object-model.m.gTemplate"
    ?@entityMap ENTITY_MAP
    ?@string ENTITY_DEFINITIONS
+   ?@stringset FILE_INCLUSION_SET
   ;
 }
 
@@ -27,6 +27,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@2stringlist TO_MANY_RELATIONSHIPS
+    ?@stringset HEADER_INCLUSION_SET
   ;
   
   template entityImplementation "entity.m.gTemplate"
@@ -90,6 +91,7 @@ routine generateEntityCode
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
         !mToManyRelationshipList
+        !mHeaderFileInclusionSet
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -176,6 +178,7 @@ routine generateEntityCode
       !"\n"
     ] ;
   #--- Generate managed object model header file
+    @stringset fileInclusionSet [emptySet] ;
     @string s := "" ;
     @bool hasAttributes := false ;
     foreach inEntityMap while not hasAttributes do
@@ -212,12 +215,19 @@ routine generateEntityCode
       foreach mAttributeListForImplementation do
         s .= "//--- '" . mPropertyName . "' attribute\n" ;
         s .= "  attribute = [NSAttributeDescription new] ;\n" ;
-        s .= "  [attribute setName:@\"" . [mType nonStandardAttributeNamePrefix] .  mPropertyName . "\"] ;\n" ;
-        s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;
-        if mDefaultValueAsObjectiveCObject != "" then
-          s .= "  [attribute setDefaultValue:" . [mType attributeValueEncoder] . "(" . mDefaultValueAsObjectiveCObject . ")] ;\n" ;
+        s .= "  [attribute setName:@\"" . mPropertyName . "\"] ;\n" ;
+        const @string valueTransformerName := [mType valueTransformerName] ;
+        if valueTransformerName == "" then
+          s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;
+        else
+          s .= "  [attribute setAttributeType:NSTransformableAttributeType] ;\n" ;
+          s .= "  [attribute setValueTransformerName:@\"" . valueTransformerName . "\"] ;\n" ;
         end if ;
+     #   if mDefaultValueAsObjectiveCObject != "" then
+          s .= "  [attribute setDefaultValue:" . mDefaultValueAsObjectiveCObject . "] ;\n" ;
+     #   end if ;
         s .= "  [properties addObject:attribute] ;\n" ;
+        [mType addFileInclusion !?fileInclusionSet] ;
       end foreach ;
     #--- relationships
       foreach mCurrentRelationshipMap do
@@ -254,7 +264,7 @@ routine generateEntityCode
       !"managed-object-model.m"
       !"//"
       !"\n\n" # Defaut user zone1
-      ![filewrapper momGenerationTemplate.momImplementation !inEntityMap !s]
+      ![filewrapper momGenerationTemplate.momImplementation !inEntityMap !s !fileInclusionSet]
       !"\n\n" # Defaut user zone2
       !"\n"
     ] ;
