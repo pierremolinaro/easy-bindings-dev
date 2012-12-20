@@ -16,6 +16,7 @@ import "documentGeneration.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 import "cursorGeneration.gSemantics" ;
 import "enumGeneration.gSemantics" ;
+import "controllerClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -181,6 +182,7 @@ message "a source text file with the .easyBindings extension"
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
   generateCursorCode !userCursorMap !predefinedCursorList !sourceDirectoryPath ;
   generateEnumerations !enumMap !sourceDirectoryPath ;
+  generateControllerCode !controllerClassMap !sourceDirectoryPath ;
 #------------------------------ Output dependency order definition file
   generateTransientDependencyFiles
     !transientDependencyArcList

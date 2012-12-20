@@ -39,6 +39,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "outletClassGeneration.gSemantics" ;
 
   semantics "controllerClassAnalysis.gSemantics" ;
+  semantics "controllerClassGeneration.gSemantics" ;
 
   semantics "transientAnalysis.gSemantics" ;
   semantics "transientGeneration.gSemantics" ;

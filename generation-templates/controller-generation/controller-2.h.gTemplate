@@ -1,0 +1,10 @@
+
+%foreach OBSERVABLE_PROPERTY_MAP do
+%//--- '%!lkey->string%' property\n%
+%  @property%![mType propertyAttributeString]% %![mType ocClassName]% * %!lkey->string% ;\n\n%
+end foreach
+%
+
+@end
+
+//----------------------------------------------------------------------------*
