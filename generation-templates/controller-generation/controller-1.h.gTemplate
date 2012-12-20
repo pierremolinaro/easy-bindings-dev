@@ -1,0 +1,12 @@
+#import <Cocoa/Cocoa.h>
+
+//---------------------------------------------------------------------------*
+
+@interface %!CONTROLLER_CLASS_NAME% : NSObject {
+
+%foreach BINDING_MAP do%
+//--- Attributes for '%!lkey->string%' binding
+  @protected id mBoundObjectFor_%!lkey->string% ;
+  @protected NSString * mKeyPathFor_%!lkey->string% ;
+%end foreach%
+

@@ -1,0 +1,75 @@
+semantics controllerClassGeneration :
+  import "easyBindings_options.gOption" ;
+  import "transientGeneration.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper controllerGenerationTemplate in "../generation-templates/controller-generation" {
+}{
+}{
+  template controllerDeclarationPart1 "controller-1.h.gTemplate"
+    ?@string CONTROLLER_CLASS_NAME
+    ?@outletClassBindingMap BINDING_MAP
+  ;
+  
+  template controllerDeclarationPart2 "controller-2.h.gTemplate"
+    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
+  ;
+  
+  template controllerImplementation "controller.m.gTemplate"
+    ?@string CONTROLLER_CLASS_NAME
+    ?@outletClassBindingMap BINDING_MAP
+    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateControllerCode
+  ??@controllerClassMap inControllerClassMap
+  ??@string inOutputDirectory
+:
+  if [@uint errorCount] == 0 then
+    foreach inControllerClassMap do
+      if mGenerationKind == [@generationKind fullGeneration] then
+      #--- Header
+        @string s := [filewrapper controllerGenerationTemplate.controllerDeclarationPart1
+          ![lkey string]
+          !mBindingMap
+        ] ;
+        @string s2 := [filewrapper controllerGenerationTemplate.controllerDeclarationPart2
+          !mObservablePropertyMap
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          ![lkey string] . ".h"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"\n\n}\n\n" # Defaut user zone2
+          !s2
+        ] ;
+      #--- Implementation
+        s := [filewrapper controllerGenerationTemplate.controllerImplementation
+          ![lkey string]
+          !mBindingMap
+          !mObservablePropertyMap
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          ![lkey string] . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"\n\n" # Defaut user zone2
+          !"@end\n"
+        ] ;
+      end if ;
+    end foreach ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;
