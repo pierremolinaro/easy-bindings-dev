@@ -9,13 +9,13 @@ end foreach
 static NSManagedObjectModel * buildManagedObjectModel (void) {
   NSMutableDictionary * entityDictionary = [NSMutableDictionary new] ;
 %
-foreach ENTITY_MAP
+foreach ENTITY_LIST_FOR_GENERATION
 before
 %  NSEntityDescription * entity = nil ;\n%
 do
   %  entity = [NSEntityDescription new] ;\n%
-  %  [entity setName:@"%![lkey string]%"] ;\n%
-  %  [entityDictionary setObject:entity forKey:@"%![lkey string]%"] ;\n%
+  %  [entity setName:@"%!mEntityName%"] ;\n%
+  %  [entityDictionary setObject:entity forKey:@"%!mEntityName%"] ;\n%
 end foreach
 %//--------------------------
 %!ENTITY_DEFINITIONS%//--------------------------

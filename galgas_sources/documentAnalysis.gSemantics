@@ -20,9 +20,9 @@ local routine analyzeDocument
     ?@string rootEntityImplementationClassName
     ?*
     ?@observablePropertyMap rootObjectObservablePropertyMap
-    ?8*
+    ?9*
     ?@relationshipMap allRelationshipMap
-    ?3*
+    ?*
   ] ;
 #-------------------------------------------------- Analyze controllers
   @observablePropertyMap observablePropertyMap [emptyMap] ;
@@ -38,7 +38,7 @@ local routine analyzeDocument
       ?controllerActionMap
       ?controllerObservablePropertyMap
     ] ;
-    [inEntityMap searchKey !mControlledClassOrEntityName ?16*] ;
+    [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     foreach mControllerBindingList do
       [mBinding analyzeControllerBinding

@@ -30,9 +30,9 @@ local routine analyzeEntity
       ?4*
       ?allRelationshipList
       ?allPropertyMap
-      ?*
+      ?2*
       ?allRelationshipMap
-      ?3*
+      ?*
     ] ;
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
@@ -120,15 +120,6 @@ local routine analyzeEntity
     ?transientListForImplementation
     !?ioTransientDependencyGraph
   ;
-#----------------------------------------- Build 'to-many' relation ship list
-  @2stringlist toManyRelationshipList [emptyList] ;
-  foreach inEntity->mRelationshipList do
-    if mIsToMany then
-      toManyRelationshipList += !mRelationshipName->string !mDestinationEntityName-> string ;
-    else
-    
-    end if ;
-  end foreach ;
 #----------------------------------------- Enter entity in entity map
   [!?implementationFileInclusionSet removeKey !""] ;
   [!?ioEntityMap insertKey
@@ -145,10 +136,9 @@ local routine analyzeEntity
     !allRelationshipList . inEntity->mRelationshipList
     !allPropertyMap
     !currentRelationshipMap
-    !allRelationshipMap
     !headerFileInclusionSet
+    !allRelationshipMap
     !implementationFileInclusionSet
-    !toManyRelationshipList
   ] ;
 end routine ;
 
@@ -158,6 +148,7 @@ routine analyzeEntities
   ??@entityList inEntityList
   ??@globalEnumConstantMap inGlobalEnumConstantMap
   !@entityMap outEntityMap
+  !@entityListForGeneration outEntityListForGeneration
   ??@preferencesMap inPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -176,13 +167,53 @@ routine analyzeEntities
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?12* ?destinationEntityRelationshipMap ?3*] ;
+      [outEntityMap searchKey !mDestinationEntityName ?13* ?destinationEntityRelationshipMap ?*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
         error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
       end if ;
     end foreach ;
+  end foreach ;
+#------------------------------- Generation List
+  outEntityListForGeneration := [@entityListForGeneration emptyList] ;
+  foreach outEntityMap do
+    @2stringlist toManyRelationshipList [emptyList] ;
+    @2stringlist toOneRelationshipList [emptyList] ;
+    @stringset headerFileInclusionSet := mHeaderFileInclusionSet ;
+    @stringset headerFilePredeclarationSet [emptySet] ;
+    @stringset implementationFileInclusionSet := mImplementationFileInclusionSet ;
+    foreach mCurrentRelationshipMap do
+      if mIsToMany then
+        toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
+      else
+        [outEntityMap searchKey !mDestinationEntityName ?* ?@string implementationClassName ?13*] ;
+        toOneRelationshipList += !lkey->string !implementationClassName ;
+        headerFilePredeclarationSet += !implementationClassName ;
+        implementationFileInclusionSet += !implementationClassName ;
+      end if ;
+    end foreach ;
+    outEntityListForGeneration +=
+      !lkey->string
+      !mSuperEntityName
+      !mImplementationClassName
+      !mSuperImplementationClassName
+      !mObservablePropertyMap
+      !mAttributeListForInitMethodHeader
+      !mInheritedAttributeListForImplementation
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mCurrentRelationshipList
+      !mAllRelationshipList
+      !mAllPropertyMap
+      !mCurrentRelationshipMap
+      !mAllRelationshipMap
+      !headerFilePredeclarationSet
+      !toManyRelationshipList
+      !headerFileInclusionSet
+      !implementationFileInclusionSet
+      !toOneRelationshipList
+    ;
   end foreach ;
 end routine ;
 

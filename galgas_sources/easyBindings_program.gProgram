@@ -128,6 +128,7 @@ message "a source text file with the .easyBindings extension"
     !entityList
     !globalEnumConstantMap
     ?@entityMap entityMap
+    ?@entityListForGeneration entityListForGeneration
     !preferencesMap
     !?transientDependencyGraph
   ;
@@ -177,7 +178,7 @@ message "a source text file with the .easyBindings extension"
   const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
   generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
   generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
-  generateEntityCode !transientDependencyArcList !entityMap !sourceDirectoryPath ;
+  generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
   generateCursorCode !userCursorMap !predefinedCursorList !sourceDirectoryPath ;

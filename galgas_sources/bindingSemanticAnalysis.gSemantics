@@ -35,7 +35,7 @@ override method @tableValueBinding analyzeOutletBinding
         ![@lstring new !controlledClassOrEntityName !here]
         ?3*
         ?observablePropertyMap
-        ?12*
+        ?11*
       ] ;
     else
       [inClassMap searchKey

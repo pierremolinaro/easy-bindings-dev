@@ -9,7 +9,7 @@ local filewrapper momGenerationTemplate in "../generation-templates/managed-obje
 }{
   template momHeader "managed-object-model.h.gTemplate" ;
   template momImplementation "managed-object-model.m.gTemplate"
-   ?@entityMap ENTITY_MAP
+   ?@entityListForGeneration ENTITY_LIST_FOR_GENERATION
    ?@string ENTITY_DEFINITIONS
    ?@stringset FILE_INCLUSION_SET
   ;
@@ -20,14 +20,22 @@ local filewrapper momGenerationTemplate in "../generation-templates/managed-obje
 local filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
 }{
 }{
-  template entityDeclaration "entity.h.gTemplate"
+  template entityDeclaration1 "entity-1.h.gTemplate"
     ?@string CLASS_NAME
     ?@string SUPER_CLASS_NAME
     ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@stringset HEADER_INCLUSION_SET
+    ?@stringset HEADER_PREDECLARATION_SET
+  ;
+  
+  template entityDeclaration2 "entity-2.h.gTemplate"
+    ?@string CLASS_NAME
+    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@2stringlist TO_MANY_RELATIONSHIPS
+    ?@2stringlist TO_ONE_RELATIONSHIPS
   ;
   
   template entityImplementation "entity.m.gTemplate"
@@ -41,6 +49,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@stringset PROPERTY_TOMANY_RELATIONSHIP_SET
+    ?@2stringlist TO_ONE_RELATIONSHIPS
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -74,24 +83,31 @@ end reader ;
 
 routine generateEntityCode
   ??@2stringlist inTransientDependencyArcList
-  ??@entityMap inEntityMap
+  ??@entityListForGeneration inEntityListForGeneration
   ??@string inOutputDirectory
 :
   if [@uint errorCount] == 0 then
     @subEntitiesMap subEntitiesMap [emptyMap] ;
-    foreach inEntityMap do
+    foreach inEntityListForGeneration do
       if mSuperEntityName != "" then
-        subEntitiesMap += !mSuperEntityName ![lkey string]  ;
+        subEntitiesMap += !mSuperEntityName !mEntityName  ;
       end if ;
     #--- Header
-      @string s := [filewrapper entityGenerationTemplate.entityDeclaration
+      @string s := [filewrapper entityGenerationTemplate.entityDeclaration1
         !mImplementationClassName
         !mSuperImplementationClassName
         !mAttributeListForImplementation
         !mTransientListForImplementation
-        !mAttributeListForInitMethodHeader
         !mToManyRelationshipList
         !mHeaderFileInclusionSet
+        !mHeaderFilePredeclarationSet
+      ] ;
+      @string s2 := [filewrapper entityGenerationTemplate.entityDeclaration2
+        !mImplementationClassName
+        !mAttributeListForImplementation
+        !mTransientListForImplementation
+        !mToManyRelationshipList
+        !mToOneRelationshipList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -99,8 +115,8 @@ routine generateEntityCode
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
+        !"\n\n}\n\n" # Defaut user zone2
+        !s2
       ] ;
     #---
       @stringset propertyAndTomanyRelationshipSet [emptySet] ;
@@ -112,7 +128,7 @@ routine generateEntityCode
       end foreach ;
     #--- Implementation
       s := [filewrapper entityGenerationTemplate.entityImplementation
-        ![lkey string]
+        !mEntityName
         !mImplementationClassName
         !mAttributeListForImplementation
         !mTransientListForImplementation
@@ -122,6 +138,7 @@ routine generateEntityCode
         !mToManyRelationshipList
         !inTransientDependencyArcList
         !propertyAndTomanyRelationshipSet
+        !mToOneRelationshipList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -158,7 +175,7 @@ routine generateEntityCode
           ] ;
           [@string generateFileWithPattern
             !inOutputDirectory
-            !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+            !"compute_" . mEntityName . "_" . mTransientName . ".m"
             !"//"
             !"\n\n" # Defaut user zone1
             !s
@@ -181,11 +198,11 @@ routine generateEntityCode
     @stringset fileInclusionSet [emptySet] ;
     @string s := "" ;
     @bool hasAttributes := false ;
-    foreach inEntityMap while not hasAttributes do
+    foreach inEntityListForGeneration while not hasAttributes do
       hasAttributes := [mAttributeListForImplementation length] > 0 ;
     end foreach ;
     @bool hasRelationships := false ;
-    foreach inEntityMap while not hasRelationships do
+    foreach inEntityListForGeneration while not hasRelationships do
       hasRelationships := [mAllRelationshipMap count] > 0 ;
     end foreach ;
     if hasAttributes | hasRelationships then
@@ -200,11 +217,11 @@ routine generateEntityCode
       s .= "  NSEntityDescription * entityDescription = nil ;\n" ;
       s .= "  NSEntityDescription * inverseEntityDescription = nil ;\n" ;
     end if ;
-    foreach inEntityMap do
-      s .= "//-------------------------- Entity '" . lkey . "'\n" ;
-      s .= "  entity = [entityDictionary objectForKey:@\"" . lkey . "\"] ;\n" ;
+    foreach inEntityListForGeneration do
+      s .= "//-------------------------- Entity '" . mEntityName . "'\n" ;
+      s .= "  entity = [entityDictionary objectForKey:@\"" . mEntityName . "\"] ;\n" ;
       s .= "  [entity setManagedObjectClassName:@\"" . mImplementationClassName . "\"] ;\n" ;
-      const @stringlist subEntities := [subEntitiesMap listForKey ![lkey string]] ;
+      const @stringlist subEntities := [subEntitiesMap listForKey !mEntityName] ;
       foreach subEntities
       before s .= "  [entity setSubentities:[NSArray arrayWithObjects:" ;
       do s .= "[entityDictionary objectForKey:@\"" . mValue . "\"], " ;    
@@ -221,11 +238,9 @@ routine generateEntityCode
           s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;
         else
           s .= "  [attribute setAttributeType:NSTransformableAttributeType] ;\n" ;
-          s .= "  [attribute setValueTransformerName:@\"" . valueTransformerName . "\"] ;\n" ;
+          s .= "  [attribute setValueTransformerName:" . valueTransformerName . "] ;\n" ;
         end if ;
-     #   if mDefaultValueAsObjectiveCObject != "" then
-          s .= "  [attribute setDefaultValue:" . mDefaultValueAsObjectiveCObject . "] ;\n" ;
-     #   end if ;
+        s .= "  [attribute setDefaultValue:" . mDefaultValueAsObjectiveCObject . "] ;\n" ;
         s .= "  [properties addObject:attribute] ;\n" ;
         [mType addFileInclusion !?fileInclusionSet] ;
       end foreach ;
@@ -245,11 +260,11 @@ routine generateEntityCode
     end foreach ;  
   #--- Set inverse relation ships
     s .= "//-------------------------- Set inverse relationships\n" ;
-    foreach inEntityMap prefixedby entity_ do
+    foreach inEntityListForGeneration prefixedby entity_ do
       foreach entity_mCurrentRelationshipMap
       before
-        s .= "//------ Entity '" . entity_lkey . "'\n" ;
-        s .= "  entityDescription = [entityDictionary objectForKey:@\"" . entity_lkey . "\"] ;\n" ;
+        s .= "//------ Entity '" . entity_mEntityName . "'\n" ;
+        s .= "  entityDescription = [entityDictionary objectForKey:@\"" . entity_mEntityName . "\"] ;\n" ;
       do
         s .= "//--- '" . lkey . "' relationship\n" ;
         s .= "  relationship = [[entityDescription relationshipsByName] objectForKey:@\"" . lkey . "\"] ;\n" ;
@@ -264,7 +279,7 @@ routine generateEntityCode
       !"managed-object-model.m"
       !"//"
       !"\n\n" # Defaut user zone1
-      ![filewrapper momGenerationTemplate.momImplementation !inEntityMap !s !fileInclusionSet]
+      ![filewrapper momGenerationTemplate.momImplementation !inEntityListForGeneration !s !fileInclusionSet]
       !"\n\n" # Defaut user zone2
       !"\n"
     ] ;

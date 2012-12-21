@@ -1,39 +1,8 @@
-%if SUPER_CLASS_NAME == "" then
-  %#import <Cocoa/Cocoa.h>\n%
-else
-  %#import "%!SUPER_CLASS_NAME%.h"\n%
-end if
-foreach HEADER_INCLUSION_SET do
-  %#import "%!key%.h"\n%
-end foreach
-%
-//----------------------------------------------------------------------------*
 
-@interface %!CLASS_NAME% : %
-if SUPER_CLASS_NAME == "" then
-  %NSManagedObject%
-else
-  !SUPER_CLASS_NAME
-end if
-% {
-//--- Attribute observers
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
-end foreach
-%
-//--- To-many relationships observers
-%foreach TO_MANY_RELATIONSHIPS do
-%  @private NSMutableSet * %!mValue0%_observers ;\n%
-end foreach
-
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mTransientName%' transient cache\n%
-%  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
-%  @private BOOL %!mTransientName%__computed ;\n%
-end foreach
-%
-}
-
+//--- To-one relationships
+%foreach TO_ONE_RELATIONSHIPS do
+%  @property(strong) %!mValue1% * %!mValue0% ;\n%
+end foreach%
 //--- To-many relationships
 %foreach TO_MANY_RELATIONSHIPS do
 %  @property(strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%

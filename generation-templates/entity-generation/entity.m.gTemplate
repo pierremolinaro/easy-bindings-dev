@@ -24,6 +24,10 @@ end foreach
   %@dynamic %!mPropertyName% ;\n%
 end foreach
 %
+//--- To-one relationships
+%foreach TO_ONE_RELATIONSHIPS do
+%@dynamic %!mValue0% ; // %!mValue1%\n%
+end foreach%
 //--- To-many relationships
 %
 foreach TO_MANY_RELATIONSHIPS do
