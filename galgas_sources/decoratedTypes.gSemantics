@@ -40,12 +40,35 @@ map @entityMap {
   @relationshipList mAllRelationshipList ;
   @propertyMap mAllPropertyMap ;
   @relationshipMap mCurrentRelationshipMap ;
-  @relationshipMap mAllRelationshipMap ;
   @stringset mHeaderFileInclusionSet ;
+  @relationshipMap mAllRelationshipMap ;
   @stringset mImplementationFileInclusionSet ;
-  @2stringlist mToManyRelationshipList ;
   insert insertKey error message "the '%K' entity is already declared" ;
   search searchKey error message "the '%K' entity is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @entityListForGeneration {
+  @string mEntityName ;
+  @string mSuperEntityName ;
+  @string mImplementationClassName ;
+  @string mSuperImplementationClassName ;
+  @observablePropertyMap mObservablePropertyMap ;
+  @attributeListForImplementation mAttributeListForInitMethodHeader ;
+  @attributeListForImplementation mInheritedAttributeListForImplementation ;
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @relationshipList mCurrentRelationshipList ;
+  @relationshipList mAllRelationshipList ;
+  @propertyMap mAllPropertyMap ;
+  @relationshipMap mCurrentRelationshipMap ;
+  @relationshipMap mAllRelationshipMap ;
+  @stringset mHeaderFilePredeclarationSet ;
+  @2stringlist mToManyRelationshipList ;
+  @stringset mHeaderFileInclusionSet ;
+  @stringset mImplementationFileInclusionSet ;
+  @2stringlist mToOneRelationshipList ;
 }
 
 #----------------------------------------------------------------------------*
