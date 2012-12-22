@@ -375,18 +375,6 @@ abstract method @multiValuedBindingBoundModel analyzeModel
 
 #----------------------------------------------------------------------------*
 
-abstract method @abstractBinding analyzeControllerBinding
-  ??@relationshipMap inAllRelationshipMap
-  ??@preferenceArrayMap inPreferenceArrayMap
-  ??@outletClassBindingMap inControllerClassBindingMap
-  ??@lstring inControlledClassOrEntityName
-  ??@observablePropertyMap inAllObservablePropertyMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
-  ?!@outletBindingListForGeneration ioBindingListForGeneration
-;
-
-#----------------------------------------------------------------------------*
-
 abstract reader @abstractBindingForGeneration generateRemoveBinding
   ??@string inOutletName
   -> @string outResult
