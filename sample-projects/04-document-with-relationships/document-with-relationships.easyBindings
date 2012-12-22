@@ -13,7 +13,7 @@ entity NameEntity class NameEntityClass {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  controller NSArrayController nameController : NameEntity
+  controller NSArrayController[NameEntity] nameController
     $contentSet root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
   ;
   outlet NSTableView namesTableView

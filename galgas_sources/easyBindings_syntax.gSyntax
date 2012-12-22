@@ -510,9 +510,15 @@ rule <controller_declaration>
 :
   $controller$ ;
   $Identifier$ ? @lstring controllerClassName ;
+  @lstring controlledClassOrEntityName ;
+  select
+    controlledClassOrEntityName := [@lstring new !".undefined." ! here] ;
+  or
+    $[$ ;
+    $Identifier$ ?controlledClassOrEntityName ;
+    $]$ ;
+  end select ;
   $identifier$ ? @lstring controllerName ;
-  $:$ ;
-  $Identifier$ ? @lstring controlledClassOrEntityName ;
   <bindings> ?@bindingList controllerBindingList ;
   $;$ ;
   ioControllerList +=
