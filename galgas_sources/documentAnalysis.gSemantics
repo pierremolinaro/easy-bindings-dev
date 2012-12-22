@@ -121,7 +121,7 @@ local routine analyzeControllers
     [!?outControllerMap insertKey
       !mControllerName
       !mControllerClassName->string
-      !destinationEntityName->string
+      !destinationEntityName
       !true # Is an entity
       !bindingListForGeneration
       !controllerActionMap
@@ -194,6 +194,7 @@ local routine analyzeDocument
       ?@generationKind generationKind
       ?2*
       ?@outletClassBindingMap bindingMap
+      ?*
       ?@bool hasTableValueBinding
     ] ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;

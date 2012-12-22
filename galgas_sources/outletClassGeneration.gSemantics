@@ -35,7 +35,7 @@ routine generateOutletClassCode
           ![lkey string]
           !mSuperClassName
           !mAdoptedProtocolList
-          !mBindingMap
+          !mCurrentBindingMap
         ] ;
         [@string generateFileWithPattern
           !inOutputDirectory
@@ -50,7 +50,7 @@ routine generateOutletClassCode
         s := [filewrapper outletClassGenerationTemplate.outletClassImplementation
           ![lkey string]
           !mSuperClassName
-          !mBindingMap
+          !mCurrentBindingMap
         ] ;
         [@string generateFileWithPattern
           !inOutputDirectory

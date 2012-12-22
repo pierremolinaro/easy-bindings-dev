@@ -148,7 +148,8 @@ map @outletClassMap {
   @generationKind mGenerationKind ;
   @string mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
-  @outletClassBindingMap mBindingMap ;
+  @outletClassBindingMap mAllBindingMap ;
+  @outletClassBindingMap mCurrentBindingMap ;
   @bool mHasTableValueBinding ;
   insert insertKey error message "the '%K' outlet class is already declared" ;
   search searchKey error message "the '%K' outlet class is not declared" ;
@@ -271,7 +272,7 @@ map @actionMap {
 
 map @controllerMap {
   @string mControllerClassName ;
-  @string mControlledClassOrEntityName ;
+  @lstring mControlledClassOrEntityName ;
   @bool mIsEntity ;
   @outletBindingListForGeneration mControllerBindingList ;
   @actionMap mActionMap ;
@@ -367,6 +368,8 @@ abstract method @abstractBinding analyzeOutletBinding
 abstract method @multiValuedBindingBoundModel analyzeModel
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
   ??@preferencesMap inPreferencesMap
   ??@controllerMap inControllerMap
   ?!@stringset ioImplementationFileInclusionSet
