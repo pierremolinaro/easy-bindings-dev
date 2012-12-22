@@ -47,6 +47,7 @@ local routine analyzeControllerClass
 #---
   [!?ioControllerClassMap insertKey
     !inController->mControllerClassName
+    !inController->mControllerKind
     !inController->mGenerationKind
     !bindingMap
     !actionMap

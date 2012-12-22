@@ -10,8 +10,19 @@ routine analyzeOutletClasses
 :
   outOutletClassMap := [@outletClassMap emptyMap] ;
   foreach inOutletClassList do
+    @outletClassBindingMap bindingMap ;
+  #--- Has super class ?
+    if mSuperClassName->string == "" then
+      bindingMap := [@outletClassBindingMap emptyMap] ;
+    else
+      [outOutletClassMap searchKey
+        !mSuperClassName
+        ?3*
+        ?bindingMap
+        ?*
+      ] ;
+    end if ;
   #---
-    @outletClassBindingMap bindingMap [emptyMap] ;
     foreach mOutletClassBindingList do
       @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
       foreach mBindingOptionList do

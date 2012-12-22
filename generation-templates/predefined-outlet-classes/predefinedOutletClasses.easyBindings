@@ -1,6 +1,7 @@
-predefined controllerClass NSArrayController {
+predefined objectController NSObjectController {
   action add ;
   action remove ;
+  attribute bool canAdd ;
   attribute bool canRemove ;
   $editable : bool {
     NSMultipleValuesPlaceholder : bool ;
@@ -9,7 +10,31 @@ predefined controllerClass NSArrayController {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $contentSet : toManyEntities {
+#  $contentObject : toOne {
+#    NSDeletesObjectsOnRemove : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSConditionallySetsEditable : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSHandlesContentAsCompoundValue : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+  # Warning: skipped $managedObjectContext binding
+}
+
+
+predefined arrayController NSArrayController {
+  action add ;
+  action remove ;
+  attribute bool canAdd ;
+  attribute bool canRemove ;
+  $editable : bool {
+    NSMultipleValuesPlaceholder : bool ;
+    NSNullPlaceholder : bool ;
+    NSNotApplicablePlaceholder : bool ;
+    NSNoSelectionPlaceholder : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
+  $contentSet : toMany {
     NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
     NSConditionallySetsEditableBindingOption : bool ;
     NSDeletesObjectsOnRemoveBindingsOption : bool ;
@@ -56,28 +81,6 @@ predefined controllerClass NSArrayController {
 #  }
   # Warning: skipped $filterPredicate binding
 }
-
-predefined controllerClass NSObjectController {
-  action add ;
-  action remove ;
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
-  }
-#  $contentObject : NSObject {
-#    NSDeletesObjectsOnRemove : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSHandlesContentAsCompoundValue : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
-#  }
-  # Warning: skipped $managedObjectContext binding
-}
-
 
 predefined outletClass NSBox {
   $hidden : bool {

@@ -232,9 +232,11 @@ list @preferencesDeclarationList {
 #----------------------------------------------------------------------------*
 
 list @controllerList {
+  @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
   @lstring mControllerName ;
-  @lstring mControlledClassOrEntityName ;
+  @lstring mControlledObjectName ;
+  @outletBindingOptionList mControlledObjectBindingOptionList ;
   @bindingList mControllerBindingList ;
 }
 
@@ -325,7 +327,16 @@ list @protocolList {
 
 #----------------------------------------------------------------------------*
 
+enum @controllerKind {
+  simpleController, objectController, arrayController
+}{
+
+}
+
+#----------------------------------------------------------------------------*
+
 list @controllerClassList {
+  @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
   @generationKind mGenerationKind ;
   @outletClassBindingList mBindingList ;

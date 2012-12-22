@@ -3,6 +3,104 @@ semantics documentAnalysis :
 
 #----------------------------------------------------------------------------*
 
+local routine analyzeControllers
+  ??@controllerList inControllerList
+  ??@controllerClassMap inControllerClassMap
+  ??@entityMap inEntityMap
+  ??@relationshipMap inRootObjectRelationshipMap
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ?!@outletBindingListForGeneration ioBindingListForGeneration
+  ?!@stringset ioImplementationFileInclusionSet
+  !@controllerMap outControllerMap
+:
+  outControllerMap := [@controllerMap emptyMap] ;
+  foreach inControllerList do
+    [inControllerClassMap searchKey
+      !mControllerClassName
+      ?@controllerKind controllerKind
+      ?*
+      ?@outletClassBindingMap controllerClassBindingMap
+      ?@actionMap controllerActionMap
+      ?@observablePropertyMap controllerObservablePropertyMap
+    ] ;
+  #---
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    @lstring destinationEntityName ;
+    switch controllerKind
+    when simpleController :
+      destinationEntityName := ["" nowhere] ;
+    when objectController :
+      [inRootObjectRelationshipMap searchKey
+        !mControlledObjectName
+        ?@bool isToMany
+        ?destinationEntityName
+        ?2*
+      ] ;
+      if isToMany then
+        error mControlledObjectName: "this should be a single object" ;
+      end if ;
+      [inEntityMap searchKey
+        !destinationEntityName
+        ?10*
+        ?@propertyMap controlledObjectAllPropertyMap
+        ?4*
+      ] ;
+    when arrayController :
+      [inRootObjectRelationshipMap searchKey
+        !mControlledObjectName
+        ?@bool isToMany
+        ?destinationEntityName
+        ?2*
+      ] ;
+      if not isToMany then
+        error mControlledObjectName: "this should be a collection" ;
+      end if ;
+      [inEntityMap searchKey
+        !destinationEntityName
+        ?10*
+        ?@propertyMap controlledObjectAllPropertyMap
+        ?4*
+      ] ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentSet"
+        ![@formatterEnum noFormatter]
+        !"mRootObject"
+        !mControlledObjectName->string
+        ![@2stringlist emptyList]
+      ] ;
+    end switch ;
+  #---
+    foreach mControllerBindingList do
+      [mBinding analyzeOutletBinding
+        !inRootEntityObservableAttributeMap
+        ![@observablePropertyMap emptyMap] # No self observable attributes
+        ![@preferencesMap emptyMap]
+        !inEntityMap
+        ![@classMap emptyMap]
+        !controllerClassBindingMap
+        !outControllerMap
+        !controllerActionMap
+        !false # No tableValue binding
+        !inGlobalEnumConstantMap
+        !?ioBindingListForGeneration
+        !?ioImplementationFileInclusionSet
+      ] ;
+    end foreach ;
+    [!?outControllerMap insertKey
+      !mControllerName
+      !mControllerClassName->string
+      !destinationEntityName->string
+      !true # Is an entity
+      !bindingListForGeneration
+      !controllerActionMap
+      !controllerObservablePropertyMap
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 local routine analyzeDocument
   ??@documentDeclarationList.element inDocument
   ??@outletClassMap inOutletClassMap
@@ -21,49 +119,25 @@ local routine analyzeDocument
     ?*
     ?@observablePropertyMap rootObjectObservablePropertyMap
     ?9*
-    ?@relationshipMap allRelationshipMap
+    ?@relationshipMap rootObjectRelationshipMap
     ?*
   ] ;
 #-------------------------------------------------- Analyze controllers
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  @controllerMap controllerMap [emptyMap] ;
-  foreach inDocument->mControllerList do
-    @outletClassBindingMap controllerClassBindingMap ;
-    @actionMap controllerActionMap ;
-    @observablePropertyMap controllerObservablePropertyMap ;
-    [inControllerClassMap searchKey
-      !mControllerClassName
-      ?*
-      ?controllerClassBindingMap
-      ?controllerActionMap
-      ?controllerObservablePropertyMap
-    ] ;
-    [inEntityMap searchKey !mControlledClassOrEntityName ?15*] ;
-    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
-    foreach mControllerBindingList do
-      [mBinding analyzeControllerBinding
-        !allRelationshipMap
-        ![@preferenceArrayMap emptyMap]
-        !controllerClassBindingMap
-        !mControlledClassOrEntityName
-        !observablePropertyMap
-        !inGlobalEnumConstantMap
-        !?bindingListForGeneration
-      ] ;
-    end foreach ;
-    [!?controllerMap insertKey
-      !mControllerName
-      !mControllerClassName->string
-      !mControlledClassOrEntityName->string
-      !true # Is an entity
-      !bindingListForGeneration
-      !controllerActionMap
-      !controllerObservablePropertyMap
-    ] ;
-  end foreach ;
-#-------------------------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
+  @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
   @stringset implementationFileInclusionSet [emptySet] ;
+  analyzeControllers
+    !inDocument->mControllerList
+    !inControllerClassMap
+    !inEntityMap
+    !rootObjectRelationshipMap
+    !rootObjectObservablePropertyMap
+    !inGlobalEnumConstantMap
+    !?bindingListForGeneration
+    !?implementationFileInclusionSet
+    ?@controllerMap controllerMap
+  ;
+#-------------------------------------------------- Analyze transient properties
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
   analyzeTransientProperties
     !inPreferencesMap
     !"document." . inDocument->mDocumentName . "."
@@ -73,7 +147,7 @@ local routine analyzeDocument
     !controllerMap
     !?observablePropertyMap
     !?implementationFileInclusionSet
-    ?transientListForImplementation
+    ?@transientListForImplementation transientListForImplementation
     !?ioTransientDependencyGraph
   ;
 #--------------------------------------------------- Analyze actions

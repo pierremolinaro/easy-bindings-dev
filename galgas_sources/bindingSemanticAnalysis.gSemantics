@@ -683,13 +683,19 @@ override method @regularRootBinding analyzeControllerBinding
 :
   @string boundTypeIdentifierString ;
   if [inAllObservablePropertyMap hasKey !mObservableAttributeName->string] then
-    @easyBindingType t ;
-    [inAllObservablePropertyMap searchKey !mObservableAttributeName ?t ?2*] ;
+    [inAllObservablePropertyMap searchKey
+      !mObservableAttributeName
+      ?@easyBindingType t
+      ?2*
+    ] ;
     boundTypeIdentifierString := [t ebTypeIdentifier] ;
   elsif [inAllRelationshipMap hasKey !mObservableAttributeName->string] then
-    @bool isToMany ;
-    @lstring destinationEntityName ;
-    [inAllRelationshipMap searchKey !mObservableAttributeName ?isToMany ?destinationEntityName ?2*] ;
+    [inAllRelationshipMap searchKey
+      !mObservableAttributeName
+      ?@bool isToMany
+      ?@lstring destinationEntityName
+      ?2*
+    ] ;
     if isToMany then
       boundTypeIdentifierString := "toMany[" . destinationEntityName . "]" ;
     else

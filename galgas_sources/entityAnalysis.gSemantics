@@ -96,7 +96,7 @@ local routine analyzeEntity
     ] ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
-      ![@toManyEntitiesType new !inEntity->mEntityName->string]
+      ![@toManyEntitiesType new !mDestinationEntityName->string]
       !false # is not transient
       !observationDependencyKey->string
     ] ;    
