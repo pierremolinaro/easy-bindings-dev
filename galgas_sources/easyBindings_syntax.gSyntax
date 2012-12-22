@@ -778,9 +778,6 @@ rule <type_formatter_list>
       outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@enumType new !"unknow enum type"] !requiredFormatter  ;
     or
-      $toOne$ ;
-      outEasyBindingTypeFormatterList += ![@toOneObjectType new !"??"] ![@formatterEnum noFormatter] ;
-    or
       $toMany$ ;
       outEasyBindingTypeFormatterList += ![@toManyEntitiesType new !"??"] ![@formatterEnum noFormatter] ;
     or

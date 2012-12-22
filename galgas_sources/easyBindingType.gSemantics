@@ -25,12 +25,6 @@ class @objectArrayType extends @easyBindingType {
 
 #----------------------------------------------------------------------------*
 
-class @toOneObjectType extends @easyBindingType {
-  @string mEntityOrClassName ;
-}
-
-#----------------------------------------------------------------------------*
-
 class @toManyEntitiesType extends @easyBindingType {
   @string mEntityName ;
 }
@@ -63,7 +57,6 @@ override reader @bezierPathType ebTypeName -> @string outResult : outResult := "
 override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
 override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSSet" ; end reader ;
 override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
-override reader @toOneObjectType ebTypeName -> @string outResult : outResult := mEntityOrClassName ; end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -107,7 +100,6 @@ override reader @objectArrayType isClass -> @bool outResult : outResult := true 
 override reader @bezierPathType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
-override reader @toOneObjectType isClass -> @bool outResult : outResult := false ; end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -226,7 +218,6 @@ override reader @menuType ebTypeIdentifier -> @string outResult : outResult := "
 override reader @bezierPathType ebTypeIdentifier -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @toManyEntitiesType ebTypeIdentifier -> @string outResult : outResult := "toMany[" . mEntityName . "]" ; end reader ;
 override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResult := "array[" . mClassName . "]" ; end reader ;
-override reader @toOneObjectType ebTypeIdentifier -> @string outResult : outResult := "object[" . mEntityOrClassName . "]" ; end reader ;
 
 override reader @enumType ebTypeIdentifier -> @string outResult : outResult := "enum[" . mEnumTypeName . "]" ; end reader ;
 
@@ -279,7 +270,6 @@ override reader @valueType ocTypeName -> @string outResult : outResult := "NSVal
 override reader @menuType ocTypeName -> @string outResult : outResult := "NSMenu *" ; end reader ;
 override reader @bezierPathType ocTypeName -> @string outResult : outResult := "NSBezierPath *" ; end reader ;
 override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
-override reader @toOneObjectType ocTypeName -> @string outResult : outResult := mEntityOrClassName . " *" ; end reader ;
 override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
 #----------------------------------------------------------------------------*
@@ -304,7 +294,6 @@ override reader @menuType ocClassName -> @string outResult : outResult := "NSMen
 override reader @bezierPathType ocClassName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName ; end reader ;
-override reader @toOneObjectType ocClassName -> @string outResult : outResult := mEntityOrClassName ; end reader ;
 
 #----------------------------------------------------------------------------*
 
