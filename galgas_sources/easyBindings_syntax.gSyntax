@@ -125,8 +125,15 @@ rule <multi_value_binding_element>
   or
     $identifier$ ?@lstring controllerName ;
     $.$ ;
-    $identifier$ ?@lstring boundPropertyName ;
-    boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
+    select
+      $selection$ ;
+      $.$ ;
+      $identifier$ ? @lstring boundPropertyName ;
+      boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
+    or
+      $identifier$ ?@lstring boundPropertyName ;
+      boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
+    end select ;
   or
     $Identifier$ ?@lstring preferenceName ;
     $.$ ;
@@ -244,16 +251,23 @@ rule <bindings>
     or
       $identifier$ ? @lstring controllerName ;
       $.$ ;
-      $identifier$ ? @lstring controllerObservablePropertyName ;
-      <count_option> ?@bool namesCountOption ;
-      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-      outOutletBindingList += ![@regularControllerBinding new
-        !bindingName
-        !controllerName
-        !controllerObservablePropertyName
-        !outletBindingOptionList
-        !namesCountOption
-      ] ;
+      select
+        $selection$ ;
+        $.$ ;
+        $identifier$ ? @lstring controllerObservablePropertyName ;
+        <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+      or
+        $identifier$ ? @lstring controllerObservablePropertyName ;
+        <count_option> ?@bool namesCountOption ;
+        <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+        outOutletBindingList += ![@regularControllerBinding new
+          !bindingName
+          !controllerName
+          !controllerObservablePropertyName
+          !outletBindingOptionList
+          !namesCountOption
+        ] ;
+      end select ;
     or
       $Identifier$ ?@lstring preferenceName ;
       $.$ ;
@@ -510,21 +524,65 @@ rule <controller_declaration>
 :
   $controller$ ;
   $Identifier$ ? @lstring controllerClassName ;
-  @lstring controlledClassOrEntityName ;
-  select
-    controlledClassOrEntityName := [@lstring new !".undefined." ! here] ;
-  or
-    $[$ ;
-    $Identifier$ ?controlledClassOrEntityName ;
-    $]$ ;
-  end select ;
   $identifier$ ? @lstring controllerName ;
   <bindings> ?@bindingList controllerBindingList ;
   $;$ ;
   ioControllerList +=
+    ![@controllerKind simpleController]
     !controllerClassName
     !controllerName
-    !controlledClassOrEntityName
+    ![@lstring new !"" ! here] # No controlled Object
+    ![@outletBindingOptionList emptyList]
+    !controllerBindingList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_declaration>
+  ?!@controllerList ioControllerList
+:
+  $arrayController$ ;
+  $Identifier$ ?@lstring controllerClassName ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  $root$ ;
+  $.$ ;
+  $identifier$ ?@lstring controlledObject ;
+  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $;$ ;
+  ioControllerList +=
+    ![@controllerKind arrayController]
+    !controllerClassName
+    !controllerName
+    !controlledObject
+    !controlledObjectBindingOptionList
+    !controllerBindingList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_declaration>
+  ?!@controllerList ioControllerList
+:
+  $objectController$ ;
+  $Identifier$ ? @lstring controllerClassName ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  $root$ ;
+  $.$ ;
+  $identifier$ ?@lstring controlledObject ;
+  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $;$ ;
+  ioControllerList +=
+    ![@controllerKind objectController]
+    !controllerClassName
+    !controllerName
+    !controlledObject
+    !controlledObjectBindingOptionList
     !controllerBindingList
   ;
 end rule ;
@@ -720,7 +778,10 @@ rule <type_formatter_list>
       outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@enumType new !"unknow enum type"] !requiredFormatter  ;
     or
-      $toManyEntities$ ;
+      $toOne$ ;
+      outEasyBindingTypeFormatterList += ![@toOneObjectType new !"??"] ![@formatterEnum noFormatter] ;
+    or
+      $toMany$ ;
       outEasyBindingTypeFormatterList += ![@toManyEntitiesType new !"??"] ![@formatterEnum noFormatter] ;
     or
       $array$ ;
@@ -882,7 +943,17 @@ rule <controller_class_declaration>
     $extern$ ;
     generationKind := [@generationKind generateImport] ;
   end select ;
-  $controllerClass$ ;
+  @controllerKind controllerKind ;
+  select
+    $controller$ ;
+    controllerKind := [@controllerKind simpleController] ;
+  or
+    $objectController$ ;
+    controllerKind := [@controllerKind objectController] ;
+  or
+    $arrayController$ ;
+    controllerKind := [@controllerKind arrayController] ;
+  end select ;
   $Identifier$ ? @lstring controllerClassName ;
   ${$ ;
   @outletClassBindingList controllerClassBindingList [emptyList] ;
@@ -933,6 +1004,7 @@ rule <controller_class_declaration>
   end repeat ;
   $}$ ;
   ioControllerClassList +=
+    !controllerKind
     !controllerClassName
     !generationKind
     !controllerClassBindingList

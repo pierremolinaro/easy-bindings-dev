@@ -157,6 +157,7 @@ map @outletClassMap {
 #----------------------------------------------------------------------------*
 
 map @controllerClassMap {
+  @controllerKind mControllerKind ;
   @generationKind mGenerationKind ;
   @outletClassBindingMap mBindingMap ;
   @actionMap mActionMap ;
