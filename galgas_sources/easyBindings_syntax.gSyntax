@@ -777,12 +777,6 @@ rule <type_formatter_list>
       outEasyBindingTypeFormatterList += ![@decimalType new] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@doubleType new] !requiredFormatter ;
       outEasyBindingTypeFormatterList += ![@enumType new !"unknow enum type"] !requiredFormatter  ;
-    or
-      $toMany$ ;
-      outEasyBindingTypeFormatterList += ![@toManyEntitiesType new !"??"] ![@formatterEnum noFormatter] ;
-    or
-      $array$ ;
-      outEasyBindingTypeFormatterList += ![@objectArrayType new !"??"] ![@formatterEnum noFormatter] ;
     end select ;
   while
     $,$ ;
