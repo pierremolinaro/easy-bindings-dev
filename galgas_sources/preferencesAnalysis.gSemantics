@@ -1,5 +1,6 @@
 semantics preferencesAnalysis :
   import "transientAnalysis.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -75,8 +76,10 @@ local routine analyzePreference
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
+      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     @string controllerObjectClassName ;
     switch controllerKind
     when simpleController :
@@ -86,14 +89,31 @@ local routine analyzePreference
       :"objectController is not currently handled in preferences"
       :controllerObjectClassName;
     when arrayController :
+      if mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'self' is allowed here"
+        ;
+      end if ;
       [preferenceArrayMap searchKey
         !mControlledObjectName
         ?controllerObjectClassName
         ?@observablePropertyMap classObservablePropertyMap
         ?@attributeListForImplementation attributeListForImplementation
       ] ;
+      checkBindingOptions
+        !inGlobalEnumConstantMap
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentArray"
+        ![@formatterEnum noFormatter]
+        !"self"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
     end switch ;
-    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding
         ![@observablePropertyMap emptyMap] # No root entity obsevable Map
