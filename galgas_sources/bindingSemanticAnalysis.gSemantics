@@ -580,7 +580,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine checkBindingOptions
+routine checkBindingOptions
   ??@globalEnumConstantMap inGlobalEnumConstantMap
   ??@outletBindingOptionList inBindingOptionListAST
   ??@outletClassBindingOptionMap inAvailableBindingOptionMap

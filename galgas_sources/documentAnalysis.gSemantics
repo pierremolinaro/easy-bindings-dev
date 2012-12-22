@@ -1,5 +1,6 @@
 semantics documentAnalysis :
   import "transientAnalysis.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -23,6 +24,7 @@ local routine analyzeControllers
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
+      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
@@ -31,6 +33,11 @@ local routine analyzeControllers
     when simpleController :
       destinationEntityName := ["" nowhere] ;
     when objectController :
+      if not mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'root' is allowed here"
+        ;
+      end if ;
       [inRootObjectRelationshipMap searchKey
         !mControlledObjectName
         ?@bool isToMany
@@ -46,7 +53,25 @@ local routine analyzeControllers
         ?@propertyMap controlledObjectAllPropertyMap
         ?4*
       ] ;
+      checkBindingOptions
+        !inGlobalEnumConstantMap
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentObject"
+        ![@formatterEnum noFormatter]
+        !"mRootObject"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
     when arrayController :
+      if not mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'root' is allowed here"
+        ;
+      end if ;
       [inRootObjectRelationshipMap searchKey
         !mControlledObjectName
         ?@bool isToMany
@@ -62,12 +87,18 @@ local routine analyzeControllers
         ?@propertyMap controlledObjectAllPropertyMap
         ?4*
       ] ;
+      checkBindingOptions
+        !inGlobalEnumConstantMap
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+      ;
       bindingListForGeneration += ![@regularBindingForGeneration new
         !"contentSet"
         ![@formatterEnum noFormatter]
         !"mRootObject"
         !mControlledObjectName->string
-        ![@2stringlist emptyList]
+        !controlledObjectBindingOptionListForGeneration
       ] ;
     end switch ;
   #---

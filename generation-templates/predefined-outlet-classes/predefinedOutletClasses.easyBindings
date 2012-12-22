@@ -1,4 +1,11 @@
 predefined objectController NSObjectController {
+  NSDeletesObjectsOnRemove : bool ;
+  NSValidatesImmediately : bool ;
+  NSConditionallySetsEditable : bool ;
+  NSAlwaysPresentsApplicationModalAlerts : bool ;
+  NSHandlesContentAsCompoundValue : bool ;
+  NSRaisesForNotApplicableKeys : bool ;
+}{
   action add ;
   action remove ;
   attribute bool canAdd ;
@@ -23,6 +30,14 @@ predefined objectController NSObjectController {
 
 
 predefined arrayController NSArrayController {
+  NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+  NSConditionallySetsEditableBindingOption : bool ;
+  NSDeletesObjectsOnRemoveBindingsOption : bool ;
+  NSHandlesContentAsCompoundValueBindingOption : bool ;
+  NSRaisesForNotApplicableKeysBindingOption : bool ;
+  NSSelectsAllWhenSettingContentBindingOption : bool ;
+  NSValidatesImmediatelyBindingOption : bool ;
+}{
   action add ;
   action remove ;
   attribute bool canAdd ;
@@ -2878,6 +2893,15 @@ predefined outletClass NSTextFieldCell {
 }
 
 predefined outletClass NSTextView {
+  $value : NSString {
+    NSContinuouslyUpdatesValue : bool ;
+    NSConditionallySetsHidden : bool ;
+    NSValidatesImmediately : bool ;
+    NSConditionallySetsEditable : bool ;
+    NSAlwaysPresentsApplicationModalAlerts : bool ;
+    NSAllowsEditingMultipleValuesSelection : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
   $valuePath : NSData {
     NSContinuouslyUpdatesValue : bool ;
     NSConditionallySetsHidden : bool ;

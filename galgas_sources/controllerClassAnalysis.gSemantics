@@ -19,10 +19,6 @@ local routine analyzeControllerClass
     @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
     foreach mBindingOptionList do
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
-#        foreach mAcceptableTypeList do
-#        
-#        
-#        end foreach ;
     end foreach ;
     [!?bindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
   end foreach ;
@@ -45,6 +41,11 @@ local routine analyzeControllerClass
     ] ;
   end for ;
 #---
+  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+  foreach inController->mControlledObjectBindingOptionList do
+    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
+  end foreach ;
+#---
   [!?ioControllerClassMap insertKey
     !inController->mControllerClassName
     !inController->mControllerKind
@@ -52,6 +53,7 @@ local routine analyzeControllerClass
     !bindingMap
     !actionMap
     !observablePropertyMap
+    !controlledObjectAvailableBindingOptionMap
   ] ;
 end routine ;
 

@@ -235,6 +235,7 @@ list @controllerList {
   @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
   @lstring mControllerName ;
+  @lbool mIsRootObject ; # false -> is self object
   @lstring mControlledObjectName ;
   @outletBindingOptionList mControlledObjectBindingOptionList ;
   @bindingList mControllerBindingList ;
@@ -338,6 +339,7 @@ enum @controllerKind {
 list @controllerClassList {
   @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
+  @bindingOptionList mControlledObjectBindingOptionList ;
   @generationKind mGenerationKind ;
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;

@@ -531,6 +531,7 @@ rule <controller_declaration>
     ![@controllerKind simpleController]
     !controllerClassName
     !controllerName
+    ![@lbool new !false !here] # Any value, no controlled object
     ![@lstring new !"" ! here] # No controlled Object
     ![@outletBindingOptionList emptyList]
     !controllerBindingList
@@ -546,7 +547,14 @@ rule <controller_declaration>
   $Identifier$ ?@lstring controllerClassName ;
   $identifier$ ? @lstring controllerName ;
   $:$ ;
-  $root$ ;
+  @lbool isRoot ;
+  select
+    $root$ ;
+    isRoot := [@lbool new !true !here] ;
+  or
+    $self$ ;
+    isRoot := [@lbool new !false !here] ;
+  end select ;
   $.$ ;
   $identifier$ ?@lstring controlledObject ;
   <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
@@ -556,6 +564,7 @@ rule <controller_declaration>
     ![@controllerKind arrayController]
     !controllerClassName
     !controllerName
+    !isRoot
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
@@ -571,7 +580,14 @@ rule <controller_declaration>
   $Identifier$ ? @lstring controllerClassName ;
   $identifier$ ? @lstring controllerName ;
   $:$ ;
-  $root$ ;
+  @lbool isRoot ;
+  select
+    $root$ ;
+    isRoot := [@lbool new !true !here] ;
+  or
+    $self$ ;
+    isRoot := [@lbool new !false !here] ;
+  end select ;
   $.$ ;
   $identifier$ ?@lstring controlledObject ;
   <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
@@ -581,6 +597,7 @@ rule <controller_declaration>
     ![@controllerKind objectController]
     !controllerClassName
     !controllerName
+    !isRoot
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
@@ -935,17 +952,41 @@ rule <controller_class_declaration>
     generationKind := [@generationKind generateImport] ;
   end select ;
   @controllerKind controllerKind ;
+  @lstring controllerClassName ;
+  @bindingOptionList controlledObjectBindingOptionList [emptyList] ;
   select
     $controller$ ;
     controllerKind := [@controllerKind simpleController] ;
+    $Identifier$ ?controllerClassName ;
   or
     $objectController$ ;
     controllerKind := [@controllerKind objectController] ;
+    $Identifier$ ?controllerClassName ;
+    ${$ ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
   or
     $arrayController$ ;
     controllerKind := [@controllerKind arrayController] ;
+    $Identifier$ ?controllerClassName ;
+    ${$ ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
   end select ;
-  $Identifier$ ? @lstring controllerClassName ;
   ${$ ;
   @outletClassBindingList controllerClassBindingList [emptyList] ;
   @lstringlist actionDeclarationList [emptyList] ;
@@ -997,6 +1038,7 @@ rule <controller_class_declaration>
   ioControllerClassList +=
     !controllerKind
     !controllerClassName
+    !controlledObjectBindingOptionList
     !generationKind
     !controllerClassBindingList
     !actionDeclarationList
