@@ -34,24 +34,24 @@ predefined arrayController NSArrayController {
     NSNoSelectionPlaceholder : bool ;
     NSRaisesForNotApplicableKeys : bool ;
   }
-  $contentSet : toMany {
-    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-    NSConditionallySetsEditableBindingOption : bool ;
-    NSDeletesObjectsOnRemoveBindingsOption : bool ;
-    NSHandlesContentAsCompoundValueBindingOption : bool ;
-    NSRaisesForNotApplicableKeysBindingOption : bool ;
-    NSSelectsAllWhenSettingContentBindingOption : bool ;
-    NSValidatesImmediatelyBindingOption : bool ;
-  }
-  $contentArray : array {
-    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-    NSConditionallySetsEditableBindingOption : bool ;
-    NSDeletesObjectsOnRemoveBindingsOption : bool ;
-    NSHandlesContentAsCompoundValueBindingOption : bool ;
-    NSRaisesForNotApplicableKeysBindingOption : bool ;
-    NSSelectsAllWhenSettingContentBindingOption : bool ;
-    NSValidatesImmediatelyBindingOption : bool ;
-  }
+#  $contentSet : toMany {
+#    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+#    NSConditionallySetsEditableBindingOption : bool ;
+#    NSDeletesObjectsOnRemoveBindingsOption : bool ;
+#    NSHandlesContentAsCompoundValueBindingOption : bool ;
+#    NSRaisesForNotApplicableKeysBindingOption : bool ;
+#    NSSelectsAllWhenSettingContentBindingOption : bool ;
+#    NSValidatesImmediatelyBindingOption : bool ;
+#  }
+#  $contentArray : array {
+#    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+#    NSConditionallySetsEditableBindingOption : bool ;
+#    NSDeletesObjectsOnRemoveBindingsOption : bool ;
+#    NSHandlesContentAsCompoundValueBindingOption : bool ;
+#    NSRaisesForNotApplicableKeysBindingOption : bool ;
+#    NSSelectsAllWhenSettingContentBindingOption : bool ;
+#    NSValidatesImmediatelyBindingOption : bool ;
+#  }
   # Warning: skipped $contentArray binding
 #  $selectionIndexes : NSIndexSet {
 #    NSAlwaysPresentsApplicationModalAlerts : bool ;
