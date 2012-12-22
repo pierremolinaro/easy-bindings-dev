@@ -87,7 +87,7 @@ end foreach
 foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
   %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
-  %  [%!lkey->string% setEntityName:@"%!mControlledClassOrEntityName%"] ;\n%
+  %  [%!lkey->string% setEntityName:@"%!mControlledClassOrEntityName->string%"] ;\n%
   %  [%!lkey->string% setManagedObjectContext:moc] ;\n%
 end foreach
 

@@ -133,7 +133,7 @@ local routine analyzePreference
     [!?controllerMap insertKey
       !mControllerName
       !mControllerClassName->string
-      !controllerObjectClassName
+      ![@lstring new !controllerObjectClassName !here]
       !false # Is not an entity : it is a class
       !bindingListForGeneration
       !controllerActionMap
@@ -162,6 +162,7 @@ local routine analyzePreference
       ?@generationKind generationKind
       ?2*
       ?@outletClassBindingMap bindingMap
+      ?*
       ?@bool hasTableValueBinding
     ] ;
     if generationKind != [@generationKind noGeneration] then

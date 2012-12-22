@@ -23,7 +23,7 @@ override method @tableValueBinding analyzeOutletBinding
     [inControllerMap searchKey
       !mControllerName
       ?*
-      ?@string controlledClassOrEntityName
+      ?@lstring controlledClassOrEntityName
       ?@bool isEntity
       ?@outletBindingListForGeneration controllerBindingList
       ?*
@@ -32,14 +32,14 @@ override method @tableValueBinding analyzeOutletBinding
     @observablePropertyMap observablePropertyMap ;
     if isEntity then
       [inEntityMap searchKey
-        ![@lstring new !controlledClassOrEntityName !here]
+        !controlledClassOrEntityName
         ?3*
         ?observablePropertyMap
         ?11*
       ] ;
     else
       [inClassMap searchKey
-        ![@lstring new !controlledClassOrEntityName !here]
+        !controlledClassOrEntityName
         ?*
         ?observablePropertyMap
         ?6*
@@ -146,6 +146,99 @@ override method @regularControllerBinding analyzeOutletBinding
     end if ;
   end if ;
   
+#-------------------------------------------------- check model belongs to an acceptable type
+  @bool found := false ;
+  @formatterEnum requiredFormatter [noFormatter] ;
+  foreach acceptableTypeFormatterList while not found do
+    requiredFormatter := mRequiredFormatter ;
+    found := mType == observablePropertyType ;
+  end foreach ;
+  if not found then
+    @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
+    foreach acceptableTypeFormatterList while not found do
+      s .= "\n  - '" . [mType ebTypeName] . "'" ;
+    end foreach ;
+    error mControllerAttributeName:s ;
+  end if ;
+#--- Check options
+  @2stringlist bindingOptionList [emptyList] ;
+  foreach mOutletBindingOptionList do
+    @easyBindingTypeList acceptableTypeList ;
+    [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
+    @bool found := false ;
+    [mDefaultValue analyzeDefaultValueType
+      !acceptableTypeList
+      !inGlobalEnumConstantMap
+      ?*
+      ?@string objectiveCDefaultValueAsString
+    ] ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+  end foreach ;
+  ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    ![mBindingName string]
+    !requiredFormatter
+    !mControllerName->string
+    !observedKeyPath
+    !bindingOptionList
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @regularControllerSelectionBinding analyzeOutletBinding
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
+  ??@outletClassBindingMap inBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap unused inActionMap
+  ??@bool unused inHasTableValueBinding
+  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@stringset unused ioImplementationFileInclusionSet
+:
+#---------------------------------- Search binding
+  [inBindingMap searchKey
+    !mBindingName
+    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+  ] ;
+#---------------------------------- Search controller in controller map
+  [inControllerMap searchKey
+    !mControllerName
+    ?*
+    ?@lstring controlledClassOrEntityName
+    ?@bool isEntity
+    ?3*
+  ] ;
+#---------------------------------- Search controlled object property map
+  @observablePropertyMap observableAttributeMap ;
+  if isEntity then
+    [inEntityMap searchKey
+      !controlledClassOrEntityName
+      ?3*
+      ?observableAttributeMap
+      ?11*
+    ] ;      
+  else
+    [inClassMap searchKey
+      !controlledClassOrEntityName
+      ?*
+      ?observableAttributeMap
+      ?6*
+     ] ;
+  end if ;
+#---------------------------------- Search property
+  [observableAttributeMap searchKey
+    !mControllerAttributeName
+    ?@easyBindingType observablePropertyType
+    ?@bool isTransient
+    ?@string propertySignature
+  ] ;
+#------------------------------------------------- count option ?
+  const @string observedKeyPath := "selection." . mControllerAttributeName->string ;
 #-------------------------------------------------- check model belongs to an acceptable type
   @bool found := false ;
   @formatterEnum requiredFormatter [noFormatter] ;
@@ -416,6 +509,8 @@ end method ;
 override method @multiValuedBindingBoundToRoot analyzeModel
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap unused inControllerMap
   ?!@stringset unused ioImplementationFileInclusionSet
@@ -436,6 +531,8 @@ end method ;
 override method @multiValuedBindingBoundToSelf analyzeModel
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap unused inControllerMap
   ?!@stringset unused ioImplementationFileInclusionSet
@@ -456,6 +553,8 @@ end method ;
 override method @multiValuedBindingBoundToPref analyzeModel
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@preferencesMap inPreferencesMap
   ??@controllerMap unused inControllerMap
   ?!@stringset ioImplementationFileInclusionSet
@@ -483,6 +582,8 @@ end method ;
 override method @multiValuedBindingBoundToController analyzeModel
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@entityMap unused inEntityMap
+  ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap inControllerMap
   ?!@stringset unused ioImplementationFileInclusionSet
@@ -505,12 +606,59 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @multiValuedBindingBoundToControllerSelection analyzeModel
+  ??@observablePropertyMap unused inRootEntityObservableAttributeMap
+  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
+  ??@preferencesMap unused inPreferencesMap
+  ??@controllerMap inControllerMap
+  ?!@stringset unused ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+:
+  [inControllerMap searchKey
+    !mControllerName
+    ?*
+    ?@lstring controlledClassOrEntityName
+    ?@bool isEntity
+    ?3*
+  ] ;
+#---------------------------------- Search controlled object property map
+  @observablePropertyMap observableAttributeMap ;
+  if isEntity then
+    [inEntityMap searchKey
+      !controlledClassOrEntityName
+      ?3*
+      ?observableAttributeMap
+      ?11*
+    ] ;      
+  else
+    [inClassMap searchKey
+      !controlledClassOrEntityName
+      ?*
+      ?observableAttributeMap
+      ?6*
+     ] ;
+  end if ;
+#---
+  [observableAttributeMap searchKey
+    !mPropertyName
+    ?outObservablePropertyType
+    ?*
+    ?*
+  ] ;
+  outObservedObjectName := mControllerName->string . "selection" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @multiValuedBinding analyzeOutletBinding
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap inSelfObservableAttributeMap
   ??@preferencesMap inPreferencesMap
-  ??@entityMap unused inEntityMap
-  ??@classMap unused inClassMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
   ??@outletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
@@ -529,6 +677,8 @@ override method @multiValuedBinding analyzeOutletBinding
     [mBoundModel analyzeModel
       !inRootEntityObservableAttributeMap
       !inSelfObservableAttributeMap
+      !inEntityMap
+      !inClassMap
       !inPreferencesMap
       !inControllerMap
       !?ioImplementationFileInclusionSet

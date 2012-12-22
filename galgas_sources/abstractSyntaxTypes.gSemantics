@@ -135,6 +135,15 @@ class @regularControllerBinding extends @abstractBinding {
 
 #----------------------------------------------------------------------------*
 
+class @regularControllerSelectionBinding extends @abstractBinding {
+  @lstring mBindingName ;
+  @lstring mControllerName ;
+  @lstring mControllerAttributeName ;
+  @outletBindingOptionList mOutletBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @regularPreferenceBinding extends @abstractBinding {
   @lstring mBindingName ;
   @lstring mPreferenceName ;
@@ -163,6 +172,12 @@ class @multiValuedBindingBoundToPref extends @multiValuedBindingBoundModel {
 #----------------------------------------------------------------------------*
 
 class @multiValuedBindingBoundToController extends @multiValuedBindingBoundModel {
+  @lstring mControllerName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @multiValuedBindingBoundToControllerSelection extends @multiValuedBindingBoundModel {
   @lstring mControllerName ;
 }
 

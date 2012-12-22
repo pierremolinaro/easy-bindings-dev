@@ -129,7 +129,7 @@ rule <multi_value_binding_element>
       $selection$ ;
       $.$ ;
       $identifier$ ? @lstring boundPropertyName ;
-      boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
+      boundModel := [@multiValuedBindingBoundToControllerSelection new !boundPropertyName !controllerName] ;
     or
       $identifier$ ?@lstring boundPropertyName ;
       boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
@@ -256,6 +256,12 @@ rule <bindings>
         $.$ ;
         $identifier$ ? @lstring controllerObservablePropertyName ;
         <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
+        outOutletBindingList += ![@regularControllerSelectionBinding new
+          !bindingName
+          !controllerName
+          !controllerObservablePropertyName
+          !outletBindingOptionList
+        ] ;
       or
         $identifier$ ? @lstring controllerObservablePropertyName ;
         <count_option> ?@bool namesCountOption ;
