@@ -32,6 +32,15 @@
 //----------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
+  #define macroAddItemToDebugMenu(ITEM) addItemToDebugMenu (ITEM)
+  void addItemToDebugMenu (NSMenuItem * inMenuItem) ;
+#else
+  #define macroAddItemToDebugMenu(ITEM)
+#endif
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
   @interface PMAllocationDebug : NSObject <NSTableViewDataSource> {
     @private IBOutlet NSButton * mAllocationStatsWindowVisibleAtLaunchCheckbox ;
     @private IBOutlet NSPopUpButton * mDisplayFilterPopUpButton ;

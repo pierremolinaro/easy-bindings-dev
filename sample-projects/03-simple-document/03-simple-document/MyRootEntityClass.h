@@ -11,13 +11,13 @@
 
 //--- END OF USER ZONE 1
 
-#import <Cocoa/Cocoa.h>
+#import "PMManagedObject.h"
 #import "MonEnumeration.h"
 
 
 //----------------------------------------------------------------------------*
 
-@interface MyRootEntityClass : NSManagedObject {
+@interface MyRootEntityClass : PMManagedObject {
 //--- Attribute observers
   @private NSMutableSet * myString_observers ;
   @private NSMutableSet * myEnumeration_observers ;

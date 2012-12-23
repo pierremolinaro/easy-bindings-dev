@@ -64,6 +64,14 @@ static PMAllocationDebug * gDebugObject ;
 }
 
 //----------------------------------------------------------------------------*
+//    addDebugMenuItem:                                                       *
+//----------------------------------------------------------------------------*
+
+- (void) addDebugMenuItem: (NSMenuItem *) inMenuItem {
+  [mDebugMenu addItem:inMenuItem] ;
+}
+
+//----------------------------------------------------------------------------*
 //    awakeFromNib                                                            *
 //----------------------------------------------------------------------------*
 
@@ -265,6 +273,28 @@ void routineNoteObjectDeallocation (NSObject * inObject) {
 void routineShowAllocationStatsWindow (void) {
   [gDebugObject pmShowAllocationStatsWindow] ;
 }
+
+//----------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  void addItemToDebugMenu (NSMenuItem * inMenuItem) {
+    if (nil == gDebugObject) {
+      gDebugObject = [PMAllocationDebug new] ;
+      const BOOL ok = [NSBundle loadNibNamed:@"PMAllocationDebug" owner:gDebugObject] ;
+      if (! ok) {
+        presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMAllocationDebug' nib file") ;
+      }
+    }
+    [[NSRunLoop mainRunLoop]
+      performSelector:@selector (addDebugMenuItem:)
+      target:gDebugObject
+      argument:inMenuItem
+      order:NSUIntegerMax
+      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+    ] ;
+
+  }
+#endif
 
 //----------------------------------------------------------------------------*
 

@@ -47,11 +47,11 @@ end foreach
 }
 
 //----------------------------------------------------------------------------*
-//    managedObjectModel                                                      *
+//    rootObject                                                              *
 //----------------------------------------------------------------------------*
 
-- (NSManagedObjectModel *) managedObjectModel {
-  return managedObjectModel () ;
+- (PMManagedObject *) rootObject {
+  return mRootObject ;
 }
 
 //----------------------------------------------------------------------------*
@@ -83,6 +83,7 @@ end foreach
 //--- Enable undo registrations
   [moc processPendingChanges] ;
   [moc.undoManager enableUndoRegistration];
+//--------------------------- Controller instanciation
 %
 foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
@@ -92,7 +93,8 @@ foreach CONTROLLER_MAP do
     %  [%!lkey->string% setManagedObjectContext:moc] ;\n%
   end if
 end foreach
-
+%//--------------------------- Controller bindings
+%
 foreach CONTROLLER_MAP do
   foreach mControllerBindingList
   before 
@@ -101,6 +103,8 @@ foreach CONTROLLER_MAP do
    ![mBinding generateBinding !lkey->string]
   end foreach
 end foreach
+%//--------------------------- Outlet bindings
+%
 
 foreach OUTLET_DECLARATION_LIST do
    %//--- Outlet %!mOutletName%\n%
@@ -111,7 +115,7 @@ foreach OUTLET_DECLARATION_LIST do
     ![mBinding generateBinding !mOutletName]
   end foreach
 end foreach
-%//--- Add Transient observers
+%//--------------------------- Add Transient observers
 %!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
 %}
 
