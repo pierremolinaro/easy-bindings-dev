@@ -27,7 +27,6 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string ROOT_ENTITY_CLASS_NAME
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
-    ?@lstringlist ACTION_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
@@ -35,15 +34,9 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
     ?@string DOCUMENT_NAME
-    ?@lstringlist ACTION_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
   ;
   
-  template documentActionImplementationFile "document-action.m.gTemplate"
-    ?@string DOCUMENT_NAME
-    ?@string ACTION_NAME
-  ;
-
   template documentTransientComputationImplementationFile "document-transient-computation-function.m.gTemplate"
     ?@string DOCUMENT_NAME
     ?@easyBindingType RESULT_TYPE
@@ -91,7 +84,6 @@ routine generateDocumentCode
         !mRootEntityImplementationClassName
         !mOutletDeclarationList
         !mControllerMap
-        !mActionList
         !mTransientListForImplementation
         !mImplementationFileInclusionSet
         !inTransientDependencyArcList
@@ -106,10 +98,9 @@ routine generateDocumentCode
         !"@end\n"
       ] ;
     #--- action header file
-      if ([mActionList length] + [mTransientListForImplementation length]) > 0 then
+      if [mTransientListForImplementation length] > 0 then
         s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
           ![lkey string]
-          !mActionList
           !mTransientListForImplementation
         ] ;
         [@string generateFileWithPattern
@@ -122,22 +113,6 @@ routine generateDocumentCode
           !"\n"
         ] ;
       end if ;
-    #--- Action computation function implementation files
-      foreach mActionList do
-          s := [filewrapper documentGenerationTemplate.documentActionImplementationFile
-            ![lkey string]
-            !mValue->string
-          ] ;
-          [@string generateFileWithPattern
-            !inOutputDirectory
-            ![lkey string] . "_" . mValue->string . "_action.m"
-            !"//"
-            !"\n\n" # Defaut user zone1
-            !s
-            !"  what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-          ] ;
-      end foreach ;
     #--- Transient computation function implementation files
       foreach mTransientListForImplementation do
           s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFile

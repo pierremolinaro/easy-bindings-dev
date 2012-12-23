@@ -4,7 +4,7 @@
 #import "PMTransientDependancyManager.h"
 #import "%!DOCUMENT_NAME%.h"
 #import "%!ROOT_ENTITY_CLASS_NAME%.h"
-%if ([ACTION_LIST length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length]) > 0 then
+%if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 %#import "%!DOCUMENT_NAME%-computations.h"\n%
 end if
 foreach INCLUSION_SET do
@@ -143,14 +143,4 @@ end foreach
 
 !generateTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 
-%//----------------------------------------------------------------------------*
-//    Actions                                                                 *
-//----------------------------------------------------------------------------*
-%foreach ACTION_LIST do
 %
-- (IBAction) %!mValue->string%: (id) inSender {
-  %!mValue->string%_%!DOCUMENT_NAME%_action (self, inSender) ;
-}\n\n%
-%//----------------------------------------------------------------------------*\n%
-end foreach%
-
