@@ -3,7 +3,10 @@
 //----------------------------------------------------------------------------*
 
 @class %!ROOT_ENTITY_CLASS_NAME% ;
-
+%foreach HEADER_FILE_PREDECLARATION_SET do
+%@class %!key% ;\n%
+end foreach
+%
 //----------------------------------------------------------------------------*
 
 @interface %!DOCUMENT_NAME% : NSPersistentDocument {
@@ -26,16 +29,5 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n%
 end foreach
-%}
-
-//--- Retrieve custom managed object model
-- (NSManagedObjectModel *) managedObjectModel ;
-
-//--- Actions
-%foreach ACTION_LIST do
-%- (IBAction) %!mValue->string%: (id) inSender ;\n%
-end foreach%
-@end
-
-//----------------------------------------------------------------------------*
+%
 

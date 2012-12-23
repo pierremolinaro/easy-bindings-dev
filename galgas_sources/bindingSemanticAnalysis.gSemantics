@@ -506,6 +506,21 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+abstract method @multiValuedBindingBoundModel analyzeModel
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@entityMap inEntityMap
+  ??@classMap inClassMap
+  ??@preferencesMap inPreferencesMap
+  ??@controllerMap inControllerMap
+  ?!@stringset ioImplementationFileInclusionSet
+  !@string outObservedObjectName
+  !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
+;
+
+#----------------------------------------------------------------------------*
+
 override method @multiValuedBindingBoundToRoot analyzeModel
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@observablePropertyMap unused inSelfObservableAttributeMap
@@ -516,6 +531,7 @@ override method @multiValuedBindingBoundToRoot analyzeModel
   ?!@stringset unused ioImplementationFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
 :
   [inRootEntityObservableAttributeMap searchKey
     !mPropertyName
@@ -524,6 +540,7 @@ override method @multiValuedBindingBoundToRoot analyzeModel
     ?*
   ] ;
   outObservedObjectName := "mRootObject" ;
+  outKeyPathPrefix := "" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -538,6 +555,7 @@ override method @multiValuedBindingBoundToSelf analyzeModel
   ?!@stringset unused ioImplementationFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
 :
   [inSelfObservableAttributeMap searchKey
     !mPropertyName
@@ -546,6 +564,7 @@ override method @multiValuedBindingBoundToSelf analyzeModel
     ?*
   ] ;
   outObservedObjectName := "self" ;
+  outKeyPathPrefix := "" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -560,6 +579,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
   ?!@stringset ioImplementationFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
 :
   [inPreferencesMap searchKey
     !mPreferenceName
@@ -574,6 +594,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
     ?*
   ] ;
   outObservedObjectName := "g_" . mPreferenceName ;
+  outKeyPathPrefix := "" ;
   ioImplementationFileInclusionSet += !mPreferenceName->string ;
 end method ;
 
@@ -589,6 +610,7 @@ override method @multiValuedBindingBoundToController analyzeModel
   ?!@stringset unused ioImplementationFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
 :
   [inControllerMap searchKey
     !mControllerName
@@ -602,6 +624,7 @@ override method @multiValuedBindingBoundToController analyzeModel
     ?*
   ] ;
   outObservedObjectName := mControllerName->string ;
+  outKeyPathPrefix := "" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -616,6 +639,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
   ?!@stringset unused ioImplementationFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
+  !@string outKeyPathPrefix
 :
   [inControllerMap searchKey
     !mControllerName
@@ -648,7 +672,8 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
     ?*
     ?*
   ] ;
-  outObservedObjectName := mControllerName->string . "selection" ;
+  outObservedObjectName := mControllerName->string ;
+  outKeyPathPrefix := "selection." ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -684,6 +709,7 @@ override method @multiValuedBinding analyzeOutletBinding
       !?ioImplementationFileInclusionSet
       ?@string observedObjectName
       ?@easyBindingType observablePropertyType
+      ?@string keyPathPrefix
     ] ;
   #----------------------------------------- check model belongs to an acceptable type
     @bool found := false ;
@@ -719,7 +745,7 @@ override method @multiValuedBinding analyzeOutletBinding
       !generatedBindingName
       !requiredFormatter
       !observedObjectName
-      ![mBoundModel mPropertyName]->string
+      !keyPathPrefix . [mBoundModel mPropertyName]->string
       !bindingOptionList
     ] ;
   #---

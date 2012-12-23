@@ -7,14 +7,18 @@ semantics documentGeneration :
 local filewrapper documentGenerationTemplate in "../generation-templates/document-generation" {
 }{
 }{
-  template documentDeclaration "document.h.gTemplate"
+  template documentDeclaration1 "document-1.h.gTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@string ROOT_ENTITY_CLASS_NAME
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@controllerMap CONTROLLER_MAP
-    ?@lstringlist ACTION_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@stringset HEADER_FILE_PREDECLARATION_SET
+  ;
+  
+  template documentDeclaration2 "document-2.h.gTemplate"
+    ?@lstringlist ACTION_LIST
   ;
   
   template documentImplementation "document.m.gTemplate"
@@ -59,14 +63,17 @@ routine generateDocumentCode
   if [@uint errorCount] == 0 then
     foreach inDocumentMap do
     #--- Header
-      @string s := [filewrapper documentGenerationTemplate.documentDeclaration
+      @string s := [filewrapper documentGenerationTemplate.documentDeclaration1
         ![lkey string]
         !mRootEntityName
         !mRootEntityImplementationClassName
         !mOutletDeclarationList
         !mControllerMap
-        !mActionList
         !mTransientListForImplementation
+        !mHeaderFilePredeclarationSet
+      ] ;
+      @string s2 := [filewrapper documentGenerationTemplate.documentDeclaration2
+        !mActionList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -74,8 +81,8 @@ routine generateDocumentCode
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
+        !"\n\n}\n\n" # Defaut user zone2
+        !s2
       ] ;
     #--- Implementation
       s := [filewrapper documentGenerationTemplate.documentImplementation
