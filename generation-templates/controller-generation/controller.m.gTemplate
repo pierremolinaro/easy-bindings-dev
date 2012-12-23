@@ -62,28 +62,45 @@ end foreach
 %foreach BINDING_MAP do
 %  [%!CONTROLLER_CLASS_NAME% exposeBinding:@"%!lkey->string%"] ;\n%
 end foreach
-%  Method original, swizzled ;
-%foreach OBSERVABLE_PROPERTY_MAP do
-%  original = class_getInstanceMethod (self, @selector (set%![lkey->string stringByCapitalizingFirstCharacter]%:));
-  swizzled = class_getInstanceMethod (self, @selector (set%![lkey->string stringByCapitalizingFirstCharacter]%_swizzle:));
-  method_exchangeImplementations (original, swizzled) ;
-%end foreach
 %}
 
 %foreach OBSERVABLE_PROPERTY_MAP do%
 //---------------------------------------------------------------------------*
 
-- (void) set%![lkey->string stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocClassName]% *) inValue {
+- (void) set_%!lkey->string%_fromBindingChange: (%![mType ocClassName]% *) inValue {
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
   if (! [self.%!lkey->string% isEqual:inValue]) {
-    [self set%![lkey->string stringByCapitalizingFirstCharacter]%_swizzle:inValue] ;
-    [self %!lkey->string%_model_did_change] ;
+    self.%!lkey->string% = inValue ;
   }
 }
 
 %end foreach
+
+if [OBSERVABLE_PROPERTY_MAP count] > 0 then
+%//---------------------------------------------------------------------------*
+//                                                                           *
+//       didChangeValueForKey:                                               *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (void) didChangeValueForKey:(NSString *) inKey {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+  [super didChangeValueForKey:inKey] ;
+ %foreach OBSERVABLE_PROPERTY_MAP do
+% if ([inKey isEqualToString:@%![lkey utf8Representation]%]) {
+    [self %!lkey->string%_model_did_change] ; 
+%
+  between %  }else%
+end foreach
+%  }
+}
+
+%end if
+
 
 if [BINDING_MAP count] > 0 then
 %//---------------------------------------------------------------------------*
@@ -109,8 +126,7 @@ if [BINDING_MAP count] > 0 then
       options:0
       context:nil
     ] ;
-    id value = [inObservableObject valueForKeyPath:inObservableKeyPath] ;
-    [self valueFor_%!lkey->string%_binding_didChange:value] ;
+    [self valueFor_%!lkey->string%_binding_didChange] ;
 %
   between %  }else%
 end foreach
@@ -169,8 +185,7 @@ if [BINDING_MAP count] > 0 then
   #endif
  %foreach BINDING_MAP do
 % if ((mBoundObjectFor_%!lkey->string% == inObject) && [inKeyPath isEqualToString:mKeyPathFor_%!lkey->string%]) {
-    id value = [inObject valueForKeyPath:inKeyPath] ;
-    [self valueFor_%!lkey->string%_binding_didChange:value] ;
+    [self valueFor_%!lkey->string%_binding_didChange] ;
 %
   between %  }else%
 end foreach
@@ -195,23 +210,6 @@ end foreach
 //                                                                           *
 //                  Method for '%!lkey->string%' binding                   *
 //                                                                           *
-//---------------------------------------------------------------------------*
-
-- (void) valueFor_%!lkey->string%_binding_didChange: (id) inValue {
-  #ifdef EASY_BINDINGS_DEBUG
-    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
-  #endif
-  if (NSIsControllerMarker (inValue)) {
-    id dph = [%!CONTROLLER_CLASS_NAME% defaultPlaceholderForMarker:inValue withBinding:@"%!lkey->string%"] ;
-    [self valueFor_%!lkey->string%_binding_didChange_marker:inValue defaultPlaceholder:dph] ;
-  }else if (inValue == nil) {
-    [self valueFor_%!lkey->string%_binding_didChange_nil] ;
-%foreach mAcceptableTypeList do
-%  }else if ([inValue isKindOfClass:[%![mType ocClassName]% class]]) {
-    [self valueFor_%!lkey->string%_binding_didChange_%![mType ocClassName]%:inValue] ;
-%end foreach%  }
-}
-
 //---------------------------------------------------------------------------*
 
 - (void) setValueFor_%!lkey->string%_binding: (id) inValue {
