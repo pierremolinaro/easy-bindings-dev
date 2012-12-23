@@ -5,13 +5,4 @@
 @class %!DOCUMENT_NAME% ;
 
 %!generateTransientFunctionDeclarations [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
-//----------------------------------------------------------------------------*
-//   A C T I O N S                                                            *
-//----------------------------------------------------------------------------*
-
-%foreach ACTION_LIST do
-%void %!mValue->string%_%!DOCUMENT_NAME%_action (%?^!DOCUMENT_NAME% * inDocumentObject,
-  %!^%id inSender) ;\n\n%
-%//----------------------------------------------------------------------------*\n\n%
-end foreach%
 
