@@ -119,6 +119,7 @@ map @documentMap {
   @outletGenerationList mOutletDeclarationList ;
   @controllerMap mControllerMap ;
   @lstringlist mActionList ;
+  @stringset mHeaderFilePredeclarationSet ;
   @transientListForImplementation mTransientListForImplementation ;
   @stringset mImplementationFileInclusionSet ;
   insert insertKey error message "the '%K' document is already declared" ;
@@ -209,7 +210,6 @@ list @outletBindingListForGeneration {
 
 list @outletGenerationList {
   @string mOutletType ;
-  @generationKind mGenerationKind ;
   @string mOutletName ;
   @outletBindingListForGeneration mOutletBindingList ;
 }
@@ -361,20 +361,6 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
   ?!@stringset ioImplementationFileInclusionSet
-;
-
-#----------------------------------------------------------------------------*
-
-abstract method @multiValuedBindingBoundModel analyzeModel
-  ??@observablePropertyMap inRootEntityObservableAttributeMap
-  ??@observablePropertyMap inSelfObservableAttributeMap
-  ??@entityMap inEntityMap
-  ??@classMap inClassMap
-  ??@preferencesMap inPreferencesMap
-  ??@controllerMap inControllerMap
-  ?!@stringset ioImplementationFileInclusionSet
-  !@string outObservedObjectName
-  !@easyBindingType outObservablePropertyType
 ;
 
 #----------------------------------------------------------------------------*

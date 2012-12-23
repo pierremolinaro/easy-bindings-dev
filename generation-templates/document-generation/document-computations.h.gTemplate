@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------*
 
 %foreach ACTION_LIST do
-%void %!mValue->string%_%!DOCUMENT_NAME%_action (%?^!DOCUMENT_NAME% * inPreferencesObject,
+%void %!mValue->string%_%!DOCUMENT_NAME%_action (%?^!DOCUMENT_NAME% * inDocumentObject,
   %!^%id inSender) ;\n\n%
 %//----------------------------------------------------------------------------*\n\n%
 end foreach%

@@ -185,7 +185,11 @@ local routine analyzePreference
         !?implementationFileInclusionSet
       ] ;
     end foreach ;
-    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
+    outletGenerationList +=
+      ![mOutletType string]
+      ![mOutletName string]
+      !outletBindingList
+    ;
   end foreach ;
 #------------------------------------- Enter in preference map
   [!?implementationFileInclusionSet removeKey !""] ;

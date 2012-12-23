@@ -11,6 +11,7 @@ local routine analyzeControllers
   ??@relationshipMap inRootObjectRelationshipMap
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ?!@stringset ioHeaderFilePredeclarationSet
   ?!@outletBindingListForGeneration ioBindingListForGeneration
   ?!@stringset ioImplementationFileInclusionSet
   !@controllerMap outControllerMap
@@ -20,12 +21,17 @@ local routine analyzeControllers
     [inControllerClassMap searchKey
       !mControllerClassName
       ?@controllerKind controllerKind
-      ?*
+      ?@generationKind generationKind
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
       ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
+  #---
+    if generationKind != [@generationKind noGeneration] then
+      ioHeaderFilePredeclarationSet += !mControllerClassName->string ;
+      ioImplementationFileInclusionSet += !mControllerClassName->string ;
+    end if ;
   #---
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
     @lstring destinationEntityName ;
@@ -156,6 +162,7 @@ local routine analyzeDocument
 #-------------------------------------------------- Analyze controllers
   @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
   @stringset implementationFileInclusionSet [emptySet] ;
+  @stringset headerFilePredeclarationSet [emptySet] ;
   analyzeControllers
     !inDocument->mControllerList
     !inControllerClassMap
@@ -163,6 +170,7 @@ local routine analyzeDocument
     !rootObjectRelationshipMap
     !rootObjectObservablePropertyMap
     !inGlobalEnumConstantMap
+    !?headerFilePredeclarationSet
     !?bindingListForGeneration
     !?implementationFileInclusionSet
     ?@controllerMap controllerMap
@@ -197,6 +205,10 @@ local routine analyzeDocument
       ?*
       ?@bool hasTableValueBinding
     ] ;
+    if generationKind != [@generationKind noGeneration] then
+      headerFilePredeclarationSet += !mOutletType->string ;
+      implementationFileInclusionSet += !mOutletType->string ;
+    end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
@@ -214,7 +226,12 @@ local routine analyzeDocument
         !?implementationFileInclusionSet
       ] ;
     end foreach ;
-    outletGenerationList += ![mOutletType string] !generationKind ![mOutletName string] !outletBindingList ;
+    outletGenerationList +=
+      ![mOutletType string]
+#      !generationKind
+      ![mOutletName string]
+      !outletBindingList
+    ;
   end foreach ;
 #--------------------------------------------------- Enter in document map
   [!?implementationFileInclusionSet removeKey !""] ;
@@ -225,6 +242,7 @@ local routine analyzeDocument
     !outletGenerationList
     !controllerMap
     !inDocument->mActionDeclarationList
+    !headerFilePredeclarationSet
     !transientListForImplementation
     !implementationFileInclusionSet
   ] ;
