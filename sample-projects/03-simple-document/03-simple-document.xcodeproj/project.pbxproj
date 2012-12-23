@@ -22,6 +22,8 @@
 		CF608133159365410021D873 /* MyRootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60812C159365410021D873 /* MyRootEntityClass.m */; };
 		CF9D9A7615963D8D006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A7315963D8D006D876D /* PMAllocationDebug.m */; };
 		CF9D9A7715963D8D006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A7415963D8D006D876D /* PMAllocationDebug.xib */; };
+		CFB7CFB916872C2500E00689 /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB7CFB816872C2500E00689 /* PMAbstractPersistentDocument.m */; };
+		CFB7CFBD16872DB400E00689 /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB7CFBC16872DB400E00689 /* PMManagedObject.m */; };
 		CFF1C91B15C31ECE0054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C91A15C31ECE0054F1DA /* PMTransientDependancyManager.m */; };
 		CFFB84201593AA95001B08B8 /* PMDocument_autreAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB841E1593AA95001B08B8 /* PMDocument_autreAction_action.m */; };
 		CFFB84211593AA95001B08B8 /* PMDocument_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFB841F1593AA95001B08B8 /* PMDocument_monAction_action.m */; };
@@ -56,6 +58,10 @@
 		CF9D9A7215963D8D006D876D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CF9D9A7315963D8D006D876D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CF9D9A7415963D8D006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CFB7CFB716872C2500E00689 /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
+		CFB7CFB816872C2500E00689 /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
+		CFB7CFBB16872DB400E00689 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMManagedObject.h; sourceTree = "<group>"; };
+		CFB7CFBC16872DB400E00689 /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
 		CFF1C91915C31ECE0054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFF1C91A15C31ECE0054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CFFB84041593A8BC001B08B8 /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
@@ -114,6 +120,10 @@
 		CF608100159364A90021D873 /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
+				CFB7CFBB16872DB400E00689 /* PMManagedObject.h */,
+				CFB7CFBC16872DB400E00689 /* PMManagedObject.m */,
+				CFB7CFB716872C2500E00689 /* PMAbstractPersistentDocument.h */,
+				CFB7CFB816872C2500E00689 /* PMAbstractPersistentDocument.m */,
 				CF64944F167DE6C2009AE4F7 /* MonEnumeration.h */,
 				CFF1C91915C31ECE0054F1DA /* PMTransientDependancyManager.h */,
 				CFF1C91A15C31ECE0054F1DA /* PMTransientDependancyManager.m */,
@@ -233,6 +243,8 @@
 				CFFB84211593AA95001B08B8 /* PMDocument_monAction_action.m in Sources */,
 				CF9D9A7615963D8D006D876D /* PMAllocationDebug.m in Sources */,
 				CFF1C91B15C31ECE0054F1DA /* PMTransientDependancyManager.m in Sources */,
+				CFB7CFB916872C2500E00689 /* PMAbstractPersistentDocument.m in Sources */,
+				CFB7CFBD16872DB400E00689 /* PMManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +338,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "03-simple-document/03-simple-document-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PM_COCOA_DEBUG=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "03-simple-document/03-simple-document-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

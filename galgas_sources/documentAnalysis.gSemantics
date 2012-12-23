@@ -12,7 +12,6 @@ local routine analyzeControllers
   ??@observablePropertyMap inRootEntityObservableAttributeMap
   ??@globalEnumConstantMap inGlobalEnumConstantMap
   ?!@stringset ioHeaderFilePredeclarationSet
-  ?!@outletBindingListForGeneration ioBindingListForGeneration
   ?!@stringset ioImplementationFileInclusionSet
   !@controllerMap outControllerMap
 :
@@ -120,7 +119,7 @@ local routine analyzeControllers
         !controllerActionMap
         !false # No tableValue binding
         !inGlobalEnumConstantMap
-        !?ioBindingListForGeneration
+        !?bindingListForGeneration
         !?ioImplementationFileInclusionSet
       ] ;
     end foreach ;
@@ -160,7 +159,6 @@ local routine analyzeDocument
     ?*
   ] ;
 #-------------------------------------------------- Analyze controllers
-  @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
   @stringset implementationFileInclusionSet [emptySet] ;
   @stringset headerFilePredeclarationSet [emptySet] ;
   analyzeControllers
@@ -171,7 +169,6 @@ local routine analyzeDocument
     !rootObjectObservablePropertyMap
     !inGlobalEnumConstantMap
     !?headerFilePredeclarationSet
-    !?bindingListForGeneration
     !?implementationFileInclusionSet
     ?@controllerMap controllerMap
   ;

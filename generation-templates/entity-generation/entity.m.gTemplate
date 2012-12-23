@@ -83,17 +83,11 @@ end foreach
 
 if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
 %//----------------------------------------------------------------------------*
-//    didChangeValueForKey:withSetMutation:usingObjects:                      *
+//    didChangeValueForKey:                                                   *
 //----------------------------------------------------------------------------*
 
-- (void) didChangeValueForKey: (NSString *) inKey
-         withSetMutation: (NSKeyValueSetMutationKind)inMutationKind
-         usingObjects: (NSSet *) inObjects {
-  [super
-    didChangeValueForKey:inKey
-    withSetMutation:inMutationKind
-    usingObjects:inObjects
-  ] ;
+- (void) didChangeValueForKey: (NSString *) inKey {
+  [super didChangeValueForKey:inKey] ;
  %foreach PROPERTY_TOMANY_RELATIONSHIP_SET do
 % if ([inKey isEqualToString:@"%!key%"]) {
     [%!key%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . key identifierRepresentation]%_didChange)] ;

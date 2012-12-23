@@ -191,14 +191,26 @@ message "a source text file with the .easyBindings extension"
     !sortedTransientOrderedList
   ;
 #--- Add embedded sources
+  @stringset generateSet [emptySet] ;
+  generateSet += !"easy-bindings-utilities" ;
+  generateSet += !"PMAllocationDebug" ;
+  if [documentMap count] > 0 then
+    generateSet += !"PMAbstractPersistentDocument" ;
+  end if ;
+  if [entityListForGeneration length] > 0 then
+    generateSet += !"PMManagedObject" ;
+  end if ;
+#---
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
     const @string sourceName := [mValue lastPathComponent] ;
-    [@string generateFile
-      !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
-      !sourceName
-      ![fw textFileContentsAtPath !mValue]
-     ] ;
+    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] then
+      [@string generateFile
+        !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
+        !sourceName
+        ![fw textFileContentsAtPath !mValue]
+       ] ;
+     end if ;
   end foreach ;
 }
 
