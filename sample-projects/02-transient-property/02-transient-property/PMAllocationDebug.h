@@ -53,8 +53,6 @@
     @private NSCountedSet * mAllocatedObjectCountByClass ;
     @private NSCountedSet * mTotalAllocatedObjectCountByClass ;
     @private BOOL mRefreshStatsHasTriggered ;
-    @private NSUInteger mLiveAllocatedObjectCount ;
-    @private NSUInteger mLiveTotalObjectCount ;
     @private NSArray * mAllocationStatsDataSource ;
   }
 

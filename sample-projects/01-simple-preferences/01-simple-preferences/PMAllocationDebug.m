@@ -166,13 +166,10 @@ static PMAllocationDebug * gDebugObject ;
 //    pmNoteObjectAllocation:                                                 *
 //----------------------------------------------------------------------------*
 
-- (void) pmNoteObjectAllocation: (NSObject *) inObject {
-  mLiveAllocatedObjectCount ++ ;
-  mLiveTotalObjectCount ++ ;
-  NSString * objectClassName = inObject.className ;
-  //NSLog (@"objectClassName %@", objectClassName) ;
-  [mAllocatedObjectCountByClass addObject:objectClassName] ;
-  [mTotalAllocatedObjectCountByClass addObject:objectClassName] ;
+- (void) pmNoteObjectAllocation: (NSString *) inObjectClassName {
+  //NSLog (@"objectClassName %@", inObjectClassName) ;
+  [mAllocatedObjectCountByClass addObject:inObjectClassName] ;
+  [mTotalAllocatedObjectCountByClass addObject:inObjectClassName] ;
   [self triggerRefreshAllocationStatsDisplay] ;
 }
 
@@ -180,11 +177,9 @@ static PMAllocationDebug * gDebugObject ;
 //    pmNoteObjectDeallocation:                                               *
 //----------------------------------------------------------------------------*
 
-- (void) pmNoteObjectDeallocation: (NSObject *) inObject {
-  mLiveAllocatedObjectCount -- ;
-  NSString * objectClassName = inObject.className ;
-  // NSLog (@"DEALLOC objectClassName %@", objectClassName) ;
-  [mAllocatedObjectCountByClass removeObject:objectClassName] ;
+- (void) pmNoteObjectDeallocation: (NSString *) inObjectClassName {
+  // NSLog (@"DEALLOC objectClassName %@", inObjectClassName) ;
+  [mAllocatedObjectCountByClass removeObject:inObjectClassName] ;
   [self triggerRefreshAllocationStatsDisplay] ;
 }
 
@@ -195,23 +190,29 @@ static PMAllocationDebug * gDebugObject ;
 - (void) refreshAllocationStats {
   mRefreshStatsHasTriggered = NO ;
 //---
-  self.mAllocatedObjectCount = mLiveAllocatedObjectCount ;
-  self.mTotalAllocatedObjectCount = mLiveTotalObjectCount ;
+  NSUInteger liveObjectCount = 0 ;
+  NSUInteger totalObjectCount = 0 ;
 //---
   NSMutableArray * array = [NSMutableArray new] ;
   for (NSString * className in [mTotalAllocatedObjectCountByClass.allObjects sortedArrayUsingSelector:@selector(compare:)]) {
-    const NSUInteger currentlyAllocated = [mAllocatedObjectCountByClass countForObject:className] ;
-    if ((currentlyAllocated != 0) || (self.mDisplayFilter == 0)) {
+    const NSUInteger liveByClass = [mAllocatedObjectCountByClass countForObject:className] ;
+    const NSUInteger totalByClass = [mTotalAllocatedObjectCountByClass countForObject:className] ;
+    liveObjectCount += liveByClass ;
+    totalObjectCount += totalByClass ;
+    if ((totalByClass != 0) || (self.mDisplayFilter == 0)) {
       [array addObject: [NSDictionary
         dictionaryWithObjectsAndKeys:
           className, @"classname",
-          [NSNumber numberWithUnsignedInteger:[mTotalAllocatedObjectCountByClass countForObject:className]], @"allCount",
-          [NSNumber numberWithUnsignedInteger:currentlyAllocated], @"live",
+          [NSNumber numberWithUnsignedInteger:totalByClass], @"allCount",
+          [NSNumber numberWithUnsignedInteger:liveByClass], @"live",
           nil
         ]
       ] ;
     }
   }
+//---
+  self.mAllocatedObjectCount = liveObjectCount ;
+  self.mTotalAllocatedObjectCount = totalObjectCount ;
 //---
   mAllocationStatsDataSource = array ;
   [mStatsTableView setDataSource:self] ;
@@ -259,13 +260,25 @@ void routineNoteObjectAllocation (NSObject * inObject) {
       presentErrorWindow (__FILE__, __LINE__, @"Cannot load 'PMAllocationDebug' nib file") ;
     }
   }
-  [gDebugObject pmNoteObjectAllocation:inObject] ;
+  [[NSRunLoop mainRunLoop]
+    performSelector:@selector (pmNoteObjectAllocation:)
+    target:gDebugObject
+    argument:inObject.className
+    order:NSUIntegerMax
+    modes:[NSArray arrayWithObject:NSRunLoopCommonModes]
+  ] ;
 }
 
 //----------------------------------------------------------------------------*
 
 void routineNoteObjectDeallocation (NSObject * inObject) {
-  [gDebugObject pmNoteObjectDeallocation:inObject] ;
+  [[NSRunLoop mainRunLoop]
+    performSelector:@selector (pmNoteObjectDeallocation:)
+    target:gDebugObject
+    argument:inObject.className
+    order:NSUIntegerMax
+    modes:[NSArray arrayWithObject:NSRunLoopCommonModes]
+  ] ;
 }
 
 //----------------------------------------------------------------------------*

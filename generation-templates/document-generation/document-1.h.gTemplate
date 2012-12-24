@@ -12,8 +12,6 @@ end foreach
 @interface %!DOCUMENT_NAME% : PMAbstractPersistentDocument {
 //--- Root Object
   @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
-//--- Root Object Controller
-  @protected NSObjectController * mRootObjectController ;
 %
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
