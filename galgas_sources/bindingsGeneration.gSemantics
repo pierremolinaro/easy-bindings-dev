@@ -13,6 +13,16 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override reader @runBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "  " . inOutletName . ".target = nil ;\n" ;
+ # outResult .= "  " . inOutletName . ".action = NULL ;\n" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 override reader @tableValueBindingForGeneration generateBinding
   ??@string inOutletName
   -> @string outResult
@@ -43,6 +53,18 @@ override reader @tableValueBindingForGeneration generateBinding
                     "    ]\n" ;
      end if ;
      outResult .= "  ] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"] unbind:@\"value\"] ;\n" ;
    end for ;
 end reader ;
 
@@ -84,29 +106,6 @@ override reader @regularBindingForGeneration generateBinding
                   "    ]\n" ;
    end if ;
    outResult .= "  ] ;\n" ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @runBindingForGeneration generateRemoveBinding
-  ??@string unused inOutletName
-  -> @string outResult
-:
-  outResult := "" ;  
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @tableValueBindingForGeneration generateRemoveBinding
-  ??@string inOutletName
-  -> @string outResult
-:
-  outResult := "" ;
-  for column in mColumnBindingForTableValueBindingForGeneration do
-     outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"]\n"
-     . "    unbind:@\"value\"\n"
-     . "  ] ;\n" ;
-   end for ;
 end reader ;
 
 #----------------------------------------------------------------------------*

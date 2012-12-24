@@ -63,26 +63,20 @@ end foreach
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
   [super windowControllerDidLoadNib:inWindowController] ;
-//--- Disable undo registrations
-  NSManagedObjectContext * moc = self.managedObjectContext ;
-  [moc.undoManager disableUndoRegistration];
-//--- Root entity controller creation
-  mRootObjectController = [NSObjectController new] ;
-  [mRootObjectController setAutomaticallyPreparesContent:YES] ;
-  [mRootObjectController setEditable:YES] ;
-  [mRootObjectController setEntityName:@"%!ROOT_ENTITY_NAME%"] ;
-  [mRootObjectController setManagedObjectContext:moc] ;
 //--- Root Object
-  [mRootObjectController fetchWithRequest:nil merge:NO error:nil] ;
-  mRootObject = [mRootObjectController content] ;
-  if (nil == mRootObject) {
-    mRootObject = [%!ROOT_ENTITY_CLASS_NAME% pmInsertNewObjectIntoManagedObjectContext:moc] ;
-    [mRootObjectController setContent:mRootObject] ;
-    // NSLog (@"Root object creation") ;
+  NSManagedObjectContext * moc = self.managedObjectContext ;
+  NSArray * array = [moc
+    executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"%!ROOT_ENTITY_NAME%"]
+    error:nil
+  ] ;
+  if (array.count == 0) {
+    [moc.undoManager disableUndoRegistration] ;
+    mRootObject = [NSEntityDescription insertNewObjectForEntityForName:@"%!ROOT_ENTITY_NAME%" inManagedObjectContext:moc] ;
+    [moc processPendingChanges] ;
+    [moc.undoManager enableUndoRegistration] ;
+  }else{
+    mRootObject = [array objectAtIndex:0] ;
   }
-//--- Enable undo registrations
-  [moc processPendingChanges] ;
-  [moc.undoManager enableUndoRegistration];
 //--------------------------- Controller instanciation
 %
 foreach CONTROLLER_MAP do

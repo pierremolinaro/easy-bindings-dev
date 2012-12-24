@@ -131,8 +131,6 @@
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
-//--- Invoke super method
-  [super removeWindowController:inWindowController] ;
 //---
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter] ;
   [nc
@@ -147,6 +145,8 @@
   ] ;
 //---
   mFetchingAllObjectsDone = NO ;
+//--- Invoke super method
+  [super removeWindowController:inWindowController] ;
 }
 
 //---------------------------------------------------------------------------*
