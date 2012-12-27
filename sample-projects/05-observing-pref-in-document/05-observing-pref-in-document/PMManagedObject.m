@@ -20,6 +20,31 @@
 
 @implementation PMManagedObject
 
+//----------------------------------------------------------------------------*
+//    initWithEntity:insertIntoManagedObjectContext:                          *
+//----------------------------------------------------------------------------*
+
+- (id) initWithEntity:(NSEntityDescription *) inEntity
+       insertIntoManagedObjectContext:(NSManagedObjectContext *) inManagedObjectContext {
+  self = [super 
+    initWithEntity:inEntity
+    insertIntoManagedObjectContext:inManagedObjectContext
+  ] ;
+  if (self) {
+    macroNoteObjectAllocation (self) ;
+  //--- Add Transient observers
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    Dealloc                                                                 *
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
+}
+
 //---------------------------------------------------------------------------*
 
 #pragma mark Explorer Window

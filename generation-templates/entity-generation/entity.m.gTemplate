@@ -53,19 +53,10 @@ end foreach
     insertIntoManagedObjectContext:inManagedObjectContext
   ] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
   //--- Add Transient observers
 %!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
   return self ;
-}
-
-//----------------------------------------------------------------------------*
-//    Dealloc                                                                 *
-//----------------------------------------------------------------------------*
-
-- (void) dealloc {
-  macroNoteObjectDeallocation (self) ;
 }
 
 //----------------------------------------------------------------------------*
