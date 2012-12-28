@@ -27,6 +27,8 @@
 
 - (PMManagedObject *) rootObject ;
 
+- (void) hookOfRootObjectDidCreate ;
+
 @end
 
 //---------------------------------------------------------------------------*
