@@ -10,6 +10,7 @@
 #import "easy-bindings-utilities.h"
 #import "PMManagedObject.h"
 #import "managed-object-model.h"
+#import "PMAllocationDebug.h"
 
 //---------------------------------------------------------------------------*
 
@@ -24,6 +25,155 @@
 //---------------------------------------------------------------------------*
 
 @implementation PMAbstractPersistentDocument
+
+//---------------------------------------------------------------------------*
+
+#pragma mark Init
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                           initWithType:error:                             *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (id) initWithType: (NSString *) typeName error: (NSError **) outError {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"%s", __PRETTY_FUNCTION__) ;
+  #endif
+  self = [super initWithType:typeName error:outError ] ;
+  if (self) {
+  //---
+    macroNoteObjectAllocation (self) ;
+  //--- Make Managed Object Context
+    NSManagedObjectContext * moc = self.managedObjectContext ;
+  //---
+    [moc processPendingChanges] ;
+    [[moc undoManager] disableUndoRegistration] ;
+  //--- Fetch root object
+    [self fetchRootObject] ;
+  //--- User initialization
+    [self hookOfInitWithType:typeName] ;
+  //---
+    [moc processPendingChanges] ;
+    [[moc undoManager] enableUndoRegistration] ;
+  }
+  return self ;
+}
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                   initWithContentsOfURL:ofType:error:                     *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (id) initForURL:(NSURL *) inAbsoluteDocumentURL
+       withContentsOfURL:(NSURL *) inAbsoluteDocumentContentsURL
+       ofType:(NSString *) inTypeName
+       error:(NSError **) outError {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"%s", __PRETTY_FUNCTION__) ;
+  #endif
+  self = [super
+    initForURL:inAbsoluteDocumentURL
+    withContentsOfURL:inAbsoluteDocumentContentsURL
+    ofType:inTypeName
+    error:outError
+  ] ;
+  if (self) {
+    macroNoteObjectAllocation (self) ;
+  //--- User initialization
+    [self hookOfInitWithContentsOfURL:inAbsoluteDocumentURL ofType:inTypeName] ;
+  //--- Make Managed Object Context
+    NSManagedObjectContext * moc = self.managedObjectContext ;
+  //---
+    [[moc undoManager] disableUndoRegistration] ;
+  //--- Fetch root object
+    [self fetchRootObject] ;
+  //--- User initialization
+    [self hookOfDidReadDocumentOfType:inTypeName] ;
+  //---
+    [moc processPendingChanges] ;
+    [[moc undoManager] enableUndoRegistration] ;
+  }
+  return self ;
+}
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                   initWithContentsOfURL:ofType:error:                     *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (id) initWithContentsOfURL:(NSURL *) inAbsoluteURL
+       ofType: (NSString *) inTypeName
+       error: (NSError **) outError {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"%s", __PRETTY_FUNCTION__) ;
+  #endif
+  self = [super initWithContentsOfURL:inAbsoluteURL ofType:inTypeName error:outError] ;
+  if (self) {
+    macroNoteObjectAllocation (self) ;
+  //--- User initialization
+    [self hookOfInitWithContentsOfURL:inAbsoluteURL ofType:inTypeName] ;
+  //--- Make Managed Object Context
+    NSManagedObjectContext * moc = self.managedObjectContext ;
+  //---
+    [[moc undoManager] disableUndoRegistration] ;
+  //--- Fetch root object
+    [self fetchRootObject] ;
+  //--- User initialization
+    [self hookOfDidReadDocumentOfType:inTypeName] ;
+  //---
+    [moc processPendingChanges] ;
+    [[moc undoManager] enableUndoRegistration] ;
+  }
+  return self ;
+}
+
+//----------------------------------------------------------------------------*
+//    hookOfInitWithType                                                      *
+//----------------------------------------------------------------------------*
+
+- (void) hookOfInitWithType: (NSString *) inTypeName {
+}
+
+//----------------------------------------------------------------------------*
+//    hookOfInitWithContentsOfURL:ofType:                                     *
+//----------------------------------------------------------------------------*
+
+- (void) hookOfInitWithContentsOfURL: (NSURL *) inAbsoluteDocumentURL
+         ofType: (NSString *) inTypeName {
+}
+
+//----------------------------------------------------------------------------*
+//    hookOfDidReadDocumentOfType:                                            *
+//----------------------------------------------------------------------------*
+
+- (void) hookOfDidReadDocumentOfType: (NSString *) inTypeName {
+}
+
+//----------------------------------------------------------------------------*
+//    fetchRootObject                                                         *
+//----------------------------------------------------------------------------*
+
+- (void) fetchRootObject {
+  NSLog (@"%s is an abstract method; it must be overriden", __PRETTY_FUNCTION__) ;
+}
+
+//----------------------------------------------------------------------------*
+//    hookOfRootObjectDidCreate                                               *
+//----------------------------------------------------------------------------*
+
+- (void) hookOfRootObjectDidCreate {
+}
+
+//----------------------------------------------------------------------------*
+//    Dealloc                                                                 *
+//----------------------------------------------------------------------------*
+
+- (void) dealloc {
+  macroNoteObjectDeallocation (self) ;
+}
 
 //---------------------------------------------------------------------------*
 
