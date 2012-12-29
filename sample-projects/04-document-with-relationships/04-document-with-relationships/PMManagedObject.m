@@ -12,13 +12,11 @@
 
 //---------------------------------------------------------------------------*
 
-#ifdef PM_COCOA_DEBUG
-  static NSUInteger gObjectNextIndex = 0 ;
-#endif
-
-//---------------------------------------------------------------------------*
-
 @implementation PMManagedObject
+
+//----------------------------------------------------------------------------*
+
+@synthesize mObjectIndex ;
 
 //----------------------------------------------------------------------------*
 //    initWithEntity:insertIntoManagedObjectContext:                          *
@@ -52,22 +50,10 @@
 //---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
-  - (NSUInteger) objectIndex {
-    if (0 == mObjectIndex) {
-      gObjectNextIndex ++ ;
-      mObjectIndex = gObjectNextIndex ;
-    }
-    return mObjectIndex ;
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
   + (void) appendObject: (PMManagedObject *) inObject
            toButton: (NSPopUpButton *) inButton
            forContext: (NSManagedObjectContext *) inManagedObjectContext {
-    const NSUInteger objectIndex = inObject.objectIndex ;
+    const NSUInteger objectIndex = inObject.mObjectIndex ;
     NSManagedObjectContext * objectMOC = [inObject managedObjectContext] ;
     NSString * outsideString = (objectMOC == inManagedObjectContext) ? @"" : @" [OUTSIDE MOC]" ;
     NSString * stringValue = [NSString stringWithFormat:@"#%ld (%@)%@ %p", objectIndex, [[inObject entity] name], outsideString, inObject] ;
@@ -152,7 +138,7 @@
         NSString * outsideString = (objectMOC == self.managedObjectContext) ? @"" : @" [OUTSIDE MOC]" ;
         NSString * stringValue = @"nil" ;
         if (nil != object) {
-          const NSUInteger objectIndex = object.objectIndex ;
+          const NSUInteger objectIndex = object.mObjectIndex ;
           stringValue = [NSString stringWithFormat:@"#%ld (%@)%@ %p", objectIndex, object.entity.name, outsideString, object] ;
         }
         NSButton * bt = [mAttributeViewDictionary objectForKey:inKey] ;
@@ -295,7 +281,7 @@
   [closeButton setTarget:self] ;
   [closeButton setAction:@selector (deleteWindowAction:)] ;
 //--- Set window title
-  const NSUInteger objectIndex = self.objectIndex ;
+  const NSUInteger objectIndex = self.mObjectIndex ;
   NSString * windowTitle = [NSString stringWithFormat:@"#%ld (%@) at 0x%llX", objectIndex, [[self entity] name], (UInt64) self] ;
   [mExplorerWindow setTitle:windowTitle] ;
 //--- Add Scroll view

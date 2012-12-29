@@ -196,6 +196,16 @@ message "a source text file with the .easyBindings extension"
   generateSet += !"PMAllocationDebug" ;
   if [documentMap count] > 0 then
     generateSet += !"PMAbstractPersistentDocument" ;
+    generateSet += !"PMBinaryFlatDocument" ;
+    generateSet += !"PMbz2DataCategory" ;
+    generateSet += !"PMzlibDataCategory" ;
+    generateSet += !"PMDataScanner" ;
+    generateSet += !"PMEmbeddedEntityDatabase" ;
+    generateSet += !"PMEmbeddedObjectDatabase" ;
+    generateSet += !"PMLoadedEntityDatabase" ;
+    generateSet += !"PMLoadedEntityDescription" ;
+    generateSet += !"PMLoadedObjectDatabase" ;
+    generateSet += !"PMMutableDataWriteCategory" ;
   end if ;
   if [entityListForGeneration length] > 0 then
     generateSet += !"PMManagedObject" ;

@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1AE055168EFF550031840E /* PMBinaryFlatDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE054168EFF550031840E /* PMBinaryFlatDocument.m */; };
+		CF1AE067168F01640031840E /* PMbz2DataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE058168F01640031840E /* PMbz2DataCategory.m */; };
+		CF1AE068168F01640031840E /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE05A168F01640031840E /* PMDataScanner.m */; };
+		CF1AE069168F01640031840E /* PMEmbeddedEntityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE05C168F01640031840E /* PMEmbeddedEntityDatabase.m */; };
+		CF1AE06A168F01640031840E /* PMEmbeddedObjectDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE05E168F01640031840E /* PMEmbeddedObjectDatabase.m */; };
+		CF1AE06B168F01640031840E /* PMLoadedEntityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE060168F01640031840E /* PMLoadedEntityDatabase.m */; };
+		CF1AE06C168F01640031840E /* PMLoadedEntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE062168F01640031840E /* PMLoadedEntityDescription.m */; };
+		CF1AE06D168F01640031840E /* PMLoadedObjectDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE064168F01640031840E /* PMLoadedObjectDatabase.m */; };
+		CF1AE06E168F01640031840E /* PMzlibDataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE066168F01640031840E /* PMzlibDataCategory.m */; };
+		CF1AE071168F02C60031840E /* PMMutableDataWriteCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE070168F02C60031840E /* PMMutableDataWriteCategory.m */; };
+		CF1AE073168F0BDA0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE072168F0BDA0031840E /* libbz2.dylib */; };
+		CF1AE075168F0BF20031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE074168F0BF20031840E /* libz.dylib */; };
 		CF6080FB159364A90021D873 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6080FA159364A90021D873 /* Cocoa.framework */; };
 		CF608105159364A90021D873 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF608103159364A90021D873 /* InfoPlist.strings */; };
 		CF608107159364A90021D873 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608106159364A90021D873 /* main.m */; };
@@ -30,6 +42,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1AE053168EFF550031840E /* PMBinaryFlatDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMBinaryFlatDocument.h; sourceTree = "<group>"; };
+		CF1AE054168EFF550031840E /* PMBinaryFlatDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMBinaryFlatDocument.m; sourceTree = "<group>"; };
+		CF1AE057168F01640031840E /* PMbz2DataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMbz2DataCategory.h; sourceTree = "<group>"; };
+		CF1AE058168F01640031840E /* PMbz2DataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMbz2DataCategory.m; sourceTree = "<group>"; };
+		CF1AE059168F01640031840E /* PMDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDataScanner.h; sourceTree = "<group>"; };
+		CF1AE05A168F01640031840E /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
+		CF1AE05B168F01640031840E /* PMEmbeddedEntityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEmbeddedEntityDatabase.h; sourceTree = "<group>"; };
+		CF1AE05C168F01640031840E /* PMEmbeddedEntityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEmbeddedEntityDatabase.m; sourceTree = "<group>"; };
+		CF1AE05D168F01640031840E /* PMEmbeddedObjectDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEmbeddedObjectDatabase.h; sourceTree = "<group>"; };
+		CF1AE05E168F01640031840E /* PMEmbeddedObjectDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEmbeddedObjectDatabase.m; sourceTree = "<group>"; };
+		CF1AE05F168F01640031840E /* PMLoadedEntityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDatabase.h; sourceTree = "<group>"; };
+		CF1AE060168F01640031840E /* PMLoadedEntityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDatabase.m; sourceTree = "<group>"; };
+		CF1AE061168F01640031840E /* PMLoadedEntityDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDescription.h; sourceTree = "<group>"; };
+		CF1AE062168F01640031840E /* PMLoadedEntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDescription.m; sourceTree = "<group>"; };
+		CF1AE063168F01640031840E /* PMLoadedObjectDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedObjectDatabase.h; sourceTree = "<group>"; };
+		CF1AE064168F01640031840E /* PMLoadedObjectDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedObjectDatabase.m; sourceTree = "<group>"; };
+		CF1AE065168F01640031840E /* PMzlibDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMzlibDataCategory.h; sourceTree = "<group>"; };
+		CF1AE066168F01640031840E /* PMzlibDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMzlibDataCategory.m; sourceTree = "<group>"; };
+		CF1AE06F168F02C60031840E /* PMMutableDataWriteCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMutableDataWriteCategory.h; sourceTree = "<group>"; };
+		CF1AE070168F02C60031840E /* PMMutableDataWriteCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMutableDataWriteCategory.m; sourceTree = "<group>"; };
+		CF1AE072168F0BDA0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		CF1AE074168F0BF20031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CF6080F6159364A90021D873 /* 03-simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "03-simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6080FA159364A90021D873 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF6080FD159364A90021D873 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -60,7 +94,7 @@
 		CF9D9A7415963D8D006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFB7CFB716872C2500E00689 /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
 		CFB7CFB816872C2500E00689 /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
-		CFB7CFBB16872DB400E00689 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMManagedObject.h; sourceTree = "<group>"; };
+		CFB7CFBB16872DB400E00689 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
 		CFB7CFBC16872DB400E00689 /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
 		CFF1C91915C31ECE0054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFF1C91A15C31ECE0054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
@@ -74,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1AE075168F0BF20031840E /* libz.dylib in Frameworks */,
+				CF1AE073168F0BDA0031840E /* libbz2.dylib in Frameworks */,
 				CF6080FB159364A90021D873 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +120,8 @@
 		CF6080EB159364A90021D873 = {
 			isa = PBXGroup;
 			children = (
+				CF1AE074168F0BF20031840E /* libz.dylib */,
+				CF1AE072168F0BDA0031840E /* libbz2.dylib */,
 				CF608100159364A90021D873 /* 03-simple-document */,
 				CF6080F9159364A90021D873 /* Frameworks */,
 				CF6080F7159364A90021D873 /* Products */,
@@ -120,6 +158,26 @@
 		CF608100159364A90021D873 /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
+				CF1AE06F168F02C60031840E /* PMMutableDataWriteCategory.h */,
+				CF1AE070168F02C60031840E /* PMMutableDataWriteCategory.m */,
+				CF1AE057168F01640031840E /* PMbz2DataCategory.h */,
+				CF1AE058168F01640031840E /* PMbz2DataCategory.m */,
+				CF1AE059168F01640031840E /* PMDataScanner.h */,
+				CF1AE05A168F01640031840E /* PMDataScanner.m */,
+				CF1AE05B168F01640031840E /* PMEmbeddedEntityDatabase.h */,
+				CF1AE05C168F01640031840E /* PMEmbeddedEntityDatabase.m */,
+				CF1AE05D168F01640031840E /* PMEmbeddedObjectDatabase.h */,
+				CF1AE05E168F01640031840E /* PMEmbeddedObjectDatabase.m */,
+				CF1AE05F168F01640031840E /* PMLoadedEntityDatabase.h */,
+				CF1AE060168F01640031840E /* PMLoadedEntityDatabase.m */,
+				CF1AE061168F01640031840E /* PMLoadedEntityDescription.h */,
+				CF1AE062168F01640031840E /* PMLoadedEntityDescription.m */,
+				CF1AE063168F01640031840E /* PMLoadedObjectDatabase.h */,
+				CF1AE064168F01640031840E /* PMLoadedObjectDatabase.m */,
+				CF1AE065168F01640031840E /* PMzlibDataCategory.h */,
+				CF1AE066168F01640031840E /* PMzlibDataCategory.m */,
+				CF1AE053168EFF550031840E /* PMBinaryFlatDocument.h */,
+				CF1AE054168EFF550031840E /* PMBinaryFlatDocument.m */,
 				CFB7CFBB16872DB400E00689 /* PMManagedObject.h */,
 				CFB7CFBC16872DB400E00689 /* PMManagedObject.m */,
 				CFB7CFB716872C2500E00689 /* PMAbstractPersistentDocument.h */,
@@ -245,6 +303,16 @@
 				CFF1C91B15C31ECE0054F1DA /* PMTransientDependancyManager.m in Sources */,
 				CFB7CFB916872C2500E00689 /* PMAbstractPersistentDocument.m in Sources */,
 				CFB7CFBD16872DB400E00689 /* PMManagedObject.m in Sources */,
+				CF1AE055168EFF550031840E /* PMBinaryFlatDocument.m in Sources */,
+				CF1AE067168F01640031840E /* PMbz2DataCategory.m in Sources */,
+				CF1AE068168F01640031840E /* PMDataScanner.m in Sources */,
+				CF1AE069168F01640031840E /* PMEmbeddedEntityDatabase.m in Sources */,
+				CF1AE06A168F01640031840E /* PMEmbeddedObjectDatabase.m in Sources */,
+				CF1AE06B168F01640031840E /* PMLoadedEntityDatabase.m in Sources */,
+				CF1AE06C168F01640031840E /* PMLoadedEntityDescription.m in Sources */,
+				CF1AE06D168F01640031840E /* PMLoadedObjectDatabase.m in Sources */,
+				CF1AE06E168F01640031840E /* PMzlibDataCategory.m in Sources */,
+				CF1AE071168F02C60031840E /* PMMutableDataWriteCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
