@@ -18,6 +18,7 @@
 #import "PMMutableDataWriteCategory.h"
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
+#import "PMManagedObject.h"
 
 //---------------------------------------------------------------------------*
 
@@ -62,10 +63,10 @@
   PMEmbeddedObjectDatabase * objectDatabase = [PMEmbeddedObjectDatabase new] ;
   NSMutableString * trace = nil ; // [NSMutableString new] ;
 //--- Recursively explore from root object
-/* § [objectDatabase
-    enterObject:[self rootObject]
+ [objectDatabase
+    enterObject:self.rootObject
     withEmbeddedEntityDatabase:entityDatabase
-  ] ;*/
+  ] ;
 //--- Write Entities
   NSMutableData * saveData = [NSMutableData new] ;
   [entityDatabase
@@ -80,7 +81,7 @@
   ] ;
 //---
   [moc.undoManager removeAllActions] ;
-// §  [self updateDocumentEdition:nil] ;
+  [self updateDocumentEdition:nil] ;
 //  NSLog (@"WRITE TRACE:\n%@", trace) ;
   return saveData ;
 }

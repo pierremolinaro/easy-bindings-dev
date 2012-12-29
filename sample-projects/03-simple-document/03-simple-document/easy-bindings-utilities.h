@@ -13,7 +13,7 @@ void presentErrorWindow (const char * inFile,
 
 #ifdef PM_COCOA_DEBUG
   #define macroCheckObject(OBJECT,TYPE) routineCheckObject(OBJECT, [TYPE class], __FILE__, __LINE__)
-  void routineCheckObject (id inObject, Class inClass, const char * inFile, const NSInteger inLine) ;
+  void routineCheckObject (id inObject, Class inClass, const char * inFile, const int inLine) ;
 #else
   #define macroCheckObject(OBJECT,TYPE)
 #endif
@@ -27,7 +27,7 @@ void presentErrorWindow (const char * inFile,
                       const SInt64 inValue1,
                       const SInt64 inValue2,
                       const char * inFile,
-                      const NSInteger inLine) ;
+                      const int inLine) ;
 #else
   #define macroAssert(EXP,MESSAGE,VALUE1,VALUE2)
 #endif

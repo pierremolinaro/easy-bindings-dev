@@ -110,7 +110,7 @@
   mDictionary = [NSMutableDictionary new] ;  // Key : NSValue of NSManagedObject, object : index (NSNumber)
   NSUInteger creationFieldValue = 0 ;
   for (PMManagedObject * object in mObjectArray) {
-    object.mObjectIndex = creationFieldValue ;
+    object.mObjectIndexForLoadingAndSaving = creationFieldValue ;
     [mDictionary
       setObject:[NSNumber numberWithUnsignedInteger:creationFieldValue]
       forKey:[NSValue valueWithNonretainedObject:object]

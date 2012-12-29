@@ -12,11 +12,17 @@
 
 //---------------------------------------------------------------------------*
 
+#ifdef PM_COCOA_DEBUG
+  static NSUInteger gExplorerNextObjectIndex ;
+#endif
+
+//---------------------------------------------------------------------------*
+
 @implementation PMManagedObject
 
 //----------------------------------------------------------------------------*
 
-@synthesize mObjectIndex ;
+@synthesize mObjectIndexForLoadingAndSaving ;
 
 //----------------------------------------------------------------------------*
 //    initWithEntity:insertIntoManagedObjectContext:                          *
@@ -43,6 +49,20 @@
   macroNoteObjectDeallocation (self) ;
 }
 
+//----------------------------------------------------------------------------*
+//    compareByCreationField:                                                 *
+//----------------------------------------------------------------------------*
+
+- (NSComparisonResult) compareByCreationField: (PMManagedObject *) inOtherObject {
+  NSComparisonResult result = NSOrderedSame ;
+  if (mObjectIndexForLoadingAndSaving < inOtherObject.mObjectIndexForLoadingAndSaving) {
+    result = NSOrderedAscending ;
+  }else if (mObjectIndexForLoadingAndSaving > inOtherObject.mObjectIndexForLoadingAndSaving) {
+    result = NSOrderedDescending ;
+  }
+  return result ;
+}
+
 //---------------------------------------------------------------------------*
 
 #pragma mark Explorer Window
@@ -50,10 +70,22 @@
 //---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
+  - (NSUInteger) explorerObjectIndex {
+    if (0 == mExplorerObjectIndex) {
+      gExplorerNextObjectIndex ++ ;
+      mExplorerObjectIndex = gExplorerNextObjectIndex ;
+    }
+    return mExplorerObjectIndex ;
+  }
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
   + (void) appendObject: (PMManagedObject *) inObject
            toButton: (NSPopUpButton *) inButton
            forContext: (NSManagedObjectContext *) inManagedObjectContext {
-    const NSUInteger objectIndex = inObject.mObjectIndex ;
+    const NSUInteger objectIndex = inObject.explorerObjectIndex ;
     NSManagedObjectContext * objectMOC = [inObject managedObjectContext] ;
     NSString * outsideString = (objectMOC == inManagedObjectContext) ? @"" : @" [OUTSIDE MOC]" ;
     NSString * stringValue = [NSString stringWithFormat:@"#%ld (%@)%@ %p", objectIndex, [[inObject entity] name], outsideString, inObject] ;
@@ -138,7 +170,7 @@
         NSString * outsideString = (objectMOC == self.managedObjectContext) ? @"" : @" [OUTSIDE MOC]" ;
         NSString * stringValue = @"nil" ;
         if (nil != object) {
-          const NSUInteger objectIndex = object.mObjectIndex ;
+          const NSUInteger objectIndex = object.explorerObjectIndex ;
           stringValue = [NSString stringWithFormat:@"#%ld (%@)%@ %p", objectIndex, object.entity.name, outsideString, object] ;
         }
         NSButton * bt = [mAttributeViewDictionary objectForKey:inKey] ;
@@ -281,7 +313,7 @@
   [closeButton setTarget:self] ;
   [closeButton setAction:@selector (deleteWindowAction:)] ;
 //--- Set window title
-  const NSUInteger objectIndex = self.mObjectIndex ;
+  const NSUInteger objectIndex = self.explorerObjectIndex ;
   NSString * windowTitle = [NSString stringWithFormat:@"#%ld (%@) at 0x%llX", objectIndex, [[self entity] name], (UInt64) self] ;
   [mExplorerWindow setTitle:windowTitle] ;
 //--- Add Scroll view
