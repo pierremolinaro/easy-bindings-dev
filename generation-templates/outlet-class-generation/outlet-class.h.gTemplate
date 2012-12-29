@@ -13,7 +13,7 @@ end foreach
 
 %foreach BINDING_MAP do%
 //--- Attributes for '%!lkey->string%' binding
-  @protected id mBoundObjectFor_%!lkey->string% ;
+  @protected NSObject * mBoundObjectFor_%!lkey->string% ;
   @protected NSString * mKeyPathFor_%!lkey->string% ;
 %end foreach%
 

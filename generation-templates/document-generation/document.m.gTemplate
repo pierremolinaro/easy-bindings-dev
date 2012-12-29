@@ -40,12 +40,20 @@ end foreach
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
   NSManagedObjectContext * moc = self.managedObjectContext ;
+  NSFetchRequest * fetch = [NSFetchRequest new] ;
+  fetch.entity = [NSEntityDescription
+    entityForName:@"%!ROOT_ENTITY_NAME%"
+    inManagedObjectContext:moc
+  ] ;
   NSArray * array = [moc
-    executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"%!ROOT_ENTITY_NAME%"]
+    executeFetchRequest:fetch
     error:nil
   ] ;
   if (array.count == 0) {
-    mRootObject = [NSEntityDescription insertNewObjectForEntityForName:@"%!ROOT_ENTITY_NAME%" inManagedObjectContext:moc] ;
+    mRootObject = [NSEntityDescription
+      insertNewObjectForEntityForName:@"%!ROOT_ENTITY_NAME%"
+      inManagedObjectContext:moc
+    ] ;
     [self hookOfRootObjectDidCreate] ;
   }else{
     mRootObject = [array objectAtIndex:0] ;
