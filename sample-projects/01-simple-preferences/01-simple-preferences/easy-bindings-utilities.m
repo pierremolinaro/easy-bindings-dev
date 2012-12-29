@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------*
 
 #import "easy-bindings-utilities.h"
+#import <objc/runtime.h>
 
 //---------------------------------------------------------------------------*
 //   presentErrorWindow                                                      *
@@ -24,8 +25,8 @@ void presentErrorWindow (const char * inFile,
   [message appendFormat:@"Message: %@", inErrorMessage] ;
   static NSPoint origin = {20.0, 20.0} ;
   const NSRect r = {origin, {300.0, 200.0}} ;
-  origin.x += 20.0F ;
-  origin.y += 20.0F ;
+  origin.x += 20.0 ;
+  origin.y += 20.0 ;
   NSWindow * window = [[NSWindow alloc] initWithContentRect:r
     styleMask:NSTitledWindowMask | NSClosableWindowMask
     backing:NSBackingStoreBuffered
@@ -47,6 +48,177 @@ void presentErrorWindow (const char * inFile,
 //---
   [gErrorWindows addObject:window] ;
 }
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  void routineCheckObject (id inObject,
+                           Class inClass,
+                           const char * inFile,
+                           const NSInteger inLine) {
+    if (nil == inObject) {
+      presentErrorWindow (inFile, inLine, @"Object is nil") ;
+    }else if (! [inObject isKindOfClass:inClass]) {
+      NSString * s = [NSString stringWithFormat:
+        @"Object is not an instance of %s, but %s",
+        class_getName (inClass),
+        class_getName ([inObject class])
+      ] ;
+      presentErrorWindow (inFile, inLine, s) ;
+    }  
+  }
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  void routineAssert (const BOOL inAssertion,
+                      NSString * inFormat,
+                      const SInt64 inValue1,
+                      const SInt64 inValue2,
+                      const char * inFile,
+                      const NSInteger inLine) {
+    if (! inAssertion) {
+      NSString * s = [NSString stringWithFormat:
+        inFormat,
+        inValue1,
+        inValue2
+      ] ;
+      presentErrorWindow (inFile, inLine, s) ;
+    }
+  }
+#endif
+
+//---------------------------------------------------------------------------*
+
+@implementation NSArray (PMArrayDebugCategory)
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
++ (id) arrayWithObject: (id) anObject LOCATION_ARGS {
+  if (anObject == nil) {
+    NSLog (@"arrayWithObject: argument is nil in:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  return [NSArray arrayWithObject:anObject] ; // DO NOT ADD HERE !!!
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (id) objectAtIndex: (NSUInteger) inIndex LOCATION_ARGS {
+  if (! [self isKindOfClass:[NSArray class]]) {
+    NSLog (@"objectAtIndex: receiver is not an instance of NSArray in:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }else if (inIndex >= self.count) {
+    NSLog (@"objectAtIndex: index (%llu) >= object count (%llu) in:%s:%ld",
+          (UInt64) inIndex, (UInt64) self.count, IN_SOURCE_FILE, IN_SOURCE_LINE) ;  
+  }
+  return [self objectAtIndex:inIndex] ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (id) objectAtIndex: (NSUInteger) inIndex LOCATION_ARGS OF_CLASS_ARG {
+  id result = [self objectAtIndex:inIndex THERE] ;
+  if (! [result isKindOfClass:inClass]) {
+    NSLog (@"objectAtIndex: receiver is an instance of %@ class (instead of %@ class) in:%s:%ld",
+          [[result class] className], [inClass className], IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  return result ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (id) lastObject COLON_LOCATION_ARGS {
+  if (! [self isKindOfClass:[NSArray class]]) {
+    NSLog (@"<lastObject>: receiver is not an instance of NSArray in:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  return [self lastObject] ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (id) lastObject COLON_LOCATION_ARGS OF_CLASS_ARG {
+  if (! [self isKindOfClass:[NSArray class]]) {
+    NSLog (@"<lastObject>: receiver is not an instance of NSArray in:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  id result = [self lastObject] ;
+  if (! [result isKindOfClass:inClass]) {
+    NSLog (@"<lastObject>: receiver is an instance of %@ class (instead of %@ class) in:%s:%ld",
+          [[result class] className], [inClass className], IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  return result ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+//--- Define DEBUG_ENUMERATORS (in PMCocoaCallsDebug.h), in order to detect
+//    "Collection ... was mutated while being enumerated" exception
+#ifdef PM_COCOA_DEBUG
+- (NSEnumerator *) objectEnumerator COLON_LOCATION_ARGS {
+  #ifdef DEBUG_ENUMERATORS
+    NSLog (@"%p <objectEnumerator> in:%s:%d", self, IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  #endif
+  return [self objectEnumerator] ; // DO NOT ADD COLON_HERE !!!
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+@end
+
+//---------------------------------------------------------------------------*
+
+@implementation NSMutableSet (PMMutableSetDebugCategory)
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (void) addObject: (id) inObject LOCATION_ARGS {
+  if (! [self isKindOfClass:[NSMutableSet class]]) {
+    NSLog (@"addObject: receiver is not an instance of NSMutableSet in sourceFile:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }else if (inObject == nil) {
+    NSLog (@"in '%s' file at line %ld, attempt to insert nil", IN_SOURCE_FILE, IN_SOURCE_LINE) ;  
+  }
+  [self addObject:inObject] ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (void) removeAllObjects COLON_LOCATION_ARGS {
+  if (! [self isKindOfClass:[NSMutableSet class]]) {
+    NSLog (@"removeAllObjects: receiver is not an instance of NSMutableSet in source file:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  [self removeAllObjects] ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+- (void) removeObject: (id) inObject LOCATION_ARGS {
+  if (! [self isKindOfClass:[NSMutableSet class]]) {
+    NSLog (@"removeObject: receiver is not an instance of NSMutableSet in source file:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }else if (inObject == nil) {
+    NSLog (@"removeObject: argument is nil in source file:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
+  }
+  [self removeObject:inObject] ;
+}
+#endif
+
+//---------------------------------------------------------------------------*
+
+@end
 
 //---------------------------------------------------------------------------*
 //   NSData encoding                                                         *
