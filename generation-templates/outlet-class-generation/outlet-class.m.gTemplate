@@ -1,6 +1,7 @@
 
 #import "PMAllocationDebug.h"
 #import "debugMacros.h"
+#import "easy-bindings-utilities.h"
 #import "%!OUTLET_CLASS_NAME%.h"
 
 //---------------------------------------------------------------------------*

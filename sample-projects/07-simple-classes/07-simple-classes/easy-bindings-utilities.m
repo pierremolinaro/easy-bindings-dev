@@ -55,7 +55,7 @@ void presentErrorWindow (const char * inFile,
   void routineCheckObject (id inObject,
                            Class inClass,
                            const char * inFile,
-                           const NSInteger inLine) {
+                           const int inLine) {
     if (nil == inObject) {
       presentErrorWindow (inFile, inLine, @"Object is nil") ;
     }else if (! [inObject isKindOfClass:inClass]) {
@@ -77,7 +77,7 @@ void presentErrorWindow (const char * inFile,
                       const SInt64 inValue1,
                       const SInt64 inValue2,
                       const char * inFile,
-                      const NSInteger inLine) {
+                      const int inLine) {
     if (! inAssertion) {
       NSString * s = [NSString stringWithFormat:
         inFormat,

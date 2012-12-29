@@ -29,6 +29,8 @@
 
 - (void) hookOfRootObjectDidCreate ;
 
+- (void) updateDocumentEdition: (id) inUnusedArgument ;
+
 @end
 
 //---------------------------------------------------------------------------*

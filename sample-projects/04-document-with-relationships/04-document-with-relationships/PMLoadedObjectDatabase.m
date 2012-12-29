@@ -208,7 +208,7 @@
 //------------------------ Set Order field
   NSUInteger order = 0 ;
   for (PMManagedObject * object in mLoadedObjectArray) {
-    object.mObjectIndex = order ;
+    object.mObjectIndexForLoadingAndSaving = order ;
     order ++ ;
   }
 }

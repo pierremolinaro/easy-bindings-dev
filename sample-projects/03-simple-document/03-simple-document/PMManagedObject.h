@@ -13,6 +13,7 @@
 
 @interface PMManagedObject : NSManagedObject {
   #ifdef PM_COCOA_DEBUG
+    @private NSUInteger mExplorerObjectIndex ;
     @private NSWindow * mExplorerWindow ;
     @private NSMutableDictionary * mAttributeViewDictionary ;
     @private NSTextField * mChangedPropertyTextField ;
@@ -23,7 +24,7 @@
   - (void) showExplorerWindow ;
 #endif
 
-@property NSUInteger mObjectIndex ;
+@property NSUInteger mObjectIndexForLoadingAndSaving ;
 
 @end
 

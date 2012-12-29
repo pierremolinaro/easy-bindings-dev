@@ -314,9 +314,10 @@
 - (BOOL) isDocumentEdited {
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@" <isDocumentEdited> returns %@",
-           [[self undoManager] canUndo] ? @"YES" : @"NO") ;
+           self.undoManager.canUndo ? @"YES" : @"NO") ;
   #endif
   return self.undoManager.canUndo ;
+//  return self.managedObjectContext.hasChanges ;
 }
 
 //---------------------------------------------------------------------------*
