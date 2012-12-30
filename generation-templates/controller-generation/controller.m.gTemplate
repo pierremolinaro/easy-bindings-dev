@@ -1,6 +1,7 @@
 
 #import "PMAllocationDebug.h"
 #import "debugMacros.h"
+#import "easy-bindings-utilities.h"
 #import "%!CONTROLLER_CLASS_NAME%.h"
 
 //---------------------------------------------------------------------------*
@@ -46,6 +47,7 @@ end foreach
       NSLog (@"\%s", __PRETTY_FUNCTION__) ;
     #endif
     macroNoteObjectDeallocation (self) ;
+    macroSuperDealloc ;
   }
 #endif
 

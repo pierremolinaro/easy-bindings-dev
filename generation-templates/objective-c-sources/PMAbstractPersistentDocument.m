@@ -172,7 +172,10 @@
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
+  [mManagedObjectContext reset] ;
+  macroReleaseSetToNil (mManagedObjectContext) ;
   macroNoteObjectDeallocation (self) ;
+  macroSuperDealloc ;
 }
 
 //---------------------------------------------------------------------------*
@@ -183,7 +186,7 @@
 //                                                                           *
 //  undoManager                                                              *
 //                                                                           *
-//  Returns the undo managher of the document managed object context.        *
+//  Returns the undo manager of the document managed object context.         *
 //                                                                           *
 //---------------------------------------------------------------------------*
 
@@ -231,6 +234,7 @@
     NSPersistentStoreCoordinator * psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     mManagedObjectContext = [NSManagedObjectContext new] ;
     [mManagedObjectContext setPersistentStoreCoordinator:psc] ;
+    macroReleaseSetToNil (psc) ;
 
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter] ;
     [nc
@@ -269,6 +273,7 @@
         keyEquivalent:@""
       ] ;
       macroAddItemToDebugMenu (menuItem) ;
+      macroReleaseSetToNil (menuItem) ;
     }
   #endif
 }
@@ -384,7 +389,7 @@
 //--- Fetch all objects
   if (! mFetchingAllObjectsDone) {
     mFetchingAllObjectsDone = YES ;
-    NSFetchRequest * fr = [[NSFetchRequest alloc] init] ;
+    NSFetchRequest * fr = [NSFetchRequest new] ;
     NSManagedObjectModel * mom = self.managedObjectModel ;
     NSArray * entityNameArray = [[mom entitiesByName] allKeys] ;
     for (NSUInteger i=0 ; i<[entityNameArray count] ; i++) {
@@ -392,9 +397,10 @@
       [fr setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:moc]] ;
       [moc executeFetchRequest:fr error:nil] ;
     }
+    macroReleaseSetToNil (fr) ;
   }
 //--- Find reachable objects from root entity
-  NSMutableSet * reachableObjects = [NSMutableSet setWithCapacity:1000] ;
+  NSMutableSet * reachableObjects = [NSMutableSet new] ;
   [self recursiveSearch:reachableObjects withObject:self.rootObject] ;
 //--- Get Registered Objects
   NSSet * registeredObjects = [moc registeredObjects] ;
@@ -403,10 +409,11 @@
   NSMutableSet * s = [NSMutableSet setWithCapacity:* outRegisteredObjectCount] ;
   [s unionSet:registeredObjects] ;
   [s minusSet:reachableObjects] ;
-  NSSet * deletedObjects = [moc deletedObjects] ;
-  * outDeletedObjectCount = [deletedObjects count] ;
+  macroReleaseSetToNil (reachableObjects) ;
+  NSSet * deletedObjects = moc.deletedObjects ;
+  * outDeletedObjectCount = deletedObjects.count ;
   [s minusSet:deletedObjects] ;
-  * outUnreachableObjectCount = [s count] ;
+  * outUnreachableObjectCount = s.count ;
 }
 
 //---------------------------------------------------------------------------*
@@ -419,6 +426,7 @@
   [fr setEntity:rootEntity] ;
   NSError * error = nil ;
   NSArray * allInstancesOfRootEntity = [moc executeFetchRequest:fr error:& error] ;
+  macroReleaseSetToNil (fr) ;
   const NSUInteger n = [allInstancesOfRootEntity count] ;
   BOOL ok = error == nil ;
   if (! ok) {
@@ -541,7 +549,7 @@
   #ifdef PM_COCOA_DEBUG
   }else if (NSAlertOtherReturn == inReturnCode) {
     for (PMManagedObject * object in mUnreachableObjectsForCheckObjectGraph) {
-      [object showExplorerWindow] ;
+ //     [object showExplorerWindow] ;
     }
   #endif
   }
@@ -600,10 +608,8 @@
   NSString * name = [inRelationshipDescription name] ;
   NSSet * targetSet = [inManagedObject valueForKey:name] ;
   NSRelationshipDescription * inverseRelationship = [inRelationshipDescription inverseRelationship] ;
-  if (([targetSet count] != 0) && (inverseRelationship != nil)) {
-    NSEnumerator * enumerator = [[targetSet copy] objectEnumerator] ;
-    NSManagedObject * targetObject ;
-    while ((targetObject = enumerator.nextObject)) {
+  if ((targetSet.count != 0) && (inverseRelationship != nil)) {
+    for (NSManagedObject * targetObject in targetSet) {
       [self
         correctTarget:targetObject
         ofManagedObject:inManagedObject
@@ -686,8 +692,9 @@
   [tf setBordered:NO] ;
   [tf setDrawsBackground:NO] ;
   [tf setEditable:NO] ;
-  [tf setFont:[NSFont boldSystemFontOfSize:0.0F]] ;
+  [tf setFont:[NSFont boldSystemFontOfSize:0.0]] ;
   [[panel contentView] addSubview:tf] ;
+  macroReleaseSetToNil (tf) ;
   [NSApp
     beginSheet:panel
     modalForWindow:self.windowForSheet
@@ -698,11 +705,12 @@
   [panel display] ;
 //--- Fetch all instances of root entity (normally only one !)
   NSManagedObjectContext * moc = self.managedObjectContext ;
-  NSEntityDescription * rootEntity = [self.rootObject entity] ;
+  NSEntityDescription * rootEntity = self.rootObject.entity ;
   NSFetchRequest * fr = [[NSFetchRequest alloc] init] ;
   [fr setEntity:rootEntity] ;
   NSError * error = nil ;
   NSArray * allInstancesOfRootEntity = [moc executeFetchRequest:fr error:& error] ;
+  macroReleaseSetToNil (fr) ;
   const NSUInteger n = [allInstancesOfRootEntity count] ;
   BOOL ok = YES ;
   if (error != nil) {
@@ -781,7 +789,7 @@
 
 - (void) showObjectExplorerWindow: (id) inUnusedSender {
   #ifdef PM_COCOA_DEBUG
-    [self.rootObject showExplorerWindow] ;
+//    [self.rootObject showExplorerWindow] ;
   #endif
 }
 

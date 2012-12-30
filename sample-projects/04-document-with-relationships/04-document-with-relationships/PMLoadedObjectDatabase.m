@@ -177,7 +177,7 @@
          trace: (NSMutableString *) ioTrace
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase
          managedObjectContext: (NSManagedObjectContext *) inManagedObjectContext {
-  NSMutableArray * mLoadedObjectArray = [NSMutableArray new] ;
+  NSMutableArray * loadedObjectArray = [NSMutableArray new] ;
 //------------------------ 'Object count' mark
   [inDataScanner acceptRequiredByte:0x02] ;
 //------------------------ Get object count 
@@ -190,15 +190,15 @@
       withLoadedDatabase:inLoadedEntityDatabase
       managedObjectContext:inManagedObjectContext
     ] ;
-    [mLoadedObjectArray addObject:newObject] ;
+    [loadedObjectArray addObject:newObject] ;
   }
 //------------------------ Parse object relation
   for (NSUInteger i=0 ; (i<objectCount)&& [inDataScanner ok] ; i++) {
-    NSManagedObject * object = [mLoadedObjectArray objectAtIndex:i HERE OFCLASS (NSManagedObject)] ;
+    NSManagedObject * object = [loadedObjectArray objectAtIndex:i HERE OFCLASS (NSManagedObject)] ;
     [PMLoadedObjectDatabase
       scanRelationshipForObject:object
       trace:ioTrace
-      withLoadedObjectArray:mLoadedObjectArray
+      withLoadedObjectArray:loadedObjectArray
       withDataScanner:inDataScanner
       withLoadedDatabase:inLoadedEntityDatabase
     ] ;
@@ -207,10 +207,11 @@
   [inDataScanner acceptRequiredByte:0x05] ;
 //------------------------ Set Order field
   NSUInteger order = 0 ;
-  for (PMManagedObject * object in mLoadedObjectArray) {
-    object.mObjectIndexForLoadingAndSaving = order ;
+  for (PMManagedObject * object in loadedObjectArray) {
+ //   object.mObjectIndexForLoadingAndSaving = order ;
     order ++ ;
   }
+  macroReleaseSetToNil (loadedObjectArray) ;
 }
 
 //---------------------------------------------------------------------------*

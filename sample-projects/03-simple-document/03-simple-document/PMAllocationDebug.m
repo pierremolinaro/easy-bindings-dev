@@ -61,6 +61,7 @@ static PMAllocationDebug * gDebugObject ;
   ] ;
   [item setSubmenu:mDebugMenu] ;
   [[NSApp mainMenu] addItem:item] ;
+  macroReleaseSetToNil (item) ;
 }
 
 //----------------------------------------------------------------------------*
@@ -140,7 +141,7 @@ static PMAllocationDebug * gDebugObject ;
 - (void) triggerRefreshAllocationStatsDisplay {
   if (! mRefreshStatsHasTriggered) {
     mRefreshStatsHasTriggered = YES ;
-    [[NSRunLoop currentRunLoop]
+    [[NSRunLoop mainRunLoop]
       performSelector:@selector (refreshAllocationStats)
       target:self
       argument:nil

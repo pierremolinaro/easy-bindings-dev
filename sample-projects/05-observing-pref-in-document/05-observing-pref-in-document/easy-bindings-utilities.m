@@ -43,6 +43,7 @@ void presentErrorWindow (const char * inFile,
   [tf setTextColor:[NSColor redColor]] ;
   [tf setStringValue:message] ;
   [contentView addSubview:tf] ;
+  macroReleaseSetToNil (tf) ;
   NSBeep () ;
   [window makeKeyAndOrderFront:nil] ;
 //---

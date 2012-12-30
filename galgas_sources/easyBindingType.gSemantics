@@ -163,8 +163,10 @@ override reader @valueType propertyAttributeString -> @string outResult : outRes
 override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
 override reader @menuType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
 
-override reader @colorType propertyAttributeString -> @string outResult : outResult := "(assign)" ; end reader ;
-override reader @dateType propertyAttributeString -> @string outResult : outResult := "(assign)" ; end reader ;
+override reader @colorType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
+override reader @dateType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
+
+override reader @fontType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
 
 #----------------------------------------------------------------------------*
 

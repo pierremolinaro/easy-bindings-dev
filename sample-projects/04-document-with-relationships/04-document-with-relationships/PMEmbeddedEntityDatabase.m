@@ -40,6 +40,7 @@
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
     macroNoteObjectDeallocation (self) ;
+    macroSuperDealloc ;
   }
 #endif
 
