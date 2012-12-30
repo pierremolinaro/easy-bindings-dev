@@ -44,7 +44,7 @@ end foreach
   #endif
   self = [super init] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
     g_%!PREFERENCES_NAME% = self ;
   //---
 %foreach ATTRIBUTE_LIST_FOR_GENERATION
@@ -97,7 +97,7 @@ end foreach
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
-  macroNoteObjectDeallocation (self) ;
+  macroNoteObjectDeallocation ;
   macroSuperDealloc ;
 }
 

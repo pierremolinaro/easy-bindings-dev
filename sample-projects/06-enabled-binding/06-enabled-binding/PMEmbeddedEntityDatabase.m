@@ -23,7 +23,7 @@
 - (id) init {
   self = [super init] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- Enter super entity 
     mDictionary = [NSMutableDictionary new] ;
     mEmbeddedEntityArray = [NSMutableArray new] ;
@@ -39,7 +39,7 @@
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif

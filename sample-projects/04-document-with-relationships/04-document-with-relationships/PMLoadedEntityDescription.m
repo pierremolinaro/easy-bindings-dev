@@ -26,7 +26,7 @@
        withLoadedRelationships: (NSArray *) inEntityRelationshipArray {
   self = [super init] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
     mCoreDataEntity = inCoreDataEntity ;
     mLoadedSuperEntity = inLoadedSuperEntity ;
     mEntityAttributeArray = inEntityAttributeArray ;
@@ -43,7 +43,7 @@
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif

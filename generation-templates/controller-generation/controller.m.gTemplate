@@ -30,7 +30,7 @@ end foreach
   #endif
   self = [super init] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   }
   return self ;
 }
@@ -46,7 +46,7 @@ end foreach
     #ifdef EASY_BINDINGS_DEBUG
       NSLog (@"\%s", __PRETTY_FUNCTION__) ;
     #endif
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif

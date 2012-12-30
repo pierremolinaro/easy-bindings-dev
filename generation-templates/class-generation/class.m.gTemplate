@@ -32,7 +32,7 @@ end foreach
   self = [super init] ;
   if (self) {
 %if SUPER_CLASS_NAME == "" then
-%    macroNoteObjectAllocation (self) ;
+%    macroNoteObjectAllocation ;
 %end if
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
   %    %!mPropertyName% = %!mDirectDefaultValue% ;\n%
@@ -65,7 +65,7 @@ end if
 %  if (self) {  
 %
 if SUPER_CLASS_NAME == "" then
-%    macroNoteObjectAllocation (self) ;
+%    macroNoteObjectAllocation ;
 %end if
 
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
@@ -85,7 +85,7 @@ end foreach
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif

@@ -64,17 +64,16 @@
        entityDictionary: (NSDictionary *) inEntityDictionary {
   self = [super init] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- Entity name substitution
     NSDictionary * entityNameSubstitution = [NSDictionary dictionaryWithObjectsAndKeys:
-//      @"PinPadDeviceInProjectEntity", @"PinInProjectEntity",
       nil
     ] ;
   //---
     mLoadedEntityArray = [NSMutableArray new] ;
   //--- Get entity count 
     const NSUInteger entityCount = [inDataScanner parseAutosizedUnsignedInteger] ;
-    for (NSUInteger i=0 ; (i<entityCount)&& [inDataScanner ok] ; i++) {
+    for (NSUInteger i=0 ; (i<entityCount) && [inDataScanner ok] ; i++) {
     //--- 'Start of Entity' mark
       [inDataScanner acceptRequiredByte:0xBA] ;
     //--- Entity Name
@@ -225,7 +224,7 @@
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif

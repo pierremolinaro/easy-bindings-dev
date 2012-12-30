@@ -82,12 +82,9 @@
 + (PMDataScanner *) scannerWithData: (NSData *) inData
                     displayProgressWindowTitle: (NSString *) inTitle {
   PMDataScanner * scanner  = [PMDataScanner new] ;
-  if (nil != scanner) {
-    macroNoteObjectAllocation (scanner) ;
-    [scanner configureWithData:inData] ;
-    if (nil != inTitle) {
-      [scanner openProgressWindowWithTitle:inTitle] ;
-    }
+  [scanner configureWithData:inData] ;
+  if (nil != inTitle) {
+    [scanner openProgressWindowWithTitle:inTitle] ;
   }
   macroAutorelease (scanner) ;
   return scanner ;
@@ -101,10 +98,24 @@
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//                           dealloc                                         *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+- (id) init {
+  self = [super init] ;
+  if (self) {
+    macroNoteObjectAllocation ;
+  }
+  return self ;
+}
 
 //---------------------------------------------------------------------------*
 
