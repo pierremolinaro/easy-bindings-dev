@@ -242,6 +242,7 @@ routine generateEntityCode
         end if ;
         s .= "  [attribute setDefaultValue:" . mDefaultValueAsObjectiveCObject . "] ;\n" ;
         s .= "  [properties addObject:attribute] ;\n" ;
+        s .= "  macroReleaseSetToNil (attribute) ;\n" ;
         [mType addFileInclusion !?fileInclusionSet] ;
       end foreach ;
     #--- relationships
@@ -254,9 +255,11 @@ routine generateEntityCode
         s .= "  [relationship setMinCount:0] ;\n" ;
         s .= "  [relationship setMaxCount:" . if mIsToMany then "NSUIntegerMax" else "1" end . "] ;\n" ;
         s .= "  [properties addObject:relationship] ;\n" ;
+        s .= "  macroReleaseSetToNil (relationship) ;\n" ;
       end foreach ;
       s .= "//---\n" ;
       s .= "  [entity setProperties:properties] ;\n" ;
+      s .= "  macroReleaseSetToNil (properties) ;\n" ;
     end foreach ;  
   #--- Set inverse relation ships
     s .= "//-------------------------- Set inverse relationships\n" ;

@@ -98,6 +98,7 @@ end foreach
 
 - (void) dealloc {
   macroNoteObjectDeallocation (self) ;
+  macroSuperDealloc ;
 }
 
 //----------------------------------------------------------------------------*

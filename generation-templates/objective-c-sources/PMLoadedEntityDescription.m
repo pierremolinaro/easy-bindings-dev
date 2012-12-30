@@ -10,6 +10,7 @@
 #import "PMLoadedEntityDescription.h"
 #import "PMEmbeddedEntityDatabase.h"
 #import "PMAllocationDebug.h"
+#import "easy-bindings-utilities.h"
 
 //#define EASY_BINDINGS_DEBUG
 
@@ -43,6 +44,7 @@
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
     macroNoteObjectDeallocation (self) ;
+    macroSuperDealloc ;
   }
 #endif
 

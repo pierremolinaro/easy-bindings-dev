@@ -16,11 +16,14 @@ do
   %  entity = [NSEntityDescription new] ;\n%
   %  [entity setName:@"%!mEntityName%"] ;\n%
   %  [entityDictionary setObject:entity forKey:@"%!mEntityName%"] ;\n%
+  %  macroReleaseSetToNil (entity) ;\n%
 end foreach
 %//--------------------------
-%!ENTITY_DEFINITIONS%//--------------------------
+%!ENTITY_DEFINITIONS
+%//--------------------------
   NSManagedObjectModel * mom = [NSManagedObjectModel new] ;
-  [mom setEntities:[entityDictionary allValues]] ;
+  [mom setEntities:entityDictionary.allValues] ;
+  macroReleaseSetToNil (entityDictionary) ;
   return mom ;
 }
 

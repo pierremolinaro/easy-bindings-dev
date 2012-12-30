@@ -46,8 +46,8 @@ end foreach
 //    initWithEntity:insertIntoManagedObjectContext:                          *
 //----------------------------------------------------------------------------*
 
-- (id) initWithEntity:(NSEntityDescription *) inEntity
-       insertIntoManagedObjectContext:(NSManagedObjectContext *) inManagedObjectContext {
+- (%!CLASS_NAME% *) initWithEntity:(NSEntityDescription *) inEntity
+                    insertIntoManagedObjectContext:(NSManagedObjectContext *) inManagedObjectContext {
   self = [super 
     initWithEntity:inEntity
     insertIntoManagedObjectContext:inManagedObjectContext
@@ -118,7 +118,7 @@ end foreach
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 //----------------------------------------------------------------------------*
 
-- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
+- (void) addObserverOf_%!mPropertyName%: (NSObject *) inObserver {
   if (nil == %!mPropertyName%_observers) {
     %!mPropertyName%_observers = [NSMutableSet new] ;
   }
@@ -128,7 +128,7 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
 
 //----------------------------------------------------------------------------*
 
-- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
+- (void) removeObserverOf_%!mPropertyName%: (NSObject *) inObserver {
   [%!mPropertyName%_observers removeObject:inObserver] ;
   [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
 }
@@ -139,7 +139,7 @@ end foreach
 foreach TO_MANY_RELATIONSHIPS do%
 //----------------------------------------------------------------------------*
 
-- (void) addObserverOf_%!mValue0%: (id) inObserver {
+- (void) addObserverOf_%!mValue0%: (NSObject *) inObserver {
   if (nil == %!mValue0%_observers) {
     %!mValue0%_observers = [NSMutableSet new] ;
   }
@@ -149,7 +149,7 @@ foreach TO_MANY_RELATIONSHIPS do%
 
 //----------------------------------------------------------------------------*
 
-- (void) removeObserverOf_%!mValue0%: (id) inObserver {
+- (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver {
   [%!mValue0%_observers removeObject:inObserver] ;
   [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }

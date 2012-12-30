@@ -6,15 +6,15 @@ end foreach%
 //--- To-many relationships
 %foreach TO_MANY_RELATIONSHIPS do
 %  @property(strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
-%  - (void) addObserverOf_%!mValue0%: (id) inObserver ;\n%
-%  - (void) removeObserverOf_%!mValue0%: (id) inObserver ;\n\n%
+%  - (void) addObserverOf_%!mValue0%: (NSObject *) inObserver ;\n%
+%  - (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver ;\n\n%
 end foreach
 
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mPropertyName%' attribute\n%
 %  @property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
-%  - (void) addObserverOf_%!mPropertyName%: (id) inObserver ;\n%
-%  - (void) removeObserverOf_%!mPropertyName%: (id) inObserver ;\n\n%
+%  - (void) addObserverOf_%!mPropertyName%: (NSObject *) inObserver ;\n%
+%  - (void) removeObserverOf_%!mPropertyName%: (NSObject *) inObserver ;\n\n%
 end foreach
 %//--- Transient properties
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do

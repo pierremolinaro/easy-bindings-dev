@@ -208,7 +208,10 @@
         withLoadedAttributes:entityAttributeArray
         withLoadedRelationships:entityRelationshipArray
       ] ;
+      macroReleaseSetToNil (entityAttributeArray) ;
+      macroReleaseSetToNil (entityRelationshipArray) ;
       [mLoadedEntityArray addObject:newLoadedEntity] ;
+      macroReleaseSetToNil (newLoadedEntity) ;
     }
   }
   return self ;
@@ -223,7 +226,7 @@
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
     macroNoteObjectDeallocation (self) ;
-    
+    macroSuperDealloc ;
   }
 #endif
 

@@ -142,3 +142,35 @@ NSInteger enterSignatureValue (const NSInteger inSignature,
                                const NSInteger inValue) ;
 
 //---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define macroSuperDealloc
+#else
+  #define macroSuperDealloc [super dealloc]
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define macroRetain(OBJECT)
+#else
+  #define macroRetain(OBJECT) [OBJECT retain]
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define macroReleaseSetToNil(OBJECT) OBJECT = nil
+#else
+  #define macroReleaseSetToNil(OBJECT) { [OBJECT release] ; OBJECT = nil ; }
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define macroAutorelease(OBJECT)
+#else
+  #define macroAutorelease(OBJECT) [OBJECT autorelease]
+#endif
+
+//---------------------------------------------------------------------------*

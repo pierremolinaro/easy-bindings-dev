@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------*
 
 #import "PMDataScanner.h"
-
+#import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
 
 //#define EASY_BINDINGS_DEBUG
@@ -46,6 +46,7 @@
   [ts setEditable:NO] ;
   [ts setDrawsBackground:NO] ;
   [[mProgressWindow contentView] addSubview:ts] ;
+  macroReleaseSetToNil (ts) ;
 //--- Add progress indicator
   const NSRect ps_r = {{20.0, 10.0}, {NSMaxX (contientViewRect) - 40.0, 20.0}} ;
   mProgressIndicator = [[NSProgressIndicator alloc] initWithFrame:ps_r] ;
@@ -88,18 +89,20 @@
       [scanner openProgressWindowWithTitle:inTitle] ;
     }
   }
+  macroAutorelease (scanner) ;
   return scanner ;
 }
 
 //---------------------------------------------------------------------------*
 //                                                                           *
-//                           dealloc                             *
+//                           dealloc                                         *
 //                                                                           *
 //---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
     macroNoteObjectDeallocation (self) ;
+    macroSuperDealloc ;
   }
 #endif
 
@@ -191,6 +194,7 @@
           [message appendFormat:@"0x%02hhx, ", expectedBytes  [i]] ;
         }
         NSLog (@"Invalid current byte (0x%02x): expected bytes:%@0x%02x", bytes [mReadIndex], message, inByte) ;
+        macroReleaseSetToNil (message) ;
         mReadOk = NO ;
       }
     }

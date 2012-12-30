@@ -7,6 +7,7 @@
 
 #import "PMManagedObject.h"
 #import "PMAllocationDebug.h"
+#import "easy-bindings-utilities.h"
 
 //#define EASY_BINDINGS_DEBUG
 
@@ -47,6 +48,7 @@
 
 - (void) dealloc {
   macroNoteObjectDeallocation (self) ;
+  macroSuperDealloc ;
 }
 
 //----------------------------------------------------------------------------*
@@ -219,12 +221,14 @@
     [tf setStringValue:propertyName] ;
     [tf setFont:font] ;
     [view addSubview:tf] ;
+    macroReleaseSetToNil (tf) ;
     if ([property isKindOfClass:[NSAttributeDescription class]]) {
       NSTextField * tff = [[NSTextField alloc] initWithFrame:secondColumn (nameRect)] ;
       [tff setEnabled:NO] ;
       [tff setFont:font] ;
       [view addSubview:tff] ;
       [mAttributeViewDictionary setObject:tff forKey:propertyName] ;
+      macroReleaseSetToNil (tff) ;
     }else if ([property isKindOfClass:[NSRelationshipDescription class]]) {
       NSRelationshipDescription * rsd = (NSRelationshipDescription *) property ;
       const BOOL isToMany = [rsd isToMany] ;
@@ -233,11 +237,13 @@
         [bt setFont:font] ;
         [view addSubview:bt] ;
         [mAttributeViewDictionary setObject:bt forKey:propertyName] ;
+        macroReleaseSetToNil (bt) ;
       }else{
         NSButton * bt = [[NSButton alloc] initWithFrame:secondColumn (nameRect)] ;
         [bt setFont:font] ;
         [view addSubview:bt] ;
         [mAttributeViewDictionary setObject:bt forKey:propertyName] ;
+        macroReleaseSetToNil (bt) ;
       }
     }
     [self updateDisplayForKey:propertyName] ;
@@ -262,6 +268,7 @@
     [tf setToolTip:errorMessage] ;
   }
   [view addSubview:tf] ;
+  macroReleaseSetToNil (tf) ;
 //-------------------------------------------------- Object does not validate for delete ?
   validate = [self validateForDelete:& error] ;
   faultMessage = validate ? @"Validates for delete" : @"Does not validate for delete" ;
@@ -278,6 +285,7 @@
     [tf setToolTip:errorMessage] ;
   }
   [view addSubview:tf] ;
+  macroReleaseSetToNil (tf) ;
 //-------------------------------------------------- Object does not validate for update ?
   nameRect.origin.y += nameRect.size.height ;
   validate = [self validateForUpdate:& error] ;
@@ -297,6 +305,7 @@
     [tf setToolTip:errorMessage] ;
   }
   [view addSubview:tf] ;
+  macroReleaseSetToNil (tf) ;
 //-------------------------------------------------- Changed properties
   mChangedPropertyTextField = [[NSTextField alloc] initWithFrame:secondColumn (nameRect)] ;
   [mChangedPropertyTextField setFont:font] ;
@@ -321,7 +330,9 @@
   NSScrollView * sw = [[NSScrollView alloc] initWithFrame:frame] ;
   [sw setHasVerticalScroller:YES] ;
   [sw setDocumentView:view] ;
+  macroReleaseSetToNil (view) ;
   [mExplorerWindow setContentView:sw] ;
+  macroReleaseSetToNil (sw) ;
 }
 #endif
 

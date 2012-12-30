@@ -1,5 +1,6 @@
 #import "PMTransientDependancyManager.h"
 #import "PMAllocationDebug.h"
+#import "easy-bindings-utilities.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
@@ -82,9 +83,12 @@ end foreach
 //    Dealloc                                                                 *
 //----------------------------------------------------------------------------*
 
-- (void) dealloc {
-  macroNoteObjectDeallocation (self) ;
-}
+#ifdef PM_COCOA_DEBUG
+  - (void) dealloc {
+    macroNoteObjectDeallocation (self) ;
+    macroSuperDealloc ;
+  }
+#endif
 %end if%
 //----------------------------------------------------------------------------*
 //    removeObservers                                                         *
