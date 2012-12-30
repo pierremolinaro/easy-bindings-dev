@@ -5,19 +5,19 @@
 //----------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
-  #define macroNoteObjectAllocation(object) routineNoteObjectAllocation (object)
-  void routineNoteObjectAllocation (NSObject * inObject) ;
+  #define macroNoteObjectAllocation routineNoteObjectAllocation (self.className)
+  void routineNoteObjectAllocation (NSString * inObjectClassName) ;
 #else
-  #define macroNoteObjectAllocation(object)
+  #define macroNoteObjectAllocation
 #endif
 
 //----------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
-  #define macroNoteObjectDeallocation(object) routineNoteObjectDeallocation (object)
-  void routineNoteObjectDeallocation (NSObject * inObject) ;
+  #define macroNoteObjectDeallocation routineNoteObjectDeallocation (self.className)
+  void routineNoteObjectDeallocation (NSString * inObjectClassName) ;
 #else
-  #define macroNoteObjectDeallocation(object)
+  #define macroNoteObjectDeallocation
 #endif
 
 //----------------------------------------------------------------------------*
@@ -42,6 +42,7 @@
 
 #ifdef PM_COCOA_DEBUG
   @interface PMAllocationDebug : NSObject <NSTableViewDataSource> {
+    @private IBOutlet NSButton * mPerformSnapShotButton ;
     @private IBOutlet NSButton * mAllocationStatsWindowVisibleAtLaunchCheckbox ;
     @private IBOutlet NSPopUpButton * mDisplayFilterPopUpButton ;
     @private IBOutlet NSMenu * mDebugMenu ;
@@ -52,6 +53,7 @@
     
     @private NSCountedSet * mAllocatedObjectCountByClass ;
     @private NSCountedSet * mTotalAllocatedObjectCountByClass ;
+    @private NSMutableDictionary * mSnapShotDictionary ;
     @private BOOL mRefreshStatsHasTriggered ;
     @private NSArray * mAllocationStatsDataSource ;
   }

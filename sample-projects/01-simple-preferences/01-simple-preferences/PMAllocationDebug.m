@@ -78,6 +78,8 @@ static PMAllocationDebug * gDebugObject ;
 
 - (void) awakeFromNib {
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
+  mPerformSnapShotButton.action = @selector (performSnapShotAction:) ;
+  mPerformSnapShotButton.target = self ;
 //--- Allocation Window visibility
   self.mAllocationStatsWindowVisibleAtLaunch = [[NSUserDefaults standardUserDefaults]
     boolForKey:@"PMAllocationDebug:allocationStatsWindowVisible"
@@ -132,6 +134,22 @@ static PMAllocationDebug * gDebugObject ;
     setInteger:self.mDisplayFilter
     forKey:@"PMAllocationDebug:allocationStatsDisplayFilter"
   ] ;
+}
+
+//----------------------------------------------------------------------------*
+//    performSnapShotAction:                                                  *
+//----------------------------------------------------------------------------*
+
+- (void) performSnapShotAction: (id) inSender {
+  mSnapShotDictionary = [NSMutableDictionary new] ;
+  for (NSString * className in mAllocatedObjectCountByClass.allObjects) {
+    const NSUInteger liveByClass = [mAllocatedObjectCountByClass countForObject:className] ;
+    [mSnapShotDictionary
+      setObject:[NSNumber numberWithUnsignedInteger:liveByClass]
+      forKey:className
+    ] ;
+  }
+  [self triggerRefreshAllocationStatsDisplay] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -198,14 +216,22 @@ static PMAllocationDebug * gDebugObject ;
   for (NSString * className in [mTotalAllocatedObjectCountByClass.allObjects sortedArrayUsingSelector:@selector(compare:)]) {
     const NSUInteger liveByClass = [mAllocatedObjectCountByClass countForObject:className] ;
     const NSUInteger totalByClass = [mTotalAllocatedObjectCountByClass countForObject:className] ;
+    const NSUInteger snapShotByClass = [[mSnapShotDictionary objectForKey:className] unsignedIntegerValue] ;
     liveObjectCount += liveByClass ;
     totalObjectCount += totalByClass ;
-    if ((totalByClass != 0) || (self.mDisplayFilter == 0)) {
+    BOOL display = YES ;
+    if (1 == self.mDisplayFilter) {
+      display = liveByClass != 0 ;
+    }else if (2 == self.mDisplayFilter) {
+      display = liveByClass != snapShotByClass ;
+    }
+    if (display) {
       [array addObject: [NSDictionary
         dictionaryWithObjectsAndKeys:
           className, @"classname",
           [NSNumber numberWithUnsignedInteger:totalByClass], @"allCount",
           [NSNumber numberWithUnsignedInteger:liveByClass], @"live",
+          [NSNumber numberWithUnsignedInteger:snapShotByClass], @"snapshot",
           nil
         ]
       ] ;
@@ -253,7 +279,7 @@ static PMAllocationDebug * gDebugObject ;
 //    R O U T I N E S                                                         *
 //----------------------------------------------------------------------------*
 
-void routineNoteObjectAllocation (NSObject * inObject) {
+void routineNoteObjectAllocation (NSString * inObjectClassName) {
   if (nil == gDebugObject) {
     gDebugObject = [PMAllocationDebug new] ;
     const BOOL ok = [NSBundle loadNibNamed:@"PMAllocationDebug" owner:gDebugObject] ;
@@ -264,7 +290,7 @@ void routineNoteObjectAllocation (NSObject * inObject) {
   [[NSRunLoop mainRunLoop]
     performSelector:@selector (pmNoteObjectAllocation:)
     target:gDebugObject
-    argument:inObject.className
+    argument:inObjectClassName
     order:NSUIntegerMax
     modes:[NSArray arrayWithObject:NSRunLoopCommonModes]
   ] ;
@@ -272,11 +298,11 @@ void routineNoteObjectAllocation (NSObject * inObject) {
 
 //----------------------------------------------------------------------------*
 
-void routineNoteObjectDeallocation (NSObject * inObject) {
+void routineNoteObjectDeallocation (NSString * inObjectClassName) {
   [[NSRunLoop mainRunLoop]
     performSelector:@selector (pmNoteObjectDeallocation:)
     target:gDebugObject
-    argument:inObject.className
+    argument:inObjectClassName
     order:NSUIntegerMax
     modes:[NSArray arrayWithObject:NSRunLoopCommonModes]
   ] ;

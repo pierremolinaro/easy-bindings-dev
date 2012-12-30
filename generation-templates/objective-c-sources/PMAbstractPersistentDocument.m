@@ -43,19 +43,19 @@
   self = [super initWithType:typeName error:outError ] ;
   if (self) {
   //---
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- Make Managed Object Context
     NSManagedObjectContext * moc = self.managedObjectContext ;
   //---
     [moc processPendingChanges] ;
-    [[moc undoManager] disableUndoRegistration] ;
+    [moc.undoManager disableUndoRegistration] ;
   //--- Fetch root object
     [self fetchRootObject] ;
   //--- User initialization
     [self hookOfInitWithType:typeName] ;
   //---
     [moc processPendingChanges] ;
-    [[moc undoManager] enableUndoRegistration] ;
+    [moc.undoManager enableUndoRegistration] ;
   }
   return self ;
 }
@@ -80,20 +80,20 @@
     error:outError
   ] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- User initialization
     [self hookOfInitWithContentsOfURL:inAbsoluteDocumentURL ofType:inTypeName] ;
   //--- Make Managed Object Context
     NSManagedObjectContext * moc = self.managedObjectContext ;
   //---
-    [[moc undoManager] disableUndoRegistration] ;
+    [moc.undoManager disableUndoRegistration] ;
   //--- Fetch root object
     [self fetchRootObject] ;
   //--- User initialization
     [self hookOfDidReadDocumentOfType:inTypeName] ;
   //---
     [moc processPendingChanges] ;
-    [[moc undoManager] enableUndoRegistration] ;
+    [moc.undoManager enableUndoRegistration] ;
   }
   return self ;
 }
@@ -112,20 +112,20 @@
   #endif
   self = [super initWithContentsOfURL:inAbsoluteURL ofType:inTypeName error:outError] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- User initialization
     [self hookOfInitWithContentsOfURL:inAbsoluteURL ofType:inTypeName] ;
   //--- Make Managed Object Context
     NSManagedObjectContext * moc = self.managedObjectContext ;
   //---
-    [[moc undoManager] disableUndoRegistration] ;
+    [moc.undoManager disableUndoRegistration] ;
   //--- Fetch root object
     [self fetchRootObject] ;
   //--- User initialization
     [self hookOfDidReadDocumentOfType:inTypeName] ;
   //---
     [moc processPendingChanges] ;
-    [[moc undoManager] enableUndoRegistration] ;
+    [moc.undoManager enableUndoRegistration] ;
   }
   return self ;
 }
@@ -172,9 +172,11 @@
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
+  [mManagedObjectContext processPendingChanges] ;
+  [mManagedObjectContext save:NULL] ;
   [mManagedObjectContext reset] ;
-  macroReleaseSetToNil (mManagedObjectContext) ;
-  macroNoteObjectDeallocation (self) ;
+  // macroReleaseSetToNil (mManagedObjectContext) ;
+  macroNoteObjectDeallocation ;
   macroSuperDealloc ;
 }
 
@@ -234,6 +236,17 @@
     NSPersistentStoreCoordinator * psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     mManagedObjectContext = [NSManagedObjectContext new] ;
     [mManagedObjectContext setPersistentStoreCoordinator:psc] ;
+    NSDictionary * readOptions = [NSDictionary
+      dictionaryWithObject:[NSNumber numberWithBool:YES]
+      forKey:NSIgnorePersistentStoreVersioningOption
+    ] ;
+    [psc 
+      addPersistentStoreWithType:NSInMemoryStoreType
+      configuration:nil
+      URL:nil
+      options:readOptions
+      error:nil
+    ] ;
     macroReleaseSetToNil (psc) ;
 
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter] ;
@@ -243,12 +256,12 @@
       name:NSManagedObjectContextObjectsDidChangeNotification
       object:mManagedObjectContext
     ] ;
-    [nc
+/*    [nc
       addObserver:self
       selector:@selector (updateDocumentEdition:)
       name:NSManagedObjectContextDidSaveNotification
       object:mManagedObjectContext
-    ] ;
+    ] ;*/
   }
   return mManagedObjectContext ;
 }
@@ -293,11 +306,11 @@
     name:NSManagedObjectContextObjectsDidChangeNotification
     object:mManagedObjectContext
   ] ;
-  [nc
+/*  [nc
     removeObserver:self
     name:NSManagedObjectContextDidSaveNotification
     object:mManagedObjectContext
-  ] ;
+  ] ;*/
 //---
   mFetchingAllObjectsDone = NO ;
 //--- Invoke super method
@@ -322,7 +335,6 @@
            self.undoManager.canUndo ? @"YES" : @"NO") ;
   #endif
   return self.undoManager.canUndo ;
-//  return self.managedObjectContext.hasChanges ;
 }
 
 //---------------------------------------------------------------------------*
@@ -549,7 +561,7 @@
   #ifdef PM_COCOA_DEBUG
   }else if (NSAlertOtherReturn == inReturnCode) {
     for (PMManagedObject * object in mUnreachableObjectsForCheckObjectGraph) {
- //     [object showExplorerWindow] ;
+      [object showExplorerWindow] ;
     }
   #endif
   }
@@ -789,7 +801,7 @@
 
 - (void) showObjectExplorerWindow: (id) inUnusedSender {
   #ifdef PM_COCOA_DEBUG
-//    [self.rootObject showExplorerWindow] ;
+    [self.rootObject showExplorerWindow] ;
   #endif
 }
 

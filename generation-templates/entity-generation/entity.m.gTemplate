@@ -79,7 +79,9 @@ if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
 
 - (void) didChangeValueForKey: (NSString *) inKey {
   [super didChangeValueForKey:inKey] ;
-  [self pmKeyDidChange:inKey] ;
+  if (! self.isFault) {
+    [self pmKeyDidChange:inKey] ;
+  }
 }
 
 //----------------------------------------------------------------------------*
@@ -94,7 +96,9 @@ if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
     withSetMutation: inMutationKind
     usingObjects: inObjects
   ] ;
-  [self pmKeyDidChange:inKey] ;
+  if (! self.isFault) {
+    [self pmKeyDidChange:inKey] ;
+  }
 }
 
 //----------------------------------------------------------------------------*

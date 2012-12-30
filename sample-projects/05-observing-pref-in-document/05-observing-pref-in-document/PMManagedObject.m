@@ -36,7 +36,7 @@
     insertIntoManagedObjectContext:inManagedObjectContext
   ] ;
   if (self) {
-    macroNoteObjectAllocation (self) ;
+    macroNoteObjectAllocation ;
   //--- Add Transient observers
   }
   return self ;
@@ -47,7 +47,7 @@
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
-  macroNoteObjectDeallocation (self) ;
+  macroNoteObjectDeallocation ;
   macroSuperDealloc ;
 }
 

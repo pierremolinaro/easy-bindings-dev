@@ -22,7 +22,7 @@
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"  \%s \%p", __PRETTY_FUNCTION__, self) ;
   #endif
-  macroNoteObjectAllocation (self) ;
+  macroNoteObjectAllocation ;
   [self %!OUTLET_CLASS_NAME%_awakeFromNib] ;
 }
 
@@ -34,7 +34,7 @@
 
 #ifdef PM_COCOA_DEBUG
   - (void) dealloc {
-    macroNoteObjectDeallocation (self) ;
+    macroNoteObjectDeallocation ;
     macroSuperDealloc ;
   }
 #endif
