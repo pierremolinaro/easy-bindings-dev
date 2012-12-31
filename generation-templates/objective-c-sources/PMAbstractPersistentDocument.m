@@ -172,10 +172,7 @@
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
-  [mManagedObjectContext processPendingChanges] ;
-  [mManagedObjectContext save:NULL] ;
-  [mManagedObjectContext reset] ;
-  // macroReleaseSetToNil (mManagedObjectContext) ;
+  macroReleaseSetToNil (mManagedObjectContext) ;
   macroNoteObjectDeallocation ;
   macroSuperDealloc ;
 }

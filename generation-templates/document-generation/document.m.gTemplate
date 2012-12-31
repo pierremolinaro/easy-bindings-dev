@@ -107,7 +107,7 @@ end foreach
 %//--------------------------- Outlet bindings
 %
 
-foreach OUTLET_DECLARATION_LIST do
+foreach OUTLET_GENERATION_LIST do
    %//--- Outlet %!mOutletName%\n%
    %  if (nil == %!mOutletName%) {\n%
    %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet is nil") ;\n%
@@ -127,7 +127,7 @@ end foreach
 - (void) removeWindowController:(NSWindowController *) inWindowController {
   //NSLog (@"\%s", __PRETTY_FUNCTION__) ;
 //--- Unbind Outlets
-%foreach OUTLET_DECLARATION_LIST do
+%foreach OUTLET_GENERATION_LIST do
   foreach mOutletBindingList do
     ![mBinding generateRemoveBinding !mOutletName]
   end foreach
@@ -143,6 +143,12 @@ end foreach
 %//--- Release controllers
 %foreach CONTROLLER_MAP do
   %  macroReleaseSetToNil (%!lkey->string%) ;\n%
+end foreach
+%//--- Remove circularities in outlets
+%foreach OUTLET_GENERATION_LIST do
+  if mImplementsDeallocProtocol then
+    %  [%!mOutletName% objectWillBeDeallocated] ;\n%
+  end if 
 end foreach
 %//---
   [super removeWindowController:inWindowController] ;

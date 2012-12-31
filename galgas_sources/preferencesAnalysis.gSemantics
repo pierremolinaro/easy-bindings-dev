@@ -161,6 +161,7 @@ local routine analyzePreference
       !mOutletType
       ?@generationKind generationKind
       ?2*
+      ?@bool implementsDeallocProtocol
       ?@outletClassBindingMap bindingMap
       ?*
       ?@bool hasTableValueBinding
@@ -189,6 +190,7 @@ local routine analyzePreference
       ![mOutletType string]
       ![mOutletName string]
       !outletBindingList
+      !implementsDeallocProtocol
     ;
   end foreach ;
 #------------------------------------- Enter in preference map

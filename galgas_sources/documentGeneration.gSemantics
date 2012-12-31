@@ -11,7 +11,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@string ROOT_ENTITY_CLASS_NAME
-    ?@outletGenerationList OUTLET_DECLARATION_LIST
+    ?@outletGenerationList OUTLET_GENERATION_LIST
     ?@controllerMap CONTROLLER_MAP
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset HEADER_FILE_PREDECLARATION_SET
@@ -25,7 +25,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@string ROOT_ENTITY_CLASS_NAME
-    ?@outletGenerationList OUTLET_DECLARATION_LIST
+    ?@outletGenerationList OUTLET_GENERATION_LIST
     ?@controllerMap CONTROLLER_MAP
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset INCLUSION_SET

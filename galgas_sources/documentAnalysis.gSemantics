@@ -198,6 +198,7 @@ local routine analyzeDocument
       !mOutletType
       ?@generationKind generationKind
       ?2*
+      ?@bool implementsDeallocProtocol
       ?@outletClassBindingMap bindingMap
       ?*
       ?@bool hasTableValueBinding
@@ -225,9 +226,9 @@ local routine analyzeDocument
     end foreach ;
     outletGenerationList +=
       ![mOutletType string]
-#      !generationKind
       ![mOutletName string]
       !outletBindingList
+      !implementsDeallocProtocol
     ;
   end foreach ;
 #--------------------------------------------------- Enter in document map

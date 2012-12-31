@@ -326,6 +326,7 @@ list @outletClassList {
   @generationKind mGeneration ;
   @outletClassBindingList mOutletClassBindingList ;
   @bool mHasTableValueBinding ;
+  @lstringlist mOptionList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -338,6 +339,7 @@ list @controllerObservablePropertyList {
 #----------------------------------------------------------------------------*
 
 list @protocolList {
+  @bool mIsPredefined ; # Generate import otherwise
   @lstring mProtocolName ;
 }
 
