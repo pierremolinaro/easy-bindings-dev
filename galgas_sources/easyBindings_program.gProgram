@@ -90,7 +90,7 @@ message "a source text file with the .easyBindings extension"
 #--- Protocol
   @protocolMap protocolMap [emptyMap] ;
   foreach protocolList do
-    [!?protocolMap insertKey !mProtocolName] ;
+    [!?protocolMap insertKey !mProtocolName !mIsPredefined] ;
   end foreach ;
 #--- Classes
   @stringlist sortedTransientOrderedList [emptyList] ;
@@ -194,6 +194,7 @@ message "a source text file with the .easyBindings extension"
   @stringset generateSet [emptySet] ;
   generateSet += !"easy-bindings-utilities" ;
   generateSet += !"PMAllocationDebug" ;
+  generateSet += !"PMWillDeallocProtocol" ;
   if [documentMap count] > 0 then
     generateSet += !"PMAbstractPersistentDocument" ;
     generateSet += !"PMBinaryFlatDocument" ;

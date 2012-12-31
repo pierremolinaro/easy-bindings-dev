@@ -17,11 +17,24 @@ routine analyzeOutletClasses
     else
       [outOutletClassMap searchKey
         !mSuperClassName
-        ?3*
+        ?4*
         ?allBindingMap
         ?2*
       ] ;
     end if ;
+  #--- Analyze options
+    @protocolList adoptedProtocolList [emptyList] ;
+    @bool implementsDeallocProtocol := false ;
+    foreach mOptionList do
+      if mValue->string != "PMWillDeallocProtocol" then
+        error mValue: "only 'PMWillDeallocProtocol' is allowed here" ;
+      elsif implementsDeallocProtocol then
+        error mValue: "'PMWillDeallocProtocol' option already set" ;
+      else
+        implementsDeallocProtocol := true ;
+        adoptedProtocolList += !false !mValue ;
+      end if ;
+    end foreach ;
   #---
     @outletClassBindingMap currentBindingMap [emptyMap] ;
     foreach mOutletClassBindingList do
@@ -34,14 +47,16 @@ routine analyzeOutletClasses
     end foreach ;
   #--- Analyze protocols
     foreach mAdoptedProtocolList do
-      [inProtocolMap searchKey !mValue] ;
+      [inProtocolMap searchKey !mValue ?@bool isPredefined] ;
+      adoptedProtocolList += !isPredefined !mValue ;
     end foreach ;
   #---
     [!?outOutletClassMap insertKey
       !mOutletClassName
       !mGeneration
       !mSuperClassName->string
-      !mAdoptedProtocolList
+      !adoptedProtocolList
+      !implementsDeallocProtocol
       !allBindingMap
       !currentBindingMap
       !mHasTableValueBinding

@@ -124,7 +124,7 @@ if [BINDING_MAP count] > 0 then
     mKeyPathFor_%!lkey->string% = inObservableKeyPath.copy ; 
     [inObservableObject
       addObserver:self
-      forKeyPath:inObservableKeyPath
+      forKeyPath:inObservableKeyPath.copy
       options:0
       context:nil
     ] ;

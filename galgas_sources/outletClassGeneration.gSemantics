@@ -10,7 +10,7 @@ local filewrapper outletClassGenerationTemplate in "../generation-templates/outl
   template outletClassDeclaration "outlet-class.h.gTemplate"
     ?@string OUTLET_CLASS_NAME
     ?@string SUPER_CLASS_NAME
-    ?@lstringlist ADOPTED_PROTOCOL_LIST
+    ?@protocolList ADOPTED_PROTOCOL_LIST
     ?@outletClassBindingMap BINDING_MAP
   ;
   

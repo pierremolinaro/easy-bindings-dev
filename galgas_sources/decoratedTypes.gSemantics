@@ -107,6 +107,7 @@ class @tableValueBindingForGeneration extends @abstractBindingForGeneration {
 #----------------------------------------------------------------------------*
 
 map @protocolMap {
+  @bool mIsPredefined ; # Generate import otherwise
   insert insertKey error message "the '%K' protocol is already declared" ;
   search searchKey error message "the '%K' protocol is not declared" ;
 }
@@ -148,7 +149,8 @@ map @outletClassBindingMap {
 map @outletClassMap {
   @generationKind mGenerationKind ;
   @string mSuperClassName ;
-  @lstringlist mAdoptedProtocolList ;
+  @protocolList mAdoptedProtocolList ;
+  @bool mImplementsDeallocProtocol ;
   @outletClassBindingMap mAllBindingMap ;
   @outletClassBindingMap mCurrentBindingMap ;
   @bool mHasTableValueBinding ;
@@ -212,6 +214,7 @@ list @outletGenerationList {
   @string mOutletType ;
   @string mOutletName ;
   @outletBindingListForGeneration mOutletBindingList ;
+  @bool mImplementsDeallocProtocol ;
 }
 
 #----------------------------------------------------------------------------*

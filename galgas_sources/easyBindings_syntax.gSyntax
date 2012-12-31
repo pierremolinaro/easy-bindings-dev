@@ -844,8 +844,14 @@ rule <outlet_class_declaration>
   end select ;
   ${$ ;
   @outletClassBindingList outletClassBindingList [emptyList] ;
+  @lstringlist optionList [emptyList] ;
   @bool hasTableValueBinding := false ;
   repeat
+  while
+    $option$ ;
+    $literal_string$ ?@lstring optionValue ;
+    optionList += !optionValue ;
+    $;$ ;
   while
     $tableValue$ ;
     $;$ ;
@@ -892,6 +898,7 @@ rule <outlet_class_declaration>
     !generationKind
     !outletClassBindingList
     !hasTableValueBinding
+    !optionList
   ;
 end rule ;
 
@@ -900,11 +907,16 @@ end rule ;
 rule <protocol_declaration>
   ?!@protocolList ioProtocolList
 :
-  $extern$ ;
+  @bool isPredefined ;
+  select
+    $extern$ ; isPredefined := false ;
+  or
+    $predefined$ ; isPredefined := true ;
+  end select ;
   $protocol$ ;
   $Identifier$ ? @lstring protocolName ;
   $;$ ;
-  ioProtocolList += !protocolName ;
+  ioProtocolList += !isPredefined !protocolName ;
 end rule ;
 
 #----------------------------------------------------------------------------*

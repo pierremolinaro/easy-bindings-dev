@@ -3194,7 +3194,7 @@ predefined outletClass NSWindow {
   }
 }
 
-extern protocol NSTableViewDataSource ;
+predefined protocol NSTableViewDataSource ;
 
 end
 

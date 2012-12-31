@@ -13,7 +13,7 @@ end foreach
 //--- Root Object
   @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
 %
-foreach OUTLET_DECLARATION_LIST do
+foreach OUTLET_GENERATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n%
 end foreach
