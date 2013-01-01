@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'binary-flat-file-analyzer' target in the 'binary-flat-file-analyzer' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <CoreData/CoreData.h>
+#endif

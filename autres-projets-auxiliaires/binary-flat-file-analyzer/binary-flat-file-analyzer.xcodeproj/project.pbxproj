@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFDF8F3516931F3D0042FB82 /* PMLoadedEntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF8F3416931F3D0042FB82 /* PMLoadedEntityDescription.m */; };
+		CFDF8F38169321460042FB82 /* PMLoadedObjectDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF8F37169321460042FB82 /* PMLoadedObjectDatabase.m */; };
+		CFF4464616930263002CB54F /* PMLoadedEntityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF4464516930263002CB54F /* PMLoadedEntityDatabase.m */; };
+		CFF8F5C31691E98E0063D3FC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF8F5C21691E98E0063D3FC /* CoreData.framework */; };
+		CFF8F5C51691E98E0063D3FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF8F5C41691E98E0063D3FC /* Foundation.framework */; };
+		CFF8F5C81691E98E0063D3FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF8F5C71691E98E0063D3FC /* main.m */; };
+		CFF8F5DF169213620063D3FC /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF8F5DE169213620063D3FC /* PMDataScanner.m */; };
+		CFF8F5E4169215AA0063D3FC /* PMbz2DataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF8F5E1169215AA0063D3FC /* PMbz2DataCategory.m */; };
+		CFF8F5E5169215AA0063D3FC /* PMzlibDataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF8F5E3169215AA0063D3FC /* PMzlibDataCategory.m */; };
+		CFF8F5E71692171D0063D3FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF8F5E61692171D0063D3FC /* libz.dylib */; };
+		CFF8F5E9169217250063D3FC /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF8F5E8169217250063D3FC /* libbz2.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CFF8F5BC1691E98E0063D3FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CFDF8F3316931F3D0042FB82 /* PMLoadedEntityDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDescription.h; sourceTree = "<group>"; };
+		CFDF8F3416931F3D0042FB82 /* PMLoadedEntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDescription.m; sourceTree = "<group>"; };
+		CFDF8F36169321460042FB82 /* PMLoadedObjectDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedObjectDatabase.h; sourceTree = "<group>"; };
+		CFDF8F37169321460042FB82 /* PMLoadedObjectDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedObjectDatabase.m; sourceTree = "<group>"; };
+		CFF4464416930263002CB54F /* PMLoadedEntityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDatabase.h; sourceTree = "<group>"; };
+		CFF4464516930263002CB54F /* PMLoadedEntityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDatabase.m; sourceTree = "<group>"; };
+		CFF8F5BE1691E98E0063D3FC /* binary-flat-file-analyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "binary-flat-file-analyzer"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF8F5C21691E98E0063D3FC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CFF8F5C41691E98E0063D3FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFF8F5C71691E98E0063D3FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFF8F5CA1691E98E0063D3FC /* binary-flat-file-analyzer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "binary-flat-file-analyzer-Prefix.pch"; sourceTree = "<group>"; };
+		CFF8F5DD169213620063D3FC /* PMDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDataScanner.h; sourceTree = "<group>"; };
+		CFF8F5DE169213620063D3FC /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
+		CFF8F5E0169215AA0063D3FC /* PMbz2DataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMbz2DataCategory.h; sourceTree = "<group>"; };
+		CFF8F5E1169215AA0063D3FC /* PMbz2DataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMbz2DataCategory.m; sourceTree = "<group>"; };
+		CFF8F5E2169215AA0063D3FC /* PMzlibDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMzlibDataCategory.h; sourceTree = "<group>"; };
+		CFF8F5E3169215AA0063D3FC /* PMzlibDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMzlibDataCategory.m; sourceTree = "<group>"; };
+		CFF8F5E61692171D0063D3FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CFF8F5E8169217250063D3FC /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFF8F5BB1691E98E0063D3FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF8F5E9169217250063D3FC /* libbz2.dylib in Frameworks */,
+				CFF8F5E71692171D0063D3FC /* libz.dylib in Frameworks */,
+				CFF8F5C31691E98E0063D3FC /* CoreData.framework in Frameworks */,
+				CFF8F5C51691E98E0063D3FC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFF8F5B31691E98E0063D3FC = {
+			isa = PBXGroup;
+			children = (
+				CFF8F5C61691E98E0063D3FC /* binary-flat-file-analyzer */,
+				CFF8F5C11691E98E0063D3FC /* Frameworks */,
+				CFF8F5BF1691E98E0063D3FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFF8F5BF1691E98E0063D3FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFF8F5BE1691E98E0063D3FC /* binary-flat-file-analyzer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFF8F5C11691E98E0063D3FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFF8F5E8169217250063D3FC /* libbz2.dylib */,
+				CFF8F5E61692171D0063D3FC /* libz.dylib */,
+				CFF8F5C21691E98E0063D3FC /* CoreData.framework */,
+				CFF8F5C41691E98E0063D3FC /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFF8F5C61691E98E0063D3FC /* binary-flat-file-analyzer */ = {
+			isa = PBXGroup;
+			children = (
+				CFDF8F36169321460042FB82 /* PMLoadedObjectDatabase.h */,
+				CFDF8F37169321460042FB82 /* PMLoadedObjectDatabase.m */,
+				CFDF8F3316931F3D0042FB82 /* PMLoadedEntityDescription.h */,
+				CFDF8F3416931F3D0042FB82 /* PMLoadedEntityDescription.m */,
+				CFF8F5CA1691E98E0063D3FC /* binary-flat-file-analyzer-Prefix.pch */,
+				CFF4464416930263002CB54F /* PMLoadedEntityDatabase.h */,
+				CFF4464516930263002CB54F /* PMLoadedEntityDatabase.m */,
+				CFF8F5E0169215AA0063D3FC /* PMbz2DataCategory.h */,
+				CFF8F5E1169215AA0063D3FC /* PMbz2DataCategory.m */,
+				CFF8F5E2169215AA0063D3FC /* PMzlibDataCategory.h */,
+				CFF8F5E3169215AA0063D3FC /* PMzlibDataCategory.m */,
+				CFF8F5DD169213620063D3FC /* PMDataScanner.h */,
+				CFF8F5DE169213620063D3FC /* PMDataScanner.m */,
+				CFF8F5C71691E98E0063D3FC /* main.m */,
+			);
+			path = "binary-flat-file-analyzer";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFF8F5BD1691E98E0063D3FC /* binary-flat-file-analyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFF8F5D21691E98E0063D3FC /* Build configuration list for PBXNativeTarget "binary-flat-file-analyzer" */;
+			buildPhases = (
+				CFF8F5BA1691E98E0063D3FC /* Sources */,
+				CFF8F5BB1691E98E0063D3FC /* Frameworks */,
+				CFF8F5BC1691E98E0063D3FC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "binary-flat-file-analyzer";
+			productName = "binary-flat-file-analyzer";
+			productReference = CFF8F5BE1691E98E0063D3FC /* binary-flat-file-analyzer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFF8F5B51691E98E0063D3FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CFF8F5B81691E98E0063D3FC /* Build configuration list for PBXProject "binary-flat-file-analyzer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CFF8F5B31691E98E0063D3FC;
+			productRefGroup = CFF8F5BF1691E98E0063D3FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFF8F5BD1691E98E0063D3FC /* binary-flat-file-analyzer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFF8F5BA1691E98E0063D3FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF8F5C81691E98E0063D3FC /* main.m in Sources */,
+				CFF8F5DF169213620063D3FC /* PMDataScanner.m in Sources */,
+				CFF8F5E4169215AA0063D3FC /* PMbz2DataCategory.m in Sources */,
+				CFF8F5E5169215AA0063D3FC /* PMzlibDataCategory.m in Sources */,
+				CFF4464616930263002CB54F /* PMLoadedEntityDatabase.m in Sources */,
+				CFDF8F3516931F3D0042FB82 /* PMLoadedEntityDescription.m in Sources */,
+				CFDF8F38169321460042FB82 /* PMLoadedObjectDatabase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CFF8F5D01691E98E0063D3FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		CFF8F5D11691E98E0063D3FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		CFF8F5D31691E98E0063D3FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "binary-flat-file-analyzer/binary-flat-file-analyzer-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CFF8F5D41691E98E0063D3FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "binary-flat-file-analyzer/binary-flat-file-analyzer-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFF8F5B81691E98E0063D3FC /* Build configuration list for PBXProject "binary-flat-file-analyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF8F5D01691E98E0063D3FC /* Debug */,
+				CFF8F5D11691E98E0063D3FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFF8F5D21691E98E0063D3FC /* Build configuration list for PBXNativeTarget "binary-flat-file-analyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF8F5D31691E98E0063D3FC /* Debug */,
+				CFF8F5D41691E98E0063D3FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFF8F5B51691E98E0063D3FC /* Project object */;
+}
