@@ -48,34 +48,15 @@
     }else if ([inDataScanner testAcceptByte:0x0A withMessage:[NSString stringWithFormat:@"Boolean NO for '%@'", key]]) { // False
     }else if ([inDataScanner testAcceptByte:0x0B withMessage:[NSString stringWithFormat:@"Boolean YES for '%@'", key]]) { // True
     }else if ([inDataScanner testAcceptByte:0x0C withMessage:[NSString stringWithFormat:@"Float Mark for '%@'", key]]) { // Float
-      NSNumber * numberString = [NSUnarchiver unarchiveObjectWithData:[inDataScanner parseAutosizedData]] ;
-      const double value = [numberString doubleValue] ; 
-      if ([key length] > 0) {
-
-      }
+      [inDataScanner parseAutosizedDataWithMessage:@"Float value"] ;
     }else if ([inDataScanner testAcceptByte:0x0D withMessage:[NSString stringWithFormat:@"Double Mark for '%@'", key]]) { // Double
-      NSNumber * numberString = [NSUnarchiver unarchiveObjectWithData:[inDataScanner parseAutosizedData]] ;
-      const double value = [numberString doubleValue] ;
-      if ([key length] > 0) {
-
-      }
+      [inDataScanner parseAutosizedDataWithMessage:@"Double Value"] ;
     }else if ([inDataScanner testAcceptByte:0x0E withMessage:[NSString stringWithFormat:@"Date Mark for '%@'", key]]) { // Date
-      NSDate * date = [NSUnarchiver unarchiveObjectWithData:[inDataScanner parseAutosizedData]] ;
-      // [ioTrace appendFormat:@"  Date '%@'", dateString) ;
-      if ([key length] > 0) {
-
-      }
+      [inDataScanner parseAutosizedDataWithMessage:@"Date value"] ;
     }else if ([inDataScanner testAcceptByte:0x0F withMessage:[NSString stringWithFormat:@"Binary Data Mark for '%@'", key]]) { // Binary Data
-      NSData * data = [inDataScanner parseAutosizedData] ;
-      // [ioTrace appendFormat:@"  Data '%@'\n", data) ;
-      if ([key length] > 0) {
-
-      }
+      [inDataScanner parseAutosizedDataWithMessage:@"Data Value"] ;
     }else if ([inDataScanner testAcceptByte:0x10 withMessage:[NSString stringWithFormat:@"Decimal Mark for '%@'", key]]) { // Decimal
-      NSDecimalNumber * decimalNumber = [NSUnarchiver unarchiveObjectWithData:[inDataScanner parseAutosizedData]] ;
-      if ([key length] > 0) {
-
-      }
+      [inDataScanner parseAutosizedDataWithMessage:@"Decimal Value"] ;
     }else{
       [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Attribute Values\n", inObjectIndex]] ;
       loop = NO ;
@@ -85,13 +66,13 @@
 
 //---------------------------------------------------------------------------*
 
-+ (void) scanRelationshipForObjectIndex: (NSUInteger *) inObjectIndex
++ (void) scanRelationshipForObjectIndex: (NSUInteger) inObjectIndex
          withDataScanner: (PMDataScanner *) inDataScanner
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase {
 //--- 'start of object relationship' mark
-  [inDataScanner acceptRequiredByte:0x04] ;
+  [inDataScanner acceptRequiredByte:0x04 withMessage:[NSString stringWithFormat:@"Start of #%lu Object Relationships", inObjectIndex]] ;
 //--- Entity Index
-  const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedInteger] ;
+  const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Entity Index"] ;
 //--- Build attribute array
   NSArray * relationshipDescriptionArray = [inLoadedEntityDatabase sortedRelationshipNamesForEntityOfIndex:entityIndex] ;
 //--- Parse relationship values
@@ -100,25 +81,16 @@
   while (loop && [inDataScanner ok]) {
     NSString * key = [relationshipDescriptionArray objectAtIndex:relationshipIndex] ;
     relationshipIndex ++ ;
-    if ([inDataScanner testAcceptByte:0xFF]) { // nil
-    }else if ([inDataScanner testAcceptByte:0x01]) { // To-one relationship object
-      const NSUInteger destinationObjectIndex = [inDataScanner parseAutosizedUnsignedInteger] ;
- //    NSManagedObject * destinationObject = [inLoadedObjectArray objectAtIndex:destinationObjectIndex] ;
-      if ([key length] > 0) {
-
-      }
-    }else if ([inDataScanner testAcceptByte:0x02]) { // To-many relationship object
-      const NSUInteger objectCount = [inDataScanner parseAutosizedUnsignedInteger] ;
-      NSMutableSet * destinationSet = [NSMutableSet setWithCapacity:objectCount] ;
+    if ([inDataScanner testAcceptByte:0xFF withMessage:[NSString stringWithFormat:@"'%@' -> nil", key]]) { // nil
+    }else if ([inDataScanner testAcceptByte:0x01 withMessage:[NSString stringWithFormat:@"'%@' -> To one value", key]]) {
+      [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Destination object index"] ;
+    }else if ([inDataScanner testAcceptByte:0x02 withMessage:[NSString stringWithFormat:@"'%@' -> To Many value", key]]) {
+      const NSUInteger objectCount = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Destination object count"] ;
       for (NSUInteger i=0 ; i<objectCount ; i++) {
-        const NSUInteger destinationObjectIndex = [inDataScanner parseAutosizedUnsignedInteger] ;
-
-      }
-      if ([key length] > 0) {
-
+        [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Object index"] ;
       }
     }else{
-      [inDataScanner acceptRequiredByte:0x00] ;
+      [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Relationships\n", inObjectIndex]] ;
       loop = NO ;
     }
   }
