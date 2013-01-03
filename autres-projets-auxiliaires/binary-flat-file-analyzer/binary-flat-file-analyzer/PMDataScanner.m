@@ -224,13 +224,19 @@ static NSUInteger uimin (const NSUInteger inA, const NSUInteger inB) {
 - (NSUInteger) parseAutosizedUnsignedIntegerWithMessage: (NSString *) inMessage {
   const NSUInteger idx = mReadIndex ;
   NSUInteger result = [self parseAutosizedUnsignedInteger] ;
-  if (result) {
+  if (mReadOk) {
     printf ("%04lX %04lX:", (idx >> 32), idx % (1UL << 32)) ;
     const UInt8 * bytes = [mData bytes] ;
     for (NSUInteger i=idx ; i<mReadIndex ; i++) {
       printf (" %02X", bytes [i]) ;
     }
-    NSString * s = [NSString stringWithFormat:@"%@ (size: %lu bytes, value: %lu)", inMessage, mReadIndex - idx, result] ;
+    NSString * s = [NSString
+      stringWithFormat:@"%@ (size: %lu byte%@, value: %lu)",
+      inMessage,
+      mReadIndex - idx,
+      ((mReadIndex - idx) > 1) ? @"s" : @"",
+      result
+    ] ;
     printf (" | %s\n", [s cStringUsingEncoding:NSUTF8StringEncoding]) ;
   }
   return result ;
