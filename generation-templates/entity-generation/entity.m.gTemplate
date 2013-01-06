@@ -60,20 +60,28 @@ end foreach
 }
 
 //----------------------------------------------------------------------------*
-//    didTurnIntoFault                                                        *
+//    objectWillBeDeallocated                                                 *
 //----------------------------------------------------------------------------*
 
-- (void) didTurnIntoFault {
+- (void) objectWillBeDeallocated {
 //--- Remove Transient observers
 %!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//---
-  [super didTurnIntoFault] ;
+  [super objectWillBeDeallocated] ;
 }
 
 %
 
-if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
+if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
 %//----------------------------------------------------------------------------*
+//    willChangeValueForKey:                                                  *
+//----------------------------------------------------------------------------*
+
+- (void) willChangeValueForKey: (NSString *) inKey {
+  [super willChangeValueForKey:inKey] ;
+}
+
+//----------------------------------------------------------------------------*
 //    didChangeValueForKey:                                                   *
 //----------------------------------------------------------------------------*
 
@@ -106,10 +114,13 @@ if [PROPERTY_TOMANY_RELATIONSHIP_SET count] > 0 then
 //----------------------------------------------------------------------------*
 
 - (void) pmKeyDidChange: (NSString *) inKey {
- %foreach PROPERTY_TOMANY_RELATIONSHIP_SET do
+ %foreach PROPERTY_AND_RELATIONSHIP_SET do
 % if ([inKey isEqualToString:@"%!key%"]) {
     [%!key%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . key identifierRepresentation]%_didChange)] ;
 %!generateTransientTriggering [!key !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+if [SIGN_SET hasKey !key] then
+  %    [self triggerSignatureComputing] ;\n%
+end if
 between %  }else%
 end foreach
 %  }
@@ -123,7 +134,7 @@ if [SIGN_LIST length] > 0 then
 //----------------------------------------------------------------------------*
 
 - (NSInteger) computeSignature {
-  NSInteger signature = 0 ;
+  NSInteger signature = [super computeSignature] ;
 % foreach SIGN_LIST do
 %  signature = %![mPropertyType functionForComputingSignature]% (signature, self.%!mPropertyName%) ;\n%
 end foreach

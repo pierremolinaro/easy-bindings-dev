@@ -49,9 +49,10 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@stringset INCLUSION_SET
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
-    ?@stringset PROPERTY_TOMANY_RELATIONSHIP_SET
+    ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
     ?@signListForGeneration SIGN_LIST
+    ?@stringset SIGN_SET
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -130,6 +131,10 @@ routine generateEntityCode
         propertyAndTomanyRelationshipSet += !mValue0 ;
       end foreach ;
     #--- Implementation
+      @stringset signSet [emptySet] ;
+      foreach mSignList do
+        signSet += !mPropertyName ;
+      end foreach ;
       s := [filewrapper entityGenerationTemplate.entityImplementation
         !mEntityName
         !mImplementationClassName
@@ -143,6 +148,7 @@ routine generateEntityCode
         !propertyAndTomanyRelationshipSet
         !mToOneRelationshipList
         !mSignList
+        !signSet
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
