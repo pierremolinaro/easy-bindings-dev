@@ -32,7 +32,7 @@ local routine analyzeEntity
       ?allPropertyMap
       ?2*
       ?allRelationshipMap
-      ?*
+      ?2*
     ] ;
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
@@ -94,9 +94,15 @@ local routine analyzeEntity
       !"entity." . inEntity->mEntityName . "." . mRelationshipName
       !mRelationshipName->location
     ] ;
+    @easyBindingType type ;
+    if mIsToMany then 
+      type := [@toManyEntitiesType new !mDestinationEntityName->string] ;
+    else
+      type := [@toOneEntityType new !mDestinationEntityName->string] ;
+    end if ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
-      ![@toManyEntitiesType new !mDestinationEntityName->string]
+      !type
       !false # is not transient
       !observationDependencyKey->string
     ] ;    
@@ -105,7 +111,18 @@ local routine analyzeEntity
       !observationDependencyKey->string
     ] ;
   end foreach ;
-#----------------------------------------- Analyze transient properties
+#---------------------------------------- Analyze sign list
+  @signListForGeneration signList [emptyList] ;
+  foreach inEntity->mSignList do
+    [observablePropertyMap searchKey
+      !mValue
+      ?@easyBindingType type
+      ?* # Transient ?
+      ?@string dependancyKey
+    ] ;
+    signList += !mValue->string !type ;
+  end foreach ;
+#---------------------------------------- Analyze transient properties
   @stringset implementationFileInclusionSet [emptySet] ;
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
@@ -139,6 +156,7 @@ local routine analyzeEntity
     !headerFileInclusionSet
     !allRelationshipMap
     !implementationFileInclusionSet
+    !signList
   ] ;
 end routine ;
 
@@ -167,7 +185,7 @@ routine analyzeEntities
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?13* ?destinationEntityRelationshipMap ?*] ;
+      [outEntityMap searchKey !mDestinationEntityName ?13* ?destinationEntityRelationshipMap ?2*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
@@ -187,7 +205,7 @@ routine analyzeEntities
       if mIsToMany then
         toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
       else
-        [outEntityMap searchKey !mDestinationEntityName ?* ?@string implementationClassName ?13*] ;
+        [outEntityMap searchKey !mDestinationEntityName ?* ?@string implementationClassName ?14*] ;
         toOneRelationshipList += !lkey->string !implementationClassName ;
         headerFilePredeclarationSet += !implementationClassName ;
         implementationFileInclusionSet += !implementationClassName ;
@@ -213,6 +231,7 @@ routine analyzeEntities
       !headerFileInclusionSet
       !implementationFileInclusionSet
       !toOneRelationshipList
+      !mSignList
     ;
   end foreach ;
 end routine ;

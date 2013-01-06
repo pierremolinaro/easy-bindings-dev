@@ -51,7 +51,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "column",
   "action",
   "protocol",
-  "predefined"
+  "predefined",
+  "sign"
 ;
 
 rule 'a'->'z' :

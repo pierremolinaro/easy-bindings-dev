@@ -100,6 +100,7 @@ list @entityList {
   @attributeList mAttributeList ;
   @transientList mTransientList ;
   @relationshipList mRelationshipList ;
+  @lstringlist mSignList ;
 }
 
 #----------------------------------------------------------------------------*

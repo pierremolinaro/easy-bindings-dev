@@ -116,10 +116,25 @@ end foreach
 }
 %end if
 
+if [SIGN_LIST length] > 0 then
+%
+//----------------------------------------------------------------------------*
+//    computeSignature                                                        *
+//----------------------------------------------------------------------------*
 
+- (NSInteger) computeSignature {
+  NSInteger signature = 0 ;
+% foreach SIGN_LIST do
+%  signature = %![mPropertyType functionForComputingSignature]% (signature, self.%!mPropertyName%) ;\n%
+end foreach
+%  return signature ;
+}
+%end if
 
 
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
+//----------------------------------------------------------------------------*
+//    %!mPropertyName% Observer                                               *
 //----------------------------------------------------------------------------*
 
 - (void) addObserverOf_%!mPropertyName%: (NSObject *) inObserver {

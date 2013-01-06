@@ -107,12 +107,12 @@
   [ioData writeAutosizedUnsigned:[mObjectArray count] trace:ioTrace] ;
   [ioTrace appendFormat:@"Data Count: %lu\n", [mObjectArray count]] ;
 //--- Sort objects
-  [mObjectArray sortUsingSelector:@selector (compareByCreationField:)] ;
+  [mObjectArray sortUsingSelector:@selector (compareByCreationIndex:)] ;
 //--- Write creation field and rebuild object dictionary
   mDictionary = [NSMutableDictionary new] ;  // Key : NSValue of NSManagedObject, object : index (NSNumber)
   NSUInteger creationFieldValue = 0 ;
   for (PMManagedObject * object in mObjectArray) {
-    object.mObjectIndexForLoadingAndSaving = creationFieldValue ;
+    object.mObjectCreationIndex = creationFieldValue ;
     [mDictionary
       setObject:[NSNumber numberWithUnsignedInteger:creationFieldValue]
       forKey:[NSValue valueWithNonretainedObject:object]
@@ -221,7 +221,7 @@
             [ioTrace appendFormat:@"To-many '%@' relationship has objects\n", relationshipName] ;
             [ioData writeAutosizedUnsigned:[valueSet count] trace:ioTrace] ;
             [ioTrace appendFormat:@"%lu objects\n", [valueSet count]] ;
-            NSArray * sortedObjectArray = [[valueSet allObjects] sortedArrayUsingSelector:@selector (compareByCreationField:)] ;
+            NSArray * sortedObjectArray = [[valueSet allObjects] sortedArrayUsingSelector:@selector (compareByCreationIndex:)] ;
             NSUInteger objectIdx = 0 ;
             for (NSManagedObject * destinationObject in sortedObjectArray) {
               const NSUInteger destinationObjectIndex = [self indexOfObject:destinationObject] ;

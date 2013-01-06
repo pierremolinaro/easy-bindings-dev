@@ -630,7 +630,17 @@ rule <entity_declaration>
   @attributeList attributeList [emptyList] ;
   @transientList classTransientList [emptyList] ;
   @relationshipList relationshipList [emptyList] ;
+  @lstringlist signList [emptyList] ;
   repeat
+  while
+    $sign$ ;
+    repeat
+      $identifier$ ? @lstring propertyName ;
+      signList += !propertyName ;
+    while
+      $,$ ;
+    end repeat ;
+    $;$ ;
   while
     <attribute_declaration> !?attributeList ;
   while
@@ -676,6 +686,7 @@ rule <entity_declaration>
     !attributeList
     !classTransientList
     !relationshipList
+    !signList
    ;
 end rule ;
 
