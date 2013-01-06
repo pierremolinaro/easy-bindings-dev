@@ -135,13 +135,6 @@ NSData * dataFromFont (NSFont * inFont) ;
 NSFont * fontFromData (NSData * inDataEncodeFont) ;
 
 //---------------------------------------------------------------------------*
-//   enterSignatureValue                                                     *
-//---------------------------------------------------------------------------*
-
-NSInteger enterSignatureValue (const NSInteger inSignature,
-                               const NSInteger inValue) ;
-
-//---------------------------------------------------------------------------*
 
 #if __has_feature(objc_arc)
   #define macroSuperDealloc

@@ -22,7 +22,9 @@ end foreach
 end foreach%
 //--- Creation
   + (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext ;
-
+%if [SIGN_LIST length] > 0 then
+%  - (NSInteger) computeSignature ;\n%
+end if%
 @end
 
 //----------------------------------------------------------------------------*

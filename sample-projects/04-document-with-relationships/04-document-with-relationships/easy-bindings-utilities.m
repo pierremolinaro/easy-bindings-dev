@@ -295,17 +295,3 @@ NSFont * fontFromData (NSData * inDataEncodeFont) {
 }
 
 //---------------------------------------------------------------------------*
-//   enterSignatureValue                                                     *
-//---------------------------------------------------------------------------*
-
-NSInteger enterSignatureValue (const NSInteger inSignature,
-                               const NSInteger inValue) {
-  NSInteger result = inSignature ;
-  NSInteger negative = inSignature < 0 ;
-  result <<= 1 ;
-  result |= negative ;
-  result ^= inValue ;
-  return result ;  
-}
-
-//---------------------------------------------------------------------------*

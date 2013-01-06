@@ -43,8 +43,16 @@ map @entityMap {
   @stringset mHeaderFileInclusionSet ;
   @relationshipMap mAllRelationshipMap ;
   @stringset mImplementationFileInclusionSet ;
+  @signListForGeneration mSignList ;
   insert insertKey error message "the '%K' entity is already declared" ;
   search searchKey error message "the '%K' entity is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @signListForGeneration {
+  @string mPropertyName ;
+  @easyBindingType mPropertyType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -69,6 +77,7 @@ list @entityListForGeneration {
   @stringset mHeaderFileInclusionSet ;
   @stringset mImplementationFileInclusionSet ;
   @2stringlist mToOneRelationshipList ;
+  @signListForGeneration mSignList ;
 }
 
 #----------------------------------------------------------------------------*

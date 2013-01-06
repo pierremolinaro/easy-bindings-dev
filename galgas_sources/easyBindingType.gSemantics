@@ -25,7 +25,7 @@ class @objectArrayType extends @easyBindingType {
 
 #----------------------------------------------------------------------------*
 
-class @toManyEntitiesType extends @easyBindingType {
+class @toOneEntityType, @toManyEntitiesType extends @easyBindingType {
   @string mEntityName ;
 }
 
@@ -55,6 +55,7 @@ override reader @arrayType ebTypeName -> @string outResult : outResult := "NSArr
 override reader @objectArrayType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
 override reader @bezierPathType ebTypeName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
+override reader @toOneEntityType ebTypeName -> @string outResult : outResult := "PMManagedObject" ; end reader ;
 override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSSet" ; end reader ;
 override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
@@ -90,6 +91,7 @@ override reader @doubleType isClass -> @bool outResult : outResult := false ; en
 override reader @stringType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @fontType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @imageType isClass -> @bool outResult : outResult := true ; end reader ;
+override reader @toOneEntityType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @toManyEntitiesType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @colorType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @dataType isClass -> @bool outResult : outResult := true ; end reader ;
@@ -218,6 +220,7 @@ override reader @arrayType ebTypeIdentifier -> @string outResult : outResult := 
 override reader @valueType ebTypeIdentifier -> @string outResult : outResult := "NSValue" ; end reader ;
 override reader @menuType ebTypeIdentifier -> @string outResult : outResult := "NSMenu" ; end reader ;
 override reader @bezierPathType ebTypeIdentifier -> @string outResult : outResult := "NSBezierPath" ; end reader ;
+override reader @toOneEntityType ebTypeIdentifier -> @string outResult : outResult := "toOne[" . mEntityName . "]" ; end reader ;
 override reader @toManyEntitiesType ebTypeIdentifier -> @string outResult : outResult := "toMany[" . mEntityName . "]" ; end reader ;
 override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResult := "array[" . mClassName . "]" ; end reader ;
 
@@ -271,6 +274,7 @@ override reader @objectArrayType ocTypeName -> @string outResult : outResult := 
 override reader @valueType ocTypeName -> @string outResult : outResult := "NSValue *" ; end reader ;
 override reader @menuType ocTypeName -> @string outResult : outResult := "NSMenu *" ; end reader ;
 override reader @bezierPathType ocTypeName -> @string outResult : outResult := "NSBezierPath *" ; end reader ;
+override reader @toOneEntityType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
 override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
@@ -294,6 +298,7 @@ override reader @objectArrayType ocClassName -> @string outResult : outResult :=
 override reader @valueType ocClassName -> @string outResult : outResult := "NSValue" ; end reader ;
 override reader @menuType ocClassName -> @string outResult : outResult := "NSMenu" ; end reader ;
 override reader @bezierPathType ocClassName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
+override reader @toOneEntityType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
@@ -369,13 +374,21 @@ method @easyBindingType addFileInclusion
 :
 end method ;
 
-#----------------------------------------------------------------------------*
-
 override method @enumType addFileInclusion
   ?!@stringset ioFileInclusionSet
 :
   ioFileInclusionSet += !mEnumTypeName ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntSignature" ; end reader ;
+
+override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeStringSignature" ; end reader ;
+
+override reader @toOneEntityType functionForComputingSignature -> @string outResult : outResult := "computeToOnePropertySignature" ; end reader ;
+
+override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyPropertySignature" ; end reader ;
 
 #----------------------------------------------------------------------------*
 

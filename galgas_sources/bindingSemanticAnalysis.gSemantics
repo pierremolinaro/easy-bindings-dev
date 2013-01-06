@@ -35,7 +35,7 @@ override method @tableValueBinding analyzeOutletBinding
         !controlledClassOrEntityName
         ?3*
         ?observablePropertyMap
-        ?11*
+        ?12*
       ] ;
     else
       [inClassMap searchKey
@@ -220,7 +220,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
       !controlledClassOrEntityName
       ?3*
       ?observableAttributeMap
-      ?11*
+      ?12*
     ] ;      
   else
     [inClassMap searchKey
@@ -655,7 +655,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
       !controlledClassOrEntityName
       ?3*
       ?observableAttributeMap
-      ?11*
+      ?12*
     ] ;      
   else
     [inClassMap searchKey

@@ -36,6 +36,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@2stringlist TO_ONE_RELATIONSHIPS
+    ?@signListForGeneration SIGN_LIST
   ;
   
   template entityImplementation "entity.m.gTemplate"
@@ -50,6 +51,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@stringset PROPERTY_TOMANY_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
+    ?@signListForGeneration SIGN_LIST
   ;
   
   template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
@@ -108,6 +110,7 @@ routine generateEntityCode
         !mTransientListForImplementation
         !mToManyRelationshipList
         !mToOneRelationshipList
+        !mSignList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -139,6 +142,7 @@ routine generateEntityCode
         !inTransientDependencyArcList
         !propertyAndTomanyRelationshipSet
         !mToOneRelationshipList
+        !mSignList
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

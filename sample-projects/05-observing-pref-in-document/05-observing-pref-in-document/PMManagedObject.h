@@ -11,6 +11,32 @@
 
 //---------------------------------------------------------------------------*
 
+@class PMManagedObject ;
+
+//---------------------------------------------------------------------------*
+//   Signature routines                                                      *
+//---------------------------------------------------------------------------*
+
+NSInteger computeIntSignature (const NSInteger inSignature,
+                               const NSInteger inValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeStringSignature (const NSInteger inSignature,
+                                  NSString * inValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToOnePropertySignature (const NSInteger inSignature,
+                                         PMManagedObject * inToOnePropertyValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToManyPropertySignature (const NSInteger inSignature,
+                                          NSSet * inToManyPropertyValue) ;
+
+//---------------------------------------------------------------------------*
+
 @interface PMManagedObject : NSManagedObject {
   #ifdef PM_COCOA_DEBUG
     @private NSUInteger mExplorerObjectIndex ;
@@ -24,7 +50,9 @@
   - (void) showExplorerWindow ;
 #endif
 
-@property NSUInteger mObjectIndexForLoadingAndSaving ;
+@property NSUInteger mObjectCreationIndex ;
+
+- (NSInteger) computeSignature ;
 
 @end
 
