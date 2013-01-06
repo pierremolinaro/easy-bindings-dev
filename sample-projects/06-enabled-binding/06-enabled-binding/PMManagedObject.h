@@ -7,7 +7,7 @@
 //
 //---------------------------------------------------------------------------*
 
-#import <Cocoa/Cocoa.h>
+#import "PMWillDeallocProtocol.h"
 
 //---------------------------------------------------------------------------*
 
@@ -37,13 +37,18 @@ NSInteger computeToManyPropertySignature (const NSInteger inSignature,
 
 //---------------------------------------------------------------------------*
 
-@interface PMManagedObject : NSManagedObject {
+@interface PMManagedObject : NSManagedObject <PMWillDeallocProtocol> {
   #ifdef PM_COCOA_DEBUG
     @private NSUInteger mExplorerObjectIndex ;
     @private NSWindow * mExplorerWindow ;
     @private NSMutableDictionary * mAttributeViewDictionary ;
     @private NSTextField * mChangedPropertyTextField ;
   #endif 
+
+//--- Signature
+  @private NSInteger mSignatureCache ;
+  @private BOOL mSignatureHasBeenComputed ;
+  @private NSMutableSet * mSignatureObserverSet ;
 }
 
 #ifdef PM_COCOA_DEBUG
@@ -53,6 +58,10 @@ NSInteger computeToManyPropertySignature (const NSInteger inSignature,
 @property NSUInteger mObjectCreationIndex ;
 
 - (NSInteger) computeSignature ;
+- (void) triggerSignatureComputing ;
+- (void) addSignatureObserver: (PMManagedObject *) inObserver ;
+- (void) removeSignatureObserver: (PMManagedObject *) inObserver ;
+- (NSInteger) signature ;
 
 @end
 

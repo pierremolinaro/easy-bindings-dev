@@ -12,51 +12,6 @@
 //#define EASY_BINDINGS_DEBUG
 
 //---------------------------------------------------------------------------*
-//   Signature routines                                                      *
-//---------------------------------------------------------------------------*
-
-NSInteger computeIntSignature (const NSInteger inSignature,
-                               const NSInteger inValue) {
-  NSInteger result = inSignature ;
-  NSInteger negative = inSignature < 0 ;
-  result <<= 1 ;
-  result |= negative ;
-  result ^= inValue ;
-  return result ;  
-}
-
-//---------------------------------------------------------------------------*
-
-NSInteger computeStringSignature (const NSInteger inSignature,
-                                  NSString * inValue) {
-  NSInteger result = inSignature ;
-  for (NSUInteger i=0 ; i<inValue.length ; i++) {
-    result = computeIntSignature (result, [inValue characterAtIndex:i]) ;
-  }
-  return result ;  
-}
-
-//---------------------------------------------------------------------------*
-
-NSInteger computeToOnePropertySignature (const NSInteger inSignature,
-                                         PMManagedObject * inToOnePropertyValue) {
-  return computeIntSignature (inSignature, inToOnePropertyValue.computeSignature) ;
-}
-
-//---------------------------------------------------------------------------*
-
-NSInteger computeToManyPropertySignature (const NSInteger inSignature,
-                                          NSSet * inToManyPropertyValue) {
-  NSInteger result = inSignature ;
-  for (PMManagedObject * object in [inToManyPropertyValue.allObjects sortedArrayUsingSelector:@selector(compareByCreationIndex:)]) {
-    result = computeIntSignature (result, object.computeSignature) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------*
-//   PMManagedObject                                                         *
-//---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
   static NSUInteger gExplorerNextObjectIndex ;
@@ -464,6 +419,97 @@ static NSUInteger gObjectCreationIndex ;
     [self updateDisplayForKey:inKey] ;
   }
 #endif
+
+//---------------------------------------------------------------------------*
+
+#pragma mark Signature
+
+//---------------------------------------------------------------------------*
+//   Signature routines                                                      *
+//---------------------------------------------------------------------------*
+
+NSInteger computeIntSignature (const NSInteger inSignature,
+                               const NSInteger inValue) {
+  NSInteger result = inSignature ;
+  NSInteger negative = inSignature < 0 ;
+  result <<= 1 ;
+  result |= negative ;
+  result ^= inValue ;
+  return result ;  
+}
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeStringSignature (const NSInteger inSignature,
+                                  NSString * inValue) {
+  NSInteger result = inSignature ;
+  for (NSUInteger i=0 ; i<inValue.length ; i++) {
+    result = computeIntSignature (result, [inValue characterAtIndex:i]) ;
+  }
+  return result ;  
+}
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToOnePropertySignature (const NSInteger inSignature,
+                                         PMManagedObject * inToOnePropertyValue) {
+  return computeIntSignature (inSignature, inToOnePropertyValue.signature) ;
+}
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToManyPropertySignature (const NSInteger inSignature,
+                                          NSSet * inToManyPropertyValue) {
+  NSInteger result = inSignature ;
+  for (PMManagedObject * object in [inToManyPropertyValue.allObjects sortedArrayUsingSelector:@selector(compareByCreationIndex:)]) {
+    result = computeIntSignature (result, object.signature) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (void) addSignatureObserver: (PMManagedObject *) inObserver {
+  if (nil == mSignatureObserverSet) {
+    mSignatureObserverSet = [NSMutableSet new] ;
+  }
+  [mSignatureObserverSet addObject:inObserver] ;
+  [inObserver triggerSignatureComputing] ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (void) removeSignatureObserver: (PMManagedObject *) inObserver {
+  [mSignatureObserverSet removeObject:inObserver] ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (void) triggerSignatureComputing {
+  if (mSignatureHasBeenComputed) {
+    mSignatureHasBeenComputed = NO ;
+    [mSignatureObserverSet makeObjectsPerformSelector:@selector (triggerSignatureComputing)] ;
+  }
+}
+
+//---------------------------------------------------------------------------*
+
+- (NSInteger) signature {
+  if (! mSignatureHasBeenComputed) {
+    mSignatureHasBeenComputed = YES ;
+    mSignatureCache = self.computeSignature ;
+  }
+  return mSignatureCache ;
+}
+
+//---------------------------------------------------------------------------*
+
+#pragma mark implementation of PMWillDeallocProtocol
+
+//---------------------------------------------------------------------------*
+
+- (void) objectWillBeDeallocated {
+}
 
 //---------------------------------------------------------------------------*
 
