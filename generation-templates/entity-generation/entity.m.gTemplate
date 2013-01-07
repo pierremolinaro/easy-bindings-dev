@@ -78,7 +78,16 @@ if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
 //----------------------------------------------------------------------------*
 
 - (void) willChangeValueForKey: (NSString *) inKey {
-  [super willChangeValueForKey:inKey] ;
+%foreach TO_ONE_RELATIONSHIPS
+before %  %
+do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
+  if [SIGN_SET hasKey !mValue0] then
+    %    [self.%!mValue0% removeSignatureObserver:self] ;\n%
+  end if
+between %  }else %
+after %  }\n%
+end foreach
+%  [super willChangeValueForKey:inKey] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -87,9 +96,55 @@ if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
 
 - (void) didChangeValueForKey: (NSString *) inKey {
   [super didChangeValueForKey:inKey] ;
-  if (! self.isFault) {
+%foreach TO_ONE_RELATIONSHIPS
+before %  %
+do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
+  if [SIGN_SET hasKey !mValue0] then
+    %    [self.%!mValue0% addSignatureObserver:self] ;\n%
+  end if
+between %  }else %
+after %  }\n%
+end foreach
+%  if (! self.isFault) {
     [self pmKeyDidChange:inKey] ;
   }
+}
+
+//----------------------------------------------------------------------------*
+//    willChangeValueForKey:withSetMutation:usingObjects:                     *
+//----------------------------------------------------------------------------*
+
+- (void) willChangeValueForKey: (NSString *) inKey
+         withSetMutation: (NSKeyValueSetMutationKind) inMutationKind
+         usingObjects: (NSSet *) inObjects {
+%foreach TO_MANY_RELATIONSHIPS
+before %  %
+do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
+  if [SIGN_SET hasKey !mValue0] then
+    %    switch (inMutationKind) {\n%
+    %    case NSKeyValueUnionSetMutation:\n%
+    %      break ;\n%
+    %    case NSKeyValueIntersectSetMutation:\n%
+    %      { NSMutableSet * s = self.%!mValue0%.mutableCopy ;\n%
+    %        [s minusSet:inObjects] ;\n%
+    %        [s makeObjectsPerformSelector:@selector(removeSignatureObserver:) withObject:self] ;\n%
+    %      } break ;\n%
+    %    case NSKeyValueMinusSetMutation:\n%
+    %      [inObjects makeObjectsPerformSelector:@selector(removeSignatureObserver:) withObject:self] ;\n%
+    %      break ;\n%
+    %    case NSKeyValueSetSetMutation:\n%
+    %      [self.%!mValue0% makeObjectsPerformSelector:@selector(removeSignatureObserver:) withObject:self] ;\n%
+    %      break ;\n%
+    %    }\n%
+  end if
+between %  }else %
+after %  }\n%
+end foreach
+%  [super
+    willChangeValueForKey:inKey
+    withSetMutation: inMutationKind
+    usingObjects: inObjects
+  ] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -104,10 +159,24 @@ if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
     withSetMutation: inMutationKind
     usingObjects: inObjects
   ] ;
-  if (! self.isFault) {
-    [self pmKeyDidChange:inKey] ;
-  }
-}
+%foreach TO_MANY_RELATIONSHIPS
+before %  %
+do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
+  if [SIGN_SET hasKey !mValue0] then
+    %    switch (inMutationKind) {\n%
+    %    case NSKeyValueUnionSetMutation:\n%
+    %    case NSKeyValueSetSetMutation:\n%
+    %      [inObjects makeObjectsPerformSelector:@selector(addSignatureObserver:) withObject:self] ;\n%
+    %      break ;\n%
+    %    case NSKeyValueIntersectSetMutation:\n%
+    %    case NSKeyValueMinusSetMutation:\n%
+    %      break ;\n%
+    %    }\n%
+  end if
+between %  }else %
+after %  }\n%
+end foreach
+%}
 
 //----------------------------------------------------------------------------*
 //    pmKeyDidChange:                                                         *
