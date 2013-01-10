@@ -35,9 +35,17 @@ NSInteger computeToOnePropertySignature (const NSInteger inSignature,
 NSInteger computeToManyPropertySignature (const NSInteger inSignature,
                                           NSSet * inToManyPropertyValue) ;
 
+//-----------------------------------------------------------------------------*
+
+@protocol PMSignatureObserverProtocol <NSObject>
+
+- (void) triggerSignatureComputing ;
+
+@end
+
 //---------------------------------------------------------------------------*
 
-@interface PMManagedObject : NSManagedObject <PMWillDeallocProtocol> {
+@interface PMManagedObject : NSManagedObject <PMWillDeallocProtocol, PMSignatureObserverProtocol> {
   #ifdef PM_COCOA_DEBUG
     @private NSUInteger mExplorerObjectIndex ;
     @private NSWindow * mExplorerWindow ;
@@ -59,8 +67,8 @@ NSInteger computeToManyPropertySignature (const NSInteger inSignature,
 
 - (NSInteger) computeSignature ;
 - (void) triggerSignatureComputing ;
-- (void) addSignatureObserver: (PMManagedObject *) inObserver ;
-- (void) removeSignatureObserver: (PMManagedObject *) inObserver ;
+- (void) addSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver ;
+- (void) removeSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver ;
 - (NSInteger) signature ;
 
 @end

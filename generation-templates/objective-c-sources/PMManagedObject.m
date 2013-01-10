@@ -469,7 +469,7 @@ NSInteger computeToManyPropertySignature (const NSInteger inSignature,
 
 //---------------------------------------------------------------------------*
 
-- (void) addSignatureObserver: (PMManagedObject *) inObserver {
+- (void) addSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver {
   if (nil == mSignatureObserverSet) {
     mSignatureObserverSet = [NSMutableSet new] ;
   }
@@ -479,7 +479,8 @@ NSInteger computeToManyPropertySignature (const NSInteger inSignature,
 
 //---------------------------------------------------------------------------*
 
-- (void) removeSignatureObserver: (PMManagedObject *) inObserver {
+- (void) removeSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver {
+  [inObserver triggerSignatureComputing] ;
   [mSignatureObserverSet removeObject:inObserver] ;
 }
 

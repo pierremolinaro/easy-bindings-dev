@@ -222,14 +222,14 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
     %!mPropertyName%_observers = [NSMutableSet new] ;
   }
   [%!mPropertyName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
+  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mPropertyName%: (NSObject *) inObserver {
   [%!mPropertyName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!CLASS_NAME%_%!mPropertyName%_didChange)] ;
+  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
 }
 
 %
