@@ -9,7 +9,11 @@ end foreach
 %
 //----------------------------------------------------------------------------*
 
-@interface %!DOCUMENT_NAME% : PMBinaryFlatDocument {
+@interface %!DOCUMENT_NAME% : PMBinaryFlatDocument %
+if HAS_SIGNATURE_OBSERVER then
+  %<PMSignatureObserverProtocol> %
+end if
+%{
 //--- Root Object
   @protected %!ROOT_ENTITY_CLASS_NAME% * mRootObject ;
 %

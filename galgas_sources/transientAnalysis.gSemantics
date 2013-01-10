@@ -28,7 +28,7 @@ override method @transientRootSignDependency analyze
   ??@string inRootEntityName
   ??@string inObervationDependencyPrefix
   ?!@stringset unused ioImplementationFileInclusionSet
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList unused ioDirectDependancyList
   ?!@stringlist ioRootSignDependencyList
 :
@@ -36,10 +36,10 @@ override method @transientRootSignDependency analyze
     error mDeclarationLocation: "no root object in this context" ;
   end if ;
 #--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
+  [!?ioTransientDependencyGraph addArc
+    ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
+    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
+  ] ;
 #---
   ioRootSignDependencyList += !inObervationDependencyPrefix . inTransientName ;
 end method ;

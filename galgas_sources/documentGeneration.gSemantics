@@ -15,6 +15,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@controllerMap CONTROLLER_MAP
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset HEADER_FILE_PREDECLARATION_SET
+    ?@bool HAS_SIGNATURE_OBSERVER
   ;
   
   template documentDeclaration2 "document-2.h.gTemplate"
@@ -30,6 +31,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@stringset INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+    ?@bool HAS_SIGNATURE_OBSERVER
   ;
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
@@ -42,6 +44,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@easyBindingType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
+    ?@stringlist ROOT_SIGN_LIST
   ;
 
 }
@@ -55,6 +58,10 @@ routine generateDocumentCode
 :
   if [@uint errorCount] == 0 then
     foreach inDocumentMap do
+      @bool hasSignatureObserver := false ;
+      foreach mTransientListForImplementation while not hasSignatureObserver do
+        hasSignatureObserver := [mRootSignDependencyList length] > 0 ;
+      end foreach ;
     #--- Header
       @string s := [filewrapper documentGenerationTemplate.documentDeclaration1
         ![lkey string]
@@ -64,6 +71,7 @@ routine generateDocumentCode
         !mControllerMap
         !mTransientListForImplementation
         !mHeaderFilePredeclarationSet
+        !hasSignatureObserver
       ] ;
       @string s2 := [filewrapper documentGenerationTemplate.documentDeclaration2
         !mActionList
@@ -87,6 +95,7 @@ routine generateDocumentCode
         !mTransientListForImplementation
         !mImplementationFileInclusionSet
         !inTransientDependencyArcList
+        !hasSignatureObserver
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -120,6 +129,7 @@ routine generateDocumentCode
             !mTransientType
             !mTransientName
             !mDependencyList
+            !mRootSignDependencyList
           ] ;
           [@string generateFileWithPattern
             !inOutputDirectory

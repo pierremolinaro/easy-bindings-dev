@@ -122,6 +122,13 @@ local routine analyzeEntity
     ] ;
     signList += !mValue->string !type ;
   end foreach ;
+  if [inEntity->mSignList length] > 0 then
+    const @string key := "entity." . inEntity->mEntityName . ".sign" ;
+    [!?ioTransientDependencyGraph addNode
+      ![@lstring new !key !inEntity->mEntityName->location]
+      !key
+    ] ;
+  end if ;
 #---------------------------------------- Analyze transient properties
   @stringset implementationFileInclusionSet [emptySet] ;
   @transientListForImplementation transientListForImplementation ;
