@@ -36,6 +36,12 @@ abstract class @abstractTransientDependency {
 
 #----------------------------------------------------------------------------*
 
+class @transientRootSignDependency extends @abstractTransientDependency {
+  @location mDeclarationLocation ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @transientLocalDependency extends @abstractTransientDependency {
   @lstring mMasterName ;
 }
