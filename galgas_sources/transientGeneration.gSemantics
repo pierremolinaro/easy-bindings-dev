@@ -98,14 +98,56 @@ function generateTransientFunctionDeclarations
 
   foreach inTransientListForImplementation do
     outResult .= [mTransientType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
-    foreach mDependencyList
-    do
+    @bool first := true ;
+    foreach mDependencyList do
+      if first then
+        first := false ;
+      else
+        outResult .= ",\n" ;
+      end if ;
       outResult .= "    " . [mDependency generateFormalArgument] ;
-    between
-      outResult .= ",\n" ;
+    end foreach ;
+    foreach mRootSignDependencyList do
+      if first then
+        first := false ;
+      else
+        outResult .= ",\n" ;
+      end if ;
+      outResult .= "    const NSInteger inSignature" ;
     end foreach ;
     outResult .= ") ;\n\n" ;
   end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function generateTransientFunctionImplementation
+  ??@string inKindName
+  ??@easyBindingType inTransientType
+  ??@string inTransientName
+  ??@directDependancyList inDependencyList
+  ??@stringlist inRootSignDependencyList
+  ->@string outResult
+:
+  outResult := [inTransientType ocTypeName] . " compute_" . inKindName . "_" . inTransientName . " (\n" ;
+  @bool first := true ;
+  foreach inDependencyList do
+    if first then
+      first := false ;
+    else
+      outResult .= ",\n" ;
+    end if ;
+    outResult .= "    " . [mDependency generateFormalArgument] ;
+  end foreach ;
+  foreach inRootSignDependencyList do
+    if first then
+      first := false ;
+    else
+      outResult .= ",\n" ;
+    end if ;
+    outResult .= "    const NSInteger inSignature" ;
+  end foreach ;
+  outResult .= ") {\n" ;
 end function ;
 
 #----------------------------------------------------------------------------*
@@ -124,9 +166,22 @@ function generateTransientCacheRoutine
     "- (" . [mTransientType ocTypeName] . ") " . mTransientName . " {\n"
     "  if (! " . mTransientName . "__computed) {\n"
     "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
-    foreach mDependencyList
-    do outResult .= [mDependency generateMasterAttributeCall] ;
-    between outResult .= ", " ;
+    @bool first := true ;
+    foreach mDependencyList do
+      if first then
+        first := false ;
+      else
+        outResult .= ", " ;
+      end if ;
+      outResult .= [mDependency generateMasterAttributeCall] ;
+    end foreach ;
+    foreach mRootSignDependencyList do
+      if first then
+        first := false ;
+      else
+        outResult .= ", " ;
+      end if ;
+      outResult .= "mRootObject.signature" ;
     end foreach ;
     outResult .= ") ;\n"
     "    " . mTransientName . "__computed = YES ;\n"

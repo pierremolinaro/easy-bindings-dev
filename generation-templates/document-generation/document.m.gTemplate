@@ -118,6 +118,11 @@ foreach OUTLET_GENERATION_LIST do
 end foreach
 %//--------------------------- Add Transient observers
 %!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
+%//--------------------------- Add Signature observer
+%
+if HAS_SIGNATURE_OBSERVER then
+  %  [mRootObject addSignatureObserver:self] ;\n%
+end if
 %}
 
 //----------------------------------------------------------------------------*
@@ -126,7 +131,12 @@ end foreach
 
 - (void) removeWindowController:(NSWindowController *) inWindowController {
   //NSLog (@"\%s", __PRETTY_FUNCTION__) ;
-//--- Unbind Outlets
+//--------------------------- Add Signature observer
+%
+if HAS_SIGNATURE_OBSERVER then
+  %  [mRootObject removeSignatureObserver:self] ;\n%
+end if
+%//--- Unbind Outlets
 %foreach OUTLET_GENERATION_LIST do
   foreach mOutletBindingList do
     ![mBinding generateRemoveBinding !mOutletName]
@@ -157,5 +167,32 @@ end foreach
 % !generateObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
 
 !generateTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+
+if HAS_SIGNATURE_OBSERVER then
+%//----------------------------------------------------------------------------*
+//   T R I G G E R    S I G N A T U R E    C O M P U T I N G                  *
+//----------------------------------------------------------------------------*
+
+- (void) triggerSignatureComputing {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+%
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  if [mRootSignDependencyList length] > 0 then
+%  if (%!mTransientName%__computed) {
+    %!mTransientName%__computed = NO ;
+    [PMTransientDependancyManager
+      enterTriggerForObject:self
+      transientIndex:%!["document." . DOCUMENT_NAME . "." . mTransientName identifierRepresentation]%
+    ] ;
+  }
+%  
+  end if
+end foreach
+%}
+
+%
+end if
 
 %
