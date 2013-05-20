@@ -176,7 +176,10 @@ do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
 between %  }else %
 after %  }\n%
 end foreach
-%}
+%  if (! self.isFault) {
+    [self pmKeyDidChange:inKey] ;
+  }
+}
 
 //----------------------------------------------------------------------------*
 //    pmKeyDidChange:                                                         *
