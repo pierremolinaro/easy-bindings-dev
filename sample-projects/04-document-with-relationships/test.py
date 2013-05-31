@@ -4,8 +4,9 @@
 
 import atomac, sys, time
 
-atomac.launchAppByBundleId ('fr.free.pcmolinaro.-4-document-with-relationships')
-monAppli = atomac.getAppRefByBundleId ('fr.free.pcmolinaro.-4-document-with-relationships')
+bundleName = 'fr.free.pcmolinaro.-4-document-with-relationships'
+atomac.launchAppByBundleId (bundleName)
+monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
 
 window = monAppli.windows()[0]
@@ -68,6 +69,6 @@ if canRemoveEntryTextField.AXValue != 'Can remove: no':
     sys.exit (1)
 
 #--- Quit
-atomac.terminateAppByBundleId ('fr.free.pcmolinaro.-4-document-with-relationships')
+atomac.terminateAppByBundleId (bundleName)
 
 print 'Success !'
