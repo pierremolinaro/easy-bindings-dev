@@ -1,6 +1,8 @@
 #!/bin/sh
 set -x
 set -e
+cd `dirname $0`/../galgas_sources &&
+galgas all_easyBindings.gProject &&
 cd `dirname $0`/../makefile_macosx &&
 make -f makefile easyBindings_debug --warn-undefined-variables -j `sysctl -n hw.ncpu` &&
 cd `dirname $0` &&

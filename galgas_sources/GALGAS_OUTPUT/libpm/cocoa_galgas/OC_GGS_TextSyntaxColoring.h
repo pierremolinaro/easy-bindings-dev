@@ -69,6 +69,7 @@
 - (NSRange) uncommentRange: (NSRange) initialSelectedRange ;
 - (NSRange) commentRange: (NSRange) initialSelectedRange ;
 
+- (void) noteSavePoint ;
 - (void) documentHasBeenSaved ;
 
 - (NSMenu *) indexMenuForRange: (NSRange) inSelectedRange
