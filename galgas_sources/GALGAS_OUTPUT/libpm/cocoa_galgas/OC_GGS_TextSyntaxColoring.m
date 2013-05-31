@@ -792,14 +792,21 @@ static inline NSInteger imax (const NSInteger a, const NSInteger b) { return a >
 
 //---------------------------------------------------------------------------*
 
-- (void) documentHasBeenSaved {
+- (void) noteSavePoint {
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
   NSArray * undoStack = [mUndoManager valueForKey:@"_undoStack"] ;
   // NSArray * redoStack = [mUndoManager valueForKey:@"_redoStack"] ;
   mSavePointUndoStackCount = undoStack.count ;
-  // NSLog (@"documentHasBeenSaved: undoStack %lu, redoStack %lu", mSavePointUndoStackCount, mSavePointRedoStackCount) ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (void) documentHasBeenSaved {
+  #ifdef DEBUG_MESSAGES
+    NSLog (@"%s", __PRETTY_FUNCTION__) ;
+  #endif
   [self undoManagerCheckPointNotification:nil] ;
 }
 

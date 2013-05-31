@@ -359,6 +359,7 @@ static NSArray * gIssueArray ;
 
 - (void) save {
   if (mTextSyntaxColoring.isDirty) {
+    [mTextSyntaxColoring noteSavePoint] ;
     if (nil == document) {
       [self performSaveToURL:nil] ;
     }else{
