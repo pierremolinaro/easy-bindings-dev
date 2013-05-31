@@ -240,33 +240,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CF721A981593572A008662EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
-			};
-			name = Debug;
-		};
 		CF721A991593572A008662EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -277,6 +250,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -287,18 +262,6 @@
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
-		};
-		CF721A9B1593572A008662EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
-				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
 		};
 		CF721A9C1593572A008662EA /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -318,7 +281,6 @@
 		CF721A761593572A008662EA /* Build configuration list for PBXProject "01-simple-preferences" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF721A981593572A008662EA /* Debug */,
 				CF721A991593572A008662EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -327,7 +289,6 @@
 		CF721A9A1593572A008662EA /* Build configuration list for PBXNativeTarget "01-simple-preferences" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF721A9B1593572A008662EA /* Debug */,
 				CF721A9C1593572A008662EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
