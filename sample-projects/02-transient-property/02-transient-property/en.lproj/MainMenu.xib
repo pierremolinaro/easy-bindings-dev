@@ -1294,7 +1294,7 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{335, 390}, {615, 409}}</string>
 				<int key="NSWTFlags">1954021376</int>
@@ -1407,6 +1407,7 @@
 							<string key="NSFrame">{{128, 223}, {205, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="848305542">
@@ -3518,14 +3519,46 @@
 				<string key="517.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="534.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="536.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="537.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="620702179"/>
+						<string key="accessibilityValue">firstName</string>
+					</object>
+				</object>
 				<string key="537.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="538.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="544.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="288675777"/>
+						<string key="accessibilityValue">lastName</string>
+					</object>
+				</object>
 				<string key="544.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="546.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="565.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="29476464"/>
+						<string key="accessibilityValue">firstLastName</string>
+					</object>
+				</object>
 				<string key="565.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="566.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="577.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="412814562"/>
+						<string key="accessibilityValue">amedeeSchmurtz</string>
+					</object>
+				</object>
 				<string key="577.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="578.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3535,6 +3568,14 @@
 				<string key="600.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="674.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="675.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="703.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="474621449"/>
+						<string key="accessibilityValue">uppercaseFirstLastName</string>
+					</object>
+				</object>
 				<string key="703.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="704.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="705.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3598,6 +3639,10 @@
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1070" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1060" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
