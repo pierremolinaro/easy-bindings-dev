@@ -240,33 +240,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CF721AF11593605D008662EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
-			};
-			name = Debug;
-		};
 		CF721AF21593605D008662EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -277,6 +250,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -286,17 +261,6 @@
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
-		};
-		CF721AF41593605D008662EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "02-transient-property/02-transient-property-Prefix.pch";
-				INFOPLIST_FILE = "02-transient-property/02-transient-property-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
 		};
 		CF721AF51593605D008662EA /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -315,7 +279,6 @@
 		CF721ACF1593605D008662EA /* Build configuration list for PBXProject "02-transient-property" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF721AF11593605D008662EA /* Debug */,
 				CF721AF21593605D008662EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -324,7 +287,6 @@
 		CF721AF31593605D008662EA /* Build configuration list for PBXNativeTarget "02-transient-property" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF721AF41593605D008662EA /* Debug */,
 				CF721AF51593605D008662EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

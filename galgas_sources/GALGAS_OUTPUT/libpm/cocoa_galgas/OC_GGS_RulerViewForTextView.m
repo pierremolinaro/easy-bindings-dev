@@ -39,19 +39,19 @@
 
 //---------------------------------------------------------------------------*
 
+- (void) FINALIZE_OR_DEALLOC {
+  noteObjectDeallocation (self) ;
+  macroSuperFinalize ;
+}
+
+//---------------------------------------------------------------------------*
+
 - (OC_GGS_RulerViewForTextView *) init {
   self = [super init] ;
   if (self) {
     noteObjectAllocation (self) ;
   }
   return self ;
-}
-
-//---------------------------------------------------------------------------*
-
-- (void) FINALIZE_OR_DEALLOC {
-  noteObjectDeallocation (self) ;
-  macroSuperFinalize ;
 }
 
 //---------------------------------------------------------------------------*
@@ -70,7 +70,7 @@ static NSUInteger imin (NSUInteger a, NSUInteger b) { return (a < b) ? a : b ; }
 
 - (void) drawHashMarksAndLabelsInRect: (NSRect) inRect {
   #ifdef DEBUG_MESSAGES
-    NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
+    NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
 //--- Draw background
   [[NSColor windowBackgroundColor] setFill] ;
@@ -94,72 +94,65 @@ static NSUInteger imin (NSUInteger a, NSUInteger b) { return (a < b) ? a : b ; }
     nil
   ] ;
 //--- Note: ruler view and text view are both flipped
+  #ifdef DEBUG_MESSAGES
+    NSLog (@"%s:DRAW LINE NUMBERS", __PRETTY_FUNCTION__) ;
+  #endif
   OC_GGS_TextView * textView = self.scrollView.documentView ;
   NSLayoutManager * lm = textView.layoutManager ;
   const NSRange selectedRange = textView.selectedRange ;
   NSString * sourceString = textView.string ;
   const NSUInteger sourceStringLength = sourceString.length ;
-//---
-  const NSUInteger firstCharacterIndex = [lm
-    characterIndexForPoint:textView.visibleRect.origin
-    inTextContainer:textView.textContainer
-    fractionOfDistanceBetweenInsertionPoints:NULL
-  ] ;
-//--- Find first line number to draw
+  // NSLog (@"sourceStringLength %u", sourceStringLength) ;
   NSUInteger idx = 0 ;
   NSInteger lineIndex = 0 ;
-  BOOL found = NO ;
-  while ((idx < sourceStringLength) && ! found) {
-    lineIndex ++ ;
-    const NSRange lineRange = [sourceString lineRangeForRange:NSMakeRange (idx, 1)] ;
-    found = (lineRange.location + lineRange.length) > firstCharacterIndex ;
-    if ( ! found) {
-      idx = lineRange.location + lineRange.length ;
-    }
-  }
-//---
-  const double maxYforDrawing = NSMaxY (self.visibleRect) ;
+  const double minYforDrawing = inRect.origin.y - (2.0 * ([font ascender] + [font descender])) ;
+//  const double maxYforDrawing = NSMaxY (self.visibleRect) ;
   BOOL maxYreached = NO ;
-  NSMutableArray * bulletArray = [NSMutableArray new] ;
+  mBulletArray = [NSMutableArray new] ;
   while ((idx < sourceStringLength) && ! maxYreached) {
     lineIndex ++ ;
-    const NSRect r = [lm lineFragmentRectForGlyphAtIndex:idx effectiveRange:NULL] ;
+  //--- Draw line numbers
+    // NSLog (@"%lu is valid glyph index: %@", idx, [lm isValidGlyphIndex:idx] ? @"yes" : @"no") ;
+     const NSRect r = [lm lineFragmentUsedRectForGlyphAtIndex:idx effectiveRange:NULL] ;
+     NSPoint p = [self convertPoint:NSMakePoint (0.0, NSMaxY (r)) fromView:textView] ;
+    // NSLog (@"%f for line %u (%@)", p.y, line, ((inRect.origin.y - [font ascender])) ? @"yes" : @"no") ;
     const NSRange lineRange = [sourceString lineRangeForRange:NSMakeRange (idx, 1)] ;
-    const BOOL intersect =
-      imax (selectedRange.location, lineRange.location)
-        <=
-      imin (selectedRange.location + selectedRange.length, lineRange.location + lineRange.length)
-    ; 
-  //--- Draw line number
-    NSString * str = [NSString stringWithFormat:@"%ld", lineIndex] ;
-    const NSSize strSize = [str sizeWithAttributes:intersect ? attributesForSelection : attributes] ;
-    NSPoint p = [self convertPoint:NSMakePoint (0.0, NSMaxY (r)) fromView:textView] ;
-    p.x = viewBounds.size.width - 2.0 - strSize.width ;
-    p.y -= strSize.height ;
-    maxYreached = (p.y > maxYforDrawing) ;
-    [str drawAtPoint:p withAttributes:intersect ? attributesForSelection : attributes] ;
-  //--- Error or warning at this line ?
-    BOOL hasError = NO ;
-    BOOL hasWarning = NO ;
-    NSMutableString * allMessages = [NSMutableString new] ;
-    for (PMIssueDescriptor * issue in mIssueArray) {
-      if (NSLocationInRange (issue.locationInSourceString, lineRange) && (issue.locationInSourceStringStatus == kLocationInSourceStringSolved)) {
-        [allMessages appendString:issue.issueMessage] ;
-        if (issue.isError) {
-          hasError = YES ;
-        }else{
-          hasWarning = YES ;
+    if (p.y >= minYforDrawing) {
+      const BOOL intersect =
+        imax (selectedRange.location, lineRange.location)
+          <=
+        imin (selectedRange.location + selectedRange.length, lineRange.location + lineRange.length)
+      ; 
+    //--- Draw line number
+      NSString * str = [NSString stringWithFormat:@"%ld", lineIndex] ;
+      const NSSize strSize = [str sizeWithAttributes:intersect ? attributesForSelection : attributes] ;
+      p.x = viewBounds.size.width - 2.0 - strSize.width ;
+      p.y -= strSize.height ;
+// ???????   maxYreached = (p.y > maxYforDrawing) ;
+      [str drawAtPoint:p withAttributes:intersect ? attributesForSelection : attributes] ;
+    //--- Error or warning at this line ?
+      BOOL hasError = NO ;
+      BOOL hasWarning = NO ;
+      NSMutableString * allMessages = [NSMutableString new] ;
+      for (PMIssueDescriptor * issue in mIssueArray) {
+        if (NSLocationInRange (issue.locationInSourceString, lineRange) && (issue.locationInSourceStringStatus == kLocationInSourceStringSolved)) {
+          [allMessages appendString:issue.issueMessage] ;
+          if (issue.isError) {
+            hasError = YES ;
+          }else{
+            hasWarning = YES ;
+          }
         }
       }
-    }
-    if (hasError || hasWarning) {
-      const NSRect rImage = {{0.0, p.y}, {16.0, 16.0}} ;
-      PMIssueInRuler * issueInRuler = [[PMIssueInRuler alloc]
-        initWithRect:rImage
-        message:allMessages
-        isError:hasError
-      ] ;
-      [bulletArray addObject:issueInRuler] ;
+      if (hasError || hasWarning) {
+        const NSRect rImage = {{0.0, p.y}, {16.0, 16.0}} ;
+        PMIssueInRuler * issueInRuler = [[PMIssueInRuler alloc]
+          initWithRect:rImage
+          message:allMessages
+          isError:hasError
+        ] ;
+        [mBulletArray addObject:issueInRuler] ;
+      }
     }
     idx = lineRange.location + lineRange.length ;
   }
@@ -170,7 +163,7 @@ static NSUInteger imin (NSUInteger a, NSUInteger b) { return (a < b) ? a : b ; }
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s:DISPLAY UNTIL LINE %ld", __PRETTY_FUNCTION__, lineIndex) ;
   #endif
-  for (PMIssueInRuler * bullet in bulletArray) {
+  for (PMIssueInRuler * bullet in mBulletArray) {
     [bullet.isError ? errorImage : warningImage
       drawInRect:bullet.rect
       fromRect:NSZeroRect
