@@ -31,10 +31,12 @@
          toByte: (UInt8) inUpperBound
          value: (UInt8 *) outValuePtr ;
 
-- (void) acceptRequiredByte: (UInt8) inByte ;
+- (void) acceptRequiredByte: (UInt8) inByte
+         sourceFile: (const char *) inSourceFile ;
 
 - (void) acceptRequiredByte: (UInt8) inByte
-         withMessage: (NSString *) inMessage;
+         withMessage: (NSString *) inMessage
+         sourceFile: (const char *) inSourceFile ;
 
 - (void) acceptRequiredBytes: (UInt8 *) inBytes
          length: (NSUInteger) inLength

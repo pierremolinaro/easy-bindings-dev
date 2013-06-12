@@ -35,6 +35,8 @@
 
 - (void) writePrefixedBinaryData: (NSData *) inData trace: (NSMutableString *) ioTrace ;
 
+- (void) writePrefixedArchivedValue: (id) inValue trace: (NSMutableString *) ioTrace ;
+
 - (void) writePrefixedFloat: (NSNumber *) inValue trace: (NSMutableString *) ioTrace ;
 
 - (void) writePrefixedDouble: (NSNumber *) inValue trace: (NSMutableString *) ioTrace ;

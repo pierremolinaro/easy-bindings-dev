@@ -354,33 +354,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CF608118159364A90021D873 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
-			};
-			name = Debug;
-		};
 		CF608119159364A90021D873 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +364,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -400,21 +375,6 @@
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
-		};
-		CF60811B159364A90021D873 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "03-simple-document/03-simple-document-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"PM_COCOA_DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "03-simple-document/03-simple-document-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
 		};
 		CF60811C159364A90021D873 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -433,7 +393,6 @@
 		CF6080F0159364A90021D873 /* Build configuration list for PBXProject "03-simple-document" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF608118159364A90021D873 /* Debug */,
 				CF608119159364A90021D873 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -442,7 +401,6 @@
 		CF60811A159364A90021D873 /* Build configuration list for PBXNativeTarget "03-simple-document" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF60811B159364A90021D873 /* Debug */,
 				CF60811C159364A90021D873 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

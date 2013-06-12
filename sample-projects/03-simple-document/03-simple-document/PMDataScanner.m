@@ -188,7 +188,8 @@
 
 //---------------------------------------------------------------------------*
 
-- (void) acceptRequiredByte: (UInt8) inByte {
+- (void) acceptRequiredByte: (UInt8) inByte
+         sourceFile: (const char *) inSourceFile {
   if (mReadOk) {
     if (mReadIndex >= [mData length]) {
        NSLog (@"Read beyond end of data") ;
@@ -204,7 +205,7 @@
         for (NSUInteger i=0 ; i<[mExpectedBytes length] ; i++) {
           [message appendFormat:@"0x%02hhx, ", expectedBytes  [i]] ;
         }
-        NSLog (@"Invalid current byte (0x%02x): expected bytes:%@0x%02x", bytes [mReadIndex], message, inByte) ;
+        NSLog (@"%s: invalid current byte (0x%02x): expected bytes:%@0x%02x", inSourceFile, bytes [mReadIndex], message, inByte) ;
         macroReleaseSetToNil (message) ;
         mReadOk = NO ;
       }

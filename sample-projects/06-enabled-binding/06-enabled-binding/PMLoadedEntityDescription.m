@@ -28,9 +28,9 @@
   if (self) {
     macroNoteObjectAllocation ;
     mCoreDataEntity = inCoreDataEntity ;
-    mLoadedSuperEntity = inLoadedSuperEntity ;
-    mEntityAttributeArray = inEntityAttributeArray ;
-    mEntityRelationshipArray = inEntityRelationshipArray ;
+    mLoadedSuperEntity = inLoadedSuperEntity.copy ;
+    mEntityAttributeArray = inEntityAttributeArray.copy ;
+    mEntityRelationshipArray = inEntityRelationshipArray.copy ;
   }
   return self ;
 }

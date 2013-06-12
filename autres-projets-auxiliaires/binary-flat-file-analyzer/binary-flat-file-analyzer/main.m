@@ -64,7 +64,7 @@ static void dumpFile (NSString * inFilePath) {
 //--- Read Status
   [dataScanner parseByteWithMessage:@"File Status"] ;
 //--- if ok, check byte is 1
-  [dataScanner acceptRequiredByte:1 withMessage:@"Required byte"] ;
+  [dataScanner acceptRequiredByte:1 withMessage:@"Required byte" sourceFile:__PRETTY_FUNCTION__] ;
 //--- Read dictionary
   NSError * error = nil ;
   NSData * dictionaryData = [dataScanner parseAutosizedDataWithMessage:@"Metadata dictionary"] ;
@@ -88,14 +88,14 @@ static void dumpFile (NSString * inFilePath) {
       fileData = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
     }
   }else{
-    [dataScanner acceptRequiredByte:2 withMessage:@"Data is compressed using BZ2"] ; // BZ2 compressed
+    [dataScanner acceptRequiredByte:2 withMessage:@"Data is compressed using BZ2" sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
     NSData * compressedData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
     if (nil != compressedData) {
       fileData = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
     }
   }
 //--- if ok, check final byte (0)
-  [dataScanner acceptRequiredByte:0 withMessage:@"End of file Mark"] ;
+  [dataScanner acceptRequiredByte:0 withMessage:@"End of file Mark" sourceFile:__PRETTY_FUNCTION__] ;
 //------------------ Dump metadata dictionary
   dumpMetadataDictionary (metadataDictionary) ;
 //------------------ Dump metadata dictionary

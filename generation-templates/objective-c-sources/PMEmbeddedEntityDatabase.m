@@ -191,7 +191,7 @@
           #endif 
           break ;
         case NSDateAttributeType      :
-        [ioData writeByte:0x09 trace:ioTrace] ;
+          [ioData writeByte:0x09 trace:ioTrace] ;
           [ioTrace appendFormat:@"Attribute Type: NSDateAttributeType\n"] ;
         #ifdef EASY_BINDINGS_DEBUG
             NSLog (@" Attribute '%@', NSDateAttributeType", attributeName) ;
@@ -204,8 +204,15 @@
             NSLog (@" Attribute '%@', NSBinaryDataAttributeType", attributeName) ;
           #endif 
           break ;
+        case NSTransformableAttributeType:
+          [ioData writeByte:0x0D trace:ioTrace] ;
+          [ioTrace appendFormat:@"Attribute Type: NSTransformableAttributeType\n"] ;
+          #ifdef EASY_BINDINGS_DEBUG
+            NSLog (@" Attribute '%@', NSTransformableAttributeType", attributeName) ;
+          #endif 
+          break ;
         default:
-          NSLog (@"Unknow attribute type (%lld)", (SInt64) attributeType) ;
+          NSLog (@"%s, unknow attribute type (%lld)", __PRETTY_FUNCTION__, (SInt64) attributeType) ;
           break ;
         }
         [ioData writeAutosizedString:attributeName trace:ioTrace] ;

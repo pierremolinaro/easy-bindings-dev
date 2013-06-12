@@ -113,7 +113,8 @@ static NSUInteger uimin (const NSUInteger inA, const NSUInteger inB) {
 
 //---------------------------------------------------------------------------*
 
-- (void) acceptRequiredByte: (UInt8) inByte {
+- (void) acceptRequiredByte: (UInt8) inByte
+         sourceFile: (const char *) inSourceFile {
   if (mReadOk) {
     if (mReadIndex >= [mData length]) {
        NSLog (@"Read beyond end of data") ;
@@ -129,7 +130,7 @@ static NSUInteger uimin (const NSUInteger inA, const NSUInteger inB) {
         for (NSUInteger i=0 ; i<[mExpectedBytes length] ; i++) {
           [message appendFormat:@"0x%02hhx, ", expectedBytes  [i]] ;
         }
-        NSLog (@"Invalid current byte (0x%02x): expected bytes:%@0x%02x", bytes [mReadIndex], message, inByte) ;
+        NSLog (@"%s, invalid current byte (0x%02x): expected bytes:%@0x%02x", inSourceFile, bytes [mReadIndex], message, inByte) ;
         mReadOk = NO ;
       }
     }
@@ -139,9 +140,10 @@ static NSUInteger uimin (const NSUInteger inA, const NSUInteger inB) {
 //---------------------------------------------------------------------------*
 
 - (void) acceptRequiredByte: (UInt8) inByte
-         withMessage: (NSString *) inMessage {
+         withMessage: (NSString *) inMessage
+         sourceFile: (const char *) inSourceFile {
   const NSUInteger idx = mReadIndex ;
-  [self acceptRequiredByte:inByte] ;
+  [self acceptRequiredByte:inByte sourceFile:inSourceFile] ;
   if (mReadOk) {
     printf ("%04lX %04lX:", (idx >> 32), idx % (1UL << 32)) ;
     printf (" %02X", inByte) ;
@@ -156,7 +158,7 @@ static NSUInteger uimin (const NSUInteger inA, const NSUInteger inB) {
          message: (NSString *) inMessage {
   const NSUInteger idx = mReadIndex ;
   for (NSUInteger i=0 ; i<inLength ; i++) {
-    [self acceptRequiredByte: inBytes [i]] ;
+    [self acceptRequiredByte: inBytes [i] sourceFile:__PRETTY_FUNCTION__] ;
   }
   if (mReadOk) {
     printf ("%04lX %04lX:", (idx >> 32), idx % (1UL << 32)) ;
