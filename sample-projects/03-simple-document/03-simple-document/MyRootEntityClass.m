@@ -83,9 +83,9 @@
 
 - (void) didChangeValueForKey: (NSString *) inKey {
   [super didChangeValueForKey:inKey] ;
-/*  if (! self.isFault) {
+  if (! self.isFault) {
     [self pmKeyDidChange:inKey] ;
-  }*/
+  }
 }
 
 //----------------------------------------------------------------------------*

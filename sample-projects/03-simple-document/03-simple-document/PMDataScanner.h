@@ -33,7 +33,7 @@
          toByte: (UInt8) inUpperBound
          value: (UInt8 *) outValuePtr ;
 
-- (void) acceptRequiredByte: (UInt8) inByte ;
+- (void) acceptRequiredByte: (UInt8) inByte sourceFile: (const char *) inSourceFile ;
 
 - (UInt64) parseAutosizedUnsignedInteger ;
 

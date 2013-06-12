@@ -28,7 +28,7 @@
     const NSUInteger entityCount = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Entity Count"] ;
     for (NSUInteger i=0 ; (i<entityCount) && [inDataScanner ok] ; i++) {
     //--- 'Start of Entity' mark
-      [inDataScanner acceptRequiredByte:0xBA withMessage:[NSString stringWithFormat:@"Start of #%lu Entity Mark", i]] ;
+      [inDataScanner acceptRequiredByte:0xBA withMessage:[NSString stringWithFormat:@"Start of #%lu Entity Mark", i] sourceFile:__PRETTY_FUNCTION__] ;
     //--- Entity Name
       NSString * entityName = [inDataScanner parseAutosizedStringWithMessage:@"Entity Name"] ;
       PMLoadedEntityDescription * loadedSuperEntity = nil ;
@@ -36,7 +36,7 @@
         const NSUInteger superEntityIndex = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Super Entity Index"] ;
         loadedSuperEntity = [mLoadedEntityArray objectAtIndex:superEntityIndex] ;
       }else{ // No super entity
-        [inDataScanner acceptRequiredByte:0xFF withMessage:@"No Super Entity Mark"] ;
+        [inDataScanner acceptRequiredByte:0xFF withMessage:@"No Super Entity Mark" sourceFile:__PRETTY_FUNCTION__] ;
       }
     //--- Parse attributes and relationship definitions
       NSMutableArray * entityAttributeArray = [NSMutableArray new] ;
@@ -81,10 +81,13 @@
           /* const NSUInteger relationshipEntityIndex = */ [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Destination Entity Index"] ;
           NSString * relationshipName = [inDataScanner parseAutosizedStringWithMessage:@"Relationship Name"] ;
           [entityRelationshipArray addObject:relationshipName] ;
+        }else if ([inDataScanner testAcceptByte:0x0D withMessage:@"NSTransformableAttributeType Mark"]) {
+          NSString * attributeName = [inDataScanner parseAutosizedStringWithMessage:@"Attribute Name"] ;
+          [entityAttributeArray addObject:attributeName] ;
         }else{
           [entityAttributeArray addObject:@""] ;
           [entityRelationshipArray addObject:@""] ;
-          [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Entity Mark\n", i]] ;
+          [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Entity Mark\n", i] sourceFile:__PRETTY_FUNCTION__] ;
           loop = NO ;
         }
       }

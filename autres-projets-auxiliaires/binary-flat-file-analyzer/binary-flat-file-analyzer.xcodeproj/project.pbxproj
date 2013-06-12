@@ -181,34 +181,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		CFF8F5D01691E98E0063D3FC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
-			};
-			name = Debug;
-		};
 		CFF8F5D11691E98E0063D3FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -230,15 +202,6 @@
 			};
 			name = Release;
 		};
-		CFF8F5D31691E98E0063D3FC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "binary-flat-file-analyzer/binary-flat-file-analyzer-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
 		CFF8F5D41691E98E0063D3FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -254,7 +217,6 @@
 		CFF8F5B81691E98E0063D3FC /* Build configuration list for PBXProject "binary-flat-file-analyzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CFF8F5D01691E98E0063D3FC /* Debug */,
 				CFF8F5D11691E98E0063D3FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -263,7 +225,6 @@
 		CFF8F5D21691E98E0063D3FC /* Build configuration list for PBXNativeTarget "binary-flat-file-analyzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CFF8F5D31691E98E0063D3FC /* Debug */,
 				CFF8F5D41691E98E0063D3FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

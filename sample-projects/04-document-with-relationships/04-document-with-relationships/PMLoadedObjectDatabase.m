@@ -27,7 +27,7 @@
                       withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase
                       managedObjectContext: (NSManagedObjectContext *) inManagedObjectContext {
 //--- 'start of object attribute' mark
-  [inDataScanner acceptRequiredByte:0x03] ;
+  [inDataScanner acceptRequiredByte:0x03 sourceFile:__PRETTY_FUNCTION__] ;
 //--- Entity index
   const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedInteger] ;
 //--- Create new object
@@ -111,8 +111,14 @@
         [newObject setValue:decimalNumber forKey:key] ;
         [ioTrace appendFormat:@"  attribute '%@': decimal %@\n", key, decimalNumber] ;
       }
+    }else if ([inDataScanner testAcceptByte:0x11]) { // Archived data
+      id value = [NSUnarchiver unarchiveObjectWithData:[inDataScanner parseAutosizedData]] ;
+      if ([key length] > 0) {
+        [newObject setValue:value forKey:key] ;
+        [ioTrace appendFormat:@"  attribute '%@': archived value %@\n", key, value] ;
+      }
     }else{
-      [inDataScanner acceptRequiredByte:0x00] ;
+      [inDataScanner acceptRequiredByte:0x00 sourceFile:__PRETTY_FUNCTION__] ;
       loop = NO ;
     }
   }
@@ -127,7 +133,7 @@
          withDataScanner: (PMDataScanner *) inDataScanner
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase {
 //--- 'start of object relationship' mark
-  [inDataScanner acceptRequiredByte:0x04] ;
+  [inDataScanner acceptRequiredByte:0x04 sourceFile:__PRETTY_FUNCTION__] ;
 //--- Entity Index
   const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedInteger] ;
   [ioTrace appendFormat:@"Object of entity #%lu\n", entityIndex] ;
@@ -165,7 +171,7 @@
         [ioTrace appendFormat:@"  to-many relationship '%@' : %lu objects\n", key, [destinationSet count]] ;
       }
     }else{
-      [inDataScanner acceptRequiredByte:0x00] ;
+      [inDataScanner acceptRequiredByte:0x00 sourceFile:__PRETTY_FUNCTION__] ;
       loop = NO ;
     }
   }
@@ -179,7 +185,7 @@
          managedObjectContext: (NSManagedObjectContext *) inManagedObjectContext {
   NSMutableArray * loadedObjectArray = [NSMutableArray new] ;
 //------------------------ 'Object count' mark
-  [inDataScanner acceptRequiredByte:0x02] ;
+  [inDataScanner acceptRequiredByte:0x02 sourceFile:__PRETTY_FUNCTION__] ;
 //------------------------ Get object count 
   const NSUInteger objectCount = [inDataScanner parseAutosizedUnsignedInteger] ;
 //------------------------ Parse object attributes
@@ -204,7 +210,7 @@
     ] ;
   }
 //------------------------ 'End of file' mark
-  [inDataScanner acceptRequiredByte:0x05] ;
+  [inDataScanner acceptRequiredByte:0x05 sourceFile:__PRETTY_FUNCTION__] ;
 //------------------------ Set Order field
   NSUInteger order = 0 ;
   for (PMManagedObject * object in loadedObjectArray) {

@@ -75,7 +75,7 @@
     const NSUInteger entityCount = [inDataScanner parseAutosizedUnsignedInteger] ;
     for (NSUInteger i=0 ; (i<entityCount) && [inDataScanner ok] ; i++) {
     //--- 'Start of Entity' mark
-      [inDataScanner acceptRequiredByte:0xBA] ;
+      [inDataScanner acceptRequiredByte:0xBA sourceFile:__PRETTY_FUNCTION__] ;
     //--- Entity Name
       NSString * entityName = [inDataScanner parseAutosizedString] ;
       NSEntityDescription * coreDataEntity = [inEntityDictionary
@@ -102,7 +102,7 @@
         loadedSuperEntity = [mLoadedEntityArray objectAtIndex:superEntityIndex HERE OFCLASS (PMLoadedEntityDescription)] ;
         [ioTrace appendFormat:@"  Super entity #%lu\n", superEntityIndex] ;
       }else{ // No super entity
-        [inDataScanner acceptRequiredByte:0xFF] ;
+        [inDataScanner acceptRequiredByte:0xFF sourceFile:__PRETTY_FUNCTION__] ;
       }
     //--- Parse attributes and relationship definitions
       NSMutableArray * entityAttributeArray = [NSMutableArray new] ;
@@ -193,10 +193,15 @@
           const BOOL ok = [self checkEntity:coreDataEntity trace:ioTrace hasRelationshipNamed:relationshipName toMany:YES] ;
           [entityRelationshipArray addObject:ok ? relationshipName : @""] ;
           [ioTrace appendFormat:@"  To-many relationship '%@'\n", relationshipName] ;
+        }else if ([inDataScanner testAcceptByte:0x0D]) { // Transformable attribute
+          NSString * attributeName = [inDataScanner parseAutosizedString] ;
+          const BOOL ok = [self checkEntity:coreDataEntity trace:ioTrace hasAttributeNamed:attributeName ofType:NSTransformableAttributeType] ;
+          [entityAttributeArray addObject:ok ? attributeName : @""] ;
+          [ioTrace appendFormat:@"  NSTransformableAttributeType, '%@'\n", attributeName] ;
         }else{
           [entityAttributeArray addObject:@""] ;
           [entityRelationshipArray addObject:@""] ;
-          [inDataScanner acceptRequiredByte:0x00] ;
+          [inDataScanner acceptRequiredByte:0x00 sourceFile:__PRETTY_FUNCTION__] ;
           loop = NO ;
         }
       }
@@ -207,9 +212,9 @@
         withLoadedAttributes:entityAttributeArray
         withLoadedRelationships:entityRelationshipArray
       ] ;
+      [mLoadedEntityArray addObject:newLoadedEntity] ;
       macroReleaseSetToNil (entityAttributeArray) ;
       macroReleaseSetToNil (entityRelationshipArray) ;
-      [mLoadedEntityArray addObject:newLoadedEntity] ;
       macroReleaseSetToNil (newLoadedEntity) ;
     }
   }
@@ -232,7 +237,10 @@
 //---------------------------------------------------------------------------*
 
 - (NSString *) entityNameForIndex: (NSUInteger) inEntityIndex {
-  PMLoadedEntityDescription * led = [mLoadedEntityArray objectAtIndex:inEntityIndex HERE OFCLASS (PMLoadedEntityDescription)] ;
+  PMLoadedEntityDescription * led = [mLoadedEntityArray
+    objectAtIndex:inEntityIndex
+    HERE OFCLASS (PMLoadedEntityDescription)
+  ] ;
   return [[led coreDataEntity] name] ;
 }
 

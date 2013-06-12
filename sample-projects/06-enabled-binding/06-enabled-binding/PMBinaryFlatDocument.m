@@ -203,8 +203,8 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   ] ;
 //---
   if (nil == error) {
-    NSMutableString * trace = nil ; // [NSMutableString new] ;
-//    @try{
+    NSMutableString * trace = [NSMutableString new] ;
+    @try{
   //--- Load data
     PMDataScanner * dataScanner = [PMDataScanner scannerWithData:inBinaryData displayProgressWindowTitle:nil] ;
   //--- Parse entity definitions
@@ -221,10 +221,10 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       withLoadedDatabase:loadedEntityDatabase
       managedObjectContext:inManagedObjectContext
     ] ;
-//    }@catch (NSException * e) {
-//      NSLog (@"READ TRACE:\n%@", trace) ;
-//      @throw e ;
-//    }
+    }@catch (NSException * e) {
+      NSLog (@"READ TRACE:\n%@", trace) ;
+      @throw e ;
+    }
     [inManagedObjectContext processPendingChanges] ;
     [[inManagedObjectContext undoManager] enableUndoRegistration] ;
   }
@@ -263,12 +263,12 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   ] ;
 //--- Check Signature
   for (NSUInteger i=0 ; i<strlen (kFormatSignature) ; i++) {
-    [dataScanner acceptRequiredByte: (UInt8) kFormatSignature [i]] ;
+    [dataScanner acceptRequiredByte: (UInt8) kFormatSignature [i] sourceFile:__PRETTY_FUNCTION__] ;
   }
 //--- Read Status
   mReadMetadataStatus = [dataScanner parseByte] ;
 //--- if ok, check byte is 1
-  [dataScanner acceptRequiredByte:1] ;
+  [dataScanner acceptRequiredByte:1 sourceFile:__PRETTY_FUNCTION__] ;
 //--- Read dictionary
   NSError * error = nil ;
   NSData * dictionaryData = [dataScanner parseAutosizedData] ;
@@ -294,7 +294,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       [PMBinaryFlatDocument loadFromBinaryData:data usingManagedObjectContext:self.managedObjectContext error: & error] ;
     }
   }else{
-    [dataScanner acceptRequiredByte:2] ; // BZ2 compressed
+    [dataScanner acceptRequiredByte:2 sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
     NSData * compressedData = [dataScanner parseAutosizedData] ;
     if (nil != compressedData) {
       NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
@@ -302,7 +302,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
     }
   }
 //--- if ok, check final byte (0)
-  [dataScanner acceptRequiredByte:0] ;
+  [dataScanner acceptRequiredByte:0 sourceFile:__PRETTY_FUNCTION__] ;
 //--- Scanner error ?
   if (! [dataScanner ok]) {
     NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -563,7 +563,7 @@ static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString 
   }
 //--- Check Signature
   for (NSUInteger i=0 ; i<strlen (kFormatSignature) ; i++) {
-    [dataScanner acceptRequiredByte: (UInt8) kFormatSignature [i]] ;
+    [dataScanner acceptRequiredByte: (UInt8) kFormatSignature [i] sourceFile:__PRETTY_FUNCTION__] ;
   }
 //--- Pass One byte of Status
   const UInt8 status = [dataScanner parseByte] ;
@@ -571,7 +571,7 @@ static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString 
     * outStatus = status ;
   }
 //--- Check byte is 1
-  [dataScanner acceptRequiredByte:1] ;
+  [dataScanner acceptRequiredByte:1 sourceFile:__PRETTY_FUNCTION__] ;
 //--- Metadata dictionary
   if (NULL == outMetadataDictionary) {
     [dataScanner ignoreAutosizedData] ;
@@ -598,7 +598,7 @@ static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString 
         [PMBinaryFlatDocument loadFromBinaryData:data usingManagedObjectContext:inManagedObjectContext error:&error] ;
       }
     }else{
-      [dataScanner acceptRequiredByte:2] ; // BZ2 compressed
+      [dataScanner acceptRequiredByte:2 sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
       NSData * compressedData = [dataScanner parseAutosizedData] ;
       if (nil != compressedData) {
         NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;

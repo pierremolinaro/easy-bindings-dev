@@ -23,7 +23,7 @@
          dataScanner: (PMDataScanner *) inDataScanner
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase {
 //--- 'start of object attribute' mark
-  [inDataScanner acceptRequiredByte:0x03 withMessage:[NSString stringWithFormat:@"Start of #%lu Object Attribute Values", inObjectIndex]] ;
+  [inDataScanner acceptRequiredByte:0x03 withMessage:[NSString stringWithFormat:@"Start of #%lu Object Attribute Values", inObjectIndex] sourceFile:__PRETTY_FUNCTION__] ;
 //--- Entity index
   const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Entity Index"] ;
 //--- Create new object
@@ -57,8 +57,10 @@
       [inDataScanner parseAutosizedDataWithMessage:@"Data Value"] ;
     }else if ([inDataScanner testAcceptByte:0x10 withMessage:[NSString stringWithFormat:@"Decimal Mark for '%@'", key]]) { // Decimal
       [inDataScanner parseAutosizedDataWithMessage:@"Decimal Value"] ;
+    }else if ([inDataScanner testAcceptByte:0x11 withMessage:[NSString stringWithFormat:@"Transfomable Attribute Mark for '%@'", key]]) { // Decimal
+      [inDataScanner parseAutosizedDataWithMessage:@"Value as binary data"] ;
     }else{
-      [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Attribute Values\n", inObjectIndex]] ;
+      [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Attribute Values\n", inObjectIndex] sourceFile:__PRETTY_FUNCTION__] ;
       loop = NO ;
     }
   }
@@ -70,7 +72,7 @@
          withDataScanner: (PMDataScanner *) inDataScanner
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase {
 //--- 'start of object relationship' mark
-  [inDataScanner acceptRequiredByte:0x04 withMessage:[NSString stringWithFormat:@"Start of #%lu Object Relationships", inObjectIndex]] ;
+  [inDataScanner acceptRequiredByte:0x04 withMessage:[NSString stringWithFormat:@"Start of #%lu Object Relationships", inObjectIndex] sourceFile:__PRETTY_FUNCTION__] ;
 //--- Entity Index
   const NSUInteger entityIndex = [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Entity Index"] ;
 //--- Build attribute array
@@ -90,7 +92,7 @@
         [inDataScanner parseAutosizedUnsignedIntegerWithMessage:@"Object index"] ;
       }
     }else{
-      [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Relationships\n", inObjectIndex]] ;
+      [inDataScanner acceptRequiredByte:0x00 withMessage:[NSString stringWithFormat:@"End of #%lu Object Relationships\n", inObjectIndex] sourceFile:__PRETTY_FUNCTION__] ;
       loop = NO ;
     }
   }
@@ -101,7 +103,7 @@
 + (void) loadWithDataScanner: (PMDataScanner *) inDataScanner
          withLoadedDatabase: (PMLoadedEntityDatabase *) inLoadedEntityDatabase {
 //------------------------ 'Object count' mark
-  [inDataScanner acceptRequiredByte:0x02] ;
+  [inDataScanner acceptRequiredByte:0x02 sourceFile:__PRETTY_FUNCTION__] ;
 //------------------------ Get object count 
   const NSUInteger objectCount = [inDataScanner parseAutosizedUnsignedInteger] ;
 //------------------------ Parse object attributes
@@ -121,7 +123,7 @@
     ] ;
   }
 //------------------------ 'End of file' mark
-  [inDataScanner acceptRequiredByte:0x05] ;
+  [inDataScanner acceptRequiredByte:0x05 sourceFile:__PRETTY_FUNCTION__] ;
 }
 
 //---------------------------------------------------------------------------*

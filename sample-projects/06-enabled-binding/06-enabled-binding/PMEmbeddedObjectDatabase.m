@@ -182,7 +182,13 @@
           [ioData writePrefixedBinaryData:value trace:ioTrace] ;
           [ioTrace appendFormat:@"NSBinaryDataAttributeType: %lu bytes\n", [value length]] ;
           break ;
-        default: NSLog (@"Error: unknown attribute type (%lld)", (SInt64) attributeType) ; break ;
+        case NSTransformableAttributeType:
+          [ioData writePrefixedArchivedValue:value trace:ioTrace] ;
+          [ioTrace appendFormat:@"NSTransformableAttributeType:\n"] ;
+          break ;
+        default:
+          NSLog (@"%s, Error: unknown attribute type (%lld)", __PRETTY_FUNCTION__, (SInt64) attributeType) ;
+          break ;
         }
       }
     }

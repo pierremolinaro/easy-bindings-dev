@@ -172,6 +172,24 @@
 
 //---------------------------------------------------------------------------*
 
+- (void) writePrefixedArchivedValue: (id) inValue
+         trace: (NSMutableString *) ioTrace {
+  [ioTrace appendFormat:@"%03lu %03lu ", self.length / 1000, self.length % 1000] ;
+  NSData * data = [NSArchiver archivedDataWithRootObject:inValue] ;
+  if (data == nil) {
+    [self writeByte:0xFF trace:ioTrace code:'Z'] ;
+  }else{
+    [self writeByte:0x11 trace:ioTrace code:'a'] ;
+    [ioTrace appendString:@"\n"] ;
+    const NSUInteger length = [data length] ;
+    [self writeAutosizedUnsigned:length trace:ioTrace] ;
+    [ioTrace appendString:@"\n"] ;
+    [self appendData:data] ;
+  }
+}
+
+//---------------------------------------------------------------------------*
+
 - (void) writePrefixedFloat: (NSNumber *) inValue
          trace: (NSMutableString *) ioTrace {
   [ioTrace appendFormat:@"%03lu %03lu ", self.length / 1000, self.length % 1000] ;
