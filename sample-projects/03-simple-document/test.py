@@ -57,6 +57,24 @@ if upperLowerResult.AXValue !=  newValue.upper () + ' ' + newValue.lower () :
     print '*** Erreur 14 ***'
     sys.exit (1)
 
+#----------------------- Enter color
+ColorWell = window.findFirst (AXDescription='ColorWell')
+ColorWell.Press ()
+time.sleep(.5)
+colorPicker = monAppli.windows ('Colors')[0]
+toolbar = colorPicker.findFirst (AXRole='AXToolbar')
+toolbar.findAll ()[2].Press () # Selects RGB
+time.sleep(.5)
+colorRows = colorPicker.rowsR ()
+selectedRowIndex = random.randrange (0, len (colorRows) - 1)
+colorRows [selectedRowIndex].AXSelected = True ;
+time.sleep(.5)
+
+#--- Select matrix
+matrix = window.findFirst (AXDescription='matrix')
+matrixSelectedRowIndex = random.randrange (0, 2, 1)
+matrix.AXChildren [matrixSelectedRowIndex].Press ()
+
 #--- Save
 monAppli.menuItem ('File', 'Save').Press()
 time.sleep(.5)
@@ -100,6 +118,32 @@ if upperResult.AXValue !=  newValue.upper ():
 #--- check 'upperLowerResult'
 if upperLowerResult.AXValue !=  newValue.upper () + ' ' + newValue.lower () :
     print '*** Erreur 14 ***'
+    sys.exit (1)
+
+#--- check 'color'
+ColorWell = window.findFirst (AXDescription='ColorWell')
+ColorWell.Press ()
+time.sleep(.5)
+colorPicker = monAppli.windows ('Colors')[0]
+toolbar = colorPicker.findFirst (AXRole='AXToolbar')
+toolbar.findAll ()[2].Press () # Selects RGB
+time.sleep(.5)
+colorRows = colorPicker.rowsR ()
+time.sleep(.5)
+
+if not colorRows [selectedRowIndex].AXSelected:
+    print '*** Erreur 15 ***'
+    sys.exit (1)
+
+#--- Undo (selecting a colorWell makes changes)
+monAppli.menuItem ('Edit', 'Undo').Press()
+time.sleep(.5)
+
+#--- Check matrix
+matrix = window.findFirst (AXDescription='matrix')
+# print matrix.AXChildren [matrixSelectedRowIndex].AXValue
+if matrix.AXChildren [matrixSelectedRowIndex].AXValue != 1:
+    print '*** Erreur 16 ***'
     sys.exit (1)
 
 atomac.terminateAppByBundleId (bundleName)

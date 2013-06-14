@@ -35,7 +35,7 @@
 				<string key="NSClassName">FirstResponder</string>
 			</object>
 			<object class="NSWindowTemplate" id="275939982">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{133, 235}, {507, 413}}</string>
 				<int key="NSWTFlags">1886912512</int>
@@ -403,7 +403,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<set class="NSMutableSet" key="NSDragTypes">
 								<string>NSColor pasteboard type</string>
 							</set>
-							<string key="NSFrame">{{443, 158}, {44, 23}}</string>
+							<string key="NSFrame">{{176, 167}, {44, 23}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -421,7 +421,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="917804199"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
 				<string key="NSMinSize">{94, 108}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -744,11 +744,27 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="100099.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100108.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100109.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="100160.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="202135890"/>
+						<string key="accessibilityValue">matrix</string>
+					</object>
+				</object>
 				<string key="100160.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100161.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100162.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100163.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100171.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="100206.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">AccessibilityDescription</string>
+					<object class="IBAccessibilityAttribute" key="NS.object.0">
+						<string key="name">AccessibilityDescription</string>
+						<reference key="object" ref="47830346"/>
+						<string key="accessibilityValue">ColorWell</string>
+					</object>
+				</object>
 				<string key="100206.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBWindowTemplateEditedContentRect">{{133, 170}, {507, 413}}</string>
