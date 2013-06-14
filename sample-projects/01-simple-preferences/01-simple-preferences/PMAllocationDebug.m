@@ -24,7 +24,7 @@ static PMAllocationDebug * gDebugObject ;
 //    init                                                                    *
 //----------------------------------------------------------------------------*
 
-- (id) init {
+- (instancetype) init {
   //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
   self = [super init] ;
   if (self) {
