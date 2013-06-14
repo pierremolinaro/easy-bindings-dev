@@ -28,7 +28,7 @@ end foreach
 //    Init Methods                                                            *
 //----------------------------------------------------------------------------*
 
-- (id) init {
+- (instancetype) init {
   self = [super init] ;
   if (self) {
 %if SUPER_CLASS_NAME == "" then
@@ -46,7 +46,7 @@ end foreach
 //----------------------------------------------------------------------------*
 
 %foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-  before %- (id) %?^%initWith%
+  before %- (instancetype) %?^%initWith%
   do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]
   between %\n%!^%with%
   after % {\n%

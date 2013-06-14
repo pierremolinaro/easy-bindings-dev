@@ -36,7 +36,7 @@
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-- (id) initWithType: (NSString *) typeName error: (NSError **) outError {
+- (instancetype) initWithType: (NSString *) typeName error: (NSError **) outError {
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
