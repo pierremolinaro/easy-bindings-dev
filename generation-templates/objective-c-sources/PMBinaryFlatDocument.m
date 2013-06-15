@@ -204,7 +204,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
 //---
   if (nil == error) {
     NSMutableString * trace = [NSMutableString new] ;
-    @try{
+    // @try{
   //--- Load data
     PMDataScanner * dataScanner = [PMDataScanner scannerWithData:inBinaryData displayProgressWindowTitle:nil] ;
   //--- Parse entity definitions
@@ -221,10 +221,10 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       withLoadedDatabase:loadedEntityDatabase
       managedObjectContext:inManagedObjectContext
     ] ;
-    }@catch (NSException * e) {
-      NSLog (@"READ TRACE:\n%@", trace) ;
-      @throw e ;
-    }
+    // }@catch (NSException * e) {
+    //  NSLog (@"READ TRACE:\n%@", trace) ;
+    //  @throw e ;
+    // }
     [inManagedObjectContext processPendingChanges] ;
     [[inManagedObjectContext undoManager] enableUndoRegistration] ;
   }
