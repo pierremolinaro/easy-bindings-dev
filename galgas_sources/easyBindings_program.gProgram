@@ -196,11 +196,20 @@ message "a source text file with the .easyBindings extension"
   generateSet += !"PMAllocationDebug" ;
   generateSet += !"PMWillDeallocProtocol" ;
   if [documentMap count] > 0 then
+    generateSet += !"PMUndoManager" ;
+    generateSet += !"PMManagedDocument" ;
+    generateSet += !"NSData+BZ2compression" ;
+    generateSet += !"NSData+BZ2compression" ;
+    generateSet += !"NSData+PMGZcompression" ;
+    generateSet += !"NSMutableData+PMWrites" ;
+    generateSet += !"PMDataScanner" ;
+
+
+
     generateSet += !"PMAbstractPersistentDocument" ;
     generateSet += !"PMBinaryFlatDocument" ;
     generateSet += !"PMbz2DataCategory" ;
     generateSet += !"PMzlibDataCategory" ;
-    generateSet += !"PMDataScanner" ;
     generateSet += !"PMEmbeddedEntityDatabase" ;
     generateSet += !"PMEmbeddedObjectDatabase" ;
     generateSet += !"PMLoadedEntityDatabase" ;
@@ -209,6 +218,12 @@ message "a source text file with the .easyBindings extension"
     generateSet += !"PMMutableDataWriteCategory" ;
   end if ;
   if [entityListForGeneration length] > 0 then
+    generateSet += !"load-store-functions" ;
+    generateSet += !"PMManagedEntity" ;
+    generateSet += !"PMEntityManager" ;
+    generateSet += !"PMAttributeDescription" ;
+    generateSet += !"PMRelationshipDescription" ;
+
     generateSet += !"PMManagedObject" ;
   end if ;
 #---
