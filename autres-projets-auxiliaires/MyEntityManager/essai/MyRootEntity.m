@@ -300,8 +300,7 @@
   if (self.mBool != inBool) {
     // NSLog (@"Enter setMBool_swizzling") ;
     [[self.undoManager prepareWithInvocationTarget:self]
-      setValue:[NSNumber numberWithBool:self.mBool]
-      forKeyPath:@"mBool"
+      setMBool:self.mBool
     ] ;
     [self setMBool_swizzling:inBool] ;
     // NSLog (@"Exit setMBool_swizzling") ;

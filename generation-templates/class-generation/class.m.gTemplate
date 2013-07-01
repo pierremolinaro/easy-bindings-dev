@@ -21,7 +21,7 @@ end foreach
 //----------------------------------------------------------------------------*
 
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%@synthesize %!mPropertyName% ;\n%
+%@synthesize %!mAttributeName% ;\n%
 end foreach
 %
 //----------------------------------------------------------------------------*
@@ -35,7 +35,7 @@ end foreach
 %    macroNoteObjectAllocation ;
 %end if
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    %!mPropertyName% = %!mDirectDefaultValue% ;\n%
+  %    %!mAttributeName% = %!mDirectDefaultValue% ;\n%
 end foreach
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
@@ -47,7 +47,7 @@ end foreach
 
 %foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
   before %- (instancetype) %?^%initWith%
-  do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]
+  do ![mAttributeName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mAttributeName stringByCapitalizingFirstCharacter]
   between %\n%!^%with%
   after % {\n%
 end foreach
@@ -57,7 +57,7 @@ else
 foreach INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
   before %  self = [super\n%
     %    initWith%
-  do ![mPropertyName stringByCapitalizingFirstCharacter]%:in%![mPropertyName stringByCapitalizingFirstCharacter]
+  do ![mAttributeName stringByCapitalizingFirstCharacter]%:in%![mAttributeName stringByCapitalizingFirstCharacter]
   between %\n    with%
   after %\n  ] ;\n%
 end foreach
@@ -69,7 +69,7 @@ if SUPER_CLASS_NAME == "" then
 %end if
 
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    %!mPropertyName% = in%![mPropertyName stringByCapitalizingFirstCharacter]% ;\n%
+  %    %!mAttributeName% = in%![mAttributeName stringByCapitalizingFirstCharacter]% ;\n%
 end foreach
 
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
@@ -110,8 +110,8 @@ if SUPER_CLASS_NAME != "" then
   Method original, swizzled ;
 %
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%  original = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%:));
-  swizzled = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:));
+%  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
+  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
   method_exchangeImplementations (original, swizzled) ;
 %end foreach
 %}
@@ -121,36 +121,36 @@ end if
 
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %//----------------------------------------------------------------------------*
-//    '%!mPropertyName%' attribute                                            *
+//    '%!mAttributeName%' attribute                                            *
 //----------------------------------------------------------------------------*
 
-- (void) set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
+- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
 %if [mType equalMethod] == "" then
-%  if (%!mPropertyName% != inObject) {
+%  if (%!mAttributeName% != inObject) {
 %else
-%  if (! [self.%!mPropertyName% %![mType equalMethod]%:inObject]) {
-%end if%    [self set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
-    [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
-%!generateTransientTriggering [!mPropertyName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
+%  if (! [self.%!mAttributeName% %![mType equalMethod]%:inObject]) {
+%end if%    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["class." . CLASS_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+%!generateTransientTriggering [!mAttributeName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
 
 %  }
 }
 
 //----------------------------------------------------------------------------*
 
-- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
-  if (nil == %!mPropertyName%_observers) {
-    %!mPropertyName%_observers = [NSMutableSet new] ;
+- (void) addObserverOf_%!mAttributeName%: (id) inObserver {
+  if (nil == %!mAttributeName%_observers) {
+    %!mAttributeName%_observers = [NSMutableSet new] ;
   }
-  [%!mPropertyName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+  [%!mAttributeName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
-- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
-  [%!mPropertyName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+- (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
+  [%!mAttributeName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %end foreach

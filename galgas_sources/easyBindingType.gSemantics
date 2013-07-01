@@ -1,11 +1,11 @@
 semantics easyBindingType :
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 abstract class @easyBindingType {
 }
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 class @boolType, @integerType,
  @uintegerType,
@@ -17,29 +17,29 @@ class @boolType, @integerType,
  @bezierPathType, @menuType extends @easyBindingType {
 }
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 class @objectArrayType extends @easyBindingType {
   @string mClassName ;
 }
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 class @toOneEntityType, @toManyEntitiesType extends @easyBindingType {
   @string mEntityName ;
 }
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 class @enumType extends @easyBindingType {
   @string mEnumTypeName ;
 }
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType ebTypeName -> @string outResult ;
 
-override reader @boolType ebTypeName -> @string outResult : outResult := "bool" ; end reader ;
+override reader @boolType ebTypeName -> @string outResult : outResult := "BOOL" ; end reader ;
 override reader @integerType ebTypeName -> @string outResult : outResult := "NSInteger" ; end reader ;
 override reader @uintegerType ebTypeName -> @string outResult : outResult := "NSUInteger" ; end reader ;
 override reader @decimalType ebTypeName -> @string outResult : outResult := "decimal" ; end reader ;
@@ -55,31 +55,11 @@ override reader @arrayType ebTypeName -> @string outResult : outResult := "NSArr
 override reader @objectArrayType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
 override reader @bezierPathType ebTypeName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
-override reader @toOneEntityType ebTypeName -> @string outResult : outResult := "PMManagedObject" ; end reader ;
-override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSSet" ; end reader ;
+override reader @toOneEntityType ebTypeName -> @string outResult : outResult := "PMManagedEntity" ; end reader ;
+override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
 override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType customGetterMethod -> @string outResult : outResult := "" ; end reader ;
-
-override reader @boolType customGetterMethod -> @string outResult : outResult := "boolValue" ; end reader ;
-override reader @integerType customGetterMethod -> @string outResult : outResult := "integerValue" ; end reader ;
-override reader @uintegerType customGetterMethod -> @string outResult : outResult := "unsignedIntegerValue" ; end reader ;
-override reader @doubleType customGetterMethod -> @string outResult : outResult := "doubleValue" ; end reader ;
-override reader @enumType customGetterMethod -> @string outResult : outResult := "integerValue" ; end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType customSetterTransformer -> @string outResult : outResult := "" ; end reader ;
-
-override reader @boolType customSetterTransformer -> @string outResult : outResult := "[NSNumber numberWithBool:inValue]" ; end reader ;
-override reader @integerType customSetterTransformer -> @string outResult : outResult := "[NSNumber numberWithInteger:inValue]" ; end reader ;
-override reader @enumType customSetterTransformer -> @string outResult : outResult := "[NSNumber numberWithInteger:inValue]" ; end reader ;
-override reader @uintegerType customSetterTransformer -> @string outResult : outResult := "[NSNumber numberWithUnsignedInteger:inValue]" ; end reader ;
-override reader @doubleType customSetterTransformer -> @string outResult : outResult := "[NSNumber numberWithDouble:inValue]" ; end reader ;
-
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType isClass -> @bool outResult ;
 
@@ -103,30 +83,7 @@ override reader @bezierPathType isClass -> @bool outResult : outResult := true ;
 override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
 
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType typeForEntityDescription -> @string outResult : outResult := "??" ; end reader ;
-
-override reader @boolType typeForEntityDescription -> @string outResult : outResult := "NSBooleanAttributeType" ; end reader ;
-override reader @enumType typeForEntityDescription -> @string outResult : outResult := "NSInteger64AttributeType" ; end reader ;
-override reader @integerType typeForEntityDescription -> @string outResult : outResult := "NSInteger64AttributeType" ; end reader ;
-override reader @decimalType typeForEntityDescription -> @string outResult : outResult := "NSDecimalAttributeType" ; end reader ;
-override reader @doubleType typeForEntityDescription -> @string outResult : outResult := "NSDoubleAttributeType" ; end reader ;
-override reader @stringType typeForEntityDescription -> @string outResult : outResult := "NSStringAttributeType" ; end reader ;
-override reader @dataType typeForEntityDescription -> @string outResult : outResult := "NSBinaryDataAttributeType" ; end reader ;
-override reader @dateType typeForEntityDescription -> @string outResult : outResult := "NSDateAttributeType" ; end reader ;
-
-#----------------------------------------------------------------------------*
-
-reader @easyBindingType valueTransformerName -> @string outResult : outResult := "" ; end reader ;
-
-override reader @colorType valueTransformerName -> @string outResult : outResult := "NSUnarchiveFromDataTransformerName" ; end reader ;
-override reader @arrayType valueTransformerName -> @string outResult : outResult := "NSUnarchiveFromDataTransformerName" ; end reader ;
-override reader @valueType valueTransformerName -> @string outResult : outResult := "NSUnarchiveFromDataTransformerName" ; end reader ;
-override reader @bezierPathType valueTransformerName -> @string outResult : outResult := "NSUnarchiveFromDataTransformerName" ; end reader ;
-override reader @menuType valueTransformerName -> @string outResult : outResult := "NSUnarchiveFromDataTransformerName" ; end reader ;
-
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
 
@@ -140,7 +97,7 @@ override reader @arrayType preferencesGetterTransformerFunctionName -> @string o
 override reader @valueType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 override reader @bezierPathType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
 
@@ -155,22 +112,22 @@ override reader @valueType preferencesSetterTransformerFunctionName -> @string o
 override reader @bezierPathType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType propertyAttributeString -> @string outResult : outResult := "" ; end reader ;
 
-override reader @stringType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
-override reader @arrayType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
-override reader @valueType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
-override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
-override reader @menuType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
+override reader @stringType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+override reader @arrayType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+override reader @valueType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+override reader @menuType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 
-override reader @colorType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
-override reader @dateType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
+override reader @colorType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+override reader @dateType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 
-override reader @fontType propertyAttributeString -> @string outResult : outResult := "(copy)" ; end reader ;
+override reader @fontType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
  # Returning an empty string means not allowed
 reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "" ; end reader ;
@@ -184,7 +141,7 @@ override reader @stringType requiredCellTypeInTableColumnBinding -> @string outR
 override reader @dateType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSDateFieldCell" ; end reader ;
 override reader @imageType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSImageCell" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
  # Empty string: use == operator
 reader @easyBindingType equalMethod -> @string outResult : outResult := "" ; end reader ;
@@ -201,7 +158,209 @@ override reader @objectArrayType equalMethod -> @string outResult : outResult :=
 override reader @bezierPathType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
 override reader @menuType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
+#   notEqualExpression                                                        *
+#-----------------------------------------------------------------------------*
+
+abstract reader @easyBindingType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+;
+
+#-----------------------------------------------------------------------------*
+
+override reader @integerType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @uintegerType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @boolType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @doubleType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @enumType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @toOneEntityType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := inExp1 . " != " . inExp2 ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @decimalType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @toManyEntitiesType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @stringType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @dataType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @dateType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @fontType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @imageType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @colorType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @arrayType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @valueType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @objectArrayType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @bezierPathType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @menuType notEqualExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   ebTypeIdentifier                                                          *
+#-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType ebTypeIdentifier -> @string outResult ;
 
@@ -226,7 +385,7 @@ override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResu
 
 override reader @enumType ebTypeIdentifier -> @string outResult : outResult := "enum[" . mEnumTypeName . "]" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType ebGenericTypeIdentifier ??@string unused inTypeName -> @string outResult
 :
@@ -254,7 +413,7 @@ override reader @enumType ebGenericTypeIdentifier ??@string inTypeName -> @strin
   outResult := "enum[" . inTypeName . "]" ;
 end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType ocTypeName -> @string outResult ;
 
@@ -278,7 +437,7 @@ override reader @toOneEntityType ocTypeName -> @string outResult : outResult := 
 override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType ocClassName -> @string outResult ;
 
@@ -302,7 +461,7 @@ override reader @toOneEntityType ocClassName -> @string outResult : outResult :=
 override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType copyOnAssign -> @bool outResult : outResult := false ; end reader ;
 
@@ -313,61 +472,61 @@ override reader @objectArrayType copyOnAssign -> @bool outResult : outResult := 
 override reader @bezierPathType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 override reader @menuType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isToManyEntitiesType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @toManyEntitiesType isToManyEntitiesType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isBoolType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @boolType isBoolType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isIntegerType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @integerType isIntegerType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isDoubleType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @doubleType isDoubleType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isStringType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @stringType isStringType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isColorType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @colorType isColorType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isDateType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @dateType isDateType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isFontType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @fontType isFontType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType isEnumType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @enumType isEnumType -> @bool outResult : outResult := true ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 method @easyBindingType addFileInclusion
   ?!@stringset unused ioFileInclusionSet
@@ -380,7 +539,7 @@ override method @enumType addFileInclusion
   ioFileInclusionSet += !mEnumTypeName ;
 end method ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntSignature" ; end reader ;
 
@@ -390,6 +549,6 @@ override reader @toOneEntityType functionForComputingSignature -> @string outRes
 
 override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyPropertySignature" ; end reader ;
 
-#----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 end semantics ;

@@ -28,7 +28,7 @@ end foreach
 //----------------------------------------------------------------------------*
 
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%@synthesize %!mPropertyName% ;\n%
+%@synthesize %!mAttributeName% ;\n%
 end foreach
 foreach ARRAY_MAP do
 %@synthesize %!lkey->string% ;\n%
@@ -52,11 +52,11 @@ end foreach
     %    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
     %    id value ;\n%
   do
-    %    value = [ud objectForKey:@"%!PREFERENCES_NAME%:%!mPropertyName%"] ;\n%
+    %    value = [ud objectForKey:@"%!PREFERENCES_NAME%:%!mAttributeName%"] ;\n%
     %    if (nil == value) {\n%
-    %      self.%!mPropertyName% = %!mDirectDefaultValue% ;\n%
+    %      self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
     %    }else{\n%
-    %      self.%!mPropertyName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
+    %      self.%!mAttributeName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
     %    }\n%
 end foreach
 
@@ -67,7 +67,7 @@ foreach ARRAY_MAP do
         %!mClassName% * object = [[%!mClassName% alloc]
 %foreach mAttributeListForImplementation
 before %          initWith%
-do     ![mPropertyName stringByCapitalizingFirstCharacter]%:%![mType preferencesGetterTransformerFunctionName]%([dict objectForKey:@"%!mPropertyName%"])\n%
+do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesGetterTransformerFunctionName]%([dict objectForKey:@"%!mAttributeName%"])\n%
 between %          with%
 end foreach
 %        ] ;
@@ -110,7 +110,7 @@ end foreach
   before
     %  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
   do
-    %  [ud setObject:%![mType preferencesSetterTransformerFunctionName]% (%!mPropertyName%) forKey:@"%!PREFERENCES_NAME%:%!mPropertyName%"] ;\n%
+    %  [ud setObject:%![mType preferencesSetterTransformerFunctionName]% (%!mAttributeName%) forKey:@"%!PREFERENCES_NAME%:%!mAttributeName%"] ;\n%
 end foreach
 foreach ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
@@ -118,7 +118,7 @@ foreach ARRAY_MAP do
       [array addObject:[NSDictionary
         dictionaryWithObjectsAndKeys:
 %foreach mAttributeListForImplementation do
-%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mPropertyName%), @"%!mPropertyName%",\n%
+%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%
 end foreach
 %          nil
         ]
@@ -178,8 +178,8 @@ end foreach
   Method original, swizzled ;
 %
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%  original = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%:));
-  swizzled = class_getInstanceMethod (self, @selector (set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:));
+%  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
+  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
   method_exchangeImplementations (original, swizzled) ;
 %end foreach
 %}
@@ -189,36 +189,36 @@ end if
 
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %//----------------------------------------------------------------------------*
-//    '%!mPropertyName%' attribute                                            *
+//    '%!mAttributeName%' attribute                                            *
 //----------------------------------------------------------------------------*
 
-- (void) set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
+- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
 %if [mType equalMethod] == "" then
-%  if (%!mPropertyName% != inObject) {
+%  if (%!mAttributeName% != inObject) {
 %else
-%  if (! [self.%!mPropertyName% %![mType equalMethod]%:inObject]) {
-%end if%    [self set%![mPropertyName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
-    [%!mPropertyName%_observers makeObjectsPerformSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
-%!generateTransientTriggering [!mPropertyName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
+%  if (! [self.%!mAttributeName% %![mType equalMethod]%:inObject]) {
+%end if%    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+%!generateTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 
 %  }
 }
 
 //----------------------------------------------------------------------------*
 
-- (void) addObserverOf_%!mPropertyName%: (id) inObserver {
-  if (nil == %!mPropertyName%_observers) {
-    %!mPropertyName%_observers = [NSMutableSet new] ;
+- (void) addObserverOf_%!mAttributeName%: (id) inObserver {
+  if (nil == %!mAttributeName%_observers) {
+    %!mAttributeName%_observers = [NSMutableSet new] ;
   }
-  [%!mPropertyName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+  [%!mAttributeName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
-- (void) removeObserverOf_%!mPropertyName%: (id) inObserver {
-  [%!mPropertyName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+- (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
+  [%!mAttributeName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %end foreach

@@ -201,7 +201,7 @@ map @propertyMap {
 
 list @attributeListForImplementation {
   @easyBindingType mType ;
-  @string mPropertyName ;
+  @string mAttributeName ;
   @string mDefaultValueAsObjectiveCObject ;
   @string mDirectDefaultValue ;
 }

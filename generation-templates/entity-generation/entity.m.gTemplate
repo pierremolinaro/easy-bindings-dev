@@ -1,6 +1,10 @@
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
+#import "PMEntityManager.h"
+#import "PMRelationshipDescription.h"
+#import "PMAttributeDescription.h"
 #import "PMTransientDependancyManager.h"
+#import "load-store-functions.h"
 #import "%!CLASS_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
@@ -10,74 +14,226 @@ foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
+//-----------------------------------------------------------------------------*
 
-//----------------------------------------------------------------------------*
+#import <objc/runtime.h>
+
+//-----------------------------------------------------------------------------*
 
 @implementation %!CLASS_NAME%
 
-//----------------------------------------------------------------------------*
-//    Synthesize properties                                                   *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    Synthesize properties                                                    *
+//-----------------------------------------------------------------------------*
 
 //--- Attributes
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %@dynamic %!mPropertyName% ;\n%
+%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %@synthesize %!mAttributeName% ;\n%
 end foreach
 %
 //--- To-one relationships
 %foreach TO_ONE_RELATIONSHIPS do
-%@dynamic %!mValue0% ; // %!mValue1%\n%
+%@synthesize %!mValue0% ; // %!mValue1%\n%
 end foreach%
 //--- To-many relationships
 %
 foreach TO_MANY_RELATIONSHIPS do
-%@dynamic %!mValue0% ; // Set of %!mValue1% entities\n%
+%@synthesize %!mValue0% ; // Set of %!mValue1% entities\n%
 end foreach
 %
-//----------------------------------------------------------------------------*
-//    Creation Class Method                                                   *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    Swizzle setters                                                          *
+//-----------------------------------------------------------------------------*
 
-+ (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext {
-  return [NSEntityDescription insertNewObjectForEntityForName:@"%!ENTITY_NAME%" inManagedObjectContext:inContext] ;
++ (void) load {
+  Method original ;
+  Method swizzled ;
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:)) ;\n%
+  %  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  method_exchangeImplementations (original, swizzled) ;\n%
+end foreach
+foreach TO_ONE_RELATIONSHIPS do
+  %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
+  %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  method_exchangeImplementations (original, swizzled) ;\n%
+end foreach
+foreach TO_MANY_RELATIONSHIPS do
+  %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
+  %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  method_exchangeImplementations (original, swizzled) ;\n%
+end foreach
+%}
+
+//-----------------------------------------------------------------------------*
+//    newInstanceWithManager:withDefaultValues:                                *
+//-----------------------------------------------------------------------------*
+
++ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
+                    withDefaultValues: (BOOL) inFlag {
+  return [inManager newInstanceOfEntity:[%!CLASS_NAME% class] withDefaultValues:inFlag] ;
 }
 
-//----------------------------------------------------------------------------*
-//    initWithEntity:insertIntoManagedObjectContext:                          *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    init                                                                     *
+//-----------------------------------------------------------------------------*
 
-- (%!CLASS_NAME% *) initWithEntity:(NSEntityDescription *) inEntity
-                    insertIntoManagedObjectContext:(NSManagedObjectContext *) inManagedObjectContext {
-  self = [super 
-    initWithEntity:inEntity
-    insertIntoManagedObjectContext:inManagedObjectContext
-  ] ;
+- (instancetype) init {
+  self = [super init] ;
   if (self) {
-  //--- Add Transient observers
-%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%
+foreach TO_MANY_RELATIONSHIPS do
+  %    self.%!mValue0% = [NSMutableArray new] ;\n%
+end foreach
 %  }
   return self ;
 }
 
-//----------------------------------------------------------------------------*
-//    objectWillBeDeallocated                                                 *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    buildAttributeDescriptionArray                                           *
+//-----------------------------------------------------------------------------*
 
-- (void) objectWillBeDeallocated {
-//--- Remove Transient observers
-%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
-%//---
-  [super objectWillBeDeallocated] ;
+- (void) buildAttributeDescriptionArray: (NSMutableArray *) ioDescriptionArray {
+  [super buildAttributeDescriptionArray:ioDescriptionArray] ;
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"%!mAttributeName%"]] ;\n%
+end foreach
+%}
+
+//-----------------------------------------------------------------------------*
+//    buildToOneRelationshipDescriptionArray                                   *
+//-----------------------------------------------------------------------------*
+
+- (void) buildToOneRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
+  [super buildToOneRelationshipDescriptionArray:ioDescriptionArray] ;
+%
+foreach CURRENT_RELATIONSHIP_LIST do
+  if not mIsToMany then
+    %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
+    %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
+    %    withOppositionRelationshipName:%!mInverseRelationshipName->string%\n%
+    %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
+    %  ]] ;\n%
+  end if
+end foreach
+%}
+
+//-----------------------------------------------------------------------------*
+//    buildToManyRelationshipDescriptionArray                                  *
+//-----------------------------------------------------------------------------*
+
+- (void) buildToManyRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
+  [super buildToManyRelationshipDescriptionArray:ioDescriptionArray] ;
+%
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+    %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
+    %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
+    %    withOppositionRelationshipName:%!mInverseRelationshipName->string%\n%
+    %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
+    %  ]] ;\n%
+  end if
+end foreach
+%}
+
+//-----------------------------------------------------------------------------*
+//    setUpWithDefaultValues                                                   *
+//-----------------------------------------------------------------------------*
+
+- (void) setUpWithDefaultValues {
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %  self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
+end foreach
+%  [super setUpWithDefaultValues] ;
 }
+
+//-----------------------------------------------------------------------------*
+//    resetBeforeDeletion                                                      *
+//-----------------------------------------------------------------------------*
+
+- (void) resetBeforeDeletion {
+%
+foreach CURRENT_RELATIONSHIP_LIST do
+  %  %!mRelationshipName->string% = nil ;\n%
+end foreach
+%  [super resetBeforeDeletion] ;
+}
+
+//-----------------------------------------------------------------------------*
+//    saveIntoDictionary                                                       *
+//-----------------------------------------------------------------------------*
+
+- (void) saveIntoDictionary: (NSMutableDictionary *) ioDictionary {
+  [super saveIntoDictionary:ioDictionary] ;
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %  store%![mType ebTypeName]%InDictionary (self.%!mAttributeName%, @"%!mAttributeName%", ioDictionary) ;\n%
+end foreach
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+    %  storeEntityArrayInDictionary (self.%!mRelationshipName->string%, @"%!mRelationshipName->string%", ioDictionary) ;\n%
+  else
+    %  storeEntityInDictionary (self.%!mRelationshipName->string%, @"%!mRelationshipName->string%", ioDictionary) ;\n%
+  end if
+end foreach
+%}
+
+//-----------------------------------------------------------------------------*
+//    setUpWithDictionary                                                      *
+//-----------------------------------------------------------------------------*
+
+- (void) setUpWithDictionary: (NSDictionary *) inDictionary
+         withManagedEntityArray: (NSArray *) inManagedEntityArray {
+  [super
+    setUpWithDictionary:inDictionary
+    withManagedEntityArray:inManagedEntityArray
+  ] ;
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %  self.%!mAttributeName% = read%![mType ebTypeName]%FromDictionary (@"%!mAttributeName%", inDictionary) ;\n%
+end foreach
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+    %  self.%!mRelationshipName->string% = readEntityFromDictionary (@"%!mRelationshipName->string%", ioDictionary, inManagedEntityArray) ;\n%
+  else
+    %  self.%!mRelationshipName->string% = readEntityArrayFromDictionary (@"%!mRelationshipName->string%", ioDictionary, inManagedEntityArray) ;\n%
+  end if
+end foreach
+%}
 
 %
 
-if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
-%//----------------------------------------------------------------------------*
-//    willChangeValueForKey:                                                  *
-//----------------------------------------------------------------------------*
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %//-----------------------------------------------------------------------------*\n%
+  %//    set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
+  %//-----------------------------------------------------------------------------*\n\n%
+  %- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {\n%
+  %  if (%![mType notEqualExpression !"inNewValue" !"self." . mAttributeName]%) {\n%
+  %  //--- Register old value in undo manager\n%
+  %    [[self.undoManager prepareWithInvocationTarget:self]\n%
+  %      set%![mAttributeName stringByCapitalizingFirstCharacter]%:self.%!mAttributeName%\n%
+  %    ] ;\n%
+  %  //--- Store new value\n%
+  %    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled :inNewValue] ;\n%
+  %  //--- Notify observers\n%
+  %    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;\n%
+  !generateTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+  if [SIGN_SET hasKey !mAttributeName] then
+    %    [self triggerSignatureComputing] ;\n%
+  end if
+  %  }\n%
+  %}\n\n%
+end foreach
 
-- (void) willChangeValueForKey: (NSString *) inKey {
+if [PROPERTY_AND_RELATIONSHIP_SET count] > 0 then
+%//-----------------------------------------------------------------------------*
+//    willChangeValueForKey:                                                  *
+//-----------------------------------------------------------------------------*
+
+/*- (void) willChangeValueForKey: (NSString *) inKey {
 %foreach TO_ONE_RELATIONSHIPS
 before %  %
 do %if ([inKey isEqualToString:@"%!mValue0%"]) {\n%
@@ -88,13 +244,13 @@ between %  }else %
 after %  }\n%
 end foreach
 %  [super willChangeValueForKey:inKey] ;
-}
+}*/
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 //    didChangeValueForKey:                                                   *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
-- (void) didChangeValueForKey: (NSString *) inKey {
+/*- (void) didChangeValueForKey: (NSString *) inKey {
   [super didChangeValueForKey:inKey] ;
 %foreach TO_ONE_RELATIONSHIPS
 before %  %
@@ -108,13 +264,13 @@ end foreach
 %  if (! self.isFault) {
     [self pmKeyDidChange:inKey] ;
   }
-}
+}*/
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 //    willChangeValueForKey:withSetMutation:usingObjects:                     *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
-- (void) willChangeValueForKey: (NSString *) inKey
+/*- (void) willChangeValueForKey: (NSString *) inKey
          withSetMutation: (NSKeyValueSetMutationKind) inMutationKind
          usingObjects: (NSSet *) inObjects {
 %foreach TO_MANY_RELATIONSHIPS
@@ -145,13 +301,13 @@ end foreach
     withSetMutation: inMutationKind
     usingObjects: inObjects
   ] ;
-}
+}*/
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 //    didChangeValueForKey:withSetMutation:usingObjects:                      *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
-- (void) didChangeValueForKey: (NSString *) inKey
+/*- (void) didChangeValueForKey: (NSString *) inKey
          withSetMutation: (NSKeyValueSetMutationKind) inMutationKind
          usingObjects: (NSSet *) inObjects {
   [super
@@ -179,13 +335,13 @@ end foreach
 %  if (! self.isFault) {
     [self pmKeyDidChange:inKey] ;
   }
-}
+}*/
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 //    pmKeyDidChange:                                                         *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
-- (void) pmKeyDidChange: (NSString *) inKey {
+/*- (void) pmKeyDidChange: (NSString *) inKey {
  %foreach PROPERTY_AND_RELATIONSHIP_SET do
 % if ([inKey isEqualToString:@"%!key%"]) {
     [%!key%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . key identifierRepresentation]%_didChange)] ;
@@ -196,14 +352,14 @@ end if
 between %  }else%
 end foreach
 %  }
-}
+}*/
 %end if
 
 if [SIGN_LIST length] > 0 then
 %
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 //    computeSignature                                                        *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (NSInteger) computeSignature {
   NSInteger signature = [super computeSignature] ;
@@ -215,31 +371,31 @@ end foreach
 %end if
 
 
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do%
-//----------------------------------------------------------------------------*
-//    %!mPropertyName% Observer                                               *
-//----------------------------------------------------------------------------*
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
+//-----------------------------------------------------------------------------*
+//    %!mAttributeName% Observer                                               *
+//-----------------------------------------------------------------------------*
 
-- (void) addObserverOf_%!mPropertyName%: (NSObject *) inObserver {
-  if (nil == %!mPropertyName%_observers) {
-    %!mPropertyName%_observers = [NSMutableSet new] ;
+- (void) addObserverOf_%!mAttributeName%: (NSObject *) inObserver {
+  if (nil == %!mAttributeName%_observers) {
+    %!mAttributeName%_observers = [NSMutableSet new] ;
   }
-  [%!mPropertyName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+  [%!mAttributeName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
-- (void) removeObserverOf_%!mPropertyName%: (NSObject *) inObserver {
-  [%!mPropertyName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mPropertyName identifierRepresentation]%_didChange)] ;
+- (void) removeObserverOf_%!mAttributeName%: (NSObject *) inObserver {
+  [%!mAttributeName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %
 end foreach
 
 foreach TO_MANY_RELATIONSHIPS do%
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) addObserverOf_%!mValue0%: (NSObject *) inObserver {
   if (nil == %!mValue0%_observers) {
@@ -249,7 +405,7 @@ foreach TO_MANY_RELATIONSHIPS do%
   [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver {
   [%!mValue0%_observers removeObject:inObserver] ;
@@ -262,5 +418,5 @@ end foreach
 !generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 
 !generateTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
-%//----------------------------------------------------------------------------*
+%//-----------------------------------------------------------------------------*
 

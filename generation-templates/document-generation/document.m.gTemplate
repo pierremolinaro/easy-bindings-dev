@@ -1,5 +1,4 @@
 #import "PMAllocationDebug.h"
-#import "managed-object-model.h"
 #import "easy-bindings-utilities.h"
 #import "PMTransientDependancyManager.h"
 #import "%!DOCUMENT_NAME%.h"
@@ -15,15 +14,6 @@ end foreach
 
 @implementation %!DOCUMENT_NAME%
 
-//---------------------------------------------------------------------------*
-//                           dealloc                                         *
-//---------------------------------------------------------------------------*
-
-- (void) dealloc {
-  macroReleaseSetToNil (mRootObject) ;
-  macroSuperDealloc ;
-}
-
 //----------------------------------------------------------------------------*
 //    windowNibName                                                           *
 //----------------------------------------------------------------------------*
@@ -33,43 +23,19 @@ end foreach
 }
 
 //----------------------------------------------------------------------------*
-//    rootObject                                                              *
+//    rootEntityClass                                                         *
 //----------------------------------------------------------------------------*
 
-- (PMManagedObject *) rootObject {
-  return mRootObject ;
+- (Class) rootEntityClass {
+  return [%!ROOT_ENTITY_CLASS_NAME% class] ;
 }
 
 //----------------------------------------------------------------------------*
-//    fetchRootObject                                                         *
+//    rootObject                                                              *
 //----------------------------------------------------------------------------*
 
-- (void) fetchRootObject { 
-  #ifdef EASY_BINDINGS_DEBUG
-    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
-  #endif
-  NSManagedObjectContext * moc = self.managedObjectContext ;
-  NSFetchRequest * fetch = [NSFetchRequest new] ;
-  fetch.entity = [NSEntityDescription
-    entityForName:@"%!ROOT_ENTITY_NAME%"
-    inManagedObjectContext:moc
-  ] ;
-  NSArray * array = [moc
-    executeFetchRequest:fetch
-    error:nil
-  ] ;
-  macroReleaseSetToNil (fetch) ;
-  if (array.count == 0) {
-    mRootObject = [NSEntityDescription
-      insertNewObjectForEntityForName:@"%!ROOT_ENTITY_NAME%"
-      inManagedObjectContext:moc
-    ] ;
-    macroRetain (mRootObject) ;
-    [self hookOfRootObjectDidCreate] ;
-  }else{
-    mRootObject = [array objectAtIndex:0] ;
-    macroRetain (mRootObject) ;
-  }
+- (%!ROOT_ENTITY_CLASS_NAME% *) rootObject {
+  return (%!ROOT_ENTITY_CLASS_NAME% *) mRootObject ;
 }
 
 //----------------------------------------------------------------------------*

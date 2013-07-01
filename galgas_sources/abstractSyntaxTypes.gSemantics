@@ -26,6 +26,7 @@ list @relationshipList {
   @lstring mDestinationEntityName ;
   @lstring mRelationshipName ;
   @lstring mInverseRelationshipName ;
+  @bool mInverseRelationIsToMany ;
   @deleteRuleEnum mDeleteRule ;
 }
 
