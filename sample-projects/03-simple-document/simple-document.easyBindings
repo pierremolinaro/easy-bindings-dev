@@ -3,7 +3,7 @@ enum MonEnumeration {premier, deuxieme, troisieme}
 
 #--------------------------------------------------------------*
 
-entity MyRootEntity class MyRootEntityClass {
+entity MyRootEntity {
   attribute NSString myString default "Hello" ;
   attribute MonEnumeration myEnumeration default deuxieme ;
   attribute NSColor myColor default yellowColor ;

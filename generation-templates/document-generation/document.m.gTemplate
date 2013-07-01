@@ -1,8 +1,9 @@
 #import "PMAllocationDebug.h"
 #import "easy-bindings-utilities.h"
 #import "PMTransientDependancyManager.h"
+#import "PMEntityArrayController.h"
 #import "%!DOCUMENT_NAME%.h"
-#import "%!ROOT_ENTITY_CLASS_NAME%.h"
+#import "%!ROOT_ENTITY_NAME%.h"
 %if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 %#import "%!DOCUMENT_NAME%-computations.h"\n%
 end if
@@ -27,15 +28,15 @@ end foreach
 //----------------------------------------------------------------------------*
 
 - (Class) rootEntityClass {
-  return [%!ROOT_ENTITY_CLASS_NAME% class] ;
+  return [%!ROOT_ENTITY_NAME% class] ;
 }
 
 //----------------------------------------------------------------------------*
 //    rootObject                                                              *
 //----------------------------------------------------------------------------*
 
-- (%!ROOT_ENTITY_CLASS_NAME% *) rootObject {
-  return (%!ROOT_ENTITY_CLASS_NAME% *) mRootObject ;
+- (%!ROOT_ENTITY_NAME% *) rootObject {
+  return (%!ROOT_ENTITY_NAME% *) mRootObject ;
 }
 
 //----------------------------------------------------------------------------*
@@ -49,15 +50,11 @@ end foreach
   [super windowControllerDidLoadNib:inWindowController] ;
 //--------------------------- Controller instanciation
 %
-foreach CONTROLLER_MAP
-before
-  %  NSManagedObjectContext * moc = self.managedObjectContext ;\n%
-do
+foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
   %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
   if mControlledClassOrEntityName->string != "" then
-    %  [%!lkey->string% setEntityName:@"%!mControlledClassOrEntityName->string%"] ;\n%
-    %  [%!lkey->string% setManagedObjectContext:moc] ;\n%
+    %  %!lkey->string%.objectClass = [@"%!mControlledClassOrEntityName->string%" class] ;\n%
   end if
 end foreach
 %//--------------------------- Controller bindings

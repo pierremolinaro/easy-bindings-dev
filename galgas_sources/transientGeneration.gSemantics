@@ -62,7 +62,7 @@ end reader ;
 override reader @transientDependencyFromRootForImplementation generateMasterAttributeCall
   ->@string outResult
 :
-  outResult := "mRootObject." . mMasterAttributeName ;
+  outResult := "self.rootObject." . mMasterAttributeName ;
   if mNamesCountOption then
     outResult .= ".count" ;
   end if ;
@@ -181,7 +181,7 @@ function generateTransientCacheRoutine
       else
         outResult .= ", " ;
       end if ;
-      outResult .= "mRootObject.signature" ;
+      outResult .= "self.rootObject.signature" ;
     end foreach ;
     outResult .= ") ;\n"
     "    " . mTransientName . "__computed = YES ;\n"
@@ -374,7 +374,7 @@ override method @transientDependencyFromRootForImplementation generateAddObserve
   ??@string inLeadingSpaces
   ?!@string ioResult
 :
-  ioResult .= inLeadingSpaces . "  [mRootObject addObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
+  ioResult .= inLeadingSpaces . "  [self.rootObject addObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -435,7 +435,7 @@ end method ;
 override method @transientDependencyFromRootForImplementation generateRemoveObserverForTransient
   ?!@string ioResult
 :
-  ioResult .= "  [mRootObject removeObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
+  ioResult .= "  [self.rootObject removeObserverOf_" . mMasterAttributeName . ":self] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*

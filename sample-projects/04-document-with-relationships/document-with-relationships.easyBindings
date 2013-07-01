@@ -1,11 +1,11 @@
-entity MyRootEntity class RootEntityClass {
-  toMany NameEntity mNames inverse mRoot cascade ;
+entity MyRootEntity {
+  toMany NameEntity mNames inverse toOne mRoot cascade ;
 }
 
 #--------------------------------------------------------------*
 
-entity NameEntity class NameEntityClass {
-  toOne MyRootEntity mRoot inverse mNames nullify ;
+entity NameEntity {
+  toOne MyRootEntity mRoot inverse toMany mNames nullify ;
   attribute NSString name default "Name" ;
   attribute integer aValue default 123 ;
 }
@@ -13,7 +13,7 @@ entity NameEntity class NameEntityClass {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  arrayController NSArrayController nameController
+  arrayController PMEntityArrayController nameController
     : root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
   ;
   outlet NSTableView namesTableView

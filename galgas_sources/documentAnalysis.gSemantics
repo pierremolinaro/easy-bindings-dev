@@ -54,7 +54,7 @@ local routine analyzeControllers
       end if ;
       [inEntityMap searchKey
         !destinationEntityName
-        ?10*
+        ?8*
         ?@propertyMap controlledObjectAllPropertyMap
         ?5*
       ] ;
@@ -67,7 +67,7 @@ local routine analyzeControllers
       bindingListForGeneration += ![@regularBindingForGeneration new
         !"contentObject"
         ![@formatterEnum noFormatter]
-        !"mRootObject"
+        !"self.rootObject"
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
       ] ;
@@ -88,7 +88,7 @@ local routine analyzeControllers
       end if ;
       [inEntityMap searchKey
         !destinationEntityName
-        ?10*
+        ?8*
         ?@propertyMap controlledObjectAllPropertyMap
         ?5*
       ] ;
@@ -99,9 +99,9 @@ local routine analyzeControllers
         ?@2stringlist controlledObjectBindingOptionListForGeneration
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        !"contentSet"
+        !"contentArray"
         ![@formatterEnum noFormatter]
-        !"mRootObject"
+        !"self.rootObject"
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
       ] ;
@@ -150,8 +150,6 @@ local routine analyzeDocument
 #------------------------------------------------ Get root object features
   [inEntityMap searchKey
     !inDocument->mRootEntityName
-    ?*
-    ?@string rootEntityImplementationClassName
     ?*
     ?@observablePropertyMap rootObjectObservablePropertyMap
     ?9*
@@ -236,7 +234,6 @@ local routine analyzeDocument
   [!?ioDocumentMap insertKey
     !inDocument->mDocumentName
     !inDocument->mRootEntityName->string
-    !rootEntityImplementationClassName
     !outletGenerationList
     !controllerMap
     !inDocument->mActionDeclarationList

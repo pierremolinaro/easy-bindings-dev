@@ -33,7 +33,7 @@ override method @tableValueBinding analyzeOutletBinding
     if isEntity then
       [inEntityMap searchKey
         !controlledClassOrEntityName
-        ?3*
+        ?*
         ?observablePropertyMap
         ?12*
       ] ;
@@ -218,7 +218,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
   if isEntity then
     [inEntityMap searchKey
       !controlledClassOrEntityName
-      ?3*
+      ?*
       ?observableAttributeMap
       ?12*
     ] ;      
@@ -653,7 +653,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
   if isEntity then
     [inEntityMap searchKey
       !controlledClassOrEntityName
-      ?3*
+      ?*
       ?observableAttributeMap
       ?12*
     ] ;      
