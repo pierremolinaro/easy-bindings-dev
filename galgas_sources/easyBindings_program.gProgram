@@ -194,7 +194,6 @@ message "a source text file with the .easyBindings extension"
   @stringset generateSet [emptySet] ;
   generateSet += !"easy-bindings-utilities" ;
   generateSet += !"PMAllocationDebug" ;
-  generateSet += !"PMWillDeallocProtocol" ;
   if [documentMap count] > 0 then
     generateSet += !"PMUndoManager" ;
     generateSet += !"PMManagedDocument" ;
@@ -203,19 +202,6 @@ message "a source text file with the .easyBindings extension"
     generateSet += !"NSData+PMGZcompression" ;
     generateSet += !"NSMutableData+PMWrites" ;
     generateSet += !"PMDataScanner" ;
-
-
-
-    generateSet += !"PMAbstractPersistentDocument" ;
-    generateSet += !"PMBinaryFlatDocument" ;
-    generateSet += !"PMbz2DataCategory" ;
-    generateSet += !"PMzlibDataCategory" ;
-    generateSet += !"PMEmbeddedEntityDatabase" ;
-    generateSet += !"PMEmbeddedObjectDatabase" ;
-    generateSet += !"PMLoadedEntityDatabase" ;
-    generateSet += !"PMLoadedEntityDescription" ;
-    generateSet += !"PMLoadedObjectDatabase" ;
-    generateSet += !"PMMutableDataWriteCategory" ;
   end if ;
   if [entityListForGeneration length] > 0 then
     generateSet += !"load-store-functions" ;
@@ -223,8 +209,6 @@ message "a source text file with the .easyBindings extension"
     generateSet += !"PMEntityManager" ;
     generateSet += !"PMAttributeDescription" ;
     generateSet += !"PMRelationshipDescription" ;
-
-    generateSet += !"PMManagedObject" ;
   end if ;
 #---
   @filewrapper fw := [filewrapper objective_c_sources] ;

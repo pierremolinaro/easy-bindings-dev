@@ -153,6 +153,14 @@ NSFont * fontFromData (NSData * inDataEncodeFont) ;
 //---------------------------------------------------------------------------*
 
 #if __has_feature(objc_arc)
+  #define macroAssign(OBJECT,SOURCE) OBJECT = SOURCE ;
+#else
+  #define macroAssign(OBJECT,SOURCE) [SOURCE retain] ; [OBJECT release] ; OBJECT = SOURCE ;
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
   #define macroReleaseSetToNil(OBJECT) OBJECT = nil
 #else
   #define macroReleaseSetToNil(OBJECT) { [OBJECT release] ; OBJECT = nil ; }
@@ -164,6 +172,22 @@ NSFont * fontFromData (NSData * inDataEncodeFont) ;
   #define macroAutorelease(OBJECT)
 #else
   #define macroAutorelease(OBJECT) [OBJECT autorelease]
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define ARC_BRIDGE_RETAINED_VOID(OBJECT) ((__bridge_retained void *) OBJECT)
+#else
+  #define ARC_BRIDGE_RETAINED_VOID(OBJECT) [OBJECT retain]
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if __has_feature(objc_arc)
+  #define ARC_BRIDGE_TRANSFER __bridge_transfer
+#else
+  #define ARC_BRIDGE_TRANSFER
 #endif
 
 //---------------------------------------------------------------------------*

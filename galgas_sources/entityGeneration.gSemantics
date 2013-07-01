@@ -4,19 +4,6 @@ semantics entityGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper momGenerationTemplate in "../generation-templates/managed-object-model" {
-}{
-}{
-  template momHeader "managed-object-model.h.gTemplate" ;
-  template momImplementation "managed-object-model.m.gTemplate"
-   ?@entityListForGeneration ENTITY_LIST_FOR_GENERATION
-   ?@string ENTITY_DEFINITIONS
-   ?@stringset FILE_INCLUSION_SET
-  ;
-}
-
-#----------------------------------------------------------------------------*
-
 local filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
 }{
 }{
@@ -194,108 +181,6 @@ routine generateEntityCode
           ] ;
       end foreach ;
     end foreach ;
-  #--- Generate managed object model header file
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !"managed-object-model.h"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      ![filewrapper momGenerationTemplate.momHeader]
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-  #--- Generate managed object model header file
-    @stringset fileInclusionSet [emptySet] ;
-    @string s := "" ;
-    @bool hasAttributes := false ;
-    foreach inEntityListForGeneration while not hasAttributes do
-      hasAttributes := [mAttributeListForImplementation length] > 0 ;
-    end foreach ;
-    @bool hasRelationships := false ;
-    foreach inEntityListForGeneration while not hasRelationships do
-      hasRelationships := [mAllRelationshipMap count] > 0 ;
-    end foreach ;
-    if hasAttributes | hasRelationships then
-      s .= "  NSMutableArray * properties = nil ;\n" ;
-    end if ;
-    if hasAttributes then
-      s .= "  NSAttributeDescription * attribute = nil ;\n" ;
-    end if ;
-    if hasRelationships then
-      s .= "  NSRelationshipDescription * relationship = nil ;\n" ;
-      s .= "  NSRelationshipDescription * inverseRelationship = nil ;\n" ;
-      s .= "  NSEntityDescription * entityDescription = nil ;\n" ;
-      s .= "  NSEntityDescription * inverseEntityDescription = nil ;\n" ;
-    end if ;
-    foreach inEntityListForGeneration do
-      s .= "//-------------------------- Entity '" . mEntityName . "'\n" ;
-      s .= "  entity = [entityDictionary objectForKey:@\"" . mEntityName . "\"] ;\n" ;
-      s .= "  [entity setManagedObjectClassName:@\"" . mImplementationClassName . "\"] ;\n" ;
-      const @stringlist subEntities := [subEntitiesMap listForKey !mEntityName] ;
-      foreach subEntities
-      before s .= "  [entity setSubentities:[NSArray arrayWithObjects:" ;
-      do s .= "[entityDictionary objectForKey:@\"" . mValue . "\"], " ;    
-      after s .= "nil]] ;\n" ;
-      end foreach ;
-      s .= "  properties = [NSMutableArray new] ;\n" ;
-    #--- Attributes
-      foreach mAttributeListForImplementation do
-        s .= "//--- '" . mPropertyName . "' attribute\n" ;
-        s .= "  attribute = [NSAttributeDescription new] ;\n" ;
-        s .= "  [attribute setName:@\"" . mPropertyName . "\"] ;\n" ;
-        const @string valueTransformerName := [mType valueTransformerName] ;
-        if valueTransformerName == "" then
-          s .= "  [attribute setAttributeType:" . [mType typeForEntityDescription] . "] ;\n" ;
-        else
-          s .= "  [attribute setAttributeType:NSTransformableAttributeType] ;\n" ;
-          s .= "  [attribute setValueTransformerName:" . valueTransformerName . "] ;\n" ;
-        end if ;
-        s .= "  [attribute setDefaultValue:" . mDefaultValueAsObjectiveCObject . "] ;\n" ;
-        s .= "  [properties addObject:attribute] ;\n" ;
-        s .= "  macroReleaseSetToNil (attribute) ;\n" ;
-        [mType addFileInclusion !?fileInclusionSet] ;
-      end foreach ;
-    #--- relationships
-      foreach mCurrentRelationshipMap do
-        s .= "//--- '" . lkey . "' relationship\n" ;
-        s .= "  relationship = [NSRelationshipDescription new] ;\n" ;
-        s .= "  [relationship setName:@\"" . lkey . "\"] ;\n" ;
-        s .= "  [relationship setDestinationEntity:[entityDictionary objectForKey:@\"" . mDestinationEntityName . "\"]] ;\n" ;
-        s .= "  [relationship setDeleteRule:" . [mDeleteRule name] . "] ;\n" ;
-        s .= "  [relationship setMinCount:0] ;\n" ;
-        s .= "  [relationship setMaxCount:" . if mIsToMany then "NSUIntegerMax" else "1" end . "] ;\n" ;
-        s .= "  [properties addObject:relationship] ;\n" ;
-        s .= "  macroReleaseSetToNil (relationship) ;\n" ;
-      end foreach ;
-      s .= "//---\n" ;
-      s .= "  [entity setProperties:properties] ;\n" ;
-      s .= "  macroReleaseSetToNil (properties) ;\n" ;
-    end foreach ;  
-  #--- Set inverse relation ships
-    s .= "//-------------------------- Set inverse relationships\n" ;
-    foreach inEntityListForGeneration prefixedby entity_ do
-      foreach entity_mCurrentRelationshipMap
-      before
-        s .= "//------ Entity '" . entity_mEntityName . "'\n" ;
-        s .= "  entityDescription = [entityDictionary objectForKey:@\"" . entity_mEntityName . "\"] ;\n" ;
-      do
-        s .= "//--- '" . lkey . "' relationship\n" ;
-        s .= "  relationship = [[entityDescription relationshipsByName] objectForKey:@\"" . lkey . "\"] ;\n" ;
-        s .= "  inverseEntityDescription = [entityDictionary objectForKey:@\"" . mDestinationEntityName . "\"] ;\n" ;
-        s .= "  inverseRelationship = [[inverseEntityDescription relationshipsByName] objectForKey:@\"" . mInverseRelationshipName . "\"] ;\n" ;
-        s .= "  [relationship setInverseRelationship:inverseRelationship] ;\n" ;
-      end foreach ;
-    end foreach ;  
-  #--- Generate file
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !"managed-object-model.m"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      ![filewrapper momGenerationTemplate.momImplementation !inEntityListForGeneration !s !fileInclusionSet]
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
   end if ;
 end routine ;
 
