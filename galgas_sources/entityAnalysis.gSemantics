@@ -16,14 +16,11 @@ local routine analyzeEntity
   @observablePropertyMap observablePropertyMap ;
   @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
   @relationshipList allRelationshipList ;
-  @string implementationSuperClassName ;
   @propertyMap allPropertyMap ;
   @relationshipMap allRelationshipMap ;
   if [inEntity->mSuperEntityName string] != "" then
     [ioEntityMap searchKey
       !inEntity->mSuperEntityName
-      ?*
-      ?implementationSuperClassName
       ?*
       ?observablePropertyMap
       ?propertyListForInitMethodHeader
@@ -37,7 +34,6 @@ local routine analyzeEntity
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
     propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
-    implementationSuperClassName := "" ;
     allRelationshipList := [@relationshipList emptyList] ;
     allPropertyMap := [@propertyMap emptyMap] ;
     allRelationshipMap := [@relationshipMap emptyMap] ;
@@ -149,8 +145,6 @@ local routine analyzeEntity
   [!?ioEntityMap insertKey
     !inEntity->mEntityName
     !inEntity->mSuperEntityName->string
-    !inEntity->mImplementationClassName->string
-    !implementationSuperClassName
     !observablePropertyMap
     !propertyListForInitMethodHeader
     !inheritedAttributeListForImplementation
@@ -192,7 +186,7 @@ routine analyzeEntities
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
       @relationshipMap destinationEntityRelationshipMap ;
-      [outEntityMap searchKey !mDestinationEntityName ?13* ?destinationEntityRelationshipMap ?2*] ;
+      [outEntityMap searchKey !mDestinationEntityName ?11* ?destinationEntityRelationshipMap ?2*] ;
       @lstring inverseOfInverseRelationshipName ;
       [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?inverseOfInverseRelationshipName ?*] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
@@ -211,18 +205,17 @@ routine analyzeEntities
     foreach mCurrentRelationshipMap do
       if mIsToMany then
         toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
+        headerFilePredeclarationSet += !mDestinationEntityName->string ;
+        implementationFileInclusionSet += !mDestinationEntityName->string ;
       else
-        [outEntityMap searchKey !mDestinationEntityName ?* ?@string implementationClassName ?14*] ;
-        toOneRelationshipList += !lkey->string !implementationClassName ;
-        headerFilePredeclarationSet += !implementationClassName ;
-        implementationFileInclusionSet += !implementationClassName ;
+        toOneRelationshipList += !lkey->string !mDestinationEntityName->string ;
+        headerFilePredeclarationSet += !mDestinationEntityName->string ;
+        implementationFileInclusionSet += !mDestinationEntityName->string ;
       end if ;
     end foreach ;
     outEntityListForGeneration +=
       !lkey->string
       !mSuperEntityName
-      !mImplementationClassName
-      !mSuperImplementationClassName
       !mObservablePropertyMap
       !mAttributeListForInitMethodHeader
       !mInheritedAttributeListForImplementation

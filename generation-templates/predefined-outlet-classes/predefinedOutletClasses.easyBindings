@@ -97,6 +97,28 @@ predefined arrayController NSArrayController {
   # Warning: skipped $filterPredicate binding
 }
 
+predefined arrayController PMEntityArrayController {
+  NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
+  NSConditionallySetsEditableBindingOption : bool ;
+  NSDeletesObjectsOnRemoveBindingsOption : bool ;
+  NSHandlesContentAsCompoundValueBindingOption : bool ;
+  NSRaisesForNotApplicableKeysBindingOption : bool ;
+  NSSelectsAllWhenSettingContentBindingOption : bool ;
+  NSValidatesImmediatelyBindingOption : bool ;
+}{
+  action add ;
+  action remove ;
+  attribute bool canAdd ;
+  attribute bool canRemove ;
+  $editable : bool {
+    NSMultipleValuesPlaceholder : bool ;
+    NSNullPlaceholder : bool ;
+    NSNotApplicablePlaceholder : bool ;
+    NSNoSelectionPlaceholder : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
+}
+
 predefined outletClass NSBox {
   $hidden : bool {
     NSMultipleValuesPlaceholder : bool ;

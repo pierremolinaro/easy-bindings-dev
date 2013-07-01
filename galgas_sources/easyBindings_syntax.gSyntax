@@ -629,8 +629,6 @@ rule <entity_declaration>
     $:$ ;
     $Identifier$ ? superEntityName ;
   end select ;
-  $class$ ;
-  $Identifier$ ? @lstring implementationClassName ;
   ${$ ;
   @attributeList attributeList [emptyList] ;
   @transientList classTransientList [emptyList] ;
@@ -696,7 +694,6 @@ rule <entity_declaration>
   ioEntityList +=
     !entityName
     !superEntityName
-    !implementationClassName
     !attributeList
     !classTransientList
     !relationshipList

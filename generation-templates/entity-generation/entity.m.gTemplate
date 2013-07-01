@@ -5,10 +5,10 @@
 #import "PMAttributeDescription.h"
 #import "PMTransientDependancyManager.h"
 #import "load-store-functions.h"
-#import "%!CLASS_NAME%.h"
+#import "%!ENTITY_NAME%.h"
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
-  %#import "%!CLASS_NAME%-transient-computations.h"\n%
+  %#import "%!ENTITY_NAME%-transient-computations.h"\n%
 end if
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
@@ -20,7 +20,7 @@ end foreach
 
 //-----------------------------------------------------------------------------*
 
-@implementation %!CLASS_NAME%
+@implementation %!ENTITY_NAME%
 
 //-----------------------------------------------------------------------------*
 //    Synthesize properties                                                    *
@@ -70,9 +70,9 @@ end foreach
 //    newInstanceWithManager:withDefaultValues:                                *
 //-----------------------------------------------------------------------------*
 
-+ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
++ (%!ENTITY_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
                     withDefaultValues: (BOOL) inFlag {
-  return [inManager newInstanceOfEntity:[%!CLASS_NAME% class] withDefaultValues:inFlag] ;
+  return [inManager newInstanceOfEntity:[%!ENTITY_NAME% class] withDefaultValues:inFlag] ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -113,7 +113,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
     %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
     %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
-    %    withOppositionRelationshipName:%!mInverseRelationshipName->string%\n%
+    %    withOppositionRelationshipName:@"%!mInverseRelationshipName->string%"\n%
     %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
     %  ]] ;\n%
   end if
@@ -131,7 +131,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
     %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
-    %    withOppositionRelationshipName:%!mInverseRelationshipName->string%\n%
+    %    withOppositionRelationshipName:@"%!mInverseRelationshipName->string%"\n%
     %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
     %  ]] ;\n%
   end if
@@ -197,14 +197,146 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 end foreach
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-    %  self.%!mRelationshipName->string% = readEntityFromDictionary (@"%!mRelationshipName->string%", ioDictionary, inManagedEntityArray) ;\n%
+    %  self.%!mRelationshipName->string% = readEntityArrayFromDictionary (@"%!mRelationshipName->string%", inDictionary, inManagedEntityArray) ;\n%
   else
-    %  self.%!mRelationshipName->string% = readEntityArrayFromDictionary (@"%!mRelationshipName->string%", ioDictionary, inManagedEntityArray) ;\n%
+    %  self.%!mRelationshipName->string% = readEntityFromDictionary (@"%!mRelationshipName->string%", inDictionary, inManagedEntityArray) ;\n%
   end if
 end foreach
 %}
 
 %
+
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+    %//-----------------------------------------------------------------------------*\n%
+    %//    set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled: (NSMutableArray *) inNewArray {\n%
+    %  NSMutableArray * currentArray = self.%!mRelationshipName->string% ;\n%
+    %  if (inNewArray != currentArray) {\n%
+    %  //--- Register old value in undo manager\n%
+    %    [[self.undoManager prepareWithInvocationTarget:self]\n%
+    %      set%![mRelationshipName stringByCapitalizingFirstCharacter]%:currentArray\n%
+    %    ] ;\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %  //--- Remove signature observer from old object\n%
+      %    [self.%!mRelationshipName->string% removeSignatureObserver:self] ;\n%
+    end if
+    %  //--- Store new value\n%
+    %    [self set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled :inNewArray] ;\n%
+    %  //--- Removed object set\n%
+    %    NSMutableSet * removedObjectSet = [NSMutableSet new] ;\n%
+    %    [removedObjectSet addObjectsFromArray:currentArray] ;\n%
+    %    [removedObjectSet minusSet:[NSSet setWithArray:inNewArray]] ;\n%
+    %    for (%!mDestinationEntityName->string% * object in removedObjectSet) {\n%
+    %      object.%!mInverseRelationshipName->string% = nil ;\n%
+    %    }\n%
+    %    macroReleaseSetToNil (removedObjectSet) ;\n%
+    %  //--- Added object set\n%
+    %    NSMutableSet * addedObjectSet = [NSMutableSet new] ;\n%
+    %    [addedObjectSet addObjectsFromArray:inNewArray] ;\n%
+    %    [addedObjectSet minusSet:[NSSet setWithArray:currentArray]] ;\n%
+    %    for (%!mDestinationEntityName->string% * object in addedObjectSet) {\n%
+    %      object.%!mInverseRelationshipName->string% = self ;\n%
+    %    }\n%
+    %    macroReleaseSetToNil (addedObjectSet) ;\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %  //--- Add signature observer to new object\n%
+      %    [self.%!mRelationshipName->string% addSignatureObserver:self] ;\n%
+      %  //--- Trigger signature computing\n%
+      %    [self triggerSignatureComputing] ;\n%
+    end if
+    !generateTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+    %  }\n%
+    %}\n\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) insertObject: (%!mDestinationEntityName->string% *) inObject\n%
+    %         in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: (NSUInteger) inIndex {\n%
+    %  const NSUInteger idx = [%!mRelationshipName->string% indexOfObject:inObject] ;\n%
+    %  if (idx == NSNotFound) {\n%
+    %  //---\n%
+    %    [%!mRelationshipName->string% insertObject:inObject atIndex:inIndex] ;\n%
+    %  //---\n%
+    %    [self.undoManager\n%
+    %      registerUndoWithTarget:self\n%
+    %      selector:@selector (removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%:)\n%
+    %      object:inObject\n%
+    %    ] ;\n%
+    %  //---\n%
+    %    inObject.%!mInverseRelationshipName->string% = self ;\n%
+    %  }else if (idx != inIndex) {\n%
+    %\n%
+    %  }\n%
+    %}\n\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: (NSUInteger) inIndex {\n%
+    %  %!mDestinationEntityName->string% * removedObject = [%!mRelationshipName->string% objectAtIndex:inIndex] ;\n%
+    %//---\n%
+    %  [%!mRelationshipName->string% removeObjectAtIndex:inIndex] ;\n%
+    %//---\n%
+    %  [[self.undoManager prepareWithInvocationTarget:self]\n%
+    %    insertObject:removedObject\n%
+    %    in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex\n%
+    %  ] ;\n%
+    %//---\n%
+    %  removedObject.%!mInverseRelationshipName->string% = nil ;\n%
+    %}\n\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]%: (%!mDestinationEntityName->string% *) inObject {\n%
+    %  if (! [self.%!mRelationshipName->string% containsObject:inObject]) {\n%
+    %    [self\n%
+    %      insertObject:inObject\n%
+    %      in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:self.%!mRelationshipName->string%.count\n%
+    %    ] ;\n%
+    %  }\n%
+    %}\n\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%: (%!mDestinationEntityName->string% *) inObject {\n%
+    %  const NSUInteger idx = [self.%!mRelationshipName->string% indexOfObject:inObject] ;\n%
+    %  if (NSNotFound != idx) {\n%
+    %    [self removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:idx] ;\n%
+    %  }\n%
+    %}\n\n%
+  end if
+end foreach
+
+foreach CURRENT_RELATIONSHIP_LIST do
+  if not mIsToMany then
+    %//-----------------------------------------------------------------------------*\n%
+    %//    set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
+    %//-----------------------------------------------------------------------------*\n\n%
+    %- (void) set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled: (%!mDestinationEntityName->string% *) inNewObject {\n%
+    %  %!mDestinationEntityName->string% * currentObject = self.%!mRelationshipName->string% ;\n%
+    %  if (inNewObject != currentObject) {\n%
+    %  //--- Register old value in undo manager\n%
+    %    [[self.undoManager prepareWithInvocationTarget:self]\n%
+    %      set%![mRelationshipName stringByCapitalizingFirstCharacter]%:currentObject\n%
+    %    ] ;\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %  //--- Remove signature observer from old object\n%
+      %    [self.%!mRelationshipName->string% removeSignatureObserver:self] ;\n%
+    end if
+    %  //--- Store new value\n%
+    %    [self set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled :inNewObject] ;\n%
+    %  //--- Set opposite relation ship\n%
+    if mInverseRelationIsToMany then
+      %    [currentObject removeObjectFrom%![mInverseRelationshipName stringByCapitalizingFirstCharacter]%:self] ;\n%
+      %    [inNewObject appendTo%![mInverseRelationshipName stringByCapitalizingFirstCharacter]%:self] ;\n%
+    else
+      %    currentObject.%!mInverseRelationshipName->string% = nil ;\n%
+      %    inNewObject.%!mInverseRelationshipName->string% = self ;\n%
+    end if
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %  //--- Add signature observer to new object\n%
+      %    [self.%!mRelationshipName->string% addSignatureObserver:self] ;\n%
+      %  //--- Trigger signature computing\n%
+      %    [self triggerSignatureComputing] ;\n%
+    end if
+    !generateTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+    %  }\n%
+    %}\n\n%
+  end if
+end foreach
 
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %//-----------------------------------------------------------------------------*\n%
@@ -213,9 +345,17 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {\n%
   %  if (%![mType notEqualExpression !"inNewValue" !"self." . mAttributeName]%) {\n%
   %  //--- Register old value in undo manager\n%
-  %    [[self.undoManager prepareWithInvocationTarget:self]\n%
-  %      set%![mAttributeName stringByCapitalizingFirstCharacter]%:self.%!mAttributeName%\n%
-  %    ] ;\n%
+  if [mType isClass] then
+    %    [self.undoManager\n%
+    %      registerUndoWithTarget:self\n%
+    %      selector:@selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:)\n%
+    %      object:self.%!mAttributeName%\n%
+    %    ] ;\n%
+  else
+    %    [[self.undoManager prepareWithInvocationTarget:self]\n%
+    %      set%![mAttributeName stringByCapitalizingFirstCharacter]%:self.%!mAttributeName%\n%
+    %    ] ;\n%
+  end if
   %  //--- Store new value\n%
   %    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled :inNewValue] ;\n%
   %  //--- Notify observers\n%
@@ -417,6 +557,6 @@ end foreach
 
 !generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 
-!generateTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+!generateTransientCacheRoutine [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//-----------------------------------------------------------------------------*
 

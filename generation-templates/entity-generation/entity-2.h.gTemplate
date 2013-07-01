@@ -1,30 +1,34 @@
 
 //--- To-one relationships
 %foreach TO_ONE_RELATIONSHIPS do
-%  @property (strong) %!mValue1% * %!mValue0% ;\n%
+%@property (strong) %!mValue1% * %!mValue0% ;\n%
 end foreach%
 //--- To-many relationships
 %foreach TO_MANY_RELATIONSHIPS do
-%  @property (strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
-%  - (void) addObserverOf_%!mValue0%: (NSObject *) inObserver ;\n%
-%  - (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver ;\n\n%
+%@property (strong) NSMutableArray * %!mValue0% ; // Set of %!mValue1% entities\n%
+%- (void) appendTo%![mValue0 stringByCapitalizingFirstCharacter]%: (%!mValue1% *) inObject ;\n%
+%- (void) removeObjectFrom%![mValue0 stringByCapitalizingFirstCharacter]%: (%!mValue1% *) inObject ;\n%
+%- (void) addObserverOf_%!mValue0%: (NSObject *) inObserver ;\n%
+%- (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver ;\n\n%
 end foreach
 
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mAttributeName%' attribute\n%
-%  @property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
-%  - (void) addObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n%
-%  - (void) removeObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n\n%
+%@property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
+%- (void) addObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n%
+%- (void) removeObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n\n%
 end foreach
+
+
 %//--- Transient properties
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 //--- Creation
-  + (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
++ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
                       withDefaultValues: (BOOL) inFlag ;
 %if [SIGN_LIST length] > 0 then
-%  - (NSInteger) computeSignature ;\n%
+%- (NSInteger) computeSignature ;\n%
 end if%
 @end
 

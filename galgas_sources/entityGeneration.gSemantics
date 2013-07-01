@@ -28,7 +28,6 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
   
   template entityImplementation "entity.m.gTemplate"
     ?@string ENTITY_NAME
-    ?@string CLASS_NAME
     ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
@@ -85,8 +84,8 @@ routine generateEntityCode
       end if ;
     #--- Header
       @string s := [filewrapper entityGenerationTemplate.entityDeclaration1
-        !mImplementationClassName
-        !mSuperImplementationClassName
+        !mEntityName
+        !mSuperEntityName
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mToManyRelationshipList
@@ -94,7 +93,7 @@ routine generateEntityCode
         !mHeaderFilePredeclarationSet
       ] ;
       @string s2 := [filewrapper entityGenerationTemplate.entityDeclaration2
-        !mImplementationClassName
+        !mEntityName
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mToManyRelationshipList
@@ -103,7 +102,7 @@ routine generateEntityCode
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
-        !mImplementationClassName . ".h"
+        !mEntityName . ".h"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
@@ -125,7 +124,6 @@ routine generateEntityCode
       end foreach ;
       s := [filewrapper entityGenerationTemplate.entityImplementation
         !mEntityName
-        !mImplementationClassName
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
@@ -141,7 +139,7 @@ routine generateEntityCode
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
-        !mImplementationClassName . ".m"
+        !mEntityName . ".m"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
@@ -151,12 +149,12 @@ routine generateEntityCode
     #--- Transient computation function header file
       if [mTransientListForImplementation length] > 0 then
         s := [filewrapper entityGenerationTemplate.entityTransientComputationsHeaderFile
-          !mImplementationClassName
+          !mEntityName
           !mTransientListForImplementation
         ] ;
         [@string generateFileWithPattern
           !inOutputDirectory
-          !mImplementationClassName . "-transient-computations.h"
+          !mEntityName . "-transient-computations.h"
           !"//"
           !"\n\n" # Defaut user zone1
           !s
@@ -167,7 +165,7 @@ routine generateEntityCode
     #--- Transient computation function implementation files
       foreach mTransientListForImplementation do
           s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFile
-            !mImplementationClassName
+            !mEntityName
             !mTransientType
             !mTransientName
             !mDependencyList

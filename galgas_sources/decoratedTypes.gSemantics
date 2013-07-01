@@ -29,8 +29,6 @@ map @classMap {
 
 map @entityMap {
   @string mSuperEntityName ;
-  @string mImplementationClassName ;
-  @string mSuperImplementationClassName ;
   @observablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
@@ -60,8 +58,6 @@ list @signListForGeneration {
 list @entityListForGeneration {
   @string mEntityName ;
   @string mSuperEntityName ;
-  @string mImplementationClassName ;
-  @string mSuperImplementationClassName ;
   @observablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
@@ -125,7 +121,6 @@ map @protocolMap {
 
 map @documentMap {
   @string mRootEntityName ;
-  @string mRootEntityImplementationClassName ;
   @outletGenerationList mOutletDeclarationList ;
   @controllerMap mControllerMap ;
   @lstringlist mActionList ;

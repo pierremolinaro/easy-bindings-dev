@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------*
 
 @class PMEntityArrayController ;
-// @class %!ROOT_ENTITY_CLASS_NAME% ;
+// @class %!ROOT_ENTITY_NAME% ;
 %foreach HEADER_FILE_PREDECLARATION_SET do
 %@class %!key% ;\n%
 end foreach

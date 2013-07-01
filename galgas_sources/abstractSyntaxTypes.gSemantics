@@ -103,7 +103,6 @@ list @classList {
 list @entityList {
   @lstring mEntityName ;
   @lstring mSuperEntityName ;
-  @lstring mImplementationClassName ;
   @attributeList mAttributeList ;
   @transientList mTransientList ;
   @relationshipList mRelationshipList ;
