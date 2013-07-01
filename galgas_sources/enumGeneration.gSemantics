@@ -11,6 +11,10 @@ local filewrapper enumGenerationTemplate in "../generation-templates/enum-genera
     ?@string ENUM_TYPE_NAME
     ?@lstringlist CONSTANT_ORDERED_LIST
   ;
+  template enumGeneration "enum.m.gTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -28,6 +32,19 @@ routine generateEnumerations
       [@string generateFileWithPattern
         !inOutputDirectory
         ![lkey string] . ".h"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+      s := [filewrapper enumGenerationTemplate.enumGeneration
+        ![lkey string]
+        !mConstantOrderedList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        ![lkey string] . ".m"
         !"//"
         !"\n\n" # Defaut user zone1
         !s

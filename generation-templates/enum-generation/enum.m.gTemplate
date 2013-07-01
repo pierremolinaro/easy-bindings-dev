@@ -1,0 +1,41 @@
+#import "%!ENUM_TYPE_NAME%.h"
+#import "load-store-functions.h"
+
+//-----------------------------------------------------------------------------*
+
+NSString * convert%!ENUM_TYPE_NAME%ValueToString (NSNumber * inValue) {
+  NSString * result = nil ;
+  switch (inValue.unsignedIntegerValue) { 
+%
+foreach CONSTANT_ORDERED_LIST do
+   %    case %!mValue->string% : result = @"%!mValue->string%" ;\n%
+   %    break ;\n%
+end foreach
+%  }
+  return result ;
+}
+
+//-----------------------------------------------------------------------------*
+
+void store%!ENUM_TYPE_NAME%InDictionary (const %!ENUM_TYPE_NAME% inValue,
+                               NSString * inKey,
+                               NSMutableDictionary * ioDictionary) {
+  storeNSIntegerInDictionary (inValue, inKey, ioDictionary) ;
+}
+
+//-----------------------------------------------------------------------------*
+
+%!ENUM_TYPE_NAME% read%!ENUM_TYPE_NAME%FromDictionary (NSString * inKey,
+                                NSDictionary * inDictionary) {
+  return readNSIntegerFromDictionary (inKey, inDictionary) ;
+}
+
+//-----------------------------------------------------------------------------*
+
+BOOL equal%!ENUM_TYPE_NAME%s (const %!ENUM_TYPE_NAME% inValue1,
+                              const %!ENUM_TYPE_NAME% inValue2) {
+  return inValue1 == inValue2 ;
+}
+
+//----------------------------------------------------------------------------*
+
