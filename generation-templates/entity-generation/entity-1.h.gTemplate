@@ -1,5 +1,5 @@
 %if SUPER_CLASS_NAME == "" then
-  %#import "PMManagedObject.h"\n%
+  %#import "PMManagedEntity.h"\n%
 else
   %#import "%!SUPER_CLASS_NAME%.h"\n%
 end if
@@ -10,19 +10,20 @@ end foreach
 %foreach HEADER_PREDECLARATION_SET do
   %@class %!key% ;\n%
 end foreach
-%
+%@class PMEntityManager ;
+
 //----------------------------------------------------------------------------*
 
 @interface %!CLASS_NAME% : %
 if SUPER_CLASS_NAME == "" then
-  %PMManagedObject%
+  %PMManagedEntity%
 else
   !SUPER_CLASS_NAME
 end if
 % {
 //--- Attribute observers
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
+%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end foreach
 %
 //--- To-many relationships observers

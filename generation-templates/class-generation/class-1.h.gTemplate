@@ -18,7 +18,7 @@ end if
 % {
 //--- Attribute observers
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
+%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end foreach
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do

@@ -1,27 +1,28 @@
 
 //--- To-one relationships
 %foreach TO_ONE_RELATIONSHIPS do
-%  @property(strong) %!mValue1% * %!mValue0% ;\n%
+%  @property (strong) %!mValue1% * %!mValue0% ;\n%
 end foreach%
 //--- To-many relationships
 %foreach TO_MANY_RELATIONSHIPS do
-%  @property(strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
+%  @property (strong) NSSet * %!mValue0% ; // Set of %!mValue1% entities\n%
 %  - (void) addObserverOf_%!mValue0%: (NSObject *) inObserver ;\n%
 %  - (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver ;\n\n%
 end foreach
 
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mPropertyName%' attribute\n%
-%  @property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
-%  - (void) addObserverOf_%!mPropertyName%: (NSObject *) inObserver ;\n%
-%  - (void) removeObserverOf_%!mPropertyName%: (NSObject *) inObserver ;\n\n%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%//--- '%!mAttributeName%' attribute\n%
+%  @property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
+%  - (void) addObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n%
+%  - (void) removeObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n\n%
 end foreach
 %//--- Transient properties
 %foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 //--- Creation
-  + (%!CLASS_NAME% *) pmInsertNewObjectIntoManagedObjectContext:(NSManagedObjectContext *) inContext ;
+  + (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
+                      withDefaultValues: (BOOL) inFlag ;
 %if [SIGN_LIST length] > 0 then
 %  - (NSInteger) computeSignature ;\n%
 end if%

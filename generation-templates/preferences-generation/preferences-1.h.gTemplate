@@ -20,7 +20,7 @@ extern %!PREFERENCES_NAME% * g_%!PREFERENCES_NAME% ;
 @interface %!PREFERENCES_NAME% : NSObject {
 //--- Attribute observers
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%  @private NSMutableSet * %!mPropertyName%_observers ;\n%
+%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end foreach
 
 

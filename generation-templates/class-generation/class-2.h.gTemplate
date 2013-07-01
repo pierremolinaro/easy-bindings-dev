@@ -4,7 +4,7 @@
 
 %foreach ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
   before %-(id) initWith%
-  do ![mPropertyName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mPropertyName stringByCapitalizingFirstCharacter]
+  do ![mAttributeName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mAttributeName stringByCapitalizingFirstCharacter]
   between %\n      with%
   after % ;%
 end foreach%
@@ -13,10 +13,10 @@ end foreach%
 - (void) removeObservers ;
 
 %foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mPropertyName%' property\n%
-%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mPropertyName% ;\n%
-%  - (void) addObserverOf_%!mPropertyName%: (id) inObserver ;\n%
-%  - (void) removeObserverOf_%!mPropertyName%: (id) inObserver ;\n\n%
+%//--- '%!mAttributeName%' property\n%
+%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
+%  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
+%  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
 end foreach
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%

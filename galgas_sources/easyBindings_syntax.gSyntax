@@ -662,6 +662,14 @@ rule <entity_declaration>
     $Identifier$ ? @lstring destinationEntityName ;
     $identifier$ ? @lstring relationshipName ;
     $inverse$ ;
+    @bool inverseIsToMany ;
+    select
+      $toOne$ ;
+      inverseIsToMany := false ;
+    or
+      $toMany$ ;
+      inverseIsToMany := true ;
+    end select ;
     $identifier$ ? @lstring inverseRelationshipName ;
     @deleteRuleEnum deleteRule ;
     select
@@ -680,6 +688,7 @@ rule <entity_declaration>
       !destinationEntityName
       !relationshipName
       !inverseRelationshipName
+      !inverseIsToMany
       !deleteRule
     ;
   end repeat ;

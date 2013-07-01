@@ -10,7 +10,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
   template entityDeclaration1 "entity-1.h.gTemplate"
     ?@string CLASS_NAME
     ?@string SUPER_CLASS_NAME
-    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@stringset HEADER_INCLUSION_SET
@@ -19,7 +19,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
   
   template entityDeclaration2 "entity-2.h.gTemplate"
     ?@string CLASS_NAME
-    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@2stringlist TO_MANY_RELATIONSHIPS
     ?@2stringlist TO_ONE_RELATIONSHIPS
@@ -29,7 +29,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
   template entityImplementation "entity.m.gTemplate"
     ?@string ENTITY_NAME
     ?@string CLASS_NAME
-    ?@attributeListForImplementation PROPERTY_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
@@ -38,6 +38,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
+    ?@relationshipList CURRENT_RELATIONSHIP_LIST
     ?@signListForGeneration SIGN_LIST
     ?@stringset SIGN_SET
   ;
@@ -112,7 +113,7 @@ routine generateEntityCode
     #---
       @stringset propertyAndTomanyRelationshipSet [emptySet] ;
       foreach mAttributeListForImplementation do
-        propertyAndTomanyRelationshipSet += !mPropertyName ;
+        propertyAndTomanyRelationshipSet += !mAttributeName ;
       end foreach ;
       foreach mToManyRelationshipList do
         propertyAndTomanyRelationshipSet += !mValue0 ;
@@ -134,6 +135,7 @@ routine generateEntityCode
         !inTransientDependencyArcList
         !propertyAndTomanyRelationshipSet
         !mToOneRelationshipList
+        !mCurrentRelationshipList
         !mSignList
         !signSet
       ] ;
