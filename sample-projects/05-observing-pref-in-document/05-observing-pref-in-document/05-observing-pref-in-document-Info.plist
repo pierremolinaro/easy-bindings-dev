@@ -9,22 +9,20 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>binary</string>
+				<string>observingPrefsInDocument</string>
 			</array>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>application/octet-stream</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>05-observingPrefsInDocument</string>
+			<string>Binary</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

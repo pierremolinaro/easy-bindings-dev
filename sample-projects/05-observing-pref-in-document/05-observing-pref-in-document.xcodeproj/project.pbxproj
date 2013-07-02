@@ -17,7 +17,6 @@
 		CFDA0FAF1782CF500034D5C7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */; };
 		CFE8B7DE1782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */; };
 		CFE8B7DF1782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */; };
-		CFE8B7E01782CD330050DBFF /* compute_MyDocument_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B31782CD330050DBFF /* compute_MyDocument_transientConcatString.m */; };
 		CFE8B7E11782CD330050DBFF /* compute_MyPrefs_prefTransientString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */; };
 		CFE8B7E21782CD330050DBFF /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B61782CD330050DBFF /* easy-bindings-utilities.m */; };
 		CFE8B7E31782CD330050DBFF /* load-store-functions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B81782CD330050DBFF /* load-store-functions.m */; };
@@ -57,7 +56,6 @@
 		CFDA0FAD1782CF500034D5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
 		CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
-		CFE8B7B31782CD330050DBFF /* compute_MyDocument_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyDocument_transientConcatString.m; sourceTree = "<group>"; };
 		CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefs_prefTransientString.m; sourceTree = "<group>"; };
 		CFE8B7B51782CD330050DBFF /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CFE8B7B61782CD330050DBFF /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 		CFE8B7C61782CD330050DBFF /* PMAttributeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAttributeDescription.m; sourceTree = "<group>"; };
 		CFE8B7C71782CD330050DBFF /* PMDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDataScanner.h; sourceTree = "<group>"; };
 		CFE8B7C81782CD330050DBFF /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
-		CFE8B7C91782CD330050DBFF /* MyDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyDocument-computations.h"; sourceTree = "<group>"; };
 		CFE8B7CA1782CD330050DBFF /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
 		CFE8B7CB1782CD330050DBFF /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
 		CFE8B7CC1782CD330050DBFF /* PMEntityArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityArrayController.h; sourceTree = "<group>"; };
@@ -199,10 +196,8 @@
 				CFE8B7BB1782CD330050DBFF /* MyRootEntity.m */,
 				CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */,
 				CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */,
-				CFE8B7C91782CD330050DBFF /* MyDocument-computations.h */,
 				CFE8B7CA1782CD330050DBFF /* MyDocument.h */,
 				CFE8B7CB1782CD330050DBFF /* MyDocument.m */,
-				CFE8B7B31782CD330050DBFF /* compute_MyDocument_transientConcatString.m */,
 				CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */,
 				CF4627AD1595B53B00BF70CD /* Supporting Files */,
 			);
@@ -290,7 +285,6 @@
 				CF4627B31595B53B00BF70CD /* main.m in Sources */,
 				CFE8B7DE1782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m in Sources */,
 				CFE8B7DF1782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m in Sources */,
-				CFE8B7E01782CD330050DBFF /* compute_MyDocument_transientConcatString.m in Sources */,
 				CFE8B7E11782CD330050DBFF /* compute_MyPrefs_prefTransientString.m in Sources */,
 				CFE8B7E21782CD330050DBFF /* easy-bindings-utilities.m in Sources */,
 				CFE8B7E31782CD330050DBFF /* load-store-functions.m in Sources */,
@@ -368,6 +362,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					PM_COCOA_DEBUG,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -382,31 +377,6 @@
 			};
 			name = Debug;
 		};
-		CF4627C51595B53B00BF70CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
-				VALID_ARCHS = x86_64;
-			};
-			name = Release;
-		};
 		CF4627C71595B53B00BF70CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -419,18 +389,6 @@
 			};
 			name = Debug;
 		};
-		CF4627C81595B53B00BF70CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "05-observing-pref-in-document/05-observing-pref-in-document-Prefix.pch";
-				INFOPLIST_FILE = "05-observing-pref-in-document/05-observing-pref-in-document-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -438,19 +396,17 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF4627C41595B53B00BF70CD /* Debug */,
-				CF4627C51595B53B00BF70CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		CF4627C61595B53B00BF70CD /* Build configuration list for PBXNativeTarget "05-observing-pref-in-document" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF4627C71595B53B00BF70CD /* Debug */,
-				CF4627C81595B53B00BF70CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
