@@ -27,13 +27,13 @@
 		CF608107159364A90021D873 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608106159364A90021D873 /* main.m */; };
 		CF60810B159364A90021D873 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF608109159364A90021D873 /* Credits.rtf */; };
 		CF60810E159364A90021D873 /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60810D159364A90021D873 /* PMDocument.m */; };
-		CF608111159364A90021D873 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF60810F159364A90021D873 /* PMDocument.xib */; };
 		CF608114159364A90021D873 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF608112159364A90021D873 /* MainMenu.xib */; };
 		CF60812D159365410021D873 /* compute_MyRootEntity_myStringConcat.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608121159365410021D873 /* compute_MyRootEntity_myStringConcat.m */; };
 		CF60812E159365410021D873 /* compute_MyRootEntity_myStringMaj.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608122159365410021D873 /* compute_MyRootEntity_myStringMaj.m */; };
 		CF60812F159365410021D873 /* compute_MyRootEntity_myStringMin.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608123159365410021D873 /* compute_MyRootEntity_myStringMin.m */; };
 		CF608130159365410021D873 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608125159365410021D873 /* easy-bindings-utilities.m */; };
 		CF608133159365410021D873 /* MyRootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60812C159365410021D873 /* MyRootEntity.m */; };
+		CF8A07FF1782F92B00E1685A /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF8A07FD1782F92B00E1685A /* PMDocument.xib */; };
 		CF9D9A7615963D8D006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A7315963D8D006D876D /* PMAllocationDebug.m */; };
 		CF9D9A7715963D8D006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A7415963D8D006D876D /* PMAllocationDebug.xib */; };
 		CFF1C91B15C31ECE0054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C91A15C31ECE0054F1DA /* PMTransientDependancyManager.m */; };
@@ -81,17 +81,17 @@
 		CF60810A159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CF60810C159364A90021D873 /* PMDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMDocument.h; sourceTree = "<group>"; };
 		CF60810D159364A90021D873 /* PMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMDocument.m; sourceTree = "<group>"; };
-		CF608110159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
 		CF608113159364A90021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF608121159365410021D873 /* compute_MyRootEntity_myStringConcat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringConcat.m; sourceTree = "<group>"; };
 		CF608122159365410021D873 /* compute_MyRootEntity_myStringMaj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringMaj.m; sourceTree = "<group>"; };
 		CF608123159365410021D873 /* compute_MyRootEntity_myStringMin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_myStringMin.m; sourceTree = "<group>"; };
 		CF608124159365410021D873 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CF608125159365410021D873 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CF60812A159365410021D873 /* MyRootEntity-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "MyRootEntity-transient-computations.h"; sourceTree = "<group>"; };
-		CF60812B159365410021D873 /* MyRootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MyRootEntity.h; sourceTree = "<group>"; };
+		CF60812A159365410021D873 /* MyRootEntity-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyRootEntity-transient-computations.h"; sourceTree = "<group>"; };
+		CF60812B159365410021D873 /* MyRootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRootEntity.h; sourceTree = "<group>"; };
 		CF60812C159365410021D873 /* MyRootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity.m; sourceTree = "<group>"; };
 		CF64944F167DE6C2009AE4F7 /* MonEnumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonEnumeration.h; sourceTree = "<group>"; };
+		CF8A07FE1782F92B00E1685A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
 		CF9D9A7215963D8D006D876D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CF9D9A7315963D8D006D876D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CF9D9A7415963D8D006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				CF60810C159364A90021D873 /* PMDocument.h */,
 				CF60810D159364A90021D873 /* PMDocument.m */,
 				CFFB84041593A8BC001B08B8 /* PMDocument-computations.h */,
-				CF60810F159364A90021D873 /* PMDocument.xib */,
+				CF8A07FD1782F92B00E1685A /* PMDocument.xib */,
 				CF608112159364A90021D873 /* MainMenu.xib */,
 				CF608101159364A90021D873 /* Supporting Files */,
 			);
@@ -274,9 +274,9 @@
 			files = (
 				CF608105159364A90021D873 /* InfoPlist.strings in Resources */,
 				CF60810B159364A90021D873 /* Credits.rtf in Resources */,
-				CF608111159364A90021D873 /* PMDocument.xib in Resources */,
 				CF608114159364A90021D873 /* MainMenu.xib in Resources */,
 				CF9D9A7715963D8D006D876D /* PMAllocationDebug.xib in Resources */,
+				CF8A07FF1782F92B00E1685A /* PMDocument.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,20 +333,20 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		CF60810F159364A90021D873 /* PMDocument.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CF608110159364A90021D873 /* en */,
-			);
-			name = PMDocument.xib;
-			sourceTree = "<group>";
-		};
 		CF608112159364A90021D873 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CF608113159364A90021D873 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		CF8A07FD1782F92B00E1685A /* PMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF8A07FE1782F92B00E1685A /* en */,
+			);
+			name = PMDocument.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
