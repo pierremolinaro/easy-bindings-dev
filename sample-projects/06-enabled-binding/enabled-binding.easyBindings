@@ -1,4 +1,4 @@
-entity MyRootEntity class RootEntityClass {
+entity MyRootEntity {
   attribute bool docBool default YES ;
 }
 
@@ -11,7 +11,7 @@ preferences MyPrefs {
 
 #--------------------------------------------------------------*
 
-document PMDocument root MyRootEntity {
+document MyDocument root MyRootEntity {
   outlet NSButton docBoolCheckBox $value root.docBool ;
   outlet NSButton myButton $enabled ! root.docBool & MyPrefs.prefBoolean ;
 }
