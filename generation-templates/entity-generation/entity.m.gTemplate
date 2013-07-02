@@ -100,7 +100,11 @@ end foreach
   [super buildAttributeDescriptionArray:ioDescriptionArray] ;
 %
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
-  %  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"%!mAttributeName%"]] ;\n%
+  %  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"%!mAttributeName%"%
+  if [mType hasCustomExplorerFunction] then
+    % withConversionFunction:convert%![mType ebTypeName]%ValueToString%
+  end if
+  %]] ;\n%
 end foreach
 %}
 

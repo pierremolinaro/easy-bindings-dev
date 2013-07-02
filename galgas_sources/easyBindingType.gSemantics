@@ -159,6 +159,32 @@ override reader @bezierPathType equalMethod -> @string outResult : outResult := 
 override reader @menuType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
 
 #-----------------------------------------------------------------------------*
+#   hasCustomExplorerFunction                                                 *
+#-----------------------------------------------------------------------------*
+
+reader @easyBindingType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := false ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @boolType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := true ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @enumType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := true ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
 #   notEqualExpression                                                        *
 #-----------------------------------------------------------------------------*
 
