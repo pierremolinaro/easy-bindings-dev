@@ -15,6 +15,7 @@
 		CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF4627B51595B53B00BF70CD /* Credits.rtf */; };
 		CFDA0FAE1782CF500034D5C7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA0FAA1782CF500034D5C7 /* MainMenu.xib */; };
 		CFDA0FAF1782CF500034D5C7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */; };
+		CFE34A43178352AD006CA693 /* PMEntityController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE34A42178352AD006CA693 /* PMEntityController.m */; };
 		CFE8B7DE1782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */; };
 		CFE8B7DF1782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */; };
 		CFE8B7E11782CD330050DBFF /* compute_MyPrefs_prefTransientString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */; };
@@ -54,6 +55,8 @@
 		CF4627B61595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CFDA0FAB1782CF500034D5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CFDA0FAD1782CF500034D5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
+		CFE34A41178352AD006CA693 /* PMEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityController.h; sourceTree = "<group>"; };
+		CFE34A42178352AD006CA693 /* PMEntityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityController.m; sourceTree = "<group>"; };
 		CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
 		CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
 		CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefs_prefTransientString.m; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
+				CFE34A41178352AD006CA693 /* PMEntityController.h */,
+				CFE34A42178352AD006CA693 /* PMEntityController.m */,
 				CFDA0FAA1782CF500034D5C7 /* MainMenu.xib */,
 				CFE8B7B51782CD330050DBFF /* easy-bindings-utilities.h */,
 				CFE8B7B61782CD330050DBFF /* easy-bindings-utilities.m */,
@@ -304,6 +309,7 @@
 				CFE8B7F21782CD330050DBFF /* PMRelationshipDescription.m in Sources */,
 				CFE8B7F31782CD330050DBFF /* PMTransientDependancyManager.m in Sources */,
 				CFE8B7F41782CD330050DBFF /* PMUndoManager.m in Sources */,
+				CFE34A43178352AD006CA693 /* PMEntityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

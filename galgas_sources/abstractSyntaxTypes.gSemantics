@@ -353,7 +353,11 @@ list @protocolList {
 #----------------------------------------------------------------------------*
 
 enum @controllerKind {
-  simpleController, objectController, arrayController
+  simpleController,
+  objectController, # NSObjectController
+  arrayController,  # NSArrayController
+  entityController, # PMEntityController
+  entityArrayController # PMEntityArrayController
 }{
 
 }

@@ -25,6 +25,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "controller",
   "arrayController",
   "objectController",
+  "entityArrayController",
+  "entityController",
   "document",
   "option",
   "entity",

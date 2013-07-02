@@ -226,10 +226,6 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    [[self.undoManager prepareWithInvocationTarget:self]\n%
     %      set%![mRelationshipName stringByCapitalizingFirstCharacter]%:currentArray\n%
     %    ] ;\n%
-    if [SIGN_SET hasKey !mRelationshipName->string] then
-      %  //--- Remove signature observer from old object\n%
-      %    [self.%!mRelationshipName->string% removeSignatureObserver:self] ;\n%
-    end if
     %  //--- Store new value\n%
     %    [self set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled :inNewArray] ;\n%
     %  //--- Removed object set\n%
@@ -238,6 +234,9 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    [removedObjectSet minusSet:[NSSet setWithArray:inNewArray]] ;\n%
     %    for (%!mDestinationEntityName->string% * object in removedObjectSet) {\n%
     %      object.%!mInverseRelationshipName->string% = nil ;\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %      [object removeSignatureObserver:self] ;\n%
+    end if
     %    }\n%
     %    macroReleaseSetToNil (removedObjectSet) ;\n%
     %  //--- Added object set\n%
@@ -246,13 +245,14 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    [addedObjectSet minusSet:[NSSet setWithArray:currentArray]] ;\n%
     %    for (%!mDestinationEntityName->string% * object in addedObjectSet) {\n%
     %      object.%!mInverseRelationshipName->string% = self ;\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %      [object addSignatureObserver:self] ;\n%
+    end if
     %    }\n%
     %    macroReleaseSetToNil (addedObjectSet) ;\n%
     %  //--- Notify observers object count did change\n%
     %    [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
-      %  //--- Add signature observer to new object\n%
-      %    [self.%!mRelationshipName->string% addSignatureObserver:self] ;\n%
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
     end if

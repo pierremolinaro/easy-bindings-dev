@@ -88,6 +88,14 @@ local routine analyzePreference
       error mControlledObjectName
       :"objectController is not currently handled in preferences"
       :controllerObjectClassName;
+    when entityController :
+      error mControlledObjectName
+      :"entityController is not currently handled in preferences"
+      :controllerObjectClassName;
+    when entityArrayController :
+      error mControlledObjectName
+      :"in preferences, use an arrayController, as NSArrayController"
+      :controllerObjectClassName;
     when arrayController :
       if mIsRootObject->bool then
         error mIsRootObject
