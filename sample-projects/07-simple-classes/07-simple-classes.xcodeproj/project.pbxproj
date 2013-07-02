@@ -14,7 +14,6 @@
 		CFBFD5BC1652C483006EAD0D /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */; };
 		CFBFD5BF1652C483006EAD0D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5BD1652C483006EAD0D /* MainMenu.xib */; };
 		CFBFD5D41652C4CE006EAD0D /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */; };
-		CFBFD5D51652C4CE006EAD0D /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5C81652C4CE006EAD0D /* managed-object-model.m */; };
 		CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CB1652C4CE006EAD0D /* MyClass.m */; };
 		CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */; };
 		CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */; };
@@ -41,8 +40,6 @@
 		CFBFD5BE1652C483006EAD0D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CFBFD5C71652C4CE006EAD0D /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
-		CFBFD5C81652C4CE006EAD0D /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CFBFD5C91652C4CE006EAD0D /* MyClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyClass-transient-computations.h"; sourceTree = "<group>"; };
 		CFBFD5CA1652C4CE006EAD0D /* MyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClass.h; sourceTree = "<group>"; };
 		CFBFD5CB1652C4CE006EAD0D /* MyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass.m; sourceTree = "<group>"; };
@@ -112,8 +109,6 @@
 			children = (
 				CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */,
 				CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */,
-				CFBFD5C71652C4CE006EAD0D /* managed-object-model.h */,
-				CFBFD5C81652C4CE006EAD0D /* managed-object-model.m */,
 				CFBFD5C91652C4CE006EAD0D /* MyClass-transient-computations.h */,
 				CFBFD5CA1652C4CE006EAD0D /* MyClass.h */,
 				CFBFD5CB1652C4CE006EAD0D /* MyClass.m */,
@@ -216,7 +211,6 @@
 				CFBFD5B51652C483006EAD0D /* main.m in Sources */,
 				CFBFD5BC1652C483006EAD0D /* PMAppDelegate.m in Sources */,
 				CFBFD5D41652C4CE006EAD0D /* easy-bindings-utilities.m in Sources */,
-				CFBFD5D51652C4CE006EAD0D /* managed-object-model.m in Sources */,
 				CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */,
 				CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */,
 				CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */,
