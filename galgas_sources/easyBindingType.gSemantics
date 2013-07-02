@@ -567,13 +567,13 @@ end method ;
 
 #-----------------------------------------------------------------------------*
 
-reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntSignature" ; end reader ;
+reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntegerSignature" ; end reader ;
 
-override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeStringSignature" ; end reader ;
+override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeNSStringSignature" ; end reader ;
 
-override reader @toOneEntityType functionForComputingSignature -> @string outResult : outResult := "computeToOnePropertySignature" ; end reader ;
+override reader @toOneEntityType functionForComputingSignature -> @string outResult : outResult := "computeToOneEntitySignature" ; end reader ;
 
-override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyPropertySignature" ; end reader ;
+override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyEntitySignature" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 

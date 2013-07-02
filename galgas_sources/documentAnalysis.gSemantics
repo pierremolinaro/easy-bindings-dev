@@ -111,6 +111,7 @@ local routine analyzeControllers
         !controlledObjectBindingOptionListForGeneration
       ] ;
     end switch ;
+    ioImplementationFileInclusionSet += !destinationEntityName->string ;
   #---
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding

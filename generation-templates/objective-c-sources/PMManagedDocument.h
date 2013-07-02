@@ -35,6 +35,8 @@ typedef enum : NSUInteger {
 
 - (PMEntityManager *) entityManager ;
 
+- (void) hookOfNewDocumentCreation ;
+
 //--- Methods called during a save operation
 - (UInt8) metadataStatusForSaving ; // Returns 0 by default
 

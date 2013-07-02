@@ -1,4 +1,5 @@
 #import "PMManagedDocument.h"
+#import "PMManagedEntity.h"
 
 //----------------------------------------------------------------------------*
 
