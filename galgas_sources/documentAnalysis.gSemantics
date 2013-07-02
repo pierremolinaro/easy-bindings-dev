@@ -38,6 +38,8 @@ local routine analyzeControllers
     when simpleController :
       destinationEntityName := ["" nowhere] ;
     when objectController :
+      error mControllerName : "use an entityController, as PMEntityController" : destinationEntityName ;
+    when entityController :
       if not mIsRootObject->bool then
         error mIsRootObject
         : "only 'root' is allowed here"
@@ -47,7 +49,7 @@ local routine analyzeControllers
         !mControlledObjectName
         ?@bool isToMany
         ?destinationEntityName
-        ?2*
+        ?3*
       ] ;
       if isToMany then
         error mControlledObjectName: "this should be a single object" ;
@@ -72,6 +74,8 @@ local routine analyzeControllers
         !controlledObjectBindingOptionListForGeneration
       ] ;
     when arrayController :
+      error mControllerName : "use an entityArrayController, as PMEntityArrayController" : destinationEntityName ;
+    when entityArrayController :
       if not mIsRootObject->bool then
         error mIsRootObject
         : "only 'root' is allowed here"
@@ -81,7 +85,7 @@ local routine analyzeControllers
         !mControlledObjectName
         ?@bool isToMany
         ?destinationEntityName
-        ?2*
+        ?3*
       ] ;
       ioImplementationFileInclusionSet += !destinationEntityName->string ;
       if not isToMany then

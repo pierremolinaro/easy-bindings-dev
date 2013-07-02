@@ -210,6 +210,7 @@ message "a source text file with the .easyBindings extension"
     generateSet += !"PMAttributeDescription" ;
     generateSet += !"PMRelationshipDescription" ;
     generateSet += !"PMEntityArrayController" ;
+    generateSet += !"PMEntityController" ;
   end if ;
 #---
   @filewrapper fw := [filewrapper objective_c_sources] ;

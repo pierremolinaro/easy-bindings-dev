@@ -18,12 +18,26 @@
 NSString * convertBOOLValueToString (NSNumber * inValue) ;
 
 //-----------------------------------------------------------------------------*
+//   PMSignatureObserverProtocol                                               *
+//-----------------------------------------------------------------------------*
+
+@protocol PMSignatureObserverProtocol <NSObject>
+
+- (void) triggerSignatureComputing ;
+
+@end
+
+//-----------------------------------------------------------------------------*
 //  PMManagedEntity                                                            *
 //-----------------------------------------------------------------------------*
 
 @interface PMManagedEntity : NSObject {
   @private PMEntityManager * mEntityManager ;
   @private NSUndoManager * mUndoManager ;
+//--- Signature
+  @private NSInteger mSignatureCache ;
+  @private NSMutableSet * mSignatureObserverSet ;
+  @private BOOL mSignatureHasBeenComputed ;
 
   #ifdef PM_COCOA_DEBUG
     @private NSUInteger mExplorerObjectIndex ;
@@ -62,6 +76,13 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 
 - (void) saveIntoDictionary: (NSMutableDictionary *) ioDictionary ;
 
+//--- Signature
+- (NSInteger) computeSignature ;
+- (void) addSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver ;
+- (void) removeSignatureObserver: (NSObject <PMSignatureObserverProtocol> *) inObserver ;
+- (void) triggerSignatureComputing ;
+- (NSInteger) signature ;
+
 #ifdef PM_COCOA_DEBUG
   - (void) showExplorerWindow ;
   - (NSUInteger) explorerObjectIndex ;
@@ -69,5 +90,27 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 
 @property (atomic) NSUInteger savingIndex ;
 @end
+
+//---------------------------------------------------------------------------*
+//   Signature routines                                                      *
+//---------------------------------------------------------------------------*
+
+NSInteger computeIntSignature (const NSInteger inSignature,
+                               const NSInteger inValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeStringSignature (const NSInteger inSignature,
+                                  NSString * inValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToOnePropertySignature (const NSInteger inSignature,
+                                         PMManagedEntity * inToOnePropertyValue) ;
+
+//---------------------------------------------------------------------------*
+
+NSInteger computeToManyPropertySignature (const NSInteger inSignature,
+                                          NSArray * inToManyPropertyValue) ;
 
 //-----------------------------------------------------------------------------*

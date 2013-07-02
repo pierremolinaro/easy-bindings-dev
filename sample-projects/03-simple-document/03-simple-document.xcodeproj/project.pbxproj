@@ -12,6 +12,7 @@
 		CF1AE068168F01640031840E /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE05A168F01640031840E /* PMDataScanner.m */; };
 		CF1AE073168F0BDA0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE072168F0BDA0031840E /* libbz2.dylib */; };
 		CF1AE075168F0BF20031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE074168F0BF20031840E /* libz.dylib */; };
+		CF2669AE17835232002F214A /* PMEntityController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2669AD17835232002F214A /* PMEntityController.m */; };
 		CF448EA21781BC5C00285A69 /* MonEnumeration.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EA11781BC5C00285A69 /* MonEnumeration.m */; };
 		CF448EAE1781BD3600285A69 /* load-store-functions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EAD1781BD3600285A69 /* load-store-functions.m */; };
 		CF448EBD1781BF6700285A69 /* NSData+BZ2compression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EB81781BF6700285A69 /* NSData+BZ2compression.m */; };
@@ -50,6 +51,8 @@
 		CF1AE05A168F01640031840E /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
 		CF1AE072168F0BDA0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		CF1AE074168F0BF20031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CF2669AC17835232002F214A /* PMEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityController.h; sourceTree = "<group>"; };
+		CF2669AD17835232002F214A /* PMEntityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityController.m; sourceTree = "<group>"; };
 		CF448EA11781BC5C00285A69 /* MonEnumeration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonEnumeration.m; sourceTree = "<group>"; };
 		CF448EAC1781BD3600285A69 /* load-store-functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "load-store-functions.h"; sourceTree = "<group>"; };
 		CF448EAD1781BD3600285A69 /* load-store-functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "load-store-functions.m"; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 		CF608100159364A90021D873 /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
+				CF2669AC17835232002F214A /* PMEntityController.h */,
+				CF2669AD17835232002F214A /* PMEntityController.m */,
 				CF042E3B178216B2006C89AF /* PMEntityArrayController.h */,
 				CF042E3C178216B2006C89AF /* PMEntityArrayController.m */,
 				CF1457951781C0EE00DC7C9E /* PMAttributeDescription.h */,
@@ -311,6 +316,7 @@
 				CF448ECE1781BF9A00285A69 /* PMUndoManager.m in Sources */,
 				CF1457971781C0EE00DC7C9E /* PMAttributeDescription.m in Sources */,
 				CF042E3D178216B2006C89AF /* PMEntityArrayController.m in Sources */,
+				CF2669AE17835232002F214A /* PMEntityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

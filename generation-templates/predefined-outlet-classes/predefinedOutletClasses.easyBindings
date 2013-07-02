@@ -28,6 +28,35 @@ predefined objectController NSObjectController {
   # Warning: skipped $managedObjectContext binding
 }
 
+predefined entityController PMEntityController {
+  NSDeletesObjectsOnRemove : bool ;
+  NSValidatesImmediately : bool ;
+  NSConditionallySetsEditable : bool ;
+  NSAlwaysPresentsApplicationModalAlerts : bool ;
+  NSHandlesContentAsCompoundValue : bool ;
+  NSRaisesForNotApplicableKeys : bool ;
+}{
+  action add ;
+  action remove ;
+  attribute bool canAdd ;
+  attribute bool canRemove ;
+  $editable : bool {
+    NSMultipleValuesPlaceholder : bool ;
+    NSNullPlaceholder : bool ;
+    NSNotApplicablePlaceholder : bool ;
+    NSNoSelectionPlaceholder : bool ;
+    NSRaisesForNotApplicableKeys : bool ;
+  }
+#  $contentObject : toOne {
+#    NSDeletesObjectsOnRemove : bool ;
+#    NSValidatesImmediately : bool ;
+#    NSConditionallySetsEditable : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSHandlesContentAsCompoundValue : bool ;
+#    NSRaisesForNotApplicableKeys : bool ;
+#  }
+  # Warning: skipped $managedObjectContext binding
+}
 
 predefined arrayController NSArrayController {
   NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
@@ -97,7 +126,7 @@ predefined arrayController NSArrayController {
   # Warning: skipped $filterPredicate binding
 }
 
-predefined arrayController PMEntityArrayController {
+predefined entityArrayController PMEntityArrayController {
   NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
   NSConditionallySetsEditableBindingOption : bool ;
   NSDeletesObjectsOnRemoveBindingsOption : bool ;

@@ -34,6 +34,7 @@
 		CF86CCDE1597272200F6B52D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD41597272200F6B52D /* PMAllocationDebug.m */; };
 		CF86CCDF1597272200F6B52D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */; };
 		CF86CCE01597272200F6B52D /* MyRootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* MyRootEntity.m */; };
+		CFE34A4B178352CD006CA693 /* PMEntityController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE34A4A178352CD006CA693 /* PMEntityController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,8 @@
 		CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF86CCD61597272200F6B52D /* MyRootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRootEntity.h; sourceTree = "<group>"; };
 		CF86CCD71597272200F6B52D /* MyRootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity.m; sourceTree = "<group>"; };
+		CFE34A49178352CD006CA693 /* PMEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityController.h; sourceTree = "<group>"; };
+		CFE34A4A178352CD006CA693 /* PMEntityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
 			isa = PBXGroup;
 			children = (
+				CFE34A49178352CD006CA693 /* PMEntityController.h */,
+				CFE34A4A178352CD006CA693 /* PMEntityController.m */,
 				CF86CCD31597272200F6B52D /* PMAllocationDebug.h */,
 				CF86CCD41597272200F6B52D /* PMAllocationDebug.m */,
 				CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */,
@@ -288,6 +293,7 @@
 				CF23E60C1782E5B1002C28F9 /* PMDataScanner.m in Sources */,
 				CF23E60D1782E5B1002C28F9 /* PMEntityArrayController.m in Sources */,
 				CF23E60E1782E5B1002C28F9 /* PMTransientDependancyManager.m in Sources */,
+				CFE34A4B178352CD006CA693 /* PMEntityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

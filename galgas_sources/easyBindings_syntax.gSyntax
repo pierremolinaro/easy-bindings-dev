@@ -587,6 +587,39 @@ end rule ;
 rule <controller_declaration>
   ?!@controllerList ioControllerList
 :
+  $entityArrayController$ ;
+  $Identifier$ ?@lstring controllerClassName ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  @lbool isRoot ;
+  select
+    $root$ ;
+    isRoot := [@lbool new !true !here] ;
+  or
+    $self$ ;
+    isRoot := [@lbool new !false !here] ;
+  end select ;
+  $.$ ;
+  $identifier$ ?@lstring controlledObject ;
+  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $;$ ;
+  ioControllerList +=
+    ![@controllerKind entityArrayController]
+    !controllerClassName
+    !controllerName
+    !isRoot
+    !controlledObject
+    !controlledObjectBindingOptionList
+    !controllerBindingList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_declaration>
+  ?!@controllerList ioControllerList
+:
   $objectController$ ;
   $Identifier$ ? @lstring controllerClassName ;
   $identifier$ ? @lstring controllerName ;
@@ -606,6 +639,39 @@ rule <controller_declaration>
   $;$ ;
   ioControllerList +=
     ![@controllerKind objectController]
+    !controllerClassName
+    !controllerName
+    !isRoot
+    !controlledObject
+    !controlledObjectBindingOptionList
+    !controllerBindingList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_declaration>
+  ?!@controllerList ioControllerList
+:
+  $entityController$ ;
+  $Identifier$ ? @lstring controllerClassName ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  @lbool isRoot ;
+  select
+    $root$ ;
+    isRoot := [@lbool new !true !here] ;
+  or
+    $self$ ;
+    isRoot := [@lbool new !false !here] ;
+  end select ;
+  $.$ ;
+  $identifier$ ?@lstring controlledObject ;
+  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $;$ ;
+  ioControllerList +=
+    ![@controllerKind entityController]
     !controllerClassName
     !controllerName
     !isRoot
@@ -1013,8 +1079,36 @@ rule <controller_class_declaration>
     end repeat ;
     $}$ ;
   or
+    $entityController$ ;
+    controllerKind := [@controllerKind entityController] ;
+    $Identifier$ ?controllerClassName ;
+    ${$ ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
+  or
     $arrayController$ ;
     controllerKind := [@controllerKind arrayController] ;
+    $Identifier$ ?controllerClassName ;
+    ${$ ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@easyBindingTypeList optionTypeList ;
+      $;$ ;
+      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
+  or
+    $entityArrayController$ ;
+    controllerKind := [@controllerKind entityArrayController] ;
     $Identifier$ ?controllerClassName ;
     ${$ ;
     repeat
