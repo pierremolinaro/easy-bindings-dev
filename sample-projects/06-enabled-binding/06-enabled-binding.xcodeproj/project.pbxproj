@@ -7,63 +7,65 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF1AE0DC168F0D100031840E /* PMBinaryFlatDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0C9168F0D100031840E /* PMBinaryFlatDocument.m */; };
-		CF1AE0DD168F0D100031840E /* PMbz2DataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0CB168F0D100031840E /* PMbz2DataCategory.m */; };
-		CF1AE0DE168F0D100031840E /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0CD168F0D100031840E /* PMDataScanner.m */; };
-		CF1AE0DF168F0D100031840E /* PMEmbeddedEntityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0CF168F0D100031840E /* PMEmbeddedEntityDatabase.m */; };
-		CF1AE0E0168F0D100031840E /* PMEmbeddedObjectDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0D1168F0D100031840E /* PMEmbeddedObjectDatabase.m */; };
-		CF1AE0E1168F0D100031840E /* PMLoadedEntityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0D3168F0D100031840E /* PMLoadedEntityDatabase.m */; };
-		CF1AE0E2168F0D100031840E /* PMLoadedEntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0D5168F0D100031840E /* PMLoadedEntityDescription.m */; };
-		CF1AE0E3168F0D100031840E /* PMLoadedObjectDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0D7168F0D100031840E /* PMLoadedObjectDatabase.m */; };
-		CF1AE0E4168F0D100031840E /* PMMutableDataWriteCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0D9168F0D100031840E /* PMMutableDataWriteCategory.m */; };
-		CF1AE0E5168F0D100031840E /* PMzlibDataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE0DB168F0D100031840E /* PMzlibDataCategory.m */; };
 		CF1AE0E8168F0D240031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E7168F0D240031840E /* libz.dylib */; };
 		CF1AE0EA168F0D2E0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E9168F0D2E0031840E /* libbz2.dylib */; };
-		CF448EA816877F2B00F33BCE /* PMAbstractPersistentDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EA516877F2B00F33BCE /* PMAbstractPersistentDocument.m */; };
-		CF448EA916877F2B00F33BCE /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EA716877F2B00F33BCE /* PMManagedObject.m */; };
+		CF23E5FC1782E591002C28F9 /* load-store-functions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5E81782E591002C28F9 /* load-store-functions.m */; };
+		CF23E5FD1782E591002C28F9 /* NSData+BZ2compression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5EA1782E591002C28F9 /* NSData+BZ2compression.m */; };
+		CF23E5FE1782E591002C28F9 /* NSData+PMGZcompression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5EC1782E591002C28F9 /* NSData+PMGZcompression.m */; };
+		CF23E5FF1782E591002C28F9 /* NSMutableData+PMWrites.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */; };
+		CF23E6001782E591002C28F9 /* PMAttributeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */; };
+		CF23E6011782E591002C28F9 /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F21782E591002C28F9 /* PMEntityManager.m */; };
+		CF23E6021782E591002C28F9 /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F41782E591002C28F9 /* PMManagedDocument.m */; };
+		CF23E6031782E591002C28F9 /* PMManagedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F61782E591002C28F9 /* PMManagedEntity.m */; };
+		CF23E6041782E591002C28F9 /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F81782E591002C28F9 /* PMRelationshipDescription.m */; };
+		CF23E6051782E591002C28F9 /* PMUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5FA1782E591002C28F9 /* PMUndoManager.m */; };
+		CF23E60C1782E5B1002C28F9 /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E6071782E5B1002C28F9 /* PMDataScanner.m */; };
+		CF23E60D1782E5B1002C28F9 /* PMEntityArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */; };
+		CF23E60E1782E5B1002C28F9 /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */; };
 		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
 		CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCAA159725BF00F6B52D /* InfoPlist.strings */; };
 		CF86CCAE159725BF00F6B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCAD159725BF00F6B52D /* main.m */; };
 		CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB0159725BF00F6B52D /* Credits.rtf */; };
-		CF86CCB5159725BF00F6B52D /* PMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCB4159725BF00F6B52D /* PMDocument.m */; };
-		CF86CCB8159725BF00F6B52D /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB6159725BF00F6B52D /* PMDocument.xib */; };
+		CF86CCB5159725BF00F6B52D /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCB4159725BF00F6B52D /* MyDocument.m */; };
+		CF86CCB8159725BF00F6B52D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB6159725BF00F6B52D /* MyDocument.xib */; };
 		CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB9159725BF00F6B52D /* MainMenu.xib */; };
 		CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */; };
-		CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCC81597272200F6B52D /* managed-object-model.m */; };
 		CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCCA1597272200F6B52D /* MyPrefs.m */; };
 		CF86CCDE1597272200F6B52D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD41597272200F6B52D /* PMAllocationDebug.m */; };
 		CF86CCDF1597272200F6B52D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */; };
-		CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* RootEntityClass.m */; };
-		CFF1C93B15C3312E0054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */; };
+		CF86CCE01597272200F6B52D /* MyRootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCD71597272200F6B52D /* MyRootEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF1AE0C8168F0D100031840E /* PMBinaryFlatDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMBinaryFlatDocument.h; sourceTree = "<group>"; };
-		CF1AE0C9168F0D100031840E /* PMBinaryFlatDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMBinaryFlatDocument.m; sourceTree = "<group>"; };
-		CF1AE0CA168F0D100031840E /* PMbz2DataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMbz2DataCategory.h; sourceTree = "<group>"; };
-		CF1AE0CB168F0D100031840E /* PMbz2DataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMbz2DataCategory.m; sourceTree = "<group>"; };
-		CF1AE0CC168F0D100031840E /* PMDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDataScanner.h; sourceTree = "<group>"; };
-		CF1AE0CD168F0D100031840E /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
-		CF1AE0CE168F0D100031840E /* PMEmbeddedEntityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEmbeddedEntityDatabase.h; sourceTree = "<group>"; };
-		CF1AE0CF168F0D100031840E /* PMEmbeddedEntityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEmbeddedEntityDatabase.m; sourceTree = "<group>"; };
-		CF1AE0D0168F0D100031840E /* PMEmbeddedObjectDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEmbeddedObjectDatabase.h; sourceTree = "<group>"; };
-		CF1AE0D1168F0D100031840E /* PMEmbeddedObjectDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEmbeddedObjectDatabase.m; sourceTree = "<group>"; };
-		CF1AE0D2168F0D100031840E /* PMLoadedEntityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDatabase.h; sourceTree = "<group>"; };
-		CF1AE0D3168F0D100031840E /* PMLoadedEntityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDatabase.m; sourceTree = "<group>"; };
-		CF1AE0D4168F0D100031840E /* PMLoadedEntityDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedEntityDescription.h; sourceTree = "<group>"; };
-		CF1AE0D5168F0D100031840E /* PMLoadedEntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedEntityDescription.m; sourceTree = "<group>"; };
-		CF1AE0D6168F0D100031840E /* PMLoadedObjectDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMLoadedObjectDatabase.h; sourceTree = "<group>"; };
-		CF1AE0D7168F0D100031840E /* PMLoadedObjectDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMLoadedObjectDatabase.m; sourceTree = "<group>"; };
-		CF1AE0D8168F0D100031840E /* PMMutableDataWriteCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMutableDataWriteCategory.h; sourceTree = "<group>"; };
-		CF1AE0D9168F0D100031840E /* PMMutableDataWriteCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMutableDataWriteCategory.m; sourceTree = "<group>"; };
-		CF1AE0DA168F0D100031840E /* PMzlibDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMzlibDataCategory.h; sourceTree = "<group>"; };
-		CF1AE0DB168F0D100031840E /* PMzlibDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMzlibDataCategory.m; sourceTree = "<group>"; };
 		CF1AE0E7168F0D240031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CF1AE0E9168F0D2E0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		CF448EA416877F2B00F33BCE /* PMAbstractPersistentDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAbstractPersistentDocument.h; sourceTree = "<group>"; };
-		CF448EA516877F2B00F33BCE /* PMAbstractPersistentDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAbstractPersistentDocument.m; sourceTree = "<group>"; };
-		CF448EA616877F2B00F33BCE /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
-		CF448EA716877F2B00F33BCE /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
+		CF23E5E71782E591002C28F9 /* load-store-functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "load-store-functions.h"; sourceTree = "<group>"; };
+		CF23E5E81782E591002C28F9 /* load-store-functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "load-store-functions.m"; sourceTree = "<group>"; };
+		CF23E5E91782E591002C28F9 /* NSData+BZ2compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BZ2compression.h"; sourceTree = "<group>"; };
+		CF23E5EA1782E591002C28F9 /* NSData+BZ2compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BZ2compression.m"; sourceTree = "<group>"; };
+		CF23E5EB1782E591002C28F9 /* NSData+PMGZcompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+PMGZcompression.h"; sourceTree = "<group>"; };
+		CF23E5EC1782E591002C28F9 /* NSData+PMGZcompression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PMGZcompression.m"; sourceTree = "<group>"; };
+		CF23E5ED1782E591002C28F9 /* NSMutableData+PMWrites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+PMWrites.h"; sourceTree = "<group>"; };
+		CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+PMWrites.m"; sourceTree = "<group>"; };
+		CF23E5EF1782E591002C28F9 /* PMAttributeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAttributeDescription.h; sourceTree = "<group>"; };
+		CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAttributeDescription.m; sourceTree = "<group>"; };
+		CF23E5F11782E591002C28F9 /* PMEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityManager.h; sourceTree = "<group>"; };
+		CF23E5F21782E591002C28F9 /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
+		CF23E5F31782E591002C28F9 /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
+		CF23E5F41782E591002C28F9 /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
+		CF23E5F51782E591002C28F9 /* PMManagedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedEntity.h; sourceTree = "<group>"; };
+		CF23E5F61782E591002C28F9 /* PMManagedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedEntity.m; sourceTree = "<group>"; };
+		CF23E5F71782E591002C28F9 /* PMRelationshipDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRelationshipDescription.h; sourceTree = "<group>"; };
+		CF23E5F81782E591002C28F9 /* PMRelationshipDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRelationshipDescription.m; sourceTree = "<group>"; };
+		CF23E5F91782E591002C28F9 /* PMUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUndoManager.h; sourceTree = "<group>"; };
+		CF23E5FA1782E591002C28F9 /* PMUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUndoManager.m; sourceTree = "<group>"; };
+		CF23E5FB1782E591002C28F9 /* PMWillDeallocProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWillDeallocProtocol.h; sourceTree = "<group>"; };
+		CF23E6061782E5B1002C28F9 /* PMDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDataScanner.h; sourceTree = "<group>"; };
+		CF23E6071782E5B1002C28F9 /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
+		CF23E6081782E5B1002C28F9 /* PMEntityArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityArrayController.h; sourceTree = "<group>"; };
+		CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityArrayController.m; sourceTree = "<group>"; };
+		CF23E60A1782E5B1002C28F9 /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
+		CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF86CCA1159725BF00F6B52D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF86CCA4159725BF00F6B52D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -74,23 +76,19 @@
 		CF86CCAD159725BF00F6B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "06-enabled-binding-Prefix.pch"; sourceTree = "<group>"; };
 		CF86CCB1159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		CF86CCB3159725BF00F6B52D /* PMDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMDocument.h; sourceTree = "<group>"; };
-		CF86CCB4159725BF00F6B52D /* PMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMDocument.m; sourceTree = "<group>"; };
-		CF86CCB7159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CF86CCB3159725BF00F6B52D /* MyDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
+		CF86CCB4159725BF00F6B52D /* MyDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+		CF86CCB7159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		CF86CCBA159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF86CCC41597271900F6B52D /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CF86CCC71597272200F6B52D /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
-		CF86CCC81597272200F6B52D /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF86CCC91597272200F6B52D /* MyPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPrefs.h; sourceTree = "<group>"; };
 		CF86CCCA1597272200F6B52D /* MyPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs.m; sourceTree = "<group>"; };
 		CF86CCD31597272200F6B52D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CF86CCD41597272200F6B52D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		CF86CCD61597272200F6B52D /* RootEntityClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootEntityClass.h; sourceTree = "<group>"; };
-		CF86CCD71597272200F6B52D /* RootEntityClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootEntityClass.m; sourceTree = "<group>"; };
-		CFF1C93915C3312E0054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
-		CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
+		CF86CCD61597272200F6B52D /* MyRootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRootEntity.h; sourceTree = "<group>"; };
+		CF86CCD71597272200F6B52D /* MyRootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,46 +146,45 @@
 		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
 			isa = PBXGroup;
 			children = (
-				CF1AE0C8168F0D100031840E /* PMBinaryFlatDocument.h */,
-				CF1AE0C9168F0D100031840E /* PMBinaryFlatDocument.m */,
-				CF1AE0CA168F0D100031840E /* PMbz2DataCategory.h */,
-				CF1AE0CB168F0D100031840E /* PMbz2DataCategory.m */,
-				CF1AE0CC168F0D100031840E /* PMDataScanner.h */,
-				CF1AE0CD168F0D100031840E /* PMDataScanner.m */,
-				CF1AE0CE168F0D100031840E /* PMEmbeddedEntityDatabase.h */,
-				CF1AE0CF168F0D100031840E /* PMEmbeddedEntityDatabase.m */,
-				CF1AE0D0168F0D100031840E /* PMEmbeddedObjectDatabase.h */,
-				CF1AE0D1168F0D100031840E /* PMEmbeddedObjectDatabase.m */,
-				CF1AE0D2168F0D100031840E /* PMLoadedEntityDatabase.h */,
-				CF1AE0D3168F0D100031840E /* PMLoadedEntityDatabase.m */,
-				CF1AE0D4168F0D100031840E /* PMLoadedEntityDescription.h */,
-				CF1AE0D5168F0D100031840E /* PMLoadedEntityDescription.m */,
-				CF1AE0D6168F0D100031840E /* PMLoadedObjectDatabase.h */,
-				CF1AE0D7168F0D100031840E /* PMLoadedObjectDatabase.m */,
-				CF1AE0D8168F0D100031840E /* PMMutableDataWriteCategory.h */,
-				CF1AE0D9168F0D100031840E /* PMMutableDataWriteCategory.m */,
-				CF1AE0DA168F0D100031840E /* PMzlibDataCategory.h */,
-				CF1AE0DB168F0D100031840E /* PMzlibDataCategory.m */,
-				CFF1C93915C3312E0054F1DA /* PMTransientDependancyManager.h */,
-				CFF1C93A15C3312E0054F1DA /* PMTransientDependancyManager.m */,
-				CF86CCC71597272200F6B52D /* managed-object-model.h */,
-				CF86CCC81597272200F6B52D /* managed-object-model.m */,
-				CF86CCC91597272200F6B52D /* MyPrefs.h */,
-				CF86CCCA1597272200F6B52D /* MyPrefs.m */,
 				CF86CCD31597272200F6B52D /* PMAllocationDebug.h */,
 				CF86CCD41597272200F6B52D /* PMAllocationDebug.m */,
 				CF86CCD51597272200F6B52D /* PMAllocationDebug.xib */,
-				CF448EA416877F2B00F33BCE /* PMAbstractPersistentDocument.h */,
-				CF448EA516877F2B00F33BCE /* PMAbstractPersistentDocument.m */,
-				CF448EA616877F2B00F33BCE /* PMManagedObject.h */,
-				CF448EA716877F2B00F33BCE /* PMManagedObject.m */,
-				CF86CCD61597272200F6B52D /* RootEntityClass.h */,
-				CF86CCD71597272200F6B52D /* RootEntityClass.m */,
+				CF23E6061782E5B1002C28F9 /* PMDataScanner.h */,
+				CF23E6071782E5B1002C28F9 /* PMDataScanner.m */,
+				CF23E6081782E5B1002C28F9 /* PMEntityArrayController.h */,
+				CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */,
+				CF23E60A1782E5B1002C28F9 /* PMTransientDependancyManager.h */,
+				CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */,
+				CF23E5E71782E591002C28F9 /* load-store-functions.h */,
+				CF23E5E81782E591002C28F9 /* load-store-functions.m */,
+				CF23E5E91782E591002C28F9 /* NSData+BZ2compression.h */,
+				CF23E5EA1782E591002C28F9 /* NSData+BZ2compression.m */,
+				CF23E5EB1782E591002C28F9 /* NSData+PMGZcompression.h */,
+				CF23E5EC1782E591002C28F9 /* NSData+PMGZcompression.m */,
+				CF23E5ED1782E591002C28F9 /* NSMutableData+PMWrites.h */,
+				CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */,
+				CF23E5EF1782E591002C28F9 /* PMAttributeDescription.h */,
+				CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */,
+				CF23E5F11782E591002C28F9 /* PMEntityManager.h */,
+				CF23E5F21782E591002C28F9 /* PMEntityManager.m */,
+				CF23E5F31782E591002C28F9 /* PMManagedDocument.h */,
+				CF23E5F41782E591002C28F9 /* PMManagedDocument.m */,
+				CF23E5F51782E591002C28F9 /* PMManagedEntity.h */,
+				CF23E5F61782E591002C28F9 /* PMManagedEntity.m */,
+				CF23E5F71782E591002C28F9 /* PMRelationshipDescription.h */,
+				CF23E5F81782E591002C28F9 /* PMRelationshipDescription.m */,
+				CF23E5F91782E591002C28F9 /* PMUndoManager.h */,
+				CF23E5FA1782E591002C28F9 /* PMUndoManager.m */,
+				CF23E5FB1782E591002C28F9 /* PMWillDeallocProtocol.h */,
 				CF86CCC41597271900F6B52D /* easy-bindings-utilities.h */,
 				CF86CCC51597271900F6B52D /* easy-bindings-utilities.m */,
-				CF86CCB3159725BF00F6B52D /* PMDocument.h */,
-				CF86CCB4159725BF00F6B52D /* PMDocument.m */,
-				CF86CCB6159725BF00F6B52D /* PMDocument.xib */,
+				CF86CCC91597272200F6B52D /* MyPrefs.h */,
+				CF86CCCA1597272200F6B52D /* MyPrefs.m */,
+				CF86CCD61597272200F6B52D /* MyRootEntity.h */,
+				CF86CCD71597272200F6B52D /* MyRootEntity.m */,
+				CF86CCB3159725BF00F6B52D /* MyDocument.h */,
+				CF86CCB4159725BF00F6B52D /* MyDocument.m */,
+				CF86CCB6159725BF00F6B52D /* MyDocument.xib */,
 				CF86CCB9159725BF00F6B52D /* MainMenu.xib */,
 				CF86CCA8159725BF00F6B52D /* Supporting Files */,
 			);
@@ -259,7 +256,7 @@
 			files = (
 				CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */,
 				CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */,
-				CF86CCB8159725BF00F6B52D /* PMDocument.xib in Resources */,
+				CF86CCB8159725BF00F6B52D /* MyDocument.xib in Resources */,
 				CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */,
 				CF86CCDF1597272200F6B52D /* PMAllocationDebug.xib in Resources */,
 			);
@@ -273,25 +270,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF86CCAE159725BF00F6B52D /* main.m in Sources */,
-				CF86CCB5159725BF00F6B52D /* PMDocument.m in Sources */,
+				CF86CCB5159725BF00F6B52D /* MyDocument.m in Sources */,
 				CF86CCC61597271900F6B52D /* easy-bindings-utilities.m in Sources */,
-				CF86CCD81597272200F6B52D /* managed-object-model.m in Sources */,
 				CF86CCD91597272200F6B52D /* MyPrefs.m in Sources */,
 				CF86CCDE1597272200F6B52D /* PMAllocationDebug.m in Sources */,
-				CF86CCE01597272200F6B52D /* RootEntityClass.m in Sources */,
-				CFF1C93B15C3312E0054F1DA /* PMTransientDependancyManager.m in Sources */,
-				CF448EA816877F2B00F33BCE /* PMAbstractPersistentDocument.m in Sources */,
-				CF448EA916877F2B00F33BCE /* PMManagedObject.m in Sources */,
-				CF1AE0DC168F0D100031840E /* PMBinaryFlatDocument.m in Sources */,
-				CF1AE0DD168F0D100031840E /* PMbz2DataCategory.m in Sources */,
-				CF1AE0DE168F0D100031840E /* PMDataScanner.m in Sources */,
-				CF1AE0DF168F0D100031840E /* PMEmbeddedEntityDatabase.m in Sources */,
-				CF1AE0E0168F0D100031840E /* PMEmbeddedObjectDatabase.m in Sources */,
-				CF1AE0E1168F0D100031840E /* PMLoadedEntityDatabase.m in Sources */,
-				CF1AE0E2168F0D100031840E /* PMLoadedEntityDescription.m in Sources */,
-				CF1AE0E3168F0D100031840E /* PMLoadedObjectDatabase.m in Sources */,
-				CF1AE0E4168F0D100031840E /* PMMutableDataWriteCategory.m in Sources */,
-				CF1AE0E5168F0D100031840E /* PMzlibDataCategory.m in Sources */,
+				CF86CCE01597272200F6B52D /* MyRootEntity.m in Sources */,
+				CF23E5FC1782E591002C28F9 /* load-store-functions.m in Sources */,
+				CF23E5FD1782E591002C28F9 /* NSData+BZ2compression.m in Sources */,
+				CF23E5FE1782E591002C28F9 /* NSData+PMGZcompression.m in Sources */,
+				CF23E5FF1782E591002C28F9 /* NSMutableData+PMWrites.m in Sources */,
+				CF23E6001782E591002C28F9 /* PMAttributeDescription.m in Sources */,
+				CF23E6011782E591002C28F9 /* PMEntityManager.m in Sources */,
+				CF23E6021782E591002C28F9 /* PMManagedDocument.m in Sources */,
+				CF23E6031782E591002C28F9 /* PMManagedEntity.m in Sources */,
+				CF23E6041782E591002C28F9 /* PMRelationshipDescription.m in Sources */,
+				CF23E6051782E591002C28F9 /* PMUndoManager.m in Sources */,
+				CF23E60C1782E5B1002C28F9 /* PMDataScanner.m in Sources */,
+				CF23E60D1782E5B1002C28F9 /* PMEntityArrayController.m in Sources */,
+				CF23E60E1782E5B1002C28F9 /* PMTransientDependancyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,12 +310,12 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		CF86CCB6159725BF00F6B52D /* PMDocument.xib */ = {
+		CF86CCB6159725BF00F6B52D /* MyDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CF86CCB7159725BF00F6B52D /* en */,
 			);
-			name = PMDocument.xib;
+			name = MyDocument.xib;
 			sourceTree = "<group>";
 		};
 		CF86CCB9159725BF00F6B52D /* MainMenu.xib */ = {
