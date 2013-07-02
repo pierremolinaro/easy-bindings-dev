@@ -86,6 +86,8 @@ end foreach
 foreach TO_MANY_RELATIONSHIPS do
   %    self.%!mValue0% = [NSMutableArray new] ;\n%
 end foreach
+%  //--- Add Transient observers\n%
+!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
   return self ;
 }
