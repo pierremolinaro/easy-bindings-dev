@@ -31,7 +31,8 @@ static PMAllocationDebug * gDebugObject ;
     mAllocatedObjectCountByClass = [NSCountedSet new] ;
     mTotalAllocatedObjectCountByClass = [NSCountedSet new] ;
   //---
-    [[NSNotificationCenter defaultCenter]
+    NSNotificationCenter * df = [NSNotificationCenter defaultCenter] ;
+    [df
       addObserver:self
       selector:@selector(applicationWillTerminateAction:)
       name:NSApplicationWillTerminateNotification
