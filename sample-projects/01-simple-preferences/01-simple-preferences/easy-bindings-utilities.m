@@ -92,7 +92,7 @@ void presentErrorWindow (const char * inFile,
 
 //---------------------------------------------------------------------------*
 
-@implementation NSArray (PMArrayDebugCategory)
+@implementation NSArray (PMDebug)
 
 //---------------------------------------------------------------------------*
 
@@ -101,7 +101,7 @@ void presentErrorWindow (const char * inFile,
   if (anObject == nil) {
     NSLog (@"arrayWithObject: argument is nil in:%s:%ld", IN_SOURCE_FILE, IN_SOURCE_LINE) ;
   }
-  return [NSArray arrayWithObject:anObject] ; // DO NOT ADD HERE !!!
+  return [NSArray arrayWithObject:anObject] ; // DO NOT ADD "HERE" !!!
 }
 #endif
 
@@ -178,7 +178,7 @@ void presentErrorWindow (const char * inFile,
 
 //---------------------------------------------------------------------------*
 
-@implementation NSMutableSet (PMMutableSetDebugCategory)
+@implementation NSMutableSet (PMDebug)
 
 //---------------------------------------------------------------------------*
 
@@ -220,6 +220,22 @@ void presentErrorWindow (const char * inFile,
 //---------------------------------------------------------------------------*
 
 @end
+
+//---------------------------------------------------------------------------*
+
+#ifdef PM_COCOA_DEBUG
+  void routineCheckMethodSwizzling (Method inOriginal,
+                                    Method inSwizzled,
+                                    const char * inFile,
+                                    const int inLine) {
+    if (NULL == inOriginal) {
+      presentErrorWindow (inFile, inLine, @"Method swizzling: original is NULL") ;
+    }
+    if (NULL == inSwizzled) {
+      presentErrorWindow (inFile, inLine, @"Method swizzling: swizzled is NULL") ;
+    }
+  }
+#endif
 
 //---------------------------------------------------------------------------*
 //   NSData encoding                                                         *

@@ -34,9 +34,7 @@
 		CF60815B159367210021D873 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF608159159367210021D873 /* PMDocument.xib */; };
 		CF60815E159367210021D873 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF60815C159367210021D873 /* MainMenu.xib */; };
 		CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816D159368350021D873 /* easy-bindings-utilities.m */; };
-		CF608175159368350021D873 /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816F159368350021D873 /* managed-object-model.m */; };
 		CF608177159368350021D873 /* NameEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608173159368350021D873 /* NameEntity.m */; };
-		CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */; };
 		CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
@@ -90,11 +88,8 @@
 		CF60815D159367210021D873 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF60816C159368350021D873 /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CF60816D159368350021D873 /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CF60816E159368350021D873 /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
-		CF60816F159368350021D873 /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF608172159368350021D873 /* NameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEntity.h; sourceTree = "<group>"; };
 		CF608173159368350021D873 /* NameEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEntity.m; sourceTree = "<group>"; };
-		CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDocument_monAction_action.m; sourceTree = "<group>"; };
 		CF68C3D91595136F008B63F1 /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
 		CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
@@ -179,25 +174,22 @@
 				CF042E1817821119006C89AF /* PMUndoManager.m */,
 				CF1AE07E168F0C280031840E /* PMDataScanner.h */,
 				CF1AE07F168F0C280031840E /* PMDataScanner.m */,
-				CF2CF2061657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m */,
 				CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */,
 				CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */,
 				CF46293315961D8400BF70CD /* PMAllocationDebug.h */,
 				CF46293415961D8400BF70CD /* PMAllocationDebug.m */,
 				CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */,
-				CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */,
-				CF4628261595DA3800BF70CD /* MyRootEntity.h */,
-				CF4628271595DA3800BF70CD /* MyRootEntity.m */,
-				CF68C3D91595136F008B63F1 /* PMDocument-computations.h */,
-				CF68C33A1594E589008B63F1 /* PMDocument_monAction_action.m */,
 				CF60816C159368350021D873 /* easy-bindings-utilities.h */,
 				CF60816D159368350021D873 /* easy-bindings-utilities.m */,
-				CF60816E159368350021D873 /* managed-object-model.h */,
-				CF60816F159368350021D873 /* managed-object-model.m */,
+				CF4628261595DA3800BF70CD /* MyRootEntity.h */,
+				CF4628271595DA3800BF70CD /* MyRootEntity.m */,
 				CF608172159368350021D873 /* NameEntity.h */,
 				CF608173159368350021D873 /* NameEntity.m */,
+				CF68C3D91595136F008B63F1 /* PMDocument-computations.h */,
 				CF608156159367210021D873 /* PMDocument.h */,
 				CF608157159367210021D873 /* PMDocument.m */,
+				CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */,
+				CF2CF2061657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m */,
 				CF608159159367210021D873 /* PMDocument.xib */,
 				CF60815C159367210021D873 /* MainMenu.xib */,
 				CF60814B159367210021D873 /* Supporting Files */,
@@ -287,9 +279,7 @@
 				CF608151159367210021D873 /* main.m in Sources */,
 				CF608158159367210021D873 /* PMDocument.m in Sources */,
 				CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */,
-				CF608175159368350021D873 /* managed-object-model.m in Sources */,
 				CF608177159368350021D873 /* NameEntity.m in Sources */,
-				CF68C33C1594E589008B63F1 /* PMDocument_monAction_action.m in Sources */,
 				CF4628281595DA3800BF70CD /* MyRootEntity.m in Sources */,
 				CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */,
 				CF46293515961D8400BF70CD /* PMAllocationDebug.m in Sources */,
@@ -366,7 +356,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = PM_COCOA_DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

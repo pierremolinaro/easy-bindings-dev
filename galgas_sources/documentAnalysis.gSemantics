@@ -83,6 +83,7 @@ local routine analyzeControllers
         ?destinationEntityName
         ?2*
       ] ;
+      ioImplementationFileInclusionSet += !destinationEntityName->string ;
       if not isToMany then
         error mControlledObjectName: "this should be a collection" ;
       end if ;

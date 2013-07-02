@@ -1,6 +1,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+//-----------------------------------------------------------------------------*
+
+#import <objc/runtime.h>
+
 //---------------------------------------------------------------------------*
 //   presentErrorWindow                                                      *
 //---------------------------------------------------------------------------*
@@ -62,7 +66,16 @@ void presentErrorWindow (const char * inFile,
 
 //---------------------------------------------------------------------------*
 
-@interface NSArray (PMArrayDebugCategory)
+#ifdef PM_COCOA_DEBUG
+  #define macroCheckMethodSwizzling(ORIGINAL,SWIZZLED) routineCheckMethodSwizzling(ORIGINAL, SWIZZLED, __FILE__, __LINE__)
+  void routineCheckMethodSwizzling (Method inOriginal, Method inSwizzled, const char * inFile, const int inLine) ;
+#else
+  #define macroCheckMethodSwizzling(ORIGINAL,SWIZZLED)
+#endif
+
+//---------------------------------------------------------------------------*
+
+@interface NSArray (PMDebug)
 
 #ifdef PM_COCOA_DEBUG
 + (id) arrayWithObject: (id) anObject LOCATION_ARGS ;
@@ -82,7 +95,7 @@ void presentErrorWindow (const char * inFile,
 
 //---------------------------------------------------------------------------*
 
-@interface NSMutableSet (PMMutableSetDebugCategory)
+@interface NSMutableSet (PMDebug)
 
 #ifdef PM_COCOA_DEBUG
 - (void) addObject: (id) inObject LOCATION_ARGS ;
