@@ -54,7 +54,8 @@ foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
   %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
   if mControlledClassOrEntityName->string != "" then
-    %  %!lkey->string%.objectClass = [@"%!mControlledClassOrEntityName->string%" class] ;\n%
+    %  %!lkey->string%.objectClass = [%!mControlledClassOrEntityName->string% class] ;\n%
+    %  %!lkey->string%.entityManager = self.entityManager ;\n%
   end if
 end foreach
 %//--------------------------- Controller bindings
@@ -154,6 +155,8 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
   end if
 end foreach
 %}
+
+//----------------------------------------------------------------------------*
 
 %
 end if

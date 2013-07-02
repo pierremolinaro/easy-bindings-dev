@@ -10,7 +10,6 @@ foreach IMPLEMENTATION_INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
-#import <objc/runtime.h>
 
 //----------------------------------------------------------------------------*
 
@@ -112,6 +111,7 @@ if SUPER_CLASS_NAME != "" then
 foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
   swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
+  macroCheckMethodSwizzling (original, swizzled) ;
   method_exchangeImplementations (original, swizzled) ;
 %end foreach
 %}

@@ -14,9 +14,6 @@ foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 %
-//-----------------------------------------------------------------------------*
-
-#import <objc/runtime.h>
 
 //-----------------------------------------------------------------------------*
 
@@ -52,16 +49,19 @@ end foreach
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
 end foreach
 foreach TO_ONE_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
 end foreach
 foreach TO_MANY_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
+  %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
 end foreach
 %}
@@ -240,6 +240,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %      object.%!mInverseRelationshipName->string% = self ;\n%
     %    }\n%
     %    macroReleaseSetToNil (addedObjectSet) ;\n%
+    %  //--- Notify observers object count did change\n%
+    %    [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %  //--- Add signature observer to new object\n%
       %    [self.%!mRelationshipName->string% addSignatureObserver:self] ;\n%
@@ -267,19 +269,23 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %  }else if (idx != inIndex) {\n%
     %\n%
     %  }\n%
+    %//--- Notify observers object count did change\n%
+    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     %}\n\n%
     %//-----------------------------------------------------------------------------*\n\n%
     %- (void) removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: (NSUInteger) inIndex {\n%
     %  %!mDestinationEntityName->string% * removedObject = [%!mRelationshipName->string% objectAtIndex:inIndex] ;\n%
-    %//---\n%
+    %//--- Perform removing\n%
     %  [%!mRelationshipName->string% removeObjectAtIndex:inIndex] ;\n%
-    %//---\n%
+    %//--- Register all object in undo manager\n%
     %  [[self.undoManager prepareWithInvocationTarget:self]\n%
     %    insertObject:removedObject\n%
     %    in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex\n%
     %  ] ;\n%
-    %//---\n%
+    %//--- Reset inverse relationship\n%
     %  removedObject.%!mInverseRelationshipName->string% = nil ;\n%
+    %//--- Notify observers object count did change\n%
+    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     %}\n\n%
     %//-----------------------------------------------------------------------------*\n\n%
     %- (void) appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]%: (%!mDestinationEntityName->string% *) inObject {\n%
