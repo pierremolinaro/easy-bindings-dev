@@ -161,6 +161,8 @@ end foreach
 foreach CURRENT_RELATIONSHIP_LIST do
   %  %!mRelationshipName->string% = nil ;\n%
 end foreach
+%//--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %  [super resetBeforeDeletion] ;
 }
 

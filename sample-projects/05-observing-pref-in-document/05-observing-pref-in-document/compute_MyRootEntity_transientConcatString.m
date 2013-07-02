@@ -21,7 +21,7 @@ NSString * compute_MyRootEntity_transientConcatString (NSString * inDocString,
 
 //--- START OF USER ZONE 2
   return [NSString stringWithFormat:
-    @"Doc '%@' Prefs '%@', Pref Transient '%@'",
+    @"Doc %@ Prefs %@ Pref Transient %@",
     inDocString,
     inMyPrefString,
     inPrefTransientString
