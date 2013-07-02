@@ -497,7 +497,7 @@ rule <transient_declaration>
     select
       $root$ ;
       $.$ ;
-      $sign$ ;
+      $signature$ ;
       dependanceList += ![@transientRootSignDependency new !here] ;
     or
       $self$ ;
@@ -702,7 +702,7 @@ rule <entity_declaration>
   @lstringlist signList [emptyList] ;
   repeat
   while
-    $sign$ ;
+    $signature$ ;
     repeat
       $identifier$ ? @lstring propertyName ;
       signList += !propertyName ;

@@ -434,7 +434,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       [metadataDictionary setObject:[NSNumber numberWithDouble:windowSize.width] forKey:@"PMWindowWidth"] ;
       [metadataDictionary setObject:[NSNumber numberWithDouble:windowSize.height] forKey:@"PMWindowHeight"] ;
     }
-  }else{ // Document has been opened in the user interface, use values read from file, if they exist
+  }else{ // Document has not been opened in the user interface, use values read from file, if they exist
     NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
     NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@"PMWindowWidth"] ;
     if (nil != v) {
