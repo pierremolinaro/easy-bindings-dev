@@ -211,8 +211,8 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 //   Signature routines                                                      *
 //---------------------------------------------------------------------------*
 
-NSInteger computeIntSignature (const NSInteger inSignature,
-                               const NSInteger inValue) {
+NSInteger computeIntegerSignature (const NSInteger inSignature,
+                                   const NSInteger inValue) {
   NSInteger result = inSignature ;
   NSInteger negative = inSignature < 0 ;
   result <<= 1 ;
@@ -223,29 +223,29 @@ NSInteger computeIntSignature (const NSInteger inSignature,
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeStringSignature (const NSInteger inSignature,
-                                  NSString * inValue) {
+NSInteger computeNSStringSignature (const NSInteger inSignature,
+                                    NSString * inValue) {
   NSInteger result = inSignature ;
   for (NSUInteger i=0 ; i<inValue.length ; i++) {
-    result = computeIntSignature (result, [inValue characterAtIndex:i]) ;
+    result = computeIntegerSignature (result, [inValue characterAtIndex:i]) ;
   }
   return result ;  
 }
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeToOnePropertySignature (const NSInteger inSignature,
-                                         PMManagedEntity * inToOnePropertyValue) {
-  return computeIntSignature (inSignature, inToOnePropertyValue.signature) ;
+NSInteger computeToOneEntitySignature (const NSInteger inSignature,
+                                       PMManagedEntity * inToOnePropertyValue) {
+  return computeIntegerSignature (inSignature, inToOnePropertyValue.signature) ;
 }
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeToManyPropertySignature (const NSInteger inSignature,
-                                          NSArray * inToManyPropertyValue) {
+NSInteger computeToManyEntitySignature (const NSInteger inSignature,
+                                        NSArray * inToManyPropertyValue) {
   NSInteger result = inSignature ;
   for (PMManagedEntity * object in inToManyPropertyValue) {
-    result = computeIntSignature (result, object.signature) ;
+    result = computeIntegerSignature (result, object.signature) ;
   }
   return result ;
 }

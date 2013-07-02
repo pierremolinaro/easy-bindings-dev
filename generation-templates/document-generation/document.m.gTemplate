@@ -2,6 +2,7 @@
 #import "easy-bindings-utilities.h"
 #import "PMTransientDependancyManager.h"
 #import "PMEntityArrayController.h"
+#import "PMEntityController.h"
 #import "%!DOCUMENT_NAME%.h"
 #import "%!ROOT_ENTITY_NAME%.h"
 %if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then

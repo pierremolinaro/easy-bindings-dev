@@ -71,9 +71,15 @@
        newInstanceOfEntity:self.rootEntityClass
        withDefaultValues:YES
     ] ;
+    [self hookOfNewDocumentCreation] ;
     [self.undoManager enableUndoRegistration] ;
   }
   return self ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (void) hookOfNewDocumentCreation {
 }
 
 //-----------------------------------------------------------------------------*

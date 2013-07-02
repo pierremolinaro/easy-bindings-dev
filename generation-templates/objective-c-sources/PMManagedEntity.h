@@ -31,7 +31,7 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 //  PMManagedEntity                                                            *
 //-----------------------------------------------------------------------------*
 
-@interface PMManagedEntity : NSObject {
+@interface PMManagedEntity : NSObject <PMSignatureObserverProtocol> {
   @private PMEntityManager * mEntityManager ;
   @private NSUndoManager * mUndoManager ;
 //--- Signature
@@ -95,22 +95,22 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 //   Signature routines                                                      *
 //---------------------------------------------------------------------------*
 
-NSInteger computeIntSignature (const NSInteger inSignature,
-                               const NSInteger inValue) ;
+NSInteger computeIntegerSignature (const NSInteger inSignature,
+                                   const NSInteger inValue) ;
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeStringSignature (const NSInteger inSignature,
-                                  NSString * inValue) ;
+NSInteger computeNSStringSignature (const NSInteger inSignature,
+                                    NSString * inValue) ;
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeToOnePropertySignature (const NSInteger inSignature,
-                                         PMManagedEntity * inToOnePropertyValue) ;
+NSInteger computeToOneEntitySignature (const NSInteger inSignature,
+                                       PMManagedEntity * inToOnePropertyValue) ;
 
 //---------------------------------------------------------------------------*
 
-NSInteger computeToManyPropertySignature (const NSInteger inSignature,
-                                          NSArray * inToManyPropertyValue) ;
+NSInteger computeToManyEntitySignature (const NSInteger inSignature,
+                                        NSArray * inToManyPropertyValue) ;
 
 //-----------------------------------------------------------------------------*
