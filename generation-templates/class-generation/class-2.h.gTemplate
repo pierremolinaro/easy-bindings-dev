@@ -12,8 +12,8 @@ end foreach%
 //--- Remove Observers
 - (void) removeObservers ;
 
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
-%//--- '%!mAttributeName%' property\n%
+%foreach ATTRIBUTE_LIST do
+%//--- '%!mAttributeName%' attribute\n%
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
 %  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%

@@ -379,7 +379,10 @@ rule <document_declaration>
   @controllerList controllerList [emptyList] ;
   @lstringlist actionDeclarationList [emptyList] ;
   @transientList transientList [emptyList] ;
+  @attributeList attributeList [emptyList] ;
   repeat
+  while
+    <attribute_declaration> !?attributeList ;
   while
     <action_declaration> !?actionDeclarationList ;
   while
@@ -397,6 +400,7 @@ rule <document_declaration>
     !controllerList
     !actionDeclarationList
     !transientList
+    !attributeList
   ;
 end rule ;
 

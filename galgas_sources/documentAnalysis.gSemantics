@@ -162,8 +162,41 @@ local routine analyzeDocument
     ?@relationshipMap rootObjectRelationshipMap
     ?2*
   ] ;
-#-------------------------------------------------- Analyze controllers
+#-------------------------------------------------- Analyze attributes
   @stringset implementationFileInclusionSet [emptySet] ;
+  @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
+  @stringset headerFileInclusionSet [emptySet] ;
+  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+  foreach inDocument->mAttributeList do
+    [mDefaultValue analyzeDefaultValueType
+      ![@easyBindingTypeList listWithValue !mType]
+      !inGlobalEnumConstantMap
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+    ] ;
+    [mType addFileInclusion !?headerFileInclusionSet] ;
+    attributeListForImplementation +=
+      !mType
+      ![mAttributeName string]
+      !objectiveCDefaultValueAsString
+      !directDefaultValueAsString
+    ;
+    const @lstring observationDependencyKey [new
+      !"document." . inDocument->mDocumentName->string . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?selfObservableAttributeMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze controllers
   @stringset headerFilePredeclarationSet [emptySet] ;
   analyzeControllers
     !inDocument->mControllerList
@@ -177,7 +210,6 @@ local routine analyzeDocument
     ?@controllerMap controllerMap
   ;
 #-------------------------------------------------- Analyze transient properties
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
   analyzeTransientProperties
     !inPreferencesMap
     !"document." . inDocument->mDocumentName . "."
@@ -185,7 +217,7 @@ local routine analyzeDocument
     !rootObjectObservablePropertyMap
     !inDocument->mRootEntityName->string
     !controllerMap
-    !?observablePropertyMap
+    !?selfObservableAttributeMap
     !?implementationFileInclusionSet
     ?@transientListForImplementation transientListForImplementation
     !?ioTransientDependencyGraph
@@ -215,7 +247,7 @@ local routine analyzeDocument
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
         !rootObjectObservablePropertyMap
-        !observablePropertyMap
+        !selfObservableAttributeMap
         !inPreferencesMap
         !inEntityMap
         ![@classMap emptyMap]
@@ -246,6 +278,7 @@ local routine analyzeDocument
     !headerFilePredeclarationSet
     !transientListForImplementation
     !implementationFileInclusionSet
+    !attributeListForImplementation
   ] ;
 end routine ;
 

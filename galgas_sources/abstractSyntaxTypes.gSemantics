@@ -272,6 +272,7 @@ list @documentDeclarationList {
   @controllerList mControllerList ;
   @lstringlist mActionDeclarationList ;
   @transientList mTransientList ;
+  @attributeList mAttributeList ;
 }
 
 #----------------------------------------------------------------------------*

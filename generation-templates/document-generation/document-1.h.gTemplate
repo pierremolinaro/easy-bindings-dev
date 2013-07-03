@@ -17,6 +17,7 @@ if HAS_SIGNATURE_OBSERVER then
 end if
 %{
 %
+
 foreach OUTLET_GENERATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n%
@@ -26,7 +27,12 @@ foreach CONTROLLER_MAP do
   @private %!mControllerClassName% * %!lkey->string% ;\n%
 end foreach
 
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//--- Attribute observers
+%foreach ATTRIBUTE_LIST do
+%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
+end foreach
+
+foreach TRANSIENT_LIST do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n%

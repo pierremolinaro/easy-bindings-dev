@@ -17,7 +17,7 @@ else
 end if
 % {
 //--- Attribute observers
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%foreach ATTRIBUTE_LIST do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end foreach
 
