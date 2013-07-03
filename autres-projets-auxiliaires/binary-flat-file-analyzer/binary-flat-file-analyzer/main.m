@@ -17,6 +17,26 @@
 
 static void dumpData (NSData * inFileData) {
   printf ("------------------------------ File Data (%lu bytes)\n", inFileData.length) ;
+  NSArray * dataArray = [NSPropertyListSerialization
+    propertyListFromData:inFileData
+    mutabilityOption:NSPropertyListImmutable 
+    format:NULL
+    errorDescription:NULL  
+  ] ;
+  NSData * data = [NSPropertyListSerialization
+    dataWithPropertyList:dataArray
+    format:NSPropertyListXMLFormat_v1_0
+    options:0
+    error:nil
+  ] ;
+  NSString * s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] ;
+  printf ("%s", [s cStringUsingEncoding:NSUTF8StringEncoding]) ;
+}
+
+//---------------------------------------------------------------------------*
+
+static void dumpLegacyData (NSData * inFileData) {
+  printf ("------------------------------ File Data (%lu bytes)\n", inFileData.length) ;
   PMDataScanner * dataScanner = [PMDataScanner scannerWithData:inFileData] ;
 //--- Parse entity definitions
   PMLoadedEntityDatabase * loadedEntityDatabase = [[PMLoadedEntityDatabase alloc]
@@ -79,16 +99,29 @@ static void dumpFile (NSString * inFilePath) {
    //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
   }
 //--- Read data
+  NSData * fileLegacyData = nil ;
   NSData * fileData = nil ;
-  if ([dataScanner testAcceptByte:3 withMessage:@"Data is not compressed"]) { // Not compressed
+  if ([dataScanner testAcceptByte:3 withMessage:@"Legacy data, compressed"]) { // Legacy format, not compressed
+    fileLegacyData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
+  }else if ([dataScanner testAcceptByte:4 withMessage:@"Legacy data, compressed using ZLIB"]) { // Legacy format, ZLIB Compressed
+    NSData * compressedData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
+    if (nil != compressedData) {
+      fileLegacyData = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+    }
+  }else if ([dataScanner testAcceptByte:2 withMessage:@"Legacy data, compressed using BZ2"]) { // Legacy format, BZ2 compressed
+    NSData * compressedData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
+    if (nil != compressedData) {
+      fileLegacyData = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+    }
+  }else if ([dataScanner testAcceptByte:6 withMessage:@"Data is not compressed"]) { // Not compressed
     fileData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
-  }else if ([dataScanner testAcceptByte:4 withMessage:@"Data is compressed using ZLIB"]) { // ZLIB Compressed
+  }else if ([dataScanner testAcceptByte:7 withMessage:@"Data is compressed using ZLIB"]) { // ZLIB Compressed
     NSData * compressedData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
     if (nil != compressedData) {
       fileData = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
     }
   }else{
-    [dataScanner acceptRequiredByte:2 withMessage:@"Data is compressed using BZ2" sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
+    [dataScanner acceptRequiredByte:5 withMessage:@"Data is compressed using BZ2" sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
     NSData * compressedData = [dataScanner parseAutosizedDataWithMessage:@"File Data"] ;
     if (nil != compressedData) {
       fileData = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
@@ -98,8 +131,13 @@ static void dumpFile (NSString * inFilePath) {
   [dataScanner acceptRequiredByte:0 withMessage:@"End of file Mark" sourceFile:__PRETTY_FUNCTION__] ;
 //------------------ Dump metadata dictionary
   dumpMetadataDictionary (metadataDictionary) ;
-//------------------ Dump metadata dictionary
-  dumpData (fileData) ;
+//------------------ Dump data
+  if (nil != fileLegacyData) {
+    dumpLegacyData (fileLegacyData) ;
+  }
+  if (nil != fileData) {
+    dumpData (fileData) ;
+  }
 //------------------
   printf ("------------------------------ END\n") ;
 }
@@ -107,9 +145,6 @@ static void dumpFile (NSString * inFilePath) {
 //----------------------------------------------------------------------------*
 
 int main (int argc, const char * argv[]) {
-/*  for (int i=0 ; i<argc ; i++) {
-    printf ("Arg #%d: '%s'\n", i, argv [i]) ;
-  }*/
   @autoreleasepool {
     if (argc == 2) {
       NSString * filePath = [NSString stringWithFormat:@"%s", argv[1]] ;
