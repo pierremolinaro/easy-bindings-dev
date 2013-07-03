@@ -12,12 +12,14 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string ROOT_ENTITY_NAME
     ?@outletGenerationList OUTLET_GENERATION_LIST
     ?@controllerMap CONTROLLER_MAP
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST
     ?@stringset HEADER_FILE_PREDECLARATION_SET
     ?@bool HAS_SIGNATURE_OBSERVER
+    ?@attributeListForImplementation ATTRIBUTE_LIST
   ;
   
   template documentDeclaration2 "document-2.h.gTemplate"
+    ?@attributeListForImplementation ATTRIBUTE_LIST
     ?@lstringlist ACTION_LIST
   ;
   
@@ -26,10 +28,11 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@string ROOT_ENTITY_NAME
     ?@outletGenerationList OUTLET_GENERATION_LIST
     ?@controllerMap CONTROLLER_MAP
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@transientListForImplementation TRANSIENT_LIST
     ?@stringset INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@bool HAS_SIGNATURE_OBSERVER
+    ?@attributeListForImplementation ATTRIBUTE_LIST
   ;
 
   template documentComputationsHeaderFile "document-computations.h.gTemplate"
@@ -69,8 +72,10 @@ routine generateDocumentCode
         !mTransientListForImplementation
         !mHeaderFilePredeclarationSet
         !hasSignatureObserver
+        !mAttributeListForImplementation
       ] ;
       @string s2 := [filewrapper documentGenerationTemplate.documentDeclaration2
+        !mAttributeListForImplementation
         !mActionList
       ] ;
       [@string generateFileWithPattern
@@ -92,6 +97,7 @@ routine generateDocumentCode
         !mImplementationFileInclusionSet
         !inTransientDependencyArcList
         !hasSignatureObserver
+        !mAttributeListForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

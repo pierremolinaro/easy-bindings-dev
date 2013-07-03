@@ -465,16 +465,16 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   switch ([self compressDataOnSaving]) {
   case PMDocumentBZ2Compression:
     data = [data bz2CompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
-    [fileData writeByte:2 trace:nil] ;
+    [fileData writeByte:5 trace:nil] ;
     [fileData writeAutosizedData:data trace:nil] ;
     break ;
   case PMDocumentZLIBCompression:
     data = [data zlibCompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
-    [fileData writeByte:4 trace:nil] ;
+    [fileData writeByte:7 trace:nil] ;
     [fileData writeAutosizedData:data trace:nil] ;
     break ;
   default:
-    [fileData writeByte:3 trace:nil] ;
+    [fileData writeByte:6 trace:nil] ;
     [fileData writeAutosizedData:data trace:nil] ;
     break ;
   }
@@ -558,13 +558,13 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
    //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
   }
 //--- Read dictionary
-  if ([dataScanner testAcceptByte:3]) { // Not compressed
+  if ([dataScanner testAcceptByte:6]) { // Not compressed
     NSData * data = [dataScanner parseAutosizedData] ;
     if (nil != data) {
       mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
       macroRetain (mRootObject) ;
     }
-  }else if ([dataScanner testAcceptByte:4]) { // ZLIB Compressed
+  }else if ([dataScanner testAcceptByte:7]) { // ZLIB Compressed
     NSData * compressedData = [dataScanner parseAutosizedData] ;
     if (nil != compressedData) {
       NSData * data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
@@ -572,7 +572,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       macroRetain (mRootObject) ;
     }
   }else{
-    [dataScanner acceptRequiredByte:2 sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
+    [dataScanner acceptRequiredByte:5 sourceFile:__PRETTY_FUNCTION__] ; // BZ2 compressed
     NSData * compressedData = [dataScanner parseAutosizedData] ;
     if (nil != compressedData) {
       NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;

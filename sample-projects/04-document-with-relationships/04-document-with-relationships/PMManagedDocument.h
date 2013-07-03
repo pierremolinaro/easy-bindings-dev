@@ -38,6 +38,8 @@ typedef enum : NSUInteger {
 - (void) hookOfNewDocumentCreation ;
 
 //--- Methods called during a save operation
+- (void) hookOfWillSave ;
+
 - (UInt8) metadataStatusForSaving ; // Returns 0 by default
 
 - (NSDictionary *) metadataDictionaryForSaving ; // Returns an empty dictionary by default

@@ -19,7 +19,7 @@ end foreach
 //    Synthesize properties                                                   *
 //----------------------------------------------------------------------------*
 
-%foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+%foreach ATTRIBUTE_LIST do
 %@synthesize %!mAttributeName% ;\n%
 end foreach
 %
@@ -33,7 +33,7 @@ end foreach
 %if SUPER_CLASS_NAME == "" then
 %    macroNoteObjectAllocation ;
 %end if
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+foreach ATTRIBUTE_LIST do
   %    %!mAttributeName% = %!mDirectDefaultValue% ;\n%
 end foreach
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
@@ -67,7 +67,7 @@ if SUPER_CLASS_NAME == "" then
 %    macroNoteObjectAllocation ;
 %end if
 
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+foreach ATTRIBUTE_LIST do
   %    %!mAttributeName% = in%![mAttributeName stringByCapitalizingFirstCharacter]% ;\n%
 end foreach
 
@@ -100,17 +100,19 @@ if SUPER_CLASS_NAME != "" then
 %  [super removeObservers] ;
 %end if%}
 
-%if [PROPERTY_LIST_FOR_IMPLEMENTATION length] > 0 then
+%
+
+if [ATTRIBUTE_LIST length] > 0 then
 %//----------------------------------------------------------------------------*
-//    Swizzle                                                                 *
+//    load                                                                    *
 //----------------------------------------------------------------------------*
 
 + (void) load {
   Method original, swizzled ;
 %
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+foreach ATTRIBUTE_LIST do
 %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
-  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
+  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:));
   macroCheckMethodSwizzling (original, swizzled) ;
   method_exchangeImplementations (original, swizzled) ;
 %end foreach
@@ -119,17 +121,17 @@ foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
 %
 end if
 
-foreach PROPERTY_LIST_FOR_IMPLEMENTATION do
+foreach ATTRIBUTE_LIST do
 %//----------------------------------------------------------------------------*
 //    '%!mAttributeName%' attribute                                            *
 //----------------------------------------------------------------------------*
 
-- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
+- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inObject {
 %if [mType equalMethod] == "" then
 %  if (%!mAttributeName% != inObject) {
 %else
 %  if (! [self.%!mAttributeName% %![mType equalMethod]%:inObject]) {
-%end if%    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
+%end if%    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inObject] ;
     [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["class." . CLASS_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 %!generateTransientTriggering [!mAttributeName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
 
