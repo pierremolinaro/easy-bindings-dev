@@ -49,7 +49,11 @@ typedef enum : NSUInteger {
 - (PMDocumentCompressionEnum) compressDataOnSaving ; // Default: PMDocumentBZ2Compression
 
 //--- Legacy format helper
-@property (atomic) NSData * (* legacyFormatLoader) (NSData * inData, NSError ** outError) ;
+@property (atomic)
+   PMManagedEntity * (* legacyFormatLoader) (NSData * inData,
+                                             PMEntityManager * inManager,
+                                             Class inRootEntityClass,
+                                             NSError ** outError) ;
 
 //--- Methods that can be called during document's life
 - (UInt8) metadataStatusReadFromFile ; // 0 if document has been never saved

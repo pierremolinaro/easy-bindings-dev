@@ -57,17 +57,21 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 
 - (NSArray *) attributeDescriptionArray ;
 
+- (BOOL) hasAttributeNamed: (NSString *) inName ;
+
 - (NSArray *) toOneRelationshipDescriptionArray ;
 
+- (BOOL) hasToOneRelationshipNamed: (NSString *) inName ;
+
 - (NSArray *) toManyRelationshipDescriptionArray ;
+
+- (BOOL) hasToManyRelationshipNamed: (NSString *) inName ;
 
 - (void) buildAttributeDescriptionArray: (NSMutableArray *) ioDescriptionArray ;
 
 - (void) buildToOneRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray ; // Of PMRelationshipDescription
 
 - (void) buildToManyRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray ; // Of PMRelationshipDescription
-
-- (void) setUpWithDefaultValues ;
 
 - (void) setUpWithDictionary: (NSDictionary *) inDictionary
          withManagedEntityArray: (NSArray *) inObjectArray ;

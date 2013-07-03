@@ -65,6 +65,7 @@
 //-----------------------------------------------------------------------------*
 
 - (void) dealloc {
+  [mEntityManager resetBeforeDeletion] ;
   macroReleaseSetToNil (mReadMetadataDictionary) ;
   macroReleaseSetToNil (mRootObject) ;
   macroReleaseSetToNil (mEntityManager) ;
@@ -81,10 +82,7 @@
   self = [super initWithType:typeName error:outError] ;
   if (self) {
     [self.undoManager disableUndoRegistration] ;
-    mRootObject = [mEntityManager
-       newInstanceOfEntity:self.rootEntityClass
-       withDefaultValues:YES
-    ] ;
+    mRootObject = [mEntityManager newInstanceOfEntity:self.rootEntityClass] ;
     [self hookOfNewDocumentCreation] ;
     [self.undoManager enableUndoRegistration] ;
   }
@@ -579,11 +577,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       data = nil ;
       legacyDataWithoutConverterError = YES ;
     }else if (nil != data) {
-      data = legacyFormatLoader (data, & error) ;
-    }
-    if (nil != data) {
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
+      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
     }
   }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed
     NSData * compressedData = [dataScanner parseAutosizedData] ;
@@ -595,27 +589,19 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       legacyDataWithoutConverterError = YES ;
       data = nil ;
     }else if (nil != data) {
-      data = legacyFormatLoader (data, & error) ;
-    }
-    if (nil != data) {
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
+      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
     }
   }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed
     NSData * compressedData = [dataScanner parseAutosizedData] ;
     NSData * data = nil ;
     if (nil != compressedData) {
-       data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+      data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
     }
     if (NULL == legacyFormatLoader) {
       legacyDataWithoutConverterError = YES ;
       data = nil ;
     }else if (nil != data) {
-      data = legacyFormatLoader (data, & error) ;
-    }
-    if (nil != data) {
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
+      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
     }
   }else if ([dataScanner testAcceptByte:6]) { // Not compressed
     NSData * data = [dataScanner parseAutosizedData] ;
