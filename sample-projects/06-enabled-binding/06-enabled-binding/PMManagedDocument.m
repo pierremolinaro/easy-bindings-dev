@@ -5,7 +5,7 @@
 //  Created by Pierre Molinaro on 28/06/13.
 //  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
 //
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 #import "easy-bindings-utilities.h"
 #import "PMManagedDocument.h"
@@ -19,16 +19,22 @@
 #import "PMRelationshipDescription.h"
 #import "PMUndoManager.h"
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
   static BOOL gDebugMenuItemsAdded ;
 #endif
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 @implementation PMManagedDocument
 
+//-----------------------------------------------------------------------------*
+
+@synthesize legacyFormatLoader ;
+
+//-----------------------------------------------------------------------------*
+//    init                                                                     *
 //-----------------------------------------------------------------------------*
 
 - (instancetype) init {
@@ -41,14 +47,22 @@
     self.undoManager = um ;
     macroReleaseSetToNil (um) ;
     mEntityManager = [[PMEntityManager alloc] initWithUndoManager:self.undoManager] ;
+    [self hookOfInit] ;
     macroNoteObjectAllocation ;
   }
   return self ;
 }
 
-//----------------------------------------------------------------------------*
-//    Dealloc                                                                 *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    hookOfInit                                                               *
+//-----------------------------------------------------------------------------*
+
+- (void) hookOfInit {
+}
+
+//-----------------------------------------------------------------------------*
+//    Dealloc                                                                  *
+//-----------------------------------------------------------------------------*
 
 - (void) dealloc {
   macroReleaseSetToNil (mReadMetadataDictionary) ;
@@ -94,9 +108,9 @@
   return mEntityManager ;
 }
 
-//----------------------------------------------------------------------------*
-//    windowControllerDidLoadNib:                                             *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    windowControllerDidLoadNib:                                              *
+//-----------------------------------------------------------------------------*
 
 - (void) windowControllerDidLoadNib: (NSWindowController *) inWindowController {
   [super windowControllerDidLoadNib:inWindowController] ;
@@ -136,9 +150,9 @@
   #endif
 }
 
-//----------------------------------------------------------------------------*
-//   removeWindowController:                                                  *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//   removeWindowController:                                                   *
+//-----------------------------------------------------------------------------*
 
 - (void) removeWindowController: (NSWindowController *) inWindowController {
   [self.undoManager disableUndoRegistration] ;
@@ -148,15 +162,15 @@
   [super removeWindowController:inWindowController] ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 #pragma mark Check Entity Reachability
 
-//---------------------------------------------------------------------------*
-//                                                                           *
-//   C H E C K    E N T I T Y   R E A C H A B I L I T Y                      *
-//                                                                           *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//                                                                             *
+//   C H E C K    E N T I T Y   R E A C H A B I L I T Y                        *
+//                                                                             *
+//-----------------------------------------------------------------------------*
 
 - (IBAction) checkEntityReachability: (id) inSender {
   #ifdef EASY_BINDINGS_DEBUG
@@ -211,7 +225,7 @@
   }
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) deleteUnreachableObjects:(NSAlert *) inAlert
          returnCode:(NSInteger) inReturnCode
@@ -226,15 +240,15 @@
   macroReleaseSetToNil (objectsToDelete) ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 #pragma mark Check Relationships
 
-//---------------------------------------------------------------------------*
-//                                                                           *
-//   C H E C K    R E L A T I O N S H I P S                                  *
-//                                                                           *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//                                                                             *
+//   C H E C K    R E L A T I O N S H I P S                                    *
+//                                                                             *
+//-----------------------------------------------------------------------------*
 
 - (IBAction) checkRelationships: (id) inSender {
   #ifdef EASY_BINDINGS_DEBUG
@@ -316,7 +330,7 @@
   }
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) checkObjectRelationShips: (PMManagedEntity *) inManagedObject
          correctedError: (NSUInteger *) ioCorrectedErrorsPtr
@@ -368,15 +382,15 @@
   }
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 #pragma mark Object Explorer Window
 
-//---------------------------------------------------------------------------*
-//                                                                           *
-//   showObjectExplorerWindow:                                               *
-//                                                                           *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//                                                                             *
+//   showObjectExplorerWindow:                                                 *
+//                                                                             *
+//-----------------------------------------------------------------------------*
 
 - (void) showObjectExplorerWindow: (id) inUnusedSender {
   #ifdef PM_COCOA_DEBUG
@@ -384,40 +398,40 @@
   #endif
 }
 
-//---------------------------------------------------------------------------*
-//  S A V E    T O    D A T A                                                *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//  S A V E    T O    D A T A                                                  *
+//-----------------------------------------------------------------------------*
 
 #pragma mark Document Saving
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (NSDictionary *) metadataDictionaryForSaving {
   return [NSDictionary dictionary] ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (UInt8) metadataStatusForSaving {
   return 0 ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (PMDocumentCompressionEnum) compressDataOnSaving {
   return PMDocumentBZ2Compression ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) hookOfWillSave {
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (NSData *) dataOfType: (NSString *) inTypeName
              error:(NSError **) outError {
@@ -485,7 +499,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   return fileData ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (void) showWindows {
   if ((self.windowForSheet.styleMask & NSResizableWindowMask) != 0) { // Only if window is resizable
@@ -503,13 +517,13 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   [super showWindows] ;
 }
 
-//---------------------------------------------------------------------------*
-//  R E A D    F R O M    D A T A                                            *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//  R E A D    F R O M    D A T A                                              *
+//-----------------------------------------------------------------------------*
 
 #pragma mark Document loading
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (NSDictionary *) metadataDictionaryReadFromFile { // nil if document has been never saved
   NSDictionary * result = mReadMetadataDictionary.copy ;
@@ -517,13 +531,13 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   return result ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (UInt8) metadataStatusReadFromFile {
   return mReadMetadataStatus ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 - (BOOL) readFromData: (NSData *) inData
          ofType:(NSString *) inTypeName
@@ -558,7 +572,52 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
    //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
   }
 //--- Read dictionary
-  if ([dataScanner testAcceptByte:6]) { // Not compressed
+  BOOL legacyDataWithoutConverterError = NO ;
+  if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
+    NSData * data = [dataScanner parseAutosizedData] ;
+    if (NULL == legacyFormatLoader) {
+      data = nil ;
+      legacyDataWithoutConverterError = YES ;
+    }else if (nil != data) {
+      data = legacyFormatLoader (data, & error) ;
+    }
+    if (nil != data) {
+      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+      macroRetain (mRootObject) ;
+    }
+  }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed
+    NSData * compressedData = [dataScanner parseAutosizedData] ;
+    NSData * data = nil ;
+    if (nil != compressedData) {
+       data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+    }
+    if (NULL == legacyFormatLoader) {
+      legacyDataWithoutConverterError = YES ;
+      data = nil ;
+    }else if (nil != data) {
+      data = legacyFormatLoader (data, & error) ;
+    }
+    if (nil != data) {
+      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+      macroRetain (mRootObject) ;
+    }
+  }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed
+    NSData * compressedData = [dataScanner parseAutosizedData] ;
+    NSData * data = nil ;
+    if (nil != compressedData) {
+       data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+    }
+    if (NULL == legacyFormatLoader) {
+      legacyDataWithoutConverterError = YES ;
+      data = nil ;
+    }else if (nil != data) {
+      data = legacyFormatLoader (data, & error) ;
+    }
+    if (nil != data) {
+      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+      macroRetain (mRootObject) ;
+    }
+  }else if ([dataScanner testAcceptByte:6]) { // Not compressed
     NSData * data = [dataScanner parseAutosizedData] ;
     if (nil != data) {
       mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
@@ -599,6 +658,32 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   [dataScanner orderOutProgressWindow] ;
   dataScanner = nil ;
 //---
+  if (legacyDataWithoutConverterError) {
+    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+      @"Cannot Open Document",  NSLocalizedDescriptionKey,
+      @"Legacy data, no helper function",  NSLocalizedRecoverySuggestionErrorKey,
+      nil
+    ] ;
+    error = [[NSError alloc]
+      initWithDomain:[NSBundle mainBundle].bundleIdentifier
+      code:1
+      userInfo:dictionary
+    ] ;
+  }
+//---
+  if ((error == nil) && (mRootObject == nil)) {
+    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+      @"Cannot Open Document",  NSLocalizedDescriptionKey,
+      @"Root object cannot be read",  NSLocalizedRecoverySuggestionErrorKey,
+      nil
+    ] ;
+    error = [[NSError alloc]
+      initWithDomain:[NSBundle mainBundle].bundleIdentifier
+      code:1
+      userInfo:dictionary
+    ] ;
+  }
+//---
   if (NULL != outError) {
     * outError = error ;
   }
@@ -608,13 +693,13 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   return result;
 }
 
-//---------------------------------------------------------------------------*
-//  M E T A D A T A    A C C E S S                                           *
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//  M E T A D A T A    A C C E S S                                             *
+//-----------------------------------------------------------------------------*
 
 #pragma mark Metadata access
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 + (BOOL) badFormatErrorForFileAtPath: (NSString *) inFilePath
          error: (NSError **) outError {
@@ -635,7 +720,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   return NO ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 + (UInt8) statusForFileAtPath: (NSString *) inFilePath
           error: (NSError **) outError {
@@ -677,7 +762,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   return status ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 static UInt8 readByte (NSFileHandle * inFileHandle, NSString * inFilePath, NSError ** outError) {
   UInt8 byte = 0 ;
@@ -695,7 +780,7 @@ static UInt8 readByte (NSFileHandle * inFileHandle, NSString * inFilePath, NSErr
   return byte ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 static NSUInteger readAutosizedUnsignedIntegerAtIndex (NSFileHandle * inFileHandle, NSString * inFilePath, NSError ** outError) {
   NSUInteger result = 0 ;
@@ -716,7 +801,7 @@ static NSUInteger readAutosizedUnsignedIntegerAtIndex (NSFileHandle * inFileHand
   return result ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString * inFilePath, NSError ** outError) {
   NSError * error = nil ;
@@ -734,7 +819,7 @@ static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString 
   return result ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 + (NSDictionary *) metadataForFileAtPath: (NSString *) inFilePath
                    status: (UInt8 *) outStatus
@@ -795,6 +880,6 @@ static NSData * readAutosizedDataAtIndex (NSFileHandle * inFileHandle, NSString 
   return metadataDictionaryForSaving ;
 }
 
-//---------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 @end

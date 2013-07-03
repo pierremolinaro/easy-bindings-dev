@@ -60,7 +60,7 @@ if [ATTRIBUTE_LIST length] > 0 then
   if (self) {
 %
   foreach ATTRIBUTE_LIST do
-  %      self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
+  %    self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
   end foreach
   !generateAddObserverForTransients [!TRANSIENT_LIST !"  "]
 %  }
