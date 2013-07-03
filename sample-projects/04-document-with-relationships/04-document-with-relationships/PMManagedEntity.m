@@ -15,6 +15,8 @@
 #import "PMAttributeDescription.h"
 
 //-----------------------------------------------------------------------------*
+//  Function used for object explorer                                          *
+//-----------------------------------------------------------------------------*
 
 NSString * convertBOOLValueToString (NSNumber * inValue) {
   return [inValue boolValue] ? @"YES" : @"NO" ;
@@ -26,6 +28,17 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
   static NSUInteger gExplorerObjectIndex ;
 #endif
 
+//-----------------------------------------------------------------------------*
+//  Attribute and relationship description caches                              *
+//-----------------------------------------------------------------------------*
+
+static NSMutableDictionary * gAttributeDescriptionDictionary ;
+static NSMutableDictionary * gToOneRelationshipDescriptionDictionary ;
+static NSMutableDictionary * gToManyRelationshipDescriptionDictionary ;
+static NSUInteger gAllocatedEntityCount = 0 ;
+
+//-----------------------------------------------------------------------------*
+//  PMManagedEntity                                                            *
 //-----------------------------------------------------------------------------*
 
 @implementation PMManagedEntity
@@ -39,6 +52,7 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 - (instancetype) initWithEntityManager: (PMEntityManager *) inEntityManager {
   self = [self init] ;
   if (self) {
+    gAllocatedEntityCount ++ ;
     macroAssign (mEntityManager, inEntityManager) ;
     mUndoManager = inEntityManager.undoManager ;
     macroRetain (mUndoManager) ;
@@ -56,12 +70,20 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 //----------------------------------------------------------------------------*
 
 - (void) dealloc {
+  gAllocatedEntityCount -- ;
+  if (0 == gAllocatedEntityCount) {
+    macroReleaseSetToNil (gAttributeDescriptionDictionary) ;
+    macroReleaseSetToNil (gToOneRelationshipDescriptionDictionary) ;
+    macroReleaseSetToNil (gToManyRelationshipDescriptionDictionary) ;
+  }
   macroReleaseSetToNil (mEntityManager) ;
   macroReleaseSetToNil (mUndoManager) ;
   macroNoteObjectDeallocation ;
   macroSuperDealloc ;
 }
 
+//-----------------------------------------------------------------------------*
+//  Getters                                                                    *
 //-----------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
@@ -83,8 +105,36 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 }
 
 //-----------------------------------------------------------------------------*
+//  Attributes                                                                 *
+//-----------------------------------------------------------------------------*
 
-- (void) setUpWithDefaultValues {
+- (NSArray *) attributeDescriptionArray {
+  if (nil == gAttributeDescriptionDictionary) {
+    gAttributeDescriptionDictionary = [NSMutableDictionary new] ;
+  }
+  NSArray * result = [gAttributeDescriptionDictionary valueForKey:self.className] ;
+  if (nil == result) {
+    NSMutableArray * descriptionArray = [NSMutableArray new] ;
+    [self buildAttributeDescriptionArray:descriptionArray] ;
+    macroAutorelease (descriptionArray) ;
+    result = [descriptionArray sortedArrayUsingSelector:@selector (reverseCompareByAttributeName:)] ;
+    [gAttributeDescriptionDictionary setValue:result forKey:self.className] ;
+  }
+  return result ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (BOOL) hasAttributeNamed: (NSString *) inName {
+  NSArray * attributeDescriptionArray = self.attributeDescriptionArray ;
+  BOOL result = NO ;
+  for (PMAttributeDescription * ad in attributeDescriptionArray) {
+    if ([inName isEqualToString:ad.attributeName]) {
+      result = YES ;
+      break ;
+    }
+  }
+  return result ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -93,12 +143,36 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 }
 
 //-----------------------------------------------------------------------------*
+//  To One Relationships                                                       *
+//-----------------------------------------------------------------------------*
 
-- (NSArray *) attributeDescriptionArray {
-  NSMutableArray * descriptionArray = [NSMutableArray new] ;
-  [self buildAttributeDescriptionArray:descriptionArray] ;
-  macroAutorelease (descriptionArray) ;
-  return [descriptionArray sortedArrayUsingSelector:@selector (reverseCompareByAttributeName:)] ;
+- (NSArray *) toOneRelationshipDescriptionArray {
+  if (nil == gToOneRelationshipDescriptionDictionary) {
+    gToOneRelationshipDescriptionDictionary = [NSMutableDictionary new] ;
+  }
+  NSArray * result = [gToOneRelationshipDescriptionDictionary valueForKey:self.className] ;
+  if (nil == result) {
+    NSMutableArray * descriptionArray = [NSMutableArray new] ;
+    [self buildToOneRelationshipDescriptionArray:descriptionArray] ;
+    macroAutorelease (descriptionArray) ;
+    result = [descriptionArray sortedArrayUsingSelector:@selector (compareByRelationshipName:)] ;
+    [gToOneRelationshipDescriptionDictionary setValue:result forKey:self.className] ;
+  }
+  return result ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (BOOL) hasToOneRelationshipNamed: (NSString *) inName {
+  NSArray * descriptionArray = self.toOneRelationshipDescriptionArray ;
+  BOOL result = NO ;
+  for (PMRelationshipDescription * ad in descriptionArray) {
+    if ([inName isEqualToString:ad.relationshipName]) {
+      result = YES ;
+      break ;
+    }
+  }
+  return result ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -107,12 +181,19 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 }
 
 //-----------------------------------------------------------------------------*
+//  To Many Relationships                                                      *
+//-----------------------------------------------------------------------------*
 
-- (NSArray *) toOneRelationshipDescriptionArray {
-  NSMutableArray * descriptionArray = [NSMutableArray new] ;
-  [self buildToOneRelationshipDescriptionArray:descriptionArray] ;
-  macroAutorelease (descriptionArray) ;
-  return [descriptionArray sortedArrayUsingSelector:@selector(compareByRelationshipName:)] ;
+- (BOOL) hasToManyRelationshipNamed: (NSString *) inName {
+  NSArray * descriptionArray = self.toManyRelationshipDescriptionArray ;
+  BOOL result = NO ;
+  for (PMRelationshipDescription * ad in descriptionArray) {
+    if ([inName isEqualToString:ad.relationshipName]) {
+      result = YES ;
+      break ;
+    }
+  }
+  return result ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -123,10 +204,18 @@ NSString * convertBOOLValueToString (NSNumber * inValue) {
 //-----------------------------------------------------------------------------*
 
 - (NSArray *) toManyRelationshipDescriptionArray {
-  NSMutableArray * descriptionArray = [NSMutableArray new] ;
-  [self buildToManyRelationshipDescriptionArray:descriptionArray] ;
-  macroAutorelease (descriptionArray) ;
-  return [descriptionArray sortedArrayUsingSelector:@selector(compareByRelationshipName:)] ;
+  if (nil == gToManyRelationshipDescriptionDictionary) {
+    gToManyRelationshipDescriptionDictionary = [NSMutableDictionary new] ;
+  }
+  NSArray * result = [gToManyRelationshipDescriptionDictionary valueForKey:self.className] ;
+  if (nil == result) {
+    NSMutableArray * descriptionArray = [NSMutableArray new] ;
+    [self buildToManyRelationshipDescriptionArray:descriptionArray] ;
+    macroAutorelease (descriptionArray) ;
+    result = [descriptionArray sortedArrayUsingSelector:@selector (compareByRelationshipName:)] ;
+    [gToManyRelationshipDescriptionDictionary setValue:result forKey:self.className] ;
+  }
+  return result ;
 }
 
 //-----------------------------------------------------------------------------*

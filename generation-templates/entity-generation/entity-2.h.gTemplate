@@ -25,8 +25,7 @@ end foreach
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end foreach%
 //--- Creation
-+ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
-                      withDefaultValues: (BOOL) inFlag ;
++ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager ;
 %if [SIGN_LIST length] > 0 then
 %- (NSInteger) computeSignature ;\n%
 end if%

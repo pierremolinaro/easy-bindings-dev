@@ -84,13 +84,9 @@
 
 //-----------------------------------------------------------------------------*
 
-- (id) newInstanceOfEntity: (Class) inEntityClass
-       withDefaultValues: (BOOL) inFlag {
+- (id) newInstanceOfEntity: (Class) inEntityClass {
   PMManagedEntity * result = [inEntityClass alloc] ;
   result = [result initWithEntityManager:self] ;
-  if (inFlag) {
-    [result setUpWithDefaultValues] ;
-  }
   [self addEntity:result] ;
   return result ;
 }
@@ -100,6 +96,14 @@
 - (void) deleteEntity: (PMManagedEntity *) inObject {
   [inObject resetBeforeDeletion] ;
   [self removeEntity:inObject] ;
+}
+
+//-----------------------------------------------------------------------------*
+
+- (void) deleteEntities: (NSArray *) inObjectArray {
+  for (PMManagedEntity * object in inObjectArray) {
+    [self deleteEntity:object] ;
+  }
 }
 
 //-----------------------------------------------------------------------------*
@@ -229,7 +233,7 @@
   for (NSDictionary * d in dictionaryArray) {
     NSString * className = [d objectForKey:@"--entity"] ;
     Class c = objc_getClass ([className cStringUsingEncoding:NSASCIIStringEncoding]) ;
-    PMManagedEntity * object = [self newInstanceOfEntity:c withDefaultValues:NO] ;
+    PMManagedEntity * object = [self newInstanceOfEntity:c] ;
     [objectArray addObject:object] ;
     macroReleaseSetToNil (object) ;
   }

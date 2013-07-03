@@ -67,12 +67,11 @@ end foreach
 %}
 
 //-----------------------------------------------------------------------------*
-//    newInstanceWithManager:withDefaultValues:                                *
+//    newInstanceWithManager:                                                  *
 //-----------------------------------------------------------------------------*
 
-+ (%!ENTITY_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager
-                    withDefaultValues: (BOOL) inFlag {
-  return [inManager newInstanceOfEntity:[%!ENTITY_NAME% class] withDefaultValues:inFlag] ;
++ (%!ENTITY_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager {
+  return [inManager newInstanceOfEntity:[%!ENTITY_NAME% class]] ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -82,6 +81,12 @@ end foreach
 - (instancetype) init {
   self = [super init] ;
   if (self) {
+  //--- Attribute initialisation
+%
+foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+  %    self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
+end foreach
+%  //--- To many relationship initialisation
 %
 foreach TO_MANY_RELATIONSHIPS do
   %    self.%!mValue0% = [NSMutableArray new] ;\n%
@@ -143,18 +148,6 @@ foreach CURRENT_RELATIONSHIP_LIST do
   end if
 end foreach
 %}
-
-//-----------------------------------------------------------------------------*
-//    setUpWithDefaultValues                                                   *
-//-----------------------------------------------------------------------------*
-
-- (void) setUpWithDefaultValues {
-%
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
-  %  self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
-end foreach
-%  [super setUpWithDefaultValues] ;
-}
 
 //-----------------------------------------------------------------------------*
 //    resetBeforeDeletion                                                      *

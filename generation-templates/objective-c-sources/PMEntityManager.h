@@ -24,10 +24,11 @@
 
 - (NSUndoManager *) undoManager ;
 
-- (id) newInstanceOfEntity: (Class) inEntityClass
-       withDefaultValues: (BOOL) inFlag ;
+- (id) newInstanceOfEntity: (Class) inEntityClass ;
 
 - (void) deleteEntity: (PMManagedEntity *) inObject ;
+
+- (void) deleteEntities: (NSArray *) inObjects ;
 
 - (NSArray *) allEntitiesKindOfClass: (Class) inClass ;
 

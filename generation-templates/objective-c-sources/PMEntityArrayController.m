@@ -50,10 +50,7 @@
   if (nil == self.entityManager) {
     [super add:inSender] ;
   }else{
-    id newObject = [self.entityManager
-      newInstanceOfEntity:self.objectClass
-      withDefaultValues:YES
-    ] ;
+    id newObject = [self.entityManager newInstanceOfEntity:self.objectClass] ;
     [self addObject:newObject] ;
     macroAutorelease (newObject) ;
   }
