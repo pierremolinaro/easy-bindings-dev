@@ -15,6 +15,7 @@ rule <start_symbol>
   ?!@protocolList ioProtocolList
   ?!@cursorList ioCursorList
   ?!@enumList ioEnumList
+  ?!@lstringlist ioPlainOldDataTypeList
   !@location outEndOfFile
 :
   repeat
@@ -36,8 +37,11 @@ rule <start_symbol>
       !?ioProtocolList
       !?ioCursorList
       !?ioEnumList
+      !?ioPlainOldDataTypeList
       ?*
     ;
+  while
+    <pain_old_data_declaration> !?ioPlainOldDataTypeList ;
   while
     <enum_declaration> !?ioEnumList ;
   while
@@ -59,6 +63,16 @@ rule <start_symbol>
   end repeat ;
   outEndOfFile := here ;
   $end$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <pain_old_data_declaration>
+  ?!@lstringlist ioPlainOldDataTypeList
+:
+  $plainOldData$ ;
+  $Identifier$ ? @lstring podName ;
+  ioPlainOldDataTypeList += !podName ;
 end rule ;
 
 #----------------------------------------------------------------------------*
