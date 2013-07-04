@@ -48,6 +48,7 @@ message "a source text file with the .easyBindings extension"
   @controllerClassList controllerClassList [emptyList] ;
   @protocolList protocolList [emptyList] ;
   @cursorList cursorList [emptyList] ;
+  @lstringlist plainOldDataTypeList [emptyList] ;
   @enumList enumList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !?classList
@@ -59,6 +60,7 @@ message "a source text file with the .easyBindings extension"
     !?protocolList
     !?cursorList
     !?enumList
+    !?plainOldDataTypeList
     ?*
   ;
 #--- Parse source file
@@ -72,6 +74,7 @@ message "a source text file with the .easyBindings extension"
     !?protocolList
     !?cursorList
     !?enumList
+    !?plainOldDataTypeList
     ?@location endOfSourceFile
   ;
 #------------------------------------------------------- Semantic Analysis
