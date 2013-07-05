@@ -632,7 +632,7 @@ override method @identifierDefaultValue analyzeDefaultValueType
       if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
         [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
         ioFileInclusionSet->mHeaderFileInclusionSet += !inEnumTypeName->string ;
-        if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName->string] ebTypeIdentifier] then
+        if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName] ebTypeIdentifier] then
           outDirectDefaultValueAsString := mValue->string ;
           outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
         else

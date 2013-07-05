@@ -32,6 +32,7 @@ SOURCES += easyBindings_grammar.cpp
 SOURCES += easyBindingType.cpp
 SOURCES += abstractSyntaxTypes.cpp
 SOURCES += decoratedTypes.cpp
+SOURCES += analyzeASTtype.cpp
 SOURCES += attributeDeclarationAnalysis.cpp
 SOURCES += plainOldData.cpp
 SOURCES += enumAnalysis.cpp

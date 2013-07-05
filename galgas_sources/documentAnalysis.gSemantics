@@ -179,7 +179,6 @@ local routine analyzeDocument
     !?attributeListForInitHeader # Unused
   ;
 #-------------------------------------------------- Analyze controllers
-  @stringset headerFilePredeclarationSet [emptySet] ;
   analyzeControllers
     !inDocument->mControllerList
     !inControllerClassMap
@@ -196,6 +195,7 @@ local routine analyzeDocument
     !"document." . inDocument->mDocumentName . "."
     !inDocument->mTransientList
     !rootObjectObservablePropertyMap
+    !inContextAnalysisStruct
     !inDocument->mRootEntityName->string
     !controllerMap
     !?selfObservableAttributeMap
@@ -221,7 +221,7 @@ local routine analyzeDocument
       ?@bool hasTableValueBinding
     ] ;
     if generationKind != [@generationKind noGeneration] then
-      headerFilePredeclarationSet += !mOutletType->string ;
+      fileInclusionSet->mHeaderPredeclarationSet += !mOutletType->string ;
       fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
     end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;

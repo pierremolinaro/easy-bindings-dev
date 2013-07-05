@@ -1,5 +1,6 @@
 semantics entityAnalysis :
   import "transientAnalysis.gSemantics" ;
+  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #   ANALYZE ENTITIES                                                         *
@@ -43,8 +44,9 @@ local routine analyzeEntity
 #--------------------------------------- Analyze attributes
   @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
   foreach inEntity->mAttributeList do
+    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
     [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !mType]
+      ![@easyBindingTypeList listWithValue !type]
       !inContextAnalysisStruct
       ?@string directDefaultValueAsString
       ?@string objectiveCDefaultValueAsString
@@ -52,15 +54,15 @@ local routine analyzeEntity
     ] ;
 #    [mType addFileInclusion !?fileInclusionSet] ;
     [!?allPropertyMap insertKey !mAttributeName] ;
-    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
-    propertyListForInitMethodHeader += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+    attributeListForImplementation += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+    propertyListForInitMethodHeader += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
     const @lstring observationDependencyKey [new
       !"entity." . inEntity->mEntityName . "." . mAttributeName
       !mAttributeName->location
     ] ;
     [!?observablePropertyMap insertKey
       !mAttributeName
-      !mType
+      !type
       !false # is not transient
       !observationDependencyKey->string
     ] ;
@@ -135,6 +137,7 @@ local routine analyzeEntity
     !"entity." . inEntity->mEntityName . "."
     !inEntity->mTransientList
     ![@observablePropertyMap emptyMap] # Root property map
+    !inContextAnalysisStruct
     !"" # No Root entity
     ![@controllerMap emptyMap]
     !?observablePropertyMap

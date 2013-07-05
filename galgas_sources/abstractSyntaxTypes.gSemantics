@@ -5,9 +5,37 @@ semantics abstractSyntaxTypes :
 import "easyBindingType.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+#   @attributeType                                                           *
+#----------------------------------------------------------------------------*
+
+abstract class @attributeASTType {
+}
+
+#----------------------------------------------------------------------------*
+
+class @boolASTType, @stringASTType, @colorASTType, @integerASTType,
+      @uintegerASTType, @doubleASTType, @decimalASTType, @fontASTType,
+      @imageASTType, @dataASTType, @dateASTType, @valueASTType,
+      @bezierASTType, @menuASTType, @arrayASTType, @anyEnumASTType extends @attributeASTType {
+}
+
+#----------------------------------------------------------------------------*
+
+class @namedASTType extends @attributeASTType {
+  @lstring mTypeName ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @attributeASTTypeList {
+  @attributeASTType mType ;
+}
+
+#-----------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------*
 
 list @attributeList {
-  @easyBindingType mType ;
+  @attributeASTType mType ;
   @lstring mAttributeName ;
   @abstractDefaultValue mDefaultValue ;
 }
@@ -77,7 +105,7 @@ list @dependanceList {
 #----------------------------------------------------------------------------*
 
 list @transientList {
-  @easyBindingType mType ;
+  @attributeASTType mType ;
   @lstring mTransientName ;
   @dependanceList mDependencyList ;
 }
@@ -284,6 +312,13 @@ enum @formatterEnum {
 
 #----------------------------------------------------------------------------*
 
+list @attributeASTTypeAndFormatterList {
+  @attributeASTType mType ;
+  @formatterEnum mRequiredFormatter ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @easyBindingTypeAndFormatterList {
   @easyBindingType mType ;
   @formatterEnum mRequiredFormatter ;
@@ -299,7 +334,7 @@ list @easyBindingTypeList {
 
 list @outletClassBindingList {
   @lstring mBindingName ;
-  @easyBindingTypeAndFormatterList mAcceptableTypeFormatterList ;
+  @attributeASTTypeAndFormatterList mAcceptableTypeFormatterList ;
   @bindingOptionList mBindingOptionList ;
 }
 
@@ -307,7 +342,7 @@ list @outletClassBindingList {
 
 list @bindingOptionList {
   @lstring mBindingOptionName ;
-  @easyBindingTypeList mAcceptableTypeList ;
+  @attributeASTTypeList mAcceptableTypeList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -340,7 +375,7 @@ list @outletClassList {
 #----------------------------------------------------------------------------*
 
 list @controllerObservablePropertyList {
-  @easyBindingType mType ;
+  @attributeASTType mType ;
   @lstring mPropertyName ;
 }
 
