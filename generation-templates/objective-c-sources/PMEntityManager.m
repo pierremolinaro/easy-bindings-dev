@@ -222,7 +222,6 @@
 
 - (id) readFromData: (NSData *) inData
        withRootEntityClass: (Class) inRootEntityClass {
-  [self.undoManager disableUndoRegistration] ;
   NSArray * dictionaryArray = [NSPropertyListSerialization
     propertyListFromData:inData
     mutabilityOption:NSPropertyListImmutable 
@@ -243,7 +242,6 @@
     [object setUpWithDictionary:d withManagedEntityArray:objectArray] ;
     idx ++ ;
   }
-  [self.undoManager enableUndoRegistration] ;
   macroAutorelease (objectArray) ;
 //--- Return root object
   return [objectArray objectAtIndex:0] ;
