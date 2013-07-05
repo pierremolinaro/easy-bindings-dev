@@ -89,8 +89,8 @@ routine generateEntityCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mToManyRelationshipList
-        !mHeaderFileInclusionSet
-        !mHeaderFilePredeclarationSet
+        !mFileInclusionSet->mHeaderFileInclusionSet
+        !mFileInclusionSet->mHeaderPredeclarationSet
       ] ;
       @string s2 := [filewrapper entityGenerationTemplate.entityDeclaration2
         !mEntityName
@@ -128,7 +128,7 @@ routine generateEntityCode
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
         !mInheritedAttributeListForImplementation
-        !mImplementationFileInclusionSet
+        !mFileInclusionSet->mImplementationFileInclusionSet
         !mToManyRelationshipList
         !inTransientDependencyArcList
         !propertyAndTomanyRelationshipSet

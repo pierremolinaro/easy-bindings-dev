@@ -13,6 +13,10 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "abstractSyntaxTypes.gSemantics" ;
   semantics "decoratedTypes.gSemantics" ;
 
+  semantics "attributeDeclarationAnalysis.gSemantics" ;
+
+  semantics "plainOldData.gSemantics" ;
+
   semantics "enumAnalysis.gSemantics" ;
   semantics "enumGeneration.gSemantics" ;
 

@@ -3,11 +3,60 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
+struct @fileInclusionSet {
+  @stringset mHeaderPredeclarationSet ;
+  @stringset mHeaderFileInclusionSet ;
+  @stringset mImplementationFileInclusionSet ;
+}
+
+#-----------------------------------------------------------------------------*
+
+map @globalEnumConstantMap {
+  @lstring mEnumTypeName ;
+  insert insertKey error message "the '%K' enumeration constant is already declared" ;
+  search searchKey error message "the '%K' enumeration constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumConstantMap {
+  insert insertKey error message "the '%K' enumeration constant is already declared" ;
+  search searchKey error message "the '%K' enumeration constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @plainOldDataMap {
+  insert insertKey error message "the '%K' plain old data type is already declared" ;
+  search searchKey error message "the '%K' plain old data type is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumMap {
+  @lstringlist mConstantOrderedList ;
+  @enumConstantMap mEnumConstantMap ;
+  insert insertKey error message "the '%K' enumeration is already declared" ;
+  search searchKey error message "the '%K' enumeration is not declared" ;
+}
+
+
+#----------------------------------------------------------------------------*
+
 map @userCursorMap {
   @double mHotSpotX ;
   @double mHotSpotY ;
   insert insertKey error message "the '%K' cursor is already declared" ;
   search searchKey error message "the '%K' cursor is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+struct @contextAnalysisStruct {
+  @plainOldDataMap mPlainOldDataMap ;
+  @enumMap mEnumMap ;
+  @globalEnumConstantMap mGlobalEnumConstantMap ;
+  @userCursorMap mUserCursorMap ;
 }
 
 #----------------------------------------------------------------------------*
@@ -19,8 +68,7 @@ map @classMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
-  @stringset mImplementationFileInclusionSet ;
-  @stringset mHeaderFileInclusionSet ;
+  @fileInclusionSet mInclusionSet ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -38,9 +86,8 @@ map @entityMap {
   @relationshipList mAllRelationshipList ;
   @propertyMap mAllPropertyMap ;
   @relationshipMap mCurrentRelationshipMap ;
-  @stringset mHeaderFileInclusionSet ;
   @relationshipMap mAllRelationshipMap ;
-  @stringset mImplementationFileInclusionSet ;
+  @fileInclusionSet mFileInclusionSet ;
   @signListForGeneration mSignList ;
   insert insertKey error message "the '%K' entity is already declared" ;
   search searchKey error message "the '%K' entity is not declared" ;
@@ -68,10 +115,8 @@ list @entityListForGeneration {
   @propertyMap mAllPropertyMap ;
   @relationshipMap mCurrentRelationshipMap ;
   @relationshipMap mAllRelationshipMap ;
-  @stringset mHeaderFilePredeclarationSet ;
   @2stringlist mToManyRelationshipList ;
-  @stringset mHeaderFileInclusionSet ;
-  @stringset mImplementationFileInclusionSet ;
+  @fileInclusionSet mFileInclusionSet ;
   @2stringlist mToOneRelationshipList ;
   @signListForGeneration mSignList ;
 }
@@ -124,9 +169,8 @@ map @documentMap {
   @outletGenerationList mOutletDeclarationList ;
   @controllerMap mControllerMap ;
   @lstringlist mActionList ;
-  @stringset mHeaderFilePredeclarationSet ;
   @transientListForImplementation mTransientListForImplementation ;
-  @stringset mImplementationFileInclusionSet ;
+  @fileInclusionSet mFileInclusionSet ;
   @attributeListForImplementation mAttributeListForImplementation ;
   insert insertKey error message "the '%K' document is already declared" ;
   search searchKey error message "the '%K' document is not declared" ;
@@ -241,8 +285,7 @@ map @preferencesMap {
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
   @observablePropertyMap mObservablePropertyMap ;
-  @stringset mHeaderFileInclusionSet ;
-  @stringset mImplementationFileInclusionSet ;
+  @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @preferenceArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
@@ -368,9 +411,9 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 ;
 
 #----------------------------------------------------------------------------*
@@ -382,44 +425,22 @@ abstract reader @abstractBindingForGeneration generateRemoveBinding
 
 #----------------------------------------------------------------------------*
 
-map @globalEnumConstantMap {
-  @lstring mEnumTypeName ;
-  insert insertKey error message "the '%K' enumeration constant is already declared" ;
-  search searchKey error message "the '%K' enumeration constant is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @enumConstantMap {
-  insert insertKey error message "the '%K' enumeration constant is already declared" ;
-  search searchKey error message "the '%K' enumeration constant is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @enumMap {
-  @lstringlist mConstantOrderedList ;
-  @enumConstantMap mEnumConstantMap ;
-  insert insertKey error message "the '%K' enumeration is already declared" ;
-  search searchKey error message "the '%K' enumeration is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
 abstract method @abstractDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet ioFileInclusionSet
 ;
 
 #----------------------------------------------------------------------------*
   
 override method @boolDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
@@ -442,9 +463,10 @@ end method ;
   
 override method @integerDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
@@ -467,9 +489,10 @@ end method ;
   
 override method @doubleDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
@@ -492,9 +515,10 @@ end method ;
   
 override method @stringDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
@@ -572,9 +596,10 @@ end once ;
   
 override method @identifierDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
@@ -604,8 +629,9 @@ override method @identifierDefaultValue analyzeDefaultValueType
       end if ;
     elsif [mType isEnumType] then
       found := true ;
-      if [inGlobalEnumConstantMap hasKey !mValue->string] then
-        [inGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
+      if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
+        [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
+        ioFileInclusionSet->mHeaderFileInclusionSet += !inEnumTypeName->string ;
         if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName->string] ebTypeIdentifier] then
           outDirectDefaultValueAsString := mValue->string ;
           outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
@@ -651,9 +677,10 @@ end once ;
  
 override method @identifierIntegerDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;

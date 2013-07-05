@@ -554,19 +554,6 @@ override reader @enumType isEnumType -> @bool outResult : outResult := true ; en
 
 #-----------------------------------------------------------------------------*
 
-method @easyBindingType addFileInclusion
-  ?!@stringset unused ioFileInclusionSet
-:
-end method ;
-
-override method @enumType addFileInclusion
-  ?!@stringset ioFileInclusionSet
-:
-  ioFileInclusionSet += !mEnumTypeName ;
-end method ;
-
-#-----------------------------------------------------------------------------*
-
 reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntegerSignature" ; end reader ;
 
 override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeNSStringSignature" ; end reader ;

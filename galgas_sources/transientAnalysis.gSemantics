@@ -11,7 +11,7 @@ abstract method @abstractTransientDependency analyze
   ??@observablePropertyMap inRootObjectObservablePropertyMap
   ??@string inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist ioRootSignDependencyList
@@ -27,7 +27,7 @@ override method @transientRootSignDependency analyze
   ??@observablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList unused ioDirectDependancyList
   ?!@stringlist ioRootSignDependencyList
@@ -54,7 +54,7 @@ override method @transientLocalDependency analyze
   ??@observablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
@@ -84,7 +84,7 @@ override method @transientControllerDependency analyze
   ??@observablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
@@ -122,7 +122,7 @@ override method @transientRootDependency analyze
   ??@observablePropertyMap inRootObjectObservablePropertyMap
   ??@string inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
@@ -161,12 +161,12 @@ override method @transientPreferenceDependency analyze
   ??@observablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@string inObervationDependencyPrefix
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
 :
-  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?4*] ;
+  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?3*] ;
   [observablePropertyMap searchKey
     !mMasterName
     ?@easyBindingType masterType
@@ -179,7 +179,7 @@ override method @transientPreferenceDependency analyze
     ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
   ] ;
 #--- Add preference header
-  ioImplementationFileInclusionSet += !mPreferencesName->string ;
+  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferencesName->string ;
 #---
   ioDirectDependancyList += ![@transientDependencyFromPreferenceForImplementation new
     !mPreferencesName->string
@@ -199,7 +199,7 @@ routine analyzeTransientProperties
   ??@string inRootEntityName
   ??@controllerMap inControllerMap
   ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -223,7 +223,7 @@ routine analyzeTransientProperties
         !inRootObjectObservablePropertyMap
         !inRootEntityName
         !inObervationDependencyPrefix
-        !?ioImplementationFileInclusionSet
+        !?ioFileInclusionSet
         !?ioTransientDependencyGraph
         !?directDependancyList
         !?rootSignDependencyList

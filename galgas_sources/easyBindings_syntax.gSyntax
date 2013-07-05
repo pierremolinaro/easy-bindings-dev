@@ -73,6 +73,7 @@ rule <pain_old_data_declaration>
   $plainOldData$ ;
   $Identifier$ ? @lstring podName ;
   ioPlainOldDataTypeList += !podName ;
+  $;$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*

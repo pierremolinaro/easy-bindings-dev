@@ -1,6 +1,7 @@
 semantics preferencesAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
+  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -9,7 +10,7 @@ local routine analyzePreference
   ??@controllerClassMap inControllerClassMap
   ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@preferencesMap ioPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -19,34 +20,46 @@ local routine analyzePreference
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
 #------------------------------------- Analyze attributes
-  @stringset implementationFileInclusionSet [emptySet] ;
+  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
   @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
-  @stringset headerFileInclusionSet [emptySet] ;
-  @attributeListForImplementation attributeListForImplementation [emptyList] ;
-  foreach inPreference->mAttributeList do
-    [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !mType]
-      !inGlobalEnumConstantMap
-      ?@string directDefaultValueAsString
-      ?@string objectiveCDefaultValueAsString
-    ] ;
-    [mType addFileInclusion !?headerFileInclusionSet] ;
-    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
-    const @lstring observationDependencyKey [new
-      !"preference." . inPreference->mPreferencesName->string . "." . mAttributeName
-      !mAttributeName->location
-    ] ;
-    [!?selfObservableAttributeMap insertKey
-      !mAttributeName
-      !mType
-      !false # is not transient
-      !observationDependencyKey->string
-    ] ;
-    [!?ioTransientDependencyGraph addNode
-      !observationDependencyKey
-      !observationDependencyKey->string
-    ] ;
-  end foreach ;
+  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+  analyzeAttributeDeclaration
+    !inPreference->mAttributeList
+    !inContextAnalysisStruct
+    !"preference." . inPreference->mPreferencesName
+    !?ioTransientDependencyGraph
+    !?fileInclusionSet
+    !?selfObservableAttributeMap
+    ?@attributeListForImplementation attributeListForImplementation
+    !?attributeListForInitHeader # Unused
+  ;
+
+#  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+#  foreach inPreference->mAttributeList do
+#    [mDefaultValue analyzeDefaultValueType
+#      ![@easyBindingTypeList listWithValue !mType]
+#      !inContextAnalysisStruct
+#      ?@string directDefaultValueAsString
+#      ?@string objectiveCDefaultValueAsString
+#      !?fileInclusionSet
+#    ] ;
+##    [mType addFileInclusion !?fileInclusionSet] ;
+#    attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+#    const @lstring observationDependencyKey [new
+#      !"preference." . inPreference->mPreferencesName->string . "." . mAttributeName
+#      !mAttributeName->location
+#    ] ;
+#    [!?selfObservableAttributeMap insertKey
+#      !mAttributeName
+#      !mType
+#      !false # is not transient
+#      !observationDependencyKey->string
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
 #------------------------------------- Analyze arraies
   @preferenceArrayMap preferenceArrayMap [emptyMap] ;
   foreach inPreference->mClassArrayList do
@@ -54,7 +67,7 @@ local routine analyzePreference
       !mClassName
       ?*
       ?@observablePropertyMap classObservablePropertyMap
-      ?2*
+      ?*
       ?@attributeListForImplementation attributeListForImplementation
       ?3*
     ] ;
@@ -109,10 +122,11 @@ local routine analyzePreference
         ?@attributeListForImplementation attributeListForImplementation
       ] ;
       checkBindingOptions
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
         ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
         !"contentArray"
@@ -133,9 +147,9 @@ local routine analyzePreference
         !controllerMap
         !actionMap
         !false
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !?bindingListForGeneration
-        !?implementationFileInclusionSet
+        !?fileInclusionSet
       ] ;
     end foreach ;
     [!?controllerMap insertKey
@@ -158,7 +172,7 @@ local routine analyzePreference
     !"" # No Root entity
     ![@controllerMap emptyMap]
     !?selfObservableAttributeMap
-    !?implementationFileInclusionSet
+    !?fileInclusionSet
     ?transientListForImplementation
     !?ioTransientDependencyGraph
   ;
@@ -175,7 +189,7 @@ local routine analyzePreference
       ?@bool hasTableValueBinding
     ] ;
     if generationKind != [@generationKind noGeneration] then
-      implementationFileInclusionSet += !mOutletType->string ;
+      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
     end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
@@ -189,9 +203,9 @@ local routine analyzePreference
         !controllerMap
         !actionMap
         !hasTableValueBinding
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !?outletBindingList
-        !?implementationFileInclusionSet
+        !?fileInclusionSet
       ] ;
     end foreach ;
     outletGenerationList +=
@@ -202,7 +216,7 @@ local routine analyzePreference
     ;
   end foreach ;
 #------------------------------------- Enter in preference map
-  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
   [!?ioPreferencesMap insertKey
     !inPreference->mPreferencesName
     !attributeListForImplementation
@@ -210,8 +224,7 @@ local routine analyzePreference
     !outletGenerationList
     !inPreference->mActionDeclarationList
     !selfObservableAttributeMap
-    !headerFileInclusionSet
-    !implementationFileInclusionSet
+    !fileInclusionSet
     !controllerMap
     !preferenceArrayMap
   ] ;
@@ -224,7 +237,7 @@ routine analyzePreferences
   ??@controllerClassMap inControllerClassMap
   ??@classMap inClassMap
   ??@outletClassMap inOutletClassMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@preferencesMap outPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -235,7 +248,7 @@ routine analyzePreferences
       !inControllerClassMap
       !inClassMap
       !inOutletClassMap
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       !?outPreferencesMap
       !?ioTransientDependencyGraph
     ;
