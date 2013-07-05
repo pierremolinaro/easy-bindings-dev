@@ -6,22 +6,22 @@ semantics enumAnalysis :
 
 routine enumAnalysis
   ??@enumList inEnumList
-  !@enumMap outEnumMap
-  !@globalEnumConstantMap outGlobalEnumConstantMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
 :
-  outEnumMap := [@enumMap emptyMap] ;
   foreach inEnumList do
+    if [ioContextAnalysisStruct->mPlainOldDataMap hasKey !mEnumTypeName->string] then
+      error mEnumTypeName:"There is a plain old data type with the same name" ;
+    end if ;
     @enumConstantMap enumConstantMap [emptyMap] ;
     foreach mEnumConstantNameList do
       [!?enumConstantMap insertKey !mValue] ;
     end foreach ;
-    [!?outEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
+    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
   end foreach ;
 #---
-  outGlobalEnumConstantMap := [@globalEnumConstantMap emptyMap] ;
-  foreach outEnumMap do
+  foreach ioContextAnalysisStruct->mEnumMap do
     foreach mConstantOrderedList do
-      [!?outGlobalEnumConstantMap insertKey !mValue !lkey] ;
+      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
     end foreach ;
   end foreach ;
 end routine ;

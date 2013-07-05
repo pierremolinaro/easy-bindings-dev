@@ -74,8 +74,8 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mActionList
-        !mHeaderFileInclusionSet
-        !mImplementationFileInclusionSet
+        !mFileInclusionSet->mHeaderFileInclusionSet
+        !mFileInclusionSet->mImplementationFileInclusionSet
         !mControllerMap
       ] ;
       @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
@@ -103,7 +103,7 @@ routine generatePreferencesCode
         !mTransientListForImplementation
         !mOutletDeclarationList
         !mActionList
-        !mImplementationFileInclusionSet
+        !mFileInclusionSet->mImplementationFileInclusionSet
         !inTransientDependencyArcList
         !mArrayMap
         !mControllerMap

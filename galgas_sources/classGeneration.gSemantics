@@ -64,7 +64,7 @@ routine generateClassCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
-        !mHeaderFileInclusionSet
+        !mInclusionSet->mHeaderFileInclusionSet
       ] ;
       @string s2 := [filewrapper classGenerationTemplate.classDeclarationPart2
         ![lkey string]
@@ -90,7 +90,7 @@ routine generateClassCode
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
         !mInheritedAttributeListForImplementation
-        !mImplementationFileInclusionSet
+        !mInclusionSet->mImplementationFileInclusionSet
         !inTransientDependencyArcList
       ] ;
       [@string generateFileWithPattern

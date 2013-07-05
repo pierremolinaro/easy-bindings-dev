@@ -7,7 +7,7 @@ semantics entityAnalysis :
 
 local routine analyzeEntity
   ??@entityList.element inEntity
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@entityMap ioEntityMap
   ??@preferencesMap inPreferencesMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -27,7 +27,7 @@ local routine analyzeEntity
       ?4*
       ?allRelationshipList
       ?allPropertyMap
-      ?2*
+      ?*
       ?allRelationshipMap
       ?2*
     ] ;
@@ -41,15 +41,16 @@ local routine analyzeEntity
   @attributeListForImplementation attributeListForImplementation [emptyList] ;
   const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
 #--------------------------------------- Analyze attributes
-  @stringset headerFileInclusionSet [emptySet] ;
+  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
   foreach inEntity->mAttributeList do
     [mDefaultValue analyzeDefaultValueType
       ![@easyBindingTypeList listWithValue !mType]
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?@string directDefaultValueAsString
       ?@string objectiveCDefaultValueAsString
+      !?fileInclusionSet
     ] ;
-    [mType addFileInclusion !?headerFileInclusionSet] ;
+#    [mType addFileInclusion !?fileInclusionSet] ;
     [!?allPropertyMap insertKey !mAttributeName] ;
     attributeListForImplementation += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
     propertyListForInitMethodHeader += !mType ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
@@ -128,7 +129,6 @@ local routine analyzeEntity
     ] ;
   end if ;
 #---------------------------------------- Analyze transient properties
-  @stringset implementationFileInclusionSet [emptySet] ;
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
     !inPreferencesMap
@@ -138,12 +138,12 @@ local routine analyzeEntity
     !"" # No Root entity
     ![@controllerMap emptyMap]
     !?observablePropertyMap
-    !?implementationFileInclusionSet
+    !?fileInclusionSet
     ?transientListForImplementation
     !?ioTransientDependencyGraph
   ;
 #----------------------------------------- Enter entity in entity map
-  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
   [!?ioEntityMap insertKey
     !inEntity->mEntityName
     !inEntity->mSuperEntityName->string
@@ -156,9 +156,8 @@ local routine analyzeEntity
     !allRelationshipList . inEntity->mRelationshipList
     !allPropertyMap
     !currentRelationshipMap
-    !headerFileInclusionSet
     !allRelationshipMap
-    !implementationFileInclusionSet
+    !fileInclusionSet
     !signList
   ] ;
 end routine ;
@@ -167,7 +166,7 @@ end routine ;
 
 routine analyzeEntities
   ??@entityList inEntityList
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@entityMap outEntityMap
   !@entityListForGeneration outEntityListForGeneration
   ??@preferencesMap inPreferencesMap
@@ -178,7 +177,7 @@ routine analyzeEntities
   for entity in inEntityList do
     analyzeEntity
       !entity
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       !?outEntityMap
       !inPreferencesMap
       !?ioTransientDependencyGraph
@@ -187,8 +186,19 @@ routine analyzeEntities
 #------------------------------- Check relationships
   foreach outEntityMap do
     foreach mCurrentRelationshipMap do
-      [outEntityMap searchKey !mDestinationEntityName ?11* ?@relationshipMap destinationEntityRelationshipMap ?2*] ;
-      [destinationEntityRelationshipMap searchKey !mInverseRelationshipName ?2* ?@lstring inverseOfInverseRelationshipName ?@bool inverseIsToMany ?*] ;
+      [outEntityMap searchKey
+        !mDestinationEntityName
+        ?10*
+        ?@relationshipMap destinationEntityRelationshipMap
+        ?2*
+      ] ;
+      [destinationEntityRelationshipMap searchKey
+        !mInverseRelationshipName
+        ?2*
+        ?@lstring inverseOfInverseRelationshipName
+        ?@bool inverseIsToMany
+        ?*
+      ] ;
       if lkey->string != inverseOfInverseRelationshipName->string then
         error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
       end if ;
@@ -202,18 +212,16 @@ routine analyzeEntities
   foreach outEntityMap do
     @2stringlist toManyRelationshipList [emptyList] ;
     @2stringlist toOneRelationshipList [emptyList] ;
-    @stringset headerFileInclusionSet := mHeaderFileInclusionSet ;
-    @stringset headerFilePredeclarationSet [emptySet] ;
-    @stringset implementationFileInclusionSet := mImplementationFileInclusionSet ;
+    @fileInclusionSet fileInclusionSet := mFileInclusionSet ;
     foreach mCurrentRelationshipMap do
       if mIsToMany then
         toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
-        headerFilePredeclarationSet += !mDestinationEntityName->string ;
-        implementationFileInclusionSet += !mDestinationEntityName->string ;
+        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
+        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
       else
         toOneRelationshipList += !lkey->string !mDestinationEntityName->string ;
-        headerFilePredeclarationSet += !mDestinationEntityName->string ;
-        implementationFileInclusionSet += !mDestinationEntityName->string ;
+        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
+        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
       end if ;
     end foreach ;
     outEntityListForGeneration +=
@@ -229,10 +237,8 @@ routine analyzeEntities
       !mAllPropertyMap
       !mCurrentRelationshipMap
       !mAllRelationshipMap
-      !headerFilePredeclarationSet
       !toManyRelationshipList
-      !headerFileInclusionSet
-      !implementationFileInclusionSet
+      !fileInclusionSet
       !toOneRelationshipList
       !mSignList
     ;

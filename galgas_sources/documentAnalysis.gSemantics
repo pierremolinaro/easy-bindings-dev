@@ -1,6 +1,7 @@
 semantics documentAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
+  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -10,9 +11,8 @@ local routine analyzeControllers
   ??@entityMap inEntityMap
   ??@relationshipMap inRootObjectRelationshipMap
   ??@observablePropertyMap inRootEntityObservableAttributeMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
-  ?!@stringset ioHeaderFilePredeclarationSet
-  ?!@stringset ioImplementationFileInclusionSet
+  ??@contextAnalysisStruct inContextAnalysisStruct
+  ?!@fileInclusionSet ioFileInclusionSet
   !@controllerMap outControllerMap
 :
   outControllerMap := [@controllerMap emptyMap] ;
@@ -28,8 +28,8 @@ local routine analyzeControllers
     ] ;
   #---
     if generationKind != [@generationKind noGeneration] then
-      ioHeaderFilePredeclarationSet += !mControllerClassName->string ;
-      ioImplementationFileInclusionSet += !mControllerClassName->string ;
+      ioFileInclusionSet->mHeaderPredeclarationSet += !mControllerClassName->string ;
+      ioFileInclusionSet->mImplementationFileInclusionSet += !mControllerClassName->string ;
     end if ;
   #---
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
@@ -58,13 +58,14 @@ local routine analyzeControllers
         !destinationEntityName
         ?8*
         ?@propertyMap controlledObjectAllPropertyMap
-        ?5*
+        ?4*
       ] ;
       checkBindingOptions
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
         ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
         !"contentObject"
@@ -87,7 +88,7 @@ local routine analyzeControllers
         ?destinationEntityName
         ?3*
       ] ;
-      ioImplementationFileInclusionSet += !destinationEntityName->string ;
+      ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
       if not isToMany then
         error mControlledObjectName: "this should be a collection" ;
       end if ;
@@ -95,13 +96,14 @@ local routine analyzeControllers
         !destinationEntityName
         ?8*
         ?@propertyMap controlledObjectAllPropertyMap
-        ?5*
+        ?4*
       ] ;
       checkBindingOptions
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
         ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
         !"contentArray"
@@ -111,7 +113,7 @@ local routine analyzeControllers
         !controlledObjectBindingOptionListForGeneration
       ] ;
     end switch ;
-    ioImplementationFileInclusionSet += !destinationEntityName->string ;
+    ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
   #---
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding
@@ -124,9 +126,9 @@ local routine analyzeControllers
         !outControllerMap
         !controllerActionMap
         !false # No tableValue binding
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !?bindingListForGeneration
-        !?ioImplementationFileInclusionSet
+        !?ioFileInclusionSet
       ] ;
     end foreach ;
     [!?outControllerMap insertKey
@@ -149,7 +151,7 @@ local routine analyzeDocument
   ??@controllerClassMap inControllerClassMap
   ??@entityMap inEntityMap
   ??@preferencesMap inPreferencesMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@documentMap ioDocumentMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -158,44 +160,24 @@ local routine analyzeDocument
     !inDocument->mRootEntityName
     ?*
     ?@observablePropertyMap rootObjectObservablePropertyMap
-    ?9*
+    ?8*
     ?@relationshipMap rootObjectRelationshipMap
     ?2*
   ] ;
 #-------------------------------------------------- Analyze attributes
-  @stringset implementationFileInclusionSet [emptySet] ;
+  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
   @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
-  @stringset headerFileInclusionSet [emptySet] ;
-  @attributeListForImplementation attributeListForImplementation [emptyList] ;
-  foreach inDocument->mAttributeList do
-    [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !mType]
-      !inGlobalEnumConstantMap
-      ?@string directDefaultValueAsString
-      ?@string objectiveCDefaultValueAsString
-    ] ;
-    [mType addFileInclusion !?headerFileInclusionSet] ;
-    attributeListForImplementation +=
-      !mType
-      ![mAttributeName string]
-      !objectiveCDefaultValueAsString
-      !directDefaultValueAsString
-    ;
-    const @lstring observationDependencyKey [new
-      !"document." . inDocument->mDocumentName->string . "." . mAttributeName
-      !mAttributeName->location
-    ] ;
-    [!?selfObservableAttributeMap insertKey
-      !mAttributeName
-      !mType
-      !false # is not transient
-      !observationDependencyKey->string
-    ] ;
-    [!?ioTransientDependencyGraph addNode
-      !observationDependencyKey
-      !observationDependencyKey->string
-    ] ;
-  end foreach ;
+  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+  analyzeAttributeDeclaration
+    !inDocument->mAttributeList
+    !inContextAnalysisStruct
+    !"document." . inDocument->mDocumentName
+    !?ioTransientDependencyGraph
+    !?fileInclusionSet
+    !?selfObservableAttributeMap
+    ?@attributeListForImplementation attributeListForImplementation
+    !?attributeListForInitHeader # Unused
+  ;
 #-------------------------------------------------- Analyze controllers
   @stringset headerFilePredeclarationSet [emptySet] ;
   analyzeControllers
@@ -204,9 +186,8 @@ local routine analyzeDocument
     !inEntityMap
     !rootObjectRelationshipMap
     !rootObjectObservablePropertyMap
-    !inGlobalEnumConstantMap
-    !?headerFilePredeclarationSet
-    !?implementationFileInclusionSet
+    !inContextAnalysisStruct
+    !?fileInclusionSet
     ?@controllerMap controllerMap
   ;
 #-------------------------------------------------- Analyze transient properties
@@ -218,7 +199,7 @@ local routine analyzeDocument
     !inDocument->mRootEntityName->string
     !controllerMap
     !?selfObservableAttributeMap
-    !?implementationFileInclusionSet
+    !?fileInclusionSet
     ?@transientListForImplementation transientListForImplementation
     !?ioTransientDependencyGraph
   ;
@@ -241,7 +222,7 @@ local routine analyzeDocument
     ] ;
     if generationKind != [@generationKind noGeneration] then
       headerFilePredeclarationSet += !mOutletType->string ;
-      implementationFileInclusionSet += !mOutletType->string ;
+      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
     end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
@@ -255,9 +236,9 @@ local routine analyzeDocument
         !controllerMap
         !documentActionMap
         !hasTableValueBinding
-        !inGlobalEnumConstantMap
+        !inContextAnalysisStruct
         !?outletBindingList
-        !?implementationFileInclusionSet
+        !?fileInclusionSet
       ] ;
     end foreach ;
     outletGenerationList +=
@@ -268,16 +249,15 @@ local routine analyzeDocument
     ;
   end foreach ;
 #--------------------------------------------------- Enter in document map
-  [!?implementationFileInclusionSet removeKey !""] ;
+  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
   [!?ioDocumentMap insertKey
     !inDocument->mDocumentName
     !inDocument->mRootEntityName->string
     !outletGenerationList
     !controllerMap
     !inDocument->mActionDeclarationList
-    !headerFilePredeclarationSet
     !transientListForImplementation
-    !implementationFileInclusionSet
+    !fileInclusionSet
     !attributeListForImplementation
   ] ;
 end routine ;
@@ -290,7 +270,7 @@ routine analyzeDocuments
   ??@controllerClassMap inControllerClassMap
   ??@entityMap inEntityMap
   ??@preferencesMap inPreferencesMap
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@documentMap outDocumentMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 :
@@ -302,7 +282,7 @@ routine analyzeDocuments
       !inControllerClassMap
       !inEntityMap
       !inPreferencesMap
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       !?outDocumentMap
       !?ioTransientDependencyGraph
     ;

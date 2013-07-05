@@ -78,17 +78,22 @@ message "a source text file with the .easyBindings extension"
     ?@location endOfSourceFile
   ;
 #------------------------------------------------------- Semantic Analysis
+   @contextAnalysisStruct contextAnalysisStruct [new
+     ![@plainOldDataMap emptyMap]
+     ![@enumMap emptyMap]
+     ![@globalEnumConstantMap emptyMap]
+     ![@userCursorMap emptyMap]
+   ] ;
 #--- Cursors
   cursorAnalysis
     !cursorList
-    ?@userCursorMap userCursorMap
+    !?contextAnalysisStruct
     ?@stringlist predefinedCursorList
   ;
 #--- Enumerations
   enumAnalysis
     !enumList
-    ?@enumMap enumMap
-    ?@globalEnumConstantMap globalEnumConstantMap
+    !?contextAnalysisStruct
   ;
 #--- Protocol
   @protocolMap protocolMap [emptyMap] ;
@@ -112,7 +117,7 @@ message "a source text file with the .easyBindings extension"
 #--- Classes
   analyzeClasses 
     !classList
-    !globalEnumConstantMap
+    !contextAnalysisStruct
     ?@classMap classMap
     !?transientDependencyGraph
   ;
@@ -122,14 +127,14 @@ message "a source text file with the .easyBindings extension"
     !controllerClassMap
     !classMap
     !outletClassMap
-    !globalEnumConstantMap
+    !contextAnalysisStruct
     ?@preferencesMap preferencesMap
     !?transientDependencyGraph
   ;
 #--- Entities
   analyzeEntities
     !entityList
-    !globalEnumConstantMap
+    !contextAnalysisStruct
     ?@entityMap entityMap
     ?@entityListForGeneration entityListForGeneration
     !preferencesMap
@@ -142,7 +147,7 @@ message "a source text file with the .easyBindings extension"
     !controllerClassMap
     !entityMap
     !preferencesMap
-    !globalEnumConstantMap
+    !contextAnalysisStruct
     ?@documentMap documentMap
     !?transientDependencyGraph
   ;
@@ -184,8 +189,8 @@ message "a source text file with the .easyBindings extension"
   generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
-  generateCursorCode !userCursorMap !predefinedCursorList !sourceDirectoryPath ;
-  generateEnumerations !enumMap !sourceDirectoryPath ;
+  generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
+  generateEnumerations !contextAnalysisStruct->mEnumMap !sourceDirectoryPath ;
   generateControllerCode !controllerClassMap !sourceDirectoryPath ;
 #------------------------------ Output dependency order definition file
   generateTransientDependencyFiles

@@ -1,0 +1,57 @@
+semantics attributeDeclarationAnalysis :
+  import "transientAnalysis.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeAttributeDeclaration
+  ??@attributeList inAttributeList
+  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@string inObjectName # "document." . documentName
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@fileInclusionSet ioFileInclusionSet
+  ?!@observablePropertyMap ioSelfObservableAttributeMap
+  !@attributeListForImplementation outAttributeListForImplementation
+  ?!@attributeListForImplementation ioAttributeListForInitHeader
+:
+  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
+  foreach inAttributeList do
+    [mDefaultValue analyzeDefaultValueType
+      ![@easyBindingTypeList listWithValue !mType]
+      !inContextAnalysisStruct
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
+    ] ;
+    outAttributeListForImplementation +=
+      !mType
+      ![mAttributeName string]
+      !objectiveCDefaultValueAsString
+      !directDefaultValueAsString
+    ;
+    ioAttributeListForInitHeader +=
+       !mType
+       ![mAttributeName string]
+       !objectiveCDefaultValueAsString
+       !directDefaultValueAsString
+    ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mAttributeName
+      !mType
+      !false # is not transient
+      !observationDependencyKey->string
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

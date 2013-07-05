@@ -70,7 +70,7 @@ routine generateDocumentCode
         !mOutletDeclarationList
         !mControllerMap
         !mTransientListForImplementation
-        !mHeaderFilePredeclarationSet
+        !mFileInclusionSet->mHeaderPredeclarationSet
         !hasSignatureObserver
         !mAttributeListForImplementation
       ] ;
@@ -94,7 +94,7 @@ routine generateDocumentCode
         !mOutletDeclarationList
         !mControllerMap
         !mTransientListForImplementation
-        !mImplementationFileInclusionSet
+        !mFileInclusionSet->mImplementationFileInclusionSet
         !inTransientDependencyArcList
         !hasSignatureObserver
         !mAttributeListForImplementation

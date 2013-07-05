@@ -13,9 +13,9 @@ override method @tableValueBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool inHasTableValueBinding
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   if not inHasTableValueBinding then
     error mControllerName: "this outlet does not support $tableValue binding" ;
@@ -35,14 +35,14 @@ override method @tableValueBinding analyzeOutletBinding
         !controlledClassOrEntityName
         ?*
         ?observablePropertyMap
-        ?12*
+        ?11*
       ] ;
     else
       [inClassMap searchKey
         !controlledClassOrEntityName
         ?*
         ?observablePropertyMap
-        ?6*
+        ?5*
       ] ;
     end if ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
@@ -85,9 +85,9 @@ override method @runBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap unused inGlobalEnumConstantMap
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   if mTargetName->string == "self" then
     [inActionMap searchKey !mActionName] ;
@@ -114,9 +114,9 @@ override method @regularControllerBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
 #---------------------------------- Search binding
   [inBindingMap searchKey
@@ -168,9 +168,10 @@ override method @regularControllerBinding analyzeOutletBinding
     @bool found := false ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;
@@ -195,9 +196,9 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
 #---------------------------------- Search binding
   [inBindingMap searchKey
@@ -220,14 +221,14 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?12*
+      ?11*
     ] ;      
   else
     [inClassMap searchKey
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?6*
+      ?5*
      ] ;
   end if ;
 #---------------------------------- Search property
@@ -261,9 +262,10 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
     @bool found := false ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;
@@ -288,9 +290,9 @@ override method @regularRootBinding analyzeOutletBinding
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
@@ -338,9 +340,10 @@ override method @regularRootBinding analyzeOutletBinding
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;
@@ -366,9 +369,9 @@ override method @regularSelfBinding analyzeOutletBinding
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
@@ -414,9 +417,10 @@ override method @regularSelfBinding analyzeOutletBinding
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;
@@ -442,11 +446,11 @@ override method @regularPreferenceBinding analyzeOutletBinding
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
-  ioImplementationFileInclusionSet += !mPreferenceName->string ;
+  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferenceName->string ;
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
     !mBindingName
@@ -458,7 +462,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
     !mPreferenceName
     ?4*
     ?@observablePropertyMap observablePropertyMap
-    ?4*
+    ?3*
   ] ;
 #---------------------------------------- Find observable property in local observable property map
   [observablePropertyMap searchKey
@@ -488,9 +492,11 @@ override method @regularPreferenceBinding analyzeOutletBinding
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
+
     ] ;
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;
@@ -513,7 +519,7 @@ abstract method @multiValuedBindingBoundModel analyzeModel
   ??@classMap inClassMap
   ??@preferencesMap inPreferencesMap
   ??@controllerMap inControllerMap
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -528,7 +534,7 @@ override method @multiValuedBindingBoundToRoot analyzeModel
   ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap unused inControllerMap
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -552,7 +558,7 @@ override method @multiValuedBindingBoundToSelf analyzeModel
   ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap unused inControllerMap
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -576,7 +582,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
   ??@classMap unused inClassMap
   ??@preferencesMap inPreferencesMap
   ??@controllerMap unused inControllerMap
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -585,7 +591,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
     !mPreferenceName
     ?4*
     ?@observablePropertyMap preferenceObservableAttributeMap
-    ?4*
+    ?3*
   ] ;
   [preferenceObservableAttributeMap searchKey
     !mPropertyName
@@ -595,7 +601,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
   ] ;
   outObservedObjectName := "g_" . mPreferenceName ;
   outKeyPathPrefix := "" ;
-  ioImplementationFileInclusionSet += !mPreferenceName->string ;
+  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferenceName->string ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -607,7 +613,7 @@ override method @multiValuedBindingBoundToController analyzeModel
   ??@classMap unused inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap inControllerMap
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -636,7 +642,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
   ??@classMap inClassMap
   ??@preferencesMap unused inPreferencesMap
   ??@controllerMap inControllerMap
-  ?!@stringset unused ioImplementationFileInclusionSet
+  ?!@fileInclusionSet unused ioFileInclusionSet
   !@string outObservedObjectName
   !@easyBindingType outObservablePropertyType
   !@string outKeyPathPrefix
@@ -655,14 +661,14 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?12*
+      ?11*
     ] ;      
   else
     [inClassMap searchKey
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?6*
+      ?5*
      ] ;
   end if ;
 #---
@@ -688,9 +694,9 @@ override method @multiValuedBinding analyzeOutletBinding
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@stringset ioImplementationFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
   @outletClassBindingOptionMap outletClassBindingOptionMap ;
   @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
@@ -706,7 +712,7 @@ override method @multiValuedBinding analyzeOutletBinding
       !inClassMap
       !inPreferencesMap
       !inControllerMap
-      !?ioImplementationFileInclusionSet
+      !?ioFileInclusionSet
       ?@string observedObjectName
       ?@easyBindingType observablePropertyType
       ?@string keyPathPrefix
@@ -735,9 +741,10 @@ override method @multiValuedBinding analyzeOutletBinding
       [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
       bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
     end foreach ;
@@ -757,10 +764,11 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine checkBindingOptions
-  ??@globalEnumConstantMap inGlobalEnumConstantMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ??@outletBindingOptionList inBindingOptionListAST
   ??@outletClassBindingOptionMap inAvailableBindingOptionMap
   !@2stringlist outBindingOptionListForGeneration
+  ?!@fileInclusionSet ioFileInclusionSet
 :
   outBindingOptionListForGeneration := [@2stringlist emptyList] ;
   foreach inBindingOptionListAST do
@@ -768,9 +776,10 @@ routine checkBindingOptions
     [inAvailableBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
     [mDefaultValue analyzeDefaultValueType
       !acceptableTypeList
-      !inGlobalEnumConstantMap
+      !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
     ] ;
     outBindingOptionListForGeneration += ![mOptionName string] !objectiveCDefaultValueAsString ;
   end foreach ;

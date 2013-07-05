@@ -6,12 +6,11 @@ semantics cursorAnalysis :
 
 routine cursorAnalysis
   ??@cursorList inCursorList
-  !@userCursorMap outCursorMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   !@stringlist outPredefinedCursorList
 :
-  outCursorMap := [@userCursorMap emptyMap] ;
   foreach inCursorList do
-    [!?outCursorMap insertKey !mCursorName !mHotSpotX->double !mHotSpotY->double] ;
+    [!?ioContextAnalysisStruct->mUserCursorMap insertKey !mCursorName !mHotSpotX->double !mHotSpotY->double] ;
   end foreach ;
   outPredefinedCursorList := [@stringlist emptyList] ;
   outPredefinedCursorList += !"arrowCursor" ;
