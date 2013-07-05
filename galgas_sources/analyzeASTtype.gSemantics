@@ -1,0 +1,172 @@
+semantics analyzeASTtype :
+  import "decoratedTypes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#   @attributeType                                                           *
+#----------------------------------------------------------------------------*
+
+abstract reader @attributeASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @boolASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@boolType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @stringASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@stringType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @colorASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@colorType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @integerASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@integerType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @uintegerASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@uintegerType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @doubleASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@doubleType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @decimalASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@decimalType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @fontASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@fontType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @imageASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@imageType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @dataASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@dataType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @dateASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@dateType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @valueASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@valueType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @bezierASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@bezierPathType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @menuASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@menuType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @arrayASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@arrayType new] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @namedASTType analyze
+  ??@contextAnalysisStruct inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  if [inContextAnalysisStruct->mEnumMap hasKey !mTypeName->string] then
+    outType := [@enumType new !mTypeName] ;
+  else
+    error mTypeName:"Undefined enumeration" : outType ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @anyEnumASTType analyze
+  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  -> @easyBindingType outType
+:
+  outType := [@enumType new !["**any enum**" nowhere]] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
