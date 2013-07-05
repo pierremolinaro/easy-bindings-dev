@@ -543,6 +543,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"%s '%lu' ofType:'%@'", __PRETTY_FUNCTION__, inData.length, inTypeName) ;
   #endif
+  [self.undoManager disableUndoRegistration] ;
 //---- Define input data scanner
   PMDataScanner * dataScanner = [PMDataScanner
     scannerWithData:inData
@@ -673,6 +674,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
   if (NULL != outError) {
     * outError = error ;
   }
+  [self.undoManager enableUndoRegistration] ;
 //---
   const BOOL result = nil == error  ;
   macroReleaseSetToNil (error) ;
