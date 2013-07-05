@@ -1,5 +1,5 @@
 semantics transientAnalysis :
-  import "decoratedTypes.gSemantics" ;
+  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -196,6 +196,7 @@ routine analyzeTransientProperties
   ??@string inObervationDependencyPrefix
   ??@transientList inTransientList
   ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ??@string inRootEntityName
   ??@controllerMap inControllerMap
   ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
@@ -205,6 +206,7 @@ routine analyzeTransientProperties
 :
   outTransientListForImplementation := [@transientListForImplementation emptyList] ;
   foreach inTransientList do
+    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
   #--- Define transient as a new node in dependency graph
     const @lstring transientObservationKey [new
       !inObervationDependencyPrefix . mTransientName
@@ -232,12 +234,12 @@ routine analyzeTransientProperties
   #--- Add transient to observable attribute map
     [!?ioSelfObjectObservablePropertyMap insertKey
       !mTransientName
-      !mType
+      !type
       !true # is transient
       !transientObservationKey->string
     ] ;
   #--- Add transient implementation
-    outTransientListForImplementation += !mType ![mTransientName string] !directDependancyList !rootSignDependencyList ;
+    outTransientListForImplementation += !type ![mTransientName string] !directDependancyList !rootSignDependencyList ;
   end foreach ;
 end routine ;
 

@@ -39,6 +39,7 @@ local routine analyzeClass
     !"class." . inClass->mClassName . "."
     !inClass->mTransientList
     ![@observablePropertyMap emptyMap] # Root property map
+    !inContextAnalysisStruct
     !"" # No Root entity
     ![@controllerMap emptyMap]
     !?observablePropertyMap

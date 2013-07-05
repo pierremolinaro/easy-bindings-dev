@@ -1,10 +1,12 @@
 semantics outletClassAnalysis :
   import "decoratedTypes.gSemantics" ;
+  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
 routine analyzeOutletClasses
   ??@outletClassList inOutletClassList
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ??@protocolMap inProtocolMap
   !@outletClassMap outOutletClassMap
 :
@@ -40,10 +42,20 @@ routine analyzeOutletClasses
     foreach mOutletClassBindingList do
       @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
       foreach mBindingOptionList do
-        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !mAcceptableTypeList] ;
+        @easyBindingTypeList acceptableTypeList [emptyList] ;
+        foreach mAcceptableTypeList do
+          @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+          acceptableTypeList += !type ;
+        end foreach ;
+        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
       end foreach ;
-      [!?allBindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
-      [!?currentBindingMap insertKey !mBindingName !mAcceptableTypeFormatterList !outletClassBindingOptionMap] ;
+      @easyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+      foreach mAcceptableTypeFormatterList do
+        @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+        acceptableTypeFormatterList += !type !mRequiredFormatter ;
+      end foreach ;
+      [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+      [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
     end foreach ;
   #--- Analyze protocols
     foreach mAdoptedProtocolList do

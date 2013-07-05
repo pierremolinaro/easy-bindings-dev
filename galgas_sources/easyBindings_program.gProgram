@@ -105,12 +105,14 @@ message "a source text file with the .easyBindings extension"
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
   analyzeOutletClasses
     !outletClassList
+    !contextAnalysisStruct
     !protocolMap
     ?@outletClassMap outletClassMap
   ;
 #--- Controller classes
   analyzeControllerClasses
     !controllerClassList
+    !contextAnalysisStruct
     !?transientDependencyGraph
     ?@controllerClassMap controllerClassMap
   ;

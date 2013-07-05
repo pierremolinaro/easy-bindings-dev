@@ -1,6 +1,7 @@
 semantics attributeDeclarationAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
+  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -16,21 +17,22 @@ routine analyzeAttributeDeclaration
 :
   outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
   foreach inAttributeList do
+    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
     [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !mType]
+      ![@easyBindingTypeList listWithValue !type]
       !inContextAnalysisStruct
       ?@string directDefaultValueAsString
       ?@string objectiveCDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
     outAttributeListForImplementation +=
-      !mType
+      !type
       ![mAttributeName string]
       !objectiveCDefaultValueAsString
       !directDefaultValueAsString
     ;
     ioAttributeListForInitHeader +=
-       !mType
+       !type
        ![mAttributeName string]
        !objectiveCDefaultValueAsString
        !directDefaultValueAsString
@@ -41,7 +43,7 @@ routine analyzeAttributeDeclaration
     ] ;
     [!?ioSelfObservableAttributeMap insertKey
       !mAttributeName
-      !mType
+      !type
       !false # is not transient
       !observationDependencyKey->string
     ] ;

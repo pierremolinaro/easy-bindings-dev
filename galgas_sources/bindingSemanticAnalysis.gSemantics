@@ -1,5 +1,5 @@
 semantics bindingSemanticAnalysis :
-  import "decoratedTypes.gSemantics" ;
+  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -322,7 +322,6 @@ override method @regularRootBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-#    found := [mType ebTypeIdentifier !""] == [[@enumType new !inEnumTypeName->string] ebTypeIdentifier !""] ;
     found := [mType ebGenericTypeIdentifier ![observablePropertyType ocClassName]] == [observablePropertyType ebTypeIdentifier] ;
 #    found := mType == observablePropertyType ;
   end foreach ;

@@ -67,9 +67,9 @@ local routine analyzePreference
       !mClassName
       ?*
       ?@observablePropertyMap classObservablePropertyMap
-      ?*
+      ?2*
       ?@attributeListForImplementation attributeListForImplementation
-      ?3*
+      ?2*
     ] ;
     [!?preferenceArrayMap insertKey
       !mArrayName
@@ -169,6 +169,7 @@ local routine analyzePreference
     !"preference." . inPreference->mPreferencesName . "."
     !inPreference->mTransientList
     ![@observablePropertyMap emptyMap] # Root property map
+    !inContextAnalysisStruct
     !"" # No Root entity
     ![@controllerMap emptyMap]
     !?selfObservableAttributeMap
