@@ -426,28 +426,34 @@ rule <explicit_value>
 :
   select
     $YES$ ;
-    outDefaultValue := [@boolDefaultValue new ![@lbool new !true !here]] ;
+    outDefaultValue := [@boolAsDefaultValue new ![@lbool new !true !here]] ;
   or
     $NO$ ;
-    outDefaultValue := [@boolDefaultValue new ![@lbool new !false !here]] ;
+    outDefaultValue := [@boolAsDefaultValue new ![@lbool new !false !here]] ;
   or
     $literal_integer$ ? @luint integerValue ;
-    outDefaultValue := [@integerDefaultValue new !integerValue] ;
+    outDefaultValue := [@integerAsDefaultValue new !integerValue] ;
   or
     $literal_double$ ? @ldouble doubleValue ?* ;
-    outDefaultValue := [@doubleDefaultValue new !doubleValue] ;
+    outDefaultValue := [@doubleAsDefaultValue new !doubleValue] ;
   or
     $literal_string$ ?@lstring stringValue ;
-    outDefaultValue := [@stringDefaultValue new !stringValue] ;
+    outDefaultValue := [@stringAsDefaultValue new !stringValue] ;
   or
     $identifier$ ? @lstring stringValue ;
-    select
-      outDefaultValue := [@identifierDefaultValue new !stringValue] ;
-    or
-      $:$ ;
-      $literal_integer$ ?@luint additionalIntegerValue ;
-      outDefaultValue := [@identifierIntegerDefaultValue new !stringValue !additionalIntegerValue] ;
-    end select ;
+    outDefaultValue := [@identifierAsDefaultValue new !stringValue] ;
+  or
+    $($ ;
+    const @location startLocation := here ;
+    @defaultValueList defaultValueList [emptyList] ;
+    repeat
+      <explicit_value> ?@abstractDefaultValue defaultValue ;
+      defaultValueList += !defaultValue ;
+    while
+      $,$ ;
+    end repeat ;
+    $)$ ;
+    outDefaultValue := [@listAsDefaultValue new !startLocation !defaultValueList] ;
   end select ;
 end rule ;
 
