@@ -435,7 +435,7 @@ abstract method @abstractDefaultValue analyzeDefaultValueType
 
 #----------------------------------------------------------------------------*
   
-override method @boolDefaultValue analyzeDefaultValueType 
+override method @boolAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -461,7 +461,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
   
-override method @integerDefaultValue analyzeDefaultValueType 
+override method @integerAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -487,7 +487,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
   
-override method @doubleDefaultValue analyzeDefaultValueType 
+override method @doubleAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -513,7 +513,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
   
-override method @stringDefaultValue analyzeDefaultValueType 
+override method @stringAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -594,7 +594,7 @@ end once ;
 
 #----------------------------------------------------------------------------*
   
-override method @identifierDefaultValue analyzeDefaultValueType 
+override method @identifierAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -675,7 +675,7 @@ end once ;
 
 #----------------------------------------------------------------------------*
  
-override method @identifierIntegerDefaultValue analyzeDefaultValueType 
+override method @listAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
@@ -688,20 +688,30 @@ override method @identifierIntegerDefaultValue analyzeDefaultValueType
   foreach inAttributeActualTypeList while not found do
     if [mType isFontType] then
       found := true ;
-      if [predefinedFonts [] hasKey !mIdentifier->string] then
-        outDirectDefaultValueAsString := "[NSFont " . mIdentifier->string . ":" . [mInteger->uint string] . "]" ;
-        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
+      if [mList length] != 2 then
+        error mStartLocation : errorMessage ; 
       else
-        error mIdentifier
-        : "unknown predefined font name"
-        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-        ;  
+        const @abstractDefaultValue v0 := [mList mValueAtIndex !0] ; 
+        const @abstractDefaultValue v1 := [mList mValueAtIndex !1] ;
+        if (v0 is @identifierAsDefaultValue) then message "azerty" ; end if ;
+        const @identifierAsDefaultValue fontName := (v0 to @identifierAsDefaultValue error mStartLocation: errorMessage) ;
+        const @integerAsDefaultValue fontSize := (v1 to @integerAsDefaultValue error mStartLocation:errorMessage) ;
+        if [predefinedFonts [] hasKey ![fontName mValue]->string] then
+          outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
+          outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+        else
+          error [fontName mValue]
+          : "unknown predefined font name"
+          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+          ;  
+        end if ;
       end if ;
     end if ;
   end foreach ;
   if not found then
-    error mIdentifier
-    : "only a font attribute can be initialized by an identifier followed by an integer constant"
+    error mStartLocation
+    : "only an NSFont attribute can be initialized by a (fontName, fontSize) value"
     ;  
   end if ;
 end method ;

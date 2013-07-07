@@ -424,39 +424,45 @@ abstract class @abstractDefaultValue {
 
 #----------------------------------------------------------------------------*
 
-class @boolDefaultValue extends @abstractDefaultValue {
+class @boolAsDefaultValue extends @abstractDefaultValue {
   @lbool mValue ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @doubleDefaultValue extends @abstractDefaultValue {
+class @doubleAsDefaultValue extends @abstractDefaultValue {
   @ldouble mValue ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @integerDefaultValue extends @abstractDefaultValue {
+class @integerAsDefaultValue extends @abstractDefaultValue {
   @luint mValue ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @stringDefaultValue extends @abstractDefaultValue {
+class @stringAsDefaultValue extends @abstractDefaultValue {
   @lstring mValue ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @identifierDefaultValue extends @abstractDefaultValue {
+class @identifierAsDefaultValue extends @abstractDefaultValue {
   @lstring mValue ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @identifierIntegerDefaultValue extends @abstractDefaultValue {
-  @lstring mIdentifier ;
-  @luint mInteger ;
+list @defaultValueList {
+  @abstractDefaultValue mValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @listAsDefaultValue extends @abstractDefaultValue {
+  @location mStartLocation ;
+  @defaultValueList mList ;
 }
 
 #----------------------------------------------------------------------------*
