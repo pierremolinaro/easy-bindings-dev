@@ -694,9 +694,18 @@ override method @listAsDefaultValue analyzeDefaultValueType
       else
         const @abstractDefaultValue v0 := [mList mValueAtIndex !0] ; 
         const @abstractDefaultValue v1 := [mList mValueAtIndex !1] ;
-        if (v0 is @identifierAsDefaultValue) then message "azerty" ; end if ;
-        const @identifierAsDefaultValue fontName := (v0 to @identifierAsDefaultValue error mStartLocation: errorMessage) ;
-        const @integerAsDefaultValue fontSize := (v1 to @integerAsDefaultValue error mStartLocation:errorMessage) ;
+        @identifierAsDefaultValue fontName ;
+        if (v0 is @identifierAsDefaultValue) then 
+          fontName := (cast v0 : @identifierAsDefaultValue) ;
+        else
+          error mStartLocation : errorMessage : fontName ;
+        end if ;
+        @integerAsDefaultValue fontSize ;
+        if (v1 is @integerAsDefaultValue) then 
+          fontSize := (cast v1 : @integerAsDefaultValue) ;
+        else
+          error mStartLocation : errorMessage : fontSize ;
+        end if ;
         if [predefinedFonts [] hasKey ![fontName mValue]->string] then
           outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
           outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
