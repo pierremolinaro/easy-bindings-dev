@@ -37,6 +37,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
   
   template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
     ?@string CLASS_NAME
+    ?@stringset INCLUSION_SET
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
   ;
   
@@ -104,8 +105,16 @@ routine generateClassCode
       ] ;
     #--- Transient computation function header file
       if [mTransientListForImplementation length] > 0 then
+        @stringset inclusionSet [emptySet] ;
+        foreach mTransientListForImplementation do
+          [mTransientType addEnumAndStructType !?inclusionSet] ;
+          foreach mDependencyList do
+            [[mDependency mMasterAttributeType] addEnumAndStructType !?inclusionSet] ;
+          end foreach ;
+        end foreach ;
         s := [filewrapper classGenerationTemplate.classTransientComputationsHeaderFile
           ![lkey string]
+          !inclusionSet
           !mTransientListForImplementation
         ] ;
         [@string generateFileWithPattern

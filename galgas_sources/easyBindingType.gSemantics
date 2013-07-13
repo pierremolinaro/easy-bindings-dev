@@ -488,6 +488,26 @@ override reader @menuType copyOnAssign -> @bool outResult : outResult := true ; 
 
 #-----------------------------------------------------------------------------*
 
+method @easyBindingType addEnumAndStructType
+  ?!@stringset unused ioSet
+:
+end method ;
+
+
+override method @enumType addEnumAndStructType
+  ?!@stringset ioSet
+:
+  ioSet += !mEnumTypeName->string ;
+end method ;
+
+override method @structType addEnumAndStructType
+  ?!@stringset ioSet
+:
+  ioSet += !mStructTypeName->string ;
+end method ;
+
+#-----------------------------------------------------------------------------*
+
 reader @easyBindingType isToManyEntitiesType -> @bool outResult: outResult := false ; end reader ;
 
 override reader @toManyEntitiesType isToManyEntitiesType -> @bool outResult : outResult := true ; end reader ;
