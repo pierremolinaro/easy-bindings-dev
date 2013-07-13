@@ -71,7 +71,7 @@ override method @transientLocalDependency analyze
     ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
   ] ;
 #---
-  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !mMasterName->string !masterType] ;
+  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -109,7 +109,7 @@ override method @transientControllerDependency analyze
     ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
   ] ;
 #---
-  ioDirectDependancyList += ![@transientDependencyFromControllerForImplementation new !mControllerName->string !mMasterName->string !masterType] ;
+  ioDirectDependancyList += ![@transientDependencyFromControllerForImplementation new !masterType !mControllerName->string !mMasterName->string] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -144,8 +144,8 @@ override method @transientRootDependency analyze
   ] ;
 #---
   ioDirectDependancyList += ![@transientDependencyFromRootForImplementation new
-    !mMasterName->string
     !masterType
+    !mMasterName->string
     !mNamesCountOption
     ![masterDependencyKey identifierRepresentation]
  ] ;
@@ -182,10 +182,10 @@ override method @transientPreferenceDependency analyze
   ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferencesName->string ;
 #---
   ioDirectDependancyList += ![@transientDependencyFromPreferenceForImplementation new
+    !masterType
     !mPreferencesName->string
     !mMasterName->string
     !isTransient
-    !masterType
   ] ;
 end method ;
 

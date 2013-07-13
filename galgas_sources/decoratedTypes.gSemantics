@@ -338,13 +338,13 @@ map @controllerMap {
 #----------------------------------------------------------------------------*
 
 abstract class @abstractTransientDependencyForImplementation {
+  @easyBindingType mMasterAttributeType ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @transientDependencyFromSelfForImplementation extends @abstractTransientDependencyForImplementation {
   @string mMasterAttributeName ;
-  @easyBindingType mMasterAttributeType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -352,14 +352,12 @@ class @transientDependencyFromSelfForImplementation extends @abstractTransientDe
 class @transientDependencyFromControllerForImplementation extends @abstractTransientDependencyForImplementation {
   @string mControllerName ;
   @string mMasterAttributeName ;
-  @easyBindingType mMasterAttributeType ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @transientDependencyFromRootForImplementation extends @abstractTransientDependencyForImplementation {
   @string mMasterAttributeName ;
-  @easyBindingType mMasterAttributeType ;
   @bool mNamesCountOption ;
   @string mTriggerRoutineName ;
 }
@@ -370,7 +368,6 @@ class @transientDependencyFromPreferenceForImplementation extends @abstractTrans
   @string mPreferenceName ;
   @string mMasterAttributeName ;
   @bool mMasterIsTransient ;
-  @easyBindingType mMasterAttributeType ;
 }
 
 #----------------------------------------------------------------------------*
