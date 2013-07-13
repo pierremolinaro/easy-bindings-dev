@@ -9,6 +9,7 @@ rule <start_symbol>
   ?!@classList ioClassList
   ?!@entityList ioEntityList
   ?!@preferencesDeclarationList ioPreferencesList
+  ?!@nibClassDeclarationList ioNibClassList
   ?!@outletClassList ioOutletClassList
   ?!@documentDeclarationList ioDocumentDeclarationList
   ?!@controllerClassList ioControllerClassList
@@ -31,6 +32,7 @@ rule <start_symbol>
       !?ioClassList
       !?ioEntityList
       !?ioPreferencesList
+      !?ioNibClassList
       !?ioOutletClassList
       !?ioDocumentDeclarationList
       !?ioControllerClassList
@@ -52,6 +54,8 @@ rule <start_symbol>
     <class_declaration> !?ioClassList ;
   while
     <entity_declaration> !?ioEntityList ;
+  while
+    <nib_class_declaration> !?ioNibClassList ;
   while
     <preferences_declaration> !?ioPreferencesList ;
   while
@@ -373,6 +377,46 @@ rule <preferences_declaration>
   end repeat ;
   $}$ ;
   ioPreferencesList +=
+    !preferencesName
+    !outletDeclarationList
+    !attributeList
+    !transientList
+    !actionDeclarationList
+    !controllerList
+    !classArrayList
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <nib_class_declaration>
+  ?!@nibClassDeclarationList ioList
+:
+  $nibClass$ ;
+  $Identifier$ ? @lstring preferencesName ;
+  ${$ ;
+  @outletDeclarationList outletDeclarationList [emptyList] ;
+  @attributeList attributeList [emptyList] ;
+  @transientList transientList [emptyList] ;
+  @lstringlist actionDeclarationList [emptyList] ;
+  @controllerList controllerList [emptyList] ;
+  @classArrayList classArrayList [emptyList] ;
+  repeat
+  while
+    <action_declaration> !?actionDeclarationList ;
+  while
+    <attribute_declaration> !?attributeList ;
+  while
+    <outlet_declaration> !?outletDeclarationList ;
+  while
+    <transient_declaration> !?transientList ;
+  while
+    <controller_declaration> !?controllerList ;
+  while
+    <array_declaration> !?classArrayList ;
+  end repeat ;
+  $}$ ;
+  ioList +=
     !preferencesName
     !outletDeclarationList
     !attributeList

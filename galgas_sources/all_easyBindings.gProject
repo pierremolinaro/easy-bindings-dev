@@ -32,6 +32,9 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "classAnalysis.gSemantics" ;
   semantics "classGeneration.gSemantics" ;
 
+  semantics "nibClassAnalysis.gSemantics" ;
+  semantics "nibClassGeneration.gSemantics" ;
+
   semantics "preferencesAnalysis.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;
 
