@@ -112,6 +112,7 @@ override reader @colorType preferencesGetterTransformerFunctionName -> @string o
 override reader @arrayType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 override reader @valueType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 override reader @bezierPathType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
+override reader @structType preferencesGetterTransformerFunctionName -> @string outResult : outResult := mStructTypeName->string . "FromData" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -119,7 +120,6 @@ reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outR
 
 override reader @boolType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedBool" ; end reader ;
 override reader @integerType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
-override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
 override reader @doubleType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedDouble" ; end reader ;
 override reader @fontType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataFromFont" ; end reader ;
 override reader @colorType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
@@ -127,6 +127,8 @@ override reader @arrayType preferencesSetterTransformerFunctionName -> @string o
 override reader @valueType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @bezierPathType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
+override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
+override reader @structType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncoded" . mStructTypeName ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -156,23 +158,6 @@ override reader @doubleType requiredCellTypeInTableColumnBinding -> @string outR
 override reader @stringType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
 override reader @dateType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSDateFieldCell" ; end reader ;
 override reader @imageType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSImageCell" ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
- # Empty string: use == operator
-reader @easyBindingType equalMethod -> @string outResult : outResult := "" ; end reader ;
-
-override reader @stringType equalMethod -> @string outResult : outResult := "isEqualToString" ; end reader ;
-override reader @dataType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @dateType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @fontType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @imageType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @colorType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @arrayType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @valueType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @objectArrayType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @bezierPathType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
-override reader @menuType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 #   equalExpression                                                           *
