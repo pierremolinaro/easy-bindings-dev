@@ -350,7 +350,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %//    set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
   %//-----------------------------------------------------------------------------*\n\n%
   %- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {\n%
-  %  if (%![mType notEqualExpression !"inNewValue" !"self." . mAttributeName]%) {\n%
+  %  if (! (%![mType equalExpression !"inNewValue" !"self." . mAttributeName]%)) {\n%
   %  //--- Register old value in undo manager\n%
   if [mType isClass] then
     %    [self.undoManager\n%

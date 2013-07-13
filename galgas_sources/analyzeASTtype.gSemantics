@@ -153,6 +153,13 @@ override reader @namedASTType analyze
 :
   if [inContextAnalysisStruct->mEnumMap hasKey !mTypeName->string] then
     outType := [@enumType new !mTypeName] ;
+  elsif [inContextAnalysisStruct->mStructTypeMap hasKey !mTypeName->string] then
+    [inContextAnalysisStruct->mStructTypeMap searchKey
+      !mTypeName
+      ?@structFieldList fieldList
+      ?*
+    ] ;
+    outType := [@structType new !mTypeName !fieldList] ;
   else
     error mTypeName:"Undefined enumeration" : outType ;
   end if ;

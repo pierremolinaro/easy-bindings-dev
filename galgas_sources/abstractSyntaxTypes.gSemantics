@@ -455,14 +455,28 @@ class @identifierAsDefaultValue extends @abstractDefaultValue {
 #----------------------------------------------------------------------------*
 
 list @defaultValueList {
-  @abstractDefaultValue mValue ;
+  @abstractDefaultValue mDefaultValue ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @listAsDefaultValue extends @abstractDefaultValue {
   @location mStartLocation ;
-  @defaultValueList mList ;
+  @defaultValueList mDefaultValueList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @structFieldASTList {
+  @attributeASTType mFieldType ;
+  @lstring mFieldName ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @structTypeList {
+  @lstring mStructTypeName ;
+  @structFieldASTList mFieldList ;
 }
 
 #----------------------------------------------------------------------------*

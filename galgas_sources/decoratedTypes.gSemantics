@@ -26,9 +26,11 @@ map @enumConstantMap {
 
 #----------------------------------------------------------------------------*
 
-map @plainOldDataMap {
-  insert insertKey error message "the '%K' plain old data type is already declared" ;
-  search searchKey error message "the '%K' plain old data type is not declared" ;
+map @structTypeMap {
+  @structFieldList mFieldList ;
+  @stringset mHeaderFileInclusionSet ;
+  insert insertKey error message "the '%K' plain struct type is already declared" ;
+  search searchKey error message "the '%K' plain struct type is not declared" ;
 }
 
 #----------------------------------------------------------------------------*
@@ -53,7 +55,7 @@ map @userCursorMap {
 #----------------------------------------------------------------------------*
 
 struct @contextAnalysisStruct {
-  @plainOldDataMap mPlainOldDataMap ;
+  @structTypeMap mStructTypeMap ;
   @enumMap mEnumMap ;
   @globalEnumConstantMap mGlobalEnumConstantMap ;
   @userCursorMap mUserCursorMap ;
@@ -677,23 +679,46 @@ end once ;
  
 override method @listAsDefaultValue analyzeDefaultValueType 
   ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet unused ioFileInclusionSet
+  ?!@fileInclusionSet ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if [mType isFontType] then
+    if (mType is @structType) then
+      found := true ;
+      const @structType t := (cast mType : @structType) ;
+      ioFileInclusionSet->mHeaderFileInclusionSet += ![t ebTypeName] ;
+      if [mDefaultValueList length] != [[t mFieldList] length] then
+        error mStartLocation : "the '" . [t ebTypeName] . "' struct needs " . [[t mFieldList] length] . " values for initialization" ;
+      else
+        outDirectDefaultValueAsString := "make" . [t ebTypeName] . " (" ;
+        foreach mDefaultValueList, [t mFieldList]
+        do
+          [mDefaultValue analyzeDefaultValueType
+            ![@easyBindingTypeList listWithValue !mFieldType]
+            !inContextAnalysisStruct
+            ?@string directDefaultValueAsString
+            ?*
+            !?ioFileInclusionSet
+          ] ;
+          outDirectDefaultValueAsString .= directDefaultValueAsString ;
+        between
+          outDirectDefaultValueAsString .= ", " ;
+        end foreach ; 
+        outDirectDefaultValueAsString .= ")" ;     
+      end if ;
+    elsif [mType isFontType] then
       found := true ;
       const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
-      if [mList length] != 2 then
+      if [mDefaultValueList length] != 2 then
         error mStartLocation : errorMessage ; 
       else
-        const @abstractDefaultValue v0 := [mList mValueAtIndex !0] ; 
-        const @abstractDefaultValue v1 := [mList mValueAtIndex !1] ;
+        const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
+        const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
         @identifierAsDefaultValue fontName ;
         if (v0 is @identifierAsDefaultValue) then 
           fontName := (cast v0 : @identifierAsDefaultValue) ;
@@ -720,7 +745,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
   end foreach ;
   if not found then
     error mStartLocation
-    : "only an NSFont attribute can be initialized by a (fontName, fontSize) value"
+    : "invalid initialization value"
     ;  
   end if ;
 end method ;
