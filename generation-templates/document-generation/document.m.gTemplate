@@ -102,11 +102,8 @@ foreach ATTRIBUTE_LIST do
 //----------------------------------------------------------------------------*
 
 - (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {
-%if [mType equalMethod] == "" then
-%  if (self.%!mAttributeName% != inNewValue) {
-%else
-%  if (! [self.%!mAttributeName% %![mType equalMethod]%:inNewValue]) {
-%end if%    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inNewValue] ;
+  if (! (%![mType equalExpression!"self." . mAttributeName !"inNewValue"]%)) {
+    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inNewValue] ;
     [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 %!generateTransientTriggering [!mAttributeName !DOCUMENT_NAME !TRANSIENT_LIST !"document"]
 %  }
