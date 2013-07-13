@@ -32,6 +32,7 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "option",
   "entity",
   "outletClass",
+  "nibClass",
   "class",
   "selection",
   "end",

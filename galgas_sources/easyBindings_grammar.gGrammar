@@ -5,6 +5,7 @@ root <start_symbol>
   ?!@classList ioClassList
   ?!@entityList ioEntityList
   ?!@preferencesDeclarationList ioPreferencesList
+  ?!@nibClassDeclarationList ioNibClassList
   ?!@outletClassList ioOutletClassList
   ?!@documentDeclarationList ioDocumentDeclarationList
   ?!@controllerClassList ioControllerClassList

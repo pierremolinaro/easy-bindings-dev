@@ -281,6 +281,18 @@ list @preferencesDeclarationList {
 
 #----------------------------------------------------------------------------*
 
+list @nibClassDeclarationList {
+  @lstring mClassName ;
+  @outletDeclarationList mOutletDeclarationList ;
+  @attributeList mAttributeList ;
+  @transientList mTransientList ;
+  @lstringlist mActionDeclarationList ;
+  @controllerList mControllerList ;
+  @classArrayList mClassArrayList ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @controllerList {
   @controllerKind mControllerKind ;
   @lstring mControllerClassName ;

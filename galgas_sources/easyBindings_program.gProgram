@@ -8,6 +8,7 @@ import "preferencesAnalysis.gSemantics" ;
 import "documentAnalysis.gSemantics" ;
 import "enumAnalysis.gSemantics" ;
 import "structAnalysis.gSemantics" ;
+import "nibClassAnalysis.gSemantics" ;
 
 import "outletClassGeneration.gSemantics" ;
 import "classGeneration.gSemantics" ;
@@ -19,6 +20,7 @@ import "cursorGeneration.gSemantics" ;
 import "enumGeneration.gSemantics" ;
 import "structGeneration.gSemantics" ;
 import "controllerClassGeneration.gSemantics" ;
+import "nibClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -45,6 +47,7 @@ message "a source text file with the .easyBindings extension"
   @classList classList [emptyList] ;
   @entityList entityList [emptyList] ;
   @preferencesDeclarationList preferencesList [emptyList] ;
+  @nibClassDeclarationList nibClassList [emptyList] ;
   @outletClassList outletClassList [emptyList] ;
   @documentDeclarationList documentDeclarationList [emptyList] ;
   @controllerClassList controllerClassList [emptyList] ;
@@ -56,6 +59,7 @@ message "a source text file with the .easyBindings extension"
     !?classList
     !?entityList
     !?preferencesList
+    !?nibClassList
     !?outletClassList
     !?documentDeclarationList
     !?controllerClassList
@@ -70,6 +74,7 @@ message "a source text file with the .easyBindings extension"
     !?classList
     !?entityList
     !?preferencesList
+    !?nibClassList
     !?outletClassList
     !?documentDeclarationList
     !?controllerClassList
@@ -140,6 +145,17 @@ message "a source text file with the .easyBindings extension"
     ?@preferencesMap preferencesMap
     !?transientDependencyGraph
   ;
+#--- nib classes
+  analyzeNibClasses
+    !nibClassList
+    !controllerClassMap
+    !classMap
+    !outletClassMap
+    !contextAnalysisStruct
+    ?@nibClassMap nibClassMap
+    !preferencesMap
+    !?transientDependencyGraph
+  ;
 #--- Entities
   analyzeEntities
     !entityList
@@ -199,6 +215,7 @@ message "a source text file with the .easyBindings extension"
   generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
   generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
+  generateNibClassCode !transientDependencyArcList !nibClassMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
   generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
   generateControllerCode !controllerClassMap !sourceDirectoryPath ;
