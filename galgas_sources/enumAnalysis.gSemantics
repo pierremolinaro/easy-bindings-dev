@@ -9,7 +9,7 @@ routine enumAnalysis
   ?!@contextAnalysisStruct ioContextAnalysisStruct
 :
   foreach inEnumList do
-    if [ioContextAnalysisStruct->mPlainOldDataMap hasKey !mEnumTypeName->string] then
+    if [ioContextAnalysisStruct->mStructTypeMap hasKey !mEnumTypeName->string] then
       error mEnumTypeName:"There is a plain old data type with the same name" ;
     end if ;
     @enumConstantMap enumConstantMap [emptyMap] ;

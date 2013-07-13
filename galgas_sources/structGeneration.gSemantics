@@ -1,0 +1,126 @@
+semantics structGeneration :
+  import "easyBindings_options.gOption" ;
+  import "decoratedTypes.gSemantics" ;
+
+#-----------------------------------------------------------------------------*
+
+reader @easyBindingType stringConversionForExplorer
+  ??@string unused inName
+  -> @string outResult
+:
+  outResult := "" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @boolType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := inName . " ? @\"YES\" : @\"NO\"" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @integerType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := "[NSString stringWithFormat:@\"%ld\", " . inName . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @uintegerType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := "[NSString stringWithFormat:@\"%lu\", " . inName . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @doubleType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := "[NSString stringWithFormat:@\"%g\", " . inName . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @enumType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := "convert" . mEnumTypeName . "ValueToString ([NSNumber numberWithInteger:" . inName . "])" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @structType stringConversionForExplorer
+ ??@string inName
+ -> @string outResult
+:
+  outResult := "convert" . mStructTypeName . "ValueToString ([NSValue valueWithBytes:& " . inName . " objCType:@encode(" . mStructTypeName . ")])" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper structGenerationTemplate in "../generation-templates/struct-generation" {
+}{
+}{
+  template structDeclaration "struct.h.gTemplate"
+    ?@stringset HEADER_INCLUSIONS
+    ?@string STRUCT_TYPE_NAME
+    ?@structFieldList STRUCT_FIELD_LIST
+  ;
+  template structGeneration "struct.m.gTemplate"
+    ?@string STRUCT_TYPE_NAME
+    ?@structFieldList STRUCT_FIELD_LIST
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateStructures
+  ??@structTypeMap inStructMap
+  ??@string inOutputDirectory
+:
+  if [@uint errorCount] == 0 then
+    foreach inStructMap do
+      @string s := [filewrapper structGenerationTemplate.structDeclaration
+        !mHeaderFileInclusionSet
+        ![lkey string]
+        !mFieldList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        ![lkey string] . ".h"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+      s := [filewrapper structGenerationTemplate.structGeneration
+        ![lkey string]
+        !mFieldList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        ![lkey string] . ".m"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    end foreach ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

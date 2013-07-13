@@ -2,6 +2,40 @@ semantics entityGeneration :
   import "easyBindings_options.gOption" ;
   import "transientGeneration.gSemantics" ;
 
+#-----------------------------------------------------------------------------*
+#   hasCustomExplorerFunction                                                 *
+#-----------------------------------------------------------------------------*
+
+reader @easyBindingType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := false ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @boolType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := true ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @enumType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := true ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @structType hasCustomExplorerFunction
+  -> @bool outResult
+:
+  outResult := true ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 local filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {

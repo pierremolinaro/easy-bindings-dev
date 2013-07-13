@@ -11,7 +11,7 @@ root <start_symbol>
   ?!@protocolList ioProtocolList
   ?!@cursorList ioCursorList
   ?!@enumList ioEnumList
-  ?!@lstringlist ioPlainOldDataTypeList
+  ?!@structTypeList ioStructTypeList
   !@location outEndOfFile
 ;
 

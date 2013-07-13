@@ -17,10 +17,11 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   
   semantics "attributeDeclarationAnalysis.gSemantics" ;
 
-  semantics "plainOldData.gSemantics" ;
-
   semantics "enumAnalysis.gSemantics" ;
   semantics "enumGeneration.gSemantics" ;
+
+  semantics "structAnalysis.gSemantics" ;
+  semantics "structGeneration.gSemantics" ;
 
   semantics "cursorAnalysis.gSemantics" ;
   semantics "cursorGeneration.gSemantics" ;

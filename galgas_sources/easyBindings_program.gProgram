@@ -7,6 +7,7 @@ import "entityAnalysis.gSemantics" ;
 import "preferencesAnalysis.gSemantics" ;
 import "documentAnalysis.gSemantics" ;
 import "enumAnalysis.gSemantics" ;
+import "structAnalysis.gSemantics" ;
 
 import "outletClassGeneration.gSemantics" ;
 import "classGeneration.gSemantics" ;
@@ -16,6 +17,7 @@ import "documentGeneration.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 import "cursorGeneration.gSemantics" ;
 import "enumGeneration.gSemantics" ;
+import "structGeneration.gSemantics" ;
 import "controllerClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -48,7 +50,7 @@ message "a source text file with the .easyBindings extension"
   @controllerClassList controllerClassList [emptyList] ;
   @protocolList protocolList [emptyList] ;
   @cursorList cursorList [emptyList] ;
-  @lstringlist plainOldDataTypeList [emptyList] ;
+  @structTypeList structTypeList [emptyList] ;
   @enumList enumList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !?classList
@@ -60,7 +62,7 @@ message "a source text file with the .easyBindings extension"
     !?protocolList
     !?cursorList
     !?enumList
-    !?plainOldDataTypeList
+    !?structTypeList
     ?*
   ;
 #--- Parse source file
@@ -74,12 +76,12 @@ message "a source text file with the .easyBindings extension"
     !?protocolList
     !?cursorList
     !?enumList
-    !?plainOldDataTypeList
+    !?structTypeList
     ?@location endOfSourceFile
   ;
 #------------------------------------------------------- Semantic Analysis
    @contextAnalysisStruct contextAnalysisStruct [new
-     ![@plainOldDataMap emptyMap]
+     ![@structTypeMap emptyMap]
      ![@enumMap emptyMap]
      ![@globalEnumConstantMap emptyMap]
      ![@userCursorMap emptyMap]
@@ -93,6 +95,11 @@ message "a source text file with the .easyBindings extension"
 #--- Enumerations
   enumAnalysis
     !enumList
+    !?contextAnalysisStruct
+  ;
+#--- Struct analysis
+  structAnalysis
+    !structTypeList
     !?contextAnalysisStruct
   ;
 #--- Protocol
@@ -186,13 +193,14 @@ message "a source text file with the .easyBindings extension"
   end if ;
 #----------------------------------------------------- Code generation
   const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
+  generateEnumerations !contextAnalysisStruct->mEnumMap !sourceDirectoryPath ;
+  generateStructures !contextAnalysisStruct->mStructTypeMap !sourceDirectoryPath ;
   generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
   generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
   generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
   generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
   generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
   generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
-  generateEnumerations !contextAnalysisStruct->mEnumMap !sourceDirectoryPath ;
   generateControllerCode !controllerClassMap !sourceDirectoryPath ;
 #------------------------------ Output dependency order definition file
   generateTransientDependencyFiles

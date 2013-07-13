@@ -15,7 +15,7 @@ rule <start_symbol>
   ?!@protocolList ioProtocolList
   ?!@cursorList ioCursorList
   ?!@enumList ioEnumList
-  ?!@lstringlist ioPlainOldDataTypeList
+  ?!@structTypeList ioStructTypeList
   !@location outEndOfFile
 :
   repeat
@@ -37,11 +37,11 @@ rule <start_symbol>
       !?ioProtocolList
       !?ioCursorList
       !?ioEnumList
-      !?ioPlainOldDataTypeList
+      !?ioStructTypeList
       ?*
     ;
   while
-    <pain_old_data_declaration> !?ioPlainOldDataTypeList ;
+    <struct_declaration> !?ioStructTypeList ;
   while
     <enum_declaration> !?ioEnumList ;
   while
@@ -67,13 +67,28 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <pain_old_data_declaration>
-  ?!@lstringlist ioPlainOldDataTypeList
+rule <struct_declaration>
+  ?!@structTypeList ioStructTypeList
 :
-  $plainOldData$ ;
-  $Identifier$ ? @lstring podName ;
-  ioPlainOldDataTypeList += !podName ;
-  $;$ ;
+  $struct$ ;
+  $Identifier$ ? @lstring structName ;
+  @structFieldASTList structFieldList [emptyList] ;
+  ${$ ;
+  repeat
+    @attributeASTType fieldType ;
+    select
+      $Identifier$ ? @lstring typeName ;
+      fieldType := [@namedASTType new !typeName] ;
+    or
+      <attribute_type> ?fieldType ;
+    end select ;
+    $identifier$ ? @lstring fieldName ;
+    structFieldList += !fieldType !fieldName ;
+  while
+    $,$ ;
+  end repeat ;
+  $}$ ;
+  ioStructTypeList += !structName !structFieldList ;
 end rule ;
 
 #----------------------------------------------------------------------------*

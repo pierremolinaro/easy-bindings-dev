@@ -35,6 +35,20 @@ class @enumType extends @easyBindingType {
   @lstring mEnumTypeName ;
 }
 
+#----------------------------------------------------------------------------*
+
+list @structFieldList {
+  @easyBindingType mFieldType ;
+  @string mFieldName ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @structType extends @easyBindingType {
+  @lstring mStructTypeName ;
+  @structFieldList mFieldList ;
+}
+
 #-----------------------------------------------------------------------------*
 
 abstract reader @easyBindingType ebTypeName -> @string outResult ;
@@ -58,6 +72,7 @@ override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu
 override reader @toOneEntityType ebTypeName -> @string outResult : outResult := "PMManagedEntity" ; end reader ;
 override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
 override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+override reader @structType ebTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -82,6 +97,7 @@ override reader @objectArrayType isClass -> @bool outResult : outResult := true 
 override reader @bezierPathType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
+override reader @structType isClass -> @bool outResult : outResult := false ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -159,36 +175,10 @@ override reader @bezierPathType equalMethod -> @string outResult : outResult := 
 override reader @menuType equalMethod -> @string outResult : outResult := "isEqual" ; end reader ;
 
 #-----------------------------------------------------------------------------*
-#   hasCustomExplorerFunction                                                 *
+#   equalExpression                                                           *
 #-----------------------------------------------------------------------------*
 
-reader @easyBindingType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := false ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @boolType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := true ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @enumType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := true ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-#   notEqualExpression                                                        *
-#-----------------------------------------------------------------------------*
-
-abstract reader @easyBindingType notEqualExpression
+abstract reader @easyBindingType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
@@ -196,192 +186,202 @@ abstract reader @easyBindingType notEqualExpression
 
 #-----------------------------------------------------------------------------*
 
-override reader @integerType notEqualExpression
+override reader @integerType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @uintegerType notEqualExpression
+override reader @uintegerType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @boolType notEqualExpression
+override reader @boolType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @doubleType notEqualExpression
+override reader @doubleType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @enumType notEqualExpression
+override reader @enumType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @toOneEntityType notEqualExpression
+override reader @structType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := inExp1 . " != " . inExp2 ;
+  outResult := "equal" . mStructTypeName . "s (" . inExp1 . ", " . inExp2 . ")" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @decimalType notEqualExpression
+override reader @toOneEntityType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+  outResult := inExp1 . " == " . inExp2 ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @toManyEntitiesType notEqualExpression
+override reader @decimalType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @stringType notEqualExpression
+override reader @toManyEntitiesType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @dataType notEqualExpression
+override reader @stringType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @dateType notEqualExpression
+override reader @dataType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @fontType notEqualExpression
+override reader @dateType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @imageType notEqualExpression
+override reader @fontType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @colorType notEqualExpression
+override reader @imageType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @arrayType notEqualExpression
+override reader @colorType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @valueType notEqualExpression
+override reader @arrayType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @objectArrayType notEqualExpression
+override reader @valueType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @bezierPathType notEqualExpression
+override reader @objectArrayType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @menuType notEqualExpression
+override reader @bezierPathType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
 :
-  outResult := "! [" . inExp1 . " isEqual:" . inExp2 . "]" ;
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @menuType equalExpression
+  ??@string inExp1
+  ??@string inExp2
+  -> @string outResult
+:
+  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -410,6 +410,7 @@ override reader @toManyEntitiesType ebTypeIdentifier -> @string outResult : outR
 override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResult := "array[" . mClassName . "]" ; end reader ;
 
 override reader @enumType ebTypeIdentifier -> @string outResult : outResult := "enum[" . mEnumTypeName . "]" ; end reader ;
+override reader @structType ebTypeIdentifier -> @string outResult : outResult := "struct[" . mStructTypeName . "]" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -462,6 +463,7 @@ override reader @bezierPathType ocTypeName -> @string outResult : outResult := "
 override reader @toOneEntityType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
 override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+override reader @structType ocTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -486,6 +488,7 @@ override reader @bezierPathType ocClassName -> @string outResult : outResult := 
 override reader @toOneEntityType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+override reader @structType ocClassName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
