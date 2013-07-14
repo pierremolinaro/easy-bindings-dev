@@ -533,14 +533,17 @@ rule <class_declaration>
   ${$ ;
   @attributeList attributeList [emptyList] ;
   @transientList classTransientList [emptyList] ;
+  @classArrayList classArrayList [emptyList] ;
   repeat
   while
     <attribute_declaration> !?attributeList ;
   while
     <transient_declaration> !?classTransientList ;
+  while
+    <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  ioClassList += !className !superClassName !attributeList !classTransientList ;
+  ioClassList += !className !superClassName !attributeList !classArrayList !classTransientList ;
 end rule ;
 
 #----------------------------------------------------------------------------*

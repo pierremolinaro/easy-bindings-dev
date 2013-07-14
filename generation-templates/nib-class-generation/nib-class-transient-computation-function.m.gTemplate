@@ -1,0 +1,11 @@
+#import "%!PREFERENCES_NAME%-computations.h"
+
+//----------------------------------------------------------------------------*
+
+%![RESULT_TYPE ocTypeName]% compute_%!PREFERENCES_NAME%_%!TRANSIENT_NAME% (%?^
+ foreach DIRECT_DEPENDANCY_LIST
+  do ![mDependency generateFormalArgument]
+  between %,\n%!^
+ end foreach
+ %) {
+

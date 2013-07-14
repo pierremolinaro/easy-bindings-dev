@@ -43,7 +43,7 @@ local routine analyzeNibClass
       ?@observablePropertyMap classObservablePropertyMap
       ?2*
       ?@attributeListForImplementation attributeListForImplementation
-      ?2*
+      ?4*
     ] ;
     [!?preferenceArrayMap insertKey
       !mArrayName

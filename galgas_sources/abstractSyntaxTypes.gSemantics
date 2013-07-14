@@ -123,6 +123,7 @@ list @classList {
   @lstring mClassName ;
   @lstring mSuperClassName ;
   @attributeList mAttributeList ;
+  @classArrayList mArrayList ;
   @transientList mTransientList ;
 }
 

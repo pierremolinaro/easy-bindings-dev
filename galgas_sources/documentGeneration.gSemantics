@@ -135,7 +135,7 @@ routine generateDocumentCode
           ] ;
           [@string generateFileWithPattern
             !inOutputDirectory
-            !"compute_" . [lkey string] . "_" . mTransientName . ".m"
+            ![lkey string] . "_" . mTransientName . ".m"
             !"//"
             !"\n\n" # Defaut user zone1
             !s

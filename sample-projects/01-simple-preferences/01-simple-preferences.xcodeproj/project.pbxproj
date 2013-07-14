@@ -13,7 +13,6 @@
 		CF721A911593572A008662EA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF721A8F1593572A008662EA /* Credits.rtf */; };
 		CF721A971593572A008662EA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF721A951593572A008662EA /* MainMenu.xib */; };
 		CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA6159357CB008662EA /* easy-bindings-utilities.m */; };
-		CF721AAC159357CB008662EA /* managed-object-model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AA8159357CB008662EA /* managed-object-model.m */; };
 		CF721AAD159357CB008662EA /* PMPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AAA159357CB008662EA /* PMPrefs.m */; };
 		CF9D9A4F15963A96006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A4D15963A96006D876D /* PMAllocationDebug.m */; };
 		CF9D9A5015963A96006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A4E15963A96006D876D /* PMAllocationDebug.xib */; };
@@ -36,8 +35,6 @@
 		CF721A961593572A008662EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF721AA5159357CB008662EA /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CF721AA6159357CB008662EA /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CF721AA7159357CB008662EA /* managed-object-model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "managed-object-model.h"; sourceTree = "<group>"; };
-		CF721AA8159357CB008662EA /* managed-object-model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "managed-object-model.m"; sourceTree = "<group>"; };
 		CF721AA9159357CB008662EA /* PMPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPrefs.h; sourceTree = "<group>"; };
 		CF721AAA159357CB008662EA /* PMPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPrefs.m; sourceTree = "<group>"; };
 		CF9D9A4C15963A96006D876D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
@@ -111,8 +108,6 @@
 				CFFB83D61593A38A001B08B8 /* PMPrefs-computations.h */,
 				CF721AA5159357CB008662EA /* easy-bindings-utilities.h */,
 				CF721AA6159357CB008662EA /* easy-bindings-utilities.m */,
-				CF721AA7159357CB008662EA /* managed-object-model.h */,
-				CF721AA8159357CB008662EA /* managed-object-model.m */,
 				CF721AA9159357CB008662EA /* PMPrefs.h */,
 				CF721AAA159357CB008662EA /* PMPrefs.m */,
 				CF721A951593572A008662EA /* MainMenu.xib */,
@@ -201,7 +196,6 @@
 			files = (
 				CF721A8D1593572A008662EA /* main.m in Sources */,
 				CF721AAB159357CB008662EA /* easy-bindings-utilities.m in Sources */,
-				CF721AAC159357CB008662EA /* managed-object-model.m in Sources */,
 				CF721AAD159357CB008662EA /* PMPrefs.m in Sources */,
 				CFFB83ED1593A64E001B08B8 /* PMPrefs_autreAction_action.m in Sources */,
 				CFFB83EE1593A64E001B08B8 /* PMPrefs_monAction_action.m in Sources */,

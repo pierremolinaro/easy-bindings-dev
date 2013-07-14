@@ -13,11 +13,13 @@ local routine analyzeClass
 #------------------------------- Super class ?
   @observablePropertyMap observablePropertyMap ;
   @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+  @preferenceArrayMap allArrayPropertyMap ;
   if [inClass->mSuperClassName string] != "" then
-    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4*] ;
+    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4* ?allArrayPropertyMap ?*] ;
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
     propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+    allArrayPropertyMap := [@preferenceArrayMap emptyMap] ;
   end if ;
   const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
 #---------------------------------- Analyze attributes
@@ -32,6 +34,30 @@ local routine analyzeClass
     ?@attributeListForImplementation attributeListForImplementation
     !?propertyListForInitMethodHeader
   ;
+#------------------------------------- Analyze arraies
+  @preferenceArrayMap currentArrayPropertyMap [emptyMap] ;
+  foreach inClass->mArrayList do
+    [ioClassMap searchKey
+      !mClassName
+      ?*
+      ?@observablePropertyMap classObservablePropertyMap
+      ?2*
+      ?@attributeListForImplementation attributeListForImplementation
+      ?4*
+    ] ;
+    [!?allArrayPropertyMap insertKey
+      !mArrayName
+      !mClassName->string
+      !classObservablePropertyMap
+      !attributeListForImplementation
+    ] ;
+    [!?currentArrayPropertyMap insertKey
+      !mArrayName
+      !mClassName->string
+      !classObservablePropertyMap
+      !attributeListForImplementation
+    ] ;
+  end foreach ;
 #---------------------------------- Analyze transient properties
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
@@ -57,6 +83,8 @@ local routine analyzeClass
     !inheritedAttributeListForImplementation
     !attributeListForImplementation
     !transientListForImplementation
+    !allArrayPropertyMap
+    !currentArrayPropertyMap
     !fileInclusionSet
   ] ;
 end routine ;

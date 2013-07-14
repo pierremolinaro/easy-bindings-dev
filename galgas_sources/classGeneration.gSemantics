@@ -22,6 +22,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@attributeListForImplementation ATTRIBUTE_LIST
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@preferenceArrayMap CURRENT_ARRAY_MAP
   ;
   
   template classImplementation "class.m.gTemplate"
@@ -33,6 +34,7 @@ local filewrapper classGenerationTemplate in "../generation-templates/class-gene
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
     ?@stringset IMPLEMENTATION_INCLUSION_SET
     ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+    ?@preferenceArrayMap CURRENT_ARRAY_MAP
   ;
   
   template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
@@ -73,6 +75,7 @@ routine generateClassCode
         !mAttributeListForImplementation
         !mTransientListForImplementation
         !mAttributeListForInitMethodHeader
+        !mCurrentArrayPropertyForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
@@ -93,6 +96,7 @@ routine generateClassCode
         !mInheritedAttributeListForImplementation
         !mInclusionSet->mImplementationFileInclusionSet
         !inTransientDependencyArcList
+        !mCurrentArrayPropertyForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory

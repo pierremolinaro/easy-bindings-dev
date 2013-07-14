@@ -21,9 +21,9 @@
 		CF1AE082168F0C280031840E /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1AE07F168F0C280031840E /* PMDataScanner.m */; };
 		CF1AE09A168F0C540031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE099168F0C540031840E /* libz.dylib */; };
 		CF1AE09C168F0C5C0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE09B168F0C5C0031840E /* libbz2.dylib */; };
-		CF2CF2081657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2CF2061657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m */; };
+		CF2CF2081657BF9100FE8D41 /* PMDocument_canRemoveString.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2CF2061657BF9100FE8D41 /* PMDocument_canRemoveString.m */; };
 		CF4628281595DA3800BF70CD /* MyRootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4628271595DA3800BF70CD /* MyRootEntity.m */; };
-		CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */; };
+		CF46288D1595F76100BF70CD /* PMDocument_countItemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46288C1595F76100BF70CD /* PMDocument_countItemMessage.m */; };
 		CF4628C7159600DE00BF70CD /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */; };
 		CF46293515961D8400BF70CD /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46293415961D8400BF70CD /* PMAllocationDebug.m */; };
 		CF608145159367210021D873 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF608144159367210021D873 /* Cocoa.framework */; };
@@ -66,10 +66,10 @@
 		CF1AE07F168F0C280031840E /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
 		CF1AE099168F0C540031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CF1AE09B168F0C5C0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		CF2CF2061657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_canRemoveString.m; sourceTree = "<group>"; };
+		CF2CF2061657BF9100FE8D41 /* PMDocument_canRemoveString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDocument_canRemoveString.m; sourceTree = "<group>"; };
 		CF4628261595DA3800BF70CD /* MyRootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRootEntity.h; sourceTree = "<group>"; };
 		CF4628271595DA3800BF70CD /* MyRootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity.m; sourceTree = "<group>"; };
-		CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_PMDocument_countItemMessage.m; sourceTree = "<group>"; };
+		CF46288C1595F76100BF70CD /* PMDocument_countItemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDocument_countItemMessage.m; sourceTree = "<group>"; };
 		CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF46293315961D8400BF70CD /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CF46293415961D8400BF70CD /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 				CF68C3D91595136F008B63F1 /* PMDocument-computations.h */,
 				CF608156159367210021D873 /* PMDocument.h */,
 				CF608157159367210021D873 /* PMDocument.m */,
-				CF46288C1595F76100BF70CD /* compute_PMDocument_countItemMessage.m */,
-				CF2CF2061657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m */,
+				CF46288C1595F76100BF70CD /* PMDocument_countItemMessage.m */,
+				CF2CF2061657BF9100FE8D41 /* PMDocument_canRemoveString.m */,
 				CF608159159367210021D873 /* PMDocument.xib */,
 				CF60815C159367210021D873 /* MainMenu.xib */,
 				CF60814B159367210021D873 /* Supporting Files */,
@@ -286,10 +286,10 @@
 				CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */,
 				CF608177159368350021D873 /* NameEntity.m in Sources */,
 				CF4628281595DA3800BF70CD /* MyRootEntity.m in Sources */,
-				CF46288D1595F76100BF70CD /* compute_PMDocument_countItemMessage.m in Sources */,
+				CF46288D1595F76100BF70CD /* PMDocument_countItemMessage.m in Sources */,
 				CF46293515961D8400BF70CD /* PMAllocationDebug.m in Sources */,
 				CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */,
-				CF2CF2081657BF9100FE8D41 /* compute_PMDocument_canRemoveString.m in Sources */,
+				CF2CF2081657BF9100FE8D41 /* PMDocument_canRemoveString.m in Sources */,
 				CF1AE082168F0C280031840E /* PMDataScanner.m in Sources */,
 				CF042E1917821119006C89AF /* load-store-functions.m in Sources */,
 				CF042E1A17821119006C89AF /* NSData+BZ2compression.m in Sources */,
