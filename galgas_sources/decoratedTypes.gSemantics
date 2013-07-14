@@ -70,6 +70,8 @@ map @classMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
+  @preferenceArrayMap mAllArrayPropertyForImplementation ;
+  @preferenceArrayMap mCurrentArrayPropertyForImplementation ;
   @fileInclusionSet mInclusionSet ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;

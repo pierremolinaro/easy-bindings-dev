@@ -42,7 +42,7 @@ override method @tableValueBinding analyzeOutletBinding
         !controlledClassOrEntityName
         ?*
         ?observablePropertyMap
-        ?5*
+        ?7*
       ] ;
     end if ;
     @columnBindingForTableValueBindingForGeneration columnBindingForTableValueBindingForGeneration [emptyList] ;
@@ -228,7 +228,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?5*
+      ?7*
      ] ;
   end if ;
 #---------------------------------- Search property
@@ -667,7 +667,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
       !controlledClassOrEntityName
       ?*
       ?observableAttributeMap
-      ?5*
+      ?7*
      ] ;
   end if ;
 #---

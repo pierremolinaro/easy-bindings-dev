@@ -16,9 +16,9 @@
 		CFDA0FAE1782CF500034D5C7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA0FAA1782CF500034D5C7 /* MainMenu.xib */; };
 		CFDA0FAF1782CF500034D5C7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */; };
 		CFE34A43178352AD006CA693 /* PMEntityController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE34A42178352AD006CA693 /* PMEntityController.m */; };
-		CFE8B7DE1782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */; };
-		CFE8B7DF1782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */; };
-		CFE8B7E11782CD330050DBFF /* compute_MyPrefs_prefTransientString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */; };
+		CFE8B7DE1782CD330050DBFF /* MyRootEntity_otherTransientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B11782CD330050DBFF /* MyRootEntity_otherTransientConcatString.m */; };
+		CFE8B7DF1782CD330050DBFF /* MyRootEntity_transientConcatString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B21782CD330050DBFF /* MyRootEntity_transientConcatString.m */; };
+		CFE8B7E11782CD330050DBFF /* MyPrefs_prefTransientString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B41782CD330050DBFF /* MyPrefs_prefTransientString.m */; };
 		CFE8B7E21782CD330050DBFF /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B61782CD330050DBFF /* easy-bindings-utilities.m */; };
 		CFE8B7E31782CD330050DBFF /* load-store-functions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7B81782CD330050DBFF /* load-store-functions.m */; };
 		CFE8B7E41782CD330050DBFF /* MyRootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7BB1782CD330050DBFF /* MyRootEntity.m */; };
@@ -57,9 +57,9 @@
 		CFDA0FAD1782CF500034D5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		CFE34A41178352AD006CA693 /* PMEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityController.h; sourceTree = "<group>"; };
 		CFE34A42178352AD006CA693 /* PMEntityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityController.m; sourceTree = "<group>"; };
-		CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
-		CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
-		CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyPrefs_prefTransientString.m; sourceTree = "<group>"; };
+		CFE8B7B11782CD330050DBFF /* MyRootEntity_otherTransientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity_otherTransientConcatString.m; sourceTree = "<group>"; };
+		CFE8B7B21782CD330050DBFF /* MyRootEntity_transientConcatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRootEntity_transientConcatString.m; sourceTree = "<group>"; };
+		CFE8B7B41782CD330050DBFF /* MyPrefs_prefTransientString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs_prefTransientString.m; sourceTree = "<group>"; };
 		CFE8B7B51782CD330050DBFF /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
 		CFE8B7B61782CD330050DBFF /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
 		CFE8B7B71782CD330050DBFF /* load-store-functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "load-store-functions.h"; sourceTree = "<group>"; };
@@ -194,13 +194,13 @@
 				CFE8B7D41782CD330050DBFF /* MyPrefs-computations.h */,
 				CFE8B7D51782CD330050DBFF /* MyPrefs.h */,
 				CFE8B7D61782CD330050DBFF /* MyPrefs.m */,
-				CFE8B7B41782CD330050DBFF /* compute_MyPrefs_prefTransientString.m */,
+				CFE8B7B41782CD330050DBFF /* MyPrefs_prefTransientString.m */,
 				CFE8B7B91782CD330050DBFF /* MyEntityClass-transient-computations.h */,
 				CFE8B7F51782CD5E0050DBFF /* MyRootEntity-transient-computations.h */,
 				CFE8B7BA1782CD330050DBFF /* MyRootEntity.h */,
 				CFE8B7BB1782CD330050DBFF /* MyRootEntity.m */,
-				CFE8B7B11782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m */,
-				CFE8B7B21782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m */,
+				CFE8B7B11782CD330050DBFF /* MyRootEntity_otherTransientConcatString.m */,
+				CFE8B7B21782CD330050DBFF /* MyRootEntity_transientConcatString.m */,
 				CFE8B7CA1782CD330050DBFF /* MyDocument.h */,
 				CFE8B7CB1782CD330050DBFF /* MyDocument.m */,
 				CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */,
@@ -288,9 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF4627B31595B53B00BF70CD /* main.m in Sources */,
-				CFE8B7DE1782CD330050DBFF /* compute_MyRootEntity_otherTransientConcatString.m in Sources */,
-				CFE8B7DF1782CD330050DBFF /* compute_MyRootEntity_transientConcatString.m in Sources */,
-				CFE8B7E11782CD330050DBFF /* compute_MyPrefs_prefTransientString.m in Sources */,
+				CFE8B7DE1782CD330050DBFF /* MyRootEntity_otherTransientConcatString.m in Sources */,
+				CFE8B7DF1782CD330050DBFF /* MyRootEntity_transientConcatString.m in Sources */,
+				CFE8B7E11782CD330050DBFF /* MyPrefs_prefTransientString.m in Sources */,
 				CFE8B7E21782CD330050DBFF /* easy-bindings-utilities.m in Sources */,
 				CFE8B7E31782CD330050DBFF /* load-store-functions.m in Sources */,
 				CFE8B7E41782CD330050DBFF /* MyRootEntity.m in Sources */,

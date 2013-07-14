@@ -19,9 +19,9 @@
 		CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */; };
 		CFBFD5D91652C4CE006EAD0D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */; };
 		CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */; };
-		CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */; };
-		CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */; };
-		CFBFD5EC1652C648006EAD0D /* compute_MyOtherClass_bidule.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E91652C648006EAD0D /* compute_MyOtherClass_bidule.m */; };
+		CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */; };
+		CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* MyClass_truc.m */; };
+		CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +51,9 @@
 		CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFBFD5D21652C4CE006EAD0D /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
 		CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
-		CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyClass_schmurtz.m; sourceTree = "<group>"; };
-		CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyClass_truc.m; sourceTree = "<group>"; };
-		CFBFD5E91652C648006EAD0D /* compute_MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compute_MyOtherClass_bidule.m; sourceTree = "<group>"; };
+		CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_schmurtz.m; sourceTree = "<group>"; };
+		CFBFD5E81652C648006EAD0D /* MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_truc.m; sourceTree = "<group>"; };
+		CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; path = MyOtherClass_bidule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,9 +123,9 @@
 				CFBFD5BA1652C483006EAD0D /* PMAppDelegate.h */,
 				CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */,
 				CFBFD5BD1652C483006EAD0D /* MainMenu.xib */,
-				CFBFD5E71652C648006EAD0D /* compute_MyClass_schmurtz.m */,
-				CFBFD5E81652C648006EAD0D /* compute_MyClass_truc.m */,
-				CFBFD5E91652C648006EAD0D /* compute_MyOtherClass_bidule.m */,
+				CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */,
+				CFBFD5E81652C648006EAD0D /* MyClass_truc.m */,
+				CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */,
 				CFBFD5AF1652C483006EAD0D /* Supporting Files */,
 			);
 			path = "07-simple-classes";
@@ -215,9 +215,9 @@
 				CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */,
 				CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */,
 				CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */,
-				CFBFD5EA1652C648006EAD0D /* compute_MyClass_schmurtz.m in Sources */,
-				CFBFD5EB1652C648006EAD0D /* compute_MyClass_truc.m in Sources */,
-				CFBFD5EC1652C648006EAD0D /* compute_MyOtherClass_bidule.m in Sources */,
+				CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */,
+				CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */,
+				CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

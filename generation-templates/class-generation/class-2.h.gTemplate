@@ -18,6 +18,12 @@ end foreach%
 %  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
 end foreach
+
+foreach CURRENT_ARRAY_MAP do
+%//--- '%!lkey->string%' array\n%
+%  @property (copy) NSMutableArray * %!lkey->string% ;\n\n%
+end foreach
+
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
 %- (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
