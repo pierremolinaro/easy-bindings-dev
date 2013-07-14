@@ -206,7 +206,7 @@ routine generateEntityCode
           ] ;
           [@string generateFileWithPattern
             !inOutputDirectory
-            !"compute_" . mEntityName . "_" . mTransientName . ".m"
+            !mEntityName . "_" . mTransientName . ".m"
             !"//"
             !"\n\n" # Defaut user zone1
             !s
