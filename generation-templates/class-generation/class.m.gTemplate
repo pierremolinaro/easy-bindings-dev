@@ -23,7 +23,10 @@ end foreach
 //----------------------------------------------------------------------------*
 
 %foreach ATTRIBUTE_LIST do
-%@synthesize %!mAttributeName% ;\n%
+  %@synthesize %!mAttributeName% ;\n%
+end foreach
+foreach CURRENT_ARRAY_MAP do
+  %@synthesize %!lkey->string% ;\n%
 end foreach
 %
 //----------------------------------------------------------------------------*
