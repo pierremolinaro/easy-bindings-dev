@@ -76,8 +76,6 @@ list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "NSColor",
   "NSImage",
   "NSString",
-  "NSValue",
-  "NSArray",
   "NSMenu",
   "NSBezierPath",
   "YES",

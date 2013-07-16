@@ -111,15 +111,6 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @valueASTType analyze
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  -> @easyBindingType outType
-:
-  outType := [@valueType new] ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 override reader @bezierASTType analyze
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   -> @easyBindingType outType
@@ -135,15 +126,6 @@ override reader @menuASTType analyze
 :
   outType := [@menuType new] ;
 end reader ;
-
-#----------------------------------------------------------------------------*
-
-#override reader @arrayASTType analyze
-#  ??@contextAnalysisStruct unused inContextAnalysisStruct
-#  -> @easyBindingType outType
-#:
-#  outType := [@arrayType new] ;
-#end reader ;
 
 #----------------------------------------------------------------------------*
 

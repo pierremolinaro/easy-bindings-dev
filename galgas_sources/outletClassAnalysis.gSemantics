@@ -4,6 +4,63 @@ semantics outletClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
+routine outletClassesEnterType
+  ??@outletClassList inOutletClassList
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
+:
+  foreach inOutletClassList do
+  #--- Has super class ?
+    @unifiedTypeProxy superClassProxy ;
+    if mSuperClassName->string == "" then
+      superClassProxy := [@unifiedTypeProxy null] ;
+    else
+      [@unifiedTypeProxy makeProxy
+        !?ioUnifiedTypeMap
+        !mSuperClassName
+        ?superClassProxy
+      ] ;
+    end if ;
+  #--- Analyze binding list
+    @outletClassBindingMap currentBindingMap [emptyMap] ;
+    foreach mOutletClassBindingList do
+      @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+      foreach mBindingOptionList do
+        @unifiedTypeProxyList acceptableTypeList [emptyList] ;
+        foreach mAcceptableTypeList do
+          [@unifiedTypeProxy makeProxy
+            !?ioUnifiedTypeMap
+            !mTypeName
+            ?@unifiedTypeProxy type
+          ] ;
+          acceptableTypeList += !type ;
+        end foreach ;
+        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+      end foreach ;
+      @easyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+      foreach mAcceptableTypeFormatterList do
+        [@unifiedTypeProxy makeProxy
+          !?ioUnifiedTypeMap
+          !mTypeName
+          ?@unifiedTypeProxy type
+        ] ;
+        acceptableTypeFormatterList += !type !mRequiredFormatter ;
+      end foreach ;
+      [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+    end foreach ;
+  #---
+    [!?ioUnifiedTypeMap insertKey
+      !mOutletClassName
+      ![@unifiedTypeKind outletClass]
+      !superClassProxy
+      ![@enumConstantMap emptyMap]
+      ![@unifiedTypeProxyList emptyList]
+      !currentBindingMap
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 routine analyzeOutletClasses
   ??@outletClassList inOutletClassList
   ??@contextAnalysisStruct inContextAnalysisStruct
@@ -12,10 +69,10 @@ routine analyzeOutletClasses
 :
   outOutletClassMap := [@outletClassMap emptyMap] ;
   foreach inOutletClassList do
-    @outletClassBindingMap allBindingMap ;
+    @EXoutletClassBindingMap allBindingMap ;
   #--- Has super class ?
     if mSuperClassName->string == "" then
-      allBindingMap := [@outletClassBindingMap emptyMap] ;
+      allBindingMap := [@EXoutletClassBindingMap emptyMap] ;
     else
       [outOutletClassMap searchKey
         !mSuperClassName
@@ -37,10 +94,10 @@ routine analyzeOutletClasses
         adoptedProtocolList += !false !mValue ;
       end if ;
     end foreach ;
-  #---
-    @outletClassBindingMap currentBindingMap [emptyMap] ;
+  #--- Analyze bindings
+    @EXoutletClassBindingMap currentBindingMap [emptyMap] ;
     foreach mOutletClassBindingList do
-      @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+      @EXoutletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
       foreach mBindingOptionList do
         @easyBindingTypeList acceptableTypeList [emptyList] ;
         foreach mAcceptableTypeList do
@@ -49,7 +106,7 @@ routine analyzeOutletClasses
         end foreach ;
         [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
       end foreach ;
-      @easyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+      @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
       foreach mAcceptableTypeFormatterList do
         @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
         acceptableTypeFormatterList += !type !mRequiredFormatter ;

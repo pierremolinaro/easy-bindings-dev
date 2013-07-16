@@ -9,7 +9,7 @@ local filewrapper controllerGenerationTemplate in "../generation-templates/contr
 }{
   template controllerDeclarationPart1 "controller-1.h.gTemplate"
     ?@string CONTROLLER_CLASS_NAME
-    ?@outletClassBindingMap BINDING_MAP
+    ?@EXoutletClassBindingMap BINDING_MAP
   ;
   
   template controllerDeclarationPart2 "controller-2.h.gTemplate"
@@ -18,7 +18,7 @@ local filewrapper controllerGenerationTemplate in "../generation-templates/contr
   
   template controllerImplementation "controller.m.gTemplate"
     ?@string CONTROLLER_CLASS_NAME
-    ?@outletClassBindingMap BINDING_MAP
+    ?@EXoutletClassBindingMap BINDING_MAP
     ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
   ;
 }

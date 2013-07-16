@@ -904,13 +904,6 @@ rule <attribute_type>
     outAttributeType := [@dateASTType new] ;
     outTypeName := [@lstring new !"NSDate" !here] ;
   or
-    $NSValue$ ;
-    outAttributeType := [@valueASTType new] ;
-    outTypeName := [@lstring new !"NSValue" !here] ;
-#  or
-#    $NSArray$ ;
-#    outAttributeType := [@arrayASTType new] ;
-  or
     $NSBezierPath$ ;
     outAttributeType := [@bezierASTType new] ;
     outTypeName := [@lstring new !"NSBezierPath" !here] ;

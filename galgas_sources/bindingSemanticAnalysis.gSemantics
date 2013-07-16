@@ -9,7 +9,7 @@ override method @tableValueBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap inEntityMap
   ??@classMap inClassMap
-  ??@outletClassBindingMap unused inBindingMap
+  ??@EXoutletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool inHasTableValueBinding
@@ -81,7 +81,7 @@ override method @runBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@classMap unused inClassMap
-  ??@outletClassBindingMap unused inBindingMap
+  ??@EXoutletClassBindingMap unused inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool unused inHasTableValueBinding
@@ -110,7 +110,7 @@ override method @regularControllerBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@classMap unused inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -121,8 +121,8 @@ override method @regularControllerBinding analyzeOutletBinding
 #---------------------------------- Search binding
   [inBindingMap searchKey
     !mBindingName
-    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
-    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+    ?@EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@EXoutletClassBindingOptionMap outletClassBindingOptionMap
   ] ;
 #---------------------------------- Search controller in controller map
   [inControllerMap searchKey
@@ -192,7 +192,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap inEntityMap
   ??@classMap inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -203,8 +203,8 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
 #---------------------------------- Search binding
   [inBindingMap searchKey
     !mBindingName
-    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
-    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+    ?@EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@EXoutletClassBindingOptionMap outletClassBindingOptionMap
   ] ;
 #---------------------------------- Search controller in controller map
   [inControllerMap searchKey
@@ -286,7 +286,7 @@ override method @regularRootBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@classMap unused inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -297,8 +297,8 @@ override method @regularRootBinding analyzeOutletBinding
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
     !mBindingName
-    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
-    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+    ?@EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@EXoutletClassBindingOptionMap outletClassBindingOptionMap
   ] ;
 #---------------------------------------- Find observable property in root entity observable property map
   [inRootEntityObservableAttributeMap searchKey
@@ -364,7 +364,7 @@ override method @regularSelfBinding analyzeOutletBinding
   ??@preferencesMap unused inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@classMap unused inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -375,8 +375,8 @@ override method @regularSelfBinding analyzeOutletBinding
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
     !mBindingName
-    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
-    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+    ?@EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@EXoutletClassBindingOptionMap outletClassBindingOptionMap
   ] ;
 #---------------------------------------- Find observable property in local observable property map
   [inSelfObservableAttributeMap searchKey
@@ -441,7 +441,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
   ??@preferencesMap inPreferencesMap
   ??@entityMap unused inEntityMap
   ??@classMap unused inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap unused inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -453,8 +453,8 @@ override method @regularPreferenceBinding analyzeOutletBinding
 #--------------------------------------- Search binding in outlet class binding map
   [inBindingMap searchKey
     !mBindingName
-    ?@easyBindingTypeAndFormatterList acceptableTypeFormatterList
-    ?@outletClassBindingOptionMap outletClassBindingOptionMap
+    ?@EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList
+    ?@EXoutletClassBindingOptionMap outletClassBindingOptionMap
   ] ;
 #---------------------------------------- Search preference in preferences map
   [inPreferencesMap searchKey
@@ -689,7 +689,7 @@ override method @multiValuedBinding analyzeOutletBinding
   ??@preferencesMap inPreferencesMap
   ??@entityMap inEntityMap
   ??@classMap inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap unused inActionMap
   ??@bool unused inHasTableValueBinding
@@ -697,8 +697,8 @@ override method @multiValuedBinding analyzeOutletBinding
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
   ?!@fileInclusionSet ioFileInclusionSet
 :
-  @outletClassBindingOptionMap outletClassBindingOptionMap ;
-  @easyBindingTypeAndFormatterList acceptableTypeFormatterList ;
+  @EXoutletClassBindingOptionMap outletClassBindingOptionMap ;
+  @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList ;
   [inBindingMap searchKey !mBindingName ?acceptableTypeFormatterList ?outletClassBindingOptionMap] ;
 #--- Find observable property
   @string generatedBindingName := mBindingName->string ;
@@ -765,7 +765,7 @@ end method ;
 routine checkBindingOptions
   ??@contextAnalysisStruct inContextAnalysisStruct
   ??@outletBindingOptionList inBindingOptionListAST
-  ??@outletClassBindingOptionMap inAvailableBindingOptionMap
+  ??@EXoutletClassBindingOptionMap inAvailableBindingOptionMap
   !@2stringlist outBindingOptionListForGeneration
   ?!@fileInclusionSet ioFileInclusionSet
 :

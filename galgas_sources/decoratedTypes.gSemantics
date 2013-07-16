@@ -26,22 +26,33 @@ enum @unifiedTypeKind {
   structType,
   classType,
   nibClassType,
-  entityType
+  entityType,
+  outletClass
 }{
 }
 
 #----------------------------------------------------------------------------*
 
 uniquemap @unifiedTypeMap {
-  @unifiedTypeKind mKind ;
- 
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
+#---
+  @unifiedTypeKind mKind ;
+  @unifiedTypeProxy mSuperClassProxy ;
+  @enumConstantMap mEnumConstantMap ; # Empty for all types but enums
+  @unifiedTypeProxyList mAttributeTypeList ; # For struct
+  @outletClassBindingMap mOutletClassBindingMap ; # For outlet classes
 }
 
 #----------------------------------------------------------------------------*
 
 mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
+
+#----------------------------------------------------------------------------*
+
+list @unifiedTypeProxyList {
+  @unifiedTypeProxy mTypeProxy ;
+}
 
 #----------------------------------------------------------------------------*
 
@@ -224,8 +235,32 @@ map @documentMap {
 
 #----------------------------------------------------------------------------*
 
-map @outletClassBindingOptionMap {
+map @EXoutletClassBindingOptionMap {
   @easyBindingTypeList mAcceptableTypeList ;
+  insert insertKey error message "the '%K' binding option is already declared" ;
+  search searchKey error message "the '%K' binding option is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @EXoutletClassBindingMap {
+  @EXeasyBindingTypeAndFormatterList mAcceptableTypeList ;
+  @EXoutletClassBindingOptionMap mOutletClassBindingOptionMap ;
+  insert insertKey error message "the '%K' binding is already declared" ;
+  search searchKey error message "the '%K' binding is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @easyBindingTypeAndFormatterList {
+  @unifiedTypeProxy mType ;
+  @formatterEnum mRequiredFormatter ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @outletClassBindingOptionMap {
+  @unifiedTypeProxyList mAcceptableTypeList ;
   insert insertKey error message "the '%K' binding option is already declared" ;
   search searchKey error message "the '%K' binding option is not declared" ;
 }
@@ -246,8 +281,8 @@ map @outletClassMap {
   @string mSuperClassName ;
   @protocolList mAdoptedProtocolList ;
   @bool mImplementsDeallocProtocol ;
-  @outletClassBindingMap mAllBindingMap ;
-  @outletClassBindingMap mCurrentBindingMap ;
+  @EXoutletClassBindingMap mAllBindingMap ;
+  @EXoutletClassBindingMap mCurrentBindingMap ;
   @bool mHasTableValueBinding ;
   insert insertKey error message "the '%K' outlet class is already declared" ;
   search searchKey error message "the '%K' outlet class is not declared" ;
@@ -258,10 +293,10 @@ map @outletClassMap {
 map @controllerClassMap {
   @controllerKind mControllerKind ;
   @generationKind mGenerationKind ;
-  @outletClassBindingMap mBindingMap ;
+  @EXoutletClassBindingMap mBindingMap ;
   @actionMap mActionMap ;
   @observablePropertyMap mObservablePropertyMap ;
-  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
+  @EXoutletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
   insert insertKey error message "the '%K' controller class is already declared" ;
   search searchKey error message "the '%K' controller class is not declared" ;
 }
@@ -465,7 +500,7 @@ abstract method @abstractBinding analyzeOutletBinding
   ??@preferencesMap inPreferencesMap
   ??@entityMap inEntityMap
   ??@classMap inClassMap
-  ??@outletClassBindingMap inBindingMap
+  ??@EXoutletClassBindingMap inBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool inHasTableValueBinding

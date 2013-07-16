@@ -12,7 +12,6 @@ class @boolType, @integerType,
  @decimalType, @doubleType,
  @stringType, @dataType, @dateType,
  @fontType, @imageType, @colorType,
- @valueType,
  @bezierPathType, @menuType extends @easyBindingType {
 }
 
@@ -63,7 +62,6 @@ override reader @dateType ebTypeName -> @string outResult : outResult := "NSDate
 override reader @fontType ebTypeName -> @string outResult : outResult := "NSFont" ; end reader ;
 override reader @imageType ebTypeName -> @string outResult : outResult := "NSImage" ; end reader ;
 override reader @colorType ebTypeName -> @string outResult : outResult := "NSColor" ; end reader ;
-override reader @valueType ebTypeName -> @string outResult : outResult := "NSValue" ; end reader ;
 override reader @objectArrayType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
 override reader @bezierPathType ebTypeName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
@@ -89,7 +87,6 @@ override reader @toManyEntitiesType isClass -> @bool outResult : outResult := tr
 override reader @colorType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @dataType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @dateType isClass -> @bool outResult : outResult := true ; end reader ;
-override reader @valueType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @objectArrayType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @bezierPathType isClass -> @bool outResult : outResult := true ; end reader ;
 override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
@@ -106,7 +103,6 @@ override reader @enumType preferencesGetterTransformerFunctionName -> @string ou
 override reader @doubleType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "doubleFromNSNumber" ; end reader ;
 override reader @fontType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "fontFromData" ; end reader ;
 override reader @colorType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
-override reader @valueType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 override reader @bezierPathType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
 override reader @structType preferencesGetterTransformerFunctionName -> @string outResult : outResult := mStructTypeName->string . "FromData" ; end reader ;
 
@@ -119,7 +115,6 @@ override reader @integerType preferencesSetterTransformerFunctionName -> @string
 override reader @doubleType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedDouble" ; end reader ;
 override reader @fontType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataFromFont" ; end reader ;
 override reader @colorType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
-override reader @valueType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @bezierPathType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
@@ -130,7 +125,6 @@ override reader @structType preferencesSetterTransformerFunctionName -> @string 
 reader @easyBindingType propertyAttributeString -> @string outResult : outResult := "" ; end reader ;
 
 override reader @stringType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-override reader @valueType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 override reader @menuType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
 
@@ -315,16 +309,6 @@ end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @valueType equalExpression
-  ??@string inExp1
-  ??@string inExp2
-  -> @string outResult
-:
-  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
 override reader @objectArrayType equalExpression
   ??@string inExp1
   ??@string inExp2
@@ -370,7 +354,6 @@ override reader @dateType ebTypeIdentifier -> @string outResult : outResult := "
 override reader @fontType ebTypeIdentifier -> @string outResult : outResult := "NSFont" ; end reader ;
 override reader @imageType ebTypeIdentifier -> @string outResult : outResult := "NSImage" ; end reader ;
 override reader @colorType ebTypeIdentifier -> @string outResult : outResult := "NSColor" ; end reader ;
-override reader @valueType ebTypeIdentifier -> @string outResult : outResult := "NSValue" ; end reader ;
 override reader @menuType ebTypeIdentifier -> @string outResult : outResult := "NSMenu" ; end reader ;
 override reader @bezierPathType ebTypeIdentifier -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @toOneEntityType ebTypeIdentifier -> @string outResult : outResult := "toOne[" . mEntityName . "]" ; end reader ;
@@ -424,7 +407,6 @@ override reader @colorType ocTypeName -> @string outResult : outResult := "NSCol
 override reader @dataType ocTypeName -> @string outResult : outResult := "NSData *" ; end reader ;
 override reader @dateType ocTypeName -> @string outResult : outResult := "NSDate *" ; end reader ;
 override reader @objectArrayType ocTypeName -> @string outResult : outResult := "NSArray *" ; end reader ;
-override reader @valueType ocTypeName -> @string outResult : outResult := "NSValue *" ; end reader ;
 override reader @menuType ocTypeName -> @string outResult : outResult := "NSMenu *" ; end reader ;
 override reader @bezierPathType ocTypeName -> @string outResult : outResult := "NSBezierPath *" ; end reader ;
 override reader @toOneEntityType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
@@ -448,7 +430,6 @@ override reader @colorType ocClassName -> @string outResult : outResult := "NSCo
 override reader @dataType ocClassName -> @string outResult : outResult := "NSData" ; end reader ;
 override reader @dateType ocClassName -> @string outResult : outResult := "NSDate" ; end reader ;
 override reader @objectArrayType ocClassName -> @string outResult : outResult := "NSArray" ; end reader ;
-override reader @valueType ocClassName -> @string outResult : outResult := "NSValue" ; end reader ;
 override reader @menuType ocClassName -> @string outResult : outResult := "NSMenu" ; end reader ;
 override reader @bezierPathType ocClassName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
 override reader @toOneEntityType ocClassName -> @string outResult : outResult := "??" ; end reader ;
@@ -461,7 +442,6 @@ override reader @structType ocClassName -> @string outResult : outResult := mStr
 reader @easyBindingType copyOnAssign -> @bool outResult : outResult := false ; end reader ;
 
 override reader @stringType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
-override reader @valueType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 override reader @objectArrayType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 override reader @bezierPathType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 override reader @menuType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
