@@ -84,13 +84,22 @@ message "a source text file with the .easyBindings extension"
     !?structTypeList
     ?@location endOfSourceFile
   ;
+#------------------------------------------------------- Type Analysis
+   @unifiedTypeMap unifiedTypeMap [emptyMap] ;
+   [!?unifiedTypeMap insertKey !["NSString" nowhere] ![@unifiedTypeKind stringType]] ;
+   [!?unifiedTypeMap insertKey !["NSColor" nowhere] ![@unifiedTypeKind colorType]] ;
+   [!?unifiedTypeMap insertKey !["NSData" nowhere] ![@unifiedTypeKind dataType]] ;
+   [!?unifiedTypeMap insertKey !["NSDate" nowhere] ![@unifiedTypeKind dateType]] ;
+   [!?unifiedTypeMap insertKey !["NSFont" nowhere] ![@unifiedTypeKind fontType]] ;
+   [!?unifiedTypeMap insertKey !["NSImage" nowhere] ![@unifiedTypeKind imageType]] ;
+   [!?unifiedTypeMap insertKey !["NSBezierPath" nowhere] ![@unifiedTypeKind bezierPathType]] ;
+   [!?unifiedTypeMap insertKey !["integer" nowhere] ![@unifiedTypeKind integerType]] ;
+   [!?unifiedTypeMap insertKey !["uinteger" nowhere] ![@unifiedTypeKind uintegerType]] ;
+   [!?unifiedTypeMap insertKey !["decimal" nowhere] ![@unifiedTypeKind decimalType]] ;
+   [!?unifiedTypeMap insertKey !["bool" nowhere] ![@unifiedTypeKind boolType]] ;
+   [!?unifiedTypeMap insertKey !["double" nowhere] ![@unifiedTypeKind doubleType]] ;
 #------------------------------------------------------- Semantic Analysis
-   @contextAnalysisStruct contextAnalysisStruct [new
-     ![@structTypeMap emptyMap]
-     ![@enumMap emptyMap]
-     ![@globalEnumConstantMap emptyMap]
-     ![@userCursorMap emptyMap]
-   ] ;
+   @contextAnalysisStruct contextAnalysisStruct [default] ;
 #--- Cursors
   cursorAnalysis
     !cursorList

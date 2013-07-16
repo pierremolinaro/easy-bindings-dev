@@ -138,12 +138,12 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @arrayASTType analyze
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  -> @easyBindingType outType
-:
-  outType := [@arrayType new] ;
-end reader ;
+#override reader @arrayASTType analyze
+#  ??@contextAnalysisStruct unused inContextAnalysisStruct
+#  -> @easyBindingType outType
+#:
+#  outType := [@arrayType new] ;
+#end reader ;
 
 #----------------------------------------------------------------------------*
 
