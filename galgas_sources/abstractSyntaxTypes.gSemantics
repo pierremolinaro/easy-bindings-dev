@@ -16,7 +16,8 @@ abstract class @attributeASTType {
 class @boolASTType, @stringASTType, @colorASTType, @integerASTType,
       @uintegerASTType, @doubleASTType, @decimalASTType, @fontASTType,
       @imageASTType, @dataASTType, @dateASTType, @valueASTType,
-      @bezierASTType, @menuASTType, @arrayASTType, @anyEnumASTType extends @attributeASTType {
+      @bezierASTType, @menuASTType, #  @arrayASTType,
+      @anyEnumASTType extends @attributeASTType {
 }
 
 #----------------------------------------------------------------------------*
@@ -29,6 +30,7 @@ class @namedASTType extends @attributeASTType {
 
 list @attributeASTTypeList {
   @attributeASTType mType ;
+  @lstring mTypeName ;
 }
 
 #-----------------------------------------------------------------------------*
@@ -36,6 +38,7 @@ list @attributeASTTypeList {
 
 list @attributeList {
   @attributeASTType mType ;
+  @lstring mAttributeTypeName ;
   @lstring mAttributeName ;
   @abstractDefaultValue mDefaultValue ;
 }
@@ -106,6 +109,7 @@ list @dependanceList {
 
 list @transientList {
   @attributeASTType mType ;
+  @lstring mTransientTypeName ;
   @lstring mTransientName ;
   @dependanceList mDependencyList ;
 }
@@ -327,6 +331,7 @@ enum @formatterEnum {
 
 list @attributeASTTypeAndFormatterList {
   @attributeASTType mType ;
+  @lstring mTypeName ;
   @formatterEnum mRequiredFormatter ;
 }
 
@@ -389,6 +394,7 @@ list @outletClassList {
 
 list @controllerObservablePropertyList {
   @attributeASTType mType ;
+  @lstring mTypeName ;
   @lstring mPropertyName ;
 }
 
@@ -482,6 +488,7 @@ class @listAsDefaultValue extends @abstractDefaultValue {
 
 list @structFieldASTList {
   @attributeASTType mFieldType ;
+  @lstring mFieldTypeName ;
   @lstring mFieldName ;
 }
 
