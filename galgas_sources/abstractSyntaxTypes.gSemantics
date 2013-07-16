@@ -15,8 +15,8 @@ abstract class @attributeASTType {
 
 class @boolASTType, @stringASTType, @colorASTType, @integerASTType,
       @uintegerASTType, @doubleASTType, @decimalASTType, @fontASTType,
-      @imageASTType, @dataASTType, @dateASTType, @valueASTType,
-      @bezierASTType, @menuASTType, #  @arrayASTType,
+      @imageASTType, @dataASTType, @dateASTType,
+      @bezierASTType, @menuASTType,
       @anyEnumASTType extends @attributeASTType {
 }
 
@@ -337,7 +337,7 @@ list @attributeASTTypeAndFormatterList {
 
 #----------------------------------------------------------------------------*
 
-list @easyBindingTypeAndFormatterList {
+list @EXeasyBindingTypeAndFormatterList {
   @easyBindingType mType ;
   @formatterEnum mRequiredFormatter ;
 }

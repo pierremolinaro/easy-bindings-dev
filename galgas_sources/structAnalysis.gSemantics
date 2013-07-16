@@ -4,6 +4,33 @@ semantics structAnalysis :
 
 #----------------------------------------------------------------------------*
 
+routine structEnterType
+  ??@structTypeList inStructTypeList
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+:
+  foreach inStructTypeList do
+    @unifiedTypeProxyList unifiedTypeProxyList [emptyList] ;
+    foreach mFieldList do
+      [@unifiedTypeProxy makeProxy
+        !?ioUnifiedTypeMap
+        !mFieldTypeName
+        ?@unifiedTypeProxy fieldTypeProxy
+      ] ;
+      unifiedTypeProxyList += !fieldTypeProxy ;
+    end foreach ;
+    [!?ioUnifiedTypeMap insertKey
+      !mStructTypeName
+      ![@unifiedTypeKind structType]
+      ![@unifiedTypeProxy null]
+      ![@enumConstantMap emptyMap]
+      !unifiedTypeProxyList
+      ![@outletClassBindingMap emptyMap]
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 routine structAnalysis
   ??@structTypeList inStructTypeList
   ?!@contextAnalysisStruct ioContextAnalysisStruct

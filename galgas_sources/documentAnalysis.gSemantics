@@ -21,10 +21,10 @@ local routine analyzeControllers
       !mControllerClassName
       ?@controllerKind controllerKind
       ?@generationKind generationKind
-      ?@outletClassBindingMap controllerClassBindingMap
+      ?@EXoutletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
-      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
     if generationKind != [@generationKind noGeneration] then
@@ -216,7 +216,7 @@ local routine analyzeDocument
       ?@generationKind generationKind
       ?2*
       ?@bool implementsDeallocProtocol
-      ?@outletClassBindingMap bindingMap
+      ?@EXoutletClassBindingMap bindingMap
       ?*
       ?@bool hasTableValueBinding
     ] ;

@@ -59,10 +59,10 @@ local routine analyzePreference
       !mControllerClassName
       ?@controllerKind controllerKind
       ?*
-      ?@outletClassBindingMap controllerClassBindingMap
+      ?@EXoutletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
-      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
@@ -158,7 +158,7 @@ local routine analyzePreference
       ?@generationKind generationKind
       ?2*
       ?@bool implementsDeallocProtocol
-      ?@outletClassBindingMap bindingMap
+      ?@EXoutletClassBindingMap bindingMap
       ?*
       ?@bool hasTableValueBinding
     ] ;

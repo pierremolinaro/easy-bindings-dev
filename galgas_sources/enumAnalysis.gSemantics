@@ -4,14 +4,33 @@ semantics enumAnalysis :
 
 #----------------------------------------------------------------------------*
 
+routine enumEnterType
+  ??@enumList inEnumList
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+:
+  foreach inEnumList do
+    @enumConstantMap enumConstantMap [emptyMap] ;
+    foreach mEnumConstantNameList do
+      [!?enumConstantMap insertKey !mValue] ;
+    end foreach ;
+    [!?ioUnifiedTypeMap insertKey
+      !mEnumTypeName
+      ![@unifiedTypeKind enumerationType]
+      ![@unifiedTypeProxy null]
+      !enumConstantMap
+      ![@unifiedTypeProxyList emptyList]
+      ![@outletClassBindingMap emptyMap]
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 routine enumAnalysis
   ??@enumList inEnumList
   ?!@contextAnalysisStruct ioContextAnalysisStruct
 :
   foreach inEnumList do
-    if [ioContextAnalysisStruct->mStructTypeMap hasKey !mEnumTypeName->string] then
-      error mEnumTypeName:"There is a plain old data type with the same name" ;
-    end if ;
     @enumConstantMap enumConstantMap [emptyMap] ;
     foreach mEnumConstantNameList do
       [!?enumConstantMap insertKey !mValue] ;

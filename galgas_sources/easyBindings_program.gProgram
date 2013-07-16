@@ -40,6 +40,23 @@ local filewrapper objective_c_sources in "../generation-templates/objective-c-so
 
 #----------------------------------------------------------------------------*
 
+local routine enterPredefinedType
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ??@string inTypeName
+  ??@unifiedTypeKind inKind
+:
+  [!?ioUnifiedTypeMap insertKey
+    ![inTypeName nowhere]
+    !inKind
+    ![@unifiedTypeProxy null]
+    ![@enumConstantMap emptyMap]
+    ![@unifiedTypeProxyList emptyList]
+    ![@outletClassBindingMap emptyMap]
+  ] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
@@ -86,18 +103,39 @@ message "a source text file with the .easyBindings extension"
   ;
 #------------------------------------------------------- Type Analysis
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
-   [!?unifiedTypeMap insertKey !["NSString" nowhere] ![@unifiedTypeKind stringType]] ;
-   [!?unifiedTypeMap insertKey !["NSColor" nowhere] ![@unifiedTypeKind colorType]] ;
-   [!?unifiedTypeMap insertKey !["NSData" nowhere] ![@unifiedTypeKind dataType]] ;
-   [!?unifiedTypeMap insertKey !["NSDate" nowhere] ![@unifiedTypeKind dateType]] ;
-   [!?unifiedTypeMap insertKey !["NSFont" nowhere] ![@unifiedTypeKind fontType]] ;
-   [!?unifiedTypeMap insertKey !["NSImage" nowhere] ![@unifiedTypeKind imageType]] ;
-   [!?unifiedTypeMap insertKey !["NSBezierPath" nowhere] ![@unifiedTypeKind bezierPathType]] ;
-   [!?unifiedTypeMap insertKey !["integer" nowhere] ![@unifiedTypeKind integerType]] ;
-   [!?unifiedTypeMap insertKey !["uinteger" nowhere] ![@unifiedTypeKind uintegerType]] ;
-   [!?unifiedTypeMap insertKey !["decimal" nowhere] ![@unifiedTypeKind decimalType]] ;
-   [!?unifiedTypeMap insertKey !["bool" nowhere] ![@unifiedTypeKind boolType]] ;
-   [!?unifiedTypeMap insertKey !["double" nowhere] ![@unifiedTypeKind doubleType]] ;
+   enterPredefinedType !?unifiedTypeMap !"NSString" ![@unifiedTypeKind stringType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSColor" ![@unifiedTypeKind colorType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSData" ![@unifiedTypeKind dataType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSDate" ![@unifiedTypeKind dateType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSFont" ![@unifiedTypeKind fontType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSImage" ![@unifiedTypeKind imageType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSBezierPath" ![@unifiedTypeKind bezierPathType] ;
+   enterPredefinedType !?unifiedTypeMap !"integer" ![@unifiedTypeKind integerType] ;
+   enterPredefinedType !?unifiedTypeMap !"uinteger" ![@unifiedTypeKind uintegerType] ;
+   enterPredefinedType !?unifiedTypeMap !"decimal" ![@unifiedTypeKind decimalType] ;
+   enterPredefinedType !?unifiedTypeMap !"bool" ![@unifiedTypeKind boolType] ;
+   enterPredefinedType !?unifiedTypeMap !"double" ![@unifiedTypeKind doubleType] ;
+   enterPredefinedType !?unifiedTypeMap !"*anyscalar*" ![@unifiedTypeKind anyScalarType] ;
+   enterPredefinedType !?unifiedTypeMap !"*anynumber*" ![@unifiedTypeKind anyNumberType] ;
+#--- Enumerations
+  enumEnterType
+    !enumList
+    !?unifiedTypeMap
+  ;
+#--- Structures
+  structEnterType
+    !structTypeList
+    !?unifiedTypeMap
+  ;
+#--- Outlet classes
+  outletClassesEnterType
+    !outletClassList
+    !?unifiedTypeMap
+  ;
+#--- Check all types are defined
+  foreach [unifiedTypeMap unsolvedProxyList] do
+    error mValue :"type " . mValue . " is undefined" ;
+  end foreach ;
 #------------------------------------------------------- Semantic Analysis
    @contextAnalysisStruct contextAnalysisStruct [default] ;
 #--- Cursors
@@ -121,7 +159,7 @@ message "a source text file with the .easyBindings extension"
   foreach protocolList do
     [!?protocolMap insertKey !mProtocolName !mIsPredefined] ;
   end foreach ;
-#--- Classes
+#--- Outlet Classes
   @stringlist sortedTransientOrderedList [emptyList] ;
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
   analyzeOutletClasses

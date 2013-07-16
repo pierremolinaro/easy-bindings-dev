@@ -15,9 +15,9 @@ local routine analyzeControllerClass
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
 #---
-  @outletClassBindingMap bindingMap [emptyMap] ;
+  @EXoutletClassBindingMap bindingMap [emptyMap] ;
   foreach inController->mBindingList do
-    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+    @EXoutletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
     foreach mBindingOptionList do
       @easyBindingTypeList acceptableTypeList [emptyList] ;
       foreach mAcceptableTypeList do
@@ -26,7 +26,7 @@ local routine analyzeControllerClass
       end foreach ;
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
     end foreach ;
-    @easyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+    @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
     foreach mAcceptableTypeFormatterList do
       @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
       acceptableTypeFormatterList += !type !mRequiredFormatter ;
@@ -52,7 +52,7 @@ local routine analyzeControllerClass
     ] ;
   end for ;
 #---
-  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+  @EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
   foreach inController->mControlledObjectBindingOptionList do
     @easyBindingTypeList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do

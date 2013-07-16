@@ -60,10 +60,10 @@ local routine analyzeNibClass
       !mControllerClassName
       ?@controllerKind controllerKind
       ?*
-      ?@outletClassBindingMap controllerClassBindingMap
+      ?@EXoutletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
       ?@observablePropertyMap controllerObservablePropertyMap
-      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
     @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
@@ -159,7 +159,7 @@ local routine analyzeNibClass
       ?@generationKind generationKind
       ?2*
       ?@bool implementsDeallocProtocol
-      ?@outletClassBindingMap bindingMap
+      ?@EXoutletClassBindingMap bindingMap
       ?*
       ?@bool hasTableValueBinding
     ] ;
