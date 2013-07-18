@@ -1,6 +1,5 @@
 semantics structAnalysis :
   import "decoratedTypes.gSemantics" ;
-  import "analyzeASTtype.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -9,60 +8,59 @@ routine structEnterType
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
   foreach inStructTypeList do
-    @unifiedTypeProxyList unifiedTypeProxyList [emptyList] ;
+    @structFieldList unifiedTypeProxyList [emptyList] ;
     foreach mFieldList do
       [@unifiedTypeProxy makeProxy
         !?ioUnifiedTypeMap
         !mFieldTypeName
         ?@unifiedTypeProxy fieldTypeProxy
       ] ;
-      unifiedTypeProxyList += !fieldTypeProxy ;
+      unifiedTypeProxyList += !fieldTypeProxy !mFieldName ;
     end foreach ;
     [!?ioUnifiedTypeMap insertKey
       !mStructTypeName
-      ![@unifiedTypeKind structType]
-      ![@unifiedTypeProxy null]
-      ![@enumConstantMap emptyMap]
-      !unifiedTypeProxyList
-      ![@outletClassBindingMap emptyMap]
+      ![@structType new
+        !mStructTypeName
+        !unifiedTypeProxyList
+      ]
     ] ;
   end foreach ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine structAnalysis
-  ??@structTypeList inStructTypeList
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
-:
-  foreach inStructTypeList do
-    @structFieldList structFieldList [default] ;
-    @stringset headerFileInclusionSet [emptySet] ;
-    @stringset fieldNameSet [emptySet] ;
-    foreach mFieldList do
-      @easyBindingType type := [mFieldType analyze !ioContextAnalysisStruct] ;
-      if [type isClass] then
-        error mFieldName : "only a POD type is allowed in a structure" ;
-      end if ;
-      if (type is @enumType) then
-        @enumType t := (cast type : @enumType) ;
-        headerFileInclusionSet += ![t mEnumTypeName]->string ;
-      elsif (type is @structType) then
-        @structType t := (cast type : @structType) ;
-        headerFileInclusionSet += ![t mStructTypeName]->string ;
-      end if ;
-      if [fieldNameSet hasKey !mFieldName->string] then
-        error mFieldName : "there is already a field named '" . mFieldName . "'" ;
-      end if ;
-      fieldNameSet += !mFieldName->string ;
-      structFieldList += !type !mFieldName->string ;
-    end foreach ;
-    [!?ioContextAnalysisStruct->mStructTypeMap insertKey !mStructTypeName !structFieldList !headerFileInclusionSet] ;
-    if [ioContextAnalysisStruct->mEnumMap hasKey !mStructTypeName->string] then
-      error mStructTypeName:"There is an enumeration with the same name" ;
-    end if ;
-  end foreach ;
-end routine ;
+#routine structAnalysis
+#  ??@structTypeList inStructTypeList
+#  ?!@contextAnalysisStruct ioContextAnalysisStruct
+#:
+#  foreach inStructTypeList do
+#    @structFieldList structFieldList [default] ;
+#    @stringset headerFileInclusionSet [emptySet] ;
+#    @stringset fieldNameSet [emptySet] ;
+#    foreach mFieldList do
+#      @easyBindingType type := [mFieldType analyze !ioContextAnalysisStruct] ;
+#      if [type isClass] then
+#        error mFieldName : "only a POD type is allowed in a structure" ;
+#      end if ;
+#      if (type is @enumType) then
+#        @enumType t := (cast type : @enumType) ;
+#        headerFileInclusionSet += ![t mEnumTypeName]->string ;
+#      elsif (type is @structType) then
+#        @structType t := (cast type : @structType) ;
+#        headerFileInclusionSet += ![t mStructTypeName]->string ;
+#      end if ;
+#      if [fieldNameSet hasKey !mFieldName->string] then
+#        error mFieldName : "there is already a field named '" . mFieldName . "'" ;
+#      end if ;
+#      fieldNameSet += !mFieldName->string ;
+#      structFieldList += !type !mFieldName->string ;
+#    end foreach ;
+#    [!?ioContextAnalysisStruct->mStructTypeMap insertKey !mStructTypeName !structFieldList !headerFileInclusionSet] ;
+#    if [ioContextAnalysisStruct->mEnumMap hasKey !mStructTypeName->string] then
+#      error mStructTypeName:"There is an enumeration with the same name" ;
+#    end if ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

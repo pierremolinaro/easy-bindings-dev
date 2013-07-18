@@ -7,9 +7,11 @@ lexique easyBindings_lexique :
 @string tokenString ;
 
 style keywordsStyle -> "Keywords" ;
+style idfStyle -> "identifiers" ;
+style IdfStyle -> "Identifiers" ;
 
-$identifier$ ! tokenString error message "an identifier (beginning with a lower-case letter)" ;
-$Identifier$ ! tokenString error message "an identifier (beginning with a upper-case letter)" ;
+$identifier$ ! tokenString error message "an identifier (beginning with a lower-case letter)" style idfStyle ;
+$Identifier$ ! tokenString error message "an identifier (beginning with a upper-case letter)" style IdfStyle ;
 
 list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toOne",
@@ -41,15 +43,9 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "outlet",
   "transient",
   "dependsFrom",
-  "bool",
   "preferences",
-  "integer",
-  "int",
-  "decimal",
-  "double",
   "root",
   "self",
-  "number",
   "extern",
   "default",
   "column",
@@ -70,14 +66,8 @@ end rule ;
 list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "NSNumberFormatter",
   "NSDateFormatter",
-  "NSFont",
-  "NSData",
-  "NSDate",
-  "NSColor",
-  "NSImage",
-  "NSString",
-  "NSMenu",
-  "NSBezierPath",
+  "AnyNumber",
+  "AnyScalar",
   "YES",
   "NO"
 ;

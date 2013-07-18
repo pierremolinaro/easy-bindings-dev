@@ -9,49 +9,46 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   grammar "easyBindings_grammar.gGrammar" ;
   gui "easyBindings_cocoa.gGui" ;
 
-  semantics "easyBindingType.gSemantics" ;
   semantics "abstractSyntaxTypes.gSemantics" ;
   semantics "decoratedTypes.gSemantics" ;
-
-  semantics "analyzeASTtype.gSemantics" ;
   
   semantics "attributeDeclarationAnalysis.gSemantics" ;
 
   semantics "enumAnalysis.gSemantics" ;
-  semantics "enumGeneration.gSemantics" ;
-
+#  semantics "enumGeneration.gSemantics" ;
+#
   semantics "structAnalysis.gSemantics" ;
-  semantics "structGeneration.gSemantics" ;
+#  semantics "structGeneration.gSemantics" ;
 
   semantics "cursorAnalysis.gSemantics" ;
-  semantics "cursorGeneration.gSemantics" ;
+#  semantics "cursorGeneration.gSemantics" ;
 
   semantics "bindingSemanticAnalysis.gSemantics" ;
-  semantics "bindingsGeneration.gSemantics" ;
+#  semantics "bindingsGeneration.gSemantics" ;
 
   semantics "classAnalysis.gSemantics" ;
-  semantics "classGeneration.gSemantics" ;
+#  semantics "classGeneration.gSemantics" ;
 
   semantics "nibClassAnalysis.gSemantics" ;
-  semantics "nibClassGeneration.gSemantics" ;
+#  semantics "nibClassGeneration.gSemantics" ;
 
   semantics "preferencesAnalysis.gSemantics" ;
-  semantics "preferencesGeneration.gSemantics" ;
+#  semantics "preferencesGeneration.gSemantics" ;
 
   semantics "entityAnalysis.gSemantics" ;
-  semantics "entityGeneration.gSemantics" ;
+#  semantics "entityGeneration.gSemantics" ;
 
   semantics "documentAnalysis.gSemantics" ;
-  semantics "documentGeneration.gSemantics" ;
+#  semantics "documentGeneration.gSemantics" ;
   
   semantics "outletClassAnalysis.gSemantics" ;
-  semantics "outletClassGeneration.gSemantics" ;
+#  semantics "outletClassGeneration.gSemantics" ;
 
   semantics "controllerClassAnalysis.gSemantics" ;
-  semantics "controllerClassGeneration.gSemantics" ;
+#  semantics "controllerClassGeneration.gSemantics" ;
 
   semantics "transientAnalysis.gSemantics" ;
-  semantics "transientGeneration.gSemantics" ;
+#  semantics "transientGeneration.gSemantics" ;
   
   program "easyBindings_program.gProgram" ;
 end project ;

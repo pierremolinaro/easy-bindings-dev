@@ -5,229 +5,318 @@ semantics preferencesAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine analyzePreference
+local routine enterTypesForPreferences
   ??@preferencesDeclarationList.element inPreference
-  ??@controllerClassMap inControllerClassMap
-  ??@classMap inClassMap
-  ??@outletClassMap inOutletClassMap
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ?!@preferencesMap ioPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
 #------------------------------------- Analyze actions
   @actionMap actionMap [emptyMap] ;
   for actionName in inPreference->mActionDeclarationList do
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
-#------------------------------------- Analyze attributes
-  @fileInclusionSet fileInclusionSet [default] ;
-  @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
-  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
-  analyzeAttributeDeclaration
-    !inPreference->mAttributeList
-    !inContextAnalysisStruct
-    !"preference." . inPreference->mPreferencesName
-    !?ioTransientDependencyGraph
-    !?fileInclusionSet
-    !?selfObservableAttributeMap
-    ?@attributeListForImplementation attributeListForImplementation
-    !?attributeListForInitHeader # Unused
-  ;
-#------------------------------------- Analyze arraies
-  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
-  foreach inPreference->mClassArrayList do
-    [inClassMap searchKey
-      !mClassName
-      ?*
-      ?@observablePropertyMap classObservablePropertyMap
-      ?2*
-      ?@attributeListForImplementation attributeListForImplementation
-      ?4*
-    ] ;
-    [!?preferenceArrayMap insertKey
-      !mArrayName
-      !mClassName->string
-      !classObservablePropertyMap
-      !attributeListForImplementation
-    ] ;
-  end foreach ;
-#-------------------------------------------------- Analyze controllers
+#------------------------------------- Analyze attributes and arraies
   @observablePropertyMap observablePropertyMap [emptyMap] ;
-  @controllerMap controllerMap [emptyMap] ;
+  attributeDeclarationEnterType
+    !inPreference->mAttributeList
+    !inPreference->mClassArrayList
+    !"preference." . inPreference->mPreferencesName
+    !?ioUnifiedTypeMap
+    !?observablePropertyMap
+  ;
+#-------------------------------------------------- Analyze controllers
   foreach inPreference->mControllerList do
-    [inControllerClassMap searchKey
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
       !mControllerClassName
-      ?@controllerKind controllerKind
-      ?*
-      ?@EXoutletClassBindingMap controllerClassBindingMap
-      ?@actionMap controllerActionMap
-      ?@observablePropertyMap controllerObservablePropertyMap
-      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+      ?@unifiedTypeProxy type
     ] ;
-  #---
-    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
-    @string controllerObjectClassName ;
-    switch controllerKind
-    when simpleController :
-      controllerObjectClassName := "" ;
-    when objectController :
-      error mControlledObjectName
-      :"objectController is not currently handled in preferences"
-      :controllerObjectClassName;
-    when entityController :
-      error mControlledObjectName
-      :"entityController is not currently handled in preferences"
-      :controllerObjectClassName;
-    when entityArrayController :
-      error mControlledObjectName
-      :"in preferences, use an arrayController, as NSArrayController"
-      :controllerObjectClassName;
-    when arrayController :
-      if mIsRootObject->bool then
-        error mIsRootObject
-        : "only 'self' is allowed here"
-        ;
-      end if ;
-      [preferenceArrayMap searchKey
-        !mControlledObjectName
-        ?controllerObjectClassName
-        ?@observablePropertyMap classObservablePropertyMap
-        ?@attributeListForImplementation attributeListForImplementation
-      ] ;
-      checkBindingOptions
-        !inContextAnalysisStruct
-        !mControlledObjectBindingOptionList
-        !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
-        !?fileInclusionSet
-      ;
-      bindingListForGeneration += ![@regularBindingForGeneration new
-        !"contentArray"
-        ![@formatterEnum noFormatter]
-        !"self"
-        !mControlledObjectName->string
-        !controlledObjectBindingOptionListForGeneration
-      ] ;
-    end switch ;
-    foreach mControllerBindingList do
-      [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap] # No root entity obsevable Map
-        !selfObservableAttributeMap
-        !ioPreferencesMap
-        ![@entityMap emptyMap]
-        !inClassMap
-        !controllerClassBindingMap
-        !controllerMap
-        !actionMap
-        !false
-        !inContextAnalysisStruct
-        !?bindingListForGeneration
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    [!?controllerMap insertKey
+    [!?observablePropertyMap insertKey
       !mControllerName
-      !mControllerClassName->string
-      ![@lstring new !controllerObjectClassName !here]
-      !false # Is not an entity : it is a class
-      !bindingListForGeneration
-      !controllerActionMap
-      !controllerObservablePropertyMap
+      !type
+      !false # is not transient
+      !"preference." . inPreference->mPreferencesName . "." . mControllerName
+      !false # Is not a collection
     ] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
-  analyzeTransientProperties
-    ![@preferencesMap emptyMap]
-    !"preference." . inPreference->mPreferencesName . "."
+  transientDeclarationEnterType
     !inPreference->mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
-    !inContextAnalysisStruct
-    !"" # No Root entity
-    ![@controllerMap emptyMap]
-    !?selfObservableAttributeMap
-    !?fileInclusionSet
-    ?transientListForImplementation
-    !?ioTransientDependencyGraph
+    !"preference." . inPreference->mPreferencesName
+    !?ioUnifiedTypeMap
+    !?observablePropertyMap
   ;
 #------------------------------------- Analyze outlets
-  @outletGenerationList outletGenerationList [emptyList] ;
-  foreach inPreference->mOutletDeclarationList do
-    [inOutletClassMap searchKey
-      !mOutletType
-      ?@generationKind generationKind
-      ?2*
-      ?@bool implementsDeallocProtocol
-      ?@EXoutletClassBindingMap bindingMap
-      ?*
-      ?@bool hasTableValueBinding
-    ] ;
-    if generationKind != [@generationKind noGeneration] then
-      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
-    end if ;
-    @outletBindingListForGeneration outletBindingList [emptyList] ;
-    foreach mOutletBindingList do
-      [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap]
-        !selfObservableAttributeMap
-        ![@preferencesMap emptyMap]
-        ![@entityMap emptyMap]
-        !inClassMap
-        !bindingMap
-        !controllerMap
-        !actionMap
-        !hasTableValueBinding
-        !inContextAnalysisStruct
-        !?outletBindingList
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    outletGenerationList +=
-      ![mOutletType string]
-      ![mOutletName string]
-      !outletBindingList
-      !implementsDeallocProtocol
-    ;
-  end foreach ;
+
 #------------------------------------- Enter in preference map
-  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
-  [!?ioPreferencesMap insertKey
+  [!?ioUnifiedTypeMap insertKey
     !inPreference->mPreferencesName
-    !attributeListForImplementation
-    !transientListForImplementation
-    !outletGenerationList
-    !inPreference->mActionDeclarationList
-    !selfObservableAttributeMap
-    !fileInclusionSet
-    !controllerMap
-    !preferenceArrayMap
+    ![@preferenceType new
+      !observablePropertyMap
+    ]
   ] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzePreferences
+routine preferencesEnterTypes
   ??@preferencesDeclarationList inPreferencesList
-  ??@controllerClassMap inControllerClassMap
-  ??@classMap inClassMap
-  ??@outletClassMap inOutletClassMap
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@preferencesMap outPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
-  outPreferencesMap := [@preferencesMap emptyMap] ;
   for preference in inPreferencesList do
-    analyzePreference
+    enterTypesForPreferences
       !preference
-      !inControllerClassMap
-      !inClassMap
-      !inOutletClassMap
-      !inContextAnalysisStruct
-      !?outPreferencesMap
-      !?ioTransientDependencyGraph
+      !?ioUnifiedTypeMap
     ;
   end for ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzePreferences
+#  ??@preferencesDeclarationList inPreferencesList
+#  ??@controllerClassMap inControllerClassMap
+#  ??@classMap inClassMap
+#  ??@outletClassMap inOutletClassMap
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@preferencesMap outPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+#  outPreferencesMap := [@preferencesMap emptyMap] ;
+#  for preference in inPreferencesList do
+#    analyzePreference
+#      !preference
+#      !inControllerClassMap
+#      !inClassMap
+#      !inOutletClassMap
+#      !inContextAnalysisStruct
+#      !?outPreferencesMap
+#      !?ioTransientDependencyGraph
+#    ;
+#  end for ;
+#end routine ;
+#local routine analyzePreference
+#  ??@preferencesDeclarationList.element inPreference
+#  ??@controllerClassMap inControllerClassMap
+#  ??@classMap inClassMap
+#  ??@outletClassMap inOutletClassMap
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@preferencesMap ioPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------------- Analyze actions
+#  @actionMap actionMap [emptyMap] ;
+#  for actionName in inPreference->mActionDeclarationList do
+#    [!?actionMap insertKey !actionName->mValue] ;
+#  end for ;
+##------------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [default] ;
+#  @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
+#  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+#  analyzeAttributeDeclaration
+#    !inPreference->mAttributeList
+#    !inContextAnalysisStruct
+#    !"preference." . inPreference->mPreferencesName
+#    !?ioTransientDependencyGraph
+#    !?fileInclusionSet
+#    !?selfObservableAttributeMap
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?attributeListForInitHeader # Unused
+#  ;
+##------------------------------------- Analyze arraies
+#  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
+#  foreach inPreference->mClassArrayList do
+#    [inClassMap searchKey
+#      !mClassName
+#      ?*
+#      ?@observablePropertyMap classObservablePropertyMap
+#      ?2*
+#      ?@attributeListForImplementation attributeListForImplementation
+#      ?4*
+#    ] ;
+#    [!?preferenceArrayMap insertKey
+#      !mArrayName
+#      !mClassName->string
+#      !classObservablePropertyMap
+#      !attributeListForImplementation
+#    ] ;
+#  end foreach ;
+##-------------------------------------------------- Analyze controllers
+#  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#  @controllerMap controllerMap [emptyMap] ;
+#  foreach inPreference->mControllerList do
+#    [inControllerClassMap searchKey
+#      !mControllerClassName
+#      ?@controllerKind controllerKind
+#      ?*
+#      ?@EXoutletClassBindingMap controllerClassBindingMap
+#      ?@actionMap controllerActionMap
+#      ?@observablePropertyMap controllerObservablePropertyMap
+#      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+#    ] ;
+#  #---
+#    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+#    @string controllerObjectClassName ;
+#    switch controllerKind
+#    when simpleController :
+#      controllerObjectClassName := "" ;
+#    when objectController :
+#      error mControlledObjectName
+#      :"objectController is not currently handled in preferences"
+#      :controllerObjectClassName;
+#    when entityController :
+#      error mControlledObjectName
+#      :"entityController is not currently handled in preferences"
+#      :controllerObjectClassName;
+#    when entityArrayController :
+#      error mControlledObjectName
+#      :"in preferences, use an arrayController, as NSArrayController"
+#      :controllerObjectClassName;
+#    when arrayController :
+#      if mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'self' is allowed here"
+#        ;
+#      end if ;
+#      [preferenceArrayMap searchKey
+#        !mControlledObjectName
+#        ?controllerObjectClassName
+#        ?@observablePropertyMap classObservablePropertyMap
+#        ?@attributeListForImplementation attributeListForImplementation
+#      ] ;
+#      checkBindingOptions
+#        !inContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@2stringlist controlledObjectBindingOptionListForGeneration
+#        !?fileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self"
+#        !mControlledObjectName->string
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    end switch ;
+#    foreach mControllerBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@observablePropertyMap emptyMap] # No root entity obsevable Map
+#        !selfObservableAttributeMap
+#        !ioPreferencesMap
+#        ![@entityMap emptyMap]
+#        !inClassMap
+#        !controllerClassBindingMap
+#        !controllerMap
+#        !actionMap
+#        !false
+#        !inContextAnalysisStruct
+#        !?bindingListForGeneration
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    [!?controllerMap insertKey
+#      !mControllerName
+#      !mControllerClassName->string
+#      ![@lstring new !controllerObjectClassName !here]
+#      !false # Is not an entity : it is a class
+#      !bindingListForGeneration
+#      !controllerActionMap
+#      !controllerObservablePropertyMap
+#    ] ;
+#  end foreach ;
+##------------------------------------- Analyze transient properties
+#  @transientListForImplementation transientListForImplementation ;
+#  analyzeTransientProperties
+#    ![@preferencesMap emptyMap]
+#    !"preference." . inPreference->mPreferencesName . "."
+#    !inPreference->mTransientList
+#    ![@observablePropertyMap emptyMap] # Root property map
+#    !inContextAnalysisStruct
+#    !"" # No Root entity
+#    ![@controllerMap emptyMap]
+#    !?selfObservableAttributeMap
+#    !?fileInclusionSet
+#    ?transientListForImplementation
+#    !?ioTransientDependencyGraph
+#  ;
+##------------------------------------- Analyze outlets
+#  @outletGenerationList outletGenerationList [emptyList] ;
+#  foreach inPreference->mOutletDeclarationList do
+#    [inOutletClassMap searchKey
+#      !mOutletType
+#      ?@generationKind generationKind
+#      ?2*
+#      ?@bool implementsDeallocProtocol
+#      ?@EXoutletClassBindingMap bindingMap
+#      ?*
+#      ?@bool hasTableValueBinding
+#    ] ;
+#    if generationKind != [@generationKind noGeneration] then
+#      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
+#    end if ;
+#    @outletBindingListForGeneration outletBindingList [emptyList] ;
+#    foreach mOutletBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@observablePropertyMap emptyMap]
+#        !selfObservableAttributeMap
+#        ![@preferencesMap emptyMap]
+#        ![@entityMap emptyMap]
+#        !inClassMap
+#        !bindingMap
+#        !controllerMap
+#        !actionMap
+#        !hasTableValueBinding
+#        !inContextAnalysisStruct
+#        !?outletBindingList
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    outletGenerationList +=
+#      ![mOutletType string]
+#      ![mOutletName string]
+#      !outletBindingList
+#      !implementsDeallocProtocol
+#    ;
+#  end foreach ;
+##------------------------------------- Enter in preference map
+#  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
+#  [!?ioPreferencesMap insertKey
+#    !inPreference->mPreferencesName
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !outletGenerationList
+#    !inPreference->mActionDeclarationList
+#    !selfObservableAttributeMap
+#    !fileInclusionSet
+#    !controllerMap
+#    !preferenceArrayMap
+#  ] ;
+#end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzePreferences
+#  ??@preferencesDeclarationList inPreferencesList
+#  ??@controllerClassMap inControllerClassMap
+#  ??@classMap inClassMap
+#  ??@outletClassMap inOutletClassMap
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@preferencesMap outPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+#  outPreferencesMap := [@preferencesMap emptyMap] ;
+#  for preference in inPreferencesList do
+#    analyzePreference
+#      !preference
+#      !inControllerClassMap
+#      !inClassMap
+#      !inOutletClassMap
+#      !inContextAnalysisStruct
+#      !?outPreferencesMap
+#      !?ioTransientDependencyGraph
+#    ;
+#  end for ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

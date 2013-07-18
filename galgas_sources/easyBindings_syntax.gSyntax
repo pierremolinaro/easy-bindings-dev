@@ -79,16 +79,9 @@ rule <struct_declaration>
   @structFieldASTList structFieldList [emptyList] ;
   ${$ ;
   repeat
-    @attributeASTType fieldType ;
-    @lstring fieldTypeName ;
-    select
-      $Identifier$ ?fieldTypeName ;
-      fieldType := [@namedASTType new !fieldTypeName] ;
-    or
-      <attribute_type> ?fieldType ?fieldTypeName ;
-    end select ;
+    $Identifier$ ?@lstring fieldTypeName ;
     $identifier$ ? @lstring fieldName ;
-    structFieldList += !fieldType !fieldTypeName !fieldName ;
+    structFieldList += !fieldTypeName !fieldName ;
   while
     $,$ ;
   end repeat ;
@@ -553,22 +546,14 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $attribute$ ;
-  @attributeASTType propertyType ;
-  @lstring attributeTypeName ;
-  select
-    $Identifier$ ?attributeTypeName ;
-    propertyType := [@namedASTType new !attributeTypeName] ;
-  or
-    <attribute_type> ?propertyType ?attributeTypeName ;
-  end select ;
-  $identifier$ ? @lstring propertyName ;
+  $Identifier$ ?@lstring attributeTypeName ;
+  $identifier$ ?@lstring attributeName ;
   $default$ ;
   <explicit_value> ?@abstractDefaultValue defaultValue ;
   $;$ ;
   ioAttributeList +=
-    !propertyType
     !attributeTypeName
-    !propertyName
+    !attributeName
     !defaultValue
   ;
 end rule ;
@@ -579,7 +564,7 @@ rule <transient_declaration>
   ?!@transientList ioTransientList
 :
   $transient$ ;
-  <attribute_type> ?@attributeASTType type ?@lstring transientTypeName ;
+  $Identifier$ ?@lstring transientTypeName ;
   $identifier$ ? @lstring transientName ;
   $dependsFrom$ ;
   @dependanceList dependanceList [emptyList] ;
@@ -615,7 +600,7 @@ rule <transient_declaration>
     $,$ ;
   end repeat ;
   $;$ ;
-  ioTransientList += !type !transientTypeName !transientName !dependanceList ;
+  ioTransientList += !transientTypeName !transientName !dependanceList ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -859,83 +844,20 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <attribute_type>
-  !@attributeASTType outAttributeType
-  !@lstring outTypeName
-:
-  select
-    $bool$ ;
-    outAttributeType := [@boolASTType new] ;
-    outTypeName := [@lstring new !"bool" !here] ;
-  or
-    $integer$ ;
-    outAttributeType := [@integerASTType new] ;
-    outTypeName := [@lstring new !"integer" !here] ;
-  or
-    $double$ ;
-    outAttributeType := [@doubleASTType new] ;
-    outTypeName := [@lstring new !"double" !here] ;
-  or
-    $decimal$ ;
-    outAttributeType := [@decimalASTType new] ;
-    outTypeName := [@lstring new !"decimal" !here] ;
-  or
-    $NSString$ ;
-    outAttributeType := [@stringASTType new] ;
-    outTypeName := [@lstring new !"NSString" !here] ;
-  or
-    $NSFont$ ;
-    outAttributeType := [@fontASTType new] ;
-    outTypeName := [@lstring new !"NSFont" !here] ;
-  or
-    $NSImage$ ;
-    outAttributeType := [@imageASTType new] ;
-    outTypeName := [@lstring new !"NSImage" !here] ;
-  or
-    $NSColor$ ;
-    outAttributeType := [@colorASTType new] ;
-    outTypeName := [@lstring new !"NSColor" !here] ;
-  or
-    $NSData$ ;
-    outAttributeType := [@dataASTType new] ;
-    outTypeName := [@lstring new !"NSData" !here] ;
-  or
-    $NSDate$ ;
-    outAttributeType := [@dateASTType new] ;
-    outTypeName := [@lstring new !"NSDate" !here] ;
-  or
-    $NSBezierPath$ ;
-    outAttributeType := [@bezierASTType new] ;
-    outTypeName := [@lstring new !"NSBezierPath" !here] ;
-  or
-    $NSMenu$ ;
-    outAttributeType := [@menuASTType new] ;
-    outTypeName := [@lstring new !"NSMenu" !here] ;
-  end select ;
-end rule ;
-
-#----------------------------------------------------------------------------*
-
 rule <type_list>
-  !@attributeASTTypeList outEasyBindingTypeList
+  !@lstringlist outEasyBindingTypeList
 :
-  outEasyBindingTypeList := [@attributeASTTypeList emptyList] ;
+  outEasyBindingTypeList := [@lstringlist emptyList] ;
   repeat
     select
-      <attribute_type> ?@attributeASTType bindingType ?@lstring bindingTypeName ;
-      outEasyBindingTypeList += !bindingType !bindingTypeName ;
+      $Identifier$ ?@lstring bindingTypeName ;
+      outEasyBindingTypeList += !bindingTypeName ;
     or
-      $int$ ;
-      outEasyBindingTypeList += ![@integerASTType new] ![@lstring new !"*anyscalar*" !here] ;
-      outEasyBindingTypeList += ![@uintegerASTType new] ![@lstring new !"*anyscalar*" !here] ;
-      outEasyBindingTypeList += ![@anyEnumASTType new] ![@lstring new !"*anyscalar*" !here] ;
+      $AnyScalar$ ;
+      outEasyBindingTypeList += ![@lstring new !"AnyScalar" !here] ;
     or
-      $number$ ;
-      outEasyBindingTypeList += ![@integerASTType new] ![@lstring new !"*anynumber*" !here] ;
-      outEasyBindingTypeList += ![@uintegerASTType new] ![@lstring new !"*anynumber*" !here] ;
-      outEasyBindingTypeList += ![@decimalASTType new] ![@lstring new !"*anynumber*" !here] ;
-      outEasyBindingTypeList += ![@doubleASTType new] ![@lstring new !"*anynumber*" !here] ;
-      outEasyBindingTypeList += ![@anyEnumASTType new] ![@lstring new !"*anynumber*" !here] ;
+      $AnyNumber$ ;
+      outEasyBindingTypeList += ![@lstring new !"AnyNumber" !here] ;
     end select ;
   while
     $,$ ;
@@ -966,23 +888,17 @@ rule <type_formatter_list>
   outEasyBindingTypeFormatterList := [@attributeASTTypeAndFormatterList emptyList] ;
   repeat
     select
-      <attribute_type> ?@attributeASTType bindingType ?@lstring typeName;
+      $Identifier$ ?@lstring typeName ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += !bindingType !typeName !requiredFormatter ;
+      outEasyBindingTypeFormatterList += !typeName !requiredFormatter ;
     or
-      $int$ ;
+      $AnyScalar$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integerASTType new] ![@lstring new !"*anyscalar*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@uintegerASTType new] ![@lstring new !"*anyscalar*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@anyEnumASTType new] ![@lstring new !"*anyscalar*" !here] !requiredFormatter  ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"AnyScalar" !here] !requiredFormatter ;
     or
-      $number$ ;
+      $AnyNumber$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@integerASTType new] ![@lstring new !"*anynumber*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@uintegerASTType new] ![@lstring new !"*anynumber*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@decimalASTType new] ![@lstring new !"*anynumber*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@doubleASTType new] ![@lstring new !"*anynumber*" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@anyEnumASTType new] ![@lstring new !"*anynumber*" !here] !requiredFormatter  ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"AnyNumber" !here] !requiredFormatter ;
     end select ;
   while
     $,$ ;
@@ -1064,7 +980,7 @@ rule <outlet_class_declaration>
       while
         $Identifier$ ? @lstring optionName ;
         $:$ ;
-        <type_list> ?@attributeASTTypeList optionTypeList ;
+        <type_list> ?@lstringlist optionTypeList ;
         $;$ ;
         bindingOptionList += !optionName !optionTypeList ;
       end repeat ;
@@ -1167,7 +1083,7 @@ rule <controller_class_declaration>
     while
       $Identifier$ ? @lstring optionName ;
       $:$ ;
-      <type_list> ?@attributeASTTypeList optionTypeList ;
+      <type_list> ?@lstringlist optionTypeList ;
       $;$ ;
       controlledObjectBindingOptionList += !optionName !optionTypeList ;
     end repeat ;
@@ -1181,7 +1097,7 @@ rule <controller_class_declaration>
     while
       $Identifier$ ? @lstring optionName ;
       $:$ ;
-      <type_list> ?@attributeASTTypeList optionTypeList ;
+      <type_list> ?@lstringlist optionTypeList ;
       $;$ ;
       controlledObjectBindingOptionList += !optionName !optionTypeList ;
     end repeat ;
@@ -1195,7 +1111,7 @@ rule <controller_class_declaration>
     while
       $Identifier$ ? @lstring optionName ;
       $:$ ;
-      <type_list> ?@attributeASTTypeList optionTypeList ;
+      <type_list> ?@lstringlist optionTypeList ;
       $;$ ;
       controlledObjectBindingOptionList += !optionName !optionTypeList ;
     end repeat ;
@@ -1209,7 +1125,7 @@ rule <controller_class_declaration>
     while
       $Identifier$ ? @lstring optionName ;
       $:$ ;
-      <type_list> ?@attributeASTTypeList optionTypeList ;
+      <type_list> ?@lstringlist optionTypeList ;
       $;$ ;
       controlledObjectBindingOptionList += !optionName !optionTypeList ;
     end repeat ;
@@ -1222,10 +1138,10 @@ rule <controller_class_declaration>
   repeat
   while
     $attribute$ ;
-    <attribute_type> ?@attributeASTType attributeType ?@lstring attributeTypeName ;
+    $Identifier$ ? @lstring attributeTypeName ;
     $identifier$ ? @lstring attributeName ;
     $;$ ;
-    controllerObservablePropertyList += !attributeType !attributeTypeName !attributeName ;
+    controllerObservablePropertyList += !attributeTypeName !attributeName ;
   while
     <action_declaration> !?actionDeclarationList ;
   while
@@ -1253,7 +1169,7 @@ rule <controller_class_declaration>
       while
         $Identifier$ ? @lstring optionName ;
         $:$ ;
-        <type_list> ?@attributeASTTypeList optionTypeList ;
+        <type_list> ?@lstringlist optionTypeList ;
         $;$ ;
         bindingOptionList += !optionName !optionTypeList ;
       end repeat ;
