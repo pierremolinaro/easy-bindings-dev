@@ -1,4 +1,7 @@
 program easyBindings_program :
+import "decoratedTypes.gSemantics" ;
+import "easyBindings_grammar.gGrammar" ;
+
 import "cursorAnalysis.gSemantics" ;
 import "outletClassAnalysis.gSemantics" ;
 import "classAnalysis.gSemantics" ;
@@ -10,17 +13,17 @@ import "enumAnalysis.gSemantics" ;
 import "structAnalysis.gSemantics" ;
 import "nibClassAnalysis.gSemantics" ;
 
-import "outletClassGeneration.gSemantics" ;
-import "classGeneration.gSemantics" ;
-import "entityGeneration.gSemantics" ;
-import "preferencesGeneration.gSemantics" ;
-import "documentGeneration.gSemantics" ;
-import "easyBindings_grammar.gGrammar" ;
-import "cursorGeneration.gSemantics" ;
-import "enumGeneration.gSemantics" ;
-import "structGeneration.gSemantics" ;
-import "controllerClassGeneration.gSemantics" ;
-import "nibClassGeneration.gSemantics" ;
+#import "outletClassGeneration.gSemantics" ;
+#import "classGeneration.gSemantics" ;
+#import "entityGeneration.gSemantics" ;
+#import "preferencesGeneration.gSemantics" ;
+#import "documentGeneration.gSemantics" ;
+#import "easyBindings_grammar.gGrammar" ;
+#import "cursorGeneration.gSemantics" ;
+#import "enumGeneration.gSemantics" ;
+#import "structGeneration.gSemantics" ;
+#import "controllerClassGeneration.gSemantics" ;
+#import "nibClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -43,15 +46,11 @@ local filewrapper objective_c_sources in "../generation-templates/objective-c-so
 local routine enterPredefinedType
   ?!@unifiedTypeMap ioUnifiedTypeMap
   ??@string inTypeName
-  ??@unifiedTypeKind inKind
+  ??@easyBindingType inType
 :
   [!?ioUnifiedTypeMap insertKey
     ![inTypeName nowhere]
-    !inKind
-    ![@unifiedTypeProxy null]
-    ![@enumConstantMap emptyMap]
-    ![@unifiedTypeProxyList emptyList]
-    ![@outletClassBindingMap emptyMap]
+    !inType
   ] ;
 end routine ;
 
@@ -103,20 +102,20 @@ message "a source text file with the .easyBindings extension"
   ;
 #------------------------------------------------------- Type Analysis
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
-   enterPredefinedType !?unifiedTypeMap !"NSString" ![@unifiedTypeKind stringType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSColor" ![@unifiedTypeKind colorType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSData" ![@unifiedTypeKind dataType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSDate" ![@unifiedTypeKind dateType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSFont" ![@unifiedTypeKind fontType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSImage" ![@unifiedTypeKind imageType] ;
-   enterPredefinedType !?unifiedTypeMap !"NSBezierPath" ![@unifiedTypeKind bezierPathType] ;
-   enterPredefinedType !?unifiedTypeMap !"integer" ![@unifiedTypeKind integerType] ;
-   enterPredefinedType !?unifiedTypeMap !"uinteger" ![@unifiedTypeKind uintegerType] ;
-   enterPredefinedType !?unifiedTypeMap !"decimal" ![@unifiedTypeKind decimalType] ;
-   enterPredefinedType !?unifiedTypeMap !"bool" ![@unifiedTypeKind boolType] ;
-   enterPredefinedType !?unifiedTypeMap !"double" ![@unifiedTypeKind doubleType] ;
-   enterPredefinedType !?unifiedTypeMap !"*anyscalar*" ![@unifiedTypeKind anyScalarType] ;
-   enterPredefinedType !?unifiedTypeMap !"*anynumber*" ![@unifiedTypeKind anyNumberType] ;
+   enterPredefinedType !?unifiedTypeMap !"NSString" ![@stringType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSColor" ![@colorType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSData" ![@dataType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSDate" ![@dateType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSFont" ![@fontType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSImage" ![@imageType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSMenu" ![@menuType new] ;
+   enterPredefinedType !?unifiedTypeMap !"NSBezierPath" ![@bezierPathType new] ;
+   enterPredefinedType !?unifiedTypeMap !"Integer" ![@integerType new] ;
+   enterPredefinedType !?unifiedTypeMap !"UInteger" ![@uintegerType new] ;
+   enterPredefinedType !?unifiedTypeMap !"Bool" ![@boolType new] ;
+   enterPredefinedType !?unifiedTypeMap !"Double" ![@doubleType new] ;
+   enterPredefinedType !?unifiedTypeMap !"AnyScalar" ![@anyScalarType new] ;
+   enterPredefinedType !?unifiedTypeMap !"AnyNumber" ![@anyNumberType new] ;
 #--- Enumerations
   enumEnterType
     !enumList
@@ -127,9 +126,47 @@ message "a source text file with the .easyBindings extension"
     !structTypeList
     !?unifiedTypeMap
   ;
+#--- Protocol
+  @protocolMap protocolMap [emptyMap] ;
+  foreach protocolList do
+    [!?unifiedTypeMap insertKey
+      !mProtocolName
+      ![@protocolType new !mIsPredefined]
+    ] ; 
+  end foreach ;
 #--- Outlet classes
   outletClassesEnterType
     !outletClassList
+    !?unifiedTypeMap
+  ;
+#--- Controller classes
+  controllerClassesEnterType
+    !controllerClassList
+    !?unifiedTypeMap
+  ;
+#--- Classes
+  classesEnterType
+    !classList
+    !?unifiedTypeMap
+  ;
+#--- Preferences
+  preferencesEnterTypes
+    !preferencesList
+    !?unifiedTypeMap
+  ;
+#--- Entities
+  entitiesEnterTypes
+    !entityList
+    !?unifiedTypeMap
+  ;
+#--- nib classes
+  nibClassesEnterTypes
+    !nibClassList
+    !?unifiedTypeMap
+  ;
+#--- Documents
+  documentsEnterTypes
+    !documentDeclarationList
     !?unifiedTypeMap
   ;
 #--- Check all types are defined
@@ -144,168 +181,168 @@ message "a source text file with the .easyBindings extension"
     !?contextAnalysisStruct
     ?@stringlist predefinedCursorList
   ;
-#--- Enumerations
-  enumAnalysis
-    !enumList
-    !?contextAnalysisStruct
-  ;
-#--- Struct analysis
-  structAnalysis
-    !structTypeList
-    !?contextAnalysisStruct
-  ;
-#--- Protocol
-  @protocolMap protocolMap [emptyMap] ;
-  foreach protocolList do
-    [!?protocolMap insertKey !mProtocolName !mIsPredefined] ;
-  end foreach ;
-#--- Outlet Classes
-  @stringlist sortedTransientOrderedList [emptyList] ;
-  @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
-  analyzeOutletClasses
-    !outletClassList
-    !contextAnalysisStruct
-    !protocolMap
-    ?@outletClassMap outletClassMap
-  ;
-#--- Controller classes
-  analyzeControllerClasses
-    !controllerClassList
-    !contextAnalysisStruct
-    !?transientDependencyGraph
-    ?@controllerClassMap controllerClassMap
-  ;
-#--- Classes
-  analyzeClasses 
-    !classList
-    !contextAnalysisStruct
-    ?@classMap classMap
-    !?transientDependencyGraph
-  ;
-#--- Preferences
-  analyzePreferences
-    !preferencesList
-    !controllerClassMap
-    !classMap
-    !outletClassMap
-    !contextAnalysisStruct
-    ?@preferencesMap preferencesMap
-    !?transientDependencyGraph
-  ;
-#--- nib classes
-  analyzeNibClasses
-    !nibClassList
-    !controllerClassMap
-    !classMap
-    !outletClassMap
-    !contextAnalysisStruct
-    ?@nibClassMap nibClassMap
-    !preferencesMap
-    !?transientDependencyGraph
-  ;
-#--- Entities
-  analyzeEntities
-    !entityList
-    !contextAnalysisStruct
-    ?@entityMap entityMap
-    ?@entityListForGeneration entityListForGeneration
-    !preferencesMap
-    !?transientDependencyGraph
-  ;
-#--- Documents
-  analyzeDocuments
-    !documentDeclarationList
-    !outletClassMap
-    !controllerClassMap
-    !entityMap
-    !preferencesMap
-    !contextAnalysisStruct
-    ?@documentMap documentMap
-    !?transientDependencyGraph
-  ;
-#--- Output graphviz file ?
-  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
-    const @string s := [transientDependencyGraph graphviz] ;
-    const @string path := inSourceFile->string . ".transientDependancyGraph.dot" ;
-    [s writeToFileWhenDifferentContents !path ?*] ;
-  end if ;
-#--- Analyze transient dependencies
-  @2stringlist transientDependencyArcList := [transientDependencyGraph arcs] ;
-  if [@uint errorCount] == 0 then
-    if [transientDependencyGraph undefinedNodeCount] > 0 then
-      foreach [transientDependencyGraph undefinedNodeKeyList] do
-        error endOfSourceFile : "the '" . mValue . "' property is not defined" ;
-      end foreach ;
-    else
-      @stringlist unsortedTransientList ;
-      [transientDependencyGraph topologicalSort
-        ?sortedTransientOrderedList
-        ?*
-        ?unsortedTransientList
-        ?*
-      ] ;
-      if [unsortedTransientList length] > 0 then
-        @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
-        foreach unsortedTransientList do
-          s .= "\n-  " . mValue ;
-        end foreach ;
-        error endOfSourceFile : s ;
-      else # all defined, no circularity
-      end if ;
-    end if ;
-  end if ;
-#----------------------------------------------------- Code generation
-  const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
-  generateEnumerations !contextAnalysisStruct->mEnumMap !sourceDirectoryPath ;
-  generateStructures !contextAnalysisStruct->mStructTypeMap !sourceDirectoryPath ;
-  generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
-  generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
-  generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
-  generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
-  generateNibClassCode !transientDependencyArcList !nibClassMap !sourceDirectoryPath ;
-  generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
-  generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
-  generateControllerCode !controllerClassMap !sourceDirectoryPath ;
-#------------------------------ Output dependency order definition file
-  generateTransientDependencyFiles
-    !transientDependencyArcList
-    !sourceDirectoryPath
-    !sortedTransientOrderedList
-  ;
-#--- Add embedded sources
-  @stringset generateSet [emptySet] ;
-  generateSet += !"easy-bindings-utilities" ;
-  generateSet += !"PMAllocationDebug" ;
-  if [documentMap count] > 0 then
-    generateSet += !"PMUndoManager" ;
-    generateSet += !"PMManagedDocument" ;
-    generateSet += !"NSData+BZ2compression" ;
-    generateSet += !"NSData+BZ2compression" ;
-    generateSet += !"NSData+PMGZcompression" ;
-    generateSet += !"NSMutableData+PMWrites" ;
-    generateSet += !"PMDataScanner" ;
-  end if ;
-  if [entityListForGeneration length] > 0 then
-    generateSet += !"load-store-functions" ;
-    generateSet += !"PMManagedEntity" ;
-    generateSet += !"PMEntityManager" ;
-    generateSet += !"PMAttributeDescription" ;
-    generateSet += !"PMRelationshipDescription" ;
-    generateSet += !"PMEntityArrayController" ;
-    generateSet += !"PMEntityController" ;
-  end if ;
-#---
-  @filewrapper fw := [filewrapper objective_c_sources] ;
-  foreach [fw allTextFilePathes] do
-    const @string sourceName := [mValue lastPathComponent] ;
-    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] then
-      [@string generateFile
-        !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
-        !sourceName
-        ![fw textFileContentsAtPath !mValue]
-       ] ;
-     end if ;
-  end foreach ;
+##--- Enumerations
+#  enumAnalysis
+#    !enumList
+#    !?contextAnalysisStruct
+#  ;
+##--- Struct analysis
+#  structAnalysis
+#    !structTypeList
+#    !?contextAnalysisStruct
+#  ;
+##--- Protocol
+#  @protocolMap protocolMap [emptyMap] ;
+#  foreach protocolList do
+#    [!?protocolMap insertKey !mProtocolName !mIsPredefined] ;
+#  end foreach ;
+##--- Outlet Classes
+#  @stringlist sortedTransientOrderedList [emptyList] ;
+#  @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
+#  analyzeOutletClasses
+#    !outletClassList
+#    !contextAnalysisStruct
+#    !protocolMap
+#    ?@outletClassMap outletClassMap
+#  ;
+##--- Controller classes
+#  analyzeControllerClasses
+#    !controllerClassList
+#    !contextAnalysisStruct
+#    !?transientDependencyGraph
+#    ?@controllerClassMap controllerClassMap
+#  ;
+##--- Classes
+#  analyzeClasses 
+#    !classList
+#    !contextAnalysisStruct
+#    ?@classMap classMap
+#    !?transientDependencyGraph
+#  ;
+##--- Preferences
+#  analyzePreferences
+#    !preferencesList
+#    !controllerClassMap
+#    !classMap
+#    !outletClassMap
+#    !contextAnalysisStruct
+#    ?@preferencesMap preferencesMap
+#    !?transientDependencyGraph
+#  ;
+##--- nib classes
+#  analyzeNibClasses
+#    !nibClassList
+#    !controllerClassMap
+#    !classMap
+#    !outletClassMap
+#    !contextAnalysisStruct
+#    ?@nibClassMap nibClassMap
+#    !preferencesMap
+#    !?transientDependencyGraph
+#  ;
+##--- Entities
+#  analyzeEntities
+#    !entityList
+#    !contextAnalysisStruct
+#    ?@entityMap entityMap
+#    ?@entityListForGeneration entityListForGeneration
+#    !preferencesMap
+#    !?transientDependencyGraph
+#  ;
+##--- Documents
+#  analyzeDocuments
+#    !documentDeclarationList
+#    !outletClassMap
+#    !controllerClassMap
+#    !entityMap
+#    !preferencesMap
+#    !contextAnalysisStruct
+#    ?@documentMap documentMap
+#    !?transientDependencyGraph
+#  ;
+##--- Output graphviz file ?
+#  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+#    const @string s := [transientDependencyGraph graphviz] ;
+#    const @string path := inSourceFile->string . ".transientDependancyGraph.dot" ;
+#    [s writeToFileWhenDifferentContents !path ?*] ;
+#  end if ;
+##--- Analyze transient dependencies
+#  @2stringlist transientDependencyArcList := [transientDependencyGraph arcs] ;
+#  if [@uint errorCount] == 0 then
+#    if [transientDependencyGraph undefinedNodeCount] > 0 then
+#      foreach [transientDependencyGraph undefinedNodeKeyList] do
+#        error endOfSourceFile : "the '" . mValue . "' property is not defined" ;
+#      end foreach ;
+#    else
+#      @stringlist unsortedTransientList ;
+#      [transientDependencyGraph topologicalSort
+#        ?sortedTransientOrderedList
+#        ?*
+#        ?unsortedTransientList
+#        ?*
+#      ] ;
+#      if [unsortedTransientList length] > 0 then
+#        @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
+#        foreach unsortedTransientList do
+#          s .= "\n-  " . mValue ;
+#        end foreach ;
+#        error endOfSourceFile : s ;
+#      else # all defined, no circularity
+#      end if ;
+#    end if ;
+#  end if ;
+##----------------------------------------------------- Code generation
+#  const @string sourceDirectoryPath := [inSourceFile stringByDeletingLastPathComponent] ;
+#  generateEnumerations !contextAnalysisStruct->mEnumMap !sourceDirectoryPath ;
+#  generateStructures !contextAnalysisStruct->mStructTypeMap !sourceDirectoryPath ;
+#  generateOutletClassCode !outletClassMap !sourceDirectoryPath ;
+#  generateClassCode !transientDependencyArcList !classMap !sourceDirectoryPath ;
+#  generateEntityCode !transientDependencyArcList !entityListForGeneration !sourceDirectoryPath ;
+#  generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
+#  generateNibClassCode !transientDependencyArcList !nibClassMap !sourceDirectoryPath ;
+#  generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
+#  generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
+#  generateControllerCode !controllerClassMap !sourceDirectoryPath ;
+##------------------------------ Output dependency order definition file
+#  generateTransientDependencyFiles
+#    !transientDependencyArcList
+#    !sourceDirectoryPath
+#    !sortedTransientOrderedList
+#  ;
+##--- Add embedded sources
+#  @stringset generateSet [emptySet] ;
+#  generateSet += !"easy-bindings-utilities" ;
+#  generateSet += !"PMAllocationDebug" ;
+#  if [documentMap count] > 0 then
+#    generateSet += !"PMUndoManager" ;
+#    generateSet += !"PMManagedDocument" ;
+#    generateSet += !"NSData+BZ2compression" ;
+#    generateSet += !"NSData+BZ2compression" ;
+#    generateSet += !"NSData+PMGZcompression" ;
+#    generateSet += !"NSMutableData+PMWrites" ;
+#    generateSet += !"PMDataScanner" ;
+#  end if ;
+#  if [entityListForGeneration length] > 0 then
+#    generateSet += !"load-store-functions" ;
+#    generateSet += !"PMManagedEntity" ;
+#    generateSet += !"PMEntityManager" ;
+#    generateSet += !"PMAttributeDescription" ;
+#    generateSet += !"PMRelationshipDescription" ;
+#    generateSet += !"PMEntityArrayController" ;
+#    generateSet += !"PMEntityController" ;
+#  end if ;
+##---
+#  @filewrapper fw := [filewrapper objective_c_sources] ;
+#  foreach [fw allTextFilePathes] do
+#    const @string sourceName := [mValue lastPathComponent] ;
+#    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] then
+#      [@string generateFile
+#        !sourceDirectoryPath . [mValue stringByDeletingLastPathComponent]
+#        !sourceName
+#        ![fw textFileContentsAtPath !mValue]
+#       ] ;
+#     end if ;
+#  end foreach ;
 }
 
 #----------------------------------------------------------------------------*

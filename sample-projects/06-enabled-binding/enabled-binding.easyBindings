@@ -1,11 +1,11 @@
 entity MyRootEntity {
-  attribute bool docBool default YES ;
+  attribute Bool docBool default YES ;
 }
 
 #--------------------------------------------------------------*
 
 preferences MyPrefs {
-  attribute bool prefBoolean default YES ;
+  attribute Bool prefBoolean default YES ;
   outlet NSButton prefBoolCheckBox $value self.prefBoolean ;
 }
 

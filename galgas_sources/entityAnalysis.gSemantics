@@ -1,252 +1,328 @@
 semantics entityAnalysis :
+  import "bindingSemanticAnalysis.gSemantics" ;
   import "transientAnalysis.gSemantics" ;
-  import "analyzeASTtype.gSemantics" ;
+  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #   ANALYZE ENTITIES                                                         *
 #----------------------------------------------------------------------------*
 
-local routine analyzeEntity
+local routine entityEnterTypes
   ??@entityList.element inEntity
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ?!@entityMap ioEntityMap
-  ??@preferencesMap inPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
 #--------------------------------------------- Get super entity (if any)
-  @observablePropertyMap observablePropertyMap ;
-  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
-  @relationshipList allRelationshipList ;
-  @propertyMap allPropertyMap ;
-  @relationshipMap allRelationshipMap ;
-  if [inEntity->mSuperEntityName string] != "" then
-    [ioEntityMap searchKey
-      !inEntity->mSuperEntityName
-      ?*
-      ?observablePropertyMap
-      ?propertyListForInitMethodHeader
-      ?4*
-      ?allRelationshipList
-      ?allPropertyMap
-      ?*
-      ?allRelationshipMap
-      ?2*
-    ] ;
+  @unifiedTypeProxy superClassProxy ;
+  if inEntity->mSuperEntityName->string == "" then
+    superClassProxy := [@unifiedTypeProxy null] ;
   else
-    observablePropertyMap := [@observablePropertyMap emptyMap] ;
-    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
-    allRelationshipList := [@relationshipList emptyList] ;
-    allPropertyMap := [@propertyMap emptyMap] ;
-    allRelationshipMap := [@relationshipMap emptyMap] ;
-  end if ;
-  @attributeListForImplementation attributeListForImplementation [emptyList] ;
-  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
-#--------------------------------------- Analyze attributes
-  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
-  foreach inEntity->mAttributeList do
-    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-    [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !type]
-      !inContextAnalysisStruct
-      ?@string directDefaultValueAsString
-      ?@string objectiveCDefaultValueAsString
-      !?fileInclusionSet
-    ] ;
-#    [mType addFileInclusion !?fileInclusionSet] ;
-    [!?allPropertyMap insertKey !mAttributeName] ;
-    attributeListForImplementation += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
-    propertyListForInitMethodHeader += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
-    const @lstring observationDependencyKey [new
-      !"entity." . inEntity->mEntityName . "." . mAttributeName
-      !mAttributeName->location
-    ] ;
-    [!?observablePropertyMap insertKey
-      !mAttributeName
-      !type
-      !false # is not transient
-      !observationDependencyKey->string
-    ] ;
-    [!?ioTransientDependencyGraph addNode
-      !observationDependencyKey
-      !observationDependencyKey->string
-    ] ;
-  end foreach ;
-#---------------------------------------- Analyze relationship (only check name is unique)
-  @relationshipMap currentRelationshipMap [emptyMap] ;
-  foreach inEntity->mRelationshipList do
-    [!?allRelationshipMap insertKey
-      !mRelationshipName
-      !mIsToMany
-      !mDestinationEntityName
-      !mInverseRelationshipName
-      !mInverseRelationIsToMany
-      !mDeleteRule
-    ] ;
-    [!?currentRelationshipMap insertKey
-      !mRelationshipName
-      !mIsToMany
-      !mDestinationEntityName
-      !mInverseRelationshipName
-      !mInverseRelationIsToMany
-      !mDeleteRule
-    ] ;
-    [!?allPropertyMap insertKey !mRelationshipName] ;
-    const @lstring observationDependencyKey [new
-      !"entity." . inEntity->mEntityName . "." . mRelationshipName
-      !mRelationshipName->location
-    ] ;
-    @easyBindingType type ;
-    if mIsToMany then 
-      type := [@toManyEntitiesType new !mDestinationEntityName->string] ;
-    else
-      type := [@toOneEntityType new !mDestinationEntityName->string] ;
-    end if ;
-    [!?observablePropertyMap insertKey
-      !mRelationshipName
-      !type
-      !false # is not transient
-      !observationDependencyKey->string
-    ] ;    
-    [!?ioTransientDependencyGraph addNode
-      !observationDependencyKey
-      !observationDependencyKey->string
-    ] ;
-  end foreach ;
-#---------------------------------------- Analyze sign list
-  @signListForGeneration signList [emptyList] ;
-  foreach inEntity->mSignList do
-    [observablePropertyMap searchKey
-      !mValue
-      ?@easyBindingType type
-      ?* # Transient ?
-      ?@string dependancyKey
-    ] ;
-    signList += !mValue->string !type ;
-  end foreach ;
-  if [inEntity->mSignList length] > 0 then
-    const @string key := "entity." . inEntity->mEntityName . ".sign" ;
-    [!?ioTransientDependencyGraph addNode
-      ![@lstring new !key !inEntity->mEntityName->location]
-      !key
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !inEntity->mSuperEntityName
+      ?superClassProxy
     ] ;
   end if ;
-#---------------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
-  analyzeTransientProperties
-    !inPreferencesMap
-    !"entity." . inEntity->mEntityName . "."
-    !inEntity->mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
-    !inContextAnalysisStruct
-    !"" # No Root entity
-    ![@controllerMap emptyMap]
+#---------------------------------- Analyze attributes
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  attributeDeclarationEnterType
+    !inEntity->mAttributeList
+    ![@classArrayList emptyList]
+    !"entity." . inEntity->mEntityName
+    !?ioUnifiedTypeMap
     !?observablePropertyMap
-    !?fileInclusionSet
-    ?transientListForImplementation
-    !?ioTransientDependencyGraph
   ;
-#----------------------------------------- Enter entity in entity map
-  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
-  [!?ioEntityMap insertKey
+#---------------------------------- Analyze transient properties
+  transientDeclarationEnterType
+    !inEntity->mTransientList
+    !"entity." . inEntity->mEntityName
+    !?ioUnifiedTypeMap
+    !?observablePropertyMap
+  ;
+#---------------------------------------- Analyze relationship (only check name is unique)
+  foreach inEntity->mRelationshipList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mDestinationEntityName
+      ?@unifiedTypeProxy type
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mRelationshipName
+      !type
+      !false # Is not Transient
+      !"entity." . inEntity->mEntityName . "." . mRelationshipName
+      !mIsToMany
+    ] ;
+  end foreach ;
+#----------------------------------
+  [!?ioUnifiedTypeMap insertKey
     !inEntity->mEntityName
-    !inEntity->mSuperEntityName->string
-    !observablePropertyMap
-    !propertyListForInitMethodHeader
-    !inheritedAttributeListForImplementation
-    !attributeListForImplementation
-    !transientListForImplementation
-    !inEntity->mRelationshipList
-    !allRelationshipList . inEntity->mRelationshipList
-    !allPropertyMap
-    !currentRelationshipMap
-    !allRelationshipMap
-    !fileInclusionSet
-    !signList
+    ![@entityType new
+      !superClassProxy
+      !observablePropertyMap
+    ]
   ] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzeEntities
+routine entitiesEnterTypes
   ??@entityList inEntityList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@entityMap outEntityMap
-  !@entityListForGeneration outEntityListForGeneration
-  ??@preferencesMap inPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
 #------------------------------- Analyze entities
-  outEntityMap := [@entityMap emptyMap] ;
   for entity in inEntityList do
-    analyzeEntity
+    entityEnterTypes
       !entity
-      !inContextAnalysisStruct
-      !?outEntityMap
-      !inPreferencesMap
-      !?ioTransientDependencyGraph
+      !?ioUnifiedTypeMap
     ;
   end for ;
-#------------------------------- Check relationships
-  foreach outEntityMap do
-    foreach mCurrentRelationshipMap do
-      [outEntityMap searchKey
-        !mDestinationEntityName
-        ?10*
-        ?@relationshipMap destinationEntityRelationshipMap
-        ?2*
-      ] ;
-      [destinationEntityRelationshipMap searchKey
-        !mInverseRelationshipName
-        ?2*
-        ?@lstring inverseOfInverseRelationshipName
-        ?@bool inverseIsToMany
-        ?*
-      ] ;
-      if lkey->string != inverseOfInverseRelationshipName->string then
-        error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
-      end if ;
-      if mIsToMany != inverseIsToMany then
-        error mInverseRelationshipName : "the inverse relationship is " . if inverseIsToMany then "to many" else "to one" end ;
-      end if ;
-    end foreach ;
-  end foreach ;
-#------------------------------- Generation List
-  outEntityListForGeneration := [@entityListForGeneration emptyList] ;
-  foreach outEntityMap do
-    @2stringlist toManyRelationshipList [emptyList] ;
-    @2stringlist toOneRelationshipList [emptyList] ;
-    @fileInclusionSet fileInclusionSet := mFileInclusionSet ;
-    foreach mCurrentRelationshipMap do
-      if mIsToMany then
-        toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
-        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
-        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
-      else
-        toOneRelationshipList += !lkey->string !mDestinationEntityName->string ;
-        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
-        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
-      end if ;
-    end foreach ;
-    outEntityListForGeneration +=
-      !lkey->string
-      !mSuperEntityName
-      !mObservablePropertyMap
-      !mAttributeListForInitMethodHeader
-      !mInheritedAttributeListForImplementation
-      !mAttributeListForImplementation
-      !mTransientListForImplementation
-      !mCurrentRelationshipList
-      !mAllRelationshipList
-      !mAllPropertyMap
-      !mCurrentRelationshipMap
-      !mAllRelationshipMap
-      !toManyRelationshipList
-      !fileInclusionSet
-      !toOneRelationshipList
-      !mSignList
-    ;
-  end foreach ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+#   ANALYZE ENTITIES                                                         *
+#----------------------------------------------------------------------------*
+
+#local routine analyzeEntity
+#  ??@entityList.element inEntity
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@entityMap ioEntityMap
+#  ??@preferencesMap inPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+##--------------------------------------------- Get super entity (if any)
+#  @observablePropertyMap observablePropertyMap ;
+#  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+#  @relationshipList allRelationshipList ;
+#  @propertyMap allPropertyMap ;
+#  @relationshipMap allRelationshipMap ;
+#  if [inEntity->mSuperEntityName string] != "" then
+#    [ioEntityMap searchKey
+#      !inEntity->mSuperEntityName
+#      ?*
+#      ?observablePropertyMap
+#      ?propertyListForInitMethodHeader
+#      ?4*
+#      ?allRelationshipList
+#      ?allPropertyMap
+#      ?*
+#      ?allRelationshipMap
+#      ?2*
+#    ] ;
+#  else
+#    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+#    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+#    allRelationshipList := [@relationshipList emptyList] ;
+#    allPropertyMap := [@propertyMap emptyMap] ;
+#    allRelationshipMap := [@relationshipMap emptyMap] ;
+#  end if ;
+#  @attributeListForImplementation attributeListForImplementation [emptyList] ;
+#  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+##--------------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
+#  foreach inEntity->mAttributeList do
+#    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+#    [mDefaultValue analyzeDefaultValueType
+#      ![@easyBindingTypeList listWithValue !type]
+#      !inContextAnalysisStruct
+#      ?@string directDefaultValueAsString
+#      ?@string objectiveCDefaultValueAsString
+#      !?fileInclusionSet
+#    ] ;
+##    [mType addFileInclusion !?fileInclusionSet] ;
+#    [!?allPropertyMap insertKey !mAttributeName] ;
+#    attributeListForImplementation += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+#    propertyListForInitMethodHeader += !type ![mAttributeName string] !objectiveCDefaultValueAsString !directDefaultValueAsString ;
+#    const @lstring observationDependencyKey [new
+#      !"entity." . inEntity->mEntityName . "." . mAttributeName
+#      !mAttributeName->location
+#    ] ;
+#    [!?observablePropertyMap insertKey
+#      !mAttributeName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey->string
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##---------------------------------------- Analyze relationship (only check name is unique)
+#  @relationshipMap currentRelationshipMap [emptyMap] ;
+#  foreach inEntity->mRelationshipList do
+#    [!?allRelationshipMap insertKey
+#      !mRelationshipName
+#      !mIsToMany
+#      !mDestinationEntityName
+#      !mInverseRelationshipName
+#      !mInverseRelationIsToMany
+#      !mDeleteRule
+#    ] ;
+#    [!?currentRelationshipMap insertKey
+#      !mRelationshipName
+#      !mIsToMany
+#      !mDestinationEntityName
+#      !mInverseRelationshipName
+#      !mInverseRelationIsToMany
+#      !mDeleteRule
+#    ] ;
+#    [!?allPropertyMap insertKey !mRelationshipName] ;
+#    const @lstring observationDependencyKey [new
+#      !"entity." . inEntity->mEntityName . "." . mRelationshipName
+#      !mRelationshipName->location
+#    ] ;
+#    @easyBindingType type ;
+#    if mIsToMany then 
+#      type := [@toManyEntitiesType new !mDestinationEntityName->string] ;
+#    else
+#      type := [@toOneEntityType new !mDestinationEntityName->string] ;
+#    end if ;
+#    [!?observablePropertyMap insertKey
+#      !mRelationshipName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey->string
+#    ] ;    
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##---------------------------------------- Analyze sign list
+#  @signListForGeneration signList [emptyList] ;
+#  foreach inEntity->mSignList do
+#    [observablePropertyMap searchKey
+#      !mValue
+#      ?@easyBindingType type
+#      ?* # Transient ?
+#      ?@string dependancyKey
+#    ] ;
+#    signList += !mValue->string !type ;
+#  end foreach ;
+#  if [inEntity->mSignList length] > 0 then
+#    const @string key := "entity." . inEntity->mEntityName . ".sign" ;
+#    [!?ioTransientDependencyGraph addNode
+#      ![@lstring new !key !inEntity->mEntityName->location]
+#      !key
+#    ] ;
+#  end if ;
+##---------------------------------------- Analyze transient properties
+#  @transientListForImplementation transientListForImplementation ;
+#  analyzeTransientProperties
+#    !inPreferencesMap
+#    !"entity." . inEntity->mEntityName . "."
+#    !inEntity->mTransientList
+#    ![@observablePropertyMap emptyMap] # Root property map
+#    !inContextAnalysisStruct
+#    !"" # No Root entity
+#    ![@controllerMap emptyMap]
+#    !?observablePropertyMap
+#    !?fileInclusionSet
+#    ?transientListForImplementation
+#    !?ioTransientDependencyGraph
+#  ;
+##----------------------------------------- Enter entity in entity map
+#  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
+#  [!?ioEntityMap insertKey
+#    !inEntity->mEntityName
+#    !inEntity->mSuperEntityName->string
+#    !observablePropertyMap
+#    !propertyListForInitMethodHeader
+#    !inheritedAttributeListForImplementation
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !inEntity->mRelationshipList
+#    !allRelationshipList . inEntity->mRelationshipList
+#    !allPropertyMap
+#    !currentRelationshipMap
+#    !allRelationshipMap
+#    !fileInclusionSet
+#    !signList
+#  ] ;
+#end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzeEntities
+#  ??@entityList inEntityList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@entityMap outEntityMap
+#  !@entityListForGeneration outEntityListForGeneration
+#  ??@preferencesMap inPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------- Analyze entities
+#  outEntityMap := [@entityMap emptyMap] ;
+#  for entity in inEntityList do
+#    analyzeEntity
+#      !entity
+#      !inContextAnalysisStruct
+#      !?outEntityMap
+#      !inPreferencesMap
+#      !?ioTransientDependencyGraph
+#    ;
+#  end for ;
+##------------------------------- Check relationships
+#  foreach outEntityMap do
+#    foreach mCurrentRelationshipMap do
+#      [outEntityMap searchKey
+#        !mDestinationEntityName
+#        ?10*
+#        ?@relationshipMap destinationEntityRelationshipMap
+#        ?2*
+#      ] ;
+#      [destinationEntityRelationshipMap searchKey
+#        !mInverseRelationshipName
+#        ?2*
+#        ?@lstring inverseOfInverseRelationshipName
+#        ?@bool inverseIsToMany
+#        ?*
+#      ] ;
+#      if lkey->string != inverseOfInverseRelationshipName->string then
+#        error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
+#      end if ;
+#      if mIsToMany != inverseIsToMany then
+#        error mInverseRelationshipName : "the inverse relationship is " . if inverseIsToMany then "to many" else "to one" end ;
+#      end if ;
+#    end foreach ;
+#  end foreach ;
+##------------------------------- Generation List
+#  outEntityListForGeneration := [@entityListForGeneration emptyList] ;
+#  foreach outEntityMap do
+#    @2stringlist toManyRelationshipList [emptyList] ;
+#    @2stringlist toOneRelationshipList [emptyList] ;
+#    @fileInclusionSet fileInclusionSet := mFileInclusionSet ;
+#    foreach mCurrentRelationshipMap do
+#      if mIsToMany then
+#        toManyRelationshipList += !lkey->string !mDestinationEntityName->string ;
+#        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
+#        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
+#      else
+#        toOneRelationshipList += !lkey->string !mDestinationEntityName->string ;
+#        fileInclusionSet->mHeaderPredeclarationSet += !mDestinationEntityName->string ;
+#        fileInclusionSet->mImplementationFileInclusionSet += !mDestinationEntityName->string ;
+#      end if ;
+#    end foreach ;
+#    outEntityListForGeneration +=
+#      !lkey->string
+#      !mSuperEntityName
+#      !mObservablePropertyMap
+#      !mAttributeListForInitMethodHeader
+#      !mInheritedAttributeListForImplementation
+#      !mAttributeListForImplementation
+#      !mTransientListForImplementation
+#      !mCurrentRelationshipList
+#      !mAllRelationshipList
+#      !mAllPropertyMap
+#      !mCurrentRelationshipMap
+#      !mAllRelationshipMap
+#      !toManyRelationshipList
+#      !fileInclusionSet
+#      !toOneRelationshipList
+#      !mSignList
+#    ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

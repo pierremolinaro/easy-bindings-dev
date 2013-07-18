@@ -7,7 +7,7 @@ entity MyRootEntity {
 entity NameEntity {
   toOne MyRootEntity mRoot inverse toMany mNames nullify ;
   attribute NSString name default "Name" ;
-  attribute integer aValue default 123 ;
+  attribute Integer aValue default 123 ;
 }
 
 #--------------------------------------------------------------*

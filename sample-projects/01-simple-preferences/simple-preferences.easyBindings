@@ -10,7 +10,7 @@ preferences PMPrefs {
   attribute NSDate mDate default date ;
   outlet NSDatePicker mDatePicker $value self.mDate ;
 #--- Number
-  attribute integer mIntegerValue default 123 ;
+  attribute Integer mIntegerValue default 123 ;
   outlet NSTextField mInteger32TextField $value self.mIntegerValue ;
 
   

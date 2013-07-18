@@ -5,232 +5,297 @@ semantics nibClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine analyzeNibClass
+local routine nibClassEnterType
   ??@nibClassDeclarationList.element inNibClass
-  ??@controllerClassMap inControllerClassMap
-  ??@classMap inClassMap
-  ??@outletClassMap inOutletClassMap
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ?!@nibClassMap ioNibClassMap
-  ??@preferencesMap inPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
 #------------------------------------- Analyze actions
   @actionMap actionMap [emptyMap] ;
   for actionName in inNibClass->mActionDeclarationList do
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
-#------------------------------------- Analyze attributes
-  @fileInclusionSet fileInclusionSet [default] ;
-  @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
-  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
-  analyzeAttributeDeclaration
-    !inNibClass->mAttributeList
-    !inContextAnalysisStruct
-    !"nibclass." . inNibClass->mClassName
-    !?ioTransientDependencyGraph
-    !?fileInclusionSet
-    !?selfObservableAttributeMap
-    ?@attributeListForImplementation attributeListForImplementation
-    !?attributeListForInitHeader # Unused
-  ;
-#------------------------------------- Analyze arraies
-  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
-  foreach inNibClass->mClassArrayList do
-    [inClassMap searchKey
-      !mClassName
-      ?*
-      ?@observablePropertyMap classObservablePropertyMap
-      ?2*
-      ?@attributeListForImplementation attributeListForImplementation
-      ?4*
-    ] ;
-    [!?preferenceArrayMap insertKey
-      !mArrayName
-      !mClassName->string
-      !classObservablePropertyMap
-      !attributeListForImplementation
-    ] ;
-  end foreach ;
-#-------------------------------------------------- Analyze controllers
+#---------------------------------- Analyze attributes and arraies
   @observablePropertyMap observablePropertyMap [emptyMap] ;
-  @controllerMap controllerMap [emptyMap] ;
-  foreach inNibClass->mControllerList do
-    [inControllerClassMap searchKey
-      !mControllerClassName
-      ?@controllerKind controllerKind
-      ?*
-      ?@EXoutletClassBindingMap controllerClassBindingMap
-      ?@actionMap controllerActionMap
-      ?@observablePropertyMap controllerObservablePropertyMap
-      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
-    ] ;
-  #---
-    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
-    @string controllerObjectClassName ;
-    switch controllerKind
-    when simpleController :
-      controllerObjectClassName := "" ;
-    when objectController :
-      error mControlledObjectName
-      :"objectController is not currently handled in nib class"
-      :controllerObjectClassName;
-    when entityController :
-      error mControlledObjectName
-      :"entityController is not currently handled in nib class"
-      :controllerObjectClassName;
-    when entityArrayController :
-      error mControlledObjectName
-      :"in nib class, use an arrayController, as NSArrayController"
-      :controllerObjectClassName;
-    when arrayController :
-      if mIsRootObject->bool then
-        error mIsRootObject
-        : "only 'self' is allowed here"
-        ;
-      end if ;
-      [preferenceArrayMap searchKey
-        !mControlledObjectName
-        ?controllerObjectClassName
-        ?@observablePropertyMap classObservablePropertyMap
-        ?@attributeListForImplementation attributeListForImplementation
-      ] ;
-      checkBindingOptions
-        !inContextAnalysisStruct
-        !mControlledObjectBindingOptionList
-        !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
-        !?fileInclusionSet
-      ;
-      bindingListForGeneration += ![@regularBindingForGeneration new
-        !"contentArray"
-        ![@formatterEnum noFormatter]
-        !"self"
-        !mControlledObjectName->string
-        !controlledObjectBindingOptionListForGeneration
-      ] ;
-    end switch ;
-    foreach mControllerBindingList do
-      [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap] # No root entity obsevable Map
-        !selfObservableAttributeMap
-        !inPreferencesMap
-        ![@entityMap emptyMap]
-        !inClassMap
-        !controllerClassBindingMap
-        !controllerMap
-        !actionMap
-        !false
-        !inContextAnalysisStruct
-        !?bindingListForGeneration
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    [!?controllerMap insertKey
-      !mControllerName
-      !mControllerClassName->string
-      ![@lstring new !controllerObjectClassName !here]
-      !false # Is not an entity : it is a class
-      !bindingListForGeneration
-      !controllerActionMap
-      !controllerObservablePropertyMap
-    ] ;
-  end foreach ;
-#------------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
-  analyzeTransientProperties
-    ![@preferencesMap emptyMap]
-    !"nibclass." . inNibClass->mClassName . "."
-    !inNibClass->mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
-    !inContextAnalysisStruct
-    !"" # No Root entity
-    ![@controllerMap emptyMap]
-    !?selfObservableAttributeMap
-    !?fileInclusionSet
-    ?transientListForImplementation
-    !?ioTransientDependencyGraph
+  attributeDeclarationEnterType
+    !inNibClass->mAttributeList
+    !inNibClass->mClassArrayList
+    !"nibclass." . inNibClass->mClassName
+    !?ioUnifiedTypeMap
+    !?observablePropertyMap
   ;
-#------------------------------------- Analyze outlets
-  @outletGenerationList outletGenerationList [emptyList] ;
-  foreach inNibClass->mOutletDeclarationList do
-    [inOutletClassMap searchKey
-      !mOutletType
-      ?@generationKind generationKind
-      ?2*
-      ?@bool implementsDeallocProtocol
-      ?@EXoutletClassBindingMap bindingMap
-      ?*
-      ?@bool hasTableValueBinding
+#-------------------------------------------------- Analyze controllers
+  foreach inNibClass->mControllerList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mControllerClassName
+      ?@unifiedTypeProxy type
     ] ;
-    if generationKind != [@generationKind noGeneration] then
-      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
-    end if ;
-    @outletBindingListForGeneration outletBindingList [emptyList] ;
-    foreach mOutletBindingList do
-      [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap]
-        !selfObservableAttributeMap
-        ![@preferencesMap emptyMap]
-        ![@entityMap emptyMap]
-        !inClassMap
-        !bindingMap
-        !controllerMap
-        !actionMap
-        !hasTableValueBinding
-        !inContextAnalysisStruct
-        !?outletBindingList
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    outletGenerationList +=
-      ![mOutletType string]
-      ![mOutletName string]
-      !outletBindingList
-      !implementsDeallocProtocol
-    ;
+    [!?observablePropertyMap insertKey
+      !mControllerName
+      !type
+      !false # is not transient
+      !"nibclass." . inNibClass->mClassName . "." . mControllerName
+      !false # Is not a collection
+    ] ;
   end foreach ;
-#------------------------------------- Enter in preference map
-  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
-  [!?ioNibClassMap insertKey
+#---------------------------------- Analyze transient properties
+  transientDeclarationEnterType
+    !inNibClass->mTransientList
+    !"nibclass." . inNibClass->mClassName
+    !?ioUnifiedTypeMap
+    !?observablePropertyMap
+  ;
+#----------------------------------
+  [!?ioUnifiedTypeMap insertKey
     !inNibClass->mClassName
-    !attributeListForImplementation
-    !transientListForImplementation
-    !outletGenerationList
-    !inNibClass->mActionDeclarationList
-    !selfObservableAttributeMap
-    !fileInclusionSet
-    !controllerMap
-    !preferenceArrayMap
+    ![@nibClassType new
+      !observablePropertyMap
+    ]
   ] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzeNibClasses
+routine nibClassesEnterTypes
   ??@nibClassDeclarationList inNibClassList
-  ??@controllerClassMap inControllerClassMap
-  ??@classMap inClassMap
-  ??@outletClassMap inOutletClassMap
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@nibClassMap outNibClassMap
-  ??@preferencesMap inPreferencesMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
-  outNibClassMap := [@nibClassMap emptyMap] ;
   for nibClass in inNibClassList do
-    analyzeNibClass
+    nibClassEnterType
       !nibClass
-      !inControllerClassMap
-      !inClassMap
-      !inOutletClassMap
-      !inContextAnalysisStruct
-      !?outNibClassMap
-      !inPreferencesMap
-      !?ioTransientDependencyGraph
+      !?ioUnifiedTypeMap
     ;
   end for ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+#local routine analyzeNibClass
+#  ??@nibClassDeclarationList.element inNibClass
+#  ??@controllerClassMap inControllerClassMap
+#  ??@classMap inClassMap
+#  ??@outletClassMap inOutletClassMap
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@nibClassMap ioNibClassMap
+#  ??@preferencesMap inPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------------- Analyze actions
+#  @actionMap actionMap [emptyMap] ;
+#  for actionName in inNibClass->mActionDeclarationList do
+#    [!?actionMap insertKey !actionName->mValue] ;
+#  end for ;
+##------------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [default] ;
+#  @observablePropertyMap selfObservableAttributeMap [emptyMap] ;
+#  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+#  analyzeAttributeDeclaration
+#    !inNibClass->mAttributeList
+#    !inContextAnalysisStruct
+#    !"nibclass." . inNibClass->mClassName
+#    !?ioTransientDependencyGraph
+#    !?fileInclusionSet
+#    !?selfObservableAttributeMap
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?attributeListForInitHeader # Unused
+#  ;
+##------------------------------------- Analyze arraies
+#  @preferenceArrayMap preferenceArrayMap [emptyMap] ;
+#  foreach inNibClass->mClassArrayList do
+#    [inClassMap searchKey
+#      !mClassName
+#      ?*
+#      ?@observablePropertyMap classObservablePropertyMap
+#      ?2*
+#      ?@attributeListForImplementation attributeListForImplementation
+#      ?4*
+#    ] ;
+#    [!?preferenceArrayMap insertKey
+#      !mArrayName
+#      !mClassName->string
+#      !classObservablePropertyMap
+#      !attributeListForImplementation
+#    ] ;
+#  end foreach ;
+##-------------------------------------------------- Analyze controllers
+#  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#  @controllerMap controllerMap [emptyMap] ;
+#  foreach inNibClass->mControllerList do
+#    [inControllerClassMap searchKey
+#      !mControllerClassName
+#      ?@controllerKind controllerKind
+#      ?*
+#      ?@EXoutletClassBindingMap controllerClassBindingMap
+#      ?@actionMap controllerActionMap
+#      ?@observablePropertyMap controllerObservablePropertyMap
+#      ?@EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+#    ] ;
+#  #---
+#    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+#    @string controllerObjectClassName ;
+#    switch controllerKind
+#    when simpleController :
+#      controllerObjectClassName := "" ;
+#    when objectController :
+#      error mControlledObjectName
+#      :"objectController is not currently handled in nib class"
+#      :controllerObjectClassName;
+#    when entityController :
+#      error mControlledObjectName
+#      :"entityController is not currently handled in nib class"
+#      :controllerObjectClassName;
+#    when entityArrayController :
+#      error mControlledObjectName
+#      :"in nib class, use an arrayController, as NSArrayController"
+#      :controllerObjectClassName;
+#    when arrayController :
+#      if mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'self' is allowed here"
+#        ;
+#      end if ;
+#      [preferenceArrayMap searchKey
+#        !mControlledObjectName
+#        ?controllerObjectClassName
+#        ?@observablePropertyMap classObservablePropertyMap
+#        ?@attributeListForImplementation attributeListForImplementation
+#      ] ;
+#      checkBindingOptions
+#        !inContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@2stringlist controlledObjectBindingOptionListForGeneration
+#        !?fileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self"
+#        !mControlledObjectName->string
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    end switch ;
+#    foreach mControllerBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@observablePropertyMap emptyMap] # No root entity obsevable Map
+#        !selfObservableAttributeMap
+#        !inPreferencesMap
+#        ![@entityMap emptyMap]
+#        !inClassMap
+#        !controllerClassBindingMap
+#        !controllerMap
+#        !actionMap
+#        !false
+#        !inContextAnalysisStruct
+#        !?bindingListForGeneration
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    [!?controllerMap insertKey
+#      !mControllerName
+#      !mControllerClassName->string
+#      ![@lstring new !controllerObjectClassName !here]
+#      !false # Is not an entity : it is a class
+#      !bindingListForGeneration
+#      !controllerActionMap
+#      !controllerObservablePropertyMap
+#    ] ;
+#  end foreach ;
+##------------------------------------- Analyze transient properties
+#  @transientListForImplementation transientListForImplementation ;
+#  analyzeTransientProperties
+#    ![@preferencesMap emptyMap]
+#    !"nibclass." . inNibClass->mClassName . "."
+#    !inNibClass->mTransientList
+#    ![@observablePropertyMap emptyMap] # Root property map
+#    !inContextAnalysisStruct
+#    !"" # No Root entity
+#    ![@controllerMap emptyMap]
+#    !?selfObservableAttributeMap
+#    !?fileInclusionSet
+#    ?transientListForImplementation
+#    !?ioTransientDependencyGraph
+#  ;
+##------------------------------------- Analyze outlets
+#  @outletGenerationList outletGenerationList [emptyList] ;
+#  foreach inNibClass->mOutletDeclarationList do
+#    [inOutletClassMap searchKey
+#      !mOutletType
+#      ?@generationKind generationKind
+#      ?2*
+#      ?@bool implementsDeallocProtocol
+#      ?@EXoutletClassBindingMap bindingMap
+#      ?*
+#      ?@bool hasTableValueBinding
+#    ] ;
+#    if generationKind != [@generationKind noGeneration] then
+#      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
+#    end if ;
+#    @outletBindingListForGeneration outletBindingList [emptyList] ;
+#    foreach mOutletBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@observablePropertyMap emptyMap]
+#        !selfObservableAttributeMap
+#        ![@preferencesMap emptyMap]
+#        ![@entityMap emptyMap]
+#        !inClassMap
+#        !bindingMap
+#        !controllerMap
+#        !actionMap
+#        !hasTableValueBinding
+#        !inContextAnalysisStruct
+#        !?outletBindingList
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    outletGenerationList +=
+#      ![mOutletType string]
+#      ![mOutletName string]
+#      !outletBindingList
+#      !implementsDeallocProtocol
+#    ;
+#  end foreach ;
+##------------------------------------- Enter in preference map
+#  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
+#  [!?ioNibClassMap insertKey
+#    !inNibClass->mClassName
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !outletGenerationList
+#    !inNibClass->mActionDeclarationList
+#    !selfObservableAttributeMap
+#    !fileInclusionSet
+#    !controllerMap
+#    !preferenceArrayMap
+#  ] ;
+#end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzeNibClasses
+#  ??@nibClassDeclarationList inNibClassList
+#  ??@controllerClassMap inControllerClassMap
+#  ??@classMap inClassMap
+#  ??@outletClassMap inOutletClassMap
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@nibClassMap outNibClassMap
+#  ??@preferencesMap inPreferencesMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+#  outNibClassMap := [@nibClassMap emptyMap] ;
+#  for nibClass in inNibClassList do
+#    analyzeNibClass
+#      !nibClass
+#      !inControllerClassMap
+#      !inClassMap
+#      !inOutletClassMap
+#      !inContextAnalysisStruct
+#      !?outNibClassMap
+#      !inPreferencesMap
+#      !?ioTransientDependencyGraph
+#    ;
+#  end for ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

@@ -1,174 +1,174 @@
 predefined objectController NSObjectController {
-  NSDeletesObjectsOnRemove : bool ;
-  NSValidatesImmediately : bool ;
-  NSConditionallySetsEditable : bool ;
-  NSAlwaysPresentsApplicationModalAlerts : bool ;
-  NSHandlesContentAsCompoundValue : bool ;
-  NSRaisesForNotApplicableKeys : bool ;
+  NSDeletesObjectsOnRemove : Bool ;
+  NSValidatesImmediately : Bool ;
+  NSConditionallySetsEditable : Bool ;
+  NSAlwaysPresentsApplicationModalAlerts : Bool ;
+  NSHandlesContentAsCompoundValue : Bool ;
+  NSRaisesForNotApplicableKeys : Bool ;
 }{
   action add ;
   action remove ;
-  attribute bool canAdd ;
-  attribute bool canRemove ;
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  attribute Bool canAdd ;
+  attribute Bool canRemove ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $contentObject : toOne {
-#    NSDeletesObjectsOnRemove : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSHandlesContentAsCompoundValue : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSDeletesObjectsOnRemove : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSHandlesContentAsCompoundValue : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $managedObjectContext binding
 }
 
 predefined entityController PMEntityController {
-  NSDeletesObjectsOnRemove : bool ;
-  NSValidatesImmediately : bool ;
-  NSConditionallySetsEditable : bool ;
-  NSAlwaysPresentsApplicationModalAlerts : bool ;
-  NSHandlesContentAsCompoundValue : bool ;
-  NSRaisesForNotApplicableKeys : bool ;
+  NSDeletesObjectsOnRemove : Bool ;
+  NSValidatesImmediately : Bool ;
+  NSConditionallySetsEditable : Bool ;
+  NSAlwaysPresentsApplicationModalAlerts : Bool ;
+  NSHandlesContentAsCompoundValue : Bool ;
+  NSRaisesForNotApplicableKeys : Bool ;
 }{
   action add ;
   action remove ;
-  attribute bool canAdd ;
-  attribute bool canRemove ;
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  attribute Bool canAdd ;
+  attribute Bool canRemove ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $contentObject : toOne {
-#    NSDeletesObjectsOnRemove : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSHandlesContentAsCompoundValue : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSDeletesObjectsOnRemove : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSHandlesContentAsCompoundValue : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $managedObjectContext binding
 }
 
 predefined arrayController NSArrayController {
-  NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-  NSConditionallySetsEditableBindingOption : bool ;
-  NSDeletesObjectsOnRemoveBindingsOption : bool ;
-  NSHandlesContentAsCompoundValueBindingOption : bool ;
-  NSRaisesForNotApplicableKeysBindingOption : bool ;
-  NSSelectsAllWhenSettingContentBindingOption : bool ;
-  NSValidatesImmediatelyBindingOption : bool ;
+  NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+  NSConditionallySetsEditableBindingOption : Bool ;
+  NSDeletesObjectsOnRemoveBindingsOption : Bool ;
+  NSHandlesContentAsCompoundValueBindingOption : Bool ;
+  NSRaisesForNotApplicableKeysBindingOption : Bool ;
+  NSSelectsAllWhenSettingContentBindingOption : Bool ;
+  NSValidatesImmediatelyBindingOption : Bool ;
 }{
   action add ;
   action remove ;
-  attribute bool canAdd ;
-  attribute bool canRemove ;
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  attribute Bool canAdd ;
+  attribute Bool canRemove ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $contentSet : toMany {
-#    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-#    NSConditionallySetsEditableBindingOption : bool ;
-#    NSDeletesObjectsOnRemoveBindingsOption : bool ;
-#    NSHandlesContentAsCompoundValueBindingOption : bool ;
-#    NSRaisesForNotApplicableKeysBindingOption : bool ;
-#    NSSelectsAllWhenSettingContentBindingOption : bool ;
-#    NSValidatesImmediatelyBindingOption : bool ;
+#    NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+#    NSConditionallySetsEditableBindingOption : Bool ;
+#    NSDeletesObjectsOnRemoveBindingsOption : Bool ;
+#    NSHandlesContentAsCompoundValueBindingOption : Bool ;
+#    NSRaisesForNotApplicableKeysBindingOption : Bool ;
+#    NSSelectsAllWhenSettingContentBindingOption : Bool ;
+#    NSValidatesImmediatelyBindingOption : Bool ;
 #  }
 #  $contentArray : array {
-#    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-#    NSConditionallySetsEditableBindingOption : bool ;
-#    NSDeletesObjectsOnRemoveBindingsOption : bool ;
-#    NSHandlesContentAsCompoundValueBindingOption : bool ;
-#    NSRaisesForNotApplicableKeysBindingOption : bool ;
-#    NSSelectsAllWhenSettingContentBindingOption : bool ;
-#    NSValidatesImmediatelyBindingOption : bool ;
+#    NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+#    NSConditionallySetsEditableBindingOption : Bool ;
+#    NSDeletesObjectsOnRemoveBindingsOption : Bool ;
+#    NSHandlesContentAsCompoundValueBindingOption : Bool ;
+#    NSRaisesForNotApplicableKeysBindingOption : Bool ;
+#    NSSelectsAllWhenSettingContentBindingOption : Bool ;
+#    NSValidatesImmediatelyBindingOption : Bool ;
 #  }
   # Warning: skipped $contentArray binding
 #  $selectionIndexes : NSIndexSet {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
 #  $contentArrayForMultipleSelection : NSObject {
-#    NSConditionallySetsEditable : bool ;
-#    NSSelectsAllWhenSettingContent : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSSelectsAllWhenSettingContent : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $contentSet binding
   # Warning: skipped $managedObjectContext binding
 #  $sortDescriptors : NSArray {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
 #  $contentObject : NSObject {
-#    NSDeletesObjectsOnRemove : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSSelectsAllWhenSettingContent : bool ;
-#    NSHandlesContentAsCompoundValue : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSDeletesObjectsOnRemove : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSSelectsAllWhenSettingContent : Bool ;
+#    NSHandlesContentAsCompoundValue : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $filterPredicate binding
 }
 
 predefined entityArrayController PMEntityArrayController {
-  NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-  NSConditionallySetsEditableBindingOption : bool ;
-  NSDeletesObjectsOnRemoveBindingsOption : bool ;
-  NSHandlesContentAsCompoundValueBindingOption : bool ;
-  NSRaisesForNotApplicableKeysBindingOption : bool ;
-  NSSelectsAllWhenSettingContentBindingOption : bool ;
-  NSValidatesImmediatelyBindingOption : bool ;
+  NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+  NSConditionallySetsEditableBindingOption : Bool ;
+  NSDeletesObjectsOnRemoveBindingsOption : Bool ;
+  NSHandlesContentAsCompoundValueBindingOption : Bool ;
+  NSRaisesForNotApplicableKeysBindingOption : Bool ;
+  NSSelectsAllWhenSettingContentBindingOption : Bool ;
+  NSValidatesImmediatelyBindingOption : Bool ;
 }{
   action add ;
   action remove ;
-  attribute bool canAdd ;
-  attribute bool canRemove ;
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  attribute Bool canAdd ;
+  attribute Bool canRemove ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSBox {
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $transparent : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $transparent : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $title : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternTitle1 binding
   $toolTip : NSString {
@@ -176,7 +176,7 @@ predefined outletClass NSBox {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -186,21 +186,21 @@ predefined outletClass NSBrowser {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $value binding
   $fontFamilyName : NSString {
@@ -208,40 +208,40 @@ predefined outletClass NSBrowser {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $contentValues : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $selectionIndexPaths binding
   $toolTip : NSString {
@@ -249,29 +249,29 @@ predefined outletClass NSBrowser {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $content binding
 }
 
 predefined outletClass NSButton {
   $alternateImage : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $argument : NSObject {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
 #    NSSelectorName : NSString ;
-#    NSAllowsNullArgument : bool ;
-#    NSInvokesSeparatelyWithArrayObjects : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAllowsNullArgument : Bool ;
+#    NSInvokesSeparatelyWithArrayObjects : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $fontBold binding
   # Warning: skipped $fontItalic binding
@@ -280,35 +280,35 @@ predefined outletClass NSButton {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $alternateTitle : NSString {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $image : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $fontFamilyName binding
 #  $target : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSConditionallySetsEnabled : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSConditionallySetsHidden : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $fontSize binding
   # Warning: skipped $fontName binding
@@ -317,44 +317,44 @@ predefined outletClass NSButton {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : int, bool {
-    NSAllowsEditingMultipleValuesSelectionBindingOption : bool ;
-    NSAlwaysPresentsApplicationModalAlertsBindingOption : bool ;
-    NSConditionallySetsEnabledBindingOption : bool ;
-    NSConditionallySetsHiddenBindingOption : bool ;
-    NSRaisesForNotApplicableKeysBindingOption : bool ;
-    NSValidatesImmediatelyBindingOption : bool ;
+  $value : AnyScalar, Bool {
+    NSAllowsEditingMultipleValuesSelectionBindingOption : Bool ;
+    NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+    NSConditionallySetsEnabledBindingOption : Bool ;
+    NSConditionallySetsHiddenBindingOption : Bool ;
+    NSRaisesForNotApplicableKeysBindingOption : Bool ;
+    NSValidatesImmediatelyBindingOption : Bool ;
   }
 }
 
 predefined outletClass NSButtonCell {
   $alternateImage : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $argument : NSObject {
-#    NSConditionallySetsEnabled : bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAllowsNullArgument : bool ;
-#    NSInvokesSeparatelyWithArrayObjects : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAllowsNullArgument : Bool ;
+#    NSInvokesSeparatelyWithArrayObjects : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $fontBold binding
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $fontItalic binding
   $title : NSString {
@@ -362,28 +362,28 @@ predefined outletClass NSButtonCell {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $alternateTitle : NSString {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $image : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $fontFamilyName binding
 #  $target : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSConditionallySetsEnabled : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $fontSize binding
   # Warning: skipped $fontName binding
@@ -397,46 +397,46 @@ predefined outletClass NSCollectionView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSColorWell {
   $value : NSColor {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -446,85 +446,85 @@ predefined outletClass NSComboBox {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $value binding
-  $alignment : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $alignment : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentValues binding
   # Warning: skipped $content binding
@@ -536,92 +536,92 @@ predefined outletClass NSDatePicker {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $maxValue : NSDate {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSDate {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $minValue : NSDate {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -631,97 +631,97 @@ predefined outletClass NSDatePickerCell {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $maxValue : NSDate {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $minValue : NSDate {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSDate {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSDrawer {
-  $visible : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSNullPlaceholder : bool ;
-    NSValidatesImmediately : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $visible : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -731,421 +731,421 @@ predefined outletClass NSForm {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSFormCell {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSImageCell {
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSImage {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $valuePath : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $data binding
   $valueURL : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSImageView {
   $valuePath : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $data binding
   $value : NSImage {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $valueURL : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSLevelIndicator {
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $criticalValue : number {
-    NSRaisesForNotApplicableKeys : bool ;
+  $criticalValue : AnyNumber {
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $warningValue : number {
-    NSRaisesForNotApplicableKeys : bool ;
+  $warningValue : AnyNumber {
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSLevelIndicatorCell {
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $criticalValue : number {
-    NSRaisesForNotApplicableKeys : bool ;
+  $criticalValue : AnyNumber {
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $warningValue : number {
-    NSRaisesForNotApplicableKeys : bool ;
+  $warningValue : AnyNumber {
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSMatrix {
-  $selectedIndex : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedValue : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $selectedObject binding
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedTag : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedTag : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentObjects binding
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentValues binding
   # Warning: skipped $content binding
@@ -1157,90 +1157,90 @@ predefined outletClass NSMenuItem {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $argument : NSObject {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
 #    NSSelectorName : NSString ;
-#    NSAllowsNullArgument : bool ;
-#    NSInvokesSeparatelyWithArrayObjects : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAllowsNullArgument : Bool ;
+#    NSInvokesSeparatelyWithArrayObjects : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $offStateImage : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $title : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $onStateImage : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $image : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $target : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSConditionallySetsEnabled : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSConditionallySetsHidden : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $mixedStateImage : NSImage {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $value binding
 }
@@ -1252,28 +1252,28 @@ predefined outletClass NSOutlineView {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $doubleClickTarget : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSConditionallySetsEnabled : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSConditionallySetsHidden : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $sortDescriptors binding
   $fontFamilyName : NSString {
@@ -1281,327 +1281,327 @@ predefined outletClass NSOutlineView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $doubleClickArgument : NSObject {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
 #    NSSelectorName : NSString ;
-#    NSAllowsNullArgument : bool ;
-#    NSInvokesSeparatelyWithArrayObjects : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAllowsNullArgument : Bool ;
+#    NSInvokesSeparatelyWithArrayObjects : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $rowHeight : number {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $rowHeight : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $content binding
 }
 
 predefined outletClass NSPanel {
-  $visible : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSNullPlaceholder : bool ;
-    NSValidatesImmediately : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $visible : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $documentEdited : bool {
-    NSRaisesForNotApplicableKeys : bool ;
+  $documentEdited : Bool {
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $title : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $representedFilename : NSString {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $contentWidth : number {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $contentWidth : AnyNumber {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $contentHeight : number {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $contentHeight : AnyNumber {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternTitle1 binding
 }
 
 predefined outletClass NSPathCell {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $value : NSURL {
-#    NSConditionallySetsEnabled : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSAllowsEditingMultipleValuesSelection : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSAllowsEditingMultipleValuesSelection : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSPathControl {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $value : NSURL {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSAllowsEditingMultipleValuesSelection : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSAllowsEditingMultipleValuesSelection : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSPopUpButton {
-  $selectedIndex : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedValue : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $selectedObject binding
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedTag : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedTag : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentObjects binding
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentValues binding
   # Warning: skipped $content binding
@@ -1613,139 +1613,139 @@ predefined outletClass NSPopUpButtonCell {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedValue : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $selectedObject binding
   # Warning: skipped $onStateImage binding
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $offStateImage binding
   # Warning: skipped $mixedStateImage binding
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedTag : int {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedTag : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $contentObjects binding
   # Warning: skipped $contentValues binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedIndex : int {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $content binding
 }
 
 predefined outletClass NSPredicateEditor {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $value binding
   $font : NSFont {
@@ -1753,80 +1753,80 @@ predefined outletClass NSPredicateEditor {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSProgressIndicator {
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $animate : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $animate : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $animationDelay : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $animationDelay : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $isIndeterminate : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $isIndeterminate : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -1836,14 +1836,14 @@ predefined outletClass NSScrollView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -1853,106 +1853,106 @@ predefined outletClass NSSearchField {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $recentSearches : NSArray {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $predicate : NSPredicate {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
 #    NSDisplayName : NSString ;
 #    NSPredicateFormat : NSString ;
-#    NSValidatesImmediately : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $alignment : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $alignment : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -1962,95 +1962,95 @@ predefined outletClass NSSecureTextField {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $alignment : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $alignment : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2060,156 +2060,156 @@ predefined outletClass NSSecureTextFieldCell {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSSegmentedCell {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedLabel : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedTag : int {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedTag : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedIndex : int {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2219,172 +2219,172 @@ predefined outletClass NSSegmentedControl {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedLabel : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedTag : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedTag : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedIndex : int {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyScalar {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSSlider {
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSSliderCell {
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2394,147 +2394,147 @@ predefined outletClass NSSplitView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSStepper {
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSStepperCell {
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : number {
-    NSConditionallySetsEnabled : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : AnyNumber {
+    NSConditionallySetsEnabled : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minValue : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minValue : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSTabView {
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $selectedLabel : NSString {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $selectedIndex : number {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $selectedIndex : AnyNumber {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $selectedIdentifier binding
   $font : NSFont {
@@ -2542,21 +2542,21 @@ predefined outletClass NSTabView {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2566,7 +2566,7 @@ predefined outletClass NSTabViewItem {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2576,104 +2576,104 @@ predefined outletClass NSTableColumn {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $maxWidth : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $maxWidth : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $width : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSNullPlaceholder : number ;
-    NSValidatesImmediately : bool ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $width : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSNullPlaceholder : AnyNumber ;
+    NSValidatesImmediately : Bool ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $headerTitle : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $minWidth : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $minWidth : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $value : NSString {
-#    NSConditionallySetsEnabled : bool ;
-#    NSContinuouslyUpdatesValue : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSAllowsEditingMultipleValuesSelection : bool ;
-#    NSCreatesSortDescriptor : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSContinuouslyUpdatesValue : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSAllowsEditingMultipleValuesSelection : Bool ;
+#    NSCreatesSortDescriptor : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2684,29 +2684,29 @@ predefined outletClass NSTableView {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $tableValue ;
 #  $doubleClickTarget : NSObject {
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSConditionallySetsEnabled : bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSConditionallySetsEnabled : Bool ;
 #    NSSelectorName : NSString ;
-#    NSConditionallySetsHidden : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $sortDescriptors binding
   $fontFamilyName : NSString {
@@ -2714,57 +2714,57 @@ predefined outletClass NSTableView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $doubleClickArgument : NSObject {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
 #    NSSelectorName : NSString ;
-#    NSAllowsNullArgument : bool ;
-#    NSInvokesSeparatelyWithArrayObjects : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSAllowsNullArgument : Bool ;
+#    NSInvokesSeparatelyWithArrayObjects : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $rowHeight : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $rowHeight : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $content binding
 }
@@ -2775,95 +2775,95 @@ predefined outletClass NSTextField {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $alignment : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $alignment : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $value : NSString, number NSNumberFormatter {
-    NSConditionallySetsEnabled : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $value : NSString, AnyNumber NSNumberFormatter {
+    NSConditionallySetsEnabled : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -2873,121 +2873,121 @@ predefined outletClass NSTextFieldCell {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $value : NSString {
-    NSConditionallySetsEnabled : bool ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSConditionallySetsEnabled : Bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSTextView {
   $value : NSString {
-    NSContinuouslyUpdatesValue : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $valuePath : NSData {
-    NSContinuouslyUpdatesValue : bool ;
-    NSConditionallySetsHidden : bool ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSConditionallySetsHidden : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $data : NSData {
     NSNullPlaceholder : NSString ;
-    NSContinuouslyUpdatesValue : bool ;
-    NSConditionallySetsHidden : bool ;
+    NSContinuouslyUpdatesValue : Bool ;
+    NSConditionallySetsHidden : Bool ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSValidatesImmediately : bool ;
-    NSConditionallySetsEditable : bool ;
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSAllowsEditingMultipleValuesSelection : bool ;
+    NSValidatesImmediately : Bool ;
+    NSConditionallySetsEditable : Bool ;
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSAllowsEditingMultipleValuesSelection : Bool ;
     NSMultipleValuesPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $attributedString binding
   # Warning: skipped $valueURL binding
@@ -2996,7 +2996,7 @@ predefined outletClass NSTextView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -3006,95 +3006,95 @@ predefined outletClass NSTokenField {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $alignment : int {
-    NSMultipleValuesPlaceholder : int ;
-    NSNullPlaceholder : int ;
-    NSNotApplicablePlaceholder : int ;
-    NSNoSelectionPlaceholder : int ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $alignment : AnyScalar {
+    NSMultipleValuesPlaceholder : AnyScalar ;
+    NSNullPlaceholder : AnyScalar ;
+    NSNotApplicablePlaceholder : AnyScalar ;
+    NSNoSelectionPlaceholder : AnyScalar ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $value : NSArray {
-#    NSConditionallySetsEnabled : bool ;
-#    NSConditionallySetsHidden : bool ;
-#    NSContinuouslyUpdatesValue : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSAllowsEditingMultipleValuesSelection : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSConditionallySetsHidden : Bool ;
+#    NSContinuouslyUpdatesValue : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSAllowsEditingMultipleValuesSelection : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $toolTip : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -3104,83 +3104,83 @@ predefined outletClass NSTokenFieldCell {
     NSNullPlaceholder : NSFont ;
     NSNotApplicablePlaceholder : NSFont ;
     NSNoSelectionPlaceholder : NSFont ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontItalic : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontItalic : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $fontBold : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontBold : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $editable : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $textColor : NSColor {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 #  $value : NSArray {
-#    NSConditionallySetsEnabled : bool ;
-#    NSContinuouslyUpdatesValue : bool ;
-#    NSValidatesImmediately : bool ;
-#    NSConditionallySetsEditable : bool ;
-#    NSAlwaysPresentsApplicationModalAlerts : bool ;
-#    NSAllowsEditingMultipleValuesSelection : bool ;
-#    NSRaisesForNotApplicableKeys : bool ;
+#    NSConditionallySetsEnabled : Bool ;
+#    NSContinuouslyUpdatesValue : Bool ;
+#    NSValidatesImmediately : Bool ;
+#    NSConditionallySetsEditable : Bool ;
+#    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+#    NSAllowsEditingMultipleValuesSelection : Bool ;
+#    NSRaisesForNotApplicableKeys : Bool ;
 #  }
   $fontFamilyName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   # Warning: skipped $displayPatternValue1 binding
-  $fontSize : number {
-    NSMultipleValuesPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $fontSize : AnyNumber {
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
   $fontName : NSString {
     NSMultipleValuesPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSToolbarItem {
-  $enabled : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $enabled : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
@@ -3190,54 +3190,54 @@ predefined outletClass NSView {
     NSNullPlaceholder : NSString ;
     NSNotApplicablePlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
-  $hidden : bool {
-    NSMultipleValuesPlaceholder : bool ;
-    NSNullPlaceholder : bool ;
-    NSNotApplicablePlaceholder : bool ;
-    NSNoSelectionPlaceholder : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
+  $hidden : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
   }
 }
 
 predefined outletClass NSWindow {
-  $contentHeight : double {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
-    NSMultipleValuesPlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
+  $contentHeight : Double {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
   }
-  $contentWidth : double {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
-    NSMultipleValuesPlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
+  $contentWidth : Double {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
   }
-  $documentEdited : bool {
-    NSRaisesForNotApplicableKeys : bool ;
-    NSMultipleValuesPlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
+  $documentEdited : Bool {
+    NSRaisesForNotApplicableKeys : Bool ;
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
   }
-  $visible : double {
-    NSAlwaysPresentsApplicationModalAlerts : bool ;
-    NSValidatesImmediately : bool ;
-    NSRaisesForNotApplicableKeys : bool ;
-    NSMultipleValuesPlaceholder : number ;
-    NSNoSelectionPlaceholder : number ;
-    NSNullPlaceholder : number ;
-    NSNotApplicablePlaceholder : number ;
+  $visible : Double {
+    NSAlwaysPresentsApplicationModalAlerts : Bool ;
+    NSValidatesImmediately : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
+    NSMultipleValuesPlaceholder : AnyNumber ;
+    NSNoSelectionPlaceholder : AnyNumber ;
+    NSNullPlaceholder : AnyNumber ;
+    NSNotApplicablePlaceholder : AnyNumber ;
   }
   $representedFileName : NSString {
-    NSRaisesForNotApplicableKeys : bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
     NSMultipleValuesPlaceholder : NSString ;
     NSNoSelectionPlaceholder : NSString ;
     NSNullPlaceholder : NSString ;

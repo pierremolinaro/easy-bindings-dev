@@ -3,45 +3,11 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
-enum @unifiedTypeKind {
-#--- Scalar types
-  integerType,
-  uintegerType,
-  boolType,
-  doubleType,
-#---
-  anyScalarType,
-  anyNumberType,
-#--- Object types
-  decimalType,
-  colorType,
-  stringType,
-  dataType,
-  dateType,
-  fontType,
-  imageType,
-  bezierPathType,
-#--- User defined types
-  enumerationType,
-  structType,
-  classType,
-  nibClassType,
-  entityType,
-  outletClass
-}{
-}
-
-#----------------------------------------------------------------------------*
-
 uniquemap @unifiedTypeMap {
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
 #---
-  @unifiedTypeKind mKind ;
-  @unifiedTypeProxy mSuperClassProxy ;
-  @enumConstantMap mEnumConstantMap ; # Empty for all types but enums
-  @unifiedTypeProxyList mAttributeTypeList ; # For struct
-  @outletClassBindingMap mOutletClassBindingMap ; # For outlet classes
+  @easyBindingType mType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -53,6 +19,622 @@ mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
 list @unifiedTypeProxyList {
   @unifiedTypeProxy mTypeProxy ;
 }
+
+#-----------------------------------------------------------------------------*
+
+abstract class @easyBindingType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @preferenceType extends @easyBindingType {
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+abstract class @objectClass extends @easyBindingType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @controllerClassType extends @easyBindingType {
+  @controllerKind mControllerKind ;
+  @generationKind mGenerationKind ;
+  @outletClassBindingMap mBindingMap ;
+  @actionMap mActionMap ;
+  @observablePropertyMap mObservablePropertyMap ;
+  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @protocolType extends @easyBindingType {
+  @bool mIsPredefined ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @stringType, @dataType, @dateType,
+ @fontType, @imageType, @colorType,
+ @bezierPathType, @menuType extends @objectClass {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @anyNumberType extends @easyBindingType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @anyScalarType extends @anyNumberType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @doubleType extends @anyNumberType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @boolType, @integerType,
+      @uintegerType, @anyEnumType extends @anyScalarType {
+}
+
+#-----------------------------------------------------------------------------*
+
+class @classType extends @easyBindingType {
+  @unifiedTypeProxy mSuperClassType ;
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @entityType extends @easyBindingType {
+  @unifiedTypeProxy mSuperEntityType ;
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @documentType extends @easyBindingType {
+  @unifiedTypeProxy mRootEntityType ;
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @nibClassType extends @easyBindingType {
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @enumType extends @anyEnumType {
+  @lstring mEnumTypeName ;
+  @structFieldList mStructFieldList ;
+  @enumConstantMap mEnumConstantMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @easyBindingTypeAndFormatterList {
+  @unifiedTypeProxy mType ;
+  @formatterEnum mRequiredFormatter ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @outletClassBindingOptionMap {
+  @unifiedTypeProxyList mAcceptableTypeList ;
+  insert insertKey error message "the '%K' binding option is already declared" ;
+  search searchKey error message "the '%K' binding option is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @outletClassBindingMap {
+  @easyBindingTypeAndFormatterList mAcceptableTypeList ;
+  @outletClassBindingOptionMap mOutletClassBindingOptionMap ;
+  insert insertKey error message "the '%K' binding is already declared" ;
+  search searchKey error message "the '%K' binding is not declared" ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @outletClassType extends @easyBindingType {
+  @lstring mTypeName ;
+  @unifiedTypeProxy mSuperClassProxy ;
+  @outletClassBindingMap mOutletCurrentClassBindingMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @structFieldList {
+  @unifiedTypeProxy mFieldType ;
+  @lstring mFieldName ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumConstantMap {
+  insert insertKey error message "the '%K' enumeration constant is already declared" ;
+  search searchKey error message "the '%K' enumeration constant is not declared" ;
+}
+
+#-----------------------------------------------------------------------------*
+
+class @structType extends @easyBindingType {
+  @lstring mStructTypeName ;
+  @structFieldList mFieldList ;
+}
+
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType ebTypeName -> @string outResult ;
+#
+#override reader @boolType ebTypeName -> @string outResult : outResult := "BOOL" ; end reader ;
+#override reader @integerType ebTypeName -> @string outResult : outResult := "NSInteger" ; end reader ;
+#override reader @uintegerType ebTypeName -> @string outResult : outResult := "NSUInteger" ; end reader ;
+#override reader @doubleType ebTypeName -> @string outResult : outResult := "double" ; end reader ;
+#override reader @stringType ebTypeName -> @string outResult : outResult := "NSString" ; end reader ;
+#override reader @dataType ebTypeName -> @string outResult : outResult := "NSData" ; end reader ;
+#override reader @dateType ebTypeName -> @string outResult : outResult := "NSDate" ; end reader ;
+#override reader @fontType ebTypeName -> @string outResult : outResult := "NSFont" ; end reader ;
+#override reader @imageType ebTypeName -> @string outResult : outResult := "NSImage" ; end reader ;
+#override reader @colorType ebTypeName -> @string outResult : outResult := "NSColor" ; end reader ;
+#override reader @objectArrayType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
+#override reader @bezierPathType ebTypeName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
+#override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
+#override reader @toOneEntityType ebTypeName -> @string outResult : outResult := "PMManagedEntity" ; end reader ;
+#override reader @toManyEntitiesType ebTypeName -> @string outResult : outResult := "NSArray" ; end reader ;
+#override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+#override reader @structType ebTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType isClass -> @bool outResult ;
+#
+#override reader @boolType isClass -> @bool outResult : outResult := false ; end reader ;
+#override reader @integerType isClass -> @bool outResult : outResult := false ; end reader ;
+#override reader @uintegerType isClass -> @bool outResult : outResult := false ; end reader ;
+#override reader @doubleType isClass -> @bool outResult : outResult := false ; end reader ;
+#override reader @stringType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @fontType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @imageType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @toOneEntityType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @toManyEntitiesType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @colorType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @dataType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @dateType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @objectArrayType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @bezierPathType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
+#override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
+#override reader @structType isClass -> @bool outResult : outResult := false ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
+#
+#override reader @boolType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "boolFromNSNumber" ; end reader ;
+#override reader @integerType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "NSIntegerFromNSNumber" ; end reader ;
+#override reader @enumType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "(" . mEnumTypeName . ") NSIntegerFromNSNumber" ; end reader ;
+#override reader @doubleType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "doubleFromNSNumber" ; end reader ;
+#override reader @fontType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "fontFromData" ; end reader ;
+#override reader @colorType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
+#override reader @bezierPathType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
+#override reader @structType preferencesGetterTransformerFunctionName -> @string outResult : outResult := mStructTypeName->string . "FromData" ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
+#
+#override reader @boolType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedBool" ; end reader ;
+#override reader @integerType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
+#override reader @doubleType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedDouble" ; end reader ;
+#override reader @fontType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataFromFont" ; end reader ;
+#override reader @colorType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
+#override reader @bezierPathType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
+#override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
+#override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
+#override reader @structType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncoded" . mStructTypeName ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType propertyAttributeString -> @string outResult : outResult := "" ; end reader ;
+#
+#override reader @stringType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+#override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+#override reader @menuType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+#
+#override reader @colorType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+#override reader @dateType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+#
+#override reader @fontType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+ # Returning an empty string means not allowed
+#reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "" ; end reader ;
+#
+#override reader @boolType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSButtonCell" ; end reader ;
+#override reader @integerType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
+#override reader @uintegerType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
+#override reader @doubleType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
+#override reader @stringType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
+#override reader @dateType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSDateFieldCell" ; end reader ;
+#override reader @imageType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSImageCell" ; end reader ;
+
+#-----------------------------------------------------------------------------*
+#   equalExpression                                                           *
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @integerType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @uintegerType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @boolType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @doubleType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @enumType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @structType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "equal" . mStructTypeName . "s (" . inExp1 . ", " . inExp2 . ")" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @toOneEntityType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := inExp1 . " == " . inExp2 ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @toManyEntitiesType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @stringType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @dataType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @dateType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @fontType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @imageType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @colorType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @objectArrayType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @bezierPathType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+#
+##-----------------------------------------------------------------------------*
+#
+#override reader @menuType equalExpression
+#  ??@string inExp1
+#  ??@string inExp2
+#  -> @string outResult
+#:
+#  outResult := "[" . inExp1 . " isEqual:" . inExp2 . "]" ;
+#end reader ;
+
+#-----------------------------------------------------------------------------*
+#   ebTypeIdentifier                                                          *
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType ebTypeIdentifier -> @string outResult ;
+#
+#override reader @boolType ebTypeIdentifier -> @string outResult : outResult := "bool" ; end reader ;
+#override reader @integerType ebTypeIdentifier -> @string outResult : outResult := "integer" ; end reader ;
+#override reader @uintegerType ebTypeIdentifier -> @string outResult : outResult := "unsignedInteger" ; end reader ;
+#override reader @doubleType ebTypeIdentifier -> @string outResult : outResult := "double" ; end reader ;
+#override reader @stringType ebTypeIdentifier -> @string outResult : outResult := "NSString" ; end reader ;
+#override reader @dataType ebTypeIdentifier -> @string outResult : outResult := "NSData" ; end reader ;
+#override reader @dateType ebTypeIdentifier -> @string outResult : outResult := "NSDate" ; end reader ;
+#override reader @fontType ebTypeIdentifier -> @string outResult : outResult := "NSFont" ; end reader ;
+#override reader @imageType ebTypeIdentifier -> @string outResult : outResult := "NSImage" ; end reader ;
+#override reader @colorType ebTypeIdentifier -> @string outResult : outResult := "NSColor" ; end reader ;
+#override reader @menuType ebTypeIdentifier -> @string outResult : outResult := "NSMenu" ; end reader ;
+#override reader @bezierPathType ebTypeIdentifier -> @string outResult : outResult := "NSBezierPath" ; end reader ;
+#override reader @toOneEntityType ebTypeIdentifier -> @string outResult : outResult := "toOne[" . mEntityName . "]" ; end reader ;
+#override reader @toManyEntitiesType ebTypeIdentifier -> @string outResult : outResult := "toMany[" . mEntityName . "]" ; end reader ;
+#override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResult := "array[" . mClassName . "]" ; end reader ;
+#
+#override reader @enumType ebTypeIdentifier -> @string outResult : outResult := "enum[" . mEnumTypeName . "]" ; end reader ;
+#override reader @structType ebTypeIdentifier -> @string outResult : outResult := "struct[" . mStructTypeName . "]" ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType ebGenericTypeIdentifier ??@string unused inTypeName -> @string outResult
+#:
+#  outResult := [selfcopy ebTypeIdentifier] ;
+#end reader ;
+#
+##------------
+#
+#override reader @toManyEntitiesType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
+#:
+#  outResult := "toMany[" . inTypeName . "]" ;
+#end reader ;
+#
+##------------
+#
+#override reader @objectArrayType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
+#:
+#  outResult := "array[" . inTypeName . "]" ;
+#end reader ;
+#
+##------------
+#
+#override reader @enumType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
+#:
+#  outResult := "enum[" . inTypeName . "]" ;
+#end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType ocTypeName -> @string outResult ;
+#
+#override reader @boolType ocTypeName -> @string outResult : outResult := "BOOL" ; end reader ;
+#override reader @integerType ocTypeName -> @string outResult : outResult := "NSInteger" ; end reader ;
+#override reader @uintegerType ocTypeName -> @string outResult : outResult := "NSUInteger" ; end reader ;
+#override reader @doubleType ocTypeName -> @string outResult : outResult := "double" ; end reader ;
+#override reader @stringType ocTypeName -> @string outResult : outResult := "NSString *" ; end reader ;
+#override reader @fontType ocTypeName -> @string outResult : outResult := "NSFont *" ; end reader ;
+#override reader @imageType ocTypeName -> @string outResult : outResult := "NSImage *" ; end reader ;
+#override reader @colorType ocTypeName -> @string outResult : outResult := "NSColor *" ; end reader ;
+#override reader @dataType ocTypeName -> @string outResult : outResult := "NSData *" ; end reader ;
+#override reader @dateType ocTypeName -> @string outResult : outResult := "NSDate *" ; end reader ;
+#override reader @objectArrayType ocTypeName -> @string outResult : outResult := "NSArray *" ; end reader ;
+#override reader @menuType ocTypeName -> @string outResult : outResult := "NSMenu *" ; end reader ;
+#override reader @bezierPathType ocTypeName -> @string outResult : outResult := "NSBezierPath *" ; end reader ;
+#override reader @toOneEntityType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
+#override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
+#override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+#override reader @structType ocTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#abstract reader @easyBindingType ocClassName -> @string outResult ;
+#
+#override reader @boolType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
+#override reader @integerType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
+#override reader @uintegerType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
+#override reader @doubleType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
+#override reader @stringType ocClassName -> @string outResult : outResult := "NSString" ; end reader ;
+#override reader @fontType ocClassName -> @string outResult : outResult := "NSFont" ; end reader ;
+#override reader @imageType ocClassName -> @string outResult : outResult := "NSImage" ; end reader ;
+#override reader @colorType ocClassName -> @string outResult : outResult := "NSColor" ; end reader ;
+#override reader @dataType ocClassName -> @string outResult : outResult := "NSData" ; end reader ;
+#override reader @dateType ocClassName -> @string outResult : outResult := "NSDate" ; end reader ;
+#override reader @objectArrayType ocClassName -> @string outResult : outResult := "NSArray" ; end reader ;
+#override reader @menuType ocClassName -> @string outResult : outResult := "NSMenu" ; end reader ;
+#override reader @bezierPathType ocClassName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
+#override reader @toOneEntityType ocClassName -> @string outResult : outResult := "??" ; end reader ;
+#override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
+#override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
+#override reader @structType ocClassName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType copyOnAssign -> @bool outResult : outResult := false ; end reader ;
+#
+#override reader @stringType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
+#override reader @objectArrayType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
+#override reader @bezierPathType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
+#override reader @menuType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#method @easyBindingType addEnumAndStructType
+#  ?!@stringset unused ioSet
+#:
+#end method ;
+#
+#
+#override method @enumType addEnumAndStructType
+#  ?!@stringset ioSet
+#:
+#  ioSet += !mEnumTypeName->string ;
+#end method ;
+#
+#override method @structType addEnumAndStructType
+#  ?!@stringset ioSet
+#:
+#  ioSet += !mStructTypeName->string ;
+#end method ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isToManyEntitiesType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @toManyEntitiesType isToManyEntitiesType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isBoolType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @boolType isBoolType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isIntegerType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @integerType isIntegerType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isDoubleType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @doubleType isDoubleType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isStringType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @stringType isStringType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isColorType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @colorType isColorType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isDateType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @dateType isDateType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isFontType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @fontType isFontType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType isEnumType -> @bool outResult: outResult := false ; end reader ;
+#
+#override reader @enumType isEnumType -> @bool outResult : outResult := true ; end reader ;
+
+#-----------------------------------------------------------------------------*
+
+#reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntegerSignature" ; end reader ;
+#
+#override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeNSStringSignature" ; end reader ;
+#
+#override reader @toOneEntityType functionForComputingSignature -> @string outResult : outResult := "computeToOneEntitySignature" ; end reader ;
+#
+#override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyEntitySignature" ; end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -66,13 +648,6 @@ struct @fileInclusionSet {
 
 map @globalEnumConstantMap {
   @lstring mEnumTypeName ;
-  insert insertKey error message "the '%K' enumeration constant is already declared" ;
-  search searchKey error message "the '%K' enumeration constant is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @enumConstantMap {
   insert insertKey error message "the '%K' enumeration constant is already declared" ;
   search searchKey error message "the '%K' enumeration constant is not declared" ;
 }
@@ -123,8 +698,8 @@ map @classMap {
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
-  @preferenceArrayMap mAllArrayPropertyForImplementation ;
-  @preferenceArrayMap mCurrentArrayPropertyForImplementation ;
+  @propertyArrayMap mAllArrayPropertyForImplementation ;
+  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
   @fileInclusionSet mInclusionSet ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
@@ -235,54 +810,13 @@ map @documentMap {
 
 #----------------------------------------------------------------------------*
 
-map @EXoutletClassBindingOptionMap {
-  @easyBindingTypeList mAcceptableTypeList ;
-  insert insertKey error message "the '%K' binding option is already declared" ;
-  search searchKey error message "the '%K' binding option is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @EXoutletClassBindingMap {
-  @EXeasyBindingTypeAndFormatterList mAcceptableTypeList ;
-  @EXoutletClassBindingOptionMap mOutletClassBindingOptionMap ;
-  insert insertKey error message "the '%K' binding is already declared" ;
-  search searchKey error message "the '%K' binding is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @easyBindingTypeAndFormatterList {
-  @unifiedTypeProxy mType ;
-  @formatterEnum mRequiredFormatter ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @outletClassBindingOptionMap {
-  @unifiedTypeProxyList mAcceptableTypeList ;
-  insert insertKey error message "the '%K' binding option is already declared" ;
-  search searchKey error message "the '%K' binding option is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-map @outletClassBindingMap {
-  @easyBindingTypeAndFormatterList mAcceptableTypeList ;
-  @outletClassBindingOptionMap mOutletClassBindingOptionMap ;
-  insert insertKey error message "the '%K' binding is already declared" ;
-  search searchKey error message "the '%K' binding is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
 map @outletClassMap {
   @generationKind mGenerationKind ;
   @string mSuperClassName ;
   @protocolList mAdoptedProtocolList ;
   @bool mImplementsDeallocProtocol ;
-  @EXoutletClassBindingMap mAllBindingMap ;
-  @EXoutletClassBindingMap mCurrentBindingMap ;
+  @outletClassBindingMap mAllBindingMap ;
+  @outletClassBindingMap mCurrentBindingMap ;
   @bool mHasTableValueBinding ;
   insert insertKey error message "the '%K' outlet class is already declared" ;
   search searchKey error message "the '%K' outlet class is not declared" ;
@@ -293,10 +827,10 @@ map @outletClassMap {
 map @controllerClassMap {
   @controllerKind mControllerKind ;
   @generationKind mGenerationKind ;
-  @EXoutletClassBindingMap mBindingMap ;
+  @outletClassBindingMap mBindingMap ;
   @actionMap mActionMap ;
   @observablePropertyMap mObservablePropertyMap ;
-  @EXoutletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
+  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
   insert insertKey error message "the '%K' controller class is already declared" ;
   search searchKey error message "the '%K' controller class is not declared" ;
 }
@@ -350,10 +884,8 @@ list @outletGenerationList {
 
 #----------------------------------------------------------------------------*
 
-map @preferenceArrayMap {
-  @string mClassName ;
-  @observablePropertyMap mClassObservablePropertyMap ;
-  @attributeListForImplementation mAttributeListForImplementation ;
+map @propertyArrayMap {
+  @unifiedTypeProxy mElementType ;
   insert insertKey error message "the '%K' array is already declared" ;
   search searchKey error message "the '%K' array is not declared" ;
 }
@@ -368,7 +900,7 @@ map @preferencesMap {
   @observablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
-  @preferenceArrayMap mArrayMap ;
+  @propertyArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -383,7 +915,7 @@ map @nibClassMap {
   @observablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
-  @preferenceArrayMap mArrayMap ;
+  @propertyArrayMap mArrayMap ;
   insert insertKey error message "the '%K' nib class is already declared" ;
   search searchKey error message "the '%K' nib class is not declared" ;
 }
@@ -391,9 +923,10 @@ map @nibClassMap {
 #----------------------------------------------------------------------------*
 
 map @observablePropertyMap {
-  @easyBindingType mType ;
+  @unifiedTypeProxy mType ;
   @bool mIsTransient ;
   @string mPropertySignature ;
+  @bool mIsCollection ;
   insert insertKey error message "the '%K' attribute is already declared" ;
   search searchKey error message "the '%K' attribute is not declared" ;
 }
@@ -485,361 +1018,361 @@ graph @transientDependencyGraph (@stringlist) {
   insert addNode error message "the '%K' transient is already declared at %L" ;
 }
 
-#----------------------------------------------------------------------------*
-
-abstract reader @abstractBindingForGeneration generateBinding
-  ??@string inOutletName
-  -> @string outResult
-;
-
-#----------------------------------------------------------------------------*
-
-abstract method @abstractBinding analyzeOutletBinding
-  ??@observablePropertyMap inRootEntityObservableAttributeMap
-  ??@observablePropertyMap inSelfObservableAttributeMap
-  ??@preferencesMap inPreferencesMap
-  ??@entityMap inEntityMap
-  ??@classMap inClassMap
-  ??@EXoutletClassBindingMap inBindingMap
-  ??@controllerMap inControllerMap
-  ??@actionMap inActionMap
-  ??@bool inHasTableValueBinding
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-  ?!@fileInclusionSet ioFileInclusionSet
-;
-
-#----------------------------------------------------------------------------*
-
-abstract reader @abstractBindingForGeneration generateRemoveBinding
-  ??@string inOutletName
-  -> @string outResult
-;
-
-#----------------------------------------------------------------------------*
-
-abstract method @abstractDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet ioFileInclusionSet
-;
-
-#----------------------------------------------------------------------------*
-  
-override method @boolAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet unused ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if [mType isBoolType] then
-      outDirectDefaultValueAsString := if mValue->bool then "YES" else "NO" end ;
-      outObjectiveCDefaultValueAsString := "[NSNumber numberWithBool:" . outDirectDefaultValueAsString . "]" ;
-      found := true ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mValue
-    : "only a boolean attribute can be initialized by YES or NO"
-    ;  
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-  
-override method @integerAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet unused ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if [mType isIntegerType] then
-      outDirectDefaultValueAsString := [mValue->uint string] ;
-      outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . outDirectDefaultValueAsString . "]" ;
-      found := true ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mValue
-    : "only an integer attribute can be initialized by an integer constant"
-    ;  
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-  
-override method @doubleAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet unused ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if [mType isDoubleType] then
-      outDirectDefaultValueAsString := [mValue->double string] ;
-      outObjectiveCDefaultValueAsString := "[NSNumber numberWithDouble:" . outDirectDefaultValueAsString . "]" ;
-      found := true ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mValue
-    : "only a double attribute can be initialized by a floating point constant"
-    ;  
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-  
-override method @stringAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet unused ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if [mType isStringType] then
-      outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
-      outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-      found := true ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mValue
-    : "only a string attribute can be initialized by a string constant"
-    ;  
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-local once predefinedColors -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"blackColor" ;
-  outResult += !"blueColor" ;
-  outResult += !"brownColor" ;
-  outResult += !"clearColor" ;
-  outResult += !"controlColor" ;
-  outResult += !"controlDarkShadowColor" ;
-  outResult += !"controlHighlightColor" ;
-  outResult += !"controlLightHighlightColor" ;
-  outResult += !"controlShadowColor" ;
-  outResult += !"controlTextColor" ;
-  outResult += !"cyanColor" ;
-  outResult += !"darkGrayColor" ;
-  outResult += !"disabledControlTextColor" ;
-  outResult += !"grayColor" ;
-  outResult += !"greenColor" ;
-  outResult += !"gridColor" ;
-  outResult += !"headerColor" ;
-  outResult += !"headerTextColor" ;
-  outResult += !"highlightColor" ;
-  outResult += !"keyboardFocusIndicatorColor" ;
-  outResult += !"knobColor" ;
-  outResult += !"lightGrayColor" ;
-  outResult += !"magentaColor" ;
-  outResult += !"orangeColor" ;
-  outResult += !"purpleColor" ;
-  outResult += !"redColor" ;
-  outResult += !"scrollBarColor" ;
-  outResult += !"selectedControlColor" ;
-  outResult += !"selectedControlTextColor" ;
-  outResult += !"selectedKnobColor" ;
-  outResult += !"selectedMenuItemColor" ;
-  outResult += !"selectedMenuItemTextColor" ;
-  outResult += !"selectedTextBackgroundColor" ;
-  outResult += !"selectedTextColor" ;
-  outResult += !"shadowColor" ;
-  outResult += !"textBackgroundColor" ;
-  outResult += !"textColor" ;
-  outResult += !"whiteColor" ;
-  outResult += !"windowBackgroundColor" ;
-  outResult += !"windowFrameColor" ;
-  outResult += !"windowFrameTextColor" ;
-  outResult += !"yellowColor" ;
-end once ;
-
-#----------------------------------------------------------------------------*
-
-local once predefinedDates -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"date" ;
-end once ;
-
-#----------------------------------------------------------------------------*
-  
-override method @identifierAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if [mType isColorType] then
-      found := true ;
-      if [predefinedColors [] hasKey !mValue->string] then
-        outDirectDefaultValueAsString := "[NSColor " . mValue->string . "]" ;
-        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-      else
-        error mValue
-        : "unknown predefined color"
-        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-        ;  
-      end if ;
-    elsif [mType isDateType] then
-      found := true ;
-      if [predefinedDates [] hasKey !mValue->string] then
-        outDirectDefaultValueAsString := "[NSDate " . mValue->string . "]" ;
-        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-      else
-        error mValue
-        : "unknown predefined date"
-        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-        ;  
-      end if ;
-    elsif [mType isEnumType] then
-      found := true ;
-      if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
-        [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
-        ioFileInclusionSet->mHeaderFileInclusionSet += !inEnumTypeName->string ;
-        if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName] ebTypeIdentifier] then
-          outDirectDefaultValueAsString := mValue->string ;
-          outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
-        else
-          error mValue
-          : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"
-          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-          ;  
-        end if ;
-      else
-        error mValue
-        : "unknown predefined date"
-        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-        ;  
-      end if ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mValue
-    : "unknow type for this identifier"
-    : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-    ;  
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-local once predefinedFonts -> @stringset outResult :
-  outResult := [@stringset emptySet] ;
-  outResult += !"boldSystemFontOfSize" ;
-  outResult += !"controlContentFontOfSize" ;
-  outResult += !"labelFontOfSize" ;
-  outResult += !"menuFontOfSize" ;
-  outResult += !"menuBarFontOfSize" ;
-  outResult += !"messageFontOfSize" ;
-  outResult += !"paletteFontOfSize" ;
-  outResult += !"systemFontOfSize" ;
-  outResult += !"titleBarFontOfSize" ;
-  outResult += !"toolTipsFontOfSize" ;
-end once ;
-
-#----------------------------------------------------------------------------*
- 
-override method @listAsDefaultValue analyzeDefaultValueType 
-  ??@easyBindingTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@string outDirectDefaultValueAsString
-  !@string outObjectiveCDefaultValueAsString
-  ?!@fileInclusionSet ioFileInclusionSet
-:
-  outObjectiveCDefaultValueAsString := "" ;
-  outDirectDefaultValueAsString := "" ;
-  @bool found := false ;
-  foreach inAttributeActualTypeList while not found do
-    if (mType is @structType) then
-      found := true ;
-      const @structType t := (cast mType : @structType) ;
-      ioFileInclusionSet->mHeaderFileInclusionSet += ![t ebTypeName] ;
-      if [mDefaultValueList length] != [[t mFieldList] length] then
-        error mStartLocation : "the '" . [t ebTypeName] . "' struct needs " . [[t mFieldList] length] . " values for initialization" ;
-      else
-        outDirectDefaultValueAsString := "make" . [t ebTypeName] . " (" ;
-        foreach mDefaultValueList, [t mFieldList]
-        do
-          [mDefaultValue analyzeDefaultValueType
-            ![@easyBindingTypeList listWithValue !mFieldType]
-            !inContextAnalysisStruct
-            ?@string directDefaultValueAsString
-            ?*
-            !?ioFileInclusionSet
-          ] ;
-          outDirectDefaultValueAsString .= directDefaultValueAsString ;
-        between
-          outDirectDefaultValueAsString .= ", " ;
-        end foreach ; 
-        outDirectDefaultValueAsString .= ")" ;     
-      end if ;
-    elsif [mType isFontType] then
-      found := true ;
-      const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
-      if [mDefaultValueList length] != 2 then
-        error mStartLocation : errorMessage ; 
-      else
-        const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
-        const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
-        @identifierAsDefaultValue fontName ;
-        if (v0 is @identifierAsDefaultValue) then 
-          fontName := (cast v0 : @identifierAsDefaultValue) ;
-        else
-          error mStartLocation : errorMessage : fontName ;
-        end if ;
-        @integerAsDefaultValue fontSize ;
-        if (v1 is @integerAsDefaultValue) then 
-          fontSize := (cast v1 : @integerAsDefaultValue) ;
-        else
-          error mStartLocation : errorMessage : fontSize ;
-        end if ;
-        if [predefinedFonts [] hasKey ![fontName mValue]->string] then
-          outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
-          outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-        else
-          error [fontName mValue]
-          : "unknown predefined font name"
-          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-          ;  
-        end if ;
-      end if ;
-    end if ;
-  end foreach ;
-  if not found then
-    error mStartLocation
-    : "invalid initialization value"
-    ;  
-  end if ;
-end method ;
+##----------------------------------------------------------------------------*
+#
+#abstract reader @abstractBindingForGeneration generateBinding
+#  ??@string inOutletName
+#  -> @string outResult
+#;
+#
+##----------------------------------------------------------------------------*
+#
+#abstract method @abstractBinding analyzeOutletBinding
+#  ??@observablePropertyMap inRootEntityObservableAttributeMap
+#  ??@observablePropertyMap inSelfObservableAttributeMap
+#  ??@preferencesMap inPreferencesMap
+#  ??@entityMap inEntityMap
+#  ??@classMap inClassMap
+#  ??@outletClassBindingMap inBindingMap
+#  ??@controllerMap inControllerMap
+#  ??@actionMap inActionMap
+#  ??@bool inHasTableValueBinding
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+#  ?!@fileInclusionSet ioFileInclusionSet
+#;
+#
+##----------------------------------------------------------------------------*
+#
+#abstract reader @abstractBindingForGeneration generateRemoveBinding
+#  ??@string inOutletName
+#  -> @string outResult
+#;
+#
+##----------------------------------------------------------------------------*
+#
+#abstract method @abstractDefaultValue analyzeDefaultValueType 
+#  ??@unifiedTypeProxyList inAttributeActualTypeList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet ioFileInclusionSet
+#;
+#
+##----------------------------------------------------------------------------*
+#  
+#override method @boolAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct unused inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet unused ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType isBoolType] then
+#      outDirectDefaultValueAsString := if mValue->bool then "YES" else "NO" end ;
+#      outObjectiveCDefaultValueAsString := "[NSNumber numberWithBool:" . outDirectDefaultValueAsString . "]" ;
+#      found := true ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mValue
+#    : "only a boolean attribute can be initialized by YES or NO"
+#    ;  
+#  end if ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#  
+#override method @integerAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct unused inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet unused ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType isIntegerType] then
+#      outDirectDefaultValueAsString := [mValue->uint string] ;
+#      outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . outDirectDefaultValueAsString . "]" ;
+#      found := true ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mValue
+#    : "only an integer attribute can be initialized by an integer constant"
+#    ;  
+#  end if ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#  
+#override method @doubleAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct unused inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet unused ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType isDoubleType] then
+#      outDirectDefaultValueAsString := [mValue->double string] ;
+#      outObjectiveCDefaultValueAsString := "[NSNumber numberWithDouble:" . outDirectDefaultValueAsString . "]" ;
+#      found := true ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mValue
+#    : "only a double attribute can be initialized by a floating point constant"
+#    ;  
+#  end if ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#  
+#override method @stringAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct unused inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet unused ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType isStringType] then
+#      outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
+#      outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+#      found := true ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mValue
+#    : "only a string attribute can be initialized by a string constant"
+#    ;  
+#  end if ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#local once predefinedColors -> @stringset outResult :
+#  outResult := [@stringset emptySet] ;
+#  outResult += !"blackColor" ;
+#  outResult += !"blueColor" ;
+#  outResult += !"brownColor" ;
+#  outResult += !"clearColor" ;
+#  outResult += !"controlColor" ;
+#  outResult += !"controlDarkShadowColor" ;
+#  outResult += !"controlHighlightColor" ;
+#  outResult += !"controlLightHighlightColor" ;
+#  outResult += !"controlShadowColor" ;
+#  outResult += !"controlTextColor" ;
+#  outResult += !"cyanColor" ;
+#  outResult += !"darkGrayColor" ;
+#  outResult += !"disabledControlTextColor" ;
+#  outResult += !"grayColor" ;
+#  outResult += !"greenColor" ;
+#  outResult += !"gridColor" ;
+#  outResult += !"headerColor" ;
+#  outResult += !"headerTextColor" ;
+#  outResult += !"highlightColor" ;
+#  outResult += !"keyboardFocusIndicatorColor" ;
+#  outResult += !"knobColor" ;
+#  outResult += !"lightGrayColor" ;
+#  outResult += !"magentaColor" ;
+#  outResult += !"orangeColor" ;
+#  outResult += !"purpleColor" ;
+#  outResult += !"redColor" ;
+#  outResult += !"scrollBarColor" ;
+#  outResult += !"selectedControlColor" ;
+#  outResult += !"selectedControlTextColor" ;
+#  outResult += !"selectedKnobColor" ;
+#  outResult += !"selectedMenuItemColor" ;
+#  outResult += !"selectedMenuItemTextColor" ;
+#  outResult += !"selectedTextBackgroundColor" ;
+#  outResult += !"selectedTextColor" ;
+#  outResult += !"shadowColor" ;
+#  outResult += !"textBackgroundColor" ;
+#  outResult += !"textColor" ;
+#  outResult += !"whiteColor" ;
+#  outResult += !"windowBackgroundColor" ;
+#  outResult += !"windowFrameColor" ;
+#  outResult += !"windowFrameTextColor" ;
+#  outResult += !"yellowColor" ;
+#end once ;
+#
+##----------------------------------------------------------------------------*
+#
+#local once predefinedDates -> @stringset outResult :
+#  outResult := [@stringset emptySet] ;
+#  outResult += !"date" ;
+#end once ;
+#
+##----------------------------------------------------------------------------*
+#  
+#override method @identifierAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType isColorType] then
+#      found := true ;
+#      if [predefinedColors [] hasKey !mValue->string] then
+#        outDirectDefaultValueAsString := "[NSColor " . mValue->string . "]" ;
+#        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+#      else
+#        error mValue
+#        : "unknown predefined color"
+#        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#        ;  
+#      end if ;
+#    elsif [mType isDateType] then
+#      found := true ;
+#      if [predefinedDates [] hasKey !mValue->string] then
+#        outDirectDefaultValueAsString := "[NSDate " . mValue->string . "]" ;
+#        outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+#      else
+#        error mValue
+#        : "unknown predefined date"
+#        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#        ;  
+#      end if ;
+#    elsif [mType isEnumType] then
+#      found := true ;
+#      if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
+#        [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
+#        ioFileInclusionSet->mHeaderFileInclusionSet += !inEnumTypeName->string ;
+#        if [mType ebTypeIdentifier] == [[@enumType new !inEnumTypeName] ebTypeIdentifier] then
+#          outDirectDefaultValueAsString := mValue->string ;
+#          outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
+#        else
+#          error mValue
+#          : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"
+#          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#          ;  
+#        end if ;
+#      else
+#        error mValue
+#        : "unknown predefined date"
+#        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#        ;  
+#      end if ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mValue
+#    : "unknow type for this identifier"
+#    : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#    ;  
+#  end if ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#local once predefinedFonts -> @stringset outResult :
+#  outResult := [@stringset emptySet] ;
+#  outResult += !"boldSystemFontOfSize" ;
+#  outResult += !"controlContentFontOfSize" ;
+#  outResult += !"labelFontOfSize" ;
+#  outResult += !"menuFontOfSize" ;
+#  outResult += !"menuBarFontOfSize" ;
+#  outResult += !"messageFontOfSize" ;
+#  outResult += !"paletteFontOfSize" ;
+#  outResult += !"systemFontOfSize" ;
+#  outResult += !"titleBarFontOfSize" ;
+#  outResult += !"toolTipsFontOfSize" ;
+#end once ;
+#
+##----------------------------------------------------------------------------*
+# 
+#override method @listAsDefaultValue analyzeDefaultValueType 
+#  ??@lstringlist inAttributeActualTypeList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@string outDirectDefaultValueAsString
+#  !@string outObjectiveCDefaultValueAsString
+#  ?!@fileInclusionSet ioFileInclusionSet
+#:
+#  outObjectiveCDefaultValueAsString := "" ;
+#  outDirectDefaultValueAsString := "" ;
+#  @bool found := false ;
+#  foreach inAttributeActualTypeList while not found do
+#    if (mType is @structType) then
+#      found := true ;
+#      const @structType t := (cast mType : @structType) ;
+#      ioFileInclusionSet->mHeaderFileInclusionSet += ![t ebTypeName] ;
+#      if [mDefaultValueList length] != [[t mFieldList] length] then
+#        error mStartLocation : "the '" . [t ebTypeName] . "' struct needs " . [[t mFieldList] length] . " values for initialization" ;
+#      else
+#        outDirectDefaultValueAsString := "make" . [t ebTypeName] . " (" ;
+#        foreach mDefaultValueList, [t mFieldList]
+#        do
+#          [mDefaultValue analyzeDefaultValueType
+#            ![@lstringlist listWithValue ![mFieldType mType]]
+#            !inContextAnalysisStruct
+#            ?@string directDefaultValueAsString
+#            ?*
+#            !?ioFileInclusionSet
+#          ] ;
+#          outDirectDefaultValueAsString .= directDefaultValueAsString ;
+#        between
+#          outDirectDefaultValueAsString .= ", " ;
+#        end foreach ; 
+#        outDirectDefaultValueAsString .= ")" ;     
+#      end if ;
+#    elsif [mType isFontType] then
+#      found := true ;
+#      const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
+#      if [mDefaultValueList length] != 2 then
+#        error mStartLocation : errorMessage ; 
+#      else
+#        const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
+#        const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
+#        @identifierAsDefaultValue fontName ;
+#        if (v0 is @identifierAsDefaultValue) then 
+#          fontName := (cast v0 : @identifierAsDefaultValue) ;
+#        else
+#          error mStartLocation : errorMessage : fontName ;
+#        end if ;
+#        @integerAsDefaultValue fontSize ;
+#        if (v1 is @integerAsDefaultValue) then 
+#          fontSize := (cast v1 : @integerAsDefaultValue) ;
+#        else
+#          error mStartLocation : errorMessage : fontSize ;
+#        end if ;
+#        if [predefinedFonts [] hasKey ![fontName mValue]->string] then
+#          outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
+#          outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+#        else
+#          error [fontName mValue]
+#          : "unknown predefined font name"
+#          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#          ;  
+#        end if ;
+#      end if ;
+#    end if ;
+#  end foreach ;
+#  if not found then
+#    error mStartLocation
+#    : "invalid initialization value"
+#    ;  
+#  end if ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -11,13 +11,13 @@ local filewrapper outletClassGenerationTemplate in "../generation-templates/outl
     ?@string OUTLET_CLASS_NAME
     ?@string SUPER_CLASS_NAME
     ?@protocolList ADOPTED_PROTOCOL_LIST
-    ?@EXoutletClassBindingMap BINDING_MAP
+    ?@outletClassBindingMap BINDING_MAP
   ;
   
   template outletClassImplementation "outlet-class.m.gTemplate"
     ?@string OUTLET_CLASS_NAME
     ?@string SUPER_CLASS_NAME
-    ?@EXoutletClassBindingMap BINDING_MAP
+    ?@outletClassBindingMap BINDING_MAP
   ;
 }
 

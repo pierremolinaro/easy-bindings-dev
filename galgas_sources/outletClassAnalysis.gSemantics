@@ -1,6 +1,5 @@
 semantics outletClassAnalysis :
-  import "decoratedTypes.gSemantics" ;
-  import "analyzeASTtype.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -21,117 +20,96 @@ routine outletClassesEnterType
       ] ;
     end if ;
   #--- Analyze binding list
-    @outletClassBindingMap currentBindingMap [emptyMap] ;
-    foreach mOutletClassBindingList do
-      @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
-      foreach mBindingOptionList do
-        @unifiedTypeProxyList acceptableTypeList [emptyList] ;
-        foreach mAcceptableTypeList do
-          [@unifiedTypeProxy makeProxy
-            !?ioUnifiedTypeMap
-            !mTypeName
-            ?@unifiedTypeProxy type
-          ] ;
-          acceptableTypeList += !type ;
-        end foreach ;
-        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-      end foreach ;
-      @easyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
-      foreach mAcceptableTypeFormatterList do
-        [@unifiedTypeProxy makeProxy
-          !?ioUnifiedTypeMap
-          !mTypeName
-          ?@unifiedTypeProxy type
-        ] ;
-        acceptableTypeFormatterList += !type !mRequiredFormatter ;
-      end foreach ;
-      [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
-    end foreach ;
+    buildBindingCapabilitiesMap
+      !mOutletClassBindingList
+      !?ioUnifiedTypeMap
+      ?@outletClassBindingMap currentBindingMap
+    ;
   #---
     [!?ioUnifiedTypeMap insertKey
       !mOutletClassName
-      ![@unifiedTypeKind outletClass]
-      !superClassProxy
-      ![@enumConstantMap emptyMap]
-      ![@unifiedTypeProxyList emptyList]
-      !currentBindingMap
+      ![@outletClassType new
+        !mOutletClassName
+        !superClassProxy
+        !currentBindingMap
+      ]
     ] ;
   end foreach ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzeOutletClasses
-  ??@outletClassList inOutletClassList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ??@protocolMap inProtocolMap
-  !@outletClassMap outOutletClassMap
-:
-  outOutletClassMap := [@outletClassMap emptyMap] ;
-  foreach inOutletClassList do
-    @EXoutletClassBindingMap allBindingMap ;
-  #--- Has super class ?
-    if mSuperClassName->string == "" then
-      allBindingMap := [@EXoutletClassBindingMap emptyMap] ;
-    else
-      [outOutletClassMap searchKey
-        !mSuperClassName
-        ?4*
-        ?allBindingMap
-        ?2*
-      ] ;
-    end if ;
-  #--- Analyze options
-    @protocolList adoptedProtocolList [emptyList] ;
-    @bool implementsDeallocProtocol := false ;
-    foreach mOptionList do
-      if mValue->string != "PMWillDeallocProtocol" then
-        error mValue: "only 'PMWillDeallocProtocol' is allowed here" ;
-      elsif implementsDeallocProtocol then
-        error mValue: "'PMWillDeallocProtocol' option already set" ;
-      else
-        implementsDeallocProtocol := true ;
-        adoptedProtocolList += !false !mValue ;
-      end if ;
-    end foreach ;
-  #--- Analyze bindings
-    @EXoutletClassBindingMap currentBindingMap [emptyMap] ;
-    foreach mOutletClassBindingList do
-      @EXoutletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
-      foreach mBindingOptionList do
-        @easyBindingTypeList acceptableTypeList [emptyList] ;
-        foreach mAcceptableTypeList do
-          @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-          acceptableTypeList += !type ;
-        end foreach ;
-        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-      end foreach ;
-      @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
-      foreach mAcceptableTypeFormatterList do
-        @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-        acceptableTypeFormatterList += !type !mRequiredFormatter ;
-      end foreach ;
-      [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
-      [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
-    end foreach ;
-  #--- Analyze protocols
-    foreach mAdoptedProtocolList do
-      [inProtocolMap searchKey !mValue ?@bool isPredefined] ;
-      adoptedProtocolList += !isPredefined !mValue ;
-    end foreach ;
-  #---
-    [!?outOutletClassMap insertKey
-      !mOutletClassName
-      !mGeneration
-      !mSuperClassName->string
-      !adoptedProtocolList
-      !implementsDeallocProtocol
-      !allBindingMap
-      !currentBindingMap
-      !mHasTableValueBinding
-    ] ;
-  end foreach ;
-end routine ;
+#routine analyzeOutletClasses
+#  ??@outletClassList inOutletClassList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ??@protocolMap inProtocolMap
+#  !@outletClassMap outOutletClassMap
+#:
+#  outOutletClassMap := [@outletClassMap emptyMap] ;
+#  foreach inOutletClassList do
+#    @EXoutletClassBindingMap allBindingMap ;
+#  #--- Has super class ?
+#    if mSuperClassName->string == "" then
+#      allBindingMap := [@EXoutletClassBindingMap emptyMap] ;
+#    else
+#      [outOutletClassMap searchKey
+#        !mSuperClassName
+#        ?4*
+#        ?allBindingMap
+#        ?2*
+#      ] ;
+#    end if ;
+#  #--- Analyze options
+#    @protocolList adoptedProtocolList [emptyList] ;
+#    @bool implementsDeallocProtocol := false ;
+#    foreach mOptionList do
+#      if mValue->string != "PMWillDeallocProtocol" then
+#        error mValue: "only 'PMWillDeallocProtocol' is allowed here" ;
+#      elsif implementsDeallocProtocol then
+#        error mValue: "'PMWillDeallocProtocol' option already set" ;
+#      else
+#        implementsDeallocProtocol := true ;
+#        adoptedProtocolList += !false !mValue ;
+#      end if ;
+#    end foreach ;
+#  #--- Analyze bindings
+#    @EXoutletClassBindingMap currentBindingMap [emptyMap] ;
+#    foreach mOutletClassBindingList do
+#      @EXoutletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+#      foreach mBindingOptionList do
+#        @easyBindingTypeList acceptableTypeList [emptyList] ;
+#        foreach mAcceptableTypeList do
+#          @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+#          acceptableTypeList += !type ;
+#        end foreach ;
+#        [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+#      end foreach ;
+#      @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+#      foreach mAcceptableTypeFormatterList do
+#        @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+#        acceptableTypeFormatterList += !type !mRequiredFormatter ;
+#      end foreach ;
+#      [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+#      [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+#    end foreach ;
+#  #--- Analyze protocols
+#    foreach mAdoptedProtocolList do
+#      [inProtocolMap searchKey !mValue ?@bool isPredefined] ;
+#      adoptedProtocolList += !isPredefined !mValue ;
+#    end foreach ;
+#  #---
+#    [!?outOutletClassMap insertKey
+#      !mOutletClassName
+#      !mGeneration
+#      !mSuperClassName->string
+#      !adoptedProtocolList
+#      !implementsDeallocProtocol
+#      !allBindingMap
+#      !currentBindingMap
+#      !mHasTableValueBinding
+#    ] ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

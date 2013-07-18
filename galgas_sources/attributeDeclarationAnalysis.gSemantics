@@ -1,58 +1,99 @@
 semantics attributeDeclarationAnalysis :
-  import "transientAnalysis.gSemantics" ;
-  import "bindingSemanticAnalysis.gSemantics" ;
-  import "analyzeASTtype.gSemantics" ;
+#  import "transientAnalysis.gSemantics" ;
+#  import "bindingSemanticAnalysis.gSemantics" ;
+  import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzeAttributeDeclaration
+routine attributeDeclarationEnterType
   ??@attributeList inAttributeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@classArrayList inArrayList
   ??@string inObjectName # "document." . documentName
-  ?!@transientDependencyGraph ioTransientDependencyGraph
-  ?!@fileInclusionSet ioFileInclusionSet
-  ?!@observablePropertyMap ioSelfObservableAttributeMap
-  !@attributeListForImplementation outAttributeListForImplementation
-  ?!@attributeListForImplementation ioAttributeListForInitHeader
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
+  ?!@observablePropertyMap ioObservablePropertyMap
 :
-  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
+#--- Attributes
   foreach inAttributeList do
-    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-    [mDefaultValue analyzeDefaultValueType
-      ![@easyBindingTypeList listWithValue !type]
-      !inContextAnalysisStruct
-      ?@string directDefaultValueAsString
-      ?@string objectiveCDefaultValueAsString
-      !?ioFileInclusionSet
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?@unifiedTypeProxy attributeTypeProxy
     ] ;
-    outAttributeListForImplementation +=
-      !type
-      ![mAttributeName string]
-      !objectiveCDefaultValueAsString
-      !directDefaultValueAsString
-    ;
-    ioAttributeListForInitHeader +=
-       !type
-       ![mAttributeName string]
-       !objectiveCDefaultValueAsString
-       !directDefaultValueAsString
-    ;
-    const @lstring observationDependencyKey [new
-      !inObjectName . "." . mAttributeName
-      !mAttributeName->location
-    ] ;
-    [!?ioSelfObservableAttributeMap insertKey
+    [!?ioObservablePropertyMap insertKey
       !mAttributeName
+      !attributeTypeProxy
+      !false # is not transient
+      !inObjectName . "." . mAttributeName
+      !false # Is not a collection
+    ] ;
+  end foreach ;
+#--- Arraies
+  foreach inArrayList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?@unifiedTypeProxy type
+    ] ;
+    [!?ioObservablePropertyMap insertKey
+      !mArrayName
       !type
       !false # is not transient
-      !observationDependencyKey->string
-    ] ;
-    [!?ioTransientDependencyGraph addNode
-      !observationDependencyKey
-      !observationDependencyKey->string
+      !inObjectName . "." . mArrayName
+      !true # Is a collection
     ] ;
   end foreach ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzeAttributeDeclaration
+#  ??@attributeList inAttributeList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ??@string inObjectName # "document." . documentName
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#  ?!@fileInclusionSet ioFileInclusionSet
+#  ?!@observablePropertyMap ioSelfObservableAttributeMap
+#  !@attributeListForImplementation outAttributeListForImplementation
+#  ?!@attributeListForImplementation ioAttributeListForInitHeader
+#:
+#  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
+#  foreach inAttributeList do
+#    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+#    [mDefaultValue analyzeDefaultValueType
+#      ![@easyBindingTypeList listWithValue !type]
+#      !inContextAnalysisStruct
+#      ?@string directDefaultValueAsString
+#      ?@string objectiveCDefaultValueAsString
+#      !?ioFileInclusionSet
+#    ] ;
+#    outAttributeListForImplementation +=
+#      !type
+#      ![mAttributeName string]
+#      !objectiveCDefaultValueAsString
+#      !directDefaultValueAsString
+#    ;
+#    ioAttributeListForInitHeader +=
+#       !type
+#       ![mAttributeName string]
+#       !objectiveCDefaultValueAsString
+#       !directDefaultValueAsString
+#    ;
+#    const @lstring observationDependencyKey [new
+#      !inObjectName . "." . mAttributeName
+#      !mAttributeName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mAttributeName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey->string
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

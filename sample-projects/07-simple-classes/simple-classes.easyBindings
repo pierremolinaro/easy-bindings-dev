@@ -1,6 +1,6 @@
 class MyClass {
-  attribute bool myBool default YES ;
-  attribute integer myInteger default 123 ;
+  attribute Bool myBool default YES ;
+  attribute Integer myInteger default 123 ;
   attribute NSString myString default "555" ;
   
   transient NSString schmurtz dependsFrom self.myInteger, self.myString ;
@@ -8,7 +8,7 @@ class MyClass {
 }
 
 class MyOtherClass : MyClass {
-  attribute bool chose default NO ;
+  attribute Bool chose default NO ;
   transient NSString bidule dependsFrom self.chose, self.schmurtz ;
 }
 

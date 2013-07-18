@@ -10,40 +10,47 @@ routine enumEnterType
 :
   foreach inEnumList do
     @enumConstantMap enumConstantMap [emptyMap] ;
+    @structFieldList fieldList [emptyList] ;
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mEnumTypeName
+      ?@unifiedTypeProxy enumTypeProxy
+    ] ;
     foreach mEnumConstantNameList do
       [!?enumConstantMap insertKey !mValue] ;
+      fieldList += !enumTypeProxy !mValue ;
     end foreach ;
     [!?ioUnifiedTypeMap insertKey
       !mEnumTypeName
-      ![@unifiedTypeKind enumerationType]
-      ![@unifiedTypeProxy null]
-      !enumConstantMap
-      ![@unifiedTypeProxyList emptyList]
-      ![@outletClassBindingMap emptyMap]
+      ![@enumType new
+        !mEnumTypeName
+        !fieldList
+        !enumConstantMap
+      ]
     ] ;
   end foreach ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine enumAnalysis
-  ??@enumList inEnumList
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
-:
-  foreach inEnumList do
-    @enumConstantMap enumConstantMap [emptyMap] ;
-    foreach mEnumConstantNameList do
-      [!?enumConstantMap insertKey !mValue] ;
-    end foreach ;
-    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
-  end foreach ;
-#---
-  foreach ioContextAnalysisStruct->mEnumMap do
-    foreach mConstantOrderedList do
-      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
-    end foreach ;
-  end foreach ;
-end routine ;
+#routine enumAnalysis
+#  ??@enumList inEnumList
+#  ?!@contextAnalysisStruct ioContextAnalysisStruct
+#:
+#  foreach inEnumList do
+#    @enumConstantMap enumConstantMap [emptyMap] ;
+#    foreach mEnumConstantNameList do
+#      [!?enumConstantMap insertKey !mValue] ;
+#    end foreach ;
+#    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
+#  end foreach ;
+##---
+#  foreach ioContextAnalysisStruct->mEnumMap do
+#    foreach mConstantOrderedList do
+#      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
+#    end foreach ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 

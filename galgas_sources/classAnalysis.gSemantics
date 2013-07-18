@@ -1,112 +1,171 @@
 semantics classAnalysis :
+  import "bindingSemanticAnalysis.gSemantics" ;
   import "transientAnalysis.gSemantics" ;
   import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-local routine analyzeClass
+local routine enterClassType
   ??@classList.element inClass
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  ?!@classMap ioClassMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
 #------------------------------- Super class ?
-  @observablePropertyMap observablePropertyMap ;
-  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
-  @preferenceArrayMap allArrayPropertyMap ;
-  if [inClass->mSuperClassName string] != "" then
-    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4* ?allArrayPropertyMap ?*] ;
+  @unifiedTypeProxy superClassProxy ;
+  if inClass->mSuperClassName->string == "" then
+    superClassProxy := [@unifiedTypeProxy null] ;
   else
-    observablePropertyMap := [@observablePropertyMap emptyMap] ;
-    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
-    allArrayPropertyMap := [@preferenceArrayMap emptyMap] ;
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !inClass->mSuperClassName
+      ?superClassProxy
+    ] ;
   end if ;
-  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
 #---------------------------------- Analyze attributes
-  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
-  analyzeAttributeDeclaration
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  attributeDeclarationEnterType
     !inClass->mAttributeList
-    !inContextAnalysisStruct
+    !inClass->mArrayList
     !"class." . inClass->mClassName
-    !?ioTransientDependencyGraph
-    !?fileInclusionSet
+    !?ioUnifiedTypeMap
     !?observablePropertyMap
-    ?@attributeListForImplementation attributeListForImplementation
-    !?propertyListForInitMethodHeader
   ;
-#------------------------------------- Analyze arraies
-  @preferenceArrayMap currentArrayPropertyMap [emptyMap] ;
-  foreach inClass->mArrayList do
-    [ioClassMap searchKey
-      !mClassName
-      ?*
-      ?@observablePropertyMap classObservablePropertyMap
-      ?2*
-      ?@attributeListForImplementation attributeListForImplementation
-      ?4*
-    ] ;
-    [!?allArrayPropertyMap insertKey
-      !mArrayName
-      !mClassName->string
-      !classObservablePropertyMap
-      !attributeListForImplementation
-    ] ;
-    [!?currentArrayPropertyMap insertKey
-      !mArrayName
-      !mClassName->string
-      !classObservablePropertyMap
-      !attributeListForImplementation
-    ] ;
-  end foreach ;
 #---------------------------------- Analyze transient properties
-  @transientListForImplementation transientListForImplementation ;
-  analyzeTransientProperties
-    ![@preferencesMap emptyMap]
-    !"class." . inClass->mClassName . "."
+  transientDeclarationEnterType
     !inClass->mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
-    !inContextAnalysisStruct
-    !"" # No Root entity
-    ![@controllerMap emptyMap]
+    !"class." . inClass->mClassName
+    !?ioUnifiedTypeMap
     !?observablePropertyMap
-    !?fileInclusionSet
-    ?transientListForImplementation
-    !?ioTransientDependencyGraph
   ;
 #----------------------------------
-  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
-  [!?ioClassMap insertKey
+  [!?ioUnifiedTypeMap insertKey
     !inClass->mClassName
-    !inClass->mSuperClassName->string
-    !observablePropertyMap
-    !propertyListForInitMethodHeader
-    !inheritedAttributeListForImplementation
-    !attributeListForImplementation
-    !transientListForImplementation
-    !allArrayPropertyMap
-    !currentArrayPropertyMap
-    !fileInclusionSet
+    ![@classType new
+      !superClassProxy
+      !observablePropertyMap
+    ]
   ] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine analyzeClasses
+routine classesEnterType
   ??@classList inClassList
-  ??@contextAnalysisStruct inContextAnalysisStruct
-  !@classMap outClassMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@unifiedTypeMap ioUnifiedTypeMap 
 :
-  outClassMap := [@classMap emptyMap] ;
   for aClass in inClassList do
-    analyzeClass
+    enterClassType
       !aClass
-      !inContextAnalysisStruct
-      !?outClassMap
-      !?ioTransientDependencyGraph
+      !?ioUnifiedTypeMap
     ;
   end for ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+#----------------------------------------------------------------------------*
+
+#local routine analyzeClass
+#  ??@classList.element inClass
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@classMap ioClassMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------- Super class ?
+#  @observablePropertyMap observablePropertyMap ;
+#  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+#  @preferenceArrayMap allArrayPropertyMap ;
+#  if [inClass->mSuperClassName string] != "" then
+#    [ioClassMap searchKey !inClass->mSuperClassName ?* ?observablePropertyMap ?propertyListForInitMethodHeader ?4* ?allArrayPropertyMap ?*] ;
+#  else
+#    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+#    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+#    allArrayPropertyMap := [@preferenceArrayMap emptyMap] ;
+#  end if ;
+#  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+##---------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
+#  analyzeAttributeDeclaration
+#    !inClass->mAttributeList
+#    !inContextAnalysisStruct
+#    !"class." . inClass->mClassName
+#    !?ioTransientDependencyGraph
+#    !?fileInclusionSet
+#    !?observablePropertyMap
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?propertyListForInitMethodHeader
+#  ;
+##------------------------------------- Analyze arraies
+#  @preferenceArrayMap currentArrayPropertyMap [emptyMap] ;
+#  foreach inClass->mArrayList do
+#    [ioClassMap searchKey
+#      !mClassName
+#      ?*
+#      ?@observablePropertyMap classObservablePropertyMap
+#      ?2*
+#      ?@attributeListForImplementation attributeListForImplementation
+#      ?4*
+#    ] ;
+#    [!?allArrayPropertyMap insertKey
+#      !mArrayName
+#      !mClassName->string
+#      !classObservablePropertyMap
+#      !attributeListForImplementation
+#    ] ;
+#    [!?currentArrayPropertyMap insertKey
+#      !mArrayName
+#      !mClassName->string
+#      !classObservablePropertyMap
+#      !attributeListForImplementation
+#    ] ;
+#  end foreach ;
+##---------------------------------- Analyze transient properties
+#  @transientListForImplementation transientListForImplementation ;
+#  analyzeTransientProperties
+#    ![@preferencesMap emptyMap]
+#    !"class." . inClass->mClassName . "."
+#    !inClass->mTransientList
+#    ![@observablePropertyMap emptyMap] # Root property map
+#    !inContextAnalysisStruct
+#    !"" # No Root entity
+#    ![@controllerMap emptyMap]
+#    !?observablePropertyMap
+#    !?fileInclusionSet
+#    ?transientListForImplementation
+#    !?ioTransientDependencyGraph
+#  ;
+##----------------------------------
+#  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
+#  [!?ioClassMap insertKey
+#    !inClass->mClassName
+#    !inClass->mSuperClassName->string
+#    !observablePropertyMap
+#    !propertyListForInitMethodHeader
+#    !inheritedAttributeListForImplementation
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !allArrayPropertyMap
+#    !currentArrayPropertyMap
+#    !fileInclusionSet
+#  ] ;
+#end routine ;
+
+#----------------------------------------------------------------------------*
+
+#routine analyzeClasses
+#  ??@classList inClassList
+#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  !@classMap outClassMap
+#  ?!@transientDependencyGraph ioTransientDependencyGraph
+#:
+#  outClassMap := [@classMap emptyMap] ;
+#  for aClass in inClassList do
+#    analyzeClass
+#      !aClass
+#      !inContextAnalysisStruct
+#      !?outClassMap
+#      !?ioTransientDependencyGraph
+#    ;
+#  end for ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 
