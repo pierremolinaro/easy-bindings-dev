@@ -6,17 +6,8 @@ import "easyBindings_grammar.gGrammar" ;
 #----------------------------------------------------------------------------*
 
 rule <start_symbol>
-  ?!@classList ioClassList
-  ?!@entityList ioEntityList
-  ?!@preferencesDeclarationList ioPreferencesList
-  ?!@nibClassDeclarationList ioNibClassList
-  ?!@outletClassList ioOutletClassList
-  ?!@documentDeclarationList ioDocumentDeclarationList
-  ?!@controllerClassList ioControllerClassList
-  ?!@protocolList ioProtocolList
+  ?!@astDeclarationList ioDeclarationList
   ?!@cursorList ioCursorList
-  ?!@enumList ioEnumList
-  ?!@structTypeList ioStructTypeList
   !@location outEndOfFile
 :
   repeat
@@ -29,41 +20,42 @@ rule <start_symbol>
       !filePath->location
     ] ;
     grammar easyBindings_grammar in sourceFile
-      !?ioClassList
-      !?ioEntityList
-      !?ioPreferencesList
-      !?ioNibClassList
-      !?ioOutletClassList
-      !?ioDocumentDeclarationList
-      !?ioControllerClassList
-      !?ioProtocolList
+      !?ioDeclarationList
       !?ioCursorList
-      !?ioEnumList
-      !?ioStructTypeList
       ?*
     ;
   while
-    <struct_declaration> !?ioStructTypeList ;
+    <struct_declaration>  ?@structDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <enum_declaration> !?ioEnumList ;
+    <enum_declaration> ?@enumDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
     <cursor_declaration> !?ioCursorList ;
   while
-    <protocol_declaration> !?ioProtocolList ;
+    <protocol_declaration> ?@protocolDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <class_declaration> !?ioClassList ;
+    <class_declaration> ?@classDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <entity_declaration> !?ioEntityList ;
+    <entity_declaration> ?@entityDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <nib_class_declaration> !?ioNibClassList ;
+    <nib_class_declaration> ?@nibClassDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <preferences_declaration> !?ioPreferencesList ;
+    <preferences_declaration> ?@preferencesDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <document_declaration> !?ioDocumentDeclarationList ;
+    <document_declaration> ?@documentDeclaration declaration ;
+    ioDeclarationList += !declaration  ;
   while
-    <outlet_class_declaration> !?ioOutletClassList ;
+    <outlet_class_declaration> ?@outletClassDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   while
-    <controller_class_declaration> !?ioControllerClassList ;
+    <controller_class_declaration> ?@controllerClassDeclaration declaration ;
+    ioDeclarationList += !declaration ;
   end repeat ;
   outEndOfFile := here ;
   $end$ ;
@@ -72,7 +64,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <struct_declaration>
-  ?!@structTypeList ioStructTypeList
+  !@structDeclaration outDeclaration
 :
   $struct$ ;
   $Identifier$ ? @lstring structName ;
@@ -86,7 +78,10 @@ rule <struct_declaration>
     $,$ ;
   end repeat ;
   $}$ ;
-  ioStructTypeList += !structName !structFieldList ;
+  outDeclaration := [@structDeclaration new
+    !structName
+    !structFieldList
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -344,7 +339,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <preferences_declaration>
-  ?!@preferencesDeclarationList ioPreferencesList
+  !@preferencesDeclaration outDeclaration
 :
   $preferences$ ;
   $Identifier$ ? @lstring preferencesName ;
@@ -370,7 +365,7 @@ rule <preferences_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  ioPreferencesList +=
+  outDeclaration := [@preferencesDeclaration new
     !preferencesName
     !outletDeclarationList
     !attributeList
@@ -378,13 +373,13 @@ rule <preferences_declaration>
     !actionDeclarationList
     !controllerList
     !classArrayList
-  ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <nib_class_declaration>
-  ?!@nibClassDeclarationList ioList
+  !@nibClassDeclaration outDeclaration
 :
   $nibClass$ ;
   $Identifier$ ? @lstring preferencesName ;
@@ -410,7 +405,7 @@ rule <nib_class_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  ioList +=
+  outDeclaration := [@nibClassDeclaration new
     !preferencesName
     !outletDeclarationList
     !attributeList
@@ -418,7 +413,7 @@ rule <nib_class_declaration>
     !actionDeclarationList
     !controllerList
     !classArrayList
-  ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -436,7 +431,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <document_declaration>
-  ?!@documentDeclarationList ioDocumentList
+  !@documentDeclaration outDeclaration
 :
   $document$ ;
   $Identifier$ ? @lstring preferencesName ;
@@ -461,7 +456,7 @@ rule <document_declaration>
     <controller_declaration> !?controllerList ;
   end repeat ;
   $}$ ;
-  ioDocumentList +=
+  outDeclaration := [@documentDeclaration new
     !preferencesName
     !rootEntityName
     !outletDeclarationList
@@ -469,7 +464,7 @@ rule <document_declaration>
     !actionDeclarationList
     !transientList
     !attributeList
-  ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -513,7 +508,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <class_declaration>
-  ?!@classList ioClassList
+  !@classDeclaration outDeclaration
 :
   $class$ ;
   $Identifier$ ? @lstring className ;
@@ -537,7 +532,13 @@ rule <class_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  ioClassList += !className !superClassName !attributeList !classArrayList !classTransientList ;
+  outDeclaration := [@classDeclaration new
+    !className
+    !superClassName
+    !attributeList
+    !classArrayList
+    !classTransientList
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -759,7 +760,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <entity_declaration>
-  ?!@entityList ioEntityList
+  !@entityDeclaration outDeclaration
 :
   $entity$ ;
   $Identifier$ ? @lstring entityName ;
@@ -832,14 +833,14 @@ rule <entity_declaration>
     ;
   end repeat ;
   $}$ ;
-  ioEntityList +=
+  outDeclaration := [@entityDeclaration new
     !entityName
     !superEntityName
     !attributeList
     !classTransientList
     !relationshipList
     !signList
-   ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -908,7 +909,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <outlet_class_declaration>
-  ?!@outletClassList ioOutletClassList
+  !@outletClassDeclaration outDeclaration
 :
   @generationKind generationKind ;
   select
@@ -989,7 +990,7 @@ rule <outlet_class_declaration>
     outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioOutletClassList +=
+  outDeclaration := [@outletClassDeclaration new
     !outletClassName
     !superClass
     !adoptedProtocolList
@@ -997,13 +998,13 @@ rule <outlet_class_declaration>
     !outletClassBindingList
     !hasTableValueBinding
     !optionList
-  ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <protocol_declaration>
-  ?!@protocolList ioProtocolList
+  !@protocolDeclaration outDeclaration
 :
   @bool isPredefined ;
   select
@@ -1014,7 +1015,10 @@ rule <protocol_declaration>
   $protocol$ ;
   $Identifier$ ? @lstring protocolName ;
   $;$ ;
-  ioProtocolList += !isPredefined !protocolName ;
+  outDeclaration := [@protocolDeclaration new
+    !isPredefined
+    !protocolName
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -1036,7 +1040,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <enum_declaration>
-  ?!@enumList ioEnumList
+  !@enumDeclaration outDeclaration
 :
   $enum$ ;
   $Identifier$ ? @lstring enumName ;
@@ -1049,13 +1053,13 @@ rule <enum_declaration>
     $,$ ;
   end repeat ;
   $}$ ;
-  ioEnumList += !enumName !enumConstants ;
+  outDeclaration := [@enumDeclaration new !enumName !enumConstants] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <controller_class_declaration>
-  ?!@controllerClassList ioControllerClassList
+  !@controllerClassDeclaration outDeclaration
 :
   @generationKind generationKind ;
   select
@@ -1178,7 +1182,7 @@ rule <controller_class_declaration>
     controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
   end repeat ;
   $}$ ;
-  ioControllerClassList +=
+  outDeclaration := [@controllerClassDeclaration new
     !controllerKind
     !controllerClassName
     !controlledObjectBindingOptionList
@@ -1186,7 +1190,7 @@ rule <controller_class_declaration>
     !controllerClassBindingList
     !actionDeclarationList
     !controllerObservablePropertyList
-  ;
+  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*

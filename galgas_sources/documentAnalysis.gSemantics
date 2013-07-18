@@ -145,70 +145,50 @@ semantics documentAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine documentEnterType
-  ??@documentDeclarationList.element inDocument
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @documentDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #------------------------------------------------ Root Entity
   [@unifiedTypeProxy makeProxy
     !?ioUnifiedTypeMap
-    !inDocument->mRootEntityName
+    !mRootEntityName
     ?@unifiedTypeProxy rootEntityType
   ] ;
+#--- Enter dependance edge
+  [!?ioUnifiedTypeMap enterEdge
+    !mDocumentName
+    !mRootEntityName
+  ] ;
 #---------------------------------- Analyze attributes
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  attributeDeclarationEnterType
-    !inDocument->mAttributeList
-    ![@classArrayList emptyList]
-    !"document." . inDocument->mDocumentName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mAttributeList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+  end foreach ;
 #---------------------------------- Analyze transient properties
-  transientDeclarationEnterType
-    !inDocument->mTransientList
-    !"document." . inDocument->mDocumentName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mTransientList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ] ;
+  end foreach ;
 #-------------------------------------------------- Analyze controllers
-  foreach inDocument->mControllerList do
+  foreach mControllerList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
-      ?@unifiedTypeProxy type
-    ] ;
-    [!?observablePropertyMap insertKey
-      !mControllerName
-      !type
-      !false # is not transient
-      !"document." . inDocument->mDocumentName . "." . mControllerName
-      !false # Is not a collection
+      ?*
     ] ;
   end foreach ;
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
-    !inDocument->mDocumentName
-    ![@documentType new
-      !rootEntityType
-      !observablePropertyMap
-    ]
+    !mDocumentName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine documentsEnterTypes
-  ??@documentDeclarationList inDocumentDeclarationList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-  for document in inDocumentDeclarationList do
-    documentEnterType
-      !document
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

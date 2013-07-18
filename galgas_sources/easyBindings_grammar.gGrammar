@@ -2,17 +2,8 @@ grammar easyBindings_grammar "SLR":
 with "easyBindings_syntax.gSyntax" ;
 
 root <start_symbol>
-  ?!@classList ioClassList
-  ?!@entityList ioEntityList
-  ?!@preferencesDeclarationList ioPreferencesList
-  ?!@nibClassDeclarationList ioNibClassList
-  ?!@outletClassList ioOutletClassList
-  ?!@documentDeclarationList ioDocumentDeclarationList
-  ?!@controllerClassList ioControllerClassList
-  ?!@protocolList ioProtocolList
+  ?!@astDeclarationList ioDeclarationList
   ?!@cursorList ioCursorList
-  ?!@enumList ioEnumList
-  ?!@structTypeList ioStructTypeList
   !@location outEndOfFile
 ;
 

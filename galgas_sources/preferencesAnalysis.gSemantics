@@ -5,70 +5,47 @@ semantics preferencesAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine enterTypesForPreferences
-  ??@preferencesDeclarationList.element inPreference
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @preferencesDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
-#------------------------------------- Analyze actions
-  @actionMap actionMap [emptyMap] ;
-  for actionName in inPreference->mActionDeclarationList do
-    [!?actionMap insertKey !actionName->mValue] ;
-  end for ;
-#------------------------------------- Analyze attributes and arraies
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  attributeDeclarationEnterType
-    !inPreference->mAttributeList
-    !inPreference->mClassArrayList
-    !"preference." . inPreference->mPreferencesName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+#---------------------------------- Analyze attributes
+  foreach mAttributeList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+  end foreach ;
+#---------------------------------- Analyze arraies
+  foreach mArrayList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?*
+    ] ;
+  end foreach ;
 #-------------------------------------------------- Analyze controllers
-  foreach inPreference->mControllerList do
+  foreach mControllerList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
-      ?@unifiedTypeProxy type
-    ] ;
-    [!?observablePropertyMap insertKey
-      !mControllerName
-      !type
-      !false # is not transient
-      !"preference." . inPreference->mPreferencesName . "." . mControllerName
-      !false # Is not a collection
+      ?*
     ] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
-  transientDeclarationEnterType
-    !inPreference->mTransientList
-    !"preference." . inPreference->mPreferencesName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
-#------------------------------------- Analyze outlets
-
+  foreach mTransientList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ] ;
+  end foreach ;
 #------------------------------------- Enter in preference map
   [!?ioUnifiedTypeMap insertKey
-    !inPreference->mPreferencesName
-    ![@preferenceType new
-      !observablePropertyMap
-    ]
+    !mPreferencesName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine preferencesEnterTypes
-  ??@preferencesDeclarationList inPreferencesList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-  for preference in inPreferencesList do
-    enterTypesForPreferences
-      !preference
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

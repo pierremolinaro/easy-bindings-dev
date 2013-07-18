@@ -3,24 +3,23 @@ semantics controllerClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine enterControllerClass
-  ??@controllerClassList.element inController
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @controllerClassDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #--- Analyze actions
   @actionMap actionMap [emptyMap] ;
-  for actionName in inController->mActionDeclarationList do
+  for actionName in mActionDeclarationList do
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
 #--- Analyze bindings
   buildBindingCapabilitiesMap
-    !inController->mBindingList
+    !mBindingList
     !?ioUnifiedTypeMap
     ?@outletClassBindingMap bindingMap
   ;
 #--- Analyze attributes
   @observablePropertyMap observablePropertyMap [emptyMap] ;
-  for property in inController->mControllerObservablePropertyList do
+  for property in mControllerObservablePropertyList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !property->mTypeName
@@ -30,13 +29,13 @@ local routine enterControllerClass
       !property->mPropertyName
       !attributeTypeProxy
       !false # is not transient
-      !"controller." . inController->mControllerClassName . "." . property->mPropertyName
+      !"controller." . mControllerClassName . "." . property->mPropertyName
       !false # Is not a collection
     ] ;
   end for ;
 #---
   @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-  foreach inController->mControlledObjectBindingOptionList do
+  foreach mControlledObjectBindingOptionList do
     @unifiedTypeProxyList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do
       [@unifiedTypeProxy makeProxy
@@ -50,31 +49,10 @@ local routine enterControllerClass
   end foreach ;
 #---
   [!?ioUnifiedTypeMap insertKey
-    !inController->mControllerClassName
-    ![@controllerClassType new
-      !inController->mControllerKind
-      !inController->mGenerationKind
-      !bindingMap
-      !actionMap
-      !observablePropertyMap
-      !controlledObjectAvailableBindingOptionMap
-    ]
+    !mControllerClassName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine controllerClassesEnterType
-  ??@controllerClassList inControllerClassList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-  for controller in inControllerClassList do
-    enterControllerClass
-      !controller
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

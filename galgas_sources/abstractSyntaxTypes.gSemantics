@@ -1,6 +1,16 @@
 semantics abstractSyntaxTypes :
 
 #-----------------------------------------------------------------------------*
+
+abstract class @astDeclaration {
+}
+
+#-----------------------------------------------------------------------------*
+
+list @astDeclarationList {
+  @astDeclaration mDeclaration ;
+}
+
 #-----------------------------------------------------------------------------*
 
 list @attributeList {
@@ -88,7 +98,7 @@ list @classArrayList {
 
 #----------------------------------------------------------------------------*
 
-list @classList {
+class @classDeclaration extends @astDeclaration {
   @lstring mClassName ;
   @lstring mSuperClassName ;
   @attributeList mAttributeList ;
@@ -98,7 +108,7 @@ list @classList {
 
 #----------------------------------------------------------------------------*
 
-list @entityList {
+class @entityDeclaration extends @astDeclaration {
   @lstring mEntityName ;
   @lstring mSuperEntityName ;
   @attributeList mAttributeList ;
@@ -239,26 +249,26 @@ list @outletDeclarationList {
 
 #----------------------------------------------------------------------------*
 
-list @preferencesDeclarationList {
+class @preferencesDeclaration extends @astDeclaration {
   @lstring mPreferencesName ;
   @outletDeclarationList mOutletDeclarationList ;
   @attributeList mAttributeList ;
   @transientList mTransientList ;
   @lstringlist mActionDeclarationList ;
   @controllerList mControllerList ;
-  @classArrayList mClassArrayList ;
+  @classArrayList mArrayList ;
 }
 
 #----------------------------------------------------------------------------*
 
-list @nibClassDeclarationList {
+class @nibClassDeclaration extends @astDeclaration {
   @lstring mClassName ;
   @outletDeclarationList mOutletDeclarationList ;
   @attributeList mAttributeList ;
   @transientList mTransientList ;
   @lstringlist mActionDeclarationList ;
   @controllerList mControllerList ;
-  @classArrayList mClassArrayList ;
+  @classArrayList mArrayList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -275,7 +285,7 @@ list @controllerList {
 
 #----------------------------------------------------------------------------*
 
-list @documentDeclarationList {
+class @documentDeclaration extends @astDeclaration {
   @lstring mDocumentName ;
   @lstring mRootEntityName ;
   @outletDeclarationList mOutletDeclarationList ;
@@ -331,7 +341,7 @@ list @cursorList {
 
 #----------------------------------------------------------------------------*
 
-list @outletClassList {
+class @outletClassDeclaration extends @astDeclaration {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
@@ -350,7 +360,7 @@ list @controllerObservablePropertyList {
 
 #----------------------------------------------------------------------------*
 
-list @protocolList {
+class @protocolDeclaration extends @astDeclaration {
   @bool mIsPredefined ; # Generate import otherwise
   @lstring mProtocolName ;
 }
@@ -369,7 +379,7 @@ enum @controllerKind {
 
 #----------------------------------------------------------------------------*
 
-list @controllerClassList {
+class @controllerClassDeclaration extends @astDeclaration {
   @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
   @bindingOptionList mControlledObjectBindingOptionList ;
@@ -381,7 +391,7 @@ list @controllerClassList {
 
 #----------------------------------------------------------------------------*
 
-list @enumList {
+class @enumDeclaration extends @astDeclaration {
   @lstring mEnumTypeName ;
   @lstringlist mEnumConstantNameList ;
 }
@@ -443,7 +453,13 @@ list @structFieldASTList {
 
 #----------------------------------------------------------------------------*
 
-list @structTypeList {
+class @predefinedTypeDeclaration extends @astDeclaration {
+  @lstring mTypeName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @structDeclaration extends @astDeclaration {
   @lstring mStructTypeName ;
   @structFieldASTList mFieldList ;
 }

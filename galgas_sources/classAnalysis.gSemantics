@@ -5,60 +5,52 @@ semantics classAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine enterClassType
-  ??@classList.element inClass
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @classDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #------------------------------- Super class ?
-  @unifiedTypeProxy superClassProxy ;
-  if inClass->mSuperClassName->string == "" then
-    superClassProxy := [@unifiedTypeProxy null] ;
-  else
+  if mSuperClassName->string != "" then
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
-      !inClass->mSuperClassName
-      ?superClassProxy
+      !mSuperClassName
+      ?@unifiedTypeProxy superClassProxy
+    ] ;
+  #--- Enter dependance edge
+    [!?ioUnifiedTypeMap enterEdge
+      !mClassName
+      !mSuperClassName
     ] ;
   end if ;
 #---------------------------------- Analyze attributes
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  attributeDeclarationEnterType
-    !inClass->mAttributeList
-    !inClass->mArrayList
-    !"class." . inClass->mClassName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mAttributeList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+  end foreach ;
+#---------------------------------- Analyze arraies
+  foreach mArrayList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?*
+    ] ;
+  end foreach ;
 #---------------------------------- Analyze transient properties
-  transientDeclarationEnterType
-    !inClass->mTransientList
-    !"class." . inClass->mClassName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mTransientList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ] ;
+  end foreach ;
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
-    !inClass->mClassName
-    ![@classType new
-      !superClassProxy
-      !observablePropertyMap
-    ]
+    !mClassName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine classesEnterType
-  ??@classList inClassList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-  for aClass in inClassList do
-    enterClassType
-      !aClass
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 #----------------------------------------------------------------------------*

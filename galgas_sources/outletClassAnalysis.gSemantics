@@ -3,39 +3,32 @@ semantics outletClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-routine outletClassesEnterType
-  ??@outletClassList inOutletClassList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @outletClassDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
-  foreach inOutletClassList do
-  #--- Has super class ?
-    @unifiedTypeProxy superClassProxy ;
-    if mSuperClassName->string == "" then
-      superClassProxy := [@unifiedTypeProxy null] ;
-    else
-      [@unifiedTypeProxy makeProxy
-        !?ioUnifiedTypeMap
-        !mSuperClassName
-        ?superClassProxy
-      ] ;
-    end if ;
-  #--- Analyze binding list
-    buildBindingCapabilitiesMap
-      !mOutletClassBindingList
+#--- Has super class ?
+  @unifiedTypeProxy superClassProxy ;
+  if mSuperClassName->string == "" then
+    superClassProxy := [@unifiedTypeProxy null] ;
+  else
+    [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
-      ?@outletClassBindingMap currentBindingMap
-    ;
-  #---
-    [!?ioUnifiedTypeMap insertKey
-      !mOutletClassName
-      ![@outletClassType new
-        !mOutletClassName
-        !superClassProxy
-        !currentBindingMap
-      ]
+      !mSuperClassName
+      ?superClassProxy
     ] ;
-  end foreach ;
-end routine ;
+  end if ;
+#--- Analyze binding list
+  buildBindingCapabilitiesMap
+    !mOutletClassBindingList
+    !?ioUnifiedTypeMap
+    ?@outletClassBindingMap currentBindingMap
+  ;
+#---
+  [!?ioUnifiedTypeMap insertKey
+    !mOutletClassName
+    !selfcopy
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

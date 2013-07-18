@@ -1,25 +1,13 @@
-semantics enumAnalysis :
-  import "easyBindings_options.gOption" ;
+semantics predefinedTypeAnalysis :
   import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-override method @enumDeclaration typeInventory
+override method @predefinedTypeDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
-#  @enumConstantMap enumConstantMap [emptyMap] ;
-#  @structFieldList fieldList [emptyList] ;
-#  [@unifiedTypeProxy makeProxy
-#    !?ioUnifiedTypeMap
-#    !mEnumTypeName
-#    ?@unifiedTypeProxy enumTypeProxy
-#  ] ;
-#  foreach mEnumConstantNameList do
-#    [!?enumConstantMap insertKey !mValue] ;
-#    fieldList += !enumTypeProxy !mValue ;
-#  end foreach ;
   [!?ioUnifiedTypeMap insertKey
-    !mEnumTypeName
+    !mTypeName
     !selfcopy
   ] ;
 end method ;
