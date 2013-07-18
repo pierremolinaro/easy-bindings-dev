@@ -3,27 +3,29 @@ semantics transientAnalysis :
 
 #----------------------------------------------------------------------------*
 
-routine transientDeclarationEnterType
-  ??@transientList inAttributeList
-  ??@string inObjectName # "document." . documentName
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-  ?!@observablePropertyMap ioObservablePropertyMap
-:
-  foreach inAttributeList do
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mTransientTypeName
-      ?@unifiedTypeProxy type
-    ] ;
-    [!?ioObservablePropertyMap insertKey
-      !mTransientName
-      !type
-      !true # is transient
-      !inObjectName . "." . mTransientName
-      !false # Is not a collection
-    ] ;
-  end foreach ;
-end routine ;
+#----------------------------------------------------------------------------*
+
+#routine transientDeclarationEnterType
+#  ??@transientList inAttributeList
+#  ??@string inObjectName # "document." . documentName
+#  ?!@unifiedTypeMap ioUnifiedTypeMap 
+#  ?!@observablePropertyMap ioObservablePropertyMap
+#:
+#  foreach inAttributeList do
+#    [@unifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mTransientTypeName
+#      ?@unifiedTypeProxy type
+#    ] ;
+#    [!?ioObservablePropertyMap insertKey
+#      !mTransientName
+#      !type
+#      !true # is transient
+#      !inObjectName . "." . mTransientName
+#      !false # Is not a collection
+#    ] ;
+#  end foreach ;
+#end routine ;
 
 ##----------------------------------------------------------------------------*
 #

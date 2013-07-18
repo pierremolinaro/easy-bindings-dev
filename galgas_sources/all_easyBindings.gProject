@@ -14,14 +14,18 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   
   semantics "attributeDeclarationAnalysis.gSemantics" ;
 
+  semantics "protocolAnalysis.gSemantics" ;
+
+  semantics "predefinedTypeAnalysis.gSemantics" ;
+  
+  semantics "cursorAnalysis.gSemantics" ;
+#  semantics "cursorGeneration.gSemantics" ;
+
   semantics "enumAnalysis.gSemantics" ;
 #  semantics "enumGeneration.gSemantics" ;
 #
   semantics "structAnalysis.gSemantics" ;
 #  semantics "structGeneration.gSemantics" ;
-
-  semantics "cursorAnalysis.gSemantics" ;
-#  semantics "cursorGeneration.gSemantics" ;
 
   semantics "bindingSemanticAnalysis.gSemantics" ;
 #  semantics "bindingsGeneration.gSemantics" ;
@@ -49,7 +53,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
 
   semantics "transientAnalysis.gSemantics" ;
 #  semantics "transientGeneration.gSemantics" ;
-  
+
   program "easyBindings_program.gProgram" ;
 end project ;
 

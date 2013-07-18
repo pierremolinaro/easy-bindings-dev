@@ -5,68 +5,52 @@ semantics nibClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local routine nibClassEnterType
-  ??@nibClassDeclarationList.element inNibClass
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @nibClassDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #------------------------------------- Analyze actions
   @actionMap actionMap [emptyMap] ;
-  for actionName in inNibClass->mActionDeclarationList do
+  for actionName in mActionDeclarationList do
     [!?actionMap insertKey !actionName->mValue] ;
   end for ;
-#---------------------------------- Analyze attributes and arraies
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  attributeDeclarationEnterType
-    !inNibClass->mAttributeList
-    !inNibClass->mClassArrayList
-    !"nibclass." . inNibClass->mClassName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+#---------------------------------- Analyze attributes
+  foreach mAttributeList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+  end foreach ;
+#---------------------------------- Analyze arraies
+  foreach mArrayList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?*
+    ] ;
+  end foreach ;
 #-------------------------------------------------- Analyze controllers
-  foreach inNibClass->mControllerList do
+  foreach mControllerList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
-      ?@unifiedTypeProxy type
-    ] ;
-    [!?observablePropertyMap insertKey
-      !mControllerName
-      !type
-      !false # is not transient
-      !"nibclass." . inNibClass->mClassName . "." . mControllerName
-      !false # Is not a collection
+      ?*
     ] ;
   end foreach ;
 #---------------------------------- Analyze transient properties
-  transientDeclarationEnterType
-    !inNibClass->mTransientList
-    !"nibclass." . inNibClass->mClassName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mTransientList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ] ;
+  end foreach ;
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
-    !inNibClass->mClassName
-    ![@nibClassType new
-      !observablePropertyMap
-    ]
+    !mClassName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine nibClassesEnterTypes
-  ??@nibClassDeclarationList inNibClassList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-  for nibClass in inNibClassList do
-    nibClassEnterType
-      !nibClass
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

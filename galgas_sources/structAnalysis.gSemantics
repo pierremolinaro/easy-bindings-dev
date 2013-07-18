@@ -3,29 +3,20 @@ semantics structAnalysis :
 
 #----------------------------------------------------------------------------*
 
-routine structEnterType
-  ??@structTypeList inStructTypeList
+override method @structDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
-  foreach inStructTypeList do
-    @structFieldList unifiedTypeProxyList [emptyList] ;
-    foreach mFieldList do
-      [@unifiedTypeProxy makeProxy
-        !?ioUnifiedTypeMap
-        !mFieldTypeName
-        ?@unifiedTypeProxy fieldTypeProxy
-      ] ;
-      unifiedTypeProxyList += !fieldTypeProxy !mFieldName ;
-    end foreach ;
-    [!?ioUnifiedTypeMap insertKey
+  foreach mFieldList do
+    [!?ioUnifiedTypeMap enterEdge
       !mStructTypeName
-      ![@structType new
-        !mStructTypeName
-        !unifiedTypeProxyList
-      ]
+      !mFieldTypeName
     ] ;
   end foreach ;
-end routine ;
+  [!?ioUnifiedTypeMap insertKey
+    !mStructTypeName
+    !selfcopy
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

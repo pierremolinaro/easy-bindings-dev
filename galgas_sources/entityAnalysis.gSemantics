@@ -7,76 +7,55 @@ semantics entityAnalysis :
 #   ANALYZE ENTITIES                                                         *
 #----------------------------------------------------------------------------*
 
-local routine entityEnterTypes
-  ??@entityList.element inEntity
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
+override method @entityDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #--------------------------------------------- Get super entity (if any)
   @unifiedTypeProxy superClassProxy ;
-  if inEntity->mSuperEntityName->string == "" then
+  if mSuperEntityName->string == "" then
     superClassProxy := [@unifiedTypeProxy null] ;
   else
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
-      !inEntity->mSuperEntityName
+      !mSuperEntityName
       ?superClassProxy
+    ] ;
+  #--- Enter dependance edge
+    [!?ioUnifiedTypeMap enterEdge
+      !mEntityName
+      !mSuperEntityName
     ] ;
   end if ;
 #---------------------------------- Analyze attributes
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
-  attributeDeclarationEnterType
-    !inEntity->mAttributeList
-    ![@classArrayList emptyList]
-    !"entity." . inEntity->mEntityName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mAttributeList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+  end foreach ;
 #---------------------------------- Analyze transient properties
-  transientDeclarationEnterType
-    !inEntity->mTransientList
-    !"entity." . inEntity->mEntityName
-    !?ioUnifiedTypeMap
-    !?observablePropertyMap
-  ;
+  foreach mTransientList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ] ;
+  end foreach ;
 #---------------------------------------- Analyze relationship (only check name is unique)
-  foreach inEntity->mRelationshipList do
+  foreach mRelationshipList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mDestinationEntityName
-      ?@unifiedTypeProxy type
-    ] ;
-    [!?observablePropertyMap insertKey
-      !mRelationshipName
-      !type
-      !false # Is not Transient
-      !"entity." . inEntity->mEntityName . "." . mRelationshipName
-      !mIsToMany
+      ?*
     ] ;
   end foreach ;
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
-    !inEntity->mEntityName
-    ![@entityType new
-      !superClassProxy
-      !observablePropertyMap
-    ]
+    !mEntityName
+    !selfcopy
   ] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine entitiesEnterTypes
-  ??@entityList inEntityList
-  ?!@unifiedTypeMap ioUnifiedTypeMap 
-:
-#------------------------------- Analyze entities
-  for entity in inEntityList do
-    entityEnterTypes
-      !entity
-      !?ioUnifiedTypeMap
-    ;
-  end for ;
-end routine ;
+end method ;
 
 #----------------------------------------------------------------------------*
 #   ANALYZE ENTITIES                                                         *

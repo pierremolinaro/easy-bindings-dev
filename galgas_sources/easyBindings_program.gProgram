@@ -3,15 +3,6 @@ import "decoratedTypes.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 
 import "cursorAnalysis.gSemantics" ;
-import "outletClassAnalysis.gSemantics" ;
-import "classAnalysis.gSemantics" ;
-import "controllerClassAnalysis.gSemantics" ;
-import "entityAnalysis.gSemantics" ;
-import "preferencesAnalysis.gSemantics" ;
-import "documentAnalysis.gSemantics" ;
-import "enumAnalysis.gSemantics" ;
-import "structAnalysis.gSemantics" ;
-import "nibClassAnalysis.gSemantics" ;
 
 #import "outletClassGeneration.gSemantics" ;
 #import "classGeneration.gSemantics" ;
@@ -44,14 +35,10 @@ local filewrapper objective_c_sources in "../generation-templates/objective-c-so
 #----------------------------------------------------------------------------*
 
 local routine enterPredefinedType
-  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@astDeclarationList ioDeclarationList
   ??@string inTypeName
-  ??@easyBindingType inType
 :
-  [!?ioUnifiedTypeMap insertKey
-    ![inTypeName nowhere]
-    !inType
-  ] ;
+  ioDeclarationList += ![@predefinedTypeDeclaration new ![inTypeName nowhere]] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -60,127 +47,96 @@ when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
 #--- Parse predefined outlets
-  @classList classList [emptyList] ;
-  @entityList entityList [emptyList] ;
-  @preferencesDeclarationList preferencesList [emptyList] ;
-  @nibClassDeclarationList nibClassList [emptyList] ;
-  @outletClassList outletClassList [emptyList] ;
-  @documentDeclarationList documentDeclarationList [emptyList] ;
-  @controllerClassList controllerClassList [emptyList] ;
-  @protocolList protocolList [emptyList] ;
+  @astDeclarationList declarationList [emptyList] ;
+
   @cursorList cursorList [emptyList] ;
-  @structTypeList structTypeList [emptyList] ;
-  @enumList enumList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
-    !?classList
-    !?entityList
-    !?preferencesList
-    !?nibClassList
-    !?outletClassList
-    !?documentDeclarationList
-    !?controllerClassList
-    !?protocolList
+    !?declarationList
     !?cursorList
-    !?enumList
-    !?structTypeList
     ?*
   ;
 #--- Parse source file
   grammar easyBindings_grammar in inSourceFile
-    !?classList
-    !?entityList
-    !?preferencesList
-    !?nibClassList
-    !?outletClassList
-    !?documentDeclarationList
-    !?controllerClassList
-    !?protocolList
+    !?declarationList
     !?cursorList
-    !?enumList
-    !?structTypeList
     ?@location endOfSourceFile
   ;
-#------------------------------------------------------- Type Analysis
+#--- Enter predefined types
+   enterPredefinedType !?declarationList !"NSString" ;
+   enterPredefinedType !?declarationList !"NSColor" ;
+   enterPredefinedType !?declarationList !"NSData" ;
+   enterPredefinedType !?declarationList !"NSDate" ;
+   enterPredefinedType !?declarationList !"NSFont" ;
+   enterPredefinedType !?declarationList !"NSImage" ;
+   enterPredefinedType !?declarationList !"NSMenu" ;
+   enterPredefinedType !?declarationList !"NSBezierPath" ;
+   enterPredefinedType !?declarationList !"Integer" ;
+   enterPredefinedType !?declarationList !"UInteger" ;
+   enterPredefinedType !?declarationList !"Bool" ;
+   enterPredefinedType !?declarationList !"Double" ;
+   enterPredefinedType !?declarationList !"AnyScalar" ;
+   enterPredefinedType !?declarationList !"AnyNumber" ;
+
+#------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
-   enterPredefinedType !?unifiedTypeMap !"NSString" ![@stringType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSColor" ![@colorType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSData" ![@dataType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSDate" ![@dateType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSFont" ![@fontType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSImage" ![@imageType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSMenu" ![@menuType new] ;
-   enterPredefinedType !?unifiedTypeMap !"NSBezierPath" ![@bezierPathType new] ;
-   enterPredefinedType !?unifiedTypeMap !"Integer" ![@integerType new] ;
-   enterPredefinedType !?unifiedTypeMap !"UInteger" ![@uintegerType new] ;
-   enterPredefinedType !?unifiedTypeMap !"Bool" ![@boolType new] ;
-   enterPredefinedType !?unifiedTypeMap !"Double" ![@doubleType new] ;
-   enterPredefinedType !?unifiedTypeMap !"AnyScalar" ![@anyScalarType new] ;
-   enterPredefinedType !?unifiedTypeMap !"AnyNumber" ![@anyNumberType new] ;
-#--- Enumerations
-  enumEnterType
-    !enumList
-    !?unifiedTypeMap
-  ;
-#--- Structures
-  structEnterType
-    !structTypeList
-    !?unifiedTypeMap
-  ;
-#--- Protocol
-  @protocolMap protocolMap [emptyMap] ;
-  foreach protocolList do
-    [!?unifiedTypeMap insertKey
-      !mProtocolName
-      ![@protocolType new !mIsPredefined]
-    ] ; 
+#----
+  foreach declarationList do
+    [mDeclaration typeInventory !?unifiedTypeMap] ;
   end foreach ;
-#--- Outlet classes
-  outletClassesEnterType
-    !outletClassList
-    !?unifiedTypeMap
-  ;
-#--- Controller classes
-  controllerClassesEnterType
-    !controllerClassList
-    !?unifiedTypeMap
-  ;
-#--- Classes
-  classesEnterType
-    !classList
-    !?unifiedTypeMap
-  ;
-#--- Preferences
-  preferencesEnterTypes
-    !preferencesList
-    !?unifiedTypeMap
-  ;
-#--- Entities
-  entitiesEnterTypes
-    !entityList
-    !?unifiedTypeMap
-  ;
-#--- nib classes
-  nibClassesEnterTypes
-    !nibClassList
-    !?unifiedTypeMap
-  ;
-#--- Documents
-  documentsEnterTypes
-    !documentDeclarationList
-    !?unifiedTypeMap
-  ;
-#--- Check all types are defined
-  foreach [unifiedTypeMap unsolvedProxyList] do
+  if [option easyBindings_options.outputClassDependencyGraph value] then
+    const @string s := [unifiedTypeMap edgeGraphvizRepresentation] ;
+    const @string path := inSourceFile->string . ".classDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
+#------------------------------------------- Check all types are defined
+  const @lstringlist unsolvedProxyList := [unifiedTypeMap unsolvedProxyList] ;
+  foreach unsolvedProxyList do
     error mValue :"type " . mValue . " is undefined" ;
   end foreach ;
-#------------------------------------------------------- Semantic Analysis
-   @contextAnalysisStruct contextAnalysisStruct [default] ;
-#--- Cursors
-  cursorAnalysis
-    !cursorList
-    !?contextAnalysisStruct
-    ?@stringlist predefinedCursorList
-  ;
+#------------------------------------------- Topological sort and continue
+  if [unsolvedProxyList length] == 0 then
+    [unifiedTypeMap topologicalSort ?@lstringlist sortedKeys ?@lstringlist unsortedKeys] ;
+    if [unsortedKeys length] > 0 then
+      @string s := "cannot sort types ; the following types are involved in circular dependence:" ;
+      foreach unsortedKeys do
+        s .= "\n-- " . mValue ;
+      end foreach ;
+      error here : s ;
+    else
+      semanticAnalysis !unifiedTypeMap !sortedKeys ;
+    end if ;
+  end if ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#   S E M A N T I C    A N A L Y S I S                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine semanticAnalysis
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@lstringlist inSortedKeys
+:
+#--- Semantic analysis
+  foreach inSortedKeys do
+    [inUnifiedTypeMap searchKey
+      !mValue
+      ?@astDeclaration declaration
+    ] ;
+  
+  
+  end foreach ;
+
+end routine ;
+##------------------------------------------------------- Semantic Analysis
+#   @contextAnalysisStruct contextAnalysisStruct [default] ;
+##--- Cursors
+#  cursorAnalysis
+#    !cursorList
+#    !?contextAnalysisStruct
+#    ?@stringlist predefinedCursorList
+#  ;
 ##--- Enumerations
 #  enumAnalysis
 #    !enumList
@@ -343,7 +299,7 @@ message "a source text file with the .easyBindings extension"
 #       ] ;
 #     end if ;
 #  end foreach ;
-}
+#}
 
 #----------------------------------------------------------------------------*
 
