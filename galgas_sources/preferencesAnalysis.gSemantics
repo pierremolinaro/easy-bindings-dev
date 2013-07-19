@@ -31,6 +31,7 @@ override method @preferencesDeclaration typeInventory
       !mControllerClassName
       ?*
     ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mControllerClassName] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
   foreach mTransientList do
@@ -39,6 +40,15 @@ override method @preferencesDeclaration typeInventory
       !mTransientTypeName
       ?*
     ] ;
+  end foreach ;
+#------------------------------------- Analyze outlets
+  foreach mOutletDeclarationList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mOutletType
+      ?*
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mOutletType] ;
   end foreach ;
 #------------------------------------- Enter in preference map
   [!?ioUnifiedTypeMap insertKey
@@ -183,6 +193,15 @@ override method @preferencesDeclaration semanticAnalysis
         !"self"
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
+      ] ;
+      [!?controllerMap insertKey
+        !mControllerName
+        !mControllerClassName->string
+        ![@lstring new !controllerObjectClassName !here]
+        !false # Is not an entity : it is a class
+        !bindingListForGeneration
+        !controllerActionMap
+        !controllerObservablePropertyMap
       ] ;
     end switch ;
   end foreach ;

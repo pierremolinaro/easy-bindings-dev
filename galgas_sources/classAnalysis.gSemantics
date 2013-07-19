@@ -27,10 +27,7 @@ override method @classDeclaration typeInventory
       !mAttributeTypeName
       ?*
     ] ;
-    [!?ioUnifiedTypeMap enterEdge
-      !mClassName
-      !mAttributeTypeName
-    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mClassName !mAttributeTypeName] ;
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do

@@ -52,14 +52,38 @@ override method @tableValueBinding analyzeOutletBinding
   if not inHasTableValueBinding then
     error mControllerName: "this outlet does not support $tableValue binding" ;
   else
+#    [inSelfObservableAttributeMap searchKey
+#       !mControllerName
+#       ?@ebType type
+#       ?3*
+#    ] ;
+#    if type->mKind != [@typeKind controllerClassType] then
+#      error mControllerName: "'" . mControllerName . "' is not a controller" ;
+#    end if ;
+#    [inContextAnalysisStruct->mControllerClassMap searchKey
+#      !type->mTypeName
+#      ?2*
+#      ?@lstring controlledClassOrEntityName
+#      ?@bool isEntity
+#      ?@outletBindingListForGeneration controllerBindingList
+#      ?*
+#    ] ;
+
+#  @controllerKind mControllerKind ;
+#  @generationKind mGenerationKind ;
+#  @outletClassBindingMap mBindingMap ;
+#  @actionMap mActionMap ;
+#  @observablePropertyMap mObservablePropertyMap ;
+#  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
+
+
     [inControllerMap searchKey
       !mControllerName
       ?*
       ?@lstring controlledClassOrEntityName
       ?@bool isEntity
       ?@outletBindingListForGeneration controllerBindingList
-      ?*
-      ?*
+      ?2*
     ] ;
     [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
       !controlledClassOrEntityName
@@ -104,20 +128,33 @@ end method ;
 
 override method @runBinding analyzeOutletBinding
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
-  ??@observablePropertyMap unused inSelfObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
   ??@outletClassBindingMap unused inBoundObjectBindingMap
-  ??@controllerMap inControllerMap
+  ??@controllerMap unused inControllerMap
   ??@actionMap inActionMap
   ??@bool unused inHasTableValueBinding
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
   ?!@fileInclusionSet unused ioFileInclusionSet
 :
   if mTargetName->string == "self" then
     [inActionMap searchKey !mActionName] ;
   else
-    @actionMap actionMap ;
-    [inControllerMap searchKey !mTargetName ?4* ?actionMap ?*] ;
+    [inSelfObservableAttributeMap searchKey
+       !mTargetName
+       ?@ebType type
+       ?3*
+    ] ;
+    if type->mKind != [@typeKind controllerClassType] then
+      error mTargetName: "'" . mTargetName . "' is not a controller" ;
+    end if ;
+    [inContextAnalysisStruct->mControllerClassMap searchKey
+      !type->mTypeName
+      ?3*
+      ?@actionMap actionMap
+      ?2*
+    ] ;
+     ;
     [actionMap searchKey !mActionName] ;
   end if ;
   ioOutletBindingListForGeneration += ![@runBindingForGeneration new
@@ -682,19 +719,28 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @multiValuedBindingBoundToController analyzeModel
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@contextAnalysisStruct inContextAnalysisStruct
   ??@observablePropertyMap unused inRootEntityObservableAttributeMap
-  ??@observablePropertyMap unused inSelfObservableAttributeMap
-  ??@controllerMap inControllerMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@controllerMap unused inControllerMap
   ?!@fileInclusionSet unused ioFileInclusionSet
   !@string outObservedObjectName
   !@ebType outObservablePropertyType
   !@string outKeyPathPrefix
 :
-  [inControllerMap searchKey
-    !mControllerName
-    ?5*
+  [inSelfObservableAttributeMap searchKey
+     !mControllerName
+     ?@ebType type
+     ?3*
+  ] ;
+  if type->mKind != [@typeKind controllerClassType] then
+    error mControllerName: "'" . mControllerName . "' is not a controller" ;
+  end if ;
+  [inContextAnalysisStruct->mControllerClassMap searchKey
+    !type->mTypeName
+    ?4*
     ?@observablePropertyMap controllerObservableAttributeMap
+    ?*
   ] ;
   [controllerObservableAttributeMap searchKey
     !mPropertyName
