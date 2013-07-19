@@ -19,13 +19,13 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "predefinedTypeAnalysis.gSemantics" ;
   
   semantics "cursorAnalysis.gSemantics" ;
-#  semantics "cursorGeneration.gSemantics" ;
+  semantics "cursorGeneration.gSemantics" ;
 
   semantics "enumAnalysis.gSemantics" ;
-#  semantics "enumGeneration.gSemantics" ;
-#
+  semantics "enumGeneration.gSemantics" ;
+
   semantics "structAnalysis.gSemantics" ;
-#  semantics "structGeneration.gSemantics" ;
+  semantics "structGeneration.gSemantics" ;
 
   semantics "bindingSemanticAnalysis.gSemantics" ;
 #  semantics "bindingsGeneration.gSemantics" ;

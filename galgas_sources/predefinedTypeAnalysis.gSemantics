@@ -7,12 +7,32 @@ override method @predefinedTypeDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
   [!?ioUnifiedTypeMap insertKey
-    !mTypeName
+    ![mTypeName nowhere]
+    ![@ebType new ![mTypeName nowhere] !mKind]
     !selfcopy
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @predefinedTypeDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @predefinedTypeDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 
 #routine enumAnalysis
 #  ??@enumList inEnumList

@@ -14,7 +14,46 @@ override method @structDeclaration typeInventory
   end foreach ;
   [!?ioUnifiedTypeMap insertKey
     !mStructTypeName
+    ![@ebType new !mStructTypeName ![@typeKind structType]]
     !selfcopy
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @structDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @structDeclaration semanticAnalysis
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList ioGenerationList
+:
+  @structFieldList structFieldList [default] ;
+  @stringset headerFileInclusionSet [emptySet] ;
+  foreach mFieldList do
+    [inUnifiedTypeMap searchKey !mFieldTypeName ?@ebType type ?*] ;
+    if not [type isPODtype] then
+      error mFieldName : "only a POD type is allowed in a structure" ;
+    end if ;
+    if [type mKind] == [@typeKind enumType] then
+      headerFileInclusionSet += ![type mTypeName]->string ;
+    elsif [type mKind] == [@typeKind structType] then
+      headerFileInclusionSet += ![type mTypeName]->string ;
+    end if ;
+    structFieldList += !type !mFieldName->string ;
+  end foreach ;
+#---
+  ioGenerationList += ![@structTypeGeneration new
+    !mStructTypeName->string
+    !structFieldList
+    !headerFileInclusionSet
   ] ;
 end method ;
 

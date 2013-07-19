@@ -43,8 +43,47 @@ override method @preferencesDeclaration typeInventory
 #------------------------------------- Enter in preference map
   [!?ioUnifiedTypeMap insertKey
     !mPreferencesName
+    ![@ebType new !mPreferencesName ![@typeKind preferencesType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferencesDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#---------------------------------- Build map
+  buildObservablePropertyMap
+    !mAttributeList
+    !mArrayList
+    !mTransientList
+    !mControllerList
+    ![@controllerObservablePropertyList emptyList]
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"preference." . mPreferencesName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mPreferencesName
+    ![@typeKind preferencesType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferencesDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*

@@ -20,9 +20,45 @@ override method @enumDeclaration typeInventory
 #  end foreach ;
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
+    ![@ebType new !mEnumTypeName ![@typeKind enumType]]
     !selfcopy
   ] ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @enumDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @enumDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@generationList ioGenerationList
+:
+  @enumConstantMap enumConstantMap [emptyMap] ;
+  foreach mEnumConstantNameList do
+    [!?enumConstantMap insertKey !mValue] ;
+    [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !mEnumTypeName] ;
+  end foreach ;
+#---
+  [!?ioContextAnalysisStruct->mEnumMap insertKey
+    !mEnumTypeName
+    !mEnumConstantNameList
+    !enumConstantMap
+  ] ;
+#---
+  ioGenerationList += ![@enumTypeGeneration new
+    !mEnumTypeName->string
+    !mEnumConstantNameList
+  ] ;
+end method ;
+
 
 #----------------------------------------------------------------------------*
 

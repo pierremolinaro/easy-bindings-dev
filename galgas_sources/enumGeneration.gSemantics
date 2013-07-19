@@ -19,41 +19,36 @@ local filewrapper enumGenerationTemplate in "../generation-templates/enum-genera
 
 #----------------------------------------------------------------------------*
 
-routine generateEnumerations
-  ??@enumMap inEnumMap
+override method @enumTypeGeneration generate
   ??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inEnumMap do
-      @string s := [filewrapper enumGenerationTemplate.enumDeclaration
-        ![lkey string]
-        !mConstantOrderedList
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".h"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
-      ] ;
-      s := [filewrapper enumGenerationTemplate.enumGeneration
-        ![lkey string]
-        !mConstantOrderedList
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".m"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
-      ] ;
-    end foreach ;
-  end if ;
-end routine ;
+  @string s := [filewrapper enumGenerationTemplate.enumDeclaration
+    !mGenerationName
+    !mConstantOrderedList
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+  s := [filewrapper enumGenerationTemplate.enumGeneration
+    !mGenerationName
+    !mConstantOrderedList
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -3,6 +3,7 @@ import "decoratedTypes.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 
 import "cursorAnalysis.gSemantics" ;
+import "cursorGeneration.gSemantics" ;
 
 #import "outletClassGeneration.gSemantics" ;
 #import "classGeneration.gSemantics" ;
@@ -10,7 +11,6 @@ import "cursorAnalysis.gSemantics" ;
 #import "preferencesGeneration.gSemantics" ;
 #import "documentGeneration.gSemantics" ;
 #import "easyBindings_grammar.gGrammar" ;
-#import "cursorGeneration.gSemantics" ;
 #import "enumGeneration.gSemantics" ;
 #import "structGeneration.gSemantics" ;
 #import "controllerClassGeneration.gSemantics" ;
@@ -34,15 +34,6 @@ local filewrapper objective_c_sources in "../generation-templates/objective-c-so
 
 #----------------------------------------------------------------------------*
 
-local routine enterPredefinedType
-  ?!@astDeclarationList ioDeclarationList
-  ??@string inTypeName
-:
-  ioDeclarationList += ![@predefinedTypeDeclaration new ![inTypeName nowhere]] ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
 when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
@@ -62,21 +53,20 @@ message "a source text file with the .easyBindings extension"
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-   enterPredefinedType !?declarationList !"NSString" ;
-   enterPredefinedType !?declarationList !"NSColor" ;
-   enterPredefinedType !?declarationList !"NSData" ;
-   enterPredefinedType !?declarationList !"NSDate" ;
-   enterPredefinedType !?declarationList !"NSFont" ;
-   enterPredefinedType !?declarationList !"NSImage" ;
-   enterPredefinedType !?declarationList !"NSMenu" ;
-   enterPredefinedType !?declarationList !"NSBezierPath" ;
-   enterPredefinedType !?declarationList !"Integer" ;
-   enterPredefinedType !?declarationList !"UInteger" ;
-   enterPredefinedType !?declarationList !"Bool" ;
-   enterPredefinedType !?declarationList !"Double" ;
-   enterPredefinedType !?declarationList !"AnyScalar" ;
-   enterPredefinedType !?declarationList !"AnyNumber" ;
-
+  declarationList += ![@predefinedTypeDeclaration new !"NSString" ![@typeKind stringType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSColor" ![@typeKind colorType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSData" ![@typeKind dataType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSDate" ![@typeKind dateType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSFont" ![@typeKind fontType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSImage" ![@typeKind imageType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSMenu" ![@typeKind menuType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"NSBezierPath" ![@typeKind bezierPathType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"Integer" ![@typeKind integerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"UInteger" ![@typeKind uintegerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"Bool" ![@typeKind boolType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"Double" ![@typeKind doubleType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"AnyScalar" ![@typeKind anyScalarType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"AnyNumber" ![@typeKind anyNumberType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
 #----
@@ -103,7 +93,17 @@ message "a source text file with the .easyBindings extension"
       end foreach ;
       error here : s ;
     else
-      semanticAnalysis !unifiedTypeMap !sortedKeys ;
+#      @string s := "Sorted types:" ;
+#      foreach sortedKeys do
+#        s .= "\n-- " . mValue ;
+#      end foreach ;
+#      message s ;
+      semanticAnalysis
+        !unifiedTypeMap
+        !sortedKeys
+        ![inSourceFile stringByDeletingLastPathComponent]
+        !cursorList
+      ;
     end if ;
   end if ;
 }
@@ -117,26 +117,61 @@ message "a source text file with the .easyBindings extension"
 routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstringlist inSortedKeys
+  ??@string inOutputDirectory
+  ??@cursorList inCursorList
 :
-#--- Semantic analysis
+#--- Build observable property map
+  @observablePropertyMapMap observablePropertyMapMap [emptyMap] ;
+  @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
   foreach inSortedKeys do
     [inUnifiedTypeMap searchKey
       !mValue
+      ?*
       ?@astDeclaration declaration
     ] ;
-  
-  
+    [declaration buildObservablePropertyMap
+      !inUnifiedTypeMap
+      !?observablePropertyMapMap
+      !?transientDependencyGraph
+    ] ;
   end foreach ;
-
+   @contextAnalysisStruct contextAnalysisStruct [default] ;
+   contextAnalysisStruct->mObservablePropertyMapMap := observablePropertyMapMap ;
+   contextAnalysisStruct->mTransientDependencyGraph := transientDependencyGraph ;
+#--- Cursors
+  cursorAnalysis
+    !inCursorList
+    !?contextAnalysisStruct
+    ?@stringlist predefinedCursorList
+  ;
+#--- Semantic analysis
+  @generationList generationList [emptyList] ;
+  foreach inSortedKeys do
+    [inUnifiedTypeMap searchKey
+      !mValue
+      ?*
+      ?@astDeclaration declaration
+    ] ;
+    [declaration semanticAnalysis
+      !inUnifiedTypeMap
+      !?contextAnalysisStruct
+      !?generationList
+    ] ;
+  end foreach ;
+#--- Generation
+  if [@uint errorCount] == 0 then
+    foreach generationList do
+      [mGeneration generate !inOutputDirectory] ;
+    end foreach ;
+    generateCursorCode
+      !contextAnalysisStruct->mUserCursorMap
+      !predefinedCursorList
+      !inOutputDirectory
+    ;
+  end if ;
 end routine ;
 ##------------------------------------------------------- Semantic Analysis
 #   @contextAnalysisStruct contextAnalysisStruct [default] ;
-##--- Cursors
-#  cursorAnalysis
-#    !cursorList
-#    !?contextAnalysisStruct
-#    ?@stringlist predefinedCursorList
-#  ;
 ##--- Enumerations
 #  enumAnalysis
 #    !enumList
@@ -257,7 +292,6 @@ end routine ;
 #  generatePreferencesCode !transientDependencyArcList !preferencesMap !sourceDirectoryPath ;
 #  generateNibClassCode !transientDependencyArcList !nibClassMap !sourceDirectoryPath ;
 #  generateDocumentCode !transientDependencyArcList !documentMap !sourceDirectoryPath ;
-#  generateCursorCode !contextAnalysisStruct->mUserCursorMap !predefinedCursorList !sourceDirectoryPath ;
 #  generateControllerCode !controllerClassMap !sourceDirectoryPath ;
 ##------------------------------ Output dependency order definition file
 #  generateTransientDependencyFiles

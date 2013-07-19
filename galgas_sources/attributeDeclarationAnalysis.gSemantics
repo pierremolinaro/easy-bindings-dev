@@ -48,9 +48,9 @@ semantics attributeDeclarationAnalysis :
 
 #routine analyzeAttributeDeclaration
 #  ??@attributeList inAttributeList
-#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ?!@contextAnalysisStruct ioContextAnalysisStruct
+#  ??@unifiedTypeMap inUnifiedTypeMap
 #  ??@string inObjectName # "document." . documentName
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
 #  ?!@fileInclusionSet ioFileInclusionSet
 #  ?!@observablePropertyMap ioSelfObservableAttributeMap
 #  !@attributeListForImplementation outAttributeListForImplementation
@@ -58,10 +58,10 @@ semantics attributeDeclarationAnalysis :
 #:
 #  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
 #  foreach inAttributeList do
-#    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
+#    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
 #    [mDefaultValue analyzeDefaultValueType
-#      ![@easyBindingTypeList listWithValue !type]
-#      !inContextAnalysisStruct
+#      ![@ebTypeList listWithValue !type]
+#      !ioContextAnalysisStruct
 #      ?@string directDefaultValueAsString
 #      ?@string objectiveCDefaultValueAsString
 #      !?ioFileInclusionSet
@@ -87,13 +87,125 @@ semantics attributeDeclarationAnalysis :
 #      !type
 #      !false # is not transient
 #      !observationDependencyKey->string
+#      !false # Is not collection
 #    ] ;
-#    [!?ioTransientDependencyGraph addNode
+#    [!?ioContextAnalysisStruct->mTransientDependencyGraph addNode
 #      !observationDependencyKey
 #      !observationDependencyKey->string
 #    ] ;
 #  end foreach ;
 #end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine buildObservablePropertyMap
+  ??@attributeList inAttributeList
+  ??@classArrayList inArrayList
+  ??@transientList inTransientList
+  ??@controllerList inControllerList
+  ??@controllerObservablePropertyList inControllerObservablePropertyList
+  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@string inObjectName # "document." . documentName
+  ?!@observablePropertyMap ioSelfObservableAttributeMap
+:
+#--- Attributes
+  foreach inAttributeList do
+    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mAttributeName
+      !mAttributeName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mAttributeName
+      !type
+      !false # is not transient
+      !observationDependencyKey
+      !false # Is not collection
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#--- Arraies
+  foreach inArrayList do
+    [inUnifiedTypeMap searchKey !mElementClassName ?@ebType type ?*] ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mArrayName
+      !mArrayName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mArrayName
+      !type
+      !false # is not transient
+      !observationDependencyKey
+      !false # Is not collection
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#--- Transients
+  foreach inTransientList do
+    [inUnifiedTypeMap searchKey !mTransientTypeName ?@ebType type ?*] ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mTransientName
+      !mTransientName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mTransientName
+      !type
+      !false # is not transient
+      !observationDependencyKey
+      !false # Is not collection
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#--- Controllers
+  foreach inControllerList do
+    [inUnifiedTypeMap searchKey !mControllerClassName ?@ebType type ?*] ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mControllerName
+      !mControllerName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mControllerName
+      !type
+      !false # is not transient
+      !observationDependencyKey
+      !false # Is not collection
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+#--- Controller attributes
+  foreach inControllerObservablePropertyList do
+    [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+    const @lstring observationDependencyKey [new
+      !inObjectName . "." . mPropertyName
+      !mPropertyName->location
+    ] ;
+    [!?ioSelfObservableAttributeMap insertKey
+      !mPropertyName
+      !type
+      !false # is not transient
+      !observationDependencyKey
+      !false # Is not collection
+    ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
+  end foreach ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 
