@@ -210,7 +210,7 @@ override method @regularControllerBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-    found := mType == observablePropertyType ;
+    found := mType->mKind == observablePropertyType->mKind ;
   end foreach ;
   if not found then
     @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
@@ -297,7 +297,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-    found := mType == observablePropertyType ;
+    found := mType->mKind == observablePropertyType->mKind ;
   end foreach ;
   if not found then
     @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
@@ -372,8 +372,7 @@ override method @regularRootBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-#    found := [mType ebGenericTypeIdentifier ![observablePropertyType ocClassName]] == [observablePropertyType ebTypeIdentifier] ;
-    found := mType == observablePropertyType ;
+    found := mType->mKind == observablePropertyType->mKind ;
   end foreach ;
   if not found then
     @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
@@ -521,7 +520,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-    found := mType == observablePropertyType ;
+    found := mType->mKind == observablePropertyType->mKind ;
   end foreach ;
   if not found then
     @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
@@ -592,7 +591,7 @@ override method @multiValuedBinding analyzeOutletBinding
     @formatterEnum requiredFormatter [noFormatter] ;
     foreach acceptableTypeFormatterList while not found do
       requiredFormatter := mRequiredFormatter ;
-      found := mType == observablePropertyType ;
+      found := mType->mKind == observablePropertyType->mKind ;
     end foreach ;
     if not found then
       @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;
