@@ -257,7 +257,7 @@ override method @nibClassDeclaration semanticAnalysis
     [ioContextAnalysisStruct->mOutletClassMap searchKey
       !mOutletType
       ?@generationKind generationKind
-      ?*
+      ?2*
       ?@bool implementsDeallocProtocol
       ?@outletClassBindingMap outletClassBindingMap
       ?*
