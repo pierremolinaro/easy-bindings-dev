@@ -146,6 +146,33 @@ reader @ebType copyOnAssign
   end switch ;
 end reader ;
 
+#-----------------------------------------------------------------------------*
+#   requiredCellTypeInTableColumnBinding                                      *
+#-----------------------------------------------------------------------------*
+
+reader @ebType requiredCellTypeInTableColumnBinding
+  -> @string outResult
+ :
+  switch mKind
+  when dateType :
+    outResult := "NSDateFieldCell" ;
+  when imageType :
+    outResult := "NSImageCell" ;
+  when boolType :
+    outResult := "NSButtonCell" ;
+  when integerType, uintegerType, doubleType, stringType :
+    outResult := "NSTextFieldCell" ;
+  when bezierPathType, menuType,
+       colorType, dataType, fontType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType,
+       structType,
+       enumType, anyScalarType, anyNumberType :
+    outResult := "" ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 uniquemap @unifiedTypeMap {
@@ -168,15 +195,15 @@ list @unifiedTypeProxyList {
 
 #----------------------------------------------------------------------------*
 
-list @easyBindingTypeAndFormatterList {
-  @unifiedTypeProxy mType ;
+list @ebTypeAndFormatterList {
+  @ebType mType ;
   @formatterEnum mRequiredFormatter ;
 }
 
 #----------------------------------------------------------------------------*
 
 map @outletClassBindingOptionMap {
-  @unifiedTypeProxyList mAcceptableTypeList ;
+  @ebTypeList mAcceptableTypeList ;
   insert insertKey error message "the '%K' binding option is already declared" ;
   search searchKey error message "the '%K' binding option is not declared" ;
 }
@@ -184,7 +211,7 @@ map @outletClassBindingOptionMap {
 #----------------------------------------------------------------------------*
 
 map @outletClassBindingMap {
-  @easyBindingTypeAndFormatterList mAcceptableTypeList ;
+  @ebTypeAndFormatterList mAcceptableTypeList ;
   @outletClassBindingOptionMap mOutletClassBindingOptionMap ;
   insert insertKey error message "the '%K' binding is already declared" ;
   search searchKey error message "the '%K' binding is not declared" ;
@@ -271,19 +298,6 @@ map @enumConstantMap {
 #override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
 #override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
 #override reader @structType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncoded" . mStructTypeName ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
- # Returning an empty string means not allowed
-#reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "" ; end reader ;
-#
-#override reader @boolType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSButtonCell" ; end reader ;
-#override reader @integerType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
-#override reader @uintegerType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
-#override reader @doubleType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
-#override reader @stringType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSTextFieldCell" ; end reader ;
-#override reader @dateType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSDateFieldCell" ; end reader ;
-#override reader @imageType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "NSImageCell" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 #   ebTypeIdentifier                                                          *
@@ -480,13 +494,24 @@ map @userCursorMap {
 
 #----------------------------------------------------------------------------*
 
+map @structTypeMap {
+  @structFieldList mFieldList ;
+  insert insertKey error message "the '%K' struct is already declared" ;
+  search searchKey error message "the '%K' struct is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 struct @contextAnalysisStruct {
   @observablePropertyMapMap mObservablePropertyMapMap ;
-#  @structTypeMap mStructTypeMap ;
+  @structTypeMap mStructTypeMap ;
   @enumMap mEnumMap ;
   @globalEnumConstantMap mGlobalEnumConstantMap ;
   @userCursorMap mUserCursorMap ;
   @classMap mClassMap ;
+#  @entityMap mEntityMap ;
+  @controllerClassMap mControllerClassMap ;
+  @outletClassMap mOutletClassMap ;
   @transientDependencyGraph mTransientDependencyGraph ;
 }
 
@@ -494,11 +519,7 @@ struct @contextAnalysisStruct {
 
 map @classMap {
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
   @propertyArrayMap mAllArrayPropertyForImplementation ;
-#  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -816,37 +837,34 @@ graph @transientDependencyGraph (@stringlist) {
   insert addNode error message "the '%K' transient is already declared at %L" ;
 }
 
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract method @abstractBinding analyzeOutletBinding
-#  ??@observablePropertyMap inRootEntityObservableAttributeMap
-#  ??@observablePropertyMap inSelfObservableAttributeMap
-#  ??@preferencesMap inPreferencesMap
-#  ??@entityMap inEntityMap
-#  ??@classMap inClassMap
-#  ??@outletClassBindingMap inBindingMap
-#  ??@controllerMap inControllerMap
-#  ??@actionMap inActionMap
-#  ??@bool inHasTableValueBinding
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-#  ?!@fileInclusionSet ioFileInclusionSet
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateRemoveBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractBindingForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractBinding analyzeOutletBinding
+  ??@observablePropertyMap inRootEntityObservableAttributeMap
+  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@outletClassBindingMap inBoundObjectBindingMap
+  ??@controllerMap inControllerMap
+  ??@actionMap inActionMap
+  ??@bool inHasTableValueBinding
+  ??@contextAnalysisStruct inContextAnalysisStruct
+  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
+  ?!@fileInclusionSet ioFileInclusionSet
+;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractBindingForGeneration generateRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
 #----------------------------------------------------------------------------*
 
 abstract method @abstractDefaultValue analyzeDefaultValueType 
@@ -1113,25 +1131,29 @@ override method @listAsDefaultValue analyzeDefaultValueType
     if mType->mKind == [@typeKind structType] then
       found := true ;
       ioFileInclusionSet->mHeaderFileInclusionSet += ![mType ebTypeName] ;
-#      if [mDefaultValueList length] != [[t mFieldList] length] then
-#        error mStartLocation : "the '" . [t ebTypeName] . "' struct needs " . [[t mFieldList] length] . " values for initialization" ;
-#      else
-#        outDirectDefaultValueAsString := "make" . [t ebTypeName] . " (" ;
-#        foreach mDefaultValueList, [t mFieldList]
-#        do
-#          [mDefaultValue analyzeDefaultValueType
-#            ![@ebTypeList listWithValue !mFieldType]
-#            !inContextAnalysisStruct
-#            ?@string directDefaultValueAsString
-#            ?*
-#            !?ioFileInclusionSet
-#          ] ;
-#          outDirectDefaultValueAsString .= directDefaultValueAsString ;
-#        between
-#          outDirectDefaultValueAsString .= ", " ;
-#        end foreach ; 
-#        outDirectDefaultValueAsString .= ")" ;     
-#      end if ;
+      [inContextAnalysisStruct->mStructTypeMap searchKey
+        !mType->mTypeName
+        ?@structFieldList fieldList
+      ] ;
+      if [mDefaultValueList length] != [fieldList length] then
+        error mStartLocation : "the '" . [mType ebTypeName] . "' struct needs " . [fieldList length] . " values for initialization" ;
+      else
+        outDirectDefaultValueAsString := "make" . [mType ebTypeName] . " (" ;
+        foreach mDefaultValueList, fieldList
+        do
+          [mDefaultValue analyzeDefaultValueType
+            ![@ebTypeList listWithValue !mFieldType]
+            !inContextAnalysisStruct
+            ?@string directDefaultValueAsString
+            ?*
+            !?ioFileInclusionSet
+          ] ;
+          outDirectDefaultValueAsString .= directDefaultValueAsString ;
+        between
+          outDirectDefaultValueAsString .= ", " ;
+        end foreach ; 
+        outDirectDefaultValueAsString .= ")" ;     
+      end if ;
     elsif mType->mKind == [@typeKind fontType] then
       found := true ;
       const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
@@ -1238,6 +1260,19 @@ class @classTypeGeneration extends @generation {
   @propertyArrayMap mAllArrayPropertyForImplementation ;
   @propertyArrayMap mCurrentArrayPropertyForImplementation ;
   @fileInclusionSet mInclusionSet ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @nibClassTypeGeneration extends @generation {
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @outletGenerationList mOutletDeclarationList ;
+  @lstringlist mActionList ;
+  @observablePropertyMap mObservablePropertyMap ;
+  @fileInclusionSet mFileInclusionSet ;
+  @controllerMap mControllerMap ;
+  @propertyArrayMap mArrayMap ;
 }
 
 #----------------------------------------------------------------------------*

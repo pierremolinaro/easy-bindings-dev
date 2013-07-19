@@ -18,7 +18,7 @@ override reader @runBindingForGeneration generateRemoveBinding
   -> @string outResult
 :
   outResult := "  " . inOutletName . ".target = nil ;\n" ;
- # outResult .= "  " . inOutletName . ".action = NULL ;\n" ;  
+  outResult .= "  " . inOutletName . ".action = NULL ;\n" ;  
 end reader ;
 
 #----------------------------------------------------------------------------*

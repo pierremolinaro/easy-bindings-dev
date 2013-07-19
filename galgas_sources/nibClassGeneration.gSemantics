@@ -1,6 +1,7 @@
 semantics nibClassGeneration :
   import "easyBindings_options.gOption" ;
   import "transientGeneration.gSemantics" ;
+  import "bindingsGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -24,7 +25,7 @@ local filewrapper nibClassGenerationTemplate in "../generation-templates/nib-cla
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
-    ?@preferenceArrayMap ARRAY_MAP
+    ?@propertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
   ;
   
@@ -35,8 +36,7 @@ local filewrapper nibClassGenerationTemplate in "../generation-templates/nib-cla
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
     ?@stringset INCLUSION_SET
-    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
-    ?@preferenceArrayMap ARRAY_MAP
+    ?@propertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
   ;
   
@@ -60,102 +60,94 @@ local filewrapper nibClassGenerationTemplate in "../generation-templates/nib-cla
 
 #----------------------------------------------------------------------------*
 
-routine generateNibClassCode
-  ??@2stringlist inTransientDependencyArcList
-  ??@nibClassMap inNibClassMap
+override method @nibClassTypeGeneration generate
   ??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inNibClassMap do
-    #--- Header
-      @string s := [filewrapper nibClassGenerationTemplate.nibClassDeclarationPart1
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mFileInclusionSet->mHeaderFileInclusionSet
-        !mFileInclusionSet->mImplementationFileInclusionSet
-        !mControllerMap
-      ] ;
-      @string s2 := [filewrapper nibClassGenerationTemplate.nibClassDeclarationPart2
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mArrayMap
-        !mControllerMap
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".h"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n}\n\n" # Defaut user zone2
-        !s2
-      ] ;
-    #--- Implementation
-      s := [filewrapper nibClassGenerationTemplate.nibClassImplementation
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mFileInclusionSet->mImplementationFileInclusionSet
-        !inTransientDependencyArcList
-        !mArrayMap
-        !mControllerMap
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".m"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"@end\n\n"
-      ] ;
-    #--- Transient computation function header file
-      if [mTransientListForImplementation length] > 0 then
-        s := [filewrapper nibClassGenerationTemplate.nibClassTransientComputationsHeaderFile
-          ![lkey string]
-          !mTransientListForImplementation
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . "-computations.h"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"\n"
-        ] ;
-      end if ;
-    #--- Transient computation function implementation files
-      foreach mTransientListForImplementation do
-          s := [filewrapper nibClassGenerationTemplate.nibClassTransientComputationImplementationFile
-            ![lkey string]
-            !mTransientType
-            !mTransientName
-            !mDependencyList
-          ] ;
-          [@string generateFileWithPattern
-            !inOutputDirectory
-            ![lkey string] . "_" . mTransientName . ".m"
-            !"//"
-            !"\n\n" # Defaut user zone1
-            !s
-            !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-          ] ;
-      end foreach ;
-    end foreach ;
+#--- Header
+  @string s := [filewrapper nibClassGenerationTemplate.nibClassDeclarationPart1
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mFileInclusionSet->mHeaderFileInclusionSet
+    !mFileInclusionSet->mImplementationFileInclusionSet
+    !mControllerMap
+  ] ;
+  @string s2 := [filewrapper nibClassGenerationTemplate.nibClassDeclarationPart2
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mArrayMap
+    !mControllerMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n}\n\n" # Defaut user zone2
+    !s2
+  ] ;
+#--- Implementation
+  s := [filewrapper nibClassGenerationTemplate.nibClassImplementation
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mFileInclusionSet->mImplementationFileInclusionSet
+    !mArrayMap
+    !mControllerMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n\n"
+  ] ;
+#--- Transient computation function header file
+  if [mTransientListForImplementation length] > 0 then
+    s := [filewrapper nibClassGenerationTemplate.nibClassTransientComputationsHeaderFile
+      !mGenerationName
+      !mTransientListForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . "-computations.h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
   end if ;
-end routine ;
+#--- Transient computation function implementation files
+  foreach mTransientListForImplementation do
+      s := [filewrapper nibClassGenerationTemplate.nibClassTransientComputationImplementationFile
+        !mGenerationName
+        !mTransientType
+        !mTransientName
+        !mDependencyList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        !mGenerationName . "_" . mTransientName . ".m"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+      ] ;
+  end foreach ;
+end method ;
 
 #----------------------------------------------------------------------------*
-
 
 end semantics ;
