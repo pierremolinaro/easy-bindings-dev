@@ -26,29 +26,14 @@ end method ;
 
 override method @protocolDeclaration semanticAnalysis
   ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
+  [!?ioContextAnalysisStruct->mProtocolMap insertKey
+    !mProtocolName
+    !mIsPredefined
+  ] ;
 end method ;
-
-#routine enumAnalysis
-#  ??@enumList inEnumList
-#  ?!@contextAnalysisStruct ioContextAnalysisStruct
-#:
-#  foreach inEnumList do
-#    @enumConstantMap enumConstantMap [emptyMap] ;
-#    foreach mEnumConstantNameList do
-#      [!?enumConstantMap insertKey !mValue] ;
-#    end foreach ;
-#    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
-#  end foreach ;
-##---
-#  foreach ioContextAnalysisStruct->mEnumMap do
-#    foreach mConstantOrderedList do
-#      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
-#    end foreach ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

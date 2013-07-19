@@ -509,6 +509,7 @@ struct @contextAnalysisStruct {
   @globalEnumConstantMap mGlobalEnumConstantMap ;
   @userCursorMap mUserCursorMap ;
   @classMap mClassMap ;
+  @protocolMap mProtocolMap ;
 #  @entityMap mEntityMap ;
   @controllerClassMap mControllerClassMap ;
   @outletClassMap mOutletClassMap ;
@@ -629,10 +630,17 @@ map @documentMap {
 
 #----------------------------------------------------------------------------*
 
+list @protocolList {
+  @bool mNeedsInclusionInHeader ;
+  @string mProtocolName ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @outletClassMap {
   @generationKind mGenerationKind ;
   @string mSuperClassName ;
-#  @protocolList mAdoptedProtocolList ;
+  @protocolList mAdoptedProtocolList ;
   @bool mImplementsDeallocProtocol ;
   @outletClassBindingMap mAllBindingMap ;
   @outletClassBindingMap mCurrentBindingMap ;

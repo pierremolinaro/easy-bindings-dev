@@ -30,9 +30,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @outletClassDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@unifiedTypeMap unused inUnifiedTypeMap
   ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
 :
 #------------------------------- Super class ?
   @observablePropertyMap observablePropertyMap ;
@@ -71,10 +71,71 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @outletClassDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
+  @outletClassBindingMap allBindingMap ;
+#--- Has super class ?
+  if mSuperClassName->string == "" then
+    allBindingMap := [@outletClassBindingMap emptyMap] ;
+  else
+    [ioContextAnalysisStruct->mOutletClassMap searchKey
+      !mSuperClassName
+      ?4*
+      ?allBindingMap
+      ?2*
+    ] ;
+  end if ;
+#--- Analyze options
+  @protocolList adoptedProtocolList [emptyList] ;
+  @bool implementsDeallocProtocol := false ;
+  foreach mOptionList do
+    if mValue->string != "PMWillDeallocProtocol" then
+      error mValue: "only 'PMWillDeallocProtocol' is allowed here" ;
+    elsif implementsDeallocProtocol then
+      error mValue: "'PMWillDeallocProtocol' option already set" ;
+    else
+      implementsDeallocProtocol := true ;
+      adoptedProtocolList += !false !mValue->string ;
+    end if ;
+  end foreach ;
+#--- Analyze bindings
+  @outletClassBindingMap currentBindingMap [emptyMap] ;
+  foreach mOutletClassBindingList do
+    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+    foreach mBindingOptionList do
+      @ebTypeList acceptableTypeList [emptyList] ;
+      foreach mAcceptableTypeList do
+        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+        acceptableTypeList += !type ;
+      end foreach ;
+      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+    end foreach ;
+    @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+    foreach mAcceptableTypeFormatterList do
+      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+      acceptableTypeFormatterList += !type !mRequiredFormatter ;
+    end foreach ;
+    [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+    [!?currentBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+  end foreach ;
+#--- Analyze protocols
+  foreach mAdoptedProtocolList do
+    [ioContextAnalysisStruct->mProtocolMap searchKey !mValue ?@bool isPredefined] ;
+    adoptedProtocolList += !isPredefined !mValue->string ;
+  end foreach ;
+#---
+  [!?ioContextAnalysisStruct->mOutletClassMap insertKey
+    !mOutletClassName
+    !mGeneration
+    !mSuperClassName->string
+    !adoptedProtocolList
+    !implementsDeallocProtocol
+    !allBindingMap
+    !currentBindingMap
+    !mHasTableValueBinding
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*

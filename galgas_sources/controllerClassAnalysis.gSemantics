@@ -89,10 +89,60 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @controllerClassDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
+#--- Analyze actions
+  @actionMap actionMap [emptyMap] ;
+  for actionName in mActionDeclarationList do
+    [!?actionMap insertKey !actionName->mValue] ;
+  end for ;
+#---
+  @outletClassBindingMap bindingMap [emptyMap] ;
+  foreach mBindingList do
+    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+    foreach mBindingOptionList do
+      @ebTypeList acceptableTypeList [emptyList] ;
+      foreach mAcceptableTypeList do
+        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+        acceptableTypeList += !type ;
+      end foreach ;
+      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+    end foreach ;
+    @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+    foreach mAcceptableTypeFormatterList do
+      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+      acceptableTypeFormatterList += !type !mRequiredFormatter ;
+    end foreach ;
+    [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+  end foreach ;
+#---
+  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+  foreach mControlledObjectBindingOptionList do
+    @ebTypeList acceptableTypeList [emptyList] ;
+    foreach mAcceptableTypeList do
+      [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+      acceptableTypeList += !type ;
+    end foreach ;
+    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+  end foreach ;
+#---
+  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+    !mControllerClassName
+    ?*
+    ?@observablePropertyMap observablePropertyMap
+  ] ;
+#---
+  [!?ioContextAnalysisStruct->mControllerClassMap insertKey
+    !mControllerClassName
+    !mControllerKind
+    !mGenerationKind
+    !bindingMap
+    !actionMap
+    !observablePropertyMap
+    !controlledObjectAvailableBindingOptionMap
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
