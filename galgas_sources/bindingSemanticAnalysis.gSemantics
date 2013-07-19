@@ -411,7 +411,7 @@ override method @regularSelfBinding analyzeOutletBinding
   @formatterEnum requiredFormatter [noFormatter] ;
   foreach acceptableTypeFormatterList while not found do
     requiredFormatter := mRequiredFormatter ;
-    found := mType == observablePropertyType ;
+    found := mType->mKind == observablePropertyType->mKind ;
   end foreach ;
   if not found then
     @string s := "the bound property has '" . [observablePropertyType ebTypeName] . "' type, acceptable type(s):" ;

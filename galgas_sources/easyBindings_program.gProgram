@@ -65,8 +65,7 @@ message "a source text file with the .easyBindings extension"
   declarationList += ![@predefinedTypeDeclaration new !"UInteger" ![@typeKind uintegerType]] ;
   declarationList += ![@predefinedTypeDeclaration new !"Bool" ![@typeKind boolType]] ;
   declarationList += ![@predefinedTypeDeclaration new !"Double" ![@typeKind doubleType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"AnyScalar" ![@typeKind anyScalarType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"AnyNumber" ![@typeKind anyNumberType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !"enum" ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
 #----

@@ -469,8 +469,6 @@ enum @typeKind {
   integerType,
   uintegerType,
   doubleType,
-  anyScalarType,
-  anyNumberType,
   stringType,
   colorType,
   dataType,
@@ -500,8 +498,6 @@ reader @typeKind name -> @string outResult :
   when integerType : outResult := "integerType" ;
   when uintegerType : outResult := "uintegerType" ;
   when doubleType : outResult := "doubleType" ;
-  when anyScalarType : outResult := "anyScalarType" ;
-  when anyNumberType : outResult := "anyNumberType" ;
   when stringType : outResult := "stringType" ;
   when colorType : outResult := "colorType" ;
   when dataType : outResult := "dataType" ;

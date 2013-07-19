@@ -24,7 +24,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
-    ?@preferenceArrayMap ARRAY_MAP
+    ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
   ;
   
@@ -35,8 +35,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@outletGenerationList OUTLET_DECLARATION_LIST
     ?@lstringlist ACTION_LIST
     ?@stringset INCLUSION_SET
-    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
-    ?@preferenceArrayMap ARRAY_MAP
+    ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
   ;
   
@@ -60,100 +59,93 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
 
 #----------------------------------------------------------------------------*
 
-routine generatePreferencesCode
-  ??@2stringlist inTransientDependencyArcList
-  ??@preferencesMap inPreferencesMap
+override method @preferenceTypeGeneration generate
   ??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inPreferencesMap do
-    #--- Header
-      @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mFileInclusionSet->mHeaderFileInclusionSet
-        !mFileInclusionSet->mImplementationFileInclusionSet
-        !mControllerMap
-      ] ;
-      @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mArrayMap
-        !mControllerMap
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".h"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n}\n\n" # Defaut user zone2
-        !s2
-      ] ;
-    #--- Implementation
-      s := [filewrapper prefsGenerationTemplate.preferencesImplementation
-        ![lkey string]
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mOutletDeclarationList
-        !mActionList
-        !mFileInclusionSet->mImplementationFileInclusionSet
-        !inTransientDependencyArcList
-        !mArrayMap
-        !mControllerMap
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".m"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"@end\n\n"
-      ] ;
-    #--- Transient computation function header file
-      if [mTransientListForImplementation length] > 0 then
-        s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
-          ![lkey string]
-          !mTransientListForImplementation
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . "-computations.h"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"\n"
-        ] ;
-      end if ;
-    #--- Transient computation function implementation files
-      foreach mTransientListForImplementation do
-          s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
-            ![lkey string]
-            !mTransientType
-            !mTransientName
-            !mDependencyList
-          ] ;
-          [@string generateFileWithPattern
-            !inOutputDirectory
-            ![lkey string] . "_" . mTransientName . ".m"
-            !"//"
-            !"\n\n" # Defaut user zone1
-            !s
-            !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-          ] ;
-      end foreach ;
-    end foreach ;
+#--- Header
+  @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mFileInclusionSet->mHeaderFileInclusionSet
+    !mFileInclusionSet->mImplementationFileInclusionSet
+    !mControllerMap
+  ] ;
+  @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mArrayMap
+    !mControllerMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n}\n\n" # Defaut user zone2
+    !s2
+  ] ;
+#--- Implementation
+  s := [filewrapper prefsGenerationTemplate.preferencesImplementation
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mOutletDeclarationList
+    !mActionList
+    !mFileInclusionSet->mImplementationFileInclusionSet
+    !mArrayMap
+    !mControllerMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n\n"
+  ] ;
+#--- Transient computation function header file
+  if [mTransientListForImplementation length] > 0 then
+    s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
+      !mGenerationName
+      !mTransientListForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . "-computations.h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
   end if ;
-end routine ;
+#--- Transient computation function implementation files
+  foreach mTransientListForImplementation do
+      s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
+        !mGenerationName
+        !mTransientType
+        !mTransientName
+        !mDependencyList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        !mGenerationName . "_" . mTransientName . ".m"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+      ] ;
+  end foreach ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

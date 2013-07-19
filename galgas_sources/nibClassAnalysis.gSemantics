@@ -205,15 +205,6 @@ override method @nibClassDeclaration semanticAnalysis
         !controlledObjectBindingOptionListForGeneration
       ] ;
     end switch ;
-# ??@observablePropertyMap inRootEntityObservableAttributeMap
-#  ??@observablePropertyMap inSelfObservableAttributeMap
-#  ??@outletClassBindingMap inBindingMap
-#  ??@controllerMap inControllerMap
-#  ??@actionMap inActionMap
-#  ??@bool inHasTableValueBinding
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-#  ?!@fileInclusionSet ioFileInclusionSet
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding
         ![@observablePropertyMap emptyMap] # No root entity observable Map
@@ -237,20 +228,6 @@ override method @nibClassDeclaration semanticAnalysis
       !controllerObservablePropertyMap
     ] ;
   end foreach ;
-#------------------------------------- Analyze transient properties
-#  analyzeTransientProperties
-#    ![@preferencesMap emptyMap]
-#    !"nibclass." . inNibClass->mClassName . "."
-#    !inNibClass->mTransientList
-#    ![@observablePropertyMap emptyMap] # Root property map
-#    !inContextAnalysisStruct
-#    !"" # No Root entity
-#    ![@controllerMap emptyMap]
-#    !?selfObservableAttributeMap
-#    !?fileInclusionSet
-#    ?transientListForImplementation
-#    !?ioTransientDependencyGraph
-#  ;
 #------------------------------------- Analyze outlets
   @outletGenerationList outletGenerationList [emptyList] ;
   foreach mOutletDeclarationList do
@@ -267,14 +244,6 @@ override method @nibClassDeclaration semanticAnalysis
       fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
     end if ;
     @outletBindingListForGeneration outletBindingList [emptyList] ;
-#  ??@observablePropertyMap inRootEntityObservableAttributeMap
-#  ??@observablePropertyMap inSelfObservableAttributeMap
-#  ??@controllerMap inControllerMap
-#  ??@actionMap inActionMap
-#  ??@bool inHasTableValueBinding
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-#  ?!@fileInclusionSet ioFileInclusionSet
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
         ![@observablePropertyMap emptyMap] # No root

@@ -80,10 +80,171 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @preferencesDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
+  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+    !mPreferencesName
+    ?*
+    ?@observablePropertyMap selfObservablePropertyMap
+  ] ;    
+#------------------------------------- Analyze actions
+  @actionMap actionMap [emptyMap] ;
+  for actionName in mActionDeclarationList do
+    [!?actionMap insertKey !actionName->mValue] ;
+  end for ;
+#------------------------------------- Analyze attributes
+  @fileInclusionSet fileInclusionSet [default] ;
+  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+  analyzeAttributeDeclaration
+    !mAttributeList
+    !?ioContextAnalysisStruct
+    !inUnifiedTypeMap
+    !?fileInclusionSet
+    ?@attributeListForImplementation attributeListForImplementation
+    !?attributeListForInitHeader
+  ;
+#------------------------------------- Analyze arraies
+  @propertyArrayMap preferenceArrayMap [emptyMap] ;
+  foreach mArrayList do
+    [inUnifiedTypeMap searchKey
+      !mElementClassName
+      ?@ebType type
+      ?*
+    ] ;
+    if type->mKind != [@typeKind classType] then
+      error mElementClassName : "'" . mElementClassName . "' is not a class" ;    
+    end if ;
+    [!?preferenceArrayMap insertKey
+      !mArrayName
+      !type
+    ] ;
+  end foreach ;
+#-------------------------------------------------- Analyze controllers
+  @controllerMap controllerMap [emptyMap] ;
+  foreach mControllerList do
+    [ioContextAnalysisStruct->mControllerClassMap searchKey
+      !mControllerClassName
+      ?@controllerKind controllerKind
+      ?*
+      ?@outletClassBindingMap controllerClassBindingMap
+      ?@actionMap controllerActionMap
+      ?@observablePropertyMap controllerObservablePropertyMap
+      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+    ] ;
+  #---
+    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+    @string controllerObjectClassName ;
+    switch controllerKind
+    when simpleController :
+      controllerObjectClassName := "" ;
+    when objectController :
+      error mControlledObjectName
+      :"objectController is not currently handled in nib class"
+      :controllerObjectClassName;
+    when entityController :
+      error mControlledObjectName
+      :"entityController is not currently handled in nib class"
+      :controllerObjectClassName;
+    when entityArrayController :
+      error mControlledObjectName
+      :"in nib class, use an arrayController, as NSArrayController"
+      :controllerObjectClassName;
+    when arrayController :
+      if mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'self' is allowed here"
+        ;
+      end if ;
+      [preferenceArrayMap searchKey
+        !mControlledObjectName
+        ?@ebType controlledObjectType
+      ] ;
+      controllerObjectClassName := controlledObjectType->mTypeName->string ;
+      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+        !controlledObjectType->mTypeName
+        ?@typeKind kind
+        ?@observablePropertyMap classObservablePropertyMap
+      ] ;
+      if kind != [@typeKind classType] then
+        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
+      end if ;
+      checkBindingOptions
+        !ioContextAnalysisStruct
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?fileInclusionSet
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentArray"
+        ![@formatterEnum noFormatter]
+        !"self"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
+    end switch ;
+  end foreach ;
+#------------------------------------- Analyze transient properties
+  @transientListForImplementation transientListForImplementation ;
+  analyzeTransientProperties
+    !mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !?ioContextAnalysisStruct
+    !"" # No Root entity
+    !selfObservablePropertyMap
+    !?fileInclusionSet
+    ?transientListForImplementation
+  ;
+#------------------------------------- Analyze outlets
+  @outletGenerationList outletGenerationList [emptyList] ;
+  foreach mOutletDeclarationList do
+    [ioContextAnalysisStruct->mOutletClassMap searchKey
+      !mOutletType
+      ?@generationKind generationKind
+      ?2*
+      ?@bool implementsDeallocProtocol
+      ?@outletClassBindingMap outletClassBindingMap
+      ?*
+      ?@bool hasTableValueBinding
+    ] ;
+    if generationKind != [@generationKind noGeneration] then
+      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
+    end if ;
+    @outletBindingListForGeneration outletBindingList [emptyList] ;
+    foreach mOutletBindingList do
+      [mBinding analyzeOutletBinding
+        ![@observablePropertyMap emptyMap] # No root
+        !selfObservablePropertyMap
+        !outletClassBindingMap
+        !controllerMap
+        !actionMap
+        !hasTableValueBinding
+        !ioContextAnalysisStruct
+        !?outletBindingList
+        !?fileInclusionSet
+      ] ;
+    end foreach ;
+    outletGenerationList +=
+      ![mOutletType string]
+      ![mOutletName string]
+      !outletBindingList
+      !implementsDeallocProtocol
+    ;
+  end foreach ;
+#------------------------------------- Enter in preference map
+  [!?ioContextAnalysisStruct->mPreferencesMap insertKey
+    !mPreferencesName
+    !attributeListForImplementation
+    !transientListForImplementation
+    !outletGenerationList
+    !mActionDeclarationList
+    !selfObservablePropertyMap
+    !fileInclusionSet
+    !controllerMap
+    !preferenceArrayMap
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
