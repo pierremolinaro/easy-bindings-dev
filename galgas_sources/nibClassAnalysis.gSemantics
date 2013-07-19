@@ -265,14 +265,6 @@ override method @nibClassDeclaration semanticAnalysis
     ;
   end foreach ;
 #-------
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @lstringlist mActionList ;
-#  @observablePropertyMap mObservablePropertyMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @controllerMap mControllerMap ;
-#  @propertyArrayMap mArrayMap ;
   ioGenerationList += ![@nibClassTypeGeneration new
     !mClassName->string
     !attributeListForImplementation
