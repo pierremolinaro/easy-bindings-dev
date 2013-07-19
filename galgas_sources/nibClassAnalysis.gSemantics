@@ -48,8 +48,47 @@ override method @nibClassDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mClassName
+    ![@ebType new !mClassName ![@typeKind nibClassType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @nibClassDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#---------------------------------- Analyze attributes
+  buildObservablePropertyMap
+    !mAttributeList
+    !mArrayList
+    !mTransientList
+    !mControllerList
+    ![@controllerObservablePropertyList emptyList]
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"nibclass." . mClassName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mClassName
+    ![@typeKind nibClassType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @nibClassDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*

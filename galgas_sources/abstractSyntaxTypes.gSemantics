@@ -453,8 +453,40 @@ list @structFieldASTList {
 
 #----------------------------------------------------------------------------*
 
+enum @typeKind {
+  classType,
+  controllerClassType,
+  documentType,
+  entityType,
+  enumType,
+  nibClassType,
+  outletClassType,
+  preferencesType,
+  protocolType,
+  structType,
+#--- Predefined Type
+  boolType,
+  integerType,
+  uintegerType,
+  doubleType,
+  anyScalarType,
+  anyNumberType,
+  stringType,
+  colorType,
+  dataType,
+  dateType,
+  fontType,
+  imageType,
+  menuType,
+  bezierPathType
+}{
+}
+
+#----------------------------------------------------------------------------*
+
 class @predefinedTypeDeclaration extends @astDeclaration {
-  @lstring mTypeName ;
+  @string mTypeName ;
+  @typeKind mKind ;
 }
 
 #----------------------------------------------------------------------------*

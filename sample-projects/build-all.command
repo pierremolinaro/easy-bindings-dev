@@ -14,4 +14,5 @@ do
     echo "----- Building in '`dirname $0`/$d' directory"
     $d/build.command || exit
   fi
-done
+done &&
+../makefile_macosx/easyBindings_debug -v -c -t /Volumes/dev-svn/canari/version-2/canari.easyBindings

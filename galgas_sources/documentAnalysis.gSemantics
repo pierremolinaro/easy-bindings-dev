@@ -186,8 +186,47 @@ override method @documentDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mDocumentName
+    ![@ebType new !mDocumentName ![@typeKind documentType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @documentDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#----------------------------------
+  buildObservablePropertyMap
+    !mAttributeList
+    ![@classArrayList emptyList]
+    !mTransientList
+    !mControllerList
+    ![@controllerObservablePropertyList emptyList]
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"document." . mDocumentName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mDocumentName
+    ![@typeKind documentType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @documentDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*

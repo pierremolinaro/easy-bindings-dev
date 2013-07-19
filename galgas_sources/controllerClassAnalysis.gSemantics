@@ -1,5 +1,6 @@
 semantics controllerClassAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
+  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -7,51 +8,91 @@ override method @controllerClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #--- Analyze actions
-  @actionMap actionMap [emptyMap] ;
-  for actionName in mActionDeclarationList do
-    [!?actionMap insertKey !actionName->mValue] ;
-  end for ;
-#--- Analyze bindings
-  buildBindingCapabilitiesMap
-    !mBindingList
-    !?ioUnifiedTypeMap
-    ?@outletClassBindingMap bindingMap
-  ;
+#  @actionMap actionMap [emptyMap] ;
+#  for actionName in mActionDeclarationList do
+#    [!?actionMap insertKey !actionName->mValue] ;
+#  end for ;
+##--- Analyze bindings
+#  buildBindingCapabilitiesMap
+#    !mBindingList
+#    !?ioUnifiedTypeMap
+#    ?@outletClassBindingMap bindingMap
+#  ;
 #--- Analyze attributes
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#  @observablePropertyMap observablePropertyMap [emptyMap] ;
   for property in mControllerObservablePropertyList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !property->mTypeName
       ?@unifiedTypeProxy attributeTypeProxy
     ] ;
-    [!?observablePropertyMap insertKey
-      !property->mPropertyName
-      !attributeTypeProxy
-      !false # is not transient
-      !"controller." . mControllerClassName . "." . property->mPropertyName
-      !false # Is not a collection
-    ] ;
+#    [!?observablePropertyMap insertKey
+#      !property->mPropertyName
+#      !attributeTypeProxy
+#      !false # is not transient
+#      !"controller." . mControllerClassName . "." . property->mPropertyName
+#      !false # Is not a collection
+#    ] ;
   end for ;
 #---
-  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+#  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
   foreach mControlledObjectBindingOptionList do
-    @unifiedTypeProxyList acceptableTypeList [emptyList] ;
+#    @unifiedTypeProxyList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do
       [@unifiedTypeProxy makeProxy
         !?ioUnifiedTypeMap
         !mValue
         ?@unifiedTypeProxy type
       ] ;
-      acceptableTypeList += !type ;
+#      acceptableTypeList += !type ;
     end foreach ;
-    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+#    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
   end foreach ;
 #---
   [!?ioUnifiedTypeMap insertKey
     !mControllerClassName
+    ![@ebType new !mControllerClassName ![@typeKind controllerClassType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @controllerClassDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super class ?
+  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#----------------------------------
+  buildObservablePropertyMap
+    ![@attributeList emptyList]
+    ![@classArrayList emptyList]
+    ![@transientList emptyList]
+    ![@controllerList emptyList]
+    !mControllerObservablePropertyList
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"controllerclass." . mControllerClassName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mControllerClassName
+    ![@typeKind controllerClassType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @controllerClassDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*

@@ -4,65 +4,30 @@ semantics structGeneration :
 
 #-----------------------------------------------------------------------------*
 
-reader @easyBindingType stringConversionForExplorer
-  ??@string unused inName
+reader @ebType stringConversionForExplorer
+  ??@string inName
   -> @string outResult
 :
-  outResult := "" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @boolType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := inName . " ? @\"YES\" : @\"NO\"" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @integerType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := "[NSString stringWithFormat:@\"%ld\", " . inName . "]" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @uintegerType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := "[NSString stringWithFormat:@\"%lu\", " . inName . "]" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @doubleType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := "[NSString stringWithFormat:@\"%g\", " . inName . "]" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @enumType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := "convert" . mEnumTypeName . "ValueToString ([NSNumber numberWithInteger:" . inName . "])" ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @structType stringConversionForExplorer
- ??@string inName
- -> @string outResult
-:
-  outResult := "convert" . mStructTypeName . "ValueToString ([NSValue valueWithBytes:& " . inName . " objCType:@encode(" . mStructTypeName . ")])" ;
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       protocolType, anyScalarType,anyNumberType,
+       stringType, colorType, dataType, dateType, fontType,
+       imageType, menuType, bezierPathType :
+    outResult := "" ;
+  when doubleType :
+    outResult := "[NSString stringWithFormat:@\"%g\", " . inName . "]" ;
+  when uintegerType :
+    outResult := "[NSString stringWithFormat:@\"%lu\", " . inName . "]" ;
+  when integerType :
+    outResult := "[NSString stringWithFormat:@\"%ld\", " . inName . "]" ;
+  when boolType :
+    outResult := inName . " ? @\"YES\" : @\"NO\"" ;
+  when enumType :
+    outResult := "convert" . mTypeName . "ValueToString ([NSNumber numberWithInteger:" . inName . "])" ;
+  when structType :
+    outResult := "convert" . mTypeName . "ValueToString ([NSValue valueWithBytes:& " . inName . " objCType:@encode(" . mTypeName . ")])" ;
+  end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -83,42 +48,37 @@ local filewrapper structGenerationTemplate in "../generation-templates/struct-ge
 
 #----------------------------------------------------------------------------*
 
-routine generateStructures
-  ??@structTypeMap inStructMap
+override method @structTypeGeneration generate
   ??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inStructMap do
-      @string s := [filewrapper structGenerationTemplate.structDeclaration
-        !mHeaderFileInclusionSet
-        ![lkey string]
-        !mFieldList
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".h"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
-      ] ;
-      s := [filewrapper structGenerationTemplate.structGeneration
-        ![lkey string]
-        !mFieldList
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        ![lkey string] . ".m"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
-      ] ;
-    end foreach ;
-  end if ;
-end routine ;
+  @string s := [filewrapper structGenerationTemplate.structDeclaration
+    !mHeaderFileInclusionSet
+    !mGenerationName
+    !mFieldList
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+  s := [filewrapper structGenerationTemplate.structGeneration
+    !mGenerationName
+    !mFieldList
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"\n"
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -8,11 +8,28 @@ override method @protocolDeclaration typeInventory
 :
   [!?ioUnifiedTypeMap insertKey
     !mProtocolName
+    ![@ebType new !mProtocolName ![@typeKind protocolType]]
     !selfcopy
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @protocolDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @protocolDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
+end method ;
 
 #routine enumAnalysis
 #  ??@enumList inEnumList

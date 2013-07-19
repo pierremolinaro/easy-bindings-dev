@@ -53,8 +53,60 @@ override method @entityDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mEntityName
+    ![@ebType new !mEntityName ![@typeKind entityType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @entityDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super entity ?
+  @observablePropertyMap observablePropertyMap ;
+  if [mSuperEntityName string] != "" then
+    [ioObservablePropertyMapMap searchKey
+       !mSuperEntityName
+       ?@typeKind kind
+       ?observablePropertyMap
+     ] ;
+     if kind != [@typeKind entityType] then
+       error mSuperEntityName : "'" . mSuperEntityName . "' is not an entity" ;
+     end if ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+  end if ;
+#----------------------------------
+  buildObservablePropertyMap
+    !mAttributeList
+    ![@classArrayList emptyList]
+    !mTransientList
+    ![@controllerList emptyList]
+    ![@controllerObservablePropertyList emptyList]
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"entity." . mEntityName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mEntityName
+    ![@typeKind entityType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @entityDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*

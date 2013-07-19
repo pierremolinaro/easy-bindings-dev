@@ -27,194 +27,208 @@ semantics transientAnalysis :
 #  end foreach ;
 #end routine ;
 
-##----------------------------------------------------------------------------*
-#
-#abstract method @abstractTransientDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap inLocalObservablePropertyMap
-#  ??@preferencesMap inPreferencesMap
-#  ??@controllerMap inControllerMap
-#  ??@observablePropertyMap inRootObjectObservablePropertyMap
-#  ??@string inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist ioRootSignDependencyList
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientRootSignDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap unused inLocalObservablePropertyMap
-#  ??@preferencesMap unused inPreferencesMap
-#  ??@controllerMap unused inControllerMap
-#  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList unused ioDirectDependancyList
-#  ?!@stringlist ioRootSignDependencyList
-#:
-#  if inRootEntityName == "" then
-#    error mDeclarationLocation: "no root object in this context" ;
-#  end if ;
-##--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
-##---
-#  ioRootSignDependencyList += !inObervationDependencyPrefix . inTransientName ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientLocalDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap inLocalObservablePropertyMap
-#  ??@preferencesMap unused inPreferencesMap
-#  ??@controllerMap unused inControllerMap
-#  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-#  [inLocalObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@easyBindingType masterType
-#    ?*
-#    ?@string masterPropertySignature
-#  ] ;
-##--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !masterPropertySignature !mMasterName->location]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientControllerDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap unused inLocalObservablePropertyMap
-#  ??@preferencesMap unused inPreferencesMap
-#  ??@controllerMap inControllerMap
-#  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-##--- Search controller in controller map
-#  [inControllerMap searchKey
-#    !mControllerName
-#    ?@string controllerClassName
-#    ?4*
-#    ?@observablePropertyMap controllerObservablePropertyMap
-#  ] ;
-##--- Search controller observed attribute
-#  [controllerObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@easyBindingType masterType
-#    ?*
-#    ?*
-#  ] ;
-##--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !"controller." . controllerClassName . "." . mMasterName !mMasterName->location]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromControllerForImplementation new !masterType !mControllerName->string !mMasterName->string] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientRootDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap unused inLocalObservablePropertyMap
-#  ??@preferencesMap unused inPreferencesMap
-#  ??@controllerMap unused inControllerMap
-#  ??@observablePropertyMap inRootObjectObservablePropertyMap
-#  ??@string inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-#  [inRootObjectObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@easyBindingType masterType
-#    ?*
-#    ?@string masterDependencyKey
-#  ] ;
-##--- Has 'count' option ?
-#  if mNamesCountOption & not [masterType isToManyEntitiesType] then
-#    error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
-#  end if ;
-##--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !"entity." . inRootEntityName . "." . mMasterName !mMasterName->location]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromRootForImplementation new
-#    !masterType
-#    !mMasterName->string
-#    !mNamesCountOption
-#    ![masterDependencyKey identifierRepresentation]
-# ] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientPreferenceDependency analyze
-#  ??@lstring inTransientName
-#  ??@observablePropertyMap unused inLocalObservablePropertyMap
-#  ??@preferencesMap inPreferencesMap
-#  ??@controllerMap unused inControllerMap
-#  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@string inObervationDependencyPrefix
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-#  [inPreferencesMap searchKey !mPreferencesName ?4* ?@observablePropertyMap observablePropertyMap ?3*] ;
-#  [observablePropertyMap searchKey
-#    !mMasterName
-#    ?@easyBindingType masterType
-#    ?@bool isTransient
-#    ?*
-#  ] ;
-##--- Add dependency arc
-#  [!?ioTransientDependencyGraph addArc
-#    ![@lstring new !"preference." . mPreferencesName . "." . mMasterName !mMasterName->location]
-#    ![@lstring new !inObervationDependencyPrefix . inTransientName !inTransientName->location]
-#  ] ;
-##--- Add preference header
-#  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferencesName->string ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromPreferenceForImplementation new
-#    !masterType
-#    !mPreferencesName->string
-#    !mMasterName->string
-#    !isTransient
-#  ] ;
-#end method ;
-#
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap inLocalObservablePropertyMap
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@string inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList ioDirectDependancyList
+  ?!@stringlist ioRootSignDependencyList
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientRootSignDependency analyze
+  ??@lstring inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet unused ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList unused ioDirectDependancyList
+  ?!@stringlist ioRootSignDependencyList
+:
+  if inRootEntityName == "" then
+    error mDeclarationLocation: "no root object in this context" ;
+  end if ;
+#--- Add dependency arc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+    ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
+    !inTransientPropertySignature
+  ] ;
+#---
+  ioRootSignDependencyList += !inTransientPropertySignature->string . inTransientName ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientLocalDependency analyze
+  ??@lstring unused inTransientName
+  ??@observablePropertyMap inLocalObservablePropertyMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet unused ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList ioDirectDependancyList
+  ?!@stringlist unused ioRootSignDependencyList
+:
+#  @ebType mType ;
+#  @bool mIsTransient ;
+#  @string mPropertySignature ;
+#  @bool mIsCollection ;
+  [inLocalObservablePropertyMap searchKey
+    !mMasterName
+    ?@ebType masterType
+    ?*
+    ?@lstring masterPropertySignature
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+    !masterPropertySignature
+    !inTransientPropertySignature
+  ] ;
+#---
+  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientControllerDependency analyze
+  ??@lstring unused inTransientName
+  ??@observablePropertyMap inLocalObservablePropertyMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet unused ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList ioDirectDependancyList
+  ?!@stringlist unused ioRootSignDependencyList
+:
+#--- Search controller in controller map
+  [inLocalObservablePropertyMap searchKey
+    !mControllerName
+    ?@ebType type
+    ?3*
+  ] ;
+  if type->mKind != [@typeKind controllerClassType] then
+    error mControllerName : "'" . mControllerName . "' is not a controller" ;
+  end if ;
+#--- Search controller observable attribute map
+  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+    !type->mTypeName
+    ?@typeKind typeKind
+    ?@observablePropertyMap controllerObservablePropertyMap
+  ] ;
+#--- Search controller observed attribute
+  [controllerObservablePropertyMap searchKey
+    !mMasterName
+    ?@ebType masterType
+    ?*
+    ?@lstring masterPropertySignature
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+    !masterPropertySignature
+    !inTransientPropertySignature
+  ] ;
+#---
+  ioDirectDependancyList += ![@transientDependencyFromControllerForImplementation new !masterType !mControllerName->string !mMasterName->string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientRootDependency analyze
+  ??@lstring unused inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet unused ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList ioDirectDependancyList
+  ?!@stringlist unused ioRootSignDependencyList
+:
+  [inRootObjectObservablePropertyMap searchKey
+    !mMasterName
+    ?@ebType masterType
+    ?*
+    ?@lstring masterDependencyKey
+    ?@bool isCollection
+  ] ;
+#--- Has 'count' option ?
+  if mNamesCountOption & not isCollection then
+    error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
+  end if ;
+#--- Add dependency arc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+    !masterDependencyKey
+    !inTransientPropertySignature
+  ] ;
+#---
+  ioDirectDependancyList += ![@transientDependencyFromRootForImplementation new
+    !masterType
+    !mMasterName->string
+    !mNamesCountOption
+    ![masterDependencyKey identifierRepresentation]
+ ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientPreferenceDependency analyze
+  ??@lstring unused inTransientName
+  ??@observablePropertyMap unused inLocalObservablePropertyMap
+  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@string unused inRootEntityName
+  ??@lstring inTransientPropertySignature
+  ?!@fileInclusionSet ioFileInclusionSet
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@directDependancyList ioDirectDependancyList
+  ?!@stringlist unused ioRootSignDependencyList
+:
+#--- Get preferences observables properties
+  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+    !mPreferencesName
+    ?@typeKind kind
+    ?@observablePropertyMap observablePropertyMap
+  ] ;
+#--- Check
+  if kind != [@typeKind preferencesType] then
+    error mPreferencesName : "'" . mPreferencesName . "' is not a preference" ;
+  end if ;
+#---
+  [observablePropertyMap searchKey
+    !mMasterName
+    ?@ebType masterType
+    ?@bool isTransient
+    ?@lstring masterPropertySignature
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+    !masterPropertySignature
+    !inTransientPropertySignature
+  ] ;
+#--- Add preference header
+  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferencesName->string ;
+#---
+  ioDirectDependancyList += ![@transientDependencyFromPreferenceForImplementation new
+    !masterType
+    !mPreferencesName->string
+    !mMasterName->string
+    !isTransient
+  ] ;
+end method ;
+
 ##----------------------------------------------------------------------------*
 #
 #routine analyzeTransientProperties
@@ -268,6 +282,47 @@ semantics transientAnalysis :
 #    outTransientListForImplementation += !type ![mTransientName string] !directDependancyList !rootSignDependencyList ;
 #  end foreach ;
 #end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine analyzeTransientProperties
+  ??@transientList inTransientList
+  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@string inRootEntityName
+  ??@observablePropertyMap inSelfObjectObservablePropertyMap
+  ?!@fileInclusionSet ioFileInclusionSet
+  !@transientListForImplementation outTransientListForImplementation
+:
+  outTransientListForImplementation := [@transientListForImplementation emptyList] ;
+  foreach inTransientList do
+    [inSelfObjectObservablePropertyMap searchKey
+      !mTransientName
+      ?@ebType type
+      ?*
+      ?@lstring transientPropertySignature
+      ?*
+    ] ;
+  #--- Analyze dependencies
+    @directDependancyList directDependancyList [emptyList] ;
+    @stringlist rootSignDependencyList [emptyList] ;
+    foreach mDependencyList do
+      [mDependency analyze
+        !mTransientName
+        !inSelfObjectObservablePropertyMap
+        !inRootObjectObservablePropertyMap
+        !inRootEntityName
+        !transientPropertySignature
+        !?ioFileInclusionSet
+        !?ioContextAnalysisStruct
+        !?directDependancyList
+        !?rootSignDependencyList
+      ] ;
+    end foreach ;
+  #--- Add transient implementation
+    outTransientListForImplementation += !type ![mTransientName string] !directDependancyList !rootSignDependencyList ;
+  end foreach ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 

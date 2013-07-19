@@ -15,7 +15,6 @@ override method @classDeclaration typeInventory
       !mSuperClassName
       ?@unifiedTypeProxy superClassProxy
     ] ;
-  #--- Enter dependance edge
     [!?ioUnifiedTypeMap enterEdge
       !mClassName
       !mSuperClassName
@@ -48,8 +47,112 @@ override method @classDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mClassName
+    ![@ebType new !mClassName ![@typeKind classType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @classDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super class ?
+  @observablePropertyMap observablePropertyMap ;
+  if [mSuperClassName string] != "" then
+    [ioObservablePropertyMapMap searchKey
+       !mSuperClassName
+       ?@typeKind kind
+       ?observablePropertyMap
+     ] ;
+     if kind != [@typeKind classType] then
+       error mSuperClassName : "'" . mSuperClassName . "' is not a class" ;
+     end if ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+  end if ;
+#----------------------------------
+  buildObservablePropertyMap
+    !mAttributeList
+    !mArrayList
+    !mTransientList
+    ![@controllerList emptyList]
+    ![@controllerObservablePropertyList emptyList]
+    !?ioObservablePropertyMapMap
+    !?ioTransientDependencyGraph
+    !inUnifiedTypeMap
+    !"class." . mClassName
+    !?observablePropertyMap
+  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mClassName
+    ![@typeKind classType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @classDeclaration semanticAnalysis
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
+#------------------------------- Get Observable property map
+  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+     !mClassName
+     ?*
+     ?@observablePropertyMap observablePropertyMap
+   ] ;
+#------------------------------- Analyze transient dependancy
+  @transientListForImplementation transientListForImplementation ;
+  @fileInclusionSet fileInclusionSet [default] ;
+  analyzeTransientProperties
+    !mTransientList
+    ![@observablePropertyMap emptyMap] # Root property map
+    !?ioContextAnalysisStruct
+    !"" # No Root entity
+    !observablePropertyMap
+    !?fileInclusionSet
+    ?transientListForImplementation
+  ;
+
+
+#------------------------------- Super class ?
+#  @observablePropertyMap observablePropertyMap ;
+#  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
+#  @propertyArrayMap allArrayPropertyMap ;
+#  if [mSuperClassName string] != "" then
+#    [ioContextAnalysisStruct->mClassMap searchKey
+#       !mSuperClassName
+#       ?*
+#       ?observablePropertyMap
+#       ?propertyListForInitMethodHeader
+#       ?4*
+#       ?allArrayPropertyMap
+#       ?*
+#     ] ;
+#  else
+#    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+#    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
+#    allArrayPropertyMap := [@propertyArrayMap emptyMap] ;
+#  end if ;
+#  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
+#---------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [default] ;
+#  analyzeAttributeDeclaration
+#    !mAttributeList
+#    !?ioContextAnalysisStruct
+#    !inUnifiedTypeMap
+#    !"class." . mClassName
+#    !?fileInclusionSet
+#    !?observablePropertyMap
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?propertyListForInitMethodHeader
+#  ;
 end method ;
 
 #----------------------------------------------------------------------------*

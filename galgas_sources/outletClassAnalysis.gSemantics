@@ -1,4 +1,5 @@
 semantics outletClassAnalysis :
+  import "attributeDeclarationAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -7,27 +8,73 @@ override method @outletClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #--- Has super class ?
-  @unifiedTypeProxy superClassProxy ;
-  if mSuperClassName->string == "" then
-    superClassProxy := [@unifiedTypeProxy null] ;
-  else
+  if mSuperClassName->string != "" then
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mSuperClassName
-      ?superClassProxy
+      ?@unifiedTypeProxy superClassProxy
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge
+      !mOutletClassName
+      !mSuperClassName
     ] ;
   end if ;
-#--- Analyze binding list
-  buildBindingCapabilitiesMap
-    !mOutletClassBindingList
-    !?ioUnifiedTypeMap
-    ?@outletClassBindingMap currentBindingMap
-  ;
 #---
   [!?ioUnifiedTypeMap insertKey
     !mOutletClassName
+    ![@ebType new !mOutletClassName ![@typeKind outletClassType]]
     !selfcopy
   ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @outletClassDeclaration buildObservablePropertyMap
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMapMap ioObservablePropertyMapMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+:
+#------------------------------- Super class ?
+  @observablePropertyMap observablePropertyMap ;
+  if [mSuperClassName string] != "" then
+    [ioObservablePropertyMapMap searchKey
+       !mSuperClassName
+       ?@typeKind kind
+       ?observablePropertyMap
+     ] ;
+     if kind != [@typeKind outletClassType] then
+       error mSuperClassName : "'" . mSuperClassName . "' is not an outlet class" ;
+     end if ;
+  else
+    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+  end if ;
+#----------------------------------
+#  buildObservablePropertyMap
+#    !mAttributeList
+#    !mArrayList
+#    !mTransientList
+#    ![@controllerList emptyList]
+#    !?ioObservablePropertyMapMap
+#    !?ioTransientDependencyGraph
+#    !inUnifiedTypeMap
+#    !"outletclass." . mOutletClassName
+#    !?observablePropertyMap
+#  ;
+#---------------------------------- Enter class in observable map
+  [!?ioObservablePropertyMapMap insertKey
+    !mOutletClassName
+    ![@typeKind outletClassType]
+    !observablePropertyMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @outletClassDeclaration semanticAnalysis
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@generationList unused ioGenerationList
+:
 end method ;
 
 #----------------------------------------------------------------------------*
