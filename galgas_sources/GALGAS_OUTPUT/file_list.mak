@@ -47,6 +47,7 @@ SOURCES += classGeneration.cpp
 SOURCES += nibClassAnalysis.cpp
 SOURCES += nibClassGeneration.cpp
 SOURCES += preferencesAnalysis.cpp
+SOURCES += preferencesGeneration.cpp
 SOURCES += entityAnalysis.cpp
 SOURCES += documentAnalysis.cpp
 SOURCES += outletClassAnalysis.cpp

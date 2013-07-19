@@ -855,10 +855,17 @@ rule <type_list>
       outEasyBindingTypeList += !bindingTypeName ;
     or
       $AnyScalar$ ;
-      outEasyBindingTypeList += ![@lstring new !"AnyScalar" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
     or
       $AnyNumber$ ;
-      outEasyBindingTypeList += ![@lstring new !"AnyNumber" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"Double" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
+      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
     end select ;
   while
     $,$ ;
@@ -895,11 +902,18 @@ rule <type_formatter_list>
     or
       $AnyScalar$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"AnyScalar" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
     or
       $AnyNumber$ ;
       <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"AnyNumber" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"Double" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
+      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
     end select ;
   while
     $,$ ;

@@ -11,7 +11,7 @@ reader @ebType stringConversionForExplorer
   switch mKind
   when classType, controllerClassType, documentType, entityType,
        nibClassType, outletClassType, preferencesType,
-       protocolType, anyScalarType,anyNumberType,
+       protocolType,
        stringType, colorType, dataType, dateType, fontType,
        imageType, menuType, bezierPathType :
     outResult := "" ;

@@ -10,7 +10,7 @@ foreach INCLUSION_SET do
 end foreach
 
 foreach ARRAY_MAP do
-%#import "%!mClassName%.h"\n%
+%#import "%!mElementType->mTypeName->string%.h"\n%
 end foreach
 
 %#import <objc/runtime.h>
@@ -68,7 +68,7 @@ end foreach
 foreach ARRAY_MAP do
 %    { NSMutableArray * array = [NSMutableArray new] ;
       for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey->string%"]) {
-        %!mClassName% * object = [[%!mClassName% alloc]
+        %!mElementType->mTypeName->string% * object = [[%!mElementType->mTypeName->string% alloc]
 %foreach mAttributeListForImplementation
 before %          initWith%
 do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesGetterTransformerFunctionName]%([dict objectForKey:@"%!mAttributeName%"])\n%
@@ -120,7 +120,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 end foreach
 foreach ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
-    for (%!mClassName% * object in self.%!lkey->string%) {
+    for (%!mElementType->mTypeName->string% * object in self.%!lkey->string%) {
       [array addObject:[NSDictionary
         dictionaryWithObjectsAndKeys:
 %foreach mAttributeListForImplementation do

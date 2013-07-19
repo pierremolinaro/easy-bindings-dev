@@ -30,8 +30,7 @@ reader @ebType isPODtype -> @bool outResult :
        imageType,  menuType, bezierPathType, protocolType :
     outResult := false ;
   when enumType, structType, boolType,
-       integerType, uintegerType, doubleType,
-       anyScalarType, anyNumberType :
+       integerType, uintegerType, doubleType :
     outResult := true ;
   end switch ;
 end reader ;
@@ -44,7 +43,7 @@ reader @ebType ebTypeName -> @string outResult :
        nibClassType, outletClassType, preferencesType, stringType,
        colorType, dataType, dateType, fontType,
        imageType,  menuType, bezierPathType, protocolType,
-       enumType, structType, anyScalarType, anyNumberType :
+       enumType, structType :
     outResult := mTypeName->string ;
   when boolType :
     outResult := "BOOL" ;
@@ -76,7 +75,7 @@ reader @ebType equalExpression
     outResult := "[" . inExp1 . " isEqualToString:" . inExp2 . "]" ;
   when structType :
     outResult := "equal" . mTypeName . "s (" . inExp1 . ", " . inExp2 . ")" ;
-  when integerType, uintegerType, boolType, doubleType, enumType, anyScalarType, anyNumberType :
+  when integerType, uintegerType, boolType, doubleType, enumType :
     outResult := inExp1 . " == " . inExp2 ;
   end switch ;
 end reader ;
@@ -94,7 +93,7 @@ reader @ebType ocTypeName
        colorType, dataType, dateType, fontType, stringType,
        imageType,  menuType, bezierPathType, protocolType :
     outResult := mTypeName->string . " *" ;
-  when structType, enumType, anyScalarType, anyNumberType :
+  when structType, enumType :
     outResult := mTypeName->string ;
   when boolType :
     outResult := "BOOL" ;
@@ -121,7 +120,7 @@ reader @ebType propertyAttributeString
   when nibClassType, outletClassType, preferencesType,
        classType, controllerClassType, documentType, entityType,
        doubleType, uintegerType, integerType, boolType, structType,
-       enumType, anyScalarType, anyNumberType :
+       enumType :
     outResult := "" ;
   end switch ;
 end reader ;
@@ -141,7 +140,7 @@ reader @ebType copyOnAssign
        nibClassType, outletClassType, preferencesType,
        classType, controllerClassType, documentType, entityType,
        doubleType, uintegerType, integerType, boolType, structType,
-       enumType, anyScalarType, anyNumberType :
+       enumType :
     outResult := false ;
   end switch ;
 end reader ;
@@ -168,7 +167,67 @@ reader @ebType requiredCellTypeInTableColumnBinding
        nibClassType, outletClassType, preferencesType,
        classType, controllerClassType, documentType, entityType,
        structType,
-       enumType, anyScalarType, anyNumberType :
+       enumType :
+    outResult := "" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   preferencesGetterTransformerFunctionName                                  *
+#-----------------------------------------------------------------------------*
+
+reader @ebType preferencesGetterTransformerFunctionName
+  -> @string outResult
+ :
+  switch mKind
+  when boolType :
+    outResult := "boolFromNSNumber" ;
+  when integerType :
+    outResult := "NSIntegerFromNSNumber" ;
+  when enumType :
+    outResult := "(" . mTypeName . ") NSIntegerFromNSNumber" ;
+  when doubleType :
+    outResult := "doubleFromNSNumber" ;
+  when fontType :
+    outResult := "fontFromData" ;
+  when colorType, bezierPathType :
+    outResult := "valueFromData" ;
+  when structType :
+    outResult := mTypeName->string . "FromData" ;
+  when dateType, imageType, uintegerType, stringType, menuType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
+    outResult := "" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   preferencesSetterTransformerFunctionName                                  *
+#-----------------------------------------------------------------------------*
+
+reader @ebType preferencesSetterTransformerFunctionName
+  -> @string outResult
+ :
+  switch mKind
+  when boolType :
+    outResult := "numberEncodedBool" ;
+  when integerType, enumType :
+    outResult := "numberEncodedNSInteger" ;
+  when doubleType :
+    outResult := "numberEncodedDouble" ;
+  when fontType :
+    outResult := "dataFromFont" ;
+  when colorType, bezierPathType, menuType :
+    outResult := "dataEncodedValue" ;
+  when structType :
+    outResult := "dataEncoded" . mTypeName->string ;
+  when dateType, imageType, uintegerType, stringType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
     outResult := "" ;
   end switch ;
 end reader ;
@@ -271,33 +330,6 @@ map @enumConstantMap {
 #override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
 #override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
 #override reader @structType isClass -> @bool outResult : outResult := false ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
-#
-#override reader @boolType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "boolFromNSNumber" ; end reader ;
-#override reader @integerType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "NSIntegerFromNSNumber" ; end reader ;
-#override reader @enumType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "(" . mEnumTypeName . ") NSIntegerFromNSNumber" ; end reader ;
-#override reader @doubleType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "doubleFromNSNumber" ; end reader ;
-#override reader @fontType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "fontFromData" ; end reader ;
-#override reader @colorType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
-#override reader @bezierPathType preferencesGetterTransformerFunctionName -> @string outResult : outResult := "valueFromData" ; end reader ;
-#override reader @structType preferencesGetterTransformerFunctionName -> @string outResult : outResult := mStructTypeName->string . "FromData" ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "" ; end reader ;
-#
-#override reader @boolType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedBool" ; end reader ;
-#override reader @integerType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
-#override reader @doubleType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedDouble" ; end reader ;
-#override reader @fontType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataFromFont" ; end reader ;
-#override reader @colorType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
-#override reader @bezierPathType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
-#override reader @menuType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncodedValue" ; end reader ;
-#override reader @enumType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "numberEncodedNSInteger" ; end reader ;
-#override reader @structType preferencesSetterTransformerFunctionName -> @string outResult : outResult := "dataEncoded" . mStructTypeName ; end reader ;
 
 #-----------------------------------------------------------------------------*
 #   ebTypeIdentifier                                                          *
@@ -510,6 +542,7 @@ struct @contextAnalysisStruct {
   @userCursorMap mUserCursorMap ;
   @classMap mClassMap ;
   @protocolMap mProtocolMap ;
+  @preferencesMap mPreferencesMap ;
 #  @entityMap mEntityMap ;
   @controllerClassMap mControllerClassMap ;
   @outletClassMap mOutletClassMap ;
@@ -719,6 +752,15 @@ map @propertyArrayMap {
 
 #----------------------------------------------------------------------------*
 
+map @preferencesPropertyArrayMap {
+  @ebType mElementType ;
+  @attributeListForImplementation mAttributeListForImplementation ;
+  insert insertKey error message "the '%K' array is already declared" ;
+  search searchKey error message "the '%K' array is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @preferencesMap {
   @attributeListForImplementation mAttributeListForImplementation ;
   @transientListForImplementation mTransientListForImplementation ;
@@ -728,6 +770,7 @@ map @preferencesMap {
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @propertyArrayMap mArrayMap ;
+#  @preferencesPropertyArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -1281,6 +1324,18 @@ class @nibClassTypeGeneration extends @generation {
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @propertyArrayMap mArrayMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @preferenceTypeGeneration extends @generation {
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @outletGenerationList mOutletDeclarationList ;
+  @lstringlist mActionList ;
+  @fileInclusionSet mFileInclusionSet ;
+  @controllerMap mControllerMap ;
+  @preferencesPropertyArrayMap mArrayMap ;
 }
 
 #----------------------------------------------------------------------------*
