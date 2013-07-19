@@ -769,7 +769,6 @@ map @preferencesMap {
   @observablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
-  @propertyArrayMap mArrayMap ;
 #  @preferencesPropertyArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
