@@ -81,6 +81,71 @@ reader @ebType equalExpression
   end switch ;
 end reader ;
 
+#-----------------------------------------------------------------------------*
+#   ocTypeName                                                                *
+#-----------------------------------------------------------------------------*
+
+reader @ebType ocTypeName
+  -> @string outResult
+ :
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       colorType, dataType, dateType, fontType, stringType,
+       imageType,  menuType, bezierPathType, protocolType :
+    outResult := mTypeName->string . " *" ;
+  when structType, enumType, anyScalarType, anyNumberType :
+    outResult := mTypeName->string ;
+  when boolType :
+    outResult := "BOOL" ;
+  when integerType :
+    outResult := "NSInteger" ;
+  when uintegerType :
+    outResult := "NSUInteger" ;
+  when doubleType :
+    outResult := "double" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   propertyAttributeString                                                   *
+#-----------------------------------------------------------------------------*
+
+reader @ebType propertyAttributeString
+  -> @string outResult
+ :
+  switch mKind
+  when colorType, dataType, dateType, fontType, stringType,
+       imageType,  menuType, bezierPathType, protocolType :
+    outResult := " (copy)" ;
+  when nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType,
+       doubleType, uintegerType, integerType, boolType, structType,
+       enumType, anyScalarType, anyNumberType :
+    outResult := "" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   copyOnAssign                                                              *
+#-----------------------------------------------------------------------------*
+
+reader @ebType copyOnAssign
+  -> @bool outResult
+ :
+  switch mKind
+  when stringType, bezierPathType, menuType :
+    outResult := true ;
+  when colorType, dataType, dateType, fontType,
+       imageType, protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType,
+       doubleType, uintegerType, integerType, boolType, structType,
+       enumType, anyScalarType, anyNumberType :
+    outResult := false ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 uniquemap @unifiedTypeMap {
@@ -99,103 +164,6 @@ mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
 
 list @unifiedTypeProxyList {
   @unifiedTypeProxy mTypeProxy ;
-}
-
-#-----------------------------------------------------------------------------*
-
-abstract class @easyBindingType {
-  @lstring mTypeName ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @preferenceType extends @easyBindingType {
-  @observablePropertyMap mObservablePropertyMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-abstract class @objectClass extends @easyBindingType {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @controllerClassType extends @easyBindingType {
-  @controllerKind mControllerKind ;
-  @generationKind mGenerationKind ;
-  @outletClassBindingMap mBindingMap ;
-  @actionMap mActionMap ;
-  @observablePropertyMap mObservablePropertyMap ;
-  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @protocolType extends @easyBindingType {
-  @bool mIsPredefined ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @stringType, @dataType, @dateType,
- @fontType, @imageType, @colorType,
- @bezierPathType, @menuType extends @objectClass {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @anyNumberType extends @easyBindingType {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @anyScalarType extends @anyNumberType {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @doubleType extends @anyNumberType {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @boolType, @integerType,
-      @uintegerType, @anyEnumType extends @anyScalarType {
-}
-
-#-----------------------------------------------------------------------------*
-
-class @classType extends @easyBindingType {
-#  @unifiedTypeProxy mSuperClassType ;
-#  @observablePropertyMap mObservablePropertyMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @entityType extends @easyBindingType {
-  @unifiedTypeProxy mSuperEntityType ;
-  @observablePropertyMap mObservablePropertyMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @documentType extends @easyBindingType {
-  @unifiedTypeProxy mRootEntityType ;
-  @observablePropertyMap mObservablePropertyMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @nibClassType extends @easyBindingType {
-  @observablePropertyMap mObservablePropertyMap ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @enumType extends @anyEnumType {
-  @lstring mEnumTypeName ;
-  @structFieldList mStructFieldList ;
-  @enumConstantMap mEnumConstantMap ;
 }
 
 #----------------------------------------------------------------------------*
@@ -222,13 +190,6 @@ map @outletClassBindingMap {
   search searchKey error message "the '%K' binding is not declared" ;
 }
 
-#-----------------------------------------------------------------------------*
-
-class @outletClassType extends @easyBindingType {
-#  @unifiedTypeProxy mSuperClassProxy ;
-#  @outletClassBindingMap mOutletCurrentClassBindingMap ;
-}
-
 #----------------------------------------------------------------------------*
 
 list @structFieldList {
@@ -241,13 +202,6 @@ list @structFieldList {
 map @enumConstantMap {
   insert insertKey error message "the '%K' enumeration constant is already declared" ;
   search searchKey error message "the '%K' enumeration constant is not declared" ;
-}
-
-#-----------------------------------------------------------------------------*
-
-class @structType extends @easyBindingType {
-  @lstring mStructTypeName ;
-#  @structFieldList mFieldList ;
 }
 
 #-----------------------------------------------------------------------------*
@@ -320,19 +274,6 @@ class @structType extends @easyBindingType {
 
 #-----------------------------------------------------------------------------*
 
-#reader @easyBindingType propertyAttributeString -> @string outResult : outResult := "" ; end reader ;
-#
-#override reader @stringType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-#override reader @bezierPathType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-#override reader @menuType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-#
-#override reader @colorType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-#override reader @dateType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-#
-#override reader @fontType propertyAttributeString -> @string outResult : outResult := " (copy)" ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
  # Returning an empty string means not allowed
 #reader @easyBindingType requiredCellTypeInTableColumnBinding -> @string outResult : outResult := "" ; end reader ;
 #
@@ -399,28 +340,6 @@ class @structType extends @easyBindingType {
 
 #-----------------------------------------------------------------------------*
 
-#abstract reader @easyBindingType ocTypeName -> @string outResult ;
-#
-#override reader @boolType ocTypeName -> @string outResult : outResult := "BOOL" ; end reader ;
-#override reader @integerType ocTypeName -> @string outResult : outResult := "NSInteger" ; end reader ;
-#override reader @uintegerType ocTypeName -> @string outResult : outResult := "NSUInteger" ; end reader ;
-#override reader @doubleType ocTypeName -> @string outResult : outResult := "double" ; end reader ;
-#override reader @stringType ocTypeName -> @string outResult : outResult := "NSString *" ; end reader ;
-#override reader @fontType ocTypeName -> @string outResult : outResult := "NSFont *" ; end reader ;
-#override reader @imageType ocTypeName -> @string outResult : outResult := "NSImage *" ; end reader ;
-#override reader @colorType ocTypeName -> @string outResult : outResult := "NSColor *" ; end reader ;
-#override reader @dataType ocTypeName -> @string outResult : outResult := "NSData *" ; end reader ;
-#override reader @dateType ocTypeName -> @string outResult : outResult := "NSDate *" ; end reader ;
-#override reader @objectArrayType ocTypeName -> @string outResult : outResult := "NSArray *" ; end reader ;
-#override reader @menuType ocTypeName -> @string outResult : outResult := "NSMenu *" ; end reader ;
-#override reader @bezierPathType ocTypeName -> @string outResult : outResult := "NSBezierPath *" ; end reader ;
-#override reader @toOneEntityType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
-#override reader @toManyEntitiesType ocTypeName -> @string outResult : outResult := "??" ; end reader ;
-#override reader @enumType ocTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
-#override reader @structType ocTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
 #abstract reader @easyBindingType ocClassName -> @string outResult ;
 #
 #override reader @boolType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
@@ -440,15 +359,6 @@ class @structType extends @easyBindingType {
 #override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
 #override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
 #override reader @structType ocClassName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType copyOnAssign -> @bool outResult : outResult := false ; end reader ;
-#
-#override reader @stringType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
-#override reader @objectArrayType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
-#override reader @bezierPathType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
-#override reader @menuType copyOnAssign -> @bool outResult : outResult := true ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -583,15 +493,12 @@ struct @contextAnalysisStruct {
 #----------------------------------------------------------------------------*
 
 map @classMap {
-  @string mSuperClassName ;
-  @observablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
-  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-  @attributeListForImplementation mAttributeListForImplementation ;
-  @transientListForImplementation mTransientListForImplementation ;
+#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
+#  @attributeListForImplementation mAttributeListForImplementation ;
+#  @transientListForImplementation mTransientListForImplementation ;
   @propertyArrayMap mAllArrayPropertyForImplementation ;
-  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
-  @fileInclusionSet mInclusionSet ;
+#  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
   insert insertKey error message "the '%K' class is already declared" ;
   search searchKey error message "the '%K' class is not declared" ;
 }
@@ -620,7 +527,7 @@ map @entityMap {
 
 list @signListForGeneration {
   @string mPropertyName ;
-  @easyBindingType mPropertyType ;
+  @ebType mPropertyType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -776,7 +683,7 @@ list @outletGenerationList {
 #----------------------------------------------------------------------------*
 
 map @propertyArrayMap {
-  @unifiedTypeProxy mElementType ;
+  @ebType mElementType ;
   insert insertKey error message "the '%K' array is already declared" ;
   search searchKey error message "the '%K' array is not declared" ;
 }
@@ -1160,7 +1067,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         end if ;
       else
         error mValue
-        : "unknown predefined date"
+        : "the '" . [mType ebTypeName] . "' enumeration does not define '" . mValue . "' constant"
         : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
         ;  
       end if ;
@@ -1320,6 +1227,18 @@ class @enumTypeGeneration extends @generation {
   @lstringlist mConstantOrderedList ;
 }
 
+#----------------------------------------------------------------------------*
+
+class @classTypeGeneration extends @generation {
+  @string mSuperClassName ;
+  @attributeListForImplementation mAttributeListForInitMethodHeader ;
+  @attributeListForImplementation mInheritedAttributeListForImplementation ;
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @propertyArrayMap mAllArrayPropertyForImplementation ;
+  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
+  @fileInclusionSet mInclusionSet ;
+}
 
 #----------------------------------------------------------------------------*
 

@@ -10,7 +10,7 @@ foreach IMPLEMENTATION_INCLUSION_SET do
   %#import "%!key%.h"\n%
 end foreach
 foreach CURRENT_ARRAY_MAP do
-%#import "%!mClassName%.h"\n%
+%#import "%!mElementType->mTypeName->string%.h"\n%
 end foreach
 %
 

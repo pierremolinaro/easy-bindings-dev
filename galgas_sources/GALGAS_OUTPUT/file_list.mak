@@ -42,6 +42,7 @@ SOURCES += structAnalysis.cpp
 SOURCES += structGeneration.cpp
 SOURCES += bindingSemanticAnalysis.cpp
 SOURCES += classAnalysis.cpp
+SOURCES += classGeneration.cpp
 SOURCES += nibClassAnalysis.cpp
 SOURCES += preferencesAnalysis.cpp
 SOURCES += entityAnalysis.cpp
@@ -49,6 +50,7 @@ SOURCES += documentAnalysis.cpp
 SOURCES += outletClassAnalysis.cpp
 SOURCES += controllerClassAnalysis.cpp
 SOURCES += transientAnalysis.cpp
+SOURCES += transientGeneration.cpp
 SOURCES += easyBindings_program.cpp
 
 

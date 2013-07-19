@@ -7,17 +7,6 @@ semantics enumAnalysis :
 override method @enumDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
-#  @enumConstantMap enumConstantMap [emptyMap] ;
-#  @structFieldList fieldList [emptyList] ;
-#  [@unifiedTypeProxy makeProxy
-#    !?ioUnifiedTypeMap
-#    !mEnumTypeName
-#    ?@unifiedTypeProxy enumTypeProxy
-#  ] ;
-#  foreach mEnumConstantNameList do
-#    [!?enumConstantMap insertKey !mValue] ;
-#    fieldList += !enumTypeProxy !mValue ;
-#  end foreach ;
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
     ![@ebType new !mEnumTypeName ![@typeKind enumType]]
@@ -59,27 +48,6 @@ override method @enumDeclaration semanticAnalysis
   ] ;
 end method ;
 
-
-#----------------------------------------------------------------------------*
-
-#routine enumAnalysis
-#  ??@enumList inEnumList
-#  ?!@contextAnalysisStruct ioContextAnalysisStruct
-#:
-#  foreach inEnumList do
-#    @enumConstantMap enumConstantMap [emptyMap] ;
-#    foreach mEnumConstantNameList do
-#      [!?enumConstantMap insertKey !mValue] ;
-#    end foreach ;
-#    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
-#  end foreach ;
-##---
-#  foreach ioContextAnalysisStruct->mEnumMap do
-#    foreach mConstantOrderedList do
-#      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
-#    end foreach ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

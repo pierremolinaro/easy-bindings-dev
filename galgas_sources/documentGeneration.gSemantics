@@ -42,7 +42,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
   
   template documentTransientComputationImplementationFile "document-transient-computation-function.m.gTemplate"
     ?@string DOCUMENT_NAME
-    ?@easyBindingType RESULT_TYPE
+    ?@ebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
     ?@stringlist ROOT_SIGN_LIST

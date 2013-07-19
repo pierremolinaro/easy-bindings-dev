@@ -46,55 +46,38 @@ semantics attributeDeclarationAnalysis :
 
 #----------------------------------------------------------------------------*
 
-#routine analyzeAttributeDeclaration
-#  ??@attributeList inAttributeList
-#  ?!@contextAnalysisStruct ioContextAnalysisStruct
-#  ??@unifiedTypeMap inUnifiedTypeMap
-#  ??@string inObjectName # "document." . documentName
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  ?!@observablePropertyMap ioSelfObservableAttributeMap
-#  !@attributeListForImplementation outAttributeListForImplementation
-#  ?!@attributeListForImplementation ioAttributeListForInitHeader
-#:
-#  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
-#  foreach inAttributeList do
-#    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
-#    [mDefaultValue analyzeDefaultValueType
-#      ![@ebTypeList listWithValue !type]
-#      !ioContextAnalysisStruct
-#      ?@string directDefaultValueAsString
-#      ?@string objectiveCDefaultValueAsString
-#      !?ioFileInclusionSet
-#    ] ;
-#    outAttributeListForImplementation +=
-#      !type
-#      ![mAttributeName string]
-#      !objectiveCDefaultValueAsString
-#      !directDefaultValueAsString
-#    ;
-#    ioAttributeListForInitHeader +=
-#       !type
-#       ![mAttributeName string]
-#       !objectiveCDefaultValueAsString
-#       !directDefaultValueAsString
-#    ;
-#    const @lstring observationDependencyKey [new
-#      !inObjectName . "." . mAttributeName
-#      !mAttributeName->location
-#    ] ;
-#    [!?ioSelfObservableAttributeMap insertKey
-#      !mAttributeName
-#      !type
-#      !false # is not transient
-#      !observationDependencyKey->string
-#      !false # Is not collection
-#    ] ;
-#    [!?ioContextAnalysisStruct->mTransientDependencyGraph addNode
-#      !observationDependencyKey
-#      !observationDependencyKey->string
-#    ] ;
-#  end foreach ;
-#end routine ;
+routine analyzeAttributeDeclaration
+  ??@attributeList inAttributeList
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@fileInclusionSet ioFileInclusionSet
+  !@attributeListForImplementation outAttributeListForImplementation
+  ?!@attributeListForImplementation ioAttributeListForInitHeader
+:
+  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
+  foreach inAttributeList do
+    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
+    [mDefaultValue analyzeDefaultValueType
+      ![@ebTypeList listWithValue !type]
+      !ioContextAnalysisStruct
+      ?@string directDefaultValueAsString
+      ?@string objectiveCDefaultValueAsString
+      !?ioFileInclusionSet
+    ] ;
+    outAttributeListForImplementation +=
+      !type
+      ![mAttributeName string]
+      !objectiveCDefaultValueAsString
+      !directDefaultValueAsString
+    ;
+    ioAttributeListForInitHeader +=
+       !type
+       ![mAttributeName string]
+       !objectiveCDefaultValueAsString
+       !directDefaultValueAsString
+    ;
+  end foreach ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 
