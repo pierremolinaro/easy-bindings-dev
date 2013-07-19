@@ -15,6 +15,7 @@ override method @preferencesDeclaration typeInventory
       !mAttributeTypeName
       ?*
     ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mAttributeTypeName] ;
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do
@@ -23,6 +24,7 @@ override method @preferencesDeclaration typeInventory
       !mElementClassName
       ?*
     ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mElementClassName] ;
   end foreach ;
 #-------------------------------------------------- Analyze controllers
   foreach mControllerList do
@@ -92,7 +94,7 @@ end method ;
 override method @preferencesDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ?!@contextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList unused ioGenerationList
+  ?!@generationList ioGenerationList
 :
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferencesName
@@ -116,7 +118,7 @@ override method @preferencesDeclaration semanticAnalysis
     !?attributeListForInitHeader
   ;
 #------------------------------------- Analyze arraies
-  @propertyArrayMap preferenceArrayMap [emptyMap] ;
+  @preferencesPropertyArrayMap preferenceArrayMap [emptyMap] ;
   foreach mArrayList do
     [inUnifiedTypeMap searchKey
       !mElementClassName
@@ -126,9 +128,15 @@ override method @preferencesDeclaration semanticAnalysis
     if type->mKind != [@typeKind classType] then
       error mElementClassName : "'" . mElementClassName . "' is not a class" ;    
     end if ;
+    [ioContextAnalysisStruct->mClassMap searchKey
+      !mElementClassName
+      ?@attributeListForImplementation attributeListForInitMethodHeader
+      ?*
+    ] ;
     [!?preferenceArrayMap insertKey
       !mArrayName
       !type
+      !attributeListForInitMethodHeader
     ] ;
   end foreach ;
 #-------------------------------------------------- Analyze controllers
@@ -170,6 +178,7 @@ override method @preferencesDeclaration semanticAnalysis
       [preferenceArrayMap searchKey
         !mControlledObjectName
         ?@ebType controlledObjectType
+        ?*
       ] ;
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
@@ -260,6 +269,16 @@ override method @preferencesDeclaration semanticAnalysis
     !outletGenerationList
     !mActionDeclarationList
     !selfObservablePropertyMap
+    !fileInclusionSet
+    !controllerMap
+  ] ;
+#------------------------------------- Generation
+  ioGenerationList += ![@preferenceTypeGeneration new
+    !mPreferencesName->string
+    !attributeListForImplementation
+    !transientListForImplementation
+    !outletGenerationList
+    !mActionDeclarationList
     !fileInclusionSet
     !controllerMap
     !preferenceArrayMap
