@@ -32,7 +32,7 @@ end method ;
 
 override method @structDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   @structFieldList structFieldList [default] ;
@@ -49,6 +49,11 @@ override method @structDeclaration semanticAnalysis
     end if ;
     structFieldList += !type !mFieldName->string ;
   end foreach ;
+#---
+  [!?ioContextAnalysisStruct->mStructTypeMap insertKey
+    !mStructTypeName
+    !structFieldList
+  ] ;
 #---
   ioGenerationList += ![@structTypeGeneration new
     !mStructTypeName->string

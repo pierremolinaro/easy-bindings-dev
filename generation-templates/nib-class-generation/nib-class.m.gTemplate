@@ -10,7 +10,7 @@ foreach INCLUSION_SET do
 end foreach
 
 foreach ARRAY_MAP do
-%#import "%!mClassName%.h"\n%
+%#import "%!mElementType->mTypeName->string%.h"\n%
 end foreach
 
 %#import <objc/runtime.h>

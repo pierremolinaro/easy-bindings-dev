@@ -99,13 +99,6 @@ override method @classDeclaration buildObservablePropertyMap
 end method ;
 
 #----------------------------------------------------------------------------*
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @propertyArrayMap mAllArrayPropertyForImplementation ;
-#  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
-#  @fileInclusionSet mInclusionSet ;
 
 override method @classDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
@@ -133,11 +126,6 @@ override method @classDeclaration semanticAnalysis
   end if ;
   @attributeListForImplementation attributeListForInitHeader := inheritedAttributeListForInitHeader ;
   @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
-##  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @propertyArrayMap mAllArrayPropertyForImplementation ;
-##  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
 #------------------------------- Analyze transient dependancy
   @transientListForImplementation transientListForImplementation ;
   @fileInclusionSet fileInclusionSet [default] ;
@@ -196,38 +184,6 @@ override method @classDeclaration semanticAnalysis
     !currentArrayPropertyForImplementation
     !fileInclusionSet
   ] ;
-#------------------------------- Super class ?
-#  @observablePropertyMap observablePropertyMap ;
-#  @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
-#  @propertyArrayMap allArrayPropertyMap ;
-#  if [mSuperClassName string] != "" then
-#    [ioContextAnalysisStruct->mClassMap searchKey
-#       !mSuperClassName
-#       ?*
-#       ?observablePropertyMap
-#       ?propertyListForInitMethodHeader
-#       ?4*
-#       ?allArrayPropertyMap
-#       ?*
-#     ] ;
-#  else
-#    observablePropertyMap := [@observablePropertyMap emptyMap] ;
-#    propertyListForInitMethodHeader := [@attributeListForImplementation emptyList] ;
-#    allArrayPropertyMap := [@propertyArrayMap emptyMap] ;
-#  end if ;
-#  const @attributeListForImplementation inheritedAttributeListForImplementation := propertyListForInitMethodHeader ;
-#---------------------------------- Analyze attributes
-#  @fileInclusionSet fileInclusionSet [default] ;
-#  analyzeAttributeDeclaration
-#    !mAttributeList
-#    !?ioContextAnalysisStruct
-#    !inUnifiedTypeMap
-#    !"class." . mClassName
-#    !?fileInclusionSet
-#    !?observablePropertyMap
-#    ?@attributeListForImplementation attributeListForImplementation
-#    !?propertyListForInitMethodHeader
-#  ;
 end method ;
 
 #----------------------------------------------------------------------------*
