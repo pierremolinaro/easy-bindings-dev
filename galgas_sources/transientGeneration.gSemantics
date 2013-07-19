@@ -123,7 +123,7 @@ end function ;
 
 function generateTransientFunctionImplementation
   ??@string inKindName
-  ??@easyBindingType inTransientType
+  ??@ebType inTransientType
   ??@string inTransientName
   ??@directDependancyList inDependencyList
   ??@stringlist inRootSignDependencyList

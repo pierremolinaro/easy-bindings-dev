@@ -47,7 +47,7 @@ local filewrapper nibClassGenerationTemplate in "../generation-templates/nib-cla
   
   template nibClassTransientComputationImplementationFile "nib-class-transient-computation-function.m.gTemplate"
     ?@string PREFERENCES_NAME
-    ?@easyBindingType RESULT_TYPE
+    ?@ebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;

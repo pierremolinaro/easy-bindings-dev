@@ -484,6 +484,37 @@ enum @typeKind {
 
 #----------------------------------------------------------------------------*
 
+reader @typeKind name -> @string outResult :
+  switch selfcopy
+  when classType : outResult := "classType" ;
+  when controllerClassType : outResult := "controllerClassType" ;
+  when documentType : outResult := "documentType" ;
+  when entityType : outResult := "entityType" ;
+  when enumType : outResult := "enumType" ;
+  when nibClassType : outResult := "nibClassType" ;
+  when outletClassType : outResult := "outletClassType" ;
+  when preferencesType : outResult := "preferencesType" ;
+  when protocolType : outResult := "protocolType" ;
+  when structType : outResult := "structType" ;
+  when boolType : outResult := "boolType" ;
+  when integerType : outResult := "integerType" ;
+  when uintegerType : outResult := "uintegerType" ;
+  when doubleType : outResult := "doubleType" ;
+  when anyScalarType : outResult := "anyScalarType" ;
+  when anyNumberType : outResult := "anyNumberType" ;
+  when stringType : outResult := "stringType" ;
+  when colorType : outResult := "colorType" ;
+  when dataType : outResult := "dataType" ;
+  when dateType : outResult := "dateType" ;
+  when fontType : outResult := "fontType" ;
+  when imageType : outResult := "imageType" ;
+  when menuType : outResult := "menuType" ;
+  when bezierPathType : outResult := "bezierPathType" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 class @predefinedTypeDeclaration extends @astDeclaration {
   @string mTypeName ;
   @typeKind mKind ;

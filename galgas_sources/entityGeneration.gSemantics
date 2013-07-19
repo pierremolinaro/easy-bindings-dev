@@ -6,7 +6,7 @@ semantics entityGeneration :
 #   hasCustomExplorerFunction                                                 *
 #-----------------------------------------------------------------------------*
 
-reader @easyBindingType hasCustomExplorerFunction
+reader @ebType hasCustomExplorerFunction
   -> @bool outResult
 :
   outResult := false ;
@@ -83,7 +83,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
   
   template entityTransientComputationImplementationFile "entity-transient-computation-function.m.gTemplate"
     ?@string CLASS_NAME
-    ?@easyBindingType RESULT_TYPE
+    ?@ebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
