@@ -40,7 +40,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "preferencesGeneration.gSemantics" ;
 
   semantics "entityAnalysis.gSemantics" ;
-#  semantics "entityGeneration.gSemantics" ;
+  semantics "entityGeneration.gSemantics" ;
 
   semantics "documentAnalysis.gSemantics" ;
 #  semantics "documentGeneration.gSemantics" ;

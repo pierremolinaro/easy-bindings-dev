@@ -91,7 +91,19 @@ function generateTransientFunctionDeclarations
   ??@transientListForImplementation inTransientListForImplementation
   ->@string outResult
 :
-  outResult :=
+  @stringset inclusionSet [emptySet] ;
+  foreach inTransientListForImplementation do
+    [mTransientType addInclusionInHeaderFile !?inclusionSet] ;
+    foreach mDependencyList do
+      [[mDependency mMasterAttributeType] addInclusionInHeaderFile !?inclusionSet] ;
+    end foreach ;
+  end foreach ;  
+  outResult := "" ;
+  foreach inclusionSet do
+    outResult .= "#import \"" . key . ".h\"\n" ;
+  end foreach ;
+#---
+  outResult .=
     "//----------------------------------------------------------------------------*\n"
   . "//   T R A N S I E N T    P R O P E R T I E S                                 *\n"
   . "//----------------------------------------------------------------------------*\n\n" ;
@@ -129,7 +141,17 @@ function generateTransientFunctionImplementation
   ??@stringlist inRootSignDependencyList
   ->@string outResult
 :
-  outResult := [inTransientType ocTypeName] . " compute_" . inKindName . "_" . inTransientName . " (\n" ;
+  @stringset inclusionSet [emptySet] ;
+  [inTransientType addInclusionInImplementationFile !?inclusionSet] ;
+  foreach inDependencyList do
+    [[mDependency mMasterAttributeType] addInclusionInImplementationFile !?inclusionSet] ;
+  end foreach ;
+  outResult := "" ;
+  foreach inclusionSet do
+    outResult .= "#import \"" . key . ".h\"\n" ;
+  end foreach ;
+#---
+  outResult .= [inTransientType ocTypeName] . " compute_" . inKindName . "_" . inTransientName . " (\n" ;
   @bool first := true ;
   foreach inDependencyList do
     if first then
