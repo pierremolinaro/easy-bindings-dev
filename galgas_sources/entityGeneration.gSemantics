@@ -8,32 +8,18 @@ semantics entityGeneration :
 
 reader @ebType hasCustomExplorerFunction
   -> @bool outResult
-:
-  outResult := false ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @boolType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := true ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @enumType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := true ;
-end reader ;
-
-#-----------------------------------------------------------------------------*
-
-override reader @structType hasCustomExplorerFunction
-  -> @bool outResult
-:
-  outResult := true ;
+ :
+  switch mKind
+  when boolType, structType, enumType :
+    outResult := true ;
+  when imageType, integerType, uintegerType, doubleType, stringType,
+       bezierPathType, menuType, dateType,
+       colorType, dataType, fontType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
+    outResult := false ;
+  end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -68,7 +54,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
     ?@stringset INCLUSION_SET
     ?@2stringlist TO_MANY_RELATIONSHIPS
-    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+#    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
     ?@relationshipList CURRENT_RELATIONSHIP_LIST
@@ -105,118 +91,131 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-routine generateEntityCode
-  ??@2stringlist inTransientDependencyArcList
-  ??@entityListForGeneration inEntityListForGeneration
+#routine generateEntityCode
+#  ??@2stringlist inTransientDependencyArcList
+#  ??@entityListForGeneration inEntityListForGeneration
+#  ??@string inOutputDirectory
+#:
+override method @entityGeneration generate
   ??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    @subEntitiesMap subEntitiesMap [emptyMap] ;
-    foreach inEntityListForGeneration do
-      if mSuperEntityName != "" then
-        subEntitiesMap += !mSuperEntityName !mEntityName  ;
-      end if ;
-    #--- Header
-      @string s := [filewrapper entityGenerationTemplate.entityDeclaration1
-        !mEntityName
-        !mSuperEntityName
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mToManyRelationshipList
-        !mFileInclusionSet->mHeaderFileInclusionSet
-        !mFileInclusionSet->mHeaderPredeclarationSet
-      ] ;
-      @string s2 := [filewrapper entityGenerationTemplate.entityDeclaration2
-        !mEntityName
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mToManyRelationshipList
-        !mToOneRelationshipList
-        !mSignList
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        !mEntityName . ".h"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n}\n\n" # Defaut user zone2
-        !s2
-      ] ;
-    #---
-      @stringset propertyAndTomanyRelationshipSet [emptySet] ;
-      foreach mAttributeListForImplementation do
-        propertyAndTomanyRelationshipSet += !mAttributeName ;
-      end foreach ;
-      foreach mToManyRelationshipList do
-        propertyAndTomanyRelationshipSet += !mValue0 ;
-      end foreach ;
-    #--- Implementation
-      @stringset signSet [emptySet] ;
-      foreach mSignList do
-        signSet += !mPropertyName ;
-      end foreach ;
-      s := [filewrapper entityGenerationTemplate.entityImplementation
-        !mEntityName
-        !mAttributeListForImplementation
-        !mTransientListForImplementation
-        !mAttributeListForInitMethodHeader
-        !mInheritedAttributeListForImplementation
-        !mFileInclusionSet->mImplementationFileInclusionSet
-        !mToManyRelationshipList
-        !inTransientDependencyArcList
-        !propertyAndTomanyRelationshipSet
-        !mToOneRelationshipList
-        !mCurrentRelationshipList
-        !mSignList
-        !signSet
-      ] ;
-      [@string generateFileWithPattern
-        !inOutputDirectory
-        !mEntityName . ".m"
-        !"//"
-        !"\n\n" # Defaut user zone1
-        !s
-        !"\n\n" # Defaut user zone2
-        !"@end\n"
-      ] ;
-    #--- Transient computation function header file
-      if [mTransientListForImplementation length] > 0 then
-        s := [filewrapper entityGenerationTemplate.entityTransientComputationsHeaderFile
-          !mEntityName
-          !mTransientListForImplementation
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          !mEntityName . "-transient-computations.h"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"\n"
-        ] ;
-      end if ;
-    #--- Transient computation function implementation files
-      foreach mTransientListForImplementation do
-          s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFile
-            !mEntityName
-            !mTransientType
-            !mTransientName
-            !mDependencyList
-          ] ;
-          [@string generateFileWithPattern
-            !inOutputDirectory
-            !mEntityName . "_" . mTransientName . ".m"
-            !"//"
-            !"\n\n" # Defaut user zone1
-            !s
-            !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-            !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-          ] ;
-      end foreach ;
-    end foreach ;
+#  foreach inEntityListForGeneration do
+#  if mSuperEntityName != "" then
+#    subEntitiesMap += !mSuperEntityName !mEntityName  ;
+#  end if ;
+#--- Header
+#  @string mSuperEntityName ;
+#  @observablePropertyMap mObservablePropertyMap ;
+#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
+#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
+#  @attributeListForImplementation mAttributeListForImplementation ;
+#  @transientListForImplementation mTransientListForImplementation ;
+#  @relationshipList mCurrentRelationshipList ;
+#  @relationshipList mAllRelationshipList ;
+#  @propertyMap mAllPropertyMap ;
+#  @relationshipMap mCurrentRelationshipMap ;
+#  @relationshipMap mAllRelationshipMap ;
+#  @fileInclusionSet mFileInclusionSet ;
+#  @signListForGeneration mSignList ;
+
+  @string s := [filewrapper entityGenerationTemplate.entityDeclaration1
+    !mGenerationName
+    !mSuperEntityName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mToManyRelationshipList
+    !mFileInclusionSet->mHeaderFileInclusionSet
+    !mFileInclusionSet->mHeaderPredeclarationSet
+  ] ;
+  @string s2 := [filewrapper entityGenerationTemplate.entityDeclaration2
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mToManyRelationshipList
+    !mToOneRelationshipList
+    !mSignList
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n}\n\n" # Defaut user zone2
+    !s2
+  ] ;
+  #---
+  @stringset propertyAndTomanyRelationshipSet [emptySet] ;
+  foreach mAttributeListForImplementation do
+    propertyAndTomanyRelationshipSet += !mAttributeName ;
+  end foreach ;
+  foreach mToManyRelationshipList do
+    propertyAndTomanyRelationshipSet += !mValue0 ;
+  end foreach ;
+  #--- Implementation
+  @stringset signSet [emptySet] ;
+  foreach mSignList do
+    signSet += !mPropertyName ;
+  end foreach ;
+  s := [filewrapper entityGenerationTemplate.entityImplementation
+    !mGenerationName
+    !mAttributeListForImplementation
+    !mTransientListForImplementation
+    !mAttributeListForInitMethodHeader
+    !mInheritedAttributeListForImplementation
+    !mFileInclusionSet->mImplementationFileInclusionSet
+    !mToManyRelationshipList
+#    !inTransientDependencyArcList
+    !propertyAndTomanyRelationshipSet
+    !mToOneRelationshipList
+    !mCurrentRelationshipList
+    !mSignList
+    !signSet
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n"
+  ] ;
+  #--- Transient computation function header file
+  if [mTransientListForImplementation length] > 0 then
+    s := [filewrapper entityGenerationTemplate.entityTransientComputationsHeaderFile
+      !mGenerationName
+      !mTransientListForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . "-transient-computations.h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
   end if ;
-end routine ;
+  #--- Transient computation function implementation files
+  foreach mTransientListForImplementation do
+      s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFile
+        !mGenerationName
+        !mTransientType
+        !mTransientName
+        !mDependencyList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        !mGenerationName . "_" . mTransientName . ".m"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+      ] ;
+  end foreach ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

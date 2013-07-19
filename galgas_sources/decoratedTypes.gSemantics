@@ -232,6 +232,93 @@ reader @ebType preferencesSetterTransformerFunctionName
   end switch ;
 end reader ;
 
+#-----------------------------------------------------------------------------*
+#   isClass                                                                   *
+#-----------------------------------------------------------------------------*
+
+reader @ebType isClass
+  -> @bool outResult
+ :
+  switch mKind
+  when boolType, integerType, uintegerType, enumType, doubleType, structType :
+    outResult := false ;
+  when fontType, colorType, bezierPathType, menuType,
+       dateType, imageType, stringType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
+    outResult := true ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   functionForComputingSignature                                             *
+#-----------------------------------------------------------------------------*
+
+reader @ebType functionForComputingSignature
+  -> @string outResult
+ :
+  switch mKind
+  when boolType, integerType, uintegerType, enumType, doubleType, structType :
+    outResult := "computeIntegerSignature" ;
+  when stringType :
+    outResult := "computeNSStringSignature" ;
+  when entityType :
+    outResult := "computeToOneEntitySignature" ;
+  when fontType, colorType, bezierPathType, menuType,
+       dateType, imageType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+    outResult := "" ;
+  end switch ;
+end reader ;
+#override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyEntitySignature" ; end reader ;
+
+#-----------------------------------------------------------------------------*
+#   addInclusionInHeaderFile                                                  *
+#-----------------------------------------------------------------------------*
+
+method @ebType addInclusionInHeaderFile
+  ?!@stringset ioInclusionSet
+:
+  switch mKind
+  when boolType, integerType, uintegerType, doubleType,
+       entityType, fontType, colorType, bezierPathType, menuType,
+       dateType, imageType,
+       dataType, stringType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+
+  when structType, enumType :
+    ioInclusionSet += !mTypeName->string ;
+  end switch ;
+end method ;
+
+#-----------------------------------------------------------------------------*
+#   addInclusionInImplementationFile                                          *
+#-----------------------------------------------------------------------------*
+
+method @ebType addInclusionInImplementationFile
+  ?!@stringset ioInclusionSet
+:
+  switch mKind
+  when boolType, integerType, uintegerType, doubleType,
+       fontType, colorType, bezierPathType, menuType,
+       dateType, imageType, structType, enumType,
+       dataType, stringType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+
+  when entityType :
+    ioInclusionSet += !mTypeName->string ;
+  end switch ;
+end method ;
+
 #----------------------------------------------------------------------------*
 
 uniquemap @unifiedTypeMap {
@@ -308,28 +395,6 @@ map @enumConstantMap {
 #override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
 #override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
 #override reader @structType ebTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#abstract reader @easyBindingType isClass -> @bool outResult ;
-#
-#override reader @boolType isClass -> @bool outResult : outResult := false ; end reader ;
-#override reader @integerType isClass -> @bool outResult : outResult := false ; end reader ;
-#override reader @uintegerType isClass -> @bool outResult : outResult := false ; end reader ;
-#override reader @doubleType isClass -> @bool outResult : outResult := false ; end reader ;
-#override reader @stringType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @fontType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @imageType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @toOneEntityType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @toManyEntitiesType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @colorType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @dataType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @dateType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @objectArrayType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @bezierPathType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @menuType isClass -> @bool outResult : outResult := true ; end reader ;
-#override reader @enumType isClass -> @bool outResult : outResult := false ; end reader ;
-#override reader @structType isClass -> @bool outResult : outResult := false ; end reader ;
 
 #-----------------------------------------------------------------------------*
 #   ebTypeIdentifier                                                          *
@@ -426,70 +491,6 @@ map @enumConstantMap {
 #  ioSet += !mStructTypeName->string ;
 #end method ;
 
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isToManyEntitiesType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @toManyEntitiesType isToManyEntitiesType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isBoolType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @boolType isBoolType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isIntegerType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @integerType isIntegerType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isDoubleType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @doubleType isDoubleType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isStringType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @stringType isStringType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isColorType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @colorType isColorType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isDateType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @dateType isDateType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isFontType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @fontType isFontType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType isEnumType -> @bool outResult: outResult := false ; end reader ;
-#
-#override reader @enumType isEnumType -> @bool outResult : outResult := true ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType functionForComputingSignature -> @string outResult: outResult := "computeIntegerSignature" ; end reader ;
-#
-#override reader @stringType functionForComputingSignature -> @string outResult : outResult := "computeNSStringSignature" ; end reader ;
-#
-#override reader @toOneEntityType functionForComputingSignature -> @string outResult : outResult := "computeToOneEntitySignature" ; end reader ;
-#
-#override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyEntitySignature" ; end reader ;
-
 #----------------------------------------------------------------------------*
 
 struct @fileInclusionSet {
@@ -543,7 +544,7 @@ struct @contextAnalysisStruct {
   @classMap mClassMap ;
   @protocolMap mProtocolMap ;
   @preferencesMap mPreferencesMap ;
-#  @entityMap mEntityMap ;
+  @entityMap mEntityMap ;
   @controllerClassMap mControllerClassMap ;
   @outletClassMap mOutletClassMap ;
   @transientDependencyGraph mTransientDependencyGraph ;
@@ -562,7 +563,6 @@ map @classMap {
 
 map @entityMap {
   @string mSuperEntityName ;
-  @observablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
@@ -769,7 +769,6 @@ map @preferencesMap {
   @observablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
-#  @preferencesPropertyArrayMap mArrayMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
   search searchKey error message "the '%K' preference is not declared" ;
 }
@@ -1335,6 +1334,21 @@ class @preferenceTypeGeneration extends @generation {
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @preferencesPropertyArrayMap mArrayMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @entityGeneration extends @generation {
+  @string mSuperEntityName ;
+  @attributeListForImplementation mAttributeListForInitMethodHeader ;
+  @attributeListForImplementation mInheritedAttributeListForImplementation ;
+  @attributeListForImplementation mAttributeListForImplementation ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @relationshipList mCurrentRelationshipList ;
+  @fileInclusionSet mFileInclusionSet ;
+  @signListForGeneration mSignList ;
+  @2stringlist mToManyRelationshipList ;
+  @2stringlist mToOneRelationshipList ;
 }
 
 #----------------------------------------------------------------------------*

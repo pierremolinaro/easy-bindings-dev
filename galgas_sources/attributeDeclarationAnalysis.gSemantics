@@ -141,7 +141,7 @@ routine buildObservablePropertyMap
     [!?ioSelfObservableAttributeMap insertKey
       !mTransientName
       !type
-      !false # is not transient
+      !true # is transient
       !observationDependencyKey
       !false # Is not collection
     ] ;
