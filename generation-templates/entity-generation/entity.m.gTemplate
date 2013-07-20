@@ -384,7 +384,7 @@ if [SIGN_LIST length] > 0 then
 - (NSInteger) computeSignature {
   NSInteger signature = [super computeSignature] ;
 % foreach SIGN_LIST do
-%  signature = %![mPropertyType functionForComputingSignature]% (signature, self.%!mPropertyName%) ;\n%
+%  signature = %![mPropertyType functionForComputingSignature !mIsToMany]% (signature, self.%!mPropertyName%) ;\n%
 end foreach
 %  return signature ;
 }

@@ -161,6 +161,32 @@ local routine semanticAnalysis
       !?generationList
     ] ;
   end foreach ;
+#------------------------------- Check relationships
+  if [@uint errorCount] == 0 then
+    foreach contextAnalysisStruct->mEntityMap do
+      foreach mCurrentRelationshipMap do
+        [contextAnalysisStruct->mEntityMap searchKey
+          !mDestinationEntityName
+          ?9*
+          ?@relationshipMap destinationEntityRelationshipMap
+          ?2*
+        ] ;
+        [destinationEntityRelationshipMap searchKey
+          !mInverseRelationshipName
+          ?2*
+          ?@lstring inverseOfInverseRelationshipName
+          ?@bool inverseIsToMany
+          ?*
+        ] ;
+        if lkey->string != inverseOfInverseRelationshipName->string then
+          error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
+        end if ;
+        if mIsToMany != inverseIsToMany then
+          error mInverseRelationshipName : "the inverse relationship is " . if inverseIsToMany then "to many" else "to one" end ;
+        end if ;
+      end foreach ;
+    end foreach ;
+  end if ;
 #--- Generation
   if [@uint errorCount] == 0 then
     foreach generationList do
@@ -244,10 +270,6 @@ local routine semanticAnalysis
      end if ;
   end foreach ;
 end routine ;
-
-
-
-
 
 ##------------------------------------------------------- Semantic Analysis
 #   @contextAnalysisStruct contextAnalysisStruct [default] ;

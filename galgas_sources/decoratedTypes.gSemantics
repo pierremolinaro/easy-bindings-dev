@@ -257,25 +257,29 @@ end reader ;
 #-----------------------------------------------------------------------------*
 
 reader @ebType functionForComputingSignature
+  ??@bool inIsToMany
   -> @string outResult
  :
-  switch mKind
-  when boolType, integerType, uintegerType, enumType, doubleType, structType :
-    outResult := "computeIntegerSignature" ;
-  when stringType :
-    outResult := "computeNSStringSignature" ;
-  when entityType :
-    outResult := "computeToOneEntitySignature" ;
-  when fontType, colorType, bezierPathType, menuType,
-       dateType, imageType,
-       dataType,
-       protocolType,
-       nibClassType, outletClassType, preferencesType,
-       classType, controllerClassType, documentType :
-    outResult := "" ;
-  end switch ;
+  if inIsToMany then
+    outResult := "computeToManyEntitySignature" ;
+  else
+    switch mKind
+    when boolType, integerType, uintegerType, enumType, doubleType, structType :
+      outResult := "computeIntegerSignature" ;
+    when stringType :
+      outResult := "computeNSStringSignature" ;
+    when entityType :
+      outResult := "computeToOneEntitySignature" ;
+    when fontType, colorType, bezierPathType, menuType,
+         dateType, imageType,
+         dataType,
+         protocolType,
+         nibClassType, outletClassType, preferencesType,
+         classType, controllerClassType, documentType :
+      outResult := "" ;
+    end switch ;
+  end if ;
 end reader ;
-#override reader @toManyEntitiesType functionForComputingSignature -> @string outResult : outResult := "computeToManyEntitySignature" ; end reader ;
 
 #-----------------------------------------------------------------------------*
 #   addInclusionInHeaderFile                                                  *
@@ -597,6 +601,7 @@ map @entityMap {
 list @signListForGeneration {
   @string mPropertyName ;
   @ebType mPropertyType ;
+  @bool mIsToMany ;
 }
 
 #----------------------------------------------------------------------------*
