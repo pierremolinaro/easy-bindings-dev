@@ -579,7 +579,8 @@ rule <transient_declaration>
       $self$ ;
       $.$ ;
       $identifier$ ? @lstring masterName ;
-      dependanceList += ![@transientLocalDependency new !masterName] ;
+      <count_option> ?@bool namesCountOption ;
+      dependanceList += ![@transientLocalDependency new !masterName !namesCountOption] ;
     or
       $root$ ;
       $.$ ;

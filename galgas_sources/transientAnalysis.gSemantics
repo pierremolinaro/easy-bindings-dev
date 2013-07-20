@@ -3,32 +3,6 @@ semantics transientAnalysis :
 
 #----------------------------------------------------------------------------*
 
-#----------------------------------------------------------------------------*
-
-#routine transientDeclarationEnterType
-#  ??@transientList inAttributeList
-#  ??@string inObjectName # "document." . documentName
-#  ?!@unifiedTypeMap ioUnifiedTypeMap 
-#  ?!@observablePropertyMap ioObservablePropertyMap
-#:
-#  foreach inAttributeList do
-#    [@unifiedTypeProxy makeProxy
-#      !?ioUnifiedTypeMap
-#      !mTransientTypeName
-#      ?@unifiedTypeProxy type
-#    ] ;
-#    [!?ioObservablePropertyMap insertKey
-#      !mTransientName
-#      !type
-#      !true # is transient
-#      !inObjectName . "." . mTransientName
-#      !false # Is not a collection
-#    ] ;
-#  end foreach ;
-#end routine ;
-
-#----------------------------------------------------------------------------*
-
 abstract method @abstractTransientDependency analyze
   ??@lstring inTransientName
   ??@observablePropertyMap inLocalObservablePropertyMap
@@ -88,15 +62,20 @@ override method @transientLocalDependency analyze
     ?@ebType masterType
     ?*
     ?@lstring masterPropertySignature
-    ?*
+    ?@bool isCollection
   ] ;
+  if mNamesCountOption & not isCollection then
+      error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
+  elsif isCollection & not mNamesCountOption then
+      error mMasterName: "to-many relationships requires the 'count' option" ;
+  end if ;
 #--- Add dependency arc
   [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
     !masterPropertySignature
     !inTransientPropertySignature
   ] ;
 #---
-  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string] ;
+  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string !mNamesCountOption] ;
 end method ;
 
 #----------------------------------------------------------------------------*

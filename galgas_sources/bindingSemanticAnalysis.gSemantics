@@ -200,6 +200,7 @@ override method @regularControllerBinding analyzeOutletBinding
   @string observedKeyPath := mControllerAttributeName->string ;
   if mNamesCountOption then
     observedKeyPath .= ".@count" ;
+    observablePropertyType := [@ebType new !["UInteger" nowhere] ![@typeKind uintegerType]] ;
     if not isCollection then
       error mControllerAttributeName: "the 'count' option is only allowed for to-many relationships" ;
     end if ;

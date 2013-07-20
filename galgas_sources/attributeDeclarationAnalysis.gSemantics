@@ -124,7 +124,7 @@ routine buildObservablePropertyMap
       !type
       !false # is not transient
       !observationDependencyKey
-      !false # Is not collection
+      !true # Is a collection
     ] ;
     [!?ioTransientDependencyGraph addNode
       !observationDependencyKey
