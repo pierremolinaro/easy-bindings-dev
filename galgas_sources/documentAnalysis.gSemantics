@@ -246,7 +246,7 @@ override method @documentDeclaration semanticAnalysis
     ?@observablePropertyMap selfObservableAttributeMap
   ] ;
 #-------------------------------------------------- Analyze attributes
-  @fileInclusionSet fileInclusionSet [new ![@stringset emptySet] ![@stringset emptySet] ![@stringset emptySet]] ;
+  @fileInclusionSet fileInclusionSet [default] ;
   @attributeListForImplementation attributeListForInitHeader [emptyList] ;
   analyzeAttributeDeclaration
     !mAttributeList
@@ -318,6 +318,7 @@ override method @documentDeclaration semanticAnalysis
     ;
   end foreach ;
 #-------------------------------- Generation
+  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
   ioGenerationList += ![@documentGeneration new
     !mDocumentName->string
     !mRootEntityName->string

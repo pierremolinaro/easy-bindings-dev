@@ -50,10 +50,11 @@ override method @outletClassDeclaration buildObservablePropertyMap
   end if ;
 #----------------------------------
 #  buildObservablePropertyMap
-#    !mAttributeList
-#    !mArrayList
-#    !mTransientList
+#    ![@attributeList emptyList] # mAttributeList
+#    ![@classArrayList emptyList] # mArrayList
+#    ![@transientList emptyList] #mTransientList
 #    ![@controllerList emptyList]
+#    ![@controllerObservablePropertyList emptyList]
 #    !?ioObservablePropertyMapMap
 #    !?ioTransientDependencyGraph
 #    !inUnifiedTypeMap
@@ -73,7 +74,7 @@ end method ;
 override method @outletClassDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ?!@contextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList unused ioGenerationList
+  ?!@generationList ioGenerationList
 :
   @outletClassBindingMap allBindingMap ;
 #--- Has super class ?
@@ -128,7 +129,7 @@ override method @outletClassDeclaration semanticAnalysis
 #---
   [!?ioContextAnalysisStruct->mOutletClassMap insertKey
     !mOutletClassName
-    !mGeneration
+    !mGenerationKind
     !mSuperClassName->string
     !adoptedProtocolList
     !implementsDeallocProtocol
@@ -136,6 +137,16 @@ override method @outletClassDeclaration semanticAnalysis
     !currentBindingMap
     !mHasTableValueBinding
   ] ;
+#----------------------------- Generation
+  if mGenerationKind == [@generationKind fullGeneration] then
+    ioGenerationList += ![@outletClassGeneration new
+      !mOutletClassName->string
+      !mSuperClassName->string
+      !adoptedProtocolList
+      !implementsDeallocProtocol
+      !currentBindingMap
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

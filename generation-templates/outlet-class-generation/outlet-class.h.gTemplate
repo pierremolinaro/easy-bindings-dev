@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
 %foreach ADOPTED_PROTOCOL_LIST do
-  if not mIsPredefined then
-    %#import "%!mProtocolName->string%.h"\n%
+  if not mNeedsInclusionInHeader then
+    %#import "%!mProtocolName%.h"\n%
   end if
 end foreach
 %
@@ -10,7 +10,7 @@ end foreach
 @interface %!OUTLET_CLASS_NAME% : %!SUPER_CLASS_NAME
 foreach ADOPTED_PROTOCOL_LIST
 before % <%
-do !mProtocolName->string
+do !mProtocolName
 between %, %
 after %>%
 end foreach
