@@ -201,9 +201,9 @@ override method @entityDeclaration semanticAnalysis
       ?@ebType type
       ?* # Transient ?
       ?@lstring dependancyKey
-      ?*
+      ?@bool isToMany
     ] ;
-    signList += !mValue->string !type ;
+    signList += !mValue->string !type !isToMany ;
   end foreach ;
   if [mSignList length] > 0 then
     const @string key := "entity." . mEntityName . ".sign" ;
