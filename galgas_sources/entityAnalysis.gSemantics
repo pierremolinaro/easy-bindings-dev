@@ -95,6 +95,10 @@ override method @entityDeclaration buildObservablePropertyMap
       !"entity." . mEntityName . "." . mRelationshipName
       !mRelationshipName->location
     ] ;
+    [!?ioTransientDependencyGraph addNode
+      !observationDependencyKey
+      !observationDependencyKey->string
+    ] ;
     [inUnifiedTypeMap searchKey !mDestinationEntityName ?@ebType type ?*] ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
@@ -201,13 +205,13 @@ override method @entityDeclaration semanticAnalysis
     ] ;
     signList += !mValue->string !type ;
   end foreach ;
-#  if [mSignList length] > 0 then
-#    const @string key := "entity." . inEntity->mEntityName . ".sign" ;
-#    [!?ioTransientDependencyGraph addNode
-#      ![@lstring new !key !inEntity->mEntityName->location]
-#      !key
-#    ] ;
-#  end if ;
+  if [mSignList length] > 0 then
+    const @string key := "entity." . mEntityName . ".sign" ;
+    [!?ioContextAnalysisStruct->mTransientDependencyGraph addNode
+      ![@lstring new !key !mEntityName->location]
+      !key
+    ] ;
+  end if ;
 #---------------------------------------- Analyze transient properties
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties

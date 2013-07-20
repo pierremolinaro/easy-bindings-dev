@@ -561,6 +561,7 @@ struct @contextAnalysisStruct {
   @controllerClassMap mControllerClassMap ;
   @outletClassMap mOutletClassMap ;
   @transientDependencyGraph mTransientDependencyGraph ;
+  @bool mContainsDocument ;
 }
 
 #----------------------------------------------------------------------------*
