@@ -345,7 +345,7 @@ class @outletClassDeclaration extends @astDeclaration {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
-  @generationKind mGeneration ;
+  @generationKind mGenerationKind ;
   @outletClassBindingList mOutletClassBindingList ;
   @bool mHasTableValueBinding ;
   @lstringlist mOptionList ;

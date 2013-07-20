@@ -319,6 +319,41 @@ method @ebType addInclusionInImplementationFile
   end switch ;
 end method ;
 
+#-----------------------------------------------------------------------------*
+#   ocClassName                                                               *
+#-----------------------------------------------------------------------------*
+
+reader @ebType ocClassName
+  ->@string outResult
+:
+  switch mKind
+  when boolType, integerType, uintegerType, doubleType :
+    outResult := "NSNumber" ;
+  when fontType :
+    outResult := "NSFont" ;
+  when stringType :
+    outResult := "NSString" ;
+  when imageType :
+    outResult := "NSImage" ;
+  when dataType :
+    outResult := "NSData" ;
+  when colorType :
+    outResult := "NSColor" ;
+  when dateType :
+    outResult := "NSDate" ;
+  when menuType :
+    outResult := "NSMenu" ;
+  when bezierPathType :
+    outResult := "NSBezierPath" ;
+  when structType, enumType :
+    outResult := mTypeName->string ;
+  when protocolType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+    outResult := "**@ebType ocClassName**" ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 uniquemap @unifiedTypeMap {
@@ -448,28 +483,6 @@ map @enumConstantMap {
 #:
 #  outResult := "enum[" . inTypeName . "]" ;
 #end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#abstract reader @easyBindingType ocClassName -> @string outResult ;
-#
-#override reader @boolType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
-#override reader @integerType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
-#override reader @uintegerType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
-#override reader @doubleType ocClassName -> @string outResult : outResult := "NSNumber" ; end reader ;
-#override reader @stringType ocClassName -> @string outResult : outResult := "NSString" ; end reader ;
-#override reader @fontType ocClassName -> @string outResult : outResult := "NSFont" ; end reader ;
-#override reader @imageType ocClassName -> @string outResult : outResult := "NSImage" ; end reader ;
-#override reader @colorType ocClassName -> @string outResult : outResult := "NSColor" ; end reader ;
-#override reader @dataType ocClassName -> @string outResult : outResult := "NSData" ; end reader ;
-#override reader @dateType ocClassName -> @string outResult : outResult := "NSDate" ; end reader ;
-#override reader @objectArrayType ocClassName -> @string outResult : outResult := "NSArray" ; end reader ;
-#override reader @menuType ocClassName -> @string outResult : outResult := "NSMenu" ; end reader ;
-#override reader @bezierPathType ocClassName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
-#override reader @toOneEntityType ocClassName -> @string outResult : outResult := "??" ; end reader ;
-#override reader @toManyEntitiesType ocClassName -> @string outResult : outResult := "??" ; end reader ;
-#override reader @enumType ocClassName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
-#override reader @structType ocClassName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
 
 #-----------------------------------------------------------------------------*
 
@@ -1347,6 +1360,15 @@ class @documentGeneration extends @generation {
   @transientListForImplementation mTransientListForImplementation ;
   @fileInclusionSet mFileInclusionSet ;
   @attributeListForImplementation mAttributeListForImplementation ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @outletClassGeneration extends @generation {
+  @string mSuperClassName ;
+  @protocolList mAdoptedProtocolList ;
+  @bool mImplementsDeallocProtocol ;
+  @outletClassBindingMap mCurrentBindingMap ;
 }
 
 #----------------------------------------------------------------------------*

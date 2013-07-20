@@ -23,48 +23,41 @@ local filewrapper outletClassGenerationTemplate in "../generation-templates/outl
 
 #----------------------------------------------------------------------------*
 
-routine generateOutletClassCode
-  ??@outletClassMap inOutletClassMap
-  ??@string inOutputDirectory
+override method @outletClassGeneration generate
+??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inOutletClassMap do
-      if mGenerationKind == [@generationKind fullGeneration] then
-      #--- Header
-        @string s := [filewrapper outletClassGenerationTemplate.outletClassDeclaration
-          ![lkey string]
-          !mSuperClassName
-          !mAdoptedProtocolList
-          !mCurrentBindingMap
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . ".h"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"@end\n"
-        ] ;
-      #--- Implementation
-        s := [filewrapper outletClassGenerationTemplate.outletClassImplementation
-          ![lkey string]
-          !mSuperClassName
-          !mCurrentBindingMap
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . ".m"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"@end\n"
-        ] ;
-      end if ;
-    end foreach ;
-  end if ;
-end routine ;
+#--- Header
+  @string s := [filewrapper outletClassGenerationTemplate.outletClassDeclaration
+    !mGenerationName
+    !mSuperClassName
+    !mAdoptedProtocolList
+    !mCurrentBindingMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n"
+  ] ;
+#--- Implementation
+  s := [filewrapper outletClassGenerationTemplate.outletClassImplementation
+    !mGenerationName
+    !mSuperClassName
+    !mCurrentBindingMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n"
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
