@@ -9,7 +9,7 @@ local filewrapper controllerGenerationTemplate in "../generation-templates/contr
 }{
   template controllerDeclarationPart1 "controller-1.h.gTemplate"
     ?@string CONTROLLER_CLASS_NAME
-    ?@EXoutletClassBindingMap BINDING_MAP
+    ?@outletClassBindingMap BINDING_MAP
   ;
   
   template controllerDeclarationPart2 "controller-2.h.gTemplate"
@@ -18,56 +18,49 @@ local filewrapper controllerGenerationTemplate in "../generation-templates/contr
   
   template controllerImplementation "controller.m.gTemplate"
     ?@string CONTROLLER_CLASS_NAME
-    ?@EXoutletClassBindingMap BINDING_MAP
+    ?@outletClassBindingMap BINDING_MAP
     ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
   ;
 }
 
 #----------------------------------------------------------------------------*
 
-routine generateControllerCode
-  ??@controllerClassMap inControllerClassMap
-  ??@string inOutputDirectory
+override method @controllerClassGeneration generate
+??@string inOutputDirectory
 :
-  if [@uint errorCount] == 0 then
-    foreach inControllerClassMap do
-      if mGenerationKind == [@generationKind fullGeneration] then
-      #--- Header
-        @string s := [filewrapper controllerGenerationTemplate.controllerDeclarationPart1
-          ![lkey string]
-          !mBindingMap
-        ] ;
-        @string s2 := [filewrapper controllerGenerationTemplate.controllerDeclarationPart2
-          !mObservablePropertyMap
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . ".h"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n}\n\n" # Defaut user zone2
-          !s2
-        ] ;
-      #--- Implementation
-        s := [filewrapper controllerGenerationTemplate.controllerImplementation
-          ![lkey string]
-          !mBindingMap
-          !mObservablePropertyMap
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          ![lkey string] . ".m"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"\n\n" # Defaut user zone2
-          !"@end\n"
-        ] ;
-      end if ;
-    end foreach ;
-  end if ;
-end routine ;
+#--- Header
+  @string s := [filewrapper controllerGenerationTemplate.controllerDeclarationPart1
+    !mGenerationName
+    !mBindingMap
+  ] ;
+  @string s2 := [filewrapper controllerGenerationTemplate.controllerDeclarationPart2
+    !mObservablePropertyMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".h"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n}\n\n" # Defaut user zone2
+    !s2
+  ] ;
+#--- Implementation
+  s := [filewrapper controllerGenerationTemplate.controllerImplementation
+    !mGenerationName
+    !mBindingMap
+    !mObservablePropertyMap
+  ] ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !mGenerationName . ".m"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"@end\n"
+  ] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

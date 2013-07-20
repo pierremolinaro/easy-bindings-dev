@@ -55,6 +55,7 @@ SOURCES += documentGeneration.cpp
 SOURCES += outletClassAnalysis.cpp
 SOURCES += outletClassGeneration.cpp
 SOURCES += controllerClassAnalysis.cpp
+SOURCES += controllerClassGeneration.cpp
 SOURCES += transientAnalysis.cpp
 SOURCES += transientGeneration.cpp
 SOURCES += easyBindings_program.cpp

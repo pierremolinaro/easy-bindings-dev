@@ -1373,4 +1373,11 @@ class @outletClassGeneration extends @generation {
 
 #----------------------------------------------------------------------------*
 
+class @controllerClassGeneration extends @generation {
+  @outletClassBindingMap mBindingMap ;
+  @observablePropertyMap mObservablePropertyMap ;
+}
+
+#----------------------------------------------------------------------------*
+
 end semantics ;

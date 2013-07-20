@@ -91,7 +91,7 @@ end method ;
 override method @controllerClassDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ?!@contextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList unused ioGenerationList
+  ?!@generationList ioGenerationList
 :
 #--- Analyze actions
   @actionMap actionMap [emptyMap] ;
@@ -143,6 +143,14 @@ override method @controllerClassDeclaration semanticAnalysis
     !observablePropertyMap
     !controlledObjectAvailableBindingOptionMap
   ] ;
+#----------------------------- Generation
+  if mGenerationKind == [@generationKind fullGeneration] then
+    ioGenerationList += ![@controllerClassGeneration new
+      !mControllerClassName->string
+      !bindingMap
+      !observablePropertyMap
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
