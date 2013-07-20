@@ -54,7 +54,6 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
     ?@stringset INCLUSION_SET
     ?@2stringlist TO_MANY_RELATIONSHIPS
-#    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
     ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
     ?@relationshipList CURRENT_RELATIONSHIP_LIST
@@ -91,33 +90,9 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-#routine generateEntityCode
-#  ??@2stringlist inTransientDependencyArcList
-#  ??@entityListForGeneration inEntityListForGeneration
-#  ??@string inOutputDirectory
-#:
 override method @entityGeneration generate
   ??@string inOutputDirectory
 :
-#  foreach inEntityListForGeneration do
-#  if mSuperEntityName != "" then
-#    subEntitiesMap += !mSuperEntityName !mEntityName  ;
-#  end if ;
-#--- Header
-#  @string mSuperEntityName ;
-#  @observablePropertyMap mObservablePropertyMap ;
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @relationshipList mCurrentRelationshipList ;
-#  @relationshipList mAllRelationshipList ;
-#  @propertyMap mAllPropertyMap ;
-#  @relationshipMap mCurrentRelationshipMap ;
-#  @relationshipMap mAllRelationshipMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @signListForGeneration mSignList ;
-
   @string s := [filewrapper entityGenerationTemplate.entityDeclaration1
     !mGenerationName
     !mSuperEntityName
@@ -165,7 +140,6 @@ override method @entityGeneration generate
     !mInheritedAttributeListForImplementation
     !mFileInclusionSet->mImplementationFileInclusionSet
     !mToManyRelationshipList
-#    !inTransientDependencyArcList
     !propertyAndTomanyRelationshipSet
     !mToOneRelationshipList
     !mCurrentRelationshipList
