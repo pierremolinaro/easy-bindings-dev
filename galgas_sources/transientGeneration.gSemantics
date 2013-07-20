@@ -12,7 +12,11 @@ abstract reader @abstractTransientDependencyForImplementation generateFormalArgu
 override reader @transientDependencyFromSelfForImplementation generateFormalArgument
   ->@string outResult
 :
-  outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+  if mNamesCountOption then
+    outResult := "const NSUInteger in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] . "_count" ;
+  else
+    outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
+  end if ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -55,6 +59,9 @@ override reader @transientDependencyFromSelfForImplementation generateMasterAttr
   ->@string outResult
 :
   outResult := "self." . mMasterAttributeName ;
+  if mNamesCountOption then
+    outResult .= ".count" ;
+  end if ;
 end reader ;
 
 #----------------------------------------------------------------------------*

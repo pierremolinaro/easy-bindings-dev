@@ -845,6 +845,7 @@ abstract class @abstractTransientDependencyForImplementation {
 
 class @transientDependencyFromSelfForImplementation extends @abstractTransientDependencyForImplementation {
   @string mMasterAttributeName ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*

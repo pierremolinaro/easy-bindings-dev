@@ -52,6 +52,7 @@ class @transientRootSignDependency extends @abstractTransientDependency {
 
 class @transientLocalDependency extends @abstractTransientDependency {
   @lstring mMasterName ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
