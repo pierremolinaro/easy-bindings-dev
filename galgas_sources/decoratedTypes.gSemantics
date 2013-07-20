@@ -649,20 +649,6 @@ map @protocolMap {
 
 #----------------------------------------------------------------------------*
 
-map @documentMap {
-  @string mRootEntityName ;
-  @outletGenerationList mOutletDeclarationList ;
-  @controllerMap mControllerMap ;
-  @lstringlist mActionList ;
-  @transientListForImplementation mTransientListForImplementation ;
-  @fileInclusionSet mFileInclusionSet ;
-  @attributeListForImplementation mAttributeListForImplementation ;
-  insert insertKey error message "the '%K' document is already declared" ;
-  search searchKey error message "the '%K' document is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
 list @protocolList {
   @bool mNeedsInclusionInHeader ;
   @string mProtocolName ;
@@ -1349,6 +1335,18 @@ class @entityGeneration extends @generation {
   @signListForGeneration mSignList ;
   @2stringlist mToManyRelationshipList ;
   @2stringlist mToOneRelationshipList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @documentGeneration extends @generation {
+  @string mRootEntityName ;
+  @outletGenerationList mOutletDeclarationList ;
+  @controllerMap mControllerMap ;
+  @lstringlist mActionList ;
+  @transientListForImplementation mTransientListForImplementation ;
+  @fileInclusionSet mFileInclusionSet ;
+  @attributeListForImplementation mAttributeListForImplementation ;
 }
 
 #----------------------------------------------------------------------------*

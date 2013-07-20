@@ -51,6 +51,7 @@ SOURCES += preferencesGeneration.cpp
 SOURCES += entityAnalysis.cpp
 SOURCES += entityGeneration.cpp
 SOURCES += documentAnalysis.cpp
+SOURCES += documentGeneration.cpp
 SOURCES += outletClassAnalysis.cpp
 SOURCES += controllerClassAnalysis.cpp
 SOURCES += transientAnalysis.cpp

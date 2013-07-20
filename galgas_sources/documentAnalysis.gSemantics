@@ -224,7 +224,7 @@ end method ;
 override method @documentDeclaration semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ?!@contextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList unused ioGenerationList
+  ?!@generationList ioGenerationList
 :
 #------------------------------------------------ Get root object features
   [ioContextAnalysisStruct->mEntityMap searchKey
@@ -317,6 +317,17 @@ override method @documentDeclaration semanticAnalysis
       !implementsDeallocProtocol
     ;
   end foreach ;
+#-------------------------------- Generation
+  ioGenerationList += ![@documentGeneration new
+    !mDocumentName->string
+    !mRootEntityName->string
+    !outletGenerationList
+    !controllerMap
+    !mActionDeclarationList
+    !transientListForImplementation
+    !fileInclusionSet
+    !attributeListForImplementation
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
