@@ -4,6 +4,7 @@ import "easyBindings_grammar.gGrammar" ;
 
 import "cursorAnalysis.gSemantics" ;
 import "cursorGeneration.gSemantics" ;
+import "transientGeneration.gSemantics" ;
 
 #import "outletClassGeneration.gSemantics" ;
 #import "classGeneration.gSemantics" ;
@@ -100,8 +101,9 @@ message "a source text file with the .easyBindings extension"
       semanticAnalysis
         !unifiedTypeMap
         !sortedKeys
-        ![inSourceFile stringByDeletingLastPathComponent]
+        !inSourceFile->string
         !cursorList
+        !endOfSourceFile
       ;
     end if ;
   end if ;
@@ -113,12 +115,14 @@ message "a source text file with the .easyBindings extension"
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine semanticAnalysis
+local routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstringlist inSortedKeys
-  ??@string inOutputDirectory
+  ??@string inSourceFile
   ??@cursorList inCursorList
+  ??@location inEndOfSourceFile
 :
+  const @string outputDirectory := [inSourceFile stringByDeletingLastPathComponent] ;
 #--- Build observable property map
   @observablePropertyMapMap observablePropertyMapMap [emptyMap] ;
   @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
@@ -160,15 +164,91 @@ routine semanticAnalysis
 #--- Generation
   if [@uint errorCount] == 0 then
     foreach generationList do
-      [mGeneration generate !inOutputDirectory] ;
+      [mGeneration generate !outputDirectory] ;
     end foreach ;
     generateCursorCode
       !contextAnalysisStruct->mUserCursorMap
       !predefinedCursorList
-      !inOutputDirectory
+      !outputDirectory
     ;
   end if ;
+#--- Output graphviz file ?
+  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+    const @string s := [contextAnalysisStruct->mTransientDependencyGraph graphviz] ;
+    const @string path := inSourceFile . ".transientDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
+#--- Analyze transient dependencies
+  @2stringlist transientDependencyArcList := [contextAnalysisStruct->mTransientDependencyGraph arcs] ;
+  @stringlist sortedTransientOrderedList [emptyList] ;
+  if [@uint errorCount] == 0 then
+    if [contextAnalysisStruct->mTransientDependencyGraph undefinedNodeCount] > 0 then
+      foreach [contextAnalysisStruct->mTransientDependencyGraph undefinedNodeKeyList] do
+        error inEndOfSourceFile : "the '" . mValue . "' property is not defined" ;
+      end foreach ;
+    else
+      [contextAnalysisStruct->mTransientDependencyGraph topologicalSort
+        ?sortedTransientOrderedList
+        ?*
+        ?@stringlist unsortedTransientList
+        ?*
+      ] ;
+      if [unsortedTransientList length] > 0 then
+        @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
+        foreach unsortedTransientList do
+          s .= "\n-  " . mValue ;
+        end foreach ;
+        error inEndOfSourceFile : s ;
+      else # all defined, no circularity
+      end if ;
+    end if ;
+  end if ;
+#------------------------------ Output dependency order definition file
+  generateTransientDependencyFiles
+    !transientDependencyArcList
+    !outputDirectory
+    !sortedTransientOrderedList
+  ;
+#--- Add embedded sources
+  @stringset generateSet [emptySet] ;
+  generateSet += !"easy-bindings-utilities" ;
+  generateSet += !"PMAllocationDebug" ;
+  if contextAnalysisStruct->mContainsDocument then
+    generateSet += !"PMUndoManager" ;
+    generateSet += !"PMManagedDocument" ;
+    generateSet += !"NSData+BZ2compression" ;
+    generateSet += !"NSData+BZ2compression" ;
+    generateSet += !"NSData+PMGZcompression" ;
+    generateSet += !"NSMutableData+PMWrites" ;
+    generateSet += !"PMDataScanner" ;
+  end if ;
+  if [contextAnalysisStruct->mEntityMap count] > 0 then
+    generateSet += !"load-store-functions" ;
+    generateSet += !"PMManagedEntity" ;
+    generateSet += !"PMEntityManager" ;
+    generateSet += !"PMAttributeDescription" ;
+    generateSet += !"PMRelationshipDescription" ;
+    generateSet += !"PMEntityArrayController" ;
+    generateSet += !"PMEntityController" ;
+  end if ;
+#---
+  @filewrapper fw := [filewrapper objective_c_sources] ;
+  foreach [fw allTextFilePathes] do
+    const @string sourceName := [mValue lastPathComponent] ;
+    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] then
+      [@string generateFile
+        !outputDirectory . [mValue stringByDeletingLastPathComponent]
+        !sourceName
+        ![fw textFileContentsAtPath !mValue]
+       ] ;
+     end if ;
+  end foreach ;
 end routine ;
+
+
+
+
+
 ##------------------------------------------------------- Semantic Analysis
 #   @contextAnalysisStruct contextAnalysisStruct [default] ;
 ##--- Enumerations

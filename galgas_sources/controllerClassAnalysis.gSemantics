@@ -75,7 +75,7 @@ override method @controllerClassDeclaration buildObservablePropertyMap
     !?ioObservablePropertyMapMap
     !?ioTransientDependencyGraph
     !inUnifiedTypeMap
-    !"controllerclass." . mControllerClassName
+    !"controller." . mControllerClassName
     !?observablePropertyMap
   ;
 #---------------------------------- Enter class in observable map

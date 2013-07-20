@@ -226,6 +226,7 @@ override method @documentDeclaration semanticAnalysis
   ?!@contextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
+  ioContextAnalysisStruct->mContainsDocument := true ;
 #------------------------------------------------ Get root object features
   [ioContextAnalysisStruct->mEntityMap searchKey
     !mRootEntityName
