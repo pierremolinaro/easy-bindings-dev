@@ -106,7 +106,7 @@ override method @classDeclaration semanticAnalysis
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mClassName
      ?*
-     ?@observablePropertyMap observablePropertyMap
+     ??@observablePropertyMap observablePropertyMap
    ] ;
 #-----
   @attributeListForImplementation inheritedAttributeListForInitHeader  ;
@@ -124,7 +124,6 @@ override method @classDeclaration semanticAnalysis
   @attributeListForImplementation attributeListForInitHeader := inheritedAttributeListForInitHeader ;
   @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
 #------------------------------- Analyze transient dependancy
-  @transientListForImplementation transientListForImplementation ;
   @fileInclusionSet fileInclusionSet [default] ;
   analyzeTransientProperties
     !mTransientList
@@ -133,7 +132,7 @@ override method @classDeclaration semanticAnalysis
     !"" # No Root entity
     !observablePropertyMap
     !?fileInclusionSet
-    ?transientListForImplementation
+    ??@transientListForImplementation transientListForImplementation
   ;
 #------------------------------- Analyze attributes
   analyzeAttributeDeclaration
