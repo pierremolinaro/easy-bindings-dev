@@ -651,6 +651,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       @"Legacy data, no helper function",  NSLocalizedRecoverySuggestionErrorKey,
       nil
     ] ;
+    macroReleaseSetToNil (error) ;
     error = [[NSError alloc]
       initWithDomain:[NSBundle mainBundle].bundleIdentifier
       code:1
@@ -664,6 +665,7 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
       @"Root object cannot be read",  NSLocalizedRecoverySuggestionErrorKey,
       nil
     ] ;
+    macroReleaseSetToNil (error) ;
     error = [[NSError alloc]
       initWithDomain:[NSBundle mainBundle].bundleIdentifier
       code:1
