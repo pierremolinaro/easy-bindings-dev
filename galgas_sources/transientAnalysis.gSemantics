@@ -32,7 +32,7 @@ override method @transientRootSignDependency analyze
     error mDeclarationLocation: "no root object in this context" ;
   end if ;
 #--- Add dependency arc
-  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
     ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
     !inTransientPropertySignature
   ] ;
@@ -70,7 +70,7 @@ override method @transientLocalDependency analyze
       error mMasterName: "to-many relationships requires the 'count' option" ;
   end if ;
 #--- Add dependency arc
-  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
     !masterPropertySignature
     !inTransientPropertySignature
   ] ;
@@ -115,7 +115,7 @@ override method @transientControllerDependency analyze
     ?*
   ] ;
 #--- Add dependency arc
-  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
     !masterPropertySignature
     !inTransientPropertySignature
   ] ;
@@ -148,7 +148,7 @@ override method @transientRootDependency analyze
     error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
   end if ;
 #--- Add dependency arc
-  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
     !masterDependencyKey
     !inTransientPropertySignature
   ] ;
@@ -193,7 +193,7 @@ override method @transientPreferenceDependency analyze
     ?*
   ] ;
 #--- Add dependency arc
-  [!?ioContextAnalysisStruct->mTransientDependencyGraph addArc
+  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
     !masterPropertySignature
     !inTransientPropertySignature
   ] ;

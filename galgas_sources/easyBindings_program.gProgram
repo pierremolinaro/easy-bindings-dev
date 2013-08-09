@@ -205,7 +205,7 @@ local routine semanticAnalysis
     [s writeToFileWhenDifferentContents !path ?*] ;
   end if ;
 #--- Analyze transient dependencies
-  @2stringlist transientDependencyArcList := [contextAnalysisStruct->mTransientDependencyGraph arcs] ;
+  @2stringlist transientDependencyArcList := [contextAnalysisStruct->mTransientDependencyGraph edges] ;
   @stringlist sortedTransientOrderedList [emptyList] ;
   if [@uint errorCount] == 0 then
     if [contextAnalysisStruct->mTransientDependencyGraph undefinedNodeCount] > 0 then
