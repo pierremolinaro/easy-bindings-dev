@@ -23,7 +23,6 @@ list @attributeList {
 
 enum @deleteRuleEnum {
   nullifyDeleteRule, cascadeDeleteRule, denyDeleteRule
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -300,7 +299,6 @@ class @documentDeclaration extends @astDeclaration {
 
 enum @formatterEnum {
   noFormatter, numberFormatter, dateFormatter
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -329,7 +327,6 @@ list @bindingOptionList {
 
 enum @generationKind {
   fullGeneration, generateImport, noGeneration
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -374,8 +371,6 @@ enum @controllerKind {
   arrayController,  # NSArrayController
   entityController, # PMEntityController
   entityArrayController # PMEntityArrayController
-}{
-
 }
 
 #----------------------------------------------------------------------------*
@@ -478,7 +473,6 @@ enum @typeKind {
   imageType,
   menuType,
   bezierPathType
-}{
 }
 
 #----------------------------------------------------------------------------*
