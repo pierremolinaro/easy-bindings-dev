@@ -8,7 +8,6 @@ override reader @treeControllerForGeneration generateBinding
   -> @string outResult
 :
   outResult := "  " . inOutletName . ".childrenKeyPath = @\"" . mChildrenKeyPathName . "\" ;\n" ;
-  outResult .= "  " . inOutletName . ".leafKeyPath = @\"" . mLeafKeyPathName . "\" ;\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*

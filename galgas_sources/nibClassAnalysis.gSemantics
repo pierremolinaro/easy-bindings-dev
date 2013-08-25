@@ -236,30 +236,19 @@ override method @nibClassDeclaration semanticAnalysis
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
       ] ;
-    #--- Check "childrenKeyPath" and "leafKeyPath"
+    #--- Check "childrenKeyPath"
       [classObservablePropertyMap searchKey
         !mChildRelationshipName
-        ?@ebType type
+        ??@ebType type
         ?* #?@bool isTransient
         ?* #?@lstring propertySignature
-        ?@bool isCollection
+        ??@bool isCollection
       ] ;
       if (not isCollection) | (type->mKind != [@typeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
         error mChildRelationshipName: "this relationship is used as 'childrenKeyPath' and should be an '" . controlledObjectType->mTypeName . "' array" ;
       end if ;
-      [classObservablePropertyMap searchKey
-        !mIsLeafAttributeName
-        ?type
-        ?* #?@bool isTransient
-        ?* #?@lstring propertySignature
-        ?isCollection
-      ] ;
-      if isCollection | (type->mKind != [@typeKind boolType]) then
-        error mChildRelationshipName: "this property is used as 'leafKeyPath' and should have 'bool' type" ;
-      end if ;
       bindingListForGeneration += ![@treeControllerForGeneration new
         !mChildRelationshipName->string
-        !mIsLeafAttributeName->string      
       ] ;
     end switch ;
     foreach mControllerBindingList do

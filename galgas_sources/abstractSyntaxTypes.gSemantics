@@ -283,7 +283,6 @@ list @controllerList {
   @bindingList mControllerBindingList ;
 #--- Only for tree controllers ; for others, ["" nowhere]
   @lstring mChildRelationshipName ;
-  @lstring mIsLeafAttributeName ;
 }
 
 #----------------------------------------------------------------------------*

@@ -636,7 +636,6 @@ class @runBindingForGeneration extends @abstractBindingForGeneration {
 
 class @treeControllerForGeneration extends @abstractBindingForGeneration {
   @string mChildrenKeyPathName ;
-  @string mLeafKeyPathName ;
 }
 
 #----------------------------------------------------------------------------*
