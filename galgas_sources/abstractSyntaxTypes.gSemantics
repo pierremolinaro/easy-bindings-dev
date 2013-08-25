@@ -281,6 +281,9 @@ list @controllerList {
   @lstring mControlledObjectName ;
   @outletBindingOptionList mControlledObjectBindingOptionList ;
   @bindingList mControllerBindingList ;
+#--- Only for tree controllers ; for others, ["" nowhere]
+  @lstring mChildRelationshipName ;
+  @lstring mIsLeafAttributeName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -370,7 +373,8 @@ enum @controllerKind {
   objectController, # NSObjectController
   arrayController,  # NSArrayController
   entityController, # PMEntityController
-  entityArrayController # PMEntityArrayController
+  entityArrayController, # PMEntityArrayController
+  treeController # NSTreeController
 }
 
 #----------------------------------------------------------------------------*

@@ -608,6 +608,46 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <controller_declaration>
+  ?!@controllerList ioTreeControllerList
+:
+  $treeController$ ;
+  $Identifier$ ?@lstring controllerClassName ;
+  $identifier$ ? @lstring controllerName ;
+  $:$ ;
+  @lbool isRoot ;
+  select
+    $root$ ;
+    isRoot := [@lbool new !true !here] ;
+  or
+    $self$ ;
+    isRoot := [@lbool new !false !here] ;
+  end select ;
+  $.$ ;
+  $identifier$ ?@lstring controlledObject ;
+  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
+  <bindings> ?@bindingList controllerBindingList ;
+  $($ ;
+  $identifier$ ? @lstring childRelationshipName ;
+  $,$ ;
+  $identifier$ ? @lstring isLeafAttributeName ;
+  $)$ ;
+  $;$ ;
+  ioTreeControllerList +=
+    ![@controllerKind treeController]
+    !controllerClassName
+    !controllerName
+    !isRoot
+    !controlledObject
+    !controlledObjectBindingOptionList
+    !controllerBindingList
+    !childRelationshipName
+    !isLeafAttributeName
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <controller_declaration>
   ?!@controllerList ioControllerList
 :
   $controller$ ;
@@ -623,6 +663,8 @@ rule <controller_declaration>
     ![@lstring new !"" ! here] # No controlled Object
     ![@outletBindingOptionList emptyList]
     !controllerBindingList
+    !["" nowhere]
+    !["" nowhere]
   ;
 end rule ;
 
@@ -656,6 +698,8 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
+    !["" nowhere]
+    !["" nowhere]
   ;
 end rule ;
 
@@ -689,6 +733,8 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
+    !["" nowhere]
+    !["" nowhere]
   ;
 end rule ;
 
@@ -722,6 +768,8 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
+    !["" nowhere]
+    !["" nowhere]
   ;
 end rule ;
 
@@ -755,6 +803,8 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
+    !["" nowhere]
+    !["" nowhere]
   ;
 end rule ;
 
@@ -1138,6 +1188,20 @@ rule <controller_class_declaration>
   or
     $entityArrayController$ ;
     controllerKind := [@controllerKind entityArrayController] ;
+    $Identifier$ ?controllerClassName ;
+    ${$ ;
+    repeat
+    while
+      $Identifier$ ? @lstring optionName ;
+      $:$ ;
+      <type_list> ?@lstringlist optionTypeList ;
+      $;$ ;
+      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+    end repeat ;
+    $}$ ;
+  or
+    $treeController$ ;
+    controllerKind := [@controllerKind treeController] ;
     $Identifier$ ?controllerClassName ;
     ${$ ;
     repeat

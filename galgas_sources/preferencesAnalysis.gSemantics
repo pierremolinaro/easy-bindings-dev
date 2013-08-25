@@ -212,6 +212,49 @@ override method @preferencesDeclaration semanticAnalysis
         !controllerActionMap
         !controllerObservablePropertyMap
       ] ;
+    when treeController :
+      if mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'self' is allowed here"
+        ;
+      end if ;
+      [preferenceArrayMap searchKey
+        !mControlledObjectName
+        ?@ebType controlledObjectType
+        ?*
+      ] ;
+      controllerObjectClassName := controlledObjectType->mTypeName->string ;
+      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+        !controlledObjectType->mTypeName
+        ?@typeKind kind
+        ?@observablePropertyMap classObservablePropertyMap
+      ] ;
+      if kind != [@typeKind classType] then
+        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
+      end if ;
+      checkBindingOptions
+        !ioContextAnalysisStruct
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?fileInclusionSet
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentArray"
+        ![@formatterEnum noFormatter]
+        !"self"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
+      [!?controllerMap insertKey
+        !mControllerName
+        !mControllerClassName->string
+        ![@lstring new !controllerObjectClassName !here]
+        !false # Is not an entity : it is a class
+        !bindingListForGeneration
+        !controllerActionMap
+        !controllerObservablePropertyMap
+      ] ;
     end switch ;
   end foreach ;
 #------------------------------------- Analyze transient properties

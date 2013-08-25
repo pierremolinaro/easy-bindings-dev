@@ -78,6 +78,28 @@ predefined arrayController NSArrayController {
     NSNoSelectionPlaceholder : Bool ;
     NSRaisesForNotApplicableKeys : Bool ;
   }
+}
+
+predefined treeController NSTreeController {
+  NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
+  NSConditionallySetsEditableBindingOption : Bool ;
+  NSDeletesObjectsOnRemoveBindingsOption : Bool ;
+  NSHandlesContentAsCompoundValueBindingOption : Bool ;
+  NSRaisesForNotApplicableKeysBindingOption : Bool ;
+  NSSelectsAllWhenSettingContentBindingOption : Bool ;
+  NSValidatesImmediatelyBindingOption : Bool ;
+}{
+  action add ;
+  action remove ;
+  attribute Bool canAdd ;
+  attribute Bool canRemove ;
+  $editable : Bool {
+    NSMultipleValuesPlaceholder : Bool ;
+    NSNullPlaceholder : Bool ;
+    NSNotApplicablePlaceholder : Bool ;
+    NSNoSelectionPlaceholder : Bool ;
+    NSRaisesForNotApplicableKeys : Bool ;
+  }
 #  $contentSet : toMany {
 #    NSAlwaysPresentsApplicationModalAlertsBindingOption : Bool ;
 #    NSConditionallySetsEditableBindingOption : Bool ;
@@ -1246,6 +1268,7 @@ predefined outletClass NSMenuItem {
 }
 
 predefined outletClass NSOutlineView {
+  $tableValue ;
   # Warning: skipped $selectionIndexPaths binding
   $font : NSFont {
     NSMultipleValuesPlaceholder : NSFont ;
