@@ -3,6 +3,25 @@ semantics bindingsGeneration :
 
 #----------------------------------------------------------------------------*
 
+override reader @treeControllerForGeneration generateBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "  " . inOutletName . ".childrenKeyPath = @\"" . mChildrenKeyPathName . "\" ;\n" ;
+  outResult .= "  " . inOutletName . ".leafKeyPath = @\"" . mLeafKeyPathName . "\" ;\n" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @treeControllerForGeneration generateRemoveBinding
+  ??@string unused inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 override reader @runBindingForGeneration generateBinding
   ??@string inOutletName
   -> @string outResult

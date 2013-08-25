@@ -634,6 +634,13 @@ class @runBindingForGeneration extends @abstractBindingForGeneration {
 
 #----------------------------------------------------------------------------*
 
+class @treeControllerForGeneration extends @abstractBindingForGeneration {
+  @string mChildrenKeyPathName ;
+  @string mLeafKeyPathName ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @regularBindingForGeneration extends @abstractBindingForGeneration {
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;

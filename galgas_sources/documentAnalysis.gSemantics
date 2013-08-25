@@ -439,6 +439,42 @@ local routine analyzeControllers
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
       ] ;
+    when treeController :
+      if not mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'root' is allowed here"
+        ;
+      end if ;
+      [inRootObjectRelationshipMap searchKey
+        !mControlledObjectName
+        ?@bool isToMany
+        ?destinationEntityName
+        ?3*
+      ] ;
+      ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
+      if not isToMany then
+        error mControlledObjectName: "this should be a collection" ;
+      end if ;
+      [inContextAnalysisStruct->mEntityMap searchKey
+        !destinationEntityName
+        ?7*
+        ?@propertyMap controlledObjectAllPropertyMap
+        ?4*
+      ] ;
+      checkBindingOptions
+        !inContextAnalysisStruct
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?ioFileInclusionSet
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentArray"
+        ![@formatterEnum noFormatter]
+        !"self.rootObject"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
     end switch ;
     ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
   #---

@@ -185,7 +185,6 @@ override method @nibClassDeclaration semanticAnalysis
         !controlledObjectType->mTypeName
         ?@typeKind kind
         ?@observablePropertyMap classObservablePropertyMap
-#        ?@attributeListForImplementation attributeListForImplementation
       ] ;
       if kind != [@typeKind classType] then
         error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
@@ -203,6 +202,64 @@ override method @nibClassDeclaration semanticAnalysis
         !"self"
         !mControlledObjectName->string
         !controlledObjectBindingOptionListForGeneration
+      ] ;
+    when treeController :
+      if mIsRootObject->bool then
+        error mIsRootObject
+        : "only 'self' is allowed here"
+        ;
+      end if ;
+      [currentArrayPropertyForImplementation searchKey
+        !mControlledObjectName
+        ?@ebType controlledObjectType
+      ] ;
+      controllerObjectClassName := controlledObjectType->mTypeName->string ;
+      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+        !controlledObjectType->mTypeName
+        ?@typeKind kind
+        ?@observablePropertyMap classObservablePropertyMap
+      ] ;
+      if kind != [@typeKind classType] then
+        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
+      end if ;
+      checkBindingOptions
+        !ioContextAnalysisStruct
+        !mControlledObjectBindingOptionList
+        !controlledObjectAvailableBindingOptionMap
+        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        !?fileInclusionSet
+      ;
+      bindingListForGeneration += ![@regularBindingForGeneration new
+        !"contentArray"
+        ![@formatterEnum noFormatter]
+        !"self"
+        !mControlledObjectName->string
+        !controlledObjectBindingOptionListForGeneration
+      ] ;
+    #--- Check "childrenKeyPath" and "leafKeyPath"
+      [classObservablePropertyMap searchKey
+        !mChildRelationshipName
+        ?@ebType type
+        ?* #?@bool isTransient
+        ?* #?@lstring propertySignature
+        ?@bool isCollection
+      ] ;
+      if (not isCollection) | (type->mKind != [@typeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
+        error mChildRelationshipName: "this relationship is used as 'childrenKeyPath' and should be an '" . controlledObjectType->mTypeName . "' array" ;
+      end if ;
+      [classObservablePropertyMap searchKey
+        !mIsLeafAttributeName
+        ?type
+        ?* #?@bool isTransient
+        ?* #?@lstring propertySignature
+        ?isCollection
+      ] ;
+      if isCollection | (type->mKind != [@typeKind boolType]) then
+        error mChildRelationshipName: "this property is used as 'leafKeyPath' and should have 'bool' type" ;
+      end if ;
+      bindingListForGeneration += ![@treeControllerForGeneration new
+        !mChildRelationshipName->string
+        !mIsLeafAttributeName->string      
       ] ;
     end switch ;
     foreach mControllerBindingList do
