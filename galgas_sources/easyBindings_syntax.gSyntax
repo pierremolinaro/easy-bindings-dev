@@ -628,8 +628,6 @@ rule <controller_declaration>
   <bindings> ?@bindingList controllerBindingList ;
   $($ ;
   $identifier$ ? @lstring childRelationshipName ;
-  $,$ ;
-  $identifier$ ? @lstring isLeafAttributeName ;
   $)$ ;
   $;$ ;
   ioTreeControllerList +=
@@ -641,7 +639,6 @@ rule <controller_declaration>
     !controlledObjectBindingOptionList
     !controllerBindingList
     !childRelationshipName
-    !isLeafAttributeName
   ;
 end rule ;
 
@@ -663,7 +660,6 @@ rule <controller_declaration>
     ![@lstring new !"" ! here] # No controlled Object
     ![@outletBindingOptionList emptyList]
     !controllerBindingList
-    !["" nowhere]
     !["" nowhere]
   ;
 end rule ;
@@ -699,7 +695,6 @@ rule <controller_declaration>
     !controlledObjectBindingOptionList
     !controllerBindingList
     !["" nowhere]
-    !["" nowhere]
   ;
 end rule ;
 
@@ -733,7 +728,6 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
-    !["" nowhere]
     !["" nowhere]
   ;
 end rule ;
@@ -769,7 +763,6 @@ rule <controller_declaration>
     !controlledObjectBindingOptionList
     !controllerBindingList
     !["" nowhere]
-    !["" nowhere]
   ;
 end rule ;
 
@@ -803,7 +796,6 @@ rule <controller_declaration>
     !controlledObject
     !controlledObjectBindingOptionList
     !controllerBindingList
-    !["" nowhere]
     !["" nowhere]
   ;
 end rule ;
