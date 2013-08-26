@@ -192,7 +192,7 @@ if HAS_SIGNATURE_OBSERVER then
 end if
 %//--- Unbind Outlets
 %foreach OUTLET_GENERATION_LIST do
-  foreach mOutletBindingList do
+  foreach > mOutletBindingList do
     ![mBinding generateRemoveBinding !mOutletName]
   end foreach
 end foreach

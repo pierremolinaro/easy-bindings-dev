@@ -118,7 +118,7 @@ end foreach
 %
 %//--- Unbind Outlets
 %foreach OUTLET_DECLARATION_LIST do
-  foreach mOutletBindingList do
+  foreach > mOutletBindingList do
     ![mBinding generateRemoveBinding !mOutletName]
   end foreach
 end foreach
