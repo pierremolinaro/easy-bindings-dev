@@ -165,7 +165,7 @@ static PMAllocationDebug * gDebugObject ;
       target:self
       argument:nil
       order:NSUIntegerMax
-      modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]
+      modes:[NSArray arrayWithObject:NSRunLoopCommonModes]
     ] ;
   }
 }
