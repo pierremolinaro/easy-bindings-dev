@@ -336,7 +336,7 @@ function generateTransientTriggering
   @stringset masterSet [setWithString !inPropertyName] ;
   @stringset registeredTransientSet [emptySet] ;
   @bool looping := true ;
-  loop [inTransientListForImplementation length] + 1 while looping do
+  loop [inTransientListForImplementation length] + 1 : while looping do
     looping := false ;
     foreach inTransientListForImplementation do
       foreach mDependencyList do
@@ -650,13 +650,13 @@ routine generateTransientDependencyFiles
     dependentSet += !mValue1 ;
   end foreach ;
   @string transientOrderedList := "" ;
-  foreach \down inSortedTransientOrderedList do
+  foreach > inSortedTransientOrderedList do
     transientOrderedList .= "// " . mValue . "\n" ;
   end foreach ;
   @string transientIndexesString := "" ;
   @string transientList := "" ;
   @uint idx := 0 ;
-  foreach \down inSortedTransientOrderedList do
+  foreach > inSortedTransientOrderedList do
     if [dependentSet hasKey !mValue] then
       transientIndexesString .= "#define " . [mValue identifierRepresentation] . " (" . idx . ")\n" ;
       transientList .= "      @" . [[mValue pathExtension] utf8Representation] . ", // " . mValue . "\n" ;
