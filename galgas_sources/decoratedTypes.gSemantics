@@ -1224,13 +1224,13 @@ override method @listAsDefaultValue analyzeDefaultValueType
         const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
         const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
         @identifierAsDefaultValue fontName ;
-        if (v0 is @identifierAsDefaultValue) then 
+        if (v0 is == @identifierAsDefaultValue) then 
           fontName := (cast v0 : @identifierAsDefaultValue) ;
         else
           error mStartLocation : errorMessage : fontName ;
         end if ;
         @integerAsDefaultValue fontSize ;
-        if (v1 is @integerAsDefaultValue) then 
+        if (v1 is == @integerAsDefaultValue) then 
           fontSize := (cast v1 : @integerAsDefaultValue) ;
         else
           error mStartLocation : errorMessage : fontSize ;
