@@ -264,7 +264,7 @@
 		5C68F1206823815F66102863 /* PMCancelButtonForPanel.m */ = {isa = PBXBuildFile; fileRef = 9B3020AFEECD95B4009ADF4C ; settings = {ATTRIBUTES = (); }; };
 		BB76D4357324DD7E69F3CD18 /* PMOkButtonForPanel.m */ = {isa = PBXBuildFile; fileRef = 54F96369AB93E4F3BB068C22 ; settings = {ATTRIBUTES = (); }; };
 		576290FA60EB31B5FC917AD1 /* unicode_character_m.m */ = {isa = PBXBuildFile; fileRef = 5D98B1A652EA7FD72D942DAC ; settings = {ATTRIBUTES = (); }; };
-		F19FDA463CB386442EAC2B3D /* OC_GGS_searchInFolders.m */ = {isa = PBXBuildFile; fileRef = A57B0395E163467C9DAE521B ; settings = {ATTRIBUTES = (); }; };
+		F19FDA463CB386442EAC2B3D /* PMSearchResultDescriptor.m */ = {isa = PBXBuildFile; fileRef = A57B0395E163467C9DAE521B ; settings = {ATTRIBUTES = (); }; };
 		68C5AE12BD18488BC579B30D /* PMFontButton.m */ = {isa = PBXBuildFile; fileRef = BF3D9FE611D5A8E90FEFDC9C ; settings = {ATTRIBUTES = (); }; };
 		DEC96096C5E0FCC8DD42AB6D /* OC_Token.m */ = {isa = PBXBuildFile; fileRef = CCBDB62EC96E702F07F6425B ; settings = {ATTRIBUTES = (); }; };
 		26A9018052C429CC4E56739B /* OC_Lexique.m */ = {isa = PBXBuildFile; fileRef = BAF56627478EC76A704E9B52 ; settings = {ATTRIBUTES = (); }; };
@@ -460,8 +460,6 @@
 		DE89D9058FCB0B968DBBBD68 /* OC_GGS_TextSyntaxColoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_TextSyntaxColoring.m"; path = "OC_GGS_TextSyntaxColoring.m"; sourceTree = "<group>"; };
 		E93E74D3DF8527599FA62642 /* OC_GGS_TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_TextView.h"; path = "OC_GGS_TextView.h"; sourceTree = "<group>"; };
 		CA89A1678042477183B7AC3F /* OC_GGS_TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_TextView.m"; path = "OC_GGS_TextView.m"; sourceTree = "<group>"; };
-		AD9F68F89B29639786CB62EF /* OC_GGS_searchInFolders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_searchInFolders.h"; path = "OC_GGS_searchInFolders.h"; sourceTree = "<group>"; };
-		A57B0395E163467C9DAE521B /* OC_GGS_searchInFolders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_searchInFolders.m"; path = "OC_GGS_searchInFolders.m"; sourceTree = "<group>"; };
 		7A99787BD197EACD77ACCE5E /* OC_Lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_Lexique.h"; path = "OC_Lexique.h"; sourceTree = "<group>"; };
 		BAF56627478EC76A704E9B52 /* OC_Lexique.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_Lexique.m"; path = "OC_Lexique.m"; sourceTree = "<group>"; };
 		F5E1059396431415E770C6DD /* OC_Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_Token.h"; path = "OC_Token.h"; sourceTree = "<group>"; };
@@ -477,6 +475,8 @@
 		6EBAAFC66CC0879C71B5DB5C /* PMIssueInRuler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMIssueInRuler.h"; path = "PMIssueInRuler.h"; sourceTree = "<group>"; };
 		5ED3D6B8079E2E7E7BACC9F2 /* PMIssueInRuler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMIssueInRuler.m"; path = "PMIssueInRuler.m"; sourceTree = "<group>"; };
 		54F96369AB93E4F3BB068C22 /* PMOkButtonForPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMOkButtonForPanel.m"; path = "PMOkButtonForPanel.m"; sourceTree = "<group>"; };
+		AD9F68F89B29639786CB62EF /* PMSearchResultDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMSearchResultDescriptor.h"; path = "PMSearchResultDescriptor.h"; sourceTree = "<group>"; };
+		A57B0395E163467C9DAE521B /* PMSearchResultDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMSearchResultDescriptor.m"; path = "PMSearchResultDescriptor.m"; sourceTree = "<group>"; };
 		2726FB0A03BB19F2D8D9524D /* PMTableViewRefusesFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMTableViewRefusesFirstResponder.h"; path = "PMTableViewRefusesFirstResponder.h"; sourceTree = "<group>"; };
 		2BA9336A670E36D0ED79BC43 /* PMTableViewRefusesFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMTableViewRefusesFirstResponder.m"; path = "PMTableViewRefusesFirstResponder.m"; sourceTree = "<group>"; };
 		A7B6C95BD2B32ED45989C61F /* PMUInt128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PMUInt128.cpp"; path = "PMUInt128.cpp"; sourceTree = "<group>"; };
@@ -737,8 +737,8 @@
 				316C49E5A833517C45D31070 /* MainMenu.xib */,
 				C49EB8F757AE6439E879BB2A /* PMDebug.xib */,
 				32D17E56E07902B254DFAD10 /* OC_GGS_Document.xib */,
-				A57B0395E163467C9DAE521B /* OC_GGS_searchInFolders.m */,
-				AD9F68F89B29639786CB62EF /* OC_GGS_searchInFolders.h */,
+				A57B0395E163467C9DAE521B /* PMSearchResultDescriptor.m */,
+				AD9F68F89B29639786CB62EF /* PMSearchResultDescriptor.h */,
 				87F5EE0BC9D43BBF5BBE87FB /* PMDebug.m */,
 				F9020D2ABEFE558796B99584 /* PMDebug.h */,
 				BF3D9FE611D5A8E90FEFDC9C /* PMFontButton.m */,
