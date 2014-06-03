@@ -213,14 +213,16 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
     %!mAttributeName%_observers = [NSMutableSet new] ;
   }
   [%!mAttributeName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
   [%!mAttributeName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %end foreach

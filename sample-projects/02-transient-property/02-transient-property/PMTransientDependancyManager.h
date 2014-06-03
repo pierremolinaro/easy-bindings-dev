@@ -68,9 +68,10 @@
 
 //---------------------------------------------------------------------------*
 
-@interface PMTransientDependancyManager : NSObject {
+@interface PMTransientDependancyManager : NSApplication {
   @private BOOL mDeferredMessageSent ;
   @private NSMutableSet * mObserverObjectArray [TRANSIENT_COUNT] ;
+  @private NSArray * mTriggeredPropertyArray ;
 }
 
 + (void) enterTriggerForObject: (NSObject *) inObject

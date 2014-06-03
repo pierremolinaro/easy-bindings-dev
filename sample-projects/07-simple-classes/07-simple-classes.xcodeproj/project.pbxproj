@@ -53,7 +53,7 @@
 		CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_schmurtz.m; sourceTree = "<group>"; };
 		CFBFD5E81652C648006EAD0D /* MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_truc.m; sourceTree = "<group>"; };
-		CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; path = MyOtherClass_bidule.m; sourceTree = "<group>"; };
+		CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOtherClass_bidule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
