@@ -401,14 +401,16 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
     %!mAttributeName%_observers = [NSMutableSet new] ;
   }
   [%!mAttributeName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //-----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mAttributeName%: (NSObject *) inObserver {
   [%!mAttributeName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %
@@ -422,14 +424,16 @@ foreach TO_MANY_RELATIONSHIPS do%
     %!mValue0%_observers = [NSMutableSet new] ;
   }
   [%!mValue0%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
 //-----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver {
   [%!mValue0%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+//  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
 %
