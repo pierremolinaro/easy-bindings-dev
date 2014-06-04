@@ -29,6 +29,6 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>PMTransientDependancyManager</string>
+	<string>PMApplication</string>
 </dict>
 </plist>

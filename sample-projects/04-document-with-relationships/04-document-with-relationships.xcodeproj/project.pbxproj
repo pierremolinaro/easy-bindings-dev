@@ -26,6 +26,7 @@
 		CF46288D1595F76100BF70CD /* PMDocument_countItemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46288C1595F76100BF70CD /* PMDocument_countItemMessage.m */; };
 		CF4628C7159600DE00BF70CD /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */; };
 		CF46293515961D8400BF70CD /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46293415961D8400BF70CD /* PMAllocationDebug.m */; };
+		CF4CA874193F216000F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA873193F216000F3B0C7 /* PMApplication.m */; };
 		CF608145159367210021D873 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF608144159367210021D873 /* Cocoa.framework */; };
 		CF60814F159367210021D873 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF60814D159367210021D873 /* InfoPlist.strings */; };
 		CF608151159367210021D873 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608150159367210021D873 /* main.m */; };
@@ -36,7 +37,6 @@
 		CF608174159368350021D873 /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60816D159368350021D873 /* easy-bindings-utilities.m */; };
 		CF608177159368350021D873 /* NameEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608173159368350021D873 /* NameEntity.m */; };
 		CFE34A3B17835282006CA693 /* PMEntityController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE34A3A17835282006CA693 /* PMEntityController.m */; };
-		CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +73,8 @@
 		CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF46293315961D8400BF70CD /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CF46293415961D8400BF70CD /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
+		CF4CA872193F216000F3B0C7 /* PMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplication.h; sourceTree = "<group>"; };
+		CF4CA873193F216000F3B0C7 /* PMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplication.m; sourceTree = "<group>"; };
 		CF608140159367210021D873 /* 04-document-with-relationships.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "04-document-with-relationships.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF608144159367210021D873 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF608147159367210021D873 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -94,8 +96,6 @@
 		CF68C3D91595136F008B63F1 /* PMDocument-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMDocument-computations.h"; sourceTree = "<group>"; };
 		CFE34A3917835282006CA693 /* PMEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityController.h; sourceTree = "<group>"; };
 		CFE34A3A17835282006CA693 /* PMEntityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityController.m; sourceTree = "<group>"; };
-		CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
-		CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +153,8 @@
 		CF60814A159367210021D873 /* 04-document-with-relationships */ = {
 			isa = PBXGroup;
 			children = (
+				CF4CA872193F216000F3B0C7 /* PMApplication.h */,
+				CF4CA873193F216000F3B0C7 /* PMApplication.m */,
 				CFE34A3917835282006CA693 /* PMEntityController.h */,
 				CFE34A3A17835282006CA693 /* PMEntityController.m */,
 				CF042E43178216F4006C89AF /* PMEntityArrayController.h */,
@@ -179,8 +181,6 @@
 				CF042E1817821119006C89AF /* PMUndoManager.m */,
 				CF1AE07E168F0C280031840E /* PMDataScanner.h */,
 				CF1AE07F168F0C280031840E /* PMDataScanner.m */,
-				CFF1C92515C321320054F1DA /* PMTransientDependancyManager.h */,
-				CFF1C92615C321320054F1DA /* PMTransientDependancyManager.m */,
 				CF46293315961D8400BF70CD /* PMAllocationDebug.h */,
 				CF46293415961D8400BF70CD /* PMAllocationDebug.m */,
 				CF4628C6159600DE00BF70CD /* PMAllocationDebug.xib */,
@@ -288,7 +288,6 @@
 				CF4628281595DA3800BF70CD /* MyRootEntity.m in Sources */,
 				CF46288D1595F76100BF70CD /* PMDocument_countItemMessage.m in Sources */,
 				CF46293515961D8400BF70CD /* PMAllocationDebug.m in Sources */,
-				CFF1C92715C321320054F1DA /* PMTransientDependancyManager.m in Sources */,
 				CF2CF2081657BF9100FE8D41 /* PMDocument_canRemoveString.m in Sources */,
 				CF1AE082168F0C280031840E /* PMDataScanner.m in Sources */,
 				CF042E1917821119006C89AF /* load-store-functions.m in Sources */,
@@ -303,6 +302,7 @@
 				CF042E2217821119006C89AF /* PMUndoManager.m in Sources */,
 				CF042E45178216F4006C89AF /* PMEntityArrayController.m in Sources */,
 				CFE34A3B17835282006CA693 /* PMEntityController.m in Sources */,
+				CF4CA874193F216000F3B0C7 /* PMApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

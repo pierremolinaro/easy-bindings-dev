@@ -1,4 +1,4 @@
-#import "PMTransientDependancyManager.h"
+#import "PMApplication.h"
 #import "PMAllocationDebug.h"
 #import "easy-bindings-utilities.h"
 #import "%!CLASS_NAME%.h"

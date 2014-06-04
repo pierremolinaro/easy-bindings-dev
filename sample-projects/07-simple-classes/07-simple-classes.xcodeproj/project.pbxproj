@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF4CA88D193F223800F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA88B193F223800F3B0C7 /* PMApplication.m */; };
 		CFBFD5A91652C483006EAD0D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBFD5A81652C483006EAD0D /* Cocoa.framework */; };
 		CFBFD5B31652C483006EAD0D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5B11652C483006EAD0D /* InfoPlist.strings */; };
 		CFBFD5B51652C483006EAD0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5B41652C483006EAD0D /* main.m */; };
@@ -18,13 +19,15 @@
 		CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */; };
 		CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */; };
 		CFBFD5D91652C4CE006EAD0D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */; };
-		CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */; };
 		CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */; };
 		CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* MyClass_truc.m */; };
 		CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF4CA88A193F223800F3B0C7 /* PMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplication.h; sourceTree = "<group>"; };
+		CF4CA88B193F223800F3B0C7 /* PMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplication.m; sourceTree = "<group>"; };
+		CF4CA88C193F223800F3B0C7 /* PMWillDeallocProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWillDeallocProtocol.h; sourceTree = "<group>"; };
 		CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "07-simple-classes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBFD5A81652C483006EAD0D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CFBFD5AB1652C483006EAD0D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -49,8 +52,6 @@
 		CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
 		CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		CFBFD5D21652C4CE006EAD0D /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
-		CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 		CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_schmurtz.m; sourceTree = "<group>"; };
 		CFBFD5E81652C648006EAD0D /* MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_truc.m; sourceTree = "<group>"; };
 		CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOtherClass_bidule.m; sourceTree = "<group>"; };
@@ -107,6 +108,9 @@
 		CFBFD5AE1652C483006EAD0D /* 07-simple-classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF4CA88A193F223800F3B0C7 /* PMApplication.h */,
+				CF4CA88B193F223800F3B0C7 /* PMApplication.m */,
+				CF4CA88C193F223800F3B0C7 /* PMWillDeallocProtocol.h */,
 				CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */,
 				CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */,
 				CFBFD5C91652C4CE006EAD0D /* MyClass-transient-computations.h */,
@@ -118,8 +122,6 @@
 				CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */,
 				CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */,
 				CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */,
-				CFBFD5D21652C4CE006EAD0D /* PMTransientDependancyManager.h */,
-				CFBFD5D31652C4CE006EAD0D /* PMTransientDependancyManager.m */,
 				CFBFD5BA1652C483006EAD0D /* PMAppDelegate.h */,
 				CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */,
 				CFBFD5BD1652C483006EAD0D /* MainMenu.xib */,
@@ -214,10 +216,10 @@
 				CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */,
 				CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */,
 				CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */,
-				CFBFD5DA1652C4CE006EAD0D /* PMTransientDependancyManager.m in Sources */,
 				CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */,
 				CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */,
 				CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */,
+				CF4CA88D193F223800F3B0C7 /* PMApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@
 		CF23E6051782E591002C28F9 /* PMUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5FA1782E591002C28F9 /* PMUndoManager.m */; };
 		CF23E60C1782E5B1002C28F9 /* PMDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E6071782E5B1002C28F9 /* PMDataScanner.m */; };
 		CF23E60D1782E5B1002C28F9 /* PMEntityArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */; };
-		CF23E60E1782E5B1002C28F9 /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */; };
+		CF4CA884193F21EC00F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA883193F21EC00F3B0C7 /* PMApplication.m */; };
 		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
 		CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCAA159725BF00F6B52D /* InfoPlist.strings */; };
 		CF86CCAE159725BF00F6B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCAD159725BF00F6B52D /* main.m */; };
@@ -65,8 +65,8 @@
 		CF23E6071782E5B1002C28F9 /* PMDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDataScanner.m; sourceTree = "<group>"; };
 		CF23E6081782E5B1002C28F9 /* PMEntityArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityArrayController.h; sourceTree = "<group>"; };
 		CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityArrayController.m; sourceTree = "<group>"; };
-		CF23E60A1782E5B1002C28F9 /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
-		CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
+		CF4CA882193F21EC00F3B0C7 /* PMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplication.h; sourceTree = "<group>"; };
+		CF4CA883193F21EC00F3B0C7 /* PMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplication.m; sourceTree = "<group>"; };
 		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF86CCA1159725BF00F6B52D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF86CCA4159725BF00F6B52D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -149,6 +149,8 @@
 		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
 			isa = PBXGroup;
 			children = (
+				CF4CA882193F21EC00F3B0C7 /* PMApplication.h */,
+				CF4CA883193F21EC00F3B0C7 /* PMApplication.m */,
 				CFE34A49178352CD006CA693 /* PMEntityController.h */,
 				CFE34A4A178352CD006CA693 /* PMEntityController.m */,
 				CF86CCD31597272200F6B52D /* PMAllocationDebug.h */,
@@ -158,8 +160,6 @@
 				CF23E6071782E5B1002C28F9 /* PMDataScanner.m */,
 				CF23E6081782E5B1002C28F9 /* PMEntityArrayController.h */,
 				CF23E6091782E5B1002C28F9 /* PMEntityArrayController.m */,
-				CF23E60A1782E5B1002C28F9 /* PMTransientDependancyManager.h */,
-				CF23E60B1782E5B1002C28F9 /* PMTransientDependancyManager.m */,
 				CF23E5E71782E591002C28F9 /* load-store-functions.h */,
 				CF23E5E81782E591002C28F9 /* load-store-functions.m */,
 				CF23E5E91782E591002C28F9 /* NSData+BZ2compression.h */,
@@ -292,8 +292,8 @@
 				CF23E6051782E591002C28F9 /* PMUndoManager.m in Sources */,
 				CF23E60C1782E5B1002C28F9 /* PMDataScanner.m in Sources */,
 				CF23E60D1782E5B1002C28F9 /* PMEntityArrayController.m in Sources */,
-				CF23E60E1782E5B1002C28F9 /* PMTransientDependancyManager.m in Sources */,
 				CFE34A4B178352CD006CA693 /* PMEntityController.m in Sources */,
+				CF4CA884193F21EC00F3B0C7 /* PMApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
