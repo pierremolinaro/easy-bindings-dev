@@ -261,7 +261,7 @@ override method @transientDependencyFromSelfForImplementation generateTransientT
     "  //--- Trigger '" . inTransientName . " transient'\n"
     "    if (" . inTransientName . "__computed) {\n"
     "      " . inTransientName . "__computed = NO ;\n"
-    "      [PMTransientDependancyManager\n"
+    "      [PMApplication\n"
     "        enterTriggerForObject:self\n"
     "        transientIndex:" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . "\n"
     "      ] ;\n"
@@ -288,7 +288,7 @@ override method @transientDependencyFromRootForImplementation generateTransientT
     "  //--- Trigger '" . inTransientName . " transient'\n"
     "    if (" . inTransientName . "__computed) {\n"
     "      " . inTransientName . "__computed = NO ;\n"
-    "      [PMTransientDependancyManager\n"
+    "      [PMApplication\n"
     "        enterTriggerForObject:self\n"
     "        transientIndex:" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . "\n"
     "      ] ;\n"
@@ -569,7 +569,7 @@ function generateObserverRoutinesForTransient
       "  //--- Trigger '" . mValue . " transient'\n"
       "  if (" . mValue . "__computed) {\n"
       "    " . mValue . "__computed = NO ;\n"
-      "    [PMTransientDependancyManager\n"
+      "    [PMApplication\n"
       "      enterTriggerForObject:self\n"
       "      transientIndex:" . [fullPrefix . mValue identifierRepresentation] . "\n"
       "    ] ;\n"
@@ -597,7 +597,7 @@ function generateObserverRoutinesForTransient
       "  //--- Trigger '" . mValue . " transient'\n"
       "    if (" . mValue . "__computed) {\n"
       "      " . mValue . "__computed = NO ;\n"
-      "      [PMTransientDependancyManager\n"
+      "      [PMApplication\n"
       "        enterTriggerForObject:self\n"
       "        transientIndex:" . [fullPrefix . mValue identifierRepresentation] . "\n"
       "      ] ;\n"
@@ -620,17 +620,17 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper transientManager in "../generation-templates/transient-dependency-manager" {
+local filewrapper transientManager in "../generation-templates/application-class" {
 }{
 }{
-  template managerDeclaration "PMTransientDependancyManager.h.gTemplate"
+  template applicationClassDeclaration "PMApplication.h.gTemplate"
     ?@string GRAPH_STRING
     ?@string TRANSIENT_LIST_STRING
     ?@string TRANSIENT_INDEXES
     ?@uint TRANSIENT_COUNT
   ;
   
-  template managerImplementation "PMTransientDependancyManager.m.gTemplate"
+  template applicationClassImplementation "PMApplication.m.gTemplate"
     ?@string TRANSIENT_LIST
   ;
 }
@@ -665,7 +665,7 @@ routine generateTransientDependencyFiles
   end foreach ;
   const @uint transientCount := idx ;
 #--- Header
-  @string s := [filewrapper transientManager.managerDeclaration
+  @string s := [filewrapper transientManager.applicationClassDeclaration
     !graphString
     !transientOrderedList
     !transientIndexesString
@@ -673,7 +673,7 @@ routine generateTransientDependencyFiles
   ] ;
   [@string generateFileWithPattern
     !inSourceDirectoryPath
-    !"PMTransientDependancyManager.h"
+    !"PMApplication.h"
     !"//"
     !"\n\n" # Defaut user zone1
     !s
@@ -681,12 +681,12 @@ routine generateTransientDependencyFiles
     !""
   ] ;
 #--- Implementation
-  s := [filewrapper transientManager.managerImplementation
+  s := [filewrapper transientManager.applicationClassImplementation
     !transientList
   ] ;
   [@string generateFileWithPattern
     !inSourceDirectoryPath
-    !"PMTransientDependancyManager.m"
+    !"PMApplication.m"
     !"//"
     !"\n\n" # Defaut user zone1
     !s

@@ -3,7 +3,7 @@
 #import "PMEntityManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
-#import "PMTransientDependancyManager.h"
+#import "PMApplication.h"
 #import "load-store-functions.h"
 #import "%!ENTITY_NAME%.h"
 %

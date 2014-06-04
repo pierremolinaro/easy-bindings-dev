@@ -1,6 +1,6 @@
 #import "PMAllocationDebug.h"
 #import "easy-bindings-utilities.h"
-#import "PMTransientDependancyManager.h"
+#import "PMApplication.h"
 #import "PMEntityArrayController.h"
 #import "PMEntityController.h"
 #import "%!DOCUMENT_NAME%.h"
@@ -236,7 +236,7 @@ foreach TRANSIENT_LIST do
   if [mRootSignDependencyList length] > 0 then
 %  if (%!mTransientName%__computed) {
     %!mTransientName%__computed = NO ;
-    [PMTransientDependancyManager
+    [PMApplication
       enterTriggerForObject:self
       transientIndex:%!["document." . DOCUMENT_NAME . "." . mTransientName identifierRepresentation]%
     ] ;

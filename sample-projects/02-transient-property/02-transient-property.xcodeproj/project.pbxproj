@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF4CA85B193F1EFE00F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA859193F1EFE00F3B0C7 /* PMApplication.m */; };
 		CF721ADA1593605D008662EA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF721AD91593605D008662EA /* Cocoa.framework */; };
 		CF721AE41593605D008662EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF721AE21593605D008662EA /* InfoPlist.strings */; };
 		CF721AE61593605D008662EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF721AE51593605D008662EA /* main.m */; };
@@ -19,10 +20,12 @@
 		CF7C15431656DA6700CFB81D /* Prefs_mUpperCaseFullName.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C15411656DA6700CFB81D /* Prefs_mUpperCaseFullName.m */; };
 		CF9D9A6915963D4A006D876D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9D9A6715963D4A006D876D /* PMAllocationDebug.m */; };
 		CF9D9A6A15963D4A006D876D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D9A6815963D4A006D876D /* PMAllocationDebug.xib */; };
-		CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF4CA858193F1EFE00F3B0C7 /* PMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplication.h; sourceTree = "<group>"; };
+		CF4CA859193F1EFE00F3B0C7 /* PMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplication.m; sourceTree = "<group>"; };
+		CF4CA85A193F1EFE00F3B0C7 /* PMWillDeallocProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWillDeallocProtocol.h; sourceTree = "<group>"; };
 		CF721AD51593605D008662EA /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF721AD91593605D008662EA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF721ADC1593605D008662EA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -46,8 +49,6 @@
 		CF9D9A6715963D4A006D876D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CF9D9A6815963D4A006D876D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFAAC0151594691E00B59575 /* Prefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefs-computations.h"; sourceTree = "<group>"; };
-		CFF1C90715C302970054F1DA /* PMTransientDependancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTransientDependancyManager.h; sourceTree = "<group>"; };
-		CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTransientDependancyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +102,9 @@
 		CF721ADF1593605D008662EA /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
-				CFF1C90715C302970054F1DA /* PMTransientDependancyManager.h */,
-				CFF1C90815C302970054F1DA /* PMTransientDependancyManager.m */,
+				CF4CA858193F1EFE00F3B0C7 /* PMApplication.h */,
+				CF4CA859193F1EFE00F3B0C7 /* PMApplication.m */,
+				CF4CA85A193F1EFE00F3B0C7 /* PMWillDeallocProtocol.h */,
 				CF9D9A6615963D4A006D876D /* PMAllocationDebug.h */,
 				CF9D9A6715963D4A006D876D /* PMAllocationDebug.m */,
 				CF9D9A6815963D4A006D876D /* PMAllocationDebug.xib */,
@@ -205,8 +207,8 @@
 				CF721B03159360A8008662EA /* Prefs.m in Sources */,
 				CF721B06159360C7008662EA /* Prefs_mFullName.m in Sources */,
 				CF9D9A6915963D4A006D876D /* PMAllocationDebug.m in Sources */,
-				CFF1C90915C302970054F1DA /* PMTransientDependancyManager.m in Sources */,
 				CF7C15431656DA6700CFB81D /* Prefs_mUpperCaseFullName.m in Sources */,
+				CF4CA85B193F1EFE00F3B0C7 /* PMApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
-#import "PMTransientDependancyManager.h"
+#import "PMApplication.h"
 #import "%!PREFERENCES_NAME%.h"
 %if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!PREFERENCES_NAME%-computations.h"\n%
