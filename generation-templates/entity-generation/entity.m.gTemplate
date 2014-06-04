@@ -404,8 +404,8 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp tryToPerform:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) with:inObserver] ;
-  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
@@ -416,8 +416,8 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp tryToPerform:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) with:inObserver] ;
-  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
@@ -435,8 +435,8 @@ foreach TO_MANY_RELATIONSHIPS do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp tryToPerform:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) with:inObserver] ;
-  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
@@ -447,8 +447,8 @@ foreach TO_MANY_RELATIONSHIPS do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp tryToPerform:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) with:inObserver] ;
-  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
+  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
 }
 
