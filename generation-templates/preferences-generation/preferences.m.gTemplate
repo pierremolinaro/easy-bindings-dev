@@ -213,7 +213,11 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
     %!mAttributeName%_observers = [NSMutableSet new] ;
   }
   [%!mAttributeName%_observers addObject:inObserver] ;
-  [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  #ifdef PM_COCOA_DEBUG
+    const BOOL ok =
+  #endif
+   [NSApp tryToPerform:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) with:inObserver] ;
+  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
@@ -221,7 +225,11 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 
 - (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
   [%!mAttributeName%_observers removeObject:inObserver] ;
-  [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  #ifdef PM_COCOA_DEBUG
+    const BOOL ok =
+  #endif
+   [NSApp tryToPerform:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) with:inObserver] ;
+  macroAssert (ok, @"NSApp tryToPerform fail", 0, 0) ;
 //  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
