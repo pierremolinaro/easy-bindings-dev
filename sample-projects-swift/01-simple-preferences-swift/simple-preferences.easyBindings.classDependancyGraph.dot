@@ -1,0 +1,9 @@
+digraph G {
+  "PMPrefs" -> "NSString" ;
+  "PMPrefs" -> "NSColor" ;
+  "PMPrefs" -> "NSDate" ;
+  "PMPrefs" -> "Integer" ;
+  "PMPrefs" -> "NSTextField" ;
+  "PMPrefs" -> "NSColorWell" ;
+  "PMPrefs" -> "NSDatePicker" ;
+}
