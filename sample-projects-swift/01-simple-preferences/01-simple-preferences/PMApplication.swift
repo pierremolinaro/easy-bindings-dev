@@ -84,6 +84,7 @@ func enterTriggerForObject (inObject:AnyObject, inIndex:Int) {
     }else{
       super.sendEvent (inEvent)
     }
+    displayAllocation ()
   }
   
   //---------------------------------------------------------------------------*
