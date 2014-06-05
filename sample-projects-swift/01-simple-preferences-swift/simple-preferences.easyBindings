@@ -1,0 +1,23 @@
+preferences PMPrefs {
+#--- String
+  attribute NSString myString default "hello" ;
+  outlet NSTextField myTextField $value self.myString ;
+  outlet NSTextField myOtherTextField $value self.myString  {NSContinuouslyUpdatesValue:YES} ;
+#--- Color
+  attribute NSColor mColor default yellowColor ;
+  outlet NSColorWell mColorWell $value self.mColor ;
+#--- Date
+  attribute NSDate mDate default date ;
+  outlet NSDatePicker mDatePicker $value self.mDate ;
+#--- Number
+  attribute Integer mIntegerValue default 123 ;
+  outlet NSTextField mInteger32TextField $value self.mIntegerValue ;
+
+  
+  action monAction ;
+  action autreAction ;
+}
+
+#--------------------------------------------------------------*
+
+end
