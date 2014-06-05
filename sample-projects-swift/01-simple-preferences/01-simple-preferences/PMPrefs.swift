@@ -24,7 +24,7 @@ import Cocoa
   //------------------------------------------------------- Init
   init () {
     super.init ()
-  //  macroNoteObjectAllocation ;
+    noteObjectAllocation (self) ;
   //  g_PMPrefs = self ;
     //---
     var ud = NSUserDefaults.standardUserDefaults ()
@@ -53,7 +53,14 @@ import Cocoa
      object:nil
     )
   }
-
+  
+  //------------------------------------------------------- deinit
+  deinit {
+    noteObjectDeallocation (self) ;
+  }
+  
+  
+  //------------------------------------------------------- applicationWillTerminateAction
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (myString, forKey:"PMPrefs:myString")
@@ -192,14 +199,6 @@ import Cocoa
   //  [self PMPrefs_did_awakeFromNib] ;
   }
   
-}
-
-extension PMPrefs {
-  @IBAction func monAction (inSender: AnyObject) {
-  }
-  
-  @IBAction func autreAction (inSender: AnyObject) {
-  }
 }
 
 //----------------------------------------------------------------------------*

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1A3A5A1940F57C00082B99 /* PMPrefs+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1A3A591940F57C00082B99 /* PMPrefs+monAction.swift */; };
+		CF1A3A5C1940F5C200082B99 /* PMPrefs+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1A3A5B1940F5C200082B99 /* PMPrefs+autreAction.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CF71E65B1940938500021EDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF71E65A1940938500021EDF /* Images.xcassets */; };
 		CF71E65E1940938500021EDF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF71E65C1940938500021EDF /* MainMenu.xib */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF1A3A591940F57C00082B99 /* PMPrefs+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PMPrefs+monAction.swift"; path = "../../../sample-projects/01-simple-preferences/01-simple-preferences/PMPrefs+monAction.swift"; sourceTree = "<group>"; };
+		CF1A3A5B1940F5C200082B99 /* PMPrefs+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PMPrefs+autreAction.swift"; path = "../../../sample-projects/01-simple-preferences/01-simple-preferences/PMPrefs+autreAction.swift"; sourceTree = "<group>"; };
 		CF71E6511940938500021EDF /* 01-simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */,
 				CFA38983194094BA00F20FFB /* Easy_bindings_utilities.swift */,
 				CFA38985194094C400F20FFB /* PMApplication.swift */,
+				CF1A3A591940F57C00082B99 /* PMPrefs+monAction.swift */,
+				CF1A3A5B1940F5C200082B99 /* PMPrefs+autreAction.swift */,
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
 				CF71E65A1940938500021EDF /* Images.xcassets */,
 				CF71E65C1940938500021EDF /* MainMenu.xib */,
@@ -222,7 +228,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
+				CF1A3A5C1940F5C200082B99 /* PMPrefs+autreAction.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
+				CF1A3A5A1940F57C00082B99 /* PMPrefs+monAction.swift in Sources */,
 				CFA38984194094BA00F20FFB /* Easy_bindings_utilities.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
