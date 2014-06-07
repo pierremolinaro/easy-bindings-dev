@@ -267,6 +267,7 @@
 				GCC_PREFIX_HEADER = "01-simple-preferences/01-simple-preferences-Prefix.pch";
 				INFOPLIST_FILE = "01-simple-preferences/01-simple-preferences-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
