@@ -307,6 +307,7 @@
 				GCC_PREFIX_HEADER = "07-simple-classes/07-simple-classes-Prefix.pch";
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -318,6 +319,7 @@
 				GCC_PREFIX_HEADER = "07-simple-classes/07-simple-classes-Prefix.pch";
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
