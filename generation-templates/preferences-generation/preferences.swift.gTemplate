@@ -40,9 +40,9 @@ end foreach
 foreach CONTROLLER_MAP do
 %  var %!lkey->string% = %!mControllerClassName% ()\n%
 end foreach
-%
-  //------------------------------------------------------- Transients\n%
+
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //------------------------------------------------- Transient %!mTransientName%\n%
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]% = %![mTransientType swiftDefaultValue]%\n%
 %  var %!mTransientName%__computed = false\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
@@ -119,10 +119,10 @@ foreach CONTROLLER_MAP do
 end foreach
 
 foreach OUTLET_DECLARATION_LIST do
-   %//--- check %!mOutletName%' outlet not nil\n%
-   %  if nil == %!mOutletName% {\n%
-   %    presentErrorWindow (__FILE__, __LINE__, "the '%!mOutletName%' outlet is nil") ;\n%
-   %  }\n%
+   %  //--- check %!mOutletName%' outlet not nil\n%
+   %    if nil == %!mOutletName% {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!mOutletName%' outlet is nil") ;\n%
+   %    }\n%
   foreach mOutletBindingList do
     ![mBinding generateSwiftBinding !mOutletName]
   end foreach
@@ -164,3 +164,4 @@ end foreach
 }
 
 //----------------------------------------------------------------------------*
+
