@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF713F461944C1CC000826E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F451944C1CC000826E7 /* main.swift */; };
+		CF713F4A1944C1CC000826E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF713F491944C1CC000826E7 /* Images.xcassets */; };
+		CF713F4D1944C1CC000826E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F4B1944C1CC000826E7 /* MainMenu.xib */; };
+		CF713F591944C1CC000826E7 /* _2_transient_propertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */; };
+		CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F621944C608000826E7 /* easy-bindings-utilities.swift */; };
+		CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F631944C608000826E7 /* PMAllocationDebug.swift */; };
+		CF713F691944C608000826E7 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F641944C608000826E7 /* PMAllocationDebug.xib */; };
+		CF713F6A1944C608000826E7 /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F651944C608000826E7 /* PMApplication.swift */; };
+		CF713F6B1944C608000826E7 /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F661944C608000826E7 /* Prefs.swift */; };
+		CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */; };
+		CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */; };
+		CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F741944D887000826E7 /* Prefs+action+monAction.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF713F531944C1CC000826E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF713F381944C1CC000826E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF713F3F1944C1CC000826E7;
+			remoteInfo = "02-transient-property";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF713F401944C1CC000826E7 /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF713F441944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF713F451944C1CC000826E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CF713F491944C1CC000826E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF713F4C1944C1CC000826E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "02-transient-propertyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF713F571944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _2_transient_propertyTests.swift; sourceTree = "<group>"; };
+		CF713F621944C608000826E7 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
+		CF713F631944C608000826E7 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
+		CF713F641944C608000826E7 /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CF713F651944C608000826E7 /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
+		CF713F661944C608000826E7 /* Prefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
+		CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mFullName.swift"; sourceTree = "<group>"; };
+		CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
+		CF713F741944D887000826E7 /* Prefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+action+monAction.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF713F3D1944C1CC000826E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF713F4F1944C1CC000826E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF713F371944C1CC000826E7 = {
+			isa = PBXGroup;
+			children = (
+				CF713F421944C1CC000826E7 /* 02-transient-property */,
+				CF713F551944C1CC000826E7 /* 02-transient-propertyTests */,
+				CF713F411944C1CC000826E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF713F411944C1CC000826E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF713F401944C1CC000826E7 /* 02-transient-property.app */,
+				CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF713F421944C1CC000826E7 /* 02-transient-property */ = {
+			isa = PBXGroup;
+			children = (
+				CF713F621944C608000826E7 /* easy-bindings-utilities.swift */,
+				CF713F631944C608000826E7 /* PMAllocationDebug.swift */,
+				CF713F641944C608000826E7 /* PMAllocationDebug.xib */,
+				CF713F651944C608000826E7 /* PMApplication.swift */,
+				CF713F661944C608000826E7 /* Prefs.swift */,
+				CF713F741944D887000826E7 /* Prefs+action+monAction.swift */,
+				CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */,
+				CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */,
+				CF713F491944C1CC000826E7 /* Images.xcassets */,
+				CF713F4B1944C1CC000826E7 /* MainMenu.xib */,
+				CF713F431944C1CC000826E7 /* Supporting Files */,
+			);
+			path = "02-transient-property";
+			sourceTree = "<group>";
+		};
+		CF713F431944C1CC000826E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF713F441944C1CC000826E7 /* Info.plist */,
+				CF713F451944C1CC000826E7 /* main.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF713F551944C1CC000826E7 /* 02-transient-propertyTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */,
+				CF713F561944C1CC000826E7 /* Supporting Files */,
+			);
+			path = "02-transient-propertyTests";
+			sourceTree = "<group>";
+		};
+		CF713F561944C1CC000826E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF713F571944C1CC000826E7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF713F3F1944C1CC000826E7 /* 02-transient-property */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property" */;
+			buildPhases = (
+				CF713F3C1944C1CC000826E7 /* Sources */,
+				CF713F3D1944C1CC000826E7 /* Frameworks */,
+				CF713F3E1944C1CC000826E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "02-transient-property";
+			productName = "02-transient-property";
+			productReference = CF713F401944C1CC000826E7 /* 02-transient-property.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF713F511944C1CC000826E7 /* 02-transient-propertyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF713F5F1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-propertyTests" */;
+			buildPhases = (
+				CF713F4E1944C1CC000826E7 /* Sources */,
+				CF713F4F1944C1CC000826E7 /* Frameworks */,
+				CF713F501944C1CC000826E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF713F541944C1CC000826E7 /* PBXTargetDependency */,
+			);
+			name = "02-transient-propertyTests";
+			productName = "02-transient-propertyTests";
+			productReference = CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF713F381944C1CC000826E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Pierre Molinaro";
+				TargetAttributes = {
+					CF713F3F1944C1CC000826E7 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					CF713F511944C1CC000826E7 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = CF713F3F1944C1CC000826E7;
+					};
+				};
+			};
+			buildConfigurationList = CF713F3B1944C1CC000826E7 /* Build configuration list for PBXProject "02-transient-property" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF713F371944C1CC000826E7;
+			productRefGroup = CF713F411944C1CC000826E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF713F3F1944C1CC000826E7 /* 02-transient-property */,
+				CF713F511944C1CC000826E7 /* 02-transient-propertyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF713F3E1944C1CC000826E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF713F4A1944C1CC000826E7 /* Images.xcassets in Resources */,
+				CF713F691944C608000826E7 /* PMAllocationDebug.xib in Resources */,
+				CF713F4D1944C1CC000826E7 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF713F501944C1CC000826E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF713F3C1944C1CC000826E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */,
+				CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */,
+				CF713F6B1944C608000826E7 /* Prefs.swift in Sources */,
+				CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */,
+				CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */,
+				CF713F461944C1CC000826E7 /* main.swift in Sources */,
+				CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */,
+				CF713F6A1944C608000826E7 /* PMApplication.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF713F4E1944C1CC000826E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF713F591944C1CC000826E7 /* _2_transient_propertyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF713F541944C1CC000826E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF713F3F1944C1CC000826E7 /* 02-transient-property */;
+			targetProxy = CF713F531944C1CC000826E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CF713F4B1944C1CC000826E7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF713F4C1944C1CC000826E7 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF713F5A1944C1CC000826E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.9;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CF713F5B1944C1CC000826E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx10.9;
+			};
+			name = Release;
+		};
+		CF713F5D1944C1CC000826E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "02-transient-property/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CF713F5E1944C1CC000826E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "02-transient-property/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CF713F601944C1CC000826E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/02-transient-property.app/Contents/MacOS/02-transient-property";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "02-transient-propertyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		CF713F611944C1CC000826E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/02-transient-property.app/Contents/MacOS/02-transient-property";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "02-transient-propertyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF713F3B1944C1CC000826E7 /* Build configuration list for PBXProject "02-transient-property" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF713F5A1944C1CC000826E7 /* Debug */,
+				CF713F5B1944C1CC000826E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF713F5D1944C1CC000826E7 /* Debug */,
+				CF713F5E1944C1CC000826E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF713F5F1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-propertyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF713F601944C1CC000826E7 /* Debug */,
+				CF713F611944C1CC000826E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF713F381944C1CC000826E7 /* Project object */;
+}

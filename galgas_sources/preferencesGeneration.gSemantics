@@ -51,7 +51,19 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
 
+  template preferencesTransientComputationInSwift "preferences-transient-computation-function.swift.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@ebType RESULT_TYPE
+    ?@string TRANSIENT_NAME
+    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+
   template preferencesActionImplementationFile "preferences-action.m.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@string ACTION_NAME
+  ;
+
+  template preferencesActionInSwift "preferences-action.swift.gTemplate"
     ?@string PREFERENCES_NAME
     ?@string ACTION_NAME
   ;
@@ -61,7 +73,6 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
     ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@outletGenerationList OUTLET_DECLARATION_LIST
-    ?@lstringlist ACTION_LIST
     ?@stringset INCLUSION_SET
     ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
@@ -80,7 +91,6 @@ override method @preferenceTypeGeneration generate
       !mAttributeListForImplementation
       !mTransientListForImplementation
       !mOutletDeclarationList
-      !mActionList
       !mFileInclusionSet->mImplementationFileInclusionSet
       !mArrayMap
       !mControllerMap
@@ -94,6 +104,39 @@ override method @preferenceTypeGeneration generate
       !"\n\n" # Defaut user zone2
       !"\n\n"
     ] ;
+    for action in mActionList do
+      const @string s := [filewrapper prefsGenerationTemplate.preferencesActionInSwift
+        !mGenerationName
+        !action->mValue->string
+      ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . "+action+" . action->mValue . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"    NSBeep ()\n" # Defaut user zone2
+      !"  }\n}\n\n//----------------------------------------------------------------------------*\n"
+    ] ;
+    end for ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        const @string s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationInSwift
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "+transient+" . mTransientName . ".swift"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
   else
   #--- Header
     @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1

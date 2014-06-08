@@ -1,48 +1,5 @@
 semantics attributeDeclarationAnalysis :
-#  import "transientAnalysis.gSemantics" ;
-#  import "bindingSemanticAnalysis.gSemantics" ;
   import "decoratedTypes.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-#routine attributeDeclarationEnterType
-#  ??@attributeList inAttributeList
-#  ??@classArrayList inArrayList
-#  ??@string inObjectName # "document." . documentName
-#  ?!@unifiedTypeMap ioUnifiedTypeMap 
-#  ?!@observablePropertyMap ioObservablePropertyMap
-#:
-##--- Attributes
-#  foreach inAttributeList do
-#    [@unifiedTypeProxy makeProxy
-#      !?ioUnifiedTypeMap
-#      !mAttributeTypeName
-#      ?@unifiedTypeProxy attributeTypeProxy
-#    ] ;
-#    [!?ioObservablePropertyMap insertKey
-#      !mAttributeName
-#      !attributeTypeProxy
-#      !false # is not transient
-#      !inObjectName . "." . mAttributeName
-#      !false # Is not a collection
-#    ] ;
-#  end foreach ;
-##--- Arraies
-#  foreach inArrayList do
-#    [@unifiedTypeProxy makeProxy
-#      !?ioUnifiedTypeMap
-#      !mElementClassName
-#      ?@unifiedTypeProxy type
-#    ] ;
-#    [!?ioObservablePropertyMap insertKey
-#      !mArrayName
-#      !type
-#      !false # is not transient
-#      !inObjectName . "." . mArrayName
-#      !true # Is a collection
-#    ] ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

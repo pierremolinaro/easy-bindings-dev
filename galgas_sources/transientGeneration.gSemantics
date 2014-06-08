@@ -4,13 +4,67 @@ semantics transientGeneration :
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractTransientDependencyForImplementation generateFormalArgument
+#! generateSwiftFormalArgument
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractTransientDependencyForImplementation generateSwiftFormalArgument
   ->@string outResult
 ;
 
 #----------------------------------------------------------------------------*
 
-override reader @transientDependencyFromSelfForImplementation generateFormalArgument
+override reader @transientDependencyFromSelfForImplementation generateSwiftFormalArgument
+  ->@string outResult
+:
+  if mNamesCountOption then
+    outResult := mMasterAttributeName . "_count : Int" ;
+  else
+  outResult := mMasterAttributeName . " : " . [mMasterAttributeType swiftTypeName] ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromControllerForImplementation generateSwiftFormalArgument
+  ->@string outResult
+:
+  outResult := mMasterAttributeName . " : " . [mMasterAttributeType swiftTypeName] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromRootForImplementation generateSwiftFormalArgument
+  ->@string outResult
+:
+  if mNamesCountOption then
+    outResult := "const NSUInteger in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] . "_count" ;
+  else
+    outResult := mMasterAttributeName . " : " . [mMasterAttributeType swiftTypeName] ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromPreferenceForImplementation generateSwiftFormalArgument
+  ->@string outResult
+:
+  outResult := mMasterAttributeName . " : " . [mMasterAttributeType swiftTypeName] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#! generateFormalObjectiveCArgument
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractTransientDependencyForImplementation generateFormalObjectiveCArgument
+  ->@string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientDependencyFromSelfForImplementation generateFormalObjectiveCArgument
   ->@string outResult
 :
   if mNamesCountOption then
@@ -22,7 +76,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @transientDependencyFromControllerForImplementation generateFormalArgument
+override reader @transientDependencyFromControllerForImplementation generateFormalObjectiveCArgument
   ->@string outResult
 :
   outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
@@ -30,7 +84,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @transientDependencyFromRootForImplementation generateFormalArgument
+override reader @transientDependencyFromRootForImplementation generateFormalObjectiveCArgument
   ->@string outResult
 :
   if mNamesCountOption then
@@ -42,11 +96,15 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @transientDependencyFromPreferenceForImplementation generateFormalArgument
+override reader @transientDependencyFromPreferenceForImplementation generateFormalObjectiveCArgument
   ->@string outResult
 :
   outResult := [mMasterAttributeType ocTypeName] . " in" . [mMasterAttributeName stringByCapitalizingFirstCharacter] ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!generateMasterAttributeCall
 
 #----------------------------------------------------------------------------*
 
@@ -125,7 +183,7 @@ function generateTransientFunctionDeclarations
       else
         outResult .= ",\n" ;
       end if ;
-      outResult .= "    " . [mDependency generateFormalArgument] ;
+      outResult .= "    " . [mDependency generateFormalObjectiveCArgument] ;
     end foreach ;
     foreach mRootSignDependencyList do
       if first then
@@ -167,7 +225,7 @@ function generateTransientFunctionImplementation
     else
       outResult .= ",\n" ;
     end if ;
-    outResult .= "    " . [mDependency generateFormalArgument] ;
+    outResult .= "    " . [mDependency generateFormalObjectiveCArgument] ;
   end foreach ;
   foreach inRootSignDependencyList do
     if first then
@@ -182,7 +240,7 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
-function generateTransientCacheRoutine
+function generateObjectiveCTransientCacheRoutine
   ??@string inKindName 
   ??@transientListForImplementation inTransientListForImplementation
   ->@string outResult
@@ -225,6 +283,44 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
+function generateSwiftTransientCacheRoutine
+  ??@string inKindName 
+  ??@ebType unused mTransientType
+  ??@string mTransientName
+  ??@directDependancyList mDependencyList
+  ??@stringlist mRootSignDependencyList
+  ->@string outResult
+:
+  outResult :=
+  "    if !" . mTransientName . "__computed {\n"
+  "      " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
+  @bool first := true ;
+  foreach mDependencyList do
+    if first then
+      first := false ;
+    else
+      outResult .= ", " ;
+    end if ;
+    outResult .= [mDependency generateMasterAttributeCall] ;
+  end foreach ;
+  foreach mRootSignDependencyList do
+    if first then
+      first := false ;
+    else
+      outResult .= ", " ;
+    end if ;
+    outResult .= "self.rootObject.signature" ;
+  end foreach ;
+  outResult .= ") ;\n"
+  "      " . mTransientName . "__computed = true\n"
+  "    }\n"
+  "    return " . mTransientName . "__cache" ;
+#  if [mTransientType copyOnAssign] then outResult .= ".copy" ; end if ;
+  outResult .= "\n" ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
 listmap @triggeredKeysForSelfObject (@stringlist) ;
 
 #----------------------------------------------------------------------------*
@@ -232,8 +328,10 @@ listmap @triggeredKeysForSelfObject (@stringlist) ;
 listmap @triggeredKeysForOtherObjects (@2stringlist) ;
 
 #----------------------------------------------------------------------------*
+#!generateObjectiveCTransientTriggerFromSelfAttribute
+#----------------------------------------------------------------------------*
 
-abstract method @abstractTransientDependencyForImplementation generateTransientTriggerFromSelfAttribute
+abstract method @abstractTransientDependencyForImplementation generateObjectiveCTransientTriggerFromSelfAttribute
   ??@string inPrefix # entity, class, preference
   ??@string inClassName
   ??@string inTransientName
@@ -245,7 +343,7 @@ abstract method @abstractTransientDependencyForImplementation generateTransientT
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromSelfForImplementation generateTransientTriggerFromSelfAttribute
+override method @transientDependencyFromSelfForImplementation generateObjectiveCTransientTriggerFromSelfAttribute
   ??@string inPrefix # entity, class, preference
   ??@string inClassName
   ??@string inTransientName
@@ -272,7 +370,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromRootForImplementation generateTransientTriggerFromSelfAttribute
+override method @transientDependencyFromRootForImplementation generateObjectiveCTransientTriggerFromSelfAttribute
   ??@string inPrefix # entity, class, preference
   ??@string inClassName
   ??@string inTransientName
@@ -299,7 +397,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromPreferenceForImplementation generateTransientTriggerFromSelfAttribute
+override method @transientDependencyFromPreferenceForImplementation generateObjectiveCTransientTriggerFromSelfAttribute
   ??@string unused inPrefix # entity, class, preference
   ??@string unused inClassName
   ??@string unused inTransientName
@@ -312,7 +410,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromControllerForImplementation generateTransientTriggerFromSelfAttribute
+override method @transientDependencyFromControllerForImplementation generateObjectiveCTransientTriggerFromSelfAttribute
   ??@string unused inPrefix # entity, class, preference
   ??@string unused inClassName
   ??@string unused inTransientName
@@ -325,7 +423,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-function generateTransientTriggering
+function generateObjectiveCTransientTriggering
   ??@string inPropertyName
   ??@string inClassName
   ??@transientListForImplementation inTransientListForImplementation
@@ -342,7 +440,129 @@ function generateTransientTriggering
     foreach inTransientListForImplementation do
       foreach mDependencyList do
         if (not [registeredTransientSet hasKey !mTransientName]) then
-          [mDependency generateTransientTriggerFromSelfAttribute
+          [mDependency generateObjectiveCTransientTriggerFromSelfAttribute
+            !inPrefix
+            !inClassName
+            !mTransientName
+            !?masterSet
+            !?registeredTransientSet
+            !?looping
+            !?outResult
+          ] ;
+        end if ;
+      end foreach ;
+    end foreach ;
+  end loop ;
+end function ;
+
+#----------------------------------------------------------------------------*
+#!generateSwiftTransientTriggerFromSelfAttribute
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependencyForImplementation generateSwiftTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromSelfForImplementation generateSwiftTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+:
+  if [ioMasterAttributeSet hasKey !mMasterAttributeName] then
+    ioMasterAttributeSet += !inTransientName ;
+    ioRegisteredTransientSet += !inTransientName ;
+    ioContinue := true ;
+    ioResult .=
+    "      //--- Trigger '" . inTransientName . " transient'\n"
+    "        if " . inTransientName . "__computed {\n"
+    "          " . inTransientName . "__computed = false ;\n"
+    "          enterTriggerForObject_" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . " (self)\n"
+    "        }\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromRootForImplementation generateSwiftTransientTriggerFromSelfAttribute
+  ??@string inPrefix # entity, class, preference
+  ??@string inClassName
+  ??@string inTransientName
+  ?!@stringset ioMasterAttributeSet
+  ?!@stringset ioRegisteredTransientSet
+  ?!@bool ioContinue
+  ?!@string ioResult
+:
+  if [ioMasterAttributeSet hasKey !mMasterAttributeName] then
+    ioMasterAttributeSet += !inTransientName ;
+    ioRegisteredTransientSet += !inTransientName ;
+    ioContinue := true ;
+    ioResult .=
+    "      //--- Trigger '" . inTransientName . " transient'\n"
+    "        if " . inTransientName . "__computed {\n"
+    "          " . inTransientName . "__computed = false ;\n"
+    "          enterTriggerForObject_" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . " (self)\n"
+    "        }\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation generateSwiftTransientTriggerFromSelfAttribute
+  ??@string unused inPrefix # entity, class, preference
+  ??@string unused inClassName
+  ??@string unused inTransientName
+  ?!@stringset unused ioMasterAttributeSet
+  ?!@stringset unused ioRegisteredTransientSet
+  ?!@bool unused ioContinue
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromControllerForImplementation generateSwiftTransientTriggerFromSelfAttribute
+  ??@string unused inPrefix # entity, class, preference
+  ??@string unused inClassName
+  ??@string unused inTransientName
+  ?!@stringset unused ioMasterAttributeSet
+  ?!@stringset unused ioRegisteredTransientSet
+  ?!@bool unused ioContinue
+  ?!@string unused ioResult
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+function generateSwiftTransientTriggering
+  ??@string inPropertyName
+  ??@string inClassName
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inPrefix # entity, class, preference
+  ->@string outResult
+:
+  outResult := "" ;
+#----
+  @stringset masterSet [setWithString !inPropertyName] ;
+  @stringset registeredTransientSet [emptySet] ;
+  @bool looping := true ;
+  loop [inTransientListForImplementation length] + 1 : while looping do
+    looping := false ;
+    foreach inTransientListForImplementation do
+      foreach mDependencyList do
+        if (not [registeredTransientSet hasKey !mTransientName]) then
+          [mDependency generateSwiftTransientTriggerFromSelfAttribute
             !inPrefix
             !inClassName
             !mTransientName
@@ -661,12 +881,14 @@ routine generateTransientDependencyFiles
   foreach > inSortedTransientOrderedList do
     transientOrderedList .= "// " . mValue . "\n" ;
   end foreach ;
-  @string transientIndexesString := "" ;
+  @string transientObjectiveCIndexString := "" ;
+  @string transientSwiftIndexString := "" ;
   @string transientList := "" ;
   @uint idx := 0 ;
   foreach > inSortedTransientOrderedList do
     if [dependentSet hasKey !mValue] then
-      transientIndexesString .= "#define " . [mValue identifierRepresentation] . " (" . idx . ")\n" ;
+      transientObjectiveCIndexString .= "#define " . [mValue identifierRepresentation] . " (" . idx . ")\n" ;
+      transientSwiftIndexString .= "// " . idx . ": " . [mValue identifierRepresentation] . "\n" ;
       transientList .= "      @" . [[mValue pathExtension] utf8Representation] . ", // " . mValue . "\n" ;
       idx ++ ;
     end if ;
@@ -677,7 +899,7 @@ routine generateTransientDependencyFiles
     const @string s := [filewrapper transientManager.applicationInSwift
       !graphString
       !transientOrderedList
-      !transientIndexesString
+      !transientSwiftIndexString
       !transientCount
       !inSortedTransientOrderedList
     ] ;
@@ -694,7 +916,7 @@ routine generateTransientDependencyFiles
     @string s := [filewrapper transientManager.applicationClassDeclaration
       !graphString
       !transientOrderedList
-      !transientIndexesString
+      !transientObjectiveCIndexString
       !transientCount
     ] ;
     [@string generateFileWithPattern

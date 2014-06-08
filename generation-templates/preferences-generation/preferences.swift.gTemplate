@@ -13,22 +13,23 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 foreach OUTLET_DECLARATION_LIST do
 %  @IBOutlet var %!mOutletName% : %!mOutletType%\n%
 end foreach
-%
 
-  //------------------------------------------------------- Attributes\n%
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%\n%
+%  //------------------------------------- Attribute %!mAttributeName%\n%
 %  var %!mAttributeName%_observers = NSMutableSet ()\n%
 %  var %!mAttributeName% : %![mType swiftTypeName]% = %!mDirectSwiftDefaultValue% {
     didSet {
       if %!mAttributeName% != oldValue {
         %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
-      }
+%!generateSwiftTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
+%      }
     }
-  }\n
+  }
   func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.addObject (inObserver)
     NSApp.sendAction ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
-  }\n
+  }
   func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.removeObject (inObserver)
     NSApp.sendAction ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
@@ -42,15 +43,16 @@ end foreach
 %
   //------------------------------------------------------- Transients\n%
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%\n%
-%  var %!mTransientName%__computed = false \n\n%
-%  func %!mTransientName% () -> (%![mTransientType swiftTypeName]%) {\n%
-%  }\n%
+%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]% = %![mTransientType swiftDefaultValue]%\n%
+%  var %!mTransientName%__computed = false\n%
+%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
+!generateSwiftTransientCacheRoutine [!PREFERENCES_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
+%  }\n\n%
 end foreach
 %
   //------------------------------------------------------- Arraies\n%
 foreach ARRAY_MAP do
-%  var %!lkey->string% = NSMuableArray ()\n%
+%  var %!lkey->string% = NSMutableArray ()\n%
 end foreach
 
 
@@ -158,10 +160,7 @@ end foreach
 %
 end foreach
 %  }
+
 }
-%
-!generateTransientCacheRoutine [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 
-%//----------------------------------------------------------------------------*
-
-
+//----------------------------------------------------------------------------*

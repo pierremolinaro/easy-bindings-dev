@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF5977C41940FAA0001D8078 /* PMPrefs+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5977C21940FAA0001D8078 /* PMPrefs+autreAction.swift */; };
-		CF5977C51940FAA0001D8078 /* PMPrefs+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5977C31940FAA0001D8078 /* PMPrefs+monAction.swift */; };
+		CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */; };
+		CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CF71E65B1940938500021EDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF71E65A1940938500021EDF /* Images.xcassets */; };
 		CF71E66A1940938500021EDF /* _1_simple_preferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */; };
@@ -30,8 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF5977C21940FAA0001D8078 /* PMPrefs+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+autreAction.swift"; sourceTree = "<group>"; };
-		CF5977C31940FAA0001D8078 /* PMPrefs+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+monAction.swift"; sourceTree = "<group>"; };
+		CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+autreAction.swift"; sourceTree = "<group>"; };
+		CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+monAction.swift"; sourceTree = "<group>"; };
 		CF71E6511940938500021EDF /* 01-simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
 				CFA38985194094C400F20FFB /* PMApplication.swift */,
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
-				CF5977C21940FAA0001D8078 /* PMPrefs+autreAction.swift */,
-				CF5977C31940FAA0001D8078 /* PMPrefs+monAction.swift */,
+				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
+				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
 				CF71E65A1940938500021EDF /* Images.xcassets */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
@@ -224,9 +224,9 @@
 			files = (
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
+				CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */,
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
-				CF5977C51940FAA0001D8078 /* PMPrefs+monAction.swift in Sources */,
-				CF5977C41940FAA0001D8078 /* PMPrefs+autreAction.swift in Sources */,
+				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
 			);

@@ -105,7 +105,7 @@ foreach ATTRIBUTE_LIST do
   if (! (%![mType equalExpression!"self." . mAttributeName !"inNewValue"]%)) {
     [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inNewValue] ;
     [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
-%!generateTransientTriggering [!mAttributeName !DOCUMENT_NAME !TRANSIENT_LIST !"document"]
+%!generateObjectiveCTransientTriggering [!mAttributeName !DOCUMENT_NAME !TRANSIENT_LIST !"document"]
 %  }
 }
 
@@ -220,7 +220,7 @@ end foreach
 
 % !generateObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST !"document"]
 
-!generateTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST]
+!generateObjectiveCTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST]
 
 if HAS_SIGNATURE_OBSERVER then
 %//----------------------------------------------------------------------------*

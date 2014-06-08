@@ -117,9 +117,11 @@ reader @ebType swiftTypeName
   switch mKind
   when classType, controllerClassType, documentType, entityType,
        nibClassType, outletClassType, preferencesType,
-       colorType, dataType, dateType, fontType, stringType,
+       colorType, dataType, dateType, fontType,
        imageType,  menuType, bezierPathType, protocolType :
     outResult := mTypeName->string ;
+  when stringType :
+    outResult := "String" ;
   when structType, enumType :
     outResult := mTypeName->string ;
   when boolType :
@@ -130,6 +132,34 @@ reader @ebType swiftTypeName
     outResult := "UInt" ;
   when doubleType :
     outResult := "Double" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   swiftDefaultValue                                                         *
+#-----------------------------------------------------------------------------*
+
+reader @ebType swiftDefaultValue
+  -> @string outResult
+ :
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       colorType, dataType, dateType, fontType,
+       imageType,  menuType, bezierPathType, protocolType :
+    outResult := "nil" ;
+  when stringType :
+    outResult := "\"\"" ;
+  when structType, enumType :
+    outResult := mTypeName->string ;
+  when boolType :
+    outResult := "false" ;
+  when integerType :
+    outResult := "0" ;
+  when uintegerType :
+    outResult := "0" ;
+  when doubleType :
+    outResult := "0.0" ;
   end switch ;
 end reader ;
 
@@ -1146,7 +1176,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     if mType->mKind == [@typeKind stringType] then
       outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
       outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-      outSwiftDefaultValueAsString := [mValue->string utf8Representation] ;
+      outSwiftDefaultValueAsString := "\"". mValue->string . "\"" ;
       found := true ;
     end if ;
   end foreach ;

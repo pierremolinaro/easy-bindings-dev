@@ -1,0 +1,14 @@
+preferences Prefs {
+  attribute NSString mName default "Amédée" ;
+  attribute NSString mFirstName default "Schmurtz" ;
+  transient NSString mFullName dependsFrom self.mName, self.mFirstName ;
+  transient NSString mUpperCaseFullName dependsFrom self.mFullName ;
+  outlet NSTextField mNameTextField $value self.mName ;
+  outlet NSTextField mFirstNameTextField $value self.mFirstName ;
+  outlet NSTextField mFullNameTextField $value self.mFullName ;
+  outlet NSTextField mUpperCaseFullNameTextField $value self.mUpperCaseFullName ;
+  
+  action monAction ;
+}
+
+end

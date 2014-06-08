@@ -202,7 +202,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
   if (! (%![mType equalExpression!"self." . mAttributeName !"inObject"]%)) {
     [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
     [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
-%!generateTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
+%!generateObjectiveCTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 %  }
 }
 
@@ -235,7 +235,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 
 %end foreach
 
-!generateTransientCacheRoutine [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+!generateObjectiveCTransientCacheRoutine [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 
 %//----------------------------------------------------------------------------*
 
