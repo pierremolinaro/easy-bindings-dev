@@ -55,6 +55,18 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
     ?@string PREFERENCES_NAME
     ?@string ACTION_NAME
   ;
+
+  template preferencesInSwift "preferences.swift.gTemplate"
+    ?@string PREFERENCES_NAME
+    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@outletGenerationList OUTLET_DECLARATION_LIST
+    ?@lstringlist ACTION_LIST
+    ?@stringset INCLUSION_SET
+    ?@preferencesPropertyArrayMap ARRAY_MAP
+    ?@controllerMap CONTROLLER_MAP
+  ;
+  
 }
 
 #----------------------------------------------------------------------------*
@@ -62,89 +74,111 @@ local filewrapper prefsGenerationTemplate in "../generation-templates/preference
 override method @preferenceTypeGeneration generate
   ??@string inOutputDirectory
 :
-#--- Header
-  @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1
-    !mGenerationName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mOutletDeclarationList
-    !mActionList
-    !mFileInclusionSet->mHeaderFileInclusionSet
-    !mFileInclusionSet->mImplementationFileInclusionSet
-    !mControllerMap
-  ] ;
-  @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
-    !mGenerationName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mOutletDeclarationList
-    !mActionList
-    !mArrayMap
-    !mControllerMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n}\n\n" # Defaut user zone2
-    !s2
-  ] ;
-#--- Implementation
-  s := [filewrapper prefsGenerationTemplate.preferencesImplementation
-    !mGenerationName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mOutletDeclarationList
-    !mActionList
-    !mFileInclusionSet->mImplementationFileInclusionSet
-    !mArrayMap
-    !mControllerMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"@end\n\n"
-  ] ;
-#--- Transient computation function header file
-  if [mTransientListForImplementation length] > 0 then
-    s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
+  if [option easyBindings_options.outputSwift value] then
+    const @string s := [filewrapper prefsGenerationTemplate.preferencesInSwift
       !mGenerationName
+      !mAttributeListForImplementation
       !mTransientListForImplementation
+      !mOutletDeclarationList
+      !mActionList
+      !mFileInclusionSet->mImplementationFileInclusionSet
+      !mArrayMap
+      !mControllerMap
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory
-      !mGenerationName . "-computations.h"
+      !mGenerationName . ".swift"
       !"//"
       !"\n\n" # Defaut user zone1
       !s
       !"\n\n" # Defaut user zone2
-      !"\n"
+      !"\n\n"
     ] ;
-  end if ;
-#--- Transient computation function implementation files
-  foreach mTransientListForImplementation do
-      s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
+  else
+  #--- Header
+    @string s := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart1
+      !mGenerationName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mOutletDeclarationList
+      !mActionList
+      !mFileInclusionSet->mHeaderFileInclusionSet
+      !mFileInclusionSet->mImplementationFileInclusionSet
+      !mControllerMap
+    ] ;
+    @string s2 := [filewrapper prefsGenerationTemplate.preferencesDeclarationPart2
+      !mGenerationName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mOutletDeclarationList
+      !mActionList
+      !mArrayMap
+      !mControllerMap
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n}\n\n" # Defaut user zone2
+      !s2
+    ] ;
+  #--- Implementation
+    s := [filewrapper prefsGenerationTemplate.preferencesImplementation
+      !mGenerationName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mOutletDeclarationList
+      !mActionList
+      !mFileInclusionSet->mImplementationFileInclusionSet
+      !mArrayMap
+      !mControllerMap
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"@end\n\n"
+    ] ;
+  #--- Transient computation function header file
+    if [mTransientListForImplementation length] > 0 then
+      s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationsHeaderFile
         !mGenerationName
-        !mTransientType
-        !mTransientName
-        !mDependencyList
+        !mTransientListForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
-        !mGenerationName . "_" . mTransientName . ".m"
+        !mGenerationName . "-computations.h"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        !"\n\n" # Defaut user zone2
+        !"\n"
       ] ;
-  end foreach ;
+    end if ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper prefsGenerationTemplate.preferencesTransientComputationImplementationFile
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "_" . mTransientName . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

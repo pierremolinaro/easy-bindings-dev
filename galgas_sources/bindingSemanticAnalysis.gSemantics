@@ -221,7 +221,7 @@ override method @regularControllerBinding analyzeOutletBinding
     error mControllerAttributeName:s ;
   end if ;
 #--- Check options
-  @2stringlist bindingOptionList [emptyList] ;
+  @bindingOptionListForGeneration bindingOptionList [emptyList] ;
   foreach mOutletBindingOptionList do
     @ebTypeList acceptableTypeList ;
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -231,9 +231,10 @@ override method @regularControllerBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
     ![mBindingName string]
@@ -308,7 +309,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
     error mControllerAttributeName:s ;
   end if ;
 #--- Check options
-  @2stringlist bindingOptionList [emptyList] ;
+  @bindingOptionListForGeneration bindingOptionList [emptyList] ;
   foreach mOutletBindingOptionList do
     @ebTypeList acceptableTypeList ;
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -318,9 +319,10 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftCDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftCDefaultValueAsString ;
   end foreach ;
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
     ![mBindingName string]
@@ -383,7 +385,7 @@ override method @regularRootBinding analyzeOutletBinding
     error mObservableAttributeName:s ;
   end if ;
 #----------------------------------------- Check options
-  @2stringlist bindingOptionList [emptyList] ;
+  @bindingOptionListForGeneration bindingOptionList [emptyList] ;
   foreach mOutletBindingOptionList do
     @ebTypeList acceptableTypeList ;
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -392,9 +394,10 @@ override method @regularRootBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
@@ -458,7 +461,7 @@ override method @regularSelfBinding analyzeOutletBinding
     error mObservableAttributeName:s ;
   end if ;
 #----------------------------------------- Check options
-  @2stringlist bindingOptionList [emptyList] ;
+  @bindingOptionListForGeneration bindingOptionList [emptyList] ;
   foreach mOutletBindingOptionList do
     @ebTypeList acceptableTypeList ;
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -467,9 +470,10 @@ override method @regularSelfBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
@@ -531,7 +535,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
     error mPreferenceAttributeName:s ;
   end if ;
 #----------------------------------------- Check options
-  @2stringlist bindingOptionList [emptyList] ;
+  @bindingOptionListForGeneration bindingOptionList [emptyList] ;
   foreach mOutletBindingOptionList do
     @ebTypeList acceptableTypeList ;
     [outletClassBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -540,10 +544,11 @@ override method @regularPreferenceBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
 
     ] ;
-    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
@@ -602,9 +607,9 @@ override method @multiValuedBinding analyzeOutletBinding
       error [mBoundModel mPropertyName] :s ;
     end if ;
   #--- Check options
-    @2stringlist bindingOptionList [emptyList] ;
+    @bindingOptionListForGeneration bindingOptionList [emptyList] ;
     if mNegate then
-      bindingOptionList += !"NSValueTransformerName" !"NSNegateBooleanTransformerName" ;
+      bindingOptionList += !"NSValueTransformerName" !"NSNegateBooleanTransformerName" !"NSNegateBooleanTransformerName" ;
     end if ;
     foreach mOutletBindingOptionList do
       @ebTypeList acceptableTypeList ;
@@ -614,9 +619,10 @@ override method @multiValuedBinding analyzeOutletBinding
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-      bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString ;
+      bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
     end foreach ;
     ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
       !generatedBindingName
@@ -799,10 +805,10 @@ routine checkBindingOptions
   ??@contextAnalysisStruct inContextAnalysisStruct
   ??@outletBindingOptionList inBindingOptionListAST
   ??@outletClassBindingOptionMap inAvailableBindingOptionMap
-  !@2stringlist outBindingOptionListForGeneration
+  !@bindingOptionListForGeneration outBindingOptionListForGeneration
   ?!@fileInclusionSet ioFileInclusionSet
 :
-  outBindingOptionListForGeneration := [@2stringlist emptyList] ;
+  outBindingOptionListForGeneration := [@bindingOptionListForGeneration emptyList] ;
   foreach inBindingOptionListAST do
     @ebTypeList acceptableTypeList ;
     [inAvailableBindingOptionMap searchKey !mOptionName ?acceptableTypeList] ;
@@ -811,9 +817,10 @@ routine checkBindingOptions
       !inContextAnalysisStruct
       ?*
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
-    outBindingOptionListForGeneration += ![mOptionName string] !objectiveCDefaultValueAsString ;
+    outBindingOptionListForGeneration += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
 end routine ;
 

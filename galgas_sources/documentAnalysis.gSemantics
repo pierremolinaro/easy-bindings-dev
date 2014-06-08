@@ -391,7 +391,7 @@ local routine analyzeControllers
         !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
@@ -429,7 +429,7 @@ local routine analyzeControllers
         !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
@@ -465,7 +465,7 @@ local routine analyzeControllers
         !inContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new

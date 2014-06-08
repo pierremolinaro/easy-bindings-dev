@@ -5,17 +5,7 @@ import "easyBindings_grammar.gGrammar" ;
 import "cursorAnalysis.gSemantics" ;
 import "cursorGeneration.gSemantics" ;
 import "transientGeneration.gSemantics" ;
-
-#import "outletClassGeneration.gSemantics" ;
-#import "classGeneration.gSemantics" ;
-#import "entityGeneration.gSemantics" ;
-#import "preferencesGeneration.gSemantics" ;
-#import "documentGeneration.gSemantics" ;
-#import "easyBindings_grammar.gGrammar" ;
-#import "enumGeneration.gSemantics" ;
-#import "structGeneration.gSemantics" ;
-#import "controllerClassGeneration.gSemantics" ;
-#import "nibClassGeneration.gSemantics" ;
+import "easyBindings_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
@@ -28,7 +18,7 @@ local filewrapper predefinedOutletClasses in "../generation-templates/predefined
 #----------------------------------------------------------------------------*
 
 local filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
-  "m", "h", "xib"
+  "m", "h", "xib", "swift"
 }{
 }{
 }
@@ -235,6 +225,14 @@ local routine semanticAnalysis
     !outputDirectory
     !sortedTransientOrderedList
   ;
+#--- Extensions
+  @stringset extensionSet [setWithString !"xib"] ;
+  if [option easyBindings_options.outputSwift value] then
+    extensionSet += !"swift" ;
+  else
+    extensionSet += !"m" ;
+    extensionSet += !"h" ;
+  end if ;
 #--- Add embedded sources
   @stringset generateSet [emptySet] ;
   generateSet += !"easy-bindings-utilities" ;
@@ -261,7 +259,7 @@ local routine semanticAnalysis
   @filewrapper fw := [filewrapper objective_c_sources] ;
   foreach [fw allTextFilePathes] do
     const @string sourceName := [mValue lastPathComponent] ;
-    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] then
+    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] & [extensionSet hasKey ![sourceName pathExtension]] then
       [@string generateFile
         !outputDirectory . [mValue stringByDeletingLastPathComponent]
         !sourceName

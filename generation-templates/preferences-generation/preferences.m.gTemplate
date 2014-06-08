@@ -58,7 +58,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
   do
     %    value = [ud objectForKey:@"%!PREFERENCES_NAME%:%!mAttributeName%"] ;\n%
     %    if (nil == value) {\n%
-    %      self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
+    %      self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
     %    }else{\n%
     %      self.%!mAttributeName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
     %    }\n%
@@ -157,7 +157,7 @@ foreach CONTROLLER_MAP do
   before 
     %//--- '%!lkey->string%' controller bindings\n%
   do
-   ![mBinding generateBinding !lkey->string]
+   ![mBinding generateObjectiveCBinding !lkey->string]
   end foreach
 end foreach
 
@@ -167,7 +167,7 @@ foreach OUTLET_DECLARATION_LIST do
    %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet is nil") ;\n%
    %  }\n%
   foreach mOutletBindingList do
-    ![mBinding generateBinding !mOutletName]
+    ![mBinding generateObjectiveCBinding !mOutletName]
   end foreach
 end foreach
 %

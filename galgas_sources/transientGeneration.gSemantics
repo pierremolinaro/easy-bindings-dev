@@ -1,4 +1,5 @@
 semantics transientGeneration :
+  import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -633,6 +634,13 @@ local filewrapper transientManager in "../generation-templates/application-class
   template applicationClassImplementation "PMApplication.m.gTemplate"
     ?@string TRANSIENT_LIST
   ;
+  template applicationInSwift "PMApplication.swift.gTemplate"
+    ?@string GRAPH_STRING
+    ?@string TRANSIENT_LIST_STRING
+    ?@string TRANSIENT_INDEXES
+    ?@uint TRANSIENT_COUNT
+    ?@stringlist SORTED_TRANSIENT_ORDERED_LIST
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -665,34 +673,53 @@ routine generateTransientDependencyFiles
   end foreach ;
   const @uint transientCount := idx ;
 #--- Header
-  @string s := [filewrapper transientManager.applicationClassDeclaration
-    !graphString
-    !transientOrderedList
-    !transientIndexesString
-    !transientCount
-  ] ;
-  [@string generateFileWithPattern
-    !inSourceDirectoryPath
-    !"PMApplication.h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !""
-  ] ;
-#--- Implementation
-  s := [filewrapper transientManager.applicationClassImplementation
-    !transientList
-  ] ;
-  [@string generateFileWithPattern
-    !inSourceDirectoryPath
-    !"PMApplication.m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !""
-  ] ;
+  if [option easyBindings_options.outputSwift value] then
+    const @string s := [filewrapper transientManager.applicationInSwift
+      !graphString
+      !transientOrderedList
+      !transientIndexesString
+      !transientCount
+      !inSortedTransientOrderedList
+    ] ;
+    [@string generateFileWithPattern
+      !inSourceDirectoryPath
+      !"PMApplication.swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !""
+    ] ;
+  else
+    @string s := [filewrapper transientManager.applicationClassDeclaration
+      !graphString
+      !transientOrderedList
+      !transientIndexesString
+      !transientCount
+    ] ;
+    [@string generateFileWithPattern
+      !inSourceDirectoryPath
+      !"PMApplication.h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !""
+    ] ;
+  #--- Implementation
+    s := [filewrapper transientManager.applicationClassImplementation
+      !transientList
+    ] ;
+    [@string generateFileWithPattern
+      !inSourceDirectoryPath
+      !"PMApplication.m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !""
+    ] ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*

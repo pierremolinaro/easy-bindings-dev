@@ -193,7 +193,7 @@ override method @preferencesDeclaration semanticAnalysis
         !ioContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
@@ -236,7 +236,7 @@ override method @preferencesDeclaration semanticAnalysis
         !ioContextAnalysisStruct
         !mControlledObjectBindingOptionList
         !controlledObjectAvailableBindingOptionMap
-        ?@2stringlist controlledObjectBindingOptionListForGeneration
+        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new

@@ -84,7 +84,7 @@ end foreach
   //--- Attribute initialisation
 %
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
-  %    self.%!mAttributeName% = %!mDirectDefaultValue% ;\n%
+  %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
 end foreach
 %  //--- To many relationship initialisation
 %

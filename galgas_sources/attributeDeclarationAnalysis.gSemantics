@@ -62,6 +62,7 @@ routine analyzeAttributeDeclaration
       !ioContextAnalysisStruct
       ?@string directDefaultValueAsString
       ?@string objectiveCDefaultValueAsString
+      ?@string swiftDefaultValueAsString
       !?ioFileInclusionSet
     ] ;
     outAttributeListForImplementation +=
@@ -69,12 +70,14 @@ routine analyzeAttributeDeclaration
       ![mAttributeName string]
       !objectiveCDefaultValueAsString
       !directDefaultValueAsString
+      !swiftDefaultValueAsString
     ;
     ioAttributeListForInitHeader +=
        !type
        ![mAttributeName string]
        !objectiveCDefaultValueAsString
        !directDefaultValueAsString
+       !swiftDefaultValueAsString
     ;
   end foreach ;
 end routine ;

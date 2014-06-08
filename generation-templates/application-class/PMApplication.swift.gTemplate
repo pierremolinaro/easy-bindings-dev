@@ -1,0 +1,99 @@
+//-----------------------------------------------------------------------------*
+
+import Cocoa
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S         *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+%!TRANSIENT_LIST_STRING%
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//    T R A N S I E N T    I N D E X E S                                     *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+%!TRANSIENT_INDEXES%
+
+//-----------------------------------------------------------------------------*
+
+%
+  foreach SORTED_TRANSIENT_ORDERED_LIST do index idx
+%func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : AnyObject) { // %![idx string]%
+  var theApp = NSApp as PMApplication
+  theApp.enterTriggerForObject_%![mValue identifierRepresentation]% (inObject) ;
+}\n\n
+//-----------------------------------------------------------------------------*
+
+%
+  end foreach  
+%//-----------------------------------------------------------------------------*
+
+@objc(PMApplication) class PMApplication : NSApplication {
+
+  //---------------------------------------------------------------------------*
+
+  var mDeferredMessageSent = false
+%
+  foreach SORTED_TRANSIENT_ORDERED_LIST do index idx
+%  var mObserverObject_%![mValue identifierRepresentation]% : NSMutableSet = NSMutableSet () // %![idx string]%\n%
+%  func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : AnyObject) {
+    mObserverObject_%![mValue identifierRepresentation]%.addObject (inObject)
+    trigger ()
+  }\n\n%
+  end foreach  
+%
+
+  //---------------------------------------------------------------------------*
+  
+  func trigger () {
+    if !mDeferredMessageSent {
+      mDeferredMessageSent = true ;
+      var event = NSEvent.otherEventWithType (NSApplicationDefined,
+        location:NSPoint (x:0.0, y:0.0),
+        modifierFlags:0, // NSEventModifierFlags (),
+        timestamp:0.0,
+        windowNumber:0,
+        context:NSGraphicsContext.currentContext(),
+        subtype:0,
+        data1:0,
+        data2:0
+      ) ;
+      self.postEvent (event, atStart:false)
+    }
+  }
+  
+  //---------------------------------------------------------------------------*
+  
+  override func sendEvent (inEvent : NSEvent!) {
+    if inEvent.type () == NSApplicationDefined {
+      self.triggerChange ()
+    }else{
+      super.sendEvent (inEvent)
+    }
+    displayAllocation ()
+  }
+  
+  //---------------------------------------------------------------------------*
+  
+  func triggerChange () {
+%
+  foreach SORTED_TRANSIENT_ORDERED_LIST do index idx
+%    if mObserverObject_%![mValue identifierRepresentation]%.count () > 0 { // %![idx string]%
+      let s = mObserverObject_%![mValue identifierRepresentation]%
+      mObserverObject_%![mValue identifierRepresentation]% = NSMutableSet ()
+      for object : AnyObject in s {
+        object.willChangeValueForKey ("%![mValue identifierRepresentation]%")
+        object.didChangeValueForKey  ("%![mValue identifierRepresentation]%")
+      }
+    }    
+%  end foreach  
+%    mDeferredMessageSent = false ;
+  }
+
+  //---------------------------------------------------------------------------*
+
+}
