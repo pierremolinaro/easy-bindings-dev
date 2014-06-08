@@ -40,7 +40,7 @@ end foreach
 %    macroNoteObjectAllocation ;
 %end if
 foreach ATTRIBUTE_LIST do
-  %    %!mAttributeName% = %!mDirectDefaultValue% ;\n%
+  %    %!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
 end foreach
 foreach CURRENT_ARRAY_MAP do
   %    self.%!lkey->string% = [NSMutableArray new] ;\n%

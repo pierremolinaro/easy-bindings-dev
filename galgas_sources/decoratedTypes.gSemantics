@@ -1,5 +1,6 @@
 semantics decoratedTypes :
   import "abstractSyntaxTypes.gSemantics" ;
+  import "easyBindings_options.gOptions" ;
 
 #----------------------------------------------------------------------------*
 
@@ -107,6 +108,32 @@ reader @ebType ocTypeName
 end reader ;
 
 #-----------------------------------------------------------------------------*
+#   swiftTypeName                                                             *
+#-----------------------------------------------------------------------------*
+
+reader @ebType swiftTypeName
+  -> @string outResult
+ :
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       colorType, dataType, dateType, fontType, stringType,
+       imageType,  menuType, bezierPathType, protocolType :
+    outResult := mTypeName->string ;
+  when structType, enumType :
+    outResult := mTypeName->string ;
+  when boolType :
+    outResult := "Bool" ;
+  when integerType :
+    outResult := "Int64" ;
+  when uintegerType :
+    outResult := "UInt" ;
+  when doubleType :
+    outResult := "Double" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
 #   propertyAttributeString                                                   *
 #-----------------------------------------------------------------------------*
 
@@ -200,6 +227,67 @@ reader @ebType preferencesGetterTransformerFunctionName
        nibClassType, outletClassType, preferencesType,
        classType, controllerClassType, documentType, entityType :
     outResult := "" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   preferencesSwiftGetter                                                    *
+#-----------------------------------------------------------------------------*
+
+reader @ebType preferencesSwiftGetter
+  -> @string outResult
+ :
+  switch mKind
+  when boolType :
+    outResult := "(value as NSNumber).boolValue ()" ;
+  when integerType :
+    outResult := "(value as NSNumber).longLongValue ()" ;
+  when enumType :
+    outResult := "(" . mTypeName . ") NSIntegerFromNSNumber" ;
+  when doubleType :
+    outResult := "(value as NSNumber).doubleValue ()" ;
+  when fontType :
+    outResult := "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSFont" ;
+  when colorType, bezierPathType :
+    outResult := "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor" ;
+  when structType :
+    outResult := mTypeName->string . "FromData" ;
+  when dateType, imageType, uintegerType, stringType, menuType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
+    outResult := "value as " . mTypeName->string ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   preferencesSwiftSetter                                                    *
+#-----------------------------------------------------------------------------*
+
+reader @ebType preferencesSwiftSetter
+  ??@string inValueName
+  -> @string outResult
+ :
+  switch mKind
+  when boolType :
+    outResult := "NSNumber.numberWithBool (" . inValueName . ")" ;
+  when integerType :
+    outResult := "NSNumber.numberWithLongLong (" . inValueName . ")" ;
+  when enumType :
+    outResult := "(" . mTypeName . ") NSIntegerFromNSNumber" ;
+  when doubleType :
+    outResult := "NSNumber.numberWithDouble (" . inValueName . ")" ;
+  when fontType, colorType, bezierPathType :
+    outResult := "NSArchiver.archivedDataWithRootObject (" . inValueName . ")" ;
+  when structType :
+    outResult := mTypeName->string . "FromData" ;
+  when dateType, imageType, uintegerType, stringType, menuType,
+       dataType,
+       protocolType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType, entityType :
+    outResult := inValueName ;
   end switch ;
 end reader ;
 
@@ -640,12 +728,20 @@ class @treeControllerForGeneration extends @abstractBindingForGeneration {
 
 #----------------------------------------------------------------------------*
 
+list @bindingOptionListForGeneration {
+  @string mOptionName ;
+  @string mObjectiveCOptionString ;
+  @string mSwiftOptionString ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @regularBindingForGeneration extends @abstractBindingForGeneration {
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
   @string mObservableAttributeName ;
-  @2stringlist mOutletBindingOptionList ;
+  @bindingOptionListForGeneration mOutletBindingOptionList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -730,7 +826,8 @@ list @attributeListForImplementation {
   @ebType mType ;
   @string mAttributeName ;
   @string mDefaultValueAsObjectiveCObject ;
-  @string mDirectDefaultValue ;
+  @string mDirectOCDefaultValue ;
+  @string mDirectSwiftDefaultValue ;
 }
 
 #----------------------------------------------------------------------------*
@@ -900,7 +997,14 @@ graph @transientDependencyGraph (@stringlist) {
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractBindingForGeneration generateBinding
+abstract reader @abstractBindingForGeneration generateObjectiveCBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractBindingForGeneration generateSwiftBinding
   ??@string inOutletName
   -> @string outResult
 ;
@@ -933,6 +1037,7 @@ abstract method @abstractDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet ioFileInclusionSet
 ;
 
@@ -943,15 +1048,18 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
     if mType->mKind == [@typeKind boolType] then
       outDirectDefaultValueAsString := if mValue->bool then "YES" else "NO" end ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithBool:" . outDirectDefaultValueAsString . "]" ;
+      outSwiftDefaultValueAsString := if mValue->bool then "true" else "false" end ;
       found := true ;
     end if ;
   end foreach ;
@@ -969,15 +1077,18 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
     if mType->mKind == [@typeKind integerType] then
       outDirectDefaultValueAsString := [mValue->uint string] ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . outDirectDefaultValueAsString . "]" ;
+      outSwiftDefaultValueAsString := outDirectDefaultValueAsString  ;
       found := true ;
     end if ;
   end foreach ;
@@ -995,15 +1106,18 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
     if mType->mKind == [@typeKind doubleType] then
       outDirectDefaultValueAsString := [mValue->double string] ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithDouble:" . outDirectDefaultValueAsString . "]" ;
+      outSwiftDefaultValueAsString := outDirectDefaultValueAsString ;
       found := true ;
     end if ;
   end foreach ;
@@ -1021,15 +1135,18 @@ override method @stringAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
     if mType->mKind == [@typeKind stringType] then
       outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
       outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+      outSwiftDefaultValueAsString := [mValue->string utf8Representation] ;
       found := true ;
     end if ;
   end foreach ;
@@ -1102,10 +1219,12 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
     if mType->mKind == [@typeKind colorType] then
@@ -1113,6 +1232,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       if [predefinedColors [] hasKey !mValue->string] then
         outDirectDefaultValueAsString := "[NSColor " . mValue->string . "]" ;
         outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+        outSwiftDefaultValueAsString := "NSColor." . mValue->string . " ()" ;
       else
         error mValue
         : "unknown predefined color"
@@ -1124,6 +1244,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       if [predefinedDates [] hasKey !mValue->string] then
         outDirectDefaultValueAsString := "[NSDate " . mValue->string . "]" ;
         outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+        outSwiftDefaultValueAsString := "NSDate ()" ;
       else
         error mValue
         : "unknown predefined date"
@@ -1138,6 +1259,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         if [mType ebTypeName] == inEnumTypeName->string then
           outDirectDefaultValueAsString := mValue->string ;
           outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
+          outSwiftDefaultValueAsString := mValue->string ;
         else
           error mValue
           : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"
@@ -1183,9 +1305,11 @@ override method @listAsDefaultValue analyzeDefaultValueType
   ??@contextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
+  !@string outSwiftDefaultValueAsString
   ?!@fileInclusionSet ioFileInclusionSet
 :
   outObjectiveCDefaultValueAsString := "" ;
+  outSwiftDefaultValueAsString := "" ;
   outDirectDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
@@ -1206,7 +1330,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
             ![@ebTypeList listWithValue !mFieldType]
             !inContextAnalysisStruct
             ?@string directDefaultValueAsString
-            ?*
+            ?2*
             !?ioFileInclusionSet
           ] ;
           outDirectDefaultValueAsString .= directDefaultValueAsString ;
@@ -1238,6 +1362,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
         if [predefinedFonts [] hasKey ![fontName mValue]->string] then
           outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
           outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+          outSwiftDefaultValueAsString := "NSFont (" . [fontName mValue]->string . ", " . [[fontSize mValue]->uint string] . ")" ;
         else
           error [fontName mValue]
           : "unknown predefined font name"
