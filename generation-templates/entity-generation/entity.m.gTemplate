@@ -249,7 +249,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
     end if
-    !generateTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+    !generateObjectiveCTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %  }\n%
     %}\n\n%
     %//-----------------------------------------------------------------------------*\n\n%
@@ -339,7 +339,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
     end if
-    !generateTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+    !generateObjectiveCTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %  }\n%
     %}\n\n%
   end if
@@ -367,7 +367,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled :inNewValue] ;\n%
   %  //--- Notify observers\n%
   %    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;\n%
-  !generateTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+  !generateObjectiveCTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
   if [SIGN_SET hasKey !mAttributeName] then
     %    [self triggerSignatureComputing] ;\n%
   end if
@@ -457,6 +457,6 @@ end foreach
 
 !generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 
-!generateTransientCacheRoutine [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+!generateObjectiveCTransientCacheRoutine [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//-----------------------------------------------------------------------------*
 
