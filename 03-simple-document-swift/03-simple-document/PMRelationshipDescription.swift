@@ -23,10 +23,10 @@ class PMRelationshipDescription : NSObject {
   init (inRelationshipName : NSString,
         inOppositeRelationshipName: NSString,
         inIsToManyOppositionRelationship: Bool)  {
-    super.init ()
     relationshipName = inRelationshipName
     oppositeRelationshipName = inOppositeRelationshipName
     oppositeRelationshipIsToMany = inIsToManyOppositionRelationship
+    super.init ()
     noteObjectAllocation (self)
   }
 
