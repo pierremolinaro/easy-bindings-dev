@@ -1,0 +1,43 @@
+
+import Foundation
+
+//----------------------------------------------------------------------------*
+
+enum %!ENUM_TYPE_NAME% : Int {
+%
+foreach CONSTANT_ORDERED_LIST do index idx
+   %  case %!mValue->string% = %![idx string]%\n%
+end foreach
+%
+  
+  func string () -> String {
+    switch self {
+%
+foreach CONSTANT_ORDERED_LIST do index idx
+   %      case %!mValue->string% : return "%!mValue->string%" // %![idx string]%\n%
+end foreach
+%    }
+  }
+  
+  func storeInDictionary (inKey : String,
+                          inout ioDictionary : NSMutableDictionary) {
+    ioDictionary.setObject (NSNumber.numberWithInteger (toRaw ()), forKey: inKey)
+  }
+  
+  static func readFromDictionary (inKey : String,
+                                 inDictionary : NSMutableDictionary) -> %!ENUM_TYPE_NAME% {
+    let v : Int? = inDictionary.objectForKey (inKey)?.integerValue()
+    if v {
+      let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME%.fromRaw (v!)
+      if e {
+        return e!
+      }else{
+        return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
+      }
+    }else{
+      return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
+    }
+  }
+}
+
+//----------------------------------------------------------------------------*
