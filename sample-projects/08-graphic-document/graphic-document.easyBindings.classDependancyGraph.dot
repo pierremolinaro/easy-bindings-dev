@@ -1,7 +1,0 @@
-digraph G {
-  "NameEntity" -> "NSString" ;
-  "NameEntity" -> "Integer" ;
-  "PMDocument" -> "MyRootEntity" ;
-  "PMDocument" -> "NSString" ;
-  "PMDocument" -> "PMEntityArrayController" ;
-}
