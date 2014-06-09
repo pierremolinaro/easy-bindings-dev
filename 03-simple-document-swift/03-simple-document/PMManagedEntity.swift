@@ -13,8 +13,8 @@ import Cocoa
 //   PMSignatureObserverProtocol                                               *
 //-----------------------------------------------------------------------------*
 
-protocol PMSignatureObserverProtocol {
-  func triggerSignatureComputing ()
+class PMSignatureObserverProtocol : NSObject {
+  func triggerSignatureComputing () {}
 }
 
 //-----------------------------------------------------------------------------*
@@ -29,13 +29,13 @@ var gToManyRelationshipDescriptionDictionary = NSMutableDictionary () // PMRelat
 //  PMManagedEntity                                                            *
 //-----------------------------------------------------------------------------*
 
-class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
+class PMManagedEntity : PMSignatureObserverProtocol {
   var savingIndex = 0
   var mEntityManager : PMEntityManager
   var mUndoManager : NSUndoManager
 //--- Signature
   var mSignatureCache = 0
-  var mSignatureObserverSet = NSMutableSet ()
+  var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
   var mSignatureHasBeenComputed = false
 
  // #ifdef PM_COCOA_DEBUG
@@ -189,20 +189,20 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func addSignatureObserver (inObserver : PMSignatureObserverProtocol) {
-    mSignatureObserverSet.addObject (inObserver)
+//    mSignatureObserverSet.addObject (inObserver)
     inObserver.triggerSignatureComputing ()
   }
 
   //---------------------------------------------------------------------------*
 
-  - (void) removeSignatureObserver (inObserver : PMSignatureObserverProtocol) {
+  func removeSignatureObserver (inObserver : PMSignatureObserverProtocol) {
     inObserver.triggerSignatureComputing ()
-    mSignatureObserverSet.removeObject (inObserver)
+//    mSignatureObserverSet.removeObject (inObserver)
   }
 
   //---------------------------------------------------------------------------*
 
-  func triggerSignatureComputing () {
+  override func triggerSignatureComputing () {
     if mSignatureHasBeenComputed {
       mSignatureHasBeenComputed = false ;
       mSignatureObserverSet.makeObjectsPerformSelector ("triggerSignatureComputing")

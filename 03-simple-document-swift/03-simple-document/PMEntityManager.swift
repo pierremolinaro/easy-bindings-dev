@@ -11,6 +11,28 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
+enum PMEntityFactory {
+  case kMyRootEntity
+  
+  func create (inEntityManager : PMEntityManager) -> PMManagedEntity {
+    switch self {
+      case kMyRootEntity : return MyRootEntity (entityManager:inEntityManager)
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------*
+
+func factoryWithClassName (entityName : String) -> PMEntityFactory? {
+  var result : PMEntityFactory?
+  if entityName == "MyRootEntity" {
+    result = PMEntityFactory.kMyRootEntity
+  }
+  return result
+}
+
+//-----------------------------------------------------------------------------*
+
 class PMEntityManager : NSObject {
   var mUndoManager : NSUndoManager
   var mManagedObjectSet = NSMutableSet ()
@@ -53,13 +75,8 @@ class PMEntityManager : NSObject {
     )
   }
 
-  func newInstanceOfEntityNamed (inClassName : String) -> PMManagedEntity {
-    let qualifiedName = "SwiftFactory." + inClassName
-    let result : PMManagedEntity = ObjectFactory <PMManagedEntity>.createInstance (
-      className:qualifiedName,
-      initializer:"initWithEntityManager:",
-      argument:self
-    )!
+  func newInstanceOfEntity (inEntityType : PMEntityFactory) -> PMManagedEntity {
+    let result : PMManagedEntity = inEntityType.create (self)
     addEntity (result)
     return result
   }
@@ -137,7 +154,8 @@ class PMEntityManager : NSObject {
     var objectArray : PMManagedEntity [] = []
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
-      var object : PMManagedEntity? = newInstanceOfEntityNamed (className)
+      let factory = factoryWithClassName (className)
+      var object : PMManagedEntity? = factory?.create (self)
       objectArray += object!
     }
     var idx = 0
@@ -198,7 +216,7 @@ class PMEntityManager : NSObject {
     var s = NSMutableSet ()
     s.setSet (mManagedObjectSet)
     s.minusSet (NSSet (array:reachableObjects))
-    return s ;
+    return s
   }
 
 

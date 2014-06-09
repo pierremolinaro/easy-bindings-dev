@@ -19,8 +19,8 @@ class PMAttributeDescription : NSObject {
   //----------------------------------------------------------------------------*
 
   init (inAttributeName : NSString)  {
-    super.init ()
     attributeName = inAttributeName
+    super.init ()
     noteObjectAllocation (self)
   }
 
