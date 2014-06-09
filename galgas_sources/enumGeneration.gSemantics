@@ -15,6 +15,10 @@ local filewrapper enumGenerationTemplate in "../generation-templates/enum-genera
     ?@string ENUM_TYPE_NAME
     ?@lstringlist CONSTANT_ORDERED_LIST
   ;
+  template enumGenerationInSwift "enum.swift.gTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -22,32 +26,48 @@ local filewrapper enumGenerationTemplate in "../generation-templates/enum-genera
 override method @enumTypeGeneration generate
   ??@string inOutputDirectory
 :
-  @string s := [filewrapper enumGenerationTemplate.enumDeclaration
-    !mGenerationName
-    !mConstantOrderedList
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"\n"
-  ] ;
-  s := [filewrapper enumGenerationTemplate.enumGeneration
-    !mGenerationName
-    !mConstantOrderedList
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"\n"
-  ] ;
+  if [option easyBindings_options.outputSwift value] then
+    const @string s := [filewrapper enumGenerationTemplate.enumGenerationInSwift
+      !mGenerationName
+      !mConstantOrderedList
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  else
+    @string s := [filewrapper enumGenerationTemplate.enumDeclaration
+      !mGenerationName
+      !mConstantOrderedList
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+    s := [filewrapper enumGenerationTemplate.enumGeneration
+      !mGenerationName
+      !mConstantOrderedList
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

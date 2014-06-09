@@ -13,7 +13,7 @@ import random, string
 
 #print os.path.dirname(__file__)
 
-sourceFilePath = os.path.dirname(__file__) + '/z.03-simple-document'
+sourceFilePath = os.path.dirname (__file__) + '/z.03-simple-document'
 ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath) 
 if not ok:
     print '*** Erreur 1 ***'
