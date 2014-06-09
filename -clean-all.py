@@ -23,6 +23,18 @@ def deleteDir (inDirName) :
 
 #------------------------------------------------------------------------------*
 
+def deleteDotFiles () :
+  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+  #--- Enumerate directories
+  for root, dirs, files in os.walk (scriptDir) :
+      for f in files :
+        if os.path.splitext (f) [1] [1:] == "dot" :
+          fullname = os.path.join (root, f)
+          print "*** Remove " + fullname
+          os.remove (fullname)
+
+#------------------------------------------------------------------------------*
+
 #--- Get script absolute path
 deleteDir ("objects")
 deleteDir ("debug_objects")
@@ -30,5 +42,7 @@ deleteDir ("DerivedData")
 deleteDir ("build")
 deleteDir ("xcuserdata")
 deleteDir ("project.xcworkspace")
+deleteDir ("GALGAS_INDEXES")
+deleteDotFiles ()
 
 #------------------------------------------------------------------------------*

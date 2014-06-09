@@ -1,4 +1,0 @@
-digraph G {
-  "controllerclass.PMEntityArrayController.canRemove" -> "document.PMDocument.canRemoveString" ;
-  "entity.MyRootEntity.mNames" -> "document.PMDocument.countItemMessage" ;
-}
