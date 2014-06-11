@@ -71,14 +71,14 @@ var gDebugObject : PMAllocationDebug! = nil
   //----------------------------------------------------------------------------*
 
   func pmInstallDebugMenu () {
-    if (!mDebugMenuInstalled) && (NSApp.mainMenu () != nil) {
+    if (!mDebugMenuInstalled) && (NSApp.mainMenu != nil) {
       var item = NSMenuItem (
         title:"",
         action:nil,
         keyEquivalent:""
       )
-      item.setSubmenu (mDebugMenu)
-      NSApp.mainMenu ().addItem (item)
+      item.submenu = mDebugMenu
+      NSApp.mainMenu += (item)
       mDebugMenuInstalled = true
     }
   }
