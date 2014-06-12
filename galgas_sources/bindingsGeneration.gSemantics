@@ -211,7 +211,7 @@ override reader @regularBindingForGeneration generateSwiftBinding
    else
      outResult .= "[\n" ;
      foreach mOutletBindingOptionList
-     do  outResult .= "        " . mSwiftOptionString . " : " . [mOptionName utf8Representation] ;
+     do  outResult .= "        " . [mOptionName utf8Representation] . " : " .  mSwiftOptionString ;
      between outResult .= ",\n" ;
      end foreach ;
      outResult .= "\n      ]\n" ;

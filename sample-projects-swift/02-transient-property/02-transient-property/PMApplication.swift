@@ -276,11 +276,11 @@ func enterTriggerForObject_preference_2E_Prefs_2E_mFirstName (inObject : AnyObje
   //---------------------------------------------------------------------------*
   
   override func sendEvent (inEvent : NSEvent!) {
-    if inEvent.type () == NSApplicationDefined {
-      self.triggerChange ()
-    }else{
+//    if inEvent.type () == NSApplicationDefined {
+//    }else{
       super.sendEvent (inEvent)
-    }
+      self.triggerChange ()
+ //   }
     displayAllocation ()
   }
   
