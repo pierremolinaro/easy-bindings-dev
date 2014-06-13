@@ -56,7 +56,7 @@ routine buildObservablePropertyMap
 #--- Attributes
   foreach inAttributeList do
     [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !inObjectName . "." . mAttributeName
       !mAttributeName->location
     ] ;
@@ -75,7 +75,7 @@ routine buildObservablePropertyMap
 #--- Arraies
   foreach inArrayList do
     [inUnifiedTypeMap searchKey !mElementClassName ?@ebType type ?*] ;
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !inObjectName . "." . mArrayName
       !mArrayName->location
     ] ;
@@ -94,7 +94,7 @@ routine buildObservablePropertyMap
 #--- Transients
   foreach inTransientList do
     [inUnifiedTypeMap searchKey !mTransientTypeName ?@ebType type ?*] ;
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !inObjectName . "." . mTransientName
       !mTransientName->location
     ] ;
@@ -113,7 +113,7 @@ routine buildObservablePropertyMap
 #--- Controllers
   foreach inControllerList do
     [inUnifiedTypeMap searchKey !mControllerClassName ?@ebType type ?*] ;
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !inObjectName . "." . mControllerName
       !mControllerName->location
     ] ;
@@ -132,7 +132,7 @@ routine buildObservablePropertyMap
 #--- Controller attributes
   foreach inControllerObservablePropertyList do
     [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !inObjectName . "." . mPropertyName
       !mPropertyName->location
     ] ;

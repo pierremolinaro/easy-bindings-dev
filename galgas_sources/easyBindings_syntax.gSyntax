@@ -15,7 +15,7 @@ rule <start_symbol>
     $include$ ;
     $literal_string$ ?@lstring filePath ;
     $;$ ;
-    const @lstring sourceFile [new
+    const sourceFile := [@lstring new
       ![filePath->string absolutePathFromPath ![[@string stringWithSourceFilePath] stringByDeletingLastPathComponent]]
       !filePath->location
     ] ;
@@ -203,7 +203,7 @@ rule <bindings>
     <enabled_editable_bindings> !?outOutletBindingList ;
   while
     $hidden$ ;
-    const @lstring bindingName [new !"hidden" !here] ;
+    const bindingName := [@lstring new !"hidden" !here] ;
     @multiValuedBindingList multiValuedBindingList [emptyList] ;
     repeat 
       <multi_value_binding_element> !?multiValuedBindingList ;

@@ -82,12 +82,12 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func attributeDescriptionArray () -> PMAttributeDescription [] {
-    var result : PMAttributeDescription[] = gAttributeDescriptionDictionary.valueForKey (className) as PMAttributeDescription[]
+    var result : PMAttributeDescription[] = gAttributeDescriptionDictionary.valueForKey (className ()) as PMAttributeDescription[]
     if nil == result {
       var descriptionArray : PMAttributeDescription [] = []
       buildAttributeDescriptionArray (descriptionArray)
       result = sort (descriptionArray, <)
-      gAttributeDescriptionDictionary.setValue (result, forKey:className)
+      gAttributeDescriptionDictionary.setValue (result, forKey:className ())
     }
     return result ;
   }
@@ -113,12 +113,12 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func toOneRelationshipDescriptionArray () -> PMRelationshipDescription [] {
-    var result : PMRelationshipDescription [] = gToOneRelationshipDescriptionDictionary.valueForKey (className) as PMRelationshipDescription []
+    var result : PMRelationshipDescription [] = gToOneRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
     if (nil == result) {
       var descriptionArray : PMRelationshipDescription []  = []
       buildToOneRelationshipDescriptionArray (descriptionArray)
       result = sort (descriptionArray, <)
-      gToOneRelationshipDescriptionDictionary.setValue (result, forKey:className)
+      gToOneRelationshipDescriptionDictionary.setValue (result, forKey:className ())
     }
     return result ;
   }
@@ -160,12 +160,12 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func toManyRelationshipDescriptionArray () -> PMRelationshipDescription[] {
-    var result : PMRelationshipDescription [] = gToManyRelationshipDescriptionDictionary.valueForKey (className) as PMRelationshipDescription []
+    var result : PMRelationshipDescription [] = gToManyRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
     if (nil == result) {
       var descriptionArray : PMRelationshipDescription []  = []
       buildToManyRelationshipDescriptionArray (descriptionArray)
       result = sort (descriptionArray, <)
-      gToManyRelationshipDescriptionDictionary.setValue (result, forKey:className)
+      gToManyRelationshipDescriptionDictionary.setValue (result, forKey:className ())
     }
     return result ;
   }

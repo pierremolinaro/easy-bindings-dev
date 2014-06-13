@@ -19,9 +19,9 @@ func compute_Prefs_mFullName (mName : String,
                               mFirstName : String) -> String {
 
 //--- START OF USER ZONE 2
-  var s = mName
+  var s = mFirstName
   s += " "
-  s += mFirstName
+  s += mName
   return s
 //--- END OF USER ZONE 2
 
