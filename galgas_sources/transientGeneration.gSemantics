@@ -859,7 +859,7 @@ local filewrapper transientManager in "../generation-templates/application-class
     ?@string TRANSIENT_LIST_STRING
     ?@string TRANSIENT_INDEXES
     ?@uint TRANSIENT_COUNT
-    ?@stringlist SORTED_TRANSIENT_ORDERED_LIST
+    ?@stringlist TRANSIENT_LIST
   ;
 }
 
@@ -883,13 +883,15 @@ routine generateTransientDependencyFiles
   end foreach ;
   @string transientObjectiveCIndexString := "" ;
   @string transientSwiftIndexString := "" ;
-  @string transientList := "" ;
+  @string transientListAsString := "" ;
+  var transientList := [@stringlist emptyList] ;
   @uint idx := 0 ;
   foreach > inSortedTransientOrderedList do
     if [dependentSet hasKey !mValue] then
       transientObjectiveCIndexString .= "#define " . [mValue identifierRepresentation] . " (" . idx . ")\n" ;
       transientSwiftIndexString .= "// " . idx . ": " . [mValue identifierRepresentation] . "\n" ;
-      transientList .= "      @" . [[mValue pathExtension] utf8Representation] . ", // " . mValue . "\n" ;
+      transientListAsString .= "      @" . [[mValue pathExtension] utf8Representation] . ", // " . mValue . "\n" ;
+      transientList += !mValue ;
       idx ++ ;
     end if ;
   end foreach ;
@@ -901,7 +903,7 @@ routine generateTransientDependencyFiles
       !transientOrderedList
       !transientSwiftIndexString
       !transientCount
-      !inSortedTransientOrderedList
+      !transientList
     ] ;
     [@string generateFileWithPattern
       !inSourceDirectoryPath
@@ -930,7 +932,7 @@ routine generateTransientDependencyFiles
     ] ;
   #--- Implementation
     s := [filewrapper transientManager.applicationClassImplementation
-      !transientList
+      !transientListAsString
     ] ;
     [@string generateFileWithPattern
       !inSourceDirectoryPath

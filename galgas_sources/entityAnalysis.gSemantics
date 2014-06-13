@@ -91,7 +91,7 @@ override method @entityDeclaration buildObservablePropertyMap
   ;
 #---------------------------------- Relationships
   foreach mRelationshipList do
-    const @lstring observationDependencyKey [new
+    const observationDependencyKey := [@lstring new
       !"entity." . mEntityName . "." . mRelationshipName
       !mRelationshipName->location
     ] ;
