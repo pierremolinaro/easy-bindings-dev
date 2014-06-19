@@ -29,25 +29,22 @@ enum MonEnumeration : Int {
       case troisieme : return "troisieme" // 2
     }
   }
-  
-  func storeInDictionary (inKey : String,
-                          inout ioDictionary : NSMutableDictionary) {
-    ioDictionary.setObject (NSNumber.numberWithInteger (toRaw ()), forKey: inKey)
-  }
-  
-  static func readFromDictionary (inKey : String,
-                                 inDictionary : NSMutableDictionary) -> MonEnumeration {
-    let v : Int? = inDictionary.objectForKey (inKey)?.integerValue()
+}
+
+//----------------------------------------------------------------------------*
+
+
+extension NSDictionary {
+  func readMonEnumeration (inKey : String) -> MonEnumeration {
+    let v : Int? = objectForKey (inKey)?.integerValue()
+    var result = MonEnumeration.premier
     if v {
       let e : MonEnumeration? = MonEnumeration.fromRaw (v!)
       if e {
-        return e!
-      }else{
-        return MonEnumeration.premier
+        result = e!
       }
-    }else{
-      return MonEnumeration.premier
     }
+    return result
   }
 }
 
