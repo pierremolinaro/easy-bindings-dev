@@ -1,6 +1,6 @@
 import Cocoa
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 class PMAllocationItemDisplay : NSObject {
   var mClassname : String
@@ -18,11 +18,11 @@ class PMAllocationItemDisplay : NSObject {
   
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 var gDebugObject : PMAllocationDebug! = nil
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 @objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource {
   @IBOutlet var mPerformSnapShotButton  : NSButton
@@ -49,10 +49,10 @@ var gDebugObject : PMAllocationDebug! = nil
   var mRefreshDisplay = false
   var mAllocationStatsDataSource : PMAllocationItemDisplay [] = []
 
-  //----------------------------------------------------------------------------*
-  //    init                                                                    *
-  //----------------------------------------------------------------------------*
-    
+  //---------------------------------------------------------------------------*
+  //    init                                                                   *
+  //---------------------------------------------------------------------------*
+  
   init () {
       //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
     super.init ()
@@ -66,9 +66,9 @@ var gDebugObject : PMAllocationDebug! = nil
     gDebugObject = self
   }
   
-  //----------------------------------------------------------------------------*
-  //    pmInstallDebugMenu                                                      *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    pmInstallDebugMenu                                                     *
+  //---------------------------------------------------------------------------*
 
   func pmInstallDebugMenu () {
     if (!mDebugMenuInstalled) && (NSApp.mainMenu () != nil) {
@@ -83,17 +83,17 @@ var gDebugObject : PMAllocationDebug! = nil
     }
   }
 
-  //----------------------------------------------------------------------------*
-  //    addDebugMenuItem:                                                       *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    addDebugMenuItem:                                                      *
+  //---------------------------------------------------------------------------*
   
   func addDebugMenuItem (inMenuItem : NSMenuItem) {
     mDebugMenu.addItem (inMenuItem)
   }
 
-  //----------------------------------------------------------------------------*
-  //    awakeFromNib                                                            *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    awakeFromNib                                                           *
+  //---------------------------------------------------------------------------*
   
   override func awakeFromNib () {
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
@@ -128,9 +128,9 @@ var gDebugObject : PMAllocationDebug! = nil
     )
   }
 
-  //----------------------------------------------------------------------------*
-  //    applicationWillTerminateAction:                                         *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    applicationWillTerminateAction:                                        *
+  //---------------------------------------------------------------------------*
   
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
@@ -142,9 +142,9 @@ var gDebugObject : PMAllocationDebug! = nil
     )
   }
 
-  //----------------------------------------------------------------------------*
-  //    performSnapShotAction:                                                  *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    performSnapShotAction:                                                 *
+  //---------------------------------------------------------------------------*
   
   @IBAction func performSnapShotAction (AnyObject) {
     mSnapShotDictionary = NSMutableDictionary ()
@@ -156,9 +156,9 @@ var gDebugObject : PMAllocationDebug! = nil
     mRefreshDisplay = true
   }
 
-  //----------------------------------------------------------------------------*
-  //    pmNoteObjectAllocation:                                                 *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    pmNoteObjectAllocation:                                                *
+  //---------------------------------------------------------------------------*
   
   func pmNoteObjectAllocation (inObjectClassName : NSString!) {
   //NSLog (@"objectClassName %@", inObjectClassName) ;
@@ -167,9 +167,9 @@ var gDebugObject : PMAllocationDebug! = nil
     mRefreshDisplay = true
   }
 
-  //----------------------------------------------------------------------------*
-  //    pmNoteObjectDeallocation:                                               *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    pmNoteObjectDeallocation:                                              *
+  //---------------------------------------------------------------------------*
   
   func pmNoteObjectDeallocation (inObjectClassName : NSString) {
   // NSLog (@"DEALLOC objectClassName %@", inObjectClassName) ;
@@ -177,10 +177,10 @@ var gDebugObject : PMAllocationDebug! = nil
     mRefreshDisplay = true
   }
 
-  //----------------------------------------------------------------------------*
-  //    refreshAllocationStats                                                  *
-  //----------------------------------------------------------------------------*
-  
+  //---------------------------------------------------------------------------*
+  //    refreshAllocationStats                                                 *
+  //---------------------------------------------------------------------------*
+
   func displayAllocation () {
     self.pmInstallDebugMenu ()
     if mRefreshDisplay {
@@ -222,9 +222,9 @@ var gDebugObject : PMAllocationDebug! = nil
   }
 
 
-  //----------------------------------------------------------------------------*
-  //    T A B L E   V I E W    D A T A    S O U R C E                           *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    T A B L E   V I E W    D A T A    S O U R C E                          *
+  //---------------------------------------------------------------------------*
   
   func tableView (aTableView : NSTableView,
                   objectValueForTableColumn: NSTableColumn,
@@ -239,21 +239,21 @@ var gDebugObject : PMAllocationDebug! = nil
     return mAllocationStatsDataSource.count
   }
   
-  //----------------------------------------------------------------------------*
-  //    S H O W     A L L O C A T I O N    S T A T S    W I N D O W             *
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
+  //    S H O W     A L L O C A T I O N    S T A T S    W I N D O W            *
+  //---------------------------------------------------------------------------*
   
   func pmShowAllocationStatsWindow () {
     mStatsTableView.window ().makeKeyAndOrderFront (nil)
   }
   
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
   
   class func routineShowAllocationStatsWindow () {
     gDebugObject.pmShowAllocationStatsWindow ()
   }
   
-  //----------------------------------------------------------------------------*
+  //---------------------------------------------------------------------------*
   
   class func addItemToDebugMenu (inMenuItem : NSMenuItem) {
     if (nil == gDebugObject) {
@@ -267,9 +267,9 @@ var gDebugObject : PMAllocationDebug! = nil
 
 }
 
-//----------------------------------------------------------------------------*
-//    R O U T I N E S                                                         *
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
+//    R O U T I N E S                                                          *
+//-----------------------------------------------------------------------------*
 
 func noteObjectAllocation (inObject : NSObject) {
   if (nil == gDebugObject) {
@@ -283,17 +283,17 @@ func noteObjectAllocation (inObject : NSObject) {
   gDebugObject.pmNoteObjectAllocation (className)
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 func noteObjectDeallocation (inObject : NSObject) {
   let className = inObject.className ()
   gDebugObject.pmNoteObjectDeallocation (className)
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 func displayAllocation () {
   gDebugObject?.displayAllocation ()
 }
 
-//----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*

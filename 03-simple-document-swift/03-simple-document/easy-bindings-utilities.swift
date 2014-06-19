@@ -42,3 +42,32 @@ func presentErrorWindow (file : String!,
 }
 
 //---------------------------------------------------------------------------*
+
+extension NSDictionary {
+
+  func readString (inKey : String) -> String {
+    var result = ""
+    let object : AnyObject = valueForKey (inKey)
+    if let s = object as? String {
+      result = s
+    }
+    return result
+  }
+
+  //---------------------------------------------------------------------------*
+
+  func readNSColor (inKey : String) -> NSColor {
+    var result = NSColor.blackColor ()
+    let object : AnyObject = valueForKey (inKey)
+    if let d = object as? NSData {
+      let c : AnyObject = NSUnarchiver.unarchiveObjectWithData (d)
+      if let color = c as? NSColor {
+        result = color
+      }
+    }
+    return result
+  }
+
+}
+
+//---------------------------------------------------------------------------*

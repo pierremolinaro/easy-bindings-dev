@@ -18,11 +18,65 @@ import Cocoa
 
 
 class MyRootEntity : PMManagedEntity {
+  var myString = "Hello"
+  var myEnumeration = MonEnumeration.deuxieme
+  var myColor = NSColor.yellowColor ()
 
 
   init (entityManager : PMEntityManager) {
     super.init (entityManager:entityManager)
   }
+
+  //-----------------------------------------------------------------------------*
+  //    buildAttributeDescriptionArray                                           *
+  //-----------------------------------------------------------------------------*
+
+  override func buildAttributeDescriptionArray (inout ioDescriptionArray : PMAttributeDescription []) {
+    super.buildAttributeDescriptionArray (&ioDescriptionArray)
+    ioDescriptionArray.append (PMAttributeDescription ("myString"))
+    ioDescriptionArray += PMAttributeDescription ("myEnumeration")
+    ioDescriptionArray += PMAttributeDescription ("myColor")
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    buildToOneRelationshipDescriptionArray                                   *
+  //-----------------------------------------------------------------------------*
+
+  override func buildToOneRelationshipDescriptionArray (inout ioDescriptionArray : PMRelationshipDescription []) {
+    super.buildToOneRelationshipDescriptionArray (&ioDescriptionArray)
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    buildToManyRelationshipDescriptionArray                                  *
+  //-----------------------------------------------------------------------------*
+
+  override func buildToManyRelationshipDescriptionArray(inout ioDescriptionArray : PMRelationshipDescription []) {
+    super.buildToManyRelationshipDescriptionArray (&ioDescriptionArray)
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    saveIntoDictionary                                                       *
+  //-----------------------------------------------------------------------------*
+
+  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+    ioDictionary.setValue (myString, forKey: "myString")
+    ioDictionary.setValue (myEnumeration.toRaw(), forKey: "myEnumeration")
+    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor), forKey: "myColor")
+  }
+
+  //---------------------------------------------------------------------------*
+  //    setUpWithDictionary                                                    *
+  //---------------------------------------------------------------------------*
+
+  override func setUpWithDictionary (inDictionary : NSDictionary,
+                                     managedObjectArray : PMManagedEntity []) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+    myString = inDictionary.readString ("myString")
+    myEnumeration = inDictionary.readMonEnumeration ("myEnumeration")
+    myColor = inDictionary.readNSColor ("myColor")
+  }
+
 
 }
 
