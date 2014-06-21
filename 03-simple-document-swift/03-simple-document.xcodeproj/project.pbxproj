@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		CF0E5D38194F22AB003BF146 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9492551945BCC90068A86C /* MainMenu.xib */; };
+		CF4DDA4F1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */; };
+		CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */; };
+		CF4DDA531955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */; };
 		CF6039361945EB90000E47FE /* PMAttributeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6039341945EB90000E47FE /* PMAttributeDescription.swift */; };
 		CF6039371945EB90000E47FE /* PMRelationshipDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */; };
 		CF94924D1945BCC90068A86C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94924C1945BCC90068A86C /* main.swift */; };
 		CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */; };
 		CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */; };
-		CF9492741945C81F0068A86C /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9492701945C81F0068A86C /* PMAllocationDebug.xib */; };
 		CF9492751945C81F0068A86C /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492711945C81F0068A86C /* PMApplication.swift */; };
 		CF9492771945C8840068A86C /* MonEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492761945C8840068A86C /* MonEnumeration.swift */; };
 		CF9492791945D3C10068A86C /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492781945D3C10068A86C /* MyRootEntity.swift */; };
 		CF94927B1945D4A90068A86C /* PMManagedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94927A1945D4A90068A86C /* PMManagedEntity.swift */; };
 		CF94927D1945D6A00068A86C /* PMEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94927C1945D6A00068A86C /* PMEntityManager.swift */; };
+		CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD713F71955D96700BC89A7 /* PMDocument.swift */; };
+		CFD713FA1955DA4A00BC89A7 /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */; };
+		CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */; };
+		CFD7142F1955E38900BC89A7 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */; };
+		CFD714301955E38900BC89A7 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD7142D1955E38900BC89A7 /* PMDocument.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMaj.swift"; sourceTree = "<group>"; };
+		CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMin.swift"; sourceTree = "<group>"; };
+		CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringConcat.swift"; sourceTree = "<group>"; };
 		CF6039341945EB90000E47FE /* PMAttributeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAttributeDescription.swift; sourceTree = "<group>"; };
 		CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMRelationshipDescription.swift; sourceTree = "<group>"; };
 		CF9492471945BCC90068A86C /* 03-simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "03-simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,12 +40,16 @@
 		CF9492561945BCC90068A86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
-		CF9492701945C81F0068A86C /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF9492711945C81F0068A86C /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CF9492761945C8840068A86C /* MonEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonEnumeration.swift; sourceTree = "<group>"; };
 		CF9492781945D3C10068A86C /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 		CF94927A1945D4A90068A86C /* PMManagedEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedEntity.swift; sourceTree = "<group>"; };
 		CF94927C1945D6A00068A86C /* PMEntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityManager.swift; sourceTree = "<group>"; };
+		CFD713F71955D96700BC89A7 /* PMDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDocument.swift; sourceTree = "<group>"; };
+		CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedDocument.swift; sourceTree = "<group>"; };
+		CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
+		CFD7142C1955E38900BC89A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CFD7142E1955E38900BC89A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,14 +85,21 @@
 				CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */,
 				CF9492761945C8840068A86C /* MonEnumeration.swift */,
 				CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */,
-				CF9492701945C81F0068A86C /* PMAllocationDebug.xib */,
 				CF9492711945C81F0068A86C /* PMApplication.swift */,
 				CF6039341945EB90000E47FE /* PMAttributeDescription.swift */,
 				CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */,
 				CF94927C1945D6A00068A86C /* PMEntityManager.swift */,
 				CF94927A1945D4A90068A86C /* PMManagedEntity.swift */,
 				CF9492781945D3C10068A86C /* MyRootEntity.swift */,
+				CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */,
+				CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */,
+				CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */,
+				CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */,
+				CFD713F71955D96700BC89A7 /* PMDocument.swift */,
+				CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */,
 				CF9492551945BCC90068A86C /* MainMenu.xib */,
+				CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */,
+				CFD7142D1955E38900BC89A7 /* PMDocument.xib */,
 				CF94924A1945BCC90068A86C /* Supporting Files */,
 			);
 			path = "03-simple-document";
@@ -150,8 +171,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD7142F1955E38900BC89A7 /* PMAllocationDebug.xib in Resources */,
+				CFD714301955E38900BC89A7 /* PMDocument.xib in Resources */,
 				CF0E5D38194F22AB003BF146 /* MainMenu.xib in Resources */,
-				CF9492741945C81F0068A86C /* PMAllocationDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,13 +184,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF4DDA531955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift in Sources */,
 				CF6039361945EB90000E47FE /* PMAttributeDescription.swift in Sources */,
+				CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */,
 				CF6039371945EB90000E47FE /* PMRelationshipDescription.swift in Sources */,
 				CF9492791945D3C10068A86C /* MyRootEntity.swift in Sources */,
+				CFD713FA1955DA4A00BC89A7 /* PMManagedDocument.swift in Sources */,
 				CF94927B1945D4A90068A86C /* PMManagedEntity.swift in Sources */,
 				CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */,
 				CF9492771945C8840068A86C /* MonEnumeration.swift in Sources */,
 				CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */,
+				CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */,
+				CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */,
+				CF4DDA4F1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift in Sources */,
 				CF94927D1945D6A00068A86C /* PMEntityManager.swift in Sources */,
 				CF94924D1945BCC90068A86C /* main.swift in Sources */,
 				CF9492751945C81F0068A86C /* PMApplication.swift in Sources */,
@@ -184,6 +212,22 @@
 				CF9492561945BCC90068A86C /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFD7142C1955E38900BC89A7 /* Base */,
+			);
+			name = PMAllocationDebug.xib;
+			sourceTree = "<group>";
+		};
+		CFD7142D1955E38900BC89A7 /* PMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFD7142E1955E38900BC89A7 /* Base */,
+			);
+			name = PMDocument.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -217,7 +261,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -246,7 +290,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				SDKROOT = macosx10.9;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = x86_64;
 			};
@@ -282,7 +326,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -305,7 +349,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx10.9;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = x86_64;
 			};
