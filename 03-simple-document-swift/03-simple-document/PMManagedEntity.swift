@@ -13,8 +13,8 @@ import Cocoa
 //   PMSignatureObserverProtocol                                               *
 //-----------------------------------------------------------------------------*
 
-class PMSignatureObserverProtocol : NSObject {
-  func triggerSignatureComputing () {}
+protocol PMSignatureObserverProtocol {
+  func triggerSignatureComputing ()
 }
 
 //-----------------------------------------------------------------------------*
@@ -29,10 +29,9 @@ var gToManyRelationshipDescriptionDictionary = NSMutableDictionary () // PMRelat
 //  PMManagedEntity                                                            *
 //-----------------------------------------------------------------------------*
 
-class PMManagedEntity : PMSignatureObserverProtocol {
+class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   var savingIndex = 0
-  var mEntityManager : PMEntityManager
-  var mUndoManager : NSUndoManager
+  weak var mEntityManager : PMEntityManager?
 //--- Signature
   var mSignatureCache = 0
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
@@ -50,12 +49,12 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   init (entityManager : PMEntityManager) {
     mEntityManager = entityManager
     gAllocatedEntityCount = gAllocatedEntityCount + 1
-    mUndoManager = entityManager.undoManager
-    noteObjectAllocation (self)
  //   #ifdef PM_COCOA_DEBUG
       mExplorerObjectIndex = gExplorerObjectIndex
       gExplorerObjectIndex = gExplorerObjectIndex + 1
  //   #endif
+    super.init ()
+    noteObjectAllocation (self)
   }
 
   deinit {
@@ -72,8 +71,7 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   func toOneRelationshipDescriptionArray () -> PMRelationshipDescription[] {
     var result : PMRelationshipDescription[] = gToOneRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
     if (nil == result) {
-      var descriptionArray : PMRelationshipDescription[] = []
-      buildToOneRelationshipDescriptionArray (&descriptionArray)
+      var descriptionArray = buildToOneRelationshipDescriptionArray ()
       result = sort (descriptionArray, <)
       gToOneRelationshipDescriptionDictionary.setValue (result, forKey:className ())
     }
@@ -93,7 +91,8 @@ class PMManagedEntity : PMSignatureObserverProtocol {
 
   //-----------------------------------------------------------------------------*
 
-  func buildToOneRelationshipDescriptionArray (inout ioDescriptionArray : PMRelationshipDescription []) {
+  func buildToOneRelationshipDescriptionArray () -> PMRelationshipDescription [] {
+    return []
   }
 
   //-----------------------------------------------------------------------------*
@@ -111,7 +110,8 @@ class PMManagedEntity : PMSignatureObserverProtocol {
 
   //-----------------------------------------------------------------------------*
 
-  func buildToManyRelationshipDescriptionArray (inout ioDescriptionArray : PMRelationshipDescription[]) {
+  func buildToManyRelationshipDescriptionArray () -> PMRelationshipDescription[] {
+    return []
   }
 
   //-----------------------------------------------------------------------------*
@@ -119,8 +119,7 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   func toManyRelationshipDescriptionArray () -> PMRelationshipDescription[] {
     var result : PMRelationshipDescription [] = gToManyRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
     if (nil == result) {
-      var descriptionArray : PMRelationshipDescription []  = []
-      buildToManyRelationshipDescriptionArray (&descriptionArray)
+      var descriptionArray = buildToManyRelationshipDescriptionArray ()
       result = sort (descriptionArray, <)
       gToManyRelationshipDescriptionDictionary.setValue (result, forKey:className ())
     }
@@ -135,8 +134,7 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   func attributeDescriptionArray () -> PMAttributeDescription[] {
     var result : PMAttributeDescription[] = gAttributeDescriptionDictionary.valueForKey (className ()) as PMAttributeDescription[]
     if (nil == result) {
-      var descriptionArray : PMAttributeDescription [] = []
-      buildAttributeDescriptionArray (&descriptionArray)
+      var descriptionArray = buildAttributeDescriptionArray ()
       result = sort (descriptionArray, <)
       gAttributeDescriptionDictionary.setValue (result, forKey:className ())
     }
@@ -156,7 +154,8 @@ class PMManagedEntity : PMSignatureObserverProtocol {
 
   //-----------------------------------------------------------------------------*
 
-  func buildAttributeDescriptionArray (inout ioDescriptionArray : PMAttributeDescription []) {
+  func buildAttributeDescriptionArray () -> PMAttributeDescription [] {
+    return []
   }
 
   //-----------------------------------------------------------------------------*
@@ -190,7 +189,7 @@ class PMManagedEntity : PMSignatureObserverProtocol {
 
   //---------------------------------------------------------------------------*
 
-  override func triggerSignatureComputing () {
+  func triggerSignatureComputing () {
     if mSignatureHasBeenComputed {
       mSignatureHasBeenComputed = false ;
       mSignatureObserverSet.makeObjectsPerformSelector ("triggerSignatureComputing")
@@ -218,11 +217,11 @@ class PMManagedEntity : PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func entityManager () -> PMEntityManager {
-    return mEntityManager
+    return mEntityManager!
   }
 
-  func undoManager () -> NSUndoManager {
-    return mUndoManager
+  func undoManager () -> PMUndoManager {
+    return mEntityManager!.mUndoManager
   }
 
 

@@ -33,7 +33,6 @@ enum MonEnumeration : Int {
 
 //----------------------------------------------------------------------------*
 
-
 extension NSDictionary {
   func readMonEnumeration (inKey : String) -> MonEnumeration {
     let v : Int? = objectForKey (inKey)?.integerValue()
