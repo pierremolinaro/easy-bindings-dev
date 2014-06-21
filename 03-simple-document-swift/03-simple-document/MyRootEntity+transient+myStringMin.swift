@@ -11,14 +11,14 @@
 
 //--- END OF USER ZONE 1
 
-#import "MyRootEntity-transient-computations.h"
+import Cocoa
 
 //----------------------------------------------------------------------------*
 
-NSString * compute_MyRootEntity_myStringMin (NSString * inMyString) {
+func compute_MyRootEntity_myStringMin (inMyString : String) -> String {
 
 //--- START OF USER ZONE 2
-  return what ? ; // ADD YOUR CODE HERE
+  return inMyString.lowercaseString
 //--- END OF USER ZONE 2
 
 }

@@ -16,12 +16,63 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
+@objc(MyRootEntity) class MyRootEntity : PMManagedEntity {
+  var myEnumeration : MonEnumeration = MonEnumeration.deuxieme
+  var myEnumeration__as__number : NSNumber {
+    get {
+      return myEnumeration.toRaw ()
+    }
+    set {
+      undoManager ().registerUndoWithTarget (self,
+        selector:"setMyEnumeration__as__number:",
+        object:myEnumeration__as__number
+      )
+      let v : Int? = newValue.integerValue ()
+      myEnumeration = MonEnumeration.fromRaw (v!)!
+    }
+  }
 
-class MyRootEntity : PMManagedEntity {
-  var myString = "Hello"
-  var myEnumeration = MonEnumeration.deuxieme
-  var myColor = NSColor.yellowColor ()
+  var myColor : NSColor = NSColor.yellowColor () {
+    willSet {
+      undoManager ().registerUndoWithTarget (self,
+        selector:"setMyColor:",
+        object:myColor
+      )
+    }
+  }
 
+  var myString_observers = NSMutableSet ()
+  var myString : String = "Hello" {
+    willSet {
+      undoManager ().registerUndoWithTarget (self,
+        selector:"setMyString:",
+        object:myString
+      )
+    }
+    didSet {
+    //--- Notify observers
+      myString_observers.makeObjectsPerformSelector ("entity_2E_MyRootEntity_2E_myString_didChange")
+    //--- Trigger 'myStringMaj transient'
+      if myStringMaj__cache != nil {
+        myStringMaj__cache = nil
+        enterTriggerForObject_entity_2E_MyRootEntity_2E_myStringMaj (self)
+      }
+    //--- Trigger 'myStringMin transient'
+      if myStringMin__cache != nil {
+        myStringMin__cache = nil
+        enterTriggerForObject_entity_2E_MyRootEntity_2E_myStringMin (self)
+      }
+    //--- Trigger 'myStringConcat transient'
+      if myStringConcat__cache != nil {
+        myStringConcat__cache = nil
+        enterTriggerForObject_entity_2E_MyRootEntity_2E_myStringConcat (self)
+      }
+    }
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    init                                                                     *
+  //-----------------------------------------------------------------------------*
 
   init (entityManager : PMEntityManager) {
     super.init (entityManager:entityManager)
@@ -31,27 +82,28 @@ class MyRootEntity : PMManagedEntity {
   //    buildAttributeDescriptionArray                                           *
   //-----------------------------------------------------------------------------*
 
-  override func buildAttributeDescriptionArray (inout ioDescriptionArray : PMAttributeDescription []) {
-    super.buildAttributeDescriptionArray (&ioDescriptionArray)
-    ioDescriptionArray.append (PMAttributeDescription ("myString"))
-    ioDescriptionArray += PMAttributeDescription ("myEnumeration")
-    ioDescriptionArray += PMAttributeDescription ("myColor")
+  override func buildAttributeDescriptionArray () -> PMAttributeDescription [] {
+    var descriptionArray = super.buildAttributeDescriptionArray ()
+    descriptionArray += PMAttributeDescription ("myString")
+    descriptionArray += PMAttributeDescription ("myEnumeration")
+    descriptionArray += PMAttributeDescription ("myColor")
+    return descriptionArray
   }
 
   //-----------------------------------------------------------------------------*
   //    buildToOneRelationshipDescriptionArray                                   *
   //-----------------------------------------------------------------------------*
 
-  override func buildToOneRelationshipDescriptionArray (inout ioDescriptionArray : PMRelationshipDescription []) {
-    super.buildToOneRelationshipDescriptionArray (&ioDescriptionArray)
+  override func buildToOneRelationshipDescriptionArray () -> PMRelationshipDescription [] {
+    return super.buildToOneRelationshipDescriptionArray ()
   }
 
   //-----------------------------------------------------------------------------*
   //    buildToManyRelationshipDescriptionArray                                  *
   //-----------------------------------------------------------------------------*
 
-  override func buildToManyRelationshipDescriptionArray(inout ioDescriptionArray : PMRelationshipDescription []) {
-    super.buildToManyRelationshipDescriptionArray (&ioDescriptionArray)
+  override func buildToManyRelationshipDescriptionArray () -> PMRelationshipDescription [] {
+    return super.buildToManyRelationshipDescriptionArray ()
   }
 
   //-----------------------------------------------------------------------------*
@@ -75,6 +127,43 @@ class MyRootEntity : PMManagedEntity {
     myString = inDictionary.readString ("myString")
     myEnumeration = inDictionary.readMonEnumeration ("myEnumeration")
     myColor = inDictionary.readNSColor ("myColor")
+  }
+
+  //----------------------------------------------------------------------------*
+  // Cache routine of 'myStringMaj' transient     *
+  //----------------------------------------------------------------------------*
+
+  var myStringMaj__cache : String?
+  var myStringMaj : String {
+    if myStringMaj__cache == nil {
+      myStringMaj__cache = compute_MyRootEntity_myStringMaj (myString)
+    }
+    return myStringMaj__cache!
+  }
+
+
+  //----------------------------------------------------------------------------*
+  // Cache routine of 'myStringMin' transient     *
+  //----------------------------------------------------------------------------*
+
+  var myStringMin__cache : String?
+  var myStringMin : String {
+    if myStringMin__cache == nil {
+      myStringMin__cache = compute_MyRootEntity_myStringMin (myString)
+    }
+    return myStringMin__cache!
+  }
+
+  //----------------------------------------------------------------------------*
+  // Cache routine of 'myStringConcat' transient     *
+  //----------------------------------------------------------------------------*
+
+  var myStringConcat__cache : String?
+  var myStringConcat : String {
+    if myStringConcat__cache == nil {
+      myStringConcat__cache = compute_MyRootEntity_myStringConcat (myStringMaj, myStringMin)
+    }
+    return myStringConcat__cache!
   }
 
 
@@ -388,42 +477,6 @@ class MyRootEntity : PMManagedEntity {
   [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myColor_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
 //  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myColor_didChange)] ;
-}
-
-//----------------------------------------------------------------------------*
-// Cache routine of 'myStringMaj' transient     *
-//----------------------------------------------------------------------------*
-
-- (NSString *) myStringMaj {
-  if (! myStringMaj__computed) {
-    myStringMaj__cache = compute_MyRootEntity_myStringMaj (self.myString) ;
-    myStringMaj__computed = YES ;
-  }
-  return myStringMaj__cache.copy ;
-}
-
-//----------------------------------------------------------------------------*
-// Cache routine of 'myStringMin' transient     *
-//----------------------------------------------------------------------------*
-
-- (NSString *) myStringMin {
-  if (! myStringMin__computed) {
-    myStringMin__cache = compute_MyRootEntity_myStringMin (self.myString) ;
-    myStringMin__computed = YES ;
-  }
-  return myStringMin__cache.copy ;
-}
-
-//----------------------------------------------------------------------------*
-// Cache routine of 'myStringConcat' transient     *
-//----------------------------------------------------------------------------*
-
-- (NSString *) myStringConcat {
-  if (! myStringConcat__computed) {
-    myStringConcat__cache = compute_MyRootEntity_myStringConcat (self.myStringMaj, self.myStringMin) ;
-    myStringConcat__computed = YES ;
-  }
-  return myStringConcat__cache.copy ;
 }
 
 //-----------------------------------------------------------------------------*

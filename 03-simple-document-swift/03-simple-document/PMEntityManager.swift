@@ -33,21 +33,21 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
 
 //-----------------------------------------------------------------------------*
 
-class PMEntityManager : NSObject {
-  var mUndoManager : NSUndoManager
+@objc(PMEntityManager) class PMEntityManager : NSObject {
+  var mUndoManager : PMUndoManager
   var mManagedObjectSet = NSMutableSet ()
 
-  init (inUndoManager : NSUndoManager) {
+  init (undoManager : PMUndoManager) {
+    mUndoManager = undoManager
     super.init ()
     noteObjectAllocation (self)
-    mUndoManager = inUndoManager
   }
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  var undoManager : NSUndoManager {
+  var undoManager : PMUndoManager {
     return mUndoManager
   }
 
@@ -56,9 +56,9 @@ class PMEntityManager : NSObject {
   }
 
   func addEntity (inEntity : PMManagedEntity) {
-    self.willChangeValueForKey ("entityCount")
+ //   self.willChangeValueForKey ("entityCount")
     mManagedObjectSet.addObject (inEntity)
-    self.didChangeValueForKey ("entityCount")
+//    self.didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"private_removeEntity:",
       object:inEntity
@@ -66,9 +66,9 @@ class PMEntityManager : NSObject {
   }
 
   func private_removeEntity (inEntity : PMManagedEntity) {
-    self.willChangeValueForKey ("entityCount")
+//    self.willChangeValueForKey ("entityCount")
     mManagedObjectSet.removeObject (inEntity)
-    self.didChangeValueForKey ("entityCount")
+ //   self.didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"addEntity:",
       object:inEntity
