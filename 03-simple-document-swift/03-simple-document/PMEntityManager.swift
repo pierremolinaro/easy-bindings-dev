@@ -11,31 +11,13 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
-enum PMEntityFactory {
-  case kMyRootEntity
-  
-  func create (inEntityManager : PMEntityManager) -> PMManagedEntity {
-    switch self {
-      case kMyRootEntity : return MyRootEntity (entityManager:inEntityManager)
-    }
-  }
-}
-
-//-----------------------------------------------------------------------------*
-
-func factoryWithClassName (entityName : String) -> PMEntityFactory? {
-  var result : PMEntityFactory?
-  if entityName == "MyRootEntity" {
-    result = PMEntityFactory.kMyRootEntity
-  }
-  return result
-}
-
-//-----------------------------------------------------------------------------*
-
 @objc(PMEntityManager) class PMEntityManager : NSObject {
   var mUndoManager : PMUndoManager
   var mManagedObjectSet = NSMutableSet ()
+
+  //-----------------------------------------------------------------------------*
+  //  init                                                                       *
+  //-----------------------------------------------------------------------------*
 
   init (undoManager : PMUndoManager) {
     mUndoManager = undoManager
@@ -43,48 +25,82 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
     noteObjectAllocation (self)
   }
 
+  //-----------------------------------------------------------------------------*
+  //  deinit                                                                     *
+  //-----------------------------------------------------------------------------*
+
   deinit {
     noteObjectDeallocation (self)
   }
+
+  //-----------------------------------------------------------------------------*
+  //  undoManager                                                                *
+  //-----------------------------------------------------------------------------*
 
   var undoManager : PMUndoManager {
     return mUndoManager
   }
 
+  //-----------------------------------------------------------------------------*
+  //  entityCount                                                                *
+  //-----------------------------------------------------------------------------*
+
   func entityCount () -> Int {
     return mManagedObjectSet.count () ;
   }
 
+  //-----------------------------------------------------------------------------*
+  //  addEntity                                                                  *
+  //-----------------------------------------------------------------------------*
+
   func addEntity (inEntity : PMManagedEntity) {
- //   self.willChangeValueForKey ("entityCount")
+    willChangeValueForKey ("entityCount")
     mManagedObjectSet.addObject (inEntity)
-//    self.didChangeValueForKey ("entityCount")
+    didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"private_removeEntity:",
       object:inEntity
     )
   }
 
+  //-----------------------------------------------------------------------------*
+
   func private_removeEntity (inEntity : PMManagedEntity) {
-//    self.willChangeValueForKey ("entityCount")
+    willChangeValueForKey ("entityCount")
     mManagedObjectSet.removeObject (inEntity)
- //   self.didChangeValueForKey ("entityCount")
+    didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"addEntity:",
       object:inEntity
     )
   }
 
-  func newInstanceOfEntity (inEntityType : PMEntityFactory) -> PMManagedEntity {
-    let result : PMManagedEntity = inEntityType.create (self)
-    addEntity (result)
+  //-----------------------------------------------------------------------------*
+  //  newInstanceOfEntityNamed                                                   *
+  //-----------------------------------------------------------------------------*
+
+  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedEntity? {
+    var result : PMManagedEntity?
+    if inEntityTypeName == "MyRootEntity" {
+      result = MyRootEntity (entityManager:self)
+    }
+    if nil != result {
+      addEntity (result!)
+    }
     return result
   }
 
+  //-----------------------------------------------------------------------------*
+  //  deleteEntity                                                               *
+  //-----------------------------------------------------------------------------*
+
   func deleteEntity (inObject : PMManagedEntity) {
-    inObject.resetBeforeDeletion ()
     private_removeEntity (inObject)
   }
+
+  //-----------------------------------------------------------------------------*
+  //  deleteEntities                                                             *
+  //-----------------------------------------------------------------------------*
 
   func deleteEntities (inObjectArray : PMManagedEntity []) {
     for object in inObjectArray {
@@ -92,15 +108,9 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
     }
   }
 
-  func resetBeforeDeletion () {
-    for object : AnyObject in mManagedObjectSet {
-      object.resetBeforeDeletion ()
-    }
-/*    willChangeValueForKey ("entityCount")
-  macroReleaseSetToNil (mManagedObjectSet) ;
-  [self didChangeValueForKey:@"entityCount"] ;
-  macroReleaseSetToNil (mUndoManager) ;*/
-}
+  //-----------------------------------------------------------------------------*
+  //  allEntitiesKindOfClass                                                     *
+  //-----------------------------------------------------------------------------*
 
   func allEntitiesKindOfClass (inClassName : String) -> PMManagedEntity [] {
     var result : PMManagedEntity [] = []
@@ -144,7 +154,7 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
   //-----------------------------------------------------------------------------*
 
   func readFromData (inData : NSData,
-                     rootEntityClass : AnyClass) -> PMManagedEntity {
+                     rootEntityClassName : String) -> PMManagedEntity {
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
       options:0, // NSPropertyListReadOptions.Immutable,
       format:nil,
@@ -154,15 +164,14 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
     var objectArray : PMManagedEntity [] = []
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
-      let factory = factoryWithClassName (className)
-      var object : PMManagedEntity? = factory?.create (self)
+      let object = newInstanceOfEntityNamed (className)
       objectArray += object!
     }
     var idx = 0
     for d in dictionaryArray {
       var object : PMManagedEntity = objectArray [idx]
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
-      idx = idx + 1
+      idx += 1
     }
   //--- Return root object
     return objectArray [0]
@@ -218,7 +227,6 @@ func factoryWithClassName (entityName : String) -> PMEntityFactory? {
     s.minusSet (NSSet (array:reachableObjects))
     return s
   }
-
 
 }
 
