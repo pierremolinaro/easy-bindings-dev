@@ -1,5 +1,5 @@
 //
-//  PMEntityManager.m
+//  PMEntityManager.swift
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -73,21 +73,6 @@ import Cocoa
       selector:"addEntity:",
       object:inEntity
     )
-  }
-
-  //-----------------------------------------------------------------------------*
-  //  newInstanceOfEntityNamed                                                   *
-  //-----------------------------------------------------------------------------*
-
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedEntity? {
-    var result : PMManagedEntity?
-    if inEntityTypeName == "MyRootEntity" {
-      result = MyRootEntity (entityManager:self)
-    }
-    if nil != result {
-      addEntity (result!)
-    }
-    return result
   }
 
   //-----------------------------------------------------------------------------*
@@ -186,30 +171,16 @@ import Cocoa
     var objectsToExploreArray : PMManagedEntity [] = []
     var handledObjectSet = NSMutableSet ()
     handledObjectSet.addObject (inRootObject)
-  //---
     while (objectsToExploreArray.count > 0) {
       let objectToExplore = objectsToExploreArray [0]
       objectsToExploreArray.removeAtIndex (0)
-    //--- To one relation ships
-      let toOneRelationshipNameArray = objectToExplore.toOneRelationshipDescriptionArray ()
-      for description in toOneRelationshipNameArray {
-        let value : AnyObject = objectToExplore.valueForKey (description.relationshipName)
-        if (nil != value) && !handledObjectSet.containsObject (value) {
-          handledObjectSet.addObject (value)
-          reachableObjectArray += value as PMManagedEntity
-          objectsToExploreArray == value as PMManagedEntity
-        }
-      }
-    //--- To many relation ships
-      let toManyRelationshipNameArray = objectToExplore.toManyRelationshipDescriptionArray ()
-      for description in toManyRelationshipNameArray {
-        let value : AnyObject = objectToExplore.valueForKey (description.relationshipName)
-        for managedObject in value as PMManagedEntity [] {
-          if !handledObjectSet.containsObject (managedObject) {
-            handledObjectSet.addObject (managedObject)
-            reachableObjectArray += managedObject
-            objectsToExploreArray += managedObject
-          }
+      let accessible : NSSet = objectToExplore.accessibleObjects ()
+      for object : AnyObject in accessible {
+        let managedObject : PMManagedEntity = object as PMManagedEntity
+        if !handledObjectSet.containsObject (managedObject) {
+          handledObjectSet.addObject (managedObject)
+          reachableObjectArray += managedObject
+          objectsToExploreArray += managedObject
         }
       }
     }
@@ -231,3 +202,4 @@ import Cocoa
 }
 
 //-----------------------------------------------------------------------------*
+

@@ -17,6 +17,12 @@ import Cocoa
 //-----------------------------------------------------------------------------*
 
 @objc(MyRootEntity) class MyRootEntity : PMManagedEntity {
+
+  //-----------------------------------------------------------------------------*
+  //    myEnumeration                                                            *
+  //-----------------------------------------------------------------------------*
+
+  var myEnumeration__explorer : NSTextField?
   var myEnumeration : MonEnumeration = MonEnumeration.deuxieme
   var myEnumeration__as__number : NSNumber {
     get {
@@ -29,11 +35,18 @@ import Cocoa
       )
       let v : Int? = newValue.integerValue ()
       myEnumeration = MonEnumeration.fromRaw (v!)!
+      myEnumeration__explorer?.setStringValue (myEnumeration.string())
     }
   }
 
+  //-----------------------------------------------------------------------------*
+  //    myColor                                                                  *
+  //-----------------------------------------------------------------------------*
+
+  var myColor__explorer : NSTextField?
   var myColor : NSColor = NSColor.yellowColor () {
     willSet {
+      myColor__explorer?.setStringValue (myColor.description)
       undoManager ().registerUndoWithTarget (self,
         selector:"setMyColor:",
         object:myColor
@@ -41,6 +54,11 @@ import Cocoa
     }
   }
 
+  //-----------------------------------------------------------------------------*
+  //    myString                                                                 *
+  //-----------------------------------------------------------------------------*
+
+  var myString__explorer : NSTextField?
   var myString_observers = NSMutableSet ()
   var myString : String = "Hello" {
     willSet {
@@ -50,6 +68,7 @@ import Cocoa
       )
     }
     didSet {
+      myString__explorer?.setStringValue (myString)
     //--- Notify observers
       myString_observers.makeObjectsPerformSelector ("entity_2E_MyRootEntity_2E_myString_didChange")
     //--- Trigger 'myStringMaj transient'
@@ -79,31 +98,16 @@ import Cocoa
   }
 
   //-----------------------------------------------------------------------------*
-  //    buildAttributeDescriptionArray                                           *
+  //    populateExplorerWindow                                                   *
   //-----------------------------------------------------------------------------*
 
-  override func buildAttributeDescriptionArray () -> PMAttributeDescription [] {
-    var descriptionArray = super.buildAttributeDescriptionArray ()
-    descriptionArray += PMAttributeDescription ("myString")
-    descriptionArray += PMAttributeDescription ("myEnumeration")
-    descriptionArray += PMAttributeDescription ("myColor")
-    return descriptionArray
-  }
-
-  //-----------------------------------------------------------------------------*
-  //    buildToOneRelationshipDescriptionArray                                   *
-  //-----------------------------------------------------------------------------*
-
-  override func buildToOneRelationshipDescriptionArray () -> PMRelationshipDescription [] {
-    return super.buildToOneRelationshipDescriptionArray ()
-  }
-
-  //-----------------------------------------------------------------------------*
-  //    buildToManyRelationshipDescriptionArray                                  *
-  //-----------------------------------------------------------------------------*
-
-  override func buildToManyRelationshipDescriptionArray () -> PMRelationshipDescription [] {
-    return super.buildToManyRelationshipDescriptionArray ()
+  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+    myString__explorer = createEntryForAttributeNamed ("myString", ioRect:&ioRect, view:view)
+    myString__explorer?.setStringValue (myString)
+    myEnumeration__explorer = createEntryForAttributeNamed ("myEnumeration", ioRect:&ioRect, view:view)
+    myEnumeration__explorer?.setStringValue (myEnumeration.string ())
+    myColor__explorer = createEntryForAttributeNamed ("myColor", ioRect:&ioRect, view:view)
+    myColor__explorer?.setStringValue (myColor.description)
   }
 
   //-----------------------------------------------------------------------------*
