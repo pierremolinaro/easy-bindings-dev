@@ -164,6 +164,29 @@ reader @ebType swiftDefaultValue
 end reader ;
 
 #-----------------------------------------------------------------------------*
+#   dictionarySaverTransformerName                                            *
+#-----------------------------------------------------------------------------*
+
+reader @ebType dictionarySaverTransformerName
+  ?@string inName
+  -> @string outResult
+ :
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       dataType, dateType, fontType,
+       imageType,  menuType, bezierPathType, protocolType,
+       stringType, structType, boolType, integerType, uintegerType, doubleType :
+    outResult := inName ;
+  when enumType :
+    outResult := inName . ".toRaw ()" ;
+  when colorType :
+    outResult := "NSArchiver.archivedDataWithRootObject (" . inName . ")" ;
+  end switch ;
+end reader ;
+
+
+#-----------------------------------------------------------------------------*
 #   propertyAttributeString                                                   *
 #-----------------------------------------------------------------------------*
 
@@ -440,6 +463,30 @@ method @ebType addInclusionInImplementationFile
     ioInclusionSet += !mTypeName->string ;
   end switch ;
 end method ;
+
+#-----------------------------------------------------------------------------*
+#   valueAccessorForExplorerWindow                                            *
+#-----------------------------------------------------------------------------*
+
+reader @ebType valueAccessorForExplorerWindow
+  ??@string inName
+  ->@string outResult
+:
+  switch mKind
+  when boolType, integerType, uintegerType, doubleType,
+       fontType, bezierPathType, menuType,
+       dateType, imageType, structType,
+       dataType, stringType,
+       protocolType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+    outResult := inName ;
+  when enumType :
+    outResult := inName . ".string ()" ;
+  when colorType :
+    outResult := inName . ".description" ;
+  end switch ;
+end reader ;
 
 #-----------------------------------------------------------------------------*
 #   ocClassName                                                               *
@@ -1289,7 +1336,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         if [mType ebTypeName] == inEnumTypeName->string then
           outDirectDefaultValueAsString := mValue->string ;
           outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
-          outSwiftDefaultValueAsString := mValue->string ;
+          outSwiftDefaultValueAsString := inEnumTypeName->string . "." . mValue->string ;
         else
           error mValue
           : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"

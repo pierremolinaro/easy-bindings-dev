@@ -292,7 +292,7 @@ function generateSwiftTransientCacheRoutine
   ->@string outResult
 :
   outResult :=
-  "    if !" . mTransientName . "__computed {\n"
+  "    if " . mTransientName . "__cache == nil {\n"
   "      " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
   @bool first := true ;
   foreach mDependencyList do
@@ -312,10 +312,8 @@ function generateSwiftTransientCacheRoutine
     outResult .= "self.rootObject.signature" ;
   end foreach ;
   outResult .= ") ;\n"
-  "      " . mTransientName . "__computed = true\n"
   "    }\n"
-  "    return " . mTransientName . "__cache" ;
-#  if [mTransientType copyOnAssign] then outResult .= ".copy" ; end if ;
+  "    return " . mTransientName . "__cache!" ;
   outResult .= "\n" ;
 end function ;
 
@@ -486,8 +484,8 @@ override method @transientDependencyFromSelfForImplementation generateSwiftTrans
     ioContinue := true ;
     ioResult .=
     "      //--- Trigger '" . inTransientName . " transient'\n"
-    "        if " . inTransientName . "__computed {\n"
-    "          " . inTransientName . "__computed = false ;\n"
+    "        if " . inTransientName . "__cache != nil {\n"
+    "          " . inTransientName . "__cache = nil\n"
     "          enterTriggerForObject_" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . " (self)\n"
     "        }\n" ;
   end if ;
@@ -510,8 +508,8 @@ override method @transientDependencyFromRootForImplementation generateSwiftTrans
     ioContinue := true ;
     ioResult .=
     "      //--- Trigger '" . inTransientName . " transient'\n"
-    "        if " . inTransientName . "__computed {\n"
-    "          " . inTransientName . "__computed = false ;\n"
+    "        if " . inTransientName . "__cache != nil {\n"
+    "          " . inTransientName . "__cache = nil\n"
     "          enterTriggerForObject_" . [inPrefix . "." . inClassName . "." . inTransientName identifierRepresentation] . " (self)\n"
     "        }\n" ;
   end if ;
