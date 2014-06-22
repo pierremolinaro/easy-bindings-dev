@@ -197,6 +197,7 @@ override method @preferencesDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused7>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -240,6 +241,7 @@ override method @preferencesDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused8>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"

@@ -87,6 +87,12 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
+  template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
+    ?@string CLASS_NAME
+    ?@ebType RESULT_TYPE
+    ?@string TRANSIENT_NAME
+    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -146,6 +152,24 @@ override method @entityGeneration generate
       !"\n\n" # Defaut user zone2
       !"\n"
     ] ;
+    #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "+transient+" . mTransientName . ".swift"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
   else
     var s := [filewrapper entityGenerationTemplate.entityDeclaration1
       !mGenerationName

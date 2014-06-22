@@ -21,7 +21,16 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @treeControllerForGeneration generateRemoveBinding
+override reader @treeControllerForGeneration generateObjectiveCRemoveBinding
+  ??@string unused inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @treeControllerForGeneration generateSwiftRemoveBinding
   ??@string unused inOutletName
   -> @string outResult
 :
@@ -50,12 +59,22 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @runBindingForGeneration generateRemoveBinding
+override reader @runBindingForGeneration generateObjectiveCRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
   outResult := "  " . inOutletName . ".target = nil ;\n" ;
   outResult .= "  " . inOutletName . ".action = NULL ;\n" ;  
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @runBindingForGeneration generateSwiftRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "  " . inOutletName . "?.setTarget (nil)\n" ;
+  outResult .= "  " . inOutletName . "?.setAction (nil)\n" ;  
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -130,7 +149,19 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @tableValueBindingForGeneration generateRemoveBinding
+override reader @tableValueBindingForGeneration generateObjectiveCRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult := "" ;
+  for column in mColumnBindingForTableValueBindingForGeneration do
+     outResult .= "  [[" . inOutletName . " tableColumnWithIdentifier:@\"" . column->mColumnIdentifier . "\"] unbind:@\"value\"] ;\n" ;
+   end for ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @tableValueBindingForGeneration generateSwiftRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
@@ -204,7 +235,7 @@ override reader @regularBindingForGeneration generateSwiftBinding
   end switch ;
   outResult .= "    " . inOutletName . ".bind (\"" . mBindingName . "\",\n"
             . "      toObject:" . mObservedObjectName . ",\n"
-            . "      withKeyPath:\"" . mObservableAttributeName . "\",\n"
+            . "      withKeyPath:\"" . [mObservableAttributeType keyPathForObservable !mObservableAttributeName] . "\",\n"
             . "      options:" ;
    if [mOutletBindingOptionList length] == 0 then
      outResult .= "nil\n" ;
@@ -221,12 +252,22 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override reader @regularBindingForGeneration generateRemoveBinding
+override reader @regularBindingForGeneration generateObjectiveCRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
   outResult :=
     "  [" . inOutletName . " unbind:@\"" . mBindingName . "\"] ;\n" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @regularBindingForGeneration generateSwiftRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+:
+  outResult :=
+    "    " . inOutletName . ".unbind (\"" . mBindingName . "\")\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*

@@ -193,8 +193,8 @@ override method @regularControllerBinding analyzeOutletBinding
     !mControllerAttributeName
     ?@ebType observablePropertyType
     ?@bool isTransient
-    ?@lstring propertySignature
-    ?@bool isCollection
+    ?* # @lstring propertySignature
+    ??@bool isCollection
   ] ;
 #------------------------------------------------- count option ?
   @string observedKeyPath := mControllerAttributeName->string ;
@@ -237,6 +237,7 @@ override method @regularControllerBinding analyzeOutletBinding
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
   end foreach ;
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    !observablePropertyType
     ![mBindingName string]
     !requiredFormatter
     !mControllerName->string
@@ -325,6 +326,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
     bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftCDefaultValueAsString ;
   end foreach ;
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    !observablePropertyType
     ![mBindingName string]
     !requiredFormatter
     !mControllerName->string
@@ -401,6 +403,7 @@ override method @regularRootBinding analyzeOutletBinding
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    !observablePropertyType
     ![mBindingName string]
     !requiredFormatter
     !"mRootObject"
@@ -477,6 +480,7 @@ override method @regularSelfBinding analyzeOutletBinding
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    !observablePropertyType
     ![mBindingName string]
     !requiredFormatter
     !"self"
@@ -552,6 +556,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
   end foreach ;
 #----------------------------------------- Generate binding
   ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+    !observablePropertyType
     ![mBindingName string]
     !requiredFormatter
     !"g_" . mPreferenceName
@@ -625,6 +630,7 @@ override method @multiValuedBinding analyzeOutletBinding
       bindingOptionList += ![mOptionName string] !objectiveCDefaultValueAsString !swiftDefaultValueAsString ;
     end foreach ;
     ioOutletBindingListForGeneration += ![@regularBindingForGeneration new
+      !observablePropertyType
       !generatedBindingName
       !requiredFormatter
       !observedObjectName

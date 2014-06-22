@@ -395,6 +395,7 @@ local routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused1>" nowhere] ![@typeKind classType]]
         !"contentObject"
         ![@formatterEnum noFormatter]
         !"self.rootObject"
@@ -433,6 +434,7 @@ local routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused2>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self.rootObject"
@@ -469,6 +471,7 @@ local routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused3>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self.rootObject"

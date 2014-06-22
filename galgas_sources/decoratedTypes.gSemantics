@@ -489,6 +489,28 @@ reader @ebType valueAccessorForExplorerWindow
 end reader ;
 
 #-----------------------------------------------------------------------------*
+#   keyPathForObservable                                                      *
+#-----------------------------------------------------------------------------*
+
+reader @ebType keyPathForObservable
+  ??@string inName
+  ->@string outResult
+:
+  switch mKind
+  when boolType, integerType, uintegerType, doubleType,
+       fontType, bezierPathType, menuType,
+       dateType, imageType, structType,
+       dataType, stringType, colorType,
+       protocolType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       classType, controllerClassType, documentType :
+    outResult := inName ;
+  when enumType :
+    outResult := inName . "__as__number" ;
+  end switch ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
 #   ocClassName                                                               *
 #-----------------------------------------------------------------------------*
 
@@ -581,97 +603,6 @@ map @enumConstantMap {
   search searchKey error message "the '%K' enumeration constant is not declared" ;
 }
 
-#-----------------------------------------------------------------------------*
-
-#abstract reader @easyBindingType ebTypeName -> @string outResult ;
-#
-#override reader @boolType ebTypeName -> @string outResult : outResult := "BOOL" ; end reader ;
-#override reader @integerType ebTypeName -> @string outResult : outResult := "NSInteger" ; end reader ;
-#override reader @uintegerType ebTypeName -> @string outResult : outResult := "NSUInteger" ; end reader ;
-#override reader @doubleType ebTypeName -> @string outResult : outResult := "double" ; end reader ;
-#override reader @stringType ebTypeName -> @string outResult : outResult := "NSString" ; end reader ;
-#override reader @dataType ebTypeName -> @string outResult : outResult := "NSData" ; end reader ;
-#override reader @dateType ebTypeName -> @string outResult : outResult := "NSDate" ; end reader ;
-#override reader @fontType ebTypeName -> @string outResult : outResult := "NSFont" ; end reader ;
-#override reader @imageType ebTypeName -> @string outResult : outResult := "NSImage" ; end reader ;
-#override reader @colorType ebTypeName -> @string outResult : outResult := "NSColor" ; end reader ;
-#override reader @bezierPathType ebTypeName -> @string outResult : outResult := "NSBezierPath" ; end reader ;
-#override reader @menuType ebTypeName -> @string outResult : outResult := "NSMenu" ; end reader ;
-#override reader @enumType ebTypeName -> @string outResult : outResult := mEnumTypeName->string ; end reader ;
-#override reader @structType ebTypeName -> @string outResult : outResult := mStructTypeName->string ; end reader ;
-
-#-----------------------------------------------------------------------------*
-#   ebTypeIdentifier                                                          *
-#-----------------------------------------------------------------------------*
-
-#abstract reader @easyBindingType ebTypeIdentifier -> @string outResult ;
-#
-#override reader @boolType ebTypeIdentifier -> @string outResult : outResult := "bool" ; end reader ;
-#override reader @integerType ebTypeIdentifier -> @string outResult : outResult := "integer" ; end reader ;
-#override reader @uintegerType ebTypeIdentifier -> @string outResult : outResult := "unsignedInteger" ; end reader ;
-#override reader @doubleType ebTypeIdentifier -> @string outResult : outResult := "double" ; end reader ;
-#override reader @stringType ebTypeIdentifier -> @string outResult : outResult := "NSString" ; end reader ;
-#override reader @dataType ebTypeIdentifier -> @string outResult : outResult := "NSData" ; end reader ;
-#override reader @dateType ebTypeIdentifier -> @string outResult : outResult := "NSDate" ; end reader ;
-#override reader @fontType ebTypeIdentifier -> @string outResult : outResult := "NSFont" ; end reader ;
-#override reader @imageType ebTypeIdentifier -> @string outResult : outResult := "NSImage" ; end reader ;
-#override reader @colorType ebTypeIdentifier -> @string outResult : outResult := "NSColor" ; end reader ;
-#override reader @menuType ebTypeIdentifier -> @string outResult : outResult := "NSMenu" ; end reader ;
-#override reader @bezierPathType ebTypeIdentifier -> @string outResult : outResult := "NSBezierPath" ; end reader ;
-#override reader @toOneEntityType ebTypeIdentifier -> @string outResult : outResult := "toOne[" . mEntityName . "]" ; end reader ;
-#override reader @toManyEntitiesType ebTypeIdentifier -> @string outResult : outResult := "toMany[" . mEntityName . "]" ; end reader ;
-#override reader @objectArrayType ebTypeIdentifier -> @string outResult : outResult := "array[" . mClassName . "]" ; end reader ;
-#
-#override reader @enumType ebTypeIdentifier -> @string outResult : outResult := "enum[" . mEnumTypeName . "]" ; end reader ;
-#override reader @structType ebTypeIdentifier -> @string outResult : outResult := "struct[" . mStructTypeName . "]" ; end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#reader @easyBindingType ebGenericTypeIdentifier ??@string unused inTypeName -> @string outResult
-#:
-#  outResult := [selfcopy ebTypeIdentifier] ;
-#end reader ;
-#
-##------------
-#
-#override reader @toManyEntitiesType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
-#:
-#  outResult := "toMany[" . inTypeName . "]" ;
-#end reader ;
-#
-##------------
-#
-#override reader @objectArrayType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
-#:
-#  outResult := "array[" . inTypeName . "]" ;
-#end reader ;
-#
-##------------
-#
-#override reader @enumType ebGenericTypeIdentifier ??@string inTypeName -> @string outResult
-#:
-#  outResult := "enum[" . inTypeName . "]" ;
-#end reader ;
-
-#-----------------------------------------------------------------------------*
-
-#method @easyBindingType addEnumAndStructType
-#  ?!@stringset unused ioSet
-#:
-#end method ;
-#
-#
-#override method @enumType addEnumAndStructType
-#  ?!@stringset ioSet
-#:
-#  ioSet += !mEnumTypeName->string ;
-#end method ;
-#
-#override method @structType addEnumAndStructType
-#  ?!@stringset ioSet
-#:
-#  ioSet += !mStructTypeName->string ;
-#end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -813,7 +744,8 @@ list @bindingOptionListForGeneration {
 
 #----------------------------------------------------------------------------*
 
-class @regularBindingForGeneration extends @abstractBindingForGeneration {
+class @regularBindingForGeneration : @abstractBindingForGeneration {
+  @ebType mObservableAttributeType ;
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
@@ -1102,7 +1034,14 @@ abstract method @abstractBinding analyzeOutletBinding
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractBindingForGeneration generateRemoveBinding
+abstract reader @abstractBindingForGeneration generateObjectiveCRemoveBinding
+  ??@string inOutletName
+  -> @string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractBindingForGeneration generateSwiftRemoveBinding
   ??@string inOutletName
   -> @string outResult
 ;

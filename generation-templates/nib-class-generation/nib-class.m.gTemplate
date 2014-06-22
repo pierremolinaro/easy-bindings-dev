@@ -119,13 +119,13 @@ end foreach
 %//--- Unbind Outlets
 %foreach OUTLET_DECLARATION_LIST do
   foreach > mOutletBindingList do
-    ![mBinding generateRemoveBinding !mOutletName]
+    ![mBinding generateObjectiveCRemoveBinding !mOutletName]
   end foreach
 end foreach
 %//--- Unbind Controllers
 %foreach CONTROLLER_MAP do
   foreach mControllerBindingList do
-   ![mBinding generateRemoveBinding !lkey->string]
+   ![mBinding generateObjectiveCRemoveBinding !lkey->string]
   end foreach
 end foreach
 %//--- Remove Transient observers
