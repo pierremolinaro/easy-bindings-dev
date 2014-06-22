@@ -30,7 +30,17 @@ local filewrapper documentGenerationTemplate in "../generation-templates/documen
     ?@controllerMap CONTROLLER_MAP
     ?@transientListForImplementation TRANSIENT_LIST
     ?@stringset INCLUSION_SET
-#    ?@2stringlist TRANSIENT_DEPENDENCY_ARCS
+    ?@bool HAS_SIGNATURE_OBSERVER
+    ?@attributeListForImplementation ATTRIBUTE_LIST
+  ;
+
+  template documentImplementationInSwift "document.swift.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@outletGenerationList OUTLET_GENERATION_LIST
+    ?@controllerMap CONTROLLER_MAP
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@stringset INCLUSION_SET
     ?@bool HAS_SIGNATURE_OBSERVER
     ?@attributeListForImplementation ATTRIBUTE_LIST
   ;
@@ -59,86 +69,108 @@ override method @documentGeneration generate
   foreach mTransientListForImplementation while not hasSignatureObserver do
     hasSignatureObserver := [mRootSignDependencyList length] > 0 ;
   end foreach ;
-#--- Header
-  @string s := [filewrapper documentGenerationTemplate.documentDeclaration1
-    !mGenerationName
-    !mRootEntityName
-    !mOutletDeclarationList
-    !mControllerMap
-    !mTransientListForImplementation
-    !mFileInclusionSet->mHeaderPredeclarationSet
-    !hasSignatureObserver
-    !mAttributeListForImplementation
-  ] ;
-  @string s2 := [filewrapper documentGenerationTemplate.documentDeclaration2
-    !mAttributeListForImplementation
-    !mActionList
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n}\n\n" # Defaut user zone2
-    !s2
-  ] ;
-#--- Implementation
-  s := [filewrapper documentGenerationTemplate.documentImplementation
-    !mGenerationName
-    !mRootEntityName
-    !mOutletDeclarationList
-    !mControllerMap
-    !mTransientListForImplementation
-    !mFileInclusionSet->mImplementationFileInclusionSet
-#    !inTransientDependencyArcList
-    !hasSignatureObserver
-    !mAttributeListForImplementation
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"@end\n"
-  ] ;
-#--- action header file
-  if [mTransientListForImplementation length] > 0 then
-    s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
+  if [option easyBindings_options.outputSwift value] then
+  #--- Implementation
+    var s := [filewrapper documentGenerationTemplate.documentImplementationInSwift
       !mGenerationName
+      !mRootEntityName
+      !mOutletDeclarationList
+      !mControllerMap
       !mTransientListForImplementation
+      !mFileInclusionSet->mImplementationFileInclusionSet
+      !hasSignatureObserver
+      !mAttributeListForImplementation
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory
-      !mGenerationName . "-computations.h"
+      !mGenerationName . ".swift"
       !"//"
       !"\n\n" # Defaut user zone1
       !s
       !"\n\n" # Defaut user zone2
       !"\n"
     ] ;
-  end if ;
-#--- Transient computation function implementation files
-  foreach mTransientListForImplementation do
-      s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFile
+  else
+  #--- Header
+    @string s := [filewrapper documentGenerationTemplate.documentDeclaration1
+      !mGenerationName
+      !mRootEntityName
+      !mOutletDeclarationList
+      !mControllerMap
+      !mTransientListForImplementation
+      !mFileInclusionSet->mHeaderPredeclarationSet
+      !hasSignatureObserver
+      !mAttributeListForImplementation
+    ] ;
+    @string s2 := [filewrapper documentGenerationTemplate.documentDeclaration2
+      !mAttributeListForImplementation
+      !mActionList
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n}\n\n" # Defaut user zone2
+      !s2
+    ] ;
+  #--- Implementation
+    s := [filewrapper documentGenerationTemplate.documentImplementation
+      !mGenerationName
+      !mRootEntityName
+      !mOutletDeclarationList
+      !mControllerMap
+      !mTransientListForImplementation
+      !mFileInclusionSet->mImplementationFileInclusionSet
+      !hasSignatureObserver
+      !mAttributeListForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"@end\n"
+    ] ;
+  #--- action header file
+    if [mTransientListForImplementation length] > 0 then
+      s := [filewrapper documentGenerationTemplate.documentComputationsHeaderFile
         !mGenerationName
-        !mTransientType
-        !mTransientName
-        !mDependencyList
-        !mRootSignDependencyList
+        !mTransientListForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
-        !mGenerationName . "_" . mTransientName . ".m"
+        !mGenerationName . "-computations.h"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        !"\n\n" # Defaut user zone2
+        !"\n"
       ] ;
-  end foreach ;
+    end if ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFile
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+          !mRootSignDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "_" . mTransientName . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

@@ -197,6 +197,7 @@ override method @nibClassDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused4>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -230,6 +231,7 @@ override method @nibClassDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
+        ![@ebType new !["<unused6>" nowhere] ![@typeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"

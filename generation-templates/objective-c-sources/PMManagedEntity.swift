@@ -332,6 +332,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
     closeButton?.setTarget (nil)
     mExplorerWindow?.orderOut (nil)
+    mExplorerWindow = nil
   }
 
 

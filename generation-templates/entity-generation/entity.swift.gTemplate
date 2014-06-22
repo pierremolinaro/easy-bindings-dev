@@ -81,6 +81,17 @@ end foreach
 %  }
 
   //-----------------------------------------------------------------------------*
+  //    clearContextExplorer                                                     *
+  //-----------------------------------------------------------------------------*
+
+  override func clearContextExplorer () {
+%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%    %!mAttributeName%__explorer = nil\n%
+end foreach
+%    super.clearContextExplorer ()
+  }
+
+  //-----------------------------------------------------------------------------*
   //    saveIntoDictionary                                                       *
   //-----------------------------------------------------------------------------*
 

@@ -1,0 +1,377 @@
+
+import Cocoa
+//----------------------------------------------------------------------------*
+
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument {
+
+  //----------------------------------------------------------------------------*
+  //    Outlets                                                                 *
+  //----------------------------------------------------------------------------*
+
+%
+foreach OUTLET_GENERATION_LIST do
+%  @IBOutlet var %!mOutletName% : %!mOutletType%\n%
+end foreach
+%
+  //----------------------------------------------------------------------------*
+  //    Controllers                                                             *
+  //----------------------------------------------------------------------------*
+
+%
+foreach CONTROLLER_MAP do
+%//--- '%!lkey->string%' controller
+  @private %!mControllerClassName% * %!lkey->string% ;\n%
+end foreach
+%
+  //----------------------------------------------------------------------------*
+  //    Documents attributes                                                    *
+  //----------------------------------------------------------------------------*
+
+%
+
+foreach ATTRIBUTE_LIST do
+%//--- '%!mAttributeName%' attribute\n%
+%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
+%  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
+%  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
+end foreach
+
+%//--- Attribute observers
+%foreach ATTRIBUTE_LIST do
+%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
+end foreach
+%
+  //----------------------------------------------------------------------------*
+  //    windowNibName                                                           *
+  //----------------------------------------------------------------------------*
+
+  var windowNibName: String {
+    return "%!DOCUMENT_NAME%"
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    rootEntityClassName                                                      *
+  //-----------------------------------------------------------------------------*
+
+  override func rootEntityClassName () -> String {
+    return "%!ROOT_ENTITY_NAME%"
+  }
+
+  //----------------------------------------------------------------------------*
+  //    rootObject                                                              *
+  //----------------------------------------------------------------------------*
+
+  func rootObject () -> MyRootEntity {
+    return mRootObject as %!ROOT_ENTITY_NAME%
+  }
+
+  //----------------------------------------------------------------------------*
+  //    windowControllerDidLoadNib                                              *
+  //----------------------------------------------------------------------------*
+
+  override func windowControllerDidLoadNib (aController: NSWindowController) {
+    super.windowControllerDidLoadNib (aController)
+  //--------------------------- Controller instanciation
+%
+foreach CONTROLLER_MAP do
+  %//--- '%!lkey->string%' controller instanciation\n%
+  %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
+  if mControlledClassOrEntityName->string != "" then
+    %  %!lkey->string%.objectClass = [%!mControlledClassOrEntityName->string% class] ;\n%
+    %  %!lkey->string%.entityManager = self.entityManager ;\n%
+  end if
+end foreach
+%  //--------------------------- Controller bindings
+%
+foreach CONTROLLER_MAP do
+  foreach mControllerBindingList
+  before 
+    %//--- '%!lkey->string%' controller bindings\n%
+  do
+   ![mBinding generateObjectiveCBinding !lkey->string]
+  end foreach
+end foreach
+%  //--------------------------- Outlet bindings
+%
+
+foreach OUTLET_GENERATION_LIST do
+   %  //--- Outlet %!mOutletName%\n%
+   %    if nil == %!mOutletName% {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!mOutletName%' outlet is nil") ;\n%
+   %    }\n%
+  foreach mOutletBindingList do
+    ![mBinding generateSwiftBinding !mOutletName]
+  end foreach
+end foreach
+%  //--------------------------- Add Transient observers
+%!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
+%  //--------------------------- Add Signature observer
+%
+if HAS_SIGNATURE_OBSERVER then
+  %  [mRootObject addSignatureObserver:self] ;\n%
+end if
+%}
+
+  //----------------------------------------------------------------------------*
+  //   R E M O V E    W I N D O W    C O N T R O L L E R                        *
+  //----------------------------------------------------------------------------*
+
+  override func removeWindowController (inWindowController : NSWindowController) {
+  //--------------------------- Add Signature observer
+%
+if HAS_SIGNATURE_OBSERVER then
+  %  [mRootObject removeSignatureObserver:self] ;\n%
+end if
+%  //--- Unbind Outlets
+%foreach OUTLET_GENERATION_LIST do
+  foreach > mOutletBindingList do
+    ![mBinding generateSwiftRemoveBinding !mOutletName]
+  end foreach
+end foreach
+%  //--- Unbind Controllers
+%foreach CONTROLLER_MAP do
+  foreach mControllerBindingList do
+   ![mBinding generateSwiftRemoveBinding !lkey->string]
+  end foreach
+end foreach
+%  //--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%  //--- Release controllers
+%foreach CONTROLLER_MAP do
+  %  macroReleaseSetToNil (%!lkey->string%) ;\n%
+end foreach
+%  //--- Remove circularities in outlets
+%foreach OUTLET_GENERATION_LIST do
+  if mImplementsDeallocProtocol then
+    %  [%!mOutletName% objectWillBeDeallocated] ;\n%
+  end if 
+end foreach
+%  //---
+    super.removeWindowController (inWindowController)
+  }
+%
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //-----------------------------------------------------------------------------*
+  //    %!["Transient: " . mTransientName stringByRightPadding !73 !' ']%*
+  //-----------------------------------------------------------------------------*\n\n%
+%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
+!generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
+%  }\n\n%
+end foreach
+%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+%
+if [ATTRIBUTE_LIST length] > 0 then
+%//----------------------------------------------------------------------------*
+//    @synthesize                                                             *
+//----------------------------------------------------------------------------*
+
+%
+  foreach ATTRIBUTE_LIST do
+    %@synthesize %!mAttributeName% ;\n%
+  end foreach
+%
+%
+end if
+
+if [ATTRIBUTE_LIST length] > 0 then
+%//----------------------------------------------------------------------------*
+//    Swizzle                                                                 *
+//----------------------------------------------------------------------------*
+
++ (void) load {
+  Method original, swizzled ;
+%
+foreach ATTRIBUTE_LIST do
+%  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
+  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:));
+  macroCheckMethodSwizzling (original, swizzled) ;
+  method_exchangeImplementations (original, swizzled) ;
+%end foreach
+%}
+
+%
+end if
+
+if [ATTRIBUTE_LIST length] > 0 then
+%//----------------------------------------------------------------------------*
+//    init                                                                    *
+//----------------------------------------------------------------------------*
+
+- (instancetype) init {
+  self = [super init] ;
+  if (self) {
+%
+  foreach ATTRIBUTE_LIST do
+  %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
+  end foreach
+  !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%  }
+  return self ;
+}
+
+%
+end if
+
+%//----------------------------------------------------------------------------*
+//    windowNibName                                                           *
+//----------------------------------------------------------------------------*
+
+- (NSString *) windowNibName {
+  return @"%!DOCUMENT_NAME%" ;
+}
+
+//----------------------------------------------------------------------------*
+//    rootEntityClass                                                         *
+//----------------------------------------------------------------------------*
+
+- (Class) rootEntityClass {
+  return [%!ROOT_ENTITY_NAME% class] ;
+}
+
+//----------------------------------------------------------------------------*
+//    rootObject                                                              *
+//----------------------------------------------------------------------------*
+
+- (%!ROOT_ENTITY_NAME% *) rootObject {
+  return (%!ROOT_ENTITY_NAME% *) mRootObject ;
+}
+
+%
+
+foreach ATTRIBUTE_LIST do
+%//----------------------------------------------------------------------------*
+//    '%!mAttributeName%' attribute                                            *
+//----------------------------------------------------------------------------*
+
+- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {
+  if (! (%![mType equalExpression!"self." . mAttributeName !"inNewValue"]%)) {
+    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inNewValue] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+%!generateObjectiveCTransientTriggering [!mAttributeName !DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
+%  }
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) addObserverOf_%!mAttributeName%: (id) inObserver {
+  if (nil == %!mAttributeName%_observers) {
+    %!mAttributeName%_observers = [NSMutableSet new] ;
+  }
+  [%!mAttributeName%_observers addObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+}
+
+//----------------------------------------------------------------------------*
+
+- (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
+  [%!mAttributeName%_observers removeObject:inObserver] ;
+  [inObserver performSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+}
+
+%
+end foreach
+%
+//----------------------------------------------------------------------------*
+//   R E M O V E    W I N D O W    C O N T R O L L E R                        *
+//----------------------------------------------------------------------------*
+
+- (void) removeWindowController:(NSWindowController *) inWindowController {
+  //NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+//--------------------------- Add Signature observer
+%
+if HAS_SIGNATURE_OBSERVER then
+  %  [mRootObject removeSignatureObserver:self] ;\n%
+end if
+%//--- Unbind Outlets
+%foreach OUTLET_GENERATION_LIST do
+  foreach > mOutletBindingList do
+    ![mBinding generateObjectiveCRemoveBinding !mOutletName]
+  end foreach
+end foreach
+%//--- Unbind Controllers
+%foreach CONTROLLER_MAP do
+  foreach mControllerBindingList do
+   ![mBinding generateObjectiveCRemoveBinding !lkey->string]
+  end foreach
+end foreach
+%//--- Remove Transient observers
+%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%//--- Release controllers
+%foreach CONTROLLER_MAP do
+  %  macroReleaseSetToNil (%!lkey->string%) ;\n%
+end foreach
+%//--- Remove circularities in outlets
+%foreach OUTLET_GENERATION_LIST do
+  if mImplementsDeallocProtocol then
+    %  [%!mOutletName% objectWillBeDeallocated] ;\n%
+  end if 
+end foreach
+%//---
+  [super removeWindowController:inWindowController] ;
+}
+
+% !generateObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
+
+!generateObjectiveCTransientCacheRoutine [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+
+if HAS_SIGNATURE_OBSERVER then
+%//----------------------------------------------------------------------------*
+//   T R I G G E R    S I G N A T U R E    C O M P U T I N G                  *
+//----------------------------------------------------------------------------*
+
+- (void) triggerSignatureComputing {
+  #ifdef EASY_BINDINGS_DEBUG
+    NSLog (@"\%s", __PRETTY_FUNCTION__) ;
+  #endif
+%
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  if [mRootSignDependencyList length] > 0 then
+%  if (%!mTransientName%__computed) {
+    %!mTransientName%__computed = NO ;
+    [PMApplication
+      enterTriggerForObject:self
+      transientIndex:%!["document." . DOCUMENT_NAME . "." . mTransientName identifierRepresentation]%
+    ] ;
+  }
+%  
+  end if
+end foreach
+%}
+
+//----------------------------------------------------------------------------*
+
+%
+end if
+
+%
+
+*/
+
