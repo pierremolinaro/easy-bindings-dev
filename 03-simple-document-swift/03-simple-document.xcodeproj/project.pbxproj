@@ -11,8 +11,7 @@
 		CF4DDA4F1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */; };
 		CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */; };
 		CF4DDA531955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */; };
-		CF6039361945EB90000E47FE /* PMAttributeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6039341945EB90000E47FE /* PMAttributeDescription.swift */; };
-		CF6039371945EB90000E47FE /* PMRelationshipDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */; };
+		CF6DDDC9195747A30061E20B /* PMEntityManager+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DDDC8195747A30061E20B /* PMEntityManager+extension+factory.swift */; };
 		CF94924D1945BCC90068A86C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94924C1945BCC90068A86C /* main.swift */; };
 		CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */; };
 		CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */; };
@@ -33,8 +32,7 @@
 		CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMaj.swift"; sourceTree = "<group>"; };
 		CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMin.swift"; sourceTree = "<group>"; };
 		CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringConcat.swift"; sourceTree = "<group>"; };
-		CF6039341945EB90000E47FE /* PMAttributeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAttributeDescription.swift; sourceTree = "<group>"; };
-		CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMRelationshipDescription.swift; sourceTree = "<group>"; };
+		CF6DDDC8195747A30061E20B /* PMEntityManager+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMEntityManager+extension+factory.swift"; sourceTree = "<group>"; };
 		CF9492471945BCC90068A86C /* 03-simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "03-simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF94924B1945BCC90068A86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF94924C1945BCC90068A86C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -88,9 +86,8 @@
 				CF9492761945C8840068A86C /* MonEnumeration.swift */,
 				CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */,
 				CF9492711945C81F0068A86C /* PMApplication.swift */,
-				CF6039341945EB90000E47FE /* PMAttributeDescription.swift */,
-				CF6039351945EB90000E47FE /* PMRelationshipDescription.swift */,
 				CF94927C1945D6A00068A86C /* PMEntityManager.swift */,
+				CF6DDDC8195747A30061E20B /* PMEntityManager+extension+factory.swift */,
 				CF94927A1945D4A90068A86C /* PMManagedEntity.swift */,
 				CF9492781945D3C10068A86C /* MyRootEntity.swift */,
 				CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */,
@@ -188,9 +185,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF4DDA531955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift in Sources */,
-				CF6039361945EB90000E47FE /* PMAttributeDescription.swift in Sources */,
 				CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */,
-				CF6039371945EB90000E47FE /* PMRelationshipDescription.swift in Sources */,
+				CF6DDDC9195747A30061E20B /* PMEntityManager+extension+factory.swift in Sources */,
 				CF9492791945D3C10068A86C /* MyRootEntity.swift in Sources */,
 				CFD713FA1955DA4A00BC89A7 /* PMManagedDocument.swift in Sources */,
 				CF94927B1945D4A90068A86C /* PMManagedEntity.swift in Sources */,

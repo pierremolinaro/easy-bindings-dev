@@ -21,9 +21,6 @@ protocol PMSignatureObserverProtocol {
 
 var gExplorerObjectIndex = 0
 var gAllocatedEntityCount = 0
-var gAttributeDescriptionDictionary = NSMutableDictionary () // PMAttributeDescription
-var gToOneRelationshipDescriptionDictionary = NSMutableDictionary () // PMRelationshipDescription
-var gToManyRelationshipDescriptionDictionary = NSMutableDictionary () // PMRelationshipDescription
 
 //-----------------------------------------------------------------------------*
 //  PMManagedEntity                                                            *
@@ -40,10 +37,6 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
  // #ifdef PM_COCOA_DEBUG
     var mExplorerObjectIndex : Int
     var mExplorerWindow : NSWindow?
-    var mAttributeViewDictionary : NSMutableDictionary = [:]
-    var mToOneRelationshipSet : NSSet?
-    var mToManyRelationshipSet : NSSet?
-    var mAttributeDescriptionArray : PMAttributeDescription [] = []
 //  #endif
 
   //-----------------------------------------------------------------------------*
@@ -69,100 +62,6 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     noteObjectDeallocation (self)
   }
   
-  //-----------------------------------------------------------------------------*
-  //  To One Relationships                                                       *
-  //-----------------------------------------------------------------------------*
-
-  func toOneRelationshipDescriptionArray () -> PMRelationshipDescription[] {
-    var result = gToOneRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
-    if (nil == result) {
-      var descriptionArray = buildToOneRelationshipDescriptionArray ()
-      result = sort (descriptionArray, <)
-      gToOneRelationshipDescriptionDictionary.setValue (result, forKey:className ())
-    }
-    return result ;
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func hasToOneRelationshipNamed (inName : NSString) -> Bool {
-    for ad in toOneRelationshipDescriptionArray () {
-      if inName == ad.relationshipName {
-        return true ;
-      }
-    }
-    return false ;
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func buildToOneRelationshipDescriptionArray () -> PMRelationshipDescription [] {
-    return []
-  }
-
-  //-----------------------------------------------------------------------------*
-  //  To Many Relationships                                                      *
-  //-----------------------------------------------------------------------------*
-
-  func hasToManyRelationshipNamed (inName : NSString) -> Bool {
-    for ad in toManyRelationshipDescriptionArray () {
-      if inName == ad.relationshipName {
-        return true
-      }
-    }
-    return false
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func buildToManyRelationshipDescriptionArray () -> PMRelationshipDescription[] {
-    return []
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func toManyRelationshipDescriptionArray () -> PMRelationshipDescription[] {
-    var result : PMRelationshipDescription [] = gToManyRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
-    if (nil == result) {
-      var descriptionArray = buildToManyRelationshipDescriptionArray ()
-      result = sort (descriptionArray, <)
-      gToManyRelationshipDescriptionDictionary.setValue (result, forKey:className ())
-    }
-    return result ;
-  }
-
-
-  //-----------------------------------------------------------------------------*
-  //  Attributes                                                                 *
-  //-----------------------------------------------------------------------------*
-
-  func attributeDescriptionArray () -> PMAttributeDescription[] {
-    var result : PMAttributeDescription[] = gAttributeDescriptionDictionary.valueForKey (className ()) as PMAttributeDescription[]
-    if (nil == result) {
-      var descriptionArray = buildAttributeDescriptionArray ()
-      result = sort (descriptionArray, <)
-      gAttributeDescriptionDictionary.setValue (result, forKey:className ())
-    }
-    return result ;
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func hasAttributeNamed (inName : NSString) -> Bool {
-    for ad in attributeDescriptionArray () {
-      if inName == ad.attributeName {
-        return true ;
-      }
-    }
-    return false ;
-  }
-
-  //-----------------------------------------------------------------------------*
-
-  func buildAttributeDescriptionArray () -> PMAttributeDescription [] {
-    return []
-  }
-
   //-----------------------------------------------------------------------------*
   //  setup and save                                                             *
   //-----------------------------------------------------------------------------*
@@ -246,6 +145,14 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
 
 
   //---------------------------------------------------------------------------*
+  //   accessibleObjects                                                       *
+  //---------------------------------------------------------------------------*
+
+  func accessibleObjects () -> NSSet {
+    return NSSet ()
+  }
+
+  //---------------------------------------------------------------------------*
   //   secondColumn                                                            *
   //---------------------------------------------------------------------------*
 
@@ -253,6 +160,74 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     var r = inRect
     r.origin.x += inRect.size.width + 2.0 ;
     return r
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    populateExplorerWindow                                                   *
+  //-----------------------------------------------------------------------------*
+
+  func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    createEntryForAttributeNamed                                             *
+  //-----------------------------------------------------------------------------*
+
+  func createEntryForAttributeNamed (attributeName : String,
+                                     inout ioRect : NSRect,
+                                     view : NSView) -> NSTextField {
+    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    var tf = NSTextField (frame:ioRect)
+    tf.setEnabled (false)
+    tf.setStringValue (attributeName)
+    tf.setFont (font)
+    view.addSubview (tf)
+    var tff = NSTextField (frame:secondColumn (ioRect))
+    tff.setEnabled (false)
+    tff.setFont (font)
+    view.addSubview (tff)
+    ioRect.origin.y += ioRect.size.height
+    return tff
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    createEntryForToOneRelationshipNamed                                     *
+  //-----------------------------------------------------------------------------*
+
+  func createEntryForToOneRelationshipNamed (relationshipName : String,
+                                             inout ioRect : NSRect,
+                                             view : NSView) -> NSButton {
+    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    var tf = NSTextField (frame:ioRect)
+    tf.setEnabled (false)
+    tf.setStringValue (relationshipName)
+    tf.setFont (font)
+    view.addSubview (tf)
+    var bt = NSButton (frame:secondColumn (ioRect))
+    bt.setFont (font)
+    view.addSubview (bt)
+    ioRect.origin.y += ioRect.size.height
+    return bt
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    createEntryForToManyRelationshipNamed                                    *
+  //-----------------------------------------------------------------------------*
+
+  func createEntryForToManyRelationshipNamed (relationshipName : String,
+                                              inout ioRect : NSRect,
+                                              view : NSView) -> NSPopUpButton {
+    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    var tf = NSTextField (frame:ioRect)
+    tf.setEnabled (false)
+    tf.setStringValue (relationshipName)
+    tf.setFont (font)
+    view.addSubview (tf)
+    var bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
+    bt.setFont (font)
+    view.addSubview (bt)
+    ioRect.origin.y += ioRect.size.height ;
+    return bt
   }
 
   //---------------------------------------------------------------------------*
@@ -270,60 +245,10 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
       screen:nil
     )
   //-------------------------------------------------- Adding properties
-//    mAttributeViewDictionary = [NSMutableDictionary new] ;
     var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     var view = NSView (frame:nameRect)
-  //-------------------------------------------------- Adding To many relation ships
-    var relationshipNameArray : Array<String> = []
-    for description in toManyRelationshipDescriptionArray () {
-      relationshipNameArray += description.relationshipName
-      var tf = NSTextField (frame:nameRect)
-      tf.setEnabled (false)
-      tf.setStringValue (description.relationshipName)
-      tf.setFont (font)
-      view.addSubview (tf)
-      var bt = NSPopUpButton (frame:secondColumn (nameRect), pullsDown:true)
-      bt.setFont (font)
-      view.addSubview (bt)
-      mAttributeViewDictionary.setObject (bt, forKey:description.relationshipName)
-      updateEntityArrayDisplayForKey (description.relationshipName)
-      nameRect.origin.y += nameRect.size.height ;
-    }
-    mToManyRelationshipSet = NSSet (array:relationshipNameArray)
-  //-------------------------------------------------- Adding To one relation ships
-    relationshipNameArray = []
-    for description in toOneRelationshipDescriptionArray () {
-      relationshipNameArray += description.relationshipName
-      var tf = NSTextField (frame:nameRect)
-      tf.setEnabled (false)
-      tf.setStringValue (description.relationshipName)
-      tf.setFont (font)
-      view.addSubview (tf)
-      var bt = NSButton (frame:secondColumn (nameRect))
-      bt.setFont (font)
-      view.addSubview (bt)
-      mAttributeViewDictionary.setObject (bt, forKey:description.relationshipName)
-      updateEntityDisplayForKey (description.relationshipName)
-      nameRect.origin.y += nameRect.size.height ;
-    }
-    mToOneRelationshipSet = NSSet (array:relationshipNameArray)
-  //-------------------------------------------------- Adding attributes
-    for description in attributeDescriptionArray () {
-      var tf = NSTextField (frame:nameRect)
-      tf.setEnabled (false)
-      tf.setStringValue (description.attributeName)
-      tf.setFont (font)
-      view.addSubview (tf)
-      var tff = NSTextField (frame:secondColumn (nameRect))
-      tff.setEnabled (false)
-      tff.setFont (font)
-      view.addSubview (tff)
-      mAttributeViewDictionary.setObject (tff, forKey:description.attributeName)
-      updateAttributeDisplayForDescription (description)
-      nameRect.origin.y += nameRect.size.height ;
-    }
-//    macroAssign (mAttributeDescriptionArray, attributeDescriptionArray) ;
+    populateExplorerWindowWithRect (&nameRect, view:view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
     let rr = secondColumn (nameRect)
@@ -335,7 +260,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     closeButton?.setTarget (self)
     closeButton?.setAction ("deleteWindowAction:")
   //--- Set window title
-    let windowTitle = NSString (format:"#%ld (%s) at %p", mExplorerObjectIndex, className (), self)
+    let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className (), self)
     mExplorerWindow?.setTitle (windowTitle)
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
@@ -345,12 +270,11 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     mExplorerWindow?.setContentView (sw)
   }
 
-
   //---------------------------------------------------------------------------*
   //   updateEntityArrayDisplayForKey                                          *
   //---------------------------------------------------------------------------*
 
-  func updateEntityArrayDisplayForKey (inKey : NSString) {
+/*  func updateEntityArrayDisplayForKey (inKey : NSString) {
     var objectArray : NSArray = valueForKey (inKey) as NSArray
     var title = "No Object" ;
     if objectArray.count () == 1 {
@@ -371,13 +295,13 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
       item.setTarget (object)
       item.setAction ("showObjectWindowFromSenderTagAction:")
     }
-  }
+  }*/
 
   //---------------------------------------------------------------------------*
   //   updateEntityDisplayForKey                                               *
   //---------------------------------------------------------------------------*
 
-  func updateEntityDisplayForKey (inKey : NSString) {
+/*  func updateEntityDisplayForKey (inKey : NSString) {
     var object = valueForKey (inKey) as PMManagedEntity
     var stringValue = "nil"
     if nil != object {
@@ -390,23 +314,24 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     bt.setToolTip (stringValue)
     bt.setTarget (object)
     bt.setAction ("showObjectWindowFromSenderTagAction:")
+  }*/
+
+  //---------------------------------------------------------------------------*
+  //   deleteWindowAction                                                      *
+  //---------------------------------------------------------------------------*
+
+  func deleteWindowAction (AnyObject) {
+    clearContextExplorer ()
   }
 
   //---------------------------------------------------------------------------*
-  //   updateAttributeDisplayForDescription                                    *
+  //   clearContextExplorer                                                    *
   //---------------------------------------------------------------------------*
 
-  func updateAttributeDisplayForDescription (inDescription : PMAttributeDescription) {
-    var value : AnyObject! = valueForKey (inDescription.attributeName)
-    var stringValue : String? =  nil
-/*    if (NULL == inDescription.conversionFunction) {
-      stringValue = [value description] ;
-    }else{
-      stringValue = inDescription.conversionFunction (value) ;
-    }*/
-    var tf = mAttributeViewDictionary.objectForKey (inDescription.attributeName) as NSTextField
-    tf.setStringValue ((stringValue == nil) ? "" : stringValue)
-    tf.setToolTip ((stringValue == nil) ? "" : stringValue)
+  func clearContextExplorer () {
+    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
+    closeButton?.setTarget (nil)
+    mExplorerWindow?.orderOut (nil)
   }
 
 
@@ -572,14 +497,6 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
-  - (void) deleteWindowAction: (id) inSender {
-    [self clearContextExplorer] ;
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
   - (void) showObjectWindowFromSenderTagAction: (id) inSender {
     [self showExplorerWindow] ;
   }
@@ -588,23 +505,6 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 #pragma mark Clear Context Explorer
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-  - (void) clearContextExplorer {
-    macroReleaseSetToNil (mAttributeViewDictionary) ;
-    macroReleaseSetToNil (mToOneRelationshipSet) ;
-    macroReleaseSetToNil (mToManyRelationshipSet) ;
-    macroReleaseSetToNil (mAttributeDescriptionArray) ;
-
-    NSButton * closeButton = [mExplorerWindow standardWindowButton:NSWindowCloseButton] ;
-    [closeButton setTarget:nil] ;
-
-    [mExplorerWindow orderOut:nil] ;
-    macroReleaseSetToNil (mExplorerWindow) ;
-  }
-#endif
 
 //---------------------------------------------------------------------------*
 
