@@ -373,6 +373,44 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     }
   }
 
+  //---------------------------------------------------------------------------*
+  //   updateEntityDisplayForKey                                               *
+  //---------------------------------------------------------------------------*
+
+  func updateEntityDisplayForKey (inKey : NSString) {
+    var object = valueForKey (inKey) as PMManagedEntity
+    var stringValue = "nil"
+    if nil != object {
+      let objectIndex = object.explorerObjectIndex ()
+      stringValue = NSString (format:"#%d (%s) %p", objectIndex, object.className (), object)
+    }
+    var bt = mAttributeViewDictionary.objectForKey (inKey) as NSButton
+    bt.setEnabled (object != nil)
+    bt.setTitle (stringValue)
+    bt.setToolTip (stringValue)
+    bt.setTarget (object)
+    bt.setAction ("showObjectWindowFromSenderTagAction:")
+  }
+
+  //---------------------------------------------------------------------------*
+  //   updateAttributeDisplayForDescription                                    *
+  //---------------------------------------------------------------------------*
+
+  func updateAttributeDisplayForDescription (inDescription : PMAttributeDescription) {
+    var value : AnyObject! = valueForKey (inDescription.attributeName)
+    var stringValue : String? =  nil
+/*    if (NULL == inDescription.conversionFunction) {
+      stringValue = [value description] ;
+    }else{
+      stringValue = inDescription.conversionFunction (value) ;
+    }*/
+    var tf = mAttributeViewDictionary.objectForKey (inDescription.attributeName) as NSTextField
+    tf.setStringValue ((stringValue == nil) ? "" : stringValue)
+    tf.setToolTip ((stringValue == nil) ? "" : stringValue)
+  }
+
+
+
 }
 
 /*
@@ -528,42 +566,6 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 #pragma mark Object Explorer
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-  - (void) updateAttributeDisplayForDescription: (PMAttributeDescription *) inDescription {
-    id value = [self valueForKey:inDescription.attributeName] ;
-    NSString * stringValue = nil ;
-    if (NULL == inDescription.conversionFunction) {
-      stringValue = [value description] ;
-    }else{
-      stringValue = inDescription.conversionFunction (value) ;
-    }
-    NSTextField * tf = [mAttributeViewDictionary objectForKey:inDescription.attributeName] ;
-    [tf setStringValue:(stringValue == nil) ? @"" : stringValue] ;
-    [tf setToolTip:(stringValue == nil) ? @"" : stringValue] ;
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-  - (void) updateEntityDisplayForKey: (NSString *) inKey {
-    PMManagedEntity * object = [self valueForKey:inKey] ;
-    NSString * stringValue = @"nil" ;
-    if (nil != object) {
-      const NSUInteger objectIndex = object.explorerObjectIndex ;
-      stringValue = [NSString stringWithFormat:@"#%ld (%@) %p", objectIndex, object.className, object] ;
-    }
-    NSButton * bt = [mAttributeViewDictionary objectForKey:inKey] ;
-    [bt setEnabled:object != nil] ;
-    [bt setTitle:stringValue] ;
-    [bt setToolTip:stringValue] ;
-    [bt setTarget:object] ;
-    [bt setAction:@selector (showObjectWindowFromSenderTagAction:)] ;
-  }
-#endif
 
 //---------------------------------------------------------------------------*
 

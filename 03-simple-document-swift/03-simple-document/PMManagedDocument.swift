@@ -457,7 +457,7 @@ class PMManagedDocument : NSDocument {
   //-----------------------------------------------------------------------------*
 
   @IBAction func showObjectExplorerWindow (AnyObject!) {
-    mRootObject.showExplorerWindow ()
+    mRootObject?.showExplorerWindow ()
   }
 
 
