@@ -26,6 +26,7 @@
 		CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */; };
 		CFD7142F1955E38900BC89A7 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */; };
 		CFD714301955E38900BC89A7 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD7142D1955E38900BC89A7 /* PMDocument.xib */; };
+		CFE1BC5F1956D34C00263B1A /* PMDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1BC5E1956D34C00263B1A /* PMDataScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
 		CFD7142C1955E38900BC89A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFD7142E1955E38900BC89A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CFE1BC5E1956D34C00263B1A /* PMDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDataScanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */,
 				CFD713F71955D96700BC89A7 /* PMDocument.swift */,
 				CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */,
+				CFE1BC5E1956D34C00263B1A /* PMDataScanner.swift */,
 				CF9492551945BCC90068A86C /* MainMenu.xib */,
 				CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */,
 				CFD7142D1955E38900BC89A7 /* PMDocument.xib */,
@@ -199,6 +202,7 @@
 				CF4DDA4F1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift in Sources */,
 				CF94927D1945D6A00068A86C /* PMEntityManager.swift in Sources */,
 				CF94924D1945BCC90068A86C /* main.swift in Sources */,
+				CFE1BC5F1956D34C00263B1A /* PMDataScanner.swift in Sources */,
 				CF9492751945C81F0068A86C /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,20 +11,28 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
+let kFormatSignature = "PM-BINARY-FORMAT"
+var gDebugMenuItemsAdded = false
 
-enum PMDocumentCompressionEnum : UInt {
+//---------------------------------------------------------------------------*
+
+enum PMDocumentCompressionEnum {
   case PMDocumentNoCompression
   case PMDocumentBZ2Compression
   case PMDocumentZLIBCompression
 }
 
 //---------------------------------------------------------------------------*
+//                                                                           *
+//                          PMManagedDocument                                *
+//                                                                           *
+//---------------------------------------------------------------------------*
 
 class PMManagedDocument : NSDocument {
-  var mEntityManager : PMEntityManager ;
-  var mRootObject : PMManagedEntity? ;
-//  var mReadMetadataStatus : UInt8 ;
-//  var mReadMetadataDictionary : NSDictionary ;
+  var mEntityManager : PMEntityManager
+  var mRootObject : PMManagedEntity?
+  var mReadMetadataStatus : UInt8 = 0
+  var mMetadataDictionary : NSMutableDictionary = [:]
 
   //-----------------------------------------------------------------------------*
   //    init                                                                     *
@@ -38,7 +46,7 @@ class PMManagedDocument : NSDocument {
     setUndoManager (um)
     hookOfInit () ;
     um.disableUndoRegistration ()
-    mRootObject = mEntityManager.newInstanceOfEntity (rootEntityClass ())
+    mRootObject = mEntityManager.newInstanceOfEntityNamed (rootEntityClassName ())
     hookOfNewDocumentCreation ()
     um.enableUndoRegistration ()
   }
@@ -66,11 +74,11 @@ class PMManagedDocument : NSDocument {
   }
 
   //-----------------------------------------------------------------------------*
-  //    rootEntityClass                                                          *
+  //    rootEntityClassName                                                      *
   //-----------------------------------------------------------------------------*
 
-  func rootEntityClass () -> PMEntityFactory {
-    return PMEntityFactory.kMyRootEntity
+  func rootEntityClassName () -> String {
+    return ""
   }
 
   //-----------------------------------------------------------------------------*
@@ -85,43 +93,38 @@ class PMManagedDocument : NSDocument {
   //    windowControllerDidLoadNib:                                              *
   //-----------------------------------------------------------------------------*
 
-/*  - (void) windowControllerDidLoadNib: (NSWindowController *) inWindowController {
-    [super windowControllerDidLoadNib:inWindowController] ;
+  override func windowControllerDidLoadNib (aController: NSWindowController) {
+    super.windowControllerDidLoadNib (aController)
   //--- Add Debug menu items ?
-    #ifdef PM_COCOA_DEBUG
-      if (! gDebugMenuItemsAdded) {
-        gDebugMenuItemsAdded = YES ;
-        NSMenuItem * menuItem = [[NSMenuItem alloc]
-          initWithTitle:@"Explore document"
-          action:@selector (showObjectExplorerWindow:)
-          keyEquivalent:@""
-        ] ;
-        macroAddItemToDebugMenu (menuItem) ;
-        macroReleaseSetToNil (menuItem) ;
-        menuItem = [[NSMenuItem alloc]
-          initWithTitle:@"Check Relationships"
-          action:@selector (checkRelationships:)
-          keyEquivalent:@""
-        ] ;
-        macroAddItemToDebugMenu (menuItem) ;
-        macroReleaseSetToNil (menuItem) ;
-        menuItem = [[NSMenuItem alloc]
-          initWithTitle:@"Check All Objects are Reachable"
-          action:@selector (checkEntityReachability:)
-          keyEquivalent:@""
-        ] ;
-        macroAddItemToDebugMenu (menuItem) ;
-        macroReleaseSetToNil (menuItem) ;
+      if !gDebugMenuItemsAdded {
+        gDebugMenuItemsAdded = true
+        var menuItem = NSMenuItem (
+          title:"Explore document",
+          action:"showObjectExplorerWindow:",
+          keyEquivalent:""
+        )
+        gDebugObject.addDebugMenuItem (menuItem)
+        menuItem = NSMenuItem (
+          title:"Check Relationships",
+          action:"checkRelationships:",
+          keyEquivalent:""
+        )
+        gDebugObject.addDebugMenuItem (menuItem)
+        menuItem = NSMenuItem (
+          title:"Check All Objects are Reachable",
+          action:"checkEntityReachability:",
+          keyEquivalent:""
+        )
+        gDebugObject.addDebugMenuItem (menuItem)
       }
     //-------------- Check relationships
-      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;
+/*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;
       const BOOL check = [[[sudc values] value_for_key:@"checkDocumentRelationships"] boolValue] ;
       if (check) {
         [self.windowForSheet makeKeyAndOrderFront:nil] ;
         [self checkRelationships:nil] ;
-      }
-    #endif
-  } */
+      }*/
+  }
 
   //-----------------------------------------------------------------------------*
   //   removeWindowController:                                                   *
@@ -136,9 +139,392 @@ class PMManagedDocument : NSDocument {
   } */
 
 
+  //-----------------------------------------------------------------------------*
+  //  S A V E    T O    D A T A                                                  *
+  //-----------------------------------------------------------------------------*
+
+  func metadataStatusForSaving () -> UInt8 {
+    return 0 ;
+  }
+
+  //-----------------------------------------------------------------------------*
+
+  func compressDataOnSaving () -> PMDocumentCompressionEnum {
+    return PMDocumentCompressionEnum.PMDocumentBZ2Compression ;
+  }
+
+  //-----------------------------------------------------------------------------*
+
+  func hookOfWillSave () {
+  }
+
+  //----------------------------------------------------------------------------*
+  //    dataOfType                                                              *
+  //----------------------------------------------------------------------------*
+
+  override func dataOfType (typeName: String?, error outError: NSErrorPointer) -> NSData? {
+  //---
+    hookOfWillSave ()
+  //--- Add to metadata dictionary the witdth and the height of main window
+    if nil != windowForSheet { // Document has been opened in the user interface
+      if (windowForSheet()!.styleMask() & NSResizableWindowMask) != 0 { // Only if window is resizable
+        let windowSize = windowForSheet ().frame ().size ;
+        mMetadataDictionary.setObject (NSNumber.numberWithDouble (windowSize.width), forKey:"PMWindowWidth")
+        mMetadataDictionary.setObject (NSNumber.numberWithDouble (windowSize.height), forKey:"PMWindowHeight")
+      }
+    }else{ // Document has not been opened in the user interface, use values read from file, if they exist
+/*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
+      NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@"PMWindowWidth"] ;
+      if (nil != v) {
+        [metadataDictionary setObject:v forKey:@"PMWindowWidth"] ;
+      }
+      v = [metadataDictionaryReadFromFile objectForKey:@"PMWindowHeight"] ;
+      if (nil != v) {
+        [metadataDictionary setObject:v forKey:@"PMWindowHeight"] ;
+      }*/
+    }
+  //---
+    var fileData = NSMutableData ()
+    var trace : String = ""
+  //--- Append signature
+    fileData.writeSignature (&trace)
+  //--- Write status
+    fileData.writeByte (metadataStatusForSaving (), trace:&trace)
+  //--- Append metadata dictionary
+    let metaData = NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
+      format:NSPropertyListFormat.BinaryFormat_v1_0,
+      options:0,
+      error:nil
+    )
+    fileData.writeByte (1, trace:&trace)
+    fileData.writeAutosizedData (metaData, trace:&trace)
+  //--- Append document data
+    let documentData = mEntityManager.dataForSavingFromRootObject (mRootObject!)
+    fileData.writeByte (6, trace:&trace)
+    fileData.writeAutosizedData (documentData, trace:&trace)
+/*    switch ([self compressDataOnSaving]) {
+    case PMDocumentBZ2Compression:
+      data = [data bz2CompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
+      [fileData writeByte:5 trace:nil] ;
+      [fileData writeAutosizedData:data trace:nil] ;
+      break ;
+    case PMDocumentZLIBCompression:
+      data = [data zlibCompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
+      [fileData writeByte:7 trace:nil] ;
+      [fileData writeAutosizedData:data trace:nil] ;
+      break ;
+    default:
+      [fileData writeByte:6 trace:nil] ;
+      [fileData writeAutosizedData:data trace:nil] ;
+      break ;
+    }*/
+  //--- Append final byte
+    fileData.writeByte (0, trace:&trace)
+    println (trace)
+  //---
+    return fileData ;
+  }
+
+  //----------------------------------------------------------------------------*
+  //    readFromData                                                            *
+  //----------------------------------------------------------------------------*
+
+  override func readFromData (data: NSData?,
+                              ofType typeName: String?,
+                              error outError: NSErrorPointer) -> Bool {
+    undoManager ().disableUndoRegistration ()
+  //---- Define input data scanner
+    var dataScanner = PMDataScanner (
+      data:data!,
+      displayProgressWindowTitle:(data!.length () > 30000) ? lastComponentOfFileName ().stringByDeletingPathExtension : nil
+    )
+  //--- Check Signature
+    for c in kFormatSignature.utf8 {
+      dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)
+    }
+  //--- Read Status
+    mReadMetadataStatus = dataScanner.parseByte ()
+  //--- if ok, check byte is 1
+    dataScanner.acceptRequiredByte (1, sourceFile:__FUNCTION__)
+  //--- Read metadata dictionary
+    var error : NSError?
+    let dictionaryData = dataScanner.parseAutosizedData ()
+    let metadataDictionary = NSPropertyListSerialization.propertyListWithData (dictionaryData,
+      options:0, // NSPropertyListReadOptions.Immutable,
+      format:nil,
+      error:nil
+    ) as NSDictionary
+    mMetadataDictionary = metadataDictionary.mutableCopy () as NSMutableDictionary
+     //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
+  //--- Read data dictionary
+    let dataFormat = dataScanner.parseByte ()
+    switch dataFormat {
+    case 6 :
+      let data = dataScanner.parseAutosizedData ()
+      mRootObject = mEntityManager.readFromData (data, rootEntityClassName:rootEntityClassName ())
+    default:
+      NSLog ("unknowm data format: %u", dataFormat)
+    }
+/*    BOOL legacyDataWithoutConverterError = NO ;
+    if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
+      NSData * data = [dataScanner parseAutosizedData] ;
+      if (NULL == legacyFormatLoader) {
+        data = nil ;
+        legacyDataWithoutConverterError = YES ;
+      }else if (nil != data) {
+        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
+      }
+    }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed
+      NSData * compressedData = [dataScanner parseAutosizedData] ;
+      NSData * data = nil ;
+      if (nil != compressedData) {
+         data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+      }
+      if (NULL == legacyFormatLoader) {
+        legacyDataWithoutConverterError = YES ;
+        data = nil ;
+      }else if (nil != data) {
+        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
+      }
+    }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed
+      NSData * compressedData = [dataScanner parseAutosizedData] ;
+      NSData * data = nil ;
+      if (nil != compressedData) {
+        data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+      }
+      if (NULL == legacyFormatLoader) {
+        legacyDataWithoutConverterError = YES ;
+        data = nil ;
+      }else if (nil != data) {
+        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
+      }
+    }else if ([dataScanner testAcceptByte:6]) { // Not compressed
+      NSData * data = [dataScanner parseAutosizedData] ;
+      if (nil != data) {
+        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+        macroRetain (mRootObject) ;
+      }
+    }else if ([dataScanner testAcceptByte:7]) { // ZLIB Compressed
+      NSData * compressedData = [dataScanner parseAutosizedData] ;
+      if (nil != compressedData) {
+        NSData * data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+        macroRetain (mRootObject) ;
+      }
+    }else{
+      [dataScanner acceptRequiredByte:5 sourceFile:__FUNCTION__] ; // BZ2 compressed
+      NSData * compressedData = [dataScanner parseAutosizedData] ;
+      if (nil != compressedData) {
+        NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
+        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
+        macroRetain (mRootObject) ;
+      }
+    }*/
+  //--- if ok, check final byte (0)
+    dataScanner.acceptRequiredByte (0, sourceFile:__FUNCTION__)
+  //--- Scanner error ?
+    if !dataScanner.ok () {
+      let dictionary = [
+        "Cannot Open Document" :  NSLocalizedDescriptionKey,
+        "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
+      ]
+      error = NSError (
+        domain:NSBundle.mainBundle ().bundleIdentifier (),
+        code:1,
+        userInfo:dictionary
+      )
+    }
+  //---
+    dataScanner.orderOutProgressWindow ()
+  //---
+/*    if (legacyDataWithoutConverterError) {
+      NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"Cannot Open Document",  NSLocalizedDescriptionKey,
+        @"Legacy data, no helper function",  NSLocalizedRecoverySuggestionErrorKey,
+        nil
+      ] ;
+      macroReleaseSetToNil (error) ;
+      error = [[NSError alloc]
+        initWithDomain:[NSBundle mainBundle].bundleIdentifier
+        code:1
+        userInfo:dictionary
+      ] ;
+    }*/
+  //---
+    if (error == nil) && (mRootObject == nil) {
+      let dictionary = [
+        "Cannot Open Document" :  NSLocalizedDescriptionKey,
+        "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
+      ]
+      error = NSError (
+        domain:NSBundle.mainBundle ().bundleIdentifier (),
+        code:1,
+        userInfo:dictionary
+      )
+    }
+  //---
+    if (nil != outError) {
+      outError.memory = error
+    }
+    undoManager ().enableUndoRegistration ()
+  //---
+    return nil == error
+  }
+
+  //-----------------------------------------------------------------------------*
+  //   showWindows                                                               *
+  //-----------------------------------------------------------------------------*
+
+  override func showWindows () {
+    if (windowForSheet ().styleMask () & NSResizableWindowMask) != 0 { // Only if window is resizable
+      var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
+      var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
+      if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
+        let newSize = NSSize (width:Double (windowWidthNumber!.doubleValue ()), height:Double (windowHeightNumber!.doubleValue ()))
+        var windowFrame : NSRect = windowForSheet ().frame()
+        windowFrame.size = newSize
+        windowForSheet ().setFrame (windowFrame, display:true)
+      }
+    }
+  //---
+    super.showWindows ()
+  }
+
+  //-----------------------------------------------------------------------------*
+  //   C H E C K    E N T I T Y   R E A C H A B I L I T Y                        *
+  //-----------------------------------------------------------------------------*
+
+  @IBAction func checkEntityReachability (AnyObject!) {
+  //--- Build and show Panel
+    let panelRect = NSRect (
+      x:0.0,
+      y:0.0,
+      width:295.0,
+      height:107.0
+    )
+    let panel = NSPanel (contentRect:panelRect,
+      styleMask:NSTitledWindowMask,
+      backing:NSBackingStoreBuffered,
+      defer:false
+    )
+    let textRect = NSRect (
+     x:17.0,
+     y:45.0,
+     width:261.0,
+     height:17.0
+    )
+    var tf = NSTextField (frame:textRect)
+    tf.setStringValue ("Checking Document Relationships...")
+    tf.setBezeled (false)
+    tf.setBordered (false)
+    tf.setDrawsBackground (false)
+    tf.setEditable (false)
+    tf.setFont (NSFont.boldSystemFontOfSize (0.0))
+    panel.contentView ().addSubview (tf)
+    NSApp.beginSheet (panel,
+      modalForWindow:windowForSheet (),
+      modalDelegate:nil,
+      didEndSelector:nil,
+      contextInfo:nil
+    )
+    panel.display ()
+  //---
+    let unreachableObjects : NSSet = mEntityManager.uneachableObjectsFromObject (mRootObject!)
+  //---
+    panel.orderOut (nil) ; NSApp.endSheet (panel)
+  //---
+    let n = unreachableObjects.count ()
+    if n > 0 {
+      let rn = mEntityManager.entityCount () ;
+      let reachableCount = rn - n ;
+      var alert = NSAlert ()
+      alert.setMessageText ("Object Graph Warning")
+      alert.addButtonWithTitle ("Do not Delete")
+      alert.addButtonWithTitle (NSString (format:"Delete %lu unreachable Object%s", n, (n > 1) ? "s" : ""))
+      alert.setInformativeText (NSString (format:"There %s %lu registered object%s, ",
+        " %lu reachable object%s from root object.",
+        (rn > 1) ? "are" : "is", rn, (rn > 1) ? "s" : "",
+        reachableCount, (reachableCount > 1) ? "s" : ""
+      ))
+      alert.beginSheetModalForWindow (windowForSheet (),
+        completionHandler:nil
+      )
+    }
+  }
+
+  //-----------------------------------------------------------------------------*
+  //   showObjectExplorerWindow:                                                 *
+  //-----------------------------------------------------------------------------*
+
+  @IBAction func showObjectExplorerWindow (AnyObject!) {
+    mRootObject.showExplorerWindow ()
+  }
+
 
 
 }
+
+
+//---------------------------------------------------------------------------*
+//                                                                           *
+//     NSMutableData extension                                               *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+extension NSMutableData {
+
+  func writeSignature (inout trace: String) {
+    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    for c in kFormatSignature.utf8 {
+      var byte : UInt8 = UInt8 (c)
+      appendBytes (&byte, length:1)
+      trace += NSString (format:"%02hhX ", byte)
+    }
+    trace += "\n"
+  }
+
+  //---------------------------------------------------------------------------*
+
+  func writeAutosizedData (inData: NSData,
+                           inout trace: String) {
+    writeAutosizedUnsigned (UInt64 (inData.length ()), trace:&trace)
+    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    appendData (inData)
+    trace += "(data, length \(inData.length ()))\n"
+  }
+
+  //---------------------------------------------------------------------------*
+
+  func writeByte (inByte: UInt8,
+                  inout trace: String) {
+    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    trace += NSString (format:"%02hhX ", inByte)
+    var byte = inByte
+    appendBytes (&byte, length:1)
+    trace += "\n"
+  }
+
+  //---------------------------------------------------------------------------*
+
+  func writeAutosizedUnsigned (inValue: UInt64,
+                               inout trace: String) {
+    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    trace += "U "
+    var value = inValue
+    do{
+      var byte : UInt8 = UInt8 (value & 0x7F)
+      value >>= 7
+      if (value != 0) {
+        byte |= 0x80
+      }
+      trace += NSString (format:"%02hhX ", byte)
+      appendBytes (&byte, length:1)
+    }while value != 0
+    trace += "\n"
+  }
+}
+
+//---------------------------------------------------------------------------*
 
 //---------------------------------------------------------------------------*
 
@@ -590,18 +976,6 @@ typedef enum : NSUInteger {
 #pragma mark Object Explorer Window
 
 //-----------------------------------------------------------------------------*
-//                                                                             *
-//   showObjectExplorerWindow:                                                 *
-//                                                                             *
-//-----------------------------------------------------------------------------*
-
-- (void) showObjectExplorerWindow: (id) inUnusedSender {
-  #ifdef PM_COCOA_DEBUG
-    [mRootObject showExplorerWindow] ;
-  #endif
-}
-
-//-----------------------------------------------------------------------------*
 //  S A V E    T O    D A T A                                                  *
 //-----------------------------------------------------------------------------*
 
@@ -700,24 +1074,6 @@ static const char * kFormatSignature = "PM-BINARY-FORMAT" ;
 //---
   macroAutorelease (fileData) ;
   return fileData ;
-}
-
-//-----------------------------------------------------------------------------*
-
-- (void) showWindows {
-  if ((self.windowForSheet.styleMask & NSResizableWindowMask) != 0) { // Only if window is resizable
-    NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
-    NSNumber * windowWidthNumber = [metadataDictionaryReadFromFile objectForKey:@"PMWindowWidth"] ;
-    NSNumber * windowHeightNumber = [metadataDictionaryReadFromFile objectForKey:@"PMWindowHeight"] ;
-    if ((nil != windowWidthNumber) && (nil != windowHeightNumber)) {
-      const NSSize newSize = {windowWidthNumber.doubleValue, windowHeightNumber.doubleValue} ;
-      NSRect windowFrame = self.windowForSheet.frame ;
-      windowFrame.size = newSize ;
-      [self.windowForSheet setFrame:windowFrame display:YES] ;
-    }
-  }
-//---
-  [super showWindows] ;
 }
 
 //-----------------------------------------------------------------------------*

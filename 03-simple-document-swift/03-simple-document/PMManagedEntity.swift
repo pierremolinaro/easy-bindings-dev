@@ -40,11 +40,15 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
  // #ifdef PM_COCOA_DEBUG
     var mExplorerObjectIndex : Int
     var mExplorerWindow : NSWindow?
-    var mAttributeViewDictionary : NSMutableDictionary?
+    var mAttributeViewDictionary : NSMutableDictionary = [:]
     var mToOneRelationshipSet : NSSet?
     var mToManyRelationshipSet : NSSet?
     var mAttributeDescriptionArray : PMAttributeDescription [] = []
 //  #endif
+
+  //-----------------------------------------------------------------------------*
+  //  init                                                                       *
+  //-----------------------------------------------------------------------------*
 
   init (entityManager : PMEntityManager) {
     mEntityManager = entityManager
@@ -57,19 +61,20 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     noteObjectAllocation (self)
   }
 
+  //-----------------------------------------------------------------------------*
+  //  deinit                                                                     *
+  //-----------------------------------------------------------------------------*
+
   deinit {
     noteObjectDeallocation (self)
   }
   
-  func resetBeforeDeletion () {
-  }
-
   //-----------------------------------------------------------------------------*
   //  To One Relationships                                                       *
   //-----------------------------------------------------------------------------*
 
   func toOneRelationshipDescriptionArray () -> PMRelationshipDescription[] {
-    var result : PMRelationshipDescription[] = gToOneRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
+    var result = gToOneRelationshipDescriptionDictionary.valueForKey (className ()) as PMRelationshipDescription []
     if (nil == result) {
       var descriptionArray = buildToOneRelationshipDescriptionArray ()
       result = sort (descriptionArray, <)
@@ -224,13 +229,150 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     return mEntityManager!.mUndoManager
   }
 
+  func explorerObjectIndex () -> Int {
+    return mExplorerObjectIndex
+  }
 
-/*
-#ifdef PM_COCOA_DEBUG
-  - (void) showExplorerWindow ;
-  - (NSUInteger) explorerObjectIndex ;
-#endif
-*/
+  //---------------------------------------------------------------------------*
+  //   showExplorerWindow                                                      *
+  //---------------------------------------------------------------------------*
+
+  func showExplorerWindow () {
+    if mExplorerWindow == nil {
+      createAndPopulateObjectExplorerWindow ()
+    }
+    mExplorerWindow?.makeKeyAndOrderFront (nil)
+  }
+
+
+  //---------------------------------------------------------------------------*
+  //   secondColumn                                                            *
+  //---------------------------------------------------------------------------*
+
+  func secondColumn (inRect : NSRect) -> NSRect {
+    var r = inRect
+    r.origin.x += inRect.size.width + 2.0 ;
+    return r
+  }
+
+  //---------------------------------------------------------------------------*
+  //   createAndPopulateObjectExplorerWindow                                   *
+  //---------------------------------------------------------------------------*
+
+  func createAndPopulateObjectExplorerWindow () {
+  //-------------------------------------------------- Create Window
+    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
+    mExplorerWindow = NSWindow (
+      contentRect:r,
+      styleMask:NSTitledWindowMask | NSClosableWindowMask,
+      backing:NSBackingStoreBuffered,
+      defer:true,
+      screen:nil
+    )
+  //-------------------------------------------------- Adding properties
+//    mAttributeViewDictionary = [NSMutableDictionary new] ;
+    var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)
+    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    var view = NSView (frame:nameRect)
+  //-------------------------------------------------- Adding To many relation ships
+    var relationshipNameArray : Array<String> = []
+    for description in toManyRelationshipDescriptionArray () {
+      relationshipNameArray += description.relationshipName
+      var tf = NSTextField (frame:nameRect)
+      tf.setEnabled (false)
+      tf.setStringValue (description.relationshipName)
+      tf.setFont (font)
+      view.addSubview (tf)
+      var bt = NSPopUpButton (frame:secondColumn (nameRect), pullsDown:true)
+      bt.setFont (font)
+      view.addSubview (bt)
+      mAttributeViewDictionary.setObject (bt, forKey:description.relationshipName)
+      updateEntityArrayDisplayForKey (description.relationshipName)
+      nameRect.origin.y += nameRect.size.height ;
+    }
+    mToManyRelationshipSet = NSSet (array:relationshipNameArray)
+  //-------------------------------------------------- Adding To one relation ships
+    relationshipNameArray = []
+    for description in toOneRelationshipDescriptionArray () {
+      relationshipNameArray += description.relationshipName
+      var tf = NSTextField (frame:nameRect)
+      tf.setEnabled (false)
+      tf.setStringValue (description.relationshipName)
+      tf.setFont (font)
+      view.addSubview (tf)
+      var bt = NSButton (frame:secondColumn (nameRect))
+      bt.setFont (font)
+      view.addSubview (bt)
+      mAttributeViewDictionary.setObject (bt, forKey:description.relationshipName)
+      updateEntityDisplayForKey (description.relationshipName)
+      nameRect.origin.y += nameRect.size.height ;
+    }
+    mToOneRelationshipSet = NSSet (array:relationshipNameArray)
+  //-------------------------------------------------- Adding attributes
+    for description in attributeDescriptionArray () {
+      var tf = NSTextField (frame:nameRect)
+      tf.setEnabled (false)
+      tf.setStringValue (description.attributeName)
+      tf.setFont (font)
+      view.addSubview (tf)
+      var tff = NSTextField (frame:secondColumn (nameRect))
+      tff.setEnabled (false)
+      tff.setFont (font)
+      view.addSubview (tff)
+      mAttributeViewDictionary.setObject (tff, forKey:description.attributeName)
+      updateAttributeDisplayForDescription (description)
+      nameRect.origin.y += nameRect.size.height ;
+    }
+//    macroAssign (mAttributeDescriptionArray, attributeDescriptionArray) ;
+  //-------------------------------------------------- Finish Window construction
+  //--- Resize View
+    let rr = secondColumn (nameRect)
+    view.setFrame (NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr)))
+  //--- Set content size
+    mExplorerWindow?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))
+  //--- Set close button as 'remove window' button
+    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
+    closeButton?.setTarget (self)
+    closeButton?.setAction ("deleteWindowAction:")
+  //--- Set window title
+    let windowTitle = NSString (format:"#%ld (%s) at %p", mExplorerObjectIndex, className (), self)
+    mExplorerWindow?.setTitle (windowTitle)
+  //--- Add Scroll view
+    let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
+    var sw = NSScrollView (frame:frame)
+    sw.setHasVerticalScroller (true)
+    sw.setDocumentView (view)
+    mExplorerWindow?.setContentView (sw)
+  }
+
+
+  //---------------------------------------------------------------------------*
+  //   updateEntityArrayDisplayForKey                                          *
+  //---------------------------------------------------------------------------*
+
+  func updateEntityArrayDisplayForKey (inKey : NSString) {
+    var objectArray : NSArray = valueForKey (inKey) as NSArray
+    var title = "No Object" ;
+    if objectArray.count () == 1 {
+      title = "1 Object" ;
+    }else if objectArray.count () > 1 {
+      title = NSString (format:"%lu objects", objectArray.count ())
+    }
+    var bt = mAttributeViewDictionary.objectForKey (inKey) as NSPopUpButton
+    bt.removeAllItems ()
+    bt.addItemWithTitle (title)
+    bt.setEnabled (objectArray.count () > 0)
+    for obj : AnyObject in objectArray {
+      let object = obj as PMManagedEntity
+      let objectIndex = object.explorerObjectIndex ()
+      let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className (), object)
+      bt.addItemWithTitle (stringValue)
+      var item = bt.lastItem ()
+      item.setTarget (object)
+      item.setAction ("showObjectWindowFromSenderTagAction:")
+    }
+  }
+
 }
 
 /*
@@ -425,161 +567,11 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 
 //---------------------------------------------------------------------------*
 
-#ifdef PM_COCOA_DEBUG
-  - (void) updateEntityArrayDisplayForKey: (NSString *) inKey {
-    NSArray * objectArray = [self valueForKey:inKey] ;
-    NSString * title = @"No Object" ;
-    if (objectArray.count == 1) {
-      title = @"1 Object" ;
-    }else if (objectArray.count > 1) {
-      title = [NSString stringWithFormat:@"%lu objects", objectArray.count] ;
-    }
-    NSPopUpButton * bt = [mAttributeViewDictionary objectForKey:inKey] ;
-    [bt removeAllItems] ;
-    [bt addItemWithTitle:title] ;
-    [bt setEnabled:objectArray.count > 0] ;
-    for (PMManagedEntity * object in objectArray) {
-      const NSUInteger objectIndex = object.explorerObjectIndex ;
-      NSString * stringValue = [NSString stringWithFormat:@"#%ld (%@) %p", objectIndex, object.className, object] ;
-      [bt addItemWithTitle:stringValue] ;
-      NSMenuItem * item = [bt lastItem] ;
-      [item setTarget:object] ;
-      [item setAction:@selector (showObjectWindowFromSenderTagAction:)] ;
-    }
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-  static NSRect secondColumn (NSRect inRect) {
-    NSRect r = inRect ;
-    r.origin.x += inRect.size.width + 2.0 ;
-    return r ;
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-- (void) createAndPopulateObjectExplorerWindow {
-//-------------------------------------------------- Create Window
-  const NSRect r = {{20.0, 20.0}, {10.0, 10.0}} ;
-  mExplorerWindow = [[NSWindow alloc]
-    initWithContentRect:r
-    styleMask:NSTitledWindowMask | NSClosableWindowMask
-    backing:NSBackingStoreBuffered
-    defer:YES
-    screen:nil
-  ] ;
-//-------------------------------------------------- Adding properties
-  mAttributeViewDictionary = [NSMutableDictionary new] ;
-  NSRect nameRect = {{0.0, 0.0}, {300.0, 22.0}} ;
-  NSFont * font = [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]] ;
-  NSView * view = [[NSView alloc] initWithFrame:nameRect] ;
-//-------------------------------------------------- Adding To many relation ships
-  NSArray * toManyRelationshipNameArray = [self toManyRelationshipDescriptionArray] ;
-  NSMutableArray * relationshipNameArray = [NSMutableArray new] ;
-  for (PMRelationshipDescription * description in toManyRelationshipNameArray) {
-    [relationshipNameArray addObject:description.relationshipName] ;
-    NSTextField * tf = [[NSTextField alloc] initWithFrame:nameRect] ;
-    [tf setEnabled:NO] ;
-    [tf setStringValue:description.relationshipName] ;
-    [tf setFont:font] ;
-    [view addSubview:tf] ;
-    macroReleaseSetToNil (tf) ;
-    NSPopUpButton * bt = [[NSPopUpButton alloc] initWithFrame:secondColumn (nameRect) pullsDown:YES] ;
-    [bt setFont:font] ;
-    [view addSubview:bt] ;
-    [mAttributeViewDictionary setObject:bt forKey:description.relationshipName] ;
-    macroReleaseSetToNil (bt) ;
-    [self updateEntityArrayDisplayForKey:description.relationshipName] ;
-    nameRect.origin.y += nameRect.size.height ;
-  }
-  mToManyRelationshipSet = [NSSet setWithArray:relationshipNameArray] ;
-  macroReleaseSetToNil (relationshipNameArray) ;
-  macroRetain (mToManyRelationshipSet) ;
-//-------------------------------------------------- Adding To one relation ships
-  NSArray * toOneRelationshipNameArray = [self toOneRelationshipDescriptionArray] ;
-  relationshipNameArray = [NSMutableArray new] ;
-  for (PMRelationshipDescription * description in toOneRelationshipNameArray) {
-    [relationshipNameArray addObject:description.relationshipName] ;
-    NSTextField * tf = [[NSTextField alloc] initWithFrame:nameRect] ;
-    [tf setEnabled:NO] ;
-    [tf setStringValue:description.relationshipName] ;
-    [tf setFont:font] ;
-    [view addSubview:tf] ;
-    macroReleaseSetToNil (tf) ;
-    NSButton * bt = [[NSButton alloc] initWithFrame:secondColumn (nameRect)] ;
-    [bt setFont:font] ;
-    [view addSubview:bt] ;
-    [mAttributeViewDictionary setObject:bt forKey:description.relationshipName] ;
-    macroReleaseSetToNil (bt) ;
-    [self updateEntityDisplayForKey:description.relationshipName] ;
-    nameRect.origin.y += nameRect.size.height ;
-  }
-  mToOneRelationshipSet = [NSSet setWithArray:relationshipNameArray] ;
-  macroReleaseSetToNil (relationshipNameArray) ;
-  macroRetain (mToOneRelationshipSet) ;
-//-------------------------------------------------- Adding attributes
-  NSArray * attributeDescriptionArray = [self attributeDescriptionArray] ;
-  for (PMAttributeDescription * description in attributeDescriptionArray) {
-    NSTextField * tf = [[NSTextField alloc] initWithFrame:nameRect] ;
-    [tf setEnabled:NO] ;
-    [tf setStringValue:description.attributeName] ;
-    [tf setFont:font] ;
-    [view addSubview:tf] ;
-    macroReleaseSetToNil (tf) ;
-    NSTextField * tff = [[NSTextField alloc] initWithFrame:secondColumn (nameRect)] ;
-    [tff setEnabled:NO] ;
-    [tff setFont:font] ;
-    [view addSubview:tff] ;
-    [mAttributeViewDictionary setObject:tff forKey:description.attributeName] ;
-    macroReleaseSetToNil (tff) ;
-    [self updateAttributeDisplayForDescription:description] ;
-    nameRect.origin.y += nameRect.size.height ;
-  }
-  macroAssign (mAttributeDescriptionArray, attributeDescriptionArray) ;
-//-------------------------------------------------- Finish Window construction
-//--- Resize View
-  const NSRect rr = secondColumn (nameRect) ;
-  [view setFrame:NSMakeRect (0.0, 0.0, NSMaxX (rr), NSMaxY (rr))] ;
-//--- Set content size
-  [mExplorerWindow setContentSize:NSMakeSize (NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, fmin (600.0, NSMaxY (nameRect)))] ;
-//--- Set close button as 'remove window' button
-  NSButton * closeButton = [mExplorerWindow standardWindowButton:NSWindowCloseButton] ;
-  [closeButton setTarget:self] ;
-  [closeButton setAction:@selector (deleteWindowAction:)] ;
-//--- Set window title
-  NSString * windowTitle = [NSString stringWithFormat:@"#%ld (%@) at 0x%llX", mExplorerObjectIndex, self.className, (UInt64) self] ;
-  [mExplorerWindow setTitle:windowTitle] ;
-//--- Add Scroll view
-  const NSRect frame = {{0.0, 0.0}, {NSMaxX (nameRect) * 2.0 + 4.0, NSMaxY (nameRect)}} ;
-  NSScrollView * sw = [[NSScrollView alloc] initWithFrame:frame] ;
-  [sw setHasVerticalScroller:YES] ;
-  [sw setDocumentView:view] ;
-  macroReleaseSetToNil (view) ;
-  [mExplorerWindow setContentView:sw] ;
-  macroReleaseSetToNil (sw) ;
-}
-#endif
-
 //---------------------------------------------------------------------------*
 
 #ifdef PM_COCOA_DEBUG
   - (void) deleteWindowAction: (id) inSender {
     [self clearContextExplorer] ;
-  }
-#endif
-
-//---------------------------------------------------------------------------*
-
-#ifdef PM_COCOA_DEBUG
-  - (void) showExplorerWindow {
-    if (mExplorerWindow == nil) {
-      [self createAndPopulateObjectExplorerWindow] ;
-    }
-    [mExplorerWindow makeKeyAndOrderFront:nil] ;
   }
 #endif
 
