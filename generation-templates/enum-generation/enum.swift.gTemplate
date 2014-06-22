@@ -18,26 +18,30 @@ foreach CONSTANT_ORDERED_LIST do index idx
 end foreach
 %    }
   }
-  
-  func storeInDictionary (inKey : String,
+}
+
+//----------------------------------------------------------------------------*
+
+/*  func storeInDictionary (inKey : String,
                           inout ioDictionary : NSMutableDictionary) {
     ioDictionary.setObject (NSNumber.numberWithInteger (toRaw ()), forKey: inKey)
-  }
-  
-  static func readFromDictionary (inKey : String,
-                                 inDictionary : NSMutableDictionary) -> %!ENUM_TYPE_NAME% {
-    let v : Int? = inDictionary.objectForKey (inKey)?.integerValue()
+  }*/
+ 
+ //----------------------------------------------------------------------------*
+
+extension NSDictionary {
+  func read%!ENUM_TYPE_NAME%  (inKey : String) -> %!ENUM_TYPE_NAME% {
+    let v : Int? = objectForKey (inKey)?.integerValue()
+    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
     if v {
       let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME%.fromRaw (v!)
       if e {
-        return e!
-      }else{
-        return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
+        result = e!
       }
-    }else{
-      return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
     }
+    return result
   }
 }
 
 //----------------------------------------------------------------------------*
+
