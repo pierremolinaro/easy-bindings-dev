@@ -1,0 +1,36 @@
+//-----------------------------------------------------------------------------*
+
+import Cocoa
+
+//-----------------------------------------------------------------------------*
+
+extension PMEntityManager {
+
+  //---------------------------------------------------------------------------*
+  //  newInstanceOfEntityNamed                                                 *
+  //---------------------------------------------------------------------------*
+
+  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedEntity? {
+    var result : PMManagedEntity?
+%
+foreach ENTITY_MAP
+before
+  %    %
+do
+  %if inEntityTypeName == "%!lkey->string%" {\n%
+  %      result = %!lkey->string% (entityManager:self)\n%
+between
+  %      else %
+after
+  %    }\n%
+end foreach
+%    if nil != result {
+      addEntity (result!)
+    }
+    return result
+  }
+
+}
+
+//-----------------------------------------------------------------------------*
+
