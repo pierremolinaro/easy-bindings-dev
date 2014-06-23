@@ -261,6 +261,7 @@ class PMManagedDocument : NSDocument {
     switch dataFormat {
     case 6 :
       let data = dataScanner.parseAutosizedData ()
+      self.mEntityManager.deleteEntity (mRootObject!)
       mRootObject = mEntityManager.readFromData (data, rootEntityClassName:rootEntityClassName ())
     default:
       NSLog ("unknowm data format: %u", dataFormat)
@@ -440,9 +441,8 @@ class PMManagedDocument : NSDocument {
       var alert = NSAlert ()
       alert.setMessageText ("Object Graph Warning")
       alert.addButtonWithTitle ("Do not Delete")
-      alert.addButtonWithTitle (NSString (format:"Delete %lu unreachable Object%s", n, (n > 1) ? "s" : ""))
-      alert.setInformativeText (NSString (format:"There %s %lu registered object%s, ",
-        " %lu reachable object%s from root object.",
+      alert.addButtonWithTitle (NSString (format:"Delete %lu unreachable Object%@", n, (n > 1) ? "s" : ""))
+      alert.setInformativeText (NSString (format:"There %@ %lu registered object%@, %lu reachable object%@ from root object.",
         (rn > 1) ? "are" : "is", rn, (rn > 1) ? "s" : "",
         reachableCount, (reachableCount > 1) ? "s" : ""
       ))

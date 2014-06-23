@@ -87,11 +87,16 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
+
   template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
     ?@string CLASS_NAME
     ?@ebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
+  ;
+
+  template entityFactoryImplementationFileInSwift "PMEntityManager+extension+factory.swift.gTemplate"
+    ?@entityMap ENTITY_MAP
   ;
 }
 
@@ -272,5 +277,26 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+routine generateEntityFactory
+  ??@entityMap inEntityMap
+  ??@string inOutputDirectory
+:
+  if [option easyBindings_options.outputSwift value] & ([inEntityMap count] > 0) then
+    const s := [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
+      !inEntityMap
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !"PMEntityManager+extension+factory.swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n"
+      !"\n\n"
+    ] ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
 
 end semantics ;
