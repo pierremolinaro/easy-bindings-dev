@@ -6,7 +6,7 @@ typedef enum : NSInteger {
 %foreach CONSTANT_ORDERED_LIST
 do %  %!mValue->string
 between %, \n%
-end foreach%
+end%
 } %!ENUM_TYPE_NAME% ;
 
 //-----------------------------------------------------------------------------*

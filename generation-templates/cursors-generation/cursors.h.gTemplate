@@ -6,13 +6,13 @@
 
 %foreach CURSOR_MAP do
 %NSCursor * %!lkey->string%_cursor (void) ;
-%end foreach%
+%end%
 //---------------------------------------------------------------------------*
 //    P R E D E F I N E D    C U R S O R S                                   *
 //---------------------------------------------------------------------------*
 
 %foreach PREDEFINED_CURSOR_LIST do%
 NSCursor * %!mValue%_cursor (void) ;
-%end foreach%
+%end%
 //---------------------------------------------------------------------------*
 

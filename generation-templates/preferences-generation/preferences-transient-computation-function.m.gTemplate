@@ -6,6 +6,6 @@
  foreach DIRECT_DEPENDANCY_LIST
   do ![mDependency generateFormalObjectiveCArgument]
   between %,\n%!^
- end foreach
+ end
  %) {
 

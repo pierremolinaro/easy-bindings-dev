@@ -16,7 +16,7 @@
 
 %foreach OBSERVABLE_PROPERTY_MAP do
 %@synthesize %!lkey->string% ;\n%
-end foreach
+end
 %
 //---------------------------------------------------------------------------*
 //                                                                           *
@@ -63,7 +63,7 @@ end foreach
   #endif
 %foreach BINDING_MAP do
 %  [%!CONTROLLER_CLASS_NAME% exposeBinding:@"%!lkey->string%"] ;\n%
-end foreach
+end
 %}
 
 %foreach OBSERVABLE_PROPERTY_MAP do%
@@ -78,7 +78,7 @@ end foreach
   }
 }
 
-%end foreach
+%end
 
 if [OBSERVABLE_PROPERTY_MAP count] > 0 then
 %//---------------------------------------------------------------------------*
@@ -97,11 +97,11 @@ if [OBSERVABLE_PROPERTY_MAP count] > 0 then
     [self %!lkey->string%_model_did_change] ; 
 %
   between %  }else%
-end foreach
+end
 %  }
 }
 
-%end if
+%end
 
 
 if [BINDING_MAP count] > 0 then
@@ -131,7 +131,7 @@ if [BINDING_MAP count] > 0 then
     [self valueFor_%!lkey->string%_binding_didChange] ;
 %
   between %  }else%
-end foreach
+end
 %  }else{
     [super
       bind:inBindingName
@@ -142,7 +142,7 @@ end foreach
   }
 }
 
-%end if
+%end
 
 if [BINDING_MAP count] > 0 then
 %//---------------------------------------------------------------------------*
@@ -162,13 +162,13 @@ if [BINDING_MAP count] > 0 then
     mKeyPathFor_%!lkey->string% = nil ; 
 %
   between %  }else%
-end foreach
+end
 %  }else{
     [super unbind:inBindingName] ;
   }
 }
 
-%end if
+%end
 
 
 if [BINDING_MAP count] > 0 then
@@ -190,7 +190,7 @@ if [BINDING_MAP count] > 0 then
     [self valueFor_%!lkey->string%_binding_didChange] ;
 %
   between %  }else%
-end foreach
+end
 %  }else{
     [super
       observeValueForKeyPath:inKeyPath
@@ -201,7 +201,7 @@ end foreach
   }
 }
 
-%end if
+%end
 
 %//---------------------------------------------------------------------------*
 
@@ -230,6 +230,6 @@ end foreach
   return [mBoundObjectFor_%!lkey->string% valueForKeyPath:mKeyPathFor_%!lkey->string%] ;
 }
 
-%end foreach%
+%end%
 //---------------------------------------------------------------------------*
 

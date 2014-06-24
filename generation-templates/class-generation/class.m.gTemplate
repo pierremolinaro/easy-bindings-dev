@@ -5,13 +5,13 @@
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!CLASS_NAME%-transient-computations.h"\n%
-end if
+end
 foreach IMPLEMENTATION_INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 foreach CURRENT_ARRAY_MAP do
 %#import "%!mElementType->mTypeName->string%.h"\n%
-end foreach
+end
 %
 
 //----------------------------------------------------------------------------*
@@ -24,10 +24,10 @@ end foreach
 
 %foreach ATTRIBUTE_LIST do
   %@synthesize %!mAttributeName% ;\n%
-end foreach
+end
 foreach CURRENT_ARRAY_MAP do
   %@synthesize %!lkey->string% ;\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 //    Init Methods                                                            *
@@ -38,13 +38,13 @@ end foreach
   if (self) {
 %if SUPER_CLASS_NAME == "" then
 %    macroNoteObjectAllocation ;
-%end if
+%end
 foreach ATTRIBUTE_LIST do
   %    %!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
-end foreach
+end
 foreach CURRENT_ARRAY_MAP do
   %    self.%!lkey->string% = [NSMutableArray new] ;\n%
-end foreach
+end
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
   }
@@ -58,7 +58,7 @@ end foreach
   do ![mAttributeName stringByCapitalizingFirstCharacter]%: (%![mType ocTypeName]%) in%![mAttributeName stringByCapitalizingFirstCharacter]
   between %\n%!^%with%
   after % {\n%
-end foreach
+end
 if [INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL length] == 0 then
   %  self = [super init] ;\n%
 else
@@ -68,17 +68,17 @@ foreach INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
   do ![mAttributeName stringByCapitalizingFirstCharacter]%:in%![mAttributeName stringByCapitalizingFirstCharacter]
   between %\n    with%
   after %\n  ] ;\n%
-end foreach
-end if
+end
+end
 %  if (self) {  
 %
 if SUPER_CLASS_NAME == "" then
 %    macroNoteObjectAllocation ;
-%end if
+%end
 
 foreach ATTRIBUTE_LIST do
   %    %!mAttributeName% = in%![mAttributeName stringByCapitalizingFirstCharacter]% ;\n%
-end foreach
+end
 
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
@@ -97,7 +97,7 @@ end foreach
     macroSuperDealloc ;
   }
 #endif
-%end if%
+%end%
 //----------------------------------------------------------------------------*
 //    removeObservers                                                         *
 //----------------------------------------------------------------------------*
@@ -107,7 +107,7 @@ end foreach
 %!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 if SUPER_CLASS_NAME != "" then
 %  [super removeObservers] ;
-%end if%}
+%end%}
 
 %
 
@@ -124,11 +124,11 @@ foreach ATTRIBUTE_LIST do
   swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:));
   macroCheckMethodSwizzling (original, swizzled) ;
   method_exchangeImplementations (original, swizzled) ;
-%end foreach
+%end
 %}
 
 %
-end if
+end
 
 foreach ATTRIBUTE_LIST do
 %//----------------------------------------------------------------------------*
@@ -160,7 +160,7 @@ foreach ATTRIBUTE_LIST do
   [inObserver performSelector:@selector (%!["class." . CLASS_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
-%end foreach
+%end
 
 !generateObjectiveCTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
 

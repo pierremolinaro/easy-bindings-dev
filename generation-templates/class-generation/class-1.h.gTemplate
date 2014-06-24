@@ -2,10 +2,10 @@
   %#import <Cocoa/Cocoa.h>\n%
 else
   %#import "%!SUPER_CLASS_NAME%.h"\n%
-end if
+end
 foreach HEADER_INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 
@@ -14,16 +14,16 @@ if SUPER_CLASS_NAME == "" then
   %NSObject%
 else
   !SUPER_CLASS_NAME
-end if
+end
 % {
 //--- Attribute observers
 %foreach ATTRIBUTE_LIST do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
-end foreach
+end
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n%
-end foreach
+end
 %

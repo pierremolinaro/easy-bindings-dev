@@ -4,19 +4,19 @@
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
 %  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
-end foreach
+end
 foreach ARRAY_MAP do
 %//--- '%!lkey->string%' array\n%
 %  @property (copy) NSMutableArray * %!lkey->string% ;\n\n%
-end foreach
+end
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' getter\n%
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
-end foreach%
+end%
 
 //--- Actions
 %foreach ACTION_LIST do
 %  - (IBAction) %!mValue->string%: (id) inSender ;\n%
-end foreach%
+end%
 
 @end

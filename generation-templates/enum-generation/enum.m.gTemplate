@@ -10,7 +10,7 @@ NSString * convert%!ENUM_TYPE_NAME%ValueToString (NSNumber * inValue) {
 foreach CONSTANT_ORDERED_LIST do
    %    case %!mValue->string% : result = @"%!mValue->string%" ;\n%
    %    break ;\n%
-end foreach
+end
 %  }
   return result ;
 }

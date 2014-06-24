@@ -9,10 +9,10 @@
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!ENTITY_NAME%-transient-computations.h"\n%
-end if
+end
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 %
 
 //-----------------------------------------------------------------------------*
@@ -26,17 +26,17 @@ end foreach
 //--- Attributes
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %@synthesize %!mAttributeName% ;\n%
-end foreach
+end
 %
 //--- To-one relationships
 %foreach TO_ONE_RELATIONSHIPS do
 %@synthesize %!mValue0% ; // %!mValue1%\n%
-end foreach%
+end%
 //--- To-many relationships
 %
 foreach TO_MANY_RELATIONSHIPS do
 %@synthesize %!mValue0% ; // Set of %!mValue1% entities\n%
-end foreach
+end
 %
 //-----------------------------------------------------------------------------*
 //    Swizzle setters                                                          *
@@ -51,19 +51,19 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
-end foreach
+end
 foreach TO_ONE_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
-end foreach
+end
 foreach TO_MANY_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
-end foreach
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -85,12 +85,12 @@ end foreach
 %
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
-end foreach
+end
 %  //--- To many relationship initialisation
 %
 foreach TO_MANY_RELATIONSHIPS do
   %    self.%!mValue0% = [NSMutableArray new] ;\n%
-end foreach
+end
 %  //--- Add Transient observers\n%
 !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
@@ -108,9 +108,9 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"%!mAttributeName%"%
   if [mType hasCustomExplorerFunction] then
     % withConversionFunction:convert%![mType ebTypeName]%ValueToString%
-  end if
+  end
   %]] ;\n%
-end foreach
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -127,8 +127,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    withOppositionRelationshipName:@"%!mInverseRelationshipName->string%"\n%
     %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
     %  ]] ;\n%
-  end if
-end foreach
+  end
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -145,8 +145,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    withOppositionRelationshipName:@"%!mInverseRelationshipName->string%"\n%
     %    withIsToManyOppositionRelationship:%![mInverseRelationIsToMany ocString]%\n%
     %  ]] ;\n%
-  end if
-end foreach
+  end
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -157,7 +157,7 @@ end foreach
 %
 foreach CURRENT_RELATIONSHIP_LIST do
   %  %!mRelationshipName->string% = nil ;\n%
-end foreach
+end
 %//--- Remove Transient observers
 %!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %  [super resetBeforeDeletion] ;
@@ -172,14 +172,14 @@ end foreach
 %
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  store%![mType ebTypeName]%InDictionary (self.%!mAttributeName%, @"%!mAttributeName%", ioDictionary) ;\n%
-end foreach
+end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  storeEntityArrayInDictionary (self.%!mRelationshipName->string%, @"%!mRelationshipName->string%", ioDictionary) ;\n%
   else
     %  storeEntityInDictionary (self.%!mRelationshipName->string%, @"%!mRelationshipName->string%", ioDictionary) ;\n%
-  end if
-end foreach
+  end
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -195,14 +195,14 @@ end foreach
 %
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  self.%!mAttributeName% = read%![mType ebTypeName]%FromDictionary (@"%!mAttributeName%", inDictionary) ;\n%
-end foreach
+end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  self.%!mRelationshipName->string% = readEntityArrayFromDictionary (@"%!mRelationshipName->string%", inDictionary, inManagedEntityArray) ;\n%
   else
     %  self.%!mRelationshipName->string% = readEntityFromDictionary (@"%!mRelationshipName->string%", inDictionary, inManagedEntityArray) ;\n%
-  end if
-end foreach
+  end
+end
 %}
 
 %
@@ -229,7 +229,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %      object.%!mInverseRelationshipName->string% = nil ;\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %      [object removeSignatureObserver:self] ;\n%
-    end if
+    end
     %    }\n%
     %    macroReleaseSetToNil (removedObjectSet) ;\n%
     %  //--- Added object set\n%
@@ -240,7 +240,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %      object.%!mInverseRelationshipName->string% = self ;\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %      [object addSignatureObserver:self] ;\n%
-    end if
+    end
     %    }\n%
     %    macroReleaseSetToNil (addedObjectSet) ;\n%
     %  //--- Notify observers object count did change\n%
@@ -248,7 +248,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
-    end if
+    end
     !generateObjectiveCTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %  }\n%
     %}\n\n%
@@ -304,8 +304,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    [self removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:idx] ;\n%
     %  }\n%
     %}\n\n%
-  end if
-end foreach
+  end
+end
 
 foreach CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
@@ -322,7 +322,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %  //--- Remove signature observer from old object\n%
       %    [self.%!mRelationshipName->string% removeSignatureObserver:self] ;\n%
-    end if
+    end
     %  //--- Store new value\n%
     %    [self set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled :inNewObject] ;\n%
     %  //--- Set opposite relation ship\n%
@@ -332,18 +332,18 @@ foreach CURRENT_RELATIONSHIP_LIST do
     else
       %    currentObject.%!mInverseRelationshipName->string% = nil ;\n%
       %    inNewObject.%!mInverseRelationshipName->string% = self ;\n%
-    end if
+    end
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %  //--- Add signature observer to new object\n%
       %    [self.%!mRelationshipName->string% addSignatureObserver:self] ;\n%
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
-    end if
+    end
     !generateObjectiveCTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %  }\n%
     %}\n\n%
-  end if
-end foreach
+  end
+end
 
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %//-----------------------------------------------------------------------------*\n%
@@ -362,7 +362,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
     %    [[self.undoManager prepareWithInvocationTarget:self]\n%
     %      set%![mAttributeName stringByCapitalizingFirstCharacter]%:self.%!mAttributeName%\n%
     %    ] ;\n%
-  end if
+  end
   %  //--- Store new value\n%
   %    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled :inNewValue] ;\n%
   %  //--- Notify observers\n%
@@ -370,10 +370,10 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   !generateObjectiveCTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
   if [SIGN_SET hasKey !mAttributeName] then
     %    [self triggerSignatureComputing] ;\n%
-  end if
+  end
   %  }\n%
   %}\n\n%
-end foreach
+end
 
 if [SIGN_LIST length] > 0 then
 %
@@ -385,10 +385,10 @@ if [SIGN_LIST length] > 0 then
   NSInteger signature = [super computeSignature] ;
 % foreach SIGN_LIST do
 %  signature = %![mPropertyType functionForComputingSignature !mIsToMany]% (signature, self.%!mPropertyName%) ;\n%
-end foreach
+end
 %  return signature ;
 }
-%end if
+%end
 
 
 foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
@@ -422,7 +422,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
 }
 
 %
-end foreach
+end
 
 foreach TO_MANY_RELATIONSHIPS do%
 //-----------------------------------------------------------------------------*
@@ -453,7 +453,7 @@ foreach TO_MANY_RELATIONSHIPS do%
 }
 
 %
-end foreach
+end
 
 !generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 

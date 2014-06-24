@@ -23,7 +23,7 @@ between
   %      else %
 after
   %    }\n%
-end foreach
+end
 %    if nil != result {
       addEntity (result!)
     }

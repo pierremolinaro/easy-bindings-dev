@@ -7,7 +7,7 @@ enum %!ENUM_TYPE_NAME% : Int {
 %
 foreach CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue->string% = %![idx string]%\n%
-end foreach
+end
 %
   
   func string () -> String {
@@ -15,7 +15,7 @@ end foreach
 %
 foreach CONSTANT_ORDERED_LIST do index idx
    %      case %!mValue->string% : return "%!mValue->string%" // %![idx string]%\n%
-end foreach
+end
 %    }
   }
 }
