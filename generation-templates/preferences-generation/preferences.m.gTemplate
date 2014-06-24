@@ -4,14 +4,14 @@
 #import "%!PREFERENCES_NAME%.h"
 %if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!PREFERENCES_NAME%-computations.h"\n%
-end if
+end
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 
 foreach ARRAY_MAP do
 %#import "%!mElementType->mTypeName->string%.h"\n%
-end foreach
+end
 
 %#import <objc/runtime.h>
 
@@ -29,10 +29,10 @@ end foreach
 
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %@synthesize %!mAttributeName% ;\n%
-end foreach
+end
 foreach ARRAY_MAP do
 %@synthesize %!lkey->string% ;\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 //    Init                                                                    *
@@ -51,7 +51,7 @@ end foreach
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
   %  //---\n%
-end if
+end
 foreach ATTRIBUTE_LIST_FOR_GENERATION
   before
     %    id value ;\n%
@@ -62,7 +62,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
     %    }else{\n%
     %      self.%!mAttributeName% = %![mType preferencesGetterTransformerFunctionName]% (value) ;\n%
     %    }\n%
-end foreach
+end
 
 
 foreach ARRAY_MAP do
@@ -73,14 +73,14 @@ foreach ARRAY_MAP do
 before %          initWith%
 do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesGetterTransformerFunctionName]%([dict objectForKey:@"%!mAttributeName%"])\n%
 between %          with%
-end foreach
+end
 %        ] ;
         [array addObject:object] ;
       }
       self.%!lkey->string% = array ;
     }
 %
-end foreach
+end
 
 
 %  //---
@@ -114,10 +114,10 @@ end foreach
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %  NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;\n%
   %//---\n%
-end if
+end
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
   %  [ud setObject:%![mType preferencesSetterTransformerFunctionName]% (%!mAttributeName%) forKey:@"%!PREFERENCES_NAME%:%!mAttributeName%"] ;\n%
-end foreach
+end
 foreach ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
     for (%!mElementType->mTypeName->string% * object in self.%!lkey->string%) {
@@ -125,7 +125,7 @@ foreach ARRAY_MAP do
         dictionaryWithObjectsAndKeys:
 %foreach mAttributeListForImplementation do
 %          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%
-end foreach
+end
 %          nil
         ]
       ] ;
@@ -133,7 +133,7 @@ end foreach
     [ud setObject:array forKey:@"%!PREFERENCES_NAME%:%!lkey->string%"] ;
   }
 %
-end foreach
+end
 
 %}
 
@@ -150,7 +150,7 @@ foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
   %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
   %  [%!lkey->string% setObjectClass:[%!mControlledClassOrEntityName->string% class]] ;\n%
-end foreach
+end
 
 foreach CONTROLLER_MAP do
   foreach mControllerBindingList
@@ -158,8 +158,8 @@ foreach CONTROLLER_MAP do
     %//--- '%!lkey->string%' controller bindings\n%
   do
    ![mBinding generateObjectiveCBinding !lkey->string]
-  end foreach
-end foreach
+  end
+end
 
 foreach OUTLET_DECLARATION_LIST do
    %//--- check %!mOutletName%' outlet not nil\n%
@@ -168,8 +168,8 @@ foreach OUTLET_DECLARATION_LIST do
    %  }\n%
   foreach mOutletBindingList do
     ![mBinding generateObjectiveCBinding !mOutletName]
-  end foreach
-end foreach
+  end
+end
 %
 //---
   [self %!PREFERENCES_NAME%_did_awakeFromNib] ;
@@ -187,11 +187,11 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
   swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
   method_exchangeImplementations (original, swizzled) ;
-%end foreach
+%end
 %}
 
 %
-end if
+end
 
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %//----------------------------------------------------------------------------*
@@ -233,7 +233,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 //  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
-%end foreach
+%end
 
 !generateObjectiveCTransientCacheRoutine [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 

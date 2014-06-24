@@ -4,6 +4,6 @@ func compute_%!CLASS_NAME%_%!TRANSIENT_NAME% (%?^
  foreach DIRECT_DEPENDANCY_LIST
   do ![mDependency generateSwiftFormalArgument]
   between %,\n%!^
- end foreach
+ end
  %) -> %![RESULT_TYPE swiftTypeName]% {
 

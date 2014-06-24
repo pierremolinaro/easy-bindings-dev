@@ -2,7 +2,7 @@
 %
 foreach HEADER_INCLUSIONS do
 %#import "%!key%.h"\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 
@@ -10,7 +10,7 @@ typedef struct {
 %
 foreach STRUCT_FIELD_LIST do
  %  %![mFieldType ebTypeName]% %!mFieldName% ;\n%
-end foreach
+end
 %
 } %!STRUCT_TYPE_NAME% ;
 
@@ -40,7 +40,7 @@ BOOL equal%!STRUCT_TYPE_NAME%s (%?^%const %!STRUCT_TYPE_NAME% inValue1,
 foreach STRUCT_FIELD_LIST
   do %const %![mFieldType ebTypeName]% in_%!mFieldName
   between %,\n%!^
-end foreach
+end
 %) ;
 
 //-----------------------------------------------------------------------------*

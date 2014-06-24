@@ -2,8 +2,8 @@
 %foreach ADOPTED_PROTOCOL_LIST do
   if not mNeedsInclusionInHeader then
     %#import "%!mProtocolName%.h"\n%
-  end if
-end foreach
+  end
+end
 %
 //---------------------------------------------------------------------------*
 
@@ -13,12 +13,12 @@ before % <%
 do !mProtocolName
 between %, %
 after %>%
-end foreach
+end
 % {
 
 %foreach BINDING_MAP do%
 //--- Attributes for '%!lkey->string%' binding
   @protected NSObject * mBoundObjectFor_%!lkey->string% ;
   @protected NSString * mKeyPathFor_%!lkey->string% ;
-%end foreach%
+%end%
 

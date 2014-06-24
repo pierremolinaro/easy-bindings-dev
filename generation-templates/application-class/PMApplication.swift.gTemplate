@@ -29,7 +29,7 @@ import Cocoa
 //-----------------------------------------------------------------------------*
 
 %
-  end foreach  
+  end  
 %//-----------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
@@ -44,7 +44,7 @@ import Cocoa
     mObserverObject_%![mValue identifierRepresentation]%.addObject (inObject)
     mDeferredMessageSent = true
   }\n\n%
-  end foreach  
+  end  
 %
 
   //---------------------------------------------------------------------------*
@@ -69,7 +69,7 @@ import Cocoa
           object.didChangeValueForKey  ("%![mValue pathExtension]%")
         }
       }    
-%  end foreach  
+%  end  
 %      mDeferredMessageSent = false ;
     }
   }

@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
 %foreach HEADER_INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 
@@ -9,7 +9,7 @@ end foreach
 %
 foreach CLASS_PREDECLARATION_SET do
   %@class %!key% ;\n%
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 
@@ -17,22 +17,22 @@ end foreach
 //--- Attribute observers
 %foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
-end foreach
+end
 
 
 foreach CONTROLLER_MAP do
 %//--- '%!lkey->string%' controller
   @private %!mControllerClassName% * %!lkey->string% ;\n%
-end foreach
+end
 
 
 foreach OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
-end foreach
+end
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n\n%
-end foreach
+end
 %

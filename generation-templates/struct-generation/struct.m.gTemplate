@@ -11,7 +11,7 @@ NSString * convert%!STRUCT_TYPE_NAME%ValueToString (NSValue * inValue) {
 foreach STRUCT_FIELD_LIST
   do %  [result appendString:%![mFieldType stringConversionForExplorer!"v." . mFieldName]%] ;\n%
   between %  [result appendString:@", "] ;\n%
-end foreach
+end
 %  [result appendString:@")"] ;
   return result ;
 }
@@ -24,7 +24,7 @@ void store%!STRUCT_TYPE_NAME%InDictionary (%?^%const %!STRUCT_TYPE_NAME% inValue
 %
 foreach STRUCT_FIELD_LIST do
   %  store%![mFieldType ebTypeName]%InDictionary (inValue.%!mFieldName%, [inKey stringByAppendingString:@".%!mFieldName%"], ioDictionary) ;\n%
-end foreach
+end
 %}
 
 //-----------------------------------------------------------------------------*
@@ -35,7 +35,7 @@ end foreach
 %
 foreach STRUCT_FIELD_LIST do
   %  result.%!mFieldName% = read%![mFieldType ebTypeName]%FromDictionary ([inKey stringByAppendingString:@".%!mFieldName%"], inDictionary) ;\n%
-end foreach
+end
 %  return result ;
 }
 
@@ -49,7 +49,7 @@ foreach STRUCT_FIELD_LIST do
   %  if (result) {\n%
   %    result = %![mFieldType equalExpression !"inValue1." . mFieldName !"inValue2." . mFieldName]% ;\n% 
   %  }\n%
-end foreach
+end
 %  return result ;
 }
 
@@ -59,13 +59,13 @@ end foreach
 foreach STRUCT_FIELD_LIST
   do %const %![mFieldType ebTypeName]% in_%!mFieldName
   between %,\n%!^
-end foreach
+end
 %) {
   %!STRUCT_TYPE_NAME% result ;
 %
 foreach STRUCT_FIELD_LIST do
   %  result.%!mFieldName% = in_%!mFieldName% ;\n%
-end foreach
+end
 %  return result ;
 }
 

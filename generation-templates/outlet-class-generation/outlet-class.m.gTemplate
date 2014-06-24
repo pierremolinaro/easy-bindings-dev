@@ -53,10 +53,10 @@
 + (void) initialize {
 %foreach BINDING_MAP do
 %  [%!OUTLET_CLASS_NAME% exposeBinding:@%![lkey utf8Representation]%] ;
-%end foreach%
+%end%
 }
 
-%end if
+%end
 
 if [BINDING_MAP count] > 0 then
 %//---------------------------------------------------------------------------*
@@ -83,7 +83,7 @@ if [BINDING_MAP count] > 0 then
     [self valueFor_%!lkey->string%_didChange:value] ;
 %
   between %}else%
-end foreach
+end
 %  }else{
     [super
       bind:inBindingName
@@ -94,7 +94,7 @@ end foreach
   }
 }
 
-%end if
+%end
 
 if [BINDING_MAP count] > 0 then
 %//---------------------------------------------------------------------------*
@@ -111,13 +111,13 @@ if [BINDING_MAP count] > 0 then
     mKeyPathFor_%!lkey->string% = nil ; 
 %
   between %}else%
-end foreach
+end
 %  }else{
     [super unbind:inBindingName] ;
   }
 }
 
-%end if
+%end
 
 
 if [BINDING_MAP count] > 0 then
@@ -137,7 +137,7 @@ if [BINDING_MAP count] > 0 then
     [self valueFor_%!lkey->string%_didChange:value] ;
 %
   between %}else%
-end foreach
+end
 %  }else{
     [super
       observeValueForKeyPath:inKeyPath
@@ -148,7 +148,7 @@ end foreach
   }
 }
 
-%end if
+%end
 
 %//---------------------------------------------------------------------------*
 
@@ -170,7 +170,7 @@ end foreach
 %foreach mAcceptableTypeList do
 %  }else if ([inValue isKindOfClass:[%![mType ocClassName]% class]]) {
     [self valueFor_%!lkey->string%_didChange_%![mType ocClassName]%:inValue] ;
-%end foreach%  }
+%end%  }
 }
 
 //---------------------------------------------------------------------------*
@@ -179,6 +179,6 @@ end foreach
   [mBoundObjectFor_%!lkey->string% set_value:inValue forKeyPath:mKeyPathFor_%!lkey->string%] ;
 }
 
-%end foreach%
+%end%
 //---------------------------------------------------------------------------*
 

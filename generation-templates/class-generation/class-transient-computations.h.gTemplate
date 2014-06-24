@@ -2,7 +2,7 @@
 %
 foreach INCLUSION_SET do
   %#import "%!key%.h"\n%
-end foreach
+end
 %
 %!generateTransientFunctionDeclarations [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
 //----------------------------------------------------------------------------*

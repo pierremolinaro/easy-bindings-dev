@@ -11,7 +11,7 @@ import Cocoa
 %
 foreach OUTLET_GENERATION_LIST do
 %  @IBOutlet var %!mOutletName% : %!mOutletType%\n%
-end foreach
+end
 %
   //----------------------------------------------------------------------------*
   //    Controllers                                                             *
@@ -21,7 +21,7 @@ end foreach
 foreach CONTROLLER_MAP do
 %//--- '%!lkey->string%' controller
   @private %!mControllerClassName% * %!lkey->string% ;\n%
-end foreach
+end
 %
   //----------------------------------------------------------------------------*
   //    Documents attributes                                                    *
@@ -34,12 +34,12 @@ foreach ATTRIBUTE_LIST do
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
 %  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
-end foreach
+end
 
 %//--- Attribute observers
 %foreach ATTRIBUTE_LIST do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
-end foreach
+end
 %
   //----------------------------------------------------------------------------*
   //    windowNibName                                                           *
@@ -79,8 +79,8 @@ foreach CONTROLLER_MAP do
   if mControlledClassOrEntityName->string != "" then
     %  %!lkey->string%.objectClass = [%!mControlledClassOrEntityName->string% class] ;\n%
     %  %!lkey->string%.entityManager = self.entityManager ;\n%
-  end if
-end foreach
+  end
+end
 %  //--------------------------- Controller bindings
 %
 foreach CONTROLLER_MAP do
@@ -89,8 +89,8 @@ foreach CONTROLLER_MAP do
     %//--- '%!lkey->string%' controller bindings\n%
   do
    ![mBinding generateObjectiveCBinding !lkey->string]
-  end foreach
-end foreach
+  end
+end
 %  //--------------------------- Outlet bindings
 %
 
@@ -101,15 +101,15 @@ foreach OUTLET_GENERATION_LIST do
    %    }\n%
   foreach mOutletBindingList do
     ![mBinding generateSwiftBinding !mOutletName]
-  end foreach
-end foreach
+  end
+end
 %  //--------------------------- Add Transient observers
 %!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
 %  //--------------------------- Add Signature observer
 %
 if HAS_SIGNATURE_OBSERVER then
   %  [mRootObject addSignatureObserver:self] ;\n%
-end if
+end
 %}
 
   //----------------------------------------------------------------------------*
@@ -121,31 +121,31 @@ end if
 %
 if HAS_SIGNATURE_OBSERVER then
   %  [mRootObject removeSignatureObserver:self] ;\n%
-end if
+end
 %  //--- Unbind Outlets
 %foreach OUTLET_GENERATION_LIST do
   foreach > mOutletBindingList do
     ![mBinding generateSwiftRemoveBinding !mOutletName]
-  end foreach
-end foreach
+  end
+end
 %  //--- Unbind Controllers
 %foreach CONTROLLER_MAP do
   foreach mControllerBindingList do
    ![mBinding generateSwiftRemoveBinding !lkey->string]
-  end foreach
-end foreach
+  end
+end
 %  //--- Remove Transient observers
 %!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %  //--- Release controllers
 %foreach CONTROLLER_MAP do
   %  macroReleaseSetToNil (%!lkey->string%) ;\n%
-end foreach
+end
 %  //--- Remove circularities in outlets
 %foreach OUTLET_GENERATION_LIST do
   if mImplementsDeallocProtocol then
     %  [%!mOutletName% objectWillBeDeallocated] ;\n%
-  end if 
-end foreach
+  end 
+end
 %  //---
     super.removeWindowController (inWindowController)
   }
@@ -158,7 +158,7 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
 %  }\n\n%
-end foreach
+end
 %
 }
 
@@ -196,10 +196,10 @@ if [ATTRIBUTE_LIST length] > 0 then
 %
   foreach ATTRIBUTE_LIST do
     %@synthesize %!mAttributeName% ;\n%
-  end foreach
+  end
 %
 %
-end if
+end
 
 if [ATTRIBUTE_LIST length] > 0 then
 %//----------------------------------------------------------------------------*
@@ -214,11 +214,11 @@ foreach ATTRIBUTE_LIST do
   swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:));
   macroCheckMethodSwizzling (original, swizzled) ;
   method_exchangeImplementations (original, swizzled) ;
-%end foreach
+%end
 %}
 
 %
-end if
+end
 
 if [ATTRIBUTE_LIST length] > 0 then
 %//----------------------------------------------------------------------------*
@@ -231,14 +231,14 @@ if [ATTRIBUTE_LIST length] > 0 then
 %
   foreach ATTRIBUTE_LIST do
   %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
-  end foreach
+  end
   !generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
   return self ;
 }
 
 %
-end if
+end
 
 %//----------------------------------------------------------------------------*
 //    windowNibName                                                           *
@@ -297,7 +297,7 @@ foreach ATTRIBUTE_LIST do
 }
 
 %
-end foreach
+end
 %
 //----------------------------------------------------------------------------*
 //   R E M O V E    W I N D O W    C O N T R O L L E R                        *
@@ -309,31 +309,31 @@ end foreach
 %
 if HAS_SIGNATURE_OBSERVER then
   %  [mRootObject removeSignatureObserver:self] ;\n%
-end if
+end
 %//--- Unbind Outlets
 %foreach OUTLET_GENERATION_LIST do
   foreach > mOutletBindingList do
     ![mBinding generateObjectiveCRemoveBinding !mOutletName]
-  end foreach
-end foreach
+  end
+end
 %//--- Unbind Controllers
 %foreach CONTROLLER_MAP do
   foreach mControllerBindingList do
    ![mBinding generateObjectiveCRemoveBinding !lkey->string]
-  end foreach
-end foreach
+  end
+end
 %//--- Remove Transient observers
 %!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//--- Release controllers
 %foreach CONTROLLER_MAP do
   %  macroReleaseSetToNil (%!lkey->string%) ;\n%
-end foreach
+end
 %//--- Remove circularities in outlets
 %foreach OUTLET_GENERATION_LIST do
   if mImplementsDeallocProtocol then
     %  [%!mOutletName% objectWillBeDeallocated] ;\n%
-  end if 
-end foreach
+  end 
+end
 %//---
   [super removeWindowController:inWindowController] ;
 }
@@ -362,14 +362,14 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
     ] ;
   }
 %  
-  end if
-end foreach
+  end
+end
 %}
 
 //----------------------------------------------------------------------------*
 
 %
-end if
+end
 
 %
 

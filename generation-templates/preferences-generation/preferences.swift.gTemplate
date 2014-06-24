@@ -15,7 +15,7 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 \n%
 foreach OUTLET_DECLARATION_LIST do
 %  @IBOutlet var %!mOutletName% : %!mOutletType%\n%
-end foreach
+end
 
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %\n%
@@ -39,12 +39,12 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
     %!mAttributeName%_observers.removeObject (inObserver)
     NSApp.sendAction ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }\n%
-end foreach
+end
 %
   //------------------------------------------------------- Controllers\n%
 foreach CONTROLLER_MAP do
 %  var %!lkey->string% = %!mControllerClassName% ()\n%
-end foreach
+end
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-----------------------------------------------------------------------------*
@@ -54,12 +54,12 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!PREFERENCES_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
 %  }\n\n%
-end foreach
+end
 %
   //------------------------------------------------------- Arraies\n%
 foreach ARRAY_MAP do
 %  var %!lkey->string% = NSMutableArray ()\n%
-end foreach
+end
 
 
 %
@@ -73,7 +73,7 @@ end foreach
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
   %  //---\n%
-end if
+end
 foreach ATTRIBUTE_LIST_FOR_GENERATION
   before
     %    var value : AnyObject?\n%
@@ -82,7 +82,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
     %    if (nil != value) {\n%
     %      %!mAttributeName% = %![mType preferencesSwiftGetter]%\n%
     %    }\n%
-end foreach
+end
 
 
 foreach ARRAY_MAP do
@@ -93,14 +93,14 @@ foreach ARRAY_MAP do
 before %          initWith%
 do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesSwiftGetter]%([dict objectForKey:@"%!mAttributeName%"])\n%
 between %          with%
-end foreach
+end
 %        ] ;
         [array addObject:object] ;
       }
       self.%!lkey->string% = array ;
     }
 %
-end foreach
+end
 %  //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
@@ -114,15 +114,15 @@ end foreach
 % foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller\n%
   %  %!lkey->string%.setObjectClass (%!mControlledClassOrEntityName->string% class)\n%
-end foreach
+end
 foreach CONTROLLER_MAP do
   foreach mControllerBindingList
   before 
     %//--- '%!lkey->string%' controller bindings\n%
   do
    ![mBinding generateObjectiveCBinding !lkey->string]
-  end foreach
-end foreach
+  end
+end
 
 foreach OUTLET_DECLARATION_LIST do
    %  //--- check %!mOutletName%' outlet not nil\n%
@@ -131,8 +131,8 @@ foreach OUTLET_DECLARATION_LIST do
    %    }\n%
   foreach mOutletBindingList do
     ![mBinding generateSwiftBinding !mOutletName]
-  end foreach
-end foreach
+  end
+end
 %  }
   
   //------------------------------------------------------- deinit
@@ -145,10 +145,10 @@ end foreach
 %
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-end if
+end
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
   %    ud.setObject (%![mType preferencesSwiftSetter !mAttributeName]%, forKey:"%!PREFERENCES_NAME%:%!mAttributeName%")\n%
-end foreach
+end
 foreach ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
     for (%!mElementType->mTypeName->string% * object in self.%!lkey->string%) {
@@ -156,7 +156,7 @@ foreach ARRAY_MAP do
         dictionaryWithObjectsAndKeys:
 %foreach mAttributeListForImplementation do
 %          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%
-end foreach
+end
 %          nil
         ]
       ] ;
@@ -164,7 +164,7 @@ end foreach
     [ud setObject:array forKey:@"%!PREFERENCES_NAME%:%!lkey->string%"] ;
   }
 %
-end foreach
+end
 %  }
 
 }

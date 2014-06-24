@@ -18,7 +18,7 @@ NSCursor * %!lkey->string%_cursor (void) {
   }
   return cursor ;
 }
-%end foreach%
+%end%
 
 //---------------------------------------------------------------------------*
 //    P R E D E F I N E D    C U R S O R S                                   *
@@ -29,6 +29,6 @@ NSCursor * %!mValue%_cursor (void) {
   return [NSCursor %!mValue%] ;
 }
 
-%end foreach
+%end
 %//---------------------------------------------------------------------------*
 

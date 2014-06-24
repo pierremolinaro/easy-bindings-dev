@@ -4,12 +4,12 @@ foreach ATTRIBUTE_LIST do
 %  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
 %  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
 %  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
-end foreach
+end
 
 %//--- Actions
 %foreach ACTION_LIST do
 %- (IBAction) %!mValue->string%: (id) inSender ;\n%
-end foreach%
+end%
 @end
 
 //----------------------------------------------------------------------------*
