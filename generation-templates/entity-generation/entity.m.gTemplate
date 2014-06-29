@@ -92,7 +92,7 @@ foreach TO_MANY_RELATIONSHIPS do
   %    self.%!mValue0% = [NSMutableArray new] ;\n%
 end
 %  //--- Add Transient observers\n%
-!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+!generateAddOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
   return self ;
 }
@@ -159,7 +159,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   %  %!mRelationshipName->string% = nil ;\n%
 end
 %//--- Remove Transient observers
-%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateRemoveOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %  [super resetBeforeDeletion] ;
 }
 

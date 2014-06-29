@@ -176,15 +176,36 @@ reader @ebType dictionarySaverTransformerName
        nibClassType, outletClassType, preferencesType,
        dataType, dateType, fontType,
        imageType,  menuType, bezierPathType, protocolType,
-       stringType, structType, boolType, integerType, uintegerType, doubleType :
+       stringType, structType, boolType, uintegerType, doubleType :
     outResult := inName ;
   when enumType :
     outResult := inName . ".toRaw ()" ;
+  when integerType :
+    outResult := "NSNumber (longLong:" . inName . ")" ;
   when colorType :
     outResult := "NSArchiver.archivedDataWithRootObject (" . inName . ")" ;
   end switch ;
 end reader ;
 
+#-----------------------------------------------------------------------------*
+#   valueForUndoManager                                                       *
+#-----------------------------------------------------------------------------*
+
+reader @ebType valueForUndoManager
+  ?@string inName
+  -> @string outResult
+ :
+  switch mKind
+  when classType, controllerClassType, documentType, entityType,
+       nibClassType, outletClassType, preferencesType,
+       dataType, dateType, fontType, enumType, colorType,
+       imageType,  menuType, bezierPathType, protocolType,
+       stringType, structType, boolType, uintegerType, doubleType :
+    outResult := inName ;
+  when integerType :
+    outResult := "NSNumber (longLong:" . inName . ")" ;
+  end switch ;
+end reader ;
 
 #-----------------------------------------------------------------------------*
 #   propertyAttributeString                                                   *
@@ -473,7 +494,7 @@ reader @ebType valueAccessorForExplorerWindow
   ->@string outResult
 :
   switch mKind
-  when boolType, integerType, uintegerType, doubleType,
+  when boolType, uintegerType, doubleType,
        fontType, bezierPathType, menuType,
        dateType, imageType, structType,
        dataType, stringType,
@@ -485,6 +506,8 @@ reader @ebType valueAccessorForExplorerWindow
     outResult := inName . ".string ()" ;
   when colorType :
     outResult := inName . ".description" ;
+  when integerType :
+    outResult := "NSString (format:\"%lld\", " . inName . ")" ;
   end switch ;
 end reader ;
 
@@ -744,7 +767,7 @@ list @bindingOptionListForGeneration {
 
 #----------------------------------------------------------------------------*
 
-class @regularBindingForGeneration : @abstractBindingForGeneration {
+class @regularBindingForGeneration extends @abstractBindingForGeneration {
   @ebType mObservableAttributeType ;
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;

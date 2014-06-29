@@ -62,7 +62,7 @@ if [ATTRIBUTE_LIST length] > 0 then
   foreach ATTRIBUTE_LIST do
   %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
   end
-  !generateAddObserverForTransients [!TRANSIENT_LIST !"  "]
+  !generateAddOCObserverForTransients [!TRANSIENT_LIST !"  "]
 %  }
   return self ;
 }
@@ -171,7 +171,7 @@ foreach OUTLET_GENERATION_LIST do
   end
 end
 %//--------------------------- Add Transient observers
-%!generateAddObserverForTransients [!TRANSIENT_LIST !""]
+%!generateAddOCObserverForTransients [!TRANSIENT_LIST !""]
 %//--------------------------- Add Signature observer
 %
 if HAS_SIGNATURE_OBSERVER then
@@ -203,7 +203,7 @@ end
   end
 end
 %//--- Remove Transient observers
-%!generateRemoveObserverForTransients [!TRANSIENT_LIST]
+%!generateRemoveOCObserverForTransients [!TRANSIENT_LIST]
 %//--- Release controllers
 %foreach CONTROLLER_MAP do
   %  macroReleaseSetToNil (%!lkey->string%) ;\n%

@@ -45,7 +45,7 @@ end
 foreach CURRENT_ARRAY_MAP do
   %    self.%!lkey->string% = [NSMutableArray new] ;\n%
 end
-!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+!generateAddOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
   }
   return self ;
@@ -80,7 +80,7 @@ foreach ATTRIBUTE_LIST do
   %    %!mAttributeName% = in%![mAttributeName stringByCapitalizingFirstCharacter]% ;\n%
 end
 
-!generateAddObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+!generateAddOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %    [self %!CLASS_NAME%_did_init] ;
   }
   return self ;
@@ -104,7 +104,7 @@ end
 
 - (void) removeObservers {
 //--- Remove Transient observers
-%!generateRemoveObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateRemoveOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 if SUPER_CLASS_NAME != "" then
 %  [super removeObservers] ;
 %end%}

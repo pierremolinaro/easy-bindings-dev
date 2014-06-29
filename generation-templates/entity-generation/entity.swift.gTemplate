@@ -24,31 +24,25 @@ import Cocoa
       let v : Int? = newValue.integerValue ()
       %!mAttributeName% = %![mType swiftTypeName]%.fromRaw (v!)!
       %!mAttributeName%__explorer?.setStringValue (%!mAttributeName%.string ())
-    //--- Notify observers
-      %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
- % !generateSwiftTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]%
-     }
-  }
-
 %
 else
 %  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue% {
     willSet {
       undoManager ().registerUndoWithTarget (self,
         selector:"set%![mAttributeName stringByCapitalizingFirstCharacter]%:",
-        object:%!mAttributeName%
+        object:%![mType valueForUndoManager !mAttributeName]%
       )
     }
     didSet {
       %!mAttributeName%__explorer?.setStringValue (%![mType valueAccessorForExplorerWindow !mAttributeName]%)
-    //--- Notify observers
-      %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
- % !generateSwiftTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]%
-     }
+%end
+%    //--- Notify observers
+       %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
+% !generateSwiftTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+%    }
   }
-%
-end
-%  func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
+
+  func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.addObject (inObserver)
     NSApp.sendAction ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
@@ -58,6 +52,151 @@ end
   }
 
 %
+end
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%  //-----------------------------------------------------------------------------*
+  //    %!["To many relationship: " . mRelationshipName stringByRightPadding !73 !' ']%*
+  //-----------------------------------------------------------------------------*
+  var %!mRelationshipName->string%_observers = NSMutableSet ()
+  var %!mRelationshipName->string% : NSMutableArray = NSMutableArray () { // Set of %!mDestinationEntityName->string% entities
+    didSet {
+      if (oldValue != %!mRelationshipName->string%) {
+      //--- Register old value in undo manager
+      //  undoManager ().prepareWithInvocationTarget (self, set%![mRelationshipName stringByCapitalizingFirstCharacter]%:%!mRelationshipName->string%)
+      //--- Removed object set
+        var removedObjectSet = NSMutableSet ()
+        removedObjectSet.addObjectsFromArray (oldValue)
+        removedObjectSet.minusSet (NSSet (array:%!mRelationshipName->string%))
+        for object : AnyObject in removedObjectSet {
+          let managedObject = object as %!mDestinationEntityName->string%
+          managedObject.%!mInverseRelationshipName->string% = nil ;
+%    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %      managedObject.removeSignatureObserver (self)\n%
+    end
+%        }
+      //--- Added object set
+        var addedObjectSet = NSMutableSet ()
+        addedObjectSet.addObjectsFromArray (%!mRelationshipName->string%)
+        addedObjectSet.minusSet (NSSet (array:oldValue))
+        for object : AnyObject in addedObjectSet {
+          let managedObject = object as %!mDestinationEntityName->string%
+          managedObject.%!mInverseRelationshipName->string% = self\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %      object.addSignatureObserver (self)\n%
+    end
+%        }
+      //--- Notify observers object count did change
+        %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")\n%
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+      %    //--- Trigger signature computing\n%
+      %      triggerSignatureComputing ()\n%
+    end
+    !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+    %      }
+    }
+  }
+
+  func appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
+    if !%!mRelationshipName->string%.containsObject (inObject) {
+      insertObject (inObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:self.%!mRelationshipName->string%.count ())
+    }
+  }
+
+  func insertObject (inObject : %!mDestinationEntityName->string%,
+                     in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: Int) {
+    let idx : Int = %!mRelationshipName->string%.indexOfObject (inObject)
+    if idx == NSNotFound {
+      %!mRelationshipName->string%.insertObject (inObject, atIndex:inMNamesAtIndex)
+        undoManager ().registerUndoWithTarget (self,
+        selector:"removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%:",
+        object:inObject
+      )
+      inObject.%!mInverseRelationshipName->string% = self
+    }else if idx != inMNamesAtIndex {
+    }
+  //--- Notify observers object count did change
+    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")
+  }
+
+  func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
+    let idx = %!mRelationshipName->string%.indexOfObject (inObject)
+    if NSNotFound != idx {
+      removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (idx)
+    }
+  }
+
+  func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
+    let removedObject = %!mRelationshipName->string%.objectAtIndex (inIndex) as %!mDestinationEntityName->string%
+  //--- Perform removing
+    %!mRelationshipName->string%.removeObjectAtIndex (inIndex)
+  //--- Register all object in undo manager
+    //undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex)
+  //--- Reset inverse relationship
+    removedObject.%!mInverseRelationshipName->string% = nil
+  //--- Notify observers object count did change
+    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")
+  }
+   
+  func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+    %!mRelationshipName->string%_observers.addObject (inObserver)
+    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+
+  func removeObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+    %!mRelationshipName->string%_observers.removeObject (inObserver)
+    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+%
+  end
+end
+%
+
+%foreach CURRENT_RELATIONSHIP_LIST do
+  if not mIsToMany then
+%  //-----------------------------------------------------------------------------*
+  //    %!["To one relationship: " . mRelationshipName stringByRightPadding !73 !' ']%*
+  //-----------------------------------------------------------------------------*
+  var %!mRelationshipName->string%_observers = NSMutableSet ()
+  var %!mRelationshipName->string% : %!mDestinationEntityName->string%? = nil {
+    didSet {
+      if oldValue != %!mRelationshipName->string% {
+      //--- Register old value in undo manager
+       // [[self.undoManager prepareWithInvocationTarget:self set%![mRelationshipName stringByCapitalizingFirstCharacter]%:currentObject]
+%if [SIGN_SET hasKey !mRelationshipName->string] then
+  %  //--- Remove signature observer from old object
+       %!mRelationshipName->string%.removeSignatureObserver (self)\n%
+end
+%      //--- Set opposite relation ship
+%    if mInverseRelationIsToMany then
+%        oldValue?.removeObjectFrom%![mInverseRelationshipName stringByCapitalizingFirstCharacter]% (self)
+        %!mRelationshipName->string%?.appendTo%![mInverseRelationshipName stringByCapitalizingFirstCharacter]% (self)
+%    else
+%        oldValue?.%!mInverseRelationshipName->string% = nil
+        %!mRelationshipName->string%?.%!mInverseRelationshipName->string% = self
+%    end
+    if [SIGN_SET hasKey !mRelationshipName->string] then
+%   //--- Add signature observer to new object
+      %!mRelationshipName->string%.addSignatureObserver (self)
+    //--- Trigger signature computing
+      triggerSignatureComputing ()
+%    end
+    !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+%      }
+    }
+  }
+   
+  func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+    %!mRelationshipName->string%_observers.addObject (inObserver)
+    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+
+  func removeObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+    %!mRelationshipName->string%_observers.removeObject (inObserver)
+    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+%
+  end
 end
 %
 
@@ -126,315 +265,4 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 %
 }
-
-
-/*
-#import "easy-bindings-utilities.h"
-#import "PMAllocationDebug.h"
-#import "PMEntityManager.h"
-#import "PMRelationshipDescription.h"
-#import "PMAttributeDescription.h"
-#import "PMApplication.h"
-#import "load-store-functions.h"
-#import "MyRootEntity.h"
-#import "MyRootEntity-transient-computations.h"
-
-
-//-----------------------------------------------------------------------------*
-
-@implementation MyRootEntity
-
-//-----------------------------------------------------------------------------*
-//    Synthesize properties                                                    *
-//-----------------------------------------------------------------------------*
-
-//--- Attributes
-@synthesize myString ;
-@synthesize myEnumeration ;
-@synthesize myColor ;
-
-//--- To-one relationships
-
-//--- To-many relationships
-
-//-----------------------------------------------------------------------------*
-//    Swizzle setters                                                          *
-//-----------------------------------------------------------------------------*
-
-+ (void) load {
-  Method original ;
-  Method swizzled ;
-  original = class_getInstanceMethod (self, @selector (setMyString:)) ;
-  swizzled = class_getInstanceMethod (self, @selector (setMyString_swizzled:)) ;
-  macroCheckMethodSwizzling (original, swizzled) ;
-  method_exchangeImplementations (original, swizzled) ;
-  original = class_getInstanceMethod (self, @selector (setMyEnumeration:)) ;
-  swizzled = class_getInstanceMethod (self, @selector (setMyEnumeration_swizzled:)) ;
-  macroCheckMethodSwizzling (original, swizzled) ;
-  method_exchangeImplementations (original, swizzled) ;
-  original = class_getInstanceMethod (self, @selector (setMyColor:)) ;
-  swizzled = class_getInstanceMethod (self, @selector (setMyColor_swizzled:)) ;
-  macroCheckMethodSwizzling (original, swizzled) ;
-  method_exchangeImplementations (original, swizzled) ;
-}
-
-//-----------------------------------------------------------------------------*
-//    newInstanceWithManager:                                                  *
-//-----------------------------------------------------------------------------*
-
-+ (MyRootEntity *) newInstanceWithManager: (PMEntityManager *) inManager {
-  return [inManager newInstanceOfEntity:[MyRootEntity class]] ;
-}
-
-//-----------------------------------------------------------------------------*
-//    init                                                                     *
-//-----------------------------------------------------------------------------*
-
-- (instancetype) init {
-  self = [super init] ;
-  if (self) {
-  //--- Attribute initialisation
-    self.myString = @"Hello" ;
-    self.myEnumeration = deuxieme ;
-    self.myColor = [NSColor yellowColor] ;
-  //--- To many relationship initialisation
-  //--- Add Transient observers
-  }
-  return self ;
-}
-
-//-----------------------------------------------------------------------------*
-//    buildAttributeDescriptionArray                                           *
-//-----------------------------------------------------------------------------*
-
-- (void) buildAttributeDescriptionArray: (NSMutableArray *) ioDescriptionArray {
-  [super buildAttributeDescriptionArray:ioDescriptionArray] ;
-  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"myString"]] ;
-  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"myEnumeration" withConversionFunction:convertMonEnumerationValueToString]] ;
-  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"myColor"]] ;
-}
-
-//-----------------------------------------------------------------------------*
-//    buildToOneRelationshipDescriptionArray                                   *
-//-----------------------------------------------------------------------------*
-
-- (void) buildToOneRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
-  [super buildToOneRelationshipDescriptionArray:ioDescriptionArray] ;
-}
-
-//-----------------------------------------------------------------------------*
-//    buildToManyRelationshipDescriptionArray                                  *
-//-----------------------------------------------------------------------------*
-
-- (void) buildToManyRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
-  [super buildToManyRelationshipDescriptionArray:ioDescriptionArray] ;
-}
-
-//-----------------------------------------------------------------------------*
-//    resetBeforeDeletion                                                      *
-//-----------------------------------------------------------------------------*
-
-- (void) resetBeforeDeletion {
-//--- Remove Transient observers
-  [super resetBeforeDeletion] ;
-}
-
-//-----------------------------------------------------------------------------*
-//    saveIntoDictionary                                                       *
-//-----------------------------------------------------------------------------*
-
-- (void) saveIntoDictionary: (NSMutableDictionary *) ioDictionary {
-  [super saveIntoDictionary:ioDictionary] ;
-  storeNSStringInDictionary (self.myString, @"myString", ioDictionary) ;
-  storeMonEnumerationInDictionary (self.myEnumeration, @"myEnumeration", ioDictionary) ;
-  storeNSColorInDictionary (self.myColor, @"myColor", ioDictionary) ;
-}
-
-//-----------------------------------------------------------------------------*
-//    setUpWithDictionary                                                      *
-//-----------------------------------------------------------------------------*
-
-- (void) setUpWithDictionary: (NSDictionary *) inDictionary
-         withManagedEntityArray: (NSArray *) inManagedEntityArray {
-  [super
-    setUpWithDictionary:inDictionary
-    withManagedEntityArray:inManagedEntityArray
-  ] ;
-  self.myString = readNSStringFromDictionary (@"myString", inDictionary) ;
-  self.myEnumeration = readMonEnumerationFromDictionary (@"myEnumeration", inDictionary) ;
-  self.myColor = readNSColorFromDictionary (@"myColor", inDictionary) ;
-}
-
-//-----------------------------------------------------------------------------*
-//    setMyString_swizzled       *
-//-----------------------------------------------------------------------------*
-
-- (void) setMyString_swizzled: (NSString *) inNewValue {
-  if (! ([inNewValue isEqualToString:self.myString])) {
-  //--- Register old value in undo manager
-    [self.undoManager
-      registerUndoWithTarget:self
-      selector:@selector (setMyString:)
-      object:self.myString
-    ] ;
-  //--- Store new value
-    [self setMyString_swizzled :inNewValue] ;
-  //--- Notify observers
-    [myString_observers makeObjectsPerformSelector:@selector (entity_2E_MyRootEntity_2E_myString_didChange)] ;
-  //--- Trigger 'myStringMaj transient'
-    if (myStringMaj__computed) {
-      myStringMaj__computed = NO ;
-      [PMApplication
-        enterTriggerForObject:self
-        transientIndex:entity_2E_MyRootEntity_2E_myStringMaj
-      ] ;
-    }
-  //--- Trigger 'myStringMin transient'
-    if (myStringMin__computed) {
-      myStringMin__computed = NO ;
-      [PMApplication
-        enterTriggerForObject:self
-        transientIndex:entity_2E_MyRootEntity_2E_myStringMin
-      ] ;
-    }
-  //--- Trigger 'myStringConcat transient'
-    if (myStringConcat__computed) {
-      myStringConcat__computed = NO ;
-      [PMApplication
-        enterTriggerForObject:self
-        transientIndex:entity_2E_MyRootEntity_2E_myStringConcat
-      ] ;
-    }
-  }
-}
-
-//-----------------------------------------------------------------------------*
-//    setMyEnumeration_swizzled       *
-//-----------------------------------------------------------------------------*
-
-- (void) setMyEnumeration_swizzled: (MonEnumeration) inNewValue {
-  if (! (inNewValue == self.myEnumeration)) {
-  //--- Register old value in undo manager
-    [[self.undoManager prepareWithInvocationTarget:self]
-      setMyEnumeration:self.myEnumeration
-    ] ;
-  //--- Store new value
-    [self setMyEnumeration_swizzled :inNewValue] ;
-  //--- Notify observers
-    [myEnumeration_observers makeObjectsPerformSelector:@selector (entity_2E_MyRootEntity_2E_myEnumeration_didChange)] ;
-  }
-}
-
-//-----------------------------------------------------------------------------*
-//    setMyColor_swizzled       *
-//-----------------------------------------------------------------------------*
-
-- (void) setMyColor_swizzled: (NSColor *) inNewValue {
-  if (! ([inNewValue isEqual:self.myColor])) {
-  //--- Register old value in undo manager
-    [self.undoManager
-      registerUndoWithTarget:self
-      selector:@selector (setMyColor:)
-      object:self.myColor
-    ] ;
-  //--- Store new value
-    [self setMyColor_swizzled :inNewValue] ;
-  //--- Notify observers
-    [myColor_observers makeObjectsPerformSelector:@selector (entity_2E_MyRootEntity_2E_myColor_didChange)] ;
-  }
-}
-
-
-//-----------------------------------------------------------------------------*
-//    myString Observer                                               *
-//-----------------------------------------------------------------------------*
-
-- (void) addObserverOf_myString: (NSObject *) inObserver {
-  if (nil == myString_observers) {
-    myString_observers = [NSMutableSet new] ;
-  }
-  [myString_observers addObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myString_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myString_didChange)] ;
-}
-
-//-----------------------------------------------------------------------------*
-
-- (void) removeObserverOf_myString: (NSObject *) inObserver {
-  [myString_observers removeObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myString_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myString_didChange)] ;
-}
-
-
-//-----------------------------------------------------------------------------*
-//    myEnumeration Observer                                               *
-//-----------------------------------------------------------------------------*
-
-- (void) addObserverOf_myEnumeration: (NSObject *) inObserver {
-  if (nil == myEnumeration_observers) {
-    myEnumeration_observers = [NSMutableSet new] ;
-  }
-  [myEnumeration_observers addObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myEnumeration_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myEnumeration_didChange)] ;
-}
-
-//-----------------------------------------------------------------------------*
-
-- (void) removeObserverOf_myEnumeration: (NSObject *) inObserver {
-  [myEnumeration_observers removeObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myEnumeration_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myEnumeration_didChange)] ;
-}
-
-
-//-----------------------------------------------------------------------------*
-//    myColor Observer                                               *
-//-----------------------------------------------------------------------------*
-
-- (void) addObserverOf_myColor: (NSObject *) inObserver {
-  if (nil == myColor_observers) {
-    myColor_observers = [NSMutableSet new] ;
-  }
-  [myColor_observers addObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myColor_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myColor_didChange)] ;
-}
-
-//-----------------------------------------------------------------------------*
-
-- (void) removeObserverOf_myColor: (NSObject *) inObserver {
-  [myColor_observers removeObject:inObserver] ;
-  #ifdef PM_COCOA_DEBUG
-    const BOOL ok =
-  #endif
-  [NSApp sendAction:@selector (entity_2E_MyRootEntity_2E_myColor_didChange) to:inObserver from:self] ;
-  macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (entity_2E_MyRootEntity_2E_myColor_didChange)] ;
-}
-
-//-----------------------------------------------------------------------------*
-
-*/
 
