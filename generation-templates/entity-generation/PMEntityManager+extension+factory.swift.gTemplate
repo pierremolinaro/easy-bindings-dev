@@ -20,7 +20,7 @@ do
   %if inEntityTypeName == "%!lkey->string%" {\n%
   %      result = %!lkey->string% (entityManager:self)\n%
 between
-  %      else %
+  %    }else %
 after
   %    }\n%
 end
