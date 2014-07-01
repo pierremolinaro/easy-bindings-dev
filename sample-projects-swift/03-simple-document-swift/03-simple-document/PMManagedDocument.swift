@@ -38,11 +38,11 @@ class PMManagedDocument : NSDocument {
   //    init                                                                     *
   //-----------------------------------------------------------------------------*
 
-  init () {
-    var um = PMUndoManager ()
-    mEntityManager = PMEntityManager (undoManager:um)
+  init (inEntityManager : PMEntityManager) {
+    mEntityManager = PMEntityManager ()
     super.init ()
     noteObjectAllocation (self)
+    let um = mEntityManager.undoManager
     setUndoManager (um)
     hookOfInit () ;
     um.disableUndoRegistration ()

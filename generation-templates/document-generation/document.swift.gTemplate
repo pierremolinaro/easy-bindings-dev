@@ -156,7 +156,11 @@ end
 %  //---
     super.removeWindowController (inWindowController)
   }
+
 %
+
+!generateSwiftObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
+
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //---------------------------------------------------------------------------*
   //    %!["Transient: " . mTransientName stringByRightPadding !71 !' ']%*

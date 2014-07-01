@@ -1,6 +1,6 @@
 project all_easyBindings (0:0:1) -> "easyBindings":
   feature "makefile_macosx" ;
-  feature "LatestMacOS" ;
+  feature "Mavericks" ;
   feature applicationBundleBase : "fr.irccyn" ;
 
   lexique "easyBindings_lexique.gLexique" ;

@@ -455,7 +455,7 @@ foreach TO_MANY_RELATIONSHIPS do%
 %
 end
 
-!generateObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
+!generateObjectiveCObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 
 !generateObjectiveCTransientCacheRoutine [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//-----------------------------------------------------------------------------*
