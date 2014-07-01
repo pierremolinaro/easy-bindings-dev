@@ -164,7 +164,7 @@ end
     didSet {
       if oldValue != %!mRelationshipName->string% {
       //--- Register old value in undo manager
-        undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
+        undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%:", object:oldValue)
 %if [SIGN_SET hasKey !mRelationshipName->string] then
   %  //--- Remove signature observer from old object
        %!mRelationshipName->string%.removeSignatureObserver (self)\n%

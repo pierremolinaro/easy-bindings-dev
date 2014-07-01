@@ -39,7 +39,7 @@ class PMManagedDocument : NSDocument {
   //-----------------------------------------------------------------------------*
 
   init (inEntityManager : PMEntityManager) {
-    mEntityManager = PMEntityManager ()
+    mEntityManager = inEntityManager
     super.init ()
     noteObjectAllocation (self)
     let um = mEntityManager.undoManager

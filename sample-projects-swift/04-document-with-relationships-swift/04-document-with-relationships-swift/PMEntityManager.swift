@@ -54,9 +54,9 @@ import Cocoa
   //-----------------------------------------------------------------------------*
 
   func addEntity (inEntity : PMManagedEntity) {
-    willChangeValueForKey ("entityCount")
+ //   willChangeValueForKey ("entityCount")
     mManagedObjectSet.addObject (inEntity)
-    didChangeValueForKey ("entityCount")
+//    didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"private_removeEntity:",
       object:inEntity
