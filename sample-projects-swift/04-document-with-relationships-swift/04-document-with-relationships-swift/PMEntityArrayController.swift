@@ -10,7 +10,7 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
-class PMEntityArrayController : NSArrayController {
+@objc(PMEntityArrayController) class PMEntityArrayController : NSArrayController {
   var mFilteringKey : String = ""
   var mObjectClassName = ""
   var mObservedObjects = NSSet ()
@@ -42,9 +42,6 @@ class PMEntityArrayController : NSArrayController {
   //---------------------------------------------------------------------------*
 
   override func add (inSender : AnyObject!) {
- //   if (nil == self.entityManager) {
-//      [super add:inSender] ;
- //   }else{
    var newObject : PMManagedEntity = mEntityManager.newInstanceOfEntityNamed (mObjectClassName)!
    addObject (newObject)
   }
