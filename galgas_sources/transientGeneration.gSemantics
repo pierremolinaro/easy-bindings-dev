@@ -355,7 +355,7 @@ end reader ;
 override reader @transientDependencyFromControllerForImplementation generateSwiftMasterAttributeCall
   ->@string outResult
 :
-  outResult := mControllerName . "." . mMasterAttributeName ;
+  outResult := mControllerName . "." . mMasterAttributeName . " ()" ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -971,7 +971,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-function generateObserverRoutinesForTransient
+function generateObjectiveCObserverRoutinesForTransient
   ??@string inKindName 
   ??@transientListForImplementation inTransientListForImplementation
   ??@string inPrefix # entity, class, preference
@@ -1048,6 +1048,81 @@ function generateObserverRoutinesForTransient
     "    ] ;\n"
     "  }\n"
     "}\n\n" ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function generateSwiftObserverRoutinesForTransient
+  ??@string inKindName 
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inPrefix # entity, class, preference
+  ->@string outResult
+:
+  outResult := "" ;
+  @observerListMap didChangeTriggeredRoutineListMap [emptyMap] ;
+  @observerListMap observeForKeyPathRoutineElementListMap [emptyMap] ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      [mDependency generateObserverRoutineForTransient
+        !mTransientName
+        !?didChangeTriggeredRoutineListMap
+        !?observeForKeyPathRoutineElementListMap
+      ] ;
+    end foreach ;
+  end foreach ;
+#------------------------ Generate xxx_xxx_didChange methods
+  const @string fullPrefix := inPrefix . "." . inKindName . "." ;
+  foreach didChangeTriggeredRoutineListMap do
+    outResult .=
+    "  //----------------------------------------------------------------------------*\n"
+    "  //  " . ["Transient: " . key stringByRightPadding !71 !' '] . "*\n"
+    "  //----------------------------------------------------------------------------*\n\n"
+    "  func " . key . "_didChange () {\n" ;
+    foreach mList do
+    outResult .=
+      "    //--- Trigger '" . mValue . " transient'\n"
+      "    if " . mValue . "__cache {\n"
+      "      " . mValue . "__cache = nil ;\n"
+      "      enterTriggerForObject_" . [fullPrefix . mValue identifierRepresentation] . " (self)\n"
+      "    }\n" ;
+    end foreach ;
+    outResult .= "  }\n\n" ;
+  end foreach ;
+#------------------------ Generate observeValueForKeyPath method
+  foreach observeForKeyPathRoutineElementListMap
+  before
+    outResult .=
+    "  //----------------------------------------------------------------------------*\n"
+    "  //  observeValueForKeyPath:ofObject:change:context:                           *\n"
+    "  //----------------------------------------------------------------------------*\n\n"
+    "  override func observeValueForKeyPath (inKeyPath : String!,\n"
+    "                                        ofObject inObject:AnyObject!,\n"
+    "                                        change inChange: NSDictionary!,\n"
+    "                                        context inContext: CMutableVoidPointer) {\n"
+    " " ;
+  do
+    outResult .=
+    " if (inObject as NSObject == " . [key stringByDeletingPathExtension] .") && (inKeyPath == \"" . [key pathExtension] . "\") {\n" ;
+    foreach mList do
+      outResult .=
+      "  //--- Trigger '" . mValue . " transient'\n"
+      "    if " . mValue . "__cache {\n"
+      "      " . mValue . "__cache = nil\n"
+      "      enterTriggerForObject_" . [fullPrefix . mValue identifierRepresentation] . " (self)\n"
+      "    }\n" ;
+    end foreach ;
+    outResult .= "  }else" ;
+  after
+    outResult .=
+    "{\n"
+    "     super.observeValueForKeyPath (inKeyPath,\n"
+    "       ofObject:inObject,\n"
+    "       change:inChange,\n"
+    "       context:inContext\n"
+    "     )\n"
+    "    }\n"
+    "  }\n\n" ;
   end foreach ;
 end function ;
 

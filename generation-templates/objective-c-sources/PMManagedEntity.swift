@@ -148,8 +148,8 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  func accessibleObjects () -> NSSet {
-    return NSSet ()
+  func accessibleObjects () -> NSMutableSet {
+    return NSMutableSet ()
   }
 
   //---------------------------------------------------------------------------*
@@ -335,6 +335,69 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     mExplorerWindow = nil
   }
 
+  //---------------------------------------------------------------------------*
+  //   storeEntityArrayInDictionary                                            *
+  //---------------------------------------------------------------------------*
+
+  func storeEntityArrayInDictionary (inEntityArray : NSArray,
+                                     inRelationshipName: String,
+                                     ioDictionary : NSMutableDictionary) {
+
+    if inEntityArray.count () > 0 {
+      var indexArray = NSMutableArray ()
+      for object : AnyObject in inEntityArray {
+        let managedObject = object as PMManagedEntity
+        indexArray.addObject (NSNumber (unsignedInteger:object.savingIndex))
+      }
+      ioDictionary.setObject (indexArray, forKey:inRelationshipName)
+    }
+  }
+
+  //---------------------------------------------------------------------------*
+  //   storeEntityInDictionary                                                 *
+  //---------------------------------------------------------------------------*
+
+  func storeEntityInDictionary (inObject : PMManagedEntity?,
+                                inRelationshipName: String,
+                                ioDictionary : NSMutableDictionary) {
+    if nil != inObject {
+      ioDictionary.setObject (NSNumber (unsignedInteger:inObject!.savingIndex), forKey:inRelationshipName)
+    }
+  }
+
+  //---------------------------------------------------------------------------*
+  //   readEntityFromDictionary                                                *
+  //---------------------------------------------------------------------------*
+
+  func readEntityFromDictionary (inRelationshipName: String,
+                                 inDictionary : NSDictionary,
+                                 managedObjectArray : PMManagedEntity []) -> PMManagedEntity? {
+  let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
+  var result : PMManagedEntity? = nil
+  if nil != value {
+    result = managedObjectArray [value!.unsignedIntegerValue ()]
+  }
+  return result
+}
+
+  //---------------------------------------------------------------------------*
+  //   readEntityArrayFromDictionary                                           *
+  //---------------------------------------------------------------------------*
+
+  func readEntityArrayFromDictionary (inRelationshipName: String,
+                                     inDictionary : NSDictionary,
+                                     managedObjectArray : PMManagedEntity []) -> NSMutableArray {
+  let indexArray : NSArray? = inDictionary.valueForKey (inRelationshipName) as? NSArray
+  var result = NSMutableArray ()
+  if nil != indexArray {
+    for object : AnyObject in indexArray! {
+      let number = object as NSNumber
+      let managedObject = managedObjectArray [number.unsignedIntegerValue ()]
+      result.addObject (managedObject)
+    }
+  }
+  return result
+}
 
 
 }

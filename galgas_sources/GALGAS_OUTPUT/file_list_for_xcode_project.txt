@@ -1599,7 +1599,7 @@
 					"../galgas_sources/GALGAS_OUTPUT/libpm",
 					"../hand_coded_sources/**",
 				);
-				SDKROOT = macosx ;
+				SDKROOT = macosx10.9 ;
 				COPY_PHASE_STRIP = NO ;
 			};
 			name = Default;

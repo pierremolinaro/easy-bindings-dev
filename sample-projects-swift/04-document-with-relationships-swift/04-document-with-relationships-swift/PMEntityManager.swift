@@ -168,12 +168,12 @@ import Cocoa
 
   func reachableObjectsFromObject (inRootObject : PMManagedEntity) -> PMManagedEntity [] {
     var reachableObjectArray : PMManagedEntity [] = [inRootObject]
-    var objectsToExploreArray : PMManagedEntity [] = []
+    var objectsToExploreArray : PMManagedEntity [] = [inRootObject]
     var handledObjectSet = NSMutableSet ()
-    handledObjectSet.addObject (inRootObject)
     while (objectsToExploreArray.count > 0) {
       let objectToExplore = objectsToExploreArray [0]
       objectsToExploreArray.removeAtIndex (0)
+      handledObjectSet.addObject (objectToExplore)
       let accessible : NSSet = objectToExplore.accessibleObjects ()
       for object : AnyObject in accessible {
         let managedObject : PMManagedEntity = object as PMManagedEntity

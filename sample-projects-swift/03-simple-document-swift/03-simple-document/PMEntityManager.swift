@@ -19,8 +19,8 @@ import Cocoa
   //  init                                                                       *
   //-----------------------------------------------------------------------------*
 
-  init (undoManager : PMUndoManager) {
-    mUndoManager = undoManager
+  init () {
+    mUndoManager = PMUndoManager ()
     super.init ()
     noteObjectAllocation (self)
   }

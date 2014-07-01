@@ -58,12 +58,13 @@ foreach CURRENT_RELATIONSHIP_LIST do
 %  //-----------------------------------------------------------------------------*
   //    %!["To many relationship: " . mRelationshipName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*
+
   var %!mRelationshipName->string%_observers = NSMutableSet ()
   var %!mRelationshipName->string% : NSMutableArray = NSMutableArray () { // Set of %!mDestinationEntityName->string% entities
     didSet {
       if (oldValue != %!mRelationshipName->string%) {
       //--- Register old value in undo manager
-      //  undoManager ().prepareWithInvocationTarget (self, set%![mRelationshipName stringByCapitalizingFirstCharacter]%:%!mRelationshipName->string%)
+        undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
       //--- Removed object set
         var removedObjectSet = NSMutableSet ()
         removedObjectSet.addObjectsFromArray (oldValue)
@@ -131,7 +132,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   //--- Perform removing
     %!mRelationshipName->string%.removeObjectAtIndex (inIndex)
   //--- Register all object in undo manager
-    //undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex)
+    undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex)
   //--- Reset inverse relationship
     removedObject.%!mInverseRelationshipName->string% = nil
   //--- Notify observers object count did change
@@ -157,12 +158,13 @@ end
 %  //-----------------------------------------------------------------------------*
   //    %!["To one relationship: " . mRelationshipName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*
+
   var %!mRelationshipName->string%_observers = NSMutableSet ()
-  var %!mRelationshipName->string% : %!mDestinationEntityName->string%? = nil {
+  weak var %!mRelationshipName->string% : %!mDestinationEntityName->string%? = nil {
     didSet {
       if oldValue != %!mRelationshipName->string% {
       //--- Register old value in undo manager
-       // [[self.undoManager prepareWithInvocationTarget:self set%![mRelationshipName stringByCapitalizingFirstCharacter]%:currentObject]
+        undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
 %if [SIGN_SET hasKey !mRelationshipName->string] then
   %  //--- Remove signature observer from old object
        %!mRelationshipName->string%.removeSignatureObserver (self)\n%
@@ -239,6 +241,13 @@ end
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    ioDictionary.setValue (%![mType dictionarySaverTransformerName !mAttributeName]%, forKey: "%!mAttributeName%")\n%
 end
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    storeEntityArrayInDictionary (%!mRelationshipName->string%, inRelationshipName:"%!mRelationshipName->string%", ioDictionary:ioDictionary) ;\n%
+  else
+%    storeEntityInDictionary (%!mRelationshipName->string%, inRelationshipName:"%!mRelationshipName->string%", ioDictionary:ioDictionary) ;\n%
+  end
+end
 %  }
 
   //---------------------------------------------------------------------------*
@@ -250,6 +259,13 @@ end
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    %!mAttributeName% = inDictionary.read%![mType swiftTypeName]% ("%!mAttributeName%")\n%
+end
+foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    %!mRelationshipName->string% = readEntityArrayFromDictionary ("%!mRelationshipName->string%", inDictionary:inDictionary, managedObjectArray:managedObjectArray)\n%
+  else
+%    %!mRelationshipName->string% = readEntityFromDictionary ("%!mRelationshipName->string%", inDictionary:inDictionary, managedObjectArray:managedObjectArray) as? %!mDestinationEntityName->string%\n%
+  end
 end
 %  }
 
@@ -264,5 +280,22 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  }\n\n%
 end
 %
+  //---------------------------------------------------------------------------*
+  //   accessibleObjects                                                       *
+  //---------------------------------------------------------------------------*
+
+  override func accessibleObjects () -> NSMutableSet {
+    var result = super.accessibleObjects ()
+%foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    result.addObjectsFromArray (%!mRelationshipName->string%)\n%
+  else
+%    if %!mRelationshipName->string% != nil {\n%
+%      result.addObject (%!mRelationshipName->string%)\n%
+%    }\n%
+  end
+end%    return result
+  }
+
 }
 

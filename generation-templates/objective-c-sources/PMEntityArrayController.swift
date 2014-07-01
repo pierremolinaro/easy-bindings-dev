@@ -24,7 +24,7 @@ class PMEntityArrayController : NSArrayController {
   init (entityManager : PMEntityManager,
         inClassName : String) {
     mEntityManager = entityManager
-    super.init ()
+    super.init (content:NSArray ())
     mObjectClassName = inClassName
     noteObjectAllocation (self)
   }
