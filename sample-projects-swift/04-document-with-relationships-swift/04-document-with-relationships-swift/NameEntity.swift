@@ -161,10 +161,10 @@ import Cocoa
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  override func accessibleObjects () -> NSMutableSet {
+  override func accessibleObjects () -> PMManagedEntity [] {
     var result = super.accessibleObjects ()
     if mRoot != nil {
-      result.addObject (mRoot)
+      result += mRoot!
     }
     return result
   }

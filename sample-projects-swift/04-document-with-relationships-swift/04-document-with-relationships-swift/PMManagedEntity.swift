@@ -148,8 +148,8 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  func accessibleObjects () -> NSMutableSet {
-    return NSMutableSet ()
+  func accessibleObjects () -> PMManagedEntity [] {
+    return []
   }
 
   //---------------------------------------------------------------------------*

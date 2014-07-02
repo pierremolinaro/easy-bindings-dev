@@ -167,22 +167,32 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func reachableObjectsFromObject (inRootObject : PMManagedEntity) -> PMManagedEntity [] {
-    var reachableObjectArray : PMManagedEntity [] = [inRootObject]
+    var reachables : Bool [] = []
+    var idx = 0
+    for object : AnyObject in mManagedObjectSet {
+      let managedObject = object as PMManagedEntity
+      managedObject.savingIndex = idx
+      reachables += false
+      idx += 1
+    }
     var objectsToExploreArray : PMManagedEntity [] = [inRootObject]
-    var handledObjectSet = NSMutableSet ()
+    var reachableObjectArray : PMManagedEntity [] = [inRootObject]
+    reachables [inRootObject.savingIndex] = true
     while (objectsToExploreArray.count > 0) {
-      let objectToExplore = objectsToExploreArray [0]
-      objectsToExploreArray.removeAtIndex (0)
-      handledObjectSet.addObject (objectToExplore)
-      let accessible : NSSet = objectToExplore.accessibleObjects ()
-      for object : AnyObject in accessible {
-        let managedObject : PMManagedEntity = object as PMManagedEntity
-        if !handledObjectSet.containsObject (managedObject) {
-          handledObjectSet.addObject (managedObject)
+      let objectToExplore = objectsToExploreArray [objectsToExploreArray.count - 1]
+      objectsToExploreArray.removeAtIndex (objectsToExploreArray.count - 1)
+ //   let start = NSDate()
+      let accessible : PMManagedEntity [] = objectToExplore.accessibleObjects ()
+      for managedObject : PMManagedEntity in accessible {
+        if !reachables [managedObject.savingIndex] {
+          reachables [managedObject.savingIndex] = true
           reachableObjectArray += managedObject
           objectsToExploreArray += managedObject
         }
       }
+//    let end = NSDate()
+//    let timeTaken = end.timeIntervalSinceDate(start) * 1000
+//    NSLog ("%f ms", timeTaken)
     }
     return reachableObjectArray ;
   }
@@ -191,7 +201,7 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func uneachableObjectsFromObject (inRootObject : PMManagedEntity) -> NSSet {
+  func unreachableObjectsFromObject (inRootObject : PMManagedEntity) -> NSSet {
     let reachableObjects = reachableObjectsFromObject (inRootObject)
     var s = NSMutableSet ()
     s.setSet (mManagedObjectSet)
