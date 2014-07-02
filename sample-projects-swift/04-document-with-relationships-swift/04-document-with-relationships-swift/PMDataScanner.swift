@@ -38,6 +38,7 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   deinit {
+    mProgressWindow?.orderOut (self)
     noteObjectDeallocation (self)
   }
 
@@ -95,16 +96,8 @@ import Cocoa
     mProgressIndicator!.setDoubleValue (Double (mReadIndex))
     mProgressIndicator!.setIndeterminate (false)
     mProgressIndicator!.display ()
+  //---
     mProgressWindow!.makeKeyAndOrderFront (nil)
-  }
-
-  //---------------------------------------------------------------------------*
-  //  orderOutProgressWindow                                                   *
-  //---------------------------------------------------------------------------*
-
-  func orderOutProgressWindow () {
-    mProgressWindow?.close ()
-    mProgressWindow = nil
   }
 
   //---------------------------------------------------------------------------*
@@ -291,50 +284,6 @@ import Cocoa
     return mReadOk
   }
 
-
-
-
 }
 
 //---------------------------------------------------------------------------*
-/*
-
-
-//---------------------------------------------------------------------------*
-
-- (NSString *) parseAutosizedString {
-  NSString * result = nil ;
-  const UInt8 * bytes = [mData bytes] ;
-  NSUInteger beyondStringIndex = mReadIndex ;
-  BOOL loop = YES ;
-  while (loop && mReadOk) {
-    if (beyondStringIndex >= [mData length]) {
-       NSLog (@"Read beyond end of data") ;
-       mReadOk = NO ;
-    }else{
-      loop = bytes [beyondStringIndex] != 0 ;
-      beyondStringIndex ++ ;
-    }
-  }
-  if (mReadOk) {
-    result = [NSString stringWithUTF8String:(const char *) & bytes [mReadIndex]] ;
-    mReadIndex = beyondStringIndex ;
-  }
-  [self updateProgressIndicator] ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------*
-
-- (void) ignoreAutosizedData {
-  if (mReadOk) {
-    const NSUInteger dataLength = [self parseAutosizedUnsignedInteger] ;
-    [self ignoreBytes:dataLength] ;
-  }
-}
-
-//---------------------------------------------------------------------------*
-
-@end
-
-*/

@@ -149,9 +149,12 @@ import Cocoa
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  override func accessibleObjects () -> NSMutableSet {
+  override func accessibleObjects () -> PMManagedEntity [] {
     var result = super.accessibleObjects ()
-    result.addObjectsFromArray (mNames)
+    for object : AnyObject in mNames {
+      let managedObject = object as PMManagedEntity
+      result += managedObject
+    }
     return result
   }
 

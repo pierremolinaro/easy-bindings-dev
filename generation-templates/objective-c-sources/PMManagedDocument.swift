@@ -336,8 +336,6 @@ class PMManagedDocument : NSDocument {
       )
     }
   //---
-    dataScanner.orderOutProgressWindow ()
-  //---
 /*    if (legacyDataWithoutConverterError) {
       NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         @"Cannot Open Document",  NSLocalizedDescriptionKey,
@@ -430,7 +428,7 @@ class PMManagedDocument : NSDocument {
     )
     panel.display ()
   //---
-    let unreachableObjects : NSSet = mEntityManager.uneachableObjectsFromObject (mRootObject!)
+    let unreachableObjects : NSSet = mEntityManager.unreachableObjectsFromObject (mRootObject!)
   //---
     panel.orderOut (nil) ; NSApp.endSheet (panel)
   //---
@@ -787,7 +785,7 @@ typedef enum : NSUInteger {
   ] ;
   [panel display] ;
 //--- 
-  NSSet * unreachableObjects = [mEntityManager uneachableObjectsFromObject:mRootObject] ;
+  NSSet * unreachableObjects = [mEntityManager unreachableObjectsFromObject:mRootObject] ;
 //---
   [panel orderOut:nil] ; [NSApp endSheet:panel] ; panel = nil ;
 //---

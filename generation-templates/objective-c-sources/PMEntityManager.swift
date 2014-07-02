@@ -191,7 +191,7 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func uneachableObjectsFromObject (inRootObject : PMManagedEntity) -> NSSet {
+  func unreachableObjectsFromObject (inRootObject : PMManagedEntity) -> NSSet {
     let reachableObjects = reachableObjectsFromObject (inRootObject)
     var s = NSMutableSet ()
     s.setSet (mManagedObjectSet)
