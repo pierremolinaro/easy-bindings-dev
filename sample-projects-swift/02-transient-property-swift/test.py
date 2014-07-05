@@ -10,7 +10,7 @@ import atomac, sys, time
 
 import random, string
 
-bundleName = 'fr.free.pcmolinaro.-2-transient-property'
+bundleName = 'fr.free.pcmolinaro.-2-transient-property-swift'
 atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
@@ -36,7 +36,7 @@ if lastName.AXValue != "Schmurtz":
     sys.exit (1)
 
 #--- check 'firstLastName'
-response = "Schmurtz" + ' ' + u"Amédée" 
+response = u"Amédée" + " " + "Schmurtz"
 if firstLastName.AXValue != response:
     print '*** Erreur 3 ***'
     sys.exit (1)
@@ -71,7 +71,7 @@ if lastName.AXValue != lastNameValue:
     sys.exit (1)
 
 #--- check 'firstLastName'
-response = lastNameValue + ' ' + firstNameValue
+response = firstNameValue + ' ' + lastNameValue
 if firstLastName.AXValue != response:
     print '*** Erreur 13 ***'
     sys.exit (1)

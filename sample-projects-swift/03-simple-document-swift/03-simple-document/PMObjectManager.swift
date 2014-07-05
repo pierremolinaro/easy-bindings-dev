@@ -1,5 +1,5 @@
 //
-//  PMEntityManager.swift
+//  PMObjectManager.swift
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -11,7 +11,7 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
-@objc(PMEntityManager) class PMEntityManager : NSObject {
+@objc(PMObjectManager) class PMObjectManager : NSObject {
   var mUndoManager : PMUndoManager
   var mManagedObjectSet = NSMutableSet ()
 

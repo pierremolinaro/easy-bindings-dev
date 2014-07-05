@@ -45,9 +45,7 @@ import Cocoa
     mDeferredMessageSent = true
   }\n\n%
   end  
-%
-
-  //---------------------------------------------------------------------------*
+%  //---------------------------------------------------------------------------*
  
   override func sendEvent (inEvent : NSEvent!) {
     super.sendEvent (inEvent)
@@ -55,6 +53,15 @@ import Cocoa
     displayAllocation ()
   }
   
+  //---------------------------------------------------------------------------*
+
+  override func sendAction (theAction: Selector, to theTarget: AnyObject!, from sender: AnyObject!) -> Bool {
+    let result = super.sendAction (theAction, to:theTarget, from:sender)
+    triggerChange ()
+    displayAllocation ()
+    return result
+  }
+
   //---------------------------------------------------------------------------*
   
   func triggerChange () {

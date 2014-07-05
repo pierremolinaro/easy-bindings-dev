@@ -29,7 +29,7 @@ enum PMDocumentCompressionEnum {
 //---------------------------------------------------------------------------*
 
 class PMManagedDocument : NSDocument {
-  var mEntityManager : PMEntityManager
+  var mEntityManager : PMObjectManager
   var mRootObject : PMManagedObject?
   var mReadMetadataStatus : UInt8 = 0
   var mMetadataDictionary : NSMutableDictionary = [:]
@@ -38,7 +38,7 @@ class PMManagedDocument : NSDocument {
   //    init                                                                     *
   //-----------------------------------------------------------------------------*
 
-  init (inEntityManager : PMEntityManager) {
+  init (inEntityManager : PMObjectManager) {
     mEntityManager = inEntityManager
     super.init ()
     noteObjectAllocation (self)
@@ -85,7 +85,7 @@ class PMManagedDocument : NSDocument {
   //    entityManager                                                            *
   //-----------------------------------------------------------------------------*
 
-  func entityManager () -> PMEntityManager {
+  func entityManager () -> PMObjectManager {
     return mEntityManager
   }
 
@@ -533,7 +533,7 @@ extension NSMutableData {
 //---------------------------------------------------------------------------*
 
 @class PMManagedObject ;
-@class PMEntityManager ;
+@class PMObjectManager ;
 
 //---------------------------------------------------------------------------*
 
@@ -546,7 +546,7 @@ typedef enum : NSUInteger {
 //---------------------------------------------------------------------------*
 
 @interface PMManagedDocument : NSDocument {
-  @private PMEntityManager * mEntityManager ;
+  @private PMObjectManager * mEntityManager ;
   @protected PMManagedObject * mRootObject ;
   @private UInt8 mReadMetadataStatus ;
   @private NSDictionary * mReadMetadataDictionary ;
@@ -556,7 +556,7 @@ typedef enum : NSUInteger {
 
 - (Class) rootEntityClass ;
 
-- (PMEntityManager *) entityManager ;
+- (PMObjectManager *) entityManager ;
 
 - (void) hookOfNewDocumentCreation ;
 
@@ -572,7 +572,7 @@ typedef enum : NSUInteger {
 //--- Legacy format helper
 @property (atomic)
    PMManagedObject * (* legacyFormatLoader) (NSData * inData,
-                                             PMEntityManager * inManager,
+                                             PMObjectManager * inManager,
                                              Class inRootEntityClass,
                                              NSError ** outError) ;
 
@@ -599,7 +599,7 @@ typedef enum : NSUInteger {
 #import "easy-bindings-utilities.h"
 #import "PMManagedDocument.h"
 #import "PMAllocationDebug.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMManagedObject.h"
 #import "NSMutableData+PMWrites.h"
 #import "NSData+PMGZcompression.h"
@@ -635,7 +635,7 @@ typedef enum : NSUInteger {
     PMUndoManager * um = [PMUndoManager new] ;
     self.undoManager = um ;
     macroReleaseSetToNil (um) ;
-    mEntityManager = [[PMEntityManager alloc] initWithUndoManager:self.undoManager] ;
+    mEntityManager = [[PMObjectManager alloc] initWithUndoManager:self.undoManager] ;
     [self hookOfInit] ;
     macroNoteObjectAllocation ;
   }
@@ -691,7 +691,7 @@ typedef enum : NSUInteger {
 
 //-----------------------------------------------------------------------------*
 
-- (PMEntityManager *) entityManager {
+- (PMObjectManager *) entityManager {
   return mEntityManager ;
 }
 

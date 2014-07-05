@@ -13,14 +13,14 @@ import Cocoa
 
 class PMEntityController : NSObjectController {
   var deleteEntityOnRemove : Bool = false
-  var mEntityManager : PMEntityManager
+  var mEntityManager : PMObjectManager
   var mObjectClassName : String
 
   //---------------------------------------------------------------------------*
   //    init                                                                   *
   //---------------------------------------------------------------------------*
 
-  init (entityManager : PMEntityManager,
+  init (entityManager : PMObjectManager,
         className : String) {
     mEntityManager = entityManager
     mObjectClassName = className
@@ -43,7 +43,7 @@ class PMEntityController : NSObjectController {
 /*#import "easy-bindings-utilities.h"
 #import "PMEntityController.h"
 #import "PMManagedObject.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMAllocationDebug.h"
 
 //-----------------------------------------------------------------------------*

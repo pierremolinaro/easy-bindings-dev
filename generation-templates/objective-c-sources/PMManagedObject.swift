@@ -28,7 +28,7 @@ var gAllocatedEntityCount = 0
 
 class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   var savingIndex = 0
-  weak var mEntityManager : PMEntityManager?
+  weak var mEntityManager : PMObjectManager?
 //--- Signature
   var mSignatureCache = 0
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
@@ -43,7 +43,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  init                                                                       *
   //-----------------------------------------------------------------------------*
 
-  init (entityManager : PMEntityManager) {
+  init (entityManager : PMObjectManager) {
     mEntityManager = entityManager
     gAllocatedEntityCount = gAllocatedEntityCount + 1
  //   #ifdef PM_COCOA_DEBUG
@@ -120,7 +120,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  Getters                                                                    *
   //-----------------------------------------------------------------------------*
 
-  func entityManager () -> PMEntityManager {
+  func entityManager () -> PMObjectManager {
     return mEntityManager!
   }
 
@@ -441,7 +441,7 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
 #import "PMManagedObject.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
 
@@ -487,7 +487,7 @@ static NSUInteger gAllocatedEntityCount = 0 ;
 
 //-----------------------------------------------------------------------------*
 
-- (void) setEntityManager: (PMEntityManager *) inManager {
+- (void) setEntityManager: (PMObjectManager *) inManager {
   [mUndoManager
     registerUndoWithTarget:self
     selector: @selector (setEntityManager:)

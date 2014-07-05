@@ -32,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF713F401944C1CC000826E7 /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF713F401944C1CC000826E7 /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "02-transient-property.app"; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF713F441944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF713F451944C1CC000826E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF713F491944C1CC000826E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -133,9 +133,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CF713F3F1944C1CC000826E7 /* 02-transient-property */ = {
+		CF713F3F1944C1CC000826E7 /* 02-transient-property-swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property" */;
+			buildConfigurationList = CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property-swift" */;
 			buildPhases = (
 				CF713F3C1944C1CC000826E7 /* Sources */,
 				CF713F3D1944C1CC000826E7 /* Frameworks */,
@@ -145,7 +145,7 @@
 			);
 			dependencies = (
 			);
-			name = "02-transient-property";
+			name = "02-transient-property-swift";
 			productName = "02-transient-property";
 			productReference = CF713F401944C1CC000826E7 /* 02-transient-property.app */;
 			productType = "com.apple.product-type.application";
@@ -199,7 +199,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CF713F3F1944C1CC000826E7 /* 02-transient-property */,
+				CF713F3F1944C1CC000826E7 /* 02-transient-property-swift */,
 				CF713F511944C1CC000826E7 /* 02-transient-propertyTests */,
 			);
 		};
@@ -254,7 +254,7 @@
 /* Begin PBXTargetDependency section */
 		CF713F541944C1CC000826E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CF713F3F1944C1CC000826E7 /* 02-transient-property */;
+			target = CF713F3F1944C1CC000826E7 /* 02-transient-property-swift */;
 			targetProxy = CF713F531944C1CC000826E7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -422,7 +422,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property" */ = {
+		CF713F5C1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-property-swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF713F5D1944C1CC000826E7 /* Debug */,

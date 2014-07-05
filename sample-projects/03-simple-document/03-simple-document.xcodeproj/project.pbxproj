@@ -18,7 +18,7 @@
 		CF448EBD1781BF6700285A69 /* NSData+BZ2compression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EB81781BF6700285A69 /* NSData+BZ2compression.m */; };
 		CF448EBE1781BF6700285A69 /* NSData+PMGZcompression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EBA1781BF6700285A69 /* NSData+PMGZcompression.m */; };
 		CF448EBF1781BF6700285A69 /* NSMutableData+PMWrites.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EBC1781BF6700285A69 /* NSMutableData+PMWrites.m */; };
-		CF448EC21781BF7700285A69 /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC11781BF7700285A69 /* PMEntityManager.m */; };
+		CF448EC21781BF7700285A69 /* PMObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC11781BF7700285A69 /* PMObjectManager.m */; };
 		CF448EC71781BF8200285A69 /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC41781BF8200285A69 /* PMManagedDocument.m */; };
 		CF448EC81781BF8200285A69 /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC61781BF8200285A69 /* PMManagedObject.m */; };
 		CF448ECD1781BF9A00285A69 /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448ECA1781BF9A00285A69 /* PMRelationshipDescription.m */; };
@@ -62,8 +62,8 @@
 		CF448EBA1781BF6700285A69 /* NSData+PMGZcompression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PMGZcompression.m"; sourceTree = "<group>"; };
 		CF448EBB1781BF6700285A69 /* NSMutableData+PMWrites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+PMWrites.h"; sourceTree = "<group>"; };
 		CF448EBC1781BF6700285A69 /* NSMutableData+PMWrites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+PMWrites.m"; sourceTree = "<group>"; };
-		CF448EC01781BF7700285A69 /* PMEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityManager.h; sourceTree = "<group>"; };
-		CF448EC11781BF7700285A69 /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
+		CF448EC01781BF7700285A69 /* PMObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMObjectManager.h; sourceTree = "<group>"; };
+		CF448EC11781BF7700285A69 /* PMObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMObjectManager.m; sourceTree = "<group>"; };
 		CF448EC31781BF8200285A69 /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
 		CF448EC41781BF8200285A69 /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
 		CF448EC51781BF8200285A69 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 				CF448EC41781BF8200285A69 /* PMManagedDocument.m */,
 				CF448EC51781BF8200285A69 /* PMManagedObject.h */,
 				CF448EC61781BF8200285A69 /* PMManagedObject.m */,
-				CF448EC01781BF7700285A69 /* PMEntityManager.h */,
-				CF448EC11781BF7700285A69 /* PMEntityManager.m */,
+				CF448EC01781BF7700285A69 /* PMObjectManager.h */,
+				CF448EC11781BF7700285A69 /* PMObjectManager.m */,
 				CF448EB71781BF6700285A69 /* NSData+BZ2compression.h */,
 				CF448EB81781BF6700285A69 /* NSData+BZ2compression.m */,
 				CF448EB91781BF6700285A69 /* NSData+PMGZcompression.h */,
@@ -308,7 +308,7 @@
 				CF448EBD1781BF6700285A69 /* NSData+BZ2compression.m in Sources */,
 				CF448EBE1781BF6700285A69 /* NSData+PMGZcompression.m in Sources */,
 				CF448EBF1781BF6700285A69 /* NSMutableData+PMWrites.m in Sources */,
-				CF448EC21781BF7700285A69 /* PMEntityManager.m in Sources */,
+				CF448EC21781BF7700285A69 /* PMObjectManager.m in Sources */,
 				CF448EC71781BF8200285A69 /* PMManagedDocument.m in Sources */,
 				CF448EC81781BF8200285A69 /* PMManagedObject.m in Sources */,
 				CF448ECD1781BF9A00285A69 /* PMRelationshipDescription.m in Sources */,

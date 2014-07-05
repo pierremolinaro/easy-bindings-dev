@@ -1,5 +1,5 @@
 //
-//  PMEntityManager.m
+//  PMObjectManager.m
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------*
 
 #import "PMAllocationDebug.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMManagedObject.h"
 #import "PMRelationshipDescription.h"
 #import "easy-bindings-utilities.h"
@@ -19,7 +19,7 @@
 
 //-----------------------------------------------------------------------------*
 
-@implementation PMEntityManager
+@implementation PMObjectManager
 
 //-----------------------------------------------------------------------------*
 

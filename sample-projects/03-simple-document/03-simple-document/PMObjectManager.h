@@ -1,5 +1,5 @@
 //
-//  PMEntityManager.h
+//  PMObjectManager.h
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -15,7 +15,7 @@
 
 //-----------------------------------------------------------------------------*
 
-@interface PMEntityManager : NSObject {
+@interface PMObjectManager : NSObject {
   @private NSUndoManager * mUndoManager ;
   @private NSMutableSet * mManagedObjectSet ;
 }

@@ -10,7 +10,7 @@
 #import "easy-bindings-utilities.h"
 #import "PMEntityController.h"
 #import "PMManagedObject.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMAllocationDebug.h"
 
 //-----------------------------------------------------------------------------*

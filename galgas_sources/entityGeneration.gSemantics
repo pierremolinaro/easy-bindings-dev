@@ -95,7 +95,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates/entity-ge
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
 
-  template entityFactoryImplementationFileInSwift "PMEntityManager+extension+factory.swift.gTemplate"
+  template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
     ?@entityMap ENTITY_MAP
   ;
 }
@@ -287,7 +287,7 @@ routine generateEntityFactory
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory
-      !"PMEntityManager+extension+factory.swift"
+      !"PMObjectManager+extension+factory.swift"
       !"//"
       !"\n\n" # Defaut user zone1
       !s

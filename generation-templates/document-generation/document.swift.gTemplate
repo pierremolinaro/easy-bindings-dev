@@ -44,7 +44,7 @@ end
   //---------------------------------------------------------------------------*
 
   init () {
-    let em = PMEntityManager ()
+    let em = PMObjectManager ()
 %
 foreach CONTROLLER_MAP do
   %    %!lkey->string% = %!mControllerClassName% (%

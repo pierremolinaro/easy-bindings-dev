@@ -245,7 +245,7 @@ end
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMEntityManager) {
+  init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
   }
 

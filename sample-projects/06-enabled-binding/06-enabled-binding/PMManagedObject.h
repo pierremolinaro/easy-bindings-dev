@@ -11,7 +11,7 @@
 
 //-----------------------------------------------------------------------------*
 
-@class PMEntityManager ;
+@class PMObjectManager ;
 
 //-----------------------------------------------------------------------------*
 
@@ -32,7 +32,7 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 //-----------------------------------------------------------------------------*
 
 @interface PMManagedObject : NSObject <PMSignatureObserverProtocol> {
-  @private PMEntityManager * mEntityManager ;
+  @private PMObjectManager * mEntityManager ;
   @private NSUndoManager * mUndoManager ;
 //--- Signature
   @private NSInteger mSignatureCache ;
@@ -49,9 +49,9 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
   #endif
 }
 
-- (instancetype) initWithEntityManager: (PMEntityManager *) inEntityManager ;
+- (instancetype) initWithEntityManager: (PMObjectManager *) inEntityManager ;
 
-- (PMEntityManager *) entityManager ;
+- (PMObjectManager *) entityManager ;
 
 - (NSUndoManager *) undoManager ;
 

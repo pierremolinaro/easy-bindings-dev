@@ -10,7 +10,7 @@ end
 %foreach HEADER_PREDECLARATION_SET do
   %@class %!key% ;\n%
 end
-%@class PMEntityManager ;
+%@class PMObjectManager ;
 
 //----------------------------------------------------------------------------*
 

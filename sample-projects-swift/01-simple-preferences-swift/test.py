@@ -8,7 +8,7 @@ import atomac, sys, time
 
 import random, string
 
-bundleName = 'fr.free.pcmolinaro.-1-simple-preferences'
+bundleName = 'fr.free.pcmolinaro.-1-simple-preferences-swift'
 atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)

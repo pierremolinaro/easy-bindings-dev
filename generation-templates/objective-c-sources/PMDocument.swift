@@ -45,7 +45,7 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   init () {
-    let em = PMEntityManager ()
+    let em = PMObjectManager ()
     nameController = PMEntityArrayController (entityManager:em, inClassName:"NameEntity")
     super.init (inEntityManager:em)
   }

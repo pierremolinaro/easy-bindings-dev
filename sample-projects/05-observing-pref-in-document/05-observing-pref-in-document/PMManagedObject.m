@@ -10,7 +10,7 @@
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
 #import "PMManagedObject.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
 
@@ -49,7 +49,7 @@ static NSUInteger gAllocatedEntityCount = 0 ;
 
 //-----------------------------------------------------------------------------*
 
-- (instancetype) initWithEntityManager: (PMEntityManager *) inEntityManager {
+- (instancetype) initWithEntityManager: (PMObjectManager *) inEntityManager {
   self = [self init] ;
   if (self) {
     gAllocatedEntityCount ++ ;
@@ -94,7 +94,7 @@ static NSUInteger gAllocatedEntityCount = 0 ;
 
 //-----------------------------------------------------------------------------*
 
-- (PMEntityManager *) entityManager {
+- (PMObjectManager *) entityManager {
   return mEntityManager ;
 }
 
@@ -231,7 +231,7 @@ static NSUInteger gAllocatedEntityCount = 0 ;
 
 //-----------------------------------------------------------------------------*
 
-- (void) setEntityManager: (PMEntityManager *) inManager {
+- (void) setEntityManager: (PMObjectManager *) inManager {
   [mUndoManager
     registerUndoWithTarget:self
     selector: @selector (setEntityManager:)
