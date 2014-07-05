@@ -1,5 +1,5 @@
 //
-//  PMManagedEntity.h
+//  PMManagedObject.h
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -28,10 +28,10 @@ NSString * convertBOOLValueToString (NSNumber * inValue) ;
 @end
 
 //-----------------------------------------------------------------------------*
-//  PMManagedEntity                                                            *
+//  PMManagedObject                                                            *
 //-----------------------------------------------------------------------------*
 
-@interface PMManagedEntity : NSObject <PMSignatureObserverProtocol> {
+@interface PMManagedObject : NSObject <PMSignatureObserverProtocol> {
   @private PMEntityManager * mEntityManager ;
   @private NSUndoManager * mUndoManager ;
 //--- Signature
@@ -110,7 +110,7 @@ NSInteger computeNSStringSignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 NSInteger computeToOneEntitySignature (const NSInteger inSignature,
-                                       PMManagedEntity * inToOnePropertyValue) ;
+                                       PMManagedObject * inToOnePropertyValue) ;
 
 //---------------------------------------------------------------------------*
 

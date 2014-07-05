@@ -9,7 +9,7 @@
 
 #import "easy-bindings-utilities.h"
 #import "PMEntityArrayController.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMEntityManager.h"
 #import "PMAllocationDebug.h"
 
@@ -62,7 +62,7 @@
   if (self.deleteEntityOnRemove && (nil != self.entityManager)) {
     NSIndexSet * selectedObjectIndexes = self.selectionIndexes ;
     NSArray * selectedObjects = [self.arrangedObjects objectsAtIndexes:selectedObjectIndexes] ;
-    for (PMManagedEntity * object in selectedObjects) {
+    for (PMManagedObject * object in selectedObjects) {
       [self.entityManager deleteEntity:object] ;
     }
   }else{

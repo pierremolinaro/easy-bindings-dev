@@ -1,13 +1,17 @@
 //
-//  PMUndoManager.m
+//  PMUndoManager.swift
 //  essai
 //
-//  Created by Pierre Molinaro on 30/06/13.
+//  Created by Pierre Molinaro on 30/06/14.
 //  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
 //
 //---------------------------------------------------------------------------*
 
 import Cocoa
+
+//---------------------------------------------------------------------------*
+
+let traceUndoManager = false
 
 //---------------------------------------------------------------------------*
 
@@ -29,40 +33,55 @@ import Cocoa
   deinit {
     noteObjectDeallocation (self)
   }
-}
 
-//---------------------------------------------------------------------------*
+  //-----------------------------------------------------------------------------*
+  //    registerUndoWithTarget                                                   *
+  //-----------------------------------------------------------------------------*
 
-/*
-#import "easy-bindings-utilities.h"
-#import "PMUndoManager.h"
-#import "PMAllocationDebug.h"
-
-//---------------------------------------------------------------------------*
-
-@implementation PMUndoManager
-
-//---------------------------------------------------------------------------*
-
-- (instancetype) init {
-  self = [super init] ;
-  if (self) {
-    macroNoteObjectAllocation ;
+  override func prepareWithInvocationTarget (target:AnyObject!) -> AnyObject! {
+    let result : AnyObject! = super.prepareWithInvocationTarget (target)
+    if traceUndoManager {
+      NSLog ("prepareWithInvocationTarget (%@) target:%@", isUndoRegistrationEnabled () ? "yes" : "no", target.description)
+    }
+    return result
   }
-  return self ;
+
+  //-----------------------------------------------------------------------------*
+  //    registerUndoWithTarget                                                   *
+  //-----------------------------------------------------------------------------*
+
+  override func registerUndoWithTarget (target:AnyObject!, selector:Selector, object anObject:AnyObject!) {
+    super.registerUndoWithTarget (target, selector:selector, object:anObject)
+    if traceUndoManager {
+      if anObject == nil {
+        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:nil", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description)
+      }else{
+        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:%@", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description, anObject.description)
+      }
+    }
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    beginUndoGrouping                                                        *
+  //-----------------------------------------------------------------------------*
+
+  override func beginUndoGrouping () {
+    if traceUndoManager {
+      NSLog ("beginUndoGrouping")
+    }
+    super.beginUndoGrouping ()
+  }
+
+  //-----------------------------------------------------------------------------*
+  //    endUndoGrouping                                                          *
+  //-----------------------------------------------------------------------------*
+
+  override func endUndoGrouping () {
+    if traceUndoManager {
+      NSLog ("endUndoGrouping")
+    }
+    super.endUndoGrouping ()
+  }
 }
 
-//----------------------------------------------------------------------------*
-//    Dealloc                                                                 *
-//----------------------------------------------------------------------------*
-
-- (void) dealloc {
-  macroNoteObjectDeallocation ;
-  macroSuperDealloc ;
-}
-
-//---------------------------------------------------------------------------*
-
-@end
-
-*/
+//------------------------------------------------------------------------------*

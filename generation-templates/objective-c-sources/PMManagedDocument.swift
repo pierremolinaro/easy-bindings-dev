@@ -30,7 +30,7 @@ enum PMDocumentCompressionEnum {
 
 class PMManagedDocument : NSDocument {
   var mEntityManager : PMEntityManager
-  var mRootObject : PMManagedEntity?
+  var mRootObject : PMManagedObject?
   var mReadMetadataStatus : UInt8 = 0
   var mMetadataDictionary : NSMutableDictionary = [:]
 
@@ -532,7 +532,7 @@ extension NSMutableData {
 
 //---------------------------------------------------------------------------*
 
-@class PMManagedEntity ;
+@class PMManagedObject ;
 @class PMEntityManager ;
 
 //---------------------------------------------------------------------------*
@@ -547,7 +547,7 @@ typedef enum : NSUInteger {
 
 @interface PMManagedDocument : NSDocument {
   @private PMEntityManager * mEntityManager ;
-  @protected PMManagedEntity * mRootObject ;
+  @protected PMManagedObject * mRootObject ;
   @private UInt8 mReadMetadataStatus ;
   @private NSDictionary * mReadMetadataDictionary ;
 }
@@ -571,7 +571,7 @@ typedef enum : NSUInteger {
 
 //--- Legacy format helper
 @property (atomic)
-   PMManagedEntity * (* legacyFormatLoader) (NSData * inData,
+   PMManagedObject * (* legacyFormatLoader) (NSData * inData,
                                              PMEntityManager * inManager,
                                              Class inRootEntityClass,
                                              NSError ** outError) ;
@@ -600,7 +600,7 @@ typedef enum : NSUInteger {
 #import "PMManagedDocument.h"
 #import "PMAllocationDebug.h"
 #import "PMEntityManager.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "NSMutableData+PMWrites.h"
 #import "NSData+PMGZcompression.h"
 #import "NSData+BZ2compression.h"
@@ -820,7 +820,7 @@ typedef enum : NSUInteger {
   NSSet * objectsToDelete = (ARC_BRIDGE_TRANSFER NSSet *) inContextInfo ;
   macroCheckObject (objectsToDelete, NSSet) ;
   if (inReturnCode == 0) {
-    for (PMManagedEntity * object in objectsToDelete) {
+    for (PMManagedObject * object in objectsToDelete) {
       [mEntityManager deleteEntity:object] ;
     }
   }
@@ -883,7 +883,7 @@ typedef enum : NSUInteger {
     NSArray * reachableObjects = [mEntityManager reachableObjectsFromObject:mRootObject] ;
     NSUInteger correctedErrors = 0 ;
     NSUInteger fatalErrors = 0 ;
-    for (PMManagedEntity * object in reachableObjects) {
+    for (PMManagedObject * object in reachableObjects) {
       [self
         checkObjectRelationShips:object
         correctedError: & correctedErrors
@@ -919,7 +919,7 @@ typedef enum : NSUInteger {
 
 //-----------------------------------------------------------------------------*
 
-- (void) checkObjectRelationShips: (PMManagedEntity *) inManagedObject
+- (void) checkObjectRelationShips: (PMManagedObject *) inManagedObject
          correctedError: (NSUInteger *) ioCorrectedErrorsPtr
          fatalErrors: (NSUInteger *) ioFatalErrorsPtr {
   #ifdef EASY_BINDINGS_DEBUG
@@ -929,14 +929,14 @@ typedef enum : NSUInteger {
   NSArray * toOneRelationshipNameArray = [inManagedObject toOneRelationshipDescriptionArray] ;
   for (PMRelationshipDescription * description in [toOneRelationshipNameArray sortedArrayUsingSelector:@selector (compareByRelationshipName:)]) {
     NSString * relationshipName = description.relationshipName ;
-    PMManagedEntity * attribute = [inManagedObject valueForKey:relationshipName] ;
+    PMManagedObject * attribute = [inManagedObject valueForKey:relationshipName] ;
     if (description.oppositeRelationshipIsToMany) {  // Opposite is to many
       NSArray * oppositeOfOpposite = [attribute valueForKey:description.oppositeRelationshipName] ;
       if (! [oppositeOfOpposite containsObject:inManagedObject]) {
         (* ioFatalErrorsPtr) ++ ;
       }
     }else{ // Opposite is to one
-      PMManagedEntity * oppositeOfOpposite = [attribute valueForKey:description.oppositeRelationshipName] ;
+      PMManagedObject * oppositeOfOpposite = [attribute valueForKey:description.oppositeRelationshipName] ;
       if (nil == oppositeOfOpposite) {
         [oppositeOfOpposite setValue:attribute forKey:description.oppositeRelationshipName] ;
         (* ioCorrectedErrorsPtr) ++ ;
@@ -950,14 +950,14 @@ typedef enum : NSUInteger {
   for (PMRelationshipDescription * description in toManyRelationshipNameArray) {
     NSString * relationshipName = description.relationshipName ;
     NSArray * attribute = [inManagedObject valueForKey:relationshipName] ;
-    for (PMManagedEntity * object in attribute) {
+    for (PMManagedObject * object in attribute) {
       if (description.oppositeRelationshipIsToMany) {  // Opposite is to many
         NSArray * oppositeOfOpposite = [object valueForKey:description.oppositeRelationshipName] ;
         if (! [oppositeOfOpposite containsObject:inManagedObject]) {
           (* ioFatalErrorsPtr) ++ ;
         }
       }else{ // Opposite is to one
-        PMManagedEntity * oppositeOfOpposite = [object valueForKey:description.oppositeRelationshipName] ;
+        PMManagedObject * oppositeOfOpposite = [object valueForKey:description.oppositeRelationshipName] ;
         if (nil == oppositeOfOpposite) {
           [object setValue:inManagedObject forKey:description.oppositeRelationshipName] ;
           (* ioCorrectedErrorsPtr) ++ ;

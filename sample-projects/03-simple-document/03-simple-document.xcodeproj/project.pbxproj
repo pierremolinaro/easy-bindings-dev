@@ -20,7 +20,7 @@
 		CF448EBF1781BF6700285A69 /* NSMutableData+PMWrites.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EBC1781BF6700285A69 /* NSMutableData+PMWrites.m */; };
 		CF448EC21781BF7700285A69 /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC11781BF7700285A69 /* PMEntityManager.m */; };
 		CF448EC71781BF8200285A69 /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC41781BF8200285A69 /* PMManagedDocument.m */; };
-		CF448EC81781BF8200285A69 /* PMManagedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC61781BF8200285A69 /* PMManagedEntity.m */; };
+		CF448EC81781BF8200285A69 /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448EC61781BF8200285A69 /* PMManagedObject.m */; };
 		CF448ECD1781BF9A00285A69 /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448ECA1781BF9A00285A69 /* PMRelationshipDescription.m */; };
 		CF448ECE1781BF9A00285A69 /* PMUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF448ECC1781BF9A00285A69 /* PMUndoManager.m */; };
 		CF4CA86C193F202800F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA86B193F202800F3B0C7 /* PMApplication.m */; };
@@ -66,8 +66,8 @@
 		CF448EC11781BF7700285A69 /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
 		CF448EC31781BF8200285A69 /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
 		CF448EC41781BF8200285A69 /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
-		CF448EC51781BF8200285A69 /* PMManagedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedEntity.h; sourceTree = "<group>"; };
-		CF448EC61781BF8200285A69 /* PMManagedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedEntity.m; sourceTree = "<group>"; };
+		CF448EC51781BF8200285A69 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
+		CF448EC61781BF8200285A69 /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
 		CF448EC91781BF9A00285A69 /* PMRelationshipDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRelationshipDescription.h; sourceTree = "<group>"; };
 		CF448ECA1781BF9A00285A69 /* PMRelationshipDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRelationshipDescription.m; sourceTree = "<group>"; };
 		CF448ECB1781BF9A00285A69 /* PMUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUndoManager.h; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 				CF448ECC1781BF9A00285A69 /* PMUndoManager.m */,
 				CF448EC31781BF8200285A69 /* PMManagedDocument.h */,
 				CF448EC41781BF8200285A69 /* PMManagedDocument.m */,
-				CF448EC51781BF8200285A69 /* PMManagedEntity.h */,
-				CF448EC61781BF8200285A69 /* PMManagedEntity.m */,
+				CF448EC51781BF8200285A69 /* PMManagedObject.h */,
+				CF448EC61781BF8200285A69 /* PMManagedObject.m */,
 				CF448EC01781BF7700285A69 /* PMEntityManager.h */,
 				CF448EC11781BF7700285A69 /* PMEntityManager.m */,
 				CF448EB71781BF6700285A69 /* NSData+BZ2compression.h */,
@@ -310,7 +310,7 @@
 				CF448EBF1781BF6700285A69 /* NSMutableData+PMWrites.m in Sources */,
 				CF448EC21781BF7700285A69 /* PMEntityManager.m in Sources */,
 				CF448EC71781BF8200285A69 /* PMManagedDocument.m in Sources */,
-				CF448EC81781BF8200285A69 /* PMManagedEntity.m in Sources */,
+				CF448EC81781BF8200285A69 /* PMManagedObject.m in Sources */,
 				CF448ECD1781BF9A00285A69 /* PMRelationshipDescription.m in Sources */,
 				CF448ECE1781BF9A00285A69 /* PMUndoManager.m in Sources */,
 				CF1457971781C0EE00DC7C9E /* PMAttributeDescription.m in Sources */,

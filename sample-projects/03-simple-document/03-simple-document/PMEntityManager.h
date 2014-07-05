@@ -11,7 +11,7 @@
 
 //-----------------------------------------------------------------------------*
 
-@class PMManagedEntity ;
+@class PMManagedObject ;
 
 //-----------------------------------------------------------------------------*
 
@@ -26,21 +26,21 @@
 
 - (id) newInstanceOfEntity: (Class) inEntityClass ;
 
-- (void) deleteEntity: (PMManagedEntity *) inObject ;
+- (void) deleteEntity: (PMManagedObject *) inObject ;
 
 - (void) deleteEntities: (NSArray *) inObjects ;
 
 - (NSArray *) allEntitiesKindOfClass: (Class) inClass ;
 
-- (NSArray *) reachableObjectsFromObject: (PMManagedEntity *) inRootObject ;
+- (NSArray *) reachableObjectsFromObject: (PMManagedObject *) inRootObject ;
 
-- (NSSet *) uneachableObjectsFromObject: (PMManagedEntity *) inRootObject ;
+- (NSSet *) uneachableObjectsFromObject: (PMManagedObject *) inRootObject ;
 
 - (id) readFromData: (NSData *) inData withRootEntityClass: (Class) inRootEntityClass ;
 
 - (void) resetBeforeDeletion ;
 
-- (NSData *) dataForSavingFromRootObject: (PMManagedEntity *) inRootObject ;
+- (NSData *) dataForSavingFromRootObject: (PMManagedObject *) inRootObject ;
 
 - (NSUInteger) entityCount ;
 @end

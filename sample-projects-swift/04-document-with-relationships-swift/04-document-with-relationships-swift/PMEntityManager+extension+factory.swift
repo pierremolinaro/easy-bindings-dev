@@ -23,8 +23,8 @@ extension PMEntityManager {
   //  newInstanceOfEntityNamed                                                 *
   //---------------------------------------------------------------------------*
 
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedEntity? {
-    var result : PMManagedEntity?
+  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
+    var result : PMManagedObject?
     if inEntityTypeName == "MyRootEntity" {
       result = MyRootEntity (entityManager:self)
     }else if inEntityTypeName == "NameEntity" {

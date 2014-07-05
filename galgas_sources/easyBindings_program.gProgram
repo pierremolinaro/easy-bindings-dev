@@ -250,7 +250,7 @@ local routine semanticAnalysis
   end if ;
   if [contextAnalysisStruct->mEntityMap count] > 0 then
     generateSet += !"load-store-functions" ;
-    generateSet += !"PMManagedEntity" ;
+    generateSet += !"PMManagedObject" ;
     generateSet += !"PMEntityManager" ;
     generateSet += !"PMAttributeDescription" ;
     generateSet += !"PMRelationshipDescription" ;

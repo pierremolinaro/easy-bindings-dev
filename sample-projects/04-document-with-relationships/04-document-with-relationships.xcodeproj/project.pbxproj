@@ -14,7 +14,7 @@
 		CF042E1D17821119006C89AF /* PMAttributeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E0E17821119006C89AF /* PMAttributeDescription.m */; };
 		CF042E1E17821119006C89AF /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1017821119006C89AF /* PMEntityManager.m */; };
 		CF042E1F17821119006C89AF /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1217821119006C89AF /* PMManagedDocument.m */; };
-		CF042E2017821119006C89AF /* PMManagedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1417821119006C89AF /* PMManagedEntity.m */; };
+		CF042E2017821119006C89AF /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1417821119006C89AF /* PMManagedObject.m */; };
 		CF042E2117821119006C89AF /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1617821119006C89AF /* PMRelationshipDescription.m */; };
 		CF042E2217821119006C89AF /* PMUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E1817821119006C89AF /* PMUndoManager.m */; };
 		CF042E45178216F4006C89AF /* PMEntityArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF042E44178216F4006C89AF /* PMEntityArrayController.m */; };
@@ -54,8 +54,8 @@
 		CF042E1017821119006C89AF /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
 		CF042E1117821119006C89AF /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
 		CF042E1217821119006C89AF /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
-		CF042E1317821119006C89AF /* PMManagedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedEntity.h; sourceTree = "<group>"; };
-		CF042E1417821119006C89AF /* PMManagedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedEntity.m; sourceTree = "<group>"; };
+		CF042E1317821119006C89AF /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
+		CF042E1417821119006C89AF /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
 		CF042E1517821119006C89AF /* PMRelationshipDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRelationshipDescription.h; sourceTree = "<group>"; };
 		CF042E1617821119006C89AF /* PMRelationshipDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRelationshipDescription.m; sourceTree = "<group>"; };
 		CF042E1717821119006C89AF /* PMUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUndoManager.h; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 				CF042E1017821119006C89AF /* PMEntityManager.m */,
 				CF042E1117821119006C89AF /* PMManagedDocument.h */,
 				CF042E1217821119006C89AF /* PMManagedDocument.m */,
-				CF042E1317821119006C89AF /* PMManagedEntity.h */,
-				CF042E1417821119006C89AF /* PMManagedEntity.m */,
+				CF042E1317821119006C89AF /* PMManagedObject.h */,
+				CF042E1417821119006C89AF /* PMManagedObject.m */,
 				CF042E1517821119006C89AF /* PMRelationshipDescription.h */,
 				CF042E1617821119006C89AF /* PMRelationshipDescription.m */,
 				CF042E1717821119006C89AF /* PMUndoManager.h */,
@@ -297,7 +297,7 @@
 				CF042E1D17821119006C89AF /* PMAttributeDescription.m in Sources */,
 				CF042E1E17821119006C89AF /* PMEntityManager.m in Sources */,
 				CF042E1F17821119006C89AF /* PMManagedDocument.m in Sources */,
-				CF042E2017821119006C89AF /* PMManagedEntity.m in Sources */,
+				CF042E2017821119006C89AF /* PMManagedObject.m in Sources */,
 				CF042E2117821119006C89AF /* PMRelationshipDescription.m in Sources */,
 				CF042E2217821119006C89AF /* PMUndoManager.m in Sources */,
 				CF042E45178216F4006C89AF /* PMEntityArrayController.m in Sources */,

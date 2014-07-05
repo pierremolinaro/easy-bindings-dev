@@ -42,7 +42,7 @@ class PMEntityController : NSObjectController {
 
 /*#import "easy-bindings-utilities.h"
 #import "PMEntityController.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMEntityManager.h"
 #import "PMAllocationDebug.h"
 

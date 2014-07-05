@@ -42,7 +42,7 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   override func add (inSender : AnyObject!) {
-   var newObject : PMManagedEntity = mEntityManager.newInstanceOfEntityNamed (mObjectClassName)!
+   var newObject : PMManagedObject = mEntityManager.newInstanceOfEntityNamed (mObjectClassName)!
    addObject (newObject)
   }
 
@@ -55,7 +55,7 @@ import Cocoa
       let selectedObjectIndexes : NSIndexSet = selectionIndexes ()
       let selectedObjects : NSArray = self.arrangedObjects ().objectsAtIndexes (selectedObjectIndexes)
       for object : AnyObject in selectedObjects {
-        let managedObject : PMManagedEntity = object as PMManagedEntity
+        let managedObject : PMManagedObject = object as PMManagedObject
         mEntityManager.deleteEntity (managedObject)
       }
     }else{
@@ -151,7 +151,7 @@ import Cocoa
 
 #import "easy-bindings-utilities.h"
 #import "PMEntityArrayController.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMEntityManager.h"
 #import "PMAllocationDebug.h"
 
@@ -204,7 +204,7 @@ import Cocoa
   if (self.deleteEntityOnRemove && (nil != self.entityManager)) {
     NSIndexSet * selectedObjectIndexes = self.selectionIndexes ;
     NSArray * selectedObjects = [self.arrangedObjects objectsAtIndexes:selectedObjectIndexes] ;
-    for (PMManagedEntity * object in selectedObjects) {
+    for (PMManagedObject * object in selectedObjects) {
       [self.entityManager deleteEntity:object] ;
     }
   }else{

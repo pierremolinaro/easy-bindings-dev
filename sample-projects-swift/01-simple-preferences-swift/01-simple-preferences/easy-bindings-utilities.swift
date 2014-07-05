@@ -68,6 +68,17 @@ extension NSDictionary {
     return result
   }
 
+  //---------------------------------------------------------------------------*
+
+  func readInt64 (inKey : String) -> Int64 {
+    var result : Int64 = 0
+    let object : AnyObject = valueForKey (inKey)
+    if let d = object as? NSNumber {
+      result = d.longLongValue ()
+    }
+    return result
+  }
+
 }
 
 //---------------------------------------------------------------------------*
