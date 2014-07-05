@@ -1,5 +1,5 @@
 //
-//  PMManagedEntity.m
+//  PMManagedObject.swift
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -23,10 +23,10 @@ var gExplorerObjectIndex = 0
 var gAllocatedEntityCount = 0
 
 //-----------------------------------------------------------------------------*
-//  PMManagedEntity                                                            *
+//  PMManagedObject                                                            *
 //-----------------------------------------------------------------------------*
 
-class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
+class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   var savingIndex = 0
   weak var mEntityManager : PMEntityManager?
 //--- Signature
@@ -67,7 +67,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
-                            managedObjectArray : PMManagedEntity []) {
+                            managedObjectArray : PMManagedObject []) {
   }
 
   //-----------------------------------------------------------------------------*
@@ -148,8 +148,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  func accessibleObjects () -> NSMutableSet {
-    return NSMutableSet ()
+  func accessibleObjects (inout objects : PMManagedObject []) {
   }
 
   //---------------------------------------------------------------------------*
@@ -271,10 +270,10 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   }
 
   //---------------------------------------------------------------------------*
-  //   updateEntityArrayDisplayForKey                                          *
+  //   updateManagedObjectToManyRelationshipDisplayForKey                      *
   //---------------------------------------------------------------------------*
 
-/*  func updateEntityArrayDisplayForKey (inKey : NSString) {
+  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : NSString, popUpButton : NSPopUpButton) {
     var objectArray : NSArray = valueForKey (inKey) as NSArray
     var title = "No Object" ;
     if objectArray.count () == 1 {
@@ -282,53 +281,59 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     }else if objectArray.count () > 1 {
       title = NSString (format:"%lu objects", objectArray.count ())
     }
-    var bt = mAttributeViewDictionary.objectForKey (inKey) as NSPopUpButton
-    bt.removeAllItems ()
-    bt.addItemWithTitle (title)
-    bt.setEnabled (objectArray.count () > 0)
+    popUpButton.removeAllItems ()
+    popUpButton.addItemWithTitle (title)
+    popUpButton.setEnabled (objectArray.count () > 0)
     for obj : AnyObject in objectArray {
-      let object = obj as PMManagedEntity
+      let object = obj as PMManagedObject
       let objectIndex = object.explorerObjectIndex ()
       let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className (), object)
-      bt.addItemWithTitle (stringValue)
-      var item = bt.lastItem ()
+      popUpButton.addItemWithTitle (stringValue)
+      var item = popUpButton.lastItem ()
       item.setTarget (object)
-      item.setAction ("showObjectWindowFromSenderTagAction:")
+      item.setAction ("showObjectWindowFromExplorerButton:")
     }
-  }*/
+  }
 
   //---------------------------------------------------------------------------*
-  //   updateEntityDisplayForKey                                               *
+  //   updateManagedObjectToOneRelationshipDisplayForKey                       *
   //---------------------------------------------------------------------------*
 
-/*  func updateEntityDisplayForKey (inKey : NSString) {
-    var object = valueForKey (inKey) as PMManagedEntity
+  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton) {
+    var object = valueForKey (inKey) as PMManagedObject
     var stringValue = "nil"
     if nil != object {
       let objectIndex = object.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%s) %p", objectIndex, object.className (), object)
+      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className (), object)
     }
-    var bt = mAttributeViewDictionary.objectForKey (inKey) as NSButton
-    bt.setEnabled (object != nil)
-    bt.setTitle (stringValue)
-    bt.setToolTip (stringValue)
-    bt.setTarget (object)
-    bt.setAction ("showObjectWindowFromSenderTagAction:")
-  }*/
+    button.setEnabled (object != nil)
+    button.setTitle (stringValue)
+    button.setToolTip (stringValue)
+    button.setTarget (object)
+    button.setAction ("showObjectWindowFromExplorerButton:")
+  }
 
+  //---------------------------------------------------------------------------*
+  //   showObjectWindowFromExplorerButton                                      *
+  //---------------------------------------------------------------------------*
+
+  func showObjectWindowFromExplorerButton (AnyObject!) {
+    showExplorerWindow ()
+  }
+  
   //---------------------------------------------------------------------------*
   //   deleteWindowAction                                                      *
   //---------------------------------------------------------------------------*
 
   func deleteWindowAction (AnyObject) {
-    clearContextExplorer ()
+    clearObjectExplorer ()
   }
 
   //---------------------------------------------------------------------------*
-  //   clearContextExplorer                                                    *
+  //   clearObjectExplorer                                                    *
   //---------------------------------------------------------------------------*
 
-  func clearContextExplorer () {
+  func clearObjectExplorer () {
     var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
     closeButton?.setTarget (nil)
     mExplorerWindow?.orderOut (nil)
@@ -346,7 +351,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
     if inEntityArray.count () > 0 {
       var indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
-        let managedObject = object as PMManagedEntity
+        let managedObject = object as PMManagedObject
         indexArray.addObject (NSNumber (unsignedInteger:object.savingIndex))
       }
       ioDictionary.setObject (indexArray, forKey:inRelationshipName)
@@ -357,7 +362,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
   //   storeEntityInDictionary                                                 *
   //---------------------------------------------------------------------------*
 
-  func storeEntityInDictionary (inObject : PMManagedEntity?,
+  func storeEntityInDictionary (inObject : PMManagedObject?,
                                 inRelationshipName: String,
                                 ioDictionary : NSMutableDictionary) {
     if nil != inObject {
@@ -371,9 +376,9 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
 
   func readEntityFromDictionary (inRelationshipName: String,
                                  inDictionary : NSDictionary,
-                                 managedObjectArray : PMManagedEntity []) -> PMManagedEntity? {
+                                 managedObjectArray : PMManagedObject []) -> PMManagedObject? {
   let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
-  var result : PMManagedEntity? = nil
+  var result : PMManagedObject? = nil
   if nil != value {
     result = managedObjectArray [value!.unsignedIntegerValue ()]
   }
@@ -386,7 +391,7 @@ class PMManagedEntity : NSObject, PMSignatureObserverProtocol {
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
-                                     managedObjectArray : PMManagedEntity []) -> NSMutableArray {
+                                     managedObjectArray : PMManagedObject []) -> NSMutableArray {
   let indexArray : NSArray? = inDictionary.valueForKey (inRelationshipName) as? NSArray
   var result = NSMutableArray ()
   if nil != indexArray {
@@ -418,7 +423,7 @@ NSInteger computeNSStringSignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 NSInteger computeToOneEntitySignature (const NSInteger inSignature,
-                                       PMManagedEntity * inToOnePropertyValue) ;
+                                       PMManagedObject * inToOnePropertyValue) ;
 
 //---------------------------------------------------------------------------*
 
@@ -435,7 +440,7 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 /*
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMEntityManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
@@ -535,7 +540,7 @@ NSInteger computeNSStringSignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 NSInteger computeToOneEntitySignature (const NSInteger inSignature,
-                                       PMManagedEntity * inToOnePropertyValue) {
+                                       PMManagedObject * inToOnePropertyValue) {
   return computeIntegerSignature (inSignature, inToOnePropertyValue.signature) ;
 }
 
@@ -544,7 +549,7 @@ NSInteger computeToOneEntitySignature (const NSInteger inSignature,
 NSInteger computeToManyEntitySignature (const NSInteger inSignature,
                                         NSArray * inToManyPropertyValue) {
   NSInteger result = inSignature ;
-  for (PMManagedEntity * object in inToManyPropertyValue) {
+  for (PMManagedObject * object in inToManyPropertyValue) {
     result = computeIntegerSignature (result, object.signature) ;
   }
   return result ;

@@ -11,7 +11,7 @@
 
 //-----------------------------------------------------------------------------*
 
-@class PMManagedEntity ;
+@class PMManagedObject ;
 
 //-----------------------------------------------------------------------------*
 //  STORE ROUTINES                                                             *
@@ -25,7 +25,7 @@ void storeNSStringInDictionary (NSString * inString, NSString * inKey, NSMutable
 
 void storeNSColorInDictionary (NSColor * inColor, NSString * inKey, NSMutableDictionary * ioDictionary) ;
 
-void storeEntityInDictionary (PMManagedEntity * inObject, NSString * inKey, NSMutableDictionary * ioDictionary) ;
+void storeEntityInDictionary (PMManagedObject * inObject, NSString * inKey, NSMutableDictionary * ioDictionary) ;
 
 void storeEntityArrayInDictionary (NSArray * inObjectArray, NSString * inKey, NSMutableDictionary * ioDictionary) ;
 

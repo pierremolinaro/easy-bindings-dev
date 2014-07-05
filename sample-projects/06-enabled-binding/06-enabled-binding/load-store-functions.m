@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------*
 
 #import "load-store-functions.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "easy-bindings-utilities.h"
 
 //-----------------------------------------------------------------------------*
@@ -51,7 +51,7 @@ void storeNSColorInDictionary (NSColor * inColor,
 
 //-----------------------------------------------------------------------------*
 
-void storeEntityInDictionary (PMManagedEntity * inObject,
+void storeEntityInDictionary (PMManagedObject * inObject,
                               NSString * inKey,
                               NSMutableDictionary * ioDictionary) {
   if (nil != inObject) {
@@ -69,7 +69,7 @@ void storeEntityArrayInDictionary (NSArray * inEntityArray,
                                    NSMutableDictionary * ioDictionary) {
   if (inEntityArray.count > 0) {
     NSMutableArray * indexArray = [NSMutableArray new] ;
-    for (PMManagedEntity * object in inEntityArray) {
+    for (PMManagedObject * object in inEntityArray) {
       [indexArray addObject:[NSNumber numberWithUnsignedInteger:object.savingIndex]] ;
     }
     [ioDictionary setObject:indexArray forKey:inKey] ;

@@ -1,5 +1,5 @@
 //
-//  PMManagedEntity.m
+//  PMManagedObject.m
 //  essai
 //
 //  Created by Pierre Molinaro on 28/06/13.
@@ -9,7 +9,7 @@
 
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMEntityManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
@@ -38,10 +38,10 @@ static NSMutableDictionary * gToManyRelationshipDescriptionDictionary ;
 static NSUInteger gAllocatedEntityCount = 0 ;
 
 //-----------------------------------------------------------------------------*
-//  PMManagedEntity                                                            *
+//  PMManagedObject                                                            *
 //-----------------------------------------------------------------------------*
 
-@implementation PMManagedEntity
+@implementation PMManagedObject
 
 //-----------------------------------------------------------------------------*
 
@@ -324,7 +324,7 @@ NSInteger computeNSStringSignature (const NSInteger inSignature,
 //---------------------------------------------------------------------------*
 
 NSInteger computeToOneEntitySignature (const NSInteger inSignature,
-                                       PMManagedEntity * inToOnePropertyValue) {
+                                       PMManagedObject * inToOnePropertyValue) {
   return computeIntegerSignature (inSignature, inToOnePropertyValue.signature) ;
 }
 
@@ -333,7 +333,7 @@ NSInteger computeToOneEntitySignature (const NSInteger inSignature,
 NSInteger computeToManyEntitySignature (const NSInteger inSignature,
                                         NSArray * inToManyPropertyValue) {
   NSInteger result = inSignature ;
-  for (PMManagedEntity * object in inToManyPropertyValue) {
+  for (PMManagedObject * object in inToManyPropertyValue) {
     result = computeIntegerSignature (result, object.signature) ;
   }
   return result ;
@@ -366,7 +366,7 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
 
 #ifdef PM_COCOA_DEBUG
   - (void) updateEntityDisplayForKey: (NSString *) inKey {
-    PMManagedEntity * object = [self valueForKey:inKey] ;
+    PMManagedObject * object = [self valueForKey:inKey] ;
     NSString * stringValue = @"nil" ;
     if (nil != object) {
       const NSUInteger objectIndex = object.explorerObjectIndex ;
@@ -396,7 +396,7 @@ NSInteger computeToManyEntitySignature (const NSInteger inSignature,
     [bt removeAllItems] ;
     [bt addItemWithTitle:title] ;
     [bt setEnabled:objectArray.count > 0] ;
-    for (PMManagedEntity * object in objectArray) {
+    for (PMManagedObject * object in objectArray) {
       const NSUInteger objectIndex = object.explorerObjectIndex ;
       NSString * stringValue = [NSString stringWithFormat:@"#%ld (%@) %p", objectIndex, object.className, object] ;
       [bt addItemWithTitle:stringValue] ;

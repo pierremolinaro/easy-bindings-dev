@@ -9,7 +9,7 @@
 
 #import "PMAllocationDebug.h"
 #import "PMEntityManager.h"
-#import "PMManagedEntity.h"
+#import "PMManagedObject.h"
 #import "PMRelationshipDescription.h"
 #import "easy-bindings-utilities.h"
 
@@ -58,7 +58,7 @@
 
 //-----------------------------------------------------------------------------*
 
-- (void) addEntity: (PMManagedEntity *) inEntity {
+- (void) addEntity: (PMManagedObject *) inEntity {
   [self willChangeValueForKey:@"entityCount"] ;
   [mManagedObjectSet addObject:inEntity] ;
   [self didChangeValueForKey:@"entityCount"] ;
@@ -71,7 +71,7 @@
 
 //-----------------------------------------------------------------------------*
 
-- (void) removeEntity: (PMManagedEntity *) inEntity {
+- (void) removeEntity: (PMManagedObject *) inEntity {
   [self willChangeValueForKey:@"entityCount"] ;
   [mManagedObjectSet removeObject:inEntity] ;
   [self didChangeValueForKey:@"entityCount"] ;
@@ -85,7 +85,7 @@
 //-----------------------------------------------------------------------------*
 
 - (id) newInstanceOfEntity: (Class) inEntityClass {
-  PMManagedEntity * result = [inEntityClass alloc] ;
+  PMManagedObject * result = [inEntityClass alloc] ;
   result = [result initWithEntityManager:self] ;
   [self addEntity:result] ;
   return result ;
@@ -93,7 +93,7 @@
 
 //-----------------------------------------------------------------------------*
 
-- (void) deleteEntity: (PMManagedEntity *) inObject {
+- (void) deleteEntity: (PMManagedObject *) inObject {
   [inObject resetBeforeDeletion] ;
   [self removeEntity:inObject] ;
 }
@@ -101,7 +101,7 @@
 //-----------------------------------------------------------------------------*
 
 - (void) deleteEntities: (NSArray *) inObjectArray {
-  for (PMManagedEntity * object in inObjectArray) {
+  for (PMManagedObject * object in inObjectArray) {
     [self deleteEntity:object] ;
   }
 }
@@ -109,7 +109,7 @@
 //-----------------------------------------------------------------------------*
 
 - (void) resetBeforeDeletion {
-  for (PMManagedEntity * object in mManagedObjectSet) {
+  for (PMManagedObject * object in mManagedObjectSet) {
     [object resetBeforeDeletion] ;
   }
   [self willChangeValueForKey:@"entityCount"] ;
@@ -122,7 +122,7 @@
 
 - (NSArray *) allEntitiesKindOfClass: (Class) inClass {
   NSMutableArray * result = [NSMutableArray new] ;
-  for (PMManagedEntity * object in mManagedObjectSet) {
+  for (PMManagedObject * object in mManagedObjectSet) {
     if ([object isKindOfClass:inClass]) {
       [result addObject:object] ;
     }
@@ -135,7 +135,7 @@
 //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
 //---------------------------------------------------------------------------*
 
-- (NSArray *) reachableObjectsFromObject: (PMManagedEntity *) inRootObject {
+- (NSArray *) reachableObjectsFromObject: (PMManagedObject *) inRootObject {
   NSMutableArray * reachableObjectArray = [NSMutableArray new] ;
   [reachableObjectArray addObject:inRootObject] ;
   NSMutableArray * objectsToExploreArray = [NSMutableArray new] ;
@@ -144,7 +144,7 @@
   [handledObjectSet addObject:inRootObject] ;
 //---
   while (objectsToExploreArray.count > 0) {
-    PMManagedEntity * objectToExplore = [objectsToExploreArray objectAtIndex:0] ;
+    PMManagedObject * objectToExplore = [objectsToExploreArray objectAtIndex:0] ;
     [objectsToExploreArray removeObjectAtIndex:0] ;
   //--- To one relation ships
     NSArray * toOneRelationshipNameArray = [objectToExplore toOneRelationshipDescriptionArray] ;
@@ -160,7 +160,7 @@
     NSArray * toManyRelationshipNameArray = [objectToExplore toManyRelationshipDescriptionArray] ;
     for (PMRelationshipDescription * description in toManyRelationshipNameArray) {
       id value = [objectToExplore valueForKey:description.relationshipName] ;
-      for (PMManagedEntity * object in value) {
+      for (PMManagedObject * object in value) {
         if (! [handledObjectSet containsObject:object]) {
           [handledObjectSet addObject:object] ;
           [reachableObjectArray addObject:object] ;
@@ -180,7 +180,7 @@
 //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
 //---------------------------------------------------------------------------*
 
-- (NSSet *) uneachableObjectsFromObject: (PMManagedEntity *) inRootObject {
+- (NSSet *) uneachableObjectsFromObject: (PMManagedObject *) inRootObject {
   NSArray * reachableObjects = [self reachableObjectsFromObject:inRootObject] ;
   NSMutableSet * s = [NSMutableSet new] ;
   [s setSet:mManagedObjectSet] ;
@@ -193,17 +193,17 @@
 //  S A V I N G    A N D    R E A D I N G                                    *
 //---------------------------------------------------------------------------*
 
-- (NSData *) dataForSavingFromRootObject: (PMManagedEntity *) inRootObject {
+- (NSData *) dataForSavingFromRootObject: (PMManagedObject *) inRootObject {
   NSArray * objectsToSaveArray = [self reachableObjectsFromObject:inRootObject] ;
 //--- Set savingIndex for each object
   NSUInteger idx = 0 ;
-  for (PMManagedEntity * object in objectsToSaveArray) {
+  for (PMManagedObject * object in objectsToSaveArray) {
     object.savingIndex = idx ;
     idx ++ ;
   }
 //---
   NSMutableArray * saveDataArray = [NSMutableArray new] ;
-  for (PMManagedEntity * object in objectsToSaveArray) {
+  for (PMManagedObject * object in objectsToSaveArray) {
     NSMutableDictionary * d = [NSMutableDictionary new] ; 
     [d setValue:object.className forKey:@"--entity"] ;
     [object saveIntoDictionary:d] ;
@@ -232,13 +232,13 @@
   for (NSDictionary * d in dictionaryArray) {
     NSString * className = [d objectForKey:@"--entity"] ;
     Class c = objc_getClass ([className cStringUsingEncoding:NSASCIIStringEncoding]) ;
-    PMManagedEntity * object = [self newInstanceOfEntity:c] ;
+    PMManagedObject * object = [self newInstanceOfEntity:c] ;
     [objectArray addObject:object] ;
     macroReleaseSetToNil (object) ;
   }
   NSUInteger idx = 0 ;
   for (NSDictionary * d in dictionaryArray) {
-    PMManagedEntity * object = [objectArray objectAtIndex:idx] ;
+    PMManagedObject * object = [objectArray objectAtIndex:idx] ;
     [object setUpWithDictionary:d withManagedEntityArray:objectArray] ;
     idx ++ ;
   }

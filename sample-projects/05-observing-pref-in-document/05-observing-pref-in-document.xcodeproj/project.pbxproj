@@ -34,7 +34,7 @@
 		CFE8B7ED1782CD330050DBFF /* PMEntityArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7CD1782CD330050DBFF /* PMEntityArrayController.m */; };
 		CFE8B7EE1782CD330050DBFF /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7CF1782CD330050DBFF /* PMEntityManager.m */; };
 		CFE8B7EF1782CD330050DBFF /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7D11782CD330050DBFF /* PMManagedDocument.m */; };
-		CFE8B7F01782CD330050DBFF /* PMManagedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7D31782CD330050DBFF /* PMManagedEntity.m */; };
+		CFE8B7F01782CD330050DBFF /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7D31782CD330050DBFF /* PMManagedObject.m */; };
 		CFE8B7F11782CD330050DBFF /* MyPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7D61782CD330050DBFF /* MyPrefs.m */; };
 		CFE8B7F21782CD330050DBFF /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7D81782CD330050DBFF /* PMRelationshipDescription.m */; };
 		CFE8B7F41782CD330050DBFF /* PMUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8B7DC1782CD330050DBFF /* PMUndoManager.m */; };
@@ -90,8 +90,8 @@
 		CFE8B7CF1782CD330050DBFF /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
 		CFE8B7D01782CD330050DBFF /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
 		CFE8B7D11782CD330050DBFF /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
-		CFE8B7D21782CD330050DBFF /* PMManagedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedEntity.h; sourceTree = "<group>"; };
-		CFE8B7D31782CD330050DBFF /* PMManagedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedEntity.m; sourceTree = "<group>"; };
+		CFE8B7D21782CD330050DBFF /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
+		CFE8B7D31782CD330050DBFF /* PMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedObject.m; sourceTree = "<group>"; };
 		CFE8B7D41782CD330050DBFF /* MyPrefs-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyPrefs-computations.h"; sourceTree = "<group>"; };
 		CFE8B7D51782CD330050DBFF /* MyPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPrefs.h; sourceTree = "<group>"; };
 		CFE8B7D61782CD330050DBFF /* MyPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPrefs.m; sourceTree = "<group>"; };
@@ -185,8 +185,8 @@
 				CFE8B7CF1782CD330050DBFF /* PMEntityManager.m */,
 				CFE8B7D01782CD330050DBFF /* PMManagedDocument.h */,
 				CFE8B7D11782CD330050DBFF /* PMManagedDocument.m */,
-				CFE8B7D21782CD330050DBFF /* PMManagedEntity.h */,
-				CFE8B7D31782CD330050DBFF /* PMManagedEntity.m */,
+				CFE8B7D21782CD330050DBFF /* PMManagedObject.h */,
+				CFE8B7D31782CD330050DBFF /* PMManagedObject.m */,
 				CFE8B7D71782CD330050DBFF /* PMRelationshipDescription.h */,
 				CFE8B7D81782CD330050DBFF /* PMRelationshipDescription.m */,
 				CFE8B7DB1782CD330050DBFF /* PMUndoManager.h */,
@@ -304,7 +304,7 @@
 				CFE8B7ED1782CD330050DBFF /* PMEntityArrayController.m in Sources */,
 				CFE8B7EE1782CD330050DBFF /* PMEntityManager.m in Sources */,
 				CFE8B7EF1782CD330050DBFF /* PMManagedDocument.m in Sources */,
-				CFE8B7F01782CD330050DBFF /* PMManagedEntity.m in Sources */,
+				CFE8B7F01782CD330050DBFF /* PMManagedObject.m in Sources */,
 				CFE8B7F11782CD330050DBFF /* MyPrefs.m in Sources */,
 				CFE8B7F21782CD330050DBFF /* PMRelationshipDescription.m in Sources */,
 				CFE8B7F41782CD330050DBFF /* PMUndoManager.m in Sources */,

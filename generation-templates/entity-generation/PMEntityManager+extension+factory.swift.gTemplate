@@ -10,8 +10,8 @@ extension PMEntityManager {
   //  newInstanceOfEntityNamed                                                 *
   //---------------------------------------------------------------------------*
 
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedEntity? {
-    var result : PMManagedEntity?
+  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
+    var result : PMManagedObject?
 %
 foreach ENTITY_MAP
 before
