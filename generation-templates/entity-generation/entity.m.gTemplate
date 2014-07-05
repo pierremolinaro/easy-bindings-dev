@@ -1,6 +1,6 @@
 #import "easy-bindings-utilities.h"
 #import "PMAllocationDebug.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMRelationshipDescription.h"
 #import "PMAttributeDescription.h"
 #import "PMApplication.h"
@@ -70,7 +70,7 @@ end
 //    newInstanceWithManager:                                                  *
 //-----------------------------------------------------------------------------*
 
-+ (%!ENTITY_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager {
++ (%!ENTITY_NAME% *) newInstanceWithManager: (PMObjectManager *) inManager {
   return [inManager newInstanceOfEntity:[%!ENTITY_NAME% class]] ;
 }
 

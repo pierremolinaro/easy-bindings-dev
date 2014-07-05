@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------*
 
 @class PMManagedObject ;
-@class PMEntityManager ;
+@class PMObjectManager ;
 
 //---------------------------------------------------------------------------*
 
@@ -25,7 +25,7 @@ typedef enum : NSUInteger {
 //---------------------------------------------------------------------------*
 
 @interface PMManagedDocument : NSDocument {
-  @private PMEntityManager * mEntityManager ;
+  @private PMObjectManager * mEntityManager ;
   @protected PMManagedObject * mRootObject ;
   @private UInt8 mReadMetadataStatus ;
   @private NSDictionary * mReadMetadataDictionary ;
@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
 
 - (Class) rootEntityClass ;
 
-- (PMEntityManager *) entityManager ;
+- (PMObjectManager *) entityManager ;
 
 - (void) hookOfNewDocumentCreation ;
 
@@ -51,7 +51,7 @@ typedef enum : NSUInteger {
 //--- Legacy format helper
 @property (atomic)
    PMManagedObject * (* legacyFormatLoader) (NSData * inData,
-                                             PMEntityManager * inManager,
+                                             PMObjectManager * inManager,
                                              Class inRootEntityClass,
                                              NSError ** outError) ;
 

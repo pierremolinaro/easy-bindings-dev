@@ -10,7 +10,7 @@
 #import "easy-bindings-utilities.h"
 #import "PMManagedDocument.h"
 #import "PMAllocationDebug.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMManagedObject.h"
 #import "NSMutableData+PMWrites.h"
 #import "NSData+PMGZcompression.h"
@@ -46,7 +46,7 @@
     PMUndoManager * um = [PMUndoManager new] ;
     self.undoManager = um ;
     macroReleaseSetToNil (um) ;
-    mEntityManager = [[PMEntityManager alloc] initWithUndoManager:self.undoManager] ;
+    mEntityManager = [[PMObjectManager alloc] initWithUndoManager:self.undoManager] ;
     [self hookOfInit] ;
     macroNoteObjectAllocation ;
   }
@@ -102,7 +102,7 @@
 
 //-----------------------------------------------------------------------------*
 
-- (PMEntityManager *) entityManager {
+- (PMObjectManager *) entityManager {
   return mEntityManager ;
 }
 

@@ -9,7 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PMEntityManager ;
+@class PMObjectManager ;
 
 //-----------------------------------------------------------------------------*
 
@@ -19,7 +19,7 @@
 }
 
 @property (atomic) BOOL deleteEntityOnRemove ;
-@property (retain, atomic) PMEntityManager * entityManager ;
+@property (retain, atomic) PMObjectManager * entityManager ;
 
 - (void) add: (id) inSender ;
 

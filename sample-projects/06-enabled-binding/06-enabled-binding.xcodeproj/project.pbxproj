@@ -14,7 +14,7 @@
 		CF23E5FE1782E591002C28F9 /* NSData+PMGZcompression.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5EC1782E591002C28F9 /* NSData+PMGZcompression.m */; };
 		CF23E5FF1782E591002C28F9 /* NSMutableData+PMWrites.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */; };
 		CF23E6001782E591002C28F9 /* PMAttributeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */; };
-		CF23E6011782E591002C28F9 /* PMEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F21782E591002C28F9 /* PMEntityManager.m */; };
+		CF23E6011782E591002C28F9 /* PMObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F21782E591002C28F9 /* PMObjectManager.m */; };
 		CF23E6021782E591002C28F9 /* PMManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F41782E591002C28F9 /* PMManagedDocument.m */; };
 		CF23E6031782E591002C28F9 /* PMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F61782E591002C28F9 /* PMManagedObject.m */; };
 		CF23E6041782E591002C28F9 /* PMRelationshipDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23E5F81782E591002C28F9 /* PMRelationshipDescription.m */; };
@@ -50,8 +50,8 @@
 		CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+PMWrites.m"; sourceTree = "<group>"; };
 		CF23E5EF1782E591002C28F9 /* PMAttributeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAttributeDescription.h; sourceTree = "<group>"; };
 		CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAttributeDescription.m; sourceTree = "<group>"; };
-		CF23E5F11782E591002C28F9 /* PMEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEntityManager.h; sourceTree = "<group>"; };
-		CF23E5F21782E591002C28F9 /* PMEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEntityManager.m; sourceTree = "<group>"; };
+		CF23E5F11782E591002C28F9 /* PMObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMObjectManager.h; sourceTree = "<group>"; };
+		CF23E5F21782E591002C28F9 /* PMObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMObjectManager.m; sourceTree = "<group>"; };
 		CF23E5F31782E591002C28F9 /* PMManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedDocument.h; sourceTree = "<group>"; };
 		CF23E5F41782E591002C28F9 /* PMManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMManagedDocument.m; sourceTree = "<group>"; };
 		CF23E5F51782E591002C28F9 /* PMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMManagedObject.h; sourceTree = "<group>"; };
@@ -170,8 +170,8 @@
 				CF23E5EE1782E591002C28F9 /* NSMutableData+PMWrites.m */,
 				CF23E5EF1782E591002C28F9 /* PMAttributeDescription.h */,
 				CF23E5F01782E591002C28F9 /* PMAttributeDescription.m */,
-				CF23E5F11782E591002C28F9 /* PMEntityManager.h */,
-				CF23E5F21782E591002C28F9 /* PMEntityManager.m */,
+				CF23E5F11782E591002C28F9 /* PMObjectManager.h */,
+				CF23E5F21782E591002C28F9 /* PMObjectManager.m */,
 				CF23E5F31782E591002C28F9 /* PMManagedDocument.h */,
 				CF23E5F41782E591002C28F9 /* PMManagedDocument.m */,
 				CF23E5F51782E591002C28F9 /* PMManagedObject.h */,
@@ -285,7 +285,7 @@
 				CF23E5FE1782E591002C28F9 /* NSData+PMGZcompression.m in Sources */,
 				CF23E5FF1782E591002C28F9 /* NSMutableData+PMWrites.m in Sources */,
 				CF23E6001782E591002C28F9 /* PMAttributeDescription.m in Sources */,
-				CF23E6011782E591002C28F9 /* PMEntityManager.m in Sources */,
+				CF23E6011782E591002C28F9 /* PMObjectManager.m in Sources */,
 				CF23E6021782E591002C28F9 /* PMManagedDocument.m in Sources */,
 				CF23E6031782E591002C28F9 /* PMManagedObject.m in Sources */,
 				CF23E6041782E591002C28F9 /* PMRelationshipDescription.m in Sources */,

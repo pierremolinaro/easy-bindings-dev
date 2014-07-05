@@ -25,7 +25,7 @@ end
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end%
 //--- Creation
-+ (%!CLASS_NAME% *) newInstanceWithManager: (PMEntityManager *) inManager ;
++ (%!CLASS_NAME% *) newInstanceWithManager: (PMObjectManager *) inManager ;
 %if [SIGN_LIST length] > 0 then
 %- (NSInteger) computeSignature ;\n%
 end%

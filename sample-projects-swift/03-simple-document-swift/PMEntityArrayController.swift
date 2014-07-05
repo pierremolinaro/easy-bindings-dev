@@ -15,13 +15,13 @@ import Cocoa
   var mObjectClassName = ""
   var mObservedObjects = NSSet ()
   var deleteEntityOnRemove = false
-  var mEntityManager : PMEntityManager
+  var mEntityManager : PMObjectManager
 
   //---------------------------------------------------------------------------*
   //    init                                                                   *
   //---------------------------------------------------------------------------*
 
-  init (entityManager : PMEntityManager,
+  init (entityManager : PMObjectManager,
         inClassName : String) {
     mEntityManager = entityManager
     super.init (content:NSArray ())
@@ -152,7 +152,7 @@ import Cocoa
 #import "easy-bindings-utilities.h"
 #import "PMEntityArrayController.h"
 #import "PMManagedObject.h"
-#import "PMEntityManager.h"
+#import "PMObjectManager.h"
 #import "PMAllocationDebug.h"
 
 //-----------------------------------------------------------------------------*
