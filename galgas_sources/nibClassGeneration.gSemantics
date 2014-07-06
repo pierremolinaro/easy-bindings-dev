@@ -5,7 +5,7 @@ semantics nibClassGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper nibClassGenerationTemplate in "../generation-templates/nib-class-generation" {
+filewrapper nibClassGenerationTemplate in "../generation-templates/nib-class-generation" {
 }{
 }{
   template nibClassDeclarationPart1 "nib-class-1.h.gTemplate"

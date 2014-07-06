@@ -3,7 +3,7 @@ semantics classGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
+filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
 }{
 }{
   template classDeclarationPart1 "class-1.h.gTemplate"

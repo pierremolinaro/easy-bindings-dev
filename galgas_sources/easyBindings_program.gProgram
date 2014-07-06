@@ -10,7 +10,7 @@ import "entityGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper predefinedOutletClasses in "../generation-templates/predefined-outlet-classes" {
+filewrapper predefinedOutletClasses in "../generation-templates/predefined-outlet-classes" {
 }{
 }{
   template sourceFile "predefinedOutletClasses.easyBindings" ;
@@ -18,7 +18,7 @@ local filewrapper predefinedOutletClasses in "../generation-templates/predefined
 
 #----------------------------------------------------------------------------*
 
-local filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
+filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
   "m", "h", "xib", "swift"
 }{
 }{
@@ -106,7 +106,7 @@ message "a source text file with the .easyBindings extension"
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-local routine semanticAnalysis
+routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstringlist inSortedKeys
   ??@string inSourceFile

@@ -4,7 +4,7 @@ semantics preferencesGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
+filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
 }{
 }{
   template preferencesDeclarationPart1 "preferences-1.h.gTemplate"

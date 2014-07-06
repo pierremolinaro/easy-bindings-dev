@@ -4,7 +4,7 @@ semantics controllerClassGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper controllerGenerationTemplate in "../generation-templates/controller-generation" {
+filewrapper controllerGenerationTemplate in "../generation-templates/controller-generation" {
 }{
 }{
   template controllerDeclarationPart1 "controller-1.h.gTemplate"

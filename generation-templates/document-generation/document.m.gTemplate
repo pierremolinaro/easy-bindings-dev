@@ -102,9 +102,9 @@ foreach ATTRIBUTE_LIST do
 //----------------------------------------------------------------------------*
 
 - (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {
-  if (! (%![mType equalExpression!"self." . mAttributeName !"inNewValue"]%)) {
+  if (! (%![mType equalExpression!"self." + mAttributeName !"inNewValue"]%)) {
     [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:inNewValue] ;
-    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["document." + DOCUMENT_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 %!generateObjectiveCTransientTriggering [!mAttributeName !DOCUMENT_NAME !TRANSIENT_LIST !"document"]
 %  }
 }
@@ -116,14 +116,14 @@ foreach ATTRIBUTE_LIST do
     %!mAttributeName%_observers = [NSMutableSet new] ;
   }
   [%!mAttributeName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [inObserver performSelector:@selector (%!["document." + DOCUMENT_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
   [%!mAttributeName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["document." . DOCUMENT_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [inObserver performSelector:@selector (%!["document." + DOCUMENT_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %
@@ -238,7 +238,7 @@ foreach TRANSIENT_LIST do
     %!mTransientName%__computed = NO ;
     [PMApplication
       enterTriggerForObject:self
-      transientIndex:%!["document." . DOCUMENT_NAME . "." . mTransientName identifierRepresentation]%
+      transientIndex:%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%
     ] ;
   }
 %  

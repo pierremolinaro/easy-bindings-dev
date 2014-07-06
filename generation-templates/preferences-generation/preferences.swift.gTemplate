@@ -20,24 +20,24 @@ end
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %\n%
 %  //-----------------------------------------------------------------------------*
-  //    %!["Attribute: " . mAttributeName stringByRightPadding !73 !' ']%*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*\n\n%
 %  var %!mAttributeName%_observers = NSMutableSet ()\n%
 %  var %!mAttributeName% : %![mType swiftTypeName]% = %!mDirectSwiftDefaultValue% {
     didSet {
       if %!mAttributeName% != oldValue {
-        %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
+        %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange")
 %!generateSwiftTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 %      }
     }
   }
   func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
   func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }\n%
 end
 %
@@ -48,7 +48,7 @@ end
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-----------------------------------------------------------------------------*
-  //    %!["Transient: " . mTransientName stringByRightPadding !73 !' ']%*
+  //    %!["Transient: " + mTransientName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*\n\n%
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%

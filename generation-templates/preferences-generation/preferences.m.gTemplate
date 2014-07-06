@@ -199,9 +199,9 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 //----------------------------------------------------------------------------*
 
 - (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
-  if (! (%![mType equalExpression!"self." . mAttributeName !"inObject"]%)) {
+  if (! (%![mType equalExpression!"self." + mAttributeName !"inObject"]%)) {
     [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
-    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 %!generateObjectiveCTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 %  }
 }
@@ -216,9 +216,9 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-   [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+   [NSApp sendAction:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
@@ -228,9 +228,9 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-   [NSApp sendAction:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+   [NSApp sendAction:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %end

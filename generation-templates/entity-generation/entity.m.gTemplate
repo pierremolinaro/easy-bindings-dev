@@ -244,7 +244,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %    }\n%
     %    macroReleaseSetToNil (addedObjectSet) ;\n%
     %  //--- Notify observers object count did change\n%
-    %    [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
+    %    [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %  //--- Trigger signature computing\n%
       %    [self triggerSignatureComputing] ;\n%
@@ -271,7 +271,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %\n%
     %  }\n%
     %//--- Notify observers object count did change\n%
-    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
+    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     %}\n\n%
     %//-----------------------------------------------------------------------------*\n\n%
     %- (void) removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: (NSUInteger) inIndex {\n%
@@ -286,7 +286,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     %//--- Reset inverse relationship\n%
     %  removedObject.%!mInverseRelationshipName->string% = nil ;\n%
     %//--- Notify observers object count did change\n%
-    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange)] ;\n%
+    %  [%!mRelationshipName->string%_observers makeObjectsPerformSelector:@selector (%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange)] ;\n%
     %}\n\n%
     %//-----------------------------------------------------------------------------*\n\n%
     %- (void) appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]%: (%!mDestinationEntityName->string% *) inObject {\n%
@@ -350,7 +350,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %//    set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
   %//-----------------------------------------------------------------------------*\n\n%
   %- (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled: (%![mType ocTypeName]%) inNewValue {\n%
-  %  if (! (%![mType equalExpression !"inNewValue" !"self." . mAttributeName]%)) {\n%
+  %  if (! (%![mType equalExpression !"inNewValue" !"self." + mAttributeName]%)) {\n%
   %  //--- Register old value in undo manager\n%
   if [mType isClass] then
     %    [self.undoManager\n%
@@ -366,7 +366,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  //--- Store new value\n%
   %    [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled :inNewValue] ;\n%
   %  //--- Notify observers\n%
-  %    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;\n%
+  %    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;\n%
   !generateObjectiveCTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
   if [SIGN_SET hasKey !mAttributeName] then
     %    [self triggerSignatureComputing] ;\n%
@@ -404,9 +404,9 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  [NSApp sendAction:@selector (%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -416,9 +416,9 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  [NSApp sendAction:@selector (%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["entity.". ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %
@@ -435,9 +435,9 @@ foreach TO_MANY_RELATIONSHIPS do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  [NSApp sendAction:@selector (%!["entity." + ENTITY_NAME + "." + mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["entity." + ENTITY_NAME + "." + mValue0 identifierRepresentation]%_didChange)] ;
 }
 
 //-----------------------------------------------------------------------------*
@@ -447,9 +447,9 @@ foreach TO_MANY_RELATIONSHIPS do%
   #ifdef PM_COCOA_DEBUG
     const BOOL ok =
   #endif
-  [NSApp sendAction:@selector (%!["entity.". ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
+  [NSApp sendAction:@selector (%!["entity." + ENTITY_NAME + "." + mValue0 identifierRepresentation]%_didChange) to:inObserver from:self] ;
   macroAssert (ok, @"NSApp sendAction fail", 0, 0) ;
-//  [inObserver performSelector:@selector (%!["entity." . ENTITY_NAME . "." . mValue0 identifierRepresentation]%_didChange)] ;
+//  [inObserver performSelector:@selector (%!["entity." + ENTITY_NAME + "." + mValue0 identifierRepresentation]%_didChange)] ;
 }
 
 %

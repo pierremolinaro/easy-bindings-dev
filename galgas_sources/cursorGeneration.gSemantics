@@ -4,7 +4,7 @@ semantics cursorGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
+filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
 }{
 }{
   template cursorsDeclaration "cursors.h.gTemplate"
