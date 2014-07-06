@@ -24,7 +24,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
+filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
 }{
 }{
   template entityDeclaration1 "entity-1.h.gTemplate"

@@ -1128,7 +1128,7 @@ end function ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper transientManager in "../generation-templates/application-class" {
+filewrapper transientManager in "../generation-templates/application-class" {
 }{
 }{
   template applicationClassDeclaration "PMApplication.h.gTemplate"

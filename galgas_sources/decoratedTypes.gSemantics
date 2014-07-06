@@ -1198,7 +1198,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local once predefinedColors -> @stringset outResult :
+once predefinedColors -> @stringset outResult :
   outResult := [@stringset emptySet] ;
   outResult += !"blackColor" ;
   outResult += !"blueColor" ;
@@ -1246,7 +1246,7 @@ end once ;
 
 #----------------------------------------------------------------------------*
 
-local once predefinedDates -> @stringset outResult :
+once predefinedDates -> @stringset outResult :
   outResult := [@stringset emptySet] ;
   outResult += !"date" ;
 end once ;
@@ -1323,7 +1323,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local once predefinedFonts -> @stringset outResult :
+once predefinedFonts -> @stringset outResult :
   outResult := [@stringset emptySet] ;
   outResult += !"boldSystemFontOfSize" ;
   outResult += !"controlContentFontOfSize" ;

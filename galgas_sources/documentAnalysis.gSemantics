@@ -194,7 +194,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine analyzeControllers
+routine analyzeControllers
   ??@controllerList inControllerList
   ??@relationshipMap inRootObjectRelationshipMap
   ??@observablePropertyMap inRootEntityObservableAttributeMap

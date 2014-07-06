@@ -6,7 +6,7 @@ import Cocoa
 
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Attribute: " . mAttributeName stringByRightPadding !111 !' ']%*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
   var %!mAttributeName%__explorer : NSTextField?
@@ -58,18 +58,18 @@ else
       %!mAttributeName%__explorer?.setStringValue (%![mType valueAccessorForExplorerWindow !mAttributeName]%)
 %end
 %   //--- Notify observers
-     %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange")
+     %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange")
 % !generateSwiftTransientTriggering [!mAttributeName !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 %    }
   }
 
   func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
   func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
     %!mAttributeName%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["entity." . ENTITY_NAME . "." . mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 
 %
@@ -77,7 +77,7 @@ end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["To many relationship: " . mRelationshipName stringByRightPadding !111 !' ']%*
+  //    %!["To many relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
   var %!mRelationshipName->string%_observers = NSMutableSet ()
@@ -114,7 +114,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     end
 %        }
       //--- Notify observers object count did change
-        %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")\n%
+        %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %    //--- Trigger signature computing\n%
       %      triggerSignatureComputing ()\n%
@@ -141,7 +141,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }else if idx != inMNamesAtIndex {
     }
   //--- Notify observers object count did change
-    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")
+    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
   }
 
   func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
@@ -157,7 +157,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   //--- Reset inverse relationship
     removedObject.%!mInverseRelationshipName->string% = nil
   //--- Notify observers object count did change
-    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." . ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange")
+    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
   }
 
   func appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
@@ -175,12 +175,12 @@ foreach CURRENT_RELATIONSHIP_LIST do
    
   func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
     %!mRelationshipName->string%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 
   func removeObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
     %!mRelationshipName->string%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 %
   end
@@ -190,7 +190,7 @@ end
 %foreach CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["To one relationship: " . mRelationshipName stringByRightPadding !111 !' ']%*
+  //    %!["To one relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
   var %!mRelationshipName->string%_observers = NSMutableSet ()
@@ -229,12 +229,12 @@ end
    
   func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
     %!mRelationshipName->string%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 
   func removeObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
     %!mRelationshipName->string%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["entity.". ENTITY_NAME . "." . mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 %
   end
@@ -321,7 +321,7 @@ end
 %
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " . mTransientName stringByRightPadding !111 !' ']%*
+  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%

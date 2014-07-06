@@ -32,7 +32,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper structGenerationTemplate in "../generation-templates/struct-generation" {
+filewrapper structGenerationTemplate in "../generation-templates/struct-generation" {
 }{
 }{
   template structDeclaration "struct.h.gTemplate"

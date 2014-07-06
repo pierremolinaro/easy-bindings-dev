@@ -4,7 +4,7 @@ semantics outletClassGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper outletClassGenerationTemplate in "../generation-templates/outlet-class-generation" {
+filewrapper outletClassGenerationTemplate in "../generation-templates/outlet-class-generation" {
 }{
 }{
   template outletClassDeclaration "outlet-class.h.gTemplate"

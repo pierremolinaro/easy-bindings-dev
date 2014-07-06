@@ -168,9 +168,9 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 //----------------------------------------------------------------------------*
 
 - (void) set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle: (%![mType ocTypeName]%) inObject {
-  if (! (%![mType equalExpression!"self." . mAttributeName !"inObject"]%)) {
+  if (! (%![mType equalExpression!"self." + mAttributeName !"inObject"]%)) {
     [self set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:inObject] ;
-    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+    [%!mAttributeName%_observers makeObjectsPerformSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 %!generateObjectiveCTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 %  }
 }
@@ -182,14 +182,14 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
     %!mAttributeName%_observers = [NSMutableSet new] ;
   }
   [%!mAttributeName%_observers addObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [inObserver performSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 //----------------------------------------------------------------------------*
 
 - (void) removeObserverOf_%!mAttributeName%: (id) inObserver {
   [%!mAttributeName%_observers removeObject:inObserver] ;
-  [inObserver performSelector:@selector (%!["preference." . PREFERENCES_NAME . "." . mAttributeName identifierRepresentation]%_didChange)] ;
+  [inObserver performSelector:@selector (%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange)] ;
 }
 
 %end

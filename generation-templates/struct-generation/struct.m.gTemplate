@@ -9,7 +9,7 @@ NSString * convert%!STRUCT_TYPE_NAME%ValueToString (NSValue * inValue) {
   [result appendString:@"("] ;
 %
 foreach STRUCT_FIELD_LIST
-  do %  [result appendString:%![mFieldType stringConversionForExplorer!"v." . mFieldName]%] ;\n%
+  do %  [result appendString:%![mFieldType stringConversionForExplorer!"v." + mFieldName]%] ;\n%
   between %  [result appendString:@", "] ;\n%
 end
 %  [result appendString:@")"] ;
@@ -47,7 +47,7 @@ BOOL equal%!STRUCT_TYPE_NAME%s (%?^%const %!STRUCT_TYPE_NAME% inValue1,
 %
 foreach STRUCT_FIELD_LIST do
   %  if (result) {\n%
-  %    result = %![mFieldType equalExpression !"inValue1." . mFieldName !"inValue2." . mFieldName]% ;\n% 
+  %    result = %![mFieldType equalExpression !"inValue1." + mFieldName !"inValue2." + mFieldName]% ;\n% 
   %  }\n%
 end
 %  return result ;

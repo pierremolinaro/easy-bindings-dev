@@ -4,7 +4,7 @@ semantics enumGeneration :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper enumGenerationTemplate in "../generation-templates/enum-generation" {
+filewrapper enumGenerationTemplate in "../generation-templates/enum-generation" {
 }{
 }{
   template enumDeclaration "enum.h.gTemplate"
