@@ -85,7 +85,7 @@ import Cocoa
   //  arrangeObjects                                                           *
   //---------------------------------------------------------------------------*
 
-  override func arrangeObjects (inObjects : AnyObject[]!) -> AnyObject[]! {
+  override func arrangeObjects (inObjects : [AnyObject]!) -> [AnyObject]! {
     // NSLog (@"%s", __PRETTY_FUNCTION__) ;
 
     var result = inObjects

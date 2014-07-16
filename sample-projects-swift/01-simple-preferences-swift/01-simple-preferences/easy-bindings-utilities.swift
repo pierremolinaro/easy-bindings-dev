@@ -4,7 +4,7 @@ import Cocoa
 //   presentErrorWindow                                                      *
 //---------------------------------------------------------------------------*
 
-var gErrorWindows : NSWindow [] = []
+var gErrorWindows : [NSWindow] = []
 var origin = NSPoint (x:20.0, y:20.0)
 
 //---------------------------------------------------------------------------*

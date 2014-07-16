@@ -79,7 +79,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
     %    var value : AnyObject?\n%
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
-    %    if (nil != value) {\n%
+    %    if value {\n%
     %      %!mAttributeName% = %![mType preferencesSwiftGetter]%\n%
     %    }\n%
 end

@@ -33,7 +33,7 @@
 /* Begin PBXFileReference section */
 		CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+autreAction.swift"; sourceTree = "<group>"; };
 		CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+monAction.swift"; sourceTree = "<group>"; };
-		CF71E6511940938500021EDF /* 01-simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "01-simple-preferences.app"; path = "01-simple-preferences-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF71E65A1940938500021EDF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		CF71E6521940938500021EDF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF71E6511940938500021EDF /* 01-simple-preferences.app */,
+				CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */,
 				CF71E6631940938500021EDF /* 01-simple-preferencesTests.xctest */,
 			);
 			name = Products;
@@ -144,7 +144,7 @@
 			);
 			name = "01-simple-preferences-swift";
 			productName = "01-simple-preferences";
-			productReference = CF71E6511940938500021EDF /* 01-simple-preferences.app */;
+			productReference = CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CF71E6621940938500021EDF /* 01-simple-preferencesTests */ = {

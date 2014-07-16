@@ -53,10 +53,10 @@ let traceUndoManager = false
   override func registerUndoWithTarget (target:AnyObject!, selector:Selector, object anObject:AnyObject!) {
     super.registerUndoWithTarget (target, selector:selector, object:anObject)
     if traceUndoManager {
-      if anObject == nil {
-        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:nil", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description)
-      }else{
+      if anObject {
         NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:%@", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description, anObject.description)
+      }else{
+        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:nil", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description)
       }
     }
   }

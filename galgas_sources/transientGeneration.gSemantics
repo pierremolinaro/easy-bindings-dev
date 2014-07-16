@@ -1098,8 +1098,8 @@ function generateSwiftObserverRoutinesForTransient
     "  //----------------------------------------------------------------------------*\n\n"
     "  override func observeValueForKeyPath (inKeyPath : String!,\n"
     "                                        ofObject inObject:AnyObject!,\n"
-    "                                        change inChange: NSDictionary!,\n"
-    "                                        context inContext: CMutableVoidPointer) {\n"
+    "                                        change inChange:[NSObject : AnyObject]!,\n"
+    "                                        context inContext:UnsafePointer <()>) {\n"
     " " ;
   do
     outResult .=

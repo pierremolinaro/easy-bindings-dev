@@ -33,7 +33,7 @@
 		CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMin.swift"; sourceTree = "<group>"; };
 		CF4DDA521955EE6600B610C0 /* MyRootEntity+transient+myStringConcat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringConcat.swift"; sourceTree = "<group>"; };
 		CF6DDDC8195747A30061E20B /* PMObjectManager+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMObjectManager+extension+factory.swift"; sourceTree = "<group>"; };
-		CF9492471945BCC90068A86C /* 03-simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "03-simple-document.app"; path = "03-simple-document-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF9492471945BCC90068A86C /* 03-simple-document-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "03-simple-document-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF94924B1945BCC90068A86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF94924C1945BCC90068A86C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF9492561945BCC90068A86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		CF9492481945BCC90068A86C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF9492471945BCC90068A86C /* 03-simple-document.app */,
+				CF9492471945BCC90068A86C /* 03-simple-document-swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,7 +131,7 @@
 			);
 			name = "03-simple-document-swift";
 			productName = "03-simple-document";
-			productReference = CF9492471945BCC90068A86C /* 03-simple-document.app */;
+			productReference = CF9492471945BCC90068A86C /* 03-simple-document-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -304,7 +304,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : PMManagedObject []) {
+                                     managedObjectArray : [PMManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    %!mAttributeName% = inDictionary.read%![mType swiftTypeName]% ("%!mAttributeName%")\n%
@@ -332,7 +332,7 @@ end
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func accessibleObjects (inout objects : PMManagedObject []) {
+  override func accessibleObjects (inout objects : [PMManagedObject]) {
     super.accessibleObjects (&objects)
 %foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

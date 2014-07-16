@@ -219,13 +219,13 @@ override reader @regularBindingForGeneration generateSwiftBinding
   switch mRequiredFormatter
   when noFormatter :
   when numberFormatter :
-   outResult .=  "    if (nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter) {\n"
+   outResult .=  "    if (nil != " . inOutletName . ") && !(" . inOutletName . ".formatter ()) {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
    . "    }else if (nil != " . inOutletName . ") && !(" . inOutletName . ".formatter ().isKindOfClass (NSNumberFormatter)) {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
    . "    }\n" ;
   when dateFormatter :
-    outResult .= "    if (nil != " . inOutletName . ") && (nil == " . inOutletName . ".formatter) {\n"
+    outResult .= "    if (nil != " . inOutletName . ") && !(" . inOutletName . ".formatter ()) {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
     . "    }else if (nil != " . inOutletName . ") && !(" . inOutletName . ".formatter ().isKindOfClass (NSDateFormatter)) {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"

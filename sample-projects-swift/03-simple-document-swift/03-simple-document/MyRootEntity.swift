@@ -175,7 +175,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : PMManagedObject []) {
+                                     managedObjectArray : [PMManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     myString = inDictionary.readString ("myString")
     myEnumeration = inDictionary.readMonEnumeration ("myEnumeration")
@@ -222,7 +222,7 @@ import Cocoa
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func accessibleObjects (inout objects : PMManagedObject []) {
+  override func accessibleObjects (inout objects : [PMManagedObject]) {
     super.accessibleObjects (&objects)
   }
 

@@ -166,7 +166,7 @@ class PMManagedDocument : NSDocument {
   //---
     hookOfWillSave ()
   //--- Add to metadata dictionary the witdth and the height of main window
-    if nil != windowForSheet { // Document has been opened in the user interface
+    if nil != windowForSheet () { // Document has been opened in the user interface
       if (windowForSheet()!.styleMask() & NSResizableWindowMask) != 0 { // Only if window is resizable
         let windowSize = windowForSheet ().frame ().size ;
         mMetadataDictionary.setObject (NSNumber.numberWithDouble (windowSize.width), forKey:"PMWindowWidth")

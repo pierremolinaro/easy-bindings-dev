@@ -87,7 +87,7 @@ import Cocoa
   //  deleteEntities                                                             *
   //-----------------------------------------------------------------------------*
 
-  func deleteEntities (inObjectArray : PMManagedObject []) {
+  func deleteEntities (inObjectArray : [PMManagedObject]) {
     for object in inObjectArray {
       deleteEntity (object)
     }
@@ -97,8 +97,8 @@ import Cocoa
   //  allEntitiesKindOfClass                                                     *
   //-----------------------------------------------------------------------------*
 
-  func allEntitiesKindOfClass (inClassName : String) -> PMManagedObject [] {
-    var result : PMManagedObject [] = []
+  func allEntitiesKindOfClass (inClassName : String) -> [PMManagedObject] {
+    var result : [PMManagedObject] = []
     for object : AnyObject in mManagedObjectSet {
       let managedObject = object as PMManagedObject
       if managedObject.className () == inClassName {
@@ -121,7 +121,7 @@ import Cocoa
       idx = idx + 1
     }
   //---
-    var saveDataArray : NSDictionary [] = []
+    var saveDataArray : [NSDictionary] = []
     for object in objectsToSaveArray {
       var d : NSMutableDictionary = [
         "--entity" : object.className ()
@@ -145,8 +145,8 @@ import Cocoa
       format:nil,
       error:nil
     )
-    let dictionaryArray : NSDictionary [] = v as NSDictionary []
-    var objectArray : PMManagedObject [] = []
+    let dictionaryArray : [NSDictionary] = v as [NSDictionary]
+    var objectArray : [PMManagedObject] = []
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
       let object = newInstanceOfEntityNamed (className)
@@ -166,8 +166,8 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> PMManagedObject [] {
-    var reachables : Bool [] = []
+  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> [PMManagedObject] {
+    var reachables : [Bool] = []
     var idx = 0
     for object : AnyObject in mManagedObjectSet {
       let managedObject = object as PMManagedObject
@@ -175,15 +175,15 @@ import Cocoa
       reachables += false
       idx += 1
     }
-    var objectsToExploreArray : PMManagedObject [] = [inRootObject]
-    var reachableObjectArray : PMManagedObject [] = [inRootObject]
+    var objectsToExploreArray : [PMManagedObject] = [inRootObject]
+    var reachableObjectArray : [PMManagedObject] = [inRootObject]
  //let start = NSDate()
  //   NSLog ("start")
     reachables [inRootObject.savingIndex] = true
     while (objectsToExploreArray.count > 0) {
       let objectToExplore : PMManagedObject = objectsToExploreArray [objectsToExploreArray.count - 1]
       objectsToExploreArray.removeAtIndex (objectsToExploreArray.count - 1)
-     var accessible : PMManagedObject [] = []
+     var accessible : [PMManagedObject] = []
      objectToExplore.accessibleObjects (&accessible)
       for managedObject : PMManagedObject in accessible {
         if !reachables [managedObject.savingIndex] {
