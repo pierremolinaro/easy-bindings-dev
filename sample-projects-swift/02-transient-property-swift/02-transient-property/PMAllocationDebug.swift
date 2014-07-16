@@ -33,6 +33,7 @@ var gDebugObject : PMAllocationDebug! = nil
   @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField
   @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField
   @IBOutlet var mStatsTableView : NSTableView
+  var mTopLevelObjects : NSArray?
 
   var mDebugMenuInstalled = false
   var mAllocationStatsWindowVisibleAtLaunch = true
@@ -47,7 +48,7 @@ var gDebugObject : PMAllocationDebug! = nil
   var mTotalAllocatedObjectCountByClass = NSCountedSet ()
   var mSnapShotDictionary = NSMutableDictionary ()
   var mRefreshDisplay = false
-  var mAllocationStatsDataSource : PMAllocationItemDisplay [] = []
+  var mAllocationStatsDataSource : [PMAllocationItemDisplay] = []
 
   //---------------------------------------------------------------------------*
   //    init                                                                   *
@@ -189,7 +190,7 @@ var gDebugObject : PMAllocationDebug! = nil
       var liveObjectCount : Int = 0
       var totalObjectCount : Int = 0
     //---
-      var array : PMAllocationItemDisplay [] = []
+      var array : [PMAllocationItemDisplay] = []
       let allObjects = mTotalAllocatedObjectCountByClass.allObjects ()
       for object : AnyObject in allObjects {
         let liveByClass = mAllocatedObjectCountByClass.countForObject (object)
@@ -216,8 +217,8 @@ var gDebugObject : PMAllocationDebug! = nil
       mTotalAllocatedObjectCount = totalObjectCount ;
     //---
       mAllocationStatsDataSource = array
-      mStatsTableView.setDataSource (self)
-      mStatsTableView.reloadData ()
+      mStatsTableView?.setDataSource (self)
+      mStatsTableView?.reloadData ()
     }
   }
 
@@ -258,7 +259,9 @@ var gDebugObject : PMAllocationDebug! = nil
   class func addItemToDebugMenu (inMenuItem : NSMenuItem) {
     if (nil == gDebugObject) {
       gDebugObject = PMAllocationDebug ()
-      let ok = NSBundle.loadNibNamed ("PMAllocationDebug", owner:gDebugObject)
+      var mainBundle = NSBundle.mainBundle ()
+      let s = "PMAllocationDebug"
+      let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
       if !ok {
         presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
       }
@@ -274,7 +277,10 @@ var gDebugObject : PMAllocationDebug! = nil
 func noteObjectAllocation (inObject : NSObject) {
   if (nil == gDebugObject) {
     gDebugObject = PMAllocationDebug ()
-    let ok = NSBundle.loadNibNamed ("PMAllocationDebug", owner:gDebugObject)
+    var topLevelObjects : NSArray?
+    var mainBundle = NSBundle.mainBundle ()
+    let s = "PMAllocationDebug"
+    let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
     if !ok {
       presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
     }

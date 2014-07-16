@@ -171,7 +171,7 @@ import Cocoa
           mReadIndex += 1
           mExpectedBytes = []
         }else{
-          for i in lowerBound .. upperBound + 1 {
+          for i in lowerBound ..< upperBound + 1 {
             mExpectedBytes += i
           }
         }
