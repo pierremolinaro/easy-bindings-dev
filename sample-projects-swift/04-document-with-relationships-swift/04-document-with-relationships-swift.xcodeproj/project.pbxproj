@@ -12,7 +12,6 @@
 		CF7C6403196060D800BE14DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6402196060D800BE14DF /* main.swift */; };
 		CF7C640A196060D800BE14DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7C6409196060D800BE14DF /* Images.xcassets */; };
 		CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C640B196060D800BE14DF /* MainMenu.xib */; };
-		CF7C6419196060D800BE14DF /* _4_document_with_relationships_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6418196060D800BE14DF /* _4_document_with_relationships_swiftTests.swift */; };
 		CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */; };
 		CF7C64251960618800BE14DF /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CF7C64301960619500BE14DF /* NameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64261960619500BE14DF /* NameEntity.swift */; };
@@ -33,16 +32,6 @@
 		CFE3F3E21965FAB30017DFCE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3E11965FAB30017DFCE /* libbz2.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		CF7C6413196060D800BE14DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CF7C63F5196060D800BE14DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF7C63FC196060D800BE14DF;
-			remoteInfo = "04-document-with-relationships-swift";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
 		CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
@@ -51,7 +40,6 @@
 		CF7C6402196060D800BE14DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF7C6409196060D800BE14DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF7C640C196060D800BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		CF7C6412196060D800BE14DF /* 04-document-with-relationships-swiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "04-document-with-relationships-swiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7C6417196060D800BE14DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF7C6418196060D800BE14DF /* _4_document_with_relationships_swiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _4_document_with_relationships_swiftTests.swift; sourceTree = "<group>"; };
 		CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
@@ -85,13 +73,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF7C640F196060D800BE14DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -110,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				CF7C63FD196060D800BE14DF /* 04-document-with-relationships-swift.app */,
-				CF7C6412196060D800BE14DF /* 04-document-with-relationships-swiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,24 +170,6 @@
 			productReference = CF7C63FD196060D800BE14DF /* 04-document-with-relationships-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF7C6411196060D800BE14DF /* 04-document-with-relationships-swiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CF7C641F196060D800BE14DF /* Build configuration list for PBXNativeTarget "04-document-with-relationships-swiftTests" */;
-			buildPhases = (
-				CF7C640E196060D800BE14DF /* Sources */,
-				CF7C640F196060D800BE14DF /* Frameworks */,
-				CF7C6410196060D800BE14DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CF7C6414196060D800BE14DF /* PBXTargetDependency */,
-			);
-			name = "04-document-with-relationships-swiftTests";
-			productName = "04-document-with-relationships-swiftTests";
-			productReference = CF7C6412196060D800BE14DF /* 04-document-with-relationships-swiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -219,10 +181,6 @@
 				TargetAttributes = {
 					CF7C63FC196060D800BE14DF = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					CF7C6411196060D800BE14DF = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = CF7C63FC196060D800BE14DF;
 					};
 				};
 			};
@@ -240,7 +198,6 @@
 			projectRoot = "";
 			targets = (
 				CF7C63FC196060D800BE14DF /* 04-document-with-relationships-swift */,
-				CF7C6411196060D800BE14DF /* 04-document-with-relationships-swiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,13 +211,6 @@
 				CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */,
 				CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */,
 				CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CF7C6410196060D800BE14DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,23 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF7C640E196060D800BE14DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF7C6419196060D800BE14DF /* _4_document_with_relationships_swiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CF7C6414196060D800BE14DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CF7C63FC196060D800BE14DF /* 04-document-with-relationships-swift */;
-			targetProxy = CF7C6413196060D800BE14DF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CF7C640B196060D800BE14DF /* MainMenu.xib */ = {
@@ -443,44 +377,6 @@
 			};
 			name = Release;
 		};
-		CF7C6420196060D800BE14DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/04-document-with-relationships-swift.app/Contents/MacOS/04-document-with-relationships-swift";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "04-document-with-relationships-swiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		CF7C6421196060D800BE14DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/04-document-with-relationships-swift.app/Contents/MacOS/04-document-with-relationships-swift";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "04-document-with-relationships-swiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -498,15 +394,6 @@
 			buildConfigurations = (
 				CF7C641D196060D800BE14DF /* Debug */,
 				CF7C641E196060D800BE14DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CF7C641F196060D800BE14DF /* Build configuration list for PBXNativeTarget "04-document-with-relationships-swiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CF7C6420196060D800BE14DF /* Debug */,
-				CF7C6421196060D800BE14DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
