@@ -1,0 +1,369 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF1AE0E8168F0D240031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E7168F0D240031840E /* libz.dylib */; };
+		CF1AE0EA168F0D2E0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E9168F0D2E0031840E /* libbz2.dylib */; };
+		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
+		CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCAA159725BF00F6B52D /* InfoPlist.strings */; };
+		CF86CCAE159725BF00F6B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCAD159725BF00F6B52D /* main.m */; };
+		CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB0159725BF00F6B52D /* Credits.rtf */; };
+		CF86CCB8159725BF00F6B52D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB6159725BF00F6B52D /* MyDocument.xib */; };
+		CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB9159725BF00F6B52D /* MainMenu.xib */; };
+		CFB34B721986D6D00064A567 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B641986D6D00064A567 /* easy-bindings-utilities.swift */; };
+		CFB34B731986D6D00064A567 /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B651986D6D00064A567 /* MyDocument.swift */; };
+		CFB34B741986D6D00064A567 /* MyPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B661986D6D00064A567 /* MyPrefs.swift */; };
+		CFB34B751986D6D00064A567 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B671986D6D00064A567 /* MyRootEntity.swift */; };
+		CFB34B761986D6D00064A567 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B681986D6D00064A567 /* PMAllocationDebug.swift */; };
+		CFB34B771986D6D00064A567 /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B691986D6D00064A567 /* PMApplication.swift */; };
+		CFB34B781986D6D00064A567 /* PMDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6A1986D6D00064A567 /* PMDataScanner.swift */; };
+		CFB34B791986D6D00064A567 /* PMEntityArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6B1986D6D00064A567 /* PMEntityArrayController.swift */; };
+		CFB34B7A1986D6D00064A567 /* PMEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6C1986D6D00064A567 /* PMEntityController.swift */; };
+		CFB34B7B1986D6D00064A567 /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6D1986D6D00064A567 /* PMManagedDocument.swift */; };
+		CFB34B7C1986D6D00064A567 /* PMManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6E1986D6D00064A567 /* PMManagedObject.swift */; };
+		CFB34B7D1986D6D00064A567 /* PMObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6F1986D6D00064A567 /* PMObjectManager.swift */; };
+		CFB34B7E1986D6D00064A567 /* PMObjectManager+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B701986D6D00064A567 /* PMObjectManager+extension+factory.swift */; };
+		CFB34B7F1986D6D00064A567 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B711986D6D00064A567 /* PMUndoManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF1AE0E7168F0D240031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CF1AE0E9168F0D2E0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF86CCA1159725BF00F6B52D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CF86CCA4159725BF00F6B52D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CF86CCA5159725BF00F6B52D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF86CCA6159725BF00F6B52D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "06-enabled-binding-Info.plist"; sourceTree = "<group>"; };
+		CF86CCAB159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF86CCAD159725BF00F6B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "06-enabled-binding-Prefix.pch"; sourceTree = "<group>"; };
+		CF86CCB1159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CF86CCB7159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
+		CF86CCBA159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CFB34B641986D6D00064A567 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
+		CFB34B651986D6D00064A567 /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocument.swift; sourceTree = "<group>"; };
+		CFB34B661986D6D00064A567 /* MyPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrefs.swift; sourceTree = "<group>"; };
+		CFB34B671986D6D00064A567 /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
+		CFB34B681986D6D00064A567 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
+		CFB34B691986D6D00064A567 /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
+		CFB34B6A1986D6D00064A567 /* PMDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDataScanner.swift; sourceTree = "<group>"; };
+		CFB34B6B1986D6D00064A567 /* PMEntityArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityArrayController.swift; sourceTree = "<group>"; };
+		CFB34B6C1986D6D00064A567 /* PMEntityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityController.swift; sourceTree = "<group>"; };
+		CFB34B6D1986D6D00064A567 /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedDocument.swift; sourceTree = "<group>"; };
+		CFB34B6E1986D6D00064A567 /* PMManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedObject.swift; sourceTree = "<group>"; };
+		CFB34B6F1986D6D00064A567 /* PMObjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMObjectManager.swift; sourceTree = "<group>"; };
+		CFB34B701986D6D00064A567 /* PMObjectManager+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMObjectManager+extension+factory.swift"; sourceTree = "<group>"; };
+		CFB34B711986D6D00064A567 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF86CC9A159725BF00F6B52D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF1AE0EA168F0D2E0031840E /* libbz2.dylib in Frameworks */,
+				CF1AE0E8168F0D240031840E /* libz.dylib in Frameworks */,
+				CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF86CC92159725BE00F6B52D = {
+			isa = PBXGroup;
+			children = (
+				CF1AE0E9168F0D2E0031840E /* libbz2.dylib */,
+				CF1AE0E7168F0D240031840E /* libz.dylib */,
+				CF86CCA7159725BF00F6B52D /* 06-enabled-binding */,
+				CF86CCA0159725BF00F6B52D /* Frameworks */,
+				CF86CC9E159725BF00F6B52D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF86CC9E159725BF00F6B52D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF86CCA0159725BF00F6B52D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA1159725BF00F6B52D /* Cocoa.framework */,
+				CF86CCA3159725BF00F6B52D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF86CCA3159725BF00F6B52D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA4159725BF00F6B52D /* AppKit.framework */,
+				CF86CCA5159725BF00F6B52D /* CoreData.framework */,
+				CF86CCA6159725BF00F6B52D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
+			isa = PBXGroup;
+			children = (
+				CFB34B641986D6D00064A567 /* easy-bindings-utilities.swift */,
+				CFB34B651986D6D00064A567 /* MyDocument.swift */,
+				CFB34B661986D6D00064A567 /* MyPrefs.swift */,
+				CFB34B671986D6D00064A567 /* MyRootEntity.swift */,
+				CFB34B681986D6D00064A567 /* PMAllocationDebug.swift */,
+				CFB34B691986D6D00064A567 /* PMApplication.swift */,
+				CFB34B6A1986D6D00064A567 /* PMDataScanner.swift */,
+				CFB34B6B1986D6D00064A567 /* PMEntityArrayController.swift */,
+				CFB34B6C1986D6D00064A567 /* PMEntityController.swift */,
+				CFB34B6D1986D6D00064A567 /* PMManagedDocument.swift */,
+				CFB34B6E1986D6D00064A567 /* PMManagedObject.swift */,
+				CFB34B6F1986D6D00064A567 /* PMObjectManager.swift */,
+				CFB34B701986D6D00064A567 /* PMObjectManager+extension+factory.swift */,
+				CFB34B711986D6D00064A567 /* PMUndoManager.swift */,
+				CF86CCB6159725BF00F6B52D /* MyDocument.xib */,
+				CF86CCB9159725BF00F6B52D /* MainMenu.xib */,
+				CF86CCA8159725BF00F6B52D /* Supporting Files */,
+			);
+			path = "06-enabled-binding";
+			sourceTree = "<group>";
+		};
+		CF86CCA8159725BF00F6B52D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */,
+				CF86CCAA159725BF00F6B52D /* InfoPlist.strings */,
+				CF86CCAD159725BF00F6B52D /* main.m */,
+				CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */,
+				CF86CCB0159725BF00F6B52D /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF86CC9C159725BF00F6B52D /* 06-enabled-binding */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */;
+			buildPhases = (
+				CF86CC99159725BF00F6B52D /* Sources */,
+				CF86CC9A159725BF00F6B52D /* Frameworks */,
+				CF86CC9B159725BF00F6B52D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "06-enabled-binding";
+			productName = "06-enabled-binding";
+			productReference = CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF86CC94159725BE00F6B52D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "06-enabled-binding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF86CC92159725BE00F6B52D;
+			productRefGroup = CF86CC9E159725BF00F6B52D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF86CC9C159725BF00F6B52D /* 06-enabled-binding */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF86CC9B159725BF00F6B52D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */,
+				CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */,
+				CF86CCB8159725BF00F6B52D /* MyDocument.xib in Resources */,
+				CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF86CC99159725BF00F6B52D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB34B761986D6D00064A567 /* PMAllocationDebug.swift in Sources */,
+				CFB34B7F1986D6D00064A567 /* PMUndoManager.swift in Sources */,
+				CFB34B7C1986D6D00064A567 /* PMManagedObject.swift in Sources */,
+				CFB34B7D1986D6D00064A567 /* PMObjectManager.swift in Sources */,
+				CFB34B721986D6D00064A567 /* easy-bindings-utilities.swift in Sources */,
+				CF86CCAE159725BF00F6B52D /* main.m in Sources */,
+				CFB34B7A1986D6D00064A567 /* PMEntityController.swift in Sources */,
+				CFB34B7E1986D6D00064A567 /* PMObjectManager+extension+factory.swift in Sources */,
+				CFB34B791986D6D00064A567 /* PMEntityArrayController.swift in Sources */,
+				CFB34B741986D6D00064A567 /* MyPrefs.swift in Sources */,
+				CFB34B771986D6D00064A567 /* PMApplication.swift in Sources */,
+				CFB34B7B1986D6D00064A567 /* PMManagedDocument.swift in Sources */,
+				CFB34B751986D6D00064A567 /* MyRootEntity.swift in Sources */,
+				CFB34B731986D6D00064A567 /* MyDocument.swift in Sources */,
+				CFB34B781986D6D00064A567 /* PMDataScanner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF86CCAA159725BF00F6B52D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCAB159725BF00F6B52D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF86CCB0159725BF00F6B52D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCB1159725BF00F6B52D /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CF86CCB6159725BF00F6B52D /* MyDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCB7159725BF00F6B52D /* en */,
+			);
+			name = MyDocument.xib;
+			sourceTree = "<group>";
+		};
+		CF86CCB9159725BF00F6B52D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF86CCBA159725BF00F6B52D /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF86CCBF159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CF86CCC0159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF86CCC2159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
+				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF86CCC3159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
+				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "06-enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCBF159725BF00F6B52D /* Debug */,
+				CF86CCC0159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCC2159725BF00F6B52D /* Debug */,
+				CF86CCC3159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF86CC94159725BE00F6B52D /* Project object */;
+}
