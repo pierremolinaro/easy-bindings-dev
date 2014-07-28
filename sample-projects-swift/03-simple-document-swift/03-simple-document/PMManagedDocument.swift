@@ -220,7 +220,7 @@ class PMManagedDocument : NSDocument {
     }*/
   //--- Append final byte
     fileData.writeByte (0, trace:&trace)
-    println (trace)
+   // println (trace)
   //---
     return fileData ;
   }

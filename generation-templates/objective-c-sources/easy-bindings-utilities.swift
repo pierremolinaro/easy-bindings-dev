@@ -45,6 +45,8 @@ func presentErrorWindow (file : String!,
 
 extension NSDictionary {
 
+  //---------------------------------------------------------------------------*
+
   func readString (inKey : String) -> String {
     var result = ""
     let object : AnyObject = valueForKey (inKey)
@@ -75,6 +77,17 @@ extension NSDictionary {
     let object : AnyObject = valueForKey (inKey)
     if let d = object as? NSNumber {
       result = d.longLongValue ()
+    }
+    return result
+  }
+
+  //---------------------------------------------------------------------------*
+
+  func readBool (inKey : String) -> Bool {
+    var result : Bool = false
+    let object : AnyObject = valueForKey (inKey)
+    if let d = object as? NSNumber {
+      result = d.boolValue ()
     }
     return result
   }

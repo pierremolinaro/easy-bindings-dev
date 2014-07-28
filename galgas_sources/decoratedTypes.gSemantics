@@ -494,7 +494,7 @@ reader @ebType valueAccessorForExplorerWindow
   ->@string outResult
 :
   switch mKind
-  when boolType, uintegerType, doubleType,
+  when uintegerType, doubleType,
        fontType, bezierPathType, menuType,
        dateType, imageType, structType,
        dataType, stringType,
@@ -508,6 +508,8 @@ reader @ebType valueAccessorForExplorerWindow
     outResult := inName . ".description" ;
   when integerType :
     outResult := "NSString (format:\"%lld\", " . inName . ")" ;
+  when boolType :
+    outResult := inName . " ? \"true\" : \"false\"" ;
   end switch ;
 end reader ;
 
