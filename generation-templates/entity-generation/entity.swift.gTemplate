@@ -247,7 +247,11 @@ end
 
   init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
-  }
+  //--- Add Transient observers\n%
+!generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%  }
+
+%!generateSwiftObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]%
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindow                                                                                         *

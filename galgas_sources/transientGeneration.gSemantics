@@ -170,9 +170,9 @@ function generateTransientFunctionDeclarations
   end foreach ;
 #---
   outResult .=
-    "//----------------------------------------------------------------------------*\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n"
   . "//   T R A N S I E N T    P R O P E R T I E S                                 *\n"
-  . "//----------------------------------------------------------------------------*\n\n" ;
+  . "//-------------------------------------------------------------------------------------------------------------------*\n\n" ;
 
   foreach inTransientListForImplementation do
     outResult .= [mTransientType ocTypeName] . " compute_" . inKindName . "_" . mTransientName . " (\n" ;
@@ -285,9 +285,9 @@ function generateObjectiveCTransientCacheRoutine
   outResult := "" ;
   foreach inTransientListForImplementation do
     outResult .=
-    "//----------------------------------------------------------------------------*\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n"
     "// Cache routine of '" . mTransientName . "' transient     *\n"
-    "//----------------------------------------------------------------------------*\n\n"   
+    "//-------------------------------------------------------------------------------------------------------------------*\n\n"   
     "- (" . [mTransientType ocTypeName] . ") " . mTransientName . " {\n"
     "  if (! " . mTransientName . "__computed) {\n"
     "    " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
@@ -766,7 +766,7 @@ override method @transientDependencyFromPreferenceForImplementation generateAddS
   ?!@string ioResult
 :
   if not mMasterIsTransient then
-    ioResult .= inLeadingSpaces . "    g_" . mPreferenceName . ".addObserverOf_" . mMasterAttributeName . " (self)\n" ;
+    ioResult .= inLeadingSpaces . "    g_" . mPreferenceName . "?.addObserverOf_" . mMasterAttributeName . " (self)\n" ;
   end if ;
 end method ;
 
@@ -993,9 +993,9 @@ function generateObjectiveCObserverRoutinesForTransient
   const @string fullPrefix := inPrefix . "." . inKindName . "." ;
   foreach didChangeTriggeredRoutineListMap do
     outResult .=
-    "//----------------------------------------------------------------------------*\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n"
     "//  " . key . "_didChange   *\n"
-    "//----------------------------------------------------------------------------*\n\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n\n"
     "- (void) " . key . "_didChange {\n" ;
     foreach mList do
     outResult .=
@@ -1014,9 +1014,9 @@ function generateObjectiveCObserverRoutinesForTransient
   foreach observeForKeyPathRoutineElementListMap
   before
     outResult .=
-    "//----------------------------------------------------------------------------*\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n"
     "//  observeValueForKeyPath:ofObject:change:context:                           *\n"
-    "//----------------------------------------------------------------------------*\n\n"
+    "//-------------------------------------------------------------------------------------------------------------------*\n\n"
     "- (void) observeValueForKeyPath: (NSString *) inKeyPath\n"
     "         ofObject: (id) inObject\n"
     "         change: (NSDictionary *) inChange\n"
@@ -1075,9 +1075,9 @@ function generateSwiftObserverRoutinesForTransient
   const @string fullPrefix := inPrefix . "." . inKindName . "." ;
   foreach didChangeTriggeredRoutineListMap do
     outResult .=
-    "  //----------------------------------------------------------------------------*\n"
-    "  //  " . ["Transient: " . key stringByRightPadding !71 !' '] . "*\n"
-    "  //----------------------------------------------------------------------------*\n\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "  //    " . ["Transient: " . key stringByRightPadding !111 !' '] . "*\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n\n"
     "  func " . key . "_didChange () {\n" ;
     foreach mList do
     outResult .=
@@ -1093,9 +1093,9 @@ function generateSwiftObserverRoutinesForTransient
   foreach observeForKeyPathRoutineElementListMap
   before
     outResult .=
-    "  //----------------------------------------------------------------------------*\n"
-    "  //  observeValueForKeyPath:ofObject:change:context:                           *\n"
-    "  //----------------------------------------------------------------------------*\n\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "  //  observeValueForKeyPath:ofObject:change:context:                                                                  *\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n\n"
     "  override func observeValueForKeyPath (inKeyPath : String!,\n"
     "                                        ofObject inObject:AnyObject!,\n"
     "                                        change inChange:[NSObject : AnyObject]!,\n"

@@ -4,7 +4,7 @@
 
 import atomac, sys, time
 
-bundleName = 'fr.free.pcmolinaro.-4-document-with-relationships'
+bundleName = 'fr.free.pcmolinaro.-4-document-with-relationships-swift'
 atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)

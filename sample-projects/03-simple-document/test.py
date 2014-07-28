@@ -89,7 +89,6 @@ if not ok:
     print '*** Erreur 10 ***'
     sys.exit (1)
 
-bundleName = 'fr.free.pcmolinaro.-3-simple-document'
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
 
