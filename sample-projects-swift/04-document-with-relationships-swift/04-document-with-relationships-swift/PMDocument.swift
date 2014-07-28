@@ -275,17 +275,6 @@ import Cocoa
 //  entity_2E_MyRootEntity_2E_mNames_didChange   *
 //----------------------------------------------------------------------------*
 
-  func entity_2E_MyRootEntity_2E_mNames_didChange () {
-  //--- Trigger 'countItemMessage transient'
-/*  if (countItemMessage__computed) {
-    countItemMessage__computed = NO ;
-    [PMApplication
-      enterTriggerForObject:self
-      transientIndex:document_2E_PMDocument_2E_countItemMessage
-    ] ;
-  }*/
-  }
-
 
 }
 
