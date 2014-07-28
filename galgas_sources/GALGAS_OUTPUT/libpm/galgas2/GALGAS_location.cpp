@@ -4,7 +4,7 @@
 //                                                                             *
 //  This file is part of libpm library                                         *
 //                                                                             *
-//  Copyright (C) 1996, ..., 2010 Pierre Molinaro.                             *
+//  Copyright (C) 1996, ..., 2014 Pierre Molinaro.                             *
 //                                                                             *
 //  e-mail : pierre.molinaro@irccyn.ec-nantes.fr                               *
 //                                                                             *
@@ -93,6 +93,13 @@ GALGAS_location GALGAS_location::constructor_nowhere (UNUSED_LOCATION_ARGS) {
 
 //-----------------------------------------------------------------------------*
 
+GALGAS_location GALGAS_location::constructor_here (C_Compiler * inCompiler
+                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  return inCompiler->here () ;
+}
+
+//-----------------------------------------------------------------------------*
+
 bool GALGAS_location::isValidAndNotNowhere (void) const {
   return mIsValid && (NULL != mSourceText) ;
 }
@@ -169,6 +176,22 @@ GALGAS_string GALGAS_location::reader_locationString (C_Compiler * inCompiler
         << "', line " << cStringWithSigned (mEndLocationInSource.lineNumber ())
         << ":" << cStringWithSigned (mEndLocationInSource.columnNumber ()) ;  
       result = GALGAS_string (s) ;
+    }
+  }
+  return result ;
+}
+
+
+//-----------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_location::reader_file (C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (isValid ()) {
+    if (NULL == mSourceText) {
+      inCompiler->onTheFlyRunTimeError ("'file' reader cannot be called on a nowhere @location object" COMMA_THERE) ;
+    }else{
+      result = GALGAS_string (mSourceText->sourceFilePath ()) ;
     }
   }
   return result ;

@@ -11,7 +11,7 @@ if not ok:
     print '*** Erreur 0 ***'
     sys.exit (1)
 
-bundleName = 'fr.free.pcmolinaro.-5-observing-pref-in-document'
+bundleName = 'fr.free.pcmolinaro.-5-observing-pref-in-document-swift'
 #atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep (0.5)
@@ -39,7 +39,7 @@ monAppli.menuItem ('File', 'Save').Press()
 time.sleep(.5)
 
 #--- Activate Preferences Window
-monAppli.menuItem ('05-observing-pref-in-document', 'Preferences').Press()
+monAppli.menuItem ('05-observing-pref-in-document-swift', 'Preferences').Press()
 preferencesWindow = monAppli.windows()[0]
 prefsString = preferencesWindow.findFirst (AXDescription='prefsString')
 

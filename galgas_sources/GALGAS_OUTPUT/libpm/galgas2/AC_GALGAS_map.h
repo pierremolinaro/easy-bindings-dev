@@ -30,6 +30,7 @@
 
 #include "galgas2/AC_GALGAS_root.h"
 #include "galgas2/typeComparisonResult.h"
+#include "galgas2/cGenericAbstractEnumerator.h"
 
 //-----------------------------------------------------------------------------*
 
@@ -97,7 +98,12 @@ class AC_GALGAS_map : public AC_GALGAS_root {
                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Search for 'with' read only instruction
-  public : VIRTUAL_IN_DEBUG const cCollectionElement * readAccessForWithInstruction_hasKey (const GALGAS_string & inKey) const ;
+  public : VIRTUAL_IN_DEBUG const cCollectionElement * readAccessForWithInstruction (const GALGAS_string & inKey) const ;
+
+  public : VIRTUAL_IN_DEBUG cCollectionElement * readWriteAccessForWithInstructionWithErrorMessage (C_Compiler * inCompiler,
+                                                                                                    const GALGAS_lstring & inKey,
+                                                                                                    const char * inSearchErrorMessage
+                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Search
   protected : VIRTUAL_IN_DEBUG cMapNode * searchEntryInMap (const C_String & inKey) const ;

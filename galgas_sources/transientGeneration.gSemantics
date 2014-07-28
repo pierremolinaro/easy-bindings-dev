@@ -363,7 +363,7 @@ end reader ;
 override reader @transientDependencyFromPreferenceForImplementation generateSwiftMasterAttributeCall
   ->@string outResult
 :
-  outResult := "g_" . mPreferenceName . "." . mMasterAttributeName ;
+  outResult := "(g_" . mPreferenceName . "?." . mMasterAttributeName . ")!" ;
 end reader ;
 
 #----------------------------------------------------------------------------*
