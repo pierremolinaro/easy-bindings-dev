@@ -11,7 +11,6 @@
 		CF1AE0EA168F0D2E0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E9168F0D2E0031840E /* libbz2.dylib */; };
 		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
 		CF86CCAC159725BF00F6B52D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCAA159725BF00F6B52D /* InfoPlist.strings */; };
-		CF86CCAE159725BF00F6B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86CCAD159725BF00F6B52D /* main.m */; };
 		CF86CCB2159725BF00F6B52D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB0159725BF00F6B52D /* Credits.rtf */; };
 		CF86CCB8159725BF00F6B52D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB6159725BF00F6B52D /* MyDocument.xib */; };
 		CF86CCBB159725BF00F6B52D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF86CCB9159725BF00F6B52D /* MainMenu.xib */; };
@@ -29,6 +28,7 @@
 		CFB34B7D1986D6D00064A567 /* PMObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B6F1986D6D00064A567 /* PMObjectManager.swift */; };
 		CFB34B7E1986D6D00064A567 /* PMObjectManager+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B701986D6D00064A567 /* PMObjectManager+extension+factory.swift */; };
 		CFB34B7F1986D6D00064A567 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B711986D6D00064A567 /* PMUndoManager.swift */; };
+		CFB34B851986D9D50064A567 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB34B841986D9D50064A567 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,6 @@
 		CF86CCA6159725BF00F6B52D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "06-enabled-binding-Info.plist"; sourceTree = "<group>"; };
 		CF86CCAB159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CF86CCAD159725BF00F6B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "06-enabled-binding-Prefix.pch"; sourceTree = "<group>"; };
 		CF86CCB1159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CF86CCB7159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		CF86CCBA159725BF00F6B52D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -60,6 +58,7 @@
 		CFB34B6F1986D6D00064A567 /* PMObjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMObjectManager.swift; sourceTree = "<group>"; };
 		CFB34B701986D6D00064A567 /* PMObjectManager+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMObjectManager+extension+factory.swift"; sourceTree = "<group>"; };
 		CFB34B711986D6D00064A567 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
+		CFB34B841986D9D50064A567 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +116,7 @@
 		CF86CCA7159725BF00F6B52D /* 06-enabled-binding */ = {
 			isa = PBXGroup;
 			children = (
+				CFB34B841986D9D50064A567 /* main.swift */,
 				CFB34B641986D6D00064A567 /* easy-bindings-utilities.swift */,
 				CFB34B651986D6D00064A567 /* MyDocument.swift */,
 				CFB34B661986D6D00064A567 /* MyPrefs.swift */,
@@ -143,8 +143,6 @@
 			children = (
 				CF86CCA9159725BF00F6B52D /* 06-enabled-binding-Info.plist */,
 				CF86CCAA159725BF00F6B52D /* InfoPlist.strings */,
-				CF86CCAD159725BF00F6B52D /* main.m */,
-				CF86CCAF159725BF00F6B52D /* 06-enabled-binding-Prefix.pch */,
 				CF86CCB0159725BF00F6B52D /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -220,11 +218,11 @@
 				CFB34B7C1986D6D00064A567 /* PMManagedObject.swift in Sources */,
 				CFB34B7D1986D6D00064A567 /* PMObjectManager.swift in Sources */,
 				CFB34B721986D6D00064A567 /* easy-bindings-utilities.swift in Sources */,
-				CF86CCAE159725BF00F6B52D /* main.m in Sources */,
 				CFB34B7A1986D6D00064A567 /* PMEntityController.swift in Sources */,
 				CFB34B7E1986D6D00064A567 /* PMObjectManager+extension+factory.swift in Sources */,
 				CFB34B791986D6D00064A567 /* PMEntityArrayController.swift in Sources */,
 				CFB34B741986D6D00064A567 /* MyPrefs.swift in Sources */,
+				CFB34B851986D9D50064A567 /* main.swift in Sources */,
 				CFB34B771986D6D00064A567 /* PMApplication.swift in Sources */,
 				CFB34B7B1986D6D00064A567 /* PMManagedDocument.swift in Sources */,
 				CFB34B751986D6D00064A567 /* MyRootEntity.swift in Sources */,
@@ -321,9 +319,8 @@
 		CF86CCC2159725BF00F6B52D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
 				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
@@ -333,9 +330,8 @@
 		CF86CCC3159725BF00F6B52D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "06-enabled-binding/06-enabled-binding-Prefix.pch";
 				INFOPLIST_FILE = "06-enabled-binding/06-enabled-binding-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
