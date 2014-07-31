@@ -1,5 +1,6 @@
 semantics classGeneration :
   import "transientGeneration.gSemantics" ;
+  import "entityGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -35,6 +36,17 @@ filewrapper classGenerationTemplate in "../generation-templates/class-generation
     ?@propertyArrayMap CURRENT_ARRAY_MAP
   ;
   
+  template classImplementationInSwift "class.swift.gTemplate"
+    ?@string CLASS_NAME
+    ?@string SUPER_CLASS_NAME
+    ?@attributeListForImplementation ATTRIBUTE_LIST
+    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+    ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+    ?@stringset IMPLEMENTATION_INCLUSION_SET
+    ?@propertyArrayMap CURRENT_ARRAY_MAP
+  ;
+  
   template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
     ?@string CLASS_NAME
     ?@stringset INCLUSION_SET
@@ -54,88 +66,128 @@ filewrapper classGenerationTemplate in "../generation-templates/class-generation
 override method @classTypeGeneration generate
   ??@string inOutputDirectory
 :
- #--- Header
-  @string s := [filewrapper classGenerationTemplate.classDeclarationPart1
-    !mGenerationName
-    !mSuperClassName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mAttributeListForInitMethodHeader
-    !mInclusionSet->mHeaderFileInclusionSet
-  ] ;
-  @string s2 := [filewrapper classGenerationTemplate.classDeclarationPart2
-    !mGenerationName
-    !mSuperClassName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mAttributeListForInitMethodHeader
-    !mCurrentArrayPropertyForImplementation
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n}\n\n" # Defaut user zone2
-    !s2
-  ] ;
-#--- Implementation
-  s := [filewrapper classGenerationTemplate.classImplementation
-    !mGenerationName
-    !mSuperClassName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mAttributeListForInitMethodHeader
-    !mInheritedAttributeListForImplementation
-    !mInclusionSet->mImplementationFileInclusionSet
-    !mCurrentArrayPropertyForImplementation
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"@end\n"
-  ] ;
-#--- Transient computation function header file
-  if [mTransientListForImplementation length] > 0 then
-    @stringset inclusionSet [emptySet] ;
-    s := [filewrapper classGenerationTemplate.classTransientComputationsHeaderFile
+  if [option easyBindings_options.outputSwift value] then
+    var s := [filewrapper classGenerationTemplate.classImplementationInSwift
       !mGenerationName
-      !inclusionSet
+      !mSuperClassName
+      !mAttributeListForImplementation
       !mTransientListForImplementation
+      !mAttributeListForInitMethodHeader
+      !mInheritedAttributeListForImplementation
+      !mInclusionSet->mImplementationFileInclusionSet
+      !mCurrentArrayPropertyForImplementation
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory
-      !mGenerationName . "-transient-computations.h"
+      !mGenerationName . ".swift"
       !"//"
       !"\n\n" # Defaut user zone1
       !s
       !"\n\n" # Defaut user zone2
       !"\n"
     ] ;
-  end if ;
-#--- Transient computation function implementation files
-  foreach mTransientListForImplementation do
-      s := [filewrapper classGenerationTemplate.classTransientComputationImplementationFile
+    #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+       s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "+transient+" . mTransientName . ".swift"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  else
+   #--- Header
+    @string s := [filewrapper classGenerationTemplate.classDeclarationPart1
+      !mGenerationName
+      !mSuperClassName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mAttributeListForInitMethodHeader
+      !mInclusionSet->mHeaderFileInclusionSet
+    ] ;
+    @string s2 := [filewrapper classGenerationTemplate.classDeclarationPart2
+      !mGenerationName
+      !mSuperClassName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mAttributeListForInitMethodHeader
+      !mCurrentArrayPropertyForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".h"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n}\n\n" # Defaut user zone2
+      !s2
+    ] ;
+  #--- Implementation
+    s := [filewrapper classGenerationTemplate.classImplementation
+      !mGenerationName
+      !mSuperClassName
+      !mAttributeListForImplementation
+      !mTransientListForImplementation
+      !mAttributeListForInitMethodHeader
+      !mInheritedAttributeListForImplementation
+      !mInclusionSet->mImplementationFileInclusionSet
+      !mCurrentArrayPropertyForImplementation
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mGenerationName . ".m"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"@end\n"
+    ] ;
+  #--- Transient computation function header file
+    if [mTransientListForImplementation length] > 0 then
+      @stringset inclusionSet [emptySet] ;
+      s := [filewrapper classGenerationTemplate.classTransientComputationsHeaderFile
         !mGenerationName
-        !mTransientType
-        !mTransientName
-        !mDependencyList
+        !inclusionSet
+        !mTransientListForImplementation
       ] ;
       [@string generateFileWithPattern
         !inOutputDirectory
-        !mGenerationName . "_" . mTransientName . ".m"
+        !mGenerationName . "-transient-computations.h"
         !"//"
         !"\n\n" # Defaut user zone1
         !s
-        !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-        !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        !"\n\n" # Defaut user zone2
+        !"\n"
       ] ;
-  end foreach ;
+    end if ;
+  #--- Transient computation function implementation files
+    foreach mTransientListForImplementation do
+        s := [filewrapper classGenerationTemplate.classTransientComputationImplementationFile
+          !mGenerationName
+          !mTransientType
+          !mTransientName
+          !mDependencyList
+        ] ;
+        [@string generateFileWithPattern
+          !inOutputDirectory
+          !mGenerationName . "_" . mTransientName . ".m"
+          !"//"
+          !"\n\n" # Defaut user zone1
+          !s
+          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+        ] ;
+    end foreach ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

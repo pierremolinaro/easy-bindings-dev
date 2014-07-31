@@ -19,7 +19,7 @@ NSString * compute_MyClass_schmurtz (NSInteger inMyInteger,
                                      NSString * inMyString) {
 
 //--- START OF USER ZONE 2
-  return [inMyString stringByAppendingFormat:@" myInteger32:%d", inMyInteger] ;
+  return [inMyString stringByAppendingFormat:@" myInteger32:%ld", (long)inMyInteger] ;
 //--- END OF USER ZONE 2
 
 }

@@ -1,0 +1,130 @@
+import Cocoa
+
+//----------------------------------------------------------------------------*
+
+@objc(%!CLASS_NAME%) class %!CLASS_NAME% : %
+if SUPER_CLASS_NAME == "" then
+  %NSObject%
+else
+  !SUPER_CLASS_NAME
+end
+% {
+
+%foreach ATTRIBUTE_LIST do
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var %!mAttributeName%__explorer : NSTextField?
+  var %!mAttributeName%_observers = NSMutableSet ()
+%if mType->mKind == [@typeKind enumType] then
+%  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue%
+  var %!mAttributeName%__as__number : NSNumber {
+    get {
+      return %!mAttributeName%.toRaw ()
+    }
+    set {
+      undoManager ().registerUndoWithTarget (self,
+        selector:"set%![mAttributeName stringByCapitalizingFirstCharacter]%__as__number:",
+        object:%!mAttributeName%__as__number
+      )
+      let v : Int? = newValue.integerValue ()
+      %!mAttributeName% = %![mType swiftTypeName]%.fromRaw (v!)!
+      %!mAttributeName%__explorer?.setStringValue (%!mAttributeName%.string ())
+%
+elsif mType->mKind == [@typeKind integerType] then
+%  var %!mAttributeName%__as__number : NSNumber {
+    get {
+      return NSNumber (longLong:%!mAttributeName%)
+    }
+    set {
+      %!mAttributeName% = newValue.longLongValue ()
+    }
+  }
+    
+  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue% {
+    didSet {
+      %!mAttributeName%__explorer?.setStringValue (NSString (format:"\%lld", %!mAttributeName%))
+%
+else
+%  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue% {
+    didSet {
+      %!mAttributeName%__explorer?.setStringValue (%![mType valueAccessorForExplorerWindow !mAttributeName]%)
+%end
+%   //--- Notify observers
+     %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange")
+% !generateSwiftTransientTriggering [!mAttributeName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
+%    }
+  }
+
+  func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
+    %!mAttributeName%_observers.addObject (inObserver)
+    NSApp.sendAction ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+  func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
+    %!mAttributeName%_observers.removeObject (inObserver)
+    NSApp.sendAction ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+
+%
+end
+
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
+!generateSwiftTransientCacheRoutine [!CLASS_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
+%  }\n\n%
+end
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init () {
+    super.init ()
+    noteObjectAllocation (self)
+  //--- Add Transient observers\n%
+!generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%  }
+
+/*- (instancetype) init {
+  self = [super init] ;
+  if (self) {
+%if SUPER_CLASS_NAME == "" then
+%    macroNoteObjectAllocation ;
+%end
+foreach ATTRIBUTE_LIST do
+  %    %!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
+end
+foreach CURRENT_ARRAY_MAP do
+  %    self.%!lkey->string% = [NSMutableArray new] ;\n%
+end
+!generateAddOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+%    [self %!CLASS_NAME%_did_init] ;
+  }
+  return self ;
+}*/
+
+%if SUPER_CLASS_NAME == "" then
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+%end
+
+
+#!generateSwiftTransientCacheRoutine [!CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]
+
+%
+
+}
+
+//----------------------------------------------------------------------------*
+
