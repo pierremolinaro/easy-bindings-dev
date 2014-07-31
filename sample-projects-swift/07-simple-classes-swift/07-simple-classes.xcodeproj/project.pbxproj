@@ -7,27 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF4CA88D193F223800F3B0C7 /* PMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4CA88B193F223800F3B0C7 /* PMApplication.m */; };
+		CF90AC92198AD0070037F731 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC8C198AD0070037F731 /* easy-bindings-utilities.swift */; };
+		CF90AC93198AD0070037F731 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC8D198AD0070037F731 /* main.swift */; };
+		CF90AC94198AD0070037F731 /* MyClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC8E198AD0070037F731 /* MyClass.swift */; };
+		CF90AC95198AD0070037F731 /* MyOtherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC8F198AD0070037F731 /* MyOtherClass.swift */; };
+		CF90AC96198AD0070037F731 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC90198AD0070037F731 /* PMAllocationDebug.swift */; };
+		CF90AC97198AD0070037F731 /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC91198AD0070037F731 /* PMApplication.swift */; };
+		CF90AC9B198AD5900037F731 /* MyClass+transient+schmurtz.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC98198AD5900037F731 /* MyClass+transient+schmurtz.swift */; };
+		CF90AC9C198AD5900037F731 /* MyClass+transient+truc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC99198AD5900037F731 /* MyClass+transient+truc.swift */; };
+		CF90AC9D198AD5900037F731 /* MyOtherClass+transient+bidule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC9A198AD5900037F731 /* MyOtherClass+transient+bidule.swift */; };
+		CF90AC9F198AD8500037F731 /* UserAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90AC9E198AD8500037F731 /* UserAppDelegate.swift */; };
+		CFBFD5A91652C483006EAD0D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBFD5A81652C483006EAD0D /* Cocoa.framework */; };
 		CFBFD5B31652C483006EAD0D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5B11652C483006EAD0D /* InfoPlist.strings */; };
-		CFBFD5B51652C483006EAD0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5B41652C483006EAD0D /* main.m */; };
 		CFBFD5B91652C483006EAD0D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5B71652C483006EAD0D /* Credits.rtf */; };
-		CFBFD5BC1652C483006EAD0D /* PMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */; };
 		CFBFD5BF1652C483006EAD0D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5BD1652C483006EAD0D /* MainMenu.xib */; };
-		CFBFD5D41652C4CE006EAD0D /* easy-bindings-utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */; };
-		CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CB1652C4CE006EAD0D /* MyClass.m */; };
-		CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */; };
-		CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */; };
 		CFBFD5D91652C4CE006EAD0D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */; };
-		CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */; };
-		CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E81652C648006EAD0D /* MyClass_truc.m */; };
-		CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */; };
-		CFFA9563198ADC6800E69BA0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFA9562198ADC6800E69BA0 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF4CA88A193F223800F3B0C7 /* PMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplication.h; sourceTree = "<group>"; };
-		CF4CA88B193F223800F3B0C7 /* PMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplication.m; sourceTree = "<group>"; };
-		CF4CA88C193F223800F3B0C7 /* PMWillDeallocProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWillDeallocProtocol.h; sourceTree = "<group>"; };
+		CF90AC8C198AD0070037F731 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
+		CF90AC8D198AD0070037F731 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CF90AC8E198AD0070037F731 /* MyClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClass.swift; sourceTree = "<group>"; };
+		CF90AC8F198AD0070037F731 /* MyOtherClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOtherClass.swift; sourceTree = "<group>"; };
+		CF90AC90198AD0070037F731 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
+		CF90AC91198AD0070037F731 /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
+		CF90AC98198AD5900037F731 /* MyClass+transient+schmurtz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyClass+transient+schmurtz.swift"; sourceTree = "<group>"; };
+		CF90AC99198AD5900037F731 /* MyClass+transient+truc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyClass+transient+truc.swift"; sourceTree = "<group>"; };
+		CF90AC9A198AD5900037F731 /* MyOtherClass+transient+bidule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyOtherClass+transient+bidule.swift"; sourceTree = "<group>"; };
+		CF90AC9E198AD8500037F731 /* UserAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAppDelegate.swift; sourceTree = "<group>"; };
 		CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "07-simple-classes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBFD5A81652C483006EAD0D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CFBFD5AB1652C483006EAD0D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -35,27 +42,9 @@
 		CFBFD5AD1652C483006EAD0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBFD5B01652C483006EAD0D /* 07-simple-classes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "07-simple-classes-Info.plist"; sourceTree = "<group>"; };
 		CFBFD5B21652C483006EAD0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CFBFD5B41652C483006EAD0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CFBFD5B61652C483006EAD0D /* 07-simple-classes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "07-simple-classes-Prefix.pch"; sourceTree = "<group>"; };
 		CFBFD5B81652C483006EAD0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		CFBFD5BA1652C483006EAD0D /* PMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMAppDelegate.h; sourceTree = "<group>"; };
-		CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMAppDelegate.m; sourceTree = "<group>"; };
 		CFBFD5BE1652C483006EAD0D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "easy-bindings-utilities.h"; sourceTree = "<group>"; };
-		CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "easy-bindings-utilities.m"; sourceTree = "<group>"; };
-		CFBFD5C91652C4CE006EAD0D /* MyClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyClass-transient-computations.h"; sourceTree = "<group>"; };
-		CFBFD5CA1652C4CE006EAD0D /* MyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClass.h; sourceTree = "<group>"; };
-		CFBFD5CB1652C4CE006EAD0D /* MyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass.m; sourceTree = "<group>"; };
-		CFBFD5CC1652C4CE006EAD0D /* MyOtherClass-transient-computations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyOtherClass-transient-computations.h"; sourceTree = "<group>"; };
-		CFBFD5CD1652C4CE006EAD0D /* MyOtherClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOtherClass.h; sourceTree = "<group>"; };
-		CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOtherClass.m; sourceTree = "<group>"; };
-		CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAllocationDebug.h; sourceTree = "<group>"; };
-		CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAllocationDebug.m; sourceTree = "<group>"; };
 		CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_schmurtz.m; sourceTree = "<group>"; };
-		CFBFD5E81652C648006EAD0D /* MyClass_truc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClass_truc.m; sourceTree = "<group>"; };
-		CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOtherClass_bidule.m; sourceTree = "<group>"; };
-		CFFA9562198ADC6800E69BA0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFFA9563198ADC6800E69BA0 /* Cocoa.framework in Frameworks */,
+				CFBFD5A91652C483006EAD0D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +79,6 @@
 		CFBFD5A71652C483006EAD0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CFFA9562198ADC6800E69BA0 /* Cocoa.framework */,
 				CFBFD5A81652C483006EAD0D /* Cocoa.framework */,
 				CFBFD5AA1652C483006EAD0D /* Other Frameworks */,
 			);
@@ -110,26 +98,18 @@
 		CFBFD5AE1652C483006EAD0D /* 07-simple-classes */ = {
 			isa = PBXGroup;
 			children = (
-				CF4CA88A193F223800F3B0C7 /* PMApplication.h */,
-				CF4CA88B193F223800F3B0C7 /* PMApplication.m */,
-				CF4CA88C193F223800F3B0C7 /* PMWillDeallocProtocol.h */,
-				CFBFD5C51652C4CE006EAD0D /* easy-bindings-utilities.h */,
-				CFBFD5C61652C4CE006EAD0D /* easy-bindings-utilities.m */,
-				CFBFD5C91652C4CE006EAD0D /* MyClass-transient-computations.h */,
-				CFBFD5CA1652C4CE006EAD0D /* MyClass.h */,
-				CFBFD5CB1652C4CE006EAD0D /* MyClass.m */,
-				CFBFD5CC1652C4CE006EAD0D /* MyOtherClass-transient-computations.h */,
-				CFBFD5CD1652C4CE006EAD0D /* MyOtherClass.h */,
-				CFBFD5CE1652C4CE006EAD0D /* MyOtherClass.m */,
-				CFBFD5CF1652C4CE006EAD0D /* PMAllocationDebug.h */,
-				CFBFD5D01652C4CE006EAD0D /* PMAllocationDebug.m */,
+				CF90AC9E198AD8500037F731 /* UserAppDelegate.swift */,
+				CF90AC98198AD5900037F731 /* MyClass+transient+schmurtz.swift */,
+				CF90AC99198AD5900037F731 /* MyClass+transient+truc.swift */,
+				CF90AC9A198AD5900037F731 /* MyOtherClass+transient+bidule.swift */,
+				CF90AC8C198AD0070037F731 /* easy-bindings-utilities.swift */,
+				CF90AC8D198AD0070037F731 /* main.swift */,
+				CF90AC8E198AD0070037F731 /* MyClass.swift */,
+				CF90AC8F198AD0070037F731 /* MyOtherClass.swift */,
+				CF90AC90198AD0070037F731 /* PMAllocationDebug.swift */,
+				CF90AC91198AD0070037F731 /* PMApplication.swift */,
 				CFBFD5D11652C4CE006EAD0D /* PMAllocationDebug.xib */,
-				CFBFD5BA1652C483006EAD0D /* PMAppDelegate.h */,
-				CFBFD5BB1652C483006EAD0D /* PMAppDelegate.m */,
 				CFBFD5BD1652C483006EAD0D /* MainMenu.xib */,
-				CFBFD5E71652C648006EAD0D /* MyClass_schmurtz.m */,
-				CFBFD5E81652C648006EAD0D /* MyClass_truc.m */,
-				CFBFD5E91652C648006EAD0D /* MyOtherClass_bidule.m */,
 				CFBFD5AF1652C483006EAD0D /* Supporting Files */,
 			);
 			path = "07-simple-classes";
@@ -140,8 +120,6 @@
 			children = (
 				CFBFD5B01652C483006EAD0D /* 07-simple-classes-Info.plist */,
 				CFBFD5B11652C483006EAD0D /* InfoPlist.strings */,
-				CFBFD5B41652C483006EAD0D /* main.m */,
-				CFBFD5B61652C483006EAD0D /* 07-simple-classes-Prefix.pch */,
 				CFBFD5B71652C483006EAD0D /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -150,9 +128,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CFBFD5A31652C483006EAD0D /* 07-simple-classes */ = {
+		CFBFD5A31652C483006EAD0D /* 07-simple-classes-swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFBFD5C21652C483006EAD0D /* Build configuration list for PBXNativeTarget "07-simple-classes" */;
+			buildConfigurationList = CFBFD5C21652C483006EAD0D /* Build configuration list for PBXNativeTarget "07-simple-classes-swift" */;
 			buildPhases = (
 				CFBFD5A01652C483006EAD0D /* Sources */,
 				CFBFD5A11652C483006EAD0D /* Frameworks */,
@@ -162,7 +140,7 @@
 			);
 			dependencies = (
 			);
-			name = "07-simple-classes";
+			name = "07-simple-classes-swift";
 			productName = "07-simple-classes";
 			productReference = CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */;
 			productType = "com.apple.product-type.application";
@@ -188,7 +166,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFBFD5A31652C483006EAD0D /* 07-simple-classes */,
+				CFBFD5A31652C483006EAD0D /* 07-simple-classes-swift */,
 			);
 		};
 /* End PBXProject section */
@@ -212,16 +190,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFBFD5B51652C483006EAD0D /* main.m in Sources */,
-				CFBFD5BC1652C483006EAD0D /* PMAppDelegate.m in Sources */,
-				CFBFD5D41652C4CE006EAD0D /* easy-bindings-utilities.m in Sources */,
-				CFBFD5D61652C4CE006EAD0D /* MyClass.m in Sources */,
-				CFBFD5D71652C4CE006EAD0D /* MyOtherClass.m in Sources */,
-				CFBFD5D81652C4CE006EAD0D /* PMAllocationDebug.m in Sources */,
-				CFBFD5EA1652C648006EAD0D /* MyClass_schmurtz.m in Sources */,
-				CFBFD5EB1652C648006EAD0D /* MyClass_truc.m in Sources */,
-				CFBFD5EC1652C648006EAD0D /* MyOtherClass_bidule.m in Sources */,
-				CF4CA88D193F223800F3B0C7 /* PMApplication.m in Sources */,
+				CF90AC93198AD0070037F731 /* main.swift in Sources */,
+				CF90AC9B198AD5900037F731 /* MyClass+transient+schmurtz.swift in Sources */,
+				CF90AC92198AD0070037F731 /* easy-bindings-utilities.swift in Sources */,
+				CF90AC9F198AD8500037F731 /* UserAppDelegate.swift in Sources */,
+				CF90AC94198AD0070037F731 /* MyClass.swift in Sources */,
+				CF90AC96198AD0070037F731 /* PMAllocationDebug.swift in Sources */,
+				CF90AC9D198AD5900037F731 /* MyOtherClass+transient+bidule.swift in Sources */,
+				CF90AC95198AD0070037F731 /* MyOtherClass.swift in Sources */,
+				CF90AC97198AD0070037F731 /* PMApplication.swift in Sources */,
+				CF90AC9C198AD5900037F731 /* MyClass+transient+truc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +286,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "07-simple-classes/07-simple-classes-Prefix.pch";
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
@@ -320,6 +299,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "07-simple-classes/07-simple-classes-Prefix.pch";
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
@@ -338,7 +318,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFBFD5C21652C483006EAD0D /* Build configuration list for PBXNativeTarget "07-simple-classes" */ = {
+		CFBFD5C21652C483006EAD0D /* Build configuration list for PBXNativeTarget "07-simple-classes-swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFBFD5C31652C483006EAD0D /* Debug */,
