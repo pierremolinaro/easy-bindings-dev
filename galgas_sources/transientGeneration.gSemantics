@@ -2,6 +2,92 @@ semantics transientGeneration :
   import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
+#-----------------------------------------------------------------------------*
+#   generateAttributeDeclarationInSwift                                       *
+#-----------------------------------------------------------------------------*
+
+reader @ebType generateAttributeDeclarationInSwift
+  ??@string inDeclarationKind # "entity, class, ...
+  ??@string inKindName # Entity name, class name, ...
+  ??@string inAttributeName
+  ??@string inDirectSwiftDefaultValue
+  ??@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+  ??@bool inGenerateUndoHandling
+  ->@string outResult
+:
+  outResult := "  //-------------------------------------------------------------------------------------------------------------------*\n" ;
+  outResult += "  //    " + ["Attribute: " + inAttributeName stringByRightPadding !111 !' '] + "*\n" ;
+  outResult += "  //-------------------------------------------------------------------------------------------------------------------*\n\n" ;
+  outResult += "  var " + inAttributeName + "__explorer : NSTextField?\n" ;
+  outResult += "  var " + inAttributeName + "_observers = NSMutableSet ()\n\n" ;
+
+  switch mKind
+  when enumType :
+    outResult += "  var " + inAttributeName + " : " + [selfcopy swiftTypeName] + " = " + inDirectSwiftDefaultValue + "\n" ;
+    outResult += "  var " + inAttributeName + "__as__number : NSNumber {\n"
+                 "    get {\n"
+                 "      return " + inAttributeName + ".toRaw ()\n"
+                 "    }\n"
+                 "    set {\n" ;
+    if inGenerateUndoHandling then
+      outResult += "      undoManager ().registerUndoWithTarget (self,\n"
+                   "        selector:\"set" + [inAttributeName stringByCapitalizingFirstCharacter] + "__as__number:\",\n"
+                   "        object:" + inAttributeName + "__as__number\n"
+                   "      )\n" ;
+    end if ;
+    outResult += "      let v : Int? = newValue.integerValue ()\n"
+                 "      " + inAttributeName + " = " + [selfcopy swiftTypeName] + ".fromRaw (v!)!\n"
+                 "      " + inAttributeName + "__explorer?.setStringValue (" + inAttributeName + ".string ())\n" ;
+  when integerType :
+    outResult += "  var " + inAttributeName + "__as__number : NSNumber {\n"
+                 "    get {\n"
+                 "      return NSNumber (longLong:" + inAttributeName + ")\n"
+                 "    }\n"
+                 "    set {\n"
+                 "      " + inAttributeName + " = newValue.longLongValue ()\n"
+                 "    }\n"
+                 "  }\n\n"
+                 "  var " + inAttributeName + " : " + [selfcopy swiftTypeName] + " =  " + inDirectSwiftDefaultValue + " {\n" ;
+    if inGenerateUndoHandling then
+       outResult += "    willSet {\n"
+                    "      undoManager ().registerUndoWithTarget (self,\n"
+                    "        selector:\"set" + [inAttributeName stringByCapitalizingFirstCharacter] + "__as__number:\",\n"
+                    "        object:" + inAttributeName + "__as__number\n"
+                    "      )\n"
+                    "    }\n" ;
+    end if ;
+    outResult += "    didSet {\n"
+                 "      " + inAttributeName + "__explorer?.setStringValue (NSString (format:\"%lld\", " + inAttributeName + "))\n" ;
+  when colorType, bezierPathType, boolType, classType, controllerClassType, dataType,
+        dateType, documentType, doubleType, entityType, fontType, imageType, menuType,
+        nibClassType, outletClassType, preferencesType, protocolType, stringType, structType, uintegerType :
+    outResult += "  var " + inAttributeName + " : " + [selfcopy swiftTypeName] + " =  " + inDirectSwiftDefaultValue + " {\n" ;
+    if inGenerateUndoHandling then
+      outResult += "    willSet {\n"
+                   "      undoManager ().registerUndoWithTarget (self,\n"
+                   "        selector:\"set" + [inAttributeName stringByCapitalizingFirstCharacter] + ":\",\n"
+                   "        object:" + [selfcopy valueForUndoManager !inAttributeName] + "\n"
+                   "      )\n"
+                   "    }\n" ;
+    end if ;
+    outResult += "    didSet {\n"
+                 "      " + inAttributeName + "__explorer?.setStringValue (" + [selfcopy valueAccessorForExplorerWindow !inAttributeName] + ")\n" ;
+  end switch ;
+  outResult += "    //--- Notify observers\n"
+               "      " + inAttributeName + "_observers.makeObjectsPerformSelector (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\")\n"
+               + generateSwiftTransientTriggering [!inAttributeName !inKindName !TRANSIENT_LIST_FOR_IMPLEMENTATION !inDeclarationKind] +
+               "    }\n"
+               "  }\n\n"
+               "  func addObserverOf_" + inAttributeName + " (inObserver : AnyObject) {\n"
+               "    " + inAttributeName + "_observers.addObject (inObserver)\n"
+               "    NSApp.sendAction (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\", to:inObserver, from:self)\n"
+               "  }\n\n"
+               "  func removeObserverOf_" + inAttributeName + " (inObserver : AnyObject) {\n"
+               "    " + inAttributeName + "_observers.removeObject (inObserver)\n"
+               "    NSApp.sendAction (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\", to:inObserver, from:self)\n"
+               "  }\n\n" ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 #! generateSwiftFormalArgument

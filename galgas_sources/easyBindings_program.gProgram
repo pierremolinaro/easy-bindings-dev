@@ -1,5 +1,4 @@
 program easyBindings_program :
-import "decoratedTypes.gSemantics" ;
 import "easyBindings_grammar.gGrammar" ;
 
 import "cursorAnalysis.gSemantics" ;

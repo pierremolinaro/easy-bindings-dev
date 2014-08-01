@@ -1,7 +1,8 @@
 semantics decoratedTypes :
   import "abstractSyntaxTypes.gSemantics" ;
   import "easyBindings_options.gOptions" ;
-
+#  import "transientGeneration.gSemantics" ;
+  
 #----------------------------------------------------------------------------*
 
 abstract method @astDeclaration typeInventory
