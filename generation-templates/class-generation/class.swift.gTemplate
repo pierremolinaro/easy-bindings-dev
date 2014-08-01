@@ -11,62 +11,7 @@ end
 % {
 
 %foreach ATTRIBUTE_LIST do
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var %!mAttributeName%__explorer : NSTextField?
-  var %!mAttributeName%_observers = NSMutableSet ()
-%if mType->mKind == [@typeKind enumType] then
-%  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue%
-  var %!mAttributeName%__as__number : NSNumber {
-    get {
-      return %!mAttributeName%.toRaw ()
-    }
-    set {
-      undoManager ().registerUndoWithTarget (self,
-        selector:"set%![mAttributeName stringByCapitalizingFirstCharacter]%__as__number:",
-        object:%!mAttributeName%__as__number
-      )
-      let v : Int? = newValue.integerValue ()
-      %!mAttributeName% = %![mType swiftTypeName]%.fromRaw (v!)!
-      %!mAttributeName%__explorer?.setStringValue (%!mAttributeName%.string ())
-%
-elsif mType->mKind == [@typeKind integerType] then
-%  var %!mAttributeName%__as__number : NSNumber {
-    get {
-      return NSNumber (longLong:%!mAttributeName%)
-    }
-    set {
-      %!mAttributeName% = newValue.longLongValue ()
-    }
-  }
-    
-  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue% {
-    didSet {
-      %!mAttributeName%__explorer?.setStringValue (NSString (format:"\%lld", %!mAttributeName%))
-%
-else
-%  var %!mAttributeName% : %![mType swiftTypeName]% =  %!mDirectSwiftDefaultValue% {
-    didSet {
-      %!mAttributeName%__explorer?.setStringValue (%![mType valueAccessorForExplorerWindow !mAttributeName]%)
-%end
-%   //--- Notify observers
-     %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange")
-% !generateSwiftTransientTriggering [!mAttributeName !CLASS_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"class"]
-%    }
-  }
-
-  func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
-    %!mAttributeName%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
-  }
-  func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
-    %!mAttributeName%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["class." + CLASS_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
-  }
-
-%
+  ![mType generateAttributeDeclarationInSwift !"class" !CLASS_NAME !mAttributeName !mDirectSwiftDefaultValue !TRANSIENT_LIST_FOR_IMPLEMENTATION !false]
 end
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
