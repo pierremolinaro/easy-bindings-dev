@@ -25,14 +25,14 @@ var gDebugObject : PMAllocationDebug! = nil
 //-----------------------------------------------------------------------------*
 
 @objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource {
-  @IBOutlet var mPerformSnapShotButton  : NSButton
-  @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton
-  @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton
-  @IBOutlet var mDebugMenu : NSMenu
-  @IBOutlet var mAllocationStatsWindow : NSWindow
-  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField
-  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField
-  @IBOutlet var mStatsTableView : NSTableView
+  @IBOutlet var mPerformSnapShotButton  : NSButton?
+  @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton?
+  @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton?
+  @IBOutlet var mDebugMenu : NSMenu?
+  @IBOutlet var mAllocationStatsWindow : NSWindow?
+  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField?
+  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField?
+  @IBOutlet var mStatsTableView : NSTableView?
   var mTopLevelObjects : NSArray?
 
   var mDebugMenuInstalled = false
@@ -89,7 +89,7 @@ var gDebugObject : PMAllocationDebug! = nil
   //---------------------------------------------------------------------------*
   
   func addDebugMenuItem (inMenuItem : NSMenuItem) {
-    mDebugMenu.addItem (inMenuItem)
+    mDebugMenu?.addItem (inMenuItem)
   }
 
   //---------------------------------------------------------------------------*
@@ -104,25 +104,25 @@ var gDebugObject : PMAllocationDebug! = nil
     mDisplayFilter = df.integerForKey ("PMAllocationDebug:allocationStatsDisplayFilter")
   //--- Allocation stats window visibility at Launch
     if mAllocationStatsWindowVisibleAtLaunch {
-      mAllocationStatsWindow.makeKeyAndOrderFront (nil)
+      mAllocationStatsWindow?.makeKeyAndOrderFront (nil)
     }
   //--- Bindings
-    mAllocationStatsWindowVisibleAtLaunchCheckbox.bind ("value",
+    mAllocationStatsWindowVisibleAtLaunchCheckbox?.bind ("value",
       toObject:self,
       withKeyPath:"mAllocationStatsWindowVisibleAtLaunch",
       options:nil
     )
-    mCurrentlyAllocatedObjectCountTextField.bind ("value",
+    mCurrentlyAllocatedObjectCountTextField?.bind ("value",
       toObject:self,
       withKeyPath:"mAllocatedObjectCount",
       options:nil
     )
-    mTotalAllocatedObjectCountTextField.bind ("value",
+    mTotalAllocatedObjectCountTextField?.bind ("value",
       toObject:self,
       withKeyPath:"mTotalAllocatedObjectCount",
       options:nil
     )
-    mDisplayFilterPopUpButton.bind ("selectedIndex",
+    mDisplayFilterPopUpButton?.bind ("selectedIndex",
       toObject:self,
       withKeyPath:"mDisplayFilter",
       options:nil
@@ -245,7 +245,7 @@ var gDebugObject : PMAllocationDebug! = nil
   //---------------------------------------------------------------------------*
   
   func pmShowAllocationStatsWindow () {
-    mStatsTableView.window ().makeKeyAndOrderFront (nil)
+    mStatsTableView?.window ().makeKeyAndOrderFront (nil)
   }
   
   //---------------------------------------------------------------------------*
