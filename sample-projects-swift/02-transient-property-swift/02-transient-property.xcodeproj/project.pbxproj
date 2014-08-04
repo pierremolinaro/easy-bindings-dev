@@ -32,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF713F401944C1CC000826E7 /* 02-transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "02-transient-property.app"; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF713F441944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF713F451944C1CC000826E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF713F491944C1CC000826E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		CF713F411944C1CC000826E7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF713F401944C1CC000826E7 /* 02-transient-property.app */,
+				CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */,
 				CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */,
 			);
 			name = Products;
@@ -147,7 +147,7 @@
 			);
 			name = "02-transient-property-swift";
 			productName = "02-transient-property";
-			productReference = CF713F401944C1CC000826E7 /* 02-transient-property.app */;
+			productReference = CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CF713F511944C1CC000826E7 /* 02-transient-propertyTests */ = {
