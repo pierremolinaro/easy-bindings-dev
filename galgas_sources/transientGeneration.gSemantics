@@ -482,10 +482,9 @@ function generateSwiftTransientCacheRoutine
     end if ;
     outResult .= "self.rootObject.signature" ;
   end foreach ;
-  outResult .= ") ;\n"
-  "    }\n"
-  "    return " . mTransientName . "__cache!" ;
-  outResult .= "\n" ;
+  outResult += ") ;\n"
+               "    }\n"
+               "    return " . mTransientName . "__cache!\n" ;
 end function ;
 
 #----------------------------------------------------------------------------*

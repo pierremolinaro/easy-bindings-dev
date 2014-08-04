@@ -242,6 +242,7 @@ override method @regularControllerBinding analyzeOutletBinding
     !requiredFormatter
     !mControllerName->string
     !observedKeyPath
+    !false # Non optional property, no '?'
     !bindingOptionList
   ] ;
 end method ;
@@ -331,6 +332,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
     !requiredFormatter
     !mControllerName->string
     !observedKeyPath
+    !true # Optional property, requires '?'
     !bindingOptionList
   ] ;
 end method ;
@@ -408,6 +410,7 @@ override method @regularRootBinding analyzeOutletBinding
     !requiredFormatter
     !"mRootObject"
     !observableKeyPath
+    !true # Optional property, requires '?'
     !bindingOptionList
   ] ;
 end method ;
@@ -485,6 +488,7 @@ override method @regularSelfBinding analyzeOutletBinding
     !requiredFormatter
     !"self"
     !observableKeyPath
+    !true # Optional property, requires '?'
     !bindingOptionList
   ] ;
 end method ;
@@ -561,6 +565,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
     !requiredFormatter
     !"g_" . mPreferenceName
     !mPreferenceAttributeName->string
+    !true # Optional property, requires '?'
     !bindingOptionList
   ] ;
 end method ;
@@ -635,6 +640,7 @@ override method @multiValuedBinding analyzeOutletBinding
       !requiredFormatter
       !observedObjectName
       !keyPathPrefix . [mBoundModel mPropertyName]->string
+      !true # Optional property, requires '?'
       !bindingOptionList
     ] ;
   #---

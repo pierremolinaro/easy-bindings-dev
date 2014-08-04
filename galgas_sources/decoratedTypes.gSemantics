@@ -776,6 +776,7 @@ class @regularBindingForGeneration extends @abstractBindingForGeneration {
   @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
   @string mObservableAttributeName ;
+  @bool mRequiresInterrogationMark ;
   @bindingOptionListForGeneration mOutletBindingOptionList ;
 }
 

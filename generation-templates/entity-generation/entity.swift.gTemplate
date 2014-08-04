@@ -2,7 +2,11 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject {
+@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%,\n                                   protocol_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
+end
+% {
 
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   ![mType generateAttributeDeclarationInSwift !"entity" !ENTITY_NAME !mAttributeName !mDirectSwiftDefaultValue !TRANSIENT_LIST_FOR_IMPLEMENTATION !true]
@@ -264,7 +268,14 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!ENTITY_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
-%  }\n\n%
+%  }
+
+  func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
+    self.willChangeValueForKey ("%!mTransientName%")
+    self.didChangeValueForKey  ("%!mTransientName%")
+  }
+ 
+%
 end
 %  //-------------------------------------------------------------------------------------------------------------------*
   //   accessibleObjects                                                                                               *

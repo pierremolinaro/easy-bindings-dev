@@ -3,7 +3,11 @@ import Cocoa
 
 //-----------------------------------------------------------------------------*
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument%
+foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%,\n                                   protocol_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
+end
+% {
 
   //---------------------------------------------------------------------------*
   //    Outlets                                                                *
@@ -168,7 +172,14 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
-%  }\n\n%
+%  }
+
+  func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
+    self.willChangeValueForKey ("%!mTransientName%")
+    self.didChangeValueForKey  ("%!mTransientName%")
+  }
+ 
+%
 end
 %}
 

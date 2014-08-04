@@ -18,31 +18,52 @@ import Cocoa
 
 %!TRANSIENT_INDEXES%
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
+//                                                                           *
+//    T R A N S I E N T    P R O T O C O L S                                 *
+//                                                                           *
+//---------------------------------------------------------------------------*
 
 %
-  foreach TRANSIENT_LIST do index idx
-%func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : AnyObject) { // %![idx string]%
+foreach TRANSIENT_LIST
+do index idx
+%@objc(protocol_%![mValue identifierRepresentation]%) protocol protocol_%![mValue identifierRepresentation]% {
+  func %![mValue identifierRepresentation]%_didChange ()
+}
+
+%
+between
+%//---------------------------------------------------------------------------*\n\n%
+end  
+%//---------------------------------------------------------------------------*
+//                                                                           *
+//    T R A N S I E N T    T R I G G E R    F U N C T I O N S                *
+//                                                                           *
+//---------------------------------------------------------------------------*
+
+%
+foreach TRANSIENT_LIST
+do index idx
+%func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : protocol_%![mValue identifierRepresentation]%) { // %![idx string]%
   var theApp = NSApp as PMApplication
   theApp.enterTriggerForObject_%![mValue identifierRepresentation]% (inObject) ;
-}\n\n
-//-----------------------------------------------------------------------------*
+}
 
 %
-  end  
+between
+%//---------------------------------------------------------------------------*\n\n%
+end  
 %//-----------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
 
   //---------------------------------------------------------------------------*
 
-  var mDeferredMessageSent = false
 %
   foreach TRANSIENT_LIST do index idx
 %  var mObserverObject_%![mValue identifierRepresentation]% : NSMutableSet = NSMutableSet () // %![idx string]%\n%
 %  func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : AnyObject) {
     mObserverObject_%![mValue identifierRepresentation]%.addObject (inObject)
-    mDeferredMessageSent = true
   }\n\n%
   end  
 %  //---------------------------------------------------------------------------*
@@ -65,21 +86,20 @@ import Cocoa
   //---------------------------------------------------------------------------*
   
   func triggerChange () {
-    if mDeferredMessageSent {
 %
   foreach TRANSIENT_LIST do index idx
-%      if mObserverObject_%![mValue identifierRepresentation]%.count () > 0 { // %![idx string]%
-        let s = mObserverObject_%![mValue identifierRepresentation]%
-        mObserverObject_%![mValue identifierRepresentation]% = NSMutableSet ()
-        for object : AnyObject in s {
-          object.willChangeValueForKey ("%![mValue pathExtension]%")
-          object.didChangeValueForKey  ("%![mValue pathExtension]%")
-        }
-      }    
+%    if mObserverObject_%![mValue identifierRepresentation]%.count () > 0 { // %![idx string]%
+      let s = mObserverObject_%![mValue identifierRepresentation]%
+      mObserverObject_%![mValue identifierRepresentation]% = NSMutableSet ()
+      for anyObject : AnyObject in s {
+        let object = anyObject as protocol_%![mValue identifierRepresentation]%
+        object.%![mValue identifierRepresentation]%_didChange ()
+        // object.willChangeValueForKey ("%![mValue pathExtension]%")
+        // object.didChangeValueForKey  ("%![mValue pathExtension]%")
+      }
+    }    
 %  end  
-%      mDeferredMessageSent = false ;
-    }
-  }
+%  }
 
   //---------------------------------------------------------------------------*
 
