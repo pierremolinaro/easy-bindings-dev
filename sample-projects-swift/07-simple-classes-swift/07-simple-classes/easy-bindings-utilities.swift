@@ -42,6 +42,8 @@ func presentErrorWindow (file : String!,
 }
 
 //---------------------------------------------------------------------------*
+//   NSDictionary extension                                                  *
+//---------------------------------------------------------------------------*
 
 extension NSDictionary {
 
@@ -92,6 +94,50 @@ extension NSDictionary {
     return result
   }
 
+}
+
+//---------------------------------------------------------------------------*
+//   PMSet                                                                   *
+//---------------------------------------------------------------------------*
+
+// https://github.com/evilpenguin/Swift-Stuff/blob/master/Set.swift
+// https://gist.github.com/JaviSoto/1243db46afe5132034e2
+// http://natashatherobot.com/swift-conform-to-sequence-protocol/
+
+struct PMSet <T : AnyObject> : Sequence {
+  var mSet = NSMutableSet ()
+
+  mutating func addObject (item : T) {
+    mSet.addObject (item)
+  }
+
+  mutating func removeObject (item : T) {
+    mSet.removeObject (item)
+  }
+
+  func count () -> Int {
+    return mSet.count ()
+  }
+  
+  func generate () -> PMSetGenerator<T> {
+    return PMSetGenerator<T> (valueSet:mSet)
+  }
+}
+
+//---------------------------------------------------------------------------*
+
+struct PMSetGenerator <T : AnyObject> : Generator {
+  let mSet : NSSet
+  var mEnumerator : NSEnumerator
+  
+  init (valueSet : NSSet) {
+    mSet = valueSet
+    mEnumerator = mSet.objectEnumerator ()
+  }
+  
+  mutating func next () -> AnyObject? {
+    return mEnumerator.nextObject ()
+  }
 }
 
 //---------------------------------------------------------------------------*
