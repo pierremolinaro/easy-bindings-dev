@@ -67,7 +67,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
-                            managedObjectArray : [PMManagedObject]) {
+                            managedObjectArray : PMArray<PMManagedObject>) {
   }
 
   //-----------------------------------------------------------------------------*
@@ -148,7 +148,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  func accessibleObjects (inout objects : [PMManagedObject]) {
+  func accessibleObjects (inout objects : PMArray<PMManagedObject>) {
   }
 
   //---------------------------------------------------------------------------*
@@ -376,7 +376,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func readEntityFromDictionary (inRelationshipName: String,
                                  inDictionary : NSDictionary,
-                                 managedObjectArray : [PMManagedObject]) -> PMManagedObject? {
+                                 managedObjectArray : PMArray<PMManagedObject>) -> PMManagedObject? {
   let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
   var result : PMManagedObject? = nil
   if nil != value {
@@ -391,7 +391,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
-                                     managedObjectArray : [PMManagedObject]) -> NSMutableArray {
+                                     managedObjectArray : PMArray<PMManagedObject>) -> NSMutableArray {
   let indexArray : NSArray? = inDictionary.valueForKey (inRelationshipName) as? NSArray
   var result = NSMutableArray ()
   if nil != indexArray {

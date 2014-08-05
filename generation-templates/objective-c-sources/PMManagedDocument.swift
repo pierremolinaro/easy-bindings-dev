@@ -428,14 +428,14 @@ class PMManagedDocument : NSDocument {
     )
     panel.display ()
   //---
-    let unreachableObjects : NSSet = mEntityManager.unreachableObjectsFromObject (mRootObject!)
+    let unreachableObjects : PMSet<PMManagedObject> = mEntityManager.unreachableObjectsFromObject (mRootObject!)
   //---
     panel.orderOut (nil) ; NSApp.endSheet (panel)
   //---
     let n = unreachableObjects.count ()
     if n > 0 {
-      let rn = mEntityManager.entityCount () ;
-      let reachableCount = rn - n ;
+      let rn = mEntityManager.managedObjectCount ()
+      let reachableCount = rn - n
       var alert = NSAlert ()
       alert.setMessageText ("Object Graph Warning")
       alert.addButtonWithTitle ("Do not Delete")

@@ -107,12 +107,31 @@ extension NSDictionary {
 struct PMSet <T : AnyObject> : Sequence {
   var mSet = NSMutableSet ()
 
+  init () {
+  }
+
+  init (array : PMArray <T>) {
+    mSet.addObjectsFromArray (array.mArray)
+  }
+  
+  init (set : PMSet <T>) {
+    mSet = set.mSet.mutableCopy () as NSMutableSet
+  }
+  
+  init (item : T) {
+    mSet.addObject (item)
+  }
+  
   mutating func addObject (item : T) {
     mSet.addObject (item)
   }
 
   mutating func removeObject (item : T) {
     mSet.removeObject (item)
+  }
+
+  mutating func minusSet (s : PMSet <T>) {
+    mSet.minusSet (s.mSet)
   }
 
   func count () -> Int {
@@ -131,12 +150,80 @@ struct PMSetGenerator <T : AnyObject> : Generator {
   var mEnumerator : NSEnumerator
   
   init (valueSet : NSSet) {
-    mSet = valueSet
+    mSet = valueSet.copy () as NSSet
     mEnumerator = mSet.objectEnumerator ()
   }
   
   mutating func next () -> AnyObject? {
     return mEnumerator.nextObject ()
+  }
+}
+
+//---------------------------------------------------------------------------*
+//   PMArray                                                                 *
+//---------------------------------------------------------------------------*
+
+// https://github.com/evilpenguin/Swift-Stuff/blob/master/Set.swift
+// https://gist.github.com/JaviSoto/1243db46afe5132034e2
+// http://natashatherobot.com/swift-conform-to-sequence-protocol/
+
+struct PMArray <T : AnyObject> : Sequence {
+  var mArray = NSMutableArray ()
+
+  init () {
+  }
+  
+  init (item : T) {
+    mArray.addObject (item)
+  }
+  
+  mutating func addObject (item : T) {
+    mArray.addObject (item)
+  }
+
+  mutating func removeObject (item : T) {
+    mArray.removeObject (item)
+  }
+
+  func count () -> Int {
+    return mArray.count ()
+  }
+  
+  func lastObject () -> T {
+    return mArray.lastObject () as T
+  }
+  
+  mutating func removeLastObject () {
+    mArray.removeLastObject ()
+  }
+  
+  subscript (index: Int) -> T {
+    get {
+      return mArray.objectAtIndex (index) as T
+    }
+    set (newValue) {
+      mArray.replaceObjectAtIndex (index, withObject:newValue)
+    }
+  }
+  
+  func generate () -> PMArrayGenerator<T> {
+    return PMArrayGenerator<T> (valueArray:mArray)
+  }
+}
+
+//---------------------------------------------------------------------------*
+
+struct PMArrayGenerator <T : AnyObject> : Generator {
+  let mArray : NSArray
+  var mEnumerator : NSEnumerator
+  
+  init (valueArray : NSArray) {
+    mArray = valueArray.copy () as NSArray
+    mEnumerator = mArray.objectEnumerator ()
+  }
+  
+  mutating func next () -> T? {
+    return mEnumerator.nextObject () as? T
   }
 }
 
