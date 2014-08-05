@@ -13,7 +13,7 @@ import Cocoa
 
 @objc(PMObjectManager) class PMObjectManager : NSObject {
   var mUndoManager : PMUndoManager
-  var mManagedObjectSet = NSMutableSet ()
+  var mManagedObjectSet = PMSet<PMManagedObject> ()
 
   //-----------------------------------------------------------------------------*
   //  init                                                                       *
@@ -42,10 +42,10 @@ import Cocoa
   }
 
   //-----------------------------------------------------------------------------*
-  //  entityCount                                                                *
+  //  managedObjectCount                                                         *
   //-----------------------------------------------------------------------------*
 
-  func entityCount () -> Int {
+  func managedObjectCount () -> Int {
     return mManagedObjectSet.count () ;
   }
 
@@ -54,9 +54,7 @@ import Cocoa
   //-----------------------------------------------------------------------------*
 
   func addEntity (inEntity : PMManagedObject) {
- //   willChangeValueForKey ("entityCount")
     mManagedObjectSet.addObject (inEntity)
-//    didChangeValueForKey ("entityCount")
     mUndoManager.registerUndoWithTarget (self,
       selector:"private_removeEntity:",
       object:inEntity
@@ -113,16 +111,18 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func dataForSavingFromRootObject (inRootObject : PMManagedObject) -> NSData {
-    let objectsToSaveArray = reachableObjectsFromObject (inRootObject)
+    let objectsToSaveArray : PMArray<PMManagedObject> = reachableObjectsFromObject (inRootObject)
   //--- Set savingIndex for each object
     var idx = 0 ;
-    for object in objectsToSaveArray {
+    for anyObject in objectsToSaveArray {
+      let object = anyObject as PMManagedObject
       object.savingIndex = idx
-      idx = idx + 1
+      idx += 1
     }
   //---
     var saveDataArray : [NSDictionary] = []
-    for object in objectsToSaveArray {
+    for anyObject in objectsToSaveArray {
+      let object = anyObject as PMManagedObject
       var d : NSMutableDictionary = [
         "--entity" : object.className ()
       ]
@@ -140,17 +140,18 @@ import Cocoa
 
   func readFromData (inData : NSData,
                      rootEntityClassName : String) -> PMManagedObject {
+ let start = NSDate()
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
       options:0, // NSPropertyListReadOptions.Immutable,
       format:nil,
       error:nil
     )
     let dictionaryArray : [NSDictionary] = v as [NSDictionary]
-    var objectArray : [PMManagedObject] = []
+    var objectArray : PMArray <PMManagedObject> = PMArray <PMManagedObject>  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
       let object = newInstanceOfEntityNamed (className)
-      objectArray += object!
+      objectArray.addObject (object!)
     }
     var idx = 0
     for d in dictionaryArray {
@@ -158,6 +159,8 @@ import Cocoa
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
+ let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
+ NSLog ("Read %f ms", timeTaken)
   //--- Return root object
     return objectArray [0]
   }
@@ -166,7 +169,7 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> [PMManagedObject] {
+  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> PMArray<PMManagedObject> {
     var reachables : [Bool] = []
     var idx = 0
     for object : AnyObject in mManagedObjectSet {
@@ -175,27 +178,28 @@ import Cocoa
       reachables += false
       idx += 1
     }
-    var objectsToExploreArray : [PMManagedObject] = [inRootObject]
-    var reachableObjectArray : [PMManagedObject] = [inRootObject]
- //let start = NSDate()
+    NSLog ("%d objects", idx)
+    var objectsToExploreArray : PMArray<PMManagedObject> = PMArray<PMManagedObject> (item:inRootObject)
+    var reachableObjectArray : PMArray<PMManagedObject> = PMArray<PMManagedObject> (item:inRootObject)
+ let start = NSDate()
  //   NSLog ("start")
     reachables [inRootObject.savingIndex] = true
-    while (objectsToExploreArray.count > 0) {
-      let objectToExplore : PMManagedObject = objectsToExploreArray [objectsToExploreArray.count - 1]
-      objectsToExploreArray.removeAtIndex (objectsToExploreArray.count - 1)
-     var accessible : [PMManagedObject] = []
-     objectToExplore.accessibleObjects (&accessible)
-      for managedObject : PMManagedObject in accessible {
+    while (objectsToExploreArray.count () > 0) {
+      let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject ()
+      objectsToExploreArray.removeLastObject ()
+      var accessible : PMArray<PMManagedObject> = PMArray<PMManagedObject> ()
+      objectToExplore.accessibleObjects (&accessible)
+      for object : PMManagedObject in accessible {
+        let managedObject = object as PMManagedObject
         if !reachables [managedObject.savingIndex] {
           reachables [managedObject.savingIndex] = true
-          reachableObjectArray += managedObject
-          objectsToExploreArray += managedObject
+          reachableObjectArray.addObject (managedObject)
+          objectsToExploreArray.addObject (managedObject)
         }
       }
     }
-// let end = NSDate()
-// let timeTaken = end.timeIntervalSinceDate(start) * 1000
-// NSLog ("%f ms", timeTaken)
+ let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
+ NSLog ("%f ms", timeTaken)
     return reachableObjectArray ;
   }
 
@@ -203,11 +207,10 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func unreachableObjectsFromObject (inRootObject : PMManagedObject) -> NSSet {
+  func unreachableObjectsFromObject (inRootObject : PMManagedObject) -> PMSet<PMManagedObject> {
     let reachableObjects = reachableObjectsFromObject (inRootObject)
-    var s = NSMutableSet ()
-    s.setSet (mManagedObjectSet)
-    s.minusSet (NSSet (array:reachableObjects))
+    var s = PMSet<PMManagedObject> (set:mManagedObjectSet)
+    s.minusSet (PMSet<PMManagedObject> (array:reachableObjects))
     return s
   }
 

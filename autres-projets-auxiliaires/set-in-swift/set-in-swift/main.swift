@@ -20,7 +20,13 @@ var unCompteurSansImportance = 0
 
 //---------------------------------------------------------------------------*
 
-@objc(MaClasse) class MaClasse {
+@objc protocol MonProtocole {
+  func doSomething ()
+}
+
+//---------------------------------------------------------------------------*
+
+@objc(MaClasse) class MaClasse : MonProtocole {
   func doSomething () {
     unCompteurSansImportance += 1
   }
@@ -71,7 +77,7 @@ struct PMArray <T : AnyObject> {
 func allocInNSArray () {
   print ("Append in NSArray... ")
   var start = NSDate ()
-  var array : PMArray<MaClasse> = PMArray ()
+  var array : PMArray<MonProtocole> = PMArray ()
   for i in 0..<COUNT {
     array.add (MaClasse ())
   }
