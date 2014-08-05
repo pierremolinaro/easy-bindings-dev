@@ -2,7 +2,17 @@
 
 import Cocoa
 
-//----------------------------------------------------------------------------*
+%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%//-----------------------------------------------------------------------------*
+//    %!["Protocol: " + mAttributeName stringByRightPadding !73 !' ']%*
+//-----------------------------------------------------------------------------*\n\n%
+%@objc(protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) protocol protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]% {
+  func %!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+}
+
+%
+end
+%//-----------------------------------------------------------------------------*
 
 var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 
@@ -26,24 +36,27 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %  //-----------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers = NSMutableSet ()\n%
+%  var %!mAttributeName%_observers = PMSet<protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%> ()\n%
 %  var %!mAttributeName% : %![mType swiftTypeName]% = %!mDirectSwiftDefaultValue% {
     didSet {
       if %!mAttributeName% != oldValue {
-        %!mAttributeName%_observers.makeObjectsPerformSelector ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange")
+        for anyObject in %!mAttributeName%_observers.allObjects () {
+          let object = anyObject as protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%
+          object.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+        }
 %!generateSwiftTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
 %      }
     }
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : AnyObject) {
+  func addObserverOf_%!mAttributeName% (inObserver : protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) {
     %!mAttributeName%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    inObserver.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : AnyObject) {
+  func removeObserverOf_%!mAttributeName% (inObserver : protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) {
     %!mAttributeName%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    inObserver.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
   }
 
 %
@@ -82,7 +95,7 @@ end
 %
 
   //------------------------------------------------------- Init
-  init () {
+  override init () {
     super.init ()
     noteObjectAllocation (self) ;
     g_%!PREFERENCES_NAME% = self ;
@@ -96,7 +109,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
     %    var value : AnyObject?\n%
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
-    %    if value {\n%
+    %    if value != nil {\n%
     %      %!mAttributeName% = %![mType preferencesSwiftGetter]%\n%
     %    }\n%
 end

@@ -47,24 +47,24 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func openProgressWindowWithTitle (inTitle : String) {
-    let visibleFrame = NSScreen.mainScreen ().visibleFrame ()
+    let visibleFrame = NSScreen.mainScreen ().visibleFrame
     let windowWidth = 400.0
     let windowHeight = 65.0
-    let windowRect = NSRect (
-      x:NSMidX (visibleFrame) - windowWidth / 2.0,
-      y:NSMidY (visibleFrame) - windowHeight / 2.0,
-      width:windowWidth,
-      height:windowHeight
+    let windowRect = NSMakeRect (
+      NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),
+      NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),
+      CGFloat (windowWidth),
+      CGFloat (windowHeight)
     )
     mProgressWindow = NSWindow (
       contentRect:windowRect,
       styleMask:NSTitledWindowMask,
-      backing:NSBackingStoreBuffered,
+      backing:NSBackingStoreType.Buffered,
       defer:false
     )
-    mProgressWindow!.setExcludedFromWindowsMenu (true)
-    mProgressWindow!.setTitle ("Progress")
-    let contientViewRect : NSRect = mProgressWindow!.contentView().frame ()
+    mProgressWindow?.excludedFromWindowsMenu = true
+    mProgressWindow?.title = "Progress"
+    let contientViewRect : NSRect = mProgressWindow!.contentView.frame
   //--- Add comment text
     let ts_r = NSRect (
       x:25.0,
@@ -73,13 +73,13 @@ import Cocoa
       height:20.0
     )
     var ts = NSTextField (frame:ts_r)
-    ts.setFont (NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()))
-    ts.setStringValue (NSString (format:"Opening %@…", inTitle))
-    ts.setBezeled (false)
-    ts.setBordered (false)
-    ts.setEditable (false)
-    ts.setDrawsBackground (false)
-    mProgressWindow!.contentView ().addSubview (ts)
+    ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
+    ts.stringValue = NSString (format:"Opening %@…", inTitle)
+    ts.bezeled = false
+    ts.bordered = false
+    ts.editable = false
+    ts.drawsBackground = false
+    mProgressWindow!.contentView.addSubview (ts)
   //--- Add progress indicator
     let ps_r = NSRect (
       x:20.0,
@@ -88,14 +88,14 @@ import Cocoa
       height: 20.0
     )
     mProgressIndicator = NSProgressIndicator (frame:ps_r)
-    mProgressIndicator!.setIndeterminate (true)
-    mProgressWindow!.contentView ().addSubview (mProgressIndicator)
+    mProgressIndicator!.indeterminate = true
+    mProgressWindow!.contentView.addSubview (mProgressIndicator!)
   //---
-    mProgressIndicator!.setMinValue (0.0)
-    mProgressIndicator!.setMaxValue (Double (mData.length ()))
-    mProgressIndicator!.setDoubleValue (Double (mReadIndex))
-    mProgressIndicator!.setIndeterminate (false)
-    mProgressIndicator!.display ()
+    mProgressIndicator?.minValue = 0.0
+    mProgressIndicator?.maxValue = Double (mData.length)
+    mProgressIndicator?.doubleValue = Double (mReadIndex)
+    mProgressIndicator?.indeterminate = false
+    mProgressIndicator?.display ()
   //---
     mProgressWindow!.makeKeyAndOrderFront (nil)
   }
@@ -105,7 +105,7 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func updateProgressIndicator () {
-    mProgressIndicator?.setDoubleValue (Double (mReadIndex))
+    mProgressIndicator?.doubleValue = Double (mReadIndex)
     mProgressIndicator?.display ()
   }
 
@@ -128,12 +128,12 @@ import Cocoa
   func testAcceptByte (inByte : UInt8) -> Bool {
     var result = mReadOk
     if result {
-      if mReadIndex >= mData.length () {
+      if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData()).memory
+        var byte = UnsafePointer<UInt8> (byteAsData).memory
      //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))
      //   var array : COpaquePointer = mData.bytes ()
      //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())
@@ -142,7 +142,7 @@ import Cocoa
           mReadIndex += 1
           mExpectedBytes = []
         }else{
-          mExpectedBytes += inByte
+          mExpectedBytes.append (inByte)
         }
       }
     }
@@ -159,12 +159,12 @@ import Cocoa
                            inout value:UInt8) -> Bool {
     var result = mReadOk
     if result {
-      if mReadIndex >= mData.length () {
+      if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData()).memory
+        var byte = UnsafePointer<UInt8> (byteAsData).memory
         result = (byte >= lowerBound) && (byte <= upperBound) ;
         if (result) {
           value = byte
@@ -172,7 +172,7 @@ import Cocoa
           mExpectedBytes = []
         }else{
           for i in lowerBound ..< upperBound + 1 {
-            mExpectedBytes += i
+            mExpectedBytes.append (i)
           }
         }
       }
@@ -188,12 +188,12 @@ import Cocoa
   func acceptRequiredByte (inByte : UInt8,
                            sourceFile: String) {
     if mReadOk {
-      if mReadIndex >= mData.length () {
+      if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData()).memory
+        var byte = UnsafePointer<UInt8> (byteAsData).memory
         if (byte == inByte) {
           mReadIndex += 1
           mExpectedBytes = []
@@ -217,12 +217,12 @@ import Cocoa
   func parseByte () -> UInt8 {
     var result : UInt8 = 0
     if mReadOk {
-      if mReadIndex >= mData.length() {
+      if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        result = UnsafePointer<UInt8> (byteAsData()).memory
+        result = UnsafePointer<UInt8> (byteAsData).memory
         mReadIndex += 1
       }
     }
@@ -239,12 +239,12 @@ import Cocoa
     var shift : UInt = 0
     var loop = true
     while loop && mReadOk {
-      if mReadIndex >= mData.length () {
+      if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData()).memory
+        var byte = UnsafePointer<UInt8> (byteAsData).memory
         let w : UInt = UInt (byte) & 0x7F
         result |= (w << shift)
         shift += 7
@@ -264,7 +264,7 @@ import Cocoa
   var result = NSData ()
   if mReadOk {
     let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
-    if (mReadIndex + dataLength) >= mData.length () {
+    if (mReadIndex + dataLength) >= mData.length {
       NSLog ("Read beyond end of data")
       mReadOk = false
     }else{

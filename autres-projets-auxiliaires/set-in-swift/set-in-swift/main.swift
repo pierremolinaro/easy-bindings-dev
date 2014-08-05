@@ -20,13 +20,13 @@ var unCompteurSansImportance = 0
 
 //---------------------------------------------------------------------------*
 
-@objc protocol MonProtocole {
+@objc(MonProtocole) protocol MonProtocole : NSObjectProtocol {
   func doSomething ()
 }
 
 //---------------------------------------------------------------------------*
 
-@objc(MaClasse) class MaClasse : MonProtocole {
+@objc(MaClasse) class MaClasse : NSObject, MonProtocole {
   func doSomething () {
     unCompteurSansImportance += 1
   }
@@ -57,18 +57,26 @@ func allocInNativeArray () {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 
 struct PMArray <T : AnyObject> {
-  var items = NSMutableArray ()
+  var mArray = NSMutableArray ()
 
+  init () {
+  }
+  
   mutating func add (item : T) {
-    items.addObject (item)
+    mArray.addObject (item)
   }
 
   var count : Int {
-    return items.count ()
+    return mArray.count
   }
 
-  func objectAtIndex (inIndex : Int) -> T {
-    return items.objectAtIndex (inIndex) as T
+  subscript (index: Int) -> T {
+    get {
+      return mArray.objectAtIndex (index) as T
+    }
+    set (newValue) {
+      mArray.replaceObjectAtIndex (index, withObject:newValue)
+    }
   }
 }
 
@@ -77,7 +85,7 @@ struct PMArray <T : AnyObject> {
 func allocInNSArray () {
   print ("Append in NSArray... ")
   var start = NSDate ()
-  var array : PMArray<MonProtocole> = PMArray ()
+  var array : PMArray<MonProtocole> = PMArray<MonProtocole> ()
   for i in 0..<COUNT {
     array.add (MaClasse ())
   }
@@ -85,7 +93,7 @@ func allocInNSArray () {
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for i in 0..<array.count {
-    let object = array.objectAtIndex (i)
+    let object : MonProtocole = array [i]
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
@@ -126,7 +134,7 @@ struct PMSequentialSet <T : AnyObject> {
 func allocInSequentialSet1 () {
   print ("Append in sequential set (by add1)... ")
   var start = NSDate ()
-  var array : PMSequentialSet<MaClasse> = PMSequentialSet ()
+  var array : PMSequentialSet<MonProtocole> = PMSequentialSet<MonProtocole> ()
   for i in 0..<COUNT {
     array.add1 (MaClasse ())
   }
@@ -164,7 +172,7 @@ func allocInSequentialSet2 () {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
+struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
   var mSet = NSMutableSet ()
 
   mutating func add (item : T) {
@@ -176,7 +184,11 @@ struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
   }
 
   var count : Int {
-    return mSet.count ()
+    return mSet.count 
+  }
+  
+  var allObjects : NSSet {
+    return mSet.copy () as NSSet
   }
   
   func generate () -> PMSetWithNSMutableSetGenerator<T> {
@@ -206,17 +218,17 @@ struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
 
 //---------------------------------------------------------------------------*
 
-struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
+struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
   let mSet : NSSet
   var mEnumerator : NSEnumerator
   
   init (valueSet : NSSet) {
-    mSet = valueSet
+    mSet = valueSet.copy () as NSSet
     mEnumerator = mSet.objectEnumerator ()
   }
   
-  mutating func next () -> AnyObject? {
-    return mEnumerator.nextObject ()
+  mutating func next () -> T? {
+    return mEnumerator.nextObject () as? T
   }
 }
 
@@ -225,14 +237,14 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
 func allocInNSMutableSet () {
   print ("Append in NSMutableSet... ")
   var start = NSDate ()
-  var array : PMSetWithNSMutableSet<MaClasse> = PMSetWithNSMutableSet ()
+  var array : PMSetWithNSMutableSet<MonProtocole> = PMSetWithNSMutableSet ()
   for i in 0..<COUNT {
     array.add (MaClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
-  for object in array {
+  for object : MonProtocole in array {
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)

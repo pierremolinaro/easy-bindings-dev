@@ -21,7 +21,7 @@ let traceUndoManager = false
   //    init                                                                     *
   //-----------------------------------------------------------------------------*
 
-  init () {
+  override init () {
     super.init ()
     noteObjectAllocation (self)
   }
@@ -41,7 +41,7 @@ let traceUndoManager = false
   override func prepareWithInvocationTarget (target:AnyObject!) -> AnyObject! {
     let result : AnyObject! = super.prepareWithInvocationTarget (target)
     if traceUndoManager {
-      NSLog ("prepareWithInvocationTarget (%@) target:%@", isUndoRegistrationEnabled () ? "yes" : "no", target.description)
+      NSLog ("prepareWithInvocationTarget (%@) target:%@", undoRegistrationEnabled ? "yes" : "no", target.description)
     }
     return result
   }
@@ -54,9 +54,9 @@ let traceUndoManager = false
     super.registerUndoWithTarget (target, selector:selector, object:anObject)
     if traceUndoManager {
       if anObject {
-        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:%@", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description, anObject.description)
+        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:%@", undoRegistrationEnabled ? "yes" : "no", target.description, selector.description, anObject.description)
       }else{
-        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:nil", isUndoRegistrationEnabled () ? "yes" : "no", target.description, selector.description)
+        NSLog ("registerUndoWithTarget (%@) target:%@, selector:\"%@\" object:nil", undoRegistrationEnabled ? "yes" : "no", target.description, selector.description)
       }
     }
   }

@@ -314,13 +314,13 @@ reader @ebType preferencesSwiftGetter
  :
   switch mKind
   when boolType :
-    outResult := "(value as NSNumber).boolValue ()" ;
+    outResult := "(value as NSNumber).boolValue" ;
   when integerType :
-    outResult := "(value as NSNumber).longLongValue ()" ;
+    outResult := "(value as NSNumber).longLongValue" ;
   when enumType :
     outResult := "(" . mTypeName . ") NSIntegerFromNSNumber" ;
   when doubleType :
-    outResult := "(value as NSNumber).doubleValue ()" ;
+    outResult := "(value as NSNumber).doubleValue" ;
   when fontType :
     outResult := "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSFont" ;
   when colorType, bezierPathType :
