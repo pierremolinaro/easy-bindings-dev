@@ -2,14 +2,16 @@
 # https://pypi.python.org/pypi/atomac
 # https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py
 
-import atomac, sys, time
+import atomac, sys, time, os
 
 # http://stackoverflow.com/questions/2257441/python-random-string-generation-with-upper-case-letters-and-digits
 
 import random, string
 
+scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+atomac.launchAppByBundlePath (scriptDir + "/build/Release/01-simple-preferences-swift.app")
+
 bundleName = 'fr.free.pcmolinaro.-1-simple-preferences-swift'
-atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
 
@@ -45,7 +47,7 @@ atomac.terminateAppByBundleId (bundleName)
 time.sleep(.5)
 
 #--- Relaunch application to check preferences have recorded the new value
-atomac.launchAppByBundleId (bundleName)
+atomac.launchAppByBundlePath (scriptDir + "/build/Release/01-simple-preferences-swift.app")
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
 

@@ -15,7 +15,7 @@ end
 
 %
 foreach OUTLET_GENERATION_LIST do
-%  @IBOutlet var %!mOutletName% : %!mOutletType%\n%
+%  @IBOutlet var %!mOutletName% : %!mOutletType%?\n%
 end
 %
   //---------------------------------------------------------------------------*
@@ -64,7 +64,7 @@ end
   //    windowNibName                                                          *
   //---------------------------------------------------------------------------*
 
-  var windowNibName: String {
+  override var windowNibName: String {
     return "%!DOCUMENT_NAME%"
   }
 

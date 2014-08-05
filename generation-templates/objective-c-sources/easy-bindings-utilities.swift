@@ -22,23 +22,23 @@ func presentErrorWindow (file : String!,
   var window = NSWindow.init (
     contentRect:r,
     styleMask:NSTitledWindowMask | NSClosableWindowMask,
-    backing:NSBackingStoreBuffered,
+    backing:NSBackingStoreType.Buffered,
     defer:true
   )
-  window.setTitle ("Outlet Error")
-  let contentView : NSView! = window.contentView () as NSView
-  let tfRect = NSInsetRect (contentView.bounds (), 10.0, 10.0)
+  window.title = "Outlet Error"
+  let contentView : NSView! = window.contentView as NSView
+  let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
   var tf = NSTextField.init (frame:tfRect)
-  tf.setEditable (false)
-  tf.setSelectable (true)
-  tf.setFont (NSFont.boldSystemFontOfSize (0.0))
-  tf.setTextColor (NSColor.redColor ())
-  tf.setStringValue (message)
+  tf.editable = false
+  tf.selectable = true
+  tf.font = NSFont.boldSystemFontOfSize (0.0)
+  tf.textColor = NSColor.redColor ()
+  tf.stringValue = message
   contentView.addSubview (tf)
   NSBeep () ;
   window.makeKeyAndOrderFront (nil)
   //---
-  gErrorWindows += window
+  gErrorWindows.append (window)
 }
 
 //---------------------------------------------------------------------------*
@@ -78,7 +78,7 @@ extension NSDictionary {
     var result : Int64 = 0
     let object : AnyObject = valueForKey (inKey)
     if let d = object as? NSNumber {
-      result = d.longLongValue ()
+      result = d.longLongValue 
     }
     return result
   }
@@ -89,7 +89,7 @@ extension NSDictionary {
     var result : Bool = false
     let object : AnyObject = valueForKey (inKey)
     if let d = object as? NSNumber {
-      result = d.boolValue ()
+      result = d.boolValue 
     }
     return result
   }
@@ -104,7 +104,7 @@ extension NSDictionary {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMSet <T : AnyObject> : Sequence {
+struct PMSet <T : AnyObject> { // : SequenceType {
   var mSet = NSMutableSet ()
 
   init () {
@@ -135,17 +135,22 @@ struct PMSet <T : AnyObject> : Sequence {
   }
 
   func count () -> Int {
-    return mSet.count ()
+    return mSet.count
+  }
+
+  func allObjects () -> NSSet {
+    return mSet.copy () as NSSet
   }
   
-  func generate () -> PMSetGenerator<T> {
+  
+/*  func generate () -> PMSetGenerator<T> {
     return PMSetGenerator<T> (valueSet:mSet)
-  }
+  } */
 }
 
 //---------------------------------------------------------------------------*
 
-struct PMSetGenerator <T : AnyObject> : Generator {
+/*struct PMSetGenerator <T : AnyObject> : GeneratorType {
   let mSet : NSSet
   var mEnumerator : NSEnumerator
   
@@ -154,10 +159,10 @@ struct PMSetGenerator <T : AnyObject> : Generator {
     mEnumerator = mSet.objectEnumerator ()
   }
   
-  mutating func next () -> AnyObject? {
-    return mEnumerator.nextObject ()
+  mutating func next () -> T? {
+    return mEnumerator.nextObject () as? T
   }
-}
+} */
 
 //---------------------------------------------------------------------------*
 //   PMArray                                                                 *
@@ -167,7 +172,7 @@ struct PMSetGenerator <T : AnyObject> : Generator {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMArray <T : AnyObject> : Sequence {
+struct PMArray <T : AnyObject> : SequenceType {
   var mArray = NSMutableArray ()
 
   init () {
@@ -186,11 +191,11 @@ struct PMArray <T : AnyObject> : Sequence {
   }
 
   func count () -> Int {
-    return mArray.count ()
+    return mArray.count
   }
   
   func lastObject () -> T {
-    return mArray.lastObject () as T
+    return mArray.lastObject as T
   }
   
   mutating func removeLastObject () {
@@ -213,7 +218,7 @@ struct PMArray <T : AnyObject> : Sequence {
 
 //---------------------------------------------------------------------------*
 
-struct PMArrayGenerator <T : AnyObject> : Generator {
+struct PMArrayGenerator <T : AnyObject> : GeneratorType {
   let mArray : NSArray
   var mEnumerator : NSEnumerator
   

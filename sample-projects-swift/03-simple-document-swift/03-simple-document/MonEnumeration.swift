@@ -42,11 +42,11 @@ enum MonEnumeration : Int {
 
 extension NSDictionary {
   func readMonEnumeration  (inKey : String) -> MonEnumeration {
-    let v : Int? = objectForKey (inKey)?.integerValue()
+    let v : Int? = objectForKey (inKey)?.integerValue
     var result = MonEnumeration.premier
-    if v {
+    if v != nil {
       let e : MonEnumeration? = MonEnumeration.fromRaw (v!)
-      if e {
+      if e != nil {
         result = e!
       }
     }

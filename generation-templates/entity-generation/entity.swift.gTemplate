@@ -2,6 +2,15 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%@objc(protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%) protocol protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]% {
+  func %!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+}
+%
+end%
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 @objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %,\n                                   protocol_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
@@ -52,7 +61,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     end
 %        }
       //--- Notify observers object count did change
-        %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")\n%
+ //       %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")\n%
     if [SIGN_SET hasKey !mRelationshipName->string] then
       %    //--- Trigger signature computing\n%
       %      triggerSignatureComputing ()\n%
@@ -79,7 +88,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }else if idx != inMNamesAtIndex {
     }
   //--- Notify observers object count did change
-    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
+  //  %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
   }
 
   func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
@@ -95,12 +104,12 @@ foreach CURRENT_RELATIONSHIP_LIST do
   //--- Reset inverse relationship
     removedObject.%!mInverseRelationshipName->string% = nil
   //--- Notify observers object count did change
-    %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
+    //  %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
   }
 
   func appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
     if !%!mRelationshipName->string%.containsObject (inObject) {
-      insertObject (inObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:self.%!mRelationshipName->string%.count ())
+      insertObject (inObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:self.%!mRelationshipName->string%.count)
     }
   }
 
@@ -183,7 +192,7 @@ end
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMObjectManager) {
+  override init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
   //--- Add Transient observers\n%
 !generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
@@ -198,7 +207,7 @@ end
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    %!mAttributeName%__explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
-%    %!mAttributeName%__explorer?.setStringValue (%![mType valueAccessorForExplorerWindow !mAttributeName]%)\n%
+%    %!mAttributeName%__explorer?.stringValue = %![mType valueAccessorForExplorerWindow !mAttributeName]%\n%
 end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

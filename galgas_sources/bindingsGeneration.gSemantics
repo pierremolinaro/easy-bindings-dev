@@ -53,8 +53,8 @@ override reader @runBindingForGeneration generateSwiftBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult := "    " . inOutletName . ".setTarget (" . mTargetName . ")\n" ;
-  outResult .= "    " . inOutletName . ".setAction (\"" . mActionName . ":\")\n" ;  
+  outResult := "    " . inOutletName . "?.target = " . mTargetName . "\n" ;
+  outResult .= "    " . inOutletName . "?.action = \"" . mActionName . ":\"\n" ;  
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -63,8 +63,8 @@ override reader @runBindingForGeneration generateObjectiveCRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult := "  " . inOutletName . ".target = nil ;\n" ;
-  outResult .= "  " . inOutletName . ".action = NULL ;\n" ;  
+  outResult := "  " . inOutletName . "?.target = nil ;\n" ;
+  outResult .= "  " . inOutletName . "?.action = NULL ;\n" ;  
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -73,8 +73,8 @@ override reader @runBindingForGeneration generateSwiftRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult := "    " . inOutletName . "?.setTarget (nil)\n" ;
-  outResult .= "    " . inOutletName . "?.setAction (nil)\n" ;  
+  outResult := "    " . inOutletName . "?.target = nil\n" ;
+  outResult .= "    " . inOutletName . "?.action = nil\n" ;  
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -120,15 +120,15 @@ override reader @tableValueBindingForGeneration generateSwiftBinding
 :
   outResult := "" ;
   for column in mColumnBindingForTableValueBindingForGeneration do
-     outResult .=  "    if nil == " . inOutletName . ".tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\") {\n"
+     outResult .=  "    if nil == " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\") {\n"
      . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' NSTableView outlet has no formatter has no column with the " . column->mColumnIdentifier . " identifier\") ;\n"
      . "    }else{\n"
-     . "      let cell : NSActionCell = " . inOutletName . ".tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").dataCell () as NSActionCell\n"
+     . "      let cell : NSActionCell = " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").dataCell as NSActionCell\n"
      . "      if !cell.isKindOfClass (" . column->mRequiredCellClass . ") {\n"
      . "        presentErrorWindow (__FILE__, __LINE__, \"the dataCell is '" . column->mColumnIdentifier . "' column of the '" . inOutletName . "' should be an '" . column->mRequiredCellClass . " instance\") ;\n"
      . "      }\n"
      . "    }\n"
-     . "    " . inOutletName . ".tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").bind (\"value\",\n"
+     . "    " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").bind (\"value\",\n"
      . "      toObject:" . mControllerName . ",\n"
      . "      withKeyPath:\"arrangedObjects." . column->mObservableAttributeName . "\",\n"
      . "      options:" ;
@@ -165,7 +165,7 @@ override reader @tableValueBindingForGeneration generateSwiftRemoveBinding
 :
   outResult := "" ;
   for column in mColumnBindingForTableValueBindingForGeneration do
-     outResult .= "    " . inOutletName . ".tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").unbind (\"value\")\n" ;
+     outResult .= "    " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").unbind (\"value\")\n" ;
    end for ;
 end reader ;
 
@@ -220,15 +220,15 @@ override reader @regularBindingForGeneration generateSwiftBinding
   switch mRequiredFormatter
   when noFormatter :
   when numberFormatter :
-   outResult .=  "    if (nil != " . inOutletName . ") && !(" . inOutletName . "?.formatter ()) {\n"
+   outResult .=  "    if (nil != " . inOutletName . ") && (" . inOutletName . "?.formatter == nil) {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
-   . "    }else if (nil != " . inOutletName . ") && !(" . inOutletName . "?.formatter ().isKindOfClass (NSNumberFormatter)) {\n"
+   . "    }else if (nil != " . inOutletName . ") && !((" . inOutletName . "?.formatter?.isKindOfClass (NSNumberFormatter))!) {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
    . "    }\n" ;
   when dateFormatter :
-    outResult .= "    if (nil != " . inOutletName . ") && !(" . inOutletName . "?.formatter ()) {\n"
+    outResult .= "    if (nil != " . inOutletName . ") && (" . inOutletName . "?.formatter == nil) {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
-    . "    }else if (nil != " . inOutletName . ") && !(" . inOutletName . "?.formatter ().isKindOfClass (NSDateFormatter)) {\n"
+    . "    }else if (nil != " . inOutletName . ") && !((" . inOutletName . "?.formatter?.isKindOfClass (NSDateFormatter))!) {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"
     . "    }\n" ;
   end switch ;
@@ -265,8 +265,8 @@ override reader @regularBindingForGeneration generateSwiftRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult :=
-    "    " . inOutletName . ".unbind (\"" . mBindingName . "\")\n" ;
+  const optInt := if mRequiresInterrogationMark then "?" else "" end ;
+  outResult := "    " . inOutletName . optInt . ".unbind (\"" . mBindingName . "\")\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*

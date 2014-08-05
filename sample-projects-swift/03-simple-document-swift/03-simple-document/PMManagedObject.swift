@@ -13,7 +13,7 @@ import Cocoa
 //   PMSignatureObserverProtocol                                               *
 //-----------------------------------------------------------------------------*
 
-protocol PMSignatureObserverProtocol {
+@objc(PMSignatureObserverProtocol) protocol PMSignatureObserverProtocol {
   func triggerSignatureComputing ()
 }
 
@@ -80,7 +80,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func addSignatureObserver (inObserver : PMSignatureObserverProtocol) {
-//    mSignatureObserverSet.addObject (inObserver)
+    mSignatureObserverSet.addObject (inObserver)
     inObserver.triggerSignatureComputing ()
   }
 
@@ -88,7 +88,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func removeSignatureObserver (inObserver : PMSignatureObserverProtocol) {
     inObserver.triggerSignatureComputing ()
-//    mSignatureObserverSet.removeObject (inObserver)
+    mSignatureObserverSet.removeObject (inObserver)
   }
 
   //---------------------------------------------------------------------------*
@@ -96,7 +96,10 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   func triggerSignatureComputing () {
     if mSignatureHasBeenComputed {
       mSignatureHasBeenComputed = false ;
-      mSignatureObserverSet.makeObjectsPerformSelector ("triggerSignatureComputing")
+      for anyObject in mSignatureObserverSet {
+        let object = anyObject as PMSignatureObserverProtocol
+        object.triggerSignatureComputing ()
+      }
     }
   }
 
@@ -177,13 +180,13 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
                                      view : NSView) -> NSTextField {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     var tf = NSTextField (frame:ioRect)
-    tf.setEnabled (false)
-    tf.setStringValue (attributeName)
-    tf.setFont (font)
+    tf.enabled = false
+    tf.stringValue = attributeName
+    tf.font = font
     view.addSubview (tf)
     var tff = NSTextField (frame:secondColumn (ioRect))
-    tff.setEnabled (false)
-    tff.setFont (font)
+    tff.enabled = false
+    tff.font = font
     view.addSubview (tff)
     ioRect.origin.y += ioRect.size.height
     return tff
@@ -198,12 +201,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
                                              view : NSView) -> NSButton {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     var tf = NSTextField (frame:ioRect)
-    tf.setEnabled (false)
-    tf.setStringValue (relationshipName)
-    tf.setFont (font)
+    tf.enabled = false
+    tf.stringValue = relationshipName
+    tf.font = font
     view.addSubview (tf)
     var bt = NSButton (frame:secondColumn (ioRect))
-    bt.setFont (font)
+    bt.font = font
     view.addSubview (bt)
     ioRect.origin.y += ioRect.size.height
     return bt
@@ -218,12 +221,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
                                               view : NSView) -> NSPopUpButton {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     var tf = NSTextField (frame:ioRect)
-    tf.setEnabled (false)
-    tf.setStringValue (relationshipName)
-    tf.setFont (font)
+    tf.enabled = false
+    tf.stringValue = relationshipName
+    tf.font = font
     view.addSubview (tf)
     var bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
-    bt.setFont (font)
+    bt.font = font
     view.addSubview (bt)
     ioRect.origin.y += ioRect.size.height ;
     return bt
@@ -239,7 +242,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     mExplorerWindow = NSWindow (
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreBuffered,
+      backing:NSBackingStoreType.Buffered,
       defer:true,
       screen:nil
     )
@@ -251,22 +254,22 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
     let rr = secondColumn (nameRect)
-    view.setFrame (NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr)))
+    view.frame = NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr))
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))
   //--- Set close button as 'remove window' button
-    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
-    closeButton?.setTarget (self)
-    closeButton?.setAction ("deleteWindowAction:")
+    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton?.target = self
+    closeButton?.action = "deleteWindowAction:"
   //--- Set window title
-    let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className (), self)
-    mExplorerWindow?.setTitle (windowTitle)
+    let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
+    mExplorerWindow?.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
     var sw = NSScrollView (frame:frame)
-    sw.setHasVerticalScroller (true)
-    sw.setDocumentView (view)
-    mExplorerWindow?.setContentView (sw)
+    sw.hasVerticalScroller = true
+    sw.documentView = view
+    mExplorerWindow?.contentView = sw
   }
 
   //---------------------------------------------------------------------------*
@@ -276,22 +279,22 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   func updateManagedObjectToManyRelationshipDisplayForKey (inKey : NSString, popUpButton : NSPopUpButton) {
     var objectArray : NSArray = valueForKey (inKey) as NSArray
     var title = "No Object" ;
-    if objectArray.count () == 1 {
+    if objectArray.count == 1 {
       title = "1 Object" ;
-    }else if objectArray.count () > 1 {
-      title = NSString (format:"%lu objects", objectArray.count ())
+    }else if objectArray.count > 1 {
+      title = NSString (format:"%lu objects", objectArray.count)
     }
     popUpButton.removeAllItems ()
     popUpButton.addItemWithTitle (title)
-    popUpButton.setEnabled (objectArray.count () > 0)
+    popUpButton.enabled = objectArray.count > 0
     for obj : AnyObject in objectArray {
       let object = obj as PMManagedObject
       let objectIndex = object.explorerObjectIndex ()
-      let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className (), object)
+      let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
       popUpButton.addItemWithTitle (stringValue)
-      var item = popUpButton.lastItem ()
-      item.setTarget (object)
-      item.setAction ("showObjectWindowFromExplorerButton:")
+      var item = popUpButton.lastItem
+      item.target = object
+      item.action = "showObjectWindowFromExplorerButton:"
     }
   }
 
@@ -304,13 +307,13 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     var stringValue = "nil"
     if nil != object {
       let objectIndex = object.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className (), object)
+      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
     }
-    button.setEnabled (object != nil)
-    button.setTitle (stringValue)
-    button.setToolTip (stringValue)
-    button.setTarget (object)
-    button.setAction ("showObjectWindowFromExplorerButton:")
+    button.enabled = object != nil
+    button.title = stringValue
+    button.toolTip = stringValue
+    button.target = object
+    button.action = "showObjectWindowFromExplorerButton:"
   }
 
   //---------------------------------------------------------------------------*
@@ -330,12 +333,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   }
 
   //---------------------------------------------------------------------------*
-  //   clearObjectExplorer                                                    *
+  //   clearObjectExplorer                                                     *
   //---------------------------------------------------------------------------*
 
   func clearObjectExplorer () {
-    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowCloseButton)
-    closeButton?.setTarget (nil)
+    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton?.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
   }
@@ -348,7 +351,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
                                      inRelationshipName: String,
                                      ioDictionary : NSMutableDictionary) {
 
-    if inEntityArray.count () > 0 {
+    if inEntityArray.count > 0 {
       var indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
         let managedObject = object as PMManagedObject
@@ -380,7 +383,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
   var result : PMManagedObject? = nil
   if nil != value {
-    result = managedObjectArray [value!.unsignedIntegerValue ()]
+    result = managedObjectArray [value!.unsignedIntegerValue]
   }
   return result
 }
@@ -397,7 +400,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   if nil != indexArray {
     for object : AnyObject in indexArray! {
       let number = object as NSNumber
-      let managedObject = managedObjectArray [number.unsignedIntegerValue ()]
+      let managedObject = managedObjectArray [number.unsignedIntegerValue]
       result.addObject (managedObject)
     }
   }

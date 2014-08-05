@@ -13,13 +13,13 @@ import Cocoa
 
 @objc(PMObjectManager) class PMObjectManager : NSObject {
   var mUndoManager : PMUndoManager
-  var mManagedObjectSet = PMSet<PMManagedObject> ()
+  var mManagedObjectSet = NSMutableSet ()
 
   //-----------------------------------------------------------------------------*
   //  init                                                                       *
   //-----------------------------------------------------------------------------*
 
-  init () {
+  override init () {
     mUndoManager = PMUndoManager ()
     super.init ()
     noteObjectAllocation (self)
@@ -46,7 +46,7 @@ import Cocoa
   //-----------------------------------------------------------------------------*
 
   func managedObjectCount () -> Int {
-    return mManagedObjectSet.count () ;
+    return mManagedObjectSet.count
   }
 
   //-----------------------------------------------------------------------------*
@@ -95,12 +95,12 @@ import Cocoa
   //  allEntitiesKindOfClass                                                     *
   //-----------------------------------------------------------------------------*
 
-  func allEntitiesKindOfClass (inClassName : String) -> [PMManagedObject] {
-    var result : [PMManagedObject] = []
+  func allEntitiesKindOfClass (inClassName : String) -> NSArray {
+    var result : NSMutableArray = NSMutableArray ()
     for object : AnyObject in mManagedObjectSet {
       let managedObject = object as PMManagedObject
-      if managedObject.className () == inClassName {
-        result += managedObject
+      if managedObject.className == inClassName {
+        result.addObject (managedObject)
       }
     }
     return result ;
@@ -111,7 +111,7 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func dataForSavingFromRootObject (inRootObject : PMManagedObject) -> NSData {
-    let objectsToSaveArray : PMArray<PMManagedObject> = reachableObjectsFromObject (inRootObject)
+    let objectsToSaveArray : NSArray = reachableObjectsFromObject (inRootObject)
   //--- Set savingIndex for each object
     var idx = 0 ;
     for anyObject in objectsToSaveArray {
@@ -124,10 +124,10 @@ import Cocoa
     for anyObject in objectsToSaveArray {
       let object = anyObject as PMManagedObject
       var d : NSMutableDictionary = [
-        "--entity" : object.className ()
+        "--entity" : object.className
       ]
       object.saveIntoDictionary (d)
-      saveDataArray += d
+      saveDataArray.append (d)
     }
     return NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
       format:NSPropertyListFormat.BinaryFormat_v1_0,
@@ -169,23 +169,25 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> PMArray<PMManagedObject> {
+  func reachableObjectsFromObject (inRootObject : PMManagedObject) -> NSArray {
     var reachables : [Bool] = []
     var idx = 0
     for object : AnyObject in mManagedObjectSet {
       let managedObject = object as PMManagedObject
       managedObject.savingIndex = idx
-      reachables += false
+      reachables.append (false)
       idx += 1
     }
     NSLog ("%d objects", idx)
-    var objectsToExploreArray : PMArray<PMManagedObject> = PMArray<PMManagedObject> (item:inRootObject)
-    var reachableObjectArray : PMArray<PMManagedObject> = PMArray<PMManagedObject> (item:inRootObject)
+    var objectsToExploreArray = NSMutableArray ()
+    objectsToExploreArray.addObject (inRootObject)
+    var reachableObjectArray = NSMutableArray ()
+    reachableObjectArray.addObject (inRootObject)
  let start = NSDate()
  //   NSLog ("start")
     reachables [inRootObject.savingIndex] = true
-    while (objectsToExploreArray.count () > 0) {
-      let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject ()
+    while (objectsToExploreArray.count > 0) {
+      let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as PMManagedObject
       objectsToExploreArray.removeLastObject ()
       var accessible : PMArray<PMManagedObject> = PMArray<PMManagedObject> ()
       objectToExplore.accessibleObjects (&accessible)
@@ -207,10 +209,11 @@ import Cocoa
   //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T              *
   //---------------------------------------------------------------------------*
 
-  func unreachableObjectsFromObject (inRootObject : PMManagedObject) -> PMSet<PMManagedObject> {
+  func unreachableObjectsFromObject (inRootObject : PMManagedObject) -> NSSet {
     let reachableObjects = reachableObjectsFromObject (inRootObject)
-    var s = PMSet<PMManagedObject> (set:mManagedObjectSet)
-    s.minusSet (PMSet<PMManagedObject> (array:reachableObjects))
+    var s = NSMutableSet ()
+    s.setSet (mManagedObjectSet)
+    s.minusSet (NSSet (array:reachableObjects))
     return s
   }
 

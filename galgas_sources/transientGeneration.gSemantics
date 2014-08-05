@@ -35,16 +35,16 @@ reader @ebType generateAttributeDeclarationInSwift
                    "        object:" + inAttributeName + "__as__number\n"
                    "      )\n" ;
     end if ;
-    outResult += "      let v : Int? = newValue.integerValue ()\n"
+    outResult += "      let v : Int? = newValue.integerValue\n"
                  "      " + inAttributeName + " = " + [selfcopy swiftTypeName] + ".fromRaw (v!)!\n"
-                 "      " + inAttributeName + "__explorer?.setStringValue (" + inAttributeName + ".string ())\n" ;
+                 "      " + inAttributeName + "__explorer?.stringValue = " + inAttributeName + ".string ()\n" ;
   when integerType :
     outResult += "  var " + inAttributeName + "__as__number : NSNumber {\n"
                  "    get {\n"
                  "      return NSNumber (longLong:" + inAttributeName + ")\n"
                  "    }\n"
                  "    set {\n"
-                 "      " + inAttributeName + " = newValue.longLongValue ()\n"
+                 "      " + inAttributeName + " = newValue.longLongValue\n"
                  "    }\n"
                  "  }\n\n"
                  "  var " + inAttributeName + " : " + [selfcopy swiftTypeName] + " =  " + inDirectSwiftDefaultValue + " {\n" ;
@@ -57,7 +57,7 @@ reader @ebType generateAttributeDeclarationInSwift
                     "    }\n" ;
     end if ;
     outResult += "    didSet {\n"
-                 "      " + inAttributeName + "__explorer?.setStringValue (NSString (format:\"%lld\", " + inAttributeName + "))\n" ;
+                 "      " + inAttributeName + "__explorer?.stringValue = NSString (format:\"%lld\", " + inAttributeName + ")\n" ;
   when colorType, bezierPathType, boolType, classType, controllerClassType, dataType,
         dateType, documentType, doubleType, entityType, fontType, imageType, menuType,
         nibClassType, outletClassType, preferencesType, protocolType, stringType, structType, uintegerType :
@@ -71,20 +71,23 @@ reader @ebType generateAttributeDeclarationInSwift
                    "    }\n" ;
     end if ;
     outResult += "    didSet {\n"
-                 "      " + inAttributeName + "__explorer?.setStringValue (" + [selfcopy valueAccessorForExplorerWindow !inAttributeName] + ")\n" ;
+                 "      " + inAttributeName + "__explorer?.stringValue = " + [selfcopy valueAccessorForExplorerWindow !inAttributeName] + "\n" ;
   end switch ;
   outResult += "    //--- Notify observers\n"
-               "      " + inAttributeName + "_observers.makeObjectsPerformSelector (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\")\n"
+               "      for anyObject in " + inAttributeName + "_observers.allObjects {\n"
+               "        let object = anyObject as protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "\n"
+               "        object." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
+               "      }\n"
                + generateSwiftTransientTriggering [!inAttributeName !inKindName !TRANSIENT_LIST_FOR_IMPLEMENTATION !inDeclarationKind] +
                "    }\n"
                "  }\n\n"
-               "  func addObserverOf_" + inAttributeName + " (inObserver : AnyObject) {\n"
+               "  func addObserverOf_" + inAttributeName + " (inObserver : protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + ") {\n"
                "    " + inAttributeName + "_observers.addObject (inObserver)\n"
-               "    NSApp.sendAction (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\", to:inObserver, from:self)\n"
+               "    inObserver." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
                "  }\n\n"
-               "  func removeObserverOf_" + inAttributeName + " (inObserver : AnyObject) {\n"
+               "  func removeObserverOf_" + inAttributeName + " (inObserver : protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + ") {\n"
                "    " + inAttributeName + "_observers.removeObject (inObserver)\n"
-               "    NSApp.sendAction (\"" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange\", to:inObserver, from:self)\n"
+               "    inObserver." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
                "  }\n\n" ;
 end reader ;
 
@@ -421,7 +424,7 @@ override reader @transientDependencyFromSelfForImplementation generateSwiftMaste
 :
   outResult := mMasterAttributeName ;
   if mNamesCountOption then
-    outResult .= ".count ()" ;
+    outResult .= ".count" ;
   end if ;
 end reader ;
 
@@ -432,7 +435,7 @@ override reader @transientDependencyFromRootForImplementation generateSwiftMaste
 :
   outResult := "rootObject." . mMasterAttributeName ;
   if mNamesCountOption then
-    outResult .= ".count ()" ;
+    outResult .= ".count" ;
   end if ;
 end reader ;
 
@@ -441,7 +444,7 @@ end reader ;
 override reader @transientDependencyFromControllerForImplementation generateSwiftMasterAttributeCall
   ->@string outResult
 :
-  outResult := mControllerName . "." . mMasterAttributeName . " ()" ;
+  outResult := mControllerName . "." . mMasterAttributeName ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -1167,7 +1170,7 @@ function generateSwiftObserverRoutinesForTransient
     foreach mList do
     outResult .=
       "    //--- Trigger '" . mValue . " transient'\n"
-      "    if " . mValue . "__cache {\n"
+      "    if " . mValue . "__cache != nil {\n"
       "      " . mValue . "__cache = nil ;\n"
       "      enterTriggerForObject_" . [fullPrefix . mValue identifierRepresentation] . " (self)\n"
       "    }\n" ;
@@ -1184,7 +1187,7 @@ function generateSwiftObserverRoutinesForTransient
     "  override func observeValueForKeyPath (inKeyPath : String!,\n"
     "                                        ofObject inObject:AnyObject!,\n"
     "                                        change inChange:[NSObject : AnyObject]!,\n"
-    "                                        context inContext:UnsafePointer <()>) {\n"
+    "                                        context inContext:UnsafeMutablePointer <()>) {\n"
     " " ;
   do
     outResult .=
@@ -1192,7 +1195,7 @@ function generateSwiftObserverRoutinesForTransient
     foreach mList do
       outResult .=
       "  //--- Trigger '" . mValue . " transient'\n"
-      "    if " . mValue . "__cache {\n"
+      "    if " . mValue . "__cache != nil {\n"
       "      " . mValue . "__cache = nil\n"
       "      enterTriggerForObject_" . [fullPrefix . mValue identifierRepresentation] . " (self)\n"
       "    }\n" ;

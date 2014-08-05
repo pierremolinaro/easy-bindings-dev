@@ -56,6 +56,7 @@ end
 %//-----------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
+  var mLevel = 0
 
   //---------------------------------------------------------------------------*
 
@@ -69,17 +70,29 @@ end
 %  //---------------------------------------------------------------------------*
  
   override func sendEvent (inEvent : NSEvent!) {
+    mLevel += 1
+    // NSLog ("send event \%d", mLevel)
     super.sendEvent (inEvent)
-    triggerChange ()
-    displayAllocation ()
+    mLevel -= 1
+    // NSLog ("send event done \%d", mLevel)
+    if 0 == mLevel {
+      triggerChange ()
+      displayAllocation ()
+    }
   }
   
   //---------------------------------------------------------------------------*
 
   override func sendAction (theAction: Selector, to theTarget: AnyObject!, from sender: AnyObject!) -> Bool {
+    mLevel += 1
+    // NSLog ("send action \%d", mLevel)
     let result = super.sendAction (theAction, to:theTarget, from:sender)
-    triggerChange ()
-    displayAllocation ()
+    mLevel -= 1
+    // NSLog ("send action done \%d", mLevel)
+    if 0 == mLevel {
+      triggerChange ()
+      displayAllocation ()
+    }
     return result
   }
 
@@ -89,11 +102,11 @@ end
 %
   foreach TRANSIENT_LIST do index idx
 %    if mObserverObject_%![mValue identifierRepresentation]%.count () > 0 { // %![idx string]%
-      let s = mObserverObject_%![mValue identifierRepresentation]%
-      mObserverObject_%![mValue identifierRepresentation]% = PMSet<protocol_%![mValue identifierRepresentation]%> ()
-      for object in s {
+      for anyObject in mObserverObject_%![mValue identifierRepresentation]%.allObjects () {
+        let object = anyObject as protocol_%![mValue identifierRepresentation]%
         object.%![mValue identifierRepresentation]%_didChange ()
       }
+      mObserverObject_%![mValue identifierRepresentation]% = PMSet<protocol_%![mValue identifierRepresentation]%> ()
     }    
 %  end  
 %  }
