@@ -6,6 +6,9 @@ import Cocoa
 @objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument%
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %,\n                                   protocol_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
+  foreach mDependencyList do
+    ![mDependency generateSwiftProtocolObserverForTransient !ROOT_ENTITY_NAME]
+  end
 end
 % {
 

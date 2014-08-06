@@ -19,7 +19,7 @@ import Cocoa
   //  init                                                                       *
   //-----------------------------------------------------------------------------*
 
-  override init () {
+   init () {
     mUndoManager = PMUndoManager ()
     super.init ()
     noteObjectAllocation (self)
@@ -147,7 +147,7 @@ import Cocoa
       error:nil
     )
     let dictionaryArray : [NSDictionary] = v as [NSDictionary]
-    var objectArray : PMArray <PMManagedObject> = PMArray <PMManagedObject>  ()
+    var objectArray = NSMutableArray  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
       let object = newInstanceOfEntityNamed (className)
@@ -155,14 +155,14 @@ import Cocoa
     }
     var idx = 0
     for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx]
+      var object : PMManagedObject = objectArray [idx] as PMManagedObject
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
  let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
  NSLog ("Read %f ms", timeTaken)
   //--- Return root object
-    return objectArray [0]
+    return objectArray [0] as PMManagedObject
   }
 
   //---------------------------------------------------------------------------*
@@ -189,9 +189,9 @@ import Cocoa
     while (objectsToExploreArray.count > 0) {
       let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as PMManagedObject
       objectsToExploreArray.removeLastObject ()
-      var accessible : PMArray<PMManagedObject> = PMArray<PMManagedObject> ()
+      var accessible = NSMutableArray ()
       objectToExplore.accessibleObjects (&accessible)
-      for object : PMManagedObject in accessible {
+      for object : AnyObject in accessible {
         let managedObject = object as PMManagedObject
         if !reachables [managedObject.savingIndex] {
           reachables [managedObject.savingIndex] = true

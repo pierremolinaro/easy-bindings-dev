@@ -62,7 +62,7 @@ end
 
 %
   foreach TRANSIENT_LIST do index idx
-%  var mObserverObject_%![mValue identifierRepresentation]% = PMSet<protocol_%![mValue identifierRepresentation]%> () // %![idx string]%\n%
+%  var mObserverObject_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx string]%\n%
 %  func enterTriggerForObject_%![mValue identifierRepresentation]% (inObject : protocol_%![mValue identifierRepresentation]%) {
     mObserverObject_%![mValue identifierRepresentation]%.addObject (inObject)
   }\n\n%
@@ -101,12 +101,13 @@ end
   func triggerChange () {
 %
   foreach TRANSIENT_LIST do index idx
-%    if mObserverObject_%![mValue identifierRepresentation]%.count () > 0 { // %![idx string]%
-      for anyObject in mObserverObject_%![mValue identifierRepresentation]%.allObjects () {
+%    if mObserverObject_%![mValue identifierRepresentation]%.count > 0 { // %![idx string]%
+      let allObjects = mObserverObject_%![mValue identifierRepresentation]%.allObjects
+      mObserverObject_%![mValue identifierRepresentation]% = NSMutableSet ()
+      for anyObject in allObjects {
         let object = anyObject as protocol_%![mValue identifierRepresentation]%
         object.%![mValue identifierRepresentation]%_didChange ()
       }
-      mObserverObject_%![mValue identifierRepresentation]% = PMSet<protocol_%![mValue identifierRepresentation]%> ()
     }    
 %  end  
 %  }

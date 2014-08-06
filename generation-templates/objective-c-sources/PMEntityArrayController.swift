@@ -21,12 +21,12 @@ import Cocoa
   //    init                                                                   *
   //---------------------------------------------------------------------------*
 
-  required init (coder : NSCoder!) {
+/*  required init (coder : NSCoder!) {
     mObjectClassName = ""
     mEntityManager = PMObjectManager ()
     super.init (coder:coder)
     noteObjectAllocation (self)
-  }
+  }*/
 
   //---------------------------------------------------------------------------*
   //    init                                                                   *

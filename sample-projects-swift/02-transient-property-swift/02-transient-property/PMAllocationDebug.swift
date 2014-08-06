@@ -20,7 +20,7 @@ class PMAllocationItemDisplay : NSObject {
 
 //-----------------------------------------------------------------------------*
 
-var gDebugObject : PMAllocationDebug! = nil
+var gDebugObject : PMAllocationDebug? = nil
 
 //-----------------------------------------------------------------------------*
 
@@ -54,7 +54,7 @@ var gDebugObject : PMAllocationDebug! = nil
   //    init                                                                   *
   //---------------------------------------------------------------------------*
   
-  override init () {
+   init () {
       //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
     super.init ()
     assert (gDebugObject == nil, "PMAllocationDebug already exists", file:__FILE__, line:__LINE__)
@@ -251,17 +251,18 @@ var gDebugObject : PMAllocationDebug! = nil
   //---------------------------------------------------------------------------*
   
   class func routineShowAllocationStatsWindow () {
-    gDebugObject.pmShowAllocationStatsWindow ()
+    gDebugObject?.pmShowAllocationStatsWindow ()
   }
   
   //---------------------------------------------------------------------------*
   
   class func addItemToDebugMenu (inMenuItem : NSMenuItem) {
     if (nil == gDebugObject) {
-      gDebugObject = PMAllocationDebug ()
+      var debugObject = PMAllocationDebug ()
+      gDebugObject = debugObject
       var mainBundle = NSBundle.mainBundle ()
       let s = "PMAllocationDebug"
-      let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
+      let ok = mainBundle.loadNibNamed (s, owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
       if !ok {
         presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
       }
@@ -276,24 +277,25 @@ var gDebugObject : PMAllocationDebug! = nil
 
 func noteObjectAllocation (inObject : NSObject) {
   if (nil == gDebugObject) {
-    gDebugObject = PMAllocationDebug ()
+    var debugObject = PMAllocationDebug ()
+    gDebugObject = debugObject
     var topLevelObjects : NSArray?
     var mainBundle = NSBundle.mainBundle ()
     let s = "PMAllocationDebug"
-    let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
+    let ok = mainBundle.loadNibNamed (s, owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
     if !ok {
       presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
     }
   }
   let className = inObject.className 
-  gDebugObject.pmNoteObjectAllocation (className)
+  gDebugObject?.pmNoteObjectAllocation (className)
 }
 
 //-----------------------------------------------------------------------------*
 
 func noteObjectDeallocation (inObject : NSObject) {
   let className = inObject.className
-  gDebugObject.pmNoteObjectDeallocation (className)
+  gDebugObject?.pmNoteObjectDeallocation (className)
 }
 
 //-----------------------------------------------------------------------------*

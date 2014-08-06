@@ -20,7 +20,7 @@ class PMAllocationItemDisplay : NSObject {
 
 //-----------------------------------------------------------------------------*
 
-var gDebugObject : PMAllocationDebug! = nil
+var gDebugObject : PMAllocationDebug? = nil
 
 //-----------------------------------------------------------------------------*
 
@@ -54,7 +54,7 @@ var gDebugObject : PMAllocationDebug! = nil
   //    init                                                                   *
   //---------------------------------------------------------------------------*
   
-  init () {
+   init () {
       //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
     super.init ()
     assert (gDebugObject == nil, "PMAllocationDebug already exists", file:__FILE__, line:__LINE__)
@@ -72,14 +72,14 @@ var gDebugObject : PMAllocationDebug! = nil
   //---------------------------------------------------------------------------*
 
   func pmInstallDebugMenu () {
-    if (!mDebugMenuInstalled) && (NSApp.mainMenu () != nil) {
+    if (!mDebugMenuInstalled) && (NSApp.mainMenu != nil) {
       var item = NSMenuItem (
         title:"",
         action:nil,
         keyEquivalent:""
       )
-      item.setSubmenu (mDebugMenu)
-      NSApp.mainMenu ().addItem (item)
+      item.submenu = mDebugMenu
+      NSApp.mainMenu?.addItem (item)
       mDebugMenuInstalled = true
     }
   }
@@ -149,7 +149,7 @@ var gDebugObject : PMAllocationDebug! = nil
   
   @IBAction func performSnapShotAction (AnyObject) {
     mSnapShotDictionary = NSMutableDictionary ()
-    for c : AnyObject in mAllocatedObjectCountByClass.allObjects () {
+    for c : AnyObject in mAllocatedObjectCountByClass.allObjects  {
       let className = c as String
       let liveByClass = mAllocatedObjectCountByClass.countForObject (className)
       mSnapShotDictionary.setObject (liveByClass, forKey:className)
@@ -191,11 +191,11 @@ var gDebugObject : PMAllocationDebug! = nil
       var totalObjectCount : Int = 0
     //---
       var array : [PMAllocationItemDisplay] = []
-      let allObjects = mTotalAllocatedObjectCountByClass.allObjects ()
+      let allObjects = mTotalAllocatedObjectCountByClass.allObjects
       for object : AnyObject in allObjects {
         let liveByClass = mAllocatedObjectCountByClass.countForObject (object)
         let totalByClass = mTotalAllocatedObjectCountByClass.countForObject (object)
-        let snapShotByClass : Int? = mSnapShotDictionary.objectForKey (object)?.unsignedIntegerValue ()
+        let snapShotByClass : Int? = mSnapShotDictionary.objectForKey (object)?.unsignedIntegerValue
         liveObjectCount += liveByClass ;
         totalObjectCount += totalByClass ;
         var display = true ;
@@ -205,12 +205,12 @@ var gDebugObject : PMAllocationDebug! = nil
           display = liveByClass != snapShotByClass ;
         }
         if display {
-          array += PMAllocationItemDisplay (
-            classname : object as String,
+          array.append (PMAllocationItemDisplay (
+            classname : object as NSString,
             allCount : totalByClass,
             live : liveByClass,
-            snapshot : (snapShotByClass ? snapShotByClass! : 0)
-          )
+            snapshot : ((snapShotByClass != nil) ? snapShotByClass! : 0)
+          ))
         }
       }
       mAllocatedObjectCount = liveObjectCount ;
@@ -231,7 +231,7 @@ var gDebugObject : PMAllocationDebug! = nil
                   objectValueForTableColumn: NSTableColumn,
                   row:NSInteger) -> AnyObject! {
     var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row]
-    return theRecord.valueForKey (objectValueForTableColumn.identifier () as String)
+    return theRecord.valueForKey (objectValueForTableColumn.identifier as String)
   }
   
   //---------------------------------------------------------------------------*
@@ -245,23 +245,24 @@ var gDebugObject : PMAllocationDebug! = nil
   //---------------------------------------------------------------------------*
   
   func pmShowAllocationStatsWindow () {
-    mStatsTableView?.window ().makeKeyAndOrderFront (nil)
+    mStatsTableView?.window?.makeKeyAndOrderFront (nil)
   }
   
   //---------------------------------------------------------------------------*
   
   class func routineShowAllocationStatsWindow () {
-    gDebugObject.pmShowAllocationStatsWindow ()
+    gDebugObject?.pmShowAllocationStatsWindow ()
   }
   
   //---------------------------------------------------------------------------*
   
   class func addItemToDebugMenu (inMenuItem : NSMenuItem) {
     if (nil == gDebugObject) {
-      gDebugObject = PMAllocationDebug ()
+      var debugObject = PMAllocationDebug ()
+      gDebugObject = debugObject
       var mainBundle = NSBundle.mainBundle ()
       let s = "PMAllocationDebug"
-      let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
+      let ok = mainBundle.loadNibNamed (s, owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
       if !ok {
         presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
       }
@@ -276,24 +277,25 @@ var gDebugObject : PMAllocationDebug! = nil
 
 func noteObjectAllocation (inObject : NSObject) {
   if (nil == gDebugObject) {
-    gDebugObject = PMAllocationDebug ()
+    var debugObject = PMAllocationDebug ()
+    gDebugObject = debugObject
     var topLevelObjects : NSArray?
     var mainBundle = NSBundle.mainBundle ()
     let s = "PMAllocationDebug"
-    let ok = mainBundle.loadNibNamed (s, owner:gDebugObject as NSObject, topLevelObjects:&gDebugObject.mTopLevelObjects)
+    let ok = mainBundle.loadNibNamed (s, owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
     if !ok {
       presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
     }
   }
-  let className = inObject.className ()
-  gDebugObject.pmNoteObjectAllocation (className)
+  let className = inObject.className 
+  gDebugObject?.pmNoteObjectAllocation (className)
 }
 
 //-----------------------------------------------------------------------------*
 
 func noteObjectDeallocation (inObject : NSObject) {
-  let className = inObject.className ()
-  gDebugObject.pmNoteObjectDeallocation (className)
+  let className = inObject.className
+  gDebugObject?.pmNoteObjectDeallocation (className)
 }
 
 //-----------------------------------------------------------------------------*

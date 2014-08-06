@@ -36,11 +36,11 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %  //-----------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !73 !' ']%*
   //-----------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers = PMSet<protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%> ()\n%
+%  var %!mAttributeName%_observers = NSMutableSet ()\n%
 %  var %!mAttributeName% : %![mType swiftTypeName]% = %!mDirectSwiftDefaultValue% {
     didSet {
       if %!mAttributeName% != oldValue {
-        for anyObject in %!mAttributeName%_observers.allObjects () {
+        for anyObject in %!mAttributeName%_observers.allObjects {
           let object = anyObject as protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%
           object.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
         }
@@ -95,7 +95,7 @@ end
 %
 
   //------------------------------------------------------- Init
-  override init () {
+  init () {
     super.init ()
     noteObjectAllocation (self) ;
     g_%!PREFERENCES_NAME% = self ;
@@ -109,7 +109,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
     %    var value : AnyObject?\n%
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
-    %    if value != nil {\n%
+    %    if value {\n%
     %      %!mAttributeName% = %![mType preferencesSwiftGetter]%\n%
     %    }\n%
 end
