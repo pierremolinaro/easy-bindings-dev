@@ -1291,7 +1291,7 @@ filewrapper transientManager in "../generation-templates/application-class" {
 
 #----------------------------------------------------------------------------*
 
-routine generateTransientDependencyFiles
+routine generateTransientTrigersAndApplication
   ??@2stringlist inTransientDependencyArcList
   ??@string inSourceDirectoryPath
   ??@stringlist inSortedTransientOrderedList

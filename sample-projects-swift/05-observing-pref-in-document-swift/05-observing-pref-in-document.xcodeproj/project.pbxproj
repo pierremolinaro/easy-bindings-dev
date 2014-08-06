@@ -18,6 +18,7 @@
 		CF4627B11595B53B00BF70CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF4627AF1595B53B00BF70CD /* InfoPlist.strings */; };
 		CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF4627B51595B53B00BF70CD /* Credits.rtf */; };
 		CF5B9F761986794C00A26AD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5B9F751986794C00A26AD6 /* main.swift */; };
+		CF87C51D1992D7F700A77E72 /* observer-protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87C51C1992D7F700A77E72 /* observer-protocols.swift */; };
 		CFB6B40A19866E35005024BB /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6B3FD19866E35005024BB /* MyDocument.swift */; };
 		CFB6B40B19866E35005024BB /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6B3FE19866E35005024BB /* MyRootEntity.swift */; };
 		CFB6B40C19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6B3FF19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift */; };
@@ -52,6 +53,7 @@
 		CF4627B01595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF4627B61595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CF5B9F751986794C00A26AD6 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CF87C51C1992D7F700A77E72 /* observer-protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "observer-protocols.swift"; sourceTree = "<group>"; };
 		CFB6B3FD19866E35005024BB /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocument.swift; sourceTree = "<group>"; };
 		CFB6B3FE19866E35005024BB /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 		CFB6B3FF19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+otherTransientConcatString.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
+				CF87C51C1992D7F700A77E72 /* observer-protocols.swift */,
 				CF5B9F751986794C00A26AD6 /* main.swift */,
 				CFB6B3FD19866E35005024BB /* MyDocument.swift */,
 				CFB6B3FE19866E35005024BB /* MyRootEntity.swift */,
@@ -226,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF87C51D1992D7F700A77E72 /* observer-protocols.swift in Sources */,
 				CFB6B41419866E35005024BB /* PMObjectManager.swift in Sources */,
 				CFB6B40C19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */,
 				CF5B9F761986794C00A26AD6 /* main.swift in Sources */,

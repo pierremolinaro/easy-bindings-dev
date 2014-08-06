@@ -81,6 +81,7 @@ override method @controllerClassDeclaration buildObservablePropertyMap
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mControllerClassName
+    !mUserDefined
     ![@typeKind controllerClassType]
     !observablePropertyMap
   ] ;
@@ -130,7 +131,7 @@ override method @controllerClassDeclaration semanticAnalysis
 #---
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mControllerClassName
-    ?*
+    ?2*
     ?@observablePropertyMap observablePropertyMap
   ] ;
 #---

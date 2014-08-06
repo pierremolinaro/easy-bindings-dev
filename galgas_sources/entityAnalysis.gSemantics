@@ -67,6 +67,7 @@ override method @entityDeclaration buildObservablePropertyMap
   if [mSuperEntityName string] != "" then
     [ioObservablePropertyMapMap searchKey
        !mSuperEntityName
+       ?*
        ?@typeKind kind
        ?observablePropertyMap
      ] ;
@@ -111,6 +112,7 @@ override method @entityDeclaration buildObservablePropertyMap
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mEntityName
+    !mUserDefined
     ![@typeKind entityType]
     !observablePropertyMap
   ] ;
@@ -126,7 +128,7 @@ override method @entityDeclaration semanticAnalysis
 #------------------------------- Get Observable property map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mEntityName
-     ?*
+     ?2*
      ?@observablePropertyMap selfObservablePropertyMap
    ] ;
 #--------------------------------------------- Get super entity (if any)

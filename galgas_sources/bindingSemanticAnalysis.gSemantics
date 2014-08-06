@@ -87,6 +87,7 @@ override method @tableValueBinding analyzeOutletBinding
     ] ;
     [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
       !controlledClassOrEntityName
+      ?*
       ?@typeKind kind
       ?@observablePropertyMap observablePropertyMap
     ] ;
@@ -277,6 +278,7 @@ override method @regularControllerSelectionBinding analyzeOutletBinding
 #---------------------------------- Search controlled object property map
   [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !controlledClassOrEntityName
+    ?*
     ?@typeKind kind
     ?@observablePropertyMap observablePropertyMap
   ] ;
@@ -516,6 +518,7 @@ override method @regularPreferenceBinding analyzeOutletBinding
 #---------------------------------------- Search preference in preferences map
   [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferenceName
+    ?*
     ?@typeKind kind
     ?@observablePropertyMap observablePropertyMap
   ] ;
@@ -718,6 +721,7 @@ override method @multiValuedBindingBoundToPref analyzeModel
 :
   [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferenceName
+    ?*
     ?@typeKind kind
     ?@observablePropertyMap preferenceObservableAttributeMap
   ] ;
@@ -791,6 +795,7 @@ override method @multiValuedBindingBoundToControllerSelection analyzeModel
 #---------------------------------- Search controlled object property map
   [inContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !controlledClassOrEntityName
+    ?*
     ?@typeKind kind
     ?@observablePropertyMap observablePropertyMap
   ] ;

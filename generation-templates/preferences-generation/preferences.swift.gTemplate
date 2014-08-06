@@ -2,17 +2,7 @@
 
 import Cocoa
 
-%foreach ATTRIBUTE_LIST_FOR_GENERATION do
-%//-----------------------------------------------------------------------------*
-//    %!["Protocol: " + mAttributeName stringByRightPadding !73 !' ']%*
-//-----------------------------------------------------------------------------*\n\n%
-%@objc(protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) protocol protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]% {
-  func %!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
-}
-
-%
-end
-%//-----------------------------------------------------------------------------*
+//-----------------------------------------------------------------------------*
 
 var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 
