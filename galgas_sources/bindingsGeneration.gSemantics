@@ -53,8 +53,10 @@ override reader @runBindingForGeneration generateSwiftBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult := "    " . inOutletName . "?.target = " . mTargetName . "\n" ;
-  outResult .= "    " . inOutletName . "?.action = \"" . mActionName . ":\"\n" ;  
+  outResult := "    if " . inOutletName . " {\n"
+             . "      " . inOutletName . "!.target = " . mTargetName . "\n"
+             . "      " . inOutletName . "!.action = \"" . mActionName . ":\"\n"
+             . "    }\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -73,8 +75,10 @@ override reader @runBindingForGeneration generateSwiftRemoveBinding
   ??@string inOutletName
   -> @string outResult
 :
-  outResult := "    " . inOutletName . "?.target = nil\n" ;
-  outResult .= "    " . inOutletName . "?.action = nil\n" ;  
+  outResult := "    if " . inOutletName . " {\n"
+             . "      " . inOutletName . "!.target = nil\n"
+             . "      " . inOutletName . "!.action = nil\n"
+             . "    }\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -120,11 +124,12 @@ override reader @tableValueBindingForGeneration generateSwiftBinding
 :
   outResult := "" ;
   for column in mColumnBindingForTableValueBindingForGeneration do
-     outResult .=  "    if nil == " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\") {\n"
+     outResult .=  "    if !(" . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\")) {\n"
      . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' NSTableView outlet has no formatter has no column with the " . column->mColumnIdentifier . " identifier\") ;\n"
      . "    }else{\n"
-     . "      let cell : NSActionCell = " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").dataCell as NSActionCell\n"
-     . "      if !cell.isKindOfClass (" . column->mRequiredCellClass . ") {\n"
+     . "      let cell : AnyObject? = " . inOutletName . "?.tableColumnWithIdentifier (\"" . column->mColumnIdentifier . "\").dataCell\n"
+     . "      let actionCell : NSActionCell = cell as NSActionCell\n"
+     . "      if !actionCell.isKindOfClass (" . column->mRequiredCellClass . ") {\n"
      . "        presentErrorWindow (__FILE__, __LINE__, \"the dataCell is '" . column->mColumnIdentifier . "' column of the '" . inOutletName . "' should be an '" . column->mRequiredCellClass . " instance\") ;\n"
      . "      }\n"
      . "    }\n"
@@ -220,13 +225,13 @@ override reader @regularBindingForGeneration generateSwiftBinding
   switch mRequiredFormatter
   when noFormatter :
   when numberFormatter :
-   outResult .=  "    if (nil != " . inOutletName . ") && (" . inOutletName . "?.formatter == nil) {\n"
+   outResult .=  "    if (nil != " . inOutletName . ") && !" . inOutletName . "?.formatter {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSNumberFormatter\") ;\n"
    . "    }else if (nil != " . inOutletName . ") && !((" . inOutletName . "?.formatter?.isKindOfClass (NSNumberFormatter))!) {\n"
    . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . " outlet has a formatter that is not kind of NSNumberFormatter class\") ;\n"
    . "    }\n" ;
   when dateFormatter :
-    outResult .= "    if (nil != " . inOutletName . ") && (" . inOutletName . "?.formatter == nil) {\n"
+    outResult .= "    if (nil != " . inOutletName . ") && !" . inOutletName . "?.formatter {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has no formatter, it should have an NSDateFormatter\") ;\n"
     . "    }else if (nil != " . inOutletName . ") && !((" . inOutletName . "?.formatter?.isKindOfClass (NSDateFormatter))!) {\n"
     . "      presentErrorWindow (__FILE__, __LINE__, \"the '" . inOutletName . "' outlet has a formatter that is not kind of NSDateFormatter class\") ;\n"

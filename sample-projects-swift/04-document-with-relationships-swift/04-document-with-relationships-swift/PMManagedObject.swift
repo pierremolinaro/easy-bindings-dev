@@ -67,7 +67,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-----------------------------------------------------------------------------*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
-                            managedObjectArray : PMArray<PMManagedObject>) {
+                            managedObjectArray : NSArray) {
   }
 
   //-----------------------------------------------------------------------------*
@@ -151,7 +151,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //   accessibleObjects                                                       *
   //---------------------------------------------------------------------------*
 
-  func accessibleObjects (inout objects : PMArray<PMManagedObject>) {
+  func accessibleObjects (inout objects : NSMutableArray) {
   }
 
   //---------------------------------------------------------------------------*
@@ -258,18 +258,18 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))
   //--- Set close button as 'remove window' button
-    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton?.target = self
-    closeButton?.action = "deleteWindowAction:"
+    var closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = self
+    closeButton!.action = "deleteWindowAction:"
   //--- Set window title
     let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
-    mExplorerWindow?.title = windowTitle
+    mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
     var sw = NSScrollView (frame:frame)
     sw.hasVerticalScroller = true
     sw.documentView = view
-    mExplorerWindow?.contentView = sw
+    mExplorerWindow!.contentView = sw
   }
 
   //---------------------------------------------------------------------------*
@@ -338,7 +338,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func clearObjectExplorer () {
     var closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton?.target = nil
+    closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
   }
@@ -379,11 +379,11 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func readEntityFromDictionary (inRelationshipName: String,
                                  inDictionary : NSDictionary,
-                                 managedObjectArray : PMArray<PMManagedObject>) -> PMManagedObject? {
+                                 managedObjectArray : NSArray) -> PMManagedObject? {
   let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
   var result : PMManagedObject? = nil
   if nil != value {
-    result = managedObjectArray [value!.unsignedIntegerValue]
+    result = managedObjectArray [value!.unsignedIntegerValue] as? PMManagedObject
   }
   return result
 }
@@ -394,13 +394,13 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
-                                     managedObjectArray : PMArray<PMManagedObject>) -> NSMutableArray {
+                                     managedObjectArray : NSArray) -> NSMutableArray {
   let indexArray : NSArray? = inDictionary.valueForKey (inRelationshipName) as? NSArray
   var result = NSMutableArray ()
   if nil != indexArray {
     for object : AnyObject in indexArray! {
       let number = object as NSNumber
-      let managedObject = managedObjectArray [number.unsignedIntegerValue]
+      let managedObject = managedObjectArray [number.unsignedIntegerValue] as PMManagedObject
       result.addObject (managedObject)
     }
   }

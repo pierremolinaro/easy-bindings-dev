@@ -2,6 +2,16 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+%foreach CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%@objc(protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) protocol protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]% {
+  func %!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+}
+%
+  end
+end%
+//---------------------------------------------------------------------------------------------------------------------*
+
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %@objc(protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%) protocol protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]% {
   func %!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
@@ -31,7 +41,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   var %!mRelationshipName->string%__explorer : NSPopUpButton?
   var %!mRelationshipName->string% : NSMutableArray = NSMutableArray () { // Set of %!mDestinationEntityName->string% entities
     didSet {
-      if (oldValue != %!mRelationshipName->string%) {
+//      if (oldValue != %!mRelationshipName->string%) {
       //--- Register old value in undo manager
         undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
       //--- Update explorer
@@ -61,14 +71,17 @@ foreach CURRENT_RELATIONSHIP_LIST do
     end
 %        }
       //--- Notify observers object count did change
- //       %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")\n%
-    if [SIGN_SET hasKey !mRelationshipName->string] then
+        for anyObject in %!mRelationshipName->string%_observers {
+          let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
+          object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+        }
+%    if [SIGN_SET hasKey !mRelationshipName->string] then
       %    //--- Trigger signature computing\n%
       %      triggerSignatureComputing ()\n%
     end
     !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %      }
-    }
+ //   }
   }
 
   func insertObject (inObject : %!mDestinationEntityName->string%,
@@ -88,7 +101,10 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }else if idx != inMNamesAtIndex {
     }
   //--- Notify observers object count did change
-  //  %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
+    for anyObject in %!mRelationshipName->string%_observers {
+      let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
+      object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+    }
   }
 
   func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
@@ -104,7 +120,10 @@ foreach CURRENT_RELATIONSHIP_LIST do
   //--- Reset inverse relationship
     removedObject.%!mInverseRelationshipName->string% = nil
   //--- Notify observers object count did change
-    //  %!mRelationshipName->string%_observers.makeObjectsPerformSelector ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange")
+    for anyObject in %!mRelationshipName->string%_observers {
+      let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
+      object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+    }
   }
 
   func appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
@@ -120,14 +139,14 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }
   }
    
-  func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+  func addObserverOf_%!mRelationshipName->string% (inObserver : protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) {
     %!mRelationshipName->string%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    inObserver.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
   }
 
-  func removeObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
+  func removeObserverOf_%!mRelationshipName->string% (inObserver : protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) {
     %!mRelationshipName->string%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+    inObserver.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
   }
 %
   end
@@ -144,7 +163,7 @@ end
   var %!mRelationshipName->string%__explorer : NSButton?
   weak var %!mRelationshipName->string% : %!mDestinationEntityName->string%? = nil {
     didSet {
-      if oldValue != %!mRelationshipName->string% {
+ //     if oldValue != %!mRelationshipName->string% {
       //--- Register old value in undo manager
         undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%:", object:oldValue)
       //--- Update explorer
@@ -171,7 +190,7 @@ end
 %    end
     !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 %      }
-    }
+//    }
   }
    
   func addObserverOf_%!mRelationshipName->string% (inObserver : AnyObject) {
@@ -192,14 +211,13 @@ end
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override init (entityManager : PMObjectManager) {
+  init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
   //--- Add Transient observers\n%
 !generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
 %  }
 
 %!generateSwiftObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]%
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindow                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -207,7 +225,9 @@ end
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    %!mAttributeName%__explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
-%    %!mAttributeName%__explorer?.stringValue = %![mType valueAccessorForExplorerWindow !mAttributeName]%\n%
+%    if %!mAttributeName%__explorer {\n%
+%      %!mAttributeName%__explorer!.stringValue = %![mType valueAccessorForExplorerWindow !mAttributeName]%\n%
+%    }\n%
 end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
@@ -217,7 +237,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
 %   %!mRelationshipName->string%__explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName->string%", ioRect: &ioRect, view: view)
    updateManagedObjectToOneRelationshipDisplayForKey ("%!mRelationshipName->string%",button:%!mRelationshipName->string%__explorer!)\n%
   end
-end%   }
+end%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    clearObjectExplorer                                                                                            *
@@ -255,7 +275,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : PMArray<PMManagedObject>) {
+                                     managedObjectArray : NSArray) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %    %!mAttributeName% = inDictionary.read%![mType swiftTypeName]% ("%!mAttributeName%")\n%
@@ -263,7 +283,7 @@ end
 foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
 %    %!mRelationshipName->string% = readEntityArrayFromDictionary ("%!mRelationshipName->string%", inDictionary:inDictionary, managedObjectArray:managedObjectArray)\n%
-  else
+  elsif not mInverseRelationIsToMany then
 %    %!mRelationshipName->string% = readEntityFromDictionary ("%!mRelationshipName->string%", inDictionary:inDictionary, managedObjectArray:managedObjectArray) as? %!mDestinationEntityName->string%\n%
   end
 end
@@ -290,7 +310,7 @@ end
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func accessibleObjects (inout objects : PMArray<PMManagedObject>) {
+  override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
 %foreach CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

@@ -13,7 +13,6 @@
 		CF7C640A196060D800BE14DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7C6409196060D800BE14DF /* Images.xcassets */; };
 		CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C640B196060D800BE14DF /* MainMenu.xib */; };
 		CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */; };
-		CF7C64251960618800BE14DF /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CF7C64301960619500BE14DF /* NameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64261960619500BE14DF /* NameEntity.swift */; };
 		CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64271960619500BE14DF /* PMAllocationDebug.swift */; };
 		CF7C64321960619500BE14DF /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64281960619500BE14DF /* PMApplication.swift */; };
@@ -28,6 +27,7 @@
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
 		CF7C6441196063B800BE14DF /* PMEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6440196063B800BE14DF /* PMEntityController.swift */; };
 		CF7C64431960664700BE14DF /* PMEntityArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64421960664700BE14DF /* PMEntityArrayController.swift */; };
+		CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CFE3F3E01965FA3C0017DFCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3DF1965FA3C0017DFCE /* libz.dylib */; };
 		CFE3F3E21965FAB30017DFCE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3E11965FAB30017DFCE /* libbz2.dylib */; };
 /* End PBXBuildFile section */
@@ -221,9 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7C64251960618800BE14DF /* MyRootEntity.swift in Sources */,
 				CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */,
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
+				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF7C64431960664700BE14DF /* PMEntityArrayController.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
@@ -344,7 +344,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.10;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};

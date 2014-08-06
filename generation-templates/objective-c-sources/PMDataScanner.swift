@@ -16,8 +16,8 @@ import Cocoa
   var mReadIndex : Int = 0
   var mReadOk : Bool = true
   var mExpectedBytes : Array<UInt8> = []
-  var mProgressWindow : NSWindow?
-  var mProgressIndicator : NSProgressIndicator?
+  var mProgressWindow : NSWindow? = nil
+  var mProgressIndicator : NSProgressIndicator? = nil
 
   //---------------------------------------------------------------------------*
   //  init                                                                     *
@@ -62,8 +62,8 @@ import Cocoa
       backing:NSBackingStoreType.Buffered,
       defer:false
     )
-    mProgressWindow?.excludedFromWindowsMenu = true
-    mProgressWindow?.title = "Progress"
+    mProgressWindow!.excludedFromWindowsMenu = true
+    mProgressWindow!.title = "Progress"
     let contientViewRect : NSRect = mProgressWindow!.contentView.frame
   //--- Add comment text
     let ts_r = NSRect (
@@ -91,11 +91,11 @@ import Cocoa
     mProgressIndicator!.indeterminate = true
     mProgressWindow!.contentView.addSubview (mProgressIndicator!)
   //---
-    mProgressIndicator?.minValue = 0.0
-    mProgressIndicator?.maxValue = Double (mData.length)
-    mProgressIndicator?.doubleValue = Double (mReadIndex)
-    mProgressIndicator?.indeterminate = false
-    mProgressIndicator?.display ()
+    mProgressIndicator!.minValue = 0.0
+    mProgressIndicator!.maxValue = Double (mData.length)
+    mProgressIndicator!.doubleValue = Double (mReadIndex)
+    mProgressIndicator!.indeterminate = false
+    mProgressIndicator!.display ()
   //---
     mProgressWindow!.makeKeyAndOrderFront (nil)
   }
@@ -105,8 +105,10 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func updateProgressIndicator () {
-    mProgressIndicator?.doubleValue = Double (mReadIndex)
-    mProgressIndicator?.display ()
+    if mProgressIndicator {
+      mProgressIndicator!.doubleValue = Double (mReadIndex)
+      mProgressIndicator!.display ()
+    }
   }
 
   //---------------------------------------------------------------------------*

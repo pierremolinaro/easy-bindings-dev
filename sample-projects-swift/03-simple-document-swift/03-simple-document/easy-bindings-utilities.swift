@@ -104,7 +104,7 @@ extension NSDictionary {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMSet <T : AnyObject> { // : SequenceType {
+/*struct PMSet <T : AnyObject> { // : SequenceType {
   var mSet = NSMutableSet ()
 
   init () {
@@ -143,10 +143,10 @@ struct PMSet <T : AnyObject> { // : SequenceType {
   }
   
   
-/*  func generate () -> PMSetGenerator<T> {
+  func generate () -> PMSetGenerator<T> {
     return PMSetGenerator<T> (valueSet:mSet)
-  } */
-}
+  }
+}*/
 
 //---------------------------------------------------------------------------*
 
@@ -172,7 +172,7 @@ struct PMSet <T : AnyObject> { // : SequenceType {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMArray <T : AnyObject> : SequenceType {
+/*struct PMArray <T : AnyObject> : SequenceType {
   var mArray = NSMutableArray ()
 
   init () {
@@ -214,11 +214,11 @@ struct PMArray <T : AnyObject> : SequenceType {
   func generate () -> PMArrayGenerator<T> {
     return PMArrayGenerator<T> (valueArray:mArray)
   }
-}
+}*/
 
 //---------------------------------------------------------------------------*
 
-struct PMArrayGenerator <T : AnyObject> : GeneratorType {
+/* struct PMArrayGenerator <T : AnyObject> : GeneratorType {
   let mArray : NSArray
   var mEnumerator : NSEnumerator
   
@@ -230,6 +230,6 @@ struct PMArrayGenerator <T : AnyObject> : GeneratorType {
   mutating func next () -> T? {
     return mEnumerator.nextObject () as? T
   }
-}
+} */
 
 //---------------------------------------------------------------------------*

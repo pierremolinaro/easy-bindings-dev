@@ -21,7 +21,7 @@ let traceUndoManager = false
   //    init                                                                     *
   //-----------------------------------------------------------------------------*
 
-  override init () {
+   init () {
     super.init ()
     noteObjectAllocation (self)
   }
