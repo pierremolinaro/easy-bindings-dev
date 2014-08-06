@@ -12,6 +12,7 @@
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CF71E65B1940938500021EDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF71E65A1940938500021EDF /* Images.xcassets */; };
 		CF71E66A1940938500021EDF /* _1_simple_preferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */; };
+		CF87C5171992D53F00A77E72 /* observer-protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87C5161992D53F00A77E72 /* observer-protocols.swift */; };
 		CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */; };
 		CFA38986194094C400F20FFB /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38985194094C400F20FFB /* PMApplication.swift */; };
 		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
@@ -40,6 +41,7 @@
 		CF71E6631940938500021EDF /* 01-simple-preferencesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "01-simple-preferencesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF71E6681940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _1_simple_preferencesTests.swift; sourceTree = "<group>"; };
+		CF87C5161992D53F00A77E72 /* observer-protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "observer-protocols.swift"; sourceTree = "<group>"; };
 		CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CFA38985194094C400F20FFB /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
+				CF87C5161992D53F00A77E72 /* observer-protocols.swift */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
 				CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */,
@@ -231,6 +234,7 @@
 				CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */,
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
+				CF87C5171992D53F00A77E72 /* observer-protocols.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
 			);

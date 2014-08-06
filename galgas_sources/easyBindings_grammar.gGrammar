@@ -2,6 +2,7 @@ grammar easyBindings_grammar "SLR":
 with "easyBindings_syntax.gSyntax" ;
 
 root <start_symbol>
+  ??userDefined:@bool inIsUserDefined
   ?!@astDeclarationList ioDeclarationList
   ?!@cursorList ioCursorList
   !@location outEndOfFile

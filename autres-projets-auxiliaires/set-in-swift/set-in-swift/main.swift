@@ -172,7 +172,7 @@ func allocInSequentialSet2 () {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
+struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
   var mSet = NSMutableSet ()
 
   mutating func add (item : T) {
@@ -218,7 +218,7 @@ struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
 
 //---------------------------------------------------------------------------*
 
-struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
+struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
   let mSet : NSSet
   var mEnumerator : NSEnumerator
   

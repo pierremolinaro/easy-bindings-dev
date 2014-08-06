@@ -84,6 +84,7 @@ override method @preferencesDeclaration buildObservablePropertyMap
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mPreferencesName
+    !mUserDefined
     ![@typeKind preferencesType]
     !observablePropertyMap
   ] ;
@@ -98,7 +99,7 @@ override method @preferencesDeclaration semanticAnalysis
 :
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferencesName
-    ?*
+    ?2*
     ?@observablePropertyMap selfObservablePropertyMap
   ] ;    
 #------------------------------------- Analyze actions
@@ -183,6 +184,7 @@ override method @preferencesDeclaration semanticAnalysis
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
+        ?*
         ?@typeKind kind
         ?@observablePropertyMap classObservablePropertyMap
       ] ;
@@ -228,6 +230,7 @@ override method @preferencesDeclaration semanticAnalysis
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
+        ?*
         ?@typeKind kind
         ?@observablePropertyMap classObservablePropertyMap
       ] ;

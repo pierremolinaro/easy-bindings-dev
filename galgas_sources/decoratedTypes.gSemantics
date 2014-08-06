@@ -1,7 +1,6 @@
 semantics decoratedTypes :
   import "abstractSyntaxTypes.gSemantics" ;
   import "easyBindings_options.gOptions" ;
-#  import "transientGeneration.gSemantics" ;
   
 #----------------------------------------------------------------------------*
 
@@ -1425,6 +1424,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 map @observablePropertyMapMap {
+  @bool mUserDefined ;
   @typeKind mType ;
   @observablePropertyMap mObservablePropertyMap ;
   insert insertKey error message "the '%K' key is already declared" ;

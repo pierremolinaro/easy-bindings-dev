@@ -20,23 +20,6 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 //                                                                           *
-//    T R A N S I E N T    P R O T O C O L S                                 *
-//                                                                           *
-//---------------------------------------------------------------------------*
-
-%
-foreach TRANSIENT_LIST
-do index idx
-%@objc(protocol_%![mValue identifierRepresentation]%) protocol protocol_%![mValue identifierRepresentation]% {
-  func %![mValue identifierRepresentation]%_didChange ()
-}
-
-%
-between
-%//---------------------------------------------------------------------------*\n\n%
-end  
-%//---------------------------------------------------------------------------*
-//                                                                           *
 //    T R A N S I E N T    T R I G G E R    F U N C T I O N S                *
 //                                                                           *
 //---------------------------------------------------------------------------*

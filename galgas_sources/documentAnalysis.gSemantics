@@ -74,6 +74,7 @@ override method @documentDeclaration buildObservablePropertyMap
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mDocumentName
+    !mUserDefined
     ![@typeKind documentType]
     !observablePropertyMap
   ] ;
@@ -97,13 +98,13 @@ override method @documentDeclaration semanticAnalysis
   ] ;
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mRootEntityName
-    ?*
+    ?2*
     ?@observablePropertyMap rootObjectObservablePropertyMap
   ] ;
 #------------------------------------------------ Document observable properties
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mDocumentName
-    ?*
+    ?2*
     ?@observablePropertyMap selfObservableAttributeMap
   ] ;
 #-------------------------------------------------- Analyze attributes

@@ -77,6 +77,7 @@ override method @nibClassDeclaration buildObservablePropertyMap
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mClassName
+    !mUserDefined
     ![@typeKind nibClassType]
     !observablePropertyMap
   ] ;
@@ -92,7 +93,7 @@ override method @nibClassDeclaration semanticAnalysis
 #------------------------------- Get Observable property map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mClassName
-     ?*
+     ?2*
      ?@observablePropertyMap selfObservablePropertyMap
    ] ;
 #-----
@@ -183,6 +184,7 @@ override method @nibClassDeclaration semanticAnalysis
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
+        ?*
         ?@typeKind kind
         ?@observablePropertyMap classObservablePropertyMap
       ] ;
@@ -218,6 +220,7 @@ override method @nibClassDeclaration semanticAnalysis
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
+        ?*
         ?@typeKind kind
         ?@observablePropertyMap classObservablePropertyMap
       ] ;

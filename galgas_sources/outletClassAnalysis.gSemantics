@@ -39,6 +39,7 @@ override method @outletClassDeclaration buildObservablePropertyMap
   if [mSuperClassName string] != "" then
     [ioObservablePropertyMapMap searchKey
        !mSuperClassName
+       ?*
        ?@typeKind kind
        ?observablePropertyMap
      ] ;
@@ -48,22 +49,10 @@ override method @outletClassDeclaration buildObservablePropertyMap
   else
     observablePropertyMap := [@observablePropertyMap emptyMap] ;
   end if ;
-#----------------------------------
-#  buildObservablePropertyMap
-#    ![@attributeList emptyList] # mAttributeList
-#    ![@classArrayList emptyList] # mArrayList
-#    ![@transientList emptyList] #mTransientList
-#    ![@controllerList emptyList]
-#    ![@controllerObservablePropertyList emptyList]
-#    !?ioObservablePropertyMapMap
-#    !?ioTransientDependencyGraph
-#    !inUnifiedTypeMap
-#    !"outletclass." . mOutletClassName
-#    !?observablePropertyMap
-#  ;
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mOutletClassName
+    !mUserDefined
     ![@typeKind outletClassType]
     !observablePropertyMap
   ] ;

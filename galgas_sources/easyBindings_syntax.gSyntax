@@ -6,6 +6,7 @@ import "easyBindings_grammar.gGrammar" ;
 #----------------------------------------------------------------------------*
 
 rule <start_symbol>
+  ??@bool inIsUserDefined
   ?!@astDeclarationList ioDeclarationList
   ?!@cursorList ioCursorList
   !@location outEndOfFile
@@ -20,41 +21,42 @@ rule <start_symbol>
       !filePath->location
     ] ;
     grammar easyBindings_grammar in sourceFile
+      !userDefined:inIsUserDefined
       !?ioDeclarationList
       !?ioCursorList
       ?*
     ;
   while
-    <struct_declaration>  ?@structDeclaration declaration ;
+    <struct_declaration> !inIsUserDefined ?@structDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <enum_declaration> ?@enumDeclaration declaration ;
+    <enum_declaration> !inIsUserDefined ?@enumDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
     <cursor_declaration> !?ioCursorList ;
   while
-    <protocol_declaration> ?@protocolDeclaration declaration ;
+    <protocol_declaration> !inIsUserDefined ?@protocolDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <class_declaration> ?@classDeclaration declaration ;
+    <class_declaration> !inIsUserDefined ?@classDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <entity_declaration> ?@entityDeclaration declaration ;
+    <entity_declaration>  !inIsUserDefined ?@entityDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <nib_class_declaration> ?@nibClassDeclaration declaration ;
+    <nib_class_declaration>  !inIsUserDefined ?@nibClassDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <preferences_declaration> ?@preferencesDeclaration declaration ;
+    <preferences_declaration> !inIsUserDefined ?@preferencesDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <document_declaration> ?@documentDeclaration declaration ;
+    <document_declaration> !inIsUserDefined ?@documentDeclaration declaration ;
     ioDeclarationList += !declaration  ;
   while
-    <outlet_class_declaration> ?@outletClassDeclaration declaration ;
+    <outlet_class_declaration> !inIsUserDefined ?@outletClassDeclaration declaration ;
     ioDeclarationList += !declaration ;
   while
-    <controller_class_declaration> ?@controllerClassDeclaration declaration ;
+    <controller_class_declaration> !inIsUserDefined ?@controllerClassDeclaration declaration ;
     ioDeclarationList += !declaration ;
   end repeat ;
   outEndOfFile := here ;
@@ -64,6 +66,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <struct_declaration>
+   ??@bool inIsUserDefined
   !@structDeclaration outDeclaration
 :
   $struct$ ;
@@ -79,6 +82,7 @@ rule <struct_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@structDeclaration new
+    !inIsUserDefined
     !structName
     !structFieldList
   ] ;
@@ -339,6 +343,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <preferences_declaration>
+  ??@bool inIsUserDefined
   !@preferencesDeclaration outDeclaration
 :
   $preferences$ ;
@@ -366,6 +371,7 @@ rule <preferences_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@preferencesDeclaration new
+    !inIsUserDefined
     !preferencesName
     !outletDeclarationList
     !attributeList
@@ -379,6 +385,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <nib_class_declaration>
+  ??@bool inIsUserDefined
   !@nibClassDeclaration outDeclaration
 :
   $nibClass$ ;
@@ -406,6 +413,7 @@ rule <nib_class_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@nibClassDeclaration new
+    !inIsUserDefined
     !preferencesName
     !outletDeclarationList
     !attributeList
@@ -431,6 +439,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <document_declaration>
+  ??@bool inIsUserDefined
   !@documentDeclaration outDeclaration
 :
   $document$ ;
@@ -457,6 +466,7 @@ rule <document_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@documentDeclaration new
+    !inIsUserDefined
     !preferencesName
     !rootEntityName
     !outletDeclarationList
@@ -508,6 +518,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <class_declaration>
+  ??@bool inIsUserDefined
   !@classDeclaration outDeclaration
 :
   $class$ ;
@@ -533,6 +544,7 @@ rule <class_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@classDeclaration new
+    !inIsUserDefined
     !className
     !superClassName
     !attributeList
@@ -803,6 +815,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <entity_declaration>
+  ??@bool inIsUserDefined
   !@entityDeclaration outDeclaration
 :
   $entity$ ;
@@ -877,6 +890,7 @@ rule <entity_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@entityDeclaration new
+    !inIsUserDefined
     !entityName
     !superEntityName
     !attributeList
@@ -966,6 +980,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <outlet_class_declaration>
+  ??@bool inIsUserDefined
   !@outletClassDeclaration outDeclaration
 :
   @generationKind generationKind ;
@@ -1048,6 +1063,7 @@ rule <outlet_class_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@outletClassDeclaration new
+    !inIsUserDefined
     !outletClassName
     !superClass
     !adoptedProtocolList
@@ -1061,6 +1077,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <protocol_declaration>
+  ??@bool inIsUserDefined
   !@protocolDeclaration outDeclaration
 :
   @bool isPredefined ;
@@ -1073,6 +1090,7 @@ rule <protocol_declaration>
   $Identifier$ ? @lstring protocolName ;
   $;$ ;
   outDeclaration := [@protocolDeclaration new
+    !inIsUserDefined
     !isPredefined
     !protocolName
   ] ;
@@ -1097,6 +1115,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <enum_declaration>
+  ??@bool inIsUserDefined
   !@enumDeclaration outDeclaration
 :
   $enum$ ;
@@ -1110,12 +1129,13 @@ rule <enum_declaration>
     $,$ ;
   end repeat ;
   $}$ ;
-  outDeclaration := [@enumDeclaration new !enumName !enumConstants] ;
+  outDeclaration := [@enumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <controller_class_declaration>
+  ??@bool inIsUserDefined
   !@controllerClassDeclaration outDeclaration
 :
   @generationKind generationKind ;
@@ -1254,6 +1274,7 @@ rule <controller_class_declaration>
   end repeat ;
   $}$ ;
   outDeclaration := [@controllerClassDeclaration new
+    !inIsUserDefined
     !controllerKind
     !controllerClassName
     !controlledObjectBindingOptionList

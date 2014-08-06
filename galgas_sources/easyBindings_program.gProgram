@@ -33,30 +33,32 @@ message "a source text file with the .easyBindings extension"
 
   @cursorList cursorList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
+    !userDefined:false
     !?declarationList
     !?cursorList
     ?*
   ;
 #--- Parse source file
   grammar easyBindings_grammar in inSourceFile
+    !userDefined:true
     !?declarationList
     !?cursorList
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-  declarationList += ![@predefinedTypeDeclaration new !"NSString" ![@typeKind stringType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSColor" ![@typeKind colorType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSData" ![@typeKind dataType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSDate" ![@typeKind dateType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSFont" ![@typeKind fontType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSImage" ![@typeKind imageType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSMenu" ![@typeKind menuType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"NSBezierPath" ![@typeKind bezierPathType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"Integer" ![@typeKind integerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"UInteger" ![@typeKind uintegerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"Bool" ![@typeKind boolType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"Double" ![@typeKind doubleType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !"enum" ![@typeKind enumType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@typeKind stringType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
 #----
@@ -73,12 +75,15 @@ message "a source text file with the .easyBindings extension"
   foreach unsolvedProxyList do
     error mValue :"type " . mValue . " is undefined" ;
   end foreach ;
-#------------------------------------------- Topological sort and continue
+#------------------------------------------- Topological sort types and continue
   if [unsolvedProxyList length] == 0 then
-    [unifiedTypeMap topologicalSort ?@lstringlist sortedKeys ?@lstringlist unsortedKeys] ;
-    if [unsortedKeys length] > 0 then
+    [unifiedTypeMap topologicalSort
+      ?@lstringlist sortedTypeNames
+      ?@lstringlist unsortedTypeNames
+    ] ;
+    if [unsortedTypeNames length] > 0 then
       var s := "cannot sort types ; the following types are involved in circular dependence:" ;
-      foreach unsortedKeys do
+      foreach unsortedTypeNames do
         s .= "\n-- " . mValue ;
       end foreach ;
       error here : s ;
@@ -90,7 +95,7 @@ message "a source text file with the .easyBindings extension"
 #      message s ;
       semanticAnalysis
         !unifiedTypeMap
-        !sortedKeys
+        !sortedTypeNames
         !inSourceFile->string
         !cursorList
         !endOfSourceFile
@@ -105,7 +110,7 @@ message "a source text file with the .easyBindings extension"
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine semanticAnalysis
+local routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstringlist inSortedKeys
   ??@string inSourceFile
@@ -220,8 +225,13 @@ routine semanticAnalysis
       end if ;
     end if ;
   end if ;
+#------------------------------ Generate protocols for property observers
+  generateObserverProtocols
+    !observablePropertyMapMap
+    !outputDirectory
+  ;
 #------------------------------ Output dependency order definition file
-  generateTransientDependencyFiles
+  generateTransientTrigersAndApplication
     !transientDependencyArcList
     !outputDirectory
     !sortedTransientOrderedList
@@ -269,6 +279,33 @@ routine semanticAnalysis
      end if ;
   end foreach ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine generateObserverProtocols
+  ??@observablePropertyMapMap inObservablePropertyMapMap
+  ??@string inOutputDirectory
+:
+  if [@uint errorCount] == 0 then
+    var contents := "" ;
+ #   log inObservablePropertyMapMap ;
+    for (* @bool userDefined * @observablePropertyMap observablePropertyMap) in inObservablePropertyMapMap do
+      if userDefined then
+        for () in observablePropertyMap do
+          const signature := [mPropertySignature identifierRepresentation] ;
+          contents += "@objc(protocol_" + signature + ") protocol protocol_" + signature + " {\n"
+                    + "  func " + signature + "_didChange ()\n"
+                    + "}\n\n" ;
+        end for ;
+      end if ;
+    end for ;
+    [@string generateFile
+      !inOutputDirectory
+      !"observer-protocols.swift"
+      !contents
+     ] ;
+  end if ;
+end routine  ;
 
 #----------------------------------------------------------------------------*
 

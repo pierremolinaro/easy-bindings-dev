@@ -103,6 +103,7 @@ override method @transientControllerDependency analyze
 #--- Search controller observable attribute map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !type->mTypeName
+    ?*
     ?@typeKind typeKind
     ?@observablePropertyMap controllerObservablePropertyMap
   ] ;
@@ -177,6 +178,7 @@ override method @transientPreferenceDependency analyze
 #--- Get preferences observables properties
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferencesName
+    ?*
     ?@typeKind kind
     ?@observablePropertyMap observablePropertyMap
   ] ;

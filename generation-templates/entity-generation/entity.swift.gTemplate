@@ -2,25 +2,6 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-%foreach CURRENT_RELATIONSHIP_LIST do
-  if mIsToMany then
-%@objc(protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) protocol protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]% {
-  func %!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
-}
-%
-  end
-end%
-//---------------------------------------------------------------------------------------------------------------------*
-
-%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
-%@objc(protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%) protocol protocol_%!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]% {
-  func %!["entity." + ENTITY_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
-}
-%
-end%
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 @objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %,\n                                   protocol_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
