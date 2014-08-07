@@ -53,6 +53,7 @@ override method @controllerClassDeclaration typeInventory
     !mControllerClassName
     ![@ebType new !mControllerClassName ![@typeKind controllerClassType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -106,14 +107,14 @@ override method @controllerClassDeclaration semanticAnalysis
     foreach mBindingOptionList do
       @ebTypeList acceptableTypeList [emptyList] ;
       foreach mAcceptableTypeList do
-        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
         acceptableTypeList += !type ;
       end foreach ;
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
     end foreach ;
     @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
     foreach mAcceptableTypeFormatterList do
-      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?2*] ;
       acceptableTypeFormatterList += !type !mRequiredFormatter ;
     end foreach ;
     [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
@@ -123,7 +124,7 @@ override method @controllerClassDeclaration semanticAnalysis
   foreach mControlledObjectBindingOptionList do
     @ebTypeList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do
-      [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+      [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
       acceptableTypeList += !type ;
     end foreach ;
     [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
@@ -153,97 +154,6 @@ override method @controllerClassDeclaration semanticAnalysis
     ] ;
   end if ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-#local routine analyzeControllerClass
-#  ??@controllerClassList.element inController
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  ?!@controllerClassMap ioControllerClassMap
-#:
-##--- Analyze actions
-#  @actionMap actionMap [emptyMap] ;
-#  for actionName in inController->mActionDeclarationList do
-#    [!?actionMap insertKey !actionName->mValue] ;
-#  end for ;
-##---
-#  @EXoutletClassBindingMap bindingMap [emptyMap] ;
-#  foreach inController->mBindingList do
-#    @EXoutletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
-#    foreach mBindingOptionList do
-#      @easyBindingTypeList acceptableTypeList [emptyList] ;
-#      foreach mAcceptableTypeList do
-#        @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-#        acceptableTypeList += !type ;
-#      end foreach ;
-#      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-#    end foreach ;
-#    @EXeasyBindingTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
-#    foreach mAcceptableTypeFormatterList do
-#      @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-#      acceptableTypeFormatterList += !type !mRequiredFormatter ;
-#    end foreach ;
-#    [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
-#  end foreach ;
-##---
-#  @observablePropertyMap observablePropertyMap [emptyMap] ;
-#  for property in inController->mControllerObservablePropertyList do
-#    const @lstring observationDependencyKey [new
-#      !"controller." . inController->mControllerClassName . "." . property->mPropertyName
-#      !property->mPropertyName->location
-#    ] ;
-#    [!?ioTransientDependencyGraph addNode
-#      !observationDependencyKey
-#      !observationDependencyKey->string
-#    ] ;
-#    [!?observablePropertyMap insertKey
-#      !property->mPropertyName
-#      ![property->mType analyze !inContextAnalysisStruct]
-#      !false # is not transient
-#      !observationDependencyKey->string
-#    ] ;
-#  end for ;
-##---
-#  @EXoutletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-#  foreach inController->mControlledObjectBindingOptionList do
-#    @easyBindingTypeList acceptableTypeList [emptyList] ;
-#    foreach mAcceptableTypeList do
-#      @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-#      acceptableTypeList += !type ;
-#    end foreach ;
-#    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-#  end foreach ;
-##---
-#  [!?ioControllerClassMap insertKey
-#    !inController->mControllerClassName
-#    !inController->mControllerKind
-#    !inController->mGenerationKind
-#    !bindingMap
-#    !actionMap
-#    !observablePropertyMap
-#    !controlledObjectAvailableBindingOptionMap
-#  ] ;
-#end routine ;
-#
-##----------------------------------------------------------------------------*
-#
-#routine analyzeControllerClasses
-#  ??@controllerClassList inControllerClassList
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#  !@controllerClassMap outControllerClassMap
-#:
-#  outControllerClassMap := [@controllerClassMap emptyMap] ;
-#  for controller in inControllerClassList do
-#    analyzeControllerClass
-#      !controller
-#      !inContextAnalysisStruct
-#      !?ioTransientDependencyGraph
-#      !?outControllerClassMap
-#    ;
-#  end for ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

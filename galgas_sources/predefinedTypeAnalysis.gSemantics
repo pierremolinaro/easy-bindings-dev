@@ -10,6 +10,7 @@ override method @predefinedTypeDeclaration typeInventory
     ![mTypeName nowhere]
     ![@ebType new ![mTypeName nowhere] !mKind]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 

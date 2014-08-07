@@ -50,6 +50,7 @@ override method @nibClassDeclaration typeInventory
     !mClassName
     ![@ebType new !mClassName ![@typeKind nibClassType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -131,7 +132,7 @@ override method @nibClassDeclaration semanticAnalysis
     [inUnifiedTypeMap searchKey
       !mElementClassName
       ?@ebType type
-      ?*
+      ?2*
     ] ;
     if type->mKind != [@typeKind classType] then
       error mClassName : "'" . mClassName . "' is not a class" ;    

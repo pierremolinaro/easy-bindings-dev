@@ -126,6 +126,7 @@ local routine semanticAnalysis
       !mValue
       ?*
       ?@astDeclaration declaration
+      ?*
     ] ;
     [declaration buildObservablePropertyMap
       !inUnifiedTypeMap
@@ -149,6 +150,7 @@ local routine semanticAnalysis
       !mValue
       ?*
       ?@astDeclaration declaration
+      ?*
     ] ;
     [declaration semanticAnalysis
       !inUnifiedTypeMap

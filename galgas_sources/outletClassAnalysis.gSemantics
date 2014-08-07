@@ -24,6 +24,7 @@ override method @outletClassDeclaration typeInventory
     !mOutletClassName
     ![@ebType new !mOutletClassName ![@typeKind outletClassType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -97,14 +98,14 @@ override method @outletClassDeclaration semanticAnalysis
     foreach mBindingOptionList do
       @ebTypeList acceptableTypeList [emptyList] ;
       foreach mAcceptableTypeList do
-        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?*] ;
+        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
         acceptableTypeList += !type ;
       end foreach ;
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
     end foreach ;
     @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
     foreach mAcceptableTypeFormatterList do
-      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?2*] ;
       acceptableTypeFormatterList += !type !mRequiredFormatter ;
     end foreach ;
     [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;

@@ -47,6 +47,7 @@ override method @documentDeclaration typeInventory
     !mDocumentName
     ![@ebType new !mDocumentName ![@typeKind documentType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 

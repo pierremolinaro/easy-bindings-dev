@@ -10,6 +10,7 @@ override method @protocolDeclaration typeInventory
     !mProtocolName
     ![@ebType new !mProtocolName ![@typeKind protocolType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 

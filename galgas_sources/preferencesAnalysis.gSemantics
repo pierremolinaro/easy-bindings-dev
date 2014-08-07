@@ -57,6 +57,7 @@ override method @preferencesDeclaration typeInventory
     !mPreferencesName
     ![@ebType new !mPreferencesName ![@typeKind preferencesType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -124,7 +125,7 @@ override method @preferencesDeclaration semanticAnalysis
     [inUnifiedTypeMap searchKey
       !mElementClassName
       ?@ebType type
-      ?*
+      ?2*
     ] ;
     if type->mKind != [@typeKind classType] then
       error mElementClassName : "'" . mElementClassName . "' is not a class" ;    

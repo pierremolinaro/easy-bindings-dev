@@ -72,6 +72,7 @@ filewrapper entityGenerationTemplate in "../generation-templates/entity-generati
     ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
     ?@relationshipList CURRENT_RELATIONSHIP_LIST
+    ?@entityRelationshipMap ENTITY_CURRENT_RELATIONSHIP_MAP
     ?@signListForGeneration SIGN_LIST
     ?@stringset SIGN_SET
   ;
@@ -145,6 +146,7 @@ override method @entityGeneration generate
       !propertyAndTomanyRelationshipSet
       !mToOneRelationshipList
       !mCurrentRelationshipList
+      !mCurrentRelationshipMap
       !mSignList
       !signSet
     ] ;
