@@ -8,16 +8,24 @@ semantics documentAnalysis :
 override method @documentDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @documentDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
 #------------------------------------------------ Root Entity
-  [@unifiedTypeProxy makeProxy
+  [@EXunifiedTypeProxy makeProxy
     !?ioUnifiedTypeMap
     !mRootEntityName
-    ?@unifiedTypeProxy rootEntityType
+    ?@EXunifiedTypeProxy rootEntityType
   ] ;
   [!?ioUnifiedTypeMap enterEdge !mDocumentName !mRootEntityName] ;
 #---------------------------------- Analyze attributes
   foreach mAttributeList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
       ?*
@@ -26,7 +34,7 @@ override method @documentDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze transient properties
   foreach mTransientList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
       ?*
@@ -35,7 +43,7 @@ override method @documentDeclaration typeInventory
   end foreach ;
 #-------------------------------------------------- Analyze controllers
   foreach mControllerList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
       ?*
@@ -45,20 +53,20 @@ override method @documentDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mDocumentName
-    ![@ebType new !mDocumentName ![@typeKind documentType]]
+    ![@EXebType new !mDocumentName ![@EXTypeKind documentType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @documentDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
 #----------------------------------
   buildObservablePropertyMap
     !mAttributeList
@@ -76,7 +84,7 @@ override method @documentDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mDocumentName
     !mUserDefined
-    ![@typeKind documentType]
+    ![@EXTypeKind documentType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -84,8 +92,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @documentDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   ioContextAnalysisStruct->mContainsDocument := true ;
@@ -100,13 +108,13 @@ override method @documentDeclaration semanticAnalysis
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mRootEntityName
     ?2*
-    ?@observablePropertyMap rootObjectObservablePropertyMap
+    ?@EXobservablePropertyMap rootObjectObservablePropertyMap
   ] ;
 #------------------------------------------------ Document observable properties
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mDocumentName
     ?2*
-    ?@observablePropertyMap selfObservableAttributeMap
+    ?@EXobservablePropertyMap selfObservableAttributeMap
   ] ;
 #-------------------------------------------------- Analyze attributes
   @fileInclusionSet fileInclusionSet [default] ;
@@ -199,8 +207,8 @@ end method ;
 routine analyzeControllers
   ??@controllerList inControllerList
   ??@relationshipMap inRootObjectRelationshipMap
-  ??@observablePropertyMap inRootEntityObservableAttributeMap
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@EXobservablePropertyMap inRootEntityObservableAttributeMap
+  ??@EXcontextAnalysisStruct inContextAnalysisStruct
   ?!@fileInclusionSet ioFileInclusionSet
   !@controllerMap outControllerMap
 :
@@ -212,7 +220,7 @@ routine analyzeControllers
       ?@generationKind generationKind
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
-      ?@observablePropertyMap controllerObservablePropertyMap
+      ?@EXobservablePropertyMap controllerObservablePropertyMap
       ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
@@ -257,7 +265,7 @@ routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused1>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused1>" nowhere] ![@EXTypeKind classType]]
         !"contentObject"
         ![@formatterEnum noFormatter]
         !"self.rootObject"
@@ -297,7 +305,7 @@ routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused2>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused2>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self.rootObject"
@@ -335,7 +343,7 @@ routine analyzeControllers
         !?ioFileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused3>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused3>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self.rootObject"
@@ -349,7 +357,7 @@ routine analyzeControllers
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding
         !inRootEntityObservableAttributeMap
-        ![@observablePropertyMap emptyMap] # No self observable attributes
+        ![@EXobservablePropertyMap emptyMap] # No self observable attributes
         !controllerClassBindingMap
         !outControllerMap
         !controllerActionMap

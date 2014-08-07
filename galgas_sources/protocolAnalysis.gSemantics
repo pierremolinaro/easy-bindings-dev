@@ -6,28 +6,35 @@ semantics protocolAnalysis :
 override method @protocolDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @protocolDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
   [!?ioUnifiedTypeMap insertKey
     !mProtocolName
-    ![@ebType new !mProtocolName ![@typeKind protocolType]]
+    ![@EXebType new !mProtocolName ![@EXTypeKind protocolType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @protocolDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @protocolDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
   [!?ioContextAnalysisStruct->mProtocolMap insertKey

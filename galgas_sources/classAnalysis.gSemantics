@@ -8,12 +8,20 @@ semantics classAnalysis :
 override method @classDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @classDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
 #------------------------------- Super class ?
   if mSuperClassName->string != "" then
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mSuperClassName
-      ?@unifiedTypeProxy superClassProxy
+      ?@EXunifiedTypeProxy superClassProxy
     ] ;
     [!?ioUnifiedTypeMap enterEdge
       !mClassName
@@ -22,7 +30,7 @@ override method @classDeclaration typeInventory
   end if ;
 #---------------------------------- Analyze attributes
   foreach mAttributeList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
       ?*
@@ -31,7 +39,7 @@ override method @classDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mElementClassName
       ?*
@@ -39,7 +47,7 @@ override method @classDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze transient properties
   foreach mTransientList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
       ?*
@@ -48,33 +56,33 @@ override method @classDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mClassName
-    ![@ebType new !mClassName ![@typeKind classType]]
+    ![@EXebType new !mClassName ![@EXTypeKind classType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @classDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
 #------------------------------- Super class ?
-  @observablePropertyMap observablePropertyMap ;
+  @EXobservablePropertyMap observablePropertyMap ;
   if [mSuperClassName string] != "" then
     [ioObservablePropertyMapMap searchKey
        !mSuperClassName
        ?*
-       ?@typeKind kind
+       ?@EXTypeKind kind
        ?observablePropertyMap
      ] ;
-     if kind != [@typeKind classType] then
+     if kind != [@EXTypeKind classType] then
        error mSuperClassName : "'" . mSuperClassName . "' is not a class" ;
      end if ;
   else
-    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    observablePropertyMap := [@EXobservablePropertyMap emptyMap] ;
   end if ;
 #----------------------------------
   buildObservablePropertyMap
@@ -93,7 +101,7 @@ override method @classDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mClassName
     !mUserDefined
-    ![@typeKind classType]
+    ![@EXTypeKind classType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -101,15 +109,15 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @classDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
 #------------------------------- Get Observable property map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mClassName
      ?2*
-     ??@observablePropertyMap observablePropertyMap
+     ??@EXobservablePropertyMap observablePropertyMap
    ] ;
 #-----
   @attributeListForImplementation inheritedAttributeListForInitHeader  ;
@@ -130,7 +138,7 @@ override method @classDeclaration semanticAnalysis
   @fileInclusionSet fileInclusionSet [default] ;
   analyzeTransientProperties
     !mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
+    ![@EXobservablePropertyMap emptyMap] # Root property map
     !?ioContextAnalysisStruct
     !"" # No Root entity
     !observablePropertyMap
@@ -150,10 +158,10 @@ override method @classDeclaration semanticAnalysis
   foreach mArrayList do
     [inUnifiedTypeMap searchKey
       !mClassName
-      ?@ebType type
+      ?@EXebType type
       ?2*
     ] ;
-    if type->mKind != [@typeKind classType] then
+    if type->mKind != [@EXTypeKind classType] then
       error mClassName : "'" . mClassName . "' is not a class" ;    
     end if ;
     [!?allArrayPropertyForImplementation insertKey

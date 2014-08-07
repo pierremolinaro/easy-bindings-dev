@@ -7,6 +7,14 @@ semantics controllerClassAnalysis :
 override method @controllerClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @controllerClassDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
 #--- Analyze actions
 #  @actionMap actionMap [emptyMap] ;
 #  for actionName in mActionDeclarationList do
@@ -19,12 +27,12 @@ override method @controllerClassDeclaration typeInventory
 #    ?@outletClassBindingMap bindingMap
 #  ;
 #--- Analyze attributes
-#  @observablePropertyMap observablePropertyMap [emptyMap] ;
+#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
   for property in mControllerObservablePropertyList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !property->mTypeName
-      ?@unifiedTypeProxy attributeTypeProxy
+      ?@EXunifiedTypeProxy attributeTypeProxy
     ] ;
 #    [!?observablePropertyMap insertKey
 #      !property->mPropertyName
@@ -37,12 +45,12 @@ override method @controllerClassDeclaration typeInventory
 #---
 #  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
   foreach mControlledObjectBindingOptionList do
-#    @unifiedTypeProxyList acceptableTypeList [emptyList] ;
+#    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do
-      [@unifiedTypeProxy makeProxy
+      [@EXunifiedTypeProxy makeProxy
         !?ioUnifiedTypeMap
         !mValue
-        ?@unifiedTypeProxy type
+        ?@EXunifiedTypeProxy type
       ] ;
 #      acceptableTypeList += !type ;
     end foreach ;
@@ -51,21 +59,21 @@ override method @controllerClassDeclaration typeInventory
 #---
   [!?ioUnifiedTypeMap insertKey
     !mControllerClassName
-    ![@ebType new !mControllerClassName ![@typeKind controllerClassType]]
+    ![@EXebType new !mControllerClassName ![@EXTypeKind controllerClassType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @controllerClassDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
 #------------------------------- Super class ?
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
 #----------------------------------
   buildObservablePropertyMap
     ![@attributeList emptyList]
@@ -83,7 +91,7 @@ override method @controllerClassDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mControllerClassName
     !mUserDefined
-    ![@typeKind controllerClassType]
+    ![@EXTypeKind controllerClassType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -91,8 +99,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @controllerClassDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
 #--- Analyze actions
@@ -105,16 +113,16 @@ override method @controllerClassDeclaration semanticAnalysis
   foreach mBindingList do
     @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
     foreach mBindingOptionList do
-      @ebTypeList acceptableTypeList [emptyList] ;
+      @EXebTypeList acceptableTypeList [emptyList] ;
       foreach mAcceptableTypeList do
-        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
+        [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
         acceptableTypeList += !type ;
       end foreach ;
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
     end foreach ;
-    @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+    @EXebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
     foreach mAcceptableTypeFormatterList do
-      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?2*] ;
+      [inUnifiedTypeMap searchKey !mTypeName ?@EXebType type ?2*] ;
       acceptableTypeFormatterList += !type !mRequiredFormatter ;
     end foreach ;
     [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
@@ -122,9 +130,9 @@ override method @controllerClassDeclaration semanticAnalysis
 #---
   @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
   foreach mControlledObjectBindingOptionList do
-    @ebTypeList acceptableTypeList [emptyList] ;
+    @EXebTypeList acceptableTypeList [emptyList] ;
     foreach mAcceptableTypeList do
-      [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
+      [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
       acceptableTypeList += !type ;
     end foreach ;
     [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
@@ -133,7 +141,7 @@ override method @controllerClassDeclaration semanticAnalysis
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mControllerClassName
     ?2*
-    ?@observablePropertyMap observablePropertyMap
+    ?@EXobservablePropertyMap observablePropertyMap
   ] ;
 #---
   [!?ioContextAnalysisStruct->mControllerClassMap insertKey

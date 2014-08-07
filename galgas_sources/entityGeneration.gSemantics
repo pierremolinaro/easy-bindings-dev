@@ -6,7 +6,7 @@ semantics entityGeneration :
 #   hasCustomExplorerFunction                                                 *
 #-----------------------------------------------------------------------------*
 
-reader @ebType hasCustomExplorerFunction
+reader @EXebType hasCustomExplorerFunction
   -> @bool outResult
  :
   switch mKind
@@ -72,7 +72,7 @@ filewrapper entityGenerationTemplate in "../generation-templates/entity-generati
     ?@stringset PROPERTY_AND_RELATIONSHIP_SET
     ?@2stringlist TO_ONE_RELATIONSHIPS
     ?@relationshipList CURRENT_RELATIONSHIP_LIST
-    ?@entityRelationshipMap ENTITY_CURRENT_RELATIONSHIP_MAP
+    ?@EXentityRelationshipMap ENTITY_CURRENT_RELATIONSHIP_MAP
     ?@signListForGeneration SIGN_LIST
     ?@stringset SIGN_SET
   ;
@@ -84,14 +84,14 @@ filewrapper entityGenerationTemplate in "../generation-templates/entity-generati
   
   template entityTransientComputationImplementationFile "entity-transient-computation-function.m.gTemplate"
     ?@string CLASS_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
 
   template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
     ?@string CLASS_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;

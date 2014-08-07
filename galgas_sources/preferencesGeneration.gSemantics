@@ -46,14 +46,14 @@ filewrapper prefsGenerationTemplate in "../generation-templates/preferences-gene
   
   template preferencesTransientComputationImplementationFile "preferences-transient-computation-function.m.gTemplate"
     ?@string PREFERENCES_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
 
   template preferencesTransientComputationInSwift "preferences-transient-computation-function.swift.gTemplate"
     ?@string PREFERENCES_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;

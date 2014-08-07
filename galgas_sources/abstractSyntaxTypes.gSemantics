@@ -481,7 +481,35 @@ enum @typeKind {
 
 #----------------------------------------------------------------------------*
 
-reader @typeKind name -> @string outResult :
+enum @EXTypeKind {
+  classType,
+  controllerClassType,
+  documentType,
+  entityType,
+  enumType,
+  nibClassType,
+  outletClassType,
+  preferencesType,
+  protocolType,
+  structType,
+#--- Predefined Type
+  boolType,
+  integerType,
+  uintegerType,
+  doubleType,
+  stringType,
+  colorType,
+  dataType,
+  dateType,
+  fontType,
+  imageType,
+  menuType,
+  bezierPathType
+}
+
+#----------------------------------------------------------------------------*
+
+reader @EXTypeKind name -> @string outResult :
   switch selfcopy
   when classType : outResult := "classType" ;
   when controllerClassType : outResult := "controllerClassType" ;
@@ -512,6 +540,7 @@ end reader ;
 
 class @predefinedTypeDeclaration extends @astDeclaration {
   @string mTypeName ;
+  @EXTypeKind mExKind ;
   @typeKind mKind ;
 }
 

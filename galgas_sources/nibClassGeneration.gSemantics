@@ -47,7 +47,7 @@ filewrapper nibClassGenerationTemplate in "../generation-templates/nib-class-gen
   
   template nibClassTransientComputationImplementationFile "nib-class-transient-computation-function.m.gTemplate"
     ?@string PREFERENCES_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;

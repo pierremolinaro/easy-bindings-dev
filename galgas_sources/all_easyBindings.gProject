@@ -4,12 +4,12 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   feature applicationBundleBase : "fr.irccyn" ;
 
   lexique "easyBindings_lexique.gLexique" ;
+  semantics "abstractSyntaxTypes.gSemantics" ;
   option "easyBindings_options.gOption" ;
   syntax "easyBindings_syntax.gSyntax" ;
   grammar "easyBindings_grammar.gGrammar" ;
   gui "easyBindings_cocoa.gGui" ;
 
-  semantics "abstractSyntaxTypes.gSemantics" ;
   semantics "decoratedTypes.gSemantics" ;
   
   semantics "attributeDeclarationAnalysis.gSemantics" ;

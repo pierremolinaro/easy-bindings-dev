@@ -1,30 +1,230 @@
 semantics transientAnalysis :
   import "decoratedTypes.gSemantics" ;
-
+  import "easyBindings_options.gOption" ;
+  
 #----------------------------------------------------------------------------*
 
 abstract method @abstractTransientDependency analyze
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring inTransientName
-  ??@observablePropertyMap inLocalObservablePropertyMap
-  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ??@lstring inTransientPropertySignature
+;
+
+#----------------------------------------------------------------------------*
+
+override method @transientRootSignDependency analyze
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@lstring unused inTransientName
+  ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ??@lstring unused inTransientPropertySignature
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientLocalDependency analyze
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@lstring unused inTransientName
+  ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ??@lstring inTransientPropertySignature
+:
+  [inLocalObservablePropertyMap searchKey
+    !mMasterName
+    ?@unifiedTypeProxy masterType
+    ?*
+    ?@lstring masterPropertySignature
+    ?@bool isCollection
+  ] ;
+  if mNamesCountOption & not isCollection then
+    error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
+  elsif isCollection & not mNamesCountOption then
+    error mMasterName: "to-many relationships requires the 'count' option" ;
+  end if ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addEdge
+    !masterPropertySignature
+    !inTransientPropertySignature
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientControllerDependency analyze
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@lstring unused inTransientName
+  ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ??@lstring unused inTransientPropertySignature
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientRootDependency analyze
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@lstring unused inTransientName
+  ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ??@lstring unused inTransientPropertySignature
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientPreferenceDependency analyze
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@lstring unused inTransientName
+  ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ??@lstring inTransientPropertySignature
+:
+#--- Get preferences observables properties
+  [inUnifiedTypeMap searchKey
+    !mPreferencesName
+    ??@typeKind kind
+    ?4*
+    ??@decoratedObservablePropertyMap observablePropertyMap
+    ?*
+  ] ;
+#--- Check
+  if kind != [@typeKind preferencesType] then
+    error mPreferencesName : "'" . mPreferencesName . "' is not a preference" ;
+  end if ;
+#---
+  [observablePropertyMap searchKey
+    !mMasterName
+    ?2*
+    ??@lstring masterPropertySignature
+    ?*
+  ] ;
+#--- Add dependency arc
+  [!?ioTransientDependencyGraph addEdge
+    !inTransientPropertySignature
+    !masterPropertySignature
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine buildTransientDependencyGraph
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@string inSourceFile
+  !@transientDependencyGraph outTransientDependencyGraph
+:
+#------------------------------------------- Build transient dependancy graph
+  outTransientDependencyGraph := [@transientDependencyGraph emptyGraph] ;
+  for () in inUnifiedTypeMap : type_ do
+    for () in type_mObservablePropertyMap : property_ do
+      [!?outTransientDependencyGraph addNode
+        !property_mPropertySignature
+        !property_mPropertySignature->string
+        !property_mIsTransient
+      ] ;
+    end for ;
+    for () in type_mDecoratedTransientMap : transient_ do
+      for () in transient_mDependencyList do
+        [mDependency analyze
+          !inUnifiedTypeMap
+          !?outTransientDependencyGraph
+          !transient_lkey
+          !type_mObservablePropertyMap
+          ![@unifiedTypeProxy null]
+          !transient_mTransientSignature
+        ] ;
+      end for ;
+    end for ;
+  end for ;
+#------------------------------------------- Output graphviz file ?
+  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+    const s := [outTransientDependencyGraph graphviz] ;
+    const path := inSourceFile . ".transientDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
+#------------------------------------------- Topological sort nodes
+  [outTransientDependencyGraph topologicalSort
+    ?@transientDependencyGraphNodeInfoList sortedNodes
+    ?*
+    ?@transientDependencyGraphNodeInfoList unsortedNodes
+    ?*
+  ] ;
+  if [unsortedNodes length] > 0 then
+    var s := "cannot sort properties and transient ; the following ones are involved in circular dependence:" ;
+    foreach unsortedNodes do
+      s .= "\n-- " . mSignature ;
+    end foreach ;
+    error here : s ;
+  else # ok no error
+  #--- build a string list of all transients
+    @stringlist transientList := {} ;
+    for () in sortedNodes do
+      if mIsTransient then
+        transientList += !mSignature ;
+      end if ;
+    end for ;
+#    log sortedNodes ;
+ #   log transientList ;
+    const @string s := [filewrapper transientManager.applicationInSwift
+      !sortedNodes
+      !transientList
+    ] ;
+    [@string generateFileWithPattern
+      ![inSourceFile stringByDeletingLastPathComponent]
+      !"PMApplication.swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !""
+    ] ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper transientManager in "../generation-templates/application-class" {
+}{
+}{
+  template applicationInSwift "PMApplication.swift.gTemplate"
+    ?@transientDependencyGraphNodeInfoList PROPERTY_LIST
+    ?@stringlist TRANSIENT_LIST
+  ;
+}
+#----------------------------------------------------------------------------*
+#! EX
+#----------------------------------------------------------------------------*
+
+abstract method @abstractTransientDependency EXanalyze
+  ??@lstring inTransientName
+  ??@EXobservablePropertyMap inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
   ??@string inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist ioRootSignDependencyList
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientRootSignDependency analyze
+override method @transientRootSignDependency EXanalyze
   ??@lstring inTransientName
-  ??@observablePropertyMap unused inLocalObservablePropertyMap
-  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet unused ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList unused ioDirectDependancyList
   ?!@stringlist ioRootSignDependencyList
 :
@@ -42,24 +242,20 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientLocalDependency analyze
+override method @transientLocalDependency EXanalyze
   ??@lstring unused inTransientName
-  ??@observablePropertyMap inLocalObservablePropertyMap
-  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@EXobservablePropertyMap inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet unused ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
 :
-#  @ebType mType ;
-#  @bool mIsTransient ;
-#  @string mPropertySignature ;
-#  @bool mIsCollection ;
   [inLocalObservablePropertyMap searchKey
     !mMasterName
-    ?@ebType masterType
+    ?@EXebType masterType
     ?*
     ?@lstring masterPropertySignature
     ?@bool isCollection
@@ -80,37 +276,37 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientControllerDependency analyze
+override method @transientControllerDependency EXanalyze
   ??@lstring unused inTransientName
-  ??@observablePropertyMap inLocalObservablePropertyMap
-  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@EXobservablePropertyMap inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet unused ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
 :
 #--- Search controller in controller map
   [inLocalObservablePropertyMap searchKey
     !mControllerName
-    ?@ebType type
+    ?@EXebType type
     ?3*
   ] ;
-  if type->mKind != [@typeKind controllerClassType] then
+  if type->mKind != [@EXTypeKind controllerClassType] then
     error mControllerName : "'" . mControllerName . "' is not a controller" ;
   end if ;
 #--- Search controller observable attribute map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !type->mTypeName
     ?*
-    ?@typeKind typeKind
-    ?@observablePropertyMap controllerObservablePropertyMap
+    ?@EXTypeKind typeKind
+    ?@EXobservablePropertyMap controllerObservablePropertyMap
   ] ;
 #--- Search controller observed attribute
   [controllerObservablePropertyMap searchKey
     !mMasterName
-    ?@ebType masterType
+    ?@EXebType masterType
     ?*
     ?@lstring masterPropertySignature
     ?*
@@ -126,20 +322,20 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientRootDependency analyze
+override method @transientRootDependency EXanalyze
   ??@lstring unused inTransientName
-  ??@observablePropertyMap unused inLocalObservablePropertyMap
-  ??@observablePropertyMap inRootObjectObservablePropertyMap
+  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet unused ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
 :
   [inRootObjectObservablePropertyMap searchKey
     !mMasterName
-    ?@ebType masterType
+    ?@EXebType masterType
     ?*
     ?@lstring masterDependencyKey
     ?@bool isCollection
@@ -164,14 +360,14 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientPreferenceDependency analyze
+override method @transientPreferenceDependency EXanalyze
   ??@lstring unused inTransientName
-  ??@observablePropertyMap unused inLocalObservablePropertyMap
-  ??@observablePropertyMap unused inRootObjectObservablePropertyMap
+  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
+  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
   ??@string unused inRootEntityName
   ??@lstring inTransientPropertySignature
   ?!@fileInclusionSet ioFileInclusionSet
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@directDependancyList ioDirectDependancyList
   ?!@stringlist unused ioRootSignDependencyList
 :
@@ -179,17 +375,17 @@ override method @transientPreferenceDependency analyze
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferencesName
     ?*
-    ?@typeKind kind
-    ?@observablePropertyMap observablePropertyMap
+    ?@EXTypeKind kind
+    ?@EXobservablePropertyMap observablePropertyMap
   ] ;
 #--- Check
-  if kind != [@typeKind preferencesType] then
+  if kind != [@EXTypeKind preferencesType] then
     error mPreferencesName : "'" . mPreferencesName . "' is not a preference" ;
   end if ;
 #---
   [observablePropertyMap searchKey
     !mMasterName
-    ?@ebType masterType
+    ?@EXebType masterType
     ?@bool isTransient
     ?@lstring masterPropertySignature
     ?*
@@ -210,68 +406,14 @@ override method @transientPreferenceDependency analyze
   ] ;
 end method ;
 
-##----------------------------------------------------------------------------*
-#
-#routine analyzeTransientProperties
-#  ??@preferencesMap inPreferencesMap
-#  ??@string inObervationDependencyPrefix
-#  ??@transientList inTransientList
-#  ??@observablePropertyMap inRootObjectObservablePropertyMap
-#  ??@contextAnalysisStruct inContextAnalysisStruct
-#  ??@string inRootEntityName
-#  ??@controllerMap inControllerMap
-#  ?!@observablePropertyMap ioSelfObjectObservablePropertyMap
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  !@transientListForImplementation outTransientListForImplementation
-#  ?!@transientDependencyGraph ioTransientDependencyGraph
-#:
-#  outTransientListForImplementation := [@transientListForImplementation emptyList] ;
-#  foreach inTransientList do
-#    @easyBindingType type := [mType analyze !inContextAnalysisStruct] ;
-#  #--- Define transient as a new node in dependency graph
-#    const @lstring transientObservationKey [new
-#      !inObervationDependencyPrefix . mTransientName
-#      !mTransientName->location
-#    ] ;
-#    [!?ioTransientDependencyGraph addNode !transientObservationKey !transientObservationKey->string] ;
-#  #--- Analyze dependencies
-#    @directDependancyList directDependancyList [emptyList] ;
-#    @stringlist rootSignDependencyList [emptyList] ;
-#    foreach mDependencyList do
-#      [mDependency analyze
-#        !mTransientName
-#        !ioSelfObjectObservablePropertyMap
-#        !inPreferencesMap
-#        !inControllerMap
-#        !inRootObjectObservablePropertyMap
-#        !inRootEntityName
-#        !inObervationDependencyPrefix
-#        !?ioFileInclusionSet
-#        !?ioTransientDependencyGraph
-#        !?directDependancyList
-#        !?rootSignDependencyList
-#      ] ;
-#    end foreach ;
-#  #--- Add transient to observable attribute map
-#    [!?ioSelfObjectObservablePropertyMap insertKey
-#      !mTransientName
-#      !type
-#      !true # is transient
-#      !transientObservationKey->string
-#    ] ;
-#  #--- Add transient implementation
-#    outTransientListForImplementation += !type ![mTransientName string] !directDependancyList !rootSignDependencyList ;
-#  end foreach ;
-#end routine ;
-
 #----------------------------------------------------------------------------*
 
 routine analyzeTransientProperties
   ??@transientList inTransientList
-  ??@observablePropertyMap inRootObjectObservablePropertyMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ??@string inRootEntityName
-  ??@observablePropertyMap inSelfObjectObservablePropertyMap
+  ??@EXobservablePropertyMap inSelfObjectObservablePropertyMap
   ?!@fileInclusionSet ioFileInclusionSet
   !@transientListForImplementation outTransientListForImplementation
 :
@@ -279,7 +421,7 @@ routine analyzeTransientProperties
   foreach inTransientList do
     [inSelfObjectObservablePropertyMap searchKey
       !mTransientName
-      ?@ebType type
+      ?@EXebType type
       ?*
       ?@lstring transientPropertySignature
       ?*
@@ -288,7 +430,7 @@ routine analyzeTransientProperties
     @directDependancyList directDependancyList [emptyList] ;
     @stringlist rootSignDependencyList [emptyList] ;
     foreach mDependencyList do
-      [mDependency analyze
+      [mDependency EXanalyze
         !mTransientName
         !inSelfObjectObservablePropertyMap
         !inRootObjectObservablePropertyMap

@@ -6,6 +6,13 @@ semantics structAnalysis :
 override method @structDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @structDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
   foreach mFieldList do
     [!?ioUnifiedTypeMap enterEdge
       !mStructTypeName
@@ -14,38 +21,38 @@ override method @structDeclaration typeInventory
   end foreach ;
   [!?ioUnifiedTypeMap insertKey
     !mStructTypeName
-    ![@ebType new !mStructTypeName ![@typeKind structType]]
+    ![@EXebType new !mStructTypeName ![@EXTypeKind structType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @structDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @structDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   @structFieldList structFieldList [default] ;
   @stringset headerFileInclusionSet [emptySet] ;
   foreach mFieldList do
-    [inUnifiedTypeMap searchKey !mFieldTypeName ?@ebType type ?2*] ;
+    [inUnifiedTypeMap searchKey !mFieldTypeName ?@EXebType type ?2*] ;
     if not [type isPODtype] then
       error mFieldName : "only a POD type is allowed in a structure" ;
     end if ;
-    if [type mKind] == [@typeKind enumType] then
+    if [type mKind] == [@EXTypeKind enumType] then
       headerFileInclusionSet += ![type mTypeName]->string ;
-    elsif [type mKind] == [@typeKind structType] then
+    elsif [type mKind] == [@EXTypeKind structType] then
       headerFileInclusionSet += ![type mTypeName]->string ;
     end if ;
     structFieldList += !type !mFieldName->string ;
@@ -62,41 +69,6 @@ override method @structDeclaration semanticAnalysis
     !headerFileInclusionSet
   ] ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-#routine structAnalysis
-#  ??@structTypeList inStructTypeList
-#  ?!@contextAnalysisStruct ioContextAnalysisStruct
-#:
-#  foreach inStructTypeList do
-#    @structFieldList structFieldList [default] ;
-#    @stringset headerFileInclusionSet [emptySet] ;
-#    @stringset fieldNameSet [emptySet] ;
-#    foreach mFieldList do
-#      @easyBindingType type := [mFieldType analyze !ioContextAnalysisStruct] ;
-#      if [type isClass] then
-#        error mFieldName : "only a POD type is allowed in a structure" ;
-#      end if ;
-#      if (type is @enumType) then
-#        @enumType t := (cast type : @enumType) ;
-#        headerFileInclusionSet += ![t mEnumTypeName]->string ;
-#      elsif (type is @structType) then
-#        @structType t := (cast type : @structType) ;
-#        headerFileInclusionSet += ![t mStructTypeName]->string ;
-#      end if ;
-#      if [fieldNameSet hasKey !mFieldName->string] then
-#        error mFieldName : "there is already a field named '" . mFieldName . "'" ;
-#      end if ;
-#      fieldNameSet += !mFieldName->string ;
-#      structFieldList += !type !mFieldName->string ;
-#    end foreach ;
-#    [!?ioContextAnalysisStruct->mStructTypeMap insertKey !mStructTypeName !structFieldList !headerFileInclusionSet] ;
-#    if [ioContextAnalysisStruct->mEnumMap hasKey !mStructTypeName->string] then
-#      error mStructTypeName:"There is an enumeration with the same name" ;
-#    end if ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

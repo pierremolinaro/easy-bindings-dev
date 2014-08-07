@@ -4,18 +4,25 @@ semantics entityAnalysis :
   import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
-#   ANALYZE ENTITIES                                                         *
-#----------------------------------------------------------------------------*
 
 override method @entityDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+end method ;
+
+#----------------------------------------------------------------------------*
+#   ANALYZE ENTITIES                                                         *
+#----------------------------------------------------------------------------*
+
+override method @entityDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
 #--------------------------------------------- Get super entity (if any)
-  @unifiedTypeProxy superClassProxy ;
+  @EXunifiedTypeProxy superClassProxy ;
   if mSuperEntityName->string == "" then
-    superClassProxy := [@unifiedTypeProxy null] ;
+    superClassProxy := [@EXunifiedTypeProxy null] ;
   else
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mSuperEntityName
       ?superClassProxy
@@ -24,7 +31,7 @@ override method @entityDeclaration typeInventory
   end if ;
 #---------------------------------- Analyze attributes
   foreach mAttributeList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
       ?*
@@ -33,19 +40,19 @@ override method @entityDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze transient properties
   foreach mTransientList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
       ?*
     ] ;
   end foreach ;
 #---------------------------------------- Analyze relationship (only check name is unique)
-  @entityRelationshipMap currentRelationshipMap := {} ;
+  @EXentityRelationshipMap currentRelationshipMap := {} ;
   foreach mRelationshipList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mDestinationEntityName
-      ??@unifiedTypeProxy destinationTypeProxy
+      ??@EXunifiedTypeProxy destinationTypeProxy
     ] ;
     [!?currentRelationshipMap insertKey
       !mRelationshipName
@@ -57,7 +64,7 @@ override method @entityDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mEntityName
-    ![@ebType new !mEntityName ![@typeKind entityType]]
+    ![@EXebType new !mEntityName ![@EXTypeKind entityType]]
     !selfcopy
     !currentRelationshipMap
   ] ;
@@ -66,24 +73,24 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @entityDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
 #------------------------------- Super entity ?
-  @observablePropertyMap observablePropertyMap ;
+  @EXobservablePropertyMap observablePropertyMap ;
   if [mSuperEntityName string] != "" then
     [ioObservablePropertyMapMap searchKey
        !mSuperEntityName
        ?*
-       ?@typeKind kind
+       ?@EXTypeKind kind
        ?observablePropertyMap
      ] ;
-     if kind != [@typeKind entityType] then
+     if kind != [@EXTypeKind entityType] then
        error mSuperEntityName : "'" . mSuperEntityName . "' is not an entity" ;
      end if ;
   else
-    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    observablePropertyMap := [@EXobservablePropertyMap emptyMap] ;
   end if ;
 #---------------------------------- Attributes, transients
   buildObservablePropertyMap
@@ -108,7 +115,7 @@ override method @entityDeclaration buildObservablePropertyMap
       !observationDependencyKey
       !observationDependencyKey->string
     ] ;
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?@ebType type ?2*] ;
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?@EXebType type ?2*] ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
       !type
@@ -121,7 +128,7 @@ override method @entityDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mEntityName
     !mUserDefined
-    ![@typeKind entityType]
+    ![@EXTypeKind entityType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -129,15 +136,15 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @entityDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
 #------------------------------- Get Observable property map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mEntityName
      ?2*
-     ?@observablePropertyMap selfObservablePropertyMap
+     ?@EXobservablePropertyMap selfObservablePropertyMap
    ] ;
 #--------------------------------------------- Get super entity (if any)
   @attributeListForImplementation propertyListForInitMethodHeader [emptyList] ;
@@ -208,7 +215,7 @@ override method @entityDeclaration semanticAnalysis
   foreach mSignList do
     [selfObservablePropertyMap searchKey
       !mValue
-      ?@ebType type
+      ?@EXebType type
       ?* # Transient ?
       ?@lstring dependancyKey
       ?@bool isToMany
@@ -226,7 +233,7 @@ override method @entityDeclaration semanticAnalysis
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
     !mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
+    ![@EXobservablePropertyMap emptyMap] # Root property map
     !?ioContextAnalysisStruct
     !"" # No Root entity
     !selfObservablePropertyMap
@@ -252,7 +259,7 @@ override method @entityDeclaration semanticAnalysis
   [inUnifiedTypeMap searchKey
     !mEntityName
     ?2*
-    ??@entityRelationshipMap theCurrentRelationshipMap
+    ??@EXentityRelationshipMap theCurrentRelationshipMap
   ] ;
 #----------------------------------------- Generation
   ioGenerationList += ![@entityGeneration new
