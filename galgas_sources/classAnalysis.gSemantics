@@ -50,6 +50,7 @@ override method @classDeclaration typeInventory
     !mClassName
     ![@ebType new !mClassName ![@typeKind classType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -150,7 +151,7 @@ override method @classDeclaration semanticAnalysis
     [inUnifiedTypeMap searchKey
       !mClassName
       ?@ebType type
-      ?*
+      ?2*
     ] ;
     if type->mKind != [@typeKind classType] then
       error mClassName : "'" . mClassName . "' is not a class" ;    

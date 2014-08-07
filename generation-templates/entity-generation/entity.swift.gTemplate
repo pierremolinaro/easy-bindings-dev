@@ -8,51 +8,51 @@ import Cocoa
   ![mType generateAttributeDeclarationInSwift !"entity" !ENTITY_NAME !mAttributeName !mDirectSwiftDefaultValue !generateUndoHandling:true]
 end
 
-foreach CURRENT_RELATIONSHIP_LIST do
+foreach ENTITY_CURRENT_RELATIONSHIP_MAP do
   if mIsToMany then
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["To many relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
+  //    %!["To many relationship: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var %!mRelationshipName->string%_observers = NSMutableSet ()
-  var %!mRelationshipName->string%__explorer : NSPopUpButton?
-  var %!mRelationshipName->string% : NSMutableArray = NSMutableArray () { // Set of %!mDestinationEntityName->string% entities
+  var %!lkey->string%_observers = NSMutableSet ()
+  var %!lkey->string%__explorer : NSPopUpButton?
+  var %!lkey->string% : NSMutableArray = NSMutableArray () { // Set of %![mRelationshipType key]% entities
     didSet {
-      if (oldValue !== %!mRelationshipName->string%) {
+      if (oldValue !== %!lkey->string%) {
       //--- Register old value in undo manager
-        undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
+        undoManager ().registerUndoWithTarget (self, selector:"set%![lkey stringByCapitalizingFirstCharacter]%", object:oldValue)
       //--- Update explorer
-        if %!mRelationshipName->string%__explorer != nil {
-          updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName->string%", popUpButton:%!mRelationshipName->string%__explorer!)
+        if %!lkey->string%__explorer != nil {
+          updateManagedObjectToManyRelationshipDisplayForKey ("%!lkey->string%", popUpButton:%!lkey->string%__explorer!)
         }
       //--- Removed object set
         var removedObjectSet = NSMutableSet ()
         removedObjectSet.addObjectsFromArray (oldValue)
-        removedObjectSet.minusSet (NSSet (array:%!mRelationshipName->string%))
+        removedObjectSet.minusSet (NSSet (array:%!lkey->string%))
         for object : AnyObject in removedObjectSet {
-          let managedObject = object as %!mDestinationEntityName->string%
-          managedObject.%!mInverseRelationshipName->string% = nil ;
-%    if [SIGN_SET hasKey !mRelationshipName->string] then
+          let managedObject = object as %![mRelationshipType key]%
+          managedObject.%!mOppositeRelationshipName->string% = nil ;
+%    if [SIGN_SET hasKey !lkey->string] then
       %      managedObject.removeSignatureObserver (self)\n%
     end
 %        }
       //--- Added object set
         var addedObjectSet = NSMutableSet ()
-        addedObjectSet.addObjectsFromArray (%!mRelationshipName->string%)
+        addedObjectSet.addObjectsFromArray (%!lkey->string%)
         addedObjectSet.minusSet (NSSet (array:oldValue))
         for object : AnyObject in addedObjectSet {
-          let managedObject = object as %!mDestinationEntityName->string%
-          managedObject.%!mInverseRelationshipName->string% = self\n%
-    if [SIGN_SET hasKey !mRelationshipName->string] then
+          let managedObject = object as %![mRelationshipType key]%
+          managedObject.%!mOppositeRelationshipName->string% = self\n%
+    if [SIGN_SET hasKey !lkey->string] then
       %      object.addSignatureObserver (self)\n%
     end
 %        }
       //--- Notify observers object count did change
-        for anyObject in %!mRelationshipName->string%_observers {
+        for anyObject in %!lkey->string%_observers {
           let object = anyObject as PMTriggerProtocol
           enterTriggerWithObject (object)
         }
-%    if [SIGN_SET hasKey !mRelationshipName->string] then
+%    if [SIGN_SET hasKey !lkey->string] then
       %    //--- Trigger signature computing\n%
       %      triggerSignatureComputing ()\n%
     end
@@ -60,68 +60,68 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }
   }
 
-  func insertObject (inObject : %!mDestinationEntityName->string%,
-                     in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex: Int) {
-    let idx : Int = %!mRelationshipName->string%.indexOfObject (inObject)
+  func insertObject (inObject : %![mRelationshipType key]%,
+                     in%![lkey stringByCapitalizingFirstCharacter]%AtIndex: Int) {
+    let idx : Int = %!lkey->string%.indexOfObject (inObject)
     if idx == NSNotFound {
-      %!mRelationshipName->string%.insertObject (inObject, atIndex:inMNamesAtIndex)
+      %!lkey->string%.insertObject (inObject, atIndex:inMNamesAtIndex)
         undoManager ().registerUndoWithTarget (self,
-        selector:"removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%:",
+        selector:"removeObjectFrom%![lkey stringByCapitalizingFirstCharacter]%:",
         object:inObject
       )
-      inObject.%!mInverseRelationshipName->string% = self
+      inObject.%!mOppositeRelationshipName->string% = self
     //--- Update explorer
-      if %!mRelationshipName->string%__explorer != nil {
-        updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName->string%", popUpButton:%!mRelationshipName->string%__explorer!)
+      if %!lkey->string%__explorer != nil {
+        updateManagedObjectToManyRelationshipDisplayForKey ("%!lkey->string%", popUpButton:%!lkey->string%__explorer!)
       }
     }else if idx != inMNamesAtIndex {
     }
   //--- Notify observers object count did change
-    for anyObject in %!mRelationshipName->string%_observers {
+    for anyObject in %!lkey->string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
     }
   }
 
-  func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
-    let removedObject = %!mRelationshipName->string%.objectAtIndex (inIndex) as %!mDestinationEntityName->string%
+  func removeObjectFrom%![lkey stringByCapitalizingFirstCharacter]%AtIndex (inIndex : Int) {
+    let removedObject = %!lkey->string%.objectAtIndex (inIndex) as %![mRelationshipType key]%
   //--- Perform removing
-    %!mRelationshipName->string%.removeObjectAtIndex (inIndex)
+    %!lkey->string%.removeObjectAtIndex (inIndex)
   //--- Register all object in undo manager
-    undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:inIndex)
+    undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, in%![lkey stringByCapitalizingFirstCharacter]%AtIndex:inIndex)
   //--- Update explorer
-    if %!mRelationshipName->string%__explorer != nil {
-      updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName->string%", popUpButton:%!mRelationshipName->string%__explorer!)
+    if %!lkey->string%__explorer != nil {
+      updateManagedObjectToManyRelationshipDisplayForKey ("%!lkey->string%", popUpButton:%!lkey->string%__explorer!)
     }
   //--- Reset inverse relationship
-    removedObject.%!mInverseRelationshipName->string% = nil
+    removedObject.%!mOppositeRelationshipName->string% = nil
   //--- Notify observers object count did change
-    for anyObject in %!mRelationshipName->string%_observers {
+    for anyObject in %!lkey->string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
     }
   }
 
-  func appendTo%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
-    if !%!mRelationshipName->string%.containsObject (inObject) {
-      insertObject (inObject, in%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex:self.%!mRelationshipName->string%.count)
+  func appendTo%![lkey stringByCapitalizingFirstCharacter]% (inObject : %![mRelationshipType key]%) {
+    if !%!lkey->string%.containsObject (inObject) {
+      insertObject (inObject, in%![lkey stringByCapitalizingFirstCharacter]%AtIndex:self.%!lkey->string%.count)
     }
   }
 
-  func removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]% (inObject : %!mDestinationEntityName->string%) {
-    let idx = %!mRelationshipName->string%.indexOfObject (inObject)
+  func removeObjectFrom%![lkey stringByCapitalizingFirstCharacter]% (inObject : %![mRelationshipType key]%) {
+    let idx = %!lkey->string%.indexOfObject (inObject)
     if NSNotFound != idx {
-      removeObjectFrom%![mRelationshipName stringByCapitalizingFirstCharacter]%AtIndex (idx)
+      removeObjectFrom%![lkey stringByCapitalizingFirstCharacter]%AtIndex (idx)
     }
   }
    
-  func addObserverOf_%!mRelationshipName->string% (inObserver : PMTriggerProtocol) {
-    %!mRelationshipName->string%_observers.addObject (inObserver)
+  func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
 
-  func removeObserverOf_%!mRelationshipName->string% (inObserver : PMTriggerProtocol) {
-    %!mRelationshipName->string%_observers.removeObject (inObserver)
+  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
 %

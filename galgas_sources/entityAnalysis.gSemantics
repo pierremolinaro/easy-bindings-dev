@@ -40,11 +40,18 @@ override method @entityDeclaration typeInventory
     ] ;
   end foreach ;
 #---------------------------------------- Analyze relationship (only check name is unique)
+  @entityRelationshipMap currentRelationshipMap := {} ;
   foreach mRelationshipList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mDestinationEntityName
-      ?*
+      ??@unifiedTypeProxy destinationTypeProxy
+    ] ;
+    [!?currentRelationshipMap insertKey
+      !mRelationshipName
+      !mIsToMany
+      !destinationTypeProxy
+      !mInverseRelationshipName
     ] ;
   end foreach ;
 #----------------------------------
@@ -52,6 +59,7 @@ override method @entityDeclaration typeInventory
     !mEntityName
     ![@ebType new !mEntityName ![@typeKind entityType]]
     !selfcopy
+    !currentRelationshipMap
   ] ;
 end method ;
 
@@ -100,7 +108,7 @@ override method @entityDeclaration buildObservablePropertyMap
       !observationDependencyKey
       !observationDependencyKey->string
     ] ;
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?@ebType type ?2*] ;
     [!?observablePropertyMap insertKey
       !mRelationshipName
       !type
@@ -241,6 +249,11 @@ override method @entityDeclaration semanticAnalysis
     !fileInclusionSet
     !signList
   ] ;
+  [inUnifiedTypeMap searchKey
+    !mEntityName
+    ?2*
+    ??@entityRelationshipMap theCurrentRelationshipMap
+  ] ;
 #----------------------------------------- Generation
   ioGenerationList += ![@entityGeneration new
     !mEntityName->string
@@ -252,6 +265,7 @@ override method @entityDeclaration semanticAnalysis
     !mRelationshipList
     !fileInclusionSet
     !signList
+    !theCurrentRelationshipMap
     !toManyRelationshipList
     !toOneRelationshipList
   ] ;

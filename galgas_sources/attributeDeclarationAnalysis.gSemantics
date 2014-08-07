@@ -13,7 +13,7 @@ routine analyzeAttributeDeclaration
 :
   outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
   foreach inAttributeList do
-    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?2*] ;
     [mDefaultValue analyzeDefaultValueType
       ![@ebTypeList listWithValue !type]
       !ioContextAnalysisStruct
@@ -55,7 +55,7 @@ routine buildObservablePropertyMap
 :
 #--- Attributes
   foreach inAttributeList do
-    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@ebType type ?2*] ;
     const observationDependencyKey := [@lstring new
       !inObjectName . "." . mAttributeName
       !mAttributeName->location
@@ -74,7 +74,7 @@ routine buildObservablePropertyMap
   end foreach ;
 #--- Arraies
   foreach inArrayList do
-    [inUnifiedTypeMap searchKey !mElementClassName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mElementClassName ?@ebType type ?2*] ;
     const observationDependencyKey := [@lstring new
       !inObjectName . "." . mArrayName
       !mArrayName->location
@@ -93,7 +93,7 @@ routine buildObservablePropertyMap
   end foreach ;
 #--- Transients
   foreach inTransientList do
-    [inUnifiedTypeMap searchKey !mTransientTypeName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mTransientTypeName ?@ebType type ?2*] ;
     const observationDependencyKey := [@lstring new
       !inObjectName . "." . mTransientName
       !mTransientName->location
@@ -112,7 +112,7 @@ routine buildObservablePropertyMap
   end foreach ;
 #--- Controllers
   foreach inControllerList do
-    [inUnifiedTypeMap searchKey !mControllerClassName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mControllerClassName ?@ebType type ?2*] ;
     const observationDependencyKey := [@lstring new
       !inObjectName . "." . mControllerName
       !mControllerName->location
@@ -131,7 +131,7 @@ routine buildObservablePropertyMap
   end foreach ;
 #--- Controller attributes
   foreach inControllerObservablePropertyList do
-    [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?2*] ;
     const observationDependencyKey := [@lstring new
       !inObjectName . "." . mPropertyName
       !mPropertyName->location

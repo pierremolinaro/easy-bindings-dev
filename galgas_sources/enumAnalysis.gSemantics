@@ -11,6 +11,7 @@ override method @enumDeclaration typeInventory
     !mEnumTypeName
     ![@ebType new !mEnumTypeName ![@typeKind enumType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 

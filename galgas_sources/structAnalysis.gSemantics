@@ -16,6 +16,7 @@ override method @structDeclaration typeInventory
     !mStructTypeName
     ![@ebType new !mStructTypeName ![@typeKind structType]]
     !selfcopy
+    !@entityRelationshipMap {}
   ] ;
 end method ;
 
@@ -38,7 +39,7 @@ override method @structDeclaration semanticAnalysis
   @structFieldList structFieldList [default] ;
   @stringset headerFileInclusionSet [emptySet] ;
   foreach mFieldList do
-    [inUnifiedTypeMap searchKey !mFieldTypeName ?@ebType type ?*] ;
+    [inUnifiedTypeMap searchKey !mFieldTypeName ?@ebType type ?2*] ;
     if not [type isPODtype] then
       error mFieldName : "only a POD type is allowed in a structure" ;
     end if ;
