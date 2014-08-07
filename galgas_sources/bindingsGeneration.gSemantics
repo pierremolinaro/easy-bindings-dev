@@ -146,7 +146,7 @@ override reader @tableValueBindingForGeneration generateSwiftBinding
        end foreach ;
        outResult .= "    ]\n" ;
      end if ;
-     outResult .= "  )\n" ;
+     outResult .= "    )\n" ;
    end for ;
 end reader ;
 

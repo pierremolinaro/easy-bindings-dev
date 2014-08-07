@@ -2,14 +2,10 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%,\n                                   protocol_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
-end
-% {
+@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject {
 
 %foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
-  ![mType generateAttributeDeclarationInSwift !"entity" !ENTITY_NAME !mAttributeName !mDirectSwiftDefaultValue !TRANSIENT_LIST_FOR_IMPLEMENTATION !true]
+  ![mType generateAttributeDeclarationInSwift !"entity" !ENTITY_NAME !mAttributeName !mDirectSwiftDefaultValue !generateUndoHandling:true]
 end
 
 foreach CURRENT_RELATIONSHIP_LIST do
@@ -22,7 +18,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   var %!mRelationshipName->string%__explorer : NSPopUpButton?
   var %!mRelationshipName->string% : NSMutableArray = NSMutableArray () { // Set of %!mDestinationEntityName->string% entities
     didSet {
-//      if (oldValue != %!mRelationshipName->string%) {
+      if (oldValue !== %!mRelationshipName->string%) {
       //--- Register old value in undo manager
         undoManager ().registerUndoWithTarget (self, selector:"set%![mRelationshipName stringByCapitalizingFirstCharacter]%", object:oldValue)
       //--- Update explorer
@@ -53,16 +49,15 @@ foreach CURRENT_RELATIONSHIP_LIST do
 %        }
       //--- Notify observers object count did change
         for anyObject in %!mRelationshipName->string%_observers {
-          let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
-          object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
         }
 %    if [SIGN_SET hasKey !mRelationshipName->string] then
       %    //--- Trigger signature computing\n%
       %      triggerSignatureComputing ()\n%
     end
-    !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
     %      }
- //   }
+    }
   }
 
   func insertObject (inObject : %!mDestinationEntityName->string%,
@@ -83,8 +78,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }
   //--- Notify observers object count did change
     for anyObject in %!mRelationshipName->string%_observers {
-      let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
-      object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
     }
   }
 
@@ -102,8 +97,8 @@ foreach CURRENT_RELATIONSHIP_LIST do
     removedObject.%!mInverseRelationshipName->string% = nil
   //--- Notify observers object count did change
     for anyObject in %!mRelationshipName->string%_observers {
-      let object = anyObject as protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%
-      object.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
     }
   }
 
@@ -120,21 +115,19 @@ foreach CURRENT_RELATIONSHIP_LIST do
     }
   }
    
-  func addObserverOf_%!mRelationshipName->string% (inObserver : protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) {
+  func addObserverOf_%!mRelationshipName->string% (inObserver : PMTriggerProtocol) {
     %!mRelationshipName->string%_observers.addObject (inObserver)
-    inObserver.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+    enterTriggerWithObject (inObserver)
   }
 
-  func removeObserverOf_%!mRelationshipName->string% (inObserver : protocol_%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%) {
+  func removeObserverOf_%!mRelationshipName->string% (inObserver : PMTriggerProtocol) {
     %!mRelationshipName->string%_observers.removeObject (inObserver)
-    inObserver.%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange ()
+    enterTriggerWithObject (inObserver)
   }
 %
   end
 end
-%
-
-%foreach CURRENT_RELATIONSHIP_LIST do
+foreach CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["To one relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
@@ -169,7 +162,6 @@ end
     //--- Trigger signature computing
       triggerSignatureComputing ()
 %    end
-    !generateSwiftTransientTriggering [!mRelationshipName->string !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]
 %      }
 //    }
   }
@@ -187,18 +179,27 @@ end
   end
 end
 %
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
   init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
-  //--- Add Transient observers\n%
-!generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !"  "]
+  //--- Register trigger objects
+%
+!generateAddSwiftObserverForTransients [!"entity" !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
 %  }
 
-%!generateSwiftObserverRoutinesForTransient [!ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"entity"]%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+  //--- remove trigger objects
+%
+!generateRemoveSwiftObserverForTransients [!"entity" !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
+%  }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindow                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -275,6 +276,7 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!mTransientName%_observers = NSMutableSet ()\n%
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!ENTITY_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
@@ -283,6 +285,28 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
   func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
     self.willChangeValueForKey ("%!mTransientName%")
     self.didChangeValueForKey  ("%!mTransientName%")
+    for anyObject in %!mTransientName%_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+
+   func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%__cache : PMTrigger_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% {
+    if !triggerObjectFor_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%__cache {
+      triggerObjectFor_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%__cache = PMTrigger_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+    }
+    return triggerObjectFor_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%__cache!
   }
  
 %

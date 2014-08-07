@@ -4,56 +4,67 @@
 //  Created by Pierre Molinaro on 29/06/14.
 //  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
 //
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 import Cocoa
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMEntityArrayController) class PMEntityArrayController : NSArrayController {
   var mFilteringKey : String = ""
-  var mObjectClassName = ""
+  var mObjectClassName : String
   var mObservedObjects = NSSet ()
   var deleteEntityOnRemove = false
   var mEntityManager : PMObjectManager
 
-  //---------------------------------------------------------------------------*
-  //    init                                                                   *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+/*  required init (coder : NSCoder!) {
+    mObjectClassName = ""
+    mEntityManager = PMObjectManager ()
+    super.init (coder:coder)
+    noteObjectAllocation (self)
+  }*/
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   init (entityManager : PMObjectManager,
         inClassName : String) {
     mEntityManager = entityManager
-    super.init (content:NSArray ())
     mObjectClassName = inClassName
+    super.init (content:NSArray ())
     noteObjectAllocation (self)
   }
 
-  //---------------------------------------------------------------------------*
-  //    deinit                                                                 *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //---------------------------------------------------------------------------*
-  //    add                                                                    *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    add                                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func add (inSender : AnyObject!) {
    var newObject : PMManagedObject = mEntityManager.newInstanceOfEntityNamed (mObjectClassName)!
    addObject (newObject)
   }
 
-  //---------------------------------------------------------------------------*
-  //    remove                                                                 *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    remove                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func remove (inSender : AnyObject!) {
     if deleteEntityOnRemove {
-      let selectedObjectIndexes : NSIndexSet = selectionIndexes ()
-      let selectedObjects : NSArray = self.arrangedObjects ().objectsAtIndexes (selectedObjectIndexes)
+      let selectedObjectIndexes : NSIndexSet = selectionIndexes
+      let selectedObjects : NSArray = self.arrangedObjects.objectsAtIndexes (selectedObjectIndexes)
       for object : AnyObject in selectedObjects {
         let managedObject : PMManagedObject = object as PMManagedObject
         mEntityManager.deleteEntity (managedObject)
@@ -63,15 +74,15 @@ import Cocoa
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //  A U T O M A T I C     F I L T E R I N G                                  *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  A U T O M A T I C     F I L T E R I N G                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   func automaticallyFilterWithKey (inKey : String) {
     if countElements (mFilteringKey) > 0 {
-      let allObjects : NSArray = mObservedObjects.allObjects () as NSArray
+      let allObjects : NSArray = mObservedObjects.allObjects as NSArray
       allObjects.removeObserver (self,
-        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:allObjects.count ())),
+        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:allObjects.count)),
         forKeyPath:mFilteringKey
       )
     }
@@ -81,9 +92,9 @@ import Cocoa
   }
 
 
-  //---------------------------------------------------------------------------*
-  //  arrangeObjects                                                           *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  arrangeObjects                                                                                                   *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func arrangeObjects (inObjects : [AnyObject]!) -> [AnyObject]! {
     // NSLog (@"%s", __PRETTY_FUNCTION__) ;
@@ -96,9 +107,9 @@ import Cocoa
       var newObjects = NSMutableSet ()
       newObjects.setSet (objectSet)
       newObjects.minusSet (mObservedObjects)
-      let newObjectArray = newObjects.allObjects () as NSArray
+      let newObjectArray = newObjects.allObjects as NSArray
       newObjectArray.addObserver (self,
-        toObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:newObjectArray.count ())),
+        toObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:newObjectArray.count)),
         forKeyPath:mFilteringKey,
         options:NSKeyValueObservingOptions (0),
         context:nil
@@ -107,9 +118,9 @@ import Cocoa
       var removedObjects = NSMutableSet ()
       removedObjects.setSet (mObservedObjects)
       removedObjects.minusSet (objectSet)
-      let removedObjectArray : NSArray = removedObjects.allObjects () as NSArray
+      let removedObjectArray : NSArray = removedObjects.allObjects as NSArray
       removedObjectArray.removeObserver (self,
-        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:removedObjectArray.count ())),
+        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:removedObjectArray.count)),
         forKeyPath:mFilteringKey
       )
     //--- Assign new object set
@@ -117,7 +128,7 @@ import Cocoa
     //---
       var filteredObjects = NSMutableArray ()
       for object : AnyObject in inObjects {
-        if object.valueForKey (mFilteringKey).boolValue () {
+        if (object.valueForKey (mFilteringKey).boolValue != nil) {
           filteredObjects.addObject (object)
         }
       }
@@ -127,24 +138,55 @@ import Cocoa
     return super.arrangeObjects (result)
   }
 
-  //---------------------------------------------------------------------------*
-  //  unbind                                                                   *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  unbind                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func unbind (inBinding : String) {
     if inBinding == "contentArray" && (countElements (mFilteringKey) > 0) {
-      let objectArray : NSArray = mObservedObjects.allObjects () as NSArray
+      let objectArray : NSArray = mObservedObjects.allObjects as NSArray
       objectArray.removeObserver (self,
-        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:objectArray.count ())),
+        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:objectArray.count)),
         forKeyPath:mFilteringKey
       )
     }
     super.unbind (inBinding)
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  didChangeValueForKey                                                                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func didChangeValueForKey(key: String!) {
+    super.didChangeValueForKey (key)
+    // NSLog ("key : %@", key)
+    if key == "canRemove" {
+      for anyObject in canRemove_observers {
+        let object = anyObject as PMTriggerProtocol
+        enterTriggerWithObject (object)
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Transient: canRemove                                                                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var canRemove_observers = NSMutableSet ()
+  
+  func addObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+    canRemove_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+    canRemove_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
 
 }
 
+//---------------------------------------------------------------------------------------------------------------------*
 
 
 /*

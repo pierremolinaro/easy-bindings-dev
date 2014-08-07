@@ -18,6 +18,8 @@ import Cocoa
 extension Prefs {
   func monAction (inSender : AnyObject) {
 //--- START OF USER ZONE 2
+    mFirstName = "Tempo 1"
+    mName = "Tempo 2"
     mFirstName = "Amédée"
     mName = "Schmurtz"
 //--- END OF USER ZONE 2

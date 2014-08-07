@@ -1,38 +1,31 @@
 
 import Cocoa
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument%
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%,\n                                   protocol_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
-  foreach mDependencyList do
-    ![mDependency generateSwiftProtocolObserverForTransient !ROOT_ENTITY_NAME]
-  end
-end
-% {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument {
 
-  //---------------------------------------------------------------------------*
-  //    Outlets                                                                *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Outlets                                                                                                        *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 %
 foreach OUTLET_GENERATION_LIST do
 %  @IBOutlet var %!mOutletName% : %!mOutletType%?\n%
 end
 %
-  //---------------------------------------------------------------------------*
-  //    Controllers                                                            *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Controllers                                                                                                    *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 %
 foreach CONTROLLER_MAP do
 %  var %!lkey->string% : %!mControllerClassName% \n%
 end
 %
-  //---------------------------------------------------------------------------*
-  //    Documents attributes                                                   *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Document attributes                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 %
 
@@ -46,9 +39,9 @@ foreach ATTRIBUTE_LIST do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end
 %
-  //---------------------------------------------------------------------------*
-  //    init                                                                   *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   init () {
     let em = PMObjectManager ()
@@ -63,25 +56,25 @@ end
 %    super.init (inEntityManager:em)
   }
   
-  //---------------------------------------------------------------------------*
-  //    windowNibName                                                          *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowNibName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override var windowNibName: String {
     return "%!DOCUMENT_NAME%"
   }
 
-  //---------------------------------------------------------------------------*
-  //    rootEntityClassName                                                    *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    rootEntityClassName                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func rootEntityClassName () -> String {
     return "%!ROOT_ENTITY_NAME%"
   }
 
-  //---------------------------------------------------------------------------*
-  //    rootObject                                                             *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    rootObject                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   var rootObject : MyRootEntity {
     get {
@@ -89,9 +82,9 @@ end
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //    windowControllerDidLoadNib                                             *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowControllerDidLoadNib                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
@@ -118,7 +111,7 @@ foreach OUTLET_GENERATION_LIST do
   end
 end
 %  //--------------------------- Add Transient observers
-%!generateAddSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION !""]
+%!generateAddSwiftObserverForTransients [!"document" !DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
 %  //--------------------------- Add Signature observer
 %
 if HAS_SIGNATURE_OBSERVER then
@@ -126,9 +119,9 @@ if HAS_SIGNATURE_OBSERVER then
 end
 %}
 
-  //---------------------------------------------------------------------------*
-  //   R E M O V E    W I N D O W    C O N T R O L L E R                       *
-  //---------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
+  //   removeWindowController                                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Add Signature observer
@@ -149,7 +142,7 @@ end
   end
 end
 %  //--- Remove Transient observers
-%!generateRemoveSwiftObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
+%!generateRemoveSwiftObserverForTransients [!"document" !DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"   "]
 %  //--- Release controllers
 %foreach CONTROLLER_MAP do
   %    // %!lkey->string% = nil\n%
@@ -166,25 +159,44 @@ end
 
 %
 
-!generateSwiftObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
+#!generateSwiftObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  //---------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !71 !' ']%*
-  //---------------------------------------------------------------------------*\n\n%
-%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
-!generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  var %!mTransientName%_observers = NSMutableSet ()
+  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?
+  var %!mTransientName% : %![mTransientType swiftTypeName]% {
+%!generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
 %  }
 
   func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
     self.willChangeValueForKey ("%!mTransientName%")
     self.didChangeValueForKey  ("%!mTransientName%")
   }
+
+  func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% {
+    if !triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache {
+      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+    }
+    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache!
+  }\n
  
 %
 end
 %}
 
-//-----------------------------------------------------------------------------*
-
+//---------------------------------------------------------------------------------------------------------------------*

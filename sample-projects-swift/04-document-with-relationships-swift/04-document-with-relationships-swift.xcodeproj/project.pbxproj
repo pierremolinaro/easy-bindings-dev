@@ -27,7 +27,6 @@
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
 		CF7C6441196063B800BE14DF /* PMEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6440196063B800BE14DF /* PMEntityController.swift */; };
 		CF7C64431960664700BE14DF /* PMEntityArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64421960664700BE14DF /* PMEntityArrayController.swift */; };
-		CF87C51B1992D63400A77E72 /* observer-protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87C51A1992D63400A77E72 /* observer-protocols.swift */; };
 		CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CFE3F3E01965FA3C0017DFCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3DF1965FA3C0017DFCE /* libz.dylib */; };
 		CFE3F3E21965FAB30017DFCE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3E11965FAB30017DFCE /* libbz2.dylib */; };
@@ -59,7 +58,6 @@
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
 		CF7C6440196063B800BE14DF /* PMEntityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityController.swift; sourceTree = "<group>"; };
 		CF7C64421960664700BE14DF /* PMEntityArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityArrayController.swift; sourceTree = "<group>"; };
-		CF87C51A1992D63400A77E72 /* observer-protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "observer-protocols.swift"; sourceTree = "<group>"; };
 		CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "04-document-with-relationships-swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFE3F3DF1965FA3C0017DFCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CFE3F3E11965FAB30017DFCE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
@@ -100,7 +98,6 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
-				CF87C51A1992D63400A77E72 /* observer-protocols.swift */,
 				CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */,
 				CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
@@ -231,7 +228,6 @@
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
 				CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */,
-				CF87C51B1992D63400A77E72 /* observer-protocols.swift in Sources */,
 				CF7C64361960619500BE14DF /* PMObjectManager+extension+factory.swift in Sources */,
 				CF7C6403196060D800BE14DF /* main.swift in Sources */,
 				CF7C64321960619500BE14DF /* PMApplication.swift in Sources */,

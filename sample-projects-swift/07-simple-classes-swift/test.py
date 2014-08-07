@@ -2,10 +2,13 @@
 # https://pypi.python.org/pypi/atomac
 # https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py
 
-import atomac, sys, time
+import atomac, sys, time, os
+
+scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+bundlePath = scriptDir + "/build/Release/07-simple-classes-swift.app"
+atomac.launchAppByBundlePath (bundlePath)
 
 bundleName = 'fr.free.molinaro.-7-simple-classes-swift'
-atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.5)
 

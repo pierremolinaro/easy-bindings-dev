@@ -35,7 +35,7 @@
 		CF90AC99198AD5900037F731 /* MyClass+transient+truc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyClass+transient+truc.swift"; sourceTree = "<group>"; };
 		CF90AC9A198AD5900037F731 /* MyOtherClass+transient+bidule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyOtherClass+transient+bidule.swift"; sourceTree = "<group>"; };
 		CF90AC9E198AD8500037F731 /* UserAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAppDelegate.swift; sourceTree = "<group>"; };
-		CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "07-simple-classes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBFD5A41652C483006EAD0D /* 07-simple-classes-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "07-simple-classes-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBFD5A81652C483006EAD0D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CFBFD5AB1652C483006EAD0D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		CFBFD5AC1652C483006EAD0D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -71,7 +71,7 @@
 		CFBFD5A51652C483006EAD0D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */,
+				CFBFD5A41652C483006EAD0D /* 07-simple-classes-swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			);
 			name = "07-simple-classes-swift";
 			productName = "07-simple-classes";
-			productReference = CFBFD5A41652C483006EAD0D /* 07-simple-classes.app */;
+			productReference = CFBFD5A41652C483006EAD0D /* 07-simple-classes-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -256,7 +256,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.10;
 			};
 			name = Debug;
 		};
@@ -276,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};
@@ -288,7 +288,6 @@
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -301,7 +300,6 @@
 				INFOPLIST_FILE = "07-simple-classes/07-simple-classes-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
