@@ -19,7 +19,6 @@
 		CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */; };
 		CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */; };
 		CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F741944D887000826E7 /* Prefs+action+monAction.swift */; };
-		CF87C5151992CEA500A77E72 /* observer-protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87C5141992CEA500A77E72 /* observer-protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +48,6 @@
 		CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mFullName.swift"; sourceTree = "<group>"; };
 		CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
 		CF713F741944D887000826E7 /* Prefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+action+monAction.swift"; sourceTree = "<group>"; };
-		CF87C5141992CEA500A77E72 /* observer-protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "observer-protocols.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +89,6 @@
 		CF713F421944C1CC000826E7 /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
-				CF87C5141992CEA500A77E72 /* observer-protocols.swift */,
 				CF713F651944C608000826E7 /* PMApplication.swift */,
 				CF713F621944C608000826E7 /* easy-bindings-utilities.swift */,
 				CF713F631944C608000826E7 /* PMAllocationDebug.swift */,
@@ -240,7 +237,6 @@
 				CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */,
 				CF713F461944C1CC000826E7 /* main.swift in Sources */,
 				CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */,
-				CF87C5151992CEA500A77E72 /* observer-protocols.swift in Sources */,
 				CF713F6A1944C608000826E7 /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

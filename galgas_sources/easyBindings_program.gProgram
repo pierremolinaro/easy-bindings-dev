@@ -225,11 +225,6 @@ local routine semanticAnalysis
       end if ;
     end if ;
   end if ;
-#------------------------------ Generate protocols for property observers
-  generateObserverProtocols
-    !observablePropertyMapMap
-    !outputDirectory
-  ;
 #------------------------------ Output dependency order definition file
   generateTransientTrigersAndApplication
     !transientDependencyArcList
@@ -279,33 +274,6 @@ local routine semanticAnalysis
      end if ;
   end foreach ;
 end routine ;
-
-#----------------------------------------------------------------------------*
-
-local routine generateObserverProtocols
-  ??@observablePropertyMapMap inObservablePropertyMapMap
-  ??@string inOutputDirectory
-:
-  if [@uint errorCount] == 0 then
-    var contents := "" ;
- #   log inObservablePropertyMapMap ;
-    for (* @bool userDefined * @observablePropertyMap observablePropertyMap) in inObservablePropertyMapMap do
-      if userDefined then
-        for () in observablePropertyMap do
-          const signature := [mPropertySignature identifierRepresentation] ;
-          contents += "@objc(protocol_" + signature + ") protocol protocol_" + signature + " {\n"
-                    + "  func " + signature + "_didChange ()\n"
-                    + "}\n\n" ;
-        end for ;
-      end if ;
-    end for ;
-    [@string generateFile
-      !inOutputDirectory
-      !"observer-protocols.swift"
-      !contents
-     ] ;
-  end if ;
-end routine  ;
 
 #----------------------------------------------------------------------------*
 

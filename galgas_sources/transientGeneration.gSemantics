@@ -7,12 +7,11 @@ semantics transientGeneration :
 #-----------------------------------------------------------------------------*
 
 reader @ebType generateAttributeDeclarationInSwift
-  ??@string inDeclarationKind # "entity, class, ...
-  ??@string inKindName # Entity name, class name, ...
+  ??@string unused inDeclarationKind # "entity, class, ...
+  ??@string unused inKindName # Entity name, class name, ...
   ??@string inAttributeName
   ??@string inDirectSwiftDefaultValue
-  ??@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-  ??@bool inGenerateUndoHandling
+  ??generateUndoHandling:@bool inGenerateUndoHandling
   ->@string outResult
 :
   outResult := "  //-------------------------------------------------------------------------------------------------------------------*\n" ;
@@ -81,20 +80,19 @@ reader @ebType generateAttributeDeclarationInSwift
   end switch ;
   outResult += "    //--- Notify observers\n"
                "      for anyObject in " + inAttributeName + "_observers.allObjects {\n"
-               "        let object = anyObject as protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "\n"
-               "        object." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
+               "        let object = anyObject as PMTriggerProtocol\n"
+               "        enterTriggerWithObject (object)\n"
                "      }\n"
-               + generateSwiftTransientTriggering [!inAttributeName !inKindName !TRANSIENT_LIST_FOR_IMPLEMENTATION !inDeclarationKind] +
                "    }\n"
                "  }\n\n"
-               "  func addObserverOf_" + inAttributeName + " (inObserver : protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + ") {\n"
+               "  func addObserverOf_" + inAttributeName + " (inObserver : PMTriggerProtocol) {\n"
                "    " + inAttributeName + "_observers.addObject (inObserver)\n"
-               "    inObserver." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
+               "    enterTriggerWithObject (inObserver)\n"
                "  }\n\n"
-               "  func removeObserverOf_" + inAttributeName + " (inObserver : protocol_" + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + ") {\n"
+               "  func removeObserverOf_" + inAttributeName + " (inObserver : PMTriggerProtocol) {\n"
                "    " + inAttributeName + "_observers.removeObject (inObserver)\n"
-               "    inObserver." + [inDeclarationKind + "." + inKindName + "." + inAttributeName identifierRepresentation] + "_didChange ()\n"
-               "  }\n\n" ;
+               "    enterTriggerWithObject (inObserver)\n"
+               "  }\n" ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -473,6 +471,9 @@ function generateSwiftTransientCacheRoutine
 :
   outResult :=
   "    if " . mTransientName . "__cache == nil {\n"
+  "      if TRACE_TRANSIENT_TRIGGER {\n"
+  "        NSLog (\"Compute transient " . inKindName . "." . mTransientName . "\")\n"
+  "      }\n"
   "      " . mTransientName . "__cache = compute_" . inKindName . "_" . mTransientName . " (" ;
   @bool first := true ;
   foreach mDependencyList do
@@ -823,59 +824,79 @@ function generateAddOCObserverForTransients
 end function ;
 
 #----------------------------------------------------------------------------*
-#! generateAddSwiftObserverForTransient
+#! handleSwiftObserverForTransient
 #----------------------------------------------------------------------------*
 
-abstract method @abstractTransientDependencyForImplementation generateAddSwiftObserverForTransient
+abstract method @abstractTransientDependencyForImplementation handleSwiftObserverForTransient
+  ??@string inOperationName
+  ??@string inKind
+  ??@string inKindName
+  ??@string inTransientName
   ??@string inLeadingSpaces
   ?!@string ioResult
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromSelfForImplementation generateAddSwiftObserverForTransient
-  ??@string unused inLeadingSpaces
-  ?!@string unused ioResult
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @transientDependencyFromControllerForImplementation generateAddSwiftObserverForTransient
+override method @transientDependencyFromSelfForImplementation handleSwiftObserverForTransient
+  ??@string inOperationName
+  ??@string inKind
+  ??@string inKindName
+  ??@string inTransientName
   ??@string inLeadingSpaces
   ?!@string ioResult
 :
-  ioResult .= inLeadingSpaces .
-  "    " . mControllerName . ".addObserver (self,\n"
-  "      forKeyPath:\"" . mMasterAttributeName . "\",\n"
-  "      options:NSKeyValueObservingOptions (),\n"
-  "      context:nil\n"
-  "    )\n" ;
+  ioResult += inLeadingSpaces . inOperationName + mMasterAttributeName + " (triggerObjectFor_" + [inKind + "." + inKindName + "." + inTransientName identifierRepresentation] + ")\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromPreferenceForImplementation generateAddSwiftObserverForTransient
+override method @transientDependencyFromControllerForImplementation handleSwiftObserverForTransient
+  ??@string inOperationName
+  ??@string inKind
+  ??@string inKindName
+  ??@string inTransientName
+  ??@string inLeadingSpaces
+  ?!@string ioResult
+:
+  ioResult .= inLeadingSpaces . mControllerName . "." . inOperationName + mMasterAttributeName
+            + " (triggerObjectFor_" + [inKind + "." + inKindName + "." + inTransientName identifierRepresentation] . ")\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @transientDependencyFromPreferenceForImplementation handleSwiftObserverForTransient
+  ??@string inOperationName
+  ??@string inKind
+  ??@string inKindName
+  ??@string inTransientName
   ??@string inLeadingSpaces
   ?!@string ioResult
 :
   if not mMasterIsTransient then
-    ioResult .= inLeadingSpaces . "    g_" . mPreferenceName . "?.addObserverOf_" . mMasterAttributeName . " (self)\n" ;
+    ioResult .= inLeadingSpaces . "g_" . mPreferenceName . "?." . inOperationName . mMasterAttributeName
+            + " (triggerObjectFor_" + [inKind + "." + inKindName + "." + inTransientName identifierRepresentation] . ")\n" ;
   end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @transientDependencyFromRootForImplementation generateAddSwiftObserverForTransient
+override method @transientDependencyFromRootForImplementation handleSwiftObserverForTransient
+  ??@string inOperationName
+  ??@string inKind
+  ??@string inKindName
+  ??@string inTransientName
   ??@string inLeadingSpaces
   ?!@string ioResult
 :
-  ioResult .= inLeadingSpaces . "    rootObject.addObserverOf_" . mMasterAttributeName . " (self)\n" ;
+  ioResult += inLeadingSpaces . "rootObject." . inOperationName . mMasterAttributeName + " (triggerObjectFor_" + [inKind + "." + inKindName + "." + inTransientName identifierRepresentation] + ")\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 function generateAddSwiftObserverForTransients
+  ??@string inKind
+  ??@string inKindName
   ??@transientListForImplementation inTransientListForImplementation
   ??@string inLeadingSpaces
   ->@string outResult
@@ -883,7 +904,11 @@ function generateAddSwiftObserverForTransients
   outResult := "" ;
   foreach inTransientListForImplementation do
     foreach mDependencyList do
-      [mDependency generateAddSwiftObserverForTransient
+      [mDependency handleSwiftObserverForTransient
+        !"addObserverOf_"
+        !inKind
+        !inKindName
+        !mTransientName
         !inLeadingSpaces
         !?outResult
       ] ;
@@ -892,50 +917,31 @@ function generateAddSwiftObserverForTransients
 end function ;
 
 #----------------------------------------------------------------------------*
-#! generateAddSwiftObserverForTransient
-#----------------------------------------------------------------------------*
 
-abstract reader @abstractTransientDependencyForImplementation generateSwiftProtocolObserverForTransient
-  ??@string unused inRootEntityName
-  -> @string outResult
-;
-
-#----------------------------------------------------------------------------*
-
-override reader @transientDependencyFromSelfForImplementation generateSwiftProtocolObserverForTransient
-  ??@string unused inRootEntityName
-  -> @string outResult
+function generateRemoveSwiftObserverForTransients
+  ??@string inKind
+  ??@string inKindName
+  ??@transientListForImplementation inTransientListForImplementation
+  ??@string inLeadingSpaces
+  ->@string outResult
 :
   outResult := "" ;
-end reader ;
+  foreach inTransientListForImplementation do
+    foreach mDependencyList do
+      [mDependency handleSwiftObserverForTransient
+        !"removeObserverOf_"
+        !inKind
+        !inKindName
+        !mTransientName
+        !inLeadingSpaces
+        !?outResult
+      ] ;
+    end foreach ;
+  end foreach ;
+end function ;
 
 #----------------------------------------------------------------------------*
-
-override reader @transientDependencyFromControllerForImplementation generateSwiftProtocolObserverForTransient
-  ??@string unused inRootEntityName
-  -> @string outResult
-:
-  outResult := "" ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @transientDependencyFromPreferenceForImplementation generateSwiftProtocolObserverForTransient
-  ??@string unused inRootEntityName
-  -> @string outResult
-:
-  outResult := "" ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @transientDependencyFromRootForImplementation generateSwiftProtocolObserverForTransient
-  ??@string inRootEntityName
-  -> @string outResult
-:
-  outResult := ", \n    protocol_" + ["entity." + inRootEntityName + "." + mMasterAttributeName identifierRepresentation] ;
-end reader ;
-
+#! generateOCRemoveObserverForTransient
 #----------------------------------------------------------------------------*
 
 abstract method @abstractTransientDependencyForImplementation generateOCRemoveObserverForTransient
@@ -989,66 +995,6 @@ function generateRemoveOCObserverForTransients
   foreach inTransientListForImplementation do
     foreach mDependencyList do
       [mDependency generateOCRemoveObserverForTransient
-        !?outResult
-      ] ;
-    end foreach ;
-  end foreach ;
-end function ;
-
-#----------------------------------------------------------------------------*
-#! generateSwiftRemoveObserverForTransient
-#----------------------------------------------------------------------------*
-
-abstract method @abstractTransientDependencyForImplementation generateSwiftRemoveObserverForTransient
-  ?!@string ioResult
-;
-
-#----------------------------------------------------------------------------*
-
-override method @transientDependencyFromSelfForImplementation generateSwiftRemoveObserverForTransient
-  ?!@string unused ioResult
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @transientDependencyFromControllerForImplementation generateSwiftRemoveObserverForTransient
-  ?!@string ioResult
-:
-  ioResult .=
-  "    " . mControllerName . ".removeObserver (self,\n"
-  "      forKeyPath:\"" . mMasterAttributeName . "\"\n"
-  "    )\n" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @transientDependencyFromPreferenceForImplementation generateSwiftRemoveObserverForTransient
-  ?!@string ioResult
-:
-  if not mMasterIsTransient then
-    ioResult .= "    g_" . mPreferenceName . ".removeObserverOf_" . mMasterAttributeName . " (self)\n" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @transientDependencyFromRootForImplementation generateSwiftRemoveObserverForTransient
-  ?!@string ioResult
-:
-  ioResult .= "    rootObject.removeObserverOf_" . mMasterAttributeName . " (self)\n" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-function generateRemoveSwiftObserverForTransients
-  ??@transientListForImplementation inTransientListForImplementation
-  ->@string outResult
-:
-  outResult := "" ;
-  foreach inTransientListForImplementation do
-    foreach mDependencyList do
-      [mDependency generateSwiftRemoveObserverForTransient
         !?outResult
       ] ;
     end foreach ;
@@ -1266,8 +1212,10 @@ function generateSwiftObserverRoutinesForTransient
 end function ;
 
 #----------------------------------------------------------------------------*
+#! Filewrapper
+#----------------------------------------------------------------------------*
 
-filewrapper transientManager in "../generation-templates/application-class" {
+local filewrapper transientManager in "../generation-templates/application-class" {
 }{
 }{
   template applicationClassDeclaration "PMApplication.h.gTemplate"
@@ -1283,7 +1231,6 @@ filewrapper transientManager in "../generation-templates/application-class" {
   template applicationInSwift "PMApplication.swift.gTemplate"
     ?@string GRAPH_STRING
     ?@string TRANSIENT_LIST_STRING
-    ?@string TRANSIENT_INDEXES
     ?@uint TRANSIENT_COUNT
     ?@stringlist TRANSIENT_LIST
   ;
@@ -1327,7 +1274,6 @@ routine generateTransientTrigersAndApplication
     const @string s := [filewrapper transientManager.applicationInSwift
       !graphString
       !transientOrderedList
-      !transientSwiftIndexString
       !transientCount
       !transientList
     ] ;

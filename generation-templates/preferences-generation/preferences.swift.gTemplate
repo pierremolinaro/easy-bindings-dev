@@ -1,21 +1,17 @@
-//----------------------------------------------------------------------------*
+//-------------------------------------------------------------------------------------------------------------------*
 
 import Cocoa
 
-//-----------------------------------------------------------------------------*
+//-------------------------------------------------------------------------------------------------------------------*
 
 var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 
 //----------------------------------------------------------------------------*
 
-@objc (%!PREFERENCES_NAME%) class %!PREFERENCES_NAME% : NSObject%
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%,\n                                   protocol_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]
-end
-% {
-  //-----------------------------------------------------------------------------*
-  //    Outlets                                                                  *
-  //-----------------------------------------------------------------------------*
+@objc (%!PREFERENCES_NAME%) class %!PREFERENCES_NAME% : NSObject {
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Outlets                                                                                                        *
+  //-------------------------------------------------------------------------------------------------------------------*
 \n%
 foreach OUTLET_DECLARATION_LIST do
 %  @IBOutlet var %!mOutletName% : %!mOutletType%?\n%
@@ -23,47 +19,47 @@ end
 
 foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %\n%
-%  //-----------------------------------------------------------------------------*
-  //    %!["Attribute: " + mAttributeName stringByRightPadding !73 !' ']%*
-  //-----------------------------------------------------------------------------*\n\n%
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 %  var %!mAttributeName%_observers = NSMutableSet ()\n%
 %  var %!mAttributeName% : %![mType swiftTypeName]% = %!mDirectSwiftDefaultValue% {
     didSet {
       if %!mAttributeName% != oldValue {
-        for anyObject in %!mAttributeName%_observers.allObjects {
-          let object = anyObject as protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%
-          object.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+        for anyObject in %!mAttributeName%_observers {
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
         }
-%!generateSwiftTransientTriggering [!mAttributeName !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"preference"]
-%      }
+      }
     }
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) {
+  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
     %!mAttributeName%_observers.addObject (inObserver)
-    inObserver.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+    enterTriggerWithObject (inObserver)
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : protocol_%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%) {
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
     %!mAttributeName%_observers.removeObject (inObserver)
-    inObserver.%!["preference." + PREFERENCES_NAME + "." + mAttributeName identifierRepresentation]%_didChange ()
+    enterTriggerWithObject (inObserver)
   }
 
 %
 end
 
 foreach CONTROLLER_MAP do
-%  //-----------------------------------------------------------------------------*
-  //    %!["Controller: " + lkey stringByRightPadding !73 !' ']%*
-  //-----------------------------------------------------------------------------*
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Controller: " + lkey stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*
   
   var %!lkey->string% = %!mControllerClassName% ()\n%
 end
 
 foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  //-----------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !73 !' ']%*
-  //-----------------------------------------------------------------------------*\n\n%
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!mTransientName%_observers = NSMutableSet ()\n%
 %  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 !generateSwiftTransientCacheRoutine [!PREFERENCES_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
@@ -72,11 +68,35 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
   func %!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
     self.willChangeValueForKey ("%!mTransientName%")
     self.didChangeValueForKey  ("%!mTransientName%")
+     for anyObject in %!mTransientName%_observers {
+        let object = anyObject as PMTriggerProtocol
+        enterTriggerWithObject (object)
+      }
   }
  
+   func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
+    %!mTransientName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%__cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% {
+    if !triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%__cache {
+      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%__cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+    }
+    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%__cache!
+  }\n
 %end
 %
-  //------------------------------------------------------- Arraies\n%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Arraies                                                                                                        *
+  //-------------------------------------------------------------------------------------------------------------------*
+%
 foreach ARRAY_MAP do
 %  var %!lkey->string% = NSMutableArray ()\n%
 end
@@ -84,7 +104,10 @@ end
 
 %
 
-  //------------------------------------------------------- Init
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init () {
     super.init ()
     noteObjectAllocation (self) ;
@@ -127,9 +150,19 @@ end
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  }
+  //--- Register trigger objects
+%!generateAddSwiftObserverForTransients [!"preference" !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
+#foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+#  foreach mDependencyList do
+#    ![mDependency installTransientObserverForTransient !"preference" !PREFERENCES_NAME !mTransientName]
+#  end
+#end
+%  }
 
-  //------------------------------------------------------- awakeFromNib
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    awakeFromNib                                                                                                   *
+  //-------------------------------------------------------------------------------------------------------------------*
+
   override func awakeFromNib () {
 % foreach CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller\n%
@@ -155,12 +188,18 @@ foreach OUTLET_DECLARATION_LIST do
 end
 %  }
   
-  //------------------------------------------------------- deinit
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
   deinit {
     noteObjectDeallocation (self) ;
   }
   
-   //------------------------------------------------------- applicationWillTerminateAction
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    applicationWillTerminateAction                                                                                 *
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func applicationWillTerminateAction (NSNotification) {
 %
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
@@ -187,7 +226,8 @@ end
 end
 %  }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
 }
 
-//----------------------------------------------------------------------------*
-
+//---------------------------------------------------------------------------------------------------------------------*

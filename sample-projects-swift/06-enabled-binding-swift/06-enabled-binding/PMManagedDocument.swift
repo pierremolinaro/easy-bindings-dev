@@ -43,7 +43,7 @@ class PMManagedDocument : NSDocument {
     super.init ()
     noteObjectAllocation (self)
     let um = mEntityManager.undoManager
-    setUndoManager (um)
+    undoManager = um
     hookOfInit () ;
     um.disableUndoRegistration ()
     mRootObject = mEntityManager.newInstanceOfEntityNamed (rootEntityClassName ())
@@ -103,19 +103,19 @@ class PMManagedDocument : NSDocument {
           action:"showObjectExplorerWindow:",
           keyEquivalent:""
         )
-        gDebugObject.addDebugMenuItem (menuItem)
+        gDebugObject?.addDebugMenuItem (menuItem)
         menuItem = NSMenuItem (
           title:"Check Relationships",
           action:"checkRelationships:",
           keyEquivalent:""
         )
-        gDebugObject.addDebugMenuItem (menuItem)
+        gDebugObject?.addDebugMenuItem (menuItem)
         menuItem = NSMenuItem (
           title:"Check All Objects are Reachable",
           action:"checkEntityReachability:",
           keyEquivalent:""
         )
-        gDebugObject.addDebugMenuItem (menuItem)
+        gDebugObject?.addDebugMenuItem (menuItem)
       }
     //-------------- Check relationships
 /*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;
@@ -166,11 +166,11 @@ class PMManagedDocument : NSDocument {
   //---
     hookOfWillSave ()
   //--- Add to metadata dictionary the witdth and the height of main window
-    if nil != windowForSheet () { // Document has been opened in the user interface
-      if (windowForSheet()!.styleMask() & NSResizableWindowMask) != 0 { // Only if window is resizable
-        let windowSize = windowForSheet ().frame ().size ;
-        mMetadataDictionary.setObject (NSNumber.numberWithDouble (windowSize.width), forKey:"PMWindowWidth")
-        mMetadataDictionary.setObject (NSNumber.numberWithDouble (windowSize.height), forKey:"PMWindowHeight")
+    if nil != windowForSheet { // Document has been opened in the user interface
+      if (windowForSheet!.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
+        let windowSize = windowForSheet.frame.size ;
+        mMetadataDictionary.setObject (NSNumber.numberWithDouble (Double (windowSize.width)), forKey:"PMWindowWidth")
+        mMetadataDictionary.setObject (NSNumber.numberWithDouble (Double (windowSize.height)), forKey:"PMWindowHeight")
       }
     }else{ // Document has not been opened in the user interface, use values read from file, if they exist
 /*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
@@ -232,11 +232,11 @@ class PMManagedDocument : NSDocument {
   override func readFromData (data: NSData?,
                               ofType typeName: String?,
                               error outError: NSErrorPointer) -> Bool {
-    undoManager ().disableUndoRegistration ()
+    undoManager.disableUndoRegistration ()
   //---- Define input data scanner
     var dataScanner = PMDataScanner (
       data:data!,
-      displayProgressWindowTitle:(data!.length () > 30000) ? lastComponentOfFileName ().stringByDeletingPathExtension : nil
+      displayProgressWindowTitle:(data!.length > 30000) ? lastComponentOfFileName.stringByDeletingPathExtension : nil
     )
   //--- Check Signature
     for c in kFormatSignature.utf8 {
@@ -330,7 +330,7 @@ class PMManagedDocument : NSDocument {
         "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       error = NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier (),
+        domain:NSBundle.mainBundle ().bundleIdentifier,
         code:1,
         userInfo:dictionary
       )
@@ -356,7 +356,7 @@ class PMManagedDocument : NSDocument {
         "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       error = NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier (),
+        domain:NSBundle.mainBundle ().bundleIdentifier,
         code:1,
         userInfo:dictionary
       )
@@ -365,7 +365,7 @@ class PMManagedDocument : NSDocument {
     if (nil != outError) {
       outError.memory = error
     }
-    undoManager ().enableUndoRegistration ()
+    undoManager.enableUndoRegistration ()
   //---
     return nil == error
   }
@@ -375,14 +375,14 @@ class PMManagedDocument : NSDocument {
   //-----------------------------------------------------------------------------*
 
   override func showWindows () {
-    if (windowForSheet ().styleMask () & NSResizableWindowMask) != 0 { // Only if window is resizable
+    if (windowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
       var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
       var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
       if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
-        let newSize = NSSize (width:Double (windowWidthNumber!.doubleValue ()), height:Double (windowHeightNumber!.doubleValue ()))
-        var windowFrame : NSRect = windowForSheet ().frame()
+        let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
+        var windowFrame : NSRect = windowForSheet.frame
         windowFrame.size = newSize
-        windowForSheet ().setFrame (windowFrame, display:true)
+        windowForSheet.setFrame (windowFrame, display:true)
       }
     }
   //---
@@ -403,7 +403,7 @@ class PMManagedDocument : NSDocument {
     )
     let panel = NSPanel (contentRect:panelRect,
       styleMask:NSTitledWindowMask,
-      backing:NSBackingStoreBuffered,
+      backing:NSBackingStoreType.Buffered,
       defer:false
     )
     let textRect = NSRect (
@@ -413,38 +413,38 @@ class PMManagedDocument : NSDocument {
      height:17.0
     )
     var tf = NSTextField (frame:textRect)
-    tf.setStringValue ("Checking Document Relationships...")
-    tf.setBezeled (false)
-    tf.setBordered (false)
-    tf.setDrawsBackground (false)
-    tf.setEditable (false)
-    tf.setFont (NSFont.boldSystemFontOfSize (0.0))
-    panel.contentView ().addSubview (tf)
+    tf.stringValue = "Checking Document Relationships..."
+    tf.bezeled = false
+    tf.bordered = false
+    tf.drawsBackground = false
+    tf.editable = false
+    tf.font = NSFont.boldSystemFontOfSize (0.0)
+    panel.contentView.addSubview (tf)
     NSApp.beginSheet (panel,
-      modalForWindow:windowForSheet (),
+      modalForWindow:windowForSheet,
       modalDelegate:nil,
       didEndSelector:nil,
       contextInfo:nil
     )
     panel.display ()
   //---
-    let unreachableObjects : PMSet<PMManagedObject> = mEntityManager.unreachableObjectsFromObject (mRootObject!)
+    let unreachableObjects : NSSet = mEntityManager.unreachableObjectsFromObject (mRootObject!)
   //---
     panel.orderOut (nil) ; NSApp.endSheet (panel)
   //---
-    let n = unreachableObjects.count ()
+    let n = unreachableObjects.count
     if n > 0 {
       let rn = mEntityManager.managedObjectCount ()
       let reachableCount = rn - n
       var alert = NSAlert ()
-      alert.setMessageText ("Object Graph Warning")
+      alert.messageText = "Object Graph Warning"
       alert.addButtonWithTitle ("Do not Delete")
       alert.addButtonWithTitle (NSString (format:"Delete %lu unreachable Object%@", n, (n > 1) ? "s" : ""))
-      alert.setInformativeText (NSString (format:"There %@ %lu registered object%@, %lu reachable object%@ from root object.",
+      alert.informativeText = NSString (format:"There %@ %lu registered object%@, %lu reachable object%@ from root object.",
         (rn > 1) ? "are" : "is", rn, (rn > 1) ? "s" : "",
         reachableCount, (reachableCount > 1) ? "s" : ""
-      ))
-      alert.beginSheetModalForWindow (windowForSheet (),
+      )
+      alert.beginSheetModalForWindow (windowForSheet,
         completionHandler:nil
       )
     }
@@ -472,7 +472,7 @@ class PMManagedDocument : NSDocument {
 extension NSMutableData {
 
   func writeSignature (inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
       appendBytes (&byte, length:1)
@@ -485,17 +485,17 @@ extension NSMutableData {
 
   func writeAutosizedData (inData: NSData,
                            inout trace: String) {
-    writeAutosizedUnsigned (UInt64 (inData.length ()), trace:&trace)
-    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
+    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
     appendData (inData)
-    trace += "(data, length \(inData.length ()))\n"
+    trace += "(data, length \(inData.length))\n"
   }
 
   //---------------------------------------------------------------------------*
 
   func writeByte (inByte: UInt8,
                   inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += NSString (format:"%02hhX ", inByte)
     var byte = inByte
     appendBytes (&byte, length:1)
@@ -506,7 +506,7 @@ extension NSMutableData {
 
   func writeAutosizedUnsigned (inValue: UInt64,
                                inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length () / 1000, length () % 1000)
+    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += "U "
     var value = inValue
     do{
