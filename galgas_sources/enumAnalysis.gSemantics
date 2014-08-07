@@ -7,28 +7,36 @@ semantics enumAnalysis :
 override method @enumDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @enumDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
-    ![@ebType new !mEnumTypeName ![@typeKind enumType]]
+    ![@EXebType new !mEnumTypeName ![@EXTypeKind enumType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @enumDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @enumDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   @enumConstantMap enumConstantMap [emptyMap] ;

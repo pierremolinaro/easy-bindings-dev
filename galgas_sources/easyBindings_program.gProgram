@@ -46,19 +46,19 @@ message "a source text file with the .easyBindings extension"
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@typeKind stringType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@typeKind enumType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@EXTypeKind stringType] ![@typeKind stringType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@EXTypeKind colorType] ![@typeKind colorType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@EXTypeKind dataType] ![@typeKind dataType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@EXTypeKind dateType] ![@typeKind dateType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@EXTypeKind fontType] ![@typeKind fontType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@EXTypeKind imageType] ![@typeKind imageType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@EXTypeKind menuType] ![@typeKind menuType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@EXTypeKind bezierPathType] ![@typeKind bezierPathType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@EXTypeKind integerType] ![@typeKind integerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@EXTypeKind uintegerType] ![@typeKind uintegerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@EXTypeKind boolType] ![@typeKind boolType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@EXTypeKind doubleType] ![@typeKind doubleType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@EXTypeKind enumType] ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
 #----
@@ -98,6 +98,52 @@ message "a source text file with the .easyBindings extension"
         !sortedTypeNames
         !inSourceFile->string
         !cursorList
+      ;
+    end if ;
+  end if ;
+  
+  
+  
+
+#------------------------------------------------------- Type Inventory
+   @EXunifiedTypeMap EXunifiedTypeMap [emptyMap] ;
+#----
+  foreach declarationList do
+    [mDeclaration EXTypeInventory !?EXunifiedTypeMap] ;
+  end foreach ;
+  if [option easyBindings_options.outputClassDependencyGraph value] then
+    const s := [EXunifiedTypeMap edgeGraphvizRepresentation] ;
+    const path := inSourceFile->string . ".EXclassDependancyGraph.dot" ;
+    [s writeToFileWhenDifferentContents !path ?*] ;
+  end if ;
+#------------------------------------------- Check all types are defined
+  const EXunsolvedProxyList := [EXunifiedTypeMap unsolvedProxyList] ;
+  foreach EXunsolvedProxyList do
+    error mValue :"type " . mValue . " is undefined" ;
+  end foreach ;
+#------------------------------------------- Topological sort types and continue
+  if [EXunsolvedProxyList length] == 0 then
+    [EXunifiedTypeMap topologicalSort
+      ?@lstringlist sortedTypeNames
+      ?@lstringlist unsortedTypeNames
+    ] ;
+    if [unsortedTypeNames length] > 0 then
+      var s := "cannot sort types ; the following types are involved in circular dependence:" ;
+      foreach unsortedTypeNames do
+        s .= "\n-- " . mValue ;
+      end foreach ;
+      error here : s ;
+    else
+#      @string s := "Sorted types:" ;
+#      foreach sortedKeys do
+#        s .= "\n-- " . mValue ;
+#      end foreach ;
+#      message s ;
+      EXsemanticAnalysis
+        !EXunifiedTypeMap
+        !sortedTypeNames
+        !inSourceFile->string
+        !cursorList
         !endOfSourceFile
       ;
     end if ;
@@ -115,12 +161,33 @@ local routine semanticAnalysis
   ??@lstringlist inSortedKeys
   ??@string inSourceFile
   ??@cursorList inCursorList
+:
+  const outputDirectory := [inSourceFile stringByDeletingLastPathComponent] ;
+#--- Build transient dependancy graph
+  buildTransientDependencyGraph
+    !inUnifiedTypeMap
+    !inSourceFile
+    ??@transientDependencyGraph transientDependencyGraph
+  ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#   S E M A N T I C    A N A L Y S I S                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine EXsemanticAnalysis
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ??@lstringlist inSortedKeys
+  ??@string inSourceFile
+  ??@cursorList inCursorList
   ??@location inEndOfSourceFile
 :
   const outputDirectory := [inSourceFile stringByDeletingLastPathComponent] ;
 #--- Build observable property map
-  @observablePropertyMapMap observablePropertyMapMap [emptyMap] ;
-  @transientDependencyGraph transientDependencyGraph [emptyGraph] ;
+  @EXobservablePropertyMapMap observablePropertyMapMap [emptyMap] ;
+  @EXtransientDependencyGraph transientDependencyGraph [emptyGraph] ;
   foreach inSortedKeys do
     [inUnifiedTypeMap searchKey
       !mValue
@@ -134,7 +201,7 @@ local routine semanticAnalysis
       !?transientDependencyGraph
     ] ;
   end foreach ;
-   @contextAnalysisStruct contextAnalysisStruct [default] ;
+   @EXcontextAnalysisStruct contextAnalysisStruct [default] ;
    contextAnalysisStruct->mObservablePropertyMapMap := observablePropertyMapMap ;
    contextAnalysisStruct->mTransientDependencyGraph := transientDependencyGraph ;
 #--- Cursors
@@ -199,7 +266,7 @@ local routine semanticAnalysis
 #--- Output graphviz file ?
   if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
     const @string s := [contextAnalysisStruct->mTransientDependencyGraph graphviz] ;
-    const @string path := inSourceFile . ".transientDependancyGraph.dot" ;
+    const @string path := inSourceFile . ".EXtransientDependancyGraph.dot" ;
     [s writeToFileWhenDifferentContents !path ?*] ;
   end if ;
 #--- Analyze transient dependencies

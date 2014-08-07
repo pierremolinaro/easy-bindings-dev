@@ -8,6 +8,14 @@ semantics nibClassAnalysis :
 override method @nibClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @nibClassDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
 #------------------------------------- Analyze actions
   @actionMap actionMap [emptyMap] ;
   for actionName in mActionDeclarationList do
@@ -15,7 +23,7 @@ override method @nibClassDeclaration typeInventory
   end for ;
 #---------------------------------- Analyze attributes
   foreach mAttributeList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
       ?*
@@ -23,7 +31,7 @@ override method @nibClassDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mElementClassName
       ?*
@@ -31,7 +39,7 @@ override method @nibClassDeclaration typeInventory
   end foreach ;
 #-------------------------------------------------- Analyze controllers
   foreach mControllerList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
       ?*
@@ -39,7 +47,7 @@ override method @nibClassDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze transient properties
   foreach mTransientList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
       ?*
@@ -48,20 +56,20 @@ override method @nibClassDeclaration typeInventory
 #----------------------------------
   [!?ioUnifiedTypeMap insertKey
     !mClassName
-    ![@ebType new !mClassName ![@typeKind nibClassType]]
+    ![@EXebType new !mClassName ![@EXTypeKind nibClassType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @nibClassDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
 #---------------------------------- Analyze attributes
   buildObservablePropertyMap
     !mAttributeList
@@ -79,7 +87,7 @@ override method @nibClassDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mClassName
     !mUserDefined
-    ![@typeKind nibClassType]
+    ![@EXTypeKind nibClassType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -87,15 +95,15 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @nibClassDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
 #------------------------------- Get Observable property map
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
      !mClassName
      ?2*
-     ?@observablePropertyMap selfObservablePropertyMap
+     ?@EXobservablePropertyMap selfObservablePropertyMap
    ] ;
 #-----
   @propertyArrayMap allArrayPropertyForImplementation [emptyMap] ;
@@ -110,7 +118,7 @@ override method @nibClassDeclaration semanticAnalysis
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
     !mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
+    ![@EXobservablePropertyMap emptyMap] # Root property map
     !?ioContextAnalysisStruct
     !"" # No Root entity
     !selfObservablePropertyMap
@@ -131,10 +139,10 @@ override method @nibClassDeclaration semanticAnalysis
   foreach mArrayList do
     [inUnifiedTypeMap searchKey
       !mElementClassName
-      ?@ebType type
+      ?@EXebType type
       ?2*
     ] ;
-    if type->mKind != [@typeKind classType] then
+    if type->mKind != [@EXTypeKind classType] then
       error mClassName : "'" . mClassName . "' is not a class" ;    
     end if ;
     [!?currentArrayPropertyForImplementation insertKey
@@ -151,7 +159,7 @@ override method @nibClassDeclaration semanticAnalysis
       ?*
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
-      ?@observablePropertyMap controllerObservablePropertyMap
+      ?@EXobservablePropertyMap controllerObservablePropertyMap
       ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
@@ -180,16 +188,16 @@ override method @nibClassDeclaration semanticAnalysis
       end if ;
       [currentArrayPropertyForImplementation searchKey
         !mControlledObjectName
-        ?@ebType controlledObjectType
+        ?@EXebType controlledObjectType
       ] ;
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
         ?*
-        ?@typeKind kind
-        ?@observablePropertyMap classObservablePropertyMap
+        ?@EXTypeKind kind
+        ?@EXobservablePropertyMap classObservablePropertyMap
       ] ;
-      if kind != [@typeKind classType] then
+      if kind != [@EXTypeKind classType] then
         error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
       end if ;
       checkBindingOptions
@@ -200,7 +208,7 @@ override method @nibClassDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused4>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused4>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -216,16 +224,16 @@ override method @nibClassDeclaration semanticAnalysis
       end if ;
       [currentArrayPropertyForImplementation searchKey
         !mControlledObjectName
-        ?@ebType controlledObjectType
+        ?@EXebType controlledObjectType
       ] ;
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
         ?*
-        ?@typeKind kind
-        ?@observablePropertyMap classObservablePropertyMap
+        ?@EXTypeKind kind
+        ?@EXobservablePropertyMap classObservablePropertyMap
       ] ;
-      if kind != [@typeKind classType] then
+      if kind != [@EXTypeKind classType] then
         error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
       end if ;
       checkBindingOptions
@@ -236,7 +244,7 @@ override method @nibClassDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused6>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused6>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -247,12 +255,12 @@ override method @nibClassDeclaration semanticAnalysis
     #--- Check "childrenKeyPath"
       [classObservablePropertyMap searchKey
         !mChildRelationshipName
-        ??@ebType type
+        ??@EXebType type
         ?* #?@bool isTransient
         ?* #?@lstring propertySignature
         ??@bool isCollection
       ] ;
-      if (not isCollection) | (type->mKind != [@typeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
+      if (not isCollection) | (type->mKind != [@EXTypeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
         error mChildRelationshipName: "this relationship is used as 'childrenKeyPath' and should be an '" . controlledObjectType->mTypeName . "' array" ;
       end if ;
       bindingListForGeneration += ![@treeControllerForGeneration new
@@ -261,7 +269,7 @@ override method @nibClassDeclaration semanticAnalysis
     end switch ;
     foreach mControllerBindingList do
       [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap] # No root entity observable Map
+        ![@EXobservablePropertyMap emptyMap] # No root entity observable Map
         !selfObservablePropertyMap
         !controllerClassBindingMap
         !controllerMap
@@ -300,7 +308,7 @@ override method @nibClassDeclaration semanticAnalysis
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap] # No root
+        ![@EXobservablePropertyMap emptyMap] # No root
         !selfObservablePropertyMap
         !outletClassBindingMap
         !controllerMap

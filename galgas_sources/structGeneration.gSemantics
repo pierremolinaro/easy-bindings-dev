@@ -4,7 +4,7 @@ semantics structGeneration :
 
 #-----------------------------------------------------------------------------*
 
-reader @ebType stringConversionForExplorer
+reader @EXebType stringConversionForExplorer
   ??@string inName
   -> @string outResult
 :

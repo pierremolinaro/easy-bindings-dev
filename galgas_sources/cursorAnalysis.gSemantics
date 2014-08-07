@@ -6,7 +6,7 @@ semantics cursorAnalysis :
 
 routine cursorAnalysis
   ??@cursorList inCursorList
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   !@stringlist outPredefinedCursorList
 :
   foreach inCursorList do

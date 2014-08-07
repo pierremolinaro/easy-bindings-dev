@@ -8,51 +8,46 @@ override method @predefinedTypeDeclaration typeInventory
 :
   [!?ioUnifiedTypeMap insertKey
     ![mTypeName nowhere]
-    ![@ebType new ![mTypeName nowhere] !mKind]
+    !mKind
+    ![@unifiedTypeProxy null]
+    !@decoratedAttributeMap {}
+    !@decoratedTransientMap {}
+    !@decoratedOutletMap {}
+    !@decoratedObservablePropertyMap {}
+    !@decoratedEntityRelationshipMap {}
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @predefinedTypeDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
+  [!?ioUnifiedTypeMap insertKey
+    ![mTypeName nowhere]
+    ![@EXebType new ![mTypeName nowhere] !mExKind]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @predefinedTypeDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@observablePropertyMapMap unused ioObservablePropertyMapMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @predefinedTypeDeclaration semanticAnalysis
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@contextAnalysisStruct unused ioContextAnalysisStruct
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct unused ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
 :
 end method ;
-
-#----------------------------------------------------------------------------*
-
-
-#routine enumAnalysis
-#  ??@enumList inEnumList
-#  ?!@contextAnalysisStruct ioContextAnalysisStruct
-#:
-#  foreach inEnumList do
-#    @enumConstantMap enumConstantMap [emptyMap] ;
-#    foreach mEnumConstantNameList do
-#      [!?enumConstantMap insertKey !mValue] ;
-#    end foreach ;
-#    [!?ioContextAnalysisStruct->mEnumMap insertKey !mEnumTypeName !mEnumConstantNameList !enumConstantMap] ;
-#  end foreach ;
-##---
-#  foreach ioContextAnalysisStruct->mEnumMap do
-#    foreach mConstantOrderedList do
-#      [!?ioContextAnalysisStruct->mGlobalEnumConstantMap insertKey !mValue !lkey] ;
-#    end foreach ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 

@@ -55,7 +55,7 @@ filewrapper classGenerationTemplate in "../generation-templates/class-generation
   
   template classTransientComputationImplementationFile "class-transient-computation-function.m.gTemplate"
     ?@string CLASS_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;

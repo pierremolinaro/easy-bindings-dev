@@ -52,7 +52,7 @@ filewrapper documentGenerationTemplate in "../generation-templates/document-gene
   
   template documentTransientComputationImplementationFile "document-transient-computation-function.m.gTemplate"
     ?@string DOCUMENT_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
     ?@stringlist ROOT_SIGN_LIST
@@ -60,7 +60,7 @@ filewrapper documentGenerationTemplate in "../generation-templates/document-gene
 
   template documentTransientComputationImplementationFileInSwift "document-transient-computation-function.swift.gTemplate"
     ?@string DOCUMENT_NAME
-    ?@ebType RESULT_TYPE
+    ?@EXebType RESULT_TYPE
     ?@string TRANSIENT_NAME
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
     ?@stringlist ROOT_SIGN_LIST

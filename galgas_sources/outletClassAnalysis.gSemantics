@@ -8,11 +8,43 @@ override method @outletClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
 #--- Has super class ?
-  if mSuperClassName->string != "" then
+  @unifiedTypeProxy superClassProxy ;
+  if mSuperClassName->string == "" then
+    superClassProxy := [@unifiedTypeProxy null] ;
+  else
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mSuperClassName
-      ?@unifiedTypeProxy superClassProxy
+      ?superClassProxy
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge
+      !mOutletClassName
+      !mSuperClassName
+    ] ;
+  end if ;
+  [!?ioUnifiedTypeMap insertKey
+    !mOutletClassName
+    ![@typeKind outletClassType]
+    !superClassProxy
+    !@decoratedAttributeMap {}
+    !@decoratedTransientMap {}
+    !@decoratedOutletMap {}
+    !@decoratedObservablePropertyMap {}
+    !@decoratedEntityRelationshipMap {}
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @outletClassDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
+#--- Has super class ?
+  if mSuperClassName->string != "" then
+    [@EXunifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mSuperClassName
+      ?@EXunifiedTypeProxy superClassProxy
     ] ;
     [!?ioUnifiedTypeMap enterEdge
       !mOutletClassName
@@ -22,39 +54,39 @@ override method @outletClassDeclaration typeInventory
 #---
   [!?ioUnifiedTypeMap insertKey
     !mOutletClassName
-    ![@ebType new !mOutletClassName ![@typeKind outletClassType]]
+    ![@EXebType new !mOutletClassName ![@EXTypeKind outletClassType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @outletClassDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap unused inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+  ??@EXunifiedTypeMap unused inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
 :
 #------------------------------- Super class ?
-  @observablePropertyMap observablePropertyMap ;
+  @EXobservablePropertyMap observablePropertyMap ;
   if [mSuperClassName string] != "" then
     [ioObservablePropertyMapMap searchKey
        !mSuperClassName
        ?*
-       ?@typeKind kind
+       ?@EXTypeKind kind
        ?observablePropertyMap
      ] ;
-     if kind != [@typeKind outletClassType] then
+     if kind != [@EXTypeKind outletClassType] then
        error mSuperClassName : "'" . mSuperClassName . "' is not an outlet class" ;
      end if ;
   else
-    observablePropertyMap := [@observablePropertyMap emptyMap] ;
+    observablePropertyMap := [@EXobservablePropertyMap emptyMap] ;
   end if ;
 #---------------------------------- Enter class in observable map
   [!?ioObservablePropertyMapMap insertKey
     !mOutletClassName
     !mUserDefined
-    ![@typeKind outletClassType]
+    ![@EXTypeKind outletClassType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -62,8 +94,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @outletClassDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   @outletClassBindingMap allBindingMap ;
@@ -96,16 +128,16 @@ override method @outletClassDeclaration semanticAnalysis
   foreach mOutletClassBindingList do
     @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
     foreach mBindingOptionList do
-      @ebTypeList acceptableTypeList [emptyList] ;
+      @EXebTypeList acceptableTypeList [emptyList] ;
       foreach mAcceptableTypeList do
-        [inUnifiedTypeMap searchKey !mValue ?@ebType type ?2*] ;
+        [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
         acceptableTypeList += !type ;
       end foreach ;
       [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
     end foreach ;
-    @ebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+    @EXebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
     foreach mAcceptableTypeFormatterList do
-      [inUnifiedTypeMap searchKey !mTypeName ?@ebType type ?2*] ;
+      [inUnifiedTypeMap searchKey !mTypeName ?@EXebType type ?2*] ;
       acceptableTypeFormatterList += !type !mRequiredFormatter ;
     end foreach ;
     [!?allBindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
@@ -143,7 +175,7 @@ end method ;
 
 #routine analyzeOutletClasses
 #  ??@outletClassList inOutletClassList
-#  ??@contextAnalysisStruct inContextAnalysisStruct
+#  ??@EXcontextAnalysisStruct inContextAnalysisStruct
 #  ??@protocolMap inProtocolMap
 #  !@outletClassMap outOutletClassMap
 #:

@@ -6,7 +6,7 @@ semantics transientGeneration :
 #   generateAttributeDeclarationInSwift                                       *
 #-----------------------------------------------------------------------------*
 
-reader @ebType generateAttributeDeclarationInSwift
+reader @EXebType generateAttributeDeclarationInSwift
   ??@string unused inDeclarationKind # "entity, class, ...
   ??@string unused inKindName # Entity name, class name, ...
   ??@string inAttributeName
@@ -294,7 +294,7 @@ end function ;
 
 function generateTransientFunctionImplementation
   ??@string inKindName
-  ??@ebType inTransientType
+  ??@EXebType inTransientType
   ??@string inTransientName
   ??@directDependancyList inDependencyList
   ??@stringlist inRootSignDependencyList
@@ -335,7 +335,7 @@ end function ;
 
 function generateTransientFunctionImplementationInSwift
   ??@string inKindName
-  ??@ebType inTransientType
+  ??@EXebType inTransientType
   ??@string inTransientName
   ??@directDependancyList inDependencyList
   ??@stringlist inRootSignDependencyList
@@ -463,7 +463,7 @@ end reader ;
 
 function generateSwiftTransientCacheRoutine
   ??@string inKindName 
-  ??@ebType unused mTransientType
+  ??@EXebType unused mTransientType
   ??@string mTransientName
   ??@directDependancyList mDependencyList
   ??@stringlist mRootSignDependencyList
@@ -1215,26 +1215,26 @@ end function ;
 #! Filewrapper
 #----------------------------------------------------------------------------*
 
-local filewrapper transientManager in "../generation-templates/application-class" {
-}{
-}{
-  template applicationClassDeclaration "PMApplication.h.gTemplate"
-    ?@string GRAPH_STRING
-    ?@string TRANSIENT_LIST_STRING
-    ?@string TRANSIENT_INDEXES
-    ?@uint TRANSIENT_COUNT
-  ;
-  
-  template applicationClassImplementation "PMApplication.m.gTemplate"
-    ?@string TRANSIENT_LIST
-  ;
-  template applicationInSwift "PMApplication.swift.gTemplate"
-    ?@string GRAPH_STRING
-    ?@string TRANSIENT_LIST_STRING
-    ?@uint TRANSIENT_COUNT
-    ?@stringlist TRANSIENT_LIST
-  ;
-}
+#local filewrapper transientManager in "../generation-templates/application-class" {
+#}{
+#}{
+#  template applicationClassDeclaration "PMApplication.h.gTemplate"
+#    ?@string GRAPH_STRING
+#    ?@string TRANSIENT_LIST_STRING
+#    ?@string TRANSIENT_INDEXES
+#    ?@uint TRANSIENT_COUNT
+#  ;
+#  
+#  template applicationClassImplementation "PMApplication.m.gTemplate"
+#    ?@string TRANSIENT_LIST
+#  ;
+#  template applicationInSwift "PMApplication.swift.gTemplate"
+#    ?@string GRAPH_STRING
+#    ?@string TRANSIENT_LIST_STRING
+#    ?@uint TRANSIENT_COUNT
+#    ?@stringlist TRANSIENT_LIST
+#  ;
+#}
 
 #----------------------------------------------------------------------------*
 
@@ -1270,52 +1270,52 @@ routine generateTransientTrigersAndApplication
   end foreach ;
   const @uint transientCount := idx ;
 #--- Header
-  if [option easyBindings_options.outputSwift value] then
-    const @string s := [filewrapper transientManager.applicationInSwift
-      !graphString
-      !transientOrderedList
-      !transientCount
-      !transientList
-    ] ;
-    [@string generateFileWithPattern
-      !inSourceDirectoryPath
-      !"PMApplication.swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !""
-    ] ;
-  else
-    @string s := [filewrapper transientManager.applicationClassDeclaration
-      !graphString
-      !transientOrderedList
-      !transientObjectiveCIndexString
-      !transientCount
-    ] ;
-    [@string generateFileWithPattern
-      !inSourceDirectoryPath
-      !"PMApplication.h"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !""
-    ] ;
-  #--- Implementation
-    s := [filewrapper transientManager.applicationClassImplementation
-      !transientListAsString
-    ] ;
-    [@string generateFileWithPattern
-      !inSourceDirectoryPath
-      !"PMApplication.m"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !""
-    ] ;
-  end if ;
+#  if [option easyBindings_options.outputSwift value] then
+#    const @string s := [filewrapper transientManager.applicationInSwift
+#      !graphString
+#      !transientOrderedList
+#      !transientCount
+#      !transientList
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inSourceDirectoryPath
+#      !"PMApplication.swift"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !""
+#    ] ;
+#  else
+#    @string s := [filewrapper transientManager.applicationClassDeclaration
+#      !graphString
+#      !transientOrderedList
+#      !transientObjectiveCIndexString
+#      !transientCount
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inSourceDirectoryPath
+#      !"PMApplication.h"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !""
+#    ] ;
+#  #--- Implementation
+#    s := [filewrapper transientManager.applicationClassImplementation
+#      !transientListAsString
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inSourceDirectoryPath
+#      !"PMApplication.m"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !""
+#    ] ;
+#  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*

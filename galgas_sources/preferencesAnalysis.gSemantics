@@ -8,14 +8,28 @@ semantics preferencesAnalysis :
 override method @preferencesDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+  @decoratedObservablePropertyMap observablePropertyMap := {} ;
 #---------------------------------- Analyze attributes
+  @decoratedAttributeMap decoratedAttributeMap := {} ;
   foreach mAttributeList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
-      ?*
+      ??@unifiedTypeProxy attributeType
     ] ;
     [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mAttributeTypeName] ;
+    [!?decoratedAttributeMap insertKey
+      !mAttributeName
+      !attributeType
+      !mDefaultValue
+     ] ;
+    [!?observablePropertyMap insertKey
+      !mAttributeName
+      !attributeType
+      !false # Is not transient
+      ![@lstring new !"preference." + mPreferencesName + "." + mAttributeName !mAttributeName->location]
+      !false # is not a collection
+     ] ;
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do
@@ -36,8 +50,91 @@ override method @preferencesDeclaration typeInventory
     [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mControllerClassName] ;
   end foreach ;
 #------------------------------------- Analyze transient properties
+  @decoratedTransientMap decoratedTransientMap := {} ;
   foreach mTransientList do
     [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ??@unifiedTypeProxy transientType
+    ] ;
+    const signature := [@lstring new !"preference." + mPreferencesName + "." + mTransientName !mTransientName->location] ;
+    [!?decoratedTransientMap insertKey
+      !mTransientName
+      !transientType
+      !signature
+      !mDependencyList
+    ] ;
+    [!?observablePropertyMap insertKey
+      !mTransientName
+      !transientType
+      !true # Is transient
+      !signature
+      !false # is not a collection
+     ] ;
+  end foreach ;
+#------------------------------------- Analyze outlets
+  @decoratedOutletMap decoratedOutletMap := {} ;
+  foreach mOutletDeclarationList do
+    [@unifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mOutletType
+      ??@unifiedTypeProxy outletType
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mOutletType] ;
+    [!?decoratedOutletMap insertKey
+      !mOutletName
+      !outletType
+      !mOutletBindingList
+    ] ;
+  end foreach ;
+#------------------------------------- Enter in preference map
+  [!?ioUnifiedTypeMap insertKey
+    !mPreferencesName
+    ![@typeKind preferencesType]
+    ![@unifiedTypeProxy null]
+    !decoratedAttributeMap
+    !decoratedTransientMap
+    !decoratedOutletMap
+    !observablePropertyMap
+    !@decoratedEntityRelationshipMap {}
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferencesDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+:
+#---------------------------------- Analyze attributes
+  foreach mAttributeList do
+    [@EXunifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mAttributeTypeName
+      ?*
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mAttributeTypeName] ;
+  end foreach ;
+#---------------------------------- Analyze arraies
+  foreach mArrayList do
+    [@EXunifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?*
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mElementClassName] ;
+  end foreach ;
+#-------------------------------------------------- Analyze controllers
+  foreach mControllerList do
+    [@EXunifiedTypeProxy makeProxy
+      !?ioUnifiedTypeMap
+      !mControllerClassName
+      ?*
+    ] ;
+    [!?ioUnifiedTypeMap enterEdge !mPreferencesName !mControllerClassName] ;
+  end foreach ;
+#------------------------------------- Analyze transient properties
+  foreach mTransientList do
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
       ?*
@@ -45,7 +142,7 @@ override method @preferencesDeclaration typeInventory
   end foreach ;
 #------------------------------------- Analyze outlets
   foreach mOutletDeclarationList do
-    [@unifiedTypeProxy makeProxy
+    [@EXunifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mOutletType
       ?*
@@ -55,20 +152,20 @@ override method @preferencesDeclaration typeInventory
 #------------------------------------- Enter in preference map
   [!?ioUnifiedTypeMap insertKey
     !mPreferencesName
-    ![@ebType new !mPreferencesName ![@typeKind preferencesType]]
+    ![@EXebType new !mPreferencesName ![@EXTypeKind preferencesType]]
     !selfcopy
-    !@entityRelationshipMap {}
+    !@EXentityRelationshipMap {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @preferencesDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 :
-  @observablePropertyMap observablePropertyMap [emptyMap] ;
+  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
 #---------------------------------- Build map
   buildObservablePropertyMap
     !mAttributeList
@@ -86,7 +183,7 @@ override method @preferencesDeclaration buildObservablePropertyMap
   [!?ioObservablePropertyMapMap insertKey
     !mPreferencesName
     !mUserDefined
-    ![@typeKind preferencesType]
+    ![@EXTypeKind preferencesType]
     !observablePropertyMap
   ] ;
 end method ;
@@ -94,14 +191,14 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @preferencesDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 :
   [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
     !mPreferencesName
     ?2*
-    ?@observablePropertyMap selfObservablePropertyMap
+    ?@EXobservablePropertyMap selfObservablePropertyMap
   ] ;    
 #------------------------------------- Analyze actions
   @actionMap actionMap [emptyMap] ;
@@ -124,10 +221,10 @@ override method @preferencesDeclaration semanticAnalysis
   foreach mArrayList do
     [inUnifiedTypeMap searchKey
       !mElementClassName
-      ?@ebType type
+      ?@EXebType type
       ?2*
     ] ;
-    if type->mKind != [@typeKind classType] then
+    if type->mKind != [@EXTypeKind classType] then
       error mElementClassName : "'" . mElementClassName . "' is not a class" ;    
     end if ;
     [ioContextAnalysisStruct->mClassMap searchKey
@@ -150,7 +247,7 @@ override method @preferencesDeclaration semanticAnalysis
       ?*
       ?@outletClassBindingMap controllerClassBindingMap
       ?@actionMap controllerActionMap
-      ?@observablePropertyMap controllerObservablePropertyMap
+      ?@EXobservablePropertyMap controllerObservablePropertyMap
       ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
     ] ;
   #---
@@ -179,17 +276,17 @@ override method @preferencesDeclaration semanticAnalysis
       end if ;
       [preferenceArrayMap searchKey
         !mControlledObjectName
-        ?@ebType controlledObjectType
+        ?@EXebType controlledObjectType
         ?*
       ] ;
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
         ?*
-        ?@typeKind kind
-        ?@observablePropertyMap classObservablePropertyMap
+        ?@EXTypeKind kind
+        ?@EXobservablePropertyMap classObservablePropertyMap
       ] ;
-      if kind != [@typeKind classType] then
+      if kind != [@EXTypeKind classType] then
         error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
       end if ;
       checkBindingOptions
@@ -200,7 +297,7 @@ override method @preferencesDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused7>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused7>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -225,17 +322,17 @@ override method @preferencesDeclaration semanticAnalysis
       end if ;
       [preferenceArrayMap searchKey
         !mControlledObjectName
-        ?@ebType controlledObjectType
+        ?@EXebType controlledObjectType
         ?*
       ] ;
       controllerObjectClassName := controlledObjectType->mTypeName->string ;
       [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
         !controlledObjectType->mTypeName
         ?*
-        ?@typeKind kind
-        ?@observablePropertyMap classObservablePropertyMap
+        ?@EXTypeKind kind
+        ?@EXobservablePropertyMap classObservablePropertyMap
       ] ;
-      if kind != [@typeKind classType] then
+      if kind != [@EXTypeKind classType] then
         error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
       end if ;
       checkBindingOptions
@@ -246,7 +343,7 @@ override method @preferencesDeclaration semanticAnalysis
         !?fileInclusionSet
       ;
       bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@ebType new !["<unused8>" nowhere] ![@typeKind classType]]
+        ![@EXebType new !["<unused8>" nowhere] ![@EXTypeKind classType]]
         !"contentArray"
         ![@formatterEnum noFormatter]
         !"self"
@@ -269,7 +366,7 @@ override method @preferencesDeclaration semanticAnalysis
   @transientListForImplementation transientListForImplementation ;
   analyzeTransientProperties
     !mTransientList
-    ![@observablePropertyMap emptyMap] # Root property map
+    ![@EXobservablePropertyMap emptyMap] # Root property map
     !?ioContextAnalysisStruct
     !"" # No Root entity
     !selfObservablePropertyMap
@@ -294,7 +391,7 @@ override method @preferencesDeclaration semanticAnalysis
     @outletBindingListForGeneration outletBindingList [emptyList] ;
     foreach mOutletBindingList do
       [mBinding analyzeOutletBinding
-        ![@observablePropertyMap emptyMap] # No root
+        ![@EXobservablePropertyMap emptyMap] # No root
         !selfObservablePropertyMap
         !outletClassBindingMap
         !controllerMap

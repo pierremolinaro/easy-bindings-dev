@@ -1,7 +1,75 @@
 semantics decoratedTypes :
   import "abstractSyntaxTypes.gSemantics" ;
   import "easyBindings_options.gOptions" ;
-  
+
+#----------------------------------------------------------------------------*
+
+uniquemap @unifiedTypeMap {
+  insert insertKey error message "the '%K' type is already declared" ;
+  search searchKey error message "the '%K' type is not declared" ;
+
+  @typeKind mTypeKind ;
+  @unifiedTypeProxy mSuperType ;
+  @decoratedAttributeMap mDecoratedAttributeMap ;
+  @decoratedTransientMap mDecoratedTransientMap ;
+  @decoratedOutletMap mDecoratedOutletMap ;
+  @decoratedObservablePropertyMap mObservablePropertyMap ;
+  @decoratedEntityRelationshipMap mCurrentRelationshipMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
+
+#----------------------------------------------------------------------------*
+
+map @decoratedEntityRelationshipMap {
+  insert insertKey error message "the '%K' relationship is already declared" ;
+  search searchKey error message "the '%K' relationship is not declared" ;
+  @bool mIsToMany ;
+  @unifiedTypeProxy mRelationshipType ;
+  @lstring mOppositeRelationshipName ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @decoratedTransientMap {
+  insert insertKey error message "the '%K' transient is already declared" ;
+  search searchKey error message "the '%K' transient is not declared" ;
+  @unifiedTypeProxy mTransientType ;
+  @lstring mTransientSignature ;
+  @dependanceList mDependencyList ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @decoratedOutletMap {
+  insert insertKey error message "the '%K' transient is already declared" ;
+  search searchKey error message "the '%K' transient is not declared" ;
+  @unifiedTypeProxy mOutletType ;
+  @bindingList mOutletBindingList ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @decoratedAttributeMap {
+  @unifiedTypeProxy mAttributeType ;
+  @abstractDefaultValue mDefaultValue ;
+  insert insertKey error message "the '%K' attribute is already declared in %L" ;
+  search searchKey error message "there is no '%K' attribute" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @decoratedObservablePropertyMap {
+  @unifiedTypeProxy mPropertyType ;
+  @bool mIsTransient ;
+  @lstring mPropertySignature ;
+  @bool mIsCollection ;
+  insert insertKey error message "the '%K' attribute is already declared" ;
+  search searchKey error message "the '%K' attribute is not declared" ;
+}
+
 #----------------------------------------------------------------------------*
 
 abstract method @astDeclaration typeInventory
@@ -10,20 +78,58 @@ abstract method @astDeclaration typeInventory
 
 #----------------------------------------------------------------------------*
 
-struct @ebType {
+list @transientDependencyGraphNodeInfoList {
+  @string mSignature ;
+  @bool mIsTransient ;
+}
+
+#----------------------------------------------------------------------------*
+
+graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
+  insert addNode error message "the '%K' property is already declared at %L" ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------------------------------------*
+
+abstract method @astDeclaration EXTypeInventory
+  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+;
+
+#----------------------------------------------------------------------------*
+
+struct @EXebType {
   @lstring mTypeName ;
-  @typeKind mKind ;
+  @EXTypeKind mKind ;
 }
 
 #----------------------------------------------------------------------------*
 
-list @ebTypeList {
-  @ebType mType ;
+list @EXebTypeList {
+  @EXebType mType ;
 }
 
 #----------------------------------------------------------------------------*
 
-reader @ebType isPODtype -> @bool outResult :
+reader @EXebType isPODtype -> @bool outResult :
   switch mKind
   when classType, controllerClassType, documentType, entityType,
        nibClassType, outletClassType, preferencesType, stringType,
@@ -38,7 +144,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @ebType ebTypeName -> @string outResult :
+reader @EXebType ebTypeName -> @string outResult :
   switch mKind
   when classType, controllerClassType, documentType, entityType,
        nibClassType, outletClassType, preferencesType, stringType,
@@ -61,7 +167,7 @@ end reader ;
 #   equalExpression                                                           *
 #-----------------------------------------------------------------------------*
 
-reader @ebType equalExpression
+reader @EXebType equalExpression
   ??@string inExp1
   ??@string inExp2
   -> @string outResult
@@ -85,7 +191,7 @@ end reader ;
 #   ocTypeName                                                                *
 #-----------------------------------------------------------------------------*
 
-reader @ebType ocTypeName
+reader @EXebType ocTypeName
   -> @string outResult
  :
   switch mKind
@@ -111,7 +217,7 @@ end reader ;
 #   swiftTypeName                                                             *
 #-----------------------------------------------------------------------------*
 
-reader @ebType swiftTypeName
+reader @EXebType swiftTypeName
   -> @string outResult
  :
   switch mKind
@@ -139,7 +245,7 @@ end reader ;
 #   swiftDefaultValue                                                         *
 #-----------------------------------------------------------------------------*
 
-reader @ebType swiftDefaultValue
+reader @EXebType swiftDefaultValue
   -> @string outResult
  :
   switch mKind
@@ -167,7 +273,7 @@ end reader ;
 #   dictionarySaverTransformerName                                            *
 #-----------------------------------------------------------------------------*
 
-reader @ebType dictionarySaverTransformerName
+reader @EXebType dictionarySaverTransformerName
   ?@string inName
   -> @string outResult
  :
@@ -191,7 +297,7 @@ end reader ;
 #   valueForUndoManager                                                       *
 #-----------------------------------------------------------------------------*
 
-reader @ebType valueForUndoManager
+reader @EXebType valueForUndoManager
   ?@string inName
   -> @string outResult
  :
@@ -211,7 +317,7 @@ end reader ;
 #   propertyAttributeString                                                   *
 #-----------------------------------------------------------------------------*
 
-reader @ebType propertyAttributeString
+reader @EXebType propertyAttributeString
   -> @string outResult
  :
   switch mKind
@@ -230,7 +336,7 @@ end reader ;
 #   copyOnAssign                                                              *
 #-----------------------------------------------------------------------------*
 
-reader @ebType copyOnAssign
+reader @EXebType copyOnAssign
   -> @bool outResult
  :
   switch mKind
@@ -250,7 +356,7 @@ end reader ;
 #   requiredCellTypeInTableColumnBinding                                      *
 #-----------------------------------------------------------------------------*
 
-reader @ebType requiredCellTypeInTableColumnBinding
+reader @EXebType requiredCellTypeInTableColumnBinding
   -> @string outResult
  :
   switch mKind
@@ -277,7 +383,7 @@ end reader ;
 #   preferencesGetterTransformerFunctionName                                  *
 #-----------------------------------------------------------------------------*
 
-reader @ebType preferencesGetterTransformerFunctionName
+reader @EXebType preferencesGetterTransformerFunctionName
   -> @string outResult
  :
   switch mKind
@@ -308,7 +414,7 @@ end reader ;
 #   preferencesSwiftGetter                                                    *
 #-----------------------------------------------------------------------------*
 
-reader @ebType preferencesSwiftGetter
+reader @EXebType preferencesSwiftGetter
   -> @string outResult
  :
   switch mKind
@@ -339,7 +445,7 @@ end reader ;
 #   preferencesSwiftSetter                                                    *
 #-----------------------------------------------------------------------------*
 
-reader @ebType preferencesSwiftSetter
+reader @EXebType preferencesSwiftSetter
   ??@string inValueName
   -> @string outResult
  :
@@ -369,7 +475,7 @@ end reader ;
 #   preferencesSetterTransformerFunctionName                                  *
 #-----------------------------------------------------------------------------*
 
-reader @ebType preferencesSetterTransformerFunctionName
+reader @EXebType preferencesSetterTransformerFunctionName
   -> @string outResult
  :
   switch mKind
@@ -398,7 +504,7 @@ end reader ;
 #   isClass                                                                   *
 #-----------------------------------------------------------------------------*
 
-reader @ebType isClass
+reader @EXebType isClass
   -> @bool outResult
  :
   switch mKind
@@ -418,7 +524,7 @@ end reader ;
 #   functionForComputingSignature                                             *
 #-----------------------------------------------------------------------------*
 
-reader @ebType functionForComputingSignature
+reader @EXebType functionForComputingSignature
   ??@bool inIsToMany
   -> @string outResult
  :
@@ -447,7 +553,7 @@ end reader ;
 #   addInclusionInHeaderFile                                                  *
 #-----------------------------------------------------------------------------*
 
-method @ebType addInclusionInHeaderFile
+method @EXebType addInclusionInHeaderFile
   ?!@stringset ioInclusionSet
 :
   switch mKind
@@ -468,7 +574,7 @@ end method ;
 #   addInclusionInImplementationFile                                          *
 #-----------------------------------------------------------------------------*
 
-method @ebType addInclusionInImplementationFile
+method @EXebType addInclusionInImplementationFile
   ?!@stringset ioInclusionSet
 :
   switch mKind
@@ -489,7 +595,7 @@ end method ;
 #   valueAccessorForExplorerWindow                                            *
 #-----------------------------------------------------------------------------*
 
-reader @ebType valueAccessorForExplorerWindow
+reader @EXebType valueAccessorForExplorerWindow
   ??@string inName
   ->@string outResult
 :
@@ -517,7 +623,7 @@ end reader ;
 #   keyPathForObservable                                                      *
 #-----------------------------------------------------------------------------*
 
-reader @ebType keyPathForObservable
+reader @EXebType keyPathForObservable
   ??@string inName
   ->@string outResult
 :
@@ -539,7 +645,7 @@ end reader ;
 #   ocClassName                                                               *
 #-----------------------------------------------------------------------------*
 
-reader @ebType ocClassName
+reader @EXebType ocClassName
   ->@string outResult
 :
   switch mKind
@@ -566,52 +672,52 @@ reader @ebType ocClassName
   when protocolType, entityType,
        nibClassType, outletClassType, preferencesType,
        classType, controllerClassType, documentType :
-    outResult := "**@ebType ocClassName**" ;
+    outResult := "**@EXebType ocClassName**" ;
   end switch ;
 end reader ;
 
 #----------------------------------------------------------------------------*
 
-map @entityRelationshipMap {
+map @EXentityRelationshipMap {
   insert insertKey error message "the '%K' relationship is already declared" ;
   search searchKey error message "the '%K' relationship is not declared" ;
   @bool mIsToMany ;
-  @unifiedTypeProxy mRelationshipType ;
+  @EXunifiedTypeProxy mRelationshipType ;
   @lstring mOppositeRelationshipName ;
 }
 
 #----------------------------------------------------------------------------*
 
-uniquemap @unifiedTypeMap {
+uniquemap @EXunifiedTypeMap {
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
 #---
-  @ebType mTypeKind ;
+  @EXebType mTypeKind ;
   @astDeclaration mDeclaration ;
-  @entityRelationshipMap mEntityCurrentRelationshipMap ;
+  @EXentityRelationshipMap mEntityCurrentRelationshipMap ;
 }
 
 #----------------------------------------------------------------------------*
 
-mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
+mapproxy @EXunifiedTypeProxy (@EXunifiedTypeMap) ;
 
 #----------------------------------------------------------------------------*
 
-list @unifiedTypeProxyList {
-  @unifiedTypeProxy mTypeProxy ;
+list @EXunifiedTypeProxyList {
+  @EXunifiedTypeProxy mTypeProxy ;
 }
 
 #----------------------------------------------------------------------------*
 
-list @ebTypeAndFormatterList {
-  @ebType mType ;
+list @EXebTypeAndFormatterList {
+  @EXebType mType ;
   @formatterEnum mRequiredFormatter ;
 }
 
 #----------------------------------------------------------------------------*
 
 map @outletClassBindingOptionMap {
-  @ebTypeList mAcceptableTypeList ;
+  @EXebTypeList mAcceptableTypeList ;
   insert insertKey error message "the '%K' binding option is already declared" ;
   search searchKey error message "the '%K' binding option is not declared" ;
 }
@@ -619,7 +725,7 @@ map @outletClassBindingOptionMap {
 #----------------------------------------------------------------------------*
 
 map @outletClassBindingMap {
-  @ebTypeAndFormatterList mAcceptableTypeList ;
+  @EXebTypeAndFormatterList mAcceptableTypeList ;
   @outletClassBindingOptionMap mOutletClassBindingOptionMap ;
   insert insertKey error message "the '%K' binding is already declared" ;
   search searchKey error message "the '%K' binding is not declared" ;
@@ -628,7 +734,7 @@ map @outletClassBindingMap {
 #----------------------------------------------------------------------------*
 
 list @structFieldList {
-  @ebType mFieldType ;
+  @EXebType mFieldType ;
   @string mFieldName ;
 }
 
@@ -684,8 +790,8 @@ map @structTypeMap {
 
 #----------------------------------------------------------------------------*
 
-struct @contextAnalysisStruct {
-  @observablePropertyMapMap mObservablePropertyMapMap ;
+struct @EXcontextAnalysisStruct {
+  @EXobservablePropertyMapMap mObservablePropertyMapMap ;
   @structTypeMap mStructTypeMap ;
   @enumMap mEnumMap ;
   @globalEnumConstantMap mGlobalEnumConstantMap ;
@@ -696,7 +802,7 @@ struct @contextAnalysisStruct {
   @entityMap mEntityMap ;
   @controllerClassMap mControllerClassMap ;
   @outletClassMap mOutletClassMap ;
-  @transientDependencyGraph mTransientDependencyGraph ;
+  @EXtransientDependencyGraph mTransientDependencyGraph ;
   @bool mContainsDocument ;
 }
 
@@ -732,7 +838,7 @@ map @entityMap {
 
 list @signListForGeneration {
   @string mPropertyName ;
-  @ebType mPropertyType ;
+  @EXebType mPropertyType ;
   @bool mIsToMany ;
 }
 
@@ -741,7 +847,7 @@ list @signListForGeneration {
 list @entityListForGeneration {
   @string mEntityName ;
   @string mSuperEntityName ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   @attributeListForImplementation mAttributeListForInitMethodHeader ;
   @attributeListForImplementation mInheritedAttributeListForImplementation ;
   @attributeListForImplementation mAttributeListForImplementation ;
@@ -781,7 +887,7 @@ list @bindingOptionListForGeneration {
 #----------------------------------------------------------------------------*
 
 class @regularBindingForGeneration extends @abstractBindingForGeneration {
-  @ebType mObservableAttributeType ;
+  @EXebType mObservableAttributeType ;
   @string mBindingName ;
   @formatterEnum mRequiredFormatter ;
   @string mObservedObjectName ;
@@ -842,7 +948,7 @@ map @controllerClassMap {
   @generationKind mGenerationKind ;
   @outletClassBindingMap mBindingMap ;
   @actionMap mActionMap ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
   insert insertKey error message "the '%K' controller class is already declared" ;
   search searchKey error message "the '%K' controller class is not declared" ;
@@ -869,7 +975,7 @@ map @propertyMap {
 #----------------------------------------------------------------------------*
 
 list @attributeListForImplementation {
-  @ebType mType ;
+  @EXebType mType ;
   @string mAttributeName ;
   @string mDefaultValueAsObjectiveCObject ;
   @string mDirectOCDefaultValue ;
@@ -899,7 +1005,7 @@ list @outletGenerationList {
 #----------------------------------------------------------------------------*
 
 map @propertyArrayMap {
-  @ebType mElementType ;
+  @EXebType mElementType ;
   insert insertKey error message "the '%K' array is already declared" ;
   search searchKey error message "the '%K' array is not declared" ;
 }
@@ -907,7 +1013,7 @@ map @propertyArrayMap {
 #----------------------------------------------------------------------------*
 
 map @preferencesPropertyArrayMap {
-  @ebType mElementType ;
+  @EXebType mElementType ;
   @attributeListForImplementation mAttributeListForImplementation ;
   insert insertKey error message "the '%K' array is already declared" ;
   search searchKey error message "the '%K' array is not declared" ;
@@ -920,7 +1026,7 @@ map @preferencesMap {
   @transientListForImplementation mTransientListForImplementation ;
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   insert insertKey error message "the '%K' preference is already declared" ;
@@ -934,7 +1040,7 @@ map @nibClassMap {
   @transientListForImplementation mTransientListForImplementation ;
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @propertyArrayMap mArrayMap ;
@@ -944,8 +1050,8 @@ map @nibClassMap {
 
 #----------------------------------------------------------------------------*
 
-map @observablePropertyMap {
-  @ebType mType ;
+map @EXobservablePropertyMap {
+  @EXebType mType ;
   @bool mIsTransient ;
   @lstring mPropertySignature ;
   @bool mIsCollection ;
@@ -959,7 +1065,7 @@ map @observableObjectMap {
   @string mObservableObjectOCName ;
   @string mObservableObjectTypeOCName ;
   @string mIncludeFileName ; # Empty string if no file to include
-  @observablePropertyMap mObservableProperties ;
+  @EXobservablePropertyMap mObservableProperties ;
   insert insertKey error message "the '%K' observable object is already declared" ;
   search searchKey error message "the '%K' observable object is not declared" ;
 }
@@ -979,7 +1085,7 @@ map @controllerMap {
   @bool mIsEntity ;
   @outletBindingListForGeneration mControllerBindingList ;
   @actionMap mActionMap ;
-  @observablePropertyMap mObservableAttributeMap ;
+  @EXobservablePropertyMap mObservableAttributeMap ;
   insert insertKey error message "the '%K' controller is already declared" ;
   search searchKey error message "the '%K' controller is not declared" ;
 }
@@ -987,7 +1093,7 @@ map @controllerMap {
 #----------------------------------------------------------------------------*
 
 abstract class @abstractTransientDependencyForImplementation {
-  @ebType mMasterAttributeType ;
+  @EXebType mMasterAttributeType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -1029,7 +1135,7 @@ list @directDependancyList {
 #----------------------------------------------------------------------------*
 
 list @transientListForImplementation {
-  @ebType mTransientType ;
+  @EXebType mTransientType ;
   @string mTransientName ;
   @directDependancyList mDependencyList ;
   @stringlist mRootSignDependencyList ;
@@ -1037,7 +1143,7 @@ list @transientListForImplementation {
 
 #----------------------------------------------------------------------------*
 
-graph @transientDependencyGraph (@stringlist) {
+graph @EXtransientDependencyGraph (@stringlist) {
   insert addNode error message "the '%K' transient is already declared at %L" ;
 }
 
@@ -1058,13 +1164,13 @@ abstract reader @abstractBindingForGeneration generateSwiftBinding
 #----------------------------------------------------------------------------*
 
 abstract method @abstractBinding analyzeOutletBinding
-  ??@observablePropertyMap inRootEntityObservableAttributeMap
-  ??@observablePropertyMap inSelfObservableAttributeMap
+  ??@EXobservablePropertyMap inRootEntityObservableAttributeMap
+  ??@EXobservablePropertyMap inSelfObservableAttributeMap
   ??@outletClassBindingMap inBoundObjectBindingMap
   ??@controllerMap inControllerMap
   ??@actionMap inActionMap
   ??@bool inHasTableValueBinding
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@EXcontextAnalysisStruct inContextAnalysisStruct
   ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
   ?!@fileInclusionSet ioFileInclusionSet
 ;
@@ -1086,8 +1192,8 @@ abstract reader @abstractBindingForGeneration generateSwiftRemoveBinding
 #----------------------------------------------------------------------------*
 
 abstract method @abstractDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1097,8 +1203,8 @@ abstract method @abstractDefaultValue analyzeDefaultValueType
 #----------------------------------------------------------------------------*
   
 override method @boolAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1109,7 +1215,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind boolType] then
+    if mType->mKind == [@EXTypeKind boolType] then
       outDirectDefaultValueAsString := if mValue->bool then "YES" else "NO" end ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithBool:" . outDirectDefaultValueAsString . "]" ;
       outSwiftDefaultValueAsString := if mValue->bool then "true" else "false" end ;
@@ -1126,8 +1232,8 @@ end method ;
 #----------------------------------------------------------------------------*
   
 override method @integerAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1138,7 +1244,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind integerType] then
+    if mType->mKind == [@EXTypeKind integerType] then
       outDirectDefaultValueAsString := [mValue->uint string] ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . outDirectDefaultValueAsString . "]" ;
       outSwiftDefaultValueAsString := outDirectDefaultValueAsString  ;
@@ -1155,8 +1261,8 @@ end method ;
 #----------------------------------------------------------------------------*
   
 override method @doubleAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1167,7 +1273,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind doubleType] then
+    if mType->mKind == [@EXTypeKind doubleType] then
       outDirectDefaultValueAsString := [mValue->double string] ;
       outObjectiveCDefaultValueAsString := "[NSNumber numberWithDouble:" . outDirectDefaultValueAsString . "]" ;
       outSwiftDefaultValueAsString := outDirectDefaultValueAsString ;
@@ -1184,8 +1290,8 @@ end method ;
 #----------------------------------------------------------------------------*
   
 override method @stringAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct unused inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct unused inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1196,7 +1302,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind stringType] then
+    if mType->mKind == [@EXTypeKind stringType] then
       outDirectDefaultValueAsString := "@" . [mValue->string utf8Representation] ;
       outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
       outSwiftDefaultValueAsString := "\"". mValue->string . "\"" ;
@@ -1268,8 +1374,8 @@ end once ;
 #----------------------------------------------------------------------------*
   
 override method @identifierAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1280,7 +1386,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind colorType] then
+    if mType->mKind == [@EXTypeKind colorType] then
       found := true ;
       if [predefinedColors [] hasKey !mValue->string] then
         outDirectDefaultValueAsString := "[NSColor " . mValue->string . "]" ;
@@ -1292,7 +1398,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
         ;  
       end if ;
-    elsif mType->mKind == [@typeKind dateType] then
+    elsif mType->mKind == [@EXTypeKind dateType] then
       found := true ;
       if [predefinedDates [] hasKey !mValue->string] then
         outDirectDefaultValueAsString := "[NSDate " . mValue->string . "]" ;
@@ -1304,7 +1410,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
         ;  
       end if ;
-    elsif mType->mKind == [@typeKind enumType] then
+    elsif mType->mKind == [@EXTypeKind enumType] then
       found := true ;
       if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
         [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
@@ -1354,8 +1460,8 @@ end once ;
 #----------------------------------------------------------------------------*
  
 override method @listAsDefaultValue analyzeDefaultValueType 
-  ??@ebTypeList inAttributeActualTypeList
-  ??@contextAnalysisStruct inContextAnalysisStruct
+  ??@EXebTypeList inAttributeActualTypeList
+  ??@EXcontextAnalysisStruct inContextAnalysisStruct
   !@string outDirectDefaultValueAsString
   !@string outObjectiveCDefaultValueAsString
   !@string outSwiftDefaultValueAsString
@@ -1366,7 +1472,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
   outDirectDefaultValueAsString := "" ;
   @bool found := false ;
   foreach inAttributeActualTypeList while not found do
-    if mType->mKind == [@typeKind structType] then
+    if mType->mKind == [@EXTypeKind structType] then
       found := true ;
       ioFileInclusionSet->mHeaderFileInclusionSet += ![mType ebTypeName] ;
       [inContextAnalysisStruct->mStructTypeMap searchKey
@@ -1380,7 +1486,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
         foreach mDefaultValueList, fieldList
         do
           [mDefaultValue analyzeDefaultValueType
-            ![@ebTypeList listWithValue !mFieldType]
+            ![@EXebTypeList listWithValue !mFieldType]
             !inContextAnalysisStruct
             ?@string directDefaultValueAsString
             ?2*
@@ -1392,7 +1498,7 @@ override method @listAsDefaultValue analyzeDefaultValueType
         end foreach ; 
         outDirectDefaultValueAsString .= ")" ;     
       end if ;
-    elsif mType->mKind == [@typeKind fontType] then
+    elsif mType->mKind == [@EXTypeKind fontType] then
       found := true ;
       const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
       if [mDefaultValueList length] != 2 then
@@ -1434,10 +1540,10 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-map @observablePropertyMapMap {
+map @EXobservablePropertyMapMap {
   @bool mUserDefined ;
-  @typeKind mType ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXTypeKind mType ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   insert insertKey error message "the '%K' key is already declared" ;
   search searchKey error message "the '%K' key is not declared" ;
 }
@@ -1445,9 +1551,9 @@ map @observablePropertyMapMap {
 #----------------------------------------------------------------------------*
 
 abstract method @astDeclaration buildObservablePropertyMap
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMapMap ioObservablePropertyMapMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
 ;
 
 #----------------------------------------------------------------------------*
@@ -1465,8 +1571,8 @@ list @generationList {
 #----------------------------------------------------------------------------*
 
 abstract method @astDeclaration semanticAnalysis
-  ??@unifiedTypeMap inUnifiedTypeMap
-  ?!@contextAnalysisStruct ioContextAnalysisStruct
+  ??@EXunifiedTypeMap inUnifiedTypeMap
+  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList
 ;
 
@@ -1509,7 +1615,7 @@ class @nibClassTypeGeneration extends @generation {
   @transientListForImplementation mTransientListForImplementation ;
   @outletGenerationList mOutletDeclarationList ;
   @lstringlist mActionList ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
   @fileInclusionSet mFileInclusionSet ;
   @controllerMap mControllerMap ;
   @propertyArrayMap mArrayMap ;
@@ -1538,7 +1644,7 @@ class @entityGeneration extends @generation {
   @relationshipList mCurrentRelationshipList ;
   @fileInclusionSet mFileInclusionSet ;
   @signListForGeneration mSignList ;
-  @entityRelationshipMap mCurrentRelationshipMap ;
+  @EXentityRelationshipMap mCurrentRelationshipMap ;
   @2stringlist mToManyRelationshipList ;
   @2stringlist mToOneRelationshipList ;
 }
@@ -1568,7 +1674,7 @@ class @outletClassGeneration extends @generation {
 
 class @controllerClassGeneration extends @generation {
   @outletClassBindingMap mBindingMap ;
-  @observablePropertyMap mObservablePropertyMap ;
+  @EXobservablePropertyMap mObservablePropertyMap ;
 }
 
 #----------------------------------------------------------------------------*
