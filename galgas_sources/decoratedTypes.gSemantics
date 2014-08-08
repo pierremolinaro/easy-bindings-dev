@@ -103,6 +103,37 @@ reader @typeKind kindName -> @string outResult :
   end switch ;
 end reader ;
 
+#----------------------------------------------------------------------------*
+
+reader @typeKind suitableForObservableProperty -> @bool outResult :
+  switch selfcopy
+  when classType, controllerClassType, documentType,
+  entityType, preferencesType,
+  nibClassType, outletClassType, protocolType : outResult := false ;
+#--- Predefined Type
+  when boolType, integerType, uintegerType, doubleType, stringType,
+  colorType, dataType, dateType, fontType, imageType, menuType, bezierPathType,
+  structType, enumType :
+    outResult := true ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+list @transientDependencyListForGeneration {
+  @unifiedTypeProxy mMasterType ;
+  @string mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @transientListForGeneration {
+  @string mTransientSignature ;
+  @unifiedTypeProxy mTransientType ;
+  @transientDependencyListForGeneration mTransientDependencyListForGeneration ;
+}
+
+#----------------------------------------------------------------------------*
 
 
 
@@ -120,6 +151,10 @@ end reader ;
 
 
 
+
+
+#----------------------------------------------------------------------------*
+#! Ex
 #----------------------------------------------------------------------------*
 
 abstract method @EXastDeclaration EXTypeInventory

@@ -32,6 +32,7 @@ SOURCES += easyBindings_syntax.cpp
 SOURCES += easyBindings_grammar.cpp
 SOURCES += decoratedTypes.cpp
 SOURCES += typeInventory.cpp
+SOURCES += typeAnalysis.cpp
 SOURCES += attributeDeclarationAnalysis.cpp
 SOURCES += protocolAnalysis.cpp
 SOURCES += predefinedTypeAnalysis.cpp

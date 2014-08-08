@@ -2,6 +2,122 @@ semantics transientGeneration :
   import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy transientReturnTypeName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "Bool" ;
+  when uintegerType : outResult := "UInt64" ;
+  when integerType : outResult := "Int64" ;
+  when doubleType : outResult := "Double" ;
+  when stringType : outResult := "String" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid return type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy transientFormalArgumentTypeName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "Bool" ;
+  when uintegerType : outResult := "UInt64" ;
+  when integerType : outResult := "Int64" ;
+  when doubleType : outResult := "Double" ;
+  when stringType : outResult := "String" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when entityType : outResult := "Int" ; # Only used for .count binding
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid return type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+routine generateTransients
+  ??@string inSourceFile
+  ??@transientDependencyGraphNodeInfoList inSortedTransientNodes
+  ??@transientListForGeneration inTransientListForGeneration
+:
+#--------------------------- Generate PMApplication class
+#--- build a string list of all transients
+  @stringlist transientList := {} ;
+  for () in inSortedTransientNodes do
+    if mIsTransient then
+      transientList += !mSignature ;
+    end if ;
+  end for ;
+  const @string s := [filewrapper transientManager.applicationInSwift
+    !inSortedTransientNodes
+    !transientList
+  ] ;
+  [@string generateFileWithPattern
+    ![inSourceFile stringByDeletingLastPathComponent]
+    !"PMApplication.swift"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !""
+  ] ;
+#--------------------------- Generate transient routines
+  for () in inTransientListForGeneration do
+    const @stringlist decomposedTransientSignature := [mTransientSignature componentsSeparatedByString !"."] ;
+    const s := [filewrapper transientManager.transientComputationFunctionFile
+      ![decomposedTransientSignature mValueAtIndex !1]
+      ![decomposedTransientSignature mValueAtIndex !2]
+      !mTransientDependencyListForGeneration
+      !mTransientType 
+    ] ;
+    const fileName := [decomposedTransientSignature mValueAtIndex !1] + "+transient+" + [decomposedTransientSignature mValueAtIndex !2] + ".swift" ;
+    [@string generateFileWithPattern
+      ![inSourceFile stringByDeletingLastPathComponent]
+      !fileName
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"}\n\n//----------------------------------------------------------------------------*\n"
+    ] ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper transientManager in "../generation-templates" {
+}{
+}{
+  template applicationInSwift "PMApplication.swift.gTemplate"
+    ?@transientDependencyGraphNodeInfoList PROPERTY_LIST
+    ?@stringlist TRANSIENT_LIST
+  ;
+
+  template transientComputationFunctionFile "transient-computation-function.swift.gTemplate"
+    ?@string KIND_NAME
+    ?@string TRANSIENT_NAME
+    ?@transientDependencyListForGeneration DEPENDENCY_LIST
+    ?@unifiedTypeProxy TRANSIENT_TYPE
+  ;
+}
 #-----------------------------------------------------------------------------*
 #   generateAttributeDeclarationInSwift                                       *
 #-----------------------------------------------------------------------------*

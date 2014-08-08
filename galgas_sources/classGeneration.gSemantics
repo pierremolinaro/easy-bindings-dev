@@ -87,23 +87,23 @@ override method @classTypeGeneration generate
       !"\n"
     ] ;
     #--- Transient computation function implementation files
-    foreach mTransientListForImplementation do
-       s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
-          !mGenerationName
-          !mTransientType
-          !mTransientName
-          !mDependencyList
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          !mGenerationName . "+transient+" . mTransientName . ".swift"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-        ] ;
-    end foreach ;
+#    foreach mTransientListForImplementation do
+#       s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
+#          !mGenerationName
+#          !mTransientType
+#          !mTransientName
+#          !mDependencyList
+#        ] ;
+#        [@string generateFileWithPattern
+#          !inOutputDirectory
+#          !mGenerationName . "+transient+" . mTransientName . ".swift"
+#          !"//"
+#          !"\n\n" # Defaut user zone1
+#          !s
+#          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+#          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+#        ] ;
+#    end foreach ;
   else
    #--- Header
     @string s := [filewrapper classGenerationTemplate.classDeclarationPart1

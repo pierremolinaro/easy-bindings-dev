@@ -38,20 +38,20 @@ override method @controllerClassDeclaration typeInventory
 #    ?@outletClassBindingMap bindingMap
 #  ;
 #--- Analyze attributes
-#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
+  @decoratedObservablePropertyMap observablePropertyMap [emptyMap] ;
   for property in mControllerObservablePropertyList do
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !property->mTypeName
       ?@unifiedTypeProxy attributeTypeProxy
     ] ;
-#    [!?observablePropertyMap insertKey
-#      !property->mPropertyName
-#      !attributeTypeProxy
-#      !false # is not transient
-#      !"controller." . mControllerClassName . "." . property->mPropertyName
-#      !false # Is not a collection
-#    ] ;
+    [!?observablePropertyMap insertKey
+      !property->mPropertyName
+      !attributeTypeProxy
+      !false # is not transient
+      ![@lstring new !"controller." . mControllerClassName . "." . property->mPropertyName !property->mPropertyName->location]
+      !false # Is not a collection
+    ] ;
   end for ;
 #---
 #  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
@@ -76,7 +76,7 @@ override method @controllerClassDeclaration typeInventory
     !@decoratedAttributeMap {}
     !@decoratedTransientMap {}
     !@decoratedOutletMap {}
-    !@decoratedObservablePropertyMap {}
+    !observablePropertyMap
     !@decoratedEntityRelationshipMap {}
   ] ;
 end method ;
@@ -288,9 +288,16 @@ override method @unifiedTypeDeclaration typeInventory
     [@unifiedTypeProxy makeProxy
       !?ioUnifiedTypeMap
       !mControllerClassName
-      ?*
+      ??@unifiedTypeProxy controllerTypeProxy
     ] ;
     [!?ioUnifiedTypeMap enterEdge !mTypeName !mControllerClassName] ;
+    [!?observablePropertyMap insertKey
+      !mControllerName
+      !controllerTypeProxy
+      !false # Is not transient
+      ![@lstring new !kindName . "." + mTypeName + "." + mControllerName !mControllerName->location]
+      !true # is a collection
+     ] ;
   end foreach ;
 #------------------------------------- Enter in type map
   [!?ioUnifiedTypeMap insertKey
