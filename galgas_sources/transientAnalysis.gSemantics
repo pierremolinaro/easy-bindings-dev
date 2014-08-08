@@ -205,7 +205,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local filewrapper transientManager in "../generation-templates/application-class" {
+local filewrapper transientManager in "../generation-templates" {
 }{
 }{
   template applicationInSwift "PMApplication.swift.gTemplate"
