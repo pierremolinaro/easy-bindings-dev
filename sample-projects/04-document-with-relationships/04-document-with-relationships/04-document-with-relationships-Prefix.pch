@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the '04-document-with-relationships' target in the '04-document-with-relationships' project
-//
-
-#ifdef __OBJC__
-  #import <Cocoa/Cocoa.h>
-#endif
