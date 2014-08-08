@@ -60,6 +60,7 @@ SOURCES += controllerClassAnalysis.cpp
 SOURCES += controllerClassGeneration.cpp
 SOURCES += transientAnalysis.cpp
 SOURCES += transientGeneration.cpp
+SOURCES += actionGeneration.cpp
 SOURCES += easyBindings_program.cpp
 
 

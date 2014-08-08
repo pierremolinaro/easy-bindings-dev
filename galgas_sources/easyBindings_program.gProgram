@@ -7,6 +7,7 @@ import "transientGeneration.gSemantics" ;
 import "easyBindings_options.gOption" ;
 import "entityGeneration.gSemantics" ;
 import "typeAnalysis.gSemantics" ;
+import "actionGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -98,11 +99,13 @@ message "a source text file with the .easyBindings extension"
         !cursorList
         ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
         ??@transientListForGeneration transientListForGeneration
+        ??@actionListForGeneration actionListForGeneration
       ;
       if [@uint errorCount] == 0 then
         generateCode
           !sortedTransientAndObservablePropertyNodes
           !transientListForGeneration
+          !actionListForGeneration
           !inSourceFile->string
         ;
       end if ;
@@ -184,6 +187,7 @@ local routine semanticAnalysis
   ??@cursorList unused inCursorList
   !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
   !@transientListForGeneration outTransientListForGeneration
+  !@actionListForGeneration outActionListForGeneration
 :
 #--- Build transient dependancy graph
   buildTransientDependencyGraph
@@ -196,9 +200,11 @@ local routine semanticAnalysis
     typeAnalysis
       !inUnifiedTypeMap
       ?outTransientListForGeneration
+      ?outActionListForGeneration
     ;
   else
     outTransientListForGeneration := {} ;
+    outActionListForGeneration := {} ;
   end if ;
 end routine ;
 
@@ -211,6 +217,7 @@ end routine ;
 local routine generateCode
   ??@transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
   ??@transientListForGeneration inTransientListForGeneration
+  ??@actionListForGeneration inActionListForGeneration
   ??@string inSourceFile
 :
   generateTransients
@@ -218,6 +225,10 @@ local routine generateCode
     !inSortedTransientAndObservablePropertyNodes
     !inTransientListForGeneration
   ;
+  generateActions
+    !inSourceFile
+    !inActionListForGeneration
+  ;  
 end routine ;
 
 #----------------------------------------------------------------------------*

@@ -58,6 +58,8 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "transientAnalysis.gSemantics" ;
   semantics "transientGeneration.gSemantics" ;
 
+  semantics "actionGeneration.gSemantics" ;
+
   program "easyBindings_program.gProgram" ;
 end project ;
 

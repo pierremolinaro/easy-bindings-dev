@@ -18,6 +18,7 @@ override method @predefinedTypeDeclaration typeInventory
     !@decoratedOutletMap {}
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
+    !@actionMap {}
   ] ;
 end method ;
 
@@ -78,6 +79,7 @@ override method @controllerClassDeclaration typeInventory
     !@decoratedOutletMap {}
     !observablePropertyMap
     !@decoratedEntityRelationshipMap {}
+    !@actionMap {}
   ] ;
 end method ;
 
@@ -96,6 +98,7 @@ override method @enumDeclaration typeInventory
     !@decoratedOutletMap {}
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
+    !@actionMap {}
   ] ;
 end method ;
 
@@ -121,6 +124,7 @@ override method @structDeclaration typeInventory
     !@decoratedOutletMap {}
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
+    !@actionMap {}
   ] ;
 end method ;
 
@@ -155,6 +159,7 @@ override method @outletClassDeclaration typeInventory
     !@decoratedOutletMap {}
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
+    !@actionMap {}
   ] ;
 end method ;
 
@@ -299,6 +304,11 @@ override method @unifiedTypeDeclaration typeInventory
       !true # is a collection
      ] ;
   end foreach ;
+#--------------------------------------------------- Analyze actions
+  @actionMap documentActionMap := {} ;
+  for actionName in mActionDeclarationList do
+    [!?documentActionMap insertKey !actionName->mValue] ;
+  end for ;
 #------------------------------------- Enter in type map
   [!?ioUnifiedTypeMap insertKey
     !mTypeName
@@ -310,6 +320,7 @@ override method @unifiedTypeDeclaration typeInventory
     !decoratedOutletMap
     !observablePropertyMap
     !currentRelationshipMap
+    !documentActionMap
   ] ;
 end method ;
 

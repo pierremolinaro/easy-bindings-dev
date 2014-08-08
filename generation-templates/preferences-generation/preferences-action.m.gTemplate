@@ -1,6 +1,0 @@
-import Cocoa
-
-//----------------------------------------------------------------------------*
-
-extension %!PREFERENCES_NAME% {
-  @IBAction func %!ACTION_NAME% (inSender: AnyObject) {

@@ -2,5 +2,5 @@ import Cocoa
 
 //----------------------------------------------------------------------------*
 
-extension %!PREFERENCES_NAME% {
+extension %!EXTENDED_CLASS_NAME% {
   func %!ACTION_NAME% (inSender : AnyObject) {
