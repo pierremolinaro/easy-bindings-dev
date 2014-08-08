@@ -7,8 +7,10 @@ semantics typeAnalysis :
 routine typeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   !@transientListForGeneration outTransientListForGeneration
+  !@actionListForGeneration outActionListForGeneration
 :
   outTransientListForGeneration := {} ;
+  outActionListForGeneration := {} ;
   for (@lstring lkey
        @typeKind typeKind
        @unifiedTypeProxy superType
@@ -17,7 +19,8 @@ routine typeAnalysis
        @decoratedTransientMap decoratedTransientMap
        @decoratedOutletMap decoratedOutletMap
        @decoratedObservablePropertyMap observablePropertyMap
-       @decoratedEntityRelationshipMap currentRelationshipMap) in inUnifiedTypeMap do
+       @decoratedEntityRelationshipMap currentRelationshipMap
+       @actionMap actionMap) in inUnifiedTypeMap do
    #--- Build all observable property map
       @decoratedObservablePropertyMap allObservableProperties := observablePropertyMap ;
       var t := superType ;
@@ -45,7 +48,9 @@ routine typeAnalysis
       !observablePropertyMap
       !currentRelationshipMap
       !allObservableProperties
+      !actionMap
       !?outTransientListForGeneration
+      !?outActionListForGeneration
     ;  
   end for ;
 end routine ;
@@ -54,7 +59,7 @@ end routine ;
 
 local routine unifiedTypeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
-  ??@lstring unused lkey
+  ??@lstring inTypeName
   ??@typeKind unused inTypeKind
   ??@unifiedTypeProxy unused superType
   ??@unifiedTypeProxy inRootEntityType
@@ -64,7 +69,9 @@ local routine unifiedTypeAnalysis
   ??@decoratedObservablePropertyMap unused inCurrentObservablePropertyMap
   ??@decoratedEntityRelationshipMap unused currentRelationshipMap
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
+  ??@actionMap inActionMap
   ?!@transientListForGeneration ioTransientListForGeneration
+  ?!@actionListForGeneration ioActionListForGeneration
 :
 #--- Analyze transient dependancies
   for () in decoratedTransientMap do
@@ -83,6 +90,10 @@ local routine unifiedTypeAnalysis
       ] ;
     end for ;
     ioTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
+  end for ;
+#--- Build action list
+  for () action_ in inActionMap do
+    ioActionListForGeneration += !inTypeName->string !action_lkey->string ; 
   end for ;
 end routine ;
 
