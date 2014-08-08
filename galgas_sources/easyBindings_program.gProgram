@@ -90,17 +90,19 @@ message "a source text file with the .easyBindings extension"
       end foreach ;
       error here : s ;
     else
-#      @string s := "Sorted types:" ;
-#      foreach sortedKeys do
-#        s .= "\n-- " . mValue ;
-#      end foreach ;
-#      message s ;
       semanticAnalysis
         !unifiedTypeMap
         !sortedTypeNames
         !inSourceFile->string
         !cursorList
+        ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
       ;
+      if [@uint errorCount] == 0 then
+        generateCode
+          !sortedTransientAndObservablePropertyNodes
+          !inSourceFile->string
+        ;
+      end if ;
     end if ;
   end if ;
   
@@ -174,16 +176,32 @@ message "a source text file with the .easyBindings extension"
 
 local routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
-  ??@lstringlist inSortedKeys
+  ??@lstringlist unused inSortedKeys
   ??@string inSourceFile
-  ??@cursorList inCursorList
+  ??@cursorList unused inCursorList
+  !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
 :
-  const outputDirectory := [inSourceFile stringByDeletingLastPathComponent] ;
 #--- Build transient dependancy graph
   buildTransientDependencyGraph
     !inUnifiedTypeMap
     !inSourceFile
-    ??@transientDependencyGraph transientDependencyGraph
+    ?outSortedTransientAndObservablePropertyNodes
+  ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#   G E N E R A T E    C O D E                                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine generateCode
+  ??@transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
+  ??@string inSourceFile
+:
+  generateTransients
+    !inSourceFile
+    !inSortedTransientAndObservablePropertyNodes
   ;
 end routine ;
 
