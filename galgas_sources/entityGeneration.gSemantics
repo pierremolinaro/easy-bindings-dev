@@ -89,12 +89,12 @@ filewrapper entityGenerationTemplate in "../generation-templates/entity-generati
     ?@directDependancyList DIRECT_DEPENDANCY_LIST
   ;
 
-  template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
-    ?@string CLASS_NAME
-    ?@EXebType RESULT_TYPE
-    ?@string TRANSIENT_NAME
-    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-  ;
+#  template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
+#    ?@string CLASS_NAME
+#    ?@EXebType RESULT_TYPE
+#    ?@string TRANSIENT_NAME
+#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+#  ;
 
   template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
     ?@entityMap ENTITY_MAP
@@ -160,23 +160,23 @@ override method @entityGeneration generate
       !"\n"
     ] ;
     #--- Transient computation function implementation files
-    foreach mTransientListForImplementation do
-        s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
-          !mGenerationName
-          !mTransientType
-          !mTransientName
-          !mDependencyList
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          !mGenerationName . "+transient+" . mTransientName . ".swift"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-        ] ;
-    end foreach ;
+#    foreach mTransientListForImplementation do
+#        s := [filewrapper entityGenerationTemplate.entityTransientComputationImplementationFileInSwift
+#          !mGenerationName
+#          !mTransientType
+#          !mTransientName
+#          !mDependencyList
+#        ] ;
+#        [@string generateFileWithPattern
+#          !inOutputDirectory
+#          !mGenerationName . "+transient+" . mTransientName . ".swift"
+#          !"//"
+#          !"\n\n" # Defaut user zone1
+#          !s
+#          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+#          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+#        ] ;
+#    end foreach ;
   else
     var s := [filewrapper entityGenerationTemplate.entityDeclaration1
       !mGenerationName

@@ -1,0 +1,12 @@
+import Cocoa
+
+//----------------------------------------------------------------------------*
+
+func compute_%!KIND_NAME%_%!TRANSIENT_NAME% (%?^
+foreach DEPENDENCY_LIST
+do !mMasterName% : %![mMasterType transientFormalArgumentTypeName]
+between %,\n%!^
+end
+%) -> %![TRANSIENT_TYPE transientReturnTypeName]
+%  {
+

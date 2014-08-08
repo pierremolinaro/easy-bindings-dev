@@ -6,6 +6,7 @@ import "cursorGeneration.gSemantics" ;
 import "transientGeneration.gSemantics" ;
 import "easyBindings_options.gOption" ;
 import "entityGeneration.gSemantics" ;
+import "typeAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -96,10 +97,12 @@ message "a source text file with the .easyBindings extension"
         !inSourceFile->string
         !cursorList
         ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
+        ??@transientListForGeneration transientListForGeneration
       ;
       if [@uint errorCount] == 0 then
         generateCode
           !sortedTransientAndObservablePropertyNodes
+          !transientListForGeneration
           !inSourceFile->string
         ;
       end if ;
@@ -180,6 +183,7 @@ local routine semanticAnalysis
   ??@string inSourceFile
   ??@cursorList unused inCursorList
   !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
+  !@transientListForGeneration outTransientListForGeneration
 :
 #--- Build transient dependancy graph
   buildTransientDependencyGraph
@@ -187,6 +191,15 @@ local routine semanticAnalysis
     !inSourceFile
     ?outSortedTransientAndObservablePropertyNodes
   ;
+#--- Type analysis
+  if [@uint errorCount] == 0 then
+    typeAnalysis
+      !inUnifiedTypeMap
+      ?outTransientListForGeneration
+    ;
+  else
+    outTransientListForGeneration := {} ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -197,11 +210,13 @@ end routine ;
 
 local routine generateCode
   ??@transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
+  ??@transientListForGeneration inTransientListForGeneration
   ??@string inSourceFile
 :
   generateTransients
     !inSourceFile
     !inSortedTransientAndObservablePropertyNodes
+    !inTransientListForGeneration
   ;
 end routine ;
 

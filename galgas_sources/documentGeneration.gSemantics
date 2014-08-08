@@ -58,13 +58,13 @@ filewrapper documentGenerationTemplate in "../generation-templates/document-gene
     ?@stringlist ROOT_SIGN_LIST
   ;
 
-  template documentTransientComputationImplementationFileInSwift "document-transient-computation-function.swift.gTemplate"
-    ?@string DOCUMENT_NAME
-    ?@EXebType RESULT_TYPE
-    ?@string TRANSIENT_NAME
-    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-    ?@stringlist ROOT_SIGN_LIST
-  ;
+#  template documentTransientComputationImplementationFileInSwift "document-transient-computation-function.swift.gTemplate"
+#    ?@string DOCUMENT_NAME
+#    ?@EXebType RESULT_TYPE
+#    ?@string TRANSIENT_NAME
+#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
+#    ?@stringlist ROOT_SIGN_LIST
+#  ;
 
 }
 
@@ -99,24 +99,24 @@ override method @documentGeneration generate
       !"\n"
     ] ;
   #--- Transient computation function implementation files
-    foreach mTransientListForImplementation do
-        s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFileInSwift
-          !mGenerationName
-          !mTransientType
-          !mTransientName
-          !mDependencyList
-          !mRootSignDependencyList
-        ] ;
-        [@string generateFileWithPattern
-          !inOutputDirectory
-          !mGenerationName . "+transient+" . mTransientName . ".swift"
-          !"//"
-          !"\n\n" # Defaut user zone1
-          !s
-          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
-          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
-        ] ;
-    end foreach ;
+#    foreach mTransientListForImplementation do
+#        s := [filewrapper documentGenerationTemplate.documentTransientComputationImplementationFileInSwift
+#          !mGenerationName
+#          !mTransientType
+#          !mTransientName
+#          !mDependencyList
+#          !mRootSignDependencyList
+#        ] ;
+#        [@string generateFileWithPattern
+#          !inOutputDirectory
+#          !mGenerationName . "+transient+" . mTransientName . ".swift"
+#          !"//"
+#          !"\n\n" # Defaut user zone1
+#          !s
+#          !"  return what ? ; // ADD YOUR CODE HERE\n" # Defaut user zone2
+#          !"}\n\n" . "//----------------------------------------------------------------------------*\n"
+#        ] ;
+#    end foreach ;
   else
   #--- Header
     @string s := [filewrapper documentGenerationTemplate.documentDeclaration1
