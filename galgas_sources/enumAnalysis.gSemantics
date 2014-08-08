@@ -4,15 +4,7 @@ semantics enumAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @enumDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @enumDeclaration EXTypeInventory
+override method @EXenumDeclaration EXTypeInventory
   ?!@EXunifiedTypeMap ioUnifiedTypeMap
 :
   [!?ioUnifiedTypeMap insertKey
@@ -25,7 +17,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @enumDeclaration buildObservablePropertyMap
+override method @EXenumDeclaration buildObservablePropertyMap
   ??@EXunifiedTypeMap unused inUnifiedTypeMap
   ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
   ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
@@ -34,7 +26,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @enumDeclaration semanticAnalysis
+override method @EXenumDeclaration semanticAnalysis
   ??@EXunifiedTypeMap unused inUnifiedTypeMap
   ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList

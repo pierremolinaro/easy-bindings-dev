@@ -30,11 +30,13 @@ message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
 #--- Parse predefined outlets
   @astDeclarationList declarationList [emptyList] ;
+  @EXastDeclarationList EXdeclarationList [emptyList] ;
 
   @cursorList cursorList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !userDefined:false
     !?declarationList
+    !?EXdeclarationList
     !?cursorList
     ?*
   ;
@@ -42,26 +44,26 @@ message "a source text file with the .easyBindings extension"
   grammar easyBindings_grammar in inSourceFile
     !userDefined:true
     !?declarationList
+    !?EXdeclarationList
     !?cursorList
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@EXTypeKind stringType] ![@typeKind stringType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@EXTypeKind colorType] ![@typeKind colorType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@EXTypeKind dataType] ![@typeKind dataType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@EXTypeKind dateType] ![@typeKind dateType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@EXTypeKind fontType] ![@typeKind fontType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@EXTypeKind imageType] ![@typeKind imageType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@EXTypeKind menuType] ![@typeKind menuType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@EXTypeKind bezierPathType] ![@typeKind bezierPathType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@EXTypeKind integerType] ![@typeKind integerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@EXTypeKind uintegerType] ![@typeKind uintegerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@EXTypeKind boolType] ![@typeKind boolType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@EXTypeKind doubleType] ![@typeKind doubleType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@EXTypeKind enumType] ![@typeKind enumType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@typeKind stringType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
-#----
   foreach declarationList do
     [mDeclaration typeInventory !?unifiedTypeMap] ;
   end foreach ;
@@ -105,10 +107,24 @@ message "a source text file with the .easyBindings extension"
   
   
 
+#--- Enter predefined types
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSString" ![@EXTypeKind stringType] ![@typeKind stringType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSColor" ![@EXTypeKind colorType] ![@typeKind colorType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSData" ![@EXTypeKind dataType] ![@typeKind dataType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSDate" ![@EXTypeKind dateType] ![@typeKind dateType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSFont" ![@EXTypeKind fontType] ![@typeKind fontType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSImage" ![@EXTypeKind imageType] ![@typeKind imageType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSMenu" ![@EXTypeKind menuType] ![@typeKind menuType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSBezierPath" ![@EXTypeKind bezierPathType] ![@typeKind bezierPathType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Integer" ![@EXTypeKind integerType] ![@typeKind integerType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"UInteger" ![@EXTypeKind uintegerType] ![@typeKind uintegerType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Bool" ![@EXTypeKind boolType] ![@typeKind boolType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Double" ![@EXTypeKind doubleType] ![@typeKind doubleType]] ;
+  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"enum" ![@EXTypeKind enumType] ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @EXunifiedTypeMap EXunifiedTypeMap [emptyMap] ;
 #----
-  foreach declarationList do
+  foreach EXdeclarationList do
     [mDeclaration EXTypeInventory !?EXunifiedTypeMap] ;
   end foreach ;
   if [option easyBindings_options.outputClassDependencyGraph value] then
@@ -192,7 +208,7 @@ local routine EXsemanticAnalysis
     [inUnifiedTypeMap searchKey
       !mValue
       ?*
-      ?@astDeclaration declaration
+      ?@EXastDeclaration declaration
       ?*
     ] ;
     [declaration buildObservablePropertyMap
@@ -216,7 +232,7 @@ local routine EXsemanticAnalysis
     [inUnifiedTypeMap searchKey
       !mValue
       ?*
-      ?@astDeclaration declaration
+      ?@EXastDeclaration declaration
       ?*
     ] ;
     [declaration semanticAnalysis

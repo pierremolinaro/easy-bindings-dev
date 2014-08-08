@@ -92,7 +92,7 @@ override method @transientPreferenceDependency analyze
   [inUnifiedTypeMap searchKey
     !mPreferencesName
     ??@typeKind kind
-    ?4*
+    ?5*
     ??@decoratedObservablePropertyMap observablePropertyMap
     ?*
   ] ;
@@ -123,21 +123,35 @@ routine buildTransientDependencyGraph
 :
 #------------------------------------------- Build transient dependancy graph
   outTransientDependencyGraph := [@transientDependencyGraph emptyGraph] ;
-  for () in inUnifiedTypeMap : type_ do
-    for () in type_mObservablePropertyMap : property_ do
+  for () type_ in inUnifiedTypeMap do
+    for () property_ in type_mObservablePropertyMap do
       [!?outTransientDependencyGraph addNode
         !property_mPropertySignature
         !property_mPropertySignature->string
         !property_mIsTransient
       ] ;
     end for ;
-    for () in type_mDecoratedTransientMap : transient_ do
+    for () transient_ in type_mDecoratedTransientMap do
+      @decoratedObservablePropertyMap allObservableProperties := type_mObservablePropertyMap ;
+      @unifiedTypeProxy t := type_mSuperType ;
+      loop [inUnifiedTypeMap count] : while not [t isNull] do
+        for () super_ in [t mObservablePropertyMap] do
+          [!?allObservableProperties insertKey
+            !super_lkey
+            !super_mPropertyType
+            !super_mIsTransient
+            !super_mPropertySignature
+            !super_mIsCollection
+         ] ;
+        end for ;
+        t := [t mSuperType] ;
+      end loop ; 
       for () in transient_mDependencyList do
         [mDependency analyze
           !inUnifiedTypeMap
           !?outTransientDependencyGraph
           !transient_lkey
-          !type_mObservablePropertyMap
+          !allObservableProperties
           ![@unifiedTypeProxy null]
           !transient_mTransientSignature
         ] ;

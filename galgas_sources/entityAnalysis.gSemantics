@@ -4,13 +4,6 @@ semantics entityAnalysis :
   import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
-
-override method @entityDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-end method ;
-
-#----------------------------------------------------------------------------*
 #   ANALYZE ENTITIES                                                         *
 #----------------------------------------------------------------------------*
 
@@ -61,7 +54,7 @@ override method @entityDeclaration EXTypeInventory
       !mInverseRelationshipName
     ] ;
   end foreach ;
-#----------------------------------
+#---------------------------------- Enter u-in type map
   [!?ioUnifiedTypeMap insertKey
     !mEntityName
     ![@EXebType new !mEntityName ![@EXTypeKind entityType]]

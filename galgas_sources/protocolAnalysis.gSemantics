@@ -3,13 +3,6 @@ semantics protocolAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @protocolDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
 override method @protocolDeclaration EXTypeInventory
   ?!@EXunifiedTypeMap ioUnifiedTypeMap
 :

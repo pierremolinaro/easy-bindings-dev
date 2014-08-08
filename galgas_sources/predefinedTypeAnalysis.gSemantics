@@ -3,24 +3,7 @@ semantics predefinedTypeAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @predefinedTypeDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-  [!?ioUnifiedTypeMap insertKey
-    ![mTypeName nowhere]
-    !mKind
-    ![@unifiedTypeProxy null]
-    !@decoratedAttributeMap {}
-    !@decoratedTransientMap {}
-    !@decoratedOutletMap {}
-    !@decoratedObservablePropertyMap {}
-    !@decoratedEntityRelationshipMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @predefinedTypeDeclaration EXTypeInventory
+override method @EXpredefinedTypeDeclaration EXTypeInventory
   ?!@EXunifiedTypeMap ioUnifiedTypeMap
 :
   [!?ioUnifiedTypeMap insertKey
@@ -33,7 +16,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @predefinedTypeDeclaration buildObservablePropertyMap
+override method @EXpredefinedTypeDeclaration buildObservablePropertyMap
   ??@EXunifiedTypeMap unused inUnifiedTypeMap
   ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
   ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
@@ -42,7 +25,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @predefinedTypeDeclaration semanticAnalysis
+override method @EXpredefinedTypeDeclaration semanticAnalysis
   ??@EXunifiedTypeMap unused inUnifiedTypeMap
   ?!@EXcontextAnalysisStruct unused ioContextAnalysisStruct
   ?!@generationList unused ioGenerationList
