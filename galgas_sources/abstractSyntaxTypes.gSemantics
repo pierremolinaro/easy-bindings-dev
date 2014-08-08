@@ -12,6 +12,92 @@ list @astDeclarationList {
   @astDeclaration mDeclaration ;
 }
 
+#----------------------------------------------------------------------------*
+
+class @unifiedTypeDeclaration extends @astDeclaration {
+  @lstring mTypeName ;
+  @typeKind mTypeKind ;
+  @lstring mSuperTypeName ;
+  @outletDeclarationList mOutletDeclarationList ;
+  @lstring mRootEntityName ;
+  @attributeList mAttributeList ;
+  @relationshipList mRelationshipList ;
+  @classArrayList mArrayList ;
+  @transientList mTransientList ;
+  @controllerList mControllerList ;
+  @lstringlist mActionDeclarationList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @predefinedTypeDeclaration extends @astDeclaration {
+  @string mTypeName ;
+  @typeKind mKind ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @outletClassDeclaration extends @astDeclaration {
+  @lstring mOutletClassName ;
+  @lstring mSuperClassName ;
+  @lstringlist mAdoptedProtocolList ;
+  @generationKind mGenerationKind ;
+  @outletClassBindingList mOutletClassBindingList ;
+  @bool mHasTableValueBinding ;
+  @lstringlist mOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @structDeclaration extends @astDeclaration {
+  @lstring mStructTypeName ;
+  @structFieldASTList mFieldList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @enumDeclaration extends @astDeclaration {
+  @lstring mEnumTypeName ;
+  @lstringlist mEnumConstantNameList ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @controllerClassDeclaration extends @astDeclaration {
+  @controllerKind mControllerKind ;
+  @lstring mControllerClassName ;
+  @bindingOptionList mControlledObjectBindingOptionList ;
+  @generationKind mGenerationKind ;
+  @outletClassBindingList mBindingList ;
+  @lstringlist mActionDeclarationList ;
+  @controllerObservablePropertyList mControllerObservablePropertyList ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-----------------------------------------------------------------------------*
+
+abstract class @EXastDeclaration {
+  @bool mUserDefined ;
+}
+
+#-----------------------------------------------------------------------------*
+
+list @EXastDeclarationList {
+  @EXastDeclaration mDeclaration ;
+}
+
 #-----------------------------------------------------------------------------*
 
 list @attributeList {
@@ -99,8 +185,9 @@ list @classArrayList {
 
 #----------------------------------------------------------------------------*
 
-class @classDeclaration extends @astDeclaration {
+class @EXclassDeclaration extends @EXastDeclaration {
   @lstring mClassName ;
+  @typeKind mTypeKind ;
   @lstring mSuperClassName ;
   @attributeList mAttributeList ;
   @classArrayList mArrayList ;
@@ -109,7 +196,7 @@ class @classDeclaration extends @astDeclaration {
 
 #----------------------------------------------------------------------------*
 
-class @entityDeclaration extends @astDeclaration {
+class @entityDeclaration extends @EXastDeclaration {
   @lstring mEntityName ;
   @lstring mSuperEntityName ;
   @attributeList mAttributeList ;
@@ -250,7 +337,7 @@ list @outletDeclarationList {
 
 #----------------------------------------------------------------------------*
 
-class @preferencesDeclaration extends @astDeclaration {
+class @preferencesDeclaration extends @EXastDeclaration {
   @lstring mPreferencesName ;
   @outletDeclarationList mOutletDeclarationList ;
   @attributeList mAttributeList ;
@@ -262,7 +349,7 @@ class @preferencesDeclaration extends @astDeclaration {
 
 #----------------------------------------------------------------------------*
 
-class @nibClassDeclaration extends @astDeclaration {
+class @nibClassDeclaration extends @EXastDeclaration {
   @lstring mClassName ;
   @outletDeclarationList mOutletDeclarationList ;
   @attributeList mAttributeList ;
@@ -288,7 +375,7 @@ list @controllerList {
 
 #----------------------------------------------------------------------------*
 
-class @documentDeclaration extends @astDeclaration {
+class @documentDeclaration extends @EXastDeclaration {
   @lstring mDocumentName ;
   @lstring mRootEntityName ;
   @outletDeclarationList mOutletDeclarationList ;
@@ -342,7 +429,7 @@ list @cursorList {
 
 #----------------------------------------------------------------------------*
 
-class @outletClassDeclaration extends @astDeclaration {
+class @EXoutletClassDeclaration extends @EXastDeclaration {
   @lstring mOutletClassName ;
   @lstring mSuperClassName ;
   @lstringlist mAdoptedProtocolList ;
@@ -361,7 +448,7 @@ list @controllerObservablePropertyList {
 
 #----------------------------------------------------------------------------*
 
-class @protocolDeclaration extends @astDeclaration {
+class @protocolDeclaration extends @EXastDeclaration {
   @bool mIsPredefined ; # Generate import otherwise
   @lstring mProtocolName ;
 }
@@ -379,7 +466,7 @@ enum @controllerKind {
 
 #----------------------------------------------------------------------------*
 
-class @controllerClassDeclaration extends @astDeclaration {
+class @EXcontrollerClassDeclaration extends @EXastDeclaration {
   @controllerKind mControllerKind ;
   @lstring mControllerClassName ;
   @bindingOptionList mControlledObjectBindingOptionList ;
@@ -387,13 +474,6 @@ class @controllerClassDeclaration extends @astDeclaration {
   @outletClassBindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
   @controllerObservablePropertyList mControllerObservablePropertyList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @enumDeclaration extends @astDeclaration {
-  @lstring mEnumTypeName ;
-  @lstringlist mEnumConstantNameList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -538,7 +618,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-class @predefinedTypeDeclaration extends @astDeclaration {
+class @EXpredefinedTypeDeclaration extends @EXastDeclaration {
   @string mTypeName ;
   @EXTypeKind mExKind ;
   @typeKind mKind ;
@@ -546,11 +626,17 @@ class @predefinedTypeDeclaration extends @astDeclaration {
 
 #----------------------------------------------------------------------------*
 
-class @structDeclaration extends @astDeclaration {
+class @EXstructDeclaration extends @EXastDeclaration {
   @lstring mStructTypeName ;
   @structFieldASTList mFieldList ;
 }
 
+#----------------------------------------------------------------------------*
+
+class @EXenumDeclaration extends @EXastDeclaration {
+  @lstring mEnumTypeName ;
+  @lstringlist mEnumConstantNameList ;
+}
 #----------------------------------------------------------------------------*
 
 end semantics ;

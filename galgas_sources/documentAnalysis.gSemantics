@@ -5,12 +5,6 @@ semantics documentAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @documentDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-
-end method ;
-
 #----------------------------------------------------------------------------*
 
 override method @documentDeclaration EXTypeInventory

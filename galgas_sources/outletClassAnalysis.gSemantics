@@ -4,39 +4,7 @@ semantics outletClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @outletClassDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-#--- Has super class ?
-  @unifiedTypeProxy superClassProxy ;
-  if mSuperClassName->string == "" then
-    superClassProxy := [@unifiedTypeProxy null] ;
-  else
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mSuperClassName
-      ?superClassProxy
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge
-      !mOutletClassName
-      !mSuperClassName
-    ] ;
-  end if ;
-  [!?ioUnifiedTypeMap insertKey
-    !mOutletClassName
-    ![@typeKind outletClassType]
-    !superClassProxy
-    !@decoratedAttributeMap {}
-    !@decoratedTransientMap {}
-    !@decoratedOutletMap {}
-    !@decoratedObservablePropertyMap {}
-    !@decoratedEntityRelationshipMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @outletClassDeclaration EXTypeInventory
+override method @EXoutletClassDeclaration EXTypeInventory
   ?!@EXunifiedTypeMap ioUnifiedTypeMap
 :
 #--- Has super class ?
@@ -62,7 +30,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @outletClassDeclaration buildObservablePropertyMap
+override method @EXoutletClassDeclaration buildObservablePropertyMap
   ??@EXunifiedTypeMap unused inUnifiedTypeMap
   ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
   ?!@EXtransientDependencyGraph unused ioTransientDependencyGraph
@@ -93,7 +61,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @outletClassDeclaration semanticAnalysis
+override method @EXoutletClassDeclaration semanticAnalysis
   ??@EXunifiedTypeMap inUnifiedTypeMap
   ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList

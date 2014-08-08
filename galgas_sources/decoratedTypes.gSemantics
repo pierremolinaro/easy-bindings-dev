@@ -4,22 +4,19 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
-uniquemap @unifiedTypeMap {
+uniquemap @unifiedTypeMap @unifiedTypeProxy {
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
 
   @typeKind mTypeKind ;
   @unifiedTypeProxy mSuperType ;
+  @unifiedTypeProxy mRootEntityType ;
   @decoratedAttributeMap mDecoratedAttributeMap ;
   @decoratedTransientMap mDecoratedTransientMap ;
   @decoratedOutletMap mDecoratedOutletMap ;
   @decoratedObservablePropertyMap mObservablePropertyMap ;
   @decoratedEntityRelationshipMap mCurrentRelationshipMap ;
 }
-
-#----------------------------------------------------------------------------*
-
-mapproxy @unifiedTypeProxy (@unifiedTypeMap) ;
 
 #----------------------------------------------------------------------------*
 
@@ -89,7 +86,22 @@ graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
   insert addNode error message "the '%K' property is already declared at %L" ;
 }
 
+#----------------------------------------------------------------------------*
 
+reader @typeKind kindName -> @string outResult :
+  switch selfcopy
+  when classType : outResult := "class" ;
+  when controllerClassType : outResult := "controller" ;
+  when documentType : outResult := "document" ;
+  when entityType : outResult := "entity" ;
+  when preferencesType : outResult := "preference" ;
+#--- Predefined Type
+  when boolType, integerType, uintegerType, doubleType, stringType,
+  colorType, dataType, dateType, fontType, imageType, menuType, bezierPathType,
+  structType, enumType, nibClassType, outletClassType, protocolType :
+    outResult := "<kindName ??>" ;
+  end switch ;
+end reader ;
 
 
 
@@ -110,7 +122,7 @@ graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
 
 #----------------------------------------------------------------------------*
 
-abstract method @astDeclaration EXTypeInventory
+abstract method @EXastDeclaration EXTypeInventory
   ?!@EXunifiedTypeMap ioUnifiedTypeMap
 ;
 
@@ -688,18 +700,14 @@ map @EXentityRelationshipMap {
 
 #----------------------------------------------------------------------------*
 
-uniquemap @EXunifiedTypeMap {
+uniquemap @EXunifiedTypeMap @EXunifiedTypeProxy {
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
 #---
   @EXebType mTypeKind ;
-  @astDeclaration mDeclaration ;
+  @EXastDeclaration mDeclaration ;
   @EXentityRelationshipMap mEntityCurrentRelationshipMap ;
 }
-
-#----------------------------------------------------------------------------*
-
-mapproxy @EXunifiedTypeProxy (@EXunifiedTypeMap) ;
 
 #----------------------------------------------------------------------------*
 
@@ -1550,7 +1558,7 @@ map @EXobservablePropertyMapMap {
 
 #----------------------------------------------------------------------------*
 
-abstract method @astDeclaration buildObservablePropertyMap
+abstract method @EXastDeclaration buildObservablePropertyMap
   ??@EXunifiedTypeMap inUnifiedTypeMap
   ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
   ?!@EXtransientDependencyGraph ioTransientDependencyGraph
@@ -1570,7 +1578,7 @@ list @generationList {
 
 #----------------------------------------------------------------------------*
 
-abstract method @astDeclaration semanticAnalysis
+abstract method @EXastDeclaration semanticAnalysis
   ??@EXunifiedTypeMap inUnifiedTypeMap
   ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
   ?!@generationList ioGenerationList

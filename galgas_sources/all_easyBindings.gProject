@@ -12,6 +12,8 @@ project all_easyBindings (0:0:1) -> "easyBindings":
 
   semantics "decoratedTypes.gSemantics" ;
   
+  semantics "typeInventory.gSemantics" ;
+  
   semantics "attributeDeclarationAnalysis.gSemantics" ;
 
   semantics "protocolAnalysis.gSemantics" ;
