@@ -119,13 +119,13 @@ end method ;
 routine buildTransientDependencyGraph
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@string inSourceFile
-  !@transientDependencyGraph outTransientDependencyGraph
+  !@transientDependencyGraphNodeInfoList outSortedTransientNodes
 :
 #------------------------------------------- Build transient dependancy graph
-  outTransientDependencyGraph := [@transientDependencyGraph emptyGraph] ;
+  var transientDependencyGraph := [@transientDependencyGraph emptyGraph] ;
   for () type_ in inUnifiedTypeMap do
     for () property_ in type_mObservablePropertyMap do
-      [!?outTransientDependencyGraph addNode
+      [!?transientDependencyGraph addNode
         !property_mPropertySignature
         !property_mPropertySignature->string
         !property_mIsTransient
@@ -149,7 +149,7 @@ routine buildTransientDependencyGraph
       for () in transient_mDependencyList do
         [mDependency analyze
           !inUnifiedTypeMap
-          !?outTransientDependencyGraph
+          !?transientDependencyGraph
           !transient_lkey
           !allObservableProperties
           ![@unifiedTypeProxy null]
@@ -160,47 +160,56 @@ routine buildTransientDependencyGraph
   end for ;
 #------------------------------------------- Output graphviz file ?
   if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
-    const s := [outTransientDependencyGraph graphviz] ;
+    const s := [transientDependencyGraph graphviz] ;
     const path := inSourceFile . ".transientDependancyGraph.dot" ;
     [s writeToFileWhenDifferentContents !path ?*] ;
   end if ;
 #------------------------------------------- Topological sort nodes
-  [outTransientDependencyGraph topologicalSort
-    ?@transientDependencyGraphNodeInfoList sortedNodes
-    ?*
-    ?@transientDependencyGraphNodeInfoList unsortedNodes
-    ?*
-  ] ;
-  if [unsortedNodes length] > 0 then
-    var s := "cannot sort properties and transient ; the following ones are involved in circular dependence:" ;
-    foreach unsortedNodes do
-      s .= "\n-- " . mSignature ;
-    end foreach ;
-    error here : s ;
-  else # ok no error
-  #--- build a string list of all transients
-    @stringlist transientList := {} ;
-    for () in sortedNodes do
-      if mIsTransient then
-        transientList += !mSignature ;
-      end if ;
-    end for ;
-#    log sortedNodes ;
- #   log transientList ;
-    const @string s := [filewrapper transientManager.applicationInSwift
-      !sortedNodes
-      !transientList
+  if [@uint errorCount] != 0 then
+    outSortedTransientNodes := {} ;
+  else
+    [transientDependencyGraph topologicalSort
+      ?outSortedTransientNodes
+      ?*
+      ?@transientDependencyGraphNodeInfoList unsortedNodes
+      ?*
     ] ;
-    [@string generateFileWithPattern
-      ![inSourceFile stringByDeletingLastPathComponent]
-      !"PMApplication.swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !""
-    ] ;
+    if [unsortedNodes length] > 0 then
+      var s := "cannot sort properties and transient ; the following ones are involved in circular dependence:" ;
+      foreach unsortedNodes do
+        s .= "\n-- " . mSignature ;
+      end foreach ;
+      error here : s ;
+    end if ;
   end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine generateTransients
+  ??@string inSourceFile
+  ??@transientDependencyGraphNodeInfoList inSortedTransientNodes
+:
+#--- build a string list of all transients
+  @stringlist transientList := {} ;
+  for () in inSortedTransientNodes do
+    if mIsTransient then
+      transientList += !mSignature ;
+    end if ;
+  end for ;
+  const @string s := [filewrapper transientManager.applicationInSwift
+    !inSortedTransientNodes
+    !transientList
+  ] ;
+  [@string generateFileWithPattern
+    ![inSourceFile stringByDeletingLastPathComponent]
+    !"PMApplication.swift"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !""
+  ] ;
 end routine ;
 
 #----------------------------------------------------------------------------*

@@ -410,7 +410,7 @@ end rule ;
 rule <nib_class_declaration>
   ??@bool inIsUserDefined
   !@nibClassDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
+  ?!@astDeclarationList unused ioDeclarationList
 :
   $nibClass$ ;
   $Identifier$ ? @lstring preferencesName ;
@@ -1160,7 +1160,7 @@ end rule ;
 rule <protocol_declaration>
   ??@bool inIsUserDefined
   !@protocolDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
+  ?!@astDeclarationList unused ioDeclarationList
 :
   @bool isPredefined ;
   select
