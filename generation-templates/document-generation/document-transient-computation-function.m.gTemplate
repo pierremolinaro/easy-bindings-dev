@@ -1,5 +1,0 @@
-#import "%!DOCUMENT_NAME%-computations.h"
-
-//----------------------------------------------------------------------------*
-
-%!generateTransientFunctionImplementation [!DOCUMENT_NAME !RESULT_TYPE !TRANSIENT_NAME !DIRECT_DEPENDANCY_LIST !ROOT_SIGN_LIST]%
