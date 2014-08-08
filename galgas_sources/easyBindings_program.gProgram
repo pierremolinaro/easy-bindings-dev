@@ -361,13 +361,7 @@ local routine EXsemanticAnalysis
     !sortedTransientOrderedList
   ;
 #--- Extensions
-  @stringset extensionSet [setWithString !"xib"] ;
-  if [option easyBindings_options.outputSwift value] then
-    extensionSet += !"swift" ;
-  else
-    extensionSet += !"m" ;
-    extensionSet += !"h" ;
-  end if ;
+  const @stringset extensionSet := {!"xib", !"swift"} ;
 #--- Add embedded sources
   @stringset generateSet [emptySet] ;
   generateSet += !"easy-bindings-utilities" ;
@@ -375,18 +369,11 @@ local routine EXsemanticAnalysis
   if contextAnalysisStruct->mContainsDocument then
     generateSet += !"PMUndoManager" ;
     generateSet += !"PMManagedDocument" ;
-    generateSet += !"NSData+BZ2compression" ;
-    generateSet += !"NSData+BZ2compression" ;
-    generateSet += !"NSData+PMGZcompression" ;
-    generateSet += !"NSMutableData+PMWrites" ;
     generateSet += !"PMDataScanner" ;
   end if ;
   if [contextAnalysisStruct->mEntityMap count] > 0 then
-    generateSet += !"load-store-functions" ;
     generateSet += !"PMManagedObject" ;
     generateSet += !"PMObjectManager" ;
-    generateSet += !"PMAttributeDescription" ;
-    generateSet += !"PMRelationshipDescription" ;
     generateSet += !"PMEntityArrayController" ;
     generateSet += !"PMEntityController" ;
   end if ;
