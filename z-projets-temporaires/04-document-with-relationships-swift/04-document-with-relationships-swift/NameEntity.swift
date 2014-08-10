@@ -98,18 +98,38 @@ import Cocoa
 
   var mRoot_observers = NSMutableSet ()
   var mRoot__explorer : NSButton?
+  
+  func undo_mRoot (v : MyRootEntity?) {
+    mRoot = v
+  }
+  
   weak var mRoot : MyRootEntity? = nil {
     didSet {
-      if oldValue != mRoot {
+      if oldValue !== mRoot {
       //--- Register old value in undo manager
-        undoManager ().registerUndoWithTarget (self, selector:"setMRoot:", object:oldValue)
+        undoManager ().registerUndoWithTarget (self, selector:"undo_mRoot:", object:oldValue)
       //--- Update explorer
         if mRoot__explorer != nil {
           updateManagedObjectToOneRelationshipDisplayForKey ("mRoot", button:mRoot__explorer!)
         }
-      //--- Set opposite relation ship
-        oldValue?.removeObjectFromMNames (self)
-        mRoot?.appendToMNames (self)
+      //--- Reset old opposite relation ship
+        if let unwrappedOldValue = oldValue {
+          let idx = unwrappedOldValue.mNames.indexOfObjectIdenticalTo (self)
+          if idx != NSNotFound {
+            var array = unwrappedOldValue.mNames.mutableCopy () as NSMutableArray
+            array.removeObjectAtIndex (idx)
+            unwrappedOldValue.mNames = array
+          }
+        }
+      //--- Set new opposite relation ship
+        if let root = mRoot {
+          let idx = root.mNames.indexOfObjectIdenticalTo (self)
+          if idx == NSNotFound {
+            var array = root.mNames.mutableCopy () as NSMutableArray
+            array.addObject (self)
+            root.mNames = array
+          }
+        }
       //--- Notify observers
         for anyObject in mRoot_observers {
           let object = anyObject as PMTriggerProtocol
