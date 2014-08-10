@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>95CBB27D-A453-4B8B-8B21-AE58CDD6164B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>04-document-with-relationships-swift</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>db83cac3-9ea6-0410-bf0f-ff9db4435373</key>
+		<string>https://easy-bindings.rts-software.org/svn</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>z-projets-temporaires/04-document-with-relationships-swift/04-document-with-relationships-swift.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>db83cac3-9ea6-0410-bf0f-ff9db4435373</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>db83cac3-9ea6-0410-bf0f-ff9db4435373</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>db83cac3-9ea6-0410-bf0f-ff9db4435373</string>
+			<key>IDESourceControlWCCName</key>
+			<string>easy-bindings</string>
+		</dict>
+	</array>
+</dict>
+</plist>
