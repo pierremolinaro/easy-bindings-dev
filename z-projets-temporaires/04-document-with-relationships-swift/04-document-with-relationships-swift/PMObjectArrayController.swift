@@ -40,7 +40,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMObjectArrayController) class PMObjectArrayController : NSObject, PMTriggerProtocol, NSTableViewDataSource {
+@objc(PMObjectArrayController) class PMObjectArrayController : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
   var mEntityManager : PMObjectManager
   var mObject : MyRootEntity
   var mTableView : NSTableView?
@@ -55,6 +55,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     mEntityManager = object.entityManager ()
     super.init ()
     mTableView?.setDataSource (self)
+    mTableView?.setDelegate (self)
     noteObjectAllocation (self)
     object.addObserverOf_mNames (self)
   }
@@ -95,8 +96,10 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var mCurrentObjectSet = NSMutableSet ()
+  var mCurrentObjectArray = NSArray ()
   
   func trigger () {
+    mCurrentObjectArray = mObject.mNames.copy () as NSArray
   //--- Update observers for handling model change
     let oldObjectSet = mCurrentObjectSet
     mCurrentObjectSet = NSMutableSet ()
@@ -125,11 +128,63 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
+  //    tableViewSelectionDidChange                                                                                    *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mSelectedObject : NameEntity? = nil {
+    didSet {
+      if mSelectedObject == nil {
+        NSLog ("nil")
+      }else{
+        NSLog ("Int %d", mSelectedObject!.aValue)
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func tableViewSelectionDidChange (NSNotification!) {
+    var selectedObject : NameEntity?
+    if let tableView = mTableView {
+      let selectedObjectIndex = tableView.selectedRow
+      if selectedObjectIndex >= 0 {
+        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
+      }
+    }
+    mSelectedObject = selectedObject
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
   //    Observing model change                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  
   func refreshDisplay () {
+/*    var selectedObject : NameEntity? = nil
+    if let tableView = mTableView {
+      let selectedObjectIndex = tableView.selectedRow
+      if selectedObjectIndex >= 0 {
+        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
+      }
+    } */
+  //--- Sort local array for display
+    let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
+    let descriptorArray = NSArray (object:sortDescriptor)
+    mCurrentObjectArray = mCurrentObjectArray.sortedArrayUsingDescriptors (descriptorArray) as NSArray
     mTableView?.reloadData ()
+  //--- Restore selection (if any)
+    if let selectedObjectUnwrapped = mSelectedObject {
+      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (selectedObjectUnwrapped)
+      if idx != NSNotFound {
+        mTableView?.selectRowIndexes(NSIndexSet (index:idx), byExtendingSelection:false)
+        mTableView?.scrollRowToVisible (idx)
+      }else{
+        let selectedObjectIndex = mTableView!.selectedRow
+        if selectedObjectIndex >= 0 {
+          mSelectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
+        }
+      }
+    }
   }
 
   var triggerObjectForModelChange : PMTrigger_updateTableView {
@@ -145,7 +200,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func numberOfRowsInTableView (NSTableView!) -> Int {
-    return mObject.mNames.count
+    return mCurrentObjectArray.count
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -156,10 +211,10 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     let columnIdentifier = objectValueForTableColumn.identifier as String
     var result : AnyObject! = columnIdentifier
     if columnIdentifier == "name" {
-      let object = mObject.mNames.objectAtIndex (row) as NameEntity
+      let object = mCurrentObjectArray.objectAtIndex (row) as NameEntity
       result = object.name
     }else if columnIdentifier == "int" {
-      let object = mObject.mNames.objectAtIndex (row) as NameEntity
+      let object = mCurrentObjectArray.objectAtIndex (row) as NameEntity
       result = NSNumber.numberWithLongLong (object.aValue)
     }
     return result
@@ -172,7 +227,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
                   forTableColumn aTableColumn: NSTableColumn!,
                   row inRowIndex: Int) {
     let columnIdentifier = aTableColumn.identifier as String
-    let object = mObject.mNames.objectAtIndex (inRowIndex) as NameEntity
+    let object = mCurrentObjectArray.objectAtIndex (inRowIndex) as NameEntity
     if columnIdentifier == "name" {
       if let str = inObject as? String {
         object.name = str
@@ -205,78 +260,14 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     if let tableView = mTableView {
       let selectedRow = tableView.selectedRow ;
       if selectedRow >= 0 {
-        let object = mObject.mNames.objectAtIndex (selectedRow) as NameEntity
+        let object = mCurrentObjectArray.objectAtIndex (selectedRow) as NameEntity
         var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
-        array.removeObjectAtIndex (selectedRow)
+        array.removeObjectIdenticalTo (object)
         mObject.mNames = array
         mEntityManager.deleteEntity (object)
       }
     }
   }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  A U T O M A T I C     F I L T E R I N G                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-/*  func automaticallyFilterWithKey (inKey : String) {
-    if countElements (mFilteringKey) > 0 {
-      let allObjects : NSArray = mObservedObjects.allObjects as NSArray
-      allObjects.removeObserver (self,
-        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:allObjects.count)),
-        forKeyPath:mFilteringKey
-      )
-    }
-  //---
-    mFilteringKey = inKey ;
-//    didChangeArrangementCriteria ()
-  } */
-
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  arrangeObjects                                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-/*  override func arrangeObjects (inObjects : [AnyObject]!) -> [AnyObject]! {
-    // NSLog (@"%s", __PRETTY_FUNCTION__) ;
-
-    var result = inObjects
-    if countElements(mFilteringKey) > 0 {
-    //---
-      let objectSet : NSSet = NSSet (array:inObjects)
-    //--- Add observer to new objects
-      var newObjects = NSMutableSet ()
-      newObjects.setSet (objectSet)
-      newObjects.minusSet (mObservedObjects)
-      let newObjectArray = newObjects.allObjects as NSArray
-      newObjectArray.addObserver (self,
-        toObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:newObjectArray.count)),
-        forKeyPath:mFilteringKey,
-        options:NSKeyValueObservingOptions (0),
-        context:nil
-      )
-    //--- Remove observer to removed objects
-      var removedObjects = NSMutableSet ()
-      removedObjects.setSet (mObservedObjects)
-      removedObjects.minusSet (objectSet)
-      let removedObjectArray : NSArray = removedObjects.allObjects as NSArray
-      removedObjectArray.removeObserver (self,
-        fromObjectsAtIndexes:NSIndexSet (indexesInRange:NSRange (location:0, length:removedObjectArray.count)),
-        forKeyPath:mFilteringKey
-      )
-    //--- Assign new object set
-      mObservedObjects = objectSet
-    //---
-      var filteredObjects = NSMutableArray ()
-      for object : AnyObject in inObjects {
-        if (object.valueForKey (mFilteringKey).boolValue != nil) {
-          filteredObjects.addObject (object)
-        }
-      }
-      result = filteredObjects ;
-    }
-    // NSLog (@"selectedObjects %lu", [[self selectedObjects] count]) ;
-    return super.arrangeObjects (result)
-  }*/
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  Transient: canRemove                                                                                             *

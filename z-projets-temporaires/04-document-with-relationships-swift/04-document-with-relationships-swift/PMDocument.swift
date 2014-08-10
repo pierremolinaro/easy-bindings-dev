@@ -195,6 +195,12 @@ import Cocoa
     rootObject.addObserverOf_mNames_aValue (triggerObjectFor_document_2E_PMDocument_2E_total)
 
   //--------------------------- Add Signature observer
+/*   var a = NSMutableArray ()
+   for i in 0..<50_000 {
+     let v = NameEntity (entityManager:mEntityManager)
+     a.addObject (v)
+   }
+   rootObject.mNames = a */
 }
 
   //-------------------------------------------------------------------------------------------------------------------*

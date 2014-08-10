@@ -43,13 +43,16 @@ import Cocoa
 
   var mNames_observers = NSMutableSet ()
 
+  func undo_mNames (array:NSMutableArray) {
+    mNames = array
+  }
   
   var mNames__explorer : NSPopUpButton?
   var mNames : NSMutableArray = NSMutableArray () { // Set of NameEntity entities
     didSet {
-      if (oldValue != mNames) {
+      if (oldValue !== mNames) {
       //--- Register old value in undo manager
-        undoManager ().registerUndoWithTarget (self, selector:"setMNames", object:oldValue)
+        undoManager ().registerUndoWithTarget (self, selector:"undo_mNames:", object:oldValue)
       //--- Update explorer
         if mNames__explorer != nil {
           updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames__explorer!)
@@ -86,70 +89,7 @@ import Cocoa
       }
     }
   }
-
-  func insertObject (inObject : NameEntity,
-                     inMNamesAtIndex: Int) {
-    let idx : Int = mNames.indexOfObject (inObject)
-    if idx == NSNotFound {
-      mNames.insertObject (inObject, atIndex:inMNamesAtIndex)
-        undoManager ().registerUndoWithTarget (self,
-        selector:"removeObjectFromMNames:",
-        object:inObject
-      )
-      inObject.mRoot = self
-          for anyObserver in mNames_aValue_observers {
-            let observer = anyObserver as PMTriggerProtocol
-            inObject.addObserverOf_aValue (observer)
-          }
-    //--- Update explorer
-      if mNames__explorer != nil {
-        updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames__explorer!)
-      }
-    }else if idx != inMNamesAtIndex {
-    }
-  //--- Notify observers object count did change
-    for anyObject in mNames_observers {
-      let object = anyObject as PMTriggerProtocol
-      enterTriggerWithObject (object)
-    }
-  }
-
-  func removeObjectFromMNamesAtIndex (inIndex : Int) {
-    let removedObject = mNames.objectAtIndex (inIndex) as NameEntity
-  //--- Perform removing
-    mNames.removeObjectAtIndex (inIndex)
-  //--- Register all object in undo manager
-    undoManager ().prepareWithInvocationTarget (self).insertObject (removedObject, inMNamesAtIndex:inIndex)
-  //--- Update explorer
-    if mNames__explorer != nil {
-      updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames__explorer!)
-    }
-  //--- Reset inverse relationship
-    removedObject.mRoot = nil
-          for anyObserver in mNames_aValue_observers {
-            let observer = anyObserver as PMTriggerProtocol
-            removedObject.removeObserverOf_aValue (observer)
-          }
-  //--- Notify observers object count did change
-    for anyObject in mNames_observers {
-      let object = anyObject as PMTriggerProtocol
-      enterTriggerWithObject (object)
-    }
-  }
-
-  func appendToMNames (inObject : NameEntity) {
-    if !mNames.containsObject (inObject) {
-      insertObject (inObject, inMNamesAtIndex:self.mNames.count)
-    }
-  }
-
-  func removeObjectFromMNames (inObject : NameEntity) {
-    let idx = mNames.indexOfObject (inObject)
-    if NSNotFound != idx {
-      removeObjectFromMNamesAtIndex (idx)
-    }
-  }
-   
+  
   func addObserverOf_mNames (inObserver : PMTriggerProtocol) {
     mNames_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)

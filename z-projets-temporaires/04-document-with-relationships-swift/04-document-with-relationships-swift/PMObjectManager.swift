@@ -143,7 +143,6 @@ import Cocoa
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as String
       let object = newInstanceOfEntityNamed (className)
-      NSLog ("className %@", className) ;
       objectArray.addObject (object!)
     }
     var idx = 0

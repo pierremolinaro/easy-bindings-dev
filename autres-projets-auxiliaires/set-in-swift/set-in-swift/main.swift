@@ -85,7 +85,7 @@ struct PMArray <T : AnyObject> {
 func allocInNSArray () {
   print ("Append in NSArray... ")
   var start = NSDate ()
-  var array : PMArray<MonProtocole> = PMArray<MonProtocole> ()
+  var array : PMArray<MaClasse> = PMArray<MaClasse> ()
   for i in 0..<COUNT {
     array.add (MaClasse ())
   }
@@ -93,7 +93,7 @@ func allocInNSArray () {
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for i in 0..<array.count {
-    let object : MonProtocole = array [i]
+    let object : MaClasse = array [i]
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
@@ -134,7 +134,7 @@ struct PMSequentialSet <T : AnyObject> {
 func allocInSequentialSet1 () {
   print ("Append in sequential set (by add1)... ")
   var start = NSDate ()
-  var array : PMSequentialSet<MonProtocole> = PMSequentialSet<MonProtocole> ()
+  var array : PMSequentialSet<MaClasse> = PMSequentialSet<MaClasse> ()
   for i in 0..<COUNT {
     array.add1 (MaClasse ())
   }
@@ -172,7 +172,7 @@ func allocInSequentialSet2 () {
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
 
-struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
+struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
   var mSet = NSMutableSet ()
 
   mutating func add (item : T) {
@@ -218,7 +218,7 @@ struct PMSetWithNSMutableSet <T : AnyObject> : Sequence {
 
 //---------------------------------------------------------------------------*
 
-struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
+struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
   let mSet : NSSet
   var mEnumerator : NSEnumerator
   
@@ -237,14 +237,14 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
 func allocInNSMutableSet () {
   print ("Append in NSMutableSet... ")
   var start = NSDate ()
-  var array : PMSetWithNSMutableSet<MonProtocole> = PMSetWithNSMutableSet ()
+  var array : PMSetWithNSMutableSet<MaClasse> = PMSetWithNSMutableSet ()
   for i in 0..<COUNT {
     array.add (MaClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
-  for object : MonProtocole in array {
+  for object : MaClasse in array {
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
