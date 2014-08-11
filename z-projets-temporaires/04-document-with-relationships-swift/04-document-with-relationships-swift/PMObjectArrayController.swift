@@ -148,7 +148,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     if let tableView = mTableView {
       let selectedObjectIndex = tableView.selectedRow
       if selectedObjectIndex >= 0 {
-        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
+        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as? NameEntity
       }
     }
     mSelectedObject = selectedObject
@@ -160,13 +160,6 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
 
   
   func refreshDisplay () {
-/*    var selectedObject : NameEntity? = nil
-    if let tableView = mTableView {
-      let selectedObjectIndex = tableView.selectedRow
-      if selectedObjectIndex >= 0 {
-        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
-      }
-    } */
   //--- Sort local array for display
     let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
     let descriptorArray = NSArray (object:sortDescriptor)
@@ -181,7 +174,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
       }else{
         let selectedObjectIndex = mTableView!.selectedRow
         if selectedObjectIndex >= 0 {
-          mSelectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex) as? NameEntity
+          mSelectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as? NameEntity
         }
       }
     }
@@ -211,10 +204,10 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     let columnIdentifier = objectValueForTableColumn.identifier as String
     var result : AnyObject! = columnIdentifier
     if columnIdentifier == "name" {
-      let object = mCurrentObjectArray.objectAtIndex (row) as NameEntity
+      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
       result = object.name
     }else if columnIdentifier == "int" {
-      let object = mCurrentObjectArray.objectAtIndex (row) as NameEntity
+      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
       result = NSNumber.numberWithLongLong (object.aValue)
     }
     return result
@@ -227,7 +220,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
                   forTableColumn aTableColumn: NSTableColumn!,
                   row inRowIndex: Int) {
     let columnIdentifier = aTableColumn.identifier as String
-    let object = mCurrentObjectArray.objectAtIndex (inRowIndex) as NameEntity
+    let object = mCurrentObjectArray.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__) as NameEntity
     if columnIdentifier == "name" {
       if let str = inObject as? String {
         object.name = str
@@ -260,7 +253,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     if let tableView = mTableView {
       let selectedRow = tableView.selectedRow ;
       if selectedRow >= 0 {
-        let object = mCurrentObjectArray.objectAtIndex (selectedRow) as NameEntity
+        let object = mCurrentObjectArray.objectAtIndex (selectedRow, file:__FILE__, line:__LINE__) as NameEntity
         var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
         array.removeObjectIdenticalTo (object)
         mObject.mNames = array

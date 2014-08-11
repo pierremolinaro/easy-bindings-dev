@@ -47,6 +47,7 @@ import Cocoa
     name_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
+  
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: aValue                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -54,20 +55,15 @@ import Cocoa
   var aValue__explorer : NSTextField?
   var aValue_observers = NSMutableSet ()
 
-  var aValue__as__number : NSNumber {
-    get {
-      return NSNumber (longLong:aValue)
-    }
-    set {
-      aValue = newValue.longLongValue
-    }
+  func undo_aValue (number : NSNumber) {
+    aValue = number.longLongValue
   }
-
+  
   var aValue : Int64 =  123 {
     willSet {
       undoManager ().registerUndoWithTarget (self,
-        selector:"setAValue__as__number:",
-        object:aValue__as__number
+        selector:"undo_aValue:",
+        object:NSNumber (longLong:aValue)
       )
     }
     didSet {
@@ -105,7 +101,8 @@ import Cocoa
   
   weak var mRoot : MyRootEntity? = nil {
     didSet {
-      if oldValue !== mRoot {
+      let isLoading = (mEntityManager != nil) ? mEntityManager!.isLoading () : false
+      if oldValue !== mRoot && !isLoading {
       //--- Register old value in undo manager
         undoManager ().registerUndoWithTarget (self, selector:"undo_mRoot:", object:oldValue)
       //--- Update explorer

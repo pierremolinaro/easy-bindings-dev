@@ -95,6 +95,7 @@ class PMManagedDocument : NSDocument {
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
+    mEntityManager.loadingDidFinish ()
   //--- Add Debug menu items ?
       if !gDebugMenuItemsAdded {
         gDebugMenuItemsAdded = true
