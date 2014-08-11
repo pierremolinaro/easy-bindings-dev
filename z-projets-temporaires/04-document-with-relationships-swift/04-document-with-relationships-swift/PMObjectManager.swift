@@ -131,6 +131,22 @@ import Cocoa
 
   //-----------------------------------------------------------------------------*
 
+  var mIsLoading = true
+  
+  //-----------------------------------------------------------------------------*
+
+  func isLoading () -> Bool {
+    return mIsLoading
+  }
+
+  //-----------------------------------------------------------------------------*
+
+  func loadingDidFinish () {
+    mIsLoading = false
+  }
+  
+  //-----------------------------------------------------------------------------*
+
   func readFromData (inData : NSData,
                      rootEntityClassName : String) -> PMManagedObject {
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
