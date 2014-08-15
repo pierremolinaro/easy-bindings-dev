@@ -130,41 +130,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @outletClassDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-#--- Has super class ?
-  @unifiedTypeProxy superClassProxy ;
-  if mSuperClassName->string == "" then
-    superClassProxy := [@unifiedTypeProxy null] ;
-  else
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mSuperClassName
-      ?superClassProxy
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge
-      !mOutletClassName
-      !mSuperClassName
-    ] ;
-  end if ;
-#---
-  [!?ioUnifiedTypeMap insertKey
-    !mOutletClassName
-    ![@typeKind outletClassType]
-    !superClassProxy # Super type
-    ![@unifiedTypeProxy null] # Root entity
-    !@decoratedAttributeMap {}
-    !@decoratedTransientMap {}
-    !@decoratedOutletMap {}
-    !@decoratedObservablePropertyMap {}
-    !@decoratedEntityRelationshipMap {}
-    !@actionMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 override method @unifiedTypeDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
@@ -276,16 +241,9 @@ override method @unifiedTypeDeclaration typeInventory
 #------------------------------------- Analyze outlets
   @decoratedOutletMap decoratedOutletMap := {} ;
   foreach mOutletDeclarationList do
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mOutletType
-      ??@unifiedTypeProxy outletType
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge !mTypeName !mOutletType] ;
     [!?decoratedOutletMap insertKey
       !mOutletName
-      !outletType
-      !mOutletBindingList
+      !mOutletType
     ] ;
   end foreach ;
 #-------------------------------------------------- Analyze controllers

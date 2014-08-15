@@ -8,8 +8,8 @@ import "easyBindings_grammar.gGrammar" ;
 rule <start_symbol>
   ??@bool inIsUserDefined
   ?!@astDeclarationList ioDeclarationList
-  ?!@EXastDeclarationList ioEXDeclarationList
   ?!@cursorList ioCursorList
+  ?!@outletClassDeclarationList ioOutletClassDeclarationList
   !@location outEndOfFile
 :
   repeat
@@ -24,42 +24,33 @@ rule <start_symbol>
     grammar easyBindings_grammar in sourceFile
       !userDefined:inIsUserDefined
       !?ioDeclarationList
-      !?ioEXDeclarationList
       !?ioCursorList
+      !?ioOutletClassDeclarationList
       ?*
     ;
+#  while
+#    <struct_declaration> !inIsUserDefined !?ioDeclarationList ;
+#  while
+#    <enum_declaration> !inIsUserDefined !?ioDeclarationList ;
+#  while
+#    <cursor_declaration> !?ioCursorList ;
+#  while
+#    <protocol_declaration> !inIsUserDefined !?ioDeclarationList ;
   while
-    <struct_declaration> !inIsUserDefined ?@EXstructDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
+    <class_declaration> !inIsUserDefined !?ioDeclarationList ;
   while
-    <enum_declaration> !inIsUserDefined ?@EXenumDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
+    <entity_declaration>  !inIsUserDefined  !?ioDeclarationList ;
   while
-    <cursor_declaration> !?ioCursorList ;
+    <nib_class_declaration>  !inIsUserDefined  !?ioDeclarationList ;
   while
-    <protocol_declaration> !inIsUserDefined ?@protocolDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
+    <preferences_declaration> !inIsUserDefined !?ioDeclarationList ;
   while
-    <class_declaration> !inIsUserDefined ?@EXclassDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
+    <document_declaration> !inIsUserDefined !?ioDeclarationList ;
   while
-    <entity_declaration>  !inIsUserDefined ?@entityDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
-  while
-    <nib_class_declaration>  !inIsUserDefined ?@nibClassDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
-  while
-    <preferences_declaration> !inIsUserDefined ?@preferencesDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
-  while
-    <document_declaration> !inIsUserDefined ?@documentDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration  ;
-  while
-    <outlet_class_declaration> !inIsUserDefined ?@EXoutletClassDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
-  while
-    <controller_class_declaration> !inIsUserDefined ?@EXcontrollerClassDeclaration declaration !?ioDeclarationList ;
-    ioEXDeclarationList += !declaration ;
+    <outlet_class_declaration> !inIsUserDefined !?ioOutletClassDeclarationList ;
+#  while
+#    <controller_class_declaration> !inIsUserDefined ?@EXcontrollerClassDeclaration declaration !?ioDeclarationList ;
+#    ioEXDeclarationList += !declaration ;
   end repeat ;
   outEndOfFile := here ;
   $end$ ;
@@ -67,34 +58,28 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <struct_declaration>
-  ??@bool inIsUserDefined
-  !@EXstructDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
-:
-  $struct$ ;
-  $Identifier$ ? @lstring structName ;
-  @structFieldASTList structFieldList [emptyList] ;
-  ${$ ;
-  repeat
-    $Identifier$ ?@lstring fieldTypeName ;
-    $identifier$ ? @lstring fieldName ;
-    structFieldList += !fieldTypeName !fieldName ;
-  while
-    $,$ ;
-  end repeat ;
-  $}$ ;
-  outEXDeclaration := [@EXstructDeclaration new
-    !inIsUserDefined
-    !structName
-    !structFieldList
-  ] ;
-  ioDeclarationList += ![@structDeclaration new
-    !inIsUserDefined
-    !structName
-    !structFieldList
-  ] ;
-end rule ;
+#rule <struct_declaration>
+#  ??@bool inIsUserDefined
+#  ?!@astDeclarationList ioDeclarationList
+#:
+#  $struct$ ;
+#  $Identifier$ ? @lstring structName ;
+#  @structFieldASTList structFieldList [emptyList] ;
+#  ${$ ;
+#  repeat
+#    $Identifier$ ?@lstring fieldTypeName ;
+#    $identifier$ ?@lstring fieldName ;
+#    structFieldList += !fieldTypeName !fieldName ;
+#  while
+#    $,$ ;
+#  end repeat ;
+#  $}$ ;
+#  ioDeclarationList += ![@structDeclaration new
+#    !inIsUserDefined
+#    !structName
+#    !structFieldList
+#  ] ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -352,7 +337,6 @@ end rule ;
 
 rule <preferences_declaration>
   ??@bool inIsUserDefined
-  !@preferencesDeclaration outEXDeclaration
   ?!@astDeclarationList ioDeclarationList
 :
   $preferences$ ;
@@ -379,16 +363,6 @@ rule <preferences_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  outEXDeclaration := [@preferencesDeclaration new
-    !inIsUserDefined
-    !preferencesName
-    !outletDeclarationList
-    !attributeList
-    !transientList
-    !actionDeclarationList
-    !controllerList
-    !classArrayList
-  ] ;
   ioDeclarationList += ![@unifiedTypeDeclaration new
     !inIsUserDefined
     !preferencesName
@@ -408,8 +382,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <nib_class_declaration>
-  ??@bool inIsUserDefined
-  !@nibClassDeclaration outEXDeclaration
+  ??@bool unused inIsUserDefined
   ?!@astDeclarationList unused ioDeclarationList
 :
   $nibClass$ ;
@@ -436,16 +409,6 @@ rule <nib_class_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  outEXDeclaration := [@nibClassDeclaration new
-    !inIsUserDefined
-    !preferencesName
-    !outletDeclarationList
-    !attributeList
-    !transientList
-    !actionDeclarationList
-    !controllerList
-    !classArrayList
-  ] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -464,7 +427,6 @@ end rule ;
 
 rule <document_declaration>
   ??@bool inIsUserDefined
-  !@documentDeclaration outEXDeclaration
   ?!@astDeclarationList ioDeclarationList
 :
   $document$ ;
@@ -490,16 +452,6 @@ rule <document_declaration>
     <controller_declaration> !?controllerList ;
   end repeat ;
   $}$ ;
-  outEXDeclaration := [@documentDeclaration new
-    !inIsUserDefined
-    !documentName
-    !rootEntityName
-    !outletDeclarationList
-    !controllerList
-    !actionDeclarationList
-    !transientList
-    !attributeList
-  ] ;
   ioDeclarationList += ![@unifiedTypeDeclaration new
     !inIsUserDefined
     !documentName
@@ -558,7 +510,6 @@ end rule ;
 
 rule <class_declaration>
   ??@bool inIsUserDefined
-  !@EXclassDeclaration outEXDeclaration
   ?!@astDeclarationList ioDeclarationList
 :
   $class$ ;
@@ -583,15 +534,6 @@ rule <class_declaration>
     <array_declaration> !?classArrayList ;
   end repeat ;
   $}$ ;
-  outEXDeclaration := [@EXclassDeclaration new
-    !inIsUserDefined
-    !className
-    ![@typeKind classType]
-    !superClassName
-    !attributeList
-    !classArrayList
-    !classTransientList
-  ] ;
   ioDeclarationList += ![@unifiedTypeDeclaration new
     !inIsUserDefined
     !className
@@ -871,7 +813,6 @@ end rule ;
 
 rule <entity_declaration>
   ??@bool inIsUserDefined
-  !@entityDeclaration outEXDeclaration
   ?!@astDeclarationList ioDeclarationList
 :
   $entity$ ;
@@ -945,15 +886,6 @@ rule <entity_declaration>
     ;
   end repeat ;
   $}$ ;
-  outEXDeclaration := [@entityDeclaration new
-    !inIsUserDefined
-    !entityName
-    !superEntityName
-    !attributeList
-    !classTransientList
-    !relationshipList
-    !signList
-  ] ;
   ioDeclarationList += ![@unifiedTypeDeclaration new
     !inIsUserDefined
     !entityName
@@ -972,413 +904,307 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <type_list>
-  !@lstringlist outEasyBindingTypeList
-:
-  outEasyBindingTypeList := [@lstringlist emptyList] ;
-  repeat
-    select
-      $Identifier$ ?@lstring bindingTypeName ;
-      outEasyBindingTypeList += !bindingTypeName ;
-    or
-      $AnyScalar$ ;
-      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
-    or
-      $AnyNumber$ ;
-      outEasyBindingTypeList += ![@lstring new !"Double" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
-      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
-    end select ;
-  while
-    $,$ ;
-  end repeat ;
-end rule ;
+#rule <type_list>
+#  !@lstringlist outEasyBindingTypeList
+#:
+#  outEasyBindingTypeList := [@lstringlist emptyList] ;
+#  repeat
+#    select
+#      $Identifier$ ?@lstring bindingTypeName ;
+#      outEasyBindingTypeList += !bindingTypeName ;
+#    or
+#      $AnyScalar$ ;
+#      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
+#    or
+#      $AnyNumber$ ;
+#      outEasyBindingTypeList += ![@lstring new !"Double" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
+#      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
+#    end select ;
+#  while
+#    $,$ ;
+#  end repeat ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <formatter> 
-  !@formatterEnum outRequiredFormatter
-:
-  select
-    outRequiredFormatter := [@formatterEnum noFormatter] ;
-  or
-    $NSDateFormatter$ ;
-    outRequiredFormatter := [@formatterEnum dateFormatter] ;
-  or
-    $NSNumberFormatter$ ;
-    outRequiredFormatter := [@formatterEnum numberFormatter] ;
-  end select ;
-end rule ;
+#rule <formatter> 
+#  !@formatterEnum outRequiredFormatter
+#:
+#  select
+#    outRequiredFormatter := [@formatterEnum noFormatter] ;
+#  or
+#    $NSDateFormatter$ ;
+#    outRequiredFormatter := [@formatterEnum dateFormatter] ;
+#  or
+#    $NSNumberFormatter$ ;
+#    outRequiredFormatter := [@formatterEnum numberFormatter] ;
+#  end select ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <type_formatter_list>
-  !@attributeASTTypeAndFormatterList outEasyBindingTypeFormatterList
-:
-  outEasyBindingTypeFormatterList := [@attributeASTTypeAndFormatterList emptyList] ;
-  repeat
-    select
-      $Identifier$ ?@lstring typeName ;
-      <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += !typeName !requiredFormatter ;
-    or
-      $AnyScalar$ ;
-      <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
-    or
-      $AnyNumber$ ;
-      <formatter> ?@formatterEnum requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"Double" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
-      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
-    end select ;
-  while
-    $,$ ;
-  end repeat ;
-end rule ;
+#rule <type_formatter_list>
+#  !@attributeASTTypeAndFormatterList outEasyBindingTypeFormatterList
+#:
+#  outEasyBindingTypeFormatterList := [@attributeASTTypeAndFormatterList emptyList] ;
+#  repeat
+#    select
+#      $Identifier$ ?@lstring typeName ;
+#      <formatter> ?@formatterEnum requiredFormatter ;
+#      outEasyBindingTypeFormatterList += !typeName !requiredFormatter ;
+#    or
+#      $AnyScalar$ ;
+#      <formatter> ?@formatterEnum requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
+#    or
+#      $AnyNumber$ ;
+#      <formatter> ?@formatterEnum requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"Double" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
+#      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
+#    end select ;
+#  while
+#    $,$ ;
+#  end repeat ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <outlet_class_declaration>
   ??@bool inIsUserDefined
-  !@EXoutletClassDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
+  ?!@outletClassDeclarationList ioOutletClassDeclarationList
 :
-  @generationKind generationKind ;
-  select
-    generationKind := [@generationKind fullGeneration] ;
-  or
-    $extern$ ;
-    generationKind := [@generationKind generateImport] ;
-  or
-    $predefined$ ;
-    generationKind := [@generationKind noGeneration] ;
-  end select ;
   $outletClass$ ;
-  $Identifier$ ? @lstring outletClassName ;
-  @lstring superClass ;
-  select
-    superClass := ["" nowhere] ;
-  or
-    $:$ ;
-    $Identifier$ ?superClass ;
-  end select ;
-  @lstringlist adoptedProtocolList [emptyList] ;
-  select
-  or
-    $<$ ;
-    repeat
-      $Identifier$ ? @lstring protocolName ;
-      adoptedProtocolList += !protocolName ;
-    while
-      $,$ ;
-    end repeat ;
-    $>$ ;
-  end select ;
-  ${$ ;
-  @outletClassBindingList outletClassBindingList [emptyList] ;
-  @lstringlist optionList [emptyList] ;
-  @bool hasTableValueBinding := false ;
-  repeat
-  while
-    $option$ ;
-    $literal_string$ ?@lstring optionValue ;
-    optionList += !optionValue ;
-    $;$ ;
-  while
-    $tableValue$ ;
-    $;$ ;
-    hasTableValueBinding := true ;
-  while
-    @lstring bindingName ;
-    select
-      $binding$ ? bindingName ;
-    or
-      $hidden$ ;
-      bindingName := [@lstring new !"hidden" !here] ;
-    or
-      $editable$ ;
-      bindingName := [@lstring new !"editable" !here] ;
-    or
-      $enabled$ ;
-      bindingName := [@lstring new !"enabled" !here] ;
-    end select ;
-    $:$ ;
-    <type_formatter_list> ?@attributeASTTypeAndFormatterList easyBindingTypeFormatterList ;
-    @bindingOptionList bindingOptionList [emptyList] ;
-    select
-      $;$ ;
-    or
-      ${$ ;
-      repeat
-      while
-        $Identifier$ ? @lstring optionName ;
-        $:$ ;
-        <type_list> ?@lstringlist optionTypeList ;
-        $;$ ;
-        bindingOptionList += !optionName !optionTypeList ;
-      end repeat ;
-    $}$ ;
-    end select ;
-    outletClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
-  end repeat ;
-  $}$ ;
-  outEXDeclaration := [@EXoutletClassDeclaration new
+  $Identifier$ ??@lstring outletClassName ;
+  $;$ ;
+  ioOutletClassDeclarationList +=
     !inIsUserDefined
     !outletClassName
-    !superClass
-    !adoptedProtocolList
-    !generationKind
-    !outletClassBindingList
-    !hasTableValueBinding
-    !optionList
-  ] ;
-  ioDeclarationList += ![@outletClassDeclaration new
-    !inIsUserDefined
-    !outletClassName
-    !superClass
-    !adoptedProtocolList
-    !generationKind
-    !outletClassBindingList
-    !hasTableValueBinding
-    !optionList
-  ] ;
+  ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <protocol_declaration>
-  ??@bool inIsUserDefined
-  !@protocolDeclaration outEXDeclaration
-  ?!@astDeclarationList unused ioDeclarationList
-:
-  @bool isPredefined ;
-  select
-    $extern$ ; isPredefined := false ;
-  or
-    $predefined$ ; isPredefined := true ;
-  end select ;
-  $protocol$ ;
-  $Identifier$ ? @lstring protocolName ;
-  $;$ ;
-  outEXDeclaration := [@protocolDeclaration new
-    !inIsUserDefined
-    !isPredefined
-    !protocolName
-  ] ;
-end rule ;
+#rule <protocol_declaration>
+#  ??@bool inIsUserDefined
+#  !@protocolDeclaration outEXDeclaration
+#  ?!@astDeclarationList unused ioDeclarationList
+#:
+#  @bool isPredefined ;
+#  select
+#    $extern$ ; isPredefined := false ;
+#  or
+#    $predefined$ ; isPredefined := true ;
+#  end select ;
+#  $protocol$ ;
+#  $Identifier$ ? @lstring protocolName ;
+#  $;$ ;
+#  outEXDeclaration := [@protocolDeclaration new
+#    !inIsUserDefined
+#    !isPredefined
+#    !protocolName
+#  ] ;
+#end rule ;
+#
+#----------------------------------------------------------------------------*
+
+#rule <cursor_declaration>
+#  ?!@cursorList ioCursorList
+#:
+#  $cursor$ ;
+#  $identifier$ ? @lstring cursorName ;
+#  $($ ;
+#  $literal_double$ ?@ldouble hotSpotX ?* ;
+#  $,$ ;
+#  $literal_double$ ?@ldouble hotSpotY ?* ;
+#  $)$ ;
+#  $;$ ;
+#  ioCursorList += !cursorName !hotSpotX !hotSpotY ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <cursor_declaration>
-  ?!@cursorList ioCursorList
-:
-  $cursor$ ;
-  $identifier$ ? @lstring cursorName ;
-  $($ ;
-  $literal_double$ ?@ldouble hotSpotX ?* ;
-  $,$ ;
-  $literal_double$ ?@ldouble hotSpotY ?* ;
-  $)$ ;
-  $;$ ;
-  ioCursorList += !cursorName !hotSpotX !hotSpotY ;
-end rule ;
+#rule <enum_declaration>
+#  ??@bool inIsUserDefined
+#  ?!@astDeclarationList ioDeclarationList
+#:
+#  $enum$ ;
+#  $Identifier$ ? @lstring enumName ;
+#  ${$ ;
+#  @lstringlist enumConstants [emptyList] ;
+#  repeat
+#    $identifier$ ? @lstring constantName ;
+#    enumConstants += !constantName ;
+#  while
+#    $,$ ;
+#  end repeat ;
+#  $}$ ;
+#  ioDeclarationList += ![@enumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <enum_declaration>
-  ??@bool inIsUserDefined
-  !@EXenumDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
-:
-  $enum$ ;
-  $Identifier$ ? @lstring enumName ;
-  ${$ ;
-  @lstringlist enumConstants [emptyList] ;
-  repeat
-    $identifier$ ? @lstring constantName ;
-    enumConstants += !constantName ;
-  while
-    $,$ ;
-  end repeat ;
-  $}$ ;
-  outEXDeclaration := [@EXenumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
-  ioDeclarationList += ![@enumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
-end rule ;
-
-#----------------------------------------------------------------------------*
-
-rule <controller_class_declaration>
-  ??@bool inIsUserDefined
-  !@EXcontrollerClassDeclaration outEXDeclaration
-  ?!@astDeclarationList ioDeclarationList
-:
-  @generationKind generationKind ;
-  select
-    generationKind := [@generationKind fullGeneration] ;
-  or
-    $predefined$ ;
-    generationKind := [@generationKind noGeneration] ;
-  or
-    $extern$ ;
-    generationKind := [@generationKind generateImport] ;
-  end select ;
-  @controllerKind controllerKind ;
-  @lstring controllerClassName ;
-  @bindingOptionList controlledObjectBindingOptionList [emptyList] ;
-  select
-    $controller$ ;
-    controllerKind := [@controllerKind simpleController] ;
-    $Identifier$ ?controllerClassName ;
-  or
-    $objectController$ ;
-    controllerKind := [@controllerKind objectController] ;
-    $Identifier$ ?controllerClassName ;
-    ${$ ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@lstringlist optionTypeList ;
-      $;$ ;
-      controlledObjectBindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
-  or
-    $entityController$ ;
-    controllerKind := [@controllerKind entityController] ;
-    $Identifier$ ?controllerClassName ;
-    ${$ ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@lstringlist optionTypeList ;
-      $;$ ;
-      controlledObjectBindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
-  or
-    $arrayController$ ;
-    controllerKind := [@controllerKind arrayController] ;
-    $Identifier$ ?controllerClassName ;
-    ${$ ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@lstringlist optionTypeList ;
-      $;$ ;
-      controlledObjectBindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
-  or
-    $entityArrayController$ ;
-    controllerKind := [@controllerKind entityArrayController] ;
-    $Identifier$ ?controllerClassName ;
-    ${$ ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@lstringlist optionTypeList ;
-      $;$ ;
-      controlledObjectBindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
-  or
-    $treeController$ ;
-    controllerKind := [@controllerKind treeController] ;
-    $Identifier$ ?controllerClassName ;
-    ${$ ;
-    repeat
-    while
-      $Identifier$ ? @lstring optionName ;
-      $:$ ;
-      <type_list> ?@lstringlist optionTypeList ;
-      $;$ ;
-      controlledObjectBindingOptionList += !optionName !optionTypeList ;
-    end repeat ;
-    $}$ ;
-  end select ;
-  ${$ ;
-  @outletClassBindingList controllerClassBindingList [emptyList] ;
-  @lstringlist actionDeclarationList [emptyList] ;
-  @controllerObservablePropertyList controllerObservablePropertyList [emptyList] ;
-  repeat
-  while
-    $attribute$ ;
-    $Identifier$ ? @lstring attributeTypeName ;
-    $identifier$ ? @lstring attributeName ;
-    $;$ ;
-    controllerObservablePropertyList += !attributeTypeName !attributeName ;
-  while
-    <action_declaration> !?actionDeclarationList ;
-  while
-    @lstring bindingName ;
-    select
-      $binding$ ? bindingName ;
-    or
-      $hidden$ ;
-      bindingName := [@lstring new !"hidden" !here] ;
-    or
-      $editable$ ;
-      bindingName := [@lstring new !"editable" !here] ;
-    or
-      $enabled$ ;
-      bindingName := [@lstring new !"enabled" !here] ;
-    end select ;
-    $:$ ;
-    <type_formatter_list> ?@attributeASTTypeAndFormatterList easyBindingTypeFormatterList ;
-    @bindingOptionList bindingOptionList [emptyList] ;
-    select
-      $;$ ;
-    or
-      ${$ ;
-      repeat
-      while
-        $Identifier$ ? @lstring optionName ;
-        $:$ ;
-        <type_list> ?@lstringlist optionTypeList ;
-        $;$ ;
-        bindingOptionList += !optionName !optionTypeList ;
-      end repeat ;
-      $}$ ;
-    end select ;
-    controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
-  end repeat ;
-  $}$ ;
-  outEXDeclaration := [@EXcontrollerClassDeclaration new
-    !inIsUserDefined
-    !controllerKind
-    !controllerClassName
-    !controlledObjectBindingOptionList
-    !generationKind
-    !controllerClassBindingList
-    !actionDeclarationList
-    !controllerObservablePropertyList
-  ] ;
-  ioDeclarationList += ![@controllerClassDeclaration new
-    !inIsUserDefined
-    !controllerKind
-    !controllerClassName
-    !controlledObjectBindingOptionList
-    !generationKind
-    !controllerClassBindingList
-    !actionDeclarationList
-    !controllerObservablePropertyList
-  ] ;
-end rule ;
+#rule <controller_class_declaration>
+#  ??@bool inIsUserDefined
+#  ?!@astDeclarationList ioDeclarationList
+#:
+#  @generationKind generationKind ;
+#  select
+#    generationKind := [@generationKind fullGeneration] ;
+#  or
+#    $predefined$ ;
+#    generationKind := [@generationKind noGeneration] ;
+#  or
+#    $extern$ ;
+#    generationKind := [@generationKind generateImport] ;
+#  end select ;
+#  @controllerKind controllerKind ;
+#  @lstring controllerClassName ;
+#  @bindingOptionList controlledObjectBindingOptionList [emptyList] ;
+#  select
+#    $controller$ ;
+#    controllerKind := [@controllerKind simpleController] ;
+#    $Identifier$ ?controllerClassName ;
+#  or
+#    $objectController$ ;
+#    controllerKind := [@controllerKind objectController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ? @lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $entityController$ ;
+#    controllerKind := [@controllerKind entityController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ? @lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $arrayController$ ;
+#    controllerKind := [@controllerKind arrayController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ? @lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $entityArrayController$ ;
+#    controllerKind := [@controllerKind entityArrayController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ? @lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $treeController$ ;
+#    controllerKind := [@controllerKind treeController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ? @lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  end select ;
+#  ${$ ;
+#  @outletClassBindingList controllerClassBindingList [emptyList] ;
+#  @lstringlist actionDeclarationList [emptyList] ;
+#  @controllerObservablePropertyList controllerObservablePropertyList [emptyList] ;
+#  repeat
+#  while
+#    $attribute$ ;
+#    $Identifier$ ? @lstring attributeTypeName ;
+#    $identifier$ ? @lstring attributeName ;
+#    $;$ ;
+#    controllerObservablePropertyList += !attributeTypeName !attributeName ;
+#  while
+#    <action_declaration> !?actionDeclarationList ;
+#  while
+#    @lstring bindingName ;
+#    select
+#      $binding$ ? bindingName ;
+#    or
+#      $hidden$ ;
+#      bindingName := [@lstring new !"hidden" !here] ;
+#    or
+#      $editable$ ;
+#      bindingName := [@lstring new !"editable" !here] ;
+#    or
+#      $enabled$ ;
+#      bindingName := [@lstring new !"enabled" !here] ;
+#    end select ;
+#    $:$ ;
+#    <type_formatter_list> ?@attributeASTTypeAndFormatterList easyBindingTypeFormatterList ;
+#    @bindingOptionList bindingOptionList [emptyList] ;
+#    select
+#      $;$ ;
+#    or
+#      ${$ ;
+#      repeat
+#      while
+#        $Identifier$ ? @lstring optionName ;
+#        $:$ ;
+#        <type_list> ?@lstringlist optionTypeList ;
+#        $;$ ;
+#        bindingOptionList += !optionName !optionTypeList ;
+#      end repeat ;
+#      $}$ ;
+#    end select ;
+#    controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
+#  end repeat ;
+#  $}$ ;
+#  ioDeclarationList += ![@controllerClassDeclaration new
+#    !inIsUserDefined
+#    !controllerKind
+#    !controllerClassName
+#    !controlledObjectBindingOptionList
+#    !generationKind
+#    !controllerClassBindingList
+#    !actionDeclarationList
+#    !controllerObservablePropertyList
+#  ] ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 

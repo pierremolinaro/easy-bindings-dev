@@ -1,0 +1,8 @@
+outletClass PMTextField ;
+
+outletClass PMColorWell ;
+
+outletClass PMDatePicker ;
+
+
+end

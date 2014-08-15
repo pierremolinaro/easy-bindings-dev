@@ -4,15 +4,121 @@ semantics preferencesGeneration :
 
 #----------------------------------------------------------------------------*
 
-filewrapper prefsGenerationTemplate in "../generation-templates/preferences-generation" {
+list @attributeListForGeneration {
+  @unifiedTypeProxy mAttributeType ;
+  @string mAttributeName ;
+  @string mDefaultValueInSwift ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @preferenceListForGeneration {
+  @string mPreferenceName ;
+  @attributeListForGeneration mAttributeListForGeneration ;
+  @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+  @decoratedOutletMap mOutletMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletGenerationList {
+  @string mOutletName ;
+  @string mOutletType ;
+}
+
+map @controllerMap {
+ @string mControllerClassName ;
+}
+
+map @preferencesPropertyArrayMap {
+ @string mControllerClassName ;
+}
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy swiftTypeName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "Bool" ;
+  when uintegerType : outResult := "UInt64" ;
+  when integerType : outResult := "Int64" ;
+  when doubleType : outResult := "Double" ;
+  when stringType : outResult := "String" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid return type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy preferencesSwiftGetter
+  -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "value as String" ;
+  when uintegerType : outResult := "à compléter preferencesSwiftGetter" ;
+  when integerType : outResult := "(value as NSNumber).longLongValue" ;
+  when doubleType : outResult := "à compléter preferencesSwiftGetter" ;
+  when stringType : outResult := "value as String" ;
+  when colorType : outResult := "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor" ;
+  when dataType : outResult := "à compléter preferencesSwiftGetter" ;
+  when dateType : outResult := "value as NSDate" ;
+  when imageType : outResult := "à compléter preferencesSwiftGetter" ;
+  when fontType : outResult := "à compléter preferencesSwiftGetter" ;
+  when menuType : outResult := "à compléter preferencesSwiftGetter" ;
+  when bezierPathType : outResult := "à compléter preferencesSwiftGetter" ;
+  when structType, enumType : outResult := "à compléter preferencesSwiftGetter" ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy preferencesSwiftSetter
+  ??@string inPropertyName
+  -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "à compléter preferencesSwiftSetter" ;
+  when uintegerType : outResult := "à compléter preferencesSwiftSetter" ;
+  when integerType : outResult := "NSNumber.numberWithLongLong (" + inPropertyName + ")" ;
+  when doubleType : outResult := "à compléter preferencesSwiftSetter" ;
+  when stringType : outResult := inPropertyName ;
+  when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;
+  when dataType : outResult := "à compléter preferencesSwiftSetter" ;
+  when dateType : outResult := inPropertyName ;
+  when imageType : outResult := "à compléter preferencesSwiftSetter" ;
+  when fontType : outResult := "à compléter preferencesSwiftSetter" ;
+  when menuType : outResult := "à compléter preferencesSwiftSetter" ;
+  when bezierPathType : outResult := "à compléter preferencesSwiftSetter" ;
+  when structType, enumType : outResult := "à compléter preferencesSwiftSetter" ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+local filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
   template preferencesInSwift "preferences.swift.gTemplate"
     ?@string PREFERENCES_NAME
-    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_GENERATION
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@outletGenerationList OUTLET_DECLARATION_LIST
-    ?@stringset INCLUSION_SET
+    ?@attributeListForGeneration ATTRIBUTE_LIST_FOR_GENERATION
+    ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
+    ?@decoratedOutletMap OUTLET_MAP
     ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
   ;
@@ -21,28 +127,30 @@ filewrapper prefsGenerationTemplate in "../generation-templates/preferences-gene
 
 #----------------------------------------------------------------------------*
 
-override method @preferenceTypeGeneration generate
+routine generatePreferences
+  ??@preferenceListForGeneration inPreferenceListForGeneration
   ??@string inOutputDirectory
 :
-  const @string s := [filewrapper prefsGenerationTemplate.preferencesInSwift
-    !mGenerationName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mOutletDeclarationList
-    !mFileInclusionSet->mImplementationFileInclusionSet
-    !mArrayMap
-    !mControllerMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".swift"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"\n\n"
-  ] ;
-end method ;
+  for () in inPreferenceListForGeneration do
+    const s := [filewrapper prefsGenerationTemplate.preferencesInSwift
+      !mPreferenceName
+      !mAttributeListForGeneration
+      !mDecoratedTransientMapForGeneration
+      !mOutletMap
+      !{}
+      !{}
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mPreferenceName . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n\n"
+    ] ;
+  end for ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 

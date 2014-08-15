@@ -1,16 +1,24 @@
 semantics typeAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
   import "attributeDeclarationAnalysis.gSemantics" ;
+  import "preferencesGeneration.gSemantics" ;
 
+#----------------------------------------------------------------------------*
+
+struct @structForGeneration{
+  @transientListForGeneration mTransientListForGeneration ;
+  @actionListForGeneration mActionListForGeneration ;
+  @preferenceListForGeneration mPreferenceListForGeneration ;
+  @stringset mNeededOutletClasses ;
+}
 #----------------------------------------------------------------------------*
 
 routine typeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
-  !@transientListForGeneration outTransientListForGeneration
-  !@actionListForGeneration outActionListForGeneration
+  ??@outletClassMap inOutletClassMap
+  !@structForGeneration outGeneration
 :
-  outTransientListForGeneration := {} ;
-  outActionListForGeneration := {} ;
+  outGeneration := [@structForGeneration default] ;
   for (@lstring lkey
        @typeKind typeKind
        @unifiedTypeProxy superType
@@ -38,6 +46,7 @@ routine typeAnalysis
       end loop ; 
     unifiedTypeAnalysis
       !inUnifiedTypeMap
+      !inOutletClassMap
       !lkey
       !typeKind
       !superType
@@ -49,8 +58,7 @@ routine typeAnalysis
       !currentRelationshipMap
       !allObservableProperties
       !actionMap
-      !?outTransientListForGeneration
-      !?outActionListForGeneration
+      !?outGeneration
     ;  
   end for ;
 end routine ;
@@ -59,19 +67,19 @@ end routine ;
 
 local routine unifiedTypeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
+  ??@outletClassMap inOutletClassMap
   ??@lstring inTypeName
-  ??@typeKind unused inTypeKind
+  ??@typeKind inTypeKind
   ??@unifiedTypeProxy unused superType
   ??@unifiedTypeProxy inRootEntityType
-  ??@decoratedAttributeMap unused decoratedAttributeMap
+  ??@decoratedAttributeMap decoratedAttributeMap
   ??@decoratedTransientMap decoratedTransientMap
-  ??@decoratedOutletMap unused decoratedOutletMap
+  ??@decoratedOutletMap decoratedOutletMap
   ??@decoratedObservablePropertyMap unused inCurrentObservablePropertyMap
   ??@decoratedEntityRelationshipMap unused currentRelationshipMap
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@actionMap inActionMap
-  ?!@transientListForGeneration ioTransientListForGeneration
-  ?!@actionListForGeneration ioActionListForGeneration
+  ?!@structForGeneration ioGeneration
 :
 #--- Analyze transient dependancies
   for () in decoratedTransientMap do
@@ -89,12 +97,34 @@ local routine unifiedTypeAnalysis
         !?transientDependencyListForGeneration
       ] ;
     end for ;
-    ioTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
+    ioGeneration->mTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
+  end for ;
+#--- Check outlet types are declared
+  for () in decoratedOutletMap do
+    [inOutletClassMap searchKey !mOutletTypeName] ;
+    ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
+  end for ;
+#--- Analyze attribute default value
+  @attributeListForGeneration attributeListForGeneration := {} ;
+  for () in decoratedAttributeMap do
+    [mDefaultValue analyzeDefaultValueType 
+      !{!mAttributeType}
+      ??@string swiftDefaultValueAsString
+    ] ;
+    attributeListForGeneration += !mAttributeType !lkey->string !swiftDefaultValueAsString ;
   end for ;
 #--- Build action list
   for () action_ in inActionMap do
-    ioActionListForGeneration += !inTypeName->string !action_lkey->string ; 
+    ioGeneration->mActionListForGeneration += !inTypeName->string !action_lkey->string ;
   end for ;
+#--- Build generation lists
+  switch inTypeKind
+  when preferencesType :
+    ioGeneration->mPreferenceListForGeneration += !inTypeName->string !attributeListForGeneration !decoratedTransientMap !decoratedOutletMap ;
+  when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType, documentType,
+       doubleType, entityType, enumType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
+       protocolType, stringType, structType, uintegerType:
+  end switch ;
 end routine ;
 
 #----------------------------------------------------------------------------*

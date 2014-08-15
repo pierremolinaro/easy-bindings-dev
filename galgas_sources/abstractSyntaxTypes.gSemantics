@@ -37,14 +37,9 @@ class @predefinedTypeDeclaration extends @astDeclaration {
 
 #----------------------------------------------------------------------------*
 
-class @outletClassDeclaration extends @astDeclaration {
+list @outletClassDeclarationList {
+  @bool mUserDefined ;
   @lstring mOutletClassName ;
-  @lstring mSuperClassName ;
-  @lstringlist mAdoptedProtocolList ;
-  @generationKind mGenerationKind ;
-  @outletClassBindingList mOutletClassBindingList ;
-  @bool mHasTableValueBinding ;
-  @lstringlist mOptionList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -90,12 +85,6 @@ class @controllerClassDeclaration extends @astDeclaration {
 
 abstract class @EXastDeclaration {
   @bool mUserDefined ;
-}
-
-#-----------------------------------------------------------------------------*
-
-list @EXastDeclarationList {
-  @EXastDeclaration mDeclaration ;
 }
 
 #-----------------------------------------------------------------------------*
@@ -429,18 +418,6 @@ list @cursorList {
 
 #----------------------------------------------------------------------------*
 
-class @EXoutletClassDeclaration extends @EXastDeclaration {
-  @lstring mOutletClassName ;
-  @lstring mSuperClassName ;
-  @lstringlist mAdoptedProtocolList ;
-  @generationKind mGenerationKind ;
-  @outletClassBindingList mOutletClassBindingList ;
-  @bool mHasTableValueBinding ;
-  @lstringlist mOptionList ;
-}
-
-#----------------------------------------------------------------------------*
-
 list @controllerObservablePropertyList {
   @lstring mTypeName ;
   @lstring mPropertyName ;
@@ -462,18 +439,6 @@ enum @controllerKind {
   entityController, # PMEntityController
   entityArrayController, # PMEntityArrayController
   treeController # NSTreeController
-}
-
-#----------------------------------------------------------------------------*
-
-class @EXcontrollerClassDeclaration extends @EXastDeclaration {
-  @controllerKind mControllerKind ;
-  @lstring mControllerClassName ;
-  @bindingOptionList mControlledObjectBindingOptionList ;
-  @generationKind mGenerationKind ;
-  @outletClassBindingList mBindingList ;
-  @lstringlist mActionDeclarationList ;
-  @controllerObservablePropertyList mControllerObservablePropertyList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -559,84 +524,6 @@ enum @typeKind {
   bezierPathType
 }
 
-#----------------------------------------------------------------------------*
-
-enum @EXTypeKind {
-  classType,
-  controllerClassType,
-  documentType,
-  entityType,
-  enumType,
-  nibClassType,
-  outletClassType,
-  preferencesType,
-  protocolType,
-  structType,
-#--- Predefined Type
-  boolType,
-  integerType,
-  uintegerType,
-  doubleType,
-  stringType,
-  colorType,
-  dataType,
-  dateType,
-  fontType,
-  imageType,
-  menuType,
-  bezierPathType
-}
-
-#----------------------------------------------------------------------------*
-
-reader @EXTypeKind name -> @string outResult :
-  switch selfcopy
-  when classType : outResult := "classType" ;
-  when controllerClassType : outResult := "controllerClassType" ;
-  when documentType : outResult := "documentType" ;
-  when entityType : outResult := "entityType" ;
-  when enumType : outResult := "enumType" ;
-  when nibClassType : outResult := "nibClassType" ;
-  when outletClassType : outResult := "outletClassType" ;
-  when preferencesType : outResult := "preferencesType" ;
-  when protocolType : outResult := "protocolType" ;
-  when structType : outResult := "structType" ;
-  when boolType : outResult := "boolType" ;
-  when integerType : outResult := "integerType" ;
-  when uintegerType : outResult := "uintegerType" ;
-  when doubleType : outResult := "doubleType" ;
-  when stringType : outResult := "stringType" ;
-  when colorType : outResult := "colorType" ;
-  when dataType : outResult := "dataType" ;
-  when dateType : outResult := "dateType" ;
-  when fontType : outResult := "fontType" ;
-  when imageType : outResult := "imageType" ;
-  when menuType : outResult := "menuType" ;
-  when bezierPathType : outResult := "bezierPathType" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-class @EXpredefinedTypeDeclaration extends @EXastDeclaration {
-  @string mTypeName ;
-  @EXTypeKind mExKind ;
-  @typeKind mKind ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @EXstructDeclaration extends @EXastDeclaration {
-  @lstring mStructTypeName ;
-  @structFieldASTList mFieldList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @EXenumDeclaration extends @EXastDeclaration {
-  @lstring mEnumTypeName ;
-  @lstringlist mEnumConstantNameList ;
-}
 #----------------------------------------------------------------------------*
 
 end semantics ;

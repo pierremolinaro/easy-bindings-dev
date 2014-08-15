@@ -26,6 +26,8 @@
 		CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */; };
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
 		CF7C64431960664700BE14DF /* PMObjectArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64421960664700BE14DF /* PMObjectArrayController.swift */; };
+		CFAB29EF199D5A740037A23D /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAB29EE199D5A740037A23D /* PMTextField.swift */; };
+		CFCC3C31199D140800ECAA8E /* PMTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC3C30199D140800ECAA8E /* PMTableView.swift */; };
 		CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		CF7C643B196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
 		CF7C64421960664700BE14DF /* PMObjectArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMObjectArrayController.swift; sourceTree = "<group>"; };
+		CFAB29EE199D5A740037A23D /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
+		CFCC3C30199D140800ECAA8E /* PMTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTableView.swift; sourceTree = "<group>"; };
 		CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+total.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +90,7 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
+				CF05A68F199754D000A07172 /* binding-classes.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
 				CF7C64231960618800BE14DF /* MyRootEntity.swift */,
@@ -99,14 +104,15 @@
 				CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */,
 				CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */,
 				CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */,
-				CF7C64421960664700BE14DF /* PMObjectArrayController.swift */,
 				CF7C642D1960619500BE14DF /* PMManagedDocument.swift */,
 				CF7C642E1960619500BE14DF /* PMManagedObject.swift */,
+				CF7C64421960664700BE14DF /* PMObjectArrayController.swift */,
+				CFAB29EE199D5A740037A23D /* PMTextField.swift */,
+				CFCC3C30199D140800ECAA8E /* PMTableView.swift */,
 				CF7C642B1960619500BE14DF /* PMObjectManager.swift */,
 				CF7C642C1960619500BE14DF /* PMObjectManager+extension+factory.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
 				CF7C6400196060D800BE14DF /* Supporting Files */,
-				CF05A68F199754D000A07172 /* binding-classes.swift */,
 			);
 			path = "04-document-with-relationships-swift";
 			sourceTree = "<group>";
@@ -192,11 +198,13 @@
 			files = (
 				CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */,
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
+				CFAB29EF199D5A740037A23D /* PMTextField.swift in Sources */,
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF7C64431960664700BE14DF /* PMObjectArrayController.swift in Sources */,
 				CF05A690199754D000A07172 /* binding-classes.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
+				CFCC3C31199D140800ECAA8E /* PMTableView.swift in Sources */,
 				CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */,
 				CF7C64361960619500BE14DF /* PMObjectManager+extension+factory.swift in Sources */,
 				CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */,

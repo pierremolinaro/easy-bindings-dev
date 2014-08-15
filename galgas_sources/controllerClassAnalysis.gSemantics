@@ -2,159 +2,159 @@ semantics controllerClassAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
   import "attributeDeclarationAnalysis.gSemantics" ;
 
-#----------------------------------------------------------------------------*
-
-override method @EXcontrollerClassDeclaration EXTypeInventory
-  ?!@EXunifiedTypeMap ioUnifiedTypeMap
-:
-#--- Analyze actions
+##----------------------------------------------------------------------------*
+#
+#override method @EXcontrollerClassDeclaration EXTypeInventory
+#  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+#:
+##--- Analyze actions
+##  @actionMap actionMap [emptyMap] ;
+##  for actionName in mActionDeclarationList do
+##    [!?actionMap insertKey !actionName->mValue] ;
+##  end for ;
+###--- Analyze bindings
+##  buildBindingCapabilitiesMap
+##    !mBindingList
+##    !?ioUnifiedTypeMap
+##    ?@outletClassBindingMap bindingMap
+##  ;
+##--- Analyze attributes
+##  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
+#  for property in mControllerObservablePropertyList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !property->mTypeName
+#      ?@EXunifiedTypeProxy attributeTypeProxy
+#    ] ;
+##    [!?observablePropertyMap insertKey
+##      !property->mPropertyName
+##      !attributeTypeProxy
+##      !false # is not transient
+##      !"controller." . mControllerClassName . "." . property->mPropertyName
+##      !false # Is not a collection
+##    ] ;
+#  end for ;
+##---
+##  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+#  foreach mControlledObjectBindingOptionList do
+##    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
+#    foreach mAcceptableTypeList do
+#      [@EXunifiedTypeProxy makeProxy
+#        !?ioUnifiedTypeMap
+#        !mValue
+#        ?@EXunifiedTypeProxy type
+#      ] ;
+##      acceptableTypeList += !type ;
+#    end foreach ;
+##    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+#  end foreach ;
+##---
+#  [!?ioUnifiedTypeMap insertKey
+#    !mControllerClassName
+#    ![@EXebType new !mControllerClassName ![@EXTypeKind controllerClassType]]
+#    !selfcopy
+#    !@EXentityRelationshipMap {}
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @EXcontrollerClassDeclaration buildObservablePropertyMap
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------- Super class ?
+#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
+##----------------------------------
+#  buildObservablePropertyMap
+#    ![@attributeList emptyList]
+#    ![@classArrayList emptyList]
+#    ![@transientList emptyList]
+#    ![@controllerList emptyList]
+#    !mControllerObservablePropertyList
+#    !?ioObservablePropertyMapMap
+#    !?ioTransientDependencyGraph
+#    !inUnifiedTypeMap
+#    !"controller." . mControllerClassName
+#    !?observablePropertyMap
+#  ;
+##---------------------------------- Enter class in observable map
+#  [!?ioObservablePropertyMapMap insertKey
+#    !mControllerClassName
+#    !mUserDefined
+#    ![@EXTypeKind controllerClassType]
+#    !observablePropertyMap
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @EXcontrollerClassDeclaration semanticAnalysis
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
+#  ?!@generationList ioGenerationList
+#:
+##--- Analyze actions
 #  @actionMap actionMap [emptyMap] ;
 #  for actionName in mActionDeclarationList do
 #    [!?actionMap insertKey !actionName->mValue] ;
 #  end for ;
-##--- Analyze bindings
-#  buildBindingCapabilitiesMap
-#    !mBindingList
-#    !?ioUnifiedTypeMap
-#    ?@outletClassBindingMap bindingMap
-#  ;
-#--- Analyze attributes
-#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
-  for property in mControllerObservablePropertyList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !property->mTypeName
-      ?@EXunifiedTypeProxy attributeTypeProxy
-    ] ;
-#    [!?observablePropertyMap insertKey
-#      !property->mPropertyName
-#      !attributeTypeProxy
-#      !false # is not transient
-#      !"controller." . mControllerClassName . "." . property->mPropertyName
-#      !false # Is not a collection
-#    ] ;
-  end for ;
-#---
+##---
+#  @outletClassBindingMap bindingMap [emptyMap] ;
+#  foreach mBindingList do
+#    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
+#    foreach mBindingOptionList do
+#      @EXebTypeList acceptableTypeList [emptyList] ;
+#      foreach mAcceptableTypeList do
+#        [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
+#        acceptableTypeList += !type ;
+#      end foreach ;
+#      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+#    end foreach ;
+#    @EXebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
+#    foreach mAcceptableTypeFormatterList do
+#      [inUnifiedTypeMap searchKey !mTypeName ?@EXebType type ?2*] ;
+#      acceptableTypeFormatterList += !type !mRequiredFormatter ;
+#    end foreach ;
+#    [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
+#  end foreach ;
+##---
 #  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-  foreach mControlledObjectBindingOptionList do
-#    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
-    foreach mAcceptableTypeList do
-      [@EXunifiedTypeProxy makeProxy
-        !?ioUnifiedTypeMap
-        !mValue
-        ?@EXunifiedTypeProxy type
-      ] ;
+#  foreach mControlledObjectBindingOptionList do
+#    @EXebTypeList acceptableTypeList [emptyList] ;
+#    foreach mAcceptableTypeList do
+#      [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
 #      acceptableTypeList += !type ;
-    end foreach ;
+#    end foreach ;
 #    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-  end foreach ;
-#---
-  [!?ioUnifiedTypeMap insertKey
-    !mControllerClassName
-    ![@EXebType new !mControllerClassName ![@EXTypeKind controllerClassType]]
-    !selfcopy
-    !@EXentityRelationshipMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @EXcontrollerClassDeclaration buildObservablePropertyMap
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
-  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
-:
-#------------------------------- Super class ?
-  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
-#----------------------------------
-  buildObservablePropertyMap
-    ![@attributeList emptyList]
-    ![@classArrayList emptyList]
-    ![@transientList emptyList]
-    ![@controllerList emptyList]
-    !mControllerObservablePropertyList
-    !?ioObservablePropertyMapMap
-    !?ioTransientDependencyGraph
-    !inUnifiedTypeMap
-    !"controller." . mControllerClassName
-    !?observablePropertyMap
-  ;
-#---------------------------------- Enter class in observable map
-  [!?ioObservablePropertyMapMap insertKey
-    !mControllerClassName
-    !mUserDefined
-    ![@EXTypeKind controllerClassType]
-    !observablePropertyMap
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @EXcontrollerClassDeclaration semanticAnalysis
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList ioGenerationList
-:
-#--- Analyze actions
-  @actionMap actionMap [emptyMap] ;
-  for actionName in mActionDeclarationList do
-    [!?actionMap insertKey !actionName->mValue] ;
-  end for ;
-#---
-  @outletClassBindingMap bindingMap [emptyMap] ;
-  foreach mBindingList do
-    @outletClassBindingOptionMap outletClassBindingOptionMap [emptyMap] ;
-    foreach mBindingOptionList do
-      @EXebTypeList acceptableTypeList [emptyList] ;
-      foreach mAcceptableTypeList do
-        [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
-        acceptableTypeList += !type ;
-      end foreach ;
-      [!?outletClassBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-    end foreach ;
-    @EXebTypeAndFormatterList acceptableTypeFormatterList [emptyList] ;
-    foreach mAcceptableTypeFormatterList do
-      [inUnifiedTypeMap searchKey !mTypeName ?@EXebType type ?2*] ;
-      acceptableTypeFormatterList += !type !mRequiredFormatter ;
-    end foreach ;
-    [!?bindingMap insertKey !mBindingName !acceptableTypeFormatterList !outletClassBindingOptionMap] ;
-  end foreach ;
-#---
-  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-  foreach mControlledObjectBindingOptionList do
-    @EXebTypeList acceptableTypeList [emptyList] ;
-    foreach mAcceptableTypeList do
-      [inUnifiedTypeMap searchKey !mValue ?@EXebType type ?2*] ;
-      acceptableTypeList += !type ;
-    end foreach ;
-    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-  end foreach ;
-#---
-  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-    !mControllerClassName
-    ?2*
-    ?@EXobservablePropertyMap observablePropertyMap
-  ] ;
-#---
-  [!?ioContextAnalysisStruct->mControllerClassMap insertKey
-    !mControllerClassName
-    !mControllerKind
-    !mGenerationKind
-    !bindingMap
-    !actionMap
-    !observablePropertyMap
-    !controlledObjectAvailableBindingOptionMap
-  ] ;
-#----------------------------- Generation
-  if mGenerationKind == [@generationKind fullGeneration] then
-    ioGenerationList += ![@controllerClassGeneration new
-      !mControllerClassName->string
-      !bindingMap
-      !observablePropertyMap
-    ] ;
-  end if ;
-end method ;
-
+#  end foreach ;
+##---
+#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#    !mControllerClassName
+#    ?2*
+#    ?@EXobservablePropertyMap observablePropertyMap
+#  ] ;
+##---
+#  [!?ioContextAnalysisStruct->mControllerClassMap insertKey
+#    !mControllerClassName
+#    !mControllerKind
+#    !mGenerationKind
+#    !bindingMap
+#    !actionMap
+#    !observablePropertyMap
+#    !controlledObjectAvailableBindingOptionMap
+#  ] ;
+##----------------------------- Generation
+#  if mGenerationKind == [@generationKind fullGeneration] then
+#    ioGenerationList += ![@controllerClassGeneration new
+#      !mControllerClassName->string
+#      !bindingMap
+#      !observablePropertyMap
+#    ] ;
+#  end if ;
+#end method ;
+#
 #----------------------------------------------------------------------------*
 
 end semantics ;

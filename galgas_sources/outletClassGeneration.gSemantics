@@ -1,63 +1,35 @@
 semantics outletClassGeneration :
-  import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-filewrapper outletClassGenerationTemplate in "../generation-templates/outlet-class-generation" {
+filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
+  "swift"
 }{
 }{
-  template outletClassDeclaration "outlet-class.h.gTemplate"
-    ?@string OUTLET_CLASS_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@protocolList ADOPTED_PROTOCOL_LIST
-    ?@outletClassBindingMap BINDING_MAP
-  ;
-  
-  template outletClassImplementation "outlet-class.m.gTemplate"
-    ?@string OUTLET_CLASS_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@outletClassBindingMap BINDING_MAP
-  ;
 }
 
 #----------------------------------------------------------------------------*
 
-override method @outletClassGeneration generate
-??@string inOutputDirectory
+routine generateOutletClasses
+  ??@stringset inNeededOutletClasses
+  ??@string inOutputDirectory
 :
-#--- Header
-  @string s := [filewrapper outletClassGenerationTemplate.outletClassDeclaration
-    !mGenerationName
-    !mSuperClassName
-    !mAdoptedProtocolList
-    !mCurrentBindingMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".h"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"@end\n"
-  ] ;
-#--- Implementation
-  s := [filewrapper outletClassGenerationTemplate.outletClassImplementation
-    !mGenerationName
-    !mSuperClassName
-    !mCurrentBindingMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".m"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"@end\n"
-  ] ;
-end method ;
+  const @filewrapper w := [filewrapper outletClassGeneration] ;
+  for key in inNeededOutletClasses do
+  #--- Header
+    const s := [w textFileContentsAtPath !"/" + key + ".swift"] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !key . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n\n"
+    ] ;
+  end for ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 

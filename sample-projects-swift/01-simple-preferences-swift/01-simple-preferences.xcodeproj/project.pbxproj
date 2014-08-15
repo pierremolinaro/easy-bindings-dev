@@ -18,6 +18,9 @@
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
+		CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB838199E87B10044D8B0 /* PMColorWell.swift */; };
+		CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */; };
+		CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB83A199E87B10044D8B0 /* PMTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		CFFBB838199E87B10044D8B0 /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
+		CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatePicker.swift; sourceTree = "<group>"; };
+		CFFBB83A199E87B10044D8B0 /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,9 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
+				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
+				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
+				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
 				CFA38985194094C400F20FFB /* PMApplication.swift */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
@@ -228,8 +237,11 @@
 			files = (
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
+				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
 				CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */,
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
+				CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */,
+				CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */,
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
