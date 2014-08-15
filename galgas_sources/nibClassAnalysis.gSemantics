@@ -5,332 +5,332 @@ semantics nibClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-override method @nibClassDeclaration EXTypeInventory
-  ?!@EXunifiedTypeMap ioUnifiedTypeMap
-:
-#------------------------------------- Analyze actions
-  @actionMap actionMap [emptyMap] ;
-  for actionName in mActionDeclarationList do
-    [!?actionMap insertKey !actionName->mValue] ;
-  end for ;
-#---------------------------------- Analyze attributes
-  foreach mAttributeList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mAttributeTypeName
-      ?*
-    ] ;
-  end foreach ;
-#---------------------------------- Analyze arraies
-  foreach mArrayList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mElementClassName
-      ?*
-    ] ;
-  end foreach ;
-#-------------------------------------------------- Analyze controllers
-  foreach mControllerList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mControllerClassName
-      ?*
-    ] ;
-  end foreach ;
-#---------------------------------- Analyze transient properties
-  foreach mTransientList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mTransientTypeName
-      ?*
-    ] ;
-  end foreach ;
-#----------------------------------
-  [!?ioUnifiedTypeMap insertKey
-    !mClassName
-    ![@EXebType new !mClassName ![@EXTypeKind nibClassType]]
-    !selfcopy
-    !@EXentityRelationshipMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @nibClassDeclaration buildObservablePropertyMap
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
-  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
-:
-  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
-#---------------------------------- Analyze attributes
-  buildObservablePropertyMap
-    !mAttributeList
-    !mArrayList
-    !mTransientList
-    !mControllerList
-    ![@controllerObservablePropertyList emptyList]
-    !?ioObservablePropertyMapMap
-    !?ioTransientDependencyGraph
-    !inUnifiedTypeMap
-    !"nibclass." . mClassName
-    !?observablePropertyMap
-  ;
-#---------------------------------- Enter class in observable map
-  [!?ioObservablePropertyMapMap insertKey
-    !mClassName
-    !mUserDefined
-    ![@EXTypeKind nibClassType]
-    !observablePropertyMap
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @nibClassDeclaration semanticAnalysis
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList ioGenerationList
-:
-#------------------------------- Get Observable property map
-  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-     !mClassName
-     ?2*
-     ?@EXobservablePropertyMap selfObservablePropertyMap
-   ] ;
-#-----
-  @propertyArrayMap allArrayPropertyForImplementation [emptyMap] ;
-  @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
-  @fileInclusionSet fileInclusionSet [default] ;
-#------------------------------------- Analyze actions
-  @actionMap actionMap [emptyMap] ;
-  for actionName in mActionDeclarationList do
-    [!?actionMap insertKey !actionName->mValue] ;
-  end for ;
-#------------------------------- Analyze transient dependancy
-  @transientListForImplementation transientListForImplementation ;
-  analyzeTransientProperties
-    !mTransientList
-    ![@EXobservablePropertyMap emptyMap] # Root property map
-    !?ioContextAnalysisStruct
-    !"" # No Root entity
-    !selfObservablePropertyMap
-    !?fileInclusionSet
-    ?transientListForImplementation
-  ;
-#------------------------------- Analyze attributes
-  @attributeListForImplementation unusedAttributList [emptyList] ;
-  analyzeAttributeDeclaration
-    !mAttributeList
-    !?ioContextAnalysisStruct
-    !inUnifiedTypeMap
-    !?fileInclusionSet
-    ?@attributeListForImplementation attributeListForImplementation
-    !?unusedAttributList
-  ;
-#------------------------------------- Analyze arraies
-  foreach mArrayList do
-    [inUnifiedTypeMap searchKey
-      !mElementClassName
-      ?@EXebType type
-      ?2*
-    ] ;
-    if type->mKind != [@EXTypeKind classType] then
-      error mClassName : "'" . mClassName . "' is not a class" ;    
-    end if ;
-    [!?currentArrayPropertyForImplementation insertKey
-      !mArrayName
-      !type
-    ] ;
-  end foreach ;
-#-------------------------------------------------- Analyze controllers
-  @controllerMap controllerMap [emptyMap] ;
-  foreach mControllerList do
-    [ioContextAnalysisStruct->mControllerClassMap searchKey
-      !mControllerClassName
-      ?@controllerKind controllerKind
-      ?*
-      ?@outletClassBindingMap controllerClassBindingMap
-      ?@actionMap controllerActionMap
-      ?@EXobservablePropertyMap controllerObservablePropertyMap
-      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
-    ] ;
-  #---
-    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
-    @string controllerObjectClassName ;
-    switch controllerKind
-    when simpleController :
-      controllerObjectClassName := "" ;
-    when objectController :
-      error mControlledObjectName
-      :"objectController is not currently handled in nib class"
-      :controllerObjectClassName;
-    when entityController :
-      error mControlledObjectName
-      :"entityController is not currently handled in nib class"
-      :controllerObjectClassName;
-    when entityArrayController :
-      error mControlledObjectName
-      :"in nib class, use an arrayController, as NSArrayController"
-      :controllerObjectClassName;
-    when arrayController :
-      if mIsRootObject->bool then
-        error mIsRootObject
-        : "only 'self' is allowed here"
-        ;
-      end if ;
-      [currentArrayPropertyForImplementation searchKey
-        !mControlledObjectName
-        ?@EXebType controlledObjectType
-      ] ;
-      controllerObjectClassName := controlledObjectType->mTypeName->string ;
-      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-        !controlledObjectType->mTypeName
-        ?*
-        ?@EXTypeKind kind
-        ?@EXobservablePropertyMap classObservablePropertyMap
-      ] ;
-      if kind != [@EXTypeKind classType] then
-        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
-      end if ;
-      checkBindingOptions
-        !ioContextAnalysisStruct
-        !mControlledObjectBindingOptionList
-        !controlledObjectAvailableBindingOptionMap
-        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
-        !?fileInclusionSet
-      ;
-      bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@EXebType new !["<unused4>" nowhere] ![@EXTypeKind classType]]
-        !"contentArray"
-        ![@formatterEnum noFormatter]
-        !"self"
-        !mControlledObjectName->string
-        !false # Non optional property, no '?'
-        !controlledObjectBindingOptionListForGeneration
-      ] ;
-    when treeController :
-      if mIsRootObject->bool then
-        error mIsRootObject
-        : "only 'self' is allowed here"
-        ;
-      end if ;
-      [currentArrayPropertyForImplementation searchKey
-        !mControlledObjectName
-        ?@EXebType controlledObjectType
-      ] ;
-      controllerObjectClassName := controlledObjectType->mTypeName->string ;
-      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-        !controlledObjectType->mTypeName
-        ?*
-        ?@EXTypeKind kind
-        ?@EXobservablePropertyMap classObservablePropertyMap
-      ] ;
-      if kind != [@EXTypeKind classType] then
-        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
-      end if ;
-      checkBindingOptions
-        !ioContextAnalysisStruct
-        !mControlledObjectBindingOptionList
-        !controlledObjectAvailableBindingOptionMap
-        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
-        !?fileInclusionSet
-      ;
-      bindingListForGeneration += ![@regularBindingForGeneration new
-        ![@EXebType new !["<unused6>" nowhere] ![@EXTypeKind classType]]
-        !"contentArray"
-        ![@formatterEnum noFormatter]
-        !"self"
-        !mControlledObjectName->string
-        !false # Non optional property, no '?'
-        !controlledObjectBindingOptionListForGeneration
-      ] ;
-    #--- Check "childrenKeyPath"
-      [classObservablePropertyMap searchKey
-        !mChildRelationshipName
-        ??@EXebType type
-        ?* #?@bool isTransient
-        ?* #?@lstring propertySignature
-        ??@bool isCollection
-      ] ;
-      if (not isCollection) | (type->mKind != [@EXTypeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
-        error mChildRelationshipName: "this relationship is used as 'childrenKeyPath' and should be an '" . controlledObjectType->mTypeName . "' array" ;
-      end if ;
-      bindingListForGeneration += ![@treeControllerForGeneration new
-        !mChildRelationshipName->string
-      ] ;
-    end switch ;
-    foreach mControllerBindingList do
-      [mBinding analyzeOutletBinding
-        ![@EXobservablePropertyMap emptyMap] # No root entity observable Map
-        !selfObservablePropertyMap
-        !controllerClassBindingMap
-        !controllerMap
-        !actionMap
-        !false
-        !ioContextAnalysisStruct
-        !?bindingListForGeneration
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    [!?controllerMap insertKey
-      !mControllerName
-      !mControllerClassName->string
-      ![@lstring new !controllerObjectClassName !here]
-      !false # Is not an entity : it is a class
-      !bindingListForGeneration
-      !controllerActionMap
-      !controllerObservablePropertyMap
-    ] ;
-  end foreach ;
-#------------------------------------- Analyze outlets
-  @outletGenerationList outletGenerationList [emptyList] ;
-  foreach mOutletDeclarationList do
-    [ioContextAnalysisStruct->mOutletClassMap searchKey
-      !mOutletType
-      ?@generationKind generationKind
-      ?2*
-      ?@bool implementsDeallocProtocol
-      ?@outletClassBindingMap outletClassBindingMap
-      ?*
-      ?@bool hasTableValueBinding
-    ] ;
-    if generationKind != [@generationKind noGeneration] then
-      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
-    end if ;
-    @outletBindingListForGeneration outletBindingList [emptyList] ;
-    foreach mOutletBindingList do
-      [mBinding analyzeOutletBinding
-        ![@EXobservablePropertyMap emptyMap] # No root
-        !selfObservablePropertyMap
-        !outletClassBindingMap
-        !controllerMap
-        !actionMap
-        !hasTableValueBinding
-        !ioContextAnalysisStruct
-        !?outletBindingList
-        !?fileInclusionSet
-      ] ;
-    end foreach ;
-    outletGenerationList +=
-      ![mOutletType string]
-      ![mOutletName string]
-      !outletBindingList
-      !implementsDeallocProtocol
-    ;
-  end foreach ;
-#-------
-  ioGenerationList += ![@nibClassTypeGeneration new
-    !mClassName->string
-    !attributeListForImplementation
-    !transientListForImplementation
-    !outletGenerationList
-    !mActionDeclarationList
-    !selfObservablePropertyMap
-    !fileInclusionSet
-    !controllerMap
-    !currentArrayPropertyForImplementation
-  ] ;
-end method ;
+#override method @nibClassDeclaration EXTypeInventory
+#  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+#:
+##------------------------------------- Analyze actions
+#  @actionMap actionMap [emptyMap] ;
+#  for actionName in mActionDeclarationList do
+#    [!?actionMap insertKey !actionName->mValue] ;
+#  end for ;
+##---------------------------------- Analyze attributes
+#  foreach mAttributeList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mAttributeTypeName
+#      ?*
+#    ] ;
+#  end foreach ;
+##---------------------------------- Analyze arraies
+#  foreach mArrayList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mElementClassName
+#      ?*
+#    ] ;
+#  end foreach ;
+##-------------------------------------------------- Analyze controllers
+#  foreach mControllerList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mControllerClassName
+#      ?*
+#    ] ;
+#  end foreach ;
+##---------------------------------- Analyze transient properties
+#  foreach mTransientList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mTransientTypeName
+#      ?*
+#    ] ;
+#  end foreach ;
+##----------------------------------
+#  [!?ioUnifiedTypeMap insertKey
+#    !mClassName
+#    ![@EXebType new !mClassName ![@EXTypeKind nibClassType]]
+#    !selfcopy
+#    !@EXentityRelationshipMap {}
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @nibClassDeclaration buildObservablePropertyMap
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
+#:
+#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
+##---------------------------------- Analyze attributes
+#  buildObservablePropertyMap
+#    !mAttributeList
+#    !mArrayList
+#    !mTransientList
+#    !mControllerList
+#    ![@controllerObservablePropertyList emptyList]
+#    !?ioObservablePropertyMapMap
+#    !?ioTransientDependencyGraph
+#    !inUnifiedTypeMap
+#    !"nibclass." . mClassName
+#    !?observablePropertyMap
+#  ;
+##---------------------------------- Enter class in observable map
+#  [!?ioObservablePropertyMapMap insertKey
+#    !mClassName
+#    !mUserDefined
+#    ![@EXTypeKind nibClassType]
+#    !observablePropertyMap
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @nibClassDeclaration semanticAnalysis
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
+#  ?!@generationList ioGenerationList
+#:
+##------------------------------- Get Observable property map
+#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#     !mClassName
+#     ?2*
+#     ?@EXobservablePropertyMap selfObservablePropertyMap
+#   ] ;
+##-----
+#  @propertyArrayMap allArrayPropertyForImplementation [emptyMap] ;
+#  @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
+#  @fileInclusionSet fileInclusionSet [default] ;
+##------------------------------------- Analyze actions
+#  @actionMap actionMap [emptyMap] ;
+#  for actionName in mActionDeclarationList do
+#    [!?actionMap insertKey !actionName->mValue] ;
+#  end for ;
+##------------------------------- Analyze transient dependancy
+#  @transientListForImplementation transientListForImplementation ;
+#  analyzeTransientProperties
+#    !mTransientList
+#    ![@EXobservablePropertyMap emptyMap] # Root property map
+#    !?ioContextAnalysisStruct
+#    !"" # No Root entity
+#    !selfObservablePropertyMap
+#    !?fileInclusionSet
+#    ?transientListForImplementation
+#  ;
+##------------------------------- Analyze attributes
+#  @attributeListForImplementation unusedAttributList [emptyList] ;
+#  analyzeAttributeDeclaration
+#    !mAttributeList
+#    !?ioContextAnalysisStruct
+#    !inUnifiedTypeMap
+#    !?fileInclusionSet
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?unusedAttributList
+#  ;
+##------------------------------------- Analyze arraies
+#  foreach mArrayList do
+#    [inUnifiedTypeMap searchKey
+#      !mElementClassName
+#      ?@EXebType type
+#      ?2*
+#    ] ;
+#    if type->mKind != [@EXTypeKind classType] then
+#      error mClassName : "'" . mClassName . "' is not a class" ;    
+#    end if ;
+#    [!?currentArrayPropertyForImplementation insertKey
+#      !mArrayName
+#      !type
+#    ] ;
+#  end foreach ;
+##-------------------------------------------------- Analyze controllers
+#  @controllerMap controllerMap [emptyMap] ;
+#  foreach mControllerList do
+#    [ioContextAnalysisStruct->mControllerClassMap searchKey
+#      !mControllerClassName
+#      ?@controllerKind controllerKind
+#      ?*
+#      ?@outletClassBindingMap controllerClassBindingMap
+#      ?@actionMap controllerActionMap
+#      ?@EXobservablePropertyMap controllerObservablePropertyMap
+#      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+#    ] ;
+#  #---
+#    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+#    @string controllerObjectClassName ;
+#    switch controllerKind
+#    when simpleController :
+#      controllerObjectClassName := "" ;
+#    when objectController :
+#      error mControlledObjectName
+#      :"objectController is not currently handled in nib class"
+#      :controllerObjectClassName;
+#    when entityController :
+#      error mControlledObjectName
+#      :"entityController is not currently handled in nib class"
+#      :controllerObjectClassName;
+#    when entityArrayController :
+#      error mControlledObjectName
+#      :"in nib class, use an arrayController, as NSArrayController"
+#      :controllerObjectClassName;
+#    when arrayController :
+#      if mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'self' is allowed here"
+#        ;
+#      end if ;
+#      [currentArrayPropertyForImplementation searchKey
+#        !mControlledObjectName
+#        ?@EXebType controlledObjectType
+#      ] ;
+#      controllerObjectClassName := controlledObjectType->mTypeName->string ;
+#      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#        !controlledObjectType->mTypeName
+#        ?*
+#        ?@EXTypeKind kind
+#        ?@EXobservablePropertyMap classObservablePropertyMap
+#      ] ;
+#      if kind != [@EXTypeKind classType] then
+#        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
+#      end if ;
+#      checkBindingOptions
+#        !ioContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
+#        !?fileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        ![@EXebType new !["<unused4>" nowhere] ![@EXTypeKind classType]]
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self"
+#        !mControlledObjectName->string
+#        !false # Non optional property, no '?'
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    when treeController :
+#      if mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'self' is allowed here"
+#        ;
+#      end if ;
+#      [currentArrayPropertyForImplementation searchKey
+#        !mControlledObjectName
+#        ?@EXebType controlledObjectType
+#      ] ;
+#      controllerObjectClassName := controlledObjectType->mTypeName->string ;
+#      [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#        !controlledObjectType->mTypeName
+#        ?*
+#        ?@EXTypeKind kind
+#        ?@EXobservablePropertyMap classObservablePropertyMap
+#      ] ;
+#      if kind != [@EXTypeKind classType] then
+#        error mControlledObjectName : "'" . mControlledObjectName . "' is not a class" ;
+#      end if ;
+#      checkBindingOptions
+#        !ioContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
+#        !?fileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        ![@EXebType new !["<unused6>" nowhere] ![@EXTypeKind classType]]
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self"
+#        !mControlledObjectName->string
+#        !false # Non optional property, no '?'
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    #--- Check "childrenKeyPath"
+#      [classObservablePropertyMap searchKey
+#        !mChildRelationshipName
+#        ??@EXebType type
+#        ?* #?@bool isTransient
+#        ?* #?@lstring propertySignature
+#        ??@bool isCollection
+#      ] ;
+#      if (not isCollection) | (type->mKind != [@EXTypeKind classType]) | (type->mTypeName->string != controlledObjectType->mTypeName->string) then
+#        error mChildRelationshipName: "this relationship is used as 'childrenKeyPath' and should be an '" . controlledObjectType->mTypeName . "' array" ;
+#      end if ;
+#      bindingListForGeneration += ![@treeControllerForGeneration new
+#        !mChildRelationshipName->string
+#      ] ;
+#    end switch ;
+#    foreach mControllerBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@EXobservablePropertyMap emptyMap] # No root entity observable Map
+#        !selfObservablePropertyMap
+#        !controllerClassBindingMap
+#        !controllerMap
+#        !actionMap
+#        !false
+#        !ioContextAnalysisStruct
+#        !?bindingListForGeneration
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    [!?controllerMap insertKey
+#      !mControllerName
+#      !mControllerClassName->string
+#      ![@lstring new !controllerObjectClassName !here]
+#      !false # Is not an entity : it is a class
+#      !bindingListForGeneration
+#      !controllerActionMap
+#      !controllerObservablePropertyMap
+#    ] ;
+#  end foreach ;
+##------------------------------------- Analyze outlets
+#  @outletGenerationList outletGenerationList [emptyList] ;
+#  foreach mOutletDeclarationList do
+#    [ioContextAnalysisStruct->mOutletClassMap searchKey
+#      !mOutletType
+#      ?@generationKind generationKind
+#      ?2*
+#      ?@bool implementsDeallocProtocol
+#      ?@outletClassBindingMap outletClassBindingMap
+#      ?*
+#      ?@bool hasTableValueBinding
+#    ] ;
+#    if generationKind != [@generationKind noGeneration] then
+#      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
+#    end if ;
+#    @outletBindingListForGeneration outletBindingList [emptyList] ;
+#    foreach mOutletBindingList do
+#      [mBinding analyzeOutletBinding
+#        ![@EXobservablePropertyMap emptyMap] # No root
+#        !selfObservablePropertyMap
+#        !outletClassBindingMap
+#        !controllerMap
+#        !actionMap
+#        !hasTableValueBinding
+#        !ioContextAnalysisStruct
+#        !?outletBindingList
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    outletGenerationList +=
+#      ![mOutletType string]
+#      ![mOutletName string]
+#      !outletBindingList
+#      !implementsDeallocProtocol
+#    ;
+#  end foreach ;
+##-------
+#  ioGenerationList += ![@nibClassTypeGeneration new
+#    !mClassName->string
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !outletGenerationList
+#    !mActionDeclarationList
+#    !selfObservablePropertyMap
+#    !fileInclusionSet
+#    !controllerMap
+#    !currentArrayPropertyForImplementation
+#  ] ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 

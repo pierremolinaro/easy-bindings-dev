@@ -6,47 +6,28 @@ semantics entityGeneration :
 #   hasCustomExplorerFunction                                                 *
 #-----------------------------------------------------------------------------*
 
-reader @EXebType hasCustomExplorerFunction
-  -> @bool outResult
- :
-  switch mKind
-  when boolType, structType, enumType :
-    outResult := true ;
-  when imageType, integerType, uintegerType, doubleType, stringType,
-       bezierPathType, menuType, dateType,
-       colorType, dataType, fontType,
-       protocolType,
-       nibClassType, outletClassType, preferencesType,
-       classType, controllerClassType, documentType, entityType :
-    outResult := false ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
-}{
-}{
-#  template entityDeclaration1 "entity-1.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@string SUPER_CLASS_NAME
-#    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#    ?@2stringlist TO_MANY_RELATIONSHIPS
-#    ?@stringset HEADER_INCLUSION_SET
-#    ?@stringset HEADER_PREDECLARATION_SET
-#  ;
-#  
-#  template entityDeclaration2 "entity-2.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#    ?@2stringlist TO_MANY_RELATIONSHIPS
-#    ?@2stringlist TO_ONE_RELATIONSHIPS
-#    ?@signListForGeneration SIGN_LIST
-#  ;
-#  
-#  template entityImplementation "entity.m.gTemplate"
+#reader @EXebType hasCustomExplorerFunction
+#  -> @bool outResult
+# :
+#  switch mKind
+#  when boolType, structType, enumType :
+#    outResult := true ;
+#  when imageType, integerType, uintegerType, doubleType, stringType,
+#       bezierPathType, menuType, dateType,
+#       colorType, dataType, fontType,
+#       protocolType,
+#       nibClassType, outletClassType, preferencesType,
+#       classType, controllerClassType, documentType, entityType :
+#    outResult := false ;
+#  end switch ;
+#end reader ;
+#
+##----------------------------------------------------------------------------*
+#
+#filewrapper entityGenerationTemplate in "../generation-templates/entity-generation" {
+#}{
+#}{
+#  template entityImplementationInSwift "entity.swift.gTemplate"
 #    ?@string ENTITY_NAME
 #    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
 #    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
@@ -57,129 +38,94 @@ filewrapper entityGenerationTemplate in "../generation-templates/entity-generati
 #    ?@stringset PROPERTY_AND_RELATIONSHIP_SET
 #    ?@2stringlist TO_ONE_RELATIONSHIPS
 #    ?@relationshipList CURRENT_RELATIONSHIP_LIST
+#    ?@EXentityRelationshipMap ENTITY_CURRENT_RELATIONSHIP_MAP
 #    ?@signListForGeneration SIGN_LIST
 #    ?@stringset SIGN_SET
 #  ;
-  
-  template entityImplementationInSwift "entity.swift.gTemplate"
-    ?@string ENTITY_NAME
-    ?@attributeListForImplementation ATTRIBUTE_LIST_FOR_IMPLEMENTATION
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-    ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
-    ?@stringset INCLUSION_SET
-    ?@2stringlist TO_MANY_RELATIONSHIPS
-    ?@stringset PROPERTY_AND_RELATIONSHIP_SET
-    ?@2stringlist TO_ONE_RELATIONSHIPS
-    ?@relationshipList CURRENT_RELATIONSHIP_LIST
-    ?@EXentityRelationshipMap ENTITY_CURRENT_RELATIONSHIP_MAP
-    ?@signListForGeneration SIGN_LIST
-    ?@stringset SIGN_SET
-  ;
-  
-#  template entityTransientComputationsHeaderFile "entity-transient-computations.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+#  template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
+#    ?@entityMap ENTITY_MAP
 #  ;
-#  
-#  template entityTransientComputationImplementationFile "entity-transient-computation-function.m.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@EXebType RESULT_TYPE
-#    ?@string TRANSIENT_NAME
-#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-#  ;
-
-#  template entityTransientComputationImplementationFileInSwift "entity-transient-computation-function.swift.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@EXebType RESULT_TYPE
-#    ?@string TRANSIENT_NAME
-#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-#  ;
-
-  template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
-    ?@entityMap ENTITY_MAP
-  ;
-}
-
-#----------------------------------------------------------------------------*
-
-listmap @subEntitiesMap (@stringlist) ;
-
-#----------------------------------------------------------------------------*
-
-reader @deleteRuleEnum name -> @string outResult :
-  switch selfcopy
-  when nullifyDeleteRule : outResult := "NSNullifyDeleteRule" ;
-  when cascadeDeleteRule : outResult := "NSCascadeDeleteRule" ;
-  when denyDeleteRule : outResult := "NSDenyDeleteRule" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override method @entityGeneration generate
-  ??@string inOutputDirectory
-:
-  #---
-    @stringset propertyAndTomanyRelationshipSet [emptySet] ;
-    foreach mAttributeListForImplementation do
-      propertyAndTomanyRelationshipSet += !mAttributeName ;
-    end foreach ;
-    foreach mToManyRelationshipList do
-      propertyAndTomanyRelationshipSet += !mValue0 ;
-    end foreach ;
-  #--- Implementation
-    @stringset signSet [emptySet] ;
-    foreach mSignList do
-      signSet += !mPropertyName ;
-    end foreach ;
-  #---
-    var s := [filewrapper entityGenerationTemplate.entityImplementationInSwift
-      !mGenerationName
-      !mAttributeListForImplementation
-      !mTransientListForImplementation
-      !mAttributeListForInitMethodHeader
-      !mInheritedAttributeListForImplementation
-      !mFileInclusionSet->mImplementationFileInclusionSet
-      !mToManyRelationshipList
-      !propertyAndTomanyRelationshipSet
-      !mToOneRelationshipList
-      !mCurrentRelationshipList
-      !mCurrentRelationshipMap
-      !mSignList
-      !signSet
-    ] ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !mGenerationName . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-routine generateEntityFactory
-  ??@entityMap inEntityMap
-  ??@string inOutputDirectory
-:
-  const s := [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
-    !inEntityMap
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !"PMObjectManager+extension+factory.swift"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n"
-    !"\n\n"
-  ] ;
-end routine ;
-
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#listmap @subEntitiesMap (@stringlist) ;
+#
+##----------------------------------------------------------------------------*
+#
+#reader @deleteRuleEnum name -> @string outResult :
+#  switch selfcopy
+#  when nullifyDeleteRule : outResult := "NSNullifyDeleteRule" ;
+#  when cascadeDeleteRule : outResult := "NSCascadeDeleteRule" ;
+#  when denyDeleteRule : outResult := "NSDenyDeleteRule" ;
+#  end switch ;
+#end reader ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @entityGeneration generate
+#  ??@string inOutputDirectory
+#:
+#  #---
+#    @stringset propertyAndTomanyRelationshipSet [emptySet] ;
+#    foreach mAttributeListForImplementation do
+#      propertyAndTomanyRelationshipSet += !mAttributeName ;
+#    end foreach ;
+#    foreach mToManyRelationshipList do
+#      propertyAndTomanyRelationshipSet += !mValue0 ;
+#    end foreach ;
+#  #--- Implementation
+#    @stringset signSet [emptySet] ;
+#    foreach mSignList do
+#      signSet += !mPropertyName ;
+#    end foreach ;
+#  #---
+#    var s := [filewrapper entityGenerationTemplate.entityImplementationInSwift
+#      !mGenerationName
+#      !mAttributeListForImplementation
+#      !mTransientListForImplementation
+#      !mAttributeListForInitMethodHeader
+#      !mInheritedAttributeListForImplementation
+#      !mFileInclusionSet->mImplementationFileInclusionSet
+#      !mToManyRelationshipList
+#      !propertyAndTomanyRelationshipSet
+#      !mToOneRelationshipList
+#      !mCurrentRelationshipList
+#      !mCurrentRelationshipMap
+#      !mSignList
+#      !signSet
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inOutputDirectory
+#      !mGenerationName . ".swift"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !"\n"
+#    ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#routine generateEntityFactory
+#  ??@entityMap inEntityMap
+#  ??@string inOutputDirectory
+#:
+#  const s := [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
+#    !inEntityMap
+#  ] ;
+#  [@string generateFileWithPattern
+#    !inOutputDirectory
+#    !"PMObjectManager+extension+factory.swift"
+#    !"//"
+#    !"\n\n" # Defaut user zone1
+#    !s
+#    !"\n"
+#    !"\n\n"
+#  ] ;
+#end routine ;
+#
 #----------------------------------------------------------------------------*
 
 end semantics ;

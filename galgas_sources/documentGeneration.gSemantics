@@ -4,100 +4,51 @@ semantics documentGeneration :
 
 #----------------------------------------------------------------------------*
 
-filewrapper documentGenerationTemplate in "../generation-templates/document-generation" {
-}{
-}{
-#  template documentDeclaration1 "document-1.h.gTemplate"
+#filewrapper documentGenerationTemplate in "../generation-templates/document-generation" {
+#}{
+#}{
+#  template documentImplementationInSwift "document.swift.gTemplate"
 #    ?@string DOCUMENT_NAME
 #    ?@string ROOT_ENTITY_NAME
 #    ?@outletGenerationList OUTLET_GENERATION_LIST
 #    ?@controllerMap CONTROLLER_MAP
-#    ?@transientListForImplementation TRANSIENT_LIST
-#    ?@stringset HEADER_FILE_PREDECLARATION_SET
-#    ?@bool HAS_SIGNATURE_OBSERVER
-#    ?@attributeListForImplementation ATTRIBUTE_LIST
-#  ;
-#  
-#  template documentDeclaration2 "document-2.h.gTemplate"
-#    ?@attributeListForImplementation ATTRIBUTE_LIST
-#    ?@lstringlist ACTION_LIST
-#  ;
-#  
-#  template documentImplementation "document.m.gTemplate"
-#    ?@string DOCUMENT_NAME
-#    ?@string ROOT_ENTITY_NAME
-#    ?@outletGenerationList OUTLET_GENERATION_LIST
-#    ?@controllerMap CONTROLLER_MAP
-#    ?@transientListForImplementation TRANSIENT_LIST
+#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
 #    ?@stringset INCLUSION_SET
 #    ?@bool HAS_SIGNATURE_OBSERVER
 #    ?@attributeListForImplementation ATTRIBUTE_LIST
 #  ;
-
-  template documentImplementationInSwift "document.swift.gTemplate"
-    ?@string DOCUMENT_NAME
-    ?@string ROOT_ENTITY_NAME
-    ?@outletGenerationList OUTLET_GENERATION_LIST
-    ?@controllerMap CONTROLLER_MAP
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@stringset INCLUSION_SET
-    ?@bool HAS_SIGNATURE_OBSERVER
-    ?@attributeListForImplementation ATTRIBUTE_LIST
-  ;
-
-#  template documentComputationsHeaderFile "document-computations.h.gTemplate"
-#    ?@string DOCUMENT_NAME
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#  ;
-#  
-#  template documentTransientComputationImplementationFile "document-transient-computation-function.m.gTemplate"
-#    ?@string DOCUMENT_NAME
-#    ?@EXebType RESULT_TYPE
-#    ?@string TRANSIENT_NAME
-#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-#    ?@stringlist ROOT_SIGN_LIST
-#  ;
-
-#  template documentTransientComputationImplementationFileInSwift "document-transient-computation-function.swift.gTemplate"
-#    ?@string DOCUMENT_NAME
-#    ?@EXebType RESULT_TYPE
-#    ?@string TRANSIENT_NAME
-#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-#    ?@stringlist ROOT_SIGN_LIST
-#  ;
-
-}
-
-#----------------------------------------------------------------------------*
-
-override method @documentGeneration generate
-  ??@string inOutputDirectory
-:
-  @bool hasSignatureObserver := false ;
-  foreach mTransientListForImplementation while not hasSignatureObserver do
-    hasSignatureObserver := [mRootSignDependencyList length] > 0 ;
-  end foreach ;
-  #--- Implementation
-    var s := [filewrapper documentGenerationTemplate.documentImplementationInSwift
-      !mGenerationName
-      !mRootEntityName
-      !mOutletDeclarationList
-      !mControllerMap
-      !mTransientListForImplementation
-      !mFileInclusionSet->mImplementationFileInclusionSet
-      !hasSignatureObserver
-      !mAttributeListForImplementation
-    ] ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !mGenerationName . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-end method ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#override method @documentGeneration generate
+#  ??@string inOutputDirectory
+#:
+#  @bool hasSignatureObserver := false ;
+#  foreach mTransientListForImplementation while not hasSignatureObserver do
+#    hasSignatureObserver := [mRootSignDependencyList length] > 0 ;
+#  end foreach ;
+#  #--- Implementation
+#    var s := [filewrapper documentGenerationTemplate.documentImplementationInSwift
+#      !mGenerationName
+#      !mRootEntityName
+#      !mOutletDeclarationList
+#      !mControllerMap
+#      !mTransientListForImplementation
+#      !mFileInclusionSet->mImplementationFileInclusionSet
+#      !hasSignatureObserver
+#      !mAttributeListForImplementation
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inOutputDirectory
+#      !mGenerationName . ".swift"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !"\n"
+#    ] ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 

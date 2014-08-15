@@ -3,188 +3,188 @@ semantics classAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "attributeDeclarationAnalysis.gSemantics" ;
 
-#----------------------------------------------------------------------------*
-
-override method @EXclassDeclaration EXTypeInventory
-  ?!@EXunifiedTypeMap ioUnifiedTypeMap
-:
-#------------------------------- Super class ?
-  if mSuperClassName->string != "" then
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mSuperClassName
-      ?@EXunifiedTypeProxy superClassProxy
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge
-      !mClassName
-      !mSuperClassName
-    ] ;
-  end if ;
-#---------------------------------- Analyze attributes
-  foreach mAttributeList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mAttributeTypeName
-      ?*
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge !mClassName !mAttributeTypeName] ;
-  end foreach ;
-#---------------------------------- Analyze arraies
-  foreach mArrayList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mElementClassName
-      ?*
-    ] ;
-  end foreach ;
-#---------------------------------- Analyze transient properties
-  foreach mTransientList do
-    [@EXunifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mTransientTypeName
-      ?*
-    ] ;
-  end foreach ;
-#----------------------------------
-  [!?ioUnifiedTypeMap insertKey
-    !mClassName
-    ![@EXebType new !mClassName ![@EXTypeKind classType]]
-    !selfcopy
-    !@EXentityRelationshipMap {}
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @EXclassDeclaration buildObservablePropertyMap
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
-  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
-:
-#------------------------------- Super class ?
-  @EXobservablePropertyMap observablePropertyMap ;
-  if [mSuperClassName string] != "" then
-    [ioObservablePropertyMapMap searchKey
-       !mSuperClassName
-       ?*
-       ?@EXTypeKind kind
-       ?observablePropertyMap
-     ] ;
-     if kind != [@EXTypeKind classType] then
-       error mSuperClassName : "'" . mSuperClassName . "' is not a class" ;
-     end if ;
-  else
-    observablePropertyMap := [@EXobservablePropertyMap emptyMap] ;
-  end if ;
-#----------------------------------
-  buildObservablePropertyMap
-    !mAttributeList
-    !mArrayList
-    !mTransientList
-    ![@controllerList emptyList]
-    ![@controllerObservablePropertyList emptyList]
-    !?ioObservablePropertyMapMap
-    !?ioTransientDependencyGraph
-    !inUnifiedTypeMap
-    !"class." . mClassName
-    !?observablePropertyMap
-  ;
-#---------------------------------- Enter class in observable map
-  [!?ioObservablePropertyMapMap insertKey
-    !mClassName
-    !mUserDefined
-    ![@EXTypeKind classType]
-    !observablePropertyMap
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @EXclassDeclaration semanticAnalysis
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-  ?!@generationList ioGenerationList
-:
-#------------------------------- Get Observable property map
-  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-     !mClassName
-     ?2*
-     ??@EXobservablePropertyMap observablePropertyMap
-   ] ;
-#-----
-  @attributeListForImplementation inheritedAttributeListForInitHeader  ;
-  @propertyArrayMap allArrayPropertyForImplementation ;
-  if mSuperClassName->string == "" then
-    inheritedAttributeListForInitHeader := [@attributeListForImplementation emptyList] ;
-    allArrayPropertyForImplementation := [@propertyArrayMap emptyMap] ;
-  else
-    [ioContextAnalysisStruct->mClassMap searchKey
-      !mSuperClassName
-      ?inheritedAttributeListForInitHeader
-      ?allArrayPropertyForImplementation
-    ] ;  
-  end if ;
-  @attributeListForImplementation attributeListForInitHeader := inheritedAttributeListForInitHeader ;
-  @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
-#------------------------------- Analyze transient dependancy
-  @fileInclusionSet fileInclusionSet [default] ;
-  analyzeTransientProperties
-    !mTransientList
-    ![@EXobservablePropertyMap emptyMap] # Root property map
-    !?ioContextAnalysisStruct
-    !"" # No Root entity
-    !observablePropertyMap
-    !?fileInclusionSet
-    ??@transientListForImplementation transientListForImplementation
-  ;
-#------------------------------- Analyze attributes
-  analyzeAttributeDeclaration
-    !mAttributeList
-    !?ioContextAnalysisStruct
-    !inUnifiedTypeMap
-    !?fileInclusionSet
-    ?@attributeListForImplementation attributeListForImplementation
-    !?attributeListForInitHeader
-  ;
-#------------------------------------- Analyze arraies
-  foreach mArrayList do
-    [inUnifiedTypeMap searchKey
-      !mClassName
-      ?@EXebType type
-      ?2*
-    ] ;
-    if type->mKind != [@EXTypeKind classType] then
-      error mClassName : "'" . mClassName . "' is not a class" ;    
-    end if ;
-    [!?allArrayPropertyForImplementation insertKey
-      !mArrayName
-      !type
-    ] ;
-    [!?currentArrayPropertyForImplementation insertKey
-      !mArrayName
-      !type
-    ] ;
-  end foreach ;
-#------------------------------
-  [!?ioContextAnalysisStruct->mClassMap insertKey
-    !mClassName
-    !attributeListForInitHeader
-    !allArrayPropertyForImplementation
-  ] ;
-#------------------------------
-  ioGenerationList += ![@classTypeGeneration new
-    !mClassName->string
-    !mSuperClassName->string
-    !attributeListForInitHeader
-    !inheritedAttributeListForInitHeader
-    !attributeListForImplementation
-    !transientListForImplementation
-    !allArrayPropertyForImplementation
-    !currentArrayPropertyForImplementation
-    !fileInclusionSet
-  ] ;
-end method ;
-
+##----------------------------------------------------------------------------*
+#
+#override method @EXclassDeclaration EXTypeInventory
+#  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+#:
+##------------------------------- Super class ?
+#  if mSuperClassName->string != "" then
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mSuperClassName
+#      ?@EXunifiedTypeProxy superClassProxy
+#    ] ;
+#    [!?ioUnifiedTypeMap enterEdge
+#      !mClassName
+#      !mSuperClassName
+#    ] ;
+#  end if ;
+##---------------------------------- Analyze attributes
+#  foreach mAttributeList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mAttributeTypeName
+#      ?*
+#    ] ;
+#    [!?ioUnifiedTypeMap enterEdge !mClassName !mAttributeTypeName] ;
+#  end foreach ;
+##---------------------------------- Analyze arraies
+#  foreach mArrayList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mElementClassName
+#      ?*
+#    ] ;
+#  end foreach ;
+##---------------------------------- Analyze transient properties
+#  foreach mTransientList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mTransientTypeName
+#      ?*
+#    ] ;
+#  end foreach ;
+##----------------------------------
+#  [!?ioUnifiedTypeMap insertKey
+#    !mClassName
+#    ![@EXebType new !mClassName ![@EXTypeKind classType]]
+#    !selfcopy
+#    !@EXentityRelationshipMap {}
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @EXclassDeclaration buildObservablePropertyMap
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
+#:
+##------------------------------- Super class ?
+#  @EXobservablePropertyMap observablePropertyMap ;
+#  if [mSuperClassName string] != "" then
+#    [ioObservablePropertyMapMap searchKey
+#       !mSuperClassName
+#       ?*
+#       ?@EXTypeKind kind
+#       ?observablePropertyMap
+#     ] ;
+#     if kind != [@EXTypeKind classType] then
+#       error mSuperClassName : "'" . mSuperClassName . "' is not a class" ;
+#     end if ;
+#  else
+#    observablePropertyMap := [@EXobservablePropertyMap emptyMap] ;
+#  end if ;
+##----------------------------------
+#  buildObservablePropertyMap
+#    !mAttributeList
+#    !mArrayList
+#    !mTransientList
+#    ![@controllerList emptyList]
+#    ![@controllerObservablePropertyList emptyList]
+#    !?ioObservablePropertyMapMap
+#    !?ioTransientDependencyGraph
+#    !inUnifiedTypeMap
+#    !"class." . mClassName
+#    !?observablePropertyMap
+#  ;
+##---------------------------------- Enter class in observable map
+#  [!?ioObservablePropertyMapMap insertKey
+#    !mClassName
+#    !mUserDefined
+#    ![@EXTypeKind classType]
+#    !observablePropertyMap
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @EXclassDeclaration semanticAnalysis
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
+#  ?!@generationList ioGenerationList
+#:
+##------------------------------- Get Observable property map
+#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#     !mClassName
+#     ?2*
+#     ??@EXobservablePropertyMap observablePropertyMap
+#   ] ;
+##-----
+#  @attributeListForImplementation inheritedAttributeListForInitHeader  ;
+#  @propertyArrayMap allArrayPropertyForImplementation ;
+#  if mSuperClassName->string == "" then
+#    inheritedAttributeListForInitHeader := [@attributeListForImplementation emptyList] ;
+#    allArrayPropertyForImplementation := [@propertyArrayMap emptyMap] ;
+#  else
+#    [ioContextAnalysisStruct->mClassMap searchKey
+#      !mSuperClassName
+#      ?inheritedAttributeListForInitHeader
+#      ?allArrayPropertyForImplementation
+#    ] ;  
+#  end if ;
+#  @attributeListForImplementation attributeListForInitHeader := inheritedAttributeListForInitHeader ;
+#  @propertyArrayMap currentArrayPropertyForImplementation [emptyMap] ;
+##------------------------------- Analyze transient dependancy
+#  @fileInclusionSet fileInclusionSet [default] ;
+#  analyzeTransientProperties
+#    !mTransientList
+#    ![@EXobservablePropertyMap emptyMap] # Root property map
+#    !?ioContextAnalysisStruct
+#    !"" # No Root entity
+#    !observablePropertyMap
+#    !?fileInclusionSet
+#    ??@transientListForImplementation transientListForImplementation
+#  ;
+##------------------------------- Analyze attributes
+#  analyzeAttributeDeclaration
+#    !mAttributeList
+#    !?ioContextAnalysisStruct
+#    !inUnifiedTypeMap
+#    !?fileInclusionSet
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?attributeListForInitHeader
+#  ;
+##------------------------------------- Analyze arraies
+#  foreach mArrayList do
+#    [inUnifiedTypeMap searchKey
+#      !mClassName
+#      ?@EXebType type
+#      ?2*
+#    ] ;
+#    if type->mKind != [@EXTypeKind classType] then
+#      error mClassName : "'" . mClassName . "' is not a class" ;    
+#    end if ;
+#    [!?allArrayPropertyForImplementation insertKey
+#      !mArrayName
+#      !type
+#    ] ;
+#    [!?currentArrayPropertyForImplementation insertKey
+#      !mArrayName
+#      !type
+#    ] ;
+#  end foreach ;
+##------------------------------
+#  [!?ioContextAnalysisStruct->mClassMap insertKey
+#    !mClassName
+#    !attributeListForInitHeader
+#    !allArrayPropertyForImplementation
+#  ] ;
+##------------------------------
+#  ioGenerationList += ![@classTypeGeneration new
+#    !mClassName->string
+#    !mSuperClassName->string
+#    !attributeListForInitHeader
+#    !inheritedAttributeListForInitHeader
+#    !attributeListForImplementation
+#    !transientListForImplementation
+#    !allArrayPropertyForImplementation
+#    !currentArrayPropertyForImplementation
+#    !fileInclusionSet
+#  ] ;
+#end method ;
+#
 #----------------------------------------------------------------------------*
 
 end semantics ;

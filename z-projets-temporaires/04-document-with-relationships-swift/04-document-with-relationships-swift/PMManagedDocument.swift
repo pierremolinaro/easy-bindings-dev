@@ -262,7 +262,7 @@ class PMManagedDocument : NSDocument {
     switch dataFormat {
     case 6 :
       let data = dataScanner.parseAutosizedData ()
-      self.mEntityManager.deleteEntity (mRootObject!)
+      self.mEntityManager.unregisterObject (mRootObject!)
       mRootObject = mEntityManager.readFromData (data, rootEntityClassName:rootEntityClassName ())
     default:
       NSLog ("unknowm data format: %u", dataFormat)

@@ -4,8 +4,8 @@ with "easyBindings_syntax.gSyntax" ;
 root <start_symbol>
   ??userDefined:@bool inIsUserDefined
   ?!@astDeclarationList ioDeclarationList
-  ?!@EXastDeclarationList ioEXDeclarationList
   ?!@cursorList ioCursorList
+  ?!@outletClassDeclarationList ioOutletClassDeclarationList
   !@location outEndOfFile
 ;
 

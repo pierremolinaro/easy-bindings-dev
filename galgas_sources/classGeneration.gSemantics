@@ -2,30 +2,12 @@ semantics classGeneration :
   import "transientGeneration.gSemantics" ;
   import "entityGeneration.gSemantics" ;
 
-#----------------------------------------------------------------------------*
-
-filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
-}{
-}{
-#  template classDeclarationPart1 "class-1.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@string SUPER_CLASS_NAME
-#    ?@attributeListForImplementation ATTRIBUTE_LIST
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-#    ?@stringset HEADER_INCLUSION_SET
-#  ;
-#  
-#  template classDeclarationPart2 "class-2.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@string SUPER_CLASS_NAME
-#    ?@attributeListForImplementation ATTRIBUTE_LIST
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-#    ?@propertyArrayMap CURRENT_ARRAY_MAP
-#  ;
-#  
-#  template classImplementation "class.m.gTemplate"
+##----------------------------------------------------------------------------*
+#
+#filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
+#}{
+#}{
+#  template classImplementationInSwift "class.swift.gTemplate"
 #    ?@string CLASS_NAME
 #    ?@string SUPER_CLASS_NAME
 #    ?@attributeListForImplementation ATTRIBUTE_LIST
@@ -35,58 +17,34 @@ filewrapper classGenerationTemplate in "../generation-templates/class-generation
 #    ?@stringset IMPLEMENTATION_INCLUSION_SET
 #    ?@propertyArrayMap CURRENT_ARRAY_MAP
 #  ;
-  
-  template classImplementationInSwift "class.swift.gTemplate"
-    ?@string CLASS_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@attributeListForImplementation ATTRIBUTE_LIST
-    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
-    ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
-    ?@stringset IMPLEMENTATION_INCLUSION_SET
-    ?@propertyArrayMap CURRENT_ARRAY_MAP
-  ;
-  
-#  template classTransientComputationsHeaderFile "class-transient-computations.h.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@stringset INCLUSION_SET
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
-#  ;
-#  
-#  template classTransientComputationImplementationFile "class-transient-computation-function.m.gTemplate"
-#    ?@string CLASS_NAME
-#    ?@EXebType RESULT_TYPE
-#    ?@string TRANSIENT_NAME
-#    ?@directDependancyList DIRECT_DEPENDANCY_LIST
-#  ;
-}
-
-#----------------------------------------------------------------------------*
-
-override method @classTypeGeneration generate
-  ??@string inOutputDirectory
-:
-  var s := [filewrapper classGenerationTemplate.classImplementationInSwift
-    !mGenerationName
-    !mSuperClassName
-    !mAttributeListForImplementation
-    !mTransientListForImplementation
-    !mAttributeListForInitMethodHeader
-    !mInheritedAttributeListForImplementation
-    !mInclusionSet->mImplementationFileInclusionSet
-    !mCurrentArrayPropertyForImplementation
-  ] ;
-  [@string generateFileWithPattern
-    !inOutputDirectory
-    !mGenerationName . ".swift"
-    !"//"
-    !"\n\n" # Defaut user zone1
-    !s
-    !"\n\n" # Defaut user zone2
-    !"\n"
-  ] ;
-end method ;
-
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#override method @classTypeGeneration generate
+#  ??@string inOutputDirectory
+#:
+#  var s := [filewrapper classGenerationTemplate.classImplementationInSwift
+#    !mGenerationName
+#    !mSuperClassName
+#    !mAttributeListForImplementation
+#    !mTransientListForImplementation
+#    !mAttributeListForInitMethodHeader
+#    !mInheritedAttributeListForImplementation
+#    !mInclusionSet->mImplementationFileInclusionSet
+#    !mCurrentArrayPropertyForImplementation
+#  ] ;
+#  [@string generateFileWithPattern
+#    !inOutputDirectory
+#    !mGenerationName . ".swift"
+#    !"//"
+#    !"\n\n" # Defaut user zone1
+#    !s
+#    !"\n\n" # Defaut user zone2
+#    !"\n"
+#  ] ;
+#end method ;
+#
 #----------------------------------------------------------------------------*
 
 end semantics ;

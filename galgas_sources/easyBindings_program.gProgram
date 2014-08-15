@@ -8,10 +8,11 @@ import "easyBindings_options.gOption" ;
 import "entityGeneration.gSemantics" ;
 import "typeAnalysis.gSemantics" ;
 import "actionGeneration.gSemantics" ;
+import "outletClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-filewrapper predefinedOutletClasses in "../generation-templates/predefined-outlet-classes" {
+filewrapper predefinedOutletClasses in "../generation-templates" {
 }{
 }{
   template sourceFile "predefinedOutletClasses.easyBindings" ;
@@ -32,26 +33,25 @@ message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
 #--- Parse predefined outlets
   @astDeclarationList declarationList [emptyList] ;
-  @EXastDeclarationList EXdeclarationList [emptyList] ;
-
+  @outletClassDeclarationList outletClassDeclarationList := {} ;
   @cursorList cursorList [emptyList] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !userDefined:false
     !?declarationList
-    !?EXdeclarationList
     !?cursorList
+    !?outletClassDeclarationList
     ?*
   ;
 #--- Parse source file
   grammar easyBindings_grammar in inSourceFile
     !userDefined:true
     !?declarationList
-    !?EXdeclarationList
     !?cursorList
+    !?outletClassDeclarationList
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSString" ![@typeKind stringType]] ;
+  declarationList += ![@predefinedTypeDeclaration new !false !"String" ![@typeKind stringType]] ;
   declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
   declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
   declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
@@ -63,7 +63,6 @@ message "a source text file with the .easyBindings extension"
   declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
   declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
   declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"enum" ![@typeKind enumType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
   foreach declarationList do
@@ -97,79 +96,17 @@ message "a source text file with the .easyBindings extension"
         !sortedTypeNames
         !inSourceFile->string
         !cursorList
+        !outletClassDeclarationList
         ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
-        ??@transientListForGeneration transientListForGeneration
-        ??@actionListForGeneration actionListForGeneration
+        ??@structForGeneration generation
       ;
       if [@uint errorCount] == 0 then
         generateCode
           !sortedTransientAndObservablePropertyNodes
-          !transientListForGeneration
-          !actionListForGeneration
+          !generation
           !inSourceFile->string
         ;
       end if ;
-    end if ;
-  end if ;
-  
-  
-  
-
-#--- Enter predefined types
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSString" ![@EXTypeKind stringType] ![@typeKind stringType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSColor" ![@EXTypeKind colorType] ![@typeKind colorType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSData" ![@EXTypeKind dataType] ![@typeKind dataType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSDate" ![@EXTypeKind dateType] ![@typeKind dateType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSFont" ![@EXTypeKind fontType] ![@typeKind fontType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSImage" ![@EXTypeKind imageType] ![@typeKind imageType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSMenu" ![@EXTypeKind menuType] ![@typeKind menuType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"NSBezierPath" ![@EXTypeKind bezierPathType] ![@typeKind bezierPathType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Integer" ![@EXTypeKind integerType] ![@typeKind integerType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"UInteger" ![@EXTypeKind uintegerType] ![@typeKind uintegerType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Bool" ![@EXTypeKind boolType] ![@typeKind boolType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"Double" ![@EXTypeKind doubleType] ![@typeKind doubleType]] ;
-  EXdeclarationList += ![@EXpredefinedTypeDeclaration new !false !"enum" ![@EXTypeKind enumType] ![@typeKind enumType]] ;
-#------------------------------------------------------- Type Inventory
-   @EXunifiedTypeMap EXunifiedTypeMap [emptyMap] ;
-#----
-  foreach EXdeclarationList do
-    [mDeclaration EXTypeInventory !?EXunifiedTypeMap] ;
-  end foreach ;
-  if [option easyBindings_options.outputClassDependencyGraph value] then
-    const s := [EXunifiedTypeMap edgeGraphvizRepresentation] ;
-    const path := inSourceFile->string . ".EXclassDependancyGraph.dot" ;
-    [s writeToFileWhenDifferentContents !path ?*] ;
-  end if ;
-#------------------------------------------- Check all types are defined
-  const EXunsolvedProxyList := [EXunifiedTypeMap unsolvedProxyList] ;
-  foreach EXunsolvedProxyList do
-    error mValue :"type " . mValue . " is undefined" ;
-  end foreach ;
-#------------------------------------------- Topological sort types and continue
-  if [EXunsolvedProxyList length] == 0 then
-    [EXunifiedTypeMap topologicalSort
-      ?@lstringlist sortedTypeNames
-      ?@lstringlist unsortedTypeNames
-    ] ;
-    if [unsortedTypeNames length] > 0 then
-      var s := "cannot sort types ; the following types are involved in circular dependence:" ;
-      foreach unsortedTypeNames do
-        s .= "\n-- " . mValue ;
-      end foreach ;
-      error here : s ;
-    else
-#      @string s := "Sorted types:" ;
-#      foreach sortedKeys do
-#        s .= "\n-- " . mValue ;
-#      end foreach ;
-#      message s ;
-      EXsemanticAnalysis
-        !EXunifiedTypeMap
-        !sortedTypeNames
-        !inSourceFile->string
-        !cursorList
-        !endOfSourceFile
-      ;
     end if ;
   end if ;
 }
@@ -185,9 +122,9 @@ local routine semanticAnalysis
   ??@lstringlist unused inSortedKeys
   ??@string inSourceFile
   ??@cursorList unused inCursorList
+  ??@outletClassDeclarationList inOutletClassDeclarationList
   !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
-  !@transientListForGeneration outTransientListForGeneration
-  !@actionListForGeneration outActionListForGeneration
+  !@structForGeneration outGeneration
 :
 #--- Build transient dependancy graph
   buildTransientDependencyGraph
@@ -195,16 +132,20 @@ local routine semanticAnalysis
     !inSourceFile
     ?outSortedTransientAndObservablePropertyNodes
   ;
+#--- Build outlet class map
+  @outletClassMap outletClassMap := {} ;
+  for () in inOutletClassDeclarationList do
+    [!?outletClassMap insertKey !mOutletClassName] ;
+  end for ;
 #--- Type analysis
   if [@uint errorCount] == 0 then
     typeAnalysis
       !inUnifiedTypeMap
-      ?outTransientListForGeneration
-      ?outActionListForGeneration
+      !outletClassMap
+      ?outGeneration
     ;
   else
-    outTransientListForGeneration := {} ;
-    outActionListForGeneration := {} ;
+    outGeneration := [@structForGeneration default] ;
   end if ;
 end routine ;
 
@@ -216,179 +157,27 @@ end routine ;
 
 local routine generateCode
   ??@transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
-  ??@transientListForGeneration inTransientListForGeneration
-  ??@actionListForGeneration inActionListForGeneration
+  ??@structForGeneration inGeneration
   ??@string inSourceFile
 :
   generateTransients
     !inSourceFile
     !inSortedTransientAndObservablePropertyNodes
-    !inTransientListForGeneration
+    !inGeneration->mTransientListForGeneration
   ;
   generateActions
     !inSourceFile
-    !inActionListForGeneration
-  ;  
-end routine ;
-
-#----------------------------------------------------------------------------*
-#                                                                            *
-#   S E M A N T I C    A N A L Y S I S                                       *
-#                                                                            *
-#----------------------------------------------------------------------------*
-
-local routine EXsemanticAnalysis
-  ??@EXunifiedTypeMap inUnifiedTypeMap
-  ??@lstringlist inSortedKeys
-  ??@string inSourceFile
-  ??@cursorList inCursorList
-  ??@location inEndOfSourceFile
-:
+    !inGeneration->mActionListForGeneration
+  ;
   const outputDirectory := [inSourceFile stringByDeletingLastPathComponent] ;
-#--- Build observable property map
-  @EXobservablePropertyMapMap observablePropertyMapMap [emptyMap] ;
-  @EXtransientDependencyGraph transientDependencyGraph [emptyGraph] ;
-  foreach inSortedKeys do
-    [inUnifiedTypeMap searchKey
-      !mValue
-      ?*
-      ?@EXastDeclaration declaration
-      ?*
-    ] ;
-    [declaration buildObservablePropertyMap
-      !inUnifiedTypeMap
-      !?observablePropertyMapMap
-      !?transientDependencyGraph
-    ] ;
-  end foreach ;
-   @EXcontextAnalysisStruct contextAnalysisStruct [default] ;
-   contextAnalysisStruct->mObservablePropertyMapMap := observablePropertyMapMap ;
-   contextAnalysisStruct->mTransientDependencyGraph := transientDependencyGraph ;
-#--- Cursors
-  cursorAnalysis
-    !inCursorList
-    !?contextAnalysisStruct
-    ?@stringlist predefinedCursorList
-  ;
-#--- Semantic analysis
-  @generationList generationList [emptyList] ;
-  foreach inSortedKeys do
-    [inUnifiedTypeMap searchKey
-      !mValue
-      ?*
-      ?@EXastDeclaration declaration
-      ?*
-    ] ;
-    [declaration semanticAnalysis
-      !inUnifiedTypeMap
-      !?contextAnalysisStruct
-      !?generationList
-    ] ;
-  end foreach ;
-#------------------------------- Check relationships
-  if [@uint errorCount] == 0 then
-    foreach contextAnalysisStruct->mEntityMap do
-      foreach mCurrentRelationshipMap do
-        [contextAnalysisStruct->mEntityMap searchKey
-          !mDestinationEntityName
-          ?9*
-          ?@relationshipMap destinationEntityRelationshipMap
-          ?2*
-        ] ;
-        [destinationEntityRelationshipMap searchKey
-          !mInverseRelationshipName
-          ?2*
-          ?@lstring inverseOfInverseRelationshipName
-          ?@bool inverseIsToMany
-          ?*
-        ] ;
-        if lkey->string != inverseOfInverseRelationshipName->string then
-          error mInverseRelationshipName : "the inverse relationship does not name '" . lkey . "' relationship as inverse" ;
-        end if ;
-        if mIsToMany != inverseIsToMany then
-          error mInverseRelationshipName : "the inverse relationship is " . if inverseIsToMany then "to many" else "to one" end ;
-        end if ;
-      end foreach ;
-    end foreach ;
-  end if ;
-#--- Generation
-  if [@uint errorCount] == 0 then
-    foreach generationList do
-      [mGeneration generate !outputDirectory] ;
-    end foreach ;
-    generateCursorCode
-      !contextAnalysisStruct->mUserCursorMap
-      !predefinedCursorList
-      !outputDirectory
-    ;
-    generateEntityFactory !contextAnalysisStruct->mEntityMap !outputDirectory ;
-  end if ;
-#--- Output graphviz file ?
-  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
-    const @string s := [contextAnalysisStruct->mTransientDependencyGraph graphviz] ;
-    const @string path := inSourceFile . ".EXtransientDependancyGraph.dot" ;
-    [s writeToFileWhenDifferentContents !path ?*] ;
-  end if ;
-#--- Analyze transient dependencies
-  var transientDependencyArcList := [contextAnalysisStruct->mTransientDependencyGraph edges] ;
-  var sortedTransientOrderedList := [@stringlist emptyList] ;
-  if [@uint errorCount] == 0 then
-    if [contextAnalysisStruct->mTransientDependencyGraph undefinedNodeCount] > 0 then
-      foreach [contextAnalysisStruct->mTransientDependencyGraph undefinedNodeKeyList] do
-        error inEndOfSourceFile : "the '" . mValue . "' property is not defined" ;
-      end foreach ;
-    else
-      [contextAnalysisStruct->mTransientDependencyGraph topologicalSort
-        ?sortedTransientOrderedList
-        ?*
-        ?@stringlist unsortedTransientList
-        ?*
-      ] ;
-      if [unsortedTransientList length] > 0 then
-        @string s := [[unsortedTransientList length] string] . " transient declarations are involved in circular dependancies:" ;
-        foreach unsortedTransientList do
-          s .= "\n-  " . mValue ;
-        end foreach ;
-        error inEndOfSourceFile : s ;
-      else # all defined, no circularity
-      end if ;
-    end if ;
-  end if ;
-#------------------------------ Output dependency order definition file
-  generateTransientTrigersAndApplication
-    !transientDependencyArcList
+  generatePreferences
+    !inGeneration->mPreferenceListForGeneration
     !outputDirectory
-    !sortedTransientOrderedList
   ;
-#--- Extensions
-  const @stringset extensionSet := {!"xib", !"swift"} ;
-#--- Add embedded sources
-  @stringset generateSet [emptySet] ;
-  generateSet += !"easy-bindings-utilities" ;
-  generateSet += !"PMAllocationDebug" ;
-  if contextAnalysisStruct->mContainsDocument then
-    generateSet += !"PMUndoManager" ;
-    generateSet += !"PMManagedDocument" ;
-    generateSet += !"PMDataScanner" ;
-  end if ;
-  if [contextAnalysisStruct->mEntityMap count] > 0 then
-    generateSet += !"PMManagedObject" ;
-    generateSet += !"PMObjectManager" ;
-    generateSet += !"PMEntityArrayController" ;
-    generateSet += !"PMEntityController" ;
-  end if ;
-#---
-  @filewrapper fw := [filewrapper objective_c_sources] ;
-  foreach [fw allTextFilePathes] do
-    const @string sourceName := [mValue lastPathComponent] ;
-    if [generateSet hasKey ![sourceName stringByDeletingPathExtension]] & [extensionSet hasKey ![sourceName pathExtension]] then
-      [@string generateFile
-        !outputDirectory . [mValue stringByDeletingLastPathComponent]
-        !sourceName
-        ![fw textFileContentsAtPath !mValue]
-       ] ;
-     end if ;
-  end foreach ;
+  generateOutletClasses
+    !inGeneration->mNeededOutletClasses
+    !outputDirectory
+  ;
 end routine ;
 
 #----------------------------------------------------------------------------*

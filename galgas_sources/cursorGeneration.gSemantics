@@ -2,61 +2,61 @@ semantics cursorGeneration :
   import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
-#----------------------------------------------------------------------------*
-
-filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
-}{
-}{
-  template cursorsDeclaration "cursors.h.gTemplate"
-    ?@userCursorMap CURSOR_MAP
-    ?@stringlist PREDEFINED_CURSOR_LIST
-  ;
-  
-  template cursorsImplementation "cursors.m.gTemplate"
-    ?@userCursorMap CURSOR_MAP
-    ?@stringlist PREDEFINED_CURSOR_LIST
-  ;
-}
-
-#----------------------------------------------------------------------------*
-
-routine generateCursorCode
-  ??@userCursorMap inUserCursorMap
-  ??@stringlist inPredefinedCursorList
-  ??@string inOutputDirectory
-:
-  if ([@uint errorCount] == 0) & ([inUserCursorMap count] > 0) then
-  #--- Header
-    @string s := [filewrapper cursorsGenerationTemplate.cursorsDeclaration
-      !inUserCursorMap
-      !inPredefinedCursorList
-    ] ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !"cursors.h"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-  #--- Implementation
-    s := [filewrapper cursorsGenerationTemplate.cursorsImplementation
-      !inUserCursorMap
-      !inPredefinedCursorList
-    ] ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !"cursors.m"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
-  end if ;
-end routine ;
-
+##----------------------------------------------------------------------------*
+#
+#filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
+#}{
+#}{
+#  template cursorsDeclaration "cursors.h.gTemplate"
+#    ?@userCursorMap CURSOR_MAP
+#    ?@stringlist PREDEFINED_CURSOR_LIST
+#  ;
+#  
+#  template cursorsImplementation "cursors.m.gTemplate"
+#    ?@userCursorMap CURSOR_MAP
+#    ?@stringlist PREDEFINED_CURSOR_LIST
+#  ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#routine generateCursorCode
+#  ??@userCursorMap inUserCursorMap
+#  ??@stringlist inPredefinedCursorList
+#  ??@string inOutputDirectory
+#:
+#  if ([@uint errorCount] == 0) & ([inUserCursorMap count] > 0) then
+#  #--- Header
+#    @string s := [filewrapper cursorsGenerationTemplate.cursorsDeclaration
+#      !inUserCursorMap
+#      !inPredefinedCursorList
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inOutputDirectory
+#      !"cursors.h"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !"\n"
+#    ] ;
+#  #--- Implementation
+#    s := [filewrapper cursorsGenerationTemplate.cursorsImplementation
+#      !inUserCursorMap
+#      !inPredefinedCursorList
+#    ] ;
+#    [@string generateFileWithPattern
+#      !inOutputDirectory
+#      !"cursors.m"
+#      !"//"
+#      !"\n\n" # Defaut user zone1
+#      !s
+#      !"\n\n" # Defaut user zone2
+#      !"\n"
+#    ] ;
+#  end if ;
+#end routine ;
+#
 #----------------------------------------------------------------------------*
 
 
