@@ -17,6 +17,7 @@ list @preferenceListForGeneration {
   @attributeListForGeneration mAttributeListForGeneration ;
   @decoratedTransientMap mDecoratedTransientMapForGeneration ;
   @decoratedOutletMap mOutletMap ;
+  @stringlist mControllerInstanciationStringList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -121,6 +122,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@decoratedOutletMap OUTLET_MAP
     ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
+    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
   ;
   
 }
@@ -139,6 +141,7 @@ routine generatePreferences
       !mOutletMap
       !{}
       !{}
+      !mControllerInstanciationStringList
     ] ;
     [@string generateFileWithPattern
       !inOutputDirectory

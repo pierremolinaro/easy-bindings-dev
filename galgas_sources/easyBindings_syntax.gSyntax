@@ -62,12 +62,27 @@ rule <controller_template_declaration>
   $binding$ ??@lstring bindingName ;
   $:$ ;
   $Identifier$ ??@lstring modelTypeName ;
+  @controllerBindingOptionList bindingOptionList := {} ;
+  select
+  or
+    ${$ ;
+    repeat
+      $identifier$ ??@lstring optionName ;
+      $:$ ;
+      $Identifier$ ??@lstring optionType ;
+      bindingOptionList += !optionName !optionType ;
+    while
+      $,$ ;
+    end repeat ;
+    $}$ ;
+  end select ;
   $;$ ;
   ioControllerTemplateList +=
     !inIsUserDefined
     !outletClassName
     !bindingName
     !modelTypeName
+    !bindingOptionList
   ;
 end rule ;
 
@@ -488,10 +503,10 @@ rule <explicit_value>
   !@abstractDefaultValue outDefaultValue
 :
   select
-    $YES$ ;
+    $yes$ ;
     outDefaultValue := [@boolAsDefaultValue new ![@lbool new !true !here]] ;
   or
-    $NO$ ;
+    $no$ ;
     outDefaultValue := [@boolAsDefaultValue new ![@lbool new !false !here]] ;
   or
     $literal_integer$ ? @luint integerValue ;
@@ -643,11 +658,26 @@ rule <binding_declaration>
   $to$ ;
   $identifier$ ??@lstring outletName ;
   $binding$ ??@lstring bindingName ;
+  @bindingOptionList bindingOptions := {} ;
+  select
+  or
+    ${$ ;
+    repeat
+      $identifier$ ??@lstring optionName ;
+      $:$ ;
+      <explicit_value> ??@abstractDefaultValue optionValue ;
+      bindingOptions += !optionName !optionValue ;
+    while
+      $,$ ;
+    end repeat ;
+    $}$ ;
+  end select ;
   $;$ ;
   ioBindingList +=
     !observableProperty
     !outletName
     !bindingName
+    !bindingOptions
   ;
 end rule ;
 

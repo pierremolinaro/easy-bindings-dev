@@ -11,7 +11,7 @@ struct @structForGeneration{
   @actionListForGeneration mActionListForGeneration ;
   @preferenceListForGeneration mPreferenceListForGeneration ;
   @stringset mNeededOutletClasses ;
-  @string mControllerGenerationString ;
+  @stringset mControllerGenerationStringSet ;
 }
 #----------------------------------------------------------------------------*
 
@@ -136,21 +136,53 @@ local routine unifiedTypeAnalysis
     end if ;
     [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
     const controllerTemplateName := [@lstring new !outletTypeName->string + "." + mBindingName !mBindingName->location] ;
-    [inTemplateControllerMap searchKey !controllerTemplateName ??@string templateString ??@unifiedTypeProxy modelTypeProxy] ;
+    [inTemplateControllerMap searchKey
+      !controllerTemplateName
+      ??@string templateString
+      ??@unifiedTypeProxy modelTypeProxy
+      ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
+    ] ;
+  #--- Check model type
     if [modelTypeProxy key] != [propertyType key] then
       error mBindingName : "the type of the observable property is '" + [propertyType key] + "', but this binding requires the '" + [modelTypeProxy key] + "' type" ;    
     end if ;
+  #--- Check options
+    var bindingOptionString := "" ;
+    if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
+      @string s ;
+      if [controllerBindingOptionDecoratedList length] == 0 then
+        s := "this binding has no option" ;
+      else 
+        s := "this binding requires the following options:" ;
+        for () in controllerBindingOptionDecoratedList do
+          s += "\n  - " + mOptionName + " : " + [mOptionType key] ;
+        end for ;
+      end if ;
+      error mBindingName : s ;
+    else
+      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
+        if controller_mOptionName->string != binding_mOptionName->string then
+          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'" ;
+        end if ;
+        [binding_mOptionValue analyzeDefaultValueType 
+          !{!controller_mOptionType}
+          ??@string optionValueAsString
+        ] ;
+        bindingOptionString += ", " + controller_mOptionName->string + ":" + optionValueAsString ;
+      end for ;
+    end if ;
   #--- Build controller string
-    const controllerString := [
+    var controllerString := "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+    controllerString += "//   Controller " + [inTypeName->string + " " + mObservablePropertyName + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
+    controllerString += "//---------------------------------------------------------------------------------------------------------------------*\n\n" ;
+    controllerString += [
       [templateString stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName->string] stringByReplacingStringByString !"$OBJECTCLASS$" !inTypeName->string
     ] ;
-    ioGeneration->mControllerGenerationString += "//---------------------------------------------------------------------------------------------------------------------*\n" ;
-    ioGeneration->mControllerGenerationString += "//   Controller " + [inTypeName->string + " " + mObservablePropertyName + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
-    ioGeneration->mControllerGenerationString += "//---------------------------------------------------------------------------------------------------------------------*\n\n" ;
-    ioGeneration->mControllerGenerationString += controllerString ;
+    ioGeneration->mControllerGenerationStringSet += !controllerString ;
   #--- Build controller instanciation string
     const controllerInstanciationString := "Controller_" + inTypeName + "_" + mObservablePropertyName + "_" + outletTypeName + "_" + mBindingName
-       + " (object:self, outlet:" + mOutletName + ", file:__FILE__, line:__LINE__, sendContinously:false)" ;
+       + " (object:self, outlet:" + mOutletName + ", file:__FILE__, line:__LINE__" + bindingOptionString + ")" ;
+    controllerInstanciationStringList += !controllerInstanciationString ;
   end for ;
 #--- Build action list
   for () action_ in inActionMap do
@@ -159,7 +191,13 @@ local routine unifiedTypeAnalysis
 #--- Build generation lists
   switch inTypeKind
   when preferencesType :
-    ioGeneration->mPreferenceListForGeneration += !inTypeName->string !attributeListForGeneration !decoratedTransientMap !decoratedOutletMap ;
+    ioGeneration->mPreferenceListForGeneration +=
+      !inTypeName->string
+      !attributeListForGeneration
+      !decoratedTransientMap
+      !decoratedOutletMap
+      !controllerInstanciationStringList
+    ;
   when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType, documentType,
        doubleType, entityType, enumType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
        protocolType, stringType, structType, uintegerType:

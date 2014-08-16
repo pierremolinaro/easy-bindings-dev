@@ -9,6 +9,13 @@ struct @astDeclarationStruct {
   @controllerTemplateList mControllerTemplateList ;
 }
 
+#----------------------------------------------------------------------------*
+
+list @controllerBindingOptionList {
+  @lstring mOptionName ;
+  @lstring mOptionType ;
+}
+
 #-----------------------------------------------------------------------------*
 
 list @controllerTemplateList {
@@ -16,6 +23,7 @@ list @controllerTemplateList {
   @lstring mOutletClassName ;
   @lstring mBindingName ;
   @lstring mModelTypeName ;
+  @controllerBindingOptionList mBindingOptionList ;
 }
 
 #-----------------------------------------------------------------------------*
@@ -48,10 +56,18 @@ class @unifiedTypeDeclaration extends @astDeclaration {
 
 #----------------------------------------------------------------------------*
 
+list @bindingOptionList {
+  @lstring mOptionName ;
+  @abstractDefaultValue mOptionValue ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
   @lstring mObservablePropertyName ;
   @lstring mOutletName ;
   @lstring mBindingName ;
+  @bindingOptionList mBindingOptionList ;
 }
 
 #----------------------------------------------------------------------------*

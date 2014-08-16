@@ -180,11 +180,14 @@ end
 foreach OUTLET_MAP do
    %  //--- Check %!lkey->string%' outlet not nil\n%
    %    if nil == %!lkey->string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil") ;\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil")\n%
    %    }\n%
 #  foreach mOutletBindingList do
  #   ![mBinding generateSwiftBinding !mOutletName]
 #  end
+end
+foreach CONTROLLER_INSTANCIATION_STRINGLIST do
+%    mControllerArray.addObject (%!mValue%)\n%
 end
 %  }
   

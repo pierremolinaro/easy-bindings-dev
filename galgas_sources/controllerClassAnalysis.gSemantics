@@ -11,19 +11,22 @@ local filewrapper controllerTemplates in "../generation-templates/controller-tem
 
 #----------------------------------------------------------------------------*
 
-map @templateControllerMap {
-  @string mTemplateString ;
-  @unifiedTypeProxy mModelTypeProxy ;
-  insert insertKey error message "the '%K' template controller is already declared in %L" ;
-  search searchKey error message "there is no '%K' template controller" ;
+list @controllerBindingOptionDecoratedList {
+  @lstring mOptionName ;
+  @unifiedTypeProxy mOptionType ;
 }
 
 #----------------------------------------------------------------------------*
 
-#  @bool mIsUserDefined ;
-#  @lstring mOutletClassName ;
-#  @lstring mBindingName ;
-#  @lstring mModelTypeName ;
+map @templateControllerMap {
+  @string mTemplateString ;
+  @unifiedTypeProxy mModelTypeProxy ;
+  @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList ;
+  insert insertKey error message "the '%K' controller template is already declared in %L" ;
+  search searchKey error message "there is no '%K' controller template" ;
+}
+
+#----------------------------------------------------------------------------*
 
 routine buildControllerTemplateMap
   ??@unifiedTypeMap inUnifiedTypeMap
@@ -36,10 +39,16 @@ routine buildControllerTemplateMap
     const templateName := [@lstring new !mOutletClassName->string + "." + mBindingName->string !mBindingName->location] ;
     const templateText := [fw textFileContentsAtPath !"/" + templateName + ".txt"] ;
     const modelTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mModelTypeName] ;
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList := {} ;
+    for () in mBindingOptionList do
+      const bindingOptionTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mOptionType] ;
+      controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy ;    
+    end for ;
     [!?outTemplateControllerMap insertKey
       !templateName
       !templateText
       !modelTypeProxy
+      !controllerBindingOptionDecoratedList
     ] ;
   end for ;
 end routine ;

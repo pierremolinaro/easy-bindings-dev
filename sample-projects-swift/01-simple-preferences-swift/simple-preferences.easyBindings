@@ -2,14 +2,23 @@ preferences PMPrefs {
 #--- String
   attribute String myString default "hello" ;
   outlet PMTextField myTextField ;
-  bind self.myString to myTextField $string ;
-  outlet PMTextField myOtherTextField ; # $value self.myString  {NSContinuouslyUpdatesValue:YES} ;
+  bind self.myString to myTextField $string {sendContinously : no};
+  outlet PMTextField myOtherTextField ;
+  bind self.myString to myOtherTextField $string {sendContinously : yes} ;
+  outlet PMTextField myObserverTextField ;
+  bind self.myString to myObserverTextField $string {sendContinously : no} ;
 #--- Color
   attribute NSColor mColor default yellowColor ;
-  outlet PMColorWell mColorWell ; # $value self.mColor ;
+  outlet PMColorWell mContinousColorWell ;
+  bind self.mColor to mContinousColorWell $color {sendContinously : yes} ;
+  outlet PMColorWell mColorWell ;
+  bind self.mColor to mColorWell $color {sendContinously : no} ;
+  outlet PMColorWell mObserverColorWell ;
+  bind self.mColor to mObserverColorWell $color {sendContinously : no} ;
 #--- Date
   attribute NSDate mDate default date ;
-  outlet PMDatePicker mDatePicker ;# $value self.mDate ;
+  outlet PMDatePicker mDatePicker ;
+  bind self.mDate to mDatePicker $date ;
 #--- Number
   attribute Integer mIntegerValue default 123 ;
   outlet PMTextField mInteger32TextField ; # $value self.mIntegerValue ;
