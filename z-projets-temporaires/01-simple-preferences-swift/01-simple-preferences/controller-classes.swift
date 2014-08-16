@@ -3,14 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-enum PMActionKind {
-  case noAction
-  case onEndEditing
-  case sendContinously
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
 //   Controller_PMPrefs_myString_NSTextField_stringValue                                                               *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -19,26 +11,20 @@ class Controller_PMPrefs_myString_NSTextField_stringValue : NSObject, PMTriggerP
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMTextField? = nil
-  var mActionKind : PMActionKind
+  var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMPrefs, outlet : PMTextField?, actionKind : PMActionKind) {
+  init (object : PMPrefs, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
-    mActionKind = actionKind
+    mSendContinously = sendContinously
     super.init ()
     noteObjectAllocation (self)
     if mOutlet != nil {
-      switch mActionKind {
-      case .noAction :
-        break ;
-      case .onEndEditing :
-        mOutlet!.target = self
-        mOutlet!.action = "action:"
-      case .sendContinously :
-        mOutlet!.target = self
-        mOutlet!.action = "action:"
+      mOutlet!.target = self
+      mOutlet!.action = "action:"
+      if mSendContinously {
         NSNotificationCenter.defaultCenter().addObserver (self,
           selector: "continouslySendAction:",
           name: NSControlTextDidChangeNotification,
@@ -52,7 +38,7 @@ class Controller_PMPrefs_myString_NSTextField_stringValue : NSObject, PMTriggerP
   //-------------------------------------------------------------------------------------------------------------------*
   
   deinit {
-    if mActionKind == PMActionKind.sendContinously {
+    if mSendContinously {
       NSNotificationCenter.defaultCenter().removeObserver (self,
         name: NSControlTextDidChangeNotification,
         object: mOutlet
@@ -72,16 +58,8 @@ class Controller_PMPrefs_myString_NSTextField_stringValue : NSObject, PMTriggerP
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) {
-      if mOutlet!.stringValue != mObject!.myString {
-        mOutlet!.stringValue = mObject!.myString
-      }
-/*      if mActionKind == PMActionKind.onEndEditing {
-        let enable = mObject!.myString != "no"
-        if mOutlet!.enableFromValueBinding != enable {
-          mOutlet!.enableFromValueBinding = enable
-        }
-      }*/
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myString) {
+      mOutlet!.stringValue = mObject!.myString
     }
   }
 

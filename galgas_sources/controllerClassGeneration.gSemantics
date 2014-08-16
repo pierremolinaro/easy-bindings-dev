@@ -1,6 +1,28 @@
 semantics controllerClassGeneration :
-  import "easyBindings_options.gOption" ;
-  import "transientGeneration.gSemantics" ;
+#  import "easyBindings_options.gOption" ;
+#  import "transientGeneration.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine generateControllerClasses
+  ??@string inControllerString
+  ??@string inOutputDirectory
+:
+  if inControllerString != "" then
+  #--- Header
+    const s := "import Cocoa\n\n" + inControllerString
+     + "//---------------------------------------------------------------------------------------------------------------------*\n\n" ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !"controller-classes.swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n\n"
+    ] ;
+  end if ;
+end routine ;
 
 ##----------------------------------------------------------------------------*
 #

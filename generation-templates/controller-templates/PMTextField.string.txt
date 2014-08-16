@@ -1,0 +1,84 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string)
+class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMTextField? = nil
+  var mSendContinously : Bool
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mObject = object
+    mOutlet = outlet
+    mSendContinously = sendContinously
+    super.init ()
+    noteObjectAllocation (self)
+    if mOutlet != nil {
+      mOutlet!.target = self
+      mOutlet!.action = "action:"
+      if mSendContinously {
+        NSNotificationCenter.defaultCenter().addObserver (self,
+          selector: "continouslySendAction:",
+          name: NSControlTextDidChangeNotification,
+          object: mOutlet
+        )
+      }
+    }
+    mObject?.addObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    if mSendContinously {
+      NSNotificationCenter.defaultCenter().removeObserver (self,
+        name: NSControlTextDidChangeNotification,
+        object: mOutlet
+      )
+    }
+    noteObjectDeallocation (self)
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mObject?.removeObserverOf_$MODEL$ (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func continouslySendAction (notification : NSNotification) {
+    updateModel ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
+      mOutlet!.stringValue = mObject!.$MODEL$
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    updateModel ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func updateModel () {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
+      mObject!.$MODEL$ = mOutlet!.stringValue
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex = kTriggerOutletDisplay
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+

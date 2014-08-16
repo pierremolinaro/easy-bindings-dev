@@ -2,6 +2,7 @@ semantics typeAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
   import "attributeDeclarationAnalysis.gSemantics" ;
   import "preferencesGeneration.gSemantics" ;
+import "controllerClassAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -10,12 +11,14 @@ struct @structForGeneration{
   @actionListForGeneration mActionListForGeneration ;
   @preferenceListForGeneration mPreferenceListForGeneration ;
   @stringset mNeededOutletClasses ;
+  @string mControllerGenerationString ;
 }
 #----------------------------------------------------------------------------*
 
 routine typeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@outletClassMap inOutletClassMap
+  ??@templateControllerMap inTemplateControllerMap
   !@structForGeneration outGeneration
 :
   outGeneration := [@structForGeneration default] ;
@@ -28,7 +31,8 @@ routine typeAnalysis
        @decoratedOutletMap decoratedOutletMap
        @decoratedObservablePropertyMap observablePropertyMap
        @decoratedEntityRelationshipMap currentRelationshipMap
-       @actionMap actionMap) in inUnifiedTypeMap do
+       @actionMap actionMap
+       @bindingList bindingList) in inUnifiedTypeMap do
    #--- Build all observable property map
       @decoratedObservablePropertyMap allObservableProperties := observablePropertyMap ;
       var t := superType ;
@@ -47,6 +51,7 @@ routine typeAnalysis
     unifiedTypeAnalysis
       !inUnifiedTypeMap
       !inOutletClassMap
+      !inTemplateControllerMap
       !lkey
       !typeKind
       !superType
@@ -58,6 +63,7 @@ routine typeAnalysis
       !currentRelationshipMap
       !allObservableProperties
       !actionMap
+      !bindingList
       !?outGeneration
     ;  
   end for ;
@@ -68,6 +74,7 @@ end routine ;
 local routine unifiedTypeAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@outletClassMap inOutletClassMap
+  ??@templateControllerMap inTemplateControllerMap
   ??@lstring inTypeName
   ??@typeKind inTypeKind
   ??@unifiedTypeProxy unused superType
@@ -75,10 +82,11 @@ local routine unifiedTypeAnalysis
   ??@decoratedAttributeMap decoratedAttributeMap
   ??@decoratedTransientMap decoratedTransientMap
   ??@decoratedOutletMap decoratedOutletMap
-  ??@decoratedObservablePropertyMap unused inCurrentObservablePropertyMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@decoratedEntityRelationshipMap unused currentRelationshipMap
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@actionMap inActionMap
+  ??@bindingList inBindingList
   ?!@structForGeneration ioGeneration
 :
 #--- Analyze transient dependancies
@@ -112,6 +120,37 @@ local routine unifiedTypeAnalysis
       ??@string swiftDefaultValueAsString
     ] ;
     attributeListForGeneration += !mAttributeType !lkey->string !swiftDefaultValueAsString ;
+  end for ;
+#--- Analyze bindings
+  @stringlist controllerInstanciationStringList := {} ;
+  for () in inBindingList do
+    [inCurrentObservablePropertyMap searchKey
+      !mObservablePropertyName
+      ??@unifiedTypeProxy propertyType
+      ??@bool isTransient
+      ??@lstring propertySignature
+      ??@bool isCollection
+    ] ;
+    if isCollection then
+      error mObservablePropertyName : "the observable property should not be a collection" ;
+    end if ;
+    [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
+    const controllerTemplateName := [@lstring new !outletTypeName->string + "." + mBindingName !mBindingName->location] ;
+    [inTemplateControllerMap searchKey !controllerTemplateName ??@string templateString ??@unifiedTypeProxy modelTypeProxy] ;
+    if [modelTypeProxy key] != [propertyType key] then
+      error mBindingName : "the type of the observable property is '" + [propertyType key] + "', but this binding requires the '" + [modelTypeProxy key] + "' type" ;    
+    end if ;
+  #--- Build controller string
+    const controllerString := [
+      [templateString stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName->string] stringByReplacingStringByString !"$OBJECTCLASS$" !inTypeName->string
+    ] ;
+    ioGeneration->mControllerGenerationString += "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+    ioGeneration->mControllerGenerationString += "//   Controller " + [inTypeName->string + " " + mObservablePropertyName + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
+    ioGeneration->mControllerGenerationString += "//---------------------------------------------------------------------------------------------------------------------*\n\n" ;
+    ioGeneration->mControllerGenerationString += controllerString ;
+  #--- Build controller instanciation string
+    const controllerInstanciationString := "Controller_" + inTypeName + "_" + mObservablePropertyName + "_" + outletTypeName + "_" + mBindingName
+       + " (object:self, outlet:" + mOutletName + ", file:__FILE__, line:__LINE__, sendContinously:false)" ;
   end for ;
 #--- Build action list
   for () action_ in inActionMap do

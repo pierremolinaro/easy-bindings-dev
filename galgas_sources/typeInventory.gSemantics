@@ -19,69 +19,70 @@ override method @predefinedTypeDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
+    !@bindingList {}
   ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @controllerClassDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-:
-#--- Analyze actions
-#  @actionMap actionMap [emptyMap] ;
-#  for actionName in mActionDeclarationList do
-#    [!?actionMap insertKey !actionName->mValue] ;
+#override method @controllerClassDeclaration typeInventory
+#  ?!@unifiedTypeMap ioUnifiedTypeMap
+#:
+##--- Analyze actions
+##  @actionMap actionMap [emptyMap] ;
+##  for actionName in mActionDeclarationList do
+##    [!?actionMap insertKey !actionName->mValue] ;
+##  end for ;
+###--- Analyze bindings
+##  buildBindingCapabilitiesMap
+##    !mBindingList
+##    !?ioUnifiedTypeMap
+##    ?@outletClassBindingMap bindingMap
+##  ;
+##--- Analyze attributes
+#  @decoratedObservablePropertyMap observablePropertyMap [emptyMap] ;
+#  for property in mControllerObservablePropertyList do
+#    [@unifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !property->mTypeName
+#      ?@unifiedTypeProxy attributeTypeProxy
+#    ] ;
+#    [!?observablePropertyMap insertKey
+#      !property->mPropertyName
+#      !attributeTypeProxy
+#      !false # is not transient
+#      ![@lstring new !"controller." . mControllerClassName . "." . property->mPropertyName !property->mPropertyName->location]
+#      !false # Is not a collection
+#    ] ;
 #  end for ;
-##--- Analyze bindings
-#  buildBindingCapabilitiesMap
-#    !mBindingList
-#    !?ioUnifiedTypeMap
-#    ?@outletClassBindingMap bindingMap
-#  ;
-#--- Analyze attributes
-  @decoratedObservablePropertyMap observablePropertyMap [emptyMap] ;
-  for property in mControllerObservablePropertyList do
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !property->mTypeName
-      ?@unifiedTypeProxy attributeTypeProxy
-    ] ;
-    [!?observablePropertyMap insertKey
-      !property->mPropertyName
-      !attributeTypeProxy
-      !false # is not transient
-      ![@lstring new !"controller." . mControllerClassName . "." . property->mPropertyName !property->mPropertyName->location]
-      !false # Is not a collection
-    ] ;
-  end for ;
-#---
-#  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-  foreach mControlledObjectBindingOptionList do
-#    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
-    foreach mAcceptableTypeList do
-      [@unifiedTypeProxy makeProxy
-        !?ioUnifiedTypeMap
-        !mValue
-        ?@unifiedTypeProxy type
-      ] ;
-#      acceptableTypeList += !type ;
-    end foreach ;
-#    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-  end foreach ;
-#---
-  [!?ioUnifiedTypeMap insertKey
-    !mControllerClassName
-    ![@typeKind controllerClassType]
-    ![@unifiedTypeProxy null] # Super type
-    ![@unifiedTypeProxy null] # Root entity
-    !@decoratedAttributeMap {}
-    !@decoratedTransientMap {}
-    !@decoratedOutletMap {}
-    !observablePropertyMap
-    !@decoratedEntityRelationshipMap {}
-    !@actionMap {}
-  ] ;
-end method ;
+##---
+##  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
+#  foreach mControlledObjectBindingOptionList do
+##    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
+#    foreach mAcceptableTypeList do
+#      [@unifiedTypeProxy makeProxy
+#        !?ioUnifiedTypeMap
+#        !mValue
+#        ?@unifiedTypeProxy type
+#      ] ;
+##      acceptableTypeList += !type ;
+#    end foreach ;
+##    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
+#  end foreach ;
+##---
+#  [!?ioUnifiedTypeMap insertKey
+#    !mControllerClassName
+#    ![@typeKind controllerClassType]
+#    ![@unifiedTypeProxy null] # Super type
+#    ![@unifiedTypeProxy null] # Root entity
+#    !@decoratedAttributeMap {}
+#    !@decoratedTransientMap {}
+#    !@decoratedOutletMap {}
+#    !observablePropertyMap
+#    !@decoratedEntityRelationshipMap {}
+#    !@actionMap {}
+#  ] ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -99,6 +100,7 @@ override method @enumDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
+    !@bindingList {}
   ] ;
 end method ;
 
@@ -125,6 +127,7 @@ override method @structDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
+    !@bindingList {}
   ] ;
 end method ;
 
@@ -247,21 +250,21 @@ override method @unifiedTypeDeclaration typeInventory
     ] ;
   end foreach ;
 #-------------------------------------------------- Analyze controllers
-  foreach mControllerList do
-    [@unifiedTypeProxy makeProxy
-      !?ioUnifiedTypeMap
-      !mControllerClassName
-      ??@unifiedTypeProxy controllerTypeProxy
-    ] ;
-    [!?ioUnifiedTypeMap enterEdge !mTypeName !mControllerClassName] ;
-    [!?observablePropertyMap insertKey
-      !mControllerName
-      !controllerTypeProxy
-      !false # Is not transient
-      ![@lstring new !kindName . "." + mTypeName + "." + mControllerName !mControllerName->location]
-      !true # is a collection
-     ] ;
-  end foreach ;
+#  foreach mControllerList do
+#    [@unifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mControllerClassName
+#      ??@unifiedTypeProxy controllerTypeProxy
+#    ] ;
+#    [!?ioUnifiedTypeMap enterEdge !mTypeName !mControllerClassName] ;
+#    [!?observablePropertyMap insertKey
+#      !mControllerName
+#      !controllerTypeProxy
+#      !false # Is not transient
+#      ![@lstring new !kindName . "." + mTypeName + "." + mControllerName !mControllerName->location]
+#      !true # is a collection
+#     ] ;
+#  end foreach ;
 #--------------------------------------------------- Analyze actions
   @actionMap documentActionMap := {} ;
   for actionName in mActionDeclarationList do
@@ -279,6 +282,7 @@ override method @unifiedTypeDeclaration typeInventory
     !observablePropertyMap
     !currentRelationshipMap
     !documentActionMap
+    !mBindingList
   ] ;
 end method ;
 

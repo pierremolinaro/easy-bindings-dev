@@ -42,8 +42,16 @@ class @unifiedTypeDeclaration extends @astDeclaration {
   @relationshipList mRelationshipList ;
   @classArrayList mArrayList ;
   @transientList mTransientList ;
-  @controllerList mControllerList ;
+  @bindingList mBindingList ;
   @lstringlist mActionDeclarationList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @bindingList {
+  @lstring mObservablePropertyName ;
+  @lstring mOutletName ;
+  @lstring mBindingName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -74,17 +82,6 @@ class @enumDeclaration extends @astDeclaration {
   @lstringlist mEnumConstantNameList ;
 }
 
-#----------------------------------------------------------------------------*
-
-class @controllerClassDeclaration extends @astDeclaration {
-  @controllerKind mControllerKind ;
-  @lstring mControllerClassName ;
-  @bindingOptionList mControlledObjectBindingOptionList ;
-  @generationKind mGenerationKind ;
-  @outletClassBindingList mBindingList ;
-  @lstringlist mActionDeclarationList ;
-  @controllerObservablePropertyList mControllerObservablePropertyList ;
-}
 
 
 
@@ -128,6 +125,13 @@ list @relationshipList {
   @lstring mInverseRelationshipName ;
   @bool mInverseRelationIsToMany ;
   @deleteRuleEnum mDeleteRule ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletDeclarationList {
+  @lstring mOutletType ;
+  @lstring mOutletName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -212,219 +216,197 @@ class @entityDeclaration extends @EXastDeclaration {
   @lstringlist mSignList ;
 }
 
+##----------------------------------------------------------------------------*
+#
+#list @outletBindingOptionList {
+#  @lstring mOptionName ;
+#  @abstractDefaultValue mDefaultValue ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#abstract class @abstractBinding {
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @regularRootBinding, @regularSelfBinding extends @abstractBinding {
+#  @lstring mBindingName ;
+#  @lstring mObservableAttributeName ;
+#  @outletBindingOptionList mOutletBindingOptionList ;
+#  @bool mNamesCountOption ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @regularControllerBinding extends @abstractBinding {
+#  @lstring mBindingName ;
+#  @lstring mControllerName ;
+#  @lstring mControllerAttributeName ;
+#  @outletBindingOptionList mOutletBindingOptionList ;
+#  @bool mNamesCountOption ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @regularControllerSelectionBinding extends @abstractBinding {
+#  @lstring mBindingName ;
+#  @lstring mControllerName ;
+#  @lstring mControllerAttributeName ;
+#  @outletBindingOptionList mOutletBindingOptionList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @regularPreferenceBinding extends @abstractBinding {
+#  @lstring mBindingName ;
+#  @lstring mPreferenceName ;
+#  @lstring mPreferenceAttributeName ;
+#  @outletBindingOptionList mOutletBindingOptionList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#abstract class @multiValuedBindingBoundModel {
+#  @lstring mPropertyName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @multiValuedBindingBoundToRoot,
+#      @multiValuedBindingBoundToSelf extends @multiValuedBindingBoundModel {
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @multiValuedBindingBoundToPref extends @multiValuedBindingBoundModel {
+#  @lstring mPreferenceName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @multiValuedBindingBoundToController extends @multiValuedBindingBoundModel {
+#  @lstring mControllerName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @multiValuedBindingBoundToControllerSelection extends @multiValuedBindingBoundModel {
+#  @lstring mControllerName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @multiValuedBindingList {
+#  @bool mNegate ;
+#  @multiValuedBindingBoundModel mBoundModel ;
+#  @outletBindingOptionList mOutletBindingOptionList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @multiValuedBinding extends @abstractBinding {
+#  @lstring mBindingName ;
+#  @multiValuedBindingList mMultiValuedBindingList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @runBinding extends @abstractBinding {
+#  @lstring mTargetName ;
+#  @lstring mActionName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @tableValueColumnBinding {
+#  @lstring mColumnName ;
+#  @lstring mCellTypeName ;
+#  @lstring mBoundPropertyName ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#class @tableValueBinding extends @abstractBinding {
+#  @lstring mControllerName ;
+#  @tableValueColumnBinding mTableValueColumnBinding ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @bindingList {
+#  @abstractBinding mBinding ;
+#}
+#
 #----------------------------------------------------------------------------*
 
-list @outletBindingOptionList {
-  @lstring mOptionName ;
-  @abstractDefaultValue mDefaultValue ;
-}
-
-#----------------------------------------------------------------------------*
-
-abstract class @abstractBinding {
-}
-
-#----------------------------------------------------------------------------*
-
-class @regularRootBinding, @regularSelfBinding extends @abstractBinding {
-  @lstring mBindingName ;
-  @lstring mObservableAttributeName ;
-  @outletBindingOptionList mOutletBindingOptionList ;
-  @bool mNamesCountOption ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @regularControllerBinding extends @abstractBinding {
-  @lstring mBindingName ;
-  @lstring mControllerName ;
-  @lstring mControllerAttributeName ;
-  @outletBindingOptionList mOutletBindingOptionList ;
-  @bool mNamesCountOption ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @regularControllerSelectionBinding extends @abstractBinding {
-  @lstring mBindingName ;
-  @lstring mControllerName ;
-  @lstring mControllerAttributeName ;
-  @outletBindingOptionList mOutletBindingOptionList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @regularPreferenceBinding extends @abstractBinding {
-  @lstring mBindingName ;
-  @lstring mPreferenceName ;
-  @lstring mPreferenceAttributeName ;
-  @outletBindingOptionList mOutletBindingOptionList ;
-}
-
-#----------------------------------------------------------------------------*
-
-abstract class @multiValuedBindingBoundModel {
-  @lstring mPropertyName ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @multiValuedBindingBoundToRoot,
-      @multiValuedBindingBoundToSelf extends @multiValuedBindingBoundModel {
-}
-
-#----------------------------------------------------------------------------*
-
-class @multiValuedBindingBoundToPref extends @multiValuedBindingBoundModel {
-  @lstring mPreferenceName ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @multiValuedBindingBoundToController extends @multiValuedBindingBoundModel {
-  @lstring mControllerName ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @multiValuedBindingBoundToControllerSelection extends @multiValuedBindingBoundModel {
-  @lstring mControllerName ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @multiValuedBindingList {
-  @bool mNegate ;
-  @multiValuedBindingBoundModel mBoundModel ;
-  @outletBindingOptionList mOutletBindingOptionList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @multiValuedBinding extends @abstractBinding {
-  @lstring mBindingName ;
-  @multiValuedBindingList mMultiValuedBindingList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @runBinding extends @abstractBinding {
-  @lstring mTargetName ;
-  @lstring mActionName ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @tableValueColumnBinding {
-  @lstring mColumnName ;
-  @lstring mCellTypeName ;
-  @lstring mBoundPropertyName ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @tableValueBinding extends @abstractBinding {
-  @lstring mControllerName ;
-  @tableValueColumnBinding mTableValueColumnBinding ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @bindingList {
-  @abstractBinding mBinding ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @outletDeclarationList {
-  @lstring mOutletType ;
-  @lstring mOutletName ;
-  @bindingList mOutletBindingList ;
-}
-
-#----------------------------------------------------------------------------*
-
-class @preferencesDeclaration extends @EXastDeclaration {
-  @lstring mPreferencesName ;
-  @outletDeclarationList mOutletDeclarationList ;
-  @attributeList mAttributeList ;
-  @transientList mTransientList ;
-  @lstringlist mActionDeclarationList ;
-  @controllerList mControllerList ;
-  @classArrayList mArrayList ;
-}
+#class @preferencesDeclaration extends @EXastDeclaration {
+#  @lstring mPreferencesName ;
+#  @outletDeclarationList mOutletDeclarationList ;
+#  @attributeList mAttributeList ;
+#  @transientList mTransientList ;
+#  @lstringlist mActionDeclarationList ;
+#  @controllerList mControllerList ;
+#  @classArrayList mArrayList ;
+#}
 
 #----------------------------------------------------------------------------*
 
-class @nibClassDeclaration extends @EXastDeclaration {
-  @lstring mClassName ;
-  @outletDeclarationList mOutletDeclarationList ;
-  @attributeList mAttributeList ;
-  @transientList mTransientList ;
-  @lstringlist mActionDeclarationList ;
-  @controllerList mControllerList ;
-  @classArrayList mArrayList ;
-}
+#class @nibClassDeclaration extends @EXastDeclaration {
+#  @lstring mClassName ;
+#  @outletDeclarationList mOutletDeclarationList ;
+#  @attributeList mAttributeList ;
+#  @transientList mTransientList ;
+#  @lstringlist mActionDeclarationList ;
+#  @controllerList mControllerList ;
+#  @classArrayList mArrayList ;
+#}
 
 #----------------------------------------------------------------------------*
 
-list @controllerList {
-  @controllerKind mControllerKind ;
-  @lstring mControllerClassName ;
-  @lstring mControllerName ;
-  @lbool mIsRootObject ; # false -> is self object
-  @lstring mControlledObjectName ;
-  @outletBindingOptionList mControlledObjectBindingOptionList ;
-  @bindingList mControllerBindingList ;
-#--- Only for tree controllers ; for others, ["" nowhere]
-  @lstring mChildRelationshipName ;
-}
+#class @documentDeclaration extends @EXastDeclaration {
+#  @lstring mDocumentName ;
+#  @lstring mRootEntityName ;
+#  @outletDeclarationList mOutletDeclarationList ;
+#  @controllerList mControllerList ;
+#  @lstringlist mActionDeclarationList ;
+#  @transientList mTransientList ;
+#  @attributeList mAttributeList ;
+#}
 
 #----------------------------------------------------------------------------*
 
-class @documentDeclaration extends @EXastDeclaration {
-  @lstring mDocumentName ;
-  @lstring mRootEntityName ;
-  @outletDeclarationList mOutletDeclarationList ;
-  @controllerList mControllerList ;
-  @lstringlist mActionDeclarationList ;
-  @transientList mTransientList ;
-  @attributeList mAttributeList ;
-}
-
-#----------------------------------------------------------------------------*
-
-enum @formatterEnum {
-  noFormatter, numberFormatter, dateFormatter
-}
-
-#----------------------------------------------------------------------------*
-
-list @attributeASTTypeAndFormatterList {
-  @lstring mTypeName ;
-  @formatterEnum mRequiredFormatter ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @outletClassBindingList {
-  @lstring mBindingName ;
-  @attributeASTTypeAndFormatterList mAcceptableTypeFormatterList ;
-  @bindingOptionList mBindingOptionList ;
-}
-
-#----------------------------------------------------------------------------*
-
-list @bindingOptionList {
-  @lstring mBindingOptionName ;
-  @lstringlist mAcceptableTypeList ;
-}
-
-#----------------------------------------------------------------------------*
-
-enum @generationKind {
-  fullGeneration, generateImport, noGeneration
-}
+#enum @formatterEnum {
+#  noFormatter, numberFormatter, dateFormatter
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @attributeASTTypeAndFormatterList {
+#  @lstring mTypeName ;
+#  @formatterEnum mRequiredFormatter ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @outletClassBindingList {
+#  @lstring mBindingName ;
+#  @attributeASTTypeAndFormatterList mAcceptableTypeFormatterList ;
+#  @bindingOptionList mBindingOptionList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#list @bindingOptionList {
+#  @lstring mBindingOptionName ;
+#  @lstringlist mAcceptableTypeList ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#enum @generationKind {
+#  fullGeneration, generateImport, noGeneration
+#}
 
 #----------------------------------------------------------------------------*
 

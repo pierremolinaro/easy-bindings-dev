@@ -23,6 +23,7 @@ uniquemap @unifiedTypeMap @unifiedTypeProxy {
   @decoratedObservablePropertyMap mObservablePropertyMap ;
   @decoratedEntityRelationshipMap mCurrentRelationshipMap ;
   @actionMap mActionMap ;
+  @bindingList mBindingList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -58,7 +59,6 @@ map @decoratedOutletMap {
   insert insertKey error message "the '%K' transient is already declared" ;
   search searchKey error message "the '%K' transient is not declared" ;
   @lstring mOutletTypeName ;
-#  @bindingList mOutletBindingList ;
 }
 
 #----------------------------------------------------------------------------*

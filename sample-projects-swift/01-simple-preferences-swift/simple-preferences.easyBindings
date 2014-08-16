@@ -1,7 +1,8 @@
 preferences PMPrefs {
 #--- String
   attribute String myString default "hello" ;
-  outlet PMTextField myTextField ; # $value self.myString ;
+  outlet PMTextField myTextField ;
+  bind self.myString to myTextField $string ;
   outlet PMTextField myOtherTextField ; # $value self.myString  {NSContinuouslyUpdatesValue:YES} ;
 #--- Color
   attribute NSColor mColor default yellowColor ;
