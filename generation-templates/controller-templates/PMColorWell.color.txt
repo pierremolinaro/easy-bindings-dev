@@ -1,13 +1,13 @@
-@objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string)
-class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color)
+class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : $OBJECTCLASS$, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
@@ -16,16 +16,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerP
     if let outlet = mOutlet {
       outlet.target = self
       outlet.action = "action:"
-      if outlet.formatter != nil {
-        presentErrorWindow (file, line, "the outlet has a formatter")
-      }
-      if mSendContinously {
-        NSNotificationCenter.defaultCenter().addObserver (self,
-          selector: "continouslySendAction:",
-          name: NSControlTextDidChangeNotification,
-          object: mOutlet
-        )
-      }
+      outlet.continuous = true
     }
     mObject?.addObserverOf_$MODEL$ (self)
   }
@@ -33,12 +24,6 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerP
   //-------------------------------------------------------------------------------------------------------------------*
   
   deinit {
-    if mSendContinously {
-      NSNotificationCenter.defaultCenter().removeObserver (self,
-        name: NSControlTextDidChangeNotification,
-        object: mOutlet
-      )
-    }
     noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
@@ -47,29 +32,20 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerP
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func continouslySendAction (notification : NSNotification) {
-    updateModel ()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
-      mOutlet!.stringValue = mObject!.$MODEL$
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.$MODEL$) {
+      mOutlet!.color = mObject!.$MODEL$
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    updateModel ()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func updateModel () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
-      mObject!.$MODEL$ = mOutlet!.stringValue
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.$MODEL$) {
+      mObject!.$MODEL$ = mOutlet!.color
+      if mSendContinously {
+        runTriggers ()
+      }
     }
   }
 

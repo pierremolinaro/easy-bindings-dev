@@ -1,9 +1,12 @@
 outletClass PMTextField ;
+controllerTemplate PMTextField $string : String {sendContinously : Bool} ;
+
 
 outletClass PMColorWell ;
+controllerTemplate PMColorWell $color : NSColor {sendContinously : Bool} ;
+
 
 outletClass PMDatePicker ;
-
-controllerTemplate PMTextField $string : String ;
+controllerTemplate PMDatePicker $date : NSDate ;
 
 end

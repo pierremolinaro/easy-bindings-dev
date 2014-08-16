@@ -180,7 +180,7 @@ local routine generateCode
     !outputDirectory
   ;
   generateControllerClasses
-    !inGeneration->mControllerGenerationString
+    !inGeneration->mControllerGenerationStringSet
     !outputDirectory
   ;
 end routine ;

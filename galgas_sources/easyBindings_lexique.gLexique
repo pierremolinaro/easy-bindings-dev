@@ -36,6 +36,7 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "document",
   "option",
   "entity",
+  "no",
   "outletClass",
   "nibClass",
   "class",
@@ -56,7 +57,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "protocol",
   "predefined",
   "signature",
-  "to"
+  "to",
+  "yes"
 ;
 
 rule 'a'->'z' :
@@ -67,14 +69,14 @@ rule 'a'->'z' :
   send search tokenString in lowerCaseKeyWordList default $identifier$ ;
 end rule ;
 
-list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
-  "NSNumberFormatter",
-  "NSDateFormatter",
-  "AnyNumber",
-  "AnyScalar",
-  "YES",
-  "NO"
-;
+#list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
+#  "NSNumberFormatter",
+#  "NSDateFormatter",
+#  "AnyNumber",
+#  "AnyScalar",
+#  "YES",
+#  "NO"
+#;
 
 
 rule 'A'->'Z' :
@@ -82,7 +84,8 @@ rule 'A'->'Z' :
     enterCharacterIntoString !?tokenString !* ;
   while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
   end repeat ;
-  send search tokenString in upperCaseKeyWordList default $Identifier$ ;
+#  send search tokenString in upperCaseKeyWordList default $Identifier$ ;
+  send $Identifier$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*
