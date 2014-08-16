@@ -32,40 +32,34 @@ when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
 #--- Parse predefined outlets
-  @astDeclarationList declarationList [emptyList] ;
-  @outletClassDeclarationList outletClassDeclarationList := {} ;
-  @cursorList cursorList [emptyList] ;
+  @astDeclarationStruct declarationStruct [default] ;
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !userDefined:false
-    !?declarationList
-    !?cursorList
-    !?outletClassDeclarationList
+    !?declarationStruct
     ?*
   ;
 #--- Parse source file
   grammar easyBindings_grammar in inSourceFile
     !userDefined:true
-    !?declarationList
-    !?cursorList
-    !?outletClassDeclarationList
+    !?declarationStruct
     ?@location endOfSourceFile
   ;
 #--- Enter predefined types
-  declarationList += ![@predefinedTypeDeclaration new !false !"String" ![@typeKind stringType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
-  declarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"String" ![@typeKind stringType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Double" ![@typeKind doubleType]] ;
 #------------------------------------------------------- Type Inventory
    @unifiedTypeMap unifiedTypeMap [emptyMap] ;
-  foreach declarationList do
+  foreach declarationStruct->mDeclarationList do
     [mDeclaration typeInventory !?unifiedTypeMap] ;
   end foreach ;
   if [option easyBindings_options.outputClassDependencyGraph value] then
@@ -95,8 +89,8 @@ message "a source text file with the .easyBindings extension"
         !unifiedTypeMap
         !sortedTypeNames
         !inSourceFile->string
-        !cursorList
-        !outletClassDeclarationList
+        !declarationStruct->mCursorList
+        !declarationStruct->mOutletClassDeclarationList
         ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
         ??@structForGeneration generation
       ;
