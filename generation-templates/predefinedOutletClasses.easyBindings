@@ -4,5 +4,6 @@ outletClass PMColorWell ;
 
 outletClass PMDatePicker ;
 
+controllerTemplate PMTextField $string : String ;
 
 end

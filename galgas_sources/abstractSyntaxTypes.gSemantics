@@ -2,6 +2,24 @@ semantics abstractSyntaxTypes :
 
 #-----------------------------------------------------------------------------*
 
+struct @astDeclarationStruct {
+  @astDeclarationList mDeclarationList ;
+  @cursorList mCursorList ;
+  @outletClassDeclarationList mOutletClassDeclarationList ;
+  @controllerTemplateList mControllerTemplateList ;
+}
+
+#-----------------------------------------------------------------------------*
+
+list @controllerTemplateList {
+  @bool mIsUserDefined ;
+  @lstring mOutletClassName ;
+  @lstring mBindingName ;
+  @lstring mModelTypeName ;
+}
+
+#-----------------------------------------------------------------------------*
+
 abstract class @astDeclaration {
   @bool mUserDefined ;
 }

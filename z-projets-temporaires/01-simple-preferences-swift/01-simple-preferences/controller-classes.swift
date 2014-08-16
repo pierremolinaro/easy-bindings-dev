@@ -76,12 +76,12 @@ class Controller_PMPrefs_myString_NSTextField_stringValue : NSObject, PMTriggerP
       if mOutlet!.stringValue != mObject!.myString {
         mOutlet!.stringValue = mObject!.myString
       }
-      if mActionKind == PMActionKind.onEndEditing {
+/*      if mActionKind == PMActionKind.onEndEditing {
         let enable = mObject!.myString != "no"
         if mOutlet!.enableFromValueBinding != enable {
           mOutlet!.enableFromValueBinding = enable
         }
-      }
+      }*/
     }
   }
 
@@ -144,7 +144,7 @@ class Controller_PMPrefs_myEnable_NSButton_ckecked : NSObject, PMTriggerProtocol
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) { // && (mOutlet!.enabled != mObject!.myEnable) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.myEnable) {
       mOutlet!.state = Int (mObject!.myEnable)
     }
   }
@@ -152,8 +152,8 @@ class Controller_PMPrefs_myEnable_NSButton_ckecked : NSObject, PMTriggerProtocol
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) { //  && (mOutlet!.enabled != mObject!.myEnable) {
-      mObject?.myEnable = (mOutlet!.state != 0)
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.myEnable) {
+      mObject?.myEnable = mOutlet!.state != 0
     }
   }
 
@@ -199,7 +199,7 @@ class Controller_PMPrefs_myEnable_NSTextField_enabled : NSObject, PMTriggerProto
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) { // && (mOutlet!.enabled != mObject!.myEnable) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.myEnable) {
       mOutlet!.enableFromEnableBinding = mObject!.myEnable != 0
     }
   }

@@ -11,7 +11,6 @@
 		CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CF71E65B1940938500021EDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF71E65A1940938500021EDF /* Images.xcassets */; };
-		CF71E66A1940938500021EDF /* _1_simple_preferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */; };
 		CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */; };
 		CFA38986194094C400F20FFB /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38985194094C400F20FFB /* PMApplication.swift */; };
 		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
@@ -23,16 +22,6 @@
 		CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB83A199E87B10044D8B0 /* PMTextField.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		CF71E6641940938500021EDF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CF71E6491940938500021EDF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF71E6501940938500021EDF;
-			remoteInfo = "01-simple-preferences";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+autreAction.swift"; sourceTree = "<group>"; };
 		CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+monAction.swift"; sourceTree = "<group>"; };
@@ -40,9 +29,6 @@
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF71E65A1940938500021EDF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CF71E6631940938500021EDF /* 01-simple-preferencesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "01-simple-preferencesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF71E6681940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _1_simple_preferencesTests.swift; sourceTree = "<group>"; };
 		CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CFA38985194094C400F20FFB /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
@@ -62,13 +48,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF71E6601940938500021EDF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				CF71E6531940938500021EDF /* 01-simple-preferences */,
-				CF71E6661940938500021EDF /* 01-simple-preferencesTests */,
 				CF71E6521940938500021EDF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */,
-				CF71E6631940938500021EDF /* 01-simple-preferencesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,23 +96,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CF71E6661940938500021EDF /* 01-simple-preferencesTests */ = {
-			isa = PBXGroup;
-			children = (
-				CF71E6691940938500021EDF /* _1_simple_preferencesTests.swift */,
-				CF71E6671940938500021EDF /* Supporting Files */,
-			);
-			path = "01-simple-preferencesTests";
-			sourceTree = "<group>";
-		};
-		CF71E6671940938500021EDF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CF71E6681940938500021EDF /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,24 +116,6 @@
 			productReference = CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF71E6621940938500021EDF /* 01-simple-preferencesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CF71E6701940938500021EDF /* Build configuration list for PBXNativeTarget "01-simple-preferencesTests" */;
-			buildPhases = (
-				CF71E65F1940938500021EDF /* Sources */,
-				CF71E6601940938500021EDF /* Frameworks */,
-				CF71E6611940938500021EDF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CF71E6651940938500021EDF /* PBXTargetDependency */,
-			);
-			name = "01-simple-preferencesTests";
-			productName = "01-simple-preferencesTests";
-			productReference = CF71E6631940938500021EDF /* 01-simple-preferencesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -185,10 +127,6 @@
 				TargetAttributes = {
 					CF71E6501940938500021EDF = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					CF71E6621940938500021EDF = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = CF71E6501940938500021EDF;
 					};
 				};
 			};
@@ -205,7 +143,6 @@
 			projectRoot = "";
 			targets = (
 				CF71E6501940938500021EDF /* 01-simple-preferences-swift */,
-				CF71E6621940938500021EDF /* 01-simple-preferencesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,13 +155,6 @@
 				CF71E65B1940938500021EDF /* Images.xcassets in Resources */,
 				CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */,
 				CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CF71E6611940938500021EDF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,23 +178,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF71E65F1940938500021EDF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF71E66A1940938500021EDF /* _1_simple_preferencesTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CF71E6651940938500021EDF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CF71E6501940938500021EDF /* 01-simple-preferences-swift */;
-			targetProxy = CF71E6641940938500021EDF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CF71E66B1940938500021EDF /* Debug */ = {
@@ -372,44 +286,6 @@
 			};
 			name = Release;
 		};
-		CF71E6711940938500021EDF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/01-simple-preferences.app/Contents/MacOS/01-simple-preferences";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "01-simple-preferencesTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		CF71E6721940938500021EDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/01-simple-preferences.app/Contents/MacOS/01-simple-preferences";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "01-simple-preferencesTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -427,15 +303,6 @@
 			buildConfigurations = (
 				CF71E66E1940938500021EDF /* Debug */,
 				CF71E66F1940938500021EDF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CF71E6701940938500021EDF /* Build configuration list for PBXNativeTarget "01-simple-preferencesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CF71E6711940938500021EDF /* Debug */,
-				CF71E6721940938500021EDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
