@@ -16,7 +16,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   
   var mTransientIndex : Int {
     get {
-      return kOutletShouldDisplay
+      return kTriggerOutletDisplay
     }
   }
   
@@ -86,7 +86,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //    For PMTriggerProtocol                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kOutletShouldDisplay
+  var mTransientIndex = kTriggerOutletDisplay
 
   //-------------------------------------------------------------------------------------------------------------------*
 

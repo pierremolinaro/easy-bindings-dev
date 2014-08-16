@@ -9,6 +9,8 @@ import "entityGeneration.gSemantics" ;
 import "typeAnalysis.gSemantics" ;
 import "actionGeneration.gSemantics" ;
 import "outletClassGeneration.gSemantics" ;
+import "controllerClassAnalysis.gSemantics" ;
+import "controllerClassGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -89,8 +91,7 @@ message "a source text file with the .easyBindings extension"
         !unifiedTypeMap
         !sortedTypeNames
         !inSourceFile->string
-        !declarationStruct->mCursorList
-        !declarationStruct->mOutletClassDeclarationList
+        !declarationStruct
         ??@transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
         ??@structForGeneration generation
       ;
@@ -115,8 +116,7 @@ local routine semanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstringlist unused inSortedKeys
   ??@string inSourceFile
-  ??@cursorList unused inCursorList
-  ??@outletClassDeclarationList inOutletClassDeclarationList
+  ??@astDeclarationStruct inAstDeclarationStruct
   !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
   !@structForGeneration outGeneration
 :
@@ -126,9 +126,15 @@ local routine semanticAnalysis
     !inSourceFile
     ?outSortedTransientAndObservablePropertyNodes
   ;
+#--- Build controller template map
+  buildControllerTemplateMap
+    !inUnifiedTypeMap
+    !inAstDeclarationStruct->mControllerTemplateList
+    ??@templateControllerMap templateControllerMap
+  ;
 #--- Build outlet class map
   @outletClassMap outletClassMap := {} ;
-  for () in inOutletClassDeclarationList do
+  for () in inAstDeclarationStruct->mOutletClassDeclarationList do
     [!?outletClassMap insertKey !mOutletClassName] ;
   end for ;
 #--- Type analysis
@@ -136,6 +142,7 @@ local routine semanticAnalysis
     typeAnalysis
       !inUnifiedTypeMap
       !outletClassMap
+      !templateControllerMap
       ?outGeneration
     ;
   else
@@ -170,6 +177,10 @@ local routine generateCode
   ;
   generateOutletClasses
     !inGeneration->mNeededOutletClasses
+    !outputDirectory
+  ;
+  generateControllerClasses
+    !inGeneration->mControllerGenerationString
     !outputDirectory
   ;
 end routine ;

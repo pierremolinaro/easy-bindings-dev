@@ -224,18 +224,18 @@ var g_PMPrefs : PMPrefs? = nil
     if nil == mStringObserverTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'mStringObserverTextField' outlet is nil") ;
     }
-    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:mStringObserverTextField, actionKind:.noAction))
+    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:mStringObserverTextField, file:__FILE__, line:__LINE__, sendContinously:false))
   //--- check myTextField' outlet not nil mStringObserverTextField
     if nil == myTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil") ;
     }
-    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:myTextField, actionKind:.onEndEditing))
+    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_PMPrefs_myEnable_NSTextField_enabled (object:self, outlet:myTextField))
   //--- check myOtherTextField' outlet not nil
     if nil == myOtherTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myOtherTextField' outlet is nil") ;
     }
-    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:myOtherTextField, actionKind:.sendContinously))
+    mControllerArray.addObject (Controller_PMPrefs_myString_NSTextField_stringValue (object:self, outlet:myOtherTextField, file:__FILE__, line:__LINE__, sendContinously:true))
   //--- check mColorWell' outlet not nil
     if nil == mColorWell {
       presentErrorWindow (__FILE__, __LINE__, "the 'mColorWell' outlet is nil") ;

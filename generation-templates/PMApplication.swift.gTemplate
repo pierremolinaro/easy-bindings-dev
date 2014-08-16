@@ -24,10 +24,11 @@ end
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
+let kTriggerOutletDisplay = 0
 %
 foreach TRANSIENT_LIST
 do index idx
-%let k_%![mValue identifierRepresentation]% = %![idx string]%\n%
+%let k_%![mValue identifierRepresentation]% = %![idx + 1 string]%\n%
 end
 %
 //---------------------------------------------------------------------------------------------------------------------*
@@ -100,7 +101,8 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   var mLevel = 0
-
+  var mTriggerOutletDisplaySet = NSMutableSet ()
+ 
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
@@ -110,10 +112,11 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 %  //-------------------------------------------------------------------------------------------------------------------*
 
   func enterTriggerWithObject (inObject : PMTriggerProtocol) {
-%if [TRANSIENT_LIST length] > 0 then
-%    inObject.noteTransientChanged ()
+    inObject.noteTransientChanged ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
+    case kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet.addObject (inObject)
 %foreach TRANSIENT_LIST do index idx
 %    case k_%![mValue identifierRepresentation]% :
       mTriggerSet_%![mValue identifierRepresentation]%.addObject (inObject)
@@ -122,10 +125,7 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
       }\n%
 end%    default: break
     }
-%else
-%  // No transient\n%
-end
-%  }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -136,7 +136,7 @@ end
     mLevel -= 1
     // NSLog ("send event done \%d", mLevel)
     if 0 == mLevel {
-      triggerChange ()
+      runTriggers ()
       displayAllocation ()
     }
   }
@@ -150,7 +150,7 @@ end
     mLevel -= 1
     // NSLog ("send action done \%d", mLevel)
     if 0 == mLevel {
-      triggerChange ()
+      runTriggers ()
       displayAllocation ()
     }
     return result
@@ -158,19 +158,25 @@ end
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func triggerChange () {
+  func runTriggers () {
 %
   foreach TRANSIENT_LIST do index idx
-%    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![idx string]%
-      let s = mTriggerSet_%![mValue identifierRepresentation]%
-      mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet ()
-      for anyObject in s {
+%    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![idx + 1 string]%
+      for anyObject in mTriggerSet_%![mValue identifierRepresentation]% {
         let object = anyObject as PMTriggerProtocol
         object.trigger ()
       }
+      mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet ()
     }    
 %  end  
-%  }
+%    if mTriggerOutletDisplaySet.count > 0 {
+      for anyObject in mTriggerOutletDisplaySet {
+        let object = anyObject as PMTriggerProtocol
+        object.trigger ()
+      }
+      mTriggerOutletDisplaySet = NSMutableSet ()
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

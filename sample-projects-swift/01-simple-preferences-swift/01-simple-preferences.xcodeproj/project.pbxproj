@@ -16,6 +16,7 @@
 		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
+		CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE26DC199FB921002DA21E /* controller-classes.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
 		CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB838199E87B10044D8B0 /* PMColorWell.swift */; };
 		CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */; };
@@ -34,6 +35,7 @@
 		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CFCE26DC199FB921002DA21E /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		CFFBB838199E87B10044D8B0 /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
 		CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatePicker.swift; sourceTree = "<group>"; };
@@ -70,18 +72,19 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
-				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
-				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
-				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
-				CFA38985194094C400F20FFB /* PMApplication.swift */,
+				CFCE26DC199FB921002DA21E /* controller-classes.swift */,
+				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
+				CF71E65A1940938500021EDF /* Images.xcassets */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
 				CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */,
-				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
+				CFA38985194094C400F20FFB /* PMApplication.swift */,
+				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
+				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
 				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
 				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
-				CF71E65A1940938500021EDF /* Images.xcassets */,
+				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
 			path = "01-simple-preferences";
@@ -175,6 +178,7 @@
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
+				CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

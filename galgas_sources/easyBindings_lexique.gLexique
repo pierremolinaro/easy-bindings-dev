@@ -17,6 +17,7 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toOne",
   "toMany",
   "array",
+  "bind",
   "count",
   "cursor",
   "inverse",
@@ -26,11 +27,11 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "deny",
   "controller",
   "controllerTemplate",
-  "treeController",
-  "arrayController",
-  "objectController",
-  "entityArrayController",
-  "entityController",
+#  "treeController",
+#  "arrayController",
+#  "objectController",
+#  "entityArrayController",
+#  "entityController",
   "struct",
   "document",
   "option",
@@ -54,7 +55,8 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "action",
   "protocol",
   "predefined",
-  "signature"
+  "signature",
+  "to"
 ;
 
 rule 'a'->'z' :

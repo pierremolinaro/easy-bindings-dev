@@ -51,7 +51,7 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kOutletShouldDisplay = 0
+let kTriggerOutletDisplay = 0
 let k_document_2E_PMDocument_2E_total = 1
 let k_document_2E_PMDocument_2E_countItemMessage = 2
 let k_document_2E_PMDocument_2E_canRemoveString = 3
@@ -197,7 +197,7 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
     inObject.noteTransientChanged ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kOutletShouldDisplay :
+    case kTriggerOutletDisplay :
       mTriggerSet_outlet_should_display.addObject (inObject)
     case k_document_2E_PMDocument_2E_total :
       mTriggerSet_document_2E_PMDocument_2E_total.addObject (inObject)
