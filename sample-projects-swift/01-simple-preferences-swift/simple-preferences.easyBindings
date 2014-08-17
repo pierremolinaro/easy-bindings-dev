@@ -21,9 +21,9 @@ preferences PMPrefs {
   bind self.mDate to mDatePicker $date ;
 #--- Number
   attribute Integer mIntegerValue default 123 ;
-  outlet PMTextField mInteger32TextField ; # $value self.mIntegerValue ;
-
-  
+  outlet PMTextField mInteger32TextField ;
+  bind self.mIntegerValue to mInteger32TextField $int ;
+#--- Actions  
   action monAction ;
   action autreAction ;
 }

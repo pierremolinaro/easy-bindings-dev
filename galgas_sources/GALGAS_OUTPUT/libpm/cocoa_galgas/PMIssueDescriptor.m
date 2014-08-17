@@ -39,7 +39,7 @@
   if (self) {
     noteObjectAllocation (self) ;
     mMessage = inMessage.copy ;
-    mURL = inURL.standardizedURL ;
+    mURL = inURL.copy ;
     mLine = (NSUInteger) inLine ;
     mColumn = (NSUInteger) inColumn ;
     mIsError = inIsError ;
@@ -66,7 +66,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-- (NSURL *) issueStandardizedURL {
+- (NSURL *) issueURL {
   return mURL ;
 }
 

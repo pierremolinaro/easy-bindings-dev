@@ -102,7 +102,7 @@
       if (NSPointInRect (locationInView, rImage)) {
         found = YES ;
         [mDocument
-          displaySourceWithURL:issue.issueStandardizedURL
+          displaySourceWithURL:issue.issueURL
           atLine:issue.issueLine
         ] ;
       }
