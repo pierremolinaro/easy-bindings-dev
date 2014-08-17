@@ -1467,7 +1467,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 									<dictionary class="NSMutableDictionary" key="NS.attributes">
 										<boolean value="YES" key="allowsFloats"/>
 										<integer value="1040" key="formatterBehavior"/>
-										<boolean value="NO" key="lenient"/>
+										<boolean value="YES" key="lenient"/>
 										<object class="NSLocale" key="locale">
 											<string key="NS.identifier"/>
 										</object>

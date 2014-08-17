@@ -172,9 +172,9 @@ local routine unifiedTypeAnalysis
       end for ;
     end if ;
   #--- Build controller string
-    var controllerString := "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+    var controllerString := "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n" ;
     controllerString += "//   Controller " + [inTypeName->string + " " + mObservablePropertyName + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
-    controllerString += "//---------------------------------------------------------------------------------------------------------------------*\n\n" ;
+    controllerString += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n" ;
     controllerString += [
       [templateString stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName->string] stringByReplacingStringByString !"$OBJECTCLASS$" !inTypeName->string
     ] ;
