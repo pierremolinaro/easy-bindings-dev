@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color)
-class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerProtocol {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMColorWell? = nil

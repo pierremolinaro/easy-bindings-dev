@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string)
-class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_string : NSObject, PMTriggerProtocol {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMTextField? = nil

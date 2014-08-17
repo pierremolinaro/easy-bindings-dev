@@ -47,7 +47,7 @@ typedef enum {
 
 - (NSString *) issueMessage ;
 
-- (NSURL *) issueStandardizedURL ;
+- (NSURL *) issueURL ;
 
 - (BOOL) isError ;
 

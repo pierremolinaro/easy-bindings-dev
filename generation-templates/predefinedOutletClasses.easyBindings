@@ -1,5 +1,6 @@
 outletClass PMTextField ;
 controllerTemplate PMTextField $string : String {sendContinously : Bool} ;
+controllerTemplate PMTextField $int : Integer ;
 
 
 outletClass PMColorWell ;
