@@ -51,7 +51,7 @@ extension NSDictionary {
 
   func readString (inKey : String) -> String {
     var result = ""
-    let object : AnyObject = valueForKey (inKey)
+    let object : AnyObject? = valueForKey (inKey)
     if let s = object as? String {
       result = s
     }
@@ -62,9 +62,9 @@ extension NSDictionary {
 
   func readNSColor (inKey : String) -> NSColor {
     var result = NSColor.blackColor ()
-    let object : AnyObject = valueForKey (inKey)
+    let object : AnyObject? = valueForKey (inKey)
     if let d = object as? NSData {
-      let c : AnyObject = NSUnarchiver.unarchiveObjectWithData (d)
+      let c : AnyObject? = NSUnarchiver.unarchiveObjectWithData (d)
       if let color = c as? NSColor {
         result = color
       }
@@ -76,7 +76,7 @@ extension NSDictionary {
 
   func readInt64 (inKey : String) -> Int64 {
     var result : Int64 = 0
-    let object : AnyObject = valueForKey (inKey)
+    let object : AnyObject? = valueForKey (inKey)
     if let d = object as? NSNumber {
       result = d.longLongValue 
     }
@@ -87,7 +87,7 @@ extension NSDictionary {
 
   func readBool (inKey : String) -> Bool {
     var result : Bool = false
-    let object : AnyObject = valueForKey (inKey)
+    let object : AnyObject? = valueForKey (inKey)
     if let d = object as? NSNumber {
       result = d.boolValue 
     }
