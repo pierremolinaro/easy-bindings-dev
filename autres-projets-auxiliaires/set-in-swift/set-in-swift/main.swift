@@ -38,7 +38,7 @@ var unCompteurSansImportance = 0
 func allocInNativeArray () {
   print ("Append in native Swift array... ")
   var start = NSDate ()
-  var array : [MaClasse] = []
+  var array : [MonProtocole] = [] // Ok en beta 6
   for i in 0..<COUNT {
     array.append (MaClasse ())
   }

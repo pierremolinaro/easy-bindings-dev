@@ -127,8 +127,8 @@ local routine unifiedTypeAnalysis
     [inCurrentObservablePropertyMap searchKey
       !mObservablePropertyName
       ??@unifiedTypeProxy propertyType
-      ??@bool isTransient
-      ??@lstring propertySignature
+      ?* # ?@bool isTransient
+      ?* #?@lstring propertySignature
       ??@bool isCollection
     ] ;
     if isCollection then
