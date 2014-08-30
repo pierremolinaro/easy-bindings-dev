@@ -6,7 +6,7 @@
 
 \fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\small\tt
 {\bf preferences} NomPreferences \{ \\
-\hspace*{.5cm}{\bf attribut} NomDeType nomAttribut {\bf default} valeurParDefaut ; \\
+\hspace*{.5cm}{\bf property} NomDeType nomPropriété {\bf default} valeurParDefaut ; \\
 \hspace*{.5cm}{\bf outlet} NomClasseOutlet nomOutlet ; \\
 \hspace*{.5cm}{\bf action} nomAction ; \\
 \hspace*{.5cm}{\bf bind} {\it voir texte} ; \\
@@ -23,7 +23,7 @@ Une déclaration de binding a l'allure suivante :
 Par exemple :
 
 \fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\small\tt
-  {\bf attribute} String myString default "hello" ; \\
+  {\bf property} String myString default "hello" ; \\
   {\bf outlet } PMTextField myTextField ; \\
-  {\bf bind} model {\bf self}.myString {\bf to} myTextField \$string \{sendContinously : {\bf no}\} ;
+  {\bf bind} model : {\bf self}.myString {\bf to} myTextField \$string \{sendContinously : {\bf no}\} ;
 \end{minipage}}

@@ -586,7 +586,7 @@ end rule ;
 rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
-  $attribute$ ;
+  $property$ ;
   $Identifier$ ?@lstring attributeTypeName ;
   $identifier$ ?@lstring attributeName ;
   $default$ ;

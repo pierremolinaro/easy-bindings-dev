@@ -1,6 +1,6 @@
 preferences PMPrefs {
 #--- String
-  attribute String myString default "hello" ;
+  property String myString default "hello" ;
   outlet PMTextField myTextField ;
   bind model : self.myString to myTextField $value {sendContinously : no};
   outlet PMTextField myOtherTextField ;
@@ -8,7 +8,7 @@ preferences PMPrefs {
   outlet PMTextField myObserverTextField ;
   bind  model : self.myString to myObserverTextField $value {sendContinously : no} ;
 #--- Color
-  attribute NSColor mColor default yellowColor ;
+  property NSColor mColor default yellowColor ;
   outlet PMColorWell mContinousColorWell ;
   bind  model : self.mColor to mContinousColorWell $color {sendContinously : yes} ;
   outlet PMColorWell mColorWell ;
@@ -16,11 +16,11 @@ preferences PMPrefs {
   outlet PMColorWell mObserverColorWell ;
   bind  model : self.mColor to mObserverColorWell $color {sendContinously : no} ;
 #--- Date
-  attribute NSDate mDate default date ;
+  property NSDate mDate default date ;
   outlet PMDatePicker mDatePicker ;
   bind  model : self.mDate to mDatePicker $date ;
 #--- Number
-  attribute Integer mIntegerValue default 123 ;
+  property Integer mIntegerValue default 123 ;
   outlet PMTextField mInteger32TextField ;
   bind  model : self.mIntegerValue to mInteger32TextField $value ;
 #--- Actions  
