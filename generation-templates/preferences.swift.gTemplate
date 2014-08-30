@@ -61,18 +61,31 @@ foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
   //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
 %  var %!lkey->string%_observers = NSMutableSet ()\n%
-%  var %!lkey->string%__cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
-#!generateSwiftTransientCacheRoutine [!PREFERENCES_NAME !mTransientType !lkey->string !mDependencyList !mRootSignDependencyList]
-%  }
+%    get {\n%
+%      if %!lkey->string%_cache == nil {\n%
+%        %!lkey->string%_cache = compute_%!PREFERENCES_NAME%_%!lkey->string% (%
+foreach mDependencyList
+do ![mDependency generateForComputeFunction]
+between %, %
+end
+%)\n%
+%      }\n%
+%      return %!lkey->string%_cache!\n%
+%    }
+    set {
+    }
+  }
 
   func %!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
-    self.willChangeValueForKey ("%!lkey->string%")
-    self.didChangeValueForKey  ("%!lkey->string%")
-     for anyObject in %!lkey->string%_observers {
-        let object = anyObject as PMTriggerProtocol
-        enterTriggerWithObject (object)
-      }
+    // self.willChangeValueForKey ("%!lkey->string%")
+    // self.didChangeValueForKey  ("%!lkey->string%")
+    // %!lkey->string%_cache = nil
+    for anyObject in %!lkey->string%_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
   }
  
    func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
@@ -87,7 +100,7 @@ foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
 
   var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%? = nil
   var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% {
-    if !triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache {
+    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache == nil {
       triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self)
     }
     return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache!
@@ -185,6 +198,11 @@ foreach OUTLET_MAP do
 #  foreach mOutletBindingList do
  #   ![mBinding generateSwiftBinding !mOutletName]
 #  end
+end
+foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
+foreach mDependencyList do
+%    %![mDependency generateAddObserverCall]% (PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self))\n%
+end
 end
 foreach CONTROLLER_INSTANCIATION_STRINGLIST do
 %    mControllerArray.addObject (%!mValue%)\n%

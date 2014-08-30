@@ -139,17 +139,17 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-#rule <count_option>
-#  !@bool outCountOptionOn
-#:
-#  select
-#    outCountOptionOn := false ;
-#  or
-#    $.$ ;
-#    $count$ ;
-#    outCountOptionOn := true ;
-#  end select ;
-#end rule ;
+rule <count_option>
+  !@bool outCountOptionOn
+:
+  select
+    outCountOptionOn := false ;
+  or
+    $.$ ;
+    $count$ ;
+    outCountOptionOn := true ;
+  end select ;
+end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -386,8 +386,8 @@ rule <preferences_declaration>
     <attribute_declaration> !?attributeList ;
   while
     <outlet_declaration> !?outletDeclarationList ;
-#  while
-#    <transient_declaration> !?transientList ;
+  while
+    <transient_declaration> !?transientList ;
   while
     <binding_declaration> !?bindingList ;
   while
@@ -432,8 +432,8 @@ rule <nib_class_declaration>
     <attribute_declaration> !?attributeList ;
   while
     <outlet_declaration> !?outletDeclarationList ;
-#  while
-#    <transient_declaration> !?transientList ;
+  while
+    <transient_declaration> !?transientList ;
   while
     <binding_declaration> !?bindingList ;
   while
@@ -475,8 +475,8 @@ rule <document_declaration>
     <attribute_declaration> !?attributeList ;
   while
     <action_declaration> !?actionDeclarationList ;
-#  while
-#    <transient_declaration> !?transientList ;
+  while
+    <transient_declaration> !?transientList ;
   while
     <outlet_declaration> !?outletDeclarationList ;
   while
@@ -559,8 +559,8 @@ rule <class_declaration>
   repeat
   while
     <attribute_declaration> !?attributeList ;
-#  while
-#    <transient_declaration> !?classTransientList ;
+  while
+    <transient_declaration> !?classTransientList ;
   while
     <array_declaration> !?classArrayList ;
   end repeat ;
@@ -601,49 +601,49 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-#rule <transient_declaration>
-#  ?!@transientList ioTransientList
-#:
-#  $transient$ ;
-#  $Identifier$ ?@lstring transientTypeName ;
-#  $identifier$ ? @lstring transientName ;
-#  $dependsFrom$ ;
-#  @dependanceList dependanceList [emptyList] ;
-#  repeat
-#    select
-#      $root$ ;
-#      $.$ ;
-#      $signature$ ;
-#      dependanceList += ![@transientRootSignDependency new !here] ;
-#    or
-#      $self$ ;
-#      $.$ ;
-#      $identifier$ ? @lstring masterName ;
-#      <count_option> ?@bool namesCountOption ;
-#      dependanceList += ![@transientLocalDependency new !masterName !namesCountOption] ;
-#    or
-#      $root$ ;
-#      $.$ ;
-#      $identifier$ ? @lstring masterName ;
-#      <count_option> ?@bool namesCountOption ;
-#      dependanceList += ![@transientRootDependency new !masterName !namesCountOption] ;
-#    or
-#      $identifier$ ?@lstring controllerName ;
-#      $.$ ;
-#      $identifier$ ? @lstring masterName ;
-#      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
-#    or
-#      $Identifier$ ?@lstring preferenceName ;
-#      $.$ ;
-#      $identifier$ ? @lstring masterName ;
-#      dependanceList += ![@transientPreferenceDependency new !preferenceName !masterName] ;
-#    end select ;
-#  while
-#    $,$ ;
-#  end repeat ;
-#  $;$ ;
-#  ioTransientList += !transientTypeName !transientName !dependanceList ;
-#end rule ;
+rule <transient_declaration>
+  ?!@transientList ioTransientList
+:
+  $transient$ ;
+  $Identifier$ ?@lstring transientTypeName ;
+  $identifier$ ? @lstring transientName ;
+  $dependsFrom$ ;
+  @dependanceList dependanceList [emptyList] ;
+  repeat
+    select
+      $root$ ;
+      $.$ ;
+      $signature$ ;
+      dependanceList += ![@transientRootSignDependency new !here] ;
+    or
+      $self$ ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      <count_option> ?@bool namesCountOption ;
+      dependanceList += ![@transientLocalDependency new !masterName !namesCountOption] ;
+    or
+      $root$ ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      <count_option> ?@bool namesCountOption ;
+      dependanceList += ![@transientRootDependency new !masterName !namesCountOption] ;
+    or
+      $identifier$ ?@lstring controllerName ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
+    or
+      $Identifier$ ?@lstring preferenceName ;
+      $.$ ;
+      $identifier$ ? @lstring masterName ;
+      dependanceList += ![@transientPreferenceDependency new !preferenceName !masterName] ;
+    end select ;
+  while
+    $,$ ;
+  end repeat ;
+  $;$ ;
+  ioTransientList += !transientTypeName !transientName !dependanceList ;
+end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -876,8 +876,8 @@ rule <entity_declaration>
     $;$ ;
   while
     <attribute_declaration> !?attributeList ;
-#  while
-#    <transient_declaration> !?classTransientList ;
+  while
+    <transient_declaration> !?classTransientList ;
   while
     @bool isToMany ;
     select

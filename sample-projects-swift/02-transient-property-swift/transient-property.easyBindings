@@ -1,14 +1,17 @@
 preferences Prefs {
-  attribute NSString mName default "Amédée" ;
-  attribute NSString mFirstName default "Schmurtz" ;
-  transient NSString mFullName dependsFrom self.mName, self.mFirstName ;
-  transient NSString mUpperCaseFullName dependsFrom self.mFullName ;
-  outlet NSTextField mNameTextField $value self.mName ;
-  outlet NSTextField mFirstNameTextField $value self.mFirstName ;
-  outlet NSTextField mFullNameTextField $value self.mFullName ;
-  outlet NSTextField mUpperCaseFullNameTextField $value self.mUpperCaseFullName ;
+  property String mName default "Amédée" ;
+  property String mFirstName default "Schmurtz" ;
+  transient String mFullName dependsFrom self.mName, self.mFirstName ;
+  transient String mUpperCaseFullName dependsFrom self.mFullName ;
+  outlet PMTextField mNameTextField ;
+  bind model : self.mName to mNameTextField $value {sendContinously:no} ;
+  outlet PMTextField mFirstNameTextField ;
+  bind model : self.mFirstName to mFirstNameTextField $value {sendContinously:no} ;
+  outlet PMTextField mFullNameTextField ;
+  bind model : self.mFullName to mFullNameTextField $value {sendContinously:no} ;
+  outlet PMTextField mUpperCaseFullNameTextField ;
+  bind model : self.mUpperCaseFullName to mUpperCaseFullNameTextField $value {sendContinously:no} ;
   
   action monAction ;
 }
 
-end

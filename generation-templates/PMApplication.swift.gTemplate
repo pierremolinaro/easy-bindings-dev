@@ -71,8 +71,8 @@ class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtoc
   }
 
   func noteTransientChanged () {
-    if mTriggerObject {
-      mTriggerObject!.%![mValue pathExtension]%__cache = nil
+    if mTriggerObject != nil {
+      mTriggerObject!.%![mValue pathExtension]%_cache = nil
     }
   }
   
@@ -171,8 +171,8 @@ end%    default: break
   
   func runTriggers () {
 %
-  foreach TRANSIENT_LIST do index idx
-%    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![idx + 1 string]%
+  foreach > TRANSIENT_LIST do index idx
+%    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![[TRANSIENT_LIST length] - idx string]%
       for anyObject in mTriggerSet_%![mValue identifierRepresentation]% {
         let object = anyObject as PMTriggerProtocol
         object.trigger ()

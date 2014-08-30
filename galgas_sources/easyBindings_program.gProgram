@@ -22,14 +22,6 @@ filewrapper predefinedOutletClasses in "../generation-templates" {
 
 #----------------------------------------------------------------------------*
 
-filewrapper objective_c_sources in "../generation-templates/objective-c-sources" {
-  "m", "h", "xib", "swift"
-}{
-}{
-}
-
-#----------------------------------------------------------------------------*
-
 when . "easyBindings"
 message "a source text file with the .easyBindings extension"
 ??@lstring inSourceFile {
@@ -183,6 +175,43 @@ local routine generateCode
     !inGeneration->mControllerGenerationStringSet
     !outputDirectory
   ;
+  generateSwiftApplicationFiles
+    !outputDirectory
+  ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+filewrapper swift_sources in "../generation-templates/swift-sources" {
+  "xib", "swift"
+}{
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+local routine generateSwiftApplicationFiles
+  ??@string inOutputDirectory
+:
+  @stringlist swiftFiles := {!"PMAllocationDebug", !"easy-bindings-utilities"} ;
+  @stringlist xibFiles := {!"PMAllocationDebug"} ;
+  var fw := [filewrapper swift_sources] ;
+  for (@string s) in swiftFiles do
+    const contents := [fw textFileContentsAtPath !s + ".swift"] ;
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".swift"
+      !contents
+    ] ;
+  end for ;
+  for (@string s) in xibFiles do
+    const contents := [fw textFileContentsAtPath !s + ".xib"] ;
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".xib"
+      !contents
+    ] ;
+  end for ;
 end routine ;
 
 #----------------------------------------------------------------------------*

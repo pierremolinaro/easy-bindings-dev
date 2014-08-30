@@ -118,6 +118,84 @@ local filewrapper transientManager in "../generation-templates" {
     ?@unifiedTypeProxy TRANSIENT_TYPE
   ;
 }
+
+#-----------------------------------------------------------------------------*
+#   generateForComputeFunction                                                *
+#-----------------------------------------------------------------------------*
+#! generateForComputeFunction
+
+abstract reader @abstractTransientDependency generateForComputeFunction -> @string outResult ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientControllerDependency generateForComputeFunction -> @string outResult :
+  outResult := "??@transientControllerDependency??" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootSignDependency generateForComputeFunction -> @string outResult :
+  outResult := "??@@transientRootSignDependency??" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientLocalDependency generateForComputeFunction -> @string outResult :
+  outResult := mMasterName->string ;
+  if mNamesCountOption then
+    outResult += ".count" ;
+  end if ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientPreferenceDependency generateForComputeFunction -> @string outResult :
+  outResult := "g_" + mPreferencesName->string + "." + mMasterName->string ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootDependency generateForComputeFunction -> @string outResult :
+  outResult := "rootObject." + mMasterName->string ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+#   generateAddObserverCall                                                   *
+#-----------------------------------------------------------------------------*
+#! generateAddObserverCall
+
+abstract reader @abstractTransientDependency generateAddObserverCall -> @string outResult ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientControllerDependency generateAddObserverCall -> @string outResult :
+  outResult := "??@transientControllerDependency??" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootSignDependency generateAddObserverCall -> @string outResult :
+  outResult := "??@@transientRootSignDependency??" ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientLocalDependency generateAddObserverCall -> @string outResult :
+  outResult := "addObserverOf_" + mMasterName->string ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientPreferenceDependency generateAddObserverCall -> @string outResult :
+  outResult := "g_" + mPreferencesName->string + ".addObserverOf_" + mMasterName->string ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootDependency generateAddObserverCall -> @string outResult :
+  outResult := "rootObject.addObserverOf_" + mMasterName->string ;
+end reader ;
+
 #-----------------------------------------------------------------------------*
 #   generateAttributeDeclarationInSwift                                       *
 #-----------------------------------------------------------------------------*

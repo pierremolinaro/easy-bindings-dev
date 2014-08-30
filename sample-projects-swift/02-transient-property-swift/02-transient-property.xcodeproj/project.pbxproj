@@ -10,7 +10,6 @@
 		CF713F461944C1CC000826E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F451944C1CC000826E7 /* main.swift */; };
 		CF713F4A1944C1CC000826E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF713F491944C1CC000826E7 /* Images.xcassets */; };
 		CF713F4D1944C1CC000826E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F4B1944C1CC000826E7 /* MainMenu.xib */; };
-		CF713F591944C1CC000826E7 /* _2_transient_propertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */; };
 		CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F621944C608000826E7 /* easy-bindings-utilities.swift */; };
 		CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F631944C608000826E7 /* PMAllocationDebug.swift */; };
 		CF713F691944C608000826E7 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F641944C608000826E7 /* PMAllocationDebug.xib */; };
@@ -19,17 +18,9 @@
 		CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */; };
 		CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */; };
 		CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F741944D887000826E7 /* Prefs+action+monAction.swift */; };
+		CFA0FAB319B25A7000878C64 /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0FAB219B25A7000878C64 /* controller-classes.swift */; };
+		CFC4B9D219B255CE0008BE21 /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4B9D119B255CE0008BE21 /* PMTextField.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CF713F531944C1CC000826E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CF713F381944C1CC000826E7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF713F3F1944C1CC000826E7;
-			remoteInfo = "02-transient-property";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,9 +28,6 @@
 		CF713F451944C1CC000826E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF713F491944C1CC000826E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF713F4C1944C1CC000826E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "02-transient-propertyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF713F571944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _2_transient_propertyTests.swift; sourceTree = "<group>"; };
 		CF713F621944C608000826E7 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CF713F631944C608000826E7 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CF713F641944C608000826E7 /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
@@ -48,17 +36,12 @@
 		CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mFullName.swift"; sourceTree = "<group>"; };
 		CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
 		CF713F741944D887000826E7 /* Prefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+action+monAction.swift"; sourceTree = "<group>"; };
+		CFA0FAB219B25A7000878C64 /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
+		CFC4B9D119B255CE0008BE21 /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CF713F3D1944C1CC000826E7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CF713F4F1944C1CC000826E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				CF713F421944C1CC000826E7 /* 02-transient-property */,
-				CF713F551944C1CC000826E7 /* 02-transient-propertyTests */,
 				CF713F411944C1CC000826E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */,
-				CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,16 +70,18 @@
 		CF713F421944C1CC000826E7 /* 02-transient-property */ = {
 			isa = PBXGroup;
 			children = (
-				CF713F651944C608000826E7 /* PMApplication.swift */,
+				CFA0FAB219B25A7000878C64 /* controller-classes.swift */,
 				CF713F621944C608000826E7 /* easy-bindings-utilities.swift */,
+				CF713F491944C1CC000826E7 /* Images.xcassets */,
+				CF713F4B1944C1CC000826E7 /* MainMenu.xib */,
 				CF713F631944C608000826E7 /* PMAllocationDebug.swift */,
 				CF713F641944C608000826E7 /* PMAllocationDebug.xib */,
+				CF713F651944C608000826E7 /* PMApplication.swift */,
+				CFC4B9D119B255CE0008BE21 /* PMTextField.swift */,
 				CF713F661944C608000826E7 /* Prefs.swift */,
 				CF713F741944D887000826E7 /* Prefs+action+monAction.swift */,
 				CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */,
 				CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */,
-				CF713F491944C1CC000826E7 /* Images.xcassets */,
-				CF713F4B1944C1CC000826E7 /* MainMenu.xib */,
 				CF713F431944C1CC000826E7 /* Supporting Files */,
 			);
 			path = "02-transient-property";
@@ -109,23 +92,6 @@
 			children = (
 				CF713F441944C1CC000826E7 /* Info.plist */,
 				CF713F451944C1CC000826E7 /* main.swift */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CF713F551944C1CC000826E7 /* 02-transient-propertyTests */ = {
-			isa = PBXGroup;
-			children = (
-				CF713F581944C1CC000826E7 /* _2_transient_propertyTests.swift */,
-				CF713F561944C1CC000826E7 /* Supporting Files */,
-			);
-			path = "02-transient-propertyTests";
-			sourceTree = "<group>";
-		};
-		CF713F561944C1CC000826E7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CF713F571944C1CC000826E7 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -150,24 +116,6 @@
 			productReference = CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF713F511944C1CC000826E7 /* 02-transient-propertyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CF713F5F1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-propertyTests" */;
-			buildPhases = (
-				CF713F4E1944C1CC000826E7 /* Sources */,
-				CF713F4F1944C1CC000826E7 /* Frameworks */,
-				CF713F501944C1CC000826E7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CF713F541944C1CC000826E7 /* PBXTargetDependency */,
-			);
-			name = "02-transient-propertyTests";
-			productName = "02-transient-propertyTests";
-			productReference = CF713F521944C1CC000826E7 /* 02-transient-propertyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -179,10 +127,6 @@
 				TargetAttributes = {
 					CF713F3F1944C1CC000826E7 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					CF713F511944C1CC000826E7 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = CF713F3F1944C1CC000826E7;
 					};
 				};
 			};
@@ -200,7 +144,6 @@
 			projectRoot = "";
 			targets = (
 				CF713F3F1944C1CC000826E7 /* 02-transient-property-swift */,
-				CF713F511944C1CC000826E7 /* 02-transient-propertyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +159,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF713F501944C1CC000826E7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -235,29 +171,15 @@
 				CF713F6B1944C608000826E7 /* Prefs.swift in Sources */,
 				CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */,
 				CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */,
+				CFC4B9D219B255CE0008BE21 /* PMTextField.swift in Sources */,
 				CF713F461944C1CC000826E7 /* main.swift in Sources */,
 				CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */,
+				CFA0FAB319B25A7000878C64 /* controller-classes.swift in Sources */,
 				CF713F6A1944C608000826E7 /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF713F4E1944C1CC000826E7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF713F591944C1CC000826E7 /* _2_transient_propertyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CF713F541944C1CC000826E7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CF713F3F1944C1CC000826E7 /* 02-transient-property-swift */;
-			targetProxy = CF713F531944C1CC000826E7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CF713F4B1944C1CC000826E7 /* MainMenu.xib */ = {
@@ -371,44 +293,6 @@
 			};
 			name = Release;
 		};
-		CF713F601944C1CC000826E7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/02-transient-property.app/Contents/MacOS/02-transient-property";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "02-transient-propertyTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		CF713F611944C1CC000826E7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/02-transient-property.app/Contents/MacOS/02-transient-property";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "02-transient-propertyTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,15 +310,6 @@
 			buildConfigurations = (
 				CF713F5D1944C1CC000826E7 /* Debug */,
 				CF713F5E1944C1CC000826E7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CF713F5F1944C1CC000826E7 /* Build configuration list for PBXNativeTarget "02-transient-propertyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CF713F601944C1CC000826E7 /* Debug */,
-				CF713F611944C1CC000826E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
