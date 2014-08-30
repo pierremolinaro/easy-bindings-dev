@@ -19,9 +19,13 @@ foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
 %  var %!mTransientName%_observers = NSMutableSet ()\n%
-%  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
-!generateSwiftTransientCacheRoutine [!CLASS_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
+%    if %!mTransientName%_cache == nil {\n%
+%      %!mTransientName%_cache = compute_%! . inKindName . "_" . mTransientName . " (" ;
+
+%    }\n%
+#!generateSwiftTransientCacheRoutine [!CLASS_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
 %  }
 
   func %!["class." + CLASS_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
