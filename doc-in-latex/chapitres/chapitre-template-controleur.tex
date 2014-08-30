@@ -1,0 +1,29 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+
+\chapterLabel{Déclaration d'un template de contrôleur}{declarationTemplateControleur}
+
+\fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\tt
+{\bf controllerTemplate} \\
+\hspace*{.5cm}NomClasseOutlet \$nomBinding, ... \\
+\hspace*{.5cm}: \\
+\hspace*{.5cm}NomDeType nomDeModèle, ... \\
+\hspace*{.5cm}\{ options \} \\
+;
+\end{minipage}}
+
+À chaque template correspond un fichier texte. Son nom est obtenu à partir des informations fournies par la déclaration. Par exemple, à la déclaration :
+\begin{itemize}
+  \item[] \texttt{\small {\bf controllerTemplate} PMTextField \$value : String model \{sendContinuously : Bool\} ;}
+\end{itemize}
+
+
+Correspond le fichier :
+
+\begin{itemize}
+  \item[] \texttt{\small PMTextField.value.String.model.txt}
+\end{itemize}
+
+
+Dans ce fichier template, les chaînes \texttt{\$OBJECTCLASS\$} et \texttt{\$MODEL\$} seront remplacées lors de l'instanciation par le nom de la classe contenant l'attribut, et le nom de cet attribut.

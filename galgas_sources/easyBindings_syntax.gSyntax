@@ -48,7 +48,6 @@ rule <start_symbol>
     <controller_template_declaration> !inIsUserDefined !?ioDeclarationAST->mControllerTemplateList ;
   end repeat ;
   outEndOfFile := here ;
-  $end$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -62,6 +61,8 @@ rule <controller_template_declaration>
   $binding$ ??@lstring bindingName ;
   $:$ ;
   $Identifier$ ??@lstring modelTypeName ;
+  $identifier$ ??@lstring modelName ;
+  
   @controllerBindingOptionList bindingOptionList := {} ;
   select
   or
@@ -82,6 +83,7 @@ rule <controller_template_declaration>
     !outletClassName
     !bindingName
     !modelTypeName
+    !modelName
     !bindingOptionList
   ;
 end rule ;
@@ -652,6 +654,8 @@ rule <binding_declaration>
   ?!@bindingList ioBindingList
 :
   $bind$ ;
+  $identifier$ ??@lstring modelSelectorName ;
+  $:$ ;
   $self$ ;
   $.$ ;
   $identifier$ ??@lstring observableProperty ;
@@ -675,6 +679,7 @@ rule <binding_declaration>
   $;$ ;
   ioBindingList +=
     !observableProperty
+    !modelSelectorName
     !outletName
     !bindingName
     !bindingOptions

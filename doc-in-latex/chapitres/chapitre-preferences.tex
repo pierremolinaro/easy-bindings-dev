@@ -1,0 +1,29 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+\chapterLabel{Déclaration de préférences}{declarationPreferences}
+
+
+\fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\small\tt
+{\bf preferences} NomPreferences \{ \\
+\hspace*{.5cm}{\bf attribut} NomDeType nomAttribut {\bf default} valeurParDefaut ; \\
+\hspace*{.5cm}{\bf outlet} NomClasseOutlet nomOutlet ; \\
+\hspace*{.5cm}{\bf action} nomAction ; \\
+\hspace*{.5cm}{\bf bind} {\it voir texte} ; \\
+\}
+\end{minipage}}
+
+
+Une déclaration de binding a l'allure suivante :
+
+\begin{itemize}
+  \item[] \texttt{\small {\bf bind} nomModèle modèle {\bf to} nomOutlet \$binding \{ {\it options} \} ;}
+\end{itemize}
+
+Par exemple :
+
+\fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\small\tt
+  {\bf attribute} String myString default "hello" ; \\
+  {\bf outlet } PMTextField myTextField ; \\
+  {\bf bind} model {\bf self}.myString {\bf to} myTextField \$string \{sendContinously : {\bf no}\} ;
+\end{minipage}}

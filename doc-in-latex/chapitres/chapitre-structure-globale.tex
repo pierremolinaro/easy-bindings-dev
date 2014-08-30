@@ -1,0 +1,36 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+
+\chapter{Structure globale}
+
+
+
+L'entrée du compilateur EasyBindings est un fichier source. Celui-ci peut en inclure d'autres via une déclaration \fcolorbox{white}{green}{\bf include}. D'une manière générale, un fichier source contient une liste de \emph{déclarations} :
+\begin{itemize}
+  \item déclaration d'une classe d'outlet (\refSectionPage{declarationOutletClasse}) ;
+  \item inclusion d'un autre fichier (\refSectionPage{inclusionFichier}) ;
+  \item déclaration d'un template de contrôleur (\refChapterPage{declarationTemplateControleur}) ;
+  \item déclaration de \emph{préférences} (\refChapterPage{declarationPreferences}) ;
+\end{itemize}
+
+L'ordre des déclarations est sans importance.
+
+\sectionLabel{Déclaration d'une classe d'outlet}{declarationOutletClasse}
+
+\fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\tt
+{\bf outletClass} Nom ;
+\end{minipage}}
+
+Il n' y a pas de classe prédéclarée. À chaque classe ainsi déclarée, correspond un fichier situé dans \texttt{generation-templates/outlet-classes}. On ne peut donc pas utiliser directement les classes Cocoa, mais via une classe héritière.
+
+
+
+\sectionLabel{Inclusion d'un fichier}{inclusionFichier}
+
+\fcolorbox{white}{green}{\begin{minipage}{1.\textwidth}\tt
+{\bf include} "fichier.easyBindings" ;
+\end{minipage}}
+
+\section{Les types}
+
