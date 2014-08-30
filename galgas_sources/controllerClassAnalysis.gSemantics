@@ -21,6 +21,7 @@ list @controllerBindingOptionDecoratedList {
 map @templateControllerMap {
   @string mTemplateString ;
   @unifiedTypeProxy mModelTypeProxy ;
+  @lstring mModelSelector ;
   @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList ;
   insert insertKey error message "the '%K' controller template is already declared in %L" ;
   search searchKey error message "there is no '%K' controller template" ;
@@ -36,18 +37,22 @@ routine buildControllerTemplateMap
   outTemplateControllerMap := {} ;
   const @filewrapper fw := [filewrapper controllerTemplates] ;
   for () in inControllerTemplateList do
-    const templateName := [@lstring new !mOutletClassName->string + "." + mBindingName->string !mBindingName->location] ;
+    const templateName := [@lstring new
+      !mOutletClassName->string + "." + mBindingName->string + "." + mModelTypeName->string + "." + mModelSelector->string
+      !mBindingName->location
+    ] ;
     const templateText := [fw textFileContentsAtPath !"/" + templateName + ".txt"] ;
     const modelTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mModelTypeName] ;
     @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList := {} ;
     for () in mBindingOptionList do
-      const bindingOptionTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mOptionType] ;
+      const bindingOptionTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mOptionTypeName] ;
       controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy ;    
     end for ;
     [!?outTemplateControllerMap insertKey
       !templateName
       !templateText
       !modelTypeProxy
+      !mModelSelector
       !controllerBindingOptionDecoratedList
     ] ;
   end for ;

@@ -13,7 +13,7 @@ struct @astDeclarationStruct {
 
 list @controllerBindingOptionList {
   @lstring mOptionName ;
-  @lstring mOptionType ;
+  @lstring mOptionTypeName ;
 }
 
 #-----------------------------------------------------------------------------*
@@ -23,6 +23,7 @@ list @controllerTemplateList {
   @lstring mOutletClassName ;
   @lstring mBindingName ;
   @lstring mModelTypeName ;
+  @lstring mModelSelector ;
   @controllerBindingOptionList mBindingOptionList ;
 }
 
@@ -65,6 +66,7 @@ list @bindingOptionList {
 
 list @bindingList {
   @lstring mObservablePropertyName ;
+  @lstring mModelSelectorName ;
   @lstring mOutletName ;
   @lstring mBindingName ;
   @bindingOptionList mBindingOptionList ;

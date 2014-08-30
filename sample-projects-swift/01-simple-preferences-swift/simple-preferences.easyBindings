@@ -2,27 +2,27 @@ preferences PMPrefs {
 #--- String
   attribute String myString default "hello" ;
   outlet PMTextField myTextField ;
-  bind self.myString to myTextField $string {sendContinously : no};
+  bind model : self.myString to myTextField $value {sendContinously : no};
   outlet PMTextField myOtherTextField ;
-  bind self.myString to myOtherTextField $string {sendContinously : yes} ;
+  bind  model : self.myString to myOtherTextField $value {sendContinously : yes} ;
   outlet PMTextField myObserverTextField ;
-  bind self.myString to myObserverTextField $string {sendContinously : no} ;
+  bind  model : self.myString to myObserverTextField $value {sendContinously : no} ;
 #--- Color
   attribute NSColor mColor default yellowColor ;
   outlet PMColorWell mContinousColorWell ;
-  bind self.mColor to mContinousColorWell $color {sendContinously : yes} ;
+  bind  model : self.mColor to mContinousColorWell $color {sendContinously : yes} ;
   outlet PMColorWell mColorWell ;
-  bind self.mColor to mColorWell $color {sendContinously : no} ;
+  bind  model : self.mColor to mColorWell $color {sendContinously : no} ;
   outlet PMColorWell mObserverColorWell ;
-  bind self.mColor to mObserverColorWell $color {sendContinously : no} ;
+  bind  model : self.mColor to mObserverColorWell $color {sendContinously : no} ;
 #--- Date
   attribute NSDate mDate default date ;
   outlet PMDatePicker mDatePicker ;
-  bind self.mDate to mDatePicker $date ;
+  bind  model : self.mDate to mDatePicker $date ;
 #--- Number
   attribute Integer mIntegerValue default 123 ;
   outlet PMTextField mInteger32TextField ;
-  bind self.mIntegerValue to mInteger32TextField $int ;
+  bind  model : self.mIntegerValue to mInteger32TextField $value ;
 #--- Actions  
   action monAction ;
   action autreAction ;
@@ -30,4 +30,3 @@ preferences PMPrefs {
 
 #--------------------------------------------------------------*
 
-end

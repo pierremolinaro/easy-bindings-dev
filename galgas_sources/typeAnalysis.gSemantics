@@ -135,16 +135,24 @@ local routine unifiedTypeAnalysis
       error mObservablePropertyName : "the observable property should not be a collection" ;
     end if ;
     [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
-    const controllerTemplateName := [@lstring new !outletTypeName->string + "." + mBindingName !mBindingName->location] ;
+    const controllerTemplateName := [@lstring new
+      !outletTypeName->string + "." + mBindingName + "." + [propertyType key] + "." + mModelSelectorName
+      !mBindingName->location
+    ] ;
     [inTemplateControllerMap searchKey
       !controllerTemplateName
       ??@string templateString
       ??@unifiedTypeProxy modelTypeProxy
+      ??@lstring modelSelector
       ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
     ] ;
   #--- Check model type
     if [modelTypeProxy key] != [propertyType key] then
       error mBindingName : "the type of the observable property is '" + [propertyType key] + "', but this binding requires the '" + [modelTypeProxy key] + "' type" ;    
+    end if ;
+  #--- Check model selector
+    if modelSelector->string != mModelSelectorName->string then
+      error mModelSelectorName : "the selector of the observable property should be '" + modelSelector + "'" ;    
     end if ;
   #--- Check options
     var bindingOptionString := "" ;
