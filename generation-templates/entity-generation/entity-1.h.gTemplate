@@ -3,11 +3,11 @@
 else
   %#import "%!SUPER_CLASS_NAME%.h"\n%
 end
-foreach HEADER_INCLUSION_SET do
+for () in HEADER_INCLUSION_SET do
   %#import "%!key%.h"\n%
 end
 %
-%foreach HEADER_PREDECLARATION_SET do
+%for () in HEADER_PREDECLARATION_SET do
   %@class %!key% ;\n%
 end
 %@class PMObjectManager ;
@@ -22,16 +22,16 @@ else
 end
 % {
 //--- Attribute observers
-%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end
 %
 //--- To-many relationships observers
-%foreach TO_MANY_RELATIONSHIPS do
+%for () in TO_MANY_RELATIONSHIPS do
 %  @private NSMutableSet * %!mValue0%_observers ;\n%
 end
 
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n%

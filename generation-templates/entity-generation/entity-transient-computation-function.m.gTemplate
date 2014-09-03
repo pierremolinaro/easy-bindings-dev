@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------*
 
 %![RESULT_TYPE ocTypeName]% compute_%!CLASS_NAME%_%!TRANSIENT_NAME% (%?^
- foreach DIRECT_DEPENDANCY_LIST
+ for () in DIRECT_DEPENDANCY_LIST
   do ![mDependency generateFormalObjectiveCArgument]
   between %,\n%!^
  end

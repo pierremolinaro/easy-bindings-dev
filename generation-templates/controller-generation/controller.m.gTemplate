@@ -14,7 +14,7 @@
 
 //---------------------------------------------------------------------------*
 
-%foreach OBSERVABLE_PROPERTY_MAP do
+%for () in OBSERVABLE_PROPERTY_MAP do
 %@synthesize %!lkey->string% ;\n%
 end
 %
@@ -61,12 +61,12 @@ end
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
-%foreach BINDING_MAP do
+%for () in BINDING_MAP do
 %  [%!CONTROLLER_CLASS_NAME% exposeBinding:@"%!lkey->string%"] ;\n%
 end
 %}
 
-%foreach OBSERVABLE_PROPERTY_MAP do%
+%for () in OBSERVABLE_PROPERTY_MAP do%
 //---------------------------------------------------------------------------*
 
 - (void) set_%!lkey->string%_fromBindingChange: (%![mType ocClassName]% *) inValue {
@@ -92,7 +92,7 @@ if [OBSERVABLE_PROPERTY_MAP count] > 0 then
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
   [super didChangeValueForKey:inKey] ;
- %foreach OBSERVABLE_PROPERTY_MAP do
+ %for () in OBSERVABLE_PROPERTY_MAP do
 % if ([inKey isEqualToString:@%![lkey utf8Representation]%]) {
     [self %!lkey->string%_model_did_change] ; 
 %
@@ -118,7 +118,7 @@ if [BINDING_MAP count] > 0 then
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ([inBindingName isEqualToString:@%![lkey utf8Representation]%]) {
     mBoundObjectFor_%!lkey->string% = inObservableObject ;
     mKeyPathFor_%!lkey->string% = inObservableKeyPath.copy ; 
@@ -155,7 +155,7 @@ if [BINDING_MAP count] > 0 then
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ([inBindingName isEqualToString:@%![lkey utf8Representation]%]) {
     [mBoundObjectFor_%!lkey->string% removeObserver:self forKeyPath:mKeyPathFor_%!lkey->string%] ;
     mBoundObjectFor_%!lkey->string% = nil ; 
@@ -185,7 +185,7 @@ if [BINDING_MAP count] > 0 then
   #ifdef EASY_BINDINGS_DEBUG
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ((mBoundObjectFor_%!lkey->string% == inObject) && [inKeyPath isEqualToString:mKeyPathFor_%!lkey->string%]) {
     [self valueFor_%!lkey->string%_binding_didChange] ;
 %
@@ -207,7 +207,7 @@ end
 
 #pragma mark Specific Binding Methods
 
-%foreach BINDING_MAP do%
+%for () in BINDING_MAP do%
 //---------------------------------------------------------------------------*
 //                                                                           *
 //                  Method for '%!lkey->string%' binding                   *

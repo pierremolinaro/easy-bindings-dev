@@ -51,7 +51,7 @@
 //---------------------------------------------------------------------------*
 
 + (void) initialize {
-%foreach BINDING_MAP do
+%for () in BINDING_MAP do
 %  [%!OUTLET_CLASS_NAME% exposeBinding:@%![lkey utf8Representation]%] ;
 %end%
 }
@@ -69,7 +69,7 @@ if [BINDING_MAP count] > 0 then
          toObject:(id) inObservableObject
          withKeyPath:(NSString *) inObservableKeyPath
          options:(NSDictionary *) inOptions {
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ([inBindingName isEqualToString:@%![lkey utf8Representation]%]) {
     mBoundObjectFor_%!lkey->string% = inObservableObject ;
     mKeyPathFor_%!lkey->string% = inObservableKeyPath.copy ; 
@@ -104,7 +104,7 @@ if [BINDING_MAP count] > 0 then
 //---------------------------------------------------------------------------*
 
 - (void) unbind:(NSString *) inBindingName {
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ([inBindingName isEqualToString:@%![lkey utf8Representation]%]) {
     [mBoundObjectFor_%!lkey->string% removeObserver:self forKeyPath:mKeyPathFor_%!lkey->string%] ;
     mBoundObjectFor_%!lkey->string% = nil ; 
@@ -131,7 +131,7 @@ if [BINDING_MAP count] > 0 then
          ofObject:(id) inObject
          change:(NSDictionary *) inChangeDictionary
          context:(void *) inContext {
- %foreach BINDING_MAP do
+ %for () in BINDING_MAP do
 % if ((mBoundObjectFor_%!lkey->string% == inObject) && [inKeyPath isEqualToString:mKeyPathFor_%!lkey->string%]) {
     id value = [inObject valueForKeyPath:inKeyPath] ;
     [self valueFor_%!lkey->string%_didChange:value] ;
@@ -154,7 +154,7 @@ end
 
 #pragma mark Specific Binding Methods
 
-%foreach BINDING_MAP do%
+%for () in BINDING_MAP do%
 //---------------------------------------------------------------------------*
 //                                                                           *
 //                  Method for '%!lkey->string%' binding                   *
@@ -167,7 +167,7 @@ end
     [self valueFor_%!lkey->string%_didChange_marker:inValue defaultPlaceholder:dph] ;
   }else if (inValue == nil) {
     [self valueFor_%!lkey->string%_didChange_nil] ;
-%foreach mAcceptableTypeList do
+%for () in mAcceptableTypeList do
 %  }else if ([inValue isKindOfClass:[%![mType ocClassName]% class]]) {
     [self valueFor_%!lkey->string%_didChange_%![mType ocClassName]%:inValue] ;
 %end%  }

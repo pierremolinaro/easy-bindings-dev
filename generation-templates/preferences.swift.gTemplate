@@ -14,11 +14,11 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 \n%
-foreach OUTLET_MAP do
+for () in OUTLET_MAP do
 %  @IBOutlet var %!lkey->string% : %!mOutletTypeName->string%? = nil\n%
 end
 
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %\n%
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
@@ -48,7 +48,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %
 end
 
-foreach CONTROLLER_MAP do
+for () in CONTROLLER_MAP do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Controller: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
@@ -56,7 +56,7 @@ foreach CONTROLLER_MAP do
   var %!lkey->string% = %!mControllerClassName% ()\n%
 end
 
-foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
@@ -66,7 +66,7 @@ foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %    get {\n%
 %      if %!lkey->string%_cache == nil {\n%
 %        %!lkey->string%_cache = compute_%!PREFERENCES_NAME%_%!lkey->string% (%
-foreach mDependencyList
+for () in mDependencyList
 do ![mDependency generateForComputeFunction]
 between %, %
 end
@@ -111,7 +111,7 @@ end
   //    Arraies                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 %
-foreach ARRAY_MAP do%  var %!lkey->string% = NSMutableArray ()\n%end
+for () in ARRAY_MAP do%  var %!lkey->string% = NSMutableArray ()\n%end
 
 
 %
@@ -129,7 +129,7 @@ if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
   %  //---\n%
 end
-foreach ATTRIBUTE_LIST_FOR_GENERATION
+for () in ATTRIBUTE_LIST_FOR_GENERATION
   before
     %    var value : AnyObject?\n%
   do
@@ -140,14 +140,14 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION
 end
 
 
-foreach ARRAY_MAP do
+for () in ARRAY_MAP do
 %    { NSMutableArray * array = [NSMutableArray new] ;
       for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey->string%"]) {
         %#!mElementType->mTypeName->string
         % * object = [[%#!mElementType->mTypeName->string
         % alloc]
 %
-#foreach mAttributeListForImplementation
+#for () in mAttributeListForImplementation
 #before %          initWith%
 #do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesSwiftGetter]%([dict objectForKey:@"%!mAttributeName%"])\n%
 #between %          with%
@@ -178,33 +178,33 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
-% foreach CONTROLLER_MAP do
+% for () in CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller\n%
 #  %  %!lkey->string%.setObjectClass (%!mControlledClassOrEntityName->string% class)\n%
 end
-#foreach CONTROLLER_MAP do
-# foreach mControllerBindingList
+#for () in CONTROLLER_MAP do
+# for () in mControllerBindingList
 #  before    %//--- '%!lkey->string%' controller bindings\n%
 #  do
 #   ![mBinding generateObjectiveCBinding !lkey->string]
 #  end
 #end
 
-foreach OUTLET_MAP do
+for () in OUTLET_MAP do
    %  //--- Check %!lkey->string%' outlet not nil\n%
    %    if nil == %!lkey->string% {\n%
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil")\n%
    %    }\n%
-#  foreach mOutletBindingList do
+#  for () in mOutletBindingList do
  #   ![mBinding generateSwiftBinding !mOutletName]
 #  end
 end
-foreach TRANSIENT_MAP_FOR_IMPLEMENTATION do
-foreach mDependencyList do
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
+for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self))\n%
 end
 end
-foreach CONTROLLER_INSTANCIATION_STRINGLIST do
+for () in CONTROLLER_INSTANCIATION_STRINGLIST do
 %    mControllerArray.addObject (%!mValue%)\n%
 end
 %  }
@@ -226,16 +226,16 @@ end
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
 end
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %    ud.setObject (%![mAttributeType preferencesSwiftSetter !mAttributeName]%, forKey:"%!PREFERENCES_NAME%:%!mAttributeName%")\n%
 end
-foreach ARRAY_MAP do
+for () in ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
     for (%#!mElementType->mTypeName->string
     % * object in self.%!lkey->string%) {
       [array addObject:[NSDictionary
         dictionaryWithObjectsAndKeys:
-%#foreach mAttributeListForImplementation do%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%end
+%#for () in mAttributeListForImplementation do%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%end
 %          nil
         ]
       ] ;

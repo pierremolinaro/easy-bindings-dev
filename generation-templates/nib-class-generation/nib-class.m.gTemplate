@@ -5,11 +5,11 @@
 %if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!PREFERENCES_NAME%-computations.h"\n%
 end
-foreach INCLUSION_SET do
+for () in INCLUSION_SET do
   %#import "%!key%.h"\n%
 end
 
-foreach ARRAY_MAP do
+for () in ARRAY_MAP do
 %#import "%!mElementType->mTypeName->string%.h"\n%
 end
 
@@ -23,10 +23,10 @@ end
 //    Synthesize properties                                                   *
 //----------------------------------------------------------------------------*
 
-%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %@synthesize %!mAttributeName% ;\n%
 end
-foreach ARRAY_MAP do
+for () in ARRAY_MAP do
 %@synthesize %!lkey->string% ;\n%
 end
 %
@@ -43,11 +43,11 @@ end
     macroNoteObjectAllocation ;
   //---
 %
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
 end
 
-foreach ARRAY_MAP do
+for () in ARRAY_MAP do
   %    self.%!lkey->string% = [NSMutableArray new] ;\n%
 end
 
@@ -79,14 +79,14 @@ end
     NSLog (@"\%s", __PRETTY_FUNCTION__) ;
   #endif
 %
-foreach CONTROLLER_MAP do
+for () in CONTROLLER_MAP do
   %//--- '%!lkey->string%' controller instanciation\n%
   %  %!lkey->string% = [%!mControllerClassName% new] ;\n%
   %  [%!lkey->string% setObjectClass:[%!mControlledClassOrEntityName->string% class]] ;\n%
 end
 
-foreach CONTROLLER_MAP do
-  foreach mControllerBindingList
+for () in CONTROLLER_MAP do
+  for () in mControllerBindingList
   before 
     %//--- '%!lkey->string%' controller bindings\n%
   do
@@ -94,12 +94,12 @@ foreach CONTROLLER_MAP do
   end
 end
 
-foreach OUTLET_DECLARATION_LIST do
+for () in OUTLET_DECLARATION_LIST do
    %//--- check %!mOutletName%' outlet not nil\n%
    %  if (nil == %!mOutletName%) {\n%
    %    presentErrorWindow (__FILE__, __LINE__, @"the '%!mOutletName%' outlet is nil") ;\n%
    %  }\n%
-  foreach mOutletBindingList do
+  for () in mOutletBindingList do
     ![mBinding generateObjectiveCBinding !mOutletName]
   end
 end
@@ -117,26 +117,26 @@ end
 //--------------------------- Add Signature observer
 %
 %//--- Unbind Outlets
-%foreach OUTLET_DECLARATION_LIST do
-  foreach > mOutletBindingList do
+%for () in OUTLET_DECLARATION_LIST do
+  for () in > mOutletBindingList do
     ![mBinding generateObjectiveCRemoveBinding !mOutletName]
   end
 end
 %//--- Unbind Controllers
-%foreach CONTROLLER_MAP do
-  foreach mControllerBindingList do
+%for () in CONTROLLER_MAP do
+  for () in mControllerBindingList do
    ![mBinding generateObjectiveCRemoveBinding !lkey->string]
   end
 end
 %//--- Remove Transient observers
 %!generateRemoveOCObserverForTransients [!TRANSIENT_LIST_FOR_IMPLEMENTATION]
 %//--- Release controllers
-%foreach CONTROLLER_MAP do
+%for () in CONTROLLER_MAP do
   %  %!lkey->string%.content = nil ;\n%
   %  macroReleaseSetToNil (%!lkey->string%) ;\n%
 end
 %//--- Remove circularities in outlets
-%foreach OUTLET_DECLARATION_LIST do
+%for () in OUTLET_DECLARATION_LIST do
   if mImplementsDeallocProtocol then
     %  [%!mOutletName% objectWillBeDeallocated] ;\n%
   end 
@@ -152,7 +152,7 @@ end
 + (void) load {
   Method original, swizzled ;
 %
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:));
   swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzle:));
   method_exchangeImplementations (original, swizzled) ;
@@ -162,7 +162,7 @@ foreach ATTRIBUTE_LIST_FOR_GENERATION do
 %
 end
 
-foreach ATTRIBUTE_LIST_FOR_GENERATION do
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//----------------------------------------------------------------------------*
 //    '%!mAttributeName%' attribute                                            *
 //----------------------------------------------------------------------------*

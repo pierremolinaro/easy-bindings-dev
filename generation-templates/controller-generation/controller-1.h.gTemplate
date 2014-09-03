@@ -4,7 +4,7 @@
 
 @interface %!CONTROLLER_CLASS_NAME% : NSObject {
 
-%foreach BINDING_MAP do%
+%for () in BINDING_MAP do%
 //--- Attributes for '%!lkey->string%' binding
   @protected NSObject * mBoundObjectFor_%!lkey->string% ;
   @protected NSString * mKeyPathFor_%!lkey->string% ;

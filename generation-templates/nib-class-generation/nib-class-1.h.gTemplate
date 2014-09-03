@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-%foreach HEADER_INCLUSION_SET do
+%for () in HEADER_INCLUSION_SET do
   %#import "%!key%.h"\n%
 end
 %
@@ -7,7 +7,7 @@ end
 
 @class %!PREFERENCES_NAME% ;
 %
-foreach CLASS_PREDECLARATION_SET do
+for () in CLASS_PREDECLARATION_SET do
   %@class %!key% ;\n%
 end
 %
@@ -15,22 +15,22 @@ end
 
 @interface %!PREFERENCES_NAME% : NSObject {
 //--- Attribute observers
-%foreach ATTRIBUTE_LIST_FOR_GENERATION do
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %  @private NSMutableSet * %!mAttributeName%_observers ;\n%
 end
 
 
-foreach CONTROLLER_MAP do
+for () in CONTROLLER_MAP do
 %//--- '%!lkey->string%' controller
   @private %!mControllerClassName% * %!lkey->string% ;\n%
 end
 
 
-foreach OUTLET_DECLARATION_LIST do
+for () in OUTLET_DECLARATION_LIST do
 %//--- '%!mOutletName%' outlet
   @private IBOutlet %!mOutletType% * %!mOutletName% ;\n\n%
 end
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mTransientName%' transient cache\n%
 %  @private %![mTransientType ocTypeName]% %!mTransientName%__cache ;\n%
 %  @private BOOL %!mTransientName%__computed ;\n\n%

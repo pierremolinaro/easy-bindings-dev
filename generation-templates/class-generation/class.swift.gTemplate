@@ -10,11 +10,11 @@ else
 end
 % {
 
-%foreach ATTRIBUTE_LIST do
+%for () in ATTRIBUTE_LIST do
   ![mType generateAttributeDeclarationInSwift !"class" !CLASS_NAME !mAttributeName !mDirectSwiftDefaultValue !generateUndoHandling:false]
 end
 
-foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
