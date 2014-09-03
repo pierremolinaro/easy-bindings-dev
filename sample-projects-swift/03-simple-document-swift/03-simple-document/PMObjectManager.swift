@@ -19,7 +19,7 @@ import Cocoa
   //  init                                                                       *
   //-----------------------------------------------------------------------------*
 
-   init () {
+  override init () {
     mUndoManager = PMUndoManager ()
     super.init ()
     noteObjectAllocation (self)
@@ -133,19 +133,19 @@ import Cocoa
       format:NSPropertyListFormat.BinaryFormat_v1_0,
       options:0,
       error:nil
-    )
+    )!
   }
 
   //-----------------------------------------------------------------------------*
 
   func readFromData (inData : NSData,
                      rootEntityClassName : String) -> PMManagedObject {
- let start = NSDate()
+    // let start = NSDate()
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
       options:0, // NSPropertyListReadOptions.Immutable,
       format:nil,
       error:nil
-    )
+    )!
     let dictionaryArray : [NSDictionary] = v as [NSDictionary]
     var objectArray = NSMutableArray  ()
     for d in dictionaryArray {
@@ -159,8 +159,8 @@ import Cocoa
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
- let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
- NSLog ("Read %f ms", timeTaken)
+    // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
+    // NSLog ("Read %f ms", timeTaken)
   //--- Return root object
     return objectArray [0] as PMManagedObject
   }
@@ -183,8 +183,8 @@ import Cocoa
     objectsToExploreArray.addObject (inRootObject)
     var reachableObjectArray = NSMutableArray ()
     reachableObjectArray.addObject (inRootObject)
- let start = NSDate()
- //   NSLog ("start")
+    // let start = NSDate()
+    //   NSLog ("start")
     reachables [inRootObject.savingIndex] = true
     while (objectsToExploreArray.count > 0) {
       let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as PMManagedObject
@@ -200,8 +200,8 @@ import Cocoa
         }
       }
     }
- let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
- NSLog ("%f ms", timeTaken)
+    // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
+    // NSLog ("%f ms", timeTaken)
     return reachableObjectArray ;
   }
 

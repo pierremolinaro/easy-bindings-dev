@@ -1,14 +1,7 @@
 semantics preferencesGeneration :
   import "easyBindings_options.gOption" ;
   import "transientGeneration.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-list @attributeListForGeneration {
-  @unifiedTypeProxy mAttributeType ;
-  @string mAttributeName ;
-  @string mDefaultValueInSwift ;
-}
+  import "bindingSemanticAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -27,37 +20,17 @@ list @outletGenerationList {
   @string mOutletType ;
 }
 
-map @controllerMap {
- @string mControllerClassName ;
-}
+#----------------------------------------------------------------------------*
 
-map @preferencesPropertyArrayMap {
+map @controllerMap {
  @string mControllerClassName ;
 }
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy swiftTypeName -> @string outResult
-:
-  switch [selfcopy mTypeKind]
-  when boolType : outResult := "Bool" ;
-  when uintegerType : outResult := "UInt64" ;
-  when integerType : outResult := "Int64" ;
-  when doubleType : outResult := "Double" ;
-  when stringType : outResult := "String" ;
-  when colorType : outResult := "NSColor" ;
-  when dataType : outResult := "NSData" ;
-  when dateType : outResult := "NSDate" ;
-  when imageType : outResult := "NSImage" ;
-  when fontType : outResult := "NSFont" ;
-  when menuType : outResult := "NSMenu" ;
-  when bezierPathType : outResult := "NSBezierPath" ;
-  when structType, enumType : outResult := [selfcopy key] ;
-  when classType, controllerClassType, documentType, entityType,
-  preferencesType, nibClassType, outletClassType, protocolType :
-    outResult := "<invalid return type '" + [selfcopy key] + "' >" ;
-  end switch ;
-end reader ;
+map @preferencesPropertyArrayMap {
+ @string mControllerClassName ;
+}
 
 #----------------------------------------------------------------------------*
 

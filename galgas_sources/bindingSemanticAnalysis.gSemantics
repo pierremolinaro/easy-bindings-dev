@@ -3,4 +3,84 @@ semantics bindingSemanticAnalysis :
 
 #----------------------------------------------------------------------------*
 
+list @attributeListForGeneration {
+  @unifiedTypeProxy mAttributeType ;
+  @string mAttributeName ;
+  @string mDefaultValueInSwift ;
+}
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy swiftTypeName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "Bool" ;
+  when uintegerType : outResult := "UInt64" ;
+  when integerType : outResult := "Int64" ;
+  when doubleType : outResult := "Double" ;
+  when stringType : outResult := "String" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<invalid return type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy valueAccessorForExplorerWindow ??@string inPropertyName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "NSString.format (\"%s\", " + inPropertyName + " ? \"true\" : \"false\")" ;
+  when uintegerType : outResult := "NSString.format (\"%lu\", " + inPropertyName + ")" ;
+  when integerType : outResult := "NSString.format (\"%ld\", " + inPropertyName + ")" ;
+  when doubleType : outResult := "NSString.format (\"%g\", " + inPropertyName + ")" ;
+  when stringType : outResult := inPropertyName ;
+  when colorType : outResult := inPropertyName + ".description" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "NSNumber.numberWithBool (" + inPropertyName + ")" ;
+  when uintegerType : outResult := "NSString.numberWithUnsignedLongLong (" + inPropertyName + ")" ;
+  when integerType : outResult := "NSString.numberWithLongLong (" + inPropertyName + ")" ;
+  when doubleType : outResult := "NSString.numberWithDouble (" + inPropertyName + ")" ;
+  when stringType : outResult := inPropertyName ;
+  when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType, enumType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 end semantics ;

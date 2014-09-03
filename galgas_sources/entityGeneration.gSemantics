@@ -1,6 +1,67 @@
 semantics entityGeneration :
   import "easyBindings_options.gOption" ;
   import "transientGeneration.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+list @entityListForGeneration {
+  @string mEntityName ;
+  @string mSuperEntityName ;
+  @attributeListForGeneration mAttributeListForGeneration ;
+  @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+}
+
+#----------------------------------------------------------------------------*
+
+local filewrapper entityGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template entityImplementationInSwift "entity.swift.gTemplate"
+    ?@string ENTITY_NAME
+    ?@attributeListForGeneration ATTRIBUTE_LIST_FOR_GENERATION
+    ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
+#    ?@decoratedOutletMap OUTLET_MAP
+#    ?@preferencesPropertyArrayMap ARRAY_MAP
+#    ?@controllerMap CONTROLLER_MAP
+#    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
+  ;
+  
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateEntities
+  ??@entityListForGeneration inEntityListForGeneration
+  ??@string inOutputDirectory
+:
+  for () in inEntityListForGeneration do
+    const s := [filewrapper entityGenerationTemplate.entityImplementationInSwift
+      !mEntityName
+      !mAttributeListForGeneration
+      !mDecoratedTransientMapForGeneration
+#      !mAttributeListForInitMethodHeader
+#      !mInheritedAttributeListForImplementation
+#      !mFileInclusionSet->mImplementationFileInclusionSet
+#      !mToManyRelationshipList
+#      !propertyAndTomanyRelationshipSet
+#      !mToOneRelationshipList
+#      !mCurrentRelationshipList
+#      !mCurrentRelationshipMap
+#      !mSignList
+#      !signSet
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mEntityName . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end for ;
+end routine ;
 
 #-----------------------------------------------------------------------------*
 #   hasCustomExplorerFunction                                                 *

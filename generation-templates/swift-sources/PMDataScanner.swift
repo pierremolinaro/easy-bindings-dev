@@ -105,9 +105,9 @@ import Cocoa
   //---------------------------------------------------------------------------*
 
   func updateProgressIndicator () {
-    if mProgressIndicator {
-      mProgressIndicator!.doubleValue = Double (mReadIndex)
-      mProgressIndicator!.display ()
+    if let progressIndicator = mProgressIndicator {
+      progressIndicator.doubleValue = Double (mReadIndex)
+      progressIndicator.display ()
     }
   }
 

@@ -1,7 +1,9 @@
 semantics typeAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
+  import "documentGeneration.gSemantics" ;
   import "preferencesGeneration.gSemantics" ;
-import "controllerClassAnalysis.gSemantics" ;
+  import "entityGeneration.gSemantics" ;
+  import "controllerClassAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -9,9 +11,12 @@ struct @structForGeneration{
   @transientListForGeneration mTransientListForGeneration ;
   @actionListForGeneration mActionListForGeneration ;
   @preferenceListForGeneration mPreferenceListForGeneration ;
+  @documentListForGeneration mDocumentListForGeneration ;
+  @entityListForGeneration mEntityListForGeneration ;
   @stringset mNeededOutletClasses ;
   @stringset mControllerGenerationStringSet ;
 }
+
 #----------------------------------------------------------------------------*
 
 routine typeAnalysis
@@ -76,7 +81,7 @@ local routine unifiedTypeAnalysis
   ??@templateControllerMap inTemplateControllerMap
   ??@lstring inTypeName
   ??@typeKind inTypeKind
-  ??@unifiedTypeProxy unused superType
+  ??@unifiedTypeProxy inSuperType
   ??@unifiedTypeProxy inRootEntityType
   ??@decoratedAttributeMap decoratedAttributeMap
   ??@decoratedTransientMap decoratedTransientMap
@@ -197,6 +202,13 @@ local routine unifiedTypeAnalysis
   end for ;
 #--- Build generation lists
   switch inTypeKind
+  when entityType :
+    ioGeneration->mEntityListForGeneration +=
+      !inTypeName->string
+      !if [inSuperType isNull] then "" else [inSuperType key] end
+      !attributeListForGeneration
+      !decoratedTransientMap
+    ;
   when preferencesType :
     ioGeneration->mPreferenceListForGeneration +=
       !inTypeName->string
@@ -206,7 +218,7 @@ local routine unifiedTypeAnalysis
       !controllerInstanciationStringList
     ;
   when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType, documentType,
-       doubleType, entityType, enumType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
+       doubleType, enumType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
        protocolType, stringType, structType, uintegerType:
   end switch ;
 end routine ;

@@ -303,11 +303,11 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton) {
-    var object = valueForKey (inKey) as PMManagedObject
+    var object = valueForKey (inKey) as PMManagedObject?
     var stringValue = "nil"
-    if nil != object {
-      let objectIndex = object.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
+    if let unwrappedObject = object {
+      let objectIndex = unwrappedObject.explorerObjectIndex ()
+      stringValue = NSString (format:"#%d (%s) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
     button.enabled = object != nil
     button.title = stringValue
