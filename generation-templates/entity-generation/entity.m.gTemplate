@@ -10,7 +10,7 @@
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   %#import "%!ENTITY_NAME%-transient-computations.h"\n%
 end
-foreach INCLUSION_SET do
+for () in INCLUSION_SET do
   %#import "%!key%.h"\n%
 end
 %
@@ -24,17 +24,17 @@ end
 //-----------------------------------------------------------------------------*
 
 //--- Attributes
-%foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+%for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %@synthesize %!mAttributeName% ;\n%
 end
 %
 //--- To-one relationships
-%foreach TO_ONE_RELATIONSHIPS do
+%for () in TO_ONE_RELATIONSHIPS do
 %@synthesize %!mValue0% ; // %!mValue1%\n%
 end%
 //--- To-many relationships
 %
-foreach TO_MANY_RELATIONSHIPS do
+for () in TO_MANY_RELATIONSHIPS do
 %@synthesize %!mValue0% ; // Set of %!mValue1% entities\n%
 end
 %
@@ -46,19 +46,19 @@ end
   Method original ;
   Method swizzled ;
 %
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  original = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
 end
-foreach TO_ONE_RELATIONSHIPS do
+for () in TO_ONE_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
   %  method_exchangeImplementations (original, swizzled) ;\n%
 end
-foreach TO_MANY_RELATIONSHIPS do
+for () in TO_MANY_RELATIONSHIPS do
   %  original = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%:)) ;\n%
   %  swizzled = class_getInstanceMethod (self, @selector (set%![mValue0 stringByCapitalizingFirstCharacter]%_swizzled:)) ;\n%
   %  macroCheckMethodSwizzling (original, swizzled) ;\n%
@@ -83,12 +83,12 @@ end
   if (self) {
   //--- Attribute initialisation
 %
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %    self.%!mAttributeName% = %!mDirectOCDefaultValue% ;\n%
 end
 %  //--- To many relationship initialisation
 %
-foreach TO_MANY_RELATIONSHIPS do
+for () in TO_MANY_RELATIONSHIPS do
   %    self.%!mValue0% = [NSMutableArray new] ;\n%
 end
 %  //--- Add Transient observers\n%
@@ -104,7 +104,7 @@ end
 - (void) buildAttributeDescriptionArray: (NSMutableArray *) ioDescriptionArray {
   [super buildAttributeDescriptionArray:ioDescriptionArray] ;
 %
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  [ioDescriptionArray addObject:[PMAttributeDescription descriptionWithAttributeName:@"%!mAttributeName%"%
   if [mType hasCustomExplorerFunction] then
     % withConversionFunction:convert%![mType ebTypeName]%ValueToString%
@@ -120,7 +120,7 @@ end
 - (void) buildToOneRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
   [super buildToOneRelationshipDescriptionArray:ioDescriptionArray] ;
 %
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
     %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
     %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
@@ -138,7 +138,7 @@ end
 - (void) buildToManyRelationshipDescriptionArray: (NSMutableArray *) ioDescriptionArray {
   [super buildToManyRelationshipDescriptionArray:ioDescriptionArray] ;
 %
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  [ioDescriptionArray addObject:[PMRelationshipDescription\n%
     %    descriptionWithRelationshipName:@"%!mRelationshipName->string%"\n%
@@ -155,7 +155,7 @@ end
 
 - (void) resetBeforeDeletion {
 %
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   %  %!mRelationshipName->string% = nil ;\n%
 end
 %//--- Remove Transient observers
@@ -170,10 +170,10 @@ end
 - (void) saveIntoDictionary: (NSMutableDictionary *) ioDictionary {
   [super saveIntoDictionary:ioDictionary] ;
 %
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  store%![mType ebTypeName]%InDictionary (self.%!mAttributeName%, @"%!mAttributeName%", ioDictionary) ;\n%
 end
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  storeEntityArrayInDictionary (self.%!mRelationshipName->string%, @"%!mRelationshipName->string%", ioDictionary) ;\n%
   else
@@ -193,10 +193,10 @@ end
     withManagedEntityArray:inManagedEntityArray
   ] ;
 %
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %  self.%!mAttributeName% = read%![mType ebTypeName]%FromDictionary (@"%!mAttributeName%", inDictionary) ;\n%
 end
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  self.%!mRelationshipName->string% = readEntityArrayFromDictionary (@"%!mRelationshipName->string%", inDictionary, inManagedEntityArray) ;\n%
   else
@@ -207,7 +207,7 @@ end
 
 %
 
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %//-----------------------------------------------------------------------------*\n%
     %//    set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
@@ -307,7 +307,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   end
 end
 
-foreach CURRENT_RELATIONSHIP_LIST do
+for () in CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
     %//-----------------------------------------------------------------------------*\n%
     %//    set%![mRelationshipName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
@@ -345,7 +345,7 @@ foreach CURRENT_RELATIONSHIP_LIST do
   end
 end
 
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
   %//-----------------------------------------------------------------------------*\n%
   %//    set%![mAttributeName stringByCapitalizingFirstCharacter]%_swizzled       *\n%
   %//-----------------------------------------------------------------------------*\n\n%
@@ -383,7 +383,7 @@ if [SIGN_LIST length] > 0 then
 
 - (NSInteger) computeSignature {
   NSInteger signature = [super computeSignature] ;
-% foreach SIGN_LIST do
+% for () in SIGN_LIST do
 %  signature = %![mPropertyType functionForComputingSignature !mIsToMany]% (signature, self.%!mPropertyName%) ;\n%
 end
 %  return signature ;
@@ -391,7 +391,7 @@ end
 %end
 
 
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
 //-----------------------------------------------------------------------------*
 //    %!mAttributeName% Observer                                               *
 //-----------------------------------------------------------------------------*
@@ -424,7 +424,7 @@ foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do%
 %
 end
 
-foreach TO_MANY_RELATIONSHIPS do%
+for () in TO_MANY_RELATIONSHIPS do%
 //-----------------------------------------------------------------------------*
 
 - (void) addObserverOf_%!mValue0%: (NSObject *) inObserver {

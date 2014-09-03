@@ -1,10 +1,10 @@
 
 //--- To-one relationships
-%foreach TO_ONE_RELATIONSHIPS do
+%for () in TO_ONE_RELATIONSHIPS do
 %@property (strong) %!mValue1% * %!mValue0% ;\n%
 end%
 //--- To-many relationships
-%foreach TO_MANY_RELATIONSHIPS do
+%for () in TO_MANY_RELATIONSHIPS do
 %@property (strong) NSMutableArray * %!mValue0% ; // Set of %!mValue1% entities\n%
 %- (void) appendTo%![mValue0 stringByCapitalizingFirstCharacter]%: (%!mValue1% *) inObject ;\n%
 %- (void) removeObjectFrom%![mValue0 stringByCapitalizingFirstCharacter]%: (%!mValue1% *) inObject ;\n%
@@ -12,7 +12,7 @@ end%
 %- (void) removeObserverOf_%!mValue0%: (NSObject *) inObserver ;\n\n%
 end
 
-foreach ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
+for () in ATTRIBUTE_LIST_FOR_IMPLEMENTATION do
 %//--- '%!mAttributeName%' attribute\n%
 %@property %![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
 %- (void) addObserverOf_%!mAttributeName%: (NSObject *) inObserver ;\n%
@@ -21,7 +21,7 @@ end
 
 
 %//--- Transient properties
-%foreach TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  - (%![mTransientType ocTypeName]%) %!mTransientName% ;\n\n%
 end%
 //--- Creation

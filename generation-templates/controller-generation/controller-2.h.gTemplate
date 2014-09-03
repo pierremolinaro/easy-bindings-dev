@@ -1,5 +1,5 @@
 
-%foreach OBSERVABLE_PROPERTY_MAP do
+%for () in OBSERVABLE_PROPERTY_MAP do
 %//--- '%!lkey->string%' property\n%
 %  @property (copy) %![mType propertyAttributeString]% %![mType ocClassName]% * %!lkey->string% ;\n\n%
 end

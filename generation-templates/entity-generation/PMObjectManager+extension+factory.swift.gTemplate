@@ -13,7 +13,7 @@ extension PMObjectManager {
   func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
     var result : PMManagedObject?
 %
-foreach ENTITY_MAP
+for () in ENTITY_MAP
 before
   %    %
 do

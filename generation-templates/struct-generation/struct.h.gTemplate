@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 %
-foreach HEADER_INCLUSIONS do
+for () in HEADER_INCLUSIONS do
 %#import "%!key%.h"\n%
 end
 %
@@ -8,7 +8,7 @@ end
 
 typedef struct {
 %
-foreach STRUCT_FIELD_LIST do
+for () in STRUCT_FIELD_LIST do
  %  %![mFieldType ebTypeName]% %!mFieldName% ;\n%
 end
 %
@@ -37,7 +37,7 @@ BOOL equal%!STRUCT_TYPE_NAME%s (%?^%const %!STRUCT_TYPE_NAME% inValue1,
 //-----------------------------------------------------------------------------*
 
 %!STRUCT_TYPE_NAME% make%!STRUCT_TYPE_NAME% (%?^
-foreach STRUCT_FIELD_LIST
+for () in STRUCT_FIELD_LIST
   do %const %![mFieldType ebTypeName]% in_%!mFieldName
   between %,\n%!^
 end

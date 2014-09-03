@@ -4,14 +4,14 @@
 //    U S E R    D E F I N E D    C U R S O R S                              *
 //---------------------------------------------------------------------------*
 
-%foreach CURSOR_MAP do
+%for () in CURSOR_MAP do
 %NSCursor * %!lkey->string%_cursor (void) ;
 %end%
 //---------------------------------------------------------------------------*
 //    P R E D E F I N E D    C U R S O R S                                   *
 //---------------------------------------------------------------------------*
 
-%foreach PREDEFINED_CURSOR_LIST do%
+%for () in PREDEFINED_CURSOR_LIST do%
 NSCursor * %!mValue%_cursor (void) ;
 %end%
 //---------------------------------------------------------------------------*

@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-%foreach ADOPTED_PROTOCOL_LIST do
+%for () in ADOPTED_PROTOCOL_LIST do
   if not mNeedsInclusionInHeader then
     %#import "%!mProtocolName%.h"\n%
   end
@@ -8,7 +8,7 @@ end
 //---------------------------------------------------------------------------*
 
 @interface %!OUTLET_CLASS_NAME% : %!SUPER_CLASS_NAME
-foreach ADOPTED_PROTOCOL_LIST
+for () in ADOPTED_PROTOCOL_LIST
 before % <%
 do !mProtocolName
 between %, %
@@ -16,7 +16,7 @@ after %>%
 end
 % {
 
-%foreach BINDING_MAP do%
+%for () in BINDING_MAP do%
 //--- Attributes for '%!lkey->string%' binding
   @protected NSObject * mBoundObjectFor_%!lkey->string% ;
   @protected NSString * mKeyPathFor_%!lkey->string% ;
