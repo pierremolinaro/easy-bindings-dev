@@ -195,7 +195,7 @@ class PMManagedDocument : NSDocument {
       format:NSPropertyListFormat.BinaryFormat_v1_0,
       options:0,
       error:nil
-    )
+    )!
     fileData.writeByte (1, trace:&trace)
     fileData.writeAutosizedData (metaData, trace:&trace)
   //--- Append document data
@@ -330,7 +330,7 @@ class PMManagedDocument : NSDocument {
         "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       error = NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier,
+        domain:NSBundle.mainBundle ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
@@ -356,7 +356,7 @@ class PMManagedDocument : NSDocument {
         "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       error = NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier,
+        domain:NSBundle.mainBundle ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )

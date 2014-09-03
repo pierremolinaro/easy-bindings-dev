@@ -122,11 +122,11 @@ import Cocoa
     if nil == myMatrix {
       presentErrorWindow (__FILE__, __LINE__, "the 'myMatrix' outlet is nil") ;
     }
-    myMatrix?.bind ("selectedIndex",
+/*    myMatrix?.bind ("selectedIndex",
       toObject:mRootObject,
       withKeyPath:"myEnumeration__as__number",
       options:nil
-    )
+    ) */
   //--- Outlet myColorWell
     if nil == myColorWell {
       presentErrorWindow (__FILE__, __LINE__, "the 'myColorWell' outlet is nil") ;

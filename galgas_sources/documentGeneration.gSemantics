@@ -1,6 +1,17 @@
 semantics documentGeneration :
   import "decoratedTypes.gSemantics" ;
   import "transientGeneration.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+list @documentListForGeneration {
+  @string mDocumentName ;
+  @attributeListForGeneration mAttributeListForGeneration ;
+  @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+  @decoratedOutletMap mOutletMap ;
+  @stringlist mControllerInstanciationStringList ;
+}
 
 #----------------------------------------------------------------------------*
 

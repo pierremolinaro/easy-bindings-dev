@@ -174,8 +174,13 @@ local routine generateCode
     !inGeneration->mControllerGenerationStringSet
     !outputDirectory
   ;
+  generateEntities
+    !inGeneration->mEntityListForGeneration
+    !outputDirectory
+  ;
   generateSwiftApplicationFiles
     !outputDirectory
+    ![inGeneration->mEntityListForGeneration length] > 0
   ;
 end routine ;
 
@@ -191,8 +196,16 @@ filewrapper swift_sources in "../generation-templates/swift-sources" {
 
 local routine generateSwiftApplicationFiles
   ??@string inOutputDirectory
+  ??@bool inHasEntities
 :
   @stringlist swiftFiles := {!"PMAllocationDebug", !"easy-bindings-utilities"} ;
+  if inHasEntities then
+    swiftFiles += !"PMObjectManager" ;
+    swiftFiles += !"PMManagedObject" ;
+    swiftFiles += !"PMManagedDocument" ;
+    swiftFiles += !"PMUndoManager" ;
+    swiftFiles += !"PMDataScanner" ;
+  end if ;
   @stringlist xibFiles := {!"PMAllocationDebug"} ;
   var fw := [filewrapper swift_sources] ;
   for (@string s) in swiftFiles do
