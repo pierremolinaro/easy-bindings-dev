@@ -1,0 +1,177 @@
+import Cocoa
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject {
+
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  private var %!mAttributeName%_explorer : NSTextField? = nil\n%
+%  private var %!mAttributeName%_observers = NSMutableSet ()\n%
+%  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
+    didSet {
+      if %!mAttributeName% != oldValue {
+        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue)
+        for anyObject in %!mAttributeName%_observers {
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
+        }
+      }
+    }
+  }
+
+  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeName]%) {
+    %!mAttributeName% = value
+  }
+
+  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+    %!mAttributeName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+    %!mAttributeName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+%
+end
+
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override init (entityManager : PMObjectManager) {
+    super.init (entityManager:entityManager)
+  //--- Register trigger objects
+%
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
+for () in mDependencyList do
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%)\n%
+end
+end
+%  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+  //--- remove trigger objects
+%
+#!generateRemoveSwiftObserverForTransients [!"entity" !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
+%  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    populateExplorerWindow                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%    %!mAttributeName%_explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
+%    if let explorer = %!mAttributeName%_explorer {\n%
+%      explorer.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%\n%
+%    }\n%
+end
+%  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    clearObjectExplorer                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func clearObjectExplorer () {
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%    %!mAttributeName%_explorer = nil\n%
+end
+%    super.clearObjectExplorer ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    saveIntoDictionary                                                                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%    ioDictionary.setValue (%![mAttributeType transformForSavingInDictionary !mAttributeName]%, forKey: "%!mAttributeName%")\n%
+end
+%  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    setUpWithDictionary                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func setUpWithDictionary (inDictionary : NSDictionary,
+                                     managedObjectArray : NSArray) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%    %!mAttributeName% = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
+end
+%  }
+
+%
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Transient: " + lkey->string stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!lkey->string%_observers = NSMutableSet ()\n%
+%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
+%    get {\n%
+%      if %!lkey->string%_cache == nil {\n%
+%        %!lkey->string%_cache = compute_%!ENTITY_NAME%_%!lkey->string% (%
+for () in mDependencyList
+do ![mDependency generateForComputeFunction]
+between %, %
+end
+%)\n%
+%      }\n%
+%      return %!lkey->string%_cache!\n%
+%    }
+    set {
+    }
+  }
+
+  func %!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
+    for anyObject in %!lkey->string%_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+
+   func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% {
+    if nil == triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache {
+      triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+    }
+    return triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache!
+  }
+ 
+%
+end
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //   accessibleObjects                                                                                               *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func accessibleObjects (inout objects : NSMutableArray) {
+    super.accessibleObjects (&objects)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+}
+
