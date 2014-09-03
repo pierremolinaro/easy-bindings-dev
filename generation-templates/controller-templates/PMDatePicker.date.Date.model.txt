@@ -1,0 +1,57 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date)
+class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerProtocol {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMDatePicker? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$, outlet : PMDatePicker?, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let outlet = mOutlet {
+      outlet.target = self
+      outlet.action = "action:"
+    }
+    mObject?.addObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mObject?.removeObserverOf_$MODEL$ (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) && !mOutlet!.dateValue.isEqualToDate (mObject!.$MODEL$) {
+      mOutlet!.dateValue = mObject!.$MODEL$
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    if (mOutlet != nil) && (mObject != nil) && !mOutlet!.dateValue.isEqualToDate (mObject!.$MODEL$) {
+      mObject!.$MODEL$ = mOutlet!.dateValue
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex = kTriggerOutletDisplay
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
