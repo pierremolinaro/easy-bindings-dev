@@ -4,25 +4,25 @@ preferences PMPrefs {
   outlet PMTextField myTextField ;
   bind model : self.myString to myTextField $value {sendContinously : no};
   outlet PMTextField myOtherTextField ;
-  bind  model : self.myString to myOtherTextField $value {sendContinously : yes} ;
+  bind model : self.myString to myOtherTextField $value {sendContinously : yes} ;
   outlet PMTextField myObserverTextField ;
-  bind  model : self.myString to myObserverTextField $value {sendContinously : no} ;
+  bind model : self.myString to myObserverTextField $value {sendContinously : no} ;
 #--- Color
-  property NSColor mColor default yellowColor ;
+  property Color mColor default yellowColor ;
   outlet PMColorWell mContinousColorWell ;
   bind  model : self.mColor to mContinousColorWell $color {sendContinously : yes} ;
   outlet PMColorWell mColorWell ;
   bind  model : self.mColor to mColorWell $color {sendContinously : no} ;
   outlet PMColorWell mObserverColorWell ;
-  bind  model : self.mColor to mObserverColorWell $color {sendContinously : no} ;
+  bind model : self.mColor to mObserverColorWell $color {sendContinously : no} ;
 #--- Date
-  property NSDate mDate default date ;
+  property Date mDate default date ;
   outlet PMDatePicker mDatePicker ;
-  bind  model : self.mDate to mDatePicker $date ;
+  bind model : self.mDate to mDatePicker $date ;
 #--- Number
   property Integer mIntegerValue default 123 ;
   outlet PMTextField mInteger32TextField ;
-  bind  model : self.mIntegerValue to mInteger32TextField $value ;
+  bind model : self.mIntegerValue to mInteger32TextField $value ;
 #--- Actions  
   action monAction ;
   action autreAction ;

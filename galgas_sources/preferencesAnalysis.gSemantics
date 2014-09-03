@@ -1,7 +1,6 @@
 semantics preferencesAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
-  import "attributeDeclarationAnalysis.gSemantics" ;
 
 ##----------------------------------------------------------------------------*
 #

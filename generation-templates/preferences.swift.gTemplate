@@ -79,9 +79,6 @@ end
   }
 
   func %!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
-    // self.willChangeValueForKey ("%!lkey->string%")
-    // self.didChangeValueForKey  ("%!lkey->string%")
-    // %!lkey->string%_cache = nil
     for anyObject in %!lkey->string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
@@ -98,12 +95,12 @@ end
     enterTriggerWithObject (inObserver)
   }
 
-  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%? = nil
   var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% {
-    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache == nil {
-      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache == nil {
+      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%__cache!
+    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache!
   }\n
 %end
 %
@@ -201,7 +198,7 @@ for () in OUTLET_MAP do
 end
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self))\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%)\n%
 end
 end
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do

@@ -1,6 +1,5 @@
 semantics typeAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
-  import "attributeDeclarationAnalysis.gSemantics" ;
   import "preferencesGeneration.gSemantics" ;
 import "controllerClassAnalysis.gSemantics" ;
 

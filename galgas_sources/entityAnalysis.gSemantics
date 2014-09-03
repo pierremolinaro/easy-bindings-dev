@@ -1,7 +1,6 @@
 semantics entityAnalysis :
   import "bindingSemanticAnalysis.gSemantics" ;
   import "transientAnalysis.gSemantics" ;
-  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #   ANALYZE ENTITIES                                                         *

@@ -4,29 +4,28 @@ enum MonEnumeration {premier, deuxieme, troisieme}
 #--------------------------------------------------------------*
 
 entity MyRootEntity {
-  attribute NSString myString default "Hello" ;
-  attribute MonEnumeration myEnumeration default deuxieme ;
-  attribute NSColor myColor default yellowColor ;
+  property String myString default "Hello" ;
+#  property MonEnumeration myEnumeration default deuxieme ;
+  property Color myColor default yellowColor ;
   
-  transient NSString myStringMaj dependsFrom self.myString ;
-  transient NSString myStringMin dependsFrom self.myString ;
-  transient NSString myStringConcat dependsFrom self.myStringMaj, self.myStringMin ;
+  transient String myStringMaj dependsFrom self.myString ;
+  transient String myStringMin dependsFrom self.myString ;
+  transient String myStringConcat dependsFrom self.myStringMaj, self.myStringMin ;
 }
 
 #--------------------------------------------------------------*
 
-document PMDocument root MyRootEntity {
-  outlet NSTextField myTextField $value root.myString ;
-  outlet NSTextField myTextMajField $value root.myStringMaj ;
-  outlet NSTextField myTextMinField $value root.myStringMin ;
-  outlet NSTextField myTextConcatField $value root.myStringConcat ;
-  outlet NSMatrix myMatrix $selectedIndex root.myEnumeration ;
-  outlet NSColorWell myColorWell $value root.myColor ;
-  
-  action monAction ;
-  action autreAction ;
-}
+#document PMDocument root MyRootEntity {
+#  outlet NSTextField myTextField $value root.myString ;
+#  outlet NSTextField myTextMajField $value root.myStringMaj ;
+#  outlet NSTextField myTextMinField $value root.myStringMin ;
+#  outlet NSTextField myTextConcatField $value root.myStringConcat ;
+#  outlet NSMatrix myMatrix $selectedIndex root.myEnumeration ;
+#  outlet NSColorWell myColorWell $value root.myColor ;
+#  
+#  action monAction ;
+#  action autreAction ;
+#}
 
 #--------------------------------------------------------------*
 
-end

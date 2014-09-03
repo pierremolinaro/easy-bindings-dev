@@ -1,5 +1,4 @@
 semantics outletClassAnalysis :
-  import "attributeDeclarationAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
 
 ##----------------------------------------------------------------------------*
