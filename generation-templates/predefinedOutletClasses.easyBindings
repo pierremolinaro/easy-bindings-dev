@@ -4,9 +4,9 @@ controllerTemplate PMTextField $value : Integer model ;
 
 
 outletClass PMColorWell ;
-controllerTemplate PMColorWell $color : NSColor model {sendContinously : Bool} ;
+controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;
 
 
 outletClass PMDatePicker ;
-controllerTemplate PMDatePicker $date : NSDate model ;
+controllerTemplate PMDatePicker $date : Date model ;
 

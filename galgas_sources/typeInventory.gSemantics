@@ -1,7 +1,6 @@
 semantics typeInventory :
   import "bindingSemanticAnalysis.gSemantics" ;
   import "transientAnalysis.gSemantics" ;
-  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

@@ -26,8 +26,8 @@ rule <start_symbol>
     ;
 #  while
 #    <struct_declaration> !inIsUserDefined !?ioDeclarationAST ;
-#  while
-#    <enum_declaration> !inIsUserDefined !?ioDeclarationAST ;
+  while
+    <enum_declaration> !inIsUserDefined !?ioDeclarationAST ;
 #  while
 #    <cursor_declaration> !?ioCursorList ;
 #  while
@@ -1070,23 +1070,23 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-#rule <enum_declaration>
-#  ??@bool inIsUserDefined
-#  ?!@astDeclarationList ioDeclarationAST
-#:
-#  $enum$ ;
-#  $Identifier$ ? @lstring enumName ;
-#  ${$ ;
-#  @lstringlist enumConstants [emptyList] ;
-#  repeat
-#    $identifier$ ? @lstring constantName ;
-#    enumConstants += !constantName ;
-#  while
-#    $,$ ;
-#  end repeat ;
-#  $}$ ;
-#  ioDeclarationAST += ![@enumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
-#end rule ;
+rule <enum_declaration>
+  ??@bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST
+:
+  $enum$ ;
+  $Identifier$ ??@lstring enumName ;
+  ${$ ;
+  @lstringlist enumConstants [emptyList] ;
+  repeat
+    $identifier$ ??@lstring constantName ;
+    enumConstants += !constantName ;
+  while
+    $,$ ;
+  end repeat ;
+  $}$ ;
+  ioDeclarationAST->mDeclarationList += ![@enumDeclaration new !inIsUserDefined !enumName !enumConstants] ;
+end rule ;
 
 #----------------------------------------------------------------------------*
 

@@ -15,16 +15,7 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "typeInventory.gSemantics" ;
   
   semantics "typeAnalysis.gSemantics" ;
-
-  semantics "attributeDeclarationAnalysis.gSemantics" ;
-
-  semantics "protocolAnalysis.gSemantics" ;
-
-  semantics "predefinedTypeAnalysis.gSemantics" ;
   
-  semantics "cursorAnalysis.gSemantics" ;
-  semantics "cursorGeneration.gSemantics" ;
-
   semantics "enumAnalysis.gSemantics" ;
   semantics "enumGeneration.gSemantics" ;
 

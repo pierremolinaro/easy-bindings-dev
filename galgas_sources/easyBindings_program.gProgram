@@ -1,8 +1,6 @@
 program easyBindings_program :
 import "easyBindings_grammar.gGrammar" ;
 
-import "cursorAnalysis.gSemantics" ;
-import "cursorGeneration.gSemantics" ;
 import "transientGeneration.gSemantics" ;
 import "easyBindings_options.gOption" ;
 import "entityGeneration.gSemantics" ;
@@ -11,6 +9,7 @@ import "actionGeneration.gSemantics" ;
 import "outletClassGeneration.gSemantics" ;
 import "controllerClassAnalysis.gSemantics" ;
 import "controllerClassGeneration.gSemantics" ;
+import "transientAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -40,13 +39,13 @@ message "a source text file with the .easyBindings extension"
   ;
 #--- Enter predefined types
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"String" ![@typeKind stringType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSColor" ![@typeKind colorType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSData" ![@typeKind dataType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSDate" ![@typeKind dateType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSFont" ![@typeKind fontType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSImage" ![@typeKind imageType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSMenu" ![@typeKind menuType]] ;
-  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"NSBezierPath" ![@typeKind bezierPathType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Color" ![@typeKind colorType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Data" ![@typeKind dataType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Date" ![@typeKind dateType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Font" ![@typeKind fontType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Image" ![@typeKind imageType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Menu" ![@typeKind menuType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"BezierPath" ![@typeKind bezierPathType]] ;
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Integer" ![@typeKind integerType]] ;
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"UInteger" ![@typeKind uintegerType]] ;
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Bool" ![@typeKind boolType]] ;

@@ -1,7 +1,6 @@
 semantics documentAnalysis :
   import "transientAnalysis.gSemantics" ;
   import "bindingSemanticAnalysis.gSemantics" ;
-  import "attributeDeclarationAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

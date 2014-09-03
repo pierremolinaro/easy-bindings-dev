@@ -183,7 +183,7 @@ end
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMObjectManager) {
+  override init (entityManager : PMObjectManager) {
     super.init (entityManager:entityManager)
   //--- Register trigger objects
 %
