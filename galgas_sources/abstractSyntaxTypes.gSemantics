@@ -64,9 +64,20 @@ list @bindingOptionList {
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractObservablePropertyAST {
+  @lstring mSelectorName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @selfObservablePropertyAST extends @abstractObservablePropertyAST {
+  @lstring mSelfObservablePropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
-  @lstring mObservablePropertyName ;
-  @lstring mModelSelectorName ;
+  @abstractObservablePropertyAST mObservableProperty ;
   @lstring mOutletName ;
   @lstring mBindingName ;
   @bindingOptionList mBindingOptionList ;

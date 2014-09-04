@@ -136,21 +136,23 @@ local routine unifiedTypeAnalysis
 #--- Analyze bindings
   @stringlist controllerInstanciationStringList := {} ;
   for () in inBindingList do
-    [inCurrentObservablePropertyMap searchKey
-      !mObservablePropertyName
-      ??@unifiedTypeProxy propertyType
-      ?* # ?@bool isTransient
-      ?* #?@lstring propertySignature
-      ??@bool isCollection
+    var controllerSignature := "" ;
+    var @unifiedTypeProxySelectorList boundPropertyTypeList := {} ;
+    var @2stringlist typePropertyNameList := {} ;
+    [mObservableProperty analyzeBoundObservableProperty
+      !inTypeName->string
+      !inCurrentObservablePropertyMap
+      !?controllerSignature
+      !?boundPropertyTypeList
+      !?typePropertyNameList
     ] ;
-    if isCollection then
-      error mObservablePropertyName : "the observable property should not be a collection" ;
-    end if ;
     [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
+    controllerSignature := outletTypeName->string + "." + mBindingName + controllerSignature ;
     const controllerTemplateName := [@lstring new
-      !outletTypeName->string + "." + mBindingName + "." + [propertyType key] + "." + mModelSelectorName
+      !controllerSignature
       !mBindingName->location
     ] ;
+    var @unifiedTypeProxySelectorList modelPropertyTypeList := {} ;
     [inTemplateControllerMap searchKey
       !controllerTemplateName
       ??@string templateString
@@ -158,13 +160,21 @@ local routine unifiedTypeAnalysis
       ??@lstring modelSelector
       ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
     ] ;
-  #--- Check model type
-    if [modelTypeProxy key] != [propertyType key] then
-      error mBindingName : "the type of the observable property is '" + [propertyType key] + "', but this binding requires the '" + [modelTypeProxy key] + "' type" ;    
-    end if ;
-  #--- Check model selector
-    if modelSelector->string != mModelSelectorName->string then
-      error mModelSelectorName : "the selector of the observable property should be '" + modelSelector + "'" ;    
+    modelPropertyTypeList += !modelTypeProxy !modelSelector ;
+  #--- Check bound models types and selectors
+    if [boundPropertyTypeList length] != [modelPropertyTypeList length] then
+      error mOutletName : "internal error" ;
+    else
+      for () model_ in modelPropertyTypeList, () bound_ in boundPropertyTypeList do
+        if [model_mType key] != [bound_mType key] then
+          error bound_mSelector : "the type of the observable property is '" + [bound_mType key]
+             + "', but this binding requires the '" + [model_mType key] + "' type"
+          ;    
+        end if ;
+        if model_mSelector->string != bound_mSelector->string then
+          error bound_mSelector : "the selector of the observable property should be '" + model_mSelector + "'" ;    
+        end if ;
+      end for ;
     end if ;
   #--- Check options
     var bindingOptionString := "" ;
@@ -192,15 +202,26 @@ local routine unifiedTypeAnalysis
       end for ;
     end if ;
   #--- Build controller string
-    var controllerString := "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n" ;
-    controllerString += "//   Controller " + [inTypeName->string + " " + mObservablePropertyName + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
-    controllerString += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n" ;
-    controllerString += [
-      [templateString stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName->string] stringByReplacingStringByString !"$OBJECTCLASS$" !inTypeName->string
-    ] ;
+    var title := "" ;
+    for () in typePropertyNameList do
+      title += mValue0 + " " + mValue1 ;
+    end for ;    
+    var controllerString := "//" + [@string stringWithSequenceOfCharacters !'—' !117] + "*\n" ;
+    controllerString += "//   Controller " + [title + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
+    controllerString += "//" + [@string stringWithSequenceOfCharacters !'—' !117] + "*\n" ;
+    var templateStringWithReplacements := templateString ;
+    for () in typePropertyNameList do
+      templateStringWithReplacements := [templateStringWithReplacements stringByReplacingStringByString !"$OBJECTCLASS$" !mValue0] ;
+      templateStringWithReplacements := [templateStringWithReplacements stringByReplacingStringByString !"$MODEL$" !mValue1] ;
+    end for ;    
+    controllerString += templateStringWithReplacements ;
     ioGeneration->mControllerGenerationStringSet += !controllerString ;
   #--- Build controller instanciation string
-    const controllerInstanciationString := "Controller_" + inTypeName + "_" + mObservablePropertyName + "_" + outletTypeName + "_" + mBindingName
+    var controllerInstanciationString := "Controller" ;
+    for () in typePropertyNameList do
+      controllerInstanciationString += "_" + mValue0 + "_" + mValue1 ;
+    end for ;    
+    controllerInstanciationString += "_" + outletTypeName + "_" + mBindingName
        + " (object:self, outlet:" + mOutletName + ", file:__FILE__, line:__LINE__" + bindingOptionString + ")" ;
     controllerInstanciationStringList += !controllerInstanciationString ;
   end for ;
@@ -255,6 +276,40 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
   ??@lstring inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
+  ??@string inCurrentTypeName
+  ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ?!@string ioControllerSignature
+  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
+  ?!@2stringlist ioTypePropertyNameList
+;
+
+#----------------------------------------------------------------------------*
+
+override method @selfObservablePropertyAST analyzeBoundObservableProperty
+  ??@string inCurrentTypeName
+  ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ?!@string ioControllerSignature
+  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
+  ?!@2stringlist ioTypePropertyNameList
+:
+  [inObservablePropertyMap searchKey
+    !mSelfObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* # ?@bool isTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if isCollection then
+    error mSelfObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  ioControllerSignature += "." + [propertyType key] + "." + mSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioTypePropertyNameList += !inCurrentTypeName !mSelfObservablePropertyName->string ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -647,6 +647,17 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
+  $identifier$ ??@lstring modelSelectorName ;
+  $:$ ;
+  $self$ ;
+  $.$ ;
+  $identifier$ ??@lstring observableProperty ;
+  outObservablePropertyAST := [@selfObservablePropertyAST new
+    !modelSelectorName
+    !observableProperty
+  ] ;
+end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -654,11 +665,7 @@ rule <binding_declaration>
   ?!@bindingList ioBindingList
 :
   $bind$ ;
-  $identifier$ ??@lstring modelSelectorName ;
-  $:$ ;
-  $self$ ;
-  $.$ ;
-  $identifier$ ??@lstring observableProperty ;
+  <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
   $to$ ;
   $identifier$ ??@lstring outletName ;
   $binding$ ??@lstring bindingName ;
@@ -678,8 +685,7 @@ rule <binding_declaration>
   end select ;
   $;$ ;
   ioBindingList +=
-    !observableProperty
-    !modelSelectorName
+    !observablePropertyAST
     !outletName
     !bindingName
     !bindingOptions
