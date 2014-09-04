@@ -39,10 +39,10 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
         object: mOutlet
       )
     }
-    noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+    noteObjectDeallocation (self)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
