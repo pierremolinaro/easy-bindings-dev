@@ -178,7 +178,7 @@ import Cocoa
       reachables.append (false)
       idx += 1
     }
-    NSLog ("%d objects", idx)
+    // NSLog ("%d objects", idx)
     var objectsToExploreArray = NSMutableArray ()
     objectsToExploreArray.addObject (inRootObject)
     var reachableObjectArray = NSMutableArray ()

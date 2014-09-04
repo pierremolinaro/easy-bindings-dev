@@ -39,7 +39,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
 
   func action (sender : AnyObject!) {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
-      mObject!.$MODEL$ = mOutlet!.selectedRow
+      mObject!.$MODEL$ = mObject!.$MODEL$.enumfromRawValue (mOutlet!.selectedRow)
     }
   }
 

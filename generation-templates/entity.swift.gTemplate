@@ -15,6 +15,7 @@ import Cocoa
     didSet {
       if %!mAttributeName% != oldValue {
         mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
+        %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
         for anyObject in %!mAttributeName%_observers {
           let object = anyObject as PMTriggerProtocol
           enterTriggerWithObject (object)
@@ -61,9 +62,13 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
-  //--- remove trigger objects
+  //--- Unregister trigger objects
 %
-#!generateRemoveSwiftObserverForTransients [!"entity" !ENTITY_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
+for () in mDependencyList do
+%    %![mDependency generateRemoveObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%)\n%
+end
+end
 %  }
 
   //-------------------------------------------------------------------------------------------------------------------*
