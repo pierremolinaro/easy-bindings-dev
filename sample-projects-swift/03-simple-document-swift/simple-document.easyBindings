@@ -17,6 +17,7 @@ entity MyRootEntity {
 
 document PMDocument root MyRootEntity {
   outlet PMTextField myTextField ; # $value root.myString ;
+  bind root.myString to myTextField $value {sendContinously : no} ;
   outlet PMTextField myTextMajField ; # $value root.myStringMaj ;
   outlet PMTextField myTextMinField ; # $value root.myStringMin ;
   outlet PMTextField myTextConcatField ; # $value root.myStringConcat ;

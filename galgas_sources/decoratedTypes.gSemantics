@@ -4,6 +4,13 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
+list @unifiedTypeProxySelectorList {
+  @unifiedTypeProxy mType ;
+  @lstring mSelector ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @unifiedTypeProxyList {
   @unifiedTypeProxy mType ;
 }
