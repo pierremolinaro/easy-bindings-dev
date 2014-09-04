@@ -488,7 +488,7 @@ rule <document_declaration>
     !documentName
     ![@typeKind documentType]
     !["" nowhere] # No super type
-    !@outletDeclarationList {}
+    !outletDeclarationList
     !rootEntityName
     !attributeList
     !@relationshipList {}
