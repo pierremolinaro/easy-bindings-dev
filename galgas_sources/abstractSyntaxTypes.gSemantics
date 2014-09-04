@@ -76,6 +76,12 @@ class @selfObservablePropertyAST extends @abstractObservablePropertyAST {
 
 #----------------------------------------------------------------------------*
 
+class @rootObservablePropertyAST extends @abstractObservablePropertyAST {
+  @lstring mRootObservablePropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
   @abstractObservablePropertyAST mObservableProperty ;
   @lstring mOutletName ;

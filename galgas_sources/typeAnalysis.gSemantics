@@ -139,12 +139,15 @@ local routine unifiedTypeAnalysis
     var controllerSignature := "" ;
     var @unifiedTypeProxySelectorList boundPropertyTypeList := {} ;
     var @2stringlist typePropertyNameList := {} ;
+    var @stringlist boundObjectNameList := {} ;
     [mObservableProperty analyzeBoundObservableProperty
       !inTypeName->string
       !inCurrentObservablePropertyMap
+      !inRootEntityType
       !?controllerSignature
       !?boundPropertyTypeList
       !?typePropertyNameList
+      !?boundObjectNameList
     ] ;
     [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
     controllerSignature := outletTypeName->string + "." + mBindingName + controllerSignature ;
@@ -221,8 +224,13 @@ local routine unifiedTypeAnalysis
     for () in typePropertyNameList do
       controllerInstanciationString += "_" + mValue0 + "_" + mValue1 ;
     end for ;    
-    controllerInstanciationString += "_" + outletTypeName + "_" + mBindingName
-       + " (object:self, outlet:" + mOutletName + ", file:__FILE__, line:__LINE__" + bindingOptionString + ")" ;
+    controllerInstanciationString += "_" + outletTypeName + "_" + mBindingName + " (" ;
+    var prefix := "object" ;
+    for (s) in boundObjectNameList do index idx
+      controllerInstanciationString += prefix + ":" + s + ", " ;
+      prefix := "object" + (idx + 1) ;
+    end for ;
+    controllerInstanciationString += "outlet:" + mOutletName + ", file:__FILE__, line:__LINE__" + bindingOptionString + ")" ;
     controllerInstanciationStringList += !controllerInstanciationString ;
   end for ;
 #--- Build action list
@@ -282,9 +290,11 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
 abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
+  ?!@stringlist ioBoundObjectNameList
 ;
 
 #----------------------------------------------------------------------------*
@@ -292,9 +302,11 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
 override method @selfObservablePropertyAST analyzeBoundObservableProperty
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
+  ?!@stringlist ioBoundObjectNameList
 :
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
@@ -309,6 +321,34 @@ override method @selfObservablePropertyAST analyzeBoundObservableProperty
   ioControllerSignature += "." + [propertyType key] + "." + mSelectorName ;
   ioBoundPropertyTypeList += !propertyType !mSelectorName ;
   ioTypePropertyNameList += !inCurrentTypeName !mSelfObservablePropertyName->string ;
+  ioBoundObjectNameList += !"self" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @rootObservablePropertyAST analyzeBoundObservableProperty
+  ??@string unused inCurrentTypeName
+  ??@decoratedObservablePropertyMap unused inObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@string ioControllerSignature
+  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
+  ?!@2stringlist ioTypePropertyNameList
+  ?!@stringlist ioBoundObjectNameList
+:
+  [[inRootEntityType mObservablePropertyMap] searchKey
+    !mRootObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* # ?@bool isTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if isCollection then
+    error mRootObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  ioControllerSignature += "." + [propertyType key] + "." + mSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;
+  ioBoundObjectNameList += !"rootObject" ;
 end method ;
 
 #----------------------------------------------------------------------------*
