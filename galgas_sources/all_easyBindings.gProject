@@ -30,13 +30,10 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   semantics "nibClassAnalysis.gSemantics" ;
   semantics "nibClassGeneration.gSemantics" ;
 
-  semantics "preferencesAnalysis.gSemantics" ;
   semantics "preferencesGeneration.gSemantics" ;
 
-  semantics "entityAnalysis.gSemantics" ;
   semantics "entityGeneration.gSemantics" ;
 
-  semantics "documentAnalysis.gSemantics" ;
   semantics "documentGeneration.gSemantics" ;
   
   semantics "outletClassAnalysis.gSemantics" ;

@@ -51,6 +51,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
       gExplorerObjectIndex = gExplorerObjectIndex + 1
  //   #endif
     super.init ()
+    entityManager.addEntity (self)
     noteObjectAllocation (self)
   }
 

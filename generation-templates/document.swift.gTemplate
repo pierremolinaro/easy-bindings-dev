@@ -10,19 +10,14 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
-for () in OUTLET_GENERATION_LIST do
-%  @IBOutlet var %!mOutletName% : %!mOutletType%?\n%
+for () in OUTLET_GENERATION_MAP do
+%  @IBOutlet var %!lkey->string% : %!mOutletTypeName->string%?\n%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    Controllers                                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-%
-for () in CONTROLLER_MAP do
-%  var %!lkey->string% : %!mControllerClassName% \n%
-end
-%
   //-------------------------------------------------------------------------------------------------------------------*
   //    Document attributes                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -30,13 +25,33 @@ end
 %
 
 for () in ATTRIBUTE_LIST do
-%//--- '%!mAttributeName%' attribute\n%
-%  @property%![mType propertyAttributeString]% %![mType ocTypeName]% %!mAttributeName% ;\n%
-%  - (void) addObserverOf_%!mAttributeName%: (id) inObserver ;\n%
-%  - (void) removeObserverOf_%!mAttributeName%: (id) inObserver ;\n\n%
-end
-for () in ATTRIBUTE_LIST do
-%  @private NSMutableSet * %!mAttributeName%_observers ;\n%
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!mAttributeName%_observers = NSMutableSet ()\n%
+%  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
+    didSet {
+      if %!mAttributeName% != oldValue {
+        for anyObject in %!mAttributeName%_observers {
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
+        }
+      }
+    }
+  }
+
+  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+    %!mAttributeName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+    %!mAttributeName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -45,15 +60,7 @@ end
 
   init () {
     let em = PMObjectManager ()
-%
-for () in CONTROLLER_MAP do
-  %    %!lkey->string% = %!mControllerClassName% (%
-  if mControlledClassOrEntityName->string != "" then
-    %entityManager:em, inClassName:"%!mControlledClassOrEntityName->string%"%
-  end
-  %)\n%
-end
-%    super.init (inEntityManager:em)
+    super.init (inEntityManager:em)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -89,35 +96,24 @@ end
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Controller bindings
-%
-for () in CONTROLLER_MAP do
-  for () in mControllerBindingList
-  before 
-    %//--- '%!lkey->string%' controller bindings\n%
-  do
-   ![mBinding generateSwiftBinding !lkey->string]
-  end
-end
-%  //--------------------------- Outlet bindings
+  //--------------------------- Outlet checking
 %
 
-for () in OUTLET_GENERATION_LIST do
-   %  //--- Outlet %!mOutletName%\n%
-   %    if nil == %!mOutletName% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!mOutletName%' outlet is nil") ;\n%
+for () in OUTLET_GENERATION_MAP do
+   %    if nil == %!lkey->string% {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil") ;\n%
    %    }\n%
-  for () in mOutletBindingList do
-    ![mBinding generateSwiftBinding !mOutletName]
-  end
 end
 %  //--------------------------- Add Transient observers
-%!generateAddSwiftObserverForTransients [!"document" !DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
-%  //--------------------------- Add Signature observer
 %
-if HAS_SIGNATURE_OBSERVER then
-  %  [mRootObject addSignatureObserver:self] ;\n%
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
+for () in mDependencyList do
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%)\n%
 end
-%}
+end
+
+%  //--------------------------- Add Signature observer
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   removeWindowController                                                                                          *
@@ -125,78 +121,62 @@ end
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Add Signature observer
-%
-if HAS_SIGNATURE_OBSERVER then
-  %  [mRootObject removeSignatureObserver:self] ;\n%
-end
-%  //--- Unbind Outlets
-%for () in OUTLET_GENERATION_LIST do
-  for () in > mOutletBindingList do
-    ![mBinding generateSwiftRemoveBinding !mOutletName]
-  end
-end
-%  //--- Unbind Controllers
-%for () in CONTROLLER_MAP do
-  for () in mControllerBindingList do
-   ![mBinding generateSwiftRemoveBinding !lkey->string]
-  end
-end
-%  //--- Remove Transient observers
-%!generateRemoveSwiftObserverForTransients [!"document" !DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"   "]
-%  //--- Release controllers
-%for () in CONTROLLER_MAP do
-  %    // %!lkey->string% = nil\n%
-end
-%  //--- Remove circularities in outlets
-%for () in OUTLET_GENERATION_LIST do
-  if mImplementsDeallocProtocol then
-    %  [%!mOutletName% objectWillBeDeallocated] ;\n%
-  end 
-end
-%  //---
+  //---
     super.removeWindowController (inWindowController)
   }
 
 %
 
-#!generateSwiftObserverRoutinesForTransient [!DOCUMENT_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"document"]
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  var %!mTransientName%_observers = NSMutableSet ()
-  var %!mTransientName%__cache : %![mTransientType swiftTypeName]%?
-  var %!mTransientName% : %![mTransientType swiftTypeName]% {
-%!generateSwiftTransientCacheRoutine [!DOCUMENT_NAME !mTransientType !mTransientName !mDependencyList !mRootSignDependencyList]
-%  }
-
-  func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_didChange () {
-    self.willChangeValueForKey ("%!mTransientName%")
-    self.didChangeValueForKey  ("%!mTransientName%")
-  }
-
-  func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
-    %!mTransientName%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
-  }
- 
-  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol) {
-    %!mTransientName%_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
-  }
-
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% {
-    if !triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache {
-      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
-    }
-    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%__cache!
-  }\n
- 
-%
+  //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  var %!lkey->string%_observers = NSMutableSet ()\n%
+%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
+%    get {\n%
+%      if %!lkey->string%_cache == nil {\n%
+%        %!lkey->string%_cache = compute_%!DOCUMENT_NAME%_%!lkey->string% (%
+for () in mDependencyList
+do ![mDependency generateForComputeFunction]
+between %, %
 end
-%}
+%)\n%
+%      }\n%
+%      return %!lkey->string%_cache!\n%
+%    }
+    set {
+    }
+  }
+
+  func %!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
+    for anyObject in %!lkey->string%_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+ 
+   func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
+    %!lkey->string%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% {
+    if triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache == nil {
+      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+    }
+    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache!
+  }\n
+%end
+%
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+}
+

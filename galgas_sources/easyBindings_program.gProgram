@@ -182,6 +182,10 @@ local routine generateCode
     !inGeneration->mEnumListForGeneration
     !outputDirectory
   ;
+  generateDocuments
+    !inGeneration->mDocumentListForGeneration
+    !outputDirectory
+  ;
   generateSwiftApplicationFiles
     !outputDirectory
     ![inGeneration->mEntityListForGeneration length] > 0
