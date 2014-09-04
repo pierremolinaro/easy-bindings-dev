@@ -6,6 +6,7 @@ outletClass PMDatePicker ;
 controllerTemplate PMDatePicker $date : Date model ;
 
 outletClass PMMatrix ;
+controllerTemplate PMMatrix $selectedIndex : Enum model ;
 
 outletClass PMTextField ;
 controllerTemplate PMTextField $value : String model {sendContinously : Bool} ;
