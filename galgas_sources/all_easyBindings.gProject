@@ -16,7 +16,6 @@ project all_easyBindings (0:0:1) -> "easyBindings":
   
   semantics "typeAnalysis.gSemantics" ;
   
-  semantics "enumAnalysis.gSemantics" ;
   semantics "enumGeneration.gSemantics" ;
 
   semantics "structAnalysis.gSemantics" ;

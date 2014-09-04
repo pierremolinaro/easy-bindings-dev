@@ -3,6 +3,7 @@ semantics typeAnalysis :
   import "documentGeneration.gSemantics" ;
   import "preferencesGeneration.gSemantics" ;
   import "entityGeneration.gSemantics" ;
+  import "enumGeneration.gSemantics" ;
   import "controllerClassAnalysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -13,6 +14,7 @@ struct @structForGeneration{
   @preferenceListForGeneration mPreferenceListForGeneration ;
   @documentListForGeneration mDocumentListForGeneration ;
   @entityListForGeneration mEntityListForGeneration ;
+  @enumListForGeneration mEnumListForGeneration ;
   @stringset mNeededOutletClasses ;
   @stringset mControllerGenerationStringSet ;
 }
@@ -36,7 +38,9 @@ routine typeAnalysis
        @decoratedObservablePropertyMap observablePropertyMap
        @decoratedEntityRelationshipMap currentRelationshipMap
        @actionMap actionMap
-       @bindingList bindingList) in inUnifiedTypeMap do
+       @bindingList bindingList
+       @lstringlist enumConstantList
+       @enumConstantMap enumConstantMap) in inUnifiedTypeMap do
    #--- Build all observable property map
       @decoratedObservablePropertyMap allObservableProperties := observablePropertyMap ;
       var t := superType ;
@@ -68,6 +72,8 @@ routine typeAnalysis
       !allObservableProperties
       !actionMap
       !bindingList
+      !enumConstantList
+      !enumConstantMap
       !?outGeneration
     ;  
   end for ;
@@ -91,6 +97,8 @@ local routine unifiedTypeAnalysis
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@actionMap inActionMap
   ??@bindingList inBindingList
+  ??@lstringlist inEnumConstantList
+  ??@enumConstantMap unused inEnumConstantMap
   ?!@structForGeneration ioGeneration
 :
 #--- Analyze transient dependancies
@@ -202,6 +210,11 @@ local routine unifiedTypeAnalysis
   end for ;
 #--- Build generation lists
   switch inTypeKind
+  when enumType :
+    ioGeneration->mEnumListForGeneration +=
+      !inTypeName->string
+      !inEnumConstantList
+    ;
   when entityType :
     ioGeneration->mEntityListForGeneration +=
       !inTypeName->string
@@ -218,7 +231,7 @@ local routine unifiedTypeAnalysis
       !controllerInstanciationStringList
     ;
   when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType, documentType,
-       doubleType, enumType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
+       doubleType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
        protocolType, stringType, structType, uintegerType:
   end switch ;
 end routine ;

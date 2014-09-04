@@ -48,9 +48,10 @@ reader @unifiedTypeProxy valueAccessorForExplorerWindow ??@string inPropertyName
   when dateType : outResult := "NSDate" ;
   when imageType : outResult := "NSImage" ;
   when fontType : outResult := "NSFont" ;
+  when enumType : outResult := inPropertyName + ".string ()" ;
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
-  when structType, enumType : outResult := [selfcopy key] ;
+  when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
   preferencesType, nibClassType, outletClassType, protocolType :
     outResult := "<type '" + [selfcopy key] + "' >" ;
@@ -74,7 +75,81 @@ reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
-  when structType, enumType : outResult := [selfcopy key] ;
+  when enumType : outResult := "NSNumber.numberWithInteger (" + inPropertyName + ".toRaw ())" ;
+  when structType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy transformerForRegisterUndoWithTarget ??@string inOldValue -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "NSNumber.numberWithBool (" + inOldValue + ")" ;
+  when uintegerType : outResult := "NSNumber.numberWithUnsignedLongLong (" + inOldValue + ")" ;
+  when integerType : outResult := "NSNumber.numberWithLongLong (" + inOldValue + ")" ;
+  when doubleType : outResult := "NSNumber.numberWithDouble (" + inOldValue + ")" ;
+  when stringType, colorType : outResult := inOldValue ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when enumType : outResult := "NSNumber.numberWithInteger (" + inOldValue + ".toRaw ())" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy swiftTypeUndoArgument -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := "NSNumber" ;
+  when uintegerType : outResult := "NSNumber" ;
+  when integerType : outResult := "NSNumber" ;
+  when doubleType : outResult := "NSNumber" ;
+  when stringType : outResult := "String" ;
+  when colorType : outResult := "NSColor" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when enumType : outResult := "NSNumber" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType : outResult := "NSNumber" ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @unifiedTypeProxy transformerForUndo ??@string inValue -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when boolType : outResult := inValue + ".boolValue" ;
+  when uintegerType : outResult := inValue + ".unsignedIntegerValue" ;
+  when integerType : outResult := inValue + ".longLongValue" ;
+  when doubleType : outResult := inValue + ".doubleValue" ;
+  when stringType, colorType : outResult := inValue ;
+  when dataType : outResult := inValue ;
+  when dateType : outResult := inValue ;
+  when imageType : outResult := inValue ;
+  when fontType : outResult := inValue ;
+  when menuType : outResult := inValue ;
+  when enumType : outResult := [selfcopy key] + ".fromRaw (" + inValue + ".integerValue)!" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
   preferencesType, nibClassType, outletClassType, protocolType :
     outResult := "<type '" + [selfcopy key] + "' >" ;

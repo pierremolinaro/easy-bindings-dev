@@ -320,16 +320,15 @@
     withKeyPath:@"values.GLOBAL-REPLACE-FIELD" 
     options:nil
   ] ;
-  mSearchMatrixPreferenceKey = [NSString stringWithFormat:@"searchMatrixFor_%lu", self.fileURL.path.hash] ;
   [mSearchMatrix
     bind:@"selectedIndex"
     toObject:[NSUserDefaultsController sharedUserDefaultsController] 
-    withKeyPath:[NSString stringWithFormat:@"values.%@", mSearchMatrixPreferenceKey]
+    withKeyPath:[NSString stringWithFormat:@"values.%@", [self searchMatrixPreferenceKey]]
     options:nil
   ] ;
   [[NSUserDefaults standardUserDefaults]
     addObserver:self
-    forKeyPath:mSearchMatrixPreferenceKey
+    forKeyPath:[self searchMatrixPreferenceKey]
     options:0
     context:NULL
   ] ;
@@ -513,10 +512,10 @@
   [mSearchMatrix
     unbind:@"selectedIndex"
   ] ;
-  [ud
+/*  [ud
     removeObserver:self
-    forKeyPath:mSearchMatrixPreferenceKey
-  ] ;
+    forKeyPath:[self searchMatrixPreferenceKey]
+  ] ;*/
 //---
   mSourceDisplayArrayController = nil ;
   mDisplayDescriptorArray = nil ;
@@ -1537,7 +1536,7 @@ static const utf32 COCOA_ERROR_ID   = TO_UNICODE (4) ;
     NSLog (@"%s, keyPath: %@", __PRETTY_FUNCTION__, inKeyPath) ;
   #endif
   NSUserDefaults * ud = [NSUserDefaults standardUserDefaults] ;
-  if ((inObject == ud) && [inKeyPath isEqualToString:mSearchMatrixPreferenceKey]) {
+  if ((inObject == ud) && [inKeyPath isEqualToString:[self searchMatrixPreferenceKey]]) {
     [self updateDirectoryListVisibility] ;
   }else if ((inObject == ud) && [inKeyPath isEqualToString:GGS_build_text_font]) {
     NSData * data = [ud objectForKey:GGS_build_text_font] ;
@@ -1677,8 +1676,14 @@ static const utf32 COCOA_ERROR_ID   = TO_UNICODE (4) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+- (NSString *) searchMatrixPreferenceKey {
+  return [NSString stringWithFormat:@"searchMatrixFor_%lu", self.fileURL.path.hash] ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 - (void) updateDirectoryListVisibility {
-  const NSInteger sel = [[NSUserDefaults standardUserDefaults] integerForKey:mSearchMatrixPreferenceKey] ;
+  const NSInteger sel = [[NSUserDefaults standardUserDefaults] integerForKey:[self searchMatrixPreferenceKey]] ;
   [mExcludedDirectoryView setHidden:sel != 1] ;
   [mExplicitSearchDirectoryView setHidden:sel != 2] ;
 }

@@ -19,6 +19,8 @@ override method @predefinedTypeDeclaration typeInventory
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
     !@bindingList {}
+    !@lstringlist {} # mEnumConstantList
+    !@enumConstantMap {} # mEnumConstantMap
   ] ;
 end method ;
 
@@ -88,6 +90,10 @@ end method ;
 override method @enumDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 :
+  @enumConstantMap enumConstantMap := {} ;
+  for (s) in mEnumConstantNameList do
+    [!?enumConstantMap insertKey !s] ;
+  end for ;
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
     ![@typeKind enumType]
@@ -100,6 +106,8 @@ override method @enumDeclaration typeInventory
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
     !@bindingList {}
+    !mEnumConstantNameList
+    !enumConstantMap
   ] ;
 end method ;
 
@@ -127,6 +135,8 @@ override method @structDeclaration typeInventory
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
     !@bindingList {}
+    !@lstringlist {} # mEnumConstantList
+    !@enumConstantMap {} # mEnumConstantMap
   ] ;
 end method ;
 
@@ -282,6 +292,8 @@ override method @unifiedTypeDeclaration typeInventory
     !currentRelationshipMap
     !documentActionMap
     !mBindingList
+    !@lstringlist {} # mEnumConstantList
+    !@enumConstantMap {} # mEnumConstantMap
   ] ;
 end method ;
 
