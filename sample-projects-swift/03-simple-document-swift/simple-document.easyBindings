@@ -15,17 +15,17 @@ entity MyRootEntity {
 
 #--------------------------------------------------------------*
 
-#document PMDocument root MyRootEntity {
-#  outlet NSTextField myTextField $value root.myString ;
-#  outlet NSTextField myTextMajField $value root.myStringMaj ;
-#  outlet NSTextField myTextMinField $value root.myStringMin ;
-#  outlet NSTextField myTextConcatField $value root.myStringConcat ;
-#  outlet NSMatrix myMatrix $selectedIndex root.myEnumeration ;
-#  outlet NSColorWell myColorWell $value root.myColor ;
-#  
-#  action monAction ;
-#  action autreAction ;
-#}
+document PMDocument root MyRootEntity {
+  outlet PMTextField myTextField ; # $value root.myString ;
+  outlet PMTextField myTextMajField ; # $value root.myStringMaj ;
+  outlet PMTextField myTextMinField ; # $value root.myStringMin ;
+  outlet PMTextField myTextConcatField ; # $value root.myStringConcat ;
+  outlet PMMatrix myMatrix ; # $selectedIndex root.myEnumeration ;
+  outlet PMColorWell myColorWell ; # $value root.myColor ;
+  
+  action monAction ;
+  action autreAction ;
+}
 
 #--------------------------------------------------------------*
 

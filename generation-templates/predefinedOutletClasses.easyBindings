@@ -1,8 +1,3 @@
-outletClass PMTextField ;
-controllerTemplate PMTextField $value : String model {sendContinously : Bool} ;
-controllerTemplate PMTextField $value : Integer model {sendContinously : Bool} ;
-
-
 outletClass PMColorWell ;
 controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;
 
@@ -10,3 +5,8 @@ controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;
 outletClass PMDatePicker ;
 controllerTemplate PMDatePicker $date : Date model ;
 
+outletClass PMMatrix ;
+
+outletClass PMTextField ;
+controllerTemplate PMTextField $value : String model {sendContinously : Bool} ;
+controllerTemplate PMTextField $value : Integer model {sendContinously : Bool} ;
