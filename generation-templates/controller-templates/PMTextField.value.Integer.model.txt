@@ -3,12 +3,14 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMTextField? = nil
+  var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMTextField?, file : String, line : Int) {
+  init (object : $OBJECTCLASS$, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
+    mSendContinously = sendContinously
     super.init ()
     noteObjectAllocation (self)
     if let outlet = mOutlet {
@@ -23,6 +25,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
           presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
         }
       }
+      if mSendContinously {
+        NSNotificationCenter.defaultCenter().addObserver (self,
+          selector: "continouslySendAction:",
+          name: NSControlTextDidChangeNotification,
+          object: mOutlet
+        )
+      }
     }
     mObject?.addObserverOf_$MODEL$ (self)
   }
@@ -30,13 +39,25 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
   
   deinit {
-    noteObjectDeallocation (self)
+    if mSendContinously {
+      NSNotificationCenter.defaultCenter().removeObserver (self,
+        name: NSControlTextDidChangeNotification,
+        object: mOutlet
+      )
+    }
     mOutlet?.target = nil
     mOutlet?.action = nil
     mOutlet?.delegate = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+    noteObjectDeallocation (self)
   }
   
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func continouslySendAction (notification : NSNotification) {
+    updateModel ()
+  }
+
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
@@ -48,6 +69,12 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
+    updateModel ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func updateModel () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.$MODEL$)) {
       mObject!.$MODEL$ = Int64 (mOutlet!.integerValue)
     }

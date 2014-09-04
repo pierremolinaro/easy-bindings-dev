@@ -1,6 +1,6 @@
 outletClass PMTextField ;
 controllerTemplate PMTextField $value : String model {sendContinously : Bool} ;
-controllerTemplate PMTextField $value : Integer model ;
+controllerTemplate PMTextField $value : Integer model {sendContinously : Bool} ;
 
 
 outletClass PMColorWell ;
