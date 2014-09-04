@@ -169,7 +169,9 @@ local routine unifiedTypeAnalysis
       error mOutletName : "internal error" ;
     else
       for () model_ in modelPropertyTypeList, () bound_ in boundPropertyTypeList do
-        if [model_mType key] != [bound_mType key] then
+        if ([model_mType mTypeKind] == [@typeKind enumType]) & ([bound_mType mTypeKind] == [@typeKind enumType]) then
+        # Always ok for any enum type
+        elsif [model_mType key] != [bound_mType key] then
           error bound_mSelector : "the type of the observable property is '" + [bound_mType key]
              + "', but this binding requires the '" + [model_mType key] + "' type"
           ;    
@@ -211,7 +213,7 @@ local routine unifiedTypeAnalysis
     end for ;    
     var controllerString := "//" + [@string stringWithSequenceOfCharacters !'—' !117] + "*\n" ;
     controllerString += "//   Controller " + [title + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n" ;
-    controllerString += "//" + [@string stringWithSequenceOfCharacters !'—' !117] + "*\n" ;
+    controllerString += "//" + [@string stringWithSequenceOfCharacters !'—' !117] + "*\n\n" ;
     var templateStringWithReplacements := templateString ;
     for () in typePropertyNameList do
       templateStringWithReplacements := [templateStringWithReplacements stringByReplacingStringByString !"$OBJECTCLASS$" !mValue0] ;
@@ -318,7 +320,7 @@ override method @selfObservablePropertyAST analyzeBoundObservableProperty
   if isCollection then
     error mSelfObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType key] + "." + mSelectorName ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
   ioBoundPropertyTypeList += !propertyType !mSelectorName ;
   ioTypePropertyNameList += !inCurrentTypeName !mSelfObservablePropertyName->string ;
   ioBoundObjectNameList += !"self" ;
@@ -345,7 +347,7 @@ override method @rootObservablePropertyAST analyzeBoundObservableProperty
   if isCollection then
     error mRootObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType key] + "." + mSelectorName ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
   ioBoundPropertyTypeList += !propertyType !mSelectorName ;
   ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;
   ioBoundObjectNameList += !"rootObject" ;

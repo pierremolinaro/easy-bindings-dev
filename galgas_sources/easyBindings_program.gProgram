@@ -40,7 +40,7 @@ message "a source text file with the .easyBindings extension"
 #--- Enter predefined types
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"String" ![@typeKind stringType]] ;
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Color" ![@typeKind colorType]] ;
-#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Data" ![@typeKind dataType]] ;
+  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Enum" ![@typeKind enumType]] ;
   declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Date" ![@typeKind dateType]] ;
 #  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Font" ![@typeKind fontType]] ;
 #  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Image" ![@typeKind imageType]] ;

@@ -92,10 +92,11 @@ import Cocoa
     }
   //--------------------------- Add Transient observers
   //--------------------------- Controller instanciation
-    mControllerArray.addObject (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_MyRootEntity_myStringMaj_PMTextField_value (object:rootObject, outlet:myTextMajField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyRootEntity_myStringMin_PMTextField_value (object:rootObject, outlet:myTextMinField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyRootEntity_myStringConcat_PMTextField_value (object:rootObject, outlet:myTextConcatField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex (object:rootObject, outlet:myMatrix, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_MyRootEntity_myColor_PMColorWell_color (object:rootObject, outlet:myColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
   }
 

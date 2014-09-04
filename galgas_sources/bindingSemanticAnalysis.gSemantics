@@ -158,4 +158,18 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+reader @unifiedTypeProxy typeNameForControllerTemplateName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when enumType : outResult := "Enum" ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType,
+  bezierPathType, structType, menuType, fontType, imageType, dateType,
+  dataType, stringType, colorType, doubleType, integerType, uintegerType, boolType :
+    outResult := [selfcopy key] ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 end semantics ;

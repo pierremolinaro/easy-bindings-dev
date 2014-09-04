@@ -27,19 +27,21 @@ routine generateEnums
   ??@string inOutputDirectory
 :
   for () in inEnumListForGeneration do
-    const s := [filewrapper enumGenerationTemplate.enumGenerationInSwift
-      !mEnumName
-      !mEnumConstantList
-    ] ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !mEnumName . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
-    ] ;
+    if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
+      const s := [filewrapper enumGenerationTemplate.enumGenerationInSwift
+        !mEnumName
+        !mEnumConstantList
+      ] ;
+      [@string generateFileWithPattern
+        !inOutputDirectory
+        !mEnumName . ".swift"
+        !"//"
+        !"\n\n" # Defaut user zone1
+        !s
+        !"\n\n" # Defaut user zone2
+        !"\n"
+      ] ;
+    end if ;
   end for ;
 end routine ;
 

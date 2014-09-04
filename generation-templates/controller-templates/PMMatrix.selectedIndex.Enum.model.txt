@@ -1,0 +1,57 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex)
+class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMMatrix? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$, outlet : PMMatrix?, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let outlet = mOutlet {
+      outlet.target = self
+      outlet.action = "action:"
+    }
+    mObject?.addObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mObject?.removeObserverOf_$MODEL$ (self)
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
+      mOutlet!.selectCellAtRow (mObject!.$MODEL$.toRaw (), column:0)
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
+      mObject!.$MODEL$ = mOutlet!.selectedRow
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex = kTriggerOutletDisplay
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
