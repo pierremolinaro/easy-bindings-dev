@@ -14,7 +14,7 @@ import Cocoa
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
-        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue)
+        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
         for anyObject in %!mAttributeName%_observers {
           let object = anyObject as PMTriggerProtocol
           enterTriggerWithObject (object)
@@ -23,8 +23,8 @@ import Cocoa
     }
   }
 
-  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeName]%) {
-    %!mAttributeName% = value
+  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeUndoArgument]%) {
+    %!mAttributeName% = %![mAttributeType transformerForUndo !"value"]%
   }
 
   func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {

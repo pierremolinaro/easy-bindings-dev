@@ -2,37 +2,47 @@ semantics enumGeneration :
   import "easyBindings_options.gOption" ;
   import "decoratedTypes.gSemantics" ;
 
-##----------------------------------------------------------------------------*
-#
-#filewrapper enumGenerationTemplate in "../generation-templates/enum-generation" {
-#}{
-#}{
-#  template enumGenerationInSwift "enum.swift.gTemplate"
-#    ?@string ENUM_TYPE_NAME
-#    ?@lstringlist CONSTANT_ORDERED_LIST
-#  ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#override method @enumTypeGeneration generate
-#  ??@string inOutputDirectory
-#:
-#  const @string s := [filewrapper enumGenerationTemplate.enumGenerationInSwift
-#    !mGenerationName
-#    !mConstantOrderedList
-#  ] ;
-#  [@string generateFileWithPattern
-#    !inOutputDirectory
-#    !mGenerationName . ".swift"
-#    !"//"
-#    !"\n\n" # Defaut user zone1
-#    !s
-#    !"\n\n" # Defaut user zone2
-#    !"\n"
-#  ] ;
-#end method ;
-#
+#----------------------------------------------------------------------------*
+
+local filewrapper enumGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template enumGenerationInSwift "enum.swift.gTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @enumListForGeneration {
+  @string mEnumName ;
+  @lstringlist mEnumConstantList ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateEnums
+  ??@enumListForGeneration inEnumListForGeneration
+  ??@string inOutputDirectory
+:
+  for () in inEnumListForGeneration do
+    const s := [filewrapper enumGenerationTemplate.enumGenerationInSwift
+      !mEnumName
+      !mEnumConstantList
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mEnumName . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"\n"
+    ] ;
+  end for ;
+end routine ;
+
 #----------------------------------------------------------------------------*
 
 

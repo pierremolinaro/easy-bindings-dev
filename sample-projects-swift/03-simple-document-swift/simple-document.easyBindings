@@ -5,7 +5,7 @@ enum MonEnumeration {premier, deuxieme, troisieme}
 
 entity MyRootEntity {
   property String myString default "Hello" ;
-#  property MonEnumeration myEnumeration default deuxieme ;
+  property MonEnumeration myEnumeration default deuxieme ;
   property Color myColor default yellowColor ;
   
   transient String myStringMaj dependsFrom self.myString ;

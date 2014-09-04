@@ -24,6 +24,15 @@ uniquemap @unifiedTypeMap @unifiedTypeProxy {
   @decoratedEntityRelationshipMap mCurrentRelationshipMap ;
   @actionMap mActionMap ;
   @bindingList mBindingList ;
+  @lstringlist mEnumConstantList ;
+  @enumConstantMap mEnumConstantMap ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @enumConstantMap {
+  insert insertKey error message "there is already a '%K' constant" ;
+  search searchKey error message "the '%K' constant is not defined" ;
 }
 
 #----------------------------------------------------------------------------*
@@ -745,9 +754,7 @@ end once ;
   
 override method @identifierAsDefaultValue analyzeDefaultValueType 
   ??@unifiedTypeProxyList inAttributeActualTypeList
-#  ??@EXcontextAnalysisStruct unused inContextAnalysisStruct
   !@string outSwiftDefaultValueAsString
-#  ?!@fileInclusionSet unused ioFileInclusionSet
 :
   outSwiftDefaultValueAsString := "" ;
   @bool found := false ;
@@ -770,27 +777,16 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         : "unknown predefined date"
         ;  
       end if ;
-#    elsif mType->mKind == [@EXTypeKind enumType] then
-#      found := true ;
-#      if [inContextAnalysisStruct->mGlobalEnumConstantMap hasKey !mValue->string] then
-#        [inContextAnalysisStruct->mGlobalEnumConstantMap searchKey !mValue ?@lstring inEnumTypeName] ;
-#        ioFileInclusionSet->mHeaderFileInclusionSet += !inEnumTypeName->string ;
-#        if [mType ebTypeName] == inEnumTypeName->string then
-#          outDirectDefaultValueAsString := mValue->string ;
-#          outObjectiveCDefaultValueAsString := "[NSNumber numberWithInteger:" . mValue->string . "]" ; ;
-#          outSwiftDefaultValueAsString := inEnumTypeName->string . "." . mValue->string ;
-#        else
-#          error mValue
-#          : "bad enum constant, belongs to the '" . inEnumTypeName . "' enum type"
-#          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-#          ;  
-#        end if ;
-#      else
-#        error mValue
-#        : "the '" . [mType ebTypeName] . "' enumeration does not define '" . mValue . "' constant"
-#        : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-#        ;  
-#      end if ;
+    elsif [mType mTypeKind] == [@typeKind enumType] then
+      found := true ;
+      if [[mType mEnumConstantMap] hasKey !mValue->string] then
+          outSwiftDefaultValueAsString := [mType lkey]->string . "." . mValue->string ;
+      else
+        error mValue
+        : "the '" . [mType lkey] . "' enumeration does not define '" . mValue . "' constant"
+        : outSwiftDefaultValueAsString
+        ;  
+      end if ;
     end if ;
   end foreach ;
   if not found then

@@ -33,7 +33,6 @@ SOURCES += easyBindings_grammar.cpp
 SOURCES += decoratedTypes.cpp
 SOURCES += typeInventory.cpp
 SOURCES += typeAnalysis.cpp
-SOURCES += enumAnalysis.cpp
 SOURCES += enumGeneration.cpp
 SOURCES += structAnalysis.cpp
 SOURCES += structGeneration.cpp
