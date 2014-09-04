@@ -11,7 +11,7 @@ import Cocoa
 
 %
 for () in OUTLET_GENERATION_MAP do
-%  @IBOutlet var %!lkey->string% : %!mOutletTypeName->string%?\n%
+%  @IBOutlet var %!lkey.string% : %!mOutletTypeName.string%?\n%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -105,15 +105,15 @@ end
 %
 
 for () in OUTLET_GENERATION_MAP do
-   %    if nil == %!lkey->string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil") ;\n%
+   %    if nil == %!lkey.string% {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
    %    }\n%
 end
 %  //--------------------------- Add Transient observers
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%)\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
 end
 
@@ -141,47 +141,47 @@ for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!lkey->string%_observers = NSMutableSet ()\n%
-%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
+%  var %!lkey.string%_observers = NSMutableSet ()\n%
+%  var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey.string% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
-%      if %!lkey->string%_cache == nil {\n%
-%        %!lkey->string%_cache = compute_%!DOCUMENT_NAME%_%!lkey->string% (%
+%      if %!lkey.string%_cache == nil {\n%
+%        %!lkey.string%_cache = compute_%!DOCUMENT_NAME%_%!lkey.string% (%
 for () in mDependencyList
 do ![mDependency generateForComputeFunction]
 between %, %
 end
 %)\n%
 %      }\n%
-%      return %!lkey->string%_cache!\n%
+%      return %!lkey.string%_cache!\n%
 %    }
     set {
     }
   }
 
-  func %!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
-    for anyObject in %!lkey->string%_observers {
+  func %!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_didChange () {
+    for anyObject in %!lkey.string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
     }
   }
  
-   func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.addObject (inObserver)
+   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
  
-  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.removeObject (inObserver)
+  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
 
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% {
-    if triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache == nil {
-      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]% {
+    if triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_cache == nil {
+      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey->string identifierRepresentation]%_cache!
+    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_cache!
   }\n
 %end
 %

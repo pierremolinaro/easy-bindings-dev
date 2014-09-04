@@ -52,7 +52,7 @@ end
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%)\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
 end
 %  }
@@ -66,7 +66,7 @@ end
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%)\n%
+%    %![mDependency generateRemoveObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
 end
 %  }
@@ -121,49 +121,49 @@ end
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " + lkey->string stringByRightPadding !111 !' ']%*
+  //    %!["Transient: " + lkey.string stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!lkey->string%_observers = NSMutableSet ()\n%
-%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
+%  var %!lkey.string%_observers = NSMutableSet ()\n%
+%  var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey.string% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
-%      if %!lkey->string%_cache == nil {\n%
-%        %!lkey->string%_cache = compute_%!ENTITY_NAME%_%!lkey->string% (%
+%      if %!lkey.string%_cache == nil {\n%
+%        %!lkey.string%_cache = compute_%!ENTITY_NAME%_%!lkey.string% (%
 for () in mDependencyList
 do ![mDependency generateForComputeFunction]
 between %, %
 end
 %)\n%
 %      }\n%
-%      return %!lkey->string%_cache!\n%
+%      return %!lkey.string%_cache!\n%
 %    }
     set {
     }
   }
 
-  func %!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
-    for anyObject in %!lkey->string%_observers {
+  func %!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_didChange () {
+    for anyObject in %!lkey.string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
     }
   }
 
-   func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.addObject (inObserver)
+   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
  
-  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.removeObject (inObserver)
+  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
 
-  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% {
-    if nil == triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache {
-      triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_cache : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]% : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]% {
+    if nil == triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_cache {
+      triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_cache = PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey->string identifierRepresentation]%_cache!
+    return triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_cache!
   }
  
 %

@@ -6,7 +6,7 @@ import Foundation
 enum %!ENUM_TYPE_NAME% : Int {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
-   %  case %!mValue->string% = %![idx string]%\n%
+   %  case %!mValue.string% = %![idx string]%\n%
 end
 %
   
@@ -14,7 +14,7 @@ end
     switch self {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
-   %      case %!mValue->string% : return "%!mValue->string%" // %![idx string]%\n%
+   %      case %!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }
   }
@@ -41,7 +41,7 @@ end
 extension NSDictionary {
   func read%!ENUM_TYPE_NAME%  (inKey : String) -> %!ENUM_TYPE_NAME% {
     let v : Int? = objectForKey (inKey)?.integerValue
-    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0]->string%
+    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
     if v != nil {
       let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME%.fromRaw (v!)
       if e != nil {
