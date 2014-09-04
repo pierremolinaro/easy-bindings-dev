@@ -45,7 +45,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kTriggerOutletDisplay
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -51,7 +51,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kTriggerOutletDisplay
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
