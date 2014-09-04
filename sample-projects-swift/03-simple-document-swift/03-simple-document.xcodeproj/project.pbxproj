@@ -25,6 +25,7 @@
 		CF9492791945D3C10068A86C /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492781945D3C10068A86C /* MyRootEntity.swift */; };
 		CF94927B1945D4A90068A86C /* PMManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94927A1945D4A90068A86C /* PMManagedObject.swift */; };
 		CF94927D1945D6A00068A86C /* PMObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94927C1945D6A00068A86C /* PMObjectManager.swift */; };
+		CFAC455219B8AD7E00EC3BC2 /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC455119B8AD7E00EC3BC2 /* controller-classes.swift */; };
 		CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD713F71955D96700BC89A7 /* PMDocument.swift */; };
 		CFD713FA1955DA4A00BC89A7 /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */; };
 		CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */; };
@@ -54,6 +55,7 @@
 		CF9492781945D3C10068A86C /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 		CF94927A1945D4A90068A86C /* PMManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedObject.swift; sourceTree = "<group>"; };
 		CF94927C1945D6A00068A86C /* PMObjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMObjectManager.swift; sourceTree = "<group>"; };
+		CFAC455119B8AD7E00EC3BC2 /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
 		CFD713F71955D96700BC89A7 /* PMDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDocument.swift; sourceTree = "<group>"; };
 		CFD713F91955DA4A00BC89A7 /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedDocument.swift; sourceTree = "<group>"; };
 		CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		CF9492491945BCC90068A86C /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
+				CFAC455119B8AD7E00EC3BC2 /* controller-classes.swift */,
 				CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */,
 				CF9492551945BCC90068A86C /* MainMenu.xib */,
 				CF9492761945C8840068A86C /* MonEnumeration.swift */,
@@ -209,6 +212,7 @@
 				CF94927B1945D4A90068A86C /* PMManagedObject.swift in Sources */,
 				CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */,
 				CF9492771945C8840068A86C /* MonEnumeration.swift in Sources */,
+				CFAC455219B8AD7E00EC3BC2 /* controller-classes.swift in Sources */,
 				CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */,
 				CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */,
 				CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */,

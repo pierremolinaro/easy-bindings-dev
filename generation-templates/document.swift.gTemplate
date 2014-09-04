@@ -93,6 +93,11 @@ end
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+%if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
+%  var mControllerArray = NSMutableArray ()\n\n%
+%  //-------------------------------------------------------------------------------------------------------------------*\n%
+end
+%
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Controller bindings
@@ -112,16 +117,21 @@ for () in mDependencyList do
 end
 end
 
-%  //--------------------------- Add Signature observer
-  }
+%  //--------------------------- Controller instanciation
+%for () in CONTROLLER_INSTANCIATION_LIST do
+%    mControllerArray.addObject (%!mValue%)\n%
+end%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   removeWindowController                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
-  //--------------------------- Add Signature observer
-  //---
+  //--------------------------- Remove controllers
+%if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
+%    mControllerArray.removeAllObjects ()\n%
+end
+%  //---
     super.removeWindowController (inWindowController)
   }
 

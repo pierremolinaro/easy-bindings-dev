@@ -64,6 +64,10 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  var mControllerArray = NSMutableArray ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Controller bindings
@@ -87,7 +91,12 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is nil") ;
     }
   //--------------------------- Add Transient observers
-  //--------------------------- Add Signature observer
+  //--------------------------- Controller instanciation
+    mControllerArray.addObject (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myStringMaj_PMTextField_value (object:rootObject, outlet:myTextMajField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myStringMin_PMTextField_value (object:rootObject, outlet:myTextMinField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myStringConcat_PMTextField_value (object:rootObject, outlet:myTextConcatField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_myColor_PMColorWell_color (object:rootObject, outlet:myColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -95,7 +104,8 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
-  //--------------------------- Add Signature observer
+  //--------------------------- Remove controllers
+    mControllerArray.removeAllObjects ()
   //---
     super.removeWindowController (inWindowController)
   }
