@@ -222,6 +222,15 @@ local routine unifiedTypeAnalysis
       !attributeListForGeneration
       !decoratedTransientMap
     ;
+  when documentType :
+    ioGeneration->mDocumentListForGeneration +=
+      !inTypeName->string
+      ![inRootEntityType key]
+      !attributeListForGeneration
+      !decoratedTransientMap
+      !decoratedOutletMap
+      !controllerInstanciationStringList
+    ;
   when preferencesType :
     ioGeneration->mPreferenceListForGeneration +=
       !inTypeName->string
@@ -230,7 +239,7 @@ local routine unifiedTypeAnalysis
       !decoratedOutletMap
       !controllerInstanciationStringList
     ;
-  when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType, documentType,
+  when bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType,
        doubleType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
        protocolType, stringType, structType, uintegerType:
   end switch ;

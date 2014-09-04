@@ -7,6 +7,7 @@ semantics documentGeneration :
 
 list @documentListForGeneration {
   @string mDocumentName ;
+  @string mRootEntityName ;
   @attributeListForGeneration mAttributeListForGeneration ;
   @decoratedTransientMap mDecoratedTransientMapForGeneration ;
   @decoratedOutletMap mOutletMap ;
@@ -15,51 +16,43 @@ list @documentListForGeneration {
 
 #----------------------------------------------------------------------------*
 
-#filewrapper documentGenerationTemplate in "../generation-templates/document-generation" {
-#}{
-#}{
-#  template documentImplementationInSwift "document.swift.gTemplate"
-#    ?@string DOCUMENT_NAME
-#    ?@string ROOT_ENTITY_NAME
-#    ?@outletGenerationList OUTLET_GENERATION_LIST
-#    ?@controllerMap CONTROLLER_MAP
-#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+local filewrapper documentGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template documentImplementationInSwift "document.swift.gTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@attributeListForGeneration ATTRIBUTE_LIST
+    ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
+    ?@decoratedOutletMap OUTLET_GENERATION_MAP
+    ?@stringlist CONTROLLER_INSTANCIATION_LIST
 #    ?@stringset INCLUSION_SET
 #    ?@bool HAS_SIGNATURE_OBSERVER
-#    ?@attributeListForImplementation ATTRIBUTE_LIST
-#  ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#override method @documentGeneration generate
-#  ??@string inOutputDirectory
-#:
-#  @bool hasSignatureObserver := false ;
-#  foreach mTransientListForImplementation while not hasSignatureObserver do
-#    hasSignatureObserver := [mRootSignDependencyList length] > 0 ;
-#  end foreach ;
-#  #--- Implementation
-#    var s := [filewrapper documentGenerationTemplate.documentImplementationInSwift
-#      !mGenerationName
-#      !mRootEntityName
-#      !mOutletDeclarationList
-#      !mControllerMap
-#      !mTransientListForImplementation
-#      !mFileInclusionSet->mImplementationFileInclusionSet
-#      !hasSignatureObserver
-#      !mAttributeListForImplementation
-#    ] ;
-#    [@string generateFileWithPattern
-#      !inOutputDirectory
-#      !mGenerationName . ".swift"
-#      !"//"
-#      !"\n\n" # Defaut user zone1
-#      !s
-#      !"\n\n" # Defaut user zone2
-#      !"\n"
-#    ] ;
-#end method ;
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateDocuments
+  ??@documentListForGeneration inDocumentListForGeneration
+  ??@string inOutputDirectory
+:
+  for () in inDocumentListForGeneration do
+    const s := [filewrapper documentGenerationTemplate.documentImplementationInSwift
+      !mDocumentName
+      !mRootEntityName
+      !mAttributeListForGeneration
+      !mDecoratedTransientMapForGeneration
+      !mOutletMap
+      !mControllerInstanciationStringList
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      !mDocumentName . ".swift"
+      !s
+    ] ;
+  end for ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 

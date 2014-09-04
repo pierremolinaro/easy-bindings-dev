@@ -26,6 +26,10 @@ local filewrapper entityGenerationTemplate in "../generation-templates" {
 #    ?@controllerMap CONTROLLER_MAP
 #    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
   ;
+
+  template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
+    ?@entityListForGeneration ENTITY_LIST
+  ;
   
 }
 
@@ -61,6 +65,17 @@ routine generateEntities
       !"\n"
     ] ;
   end for ;
+#----- 
+  if [inEntityListForGeneration length] > 0 then
+    const s := [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
+      !inEntityListForGeneration
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      !"PMObjectManager+extension+factory.swift"
+      !s
+    ] ;
+  end if ;
 end routine ;
 
 #-----------------------------------------------------------------------------*
