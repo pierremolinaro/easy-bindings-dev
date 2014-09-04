@@ -75,7 +75,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kTriggerOutletDisplay
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -45,7 +45,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kTriggerOutletDisplay
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
