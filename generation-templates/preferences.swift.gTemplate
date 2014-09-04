@@ -15,7 +15,7 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 \n%
 for () in OUTLET_MAP do
-%  @IBOutlet var %!lkey->string% : %!mOutletTypeName->string%? = nil\n%
+%  @IBOutlet var %!lkey.string% : %!mOutletTypeName.string%? = nil\n%
 end
 
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
@@ -53,54 +53,54 @@ for () in CONTROLLER_MAP do
   //    %!["Controller: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
   
-  var %!lkey->string% = %!mControllerClassName% ()\n%
+  var %!lkey.string% = %!mControllerClassName% ()\n%
 end
 
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!lkey->string%_observers = NSMutableSet ()\n%
-%  var %!lkey->string%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!lkey->string% : %![mTransientType swiftTypeName]% {\n%
+%  var %!lkey.string%_observers = NSMutableSet ()\n%
+%  var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!lkey.string% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
-%      if %!lkey->string%_cache == nil {\n%
-%        %!lkey->string%_cache = compute_%!PREFERENCES_NAME%_%!lkey->string% (%
+%      if %!lkey.string%_cache == nil {\n%
+%        %!lkey.string%_cache = compute_%!PREFERENCES_NAME%_%!lkey.string% (%
 for () in mDependencyList
 do ![mDependency generateForComputeFunction]
 between %, %
 end
 %)\n%
 %      }\n%
-%      return %!lkey->string%_cache!\n%
+%      return %!lkey.string%_cache!\n%
 %    }
     set {
     }
   }
 
-  func %!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_didChange () {
-    for anyObject in %!lkey->string%_observers {
+  func %!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_didChange () {
+    for anyObject in %!lkey.string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)
     }
   }
  
-   func addObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.addObject (inObserver)
+   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
  
-  func removeObserverOf_%!lkey->string% (inObserver : PMTriggerProtocol) {
-    %!lkey->string%_observers.removeObject (inObserver)
+  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!lkey.string%_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
   }
 
-  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% {
-    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache == nil {
-      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]% (object:self)
+  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%? = nil
+  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]% {
+    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_cache == nil {
+      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%_cache!
+    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_cache!
   }\n
 %end
 %
@@ -108,7 +108,7 @@ end
   //    Arraies                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 %
-for () in ARRAY_MAP do%  var %!lkey->string% = NSMutableArray ()\n%end
+for () in ARRAY_MAP do%  var %!lkey.string% = NSMutableArray ()\n%end
 
 
 %
@@ -139,9 +139,9 @@ end
 
 for () in ARRAY_MAP do
 %    { NSMutableArray * array = [NSMutableArray new] ;
-      for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey->string%"]) {
-        %#!mElementType->mTypeName->string
-        % * object = [[%#!mElementType->mTypeName->string
+      for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey.string%"]) {
+        %#!mElementType.mTypeName.string
+        % * object = [[%#!mElementType.mTypeName.string
         % alloc]
 %
 #for () in mAttributeListForImplementation
@@ -152,7 +152,7 @@ for () in ARRAY_MAP do
 %        ] ;
         [array addObject:object] ;
       }
-      self.%!lkey->string% = array ;
+      self.%!lkey.string% = array ;
     }
 %
 end
@@ -176,21 +176,21 @@ end
 
   override func awakeFromNib () {
 % for () in CONTROLLER_MAP do
-  %//--- '%!lkey->string%' controller\n%
-#  %  %!lkey->string%.setObjectClass (%!mControlledClassOrEntityName->string% class)\n%
+  %//--- '%!lkey.string%' controller\n%
+#  %  %!lkey.string%.setObjectClass (%!mControlledClassOrEntityName.string% class)\n%
 end
 #for () in CONTROLLER_MAP do
 # for () in mControllerBindingList
-#  before    %//--- '%!lkey->string%' controller bindings\n%
+#  before    %//--- '%!lkey.string%' controller bindings\n%
 #  do
-#   ![mBinding generateObjectiveCBinding !lkey->string]
+#   ![mBinding generateObjectiveCBinding !lkey.string]
 #  end
 #end
 
 for () in OUTLET_MAP do
-   %  //--- Check %!lkey->string%' outlet not nil\n%
-   %    if nil == %!lkey->string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey->string%' outlet is nil")\n%
+   %  //--- Check %!lkey.string%' outlet not nil\n%
+   %    if nil == %!lkey.string% {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
 #  for () in mOutletBindingList do
  #   ![mBinding generateSwiftBinding !mOutletName]
@@ -198,7 +198,7 @@ for () in OUTLET_MAP do
 end
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey->string identifierRepresentation]%)\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
 end
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do
@@ -228,8 +228,8 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 end
 for () in ARRAY_MAP do
 %  { NSMutableArray * array = [NSMutableArray new] ;
-    for (%#!mElementType->mTypeName->string
-    % * object in self.%!lkey->string%) {
+    for (%#!mElementType.mTypeName.string
+    % * object in self.%!lkey.string%) {
       [array addObject:[NSDictionary
         dictionaryWithObjectsAndKeys:
 %#for () in mAttributeListForImplementation do%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%end
@@ -237,7 +237,7 @@ for () in ARRAY_MAP do
         ]
       ] ;
     }
-    [ud setObject:array forKey:@"%!PREFERENCES_NAME%:%!lkey->string%"] ;
+    [ud setObject:array forKey:@"%!PREFERENCES_NAME%:%!lkey.string%"] ;
   }
 %
 end

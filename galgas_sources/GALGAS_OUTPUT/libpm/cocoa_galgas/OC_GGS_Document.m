@@ -35,6 +35,7 @@
 #import "OC_GGS_Scroller.h"
 #import "PMDebug.h"
 #import "PMSearchResultDescriptor.h"
+#import "NSString+identifierRepresentation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -320,7 +321,7 @@
     withKeyPath:@"values.GLOBAL-REPLACE-FIELD" 
     options:nil
   ] ;
-  mSearchMatrixPreferenceKey = [NSString stringWithFormat:@"searchMatrixFor_%lu", self.fileURL.path.hash] ;
+  mSearchMatrixPreferenceKey = [NSString stringWithFormat:@"searchMatrixFor_%@", self.fileURL.path.identifierRepresentation] ;
   [mSearchMatrix
     bind:@"selectedIndex"
     toObject:[NSUserDefaultsController sharedUserDefaultsController] 
@@ -373,7 +374,7 @@
   [mExcludedDirectoryArrayController
     bind:@"contentArray"
     toObject:[NSUserDefaultsController sharedUserDefaultsController]
-    withKeyPath:[NSString stringWithFormat:@"values.excludedDirectoryArray-%lu", self.fileURL.absoluteString.hash]
+    withKeyPath:[NSString stringWithFormat:@"values.excludedDirectoryArray-%@", self.fileURL.absoluteString.identifierRepresentation]
     options:nil
   ] ;
   [mRemoveExcludedDirectoryButton
@@ -398,7 +399,7 @@
   [mExplicitSearchDirectoryArrayController
     bind:@"contentArray"
     toObject:[NSUserDefaultsController sharedUserDefaultsController]
-    withKeyPath:[NSString stringWithFormat:@"values.searchDirectoryArray-%lu", self.fileURL.absoluteString.hash]
+    withKeyPath:[NSString stringWithFormat:@"values.searchDirectoryArray-%@", self.fileURL.absoluteString.identifierRepresentation]
     options:nil
   ] ;
   [mRemoveExplicitSearchDirectoryButton
