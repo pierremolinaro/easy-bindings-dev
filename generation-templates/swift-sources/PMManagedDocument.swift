@@ -494,6 +494,7 @@ class PMManagedDocument : NSDocument {
     var reachableObjectArray = NSMutableArray ()
     if let rootObject = mRootObject {
       var reachableObjectSet = NSMutableSet ()
+      reachableObjectSet.addObject (rootObject)
       var objectsToExploreArray = NSMutableArray ()
       objectsToExploreArray.addObject (rootObject)
       rootObject.savingIndex = reachableObjectArray.count
