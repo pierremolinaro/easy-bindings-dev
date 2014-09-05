@@ -5,11 +5,22 @@ semantics entityGeneration :
 
 #----------------------------------------------------------------------------*
 
+list @entityRelationshipListForGeneration {
+  @string mRelationshipName ;
+  @bool mIsToMany ;
+  @unifiedTypeProxy mRelationshipType ;
+  @string mOppositeRelationshipName ;
+  @bool mOppositeRelationshipIsToMany ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @entityListForGeneration {
   @string mEntityName ;
   @string mSuperEntityName ;
   @attributeListForGeneration mAttributeListForGeneration ;
   @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+  @entityRelationshipListForGeneration mDecoratedEntityRelationshipList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -25,6 +36,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates" {
 #    ?@preferencesPropertyArrayMap ARRAY_MAP
 #    ?@controllerMap CONTROLLER_MAP
 #    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
+    ?@entityRelationshipListForGeneration ENTITY_CURRENT_RELATIONSHIP_LIST
   ;
 
   template entityFactoryImplementationFileInSwift "PMManagedDocument+extension+factory.swift.gTemplate"
@@ -44,6 +56,7 @@ routine generateEntities
       !mEntityName
       !mAttributeListForGeneration
       !mDecoratedTransientMapForGeneration
+      !mDecoratedEntityRelationshipList
 #      !mAttributeListForInitMethodHeader
 #      !mInheritedAttributeListForImplementation
 #      !mFileInclusionSet->mImplementationFileInclusionSet

@@ -922,8 +922,8 @@ rule <entity_declaration>
       $toMany$ ;
       isToMany := true ;
     end select ;
-    $Identifier$ ? @lstring destinationEntityName ;
-    $identifier$ ? @lstring relationshipName ;
+    $Identifier$ ??@lstring destinationEntityName ;
+    $identifier$ ??@lstring relationshipName ;
     $inverse$ ;
     @bool inverseIsToMany ;
     select
@@ -933,18 +933,7 @@ rule <entity_declaration>
       $toMany$ ;
       inverseIsToMany := true ;
     end select ;
-    $identifier$ ? @lstring inverseRelationshipName ;
-    @deleteRuleEnum deleteRule ;
-    select
-      $nullify$ ;
-      deleteRule := [@deleteRuleEnum nullifyDeleteRule] ;
-    or
-      $cascade$ ;
-      deleteRule := [@deleteRuleEnum cascadeDeleteRule] ;
-    or
-      $deny$ ;
-      deleteRule := [@deleteRuleEnum denyDeleteRule] ;
-    end select ;
+    $identifier$ ??@lstring inverseRelationshipName ;
     $;$ ;
     relationshipList +=
       !isToMany
@@ -952,7 +941,6 @@ rule <entity_declaration>
       !relationshipName
       !inverseRelationshipName
       !inverseIsToMany
-      !deleteRule
     ;
   end repeat ;
   $}$ ;

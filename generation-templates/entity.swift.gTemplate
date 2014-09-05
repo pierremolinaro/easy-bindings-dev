@@ -40,6 +40,132 @@ import Cocoa
 
 %
 end
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["To many relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var %!mRelationshipName%_observers = NSMutableSet ()
+  var %!mRelationshipName%_explorer : NSPopUpButton?
+  var %!mRelationshipName% : NSMutableArray = NSMutableArray () { // Set of %![mRelationshipType key]% entities
+    didSet {
+      if (oldValue !== %!mRelationshipName%) {
+      //--- Register old value in undo manager
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+      //--- Update explorer
+        if %!mRelationshipName%_explorer != nil {
+          updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName%", popUpButton:%!mRelationshipName%_explorer)
+        }
+      //--- Removed object set
+        var removedObjectSet = NSMutableSet ()
+        removedObjectSet.addObjectsFromArray (oldValue)
+        removedObjectSet.minusSet (NSSet (array:%!mRelationshipName%))
+        for object : AnyObject in removedObjectSet {
+          let managedObject = object as %![mRelationshipType key]%
+          managedObject.%!mOppositeRelationshipName% = nil ;
+        }
+      //--- Added object set
+        var addedObjectSet = NSMutableSet ()
+        addedObjectSet.addObjectsFromArray (%!mRelationshipName%)
+        addedObjectSet.minusSet (NSSet (array:oldValue))
+        for object : AnyObject in addedObjectSet {
+          let managedObject = object as %![mRelationshipType key]%
+          managedObject.%!mOppositeRelationshipName% = self
+        }
+      //--- Notify observers object count did change
+        for anyObject in %!mRelationshipName%_observers {
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
+        }
+      }
+    }
+  }
+
+  func undoFor_%!mRelationshipName% (object:NSMutableArray) {
+    %!mRelationshipName% = object
+  }
+   
+  func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
+    %!mRelationshipName%_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
+    %!mRelationshipName%_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+%
+  end
+end
+
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if not mIsToMany then
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["To one relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var %!mRelationshipName%_observers = NSMutableSet ()
+  private var %!mRelationshipName%_explorer : NSButton?
+  var %!mRelationshipName% : %![mRelationshipType key]%? = nil {
+    didSet {
+      if oldValue !== %!mRelationshipName% {
+      //--- Register old value in undo manager
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+      //--- Update explorer
+        if %!mRelationshipName%_explorer != nil {
+          updateManagedObjectToOneRelationshipDisplayForKey ("%!mRelationshipName%", button : %!mRelationshipName%_explorer)
+        }
+%    if mOppositeRelationshipIsToMany then
+%      //--- Reset old opposite relation ship
+        if let unwrappedOldValue = oldValue {
+          let idx = unwrappedOldValue.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
+          if idx != NSNotFound {
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%.mutableCopy () as NSMutableArray
+            array.removeObjectAtIndex (idx)
+            unwrappedOldValue.%!mOppositeRelationshipName% = array
+          }
+        }
+      //--- Set new opposite relation ship
+        if let root = %!mRelationshipName% {
+          let idx = root.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
+          if idx == NSNotFound {
+            var array = root.%!mOppositeRelationshipName%.mutableCopy () as NSMutableArray
+            array.addObject (self)
+            root.%!mOppositeRelationshipName% = array
+          }
+        }
+%    else
+%     //--- Reset old opposite relation ship
+        oldValue?.%!mOppositeRelationshipName% = nil
+      //--- Set new opposite relation ship
+        %!mRelationshipName%?.%!mOppositeRelationshipName% = self
+%    end
+%      //--- Notify observers
+        for anyObject in %!mRelationshipName%_observers {
+          let object = anyObject as PMTriggerProtocol
+          enterTriggerWithObject (object)
+        }
+      }
+    }
+  }
+
+  func undoFor_%!mRelationshipName% (object:%![mRelationshipType key]%) {
+    %!mRelationshipName% = object
+  }
+
+  func addObserverOf_%!mRelationshipName% (inObserver : AnyObject) {
+    %!mRelationshipName%_observers.addObject (inObserver)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+
+  func removeObserverOf_%!mRelationshipName% (inObserver : AnyObject) {
+    %!mRelationshipName%_observers.removeObject (inObserver)
+    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  }
+%
+  end
+end
 
 %
   //-------------------------------------------------------------------------------------------------------------------*

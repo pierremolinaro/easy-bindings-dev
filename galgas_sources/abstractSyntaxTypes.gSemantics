@@ -154,19 +154,12 @@ list @attributeList {
 
 #----------------------------------------------------------------------------*
 
-enum @deleteRuleEnum {
-  nullifyDeleteRule, cascadeDeleteRule, denyDeleteRule
-}
-
-#----------------------------------------------------------------------------*
-
 list @relationshipList {
   @bool mIsToMany ;
   @lstring mDestinationEntityName ;
   @lstring mRelationshipName ;
   @lstring mInverseRelationshipName ;
   @bool mInverseRelationIsToMany ;
-  @deleteRuleEnum mDeleteRule ;
 }
 
 #----------------------------------------------------------------------------*
