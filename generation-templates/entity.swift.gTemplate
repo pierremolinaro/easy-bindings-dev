@@ -391,7 +391,18 @@ end
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-  }
+%for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    for object : AnyObject in %!mRelationshipName% {
+      let managedObject = object as PMManagedObject
+      objects.addObject (managedObject)
+    }\n%
+  else
+%    if %!mRelationshipName% != nil {\n%
+%      objects.addObject (%!mRelationshipName%!)\n%
+%    }\n%
+  end
+end%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
