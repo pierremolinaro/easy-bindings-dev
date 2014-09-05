@@ -7,7 +7,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : $OBJECTCLASS$?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
@@ -38,7 +38,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  deinit {
+  func unregister () {
     if mSendContinously {
       NSNotificationCenter.defaultCenter().removeObserver (self,
         name: NSControlTextDidChangeNotification,
@@ -49,6 +49,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
     mOutlet?.action = nil
     mOutlet?.delegate = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
     noteObjectDeallocation (self)
   }
   

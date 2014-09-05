@@ -6,7 +6,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMDatePicker?, file : String, line : Int) {
+  init (object : $OBJECTCLASS$?, outlet : PMDatePicker?, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -20,11 +20,17 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  deinit {
+  func unregister () {
     noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

@@ -6,7 +6,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMMatrix?, file : String, line : Int) {
+  init (object : $OBJECTCLASS$?, outlet : PMMatrix?, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -20,10 +20,15 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  deinit {
+  func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
     noteObjectDeallocation (self)
   }
   

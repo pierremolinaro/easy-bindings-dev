@@ -21,7 +21,7 @@ func compute_MyRootEntity_transientConcatString (docString : String,
                                                  prefTransientString : String) -> String  {
 
 //--- START OF USER ZONE 2
-  return NSString (format:"Doc %@ Prefs %@ Pref Transient %@",
+  return NSString (format:"Doc '%@' Prefs '%@' Pref Transient '%@'",
     docString,
     myPrefString,
     prefTransientString

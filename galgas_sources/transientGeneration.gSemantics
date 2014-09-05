@@ -150,7 +150,7 @@ end reader ;
 #-----------------------------------------------------------------------------*
 
 override reader @transientPreferenceDependency generateForComputeFunction -> @string outResult :
-  outResult := "g_" + mPreferencesName->string + "." + mMasterName->string ;
+  outResult := "g_" + mPreferencesName->string + "!." + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -187,7 +187,7 @@ end reader ;
 #-----------------------------------------------------------------------------*
 
 override reader @transientPreferenceDependency generateAddObserverCall -> @string outResult :
-  outResult := "g_" + mPreferencesName->string + ".addObserverOf_" + mMasterName->string ;
+  outResult := "g_" + mPreferencesName->string + "?.addObserverOf_" + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -224,7 +224,7 @@ end reader ;
 #-----------------------------------------------------------------------------*
 
 override reader @transientPreferenceDependency generateRemoveObserverCall -> @string outResult :
-  outResult := "g_" + mPreferencesName->string + ".removeObserverOf_" + mMasterName->string ;
+  outResult := "g_" + mPreferencesName->string + "?.removeObserverOf_" + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*

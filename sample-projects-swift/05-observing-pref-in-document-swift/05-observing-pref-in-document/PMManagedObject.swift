@@ -28,7 +28,7 @@ var gAllocatedEntityCount = 0
 
 class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   var savingIndex = 0
-  weak var mEntityManager : PMObjectManager?
+  weak var mUndoManager : NSUndoManager?
 //--- Signature
   var mSignatureCache = 0
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
@@ -43,8 +43,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  init                                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMObjectManager) {
-    mEntityManager = entityManager
+  init (undoManager : NSUndoManager) {
+    mUndoManager = undoManager
     gAllocatedEntityCount = gAllocatedEntityCount + 1
  //   #ifdef PM_COCOA_DEBUG
       mExplorerObjectIndex = gExplorerObjectIndex
@@ -123,12 +123,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  Getters                                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func entityManager () -> PMObjectManager {
-    return mEntityManager!
-  }
-
-  func undoManager () -> PMUndoManager {
-    return mEntityManager!.mUndoManager
+  func undoManager () -> PMUndoManager? {
+    return mUndoManager as PMUndoManager?
   }
 
   func explorerObjectIndex () -> Int {
@@ -303,11 +299,11 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton) {
-    var object = valueForKey (inKey) as PMManagedObject
+    var object = valueForKey (inKey) as PMManagedObject?
     var stringValue = "nil"
-    if nil != object {
-      let objectIndex = object.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
+    if let unwrappedObject = object {
+      let objectIndex = unwrappedObject.explorerObjectIndex ()
+      stringValue = NSString (format:"#%d (%s) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
     button.enabled = object != nil
     button.title = stringValue

@@ -141,6 +141,7 @@ local routine unifiedTypeAnalysis
     var @2stringlist typePropertyNameList := {} ;
     var @stringlist boundObjectNameList := {} ;
     [mObservableProperty analyzeBoundObservableProperty
+      !inUnifiedTypeMap
       !inTypeName->string
       !inCurrentObservablePropertyMap
       !inRootEntityType
@@ -290,6 +291,7 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
 #----------------------------------------------------------------------------*
 
 abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
+  ??@unifiedTypeMap inUnifiedTypeMap
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
@@ -302,6 +304,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
 #----------------------------------------------------------------------------*
 
 override method @selfObservablePropertyAST analyzeBoundObservableProperty
+  ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
@@ -329,6 +332,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @rootObservablePropertyAST analyzeBoundObservableProperty
+  ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
@@ -351,6 +355,46 @@ override method @rootObservablePropertyAST analyzeBoundObservableProperty
   ioBoundPropertyTypeList += !propertyType !mSelectorName ;
   ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;
   ioBoundObjectNameList += !"rootObject" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferenceObservablePropertyAST analyzeBoundObservableProperty
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@string unused inCurrentTypeName
+  ??@decoratedObservablePropertyMap unused inObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  ?!@string ioControllerSignature
+  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
+  ?!@2stringlist ioTypePropertyNameList
+  ?!@stringlist ioBoundObjectNameList
+:
+#--- Get preference type
+  [inUnifiedTypeMap searchKey
+    !mPreferenceName
+    ??@typeKind typeKind
+    ?5*
+    ??@decoratedObservablePropertyMap observablePropertyMap
+    ?5*
+  ] ;
+  if typeKind != [@typeKind preferencesType] then
+    error mPreferenceName : "there is no '" . mPreferenceName . "' preferences" ;
+  end if ;
+#---    
+  [observablePropertyMap searchKey
+    !mPreferenceObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* # ?@bool isTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if isCollection then
+    error mPreferenceObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioTypePropertyNameList += !mPreferenceName->string !mPreferenceObservablePropertyName->string ;
+  ioBoundObjectNameList += !"g_" + mPreferenceName ;
 end method ;
 
 #----------------------------------------------------------------------------*

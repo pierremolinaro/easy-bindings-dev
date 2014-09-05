@@ -42,6 +42,7 @@ protocol PMTriggerProtocol : NSObjectProtocol {
   var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
   func noteTransientChanged ()
   func trigger ()
+  func unregister ()
 }
 
 %
@@ -64,6 +65,9 @@ class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtoc
     mTriggerObject = object
     super.init ()
     noteObjectAllocation (self) ;
+  }
+
+  func unregister () {
   }
   
   deinit {
