@@ -93,7 +93,7 @@ local routine unifiedTypeAnalysis
   ??@decoratedTransientMap decoratedTransientMap
   ??@decoratedOutletMap decoratedOutletMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@decoratedEntityRelationshipMap unused currentRelationshipMap
+  ??@decoratedEntityRelationshipMap inCurrentRelationshipMap
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@actionMap inActionMap
   ??@bindingList inBindingList
@@ -101,6 +101,30 @@ local routine unifiedTypeAnalysis
   ??@enumConstantMap unused inEnumConstantMap
   ?!@structForGeneration ioGeneration
 :
+#--- Analyze relationships
+  @entityRelationshipListForGeneration entityRelationshipListForGeneration := {} ;
+  for () in inCurrentRelationshipMap do
+    [[mRelationshipType mCurrentRelationshipMap] searchKey
+      !mOppositeRelationshipName
+      ??@bool oppositeRelationIsToMany
+      ??@unifiedTypeProxy oppositeRelationshipType
+      ??@lstring oppositeOfOppositeRelationshipName
+    ] ;
+    if oppositeOfOppositeRelationshipName->string != lkey->string then
+      error lkey : "the opposite relationship is '" . mOppositeRelationshipName
+         . "' and names '" . oppositeOfOppositeRelationshipName . "' as opposite, instead of '" . lkey . "'" ;
+    end if ;
+    if [oppositeRelationshipType key] != inTypeName->string then
+      error lkey : "the opposite relationship type is '" . [oppositeRelationshipType key] . "', instead of '" . lkey . "'" ;
+    end if ;
+    entityRelationshipListForGeneration +=
+      !lkey->string
+      !mIsToMany
+      !mRelationshipType
+      !mOppositeRelationshipName->string
+      !oppositeRelationIsToMany
+    ;
+  end for ;
 #--- Analyze transient dependancies
   for () in decoratedTransientMap do
     @transientDependencyListForGeneration transientDependencyListForGeneration := {} ;
@@ -253,6 +277,7 @@ local routine unifiedTypeAnalysis
       !if [inSuperType isNull] then "" else [inSuperType key] end
       !attributeListForGeneration
       !decoratedTransientMap
+      !entityRelationshipListForGeneration
     ;
   when documentType :
     ioGeneration->mDocumentListForGeneration +=

@@ -38,10 +38,10 @@ end reader ;
 reader @unifiedTypeProxy valueAccessorForExplorerWindow ??@string inPropertyName -> @string outResult
 :
   switch [selfcopy mTypeKind]
-  when boolType : outResult := "NSString.format (\"%s\", " + inPropertyName + " ? \"true\" : \"false\")" ;
-  when uintegerType : outResult := "NSString.format (\"%lu\", " + inPropertyName + ")" ;
-  when integerType : outResult := "NSString.format (\"%ld\", " + inPropertyName + ")" ;
-  when doubleType : outResult := "NSString.format (\"%g\", " + inPropertyName + ")" ;
+  when boolType : outResult := "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\")" ;
+  when uintegerType : outResult := "NSString (format:\"%lu\", " + inPropertyName + ")" ;
+  when integerType : outResult := "NSString (format:\"%ld\", " + inPropertyName + ")" ;
+  when doubleType : outResult := "NSString (format:\"%g\", " + inPropertyName + ")" ;
   when stringType : outResult := inPropertyName ;
   when colorType : outResult := inPropertyName + ".description" ;
   when dataType : outResult := "NSData" ;
@@ -63,10 +63,10 @@ end reader ;
 reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName -> @string outResult
 :
   switch [selfcopy mTypeKind]
-  when boolType : outResult := "NSNumber.numberWithBool (" + inPropertyName + ")" ;
-  when uintegerType : outResult := "NSString.numberWithUnsignedLongLong (" + inPropertyName + ")" ;
-  when integerType : outResult := "NSString.numberWithLongLong (" + inPropertyName + ")" ;
-  when doubleType : outResult := "NSString.numberWithDouble (" + inPropertyName + ")" ;
+  when boolType : outResult := "NSNumber (bool:" + inPropertyName + ")" ;
+  when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inPropertyName + ")" ;
+  when integerType : outResult := "NSNumber (longLong:" + inPropertyName + ")" ;
+  when doubleType : outResult := "NSNumber (double:" + inPropertyName + ")" ;
   when stringType : outResult := inPropertyName ;
   when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;
   when dataType : outResult := "NSData" ;
@@ -75,7 +75,7 @@ reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
-  when enumType : outResult := "NSNumber.numberWithInteger (" + inPropertyName + ".toRaw ())" ;
+  when enumType : outResult := "NSNumber (integer:" + inPropertyName + ".toRaw ())" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
   preferencesType, nibClassType, outletClassType, protocolType :
@@ -88,17 +88,17 @@ end reader ;
 reader @unifiedTypeProxy transformerForRegisterUndoWithTarget ??@string inOldValue -> @string outResult
 :
   switch [selfcopy mTypeKind]
-  when boolType : outResult := "NSNumber.numberWithBool (" + inOldValue + ")" ;
-  when uintegerType : outResult := "NSNumber.numberWithUnsignedLongLong (" + inOldValue + ")" ;
-  when integerType : outResult := "NSNumber.numberWithLongLong (" + inOldValue + ")" ;
-  when doubleType : outResult := "NSNumber.numberWithDouble (" + inOldValue + ")" ;
+  when boolType : outResult := "NSNumber (bool:" + inOldValue + ")" ;
+  when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inOldValue + ")" ;
+  when integerType : outResult := "NSNumber (longLong:" + inOldValue + ")" ;
+  when doubleType : outResult := "NSNumber (double:" + inOldValue + ")" ;
   when stringType, colorType : outResult := inOldValue ;
   when dataType : outResult := "NSData" ;
   when dateType : outResult := "NSDate" ;
   when imageType : outResult := "NSImage" ;
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
-  when enumType : outResult := "NSNumber.numberWithInteger (" + inOldValue + ".toRaw ())" ;
+  when enumType : outResult := "NSNumber (integer:" + inOldValue + ".toRaw ())" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
