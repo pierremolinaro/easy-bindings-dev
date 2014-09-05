@@ -270,7 +270,7 @@ class PMManagedDocument : NSDocument {
     switch dataFormat {
     case 6 :
       let data = dataScanner.parseAutosizedData ()
-      mRootObject = readFromData (data, rootEntityClassName:rootEntityClassName ())
+      readManagedObjectsFromData (data)
     default:
       NSLog ("unknowm data format: %u", dataFormat)
     }
@@ -380,8 +380,7 @@ class PMManagedDocument : NSDocument {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func readFromData (inData : NSData,
-                     rootEntityClassName : String) -> PMManagedObject {
+  func readManagedObjectsFromData (inData : NSData) {
     // let start = NSDate()
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
       options:0, // NSPropertyListReadOptions.Immutable,
@@ -403,8 +402,8 @@ class PMManagedDocument : NSDocument {
     }
     // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
     // NSLog ("Read %f ms", timeTaken)
-  //--- Return root object
-    return objectArray [0] as PMManagedObject
+  //--- Set root object
+    mRootObject = objectArray [0] as PMManagedObject
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -412,6 +411,7 @@ class PMManagedDocument : NSDocument {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func showWindows () {
+    super.showWindows ()
     if (windowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
       var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
       var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
@@ -422,8 +422,6 @@ class PMManagedDocument : NSDocument {
         windowForSheet.setFrame (windowFrame, display:true)
       }
     }
-  //---
-    super.showWindows ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -99,9 +99,10 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func runTriggers () {
+func flushTriggers () {
   var theApp = NSApp as PMApplication
   theApp.runTriggers ()
+  displayAllocation ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -111,18 +112,18 @@ func runTriggers () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
-  var mLevel = 0
-  var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mLevel = 0
+  private var mTriggerOutletDisplaySet = NSMutableSet ()
  
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
   for () in TRANSIENT_LIST do index idx
-%  var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx string]%\n%
+%  private var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx string]%\n%
   end  
 %  //-------------------------------------------------------------------------------------------------------------------*
 
-  func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+  private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
     inObject.noteTransientChanged ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
@@ -169,7 +170,7 @@ end%    default: break
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func runTriggers () {
+  private func runTriggers () {
 %
   for > () in TRANSIENT_LIST do index idx
 %    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![[TRANSIENT_LIST length] - idx string]%

@@ -119,7 +119,9 @@ end
 %  //--------------------------- Controller instanciation
 %for () in CONTROLLER_INSTANCIATION_LIST do
 %    mControllerArray.addObject (%!mValue%)\n%
-end%  }
+end%  //--------------------------- Update display
+    flushTriggers ()
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   removeWindowController                                                                                          *
