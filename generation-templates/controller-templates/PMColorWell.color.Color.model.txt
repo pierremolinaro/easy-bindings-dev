@@ -44,7 +44,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.$MODEL$) {
       mObject!.$MODEL$ = mOutlet!.color
       if mSendContinously {
-        runTriggers ()
+        flushTriggers ()
       }
     }
   }
