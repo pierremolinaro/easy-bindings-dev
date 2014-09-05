@@ -228,7 +228,24 @@ end
 %  }
 %
 end
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  prepareForDeletion                                                                                               *
+  //-------------------------------------------------------------------------------------------------------------------*
 
+  override func prepareForDeletion () {
+    super.prepareForDeletion ()
+%
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+    %    %!mRelationshipName% = NSMutableArray ()\n%
+  else
+    %    %!mRelationshipName% = nil\n%
+  end
+end
+%  }
+  
+%
 if [TRANSIENT_MAP_FOR_IMPLEMENTATION count] > 0 then
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -292,6 +309,11 @@ end
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %    ioDictionary.setValue (%![mAttributeType transformForSavingInDictionary !mAttributeName]%, forKey: "%!mAttributeName%")\n%
 end
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    storeEntityArrayInDictionary (%!mRelationshipName%, inRelationshipName:"%!mRelationshipName%", ioDictionary:ioDictionary) ;\n%
+  end
+end
 %  }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -303,6 +325,13 @@ end
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %    %!mAttributeName% = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
+end
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    %!mRelationshipName% = readEntityArrayFromDictionary ("%!mRelationshipName%", inDictionary:inDictionary, managedObjectArray:managedObjectArray)\n%
+  elsif not mOppositeRelationshipIsToMany then
+%    %!mRelationshipName% = readEntityFromDictionary ("%!mRelationshipName%", inDictionary:inDictionary, managedObjectArray:managedObjectArray) as? %![mRelationshipType key]%\n%
+  end
 end
 %  }
 

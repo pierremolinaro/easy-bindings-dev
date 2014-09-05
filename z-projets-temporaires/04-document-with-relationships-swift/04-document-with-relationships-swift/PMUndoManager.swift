@@ -38,19 +38,7 @@ let traceUndoManager = false
   //    registerUndoWithTarget                                                   *
   //-----------------------------------------------------------------------------*
 
-  override func prepareWithInvocationTarget (target:AnyObject!) -> AnyObject! {
-    let result : AnyObject! = super.prepareWithInvocationTarget (target)
-    if traceUndoManager {
-      NSLog ("prepareWithInvocationTarget (%@) target:%@", undoRegistrationEnabled ? "yes" : "no", target.description)
-    }
-    return result
-  }
-
-  //-----------------------------------------------------------------------------*
-  //    registerUndoWithTarget                                                   *
-  //-----------------------------------------------------------------------------*
-
-  override func registerUndoWithTarget (target:AnyObject!, selector:Selector, object anObject:AnyObject!) {
+  override func registerUndoWithTarget (target:AnyObject, selector:Selector, object anObject:AnyObject!) {
     super.registerUndoWithTarget (target, selector:selector, object:anObject)
     if traceUndoManager {
       if (anObject != nil) {

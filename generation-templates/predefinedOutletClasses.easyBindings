@@ -1,3 +1,5 @@
+outletClass PMButton ;
+
 outletClass PMColorWell ;
 controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;
 
@@ -7,6 +9,8 @@ controllerTemplate PMDatePicker $date : Date model ;
 
 outletClass PMMatrix ;
 controllerTemplate PMMatrix $selectedIndex : Enum model ;
+
+outletClass PMTableView ;
 
 outletClass PMTextField ;
 controllerTemplate PMTextField $value : String model {sendContinously : Bool} ;

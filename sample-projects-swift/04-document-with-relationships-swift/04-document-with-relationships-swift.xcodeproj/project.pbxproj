@@ -10,6 +10,10 @@
 		CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */; };
 		CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */; };
 		CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */; };
+		CF793CAE19BA364C005DBEAF /* PMObjectArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CAD19BA364C005DBEAF /* PMObjectArrayController.swift */; };
+		CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CAF19BA3AB4005DBEAF /* PMButton.swift */; };
+		CF793CB319BA3AB4005DBEAF /* PMTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CB019BA3AB4005DBEAF /* PMTableView.swift */; };
+		CF793CB419BA3AB4005DBEAF /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CB119BA3AB4005DBEAF /* PMTextField.swift */; };
 		CF7C6403196060D800BE14DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6402196060D800BE14DF /* main.swift */; };
 		CF7C640A196060D800BE14DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7C6409196060D800BE14DF /* Images.xcassets */; };
 		CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C640B196060D800BE14DF /* MainMenu.xib */; };
@@ -34,6 +38,10 @@
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
 		CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
 		CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMManagedDocument+extension+factory.swift"; sourceTree = "<group>"; };
+		CF793CAD19BA364C005DBEAF /* PMObjectArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMObjectArrayController.swift; sourceTree = "<group>"; };
+		CF793CAF19BA3AB4005DBEAF /* PMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMButton.swift; sourceTree = "<group>"; };
+		CF793CB019BA3AB4005DBEAF /* PMTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTableView.swift; sourceTree = "<group>"; };
+		CF793CB119BA3AB4005DBEAF /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
 		CF7C63FD196060D800BE14DF /* 04-document-with-relationships-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "04-document-with-relationships-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7C6401196060D800BE14DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF7C6402196060D800BE14DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -100,6 +108,7 @@
 				CF7C64271960619500BE14DF /* PMAllocationDebug.swift */,
 				CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */,
 				CF7C64281960619500BE14DF /* PMApplication.swift */,
+				CF793CAF19BA3AB4005DBEAF /* PMButton.swift */,
 				CF7C64291960619500BE14DF /* PMDataScanner.swift */,
 				CF7C642A1960619500BE14DF /* PMDocument.swift */,
 				CF7C643C196061A300BE14DF /* PMDocument.xib */,
@@ -109,6 +118,9 @@
 				CF7C642D1960619500BE14DF /* PMManagedDocument.swift */,
 				CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */,
 				CF7C642E1960619500BE14DF /* PMManagedObject.swift */,
+				CF793CAD19BA364C005DBEAF /* PMObjectArrayController.swift */,
+				CF793CB019BA3AB4005DBEAF /* PMTableView.swift */,
+				CF793CB119BA3AB4005DBEAF /* PMTextField.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
 				CF7C6400196060D800BE14DF /* Supporting Files */,
 			);
@@ -200,8 +212,11 @@
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
+				CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
+				CF793CB419BA3AB4005DBEAF /* PMTextField.swift in Sources */,
 				CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */,
+				CF793CB319BA3AB4005DBEAF /* PMTableView.swift in Sources */,
 				CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */,
 				CF7C6403196060D800BE14DF /* main.swift in Sources */,
 				CF7C64321960619500BE14DF /* PMApplication.swift in Sources */,
@@ -210,6 +225,7 @@
 				CF7C64331960619500BE14DF /* PMDataScanner.swift in Sources */,
 				CF7C64341960619500BE14DF /* PMDocument.swift in Sources */,
 				CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */,
+				CF793CAE19BA364C005DBEAF /* PMObjectArrayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

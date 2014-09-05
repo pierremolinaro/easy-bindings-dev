@@ -1,10 +1,3 @@
-//
-//  PMObjectArrayController.swift
-//
-//  Created by Pierre Molinaro on 29/06/14.
-//  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
-//
-//---------------------------------------------------------------------------------------------------------------------*
 
 import Cocoa
 
@@ -26,6 +19,9 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     noteObjectAllocation (self) ;
   }
   
+  func unregister () {
+  }
+  
   deinit {
     noteObjectDeallocation (self) ;
   }
@@ -41,30 +37,43 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMObjectArrayController) class PMObjectArrayController : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
-  var mEntityManager : PMObjectManager
+  var mUndoManager : NSUndoManager?
   var mObject : MyRootEntity
-  var mTableView : NSTableView?
+  var mTableView : PMTableView?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity, tableView:NSTableView?) {
+  init (object : MyRootEntity, tableView:PMTableView?, file:String, line:Int) {
     mObject = object
     mTableView = tableView
-    mEntityManager = object.entityManager ()
+    mUndoManager = object.undoManager ()
     super.init ()
-    mTableView?.setDataSource (self)
-    mTableView?.setDelegate (self)
+    if let unwrappedTableView = tableView {
+      var ok = true
+      if unwrappedTableView.makeViewWithIdentifier ("int", owner:self) == nil {
+        presentErrorWindow (file, line, "\"int\" column view unknown")
+        ok = false
+      }
+      if unwrappedTableView.makeViewWithIdentifier ("name", owner:self) == nil {
+        presentErrorWindow (file, line, "\"name\" column view unknown")
+        ok = false
+      }
+      if ok {
+        mTableView?.setDataSource (self)
+        mTableView?.setDelegate (self)
+      }
+    }
     noteObjectAllocation (self)
     object.addObserverOf_mNames (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    unbind                                                                                                         *
+  //    unregister                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func unbind () {
+  func unregister () {
     mObject.removeObserverOf_mNames (self)
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as NameEntity
@@ -86,7 +95,11 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //    For PMTriggerProtocol                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex = kTriggerOutletDisplay
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -95,8 +108,8 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mCurrentObjectSet = NSMutableSet ()
-  var mCurrentObjectArray = NSArray ()
+  private var mCurrentObjectSet = NSMutableSet ()
+  private var mCurrentObjectArray = NSArray ()
   
   func trigger () {
     mCurrentObjectArray = mObject.mNames.copy () as NSArray
@@ -199,11 +212,11 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
 
   func tableView (tableView : NSTableView,
                   viewForTableColumn : NSTableColumn,
-                  row : NSInteger) -> NSView {
+                  row : NSInteger) -> NSView! {
  
     // Get an existing cell with the MyView identifier if it exists
     let columnIdentifier = viewForTableColumn.identifier as String
- //   NSLog ("columnIdentifier %@", columnIdentifier)
+    // NSLog ("columnIdentifier %@", columnIdentifier)
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     result.textField.target = self
     if columnIdentifier == "name" {
@@ -249,49 +262,13 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
                 errorDescription: String!) {
      NSLog ("didFailToValidatePartialString")
   }
-
-/*  func tableView (NSTableView,
-                  objectValueForTableColumn: NSTableColumn,
-                  row:NSInteger) -> AnyObject! {
-    let columnIdentifier = objectValueForTableColumn.identifier as String
-    var result : AnyObject! = columnIdentifier
-    if columnIdentifier == "name" {
-      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-      result = object.name
-    }else if columnIdentifier == "int" {
-      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-      result = NSNumber.numberWithLongLong (object.aValue)
-    }
-    return result
-  } */
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-/*  func tableView (NSTableView!,
-                  setObjectValue inObject: AnyObject!,
-                  forTableColumn aTableColumn: NSTableColumn!,
-                  row inRowIndex: Int) {
-    let columnIdentifier = aTableColumn.identifier as String
-    let object = mCurrentObjectArray.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__) as NameEntity
-    if columnIdentifier == "name" {
-      if let str = inObject as? String {
-        object.name = str
-      }
-    }else if columnIdentifier == "int" {
-      if let nbr = inObject as? NSString {
-        object.aValue = nbr.longLongValue
-      }else{
-        NSBeep ()
-      }
-    }
-  } */
   
   //-------------------------------------------------------------------------------------------------------------------*
   //    add                                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func add (inSender : AnyObject!) {
-   var newObject : PMManagedObject = NameEntity (entityManager:mEntityManager)
+   var newObject : PMManagedObject = NameEntity (undoManager:mUndoManager!)
    var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
    array.addObject (newObject)
    mObject.mNames = array
@@ -309,7 +286,6 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
         var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
         array.removeObjectIdenticalTo (object)
         mObject.mNames = array
-        mEntityManager.unregisterObject (object)
       }
     }
   }
