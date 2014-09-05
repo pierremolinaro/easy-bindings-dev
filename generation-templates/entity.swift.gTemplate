@@ -46,11 +46,38 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   //    %!["To many relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var %!mRelationshipName%_observers = NSMutableSet ()
-  var %!mRelationshipName%_explorer : NSPopUpButton?
+%
+for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%  private var %!mRelationshipName%_%!lkey.string%_observers = NSMutableSet ()
+
+  func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!mRelationshipName%_%!lkey.string%_observers.addObject (inObserver)
+    for object : AnyObject in %!mRelationshipName% {
+      let managedObject = object as NameEntity
+      managedObject.addObserverOf_aValue (inObserver)
+    }
+  }
+
+  func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol) {
+    %!mRelationshipName%_%!lkey.string%_observers.removeObject (inObserver)
+    for object : AnyObject in %!mRelationshipName% {
+      let managedObject = object as NameEntity
+      managedObject.removeObserverOf_aValue (inObserver)
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+end
+end
+
+%  private var %!mRelationshipName%_observers = NSMutableSet ()
+  private var %!mRelationshipName%_explorer : NSPopUpButton?
   var %!mRelationshipName% : NSMutableArray = NSMutableArray () { // Set of %![mRelationshipType key]% entities
     didSet {
-      if (oldValue !== %!mRelationshipName%) {
+      if oldValue !== %!mRelationshipName% {
       //--- Register old value in undo manager
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
       //--- Update explorer
@@ -63,7 +90,15 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         removedObjectSet.minusSet (NSSet (array:%!mRelationshipName%))
         for object : AnyObject in removedObjectSet {
           let managedObject = object as %![mRelationshipType key]%
-          managedObject.%!mOppositeRelationshipName% = nil ;
+%for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
+            let observer = anyObserver as PMTriggerProtocol
+            managedObject.removeObserverOf_%!lkey.string% (observer)
+          }
+%end
+end
+%          managedObject.%!mOppositeRelationshipName% = nil ;
         }
       //--- Added object set
         var addedObjectSet = NSMutableSet ()
@@ -71,7 +106,15 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         addedObjectSet.minusSet (NSSet (array:oldValue))
         for object : AnyObject in addedObjectSet {
           let managedObject = object as %![mRelationshipType key]%
-          managedObject.%!mOppositeRelationshipName% = self
+%for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
+            let observer = anyObserver as PMTriggerProtocol
+            managedObject.addObserverOf_%!lkey.string% (observer)
+          }
+%end
+end
+%          managedObject.%!mOppositeRelationshipName% = self
         }
       //--- Notify observers object count did change
         for anyObject in %!mRelationshipName%_observers {
@@ -167,6 +210,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   end
 end
 
+if [TRANSIENT_MAP_FOR_IMPLEMENTATION count] > 0 then
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -182,7 +226,11 @@ for () in mDependencyList do
 end
 end
 %  }
+%
+end
 
+if [TRANSIENT_MAP_FOR_IMPLEMENTATION count] > 0 then
+%
   //-------------------------------------------------------------------------------------------------------------------*
   //    deinit                                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -196,19 +244,30 @@ for () in mDependencyList do
 end
 end
 %  }
-
+%
+end
+%
   //-------------------------------------------------------------------------------------------------------------------*
-  //    populateExplorerWindow                                                                                         *
+  //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+    super.populateExplorerWindowWithRect (&ioRect, view:view)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %    %!mAttributeName%_explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
 %    if let explorer = %!mAttributeName%_explorer {\n%
 %      explorer.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%\n%
 %    }\n%
 end
-%  }
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
+%    %!mRelationshipName%_explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
+    updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName%", popUpButton:%!mRelationshipName%_explorer!)\n%
+  else
+%    %!mRelationshipName%_explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
+    updateManagedObjectToOneRelationshipDisplayForKey ("%!mRelationshipName%", button:%!mRelationshipName%_explorer!)\n%
+  end
+end%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    clearObjectExplorer                                                                                            *
@@ -217,6 +276,9 @@ end
   override func clearObjectExplorer () {
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %    %!mAttributeName%_explorer = nil\n%
+end
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+%    %!mRelationshipName%_explorer = nil\n%
 end
 %    super.clearObjectExplorer ()
   }
