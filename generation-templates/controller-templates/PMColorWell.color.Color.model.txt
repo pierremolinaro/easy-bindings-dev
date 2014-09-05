@@ -7,7 +7,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
+  init (object : $OBJECTCLASS$?, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
@@ -23,11 +23,17 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  deinit {
+  func unregister () {
     noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

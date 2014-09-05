@@ -1,26 +1,34 @@
 entity MyRootEntity {
-  attribute NSString docString default "doc string" ;
-  transient NSString transientConcatString dependsFrom self.docString, MyPrefs.myPrefString, MyPrefs.prefTransientString ;
-  transient NSString otherTransientConcatString dependsFrom MyPrefs.myPrefString ;
+  property String docString default "doc string" ;
+  transient String transientConcatString dependsFrom self.docString, MyPrefs.myPrefString, MyPrefs.prefTransientString ;
+  transient String otherTransientConcatString dependsFrom MyPrefs.myPrefString ;
 }
 
 #--------------------------------------------------------------*
 
 preferences MyPrefs {
-  attribute NSString myPrefString default "pref string" ;
-  outlet NSTextField myPrefStringTextField $value self.myPrefString ;
-  transient NSString prefTransientString dependsFrom self.myPrefString ;
+  property String myPrefString default "pref string" ;
+  transient String prefTransientString dependsFrom self.myPrefString ;
+
+  outlet PMTextField myPrefStringTextField ;
+  bind model : self.myPrefString  to myPrefStringTextField $value {sendContinously : no} ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
-  outlet NSTextField docStringTextField $value root.docString ;
-  outlet NSTextField prefStringTextField $value MyPrefs.myPrefString ;
-  outlet NSTextField prefTransientStringTextField $value MyPrefs.prefTransientString ;
-  outlet NSTextField transientConcatStringTextField $value root.transientConcatString ;
+  outlet PMTextField docStringTextField ;
+  bind model : root.docString to docStringTextField $value {sendContinously : yes} ;
+
+  outlet PMTextField prefStringTextField ;
+  bind model : MyPrefs.myPrefString to prefStringTextField $value {sendContinously : no} ;
+
+  outlet PMTextField prefTransientStringTextField ;
+  bind model : MyPrefs.prefTransientString to prefTransientStringTextField $value {sendContinously : no} ;
+
+  outlet PMTextField transientConcatStringTextField ;
+  bind model : root.transientConcatString to transientConcatStringTextField $value {sendContinously : no} ;
 }
 
 #--------------------------------------------------------------*
 
-end

@@ -403,7 +403,7 @@ class PMManagedDocument : NSDocument {
     // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
     // NSLog ("Read %f ms", timeTaken)
   //--- Set root object
-    mRootObject = objectArray [0] as PMManagedObject
+    mRootObject = objectArray [0] as? PMManagedObject
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

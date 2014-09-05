@@ -130,7 +130,12 @@ end%  //--------------------------- Update display
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
 %if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%    mControllerArray.removeAllObjects ()\n%
+%    for object in mControllerArray {
+      let controller = object as PMTriggerProtocol
+      controller.unregister ()
+    }
+    mControllerArray.removeAllObjects ()
+%
 end
 %  //---
     super.removeWindowController (inWindowController)

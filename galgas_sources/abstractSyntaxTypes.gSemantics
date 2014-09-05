@@ -82,6 +82,13 @@ class @rootObservablePropertyAST extends @abstractObservablePropertyAST {
 
 #----------------------------------------------------------------------------*
 
+class @preferenceObservablePropertyAST extends @abstractObservablePropertyAST {
+  @lstring mPreferenceName ;
+  @lstring mPreferenceObservablePropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
   @abstractObservablePropertyAST mObservableProperty ;
   @lstring mOutletName ;

@@ -675,6 +675,21 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
+  $identifier$ ??@lstring modelSelectorName ;
+  $:$ ;
+  $Identifier$ ??@lstring preferenceName ;
+  $.$ ;
+  $identifier$ ??@lstring observableProperty ;
+  outObservablePropertyAST := [@preferenceObservablePropertyAST new
+    !modelSelectorName
+    !preferenceName
+    !observableProperty
+  ] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <binding_declaration>
   ?!@bindingList ioBindingList
 :

@@ -107,6 +107,10 @@ import Cocoa
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
+    for object in mControllerArray {
+      let controller = object as PMTriggerProtocol
+      controller.unregister ()
+    }
     mControllerArray.removeAllObjects ()
   //---
     super.removeWindowController (inWindowController)
