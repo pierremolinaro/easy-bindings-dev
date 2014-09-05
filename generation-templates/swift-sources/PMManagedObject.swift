@@ -28,7 +28,7 @@ var gAllocatedEntityCount = 0
 
 class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   var savingIndex = 0
-  weak var mEntityManager : PMObjectManager?
+  weak var mUndoManager : NSUndoManager?
 //--- Signature
   var mSignatureCache = 0
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
@@ -43,15 +43,14 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  init                                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMObjectManager) {
-    mEntityManager = entityManager
+  init (undoManager : NSUndoManager) {
+    mUndoManager = undoManager
     gAllocatedEntityCount = gAllocatedEntityCount + 1
  //   #ifdef PM_COCOA_DEBUG
       mExplorerObjectIndex = gExplorerObjectIndex
       gExplorerObjectIndex = gExplorerObjectIndex + 1
  //   #endif
     super.init ()
-    entityManager.addEntity (self)
     noteObjectAllocation (self)
   }
 
@@ -124,12 +123,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  Getters                                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func entityManager () -> PMObjectManager {
-    return mEntityManager!
-  }
-
-  func undoManager () -> PMUndoManager {
-    return mEntityManager!.mUndoManager
+  func undoManager () -> PMUndoManager? {
+    return mUndoManager as PMUndoManager?
   }
 
   func explorerObjectIndex () -> Int {

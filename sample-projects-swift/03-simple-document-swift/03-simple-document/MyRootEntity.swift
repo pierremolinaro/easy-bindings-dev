@@ -27,7 +27,7 @@ import Cocoa
   var myColor : NSColor = NSColor.yellowColor () {
     didSet {
       if myColor != oldValue {
-        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue)
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue)
         myColor_explorer?.stringValue = myColor.description
         for anyObject in myColor_observers {
           let object = anyObject as PMTriggerProtocol
@@ -61,7 +61,7 @@ import Cocoa
   var myEnumeration : MonEnumeration = MonEnumeration.deuxieme {
     didSet {
       if myEnumeration != oldValue {
-        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber.numberWithInteger (oldValue.toRaw ()))
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber.numberWithInteger (oldValue.toRaw ()))
         myEnumeration_explorer?.stringValue = myEnumeration.string ()
         for anyObject in myEnumeration_observers {
           let object = anyObject as PMTriggerProtocol
@@ -95,7 +95,7 @@ import Cocoa
   var myString : String = "Hello" {
     didSet {
       if myString != oldValue {
-        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue)
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue)
         myString_explorer?.stringValue = myString
         for anyObject in myString_observers {
           let object = anyObject as PMTriggerProtocol
@@ -124,8 +124,8 @@ import Cocoa
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override init (entityManager : PMObjectManager) {
-    super.init (entityManager:entityManager)
+  override init (undoManager : NSUndoManager) {
+    super.init (undoManager:undoManager)
   //--- Register trigger objects
     addObserverOf_myStringMaj (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat)
     addObserverOf_myStringMin (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat)

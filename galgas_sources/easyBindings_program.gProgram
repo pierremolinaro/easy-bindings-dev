@@ -208,7 +208,6 @@ local routine generateSwiftApplicationFiles
 :
   @stringlist swiftFiles := {!"PMAllocationDebug", !"easy-bindings-utilities"} ;
   if inHasEntities then
-    swiftFiles += !"PMObjectManager" ;
     swiftFiles += !"PMManagedObject" ;
     swiftFiles += !"PMManagedDocument" ;
     swiftFiles += !"PMUndoManager" ;

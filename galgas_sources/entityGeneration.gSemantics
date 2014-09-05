@@ -27,7 +27,7 @@ local filewrapper entityGenerationTemplate in "../generation-templates" {
 #    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
   ;
 
-  template entityFactoryImplementationFileInSwift "PMObjectManager+extension+factory.swift.gTemplate"
+  template entityFactoryImplementationFileInSwift "PMManagedDocument+extension+factory.swift.gTemplate"
     ?@entityListForGeneration ENTITY_LIST
   ;
   
@@ -72,7 +72,7 @@ routine generateEntities
     ] ;
     [@string generateFile
       !inOutputDirectory
-      !"PMObjectManager+extension+factory.swift"
+      !"PMManagedDocument+extension+factory.swift"
       !s
     ] ;
   end if ;
