@@ -14,7 +14,7 @@ import Cocoa
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
-        mEntityManager?.undoManager.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
         %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
         for anyObject in %!mAttributeName%_observers {
           let object = anyObject as PMTriggerProtocol
@@ -46,8 +46,8 @@ end
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override init (entityManager : PMObjectManager) {
-    super.init (entityManager:entityManager)
+  override init (undoManager : NSUndoManager) {
+    super.init (undoManager:undoManager)
   //--- Register trigger objects
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do

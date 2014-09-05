@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extension PMObjectManager {
+extension PMManagedDocument {
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  newInstanceOfEntityNamed                                                                                         *
@@ -12,19 +12,10 @@ extension PMObjectManager {
 
   func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
     var result : PMManagedObject?
-%
-for () in ENTITY_LIST
-before
-  %    %
-do
-  %if inEntityTypeName == "%!mEntityName%" {\n%
-  %      result = %!mEntityName% (entityManager:self)\n%
-between
-  %    }else %
-after
-  %    }\n%
-end
-%    return result
+    if inEntityTypeName == "MyRootEntity" {
+      result = MyRootEntity (undoManager:undoManager)
+    }
+    return result
   }
 }
 

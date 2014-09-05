@@ -187,14 +187,15 @@ func runTriggers () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
-  var mLevel = 0
-  var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mLevel = 0
+  private var mTriggerOutletDisplaySet = NSMutableSet ()
  
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = NSMutableSet () // 0
-  var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = NSMutableSet () // 1
-  var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = NSMutableSet () // 2
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = NSMutableSet () // 0
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = NSMutableSet () // 1
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = NSMutableSet () // 2
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   func enterTriggerWithObject (inObject : PMTriggerProtocol) {
@@ -226,10 +227,10 @@ func runTriggers () {
  
   override func sendEvent (inEvent : NSEvent!) {
     mLevel += 1
-    // NSLog ("send event %d", mLevel)
+    NSLog ("send event %d", mLevel)
     super.sendEvent (inEvent)
     mLevel -= 1
-    // NSLog ("send event done %d", mLevel)
+    NSLog ("send event done %d", mLevel)
     if 0 == mLevel {
       runTriggers ()
       displayAllocation ()
@@ -240,10 +241,10 @@ func runTriggers () {
 
   override func sendAction (theAction: Selector, to theTarget: AnyObject!, from sender: AnyObject!) -> Bool {
     mLevel += 1
-    // NSLog ("send action %d", mLevel)
+    NSLog ("send action %d", mLevel)
     let result = super.sendAction (theAction, to:theTarget, from:sender)
     mLevel -= 1
-    // NSLog ("send action done %d", mLevel)
+    NSLog ("send action done %d", mLevel)
     if 0 == mLevel {
       runTriggers ()
       displayAllocation ()
@@ -252,8 +253,22 @@ func runTriggers () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
+
+  override func postEvent(anEvent: NSEvent!, atStart flag: Bool) {
+    mLevel += 1
+    NSLog ("post event %d", mLevel)
+    super.postEvent (anEvent, atStart:flag)
+    mLevel -= 1
+    NSLog ("post event %d", mLevel)
+    if 0 == mLevel {
+      runTriggers ()
+      displayAllocation ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
   
-  func runTriggers () {
+  private func runTriggers () {
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.count > 0 { // 3
       for anyObject in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin {
         let object = anyObject as PMTriggerProtocol
