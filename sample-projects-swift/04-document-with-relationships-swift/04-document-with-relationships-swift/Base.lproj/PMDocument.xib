@@ -76,6 +76,7 @@
 															<string key="NSFrameSize">{223, 17}</string>
 															<reference key="NSSuperview" ref="586368143"/>
 															<reference key="NSWindow"/>
+															<reference key="NSNextKeyView" ref="909879421"/>
 															<string key="NSAntiCompressionPriority">{250, 750}</string>
 															<bool key="NSEnabled">YES</bool>
 															<object class="NSTextFieldCell" key="NSCell" id="867523580">
@@ -158,6 +159,7 @@
 													<string key="NSFrame">{{1, 1}, {223, 17}}</string>
 													<reference key="NSSuperview" ref="187949471"/>
 													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView" ref="502542046"/>
 												</object>
 												<object class="NSTableCellView" id="909879421">
 													<reference key="NSNextResponder" ref="187949471"/>
@@ -169,6 +171,7 @@
 															<string key="NSFrameSize">{236, 17}</string>
 															<reference key="NSSuperview" ref="909879421"/>
 															<reference key="NSWindow"/>
+															<reference key="NSNextKeyView" ref="648925949"/>
 															<string key="NSAntiCompressionPriority">{250, 750}</string>
 															<bool key="NSEnabled">YES</bool>
 															<object class="NSTextFieldCell" key="NSCell" id="52576580">
@@ -187,12 +190,13 @@
 													<string key="NSFrame">{{227, 1}, {236, 17}}</string>
 													<reference key="NSSuperview" ref="187949471"/>
 													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView" ref="562355544"/>
 												</object>
 											</array>
 											<string key="NSFrameSize">{465, 329}</string>
 											<reference key="NSSuperview" ref="613078658"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="648925949"/>
+											<reference key="NSNextKeyView" ref="586368143"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -444,6 +448,7 @@
 							<string key="NSFrame">{{352, 21}, {143, 17}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="195900147">
@@ -1937,9 +1942,11 @@
 				<boolean value="YES" key="100120.IBNumberFormatterLocalizesFormatMetadataKey"/>
 				<string key="100120.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100122.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100123.CustomClassName">PMTextField</string>
 				<string key="100123.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100124.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100126.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100127.CustomClassName">PMTextField</string>
 				<string key="100127.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100128.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="1041" key="100130.IBNumberFormatterBehaviorMetadataKey"/>

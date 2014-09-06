@@ -8,12 +8,16 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
 
   init (object : $OBJECTCLASS$?, outlet : PMMatrix?, file : String, line : Int) {
     mObject = object
-    mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
-    if let outlet = mOutlet {
-      outlet.target = self
-      outlet.action = "action:"
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMMatrix) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMMatrix")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+      }
     }
     mObject?.addObserverOf_$MODEL$ (self)
   }

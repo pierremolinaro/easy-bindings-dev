@@ -9,14 +9,18 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   init (object : $OBJECTCLASS$?, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
     mObject = object
-    mOutlet = outlet
     mSendContinously = sendContinously
     super.init ()
     noteObjectAllocation (self)
-    if let outlet = mOutlet {
-      outlet.target = self
-      outlet.action = "action:"
-      outlet.continuous = true
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMColorWell) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMColorWell")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+        unwrappedOutlet.continuous = true
+      }
     }
     mObject?.addObserverOf_$MODEL$ (self)
   }
