@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMDatePicker) class PMDatePicker : NSDatePicker {
+@objc(PMTableView) class PMTableView : NSTableView {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -18,6 +18,7 @@ import Cocoa
   deinit {
     noteObjectDeallocation (self)
   }
+
 
 }
 

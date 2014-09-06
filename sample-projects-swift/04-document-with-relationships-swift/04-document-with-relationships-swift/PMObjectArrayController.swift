@@ -1,7 +1,9 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMTrigger_updateTableView                                                                                         *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMTrigger_updateTableView)
 class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
@@ -34,7 +36,9 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMObjectArrayController                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMObjectArrayController) class PMObjectArrayController : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
   var mUndoManager : NSUndoManager?
@@ -52,7 +56,17 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     super.init ()
     if let unwrappedTableView = tableView {
       var ok = true
-      if unwrappedTableView.makeViewWithIdentifier ("int", owner:self) == nil {
+      if let anyObject: AnyObject = unwrappedTableView.makeViewWithIdentifier ("int", owner:self) {
+        if let unwrappedTableCellView = anyObject as? NSTableCellView {
+          if !(unwrappedTableCellView.textField is PMTextField) {
+            presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
+            ok = false
+          }
+        }else{
+          presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
+          ok = false
+        }
+      }else{
         presentErrorWindow (file, line, "\"int\" column view unknown")
         ok = false
       }
@@ -192,13 +206,15 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     }
   }
 
+  var triggerObjectForModelChange_cache : PMTrigger_updateTableView? = nil
   var triggerObjectForModelChange : PMTrigger_updateTableView {
-    if triggerObjectForModelChange__cache == nil {
-      triggerObjectForModelChange__cache = PMTrigger_updateTableView (object:self)
+    get {
+      if triggerObjectForModelChange_cache == nil {
+        triggerObjectForModelChange_cache = PMTrigger_updateTableView (object:self)
+      }
+      return triggerObjectForModelChange_cache!
     }
-    return triggerObjectForModelChange__cache!
   }
-  var triggerObjectForModelChange__cache : PMTrigger_updateTableView? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    T A B L E V I E W    D A T A S O U R C E                                                                       *
@@ -219,15 +235,17 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     // NSLog ("columnIdentifier %@", columnIdentifier)
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     result.textField.target = self
+    let tf : PMTextField = result.textField as PMTextField
+    // NSLog ("result.textField %p", result.textField)
     if columnIdentifier == "name" {
       let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
       result.textField.action = "set_name_Action:"
       result.textField.stringValue = object.name
+      tf.setSendContinously (true)
     }else if columnIdentifier == "int" {
       let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
       result.textField.objectValue = NSNumber.numberWithLongLong (object.aValue)
       result.textField.action = "set_aValue_Action:"
-//      result.textField.delegate = self
     }
     return result
   }
@@ -268,10 +286,10 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func add (inSender : AnyObject!) {
-   var newObject : PMManagedObject = NameEntity (undoManager:mUndoManager!)
-   var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
-   array.addObject (newObject)
-   mObject.mNames = array
+    var newObject : PMManagedObject = NameEntity (undoManager:mUndoManager!)
+    var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
+    array.addObject (newObject)
+    mObject.mNames = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -294,12 +312,13 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var previousValueOfCanRemove = false // As array is empty initially
+  private var canRemove_private = false // As array is empty initially
+  var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
     let newValue = mObject.mNames.count > 0
-    if previousValueOfCanRemove != newValue {
-      previousValueOfCanRemove = newValue
+    if canRemove_private != newValue {
+      canRemove_private = newValue
       for anyObject in canRemove_observers {
         let object = anyObject as PMTriggerProtocol
         enterTriggerWithObject (object)
@@ -307,7 +326,7 @@ class PMTrigger_updateTableView : NSObject, PMTriggerProtocol {
     }
   }
   
-  var canRemove_observers = NSMutableSet ()
+  private var canRemove_observers = NSMutableSet ()
   
   func addObserverOf_canRemove (inObserver : PMTriggerProtocol) {
     canRemove_observers.addObject (inObserver)

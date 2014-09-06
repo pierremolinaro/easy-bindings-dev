@@ -111,13 +111,14 @@ class PMManagedDocument : NSDocument {
   //   removeWindowController:                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
-/*  - (void) removeWindowController: (NSWindowController *) inWindowController {
-    [self.undoManager disableUndoRegistration] ;
-    [mEntityManager resetBeforeDeletion] ;
-    [self.undoManager enableUndoRegistration] ;
-    [self.undoManager removeAllActions] ;
-    [super removeWindowController:inWindowController] ;
-  } */
+  override func removeWindowController (inWindowController : NSWindowController) {
+    let managedObjectArray = reachableObjectsFromRootObject ()
+    for object in managedObjectArray {
+      let managedObject = object as PMManagedObject
+      managedObject.prepareForDeletion ()
+    }
+    super.removeWindowController (inWindowController)
+  }
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -493,6 +494,7 @@ class PMManagedDocument : NSDocument {
     var reachableObjectArray = NSMutableArray ()
     if let rootObject = mRootObject {
       var reachableObjectSet = NSMutableSet ()
+      reachableObjectSet.addObject (rootObject)
       var objectsToExploreArray = NSMutableArray ()
       objectsToExploreArray.addObject (rootObject)
       rootObject.savingIndex = reachableObjectArray.count

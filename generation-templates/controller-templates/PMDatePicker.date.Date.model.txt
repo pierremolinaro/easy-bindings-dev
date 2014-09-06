@@ -8,12 +8,16 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
 
   init (object : $OBJECTCLASS$?, outlet : PMDatePicker?, file : String, line : Int) {
     mObject = object
-    mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
-    if let outlet = mOutlet {
-      outlet.target = self
-      outlet.action = "action:"
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMDatePicker) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMDatePicker")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+      }
     }
     mObject?.addObserverOf_$MODEL$ (self)
   }
