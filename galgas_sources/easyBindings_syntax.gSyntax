@@ -407,6 +407,7 @@ rule <preferences_declaration>
     !transientList
     !bindingList
     !actionDeclarationList
+    !{}
   ] ;
 end rule ;
 
@@ -456,6 +457,60 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <array_controller_declaration>
+  ?!@arrayControllerDeclarationListAST ioArrayControllerDeclarationListAST
+:
+  $arrayController$ ;
+  $identifier$ ??@lstring controllerName ;
+  $bind$ ;
+  <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
+  $to$ ;
+  $identifier$ ??@lstring tableViewOutletName ;
+  @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST := {} ;
+  repeat
+    $column$ ;
+    $literal_string$ ??columnName ;
+    $Identifier$ ??columnOutletTypeName ;
+    $identifier$ ??observablePropertyName ;
+    <binding_option_list> ??bindingOptions ;
+    arrayControllerBoundColumnListAST +=
+      !columnName
+      !columnOutletTypeName
+      !observablePropertyName
+      !bindingOptions
+    ;
+  while
+  end repeat ;
+  $;$ ;
+  ioArrayControllerDeclarationListAST +=
+    !controllerName
+    !observablePropertyAST
+    !tableViewOutletName
+    !arrayControllerBoundColumnListAST
+  ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <binding_option_list> !@bindingOptionList outBindingOptions :
+  outBindingOptions := {} ;
+  select
+  or
+    ${$ ;
+    repeat
+      $identifier$ ??@lstring optionName ;
+      $:$ ;
+      <explicit_value> ??@abstractDefaultValue optionValue ;
+      outBindingOptions += !optionName !optionValue ;
+    while
+      $,$ ;
+    end repeat ;
+    $}$ ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <document_declaration>
   ??@bool inIsUserDefined
   ?!@astDeclarationStruct ioDeclarationAST
@@ -470,6 +525,7 @@ rule <document_declaration>
   @lstringlist actionDeclarationList [emptyList] ;
   @transientList transientList [emptyList] ;
   @attributeList attributeList [emptyList] ;
+  @arrayControllerDeclarationListAST arrayControllerDeclarationListAST := {} ;
   repeat
   while
     <attribute_declaration> !?attributeList ;
@@ -481,6 +537,8 @@ rule <document_declaration>
     <outlet_declaration> !?outletDeclarationList ;
   while
     <binding_declaration> !?bindingList ;
+  while
+    <array_controller_declaration> !?arrayControllerDeclarationListAST ;
   end repeat ;
   $}$ ;
   ioDeclarationAST->mDeclarationList += ![@unifiedTypeDeclaration new
@@ -496,6 +554,7 @@ rule <document_declaration>
     !transientList
     !bindingList
     !actionDeclarationList
+    !arrayControllerDeclarationListAST
   ] ;
 end rule ;
 
@@ -578,6 +637,7 @@ rule <class_declaration>
     !classTransientList
     !@bindingList {}
     !@lstringlist {} # No action
+    !{} # No array controller
   ] ;
 end rule ;
 
@@ -698,20 +758,7 @@ rule <binding_declaration>
   $to$ ;
   $identifier$ ??@lstring outletName ;
   $binding$ ??@lstring bindingName ;
-  @bindingOptionList bindingOptions := {} ;
-  select
-  or
-    ${$ ;
-    repeat
-      $identifier$ ??@lstring optionName ;
-      $:$ ;
-      <explicit_value> ??@abstractDefaultValue optionValue ;
-      bindingOptions += !optionName !optionValue ;
-    while
-      $,$ ;
-    end repeat ;
-    $}$ ;
-  end select ;
+  <binding_option_list> ??bindingOptions ;
   $;$ ;
   ioBindingList +=
     !observablePropertyAST
@@ -957,6 +1004,7 @@ rule <entity_declaration>
     !classTransientList
     !@bindingList {}
     !@lstringlist {} # No action
+    !{} # No array controller
   ] ;
 end rule ;
 

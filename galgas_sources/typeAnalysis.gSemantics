@@ -5,6 +5,7 @@ semantics typeAnalysis :
   import "entityGeneration.gSemantics" ;
   import "enumGeneration.gSemantics" ;
   import "controllerClassAnalysis.gSemantics" ;
+  import "arrayControllerGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -17,6 +18,7 @@ struct @structForGeneration{
   @enumListForGeneration mEnumListForGeneration ;
   @stringset mNeededOutletClasses ;
   @stringset mControllerGenerationStringSet ;
+  @arrayControllerForGeneration mAllArrayControllerForGeneration ;
 }
 
 #----------------------------------------------------------------------------*
@@ -40,7 +42,8 @@ routine typeAnalysis
        @actionMap actionMap
        @bindingList bindingList
        @lstringlist enumConstantList
-       @enumConstantMap enumConstantMap) in inUnifiedTypeMap do
+       @enumConstantMap enumConstantMap
+       @arrayControllerMap arrayControllerMap) in inUnifiedTypeMap do
    #--- Build all observable property map
       @decoratedObservablePropertyMap allObservableProperties := observablePropertyMap ;
       var t := superType ;
@@ -74,6 +77,7 @@ routine typeAnalysis
       !bindingList
       !enumConstantList
       !enumConstantMap
+      !arrayControllerMap
       !?outGeneration
     ;  
   end for ;
@@ -99,8 +103,14 @@ local routine unifiedTypeAnalysis
   ??@bindingList inBindingList
   ??@lstringlist inEnumConstantList
   ??@enumConstantMap unused inEnumConstantMap
+  ??@arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
 :
+#--- Check outlet types are declared
+  for () in decoratedOutletMap do
+    [inOutletClassMap searchKey !mOutletTypeName] ;
+    ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
+  end for ;
 #--- Analyze relationships
   @entityRelationshipListForGeneration entityRelationshipListForGeneration := {} ;
   for () in inCurrentRelationshipMap do
@@ -125,6 +135,55 @@ local routine unifiedTypeAnalysis
       !oppositeRelationIsToMany
     ;
   end for ;
+#--- Analyze array controllers
+  @arrayControllerForGeneration documentArrayControllerForGeneration := {} ;
+  for () in inArrayControllerMap do
+  #--- Check model is a tomany relationship
+    [mBoundModel analyzeBoundObservablePropertyForArrayControllerBinding
+      ![inRootEntityType mCurrentRelationshipMap]
+      ??@unifiedTypeProxy outElementTypeProxy
+      ??@lstring outBoundRootTomanyRelationshipName
+    ] ;
+  #--- Check outlet is a PMTableView
+    [decoratedOutletMap searchKey !mTableViewOutletName ??outletTypeName] ;
+    if outletTypeName->string != "PMTableView" then
+      error mTableViewOutletName : "this outlet is not an instance of PMTableView" ;
+    end if ;
+  #--- Check colum bound models
+#    @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
+#  @lstring mColumnName ;
+#  @lstring mColumnOutletTypeName ;
+#  @lstring mObservablePropertyName ;
+#  @bindingOptionList mBindingOptionList ;
+    @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration := {} ;
+    for () in mArrayControllerBoundColumnListAST do
+      [[outElementTypeProxy mObservablePropertyMap] searchKey
+        !mObservablePropertyName
+        ??@unifiedTypeProxy propertyType
+        ??@bool mIsTransient
+        ??@lstring mPropertySignature
+        ??@bool mIsCollection
+      ] ;
+      if mIsCollection then
+        error mObservablePropertyName : "the bound property should not be a collection" ;
+      end if ;
+      arrayControllerBoundColumnListForGeneration +=
+        !mColumnName->string
+        !mColumnOutletTypeName->string
+        !mObservablePropertyName->string
+        !propertyType
+        !mBindingOptionList
+      ;
+    end for ;
+    documentArrayControllerForGeneration +=
+      ![inRootEntityType key]
+      !outBoundRootTomanyRelationshipName->string
+      ![outElementTypeProxy key]
+      !mTableViewOutletName->string
+      !arrayControllerBoundColumnListForGeneration
+    ;
+  end for ;
+  ioGeneration->mAllArrayControllerForGeneration += documentArrayControllerForGeneration ;
 #--- Analyze transient dependancies
   for () in decoratedTransientMap do
     @transientDependencyListForGeneration transientDependencyListForGeneration := {} ;
@@ -143,11 +202,6 @@ local routine unifiedTypeAnalysis
     end for ;
     ioGeneration->mTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
   end for ;
-#--- Check outlet types are declared
-  for () in decoratedOutletMap do
-    [inOutletClassMap searchKey !mOutletTypeName] ;
-    ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
-  end for ;
 #--- Analyze attribute default value
   @attributeListForGeneration attributeListForGeneration := {} ;
   for () in decoratedAttributeMap do
@@ -164,7 +218,7 @@ local routine unifiedTypeAnalysis
     var @unifiedTypeProxySelectorList boundPropertyTypeList := {} ;
     var @2stringlist typePropertyNameList := {} ;
     var @stringlist boundObjectNameList := {} ;
-    [mObservableProperty analyzeBoundObservableProperty
+    [mObservableProperty analyzeBoundObservablePropertyForSimpleBinding
       !inUnifiedTypeMap
       !inTypeName->string
       !inCurrentObservablePropertyMap
@@ -314,8 +368,14 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
 ;
 
 #----------------------------------------------------------------------------*
+# analyzeBoundObservablePropertyForSimpleBinding                             *
+#----------------------------------------------------------------------------*
 
-abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
+#! analyzeBoundObservablePropertyForSimpleBinding
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
@@ -328,7 +388,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservableProperty
 
 #----------------------------------------------------------------------------*
 
-override method @selfObservablePropertyAST analyzeBoundObservableProperty
+override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
@@ -356,7 +416,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @rootObservablePropertyAST analyzeBoundObservableProperty
+override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
@@ -384,7 +444,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @preferenceObservablePropertyAST analyzeBoundObservableProperty
+override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
@@ -400,7 +460,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservableProperty
     ??@typeKind typeKind
     ?5*
     ??@decoratedObservablePropertyMap observablePropertyMap
-    ?5*
+    ?6*
   ] ;
   if typeKind != [@typeKind preferencesType] then
     error mPreferenceName : "there is no '" . mPreferenceName . "' preferences" ;
@@ -420,6 +480,65 @@ override method @preferenceObservablePropertyAST analyzeBoundObservableProperty
   ioBoundPropertyTypeList += !propertyType !mSelectorName ;
   ioTypePropertyNameList += !mPreferenceName->string !mPreferenceObservablePropertyName->string ;
   ioBoundObjectNameList += !"g_" + mPreferenceName ;
+end method ;
+
+#----------------------------------------------------------------------------*
+# analyzeBoundObservablePropertyForArrayControllerBinding                    *
+#----------------------------------------------------------------------------*
+
+#! analyzeBoundObservablePropertyForArrayControllerBinding
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
+  ??@decoratedEntityRelationshipMap inCurrentRelationshipMap
+  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@lstring outBoundRootTomanyRelationshipName
+;
+
+#----------------------------------------------------------------------------*
+
+override method @selfObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
+  ??@decoratedEntityRelationshipMap unused inCurrentRelationshipMap
+  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@lstring outBoundRootTomanyRelationshipName
+:
+  error mSelfObservablePropertyName
+    : "the bound array should be a root object model"
+    : outBoundRootTomanyRelationshipName, outRelationshipTypeProxy
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @rootObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
+  ??@decoratedEntityRelationshipMap inCurrentRelationshipMap
+  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@lstring outBoundRootTomanyRelationshipName
+:
+  [inCurrentRelationshipMap searchKey
+    !mRootObservablePropertyName
+    ??@bool mIsToMany
+    ?outRelationshipTypeProxy
+    ?*
+  ] ;
+  if not mIsToMany then
+    error mRootObservablePropertyName : "the observable property should be a tomany relationship" ;
+  end if ;
+  outBoundRootTomanyRelationshipName := mRootObservablePropertyName ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
+  ??@decoratedEntityRelationshipMap unused inCurrentRelationshipMap
+  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@lstring outBoundRootTomanyRelationshipName
+:
+  error mPreferenceObservablePropertyName
+    : "the bound array should be a root object model"
+    : outBoundRootTomanyRelationshipName, outRelationshipTypeProxy
+  ;
 end method ;
 
 #----------------------------------------------------------------------------*

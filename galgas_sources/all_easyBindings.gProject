@@ -36,6 +36,8 @@ project all_easyBindings (0:0:1) -> "easyBindings":
 
   semantics "documentGeneration.gSemantics" ;
   
+  semantics "arrayControllerGeneration.gSemantics" ;
+  
   semantics "outletClassAnalysis.gSemantics" ;
   semantics "outletClassGeneration.gSemantics" ;
 

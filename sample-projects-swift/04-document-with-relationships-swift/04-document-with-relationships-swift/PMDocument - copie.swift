@@ -90,17 +90,23 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
   //--------------------------- Add Transient observers
-  //--------------------------- Controller instanciation
+    mObjectArrayController = PMObjectArrayController (object:rootObject, tableView:mNamesTableView, file:__FILE__, line:__LINE__)
+    addPathButton?.target = mObjectArrayController
+    addPathButton?.action = "add:"
   //--------------------------- Update display
     flushTriggers ()
   }
 
+  var mObjectArrayController : PMObjectArrayController?
+  
   //-------------------------------------------------------------------------------------------------------------------*
   //   removeWindowController                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
+    mObjectArrayController?.unregister ()
+    mObjectArrayController = nil ;
   //---
     super.removeWindowController (inWindowController)
   }

@@ -13,23 +13,30 @@ entity NameEntity {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-#  entityArrayController PMEntityArrayController nameController
-#    : root.mNames { NSDeletesObjectsOnRemoveBindingsOption : YES }
-#  ;
   outlet PMTableView mNamesTableView ;
-#    $tableValue nameController {
-#      column "name" NSTextFieldCell name ;
-#      column "int"  NSTextFieldCell aValue ;
-#    }
-#  ;
-#  transient NSString canRemoveString dependsFrom nameController.canRemove ;
+  arrayController nameController bind model : root.mNames to mNamesTableView
+     column "name" PMTextField name { sendContinously : yes}
+     column "int"  PMTextField aValue { sendContinously : yes}
+  ;
+
+#  transient String canRemoveString dependsFrom nameController.canRemove ;
   outlet PMTextField canRemoveTextField ; # $value self.canRemoveString ;
+
   outlet PMButton addPathButton ; # $run nameController.add ;
+ # run "action.target" : addPathButton -> nameController.add ;
+
   outlet PMButton removePathButton ; # $run nameController.remove $enabled nameController.canRemove ;
+ # run removePathButton -> nameController.remove ;
+#  bind model : nameController.canRemove to removePathButton $enabled ;
+
   outlet PMTextField countItemTextField ; # $value root.mNames.count ;
-#  transient NSString countItemMessage dependsFrom root.mNames.count ;
+
+#  transient String countItemMessage dependsFrom root.mNames.count ;
+
   outlet PMTextField countItemMessageTextField ; # $value self.countItemMessage ;
+
 #  transient Integer total dependsFrom root.mNames.count ;
+
   outlet PMTextField totalTextField ; # $value self.total ;
 }
 

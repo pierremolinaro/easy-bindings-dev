@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF07A4B119BB41DD0098170F /* MyRootEntity-mNames-mNamesTableView-.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF07A4B019BB41DD0098170F /* MyRootEntity-mNames-mNamesTableView-.swift */; };
 		CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */; };
 		CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */; };
 		CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF07A4B019BB41DD0098170F /* MyRootEntity-mNames-mNamesTableView-.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-mNames-mNamesTableView-.swift"; sourceTree = "<group>"; };
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
 		CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
 		CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMManagedDocument+extension+factory.swift"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C6409196060D800BE14DF /* Images.xcassets */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
+				CF07A4B019BB41DD0098170F /* MyRootEntity-mNames-mNamesTableView-.swift */,
 				CF7C64231960618800BE14DF /* MyRootEntity.swift */,
 				CF7C64261960619500BE14DF /* NameEntity.swift */,
 				CF7C64271960619500BE14DF /* PMAllocationDebug.swift */,
@@ -223,6 +226,7 @@
 				CF7C64381960619500BE14DF /* PMManagedObject.swift in Sources */,
 				CF7C64371960619500BE14DF /* PMManagedDocument.swift in Sources */,
 				CF7C64331960619500BE14DF /* PMDataScanner.swift in Sources */,
+				CF07A4B119BB41DD0098170F /* MyRootEntity-mNames-mNamesTableView-.swift in Sources */,
 				CF7C64341960619500BE14DF /* PMDocument.swift in Sources */,
 				CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */,
 				CF793CAE19BA364C005DBEAF /* PMObjectArrayController.swift in Sources */,

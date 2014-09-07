@@ -1,0 +1,340 @@
+
+import Cocoa
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["TriggerFor_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
+class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol {
+  weak var mTriggerObject : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
+  
+  init (object : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%) {
+    mTriggerObject = object
+    super.init ()
+    noteObjectAllocation (self) ;
+  }
+  
+  func unregister () {
+  }
+  
+  deinit {
+    noteObjectDeallocation (self) ;
+  }
+
+  func noteTransientChanged () {
+  }
+  
+  func trigger () {
+    mTriggerObject?.refreshDisplay ()
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["ArrayController_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
+class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
+  var mUndoManager : NSUndoManager?
+  var mObject : %!OBJECT_TYPE_NAME%
+  var mTableView : PMTableView?
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : %!OBJECT_TYPE_NAME%, tableView:PMTableView?, file:String, line:Int) {
+    mObject = object
+    mTableView = tableView
+    mUndoManager = object.undoManager ()
+    super.init ()
+    if let unwrappedTableView = tableView {
+      var ok = true
+%
+for () in BOUND_COLUMNS do
+%      if let anyObject: AnyObject = unwrappedTableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
+        if let unwrappedTableCellView = anyObject as? NSTableCellView {
+          if !(unwrappedTableCellView.textField is %!mColumnOutletTypeName%) {
+            presentErrorWindow (file, line, "\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%")
+            ok = false
+          }
+        }else{
+          presentErrorWindow (file, line, "\"%!mColumnName%\" column cell view is not an instance of NSTableCellView")
+          ok = false
+        }
+      }else{
+        presentErrorWindow (file, line, "\"%!mColumnName%\" column view unknown")
+        ok = false
+      }
+%
+end
+%      if ok {
+        mTableView?.setDataSource (self)
+        mTableView?.setDelegate (self)
+      }
+    }
+    noteObjectAllocation (self)
+    object.addObserverOf_%!RELATIONSHIP_NAME% (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    unregister                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func unregister () {
+    mObject.removeObserverOf_%!RELATIONSHIP_NAME% (self)
+    for object : AnyObject in mCurrentObjectSet {
+      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
+end
+%    }
+    mCurrentObjectSet = NSMutableSet ()
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    For PMTriggerProtocol                                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mCurrentObjectSet = NSMutableSet ()
+  private var mCurrentObjectArray = NSArray ()
+  
+  func trigger () {
+    mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.copy () as NSArray
+  //--- Update observers for handling model change
+    let oldObjectSet = mCurrentObjectSet
+    mCurrentObjectSet = NSMutableSet ()
+    mCurrentObjectSet.addObjectsFromArray (mObject.%!RELATIONSHIP_NAME%)
+  //--- Removed object set
+    var removedObjectSet = NSMutableSet ()
+    removedObjectSet.setSet (oldObjectSet)
+    removedObjectSet.minusSet (mCurrentObjectSet)
+    for object : AnyObject in removedObjectSet {
+      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
+end
+%    }
+  //--- Added object set
+    var addedObjectSet = NSMutableSet ()
+    addedObjectSet.setSet (mCurrentObjectSet)
+    addedObjectSet.minusSet (oldObjectSet)
+    for object : AnyObject in addedObjectSet {
+      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%      managedObject.addObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
+end
+%    }
+  //---
+    refreshDisplay ()
+    updateCanRemoveProperty ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    tableViewSelectionDidChange                                                                                    *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mSelectedObject :  %!ELEMENT_TYPE_NAME%? = nil {
+    didSet {
+      if mSelectedObject == nil {
+   //     NSLog ("nil")
+      }else{
+  //      NSLog ("Int \%d", mSelectedObject!.aValue)
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func tableViewSelectionDidChange (NSNotification!) {
+    var selectedObject :  %!ELEMENT_TYPE_NAME%?
+    if let tableView = mTableView {
+      let selectedObjectIndex = tableView.selectedRow
+      if selectedObjectIndex >= 0 {
+        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as?  %!ELEMENT_TYPE_NAME%
+      }
+    }
+    mSelectedObject = selectedObject
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Observing model change                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func refreshDisplay () {
+  //--- Sort local array for display
+    let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
+    let descriptorArray = NSArray (object:sortDescriptor)
+    mCurrentObjectArray = mCurrentObjectArray.sortedArrayUsingDescriptors (descriptorArray) as NSArray
+    mTableView?.reloadData ()
+  //--- Restore selection (if any)
+    if let selectedObjectUnwrapped = mSelectedObject {
+      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (selectedObjectUnwrapped)
+      if idx != NSNotFound {
+        mTableView?.selectRowIndexes(NSIndexSet (index:idx), byExtendingSelection:false)
+        mTableView?.scrollRowToVisible (idx)
+      }else{
+        let selectedObjectIndex = mTableView!.selectedRow
+        if selectedObjectIndex >= 0 {
+          mSelectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as?  %!ELEMENT_TYPE_NAME%
+        }
+      }
+    }
+  }
+
+  var triggerObjectForModelChange_cache : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  var triggerObjectForModelChange : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% {
+    get {
+      if triggerObjectForModelChange_cache == nil {
+        triggerObjectForModelChange_cache = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object:self)
+      }
+      return triggerObjectForModelChange_cache!
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    T A B L E V I E W    D A T A S O U R C E                                                                       *
+  //-------------------------------------------------------------------------------------------------------------------*
+  // http://thegreyblog.blogspot.fr/2014/06/nscontroltexteditingdelegate-methods.html
+
+  func numberOfRowsInTableView (NSTableView!) -> Int {
+    return mCurrentObjectArray.count
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func tableView (tableView : NSTableView,
+                  viewForTableColumn : NSTableColumn,
+                  row : NSInteger) -> NSView! {
+ 
+    let columnIdentifier = viewForTableColumn.identifier as String
+    var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
+    let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+end
+%    if columnIdentifier == "name" {
+      result.textField.stringValue = object.name
+      result.textField.target = self
+      result.textField.action = "set_name_Action:"
+      let tf : PMTextField = result.textField as PMTextField
+      tf.setSendContinously (true)
+    }else if columnIdentifier == "int" {
+      result.textField.objectValue = NSNumber.numberWithLongLong (object.aValue)
+      result.textField.target = self
+      result.textField.action = "set_aValue_Action:"
+      let tf : PMTextField = result.textField as PMTextField
+      tf.setSendContinously (true)
+    }
+    return result
+  }
+
+ %
+for () in BOUND_COLUMNS do
+% //-------------------------------------------------------------------------------------------------------------------*
+
+  func set_%!mObservablePropertyName%_Action (sender : %!mColumnOutletTypeName%) {
+    if let tableView = mTableView {
+      let row = tableView.rowForView (sender)
+      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
+      object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+    }
+  }
+
+%
+end
+% //-------------------------------------------------------------------------------------------------------------------*
+
+  func control (control: NSControl!,
+                didFailToValidatePartialString: String!,
+                errorDescription: String!) {
+     NSLog ("didFailToValidatePartialString")
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    add                                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func add (inSender : AnyObject!) {
+    var newObject : PMManagedObject = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
+    var array : NSMutableArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
+    array.addObject (newObject)
+    mObject.%!RELATIONSHIP_NAME% = array
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    remove                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func remove (inSender : AnyObject!) {
+    if let tableView = mTableView {
+      let selectedRow = tableView.selectedRow ;
+      if selectedRow >= 0 {
+        let object = mCurrentObjectArray.objectAtIndex (selectedRow, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
+        var array : NSMutableArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
+        array.removeObjectIdenticalTo (object)
+        mObject.%!RELATIONSHIP_NAME% = array
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Transient: canRemove                                                                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var canRemove_private = false // As array is empty initially
+  var canRemove : Bool { get { return canRemove_private } }
+  
+  func updateCanRemoveProperty () {
+    let newValue = mObject.%!RELATIONSHIP_NAME%.count > 0
+    if canRemove_private != newValue {
+      canRemove_private = newValue
+      for anyObject in canRemove_observers {
+        let object = anyObject as PMTriggerProtocol
+        enterTriggerWithObject (object)
+      }
+    }
+  }
+  
+  private var canRemove_observers = NSMutableSet ()
+  
+  func addObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+    canRemove_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+    canRemove_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
