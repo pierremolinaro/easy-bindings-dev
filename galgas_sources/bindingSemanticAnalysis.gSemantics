@@ -172,4 +172,30 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+reader @unifiedTypeProxy transformerForTableViewAction ??@string inSenderOutletName -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when stringType : outResult := inSenderOutletName + ".stringValue" ;
+  when integerType : outResult := "Int64 (" + inSenderOutletName + ".integerValue)" ;
+#--- TODO
+  when boolType : outResult := "NSNumber (bool:" + inSenderOutletName + ")" ;
+  when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inSenderOutletName + ")" ;
+  when doubleType : outResult := "NSNumber (double:" + inSenderOutletName + ")" ;
+  when colorType : outResult := inSenderOutletName + ".stringValue" ;
+  when dataType : outResult := "NSData" ;
+  when dateType : outResult := "NSDate" ;
+  when imageType : outResult := "NSImage" ;
+  when fontType : outResult := "NSFont" ;
+  when menuType : outResult := "NSMenu" ;
+  when enumType : outResult := "NSNumber (integer:" + inSenderOutletName + ".toRaw ())" ;
+  when bezierPathType : outResult := "NSBezierPath" ;
+  when structType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 end semantics ;

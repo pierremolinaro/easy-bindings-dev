@@ -16,9 +16,11 @@ $Identifier$ ! tokenString error message "an identifier (beginning with a upper-
 list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "action",
   "array",
+  "arrayController",
   "bind",
 #  "cascade",
   "class",
+  "column",
   "controllerTemplate",
   "count",
 #  "cursor",

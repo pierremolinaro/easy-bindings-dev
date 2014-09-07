@@ -45,6 +45,7 @@ SOURCES += nibClassGeneration.cpp
 SOURCES += preferencesGeneration.cpp
 SOURCES += entityGeneration.cpp
 SOURCES += documentGeneration.cpp
+SOURCES += arrayControllerGeneration.cpp
 SOURCES += outletClassAnalysis.cpp
 SOURCES += outletClassGeneration.cpp
 SOURCES += controllerClassAnalysis.cpp

@@ -186,6 +186,10 @@ local routine generateCode
     !inGeneration->mDocumentListForGeneration
     !outputDirectory
   ;
+  generateArrayControllers
+    !inGeneration->mAllArrayControllerForGeneration
+    !outputDirectory
+  ;
   generateSwiftApplicationFiles
     !outputDirectory
     ![inGeneration->mEntityListForGeneration length] > 0

@@ -1,0 +1,67 @@
+semantics arrayControllerGeneration :
+  import "decoratedTypes.gSemantics" ;
+  import "transientGeneration.gSemantics" ;
+  import "bindingSemanticAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+list @arrayControllerBoundColumnListForGeneration {
+  @string mColumnName ;
+  @string mColumnOutletTypeName ;
+  @string mObservablePropertyName ;
+  @unifiedTypeProxy mPropertyType ;
+  @bindingOptionList mBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @arrayControllerForGeneration {
+  @string mObjectTypeName ;
+  @string mTomanyRelationshipName ;
+  @string mElementTypeName ;
+  @string mTableViewOutletName ;
+  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration ;
+}
+
+
+#----------------------------------------------------------------------------*
+
+local filewrapper collectionControllerGenerationTemplate in "../generation-templates/collection-controller-templates" {
+  "txt"
+}{
+}{
+  template arrayControllerImplementationInSwift "array-controller.swift.gTemplate"
+    ?@string OBJECT_TYPE_NAME
+    ?@string RELATIONSHIP_NAME
+    ?@string ELEMENT_TYPE_NAME
+    ?@string TABLE_VIEW_OUTLET_NAME
+    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+routine generateArrayControllers
+  ??@arrayControllerForGeneration inArrayControllerListForGeneration
+  ??@string inOutputDirectory
+:
+  for () in inArrayControllerListForGeneration do
+    const s := [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
+      !mObjectTypeName
+      !mTomanyRelationshipName
+      !mElementTypeName
+      !mTableViewOutletName
+      !mArrayControllerBoundColumnListForGeneration
+    ] ;
+    [@string generateFile
+      !inOutputDirectory
+      !mObjectTypeName + "-" +  mTomanyRelationshipName + "-" + mTableViewOutletName + "-" + ".swift"
+      !s
+    ] ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;

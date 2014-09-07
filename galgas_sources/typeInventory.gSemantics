@@ -21,69 +21,9 @@ override method @predefinedTypeDeclaration typeInventory
     !@bindingList {}
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
+    !{} # No array controller
   ] ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-#override method @controllerClassDeclaration typeInventory
-#  ?!@unifiedTypeMap ioUnifiedTypeMap
-#:
-##--- Analyze actions
-##  @actionMap actionMap [emptyMap] ;
-##  for actionName in mActionDeclarationList do
-##    [!?actionMap insertKey !actionName->mValue] ;
-##  end for ;
-###--- Analyze bindings
-##  buildBindingCapabilitiesMap
-##    !mBindingList
-##    !?ioUnifiedTypeMap
-##    ?@outletClassBindingMap bindingMap
-##  ;
-##--- Analyze attributes
-#  @decoratedObservablePropertyMap observablePropertyMap [emptyMap] ;
-#  for property in mControllerObservablePropertyList do
-#    [@unifiedTypeProxy makeProxy
-#      !?ioUnifiedTypeMap
-#      !property->mTypeName
-#      ?@unifiedTypeProxy attributeTypeProxy
-#    ] ;
-#    [!?observablePropertyMap insertKey
-#      !property->mPropertyName
-#      !attributeTypeProxy
-#      !false # is not transient
-#      ![@lstring new !"controller." . mControllerClassName . "." . property->mPropertyName !property->mPropertyName->location]
-#      !false # Is not a collection
-#    ] ;
-#  end for ;
-##---
-##  @outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap [emptyMap] ;
-#  foreach mControlledObjectBindingOptionList do
-##    @EXunifiedTypeProxyList acceptableTypeList [emptyList] ;
-#    foreach mAcceptableTypeList do
-#      [@unifiedTypeProxy makeProxy
-#        !?ioUnifiedTypeMap
-#        !mValue
-#        ?@unifiedTypeProxy type
-#      ] ;
-##      acceptableTypeList += !type ;
-#    end foreach ;
-##    [!?controlledObjectAvailableBindingOptionMap insertKey !mBindingOptionName !acceptableTypeList] ;
-#  end foreach ;
-##---
-#  [!?ioUnifiedTypeMap insertKey
-#    !mControllerClassName
-#    ![@typeKind controllerClassType]
-#    ![@unifiedTypeProxy null] # Super type
-#    ![@unifiedTypeProxy null] # Root entity
-#    !@decoratedAttributeMap {}
-#    !@decoratedTransientMap {}
-#    !@decoratedOutletMap {}
-#    !observablePropertyMap
-#    !@decoratedEntityRelationshipMap {}
-#    !@actionMap {}
-#  ] ;
-#end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -108,6 +48,7 @@ override method @enumDeclaration typeInventory
     !@bindingList {}
     !mEnumConstantNameList
     !enumConstantMap
+    !{} # No array controller
   ] ;
 end method ;
 
@@ -137,6 +78,7 @@ override method @structDeclaration typeInventory
     !@bindingList {}
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
+    !{} # No array controller
   ] ;
 end method ;
 
@@ -258,26 +200,20 @@ override method @unifiedTypeDeclaration typeInventory
       !mOutletType
     ] ;
   end foreach ;
-#-------------------------------------------------- Analyze controllers
-#  foreach mControllerList do
-#    [@unifiedTypeProxy makeProxy
-#      !?ioUnifiedTypeMap
-#      !mControllerClassName
-#      ??@unifiedTypeProxy controllerTypeProxy
-#    ] ;
-#    [!?ioUnifiedTypeMap enterEdge !mTypeName !mControllerClassName] ;
-#    [!?observablePropertyMap insertKey
-#      !mControllerName
-#      !controllerTypeProxy
-#      !false # Is not transient
-#      ![@lstring new !kindName . "." + mTypeName + "." + mControllerName !mControllerName->location]
-#      !true # is a collection
-#     ] ;
-#  end foreach ;
 #--------------------------------------------------- Analyze actions
   @actionMap documentActionMap := {} ;
   for actionName in mActionDeclarationList do
     [!?documentActionMap insertKey !actionName->mValue] ;
+  end for ;
+#--------------------------------------------------- Analyze array controllers
+  @arrayControllerMap arrayControllerMap := {} ;
+  for () in mArrayControllerDeclarationListAST do
+    [!?arrayControllerMap insertKey
+      !mControllerName
+      !mBoundModel
+      !mTableViewOutletName
+      !mArrayControllerBoundColumnListAST
+    ] ;
   end for ;
 #------------------------------------- Enter in type map
   [!?ioUnifiedTypeMap insertKey
@@ -294,6 +230,7 @@ override method @unifiedTypeDeclaration typeInventory
     !mBindingList
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
+    !arrayControllerMap
   ] ;
 end method ;
 
