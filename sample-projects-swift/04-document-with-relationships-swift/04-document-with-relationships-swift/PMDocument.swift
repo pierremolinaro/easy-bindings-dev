@@ -63,10 +63,10 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
+  var mArrayController_MyRootEntity_mNames_mNamesTableView : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
-  //--------------------------- Controller bindings
   //--------------------------- Outlet checking
     if nil == addPathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'addPathButton' outlet is nil") ;
@@ -89,9 +89,18 @@ import Cocoa
     if nil == totalTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
-  //--------------------------- Add Transient observers
-  //--------------------------- Controller instanciation
-  //--------------------------- Update display
+  //--------------------------- Transient observers
+  //--------------------------- Simple controller
+  //--------------------------- Array controller
+    mArrayController_MyRootEntity_mNames_mNamesTableView = ArrayController_MyRootEntity_mNames_mNamesTableView (
+      object:rootObject,
+      tableView:mNamesTableView,
+      file:__FILE__,
+      line:__LINE__
+    )
+     addPathButton?.target = mArrayController_MyRootEntity_mNames_mNamesTableView
+    addPathButton?.action = "add:"
+ //--------------------------- Update display
     flushTriggers ()
   }
 
@@ -101,6 +110,7 @@ import Cocoa
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
+    mArrayController_MyRootEntity_mNames_mNamesTableView?.unregister ()
   //---
     super.removeWindowController (inWindowController)
   }
