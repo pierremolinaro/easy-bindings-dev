@@ -198,6 +198,8 @@ override method @unifiedTypeDeclaration typeInventory
     [!?decoratedOutletMap insertKey
       !mOutletName
       !mOutletType
+      !mRunTargetName
+      !mRunActionName
     ] ;
   end foreach ;
 #--------------------------------------------------- Analyze actions
@@ -213,6 +215,7 @@ override method @unifiedTypeDeclaration typeInventory
       !mBoundModel
       !mTableViewOutletName
       !mArrayControllerBoundColumnListAST
+      !{!["add" nowhere], !["remove" nowhere]}
     ] ;
   end for ;
 #------------------------------------- Enter in type map

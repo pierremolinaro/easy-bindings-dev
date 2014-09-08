@@ -13,6 +13,7 @@ list @documentListForGeneration {
   @decoratedOutletMap mOutletMap ;
   @stringlist mControllerInstanciationStringList ;
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration ;
+  @targetActionList mTargetActionList ; 
 }
 
 #----------------------------------------------------------------------------*
@@ -28,6 +29,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@stringlist CONTROLLER_INSTANCIATION_LIST
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@targetActionList TARGET_ACTION_LIST 
   ;
 }
 
@@ -46,6 +48,7 @@ routine generateDocuments
       !mOutletMap
       !mControllerInstanciationStringList
       !mDocumentArrayControllerForGeneration
+      !mTargetActionList
     ] ;
     [@string generateFile
       !inOutputDirectory

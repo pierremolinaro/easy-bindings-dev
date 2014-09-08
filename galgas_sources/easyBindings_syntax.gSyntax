@@ -347,10 +347,26 @@ rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
   $outlet$ ;
-  $Identifier$ ? @lstring outletTypeName ;
-  $identifier$ ? @lstring outletName ;
+  $Identifier$ ??outletTypeName ;
+  $identifier$ ??outletName ;
+  @lstring runTargetName ;
+  @lstring runActionName ;
+  select
+    runTargetName := ["" nowhere] ;
+    runActionName := ["" nowhere] ;
+  or
+    $run$ ;
+    select
+      $self$ ;
+      runTargetName := [@lstring new !"self" !here] ;
+    or
+      $identifier$ ?runTargetName ; # Controller
+    end select ;
+    $.$ ;
+    $identifier$ ?runActionName ;
+  end select ;
   $;$ ;
-  ioOutletDeclarationList += !outletTypeName !outletName ;
+  ioOutletDeclarationList += !outletTypeName !outletName !runTargetName !runActionName ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -708,13 +724,10 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
-  $identifier$ ??@lstring modelSelectorName ;
-  $:$ ;
   $self$ ;
   $.$ ;
   $identifier$ ??@lstring observableProperty ;
   outObservablePropertyAST := [@selfObservablePropertyAST new
-    !modelSelectorName
     !observableProperty
   ] ;
 end rule ;
@@ -722,13 +735,10 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
-  $identifier$ ??@lstring modelSelectorName ;
-  $:$ ;
   $root$ ;
   $.$ ;
   $identifier$ ??@lstring observableProperty ;
   outObservablePropertyAST := [@rootObservablePropertyAST new
-    !modelSelectorName
     !observableProperty
   ] ;
 end rule ;
@@ -736,13 +746,10 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
-  $identifier$ ??@lstring modelSelectorName ;
-  $:$ ;
   $Identifier$ ??@lstring preferenceName ;
   $.$ ;
   $identifier$ ??@lstring observableProperty ;
   outObservablePropertyAST := [@preferenceObservablePropertyAST new
-    !modelSelectorName
     !preferenceName
     !observableProperty
   ] ;
@@ -754,6 +761,8 @@ rule <binding_declaration>
   ?!@bindingList ioBindingList
 :
   $bind$ ;
+  $identifier$ ??@lstring modelSelectorName ;
+  $:$ ;
   <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
   $to$ ;
   $identifier$ ??@lstring outletName ;
@@ -761,6 +770,7 @@ rule <binding_declaration>
   <binding_option_list> ??bindingOptions ;
   $;$ ;
   ioBindingList +=
+    !modelSelectorName
     !observablePropertyAST
     !outletName
     !bindingName
@@ -1010,93 +1020,24 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-#rule <type_list>
-#  !@lstringlist outEasyBindingTypeList
-#:
-#  outEasyBindingTypeList := [@lstringlist emptyList] ;
-#  repeat
-#    select
-#      $Identifier$ ?@lstring bindingTypeName ;
-#      outEasyBindingTypeList += !bindingTypeName ;
-#    or
-#      $AnyScalar$ ;
-#      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
-#    or
-#      $AnyNumber$ ;
-#      outEasyBindingTypeList += ![@lstring new !"Double" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"Integer" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"UInteger" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"Bool" !here] ;
-#      outEasyBindingTypeList += ![@lstring new !"enum" !here] ;
-#    end select ;
-#  while
-#    $,$ ;
-#  end repeat ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <formatter> 
-#  !@formatterEnum outRequiredFormatter
-#:
-#  select
-#    outRequiredFormatter := [@formatterEnum noFormatter] ;
-#  or
-#    $NSDateFormatter$ ;
-#    outRequiredFormatter := [@formatterEnum dateFormatter] ;
-#  or
-#    $NSNumberFormatter$ ;
-#    outRequiredFormatter := [@formatterEnum numberFormatter] ;
-#  end select ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <type_formatter_list>
-#  !@attributeASTTypeAndFormatterList outEasyBindingTypeFormatterList
-#:
-#  outEasyBindingTypeFormatterList := [@attributeASTTypeAndFormatterList emptyList] ;
-#  repeat
-#    select
-#      $Identifier$ ?@lstring typeName ;
-#      <formatter> ?@formatterEnum requiredFormatter ;
-#      outEasyBindingTypeFormatterList += !typeName !requiredFormatter ;
-#    or
-#      $AnyScalar$ ;
-#      <formatter> ?@formatterEnum requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
-#    or
-#      $AnyNumber$ ;
-#      <formatter> ?@formatterEnum requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"Double" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"Integer" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"UInteger" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"Bool" !here] !requiredFormatter ;
-#      outEasyBindingTypeFormatterList += ![@lstring new !"enum" !here] !requiredFormatter ;
-#    end select ;
-#  while
-#    $,$ ;
-#  end repeat ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
 rule <outlet_class_declaration>
   ??@bool inIsUserDefined
   ?!@outletClassDeclarationList ioOutletClassDeclarationList
 :
   $outletClass$ ;
   $Identifier$ ??@lstring outletClassName ;
+  @bool hasRunAction ;
+  select
+    hasRunAction := false ;
+  or
+    $run$ ;
+    hasRunAction := true ;
+  end select ;
   $;$ ;
   ioOutletClassDeclarationList +=
     !inIsUserDefined
     !outletClassName
+    !hasRunAction
   ;
 end rule ;
 

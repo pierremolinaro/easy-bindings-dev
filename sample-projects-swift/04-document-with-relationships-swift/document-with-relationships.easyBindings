@@ -14,7 +14,7 @@ entity NameEntity {
 
 document PMDocument root MyRootEntity {
   outlet PMTableView mNamesTableView ;
-  arrayController nameController bind model : root.mNames to mNamesTableView
+  arrayController nameController bind root.mNames to mNamesTableView
      column "name" PMTextField name { sendContinously : yes}
      column "int"  PMTextField aValue { sendContinously : yes}
   ;
