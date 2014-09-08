@@ -22,8 +22,7 @@ document PMDocument root MyRootEntity {
 #  transient String canRemoveString dependsFrom nameController.canRemove ;
   outlet PMTextField canRemoveTextField ; # $value self.canRemoveString ;
 
-  outlet PMButton addPathButton ; # $run nameController.add ;
- # run "action.target" : addPathButton -> nameController.add ;
+  outlet PMButton addPathButton run nameController.add ;
 
   outlet PMButton removePathButton ; # $run nameController.remove $enabled nameController.canRemove ;
  # run removePathButton -> nameController.remove ;

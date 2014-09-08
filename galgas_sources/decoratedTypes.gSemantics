@@ -201,6 +201,7 @@ list @arrayControllerBoundColumnListForGeneration {
 #----------------------------------------------------------------------------*
 
 list @arrayControllerForGeneration {
+  @string mControllerName ;
   @string mObjectTypeName ;
   @string mTomanyRelationshipName ;
   @string mElementTypeName ;

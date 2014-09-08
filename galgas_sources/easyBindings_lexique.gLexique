@@ -18,29 +18,25 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "array",
   "arrayController",
   "bind",
-#  "cascade",
   "class",
   "column",
   "controllerTemplate",
   "count",
-#  "cursor",
   "default",
-#  "deny",
   "dependsFrom",
   "document",
   "enum",
   "entity",
-#  "extern",
   "include",
   "inverse",
   "nibClass",
   "no",
-#  "nullify",
   "outlet",
   "outletClass",
   "preferences",
   "property",
   "root",
+  "run",
   "self",
   "signature",
   "struct",
@@ -48,13 +44,6 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toMany",
   "toOne",
   "transient",
-
-#  "controller",
-#  "option",
-#  "selection",
-#  "column",
-#  "protocol",
-#  "predefined",
   "yes"
 ;
 
@@ -94,21 +83,13 @@ style reservedBindingNameStyle -> "Reserved binding names" ;
 
 $binding$ ! tokenString error message "a binding name (identifier prefixed by '$')" style bindingNameStyle ;
 
-list bindingKeyWordList error message "the '$%K' binding keyword" style reservedBindingNameStyle :
-  "enabled",
-  "hidden",
-  "editable",
-  "tableValue",
-  "run"
-;
-
 rule '$' :
   repeat
   while
    'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
     enterCharacterIntoString !?tokenString !* ;
   end repeat ;
-  send search tokenString in bindingKeyWordList default $binding$ ;
+  send $binding$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*
