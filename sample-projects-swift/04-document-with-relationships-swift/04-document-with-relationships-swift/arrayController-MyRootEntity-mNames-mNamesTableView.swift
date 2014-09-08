@@ -237,10 +237,7 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
   func tableView (tableView : NSTableView,
                   viewForTableColumn : NSTableColumn,
                   row : NSInteger) -> NSView! {
- 
-    // Get an existing cell with the MyView identifier if it exists
     let columnIdentifier = viewForTableColumn.identifier as String
-    // NSLog ("columnIdentifier %@", columnIdentifier)
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  NameEntity
     if columnIdentifier == "name" {
