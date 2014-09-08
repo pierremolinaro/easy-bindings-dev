@@ -91,15 +91,16 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
+
 %if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
 %  var mControllerArray = NSMutableArray ()\n\n%
-%  //-------------------------------------------------------------------------------------------------------------------*\n%
+%  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 end
-for () in ARRAY_CONTROLLER_LIST do
-%  var mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil\n%
+for () in ARRAY_CONTROLLER_LIST
+do %  var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil\n%
+after %\n  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 end
-%
-  override func windowControllerDidLoadNib (aController: NSWindowController) {
+%  override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
 %
@@ -124,7 +125,7 @@ end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% (
+%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% (
       object:rootObject,
       tableView:%!mTableViewOutletName%,
       file:__FILE__,
@@ -143,7 +144,7 @@ end
   //--------------------------- Remove controllers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%?.unregister ()\n%
+%    %!mControllerName%?.unregister ()\n%
 end
 if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
 %    for object in mControllerArray {

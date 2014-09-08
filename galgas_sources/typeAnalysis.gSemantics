@@ -171,6 +171,7 @@ local routine unifiedTypeAnalysis
       ;
     end for ;
     documentArrayControllerForGeneration +=
+      !lkey->string
       ![inRootEntityType key]
       !outBoundRootTomanyRelationshipName->string
       ![outElementTypeProxy key]

@@ -63,7 +63,9 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
-  var mArrayController_MyRootEntity_mNames_mNamesTableView : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
+  var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
@@ -92,15 +94,13 @@ import Cocoa
   //--------------------------- Transient observers
   //--------------------------- Simple controller
   //--------------------------- Array controller
-    mArrayController_MyRootEntity_mNames_mNamesTableView = ArrayController_MyRootEntity_mNames_mNamesTableView (
+    nameController = ArrayController_MyRootEntity_mNames_mNamesTableView (
       object:rootObject,
       tableView:mNamesTableView,
       file:__FILE__,
       line:__LINE__
     )
-     addPathButton?.target = mArrayController_MyRootEntity_mNames_mNamesTableView
-    addPathButton?.action = "add:"
- //--------------------------- Update display
+  //--------------------------- Update display
     flushTriggers ()
   }
 
@@ -110,7 +110,7 @@ import Cocoa
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
-    mArrayController_MyRootEntity_mNames_mNamesTableView?.unregister ()
+    nameController?.unregister ()
   //---
     super.removeWindowController (inWindowController)
   }
