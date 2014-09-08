@@ -101,8 +101,8 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
-				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift */,
 				CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */,
+				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C6409196060D800BE14DF /* Images.xcassets */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,

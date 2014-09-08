@@ -106,10 +106,25 @@ local routine unifiedTypeAnalysis
   ??@arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
 :
-#--- Check outlet types are declared
+#--- Check outlet types are declared, check action
+  @targetActionList targetActionList := {} ;
   for () in decoratedOutletMap do
-    [inOutletClassMap searchKey !mOutletTypeName] ;
+    [inOutletClassMap searchKey !mOutletTypeName ??@bool handlesRunAction] ;
     ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
+#  @lstring mRunTargetName ;
+#  @lstring mRunActionName ;
+    if (mRunTargetName->string != "") then
+      if not handlesRunAction then
+        error mOutletTypeName : "the '" . mOutletTypeName . "' type does not handle run action" ;
+      elsif mRunTargetName->string == "self" then
+        [inActionMap searchKey !mRunActionName] ;
+        targetActionList += !lkey->string !"self" !mRunActionName->string ;
+      else # It is a controller
+        [inArrayControllerMap searchKey !mRunTargetName ?3* ??@actionMap arrayControllerActionMap] ;
+        [arrayControllerActionMap searchKey !mRunActionName] ;
+        targetActionList += !lkey->string !mRunTargetName->string !mRunActionName->string ;
+      end if ;
+    end if ;
   end for ;
 #--- Analyze relationships
   @entityRelationshipListForGeneration entityRelationshipListForGeneration := {} ;
@@ -145,7 +160,7 @@ local routine unifiedTypeAnalysis
       ??@lstring outBoundRootTomanyRelationshipName
     ] ;
   #--- Check outlet is a PMTableView
-    [decoratedOutletMap searchKey !mTableViewOutletName ??outletTypeName] ;
+    [decoratedOutletMap searchKey !mTableViewOutletName ??outletTypeName ?2*] ;
     if outletTypeName->string != "PMTableView" then
       error mTableViewOutletName : "this outlet is not an instance of PMTableView" ;
     end if ;
@@ -155,8 +170,8 @@ local routine unifiedTypeAnalysis
       [[outElementTypeProxy mObservablePropertyMap] searchKey
         !mObservablePropertyName
         ??@unifiedTypeProxy propertyType
-        ??@bool mIsTransient
-        ??@lstring mPropertySignature
+        ?* # ?@bool mIsTransient
+        ?* #?@lstring mPropertySignature
         ??@bool mIsCollection
       ] ;
       if mIsCollection then
@@ -216,6 +231,7 @@ local routine unifiedTypeAnalysis
     var @stringlist boundObjectNameList := {} ;
     [mObservableProperty analyzeBoundObservablePropertyForSimpleBinding
       !inUnifiedTypeMap
+      !mSelectorName
       !inTypeName->string
       !inCurrentObservablePropertyMap
       !inRootEntityType
@@ -224,7 +240,7 @@ local routine unifiedTypeAnalysis
       !?typePropertyNameList
       !?boundObjectNameList
     ] ;
-    [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName] ;
+    [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName ?2*] ;
     controllerSignature := outletTypeName->string + "." + mBindingName + controllerSignature ;
     const controllerTemplateName := [@lstring new
       !controllerSignature
@@ -338,6 +354,7 @@ local routine unifiedTypeAnalysis
       !decoratedOutletMap
       !controllerInstanciationStringList
       !documentArrayControllerForGeneration
+      !targetActionList
     ;
   when preferencesType :
     ioGeneration->mPreferenceListForGeneration +=
@@ -374,6 +391,7 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
 
 abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap inUnifiedTypeMap
+  ??@lstring inSelectorName
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
@@ -387,6 +405,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
 
 override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@lstring inSelectorName
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
@@ -405,8 +424,8 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimp
   if isCollection then
     error mSelfObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
-  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !inSelectorName ;
   ioTypePropertyNameList += !inCurrentTypeName !mSelfObservablePropertyName->string ;
   ioBoundObjectNameList += !"self" ;
 end method ;
@@ -415,6 +434,7 @@ end method ;
 
 override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@lstring inSelectorName
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
@@ -433,8 +453,8 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
   if isCollection then
     error mRootObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
-  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !inSelectorName ;
   ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;
   ioBoundObjectNameList += !"rootObject" ;
 end method ;
@@ -443,6 +463,7 @@ end method ;
 
 override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
   ??@unifiedTypeMap inUnifiedTypeMap
+  ??@lstring inSelectorName
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
@@ -473,8 +494,8 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   if isCollection then
     error mPreferenceObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + mSelectorName ;
-  ioBoundPropertyTypeList += !propertyType !mSelectorName ;
+  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
+  ioBoundPropertyTypeList += !propertyType !inSelectorName ;
   ioTypePropertyNameList += !mPreferenceName->string !mPreferenceObservablePropertyName->string ;
   ioBoundObjectNameList += !"g_" + mPreferenceName ;
 end method ;

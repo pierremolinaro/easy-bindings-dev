@@ -1,4 +1,4 @@
-outletClass PMButton ;
+outletClass PMButton run ;
 
 outletClass PMColorWell ;
 controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;

@@ -66,7 +66,6 @@ list @bindingOptionList {
 #----------------------------------------------------------------------------*
 
 abstract class @abstractObservablePropertyAST {
-  @lstring mSelectorName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -91,6 +90,7 @@ class @preferenceObservablePropertyAST extends @abstractObservablePropertyAST {
 #----------------------------------------------------------------------------*
 
 list @bindingList {
+  @lstring mSelectorName ;
   @abstractObservablePropertyAST mObservableProperty ;
   @lstring mOutletName ;
   @lstring mBindingName ;
@@ -109,6 +109,7 @@ class @predefinedTypeDeclaration extends @astDeclaration {
 list @outletClassDeclarationList {
   @bool mUserDefined ;
   @lstring mOutletClassName ;
+  @bool mHasRunAction ;
 }
 
 #----------------------------------------------------------------------------*
@@ -162,6 +163,8 @@ list @relationshipList {
 list @outletDeclarationList {
   @lstring mOutletType ;
   @lstring mOutletName ;
+  @lstring mRunTargetName ;
+  @lstring mRunActionName ;
 }
 
 #----------------------------------------------------------------------------*

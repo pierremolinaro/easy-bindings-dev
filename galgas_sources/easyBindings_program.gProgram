@@ -126,7 +126,7 @@ local routine semanticAnalysis
 #--- Build outlet class map
   @outletClassMap outletClassMap := {} ;
   for () in inAstDeclarationStruct->mOutletClassDeclarationList do
-    [!?outletClassMap insertKey !mOutletClassName] ;
+    [!?outletClassMap insertKey !mOutletClassName !mHasRunAction] ;
   end for ;
 #--- Type analysis
   if [@uint errorCount] == 0 then

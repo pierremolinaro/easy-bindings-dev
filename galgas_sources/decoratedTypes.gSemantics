@@ -21,6 +21,7 @@ map @arrayControllerMap {
   @abstractObservablePropertyAST mBoundModel ;
   @lstring mTableViewOutletName ;
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
+  @actionMap mActionMap ;
   insert insertKey error message "the '%K' controller is already declared" ;
   search searchKey error message "there is no '%K' controller" ;
 }
@@ -86,6 +87,8 @@ map @decoratedOutletMap {
   insert insertKey error message "the '%K' transient is already declared" ;
   search searchKey error message "the '%K' transient is not declared" ;
   @lstring mOutletTypeName ;
+  @lstring mRunTargetName ;
+  @lstring mRunActionName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -100,6 +103,7 @@ map @decoratedAttributeMap {
 #----------------------------------------------------------------------------*
 
 map @outletClassMap {
+  @bool mHandlesRunAction ;
   insert insertKey error message "the '%K' outlet class is already declared in %L" ;
   search searchKey error message "there is no '%K' outlet class" ;
 }
@@ -207,6 +211,14 @@ list @arrayControllerForGeneration {
   @string mElementTypeName ;
   @string mTableViewOutletName ;
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @targetActionList {
+  @string mOutletName ;
+  @string mTargetName ;
+  @string mActionName ;
 }
 
 #----------------------------------------------------------------------------*

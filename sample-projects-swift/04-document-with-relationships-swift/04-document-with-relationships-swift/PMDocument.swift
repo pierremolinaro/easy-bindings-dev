@@ -63,6 +63,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
+
   var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -100,6 +101,9 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
+  //--------------------------- Set targets / actions
+    addPathButton?.target = nameController
+    addPathButton?.action = "add:"
   //--------------------------- Update display
     flushTriggers ()
   }
@@ -111,6 +115,8 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
     nameController?.unregister ()
+  //--------------------------- Remove targets / actions
+    addPathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
   }
