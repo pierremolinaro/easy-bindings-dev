@@ -233,26 +233,18 @@ end
   func tableView (tableView : NSTableView,
                   viewForTableColumn : NSTableColumn,
                   row : NSInteger) -> NSView! {
- 
     let columnIdentifier = viewForTableColumn.identifier as String
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
-%
-for () in BOUND_COLUMNS do
+   %
+for () in BOUND_COLUMNS
+do
+% if columnIdentifier == "%!mColumnName%" {\n%
+  ![[FILE_WRAPPER textFileContentsAtPath !"/cell-" + [mPropertyType key] + "-" + mColumnOutletTypeName + ".txt"] stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName]
+%    }%
+between %else%
 end
-%    if columnIdentifier == "name" {
-      result.textField.stringValue = object.name
-      result.textField.target = self
-      result.textField.action = "set_name_Action:"
-      let tf : PMTextField = result.textField as PMTextField
-      tf.setSendContinously (true)
-    }else if columnIdentifier == "int" {
-      result.textField.objectValue = NSNumber.numberWithLongLong (object.aValue)
-      result.textField.target = self
-      result.textField.action = "set_aValue_Action:"
-      let tf : PMTextField = result.textField as PMTextField
-      tf.setSendContinously (true)
-    }
+%
     return result
   }
 

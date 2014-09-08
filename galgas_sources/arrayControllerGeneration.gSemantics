@@ -36,6 +36,7 @@ local filewrapper collectionControllerGenerationTemplate in "../generation-templ
     ?@string ELEMENT_TYPE_NAME
     ?@string TABLE_VIEW_OUTLET_NAME
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@filewrapper FILE_WRAPPER
   ;
 }
 
@@ -52,10 +53,11 @@ routine generateArrayControllers
       !mElementTypeName
       !mTableViewOutletName
       !mArrayControllerBoundColumnListForGeneration
+      ![filewrapper collectionControllerGenerationTemplate]
     ] ;
     [@string generateFile
       !inOutputDirectory
-      !mObjectTypeName + "-" +  mTomanyRelationshipName + "-" + mTableViewOutletName + "-" + ".swift"
+      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + "-" + mTableViewOutletName + ".swift"
       !s
     ] ;
   end for ;
