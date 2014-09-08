@@ -28,7 +28,6 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)

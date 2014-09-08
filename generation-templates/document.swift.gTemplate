@@ -117,11 +117,6 @@ for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
 end
-
-%  //--------------------------- Simple controller
-%for () in CONTROLLER_INSTANCIATION_LIST do
-%    mControllerArray.addObject (%!mValue%)\n%
-end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
@@ -131,6 +126,10 @@ for () in ARRAY_CONTROLLER_LIST do
       file:__FILE__,
       line:__LINE__
     )\n%
+end
+%  //--------------------------- Simple controller
+%for () in CONTROLLER_INSTANCIATION_LIST do
+%    mControllerArray.addObject (%!mValue%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do

@@ -757,6 +757,18 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST :
+  $identifier$ ??@lstring arrayControllerName ;
+  $.$ ;
+  $identifier$ ??@lstring observableProperty ;
+  outObservablePropertyAST := [@arrayControllerObservablePropertyAST new
+    !arrayControllerName
+    !observableProperty
+  ] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <binding_declaration>
   ?!@bindingList ioBindingList
 :

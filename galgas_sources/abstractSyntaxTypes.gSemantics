@@ -89,6 +89,13 @@ class @preferenceObservablePropertyAST extends @abstractObservablePropertyAST {
 
 #----------------------------------------------------------------------------*
 
+class @arrayControllerObservablePropertyAST extends @abstractObservablePropertyAST {
+  @lstring mArrayControllerName ;
+  @lstring mArrayControllerObservablePropertyName ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @bindingList {
   @lstring mSelectorName ;
   @abstractObservablePropertyAST mObservableProperty ;
