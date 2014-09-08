@@ -64,6 +64,10 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  var mControllerArray = NSMutableArray ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -93,7 +97,6 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
   //--------------------------- Transient observers
-  //--------------------------- Simple controller
   //--------------------------- Array controller
     nameController = ArrayController_MyRootEntity_mNames_mNamesTableView (
       object:rootObject,
@@ -101,9 +104,13 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
+  //--------------------------- Simple controller
+    mControllerArray.addObject (Controller_nameController_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
+    removePathButton?.target = nameController
+    removePathButton?.action = "remove:"
   //--------------------------- Update display
     flushTriggers ()
   }
@@ -115,8 +122,14 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
     nameController?.unregister ()
+    for object in mControllerArray {
+      let controller = object as PMTriggerProtocol
+      controller.unregister ()
+    }
+    mControllerArray.removeAllObjects ()
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
+    removePathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
   }

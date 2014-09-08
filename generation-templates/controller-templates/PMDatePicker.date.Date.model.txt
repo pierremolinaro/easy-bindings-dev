@@ -25,7 +25,6 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    noteObjectDeallocation (self)
     mOutlet?.target = nil
     mOutlet?.action = nil
     mObject?.removeObserverOf_$MODEL$ (self)

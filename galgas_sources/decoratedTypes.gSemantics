@@ -22,6 +22,7 @@ map @arrayControllerMap {
   @lstring mTableViewOutletName ;
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
   @actionMap mActionMap ;
+  @decoratedObservablePropertyMap mObservablePropertyMap ;
   insert insertKey error message "the '%K' controller is already declared" ;
   search searchKey error message "there is no '%K' controller" ;
 }
