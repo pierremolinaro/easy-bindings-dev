@@ -66,7 +66,6 @@ import Cocoa
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
-  //--------------------------- Controller bindings
   //--------------------------- Outlet checking
     if nil == docStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'docStringTextField' outlet is nil") ;
@@ -80,12 +79,13 @@ import Cocoa
     if nil == transientConcatStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is nil") ;
     }
-  //--------------------------- Add Transient observers
-  //--------------------------- Controller instanciation
+  //--------------------------- Transient observers
+  //--------------------------- Simple controller
     mControllerArray.addObject (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyPrefs_prefTransientString_PMTextField_value (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyRootEntity_transientConcatString_PMTextField_value (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+  //--------------------------- Array controller
   //--------------------------- Update display
     flushTriggers ()
   }

@@ -190,6 +190,26 @@ list @actionListForGeneration {
 
 #----------------------------------------------------------------------------*
 
+list @arrayControllerBoundColumnListForGeneration {
+  @string mColumnName ;
+  @string mColumnOutletTypeName ;
+  @string mObservablePropertyName ;
+  @unifiedTypeProxy mPropertyType ;
+  @bindingOptionList mBindingOptionList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @arrayControllerForGeneration {
+  @string mObjectTypeName ;
+  @string mTomanyRelationshipName ;
+  @string mElementTypeName ;
+  @string mTableViewOutletName ;
+  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration ;
+}
+
+#----------------------------------------------------------------------------*
+
 
 
 

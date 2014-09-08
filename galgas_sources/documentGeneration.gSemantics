@@ -12,6 +12,7 @@ list @documentListForGeneration {
   @decoratedTransientMap mDecoratedTransientMapForGeneration ;
   @decoratedOutletMap mOutletMap ;
   @stringlist mControllerInstanciationStringList ;
+  @arrayControllerForGeneration mDocumentArrayControllerForGeneration ;
 }
 
 #----------------------------------------------------------------------------*
@@ -26,8 +27,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@stringlist CONTROLLER_INSTANCIATION_LIST
-#    ?@stringset INCLUSION_SET
-#    ?@bool HAS_SIGNATURE_OBSERVER
+    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
   ;
 }
 
@@ -45,6 +45,7 @@ routine generateDocuments
       !mDecoratedTransientMapForGeneration
       !mOutletMap
       !mControllerInstanciationStringList
+      !mDocumentArrayControllerForGeneration
     ] ;
     [@string generateFile
       !inOutputDirectory

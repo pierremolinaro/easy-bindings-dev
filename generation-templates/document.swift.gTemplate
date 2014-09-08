@@ -95,10 +95,12 @@ end
 %  var mControllerArray = NSMutableArray ()\n\n%
 %  //-------------------------------------------------------------------------------------------------------------------*\n%
 end
+for () in ARRAY_CONTROLLER_LIST do
+%  var mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil\n%
+end
 %
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
-  //--------------------------- Controller bindings
   //--------------------------- Outlet checking
 %
 
@@ -107,7 +109,7 @@ for () in OUTLET_GENERATION_MAP do
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
    %    }\n%
 end
-%  //--------------------------- Add Transient observers
+%  //--------------------------- Transient observers
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
@@ -115,10 +117,21 @@ for () in mDependencyList do
 end
 end
 
-%  //--------------------------- Controller instanciation
+%  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do
 %    mControllerArray.addObject (%!mValue%)\n%
-end%  //--------------------------- Update display
+end
+%  //--------------------------- Array controller
+%
+for () in ARRAY_CONTROLLER_LIST do
+%    mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% (
+      object:rootObject,
+      tableView:%!mTableViewOutletName%,
+      file:__FILE__,
+      line:__LINE__
+    )\n%
+end
+%  //--------------------------- Update display
     flushTriggers ()
   }
 
@@ -128,7 +141,11 @@ end%  //--------------------------- Update display
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
-%if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
+%
+for () in ARRAY_CONTROLLER_LIST do
+%    mArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%?.unregister ()\n%
+end
+if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
 %    for object in mControllerArray {
       let controller = object as PMTriggerProtocol
       controller.unregister ()

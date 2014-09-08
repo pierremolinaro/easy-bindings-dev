@@ -150,11 +150,6 @@ local routine unifiedTypeAnalysis
       error mTableViewOutletName : "this outlet is not an instance of PMTableView" ;
     end if ;
   #--- Check colum bound models
-#    @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
-#  @lstring mColumnName ;
-#  @lstring mColumnOutletTypeName ;
-#  @lstring mObservablePropertyName ;
-#  @bindingOptionList mBindingOptionList ;
     @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration := {} ;
     for () in mArrayControllerBoundColumnListAST do
       [[outElementTypeProxy mObservablePropertyMap] searchKey
@@ -341,6 +336,7 @@ local routine unifiedTypeAnalysis
       !decoratedTransientMap
       !decoratedOutletMap
       !controllerInstanciationStringList
+      !documentArrayControllerForGeneration
     ;
   when preferencesType :
     ioGeneration->mPreferenceListForGeneration +=
