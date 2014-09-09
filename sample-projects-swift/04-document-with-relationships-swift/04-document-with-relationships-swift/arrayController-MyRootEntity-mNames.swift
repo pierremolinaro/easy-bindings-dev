@@ -28,7 +28,7 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
   }
   
   func trigger () {
-    mArrayController?.refreshDisplay ()
+    mArrayController?.reloadData ()
   }
 }
 
@@ -44,7 +44,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   private var mDisplayTrigger : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
 
   private var mCurrentObjectSet = NSMutableSet ()
-  private var mCurrentObjectArray = NSArray ()
+  private var mCurrentObjectArray = NSMutableArray ()
+  private var mSelectedObjectArray : NSArray = NSArray () {
+    didSet {
+      updateCanRemoveProperty ()
+    }
+  }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -104,7 +109,6 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       managedObject.removeObserverOf_name (mTriggerObjectForModelChange)
       managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange)
     }
-    mCurrentObjectSet = NSMutableSet ()
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -125,39 +129,43 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     }
   }
   
-   //-------------------------------------------------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mSelectedObject :  NameEntity? = nil {
-    didSet {
-      if mSelectedObject == nil {
-   //     NSLog ("nil")
-      }else{
-  //      NSLog ("Int %d", mSelectedObject!.aValue)
-      }
+  func tableViewSelectionDidChange (NSNotification!) {
+    var selectedObjectArray = NSMutableArray ()
+    if let tableView = mTableView {
+      let selectedRowIndexes = tableView.selectedRowIndexes
+      selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
+        stop.initialize (false)
+        let object = self.mCurrentObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__) as? NameEntity
+        if let unwrappedObject = object {
+          selectedObjectArray.addObject (unwrappedObject)
+        }
+      })
     }
+    mSelectedObjectArray = selectedObjectArray
+    // NSLog ("mSelectedObjectArray %d", mSelectedObjectArray.count)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
+  //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableViewSelectionDidChange (NSNotification!) {
-    var selectedObject :  NameEntity?
-    if let tableView = mTableView {
-      let selectedObjectIndex = tableView.selectedRow
-      if selectedObjectIndex >= 0 {
-        selectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as?  NameEntity
-      }
-    }
-    mSelectedObject = selectedObject
+  func tableView (aTableView: NSTableView!,
+                 sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
+    mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
+    refreshDisplay ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Observing model change                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func refreshDisplay () {
-   mCurrentObjectArray = mObject.mNames.copy () as NSArray
+  func reloadData () {
+   mCurrentObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
   //--- Update observers for handling model change
     let oldObjectSet = mCurrentObjectSet
     mCurrentObjectSet = NSMutableSet ()
@@ -180,25 +188,25 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       managedObject.addObserverOf_name (mTriggerObjectForModelChange)
       managedObject.addObserverOf_aValue (mTriggerObjectForModelChange)
     }
-  //--- Sort local array for display
-    let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
-    let descriptorArray = NSArray (object:sortDescriptor)
-    mCurrentObjectArray = mCurrentObjectArray.sortedArrayUsingDescriptors (descriptorArray) as NSArray
+    refreshDisplay ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func refreshDisplay () {
     mTableView?.reloadData ()
-  //--- Restore selection (if any)
-    if let selectedObjectUnwrapped = mSelectedObject {
-      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (selectedObjectUnwrapped)
+  //--- try to restore selection (if any)
+    var newSelectionIndexSet = NSMutableIndexSet ()
+    for object in mSelectedObjectArray {
+      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (object)
       if idx != NSNotFound {
-        mTableView?.selectRowIndexes(NSIndexSet (index:idx), byExtendingSelection:false)
-        mTableView?.scrollRowToVisible (idx)
-      }else{
-        let selectedObjectIndex = mTableView!.selectedRow
-        if selectedObjectIndex >= 0 {
-          mSelectedObject = mCurrentObjectArray.objectAtIndex (selectedObjectIndex, file:__FILE__, line:__LINE__) as?  NameEntity
-        }
+        newSelectionIndexSet.addIndex (idx)
       }
     }
- }
+    mTableView?.selectRowIndexes (newSelectionIndexSet, byExtendingSelection:false)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
 
   private var mTriggerObjectForModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
   private var mTriggerObjectForModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
@@ -288,13 +296,16 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   func remove (inSender : AnyObject!) {
     if let tableView = mTableView {
-      let selectedRow = tableView.selectedRow ;
-      if selectedRow >= 0 {
-        let object = mCurrentObjectArray.objectAtIndex (selectedRow, file:__FILE__, line:__LINE__) as  NameEntity
-        var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
-        array.removeObjectIdenticalTo (object)
-        mObject.mNames = array
-      }
+      var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+      let selectedRowIndexes = tableView.selectedRowIndexes
+      selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
+        stop.initialize (false)
+        let object = self.mCurrentObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__) as? NameEntity
+        if let unwrappedObject = object {
+          newObjectArray.removeObjectIdenticalTo (unwrappedObject)
+        }
+      })
+      mObject.mNames = newObjectArray
     }
   }
 
@@ -306,7 +317,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
-    let newValue = mObject.mNames.count > 0
+    let newValue = mSelectedObjectArray.count > 0
     if canRemove_private != newValue {
       canRemove_private = newValue
       for anyObject in canRemove_observers {
