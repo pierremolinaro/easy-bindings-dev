@@ -60,8 +60,8 @@ for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!lkey.string%_observers = NSMutableSet ()\n%
-%  var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  private var %!lkey.string%_observers = NSMutableSet ()\n%
+%  private var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!lkey.string% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
 %      if %!lkey.string%_cache == nil {\n%
