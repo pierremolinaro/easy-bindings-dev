@@ -36,7 +36,7 @@ routine generateArrayControllers
     ] ;
     [@string generateFile
       !inOutputDirectory
-      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + "-" + mTableViewOutletName + ".swift"
+      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + ".swift"
       !s
     ] ;
   end for ;

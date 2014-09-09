@@ -7,11 +7,11 @@ import Cocoa
 
 @objc(TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
 class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol {
-  private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%? = nil
   
   var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
   
-  init (object : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%) {
+  init (object : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%) {
     mArrayController = object
     super.init ()
     noteObjectAllocation (self) ;
@@ -29,16 +29,15 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
   
   func trigger () {
     mArrayController?.refreshDisplay ()
-    mArrayController?.updateCanRemoveProperty ()
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["ArrayController_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
+//    %!["ArrayController_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
-class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, NSTableViewDataSource, NSTableViewDelegate {
+@objc(ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%)
+class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTableViewDataSource, NSTableViewDelegate {
   private var mUndoManager : NSUndoManager?
   private var mObject : %!OBJECT_TYPE_NAME%
   private var mTableView : PMTableView?

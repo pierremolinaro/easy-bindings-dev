@@ -32,7 +32,7 @@
 		CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */; };
 		CFE3F3E01965FA3C0017DFCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3DF1965FA3C0017DFCE /* libz.dylib */; };
 		CFE3F3E21965FAB30017DFCE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3E11965FAB30017DFCE /* libbz2.dylib */; };
-		CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift */; };
+		CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +64,7 @@
 		CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+total.swift"; sourceTree = "<group>"; };
 		CFE3F3DF1965FA3C0017DFCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CFE3F3E11965FAB30017DFCE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-MyRootEntity-mNames-mNamesTableView.swift"; sourceTree = "<group>"; };
+		CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-MyRootEntity-mNames.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 			children = (
 				CF32289119BE2F2900ACB419 /* controller-classes.swift */,
 				CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */,
-				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift */,
+				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C6409196060D800BE14DF /* Images.xcassets */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
@@ -214,7 +214,7 @@
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
-				CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames-mNamesTableView.swift in Sources */,
+				CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,

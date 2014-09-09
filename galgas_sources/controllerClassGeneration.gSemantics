@@ -12,14 +12,10 @@ routine generateControllerClasses
     s += controllerString ;
   end for ;
   s += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n" ;
-  [@string generateFileWithPattern
+  [@string generateFile
     !inOutputDirectory
     !"controller-classes.swift"
-    !"//"
-    !"\n\n" # Defaut user zone1
     !s
-    !"\n\n" # Defaut user zone2
-    !"\n\n"
   ] ;
 end routine ;
 

@@ -7,11 +7,11 @@ import Cocoa
 
 @objc(TriggerFor_MyRootEntity_mNames_mNamesTableView)
 class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol {
-  private weak var mArrayController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
+  private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
   var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
   
-  init (object : ArrayController_MyRootEntity_mNames_mNamesTableView) {
+  init (object : ArrayController_MyRootEntity_mNames) {
     mArrayController = object
     super.init ()
     noteObjectAllocation (self) ;
@@ -29,16 +29,15 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
   
   func trigger () {
     mArrayController?.refreshDisplay ()
-    mArrayController?.updateCanRemoveProperty ()
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ArrayController_MyRootEntity_mNames_mNamesTableView                                                              *
+//    ArrayController_MyRootEntity_mNames                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(ArrayController_MyRootEntity_mNames_mNamesTableView)
-class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableViewDataSource, NSTableViewDelegate {
+@objc(ArrayController_MyRootEntity_mNames)
+class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate {
   private var mUndoManager : NSUndoManager?
   private var mObject : MyRootEntity
   private var mTableView : PMTableView?

@@ -23,7 +23,7 @@ map @arrayControllerMap {
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
   @actionMap mActionMap ;
   @decoratedObservablePropertyMap mObservablePropertyMap ;
-  @lstring mPropertySignature ; # Array controller signature for transient dependency graph
+  @lstring mPropertySignature ; # Array controller signature for transient dependency graph : document.MyDoc.arrayControllerName
   insert insertKey error message "the '%K' controller is already declared" ;
   search searchKey error message "there is no '%K' controller" ;
 }
