@@ -94,13 +94,14 @@ for () in ARRAY_CONTROLLER_LIST do
   //    %!["Array controller: " + mControllerName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil
+  private var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%? = nil
 
   func document_2E_PMDocument_2E_%!mControllerName%_noteDidChange () {
   }
 
   func document_2E_PMDocument_2E_%!mControllerName%_trigger () {
     %!mControllerName%?.arrayModelSizeDidChange ()
+    %!mControllerName%?.updateCanRemoveProperty ()
   }
 
   private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache : PMTrigger_document_2E_PMDocument_2E_%!mControllerName%?
@@ -148,7 +149,7 @@ end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName% (
+%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% (
       object:rootObject,
       tableView:%!mTableViewOutletName%,
       file:__FILE__,

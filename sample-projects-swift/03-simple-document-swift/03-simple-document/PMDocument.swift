@@ -89,6 +89,7 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is nil") ;
     }
   //--------------------------- Transient observers
+  //--------------------------- Array controller as observers
   //--------------------------- Array controller
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:true))

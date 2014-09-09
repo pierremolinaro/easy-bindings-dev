@@ -64,13 +64,14 @@ import Cocoa
   //    Array controller: nameController                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
+  private var nameController : ArrayController_MyRootEntity_mNames? = nil
 
   func document_2E_PMDocument_2E_nameController_noteDidChange () {
   }
 
   func document_2E_PMDocument_2E_nameController_trigger () {
     nameController?.arrayModelSizeDidChange ()
+    nameController?.updateCanRemoveProperty ()
   }
 
   private var triggerObjectFor_document_2E_PMDocument_2E_nameController_cache : PMTrigger_document_2E_PMDocument_2E_nameController?
@@ -85,6 +86,10 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mControllerArray = NSMutableArray ()
+
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
@@ -115,13 +120,14 @@ import Cocoa
   //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
   //--------------------------- Array controller
-    nameController = ArrayController_MyRootEntity_mNames_mNamesTableView (
+    nameController = ArrayController_MyRootEntity_mNames (
       object:rootObject,
       tableView:mNamesTableView,
       file:__FILE__,
       line:__LINE__
     )
   //--------------------------- Simple controller
+    mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -138,6 +144,11 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
     nameController?.unregister ()
+    for object in mControllerArray {
+      let controller = object as PMTriggerProtocol
+      controller.unregister ()
+    }
+    mControllerArray.removeAllObjects ()
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

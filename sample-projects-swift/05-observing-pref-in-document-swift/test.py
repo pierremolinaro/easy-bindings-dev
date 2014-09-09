@@ -60,7 +60,7 @@ if transientPrefsString.AXValue != expectedValue:
     sys.exit (1)
 
 #--- Check resulting string
-expectedValue = 'Doc ' + newDocumentValue + ' Prefs ' + newPrefsValue + ' Pref Transient <' + newPrefsValue + '>'
+expectedValue = 'Doc \'' + newDocumentValue + '\' Prefs \'' + newPrefsValue + '\' Pref Transient \'<' + newPrefsValue + '>\''
 if resultingString.AXValue != expectedValue:
     print '*** Erreur 4 ***'
     sys.exit (1)
@@ -98,7 +98,7 @@ if transientPrefsString.AXValue != expectedValue:
     sys.exit (1)
 
 #--- Check resulting string
-expectedValue = 'Doc ' + newDocumentValue + ' Prefs ' + newPrefsValue + ' Pref Transient <' + newPrefsValue + '>'
+expectedValue = 'Doc \'' + newDocumentValue + '\' Prefs \'' + newPrefsValue + '\' Pref Transient \'<' + newPrefsValue + '>\''
 if resultingString.AXValue != expectedValue:
     print '*** Erreur 14 ***'
     sys.exit (1)

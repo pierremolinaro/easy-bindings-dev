@@ -509,9 +509,9 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@lstring inSelectorName
-  ??@string unused inCurrentTypeName
+  ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeProxy inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -520,7 +520,8 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
 #--- Get preference type
   [inArrayControllerMap searchKey
     !mArrayControllerName
-    ?4*
+    ??@abstractObservablePropertyAST boundModel
+    ?3*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
     ?*
   ] ;
@@ -537,8 +538,11 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   end if ;
   ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
   ioBoundPropertyTypeList += !propertyType !inSelectorName ;
-  ioTypePropertyNameList += !mArrayControllerName->string !mArrayControllerObservablePropertyName->string ;
   ioBoundObjectNameList += !mArrayControllerName->string ;
+  ioTypePropertyNameList +=
+    !"ArrayController_" + [boundModel modelSignatureForArrayController !inRootEntityType !inCurrentTypeName]
+    !mArrayControllerObservablePropertyName->string
+  ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -682,6 +686,60 @@ override reader @arrayControllerObservablePropertyAST propertySignature
     !inKind + "." + inSelfTypeName + "." + mArrayControllerObservablePropertyName
     !mArrayControllerObservablePropertyName->location
   ] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+# modelSignatureForArrayController                                           *
+#----------------------------------------------------------------------------*
+
+#! modelSignatureForArrayController
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractObservablePropertyAST modelSignatureForArrayController
+  ??@unifiedTypeProxy inRootypeProxy
+  ??@string inSelfTypeName
+  -> @string outSignature
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @selfObservablePropertyAST modelSignatureForArrayController
+  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@string inSelfTypeName
+  -> @string outSignature
+:
+  outSignature := inSelfTypeName + "_" + mSelfObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @rootObservablePropertyAST modelSignatureForArrayController
+  ??@unifiedTypeProxy inRootypeProxy
+  ??@string unused inSelfTypeName
+  -> @string outSignature
+:
+  outSignature := [inRootypeProxy key] + "_" + mRootObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @preferenceObservablePropertyAST modelSignatureForArrayController
+  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@string unused inSelfTypeName
+  -> @string outSignature
+:
+  outSignature := mPreferenceName->string + "_" + mPreferenceObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @arrayControllerObservablePropertyAST modelSignatureForArrayController
+  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@string inSelfTypeName
+  -> @string outSignature
+:
+  outSignature := inSelfTypeName + "_" + mArrayControllerObservablePropertyName ;
 end reader ;
 
 #----------------------------------------------------------------------------*

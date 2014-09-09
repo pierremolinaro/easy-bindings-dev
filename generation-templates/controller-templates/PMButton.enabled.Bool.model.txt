@@ -2,7 +2,7 @@
 class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerProtocol {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  weak var mOutlet: PMButton? = nil
+  weak var mOutlet : PMButton? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -41,7 +41,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerPro
 
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.$MODEL$) {
-      mOutlet!. enabled = mObject!.$MODEL$
+      mOutlet!.enabled = mObject!.$MODEL$
     }
   }
 
