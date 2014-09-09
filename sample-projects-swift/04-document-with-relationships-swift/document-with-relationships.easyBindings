@@ -24,8 +24,8 @@ document PMDocument root MyRootEntity {
 
   outlet PMButton addPathButton run nameController.add ;
 
-  outlet PMButton removePathButton run nameController.remove ; # $enabled nameController.canRemove ;
-  bind model : nameController.canRemove to removePathButton $enabled ;
+  outlet PMButton removePathButton run nameController.remove ;
+#  bind model : nameController.canRemove to removePathButton $enabled ;
 
   outlet PMTextField countItemTextField ; # $value root.mNames.count ;
 

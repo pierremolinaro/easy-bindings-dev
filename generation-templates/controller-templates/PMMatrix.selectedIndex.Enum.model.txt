@@ -38,6 +38,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
   
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
       mOutlet!.selectCellAtRow (mObject!.$MODEL$.toRaw (), column:0)

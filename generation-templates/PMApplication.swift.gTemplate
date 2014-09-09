@@ -40,7 +40,7 @@ end
 @objc(PMTriggerProtocol)
 protocol PMTriggerProtocol : NSObjectProtocol {
   var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
-  func noteTransientChanged ()
+  func noteTransientDidChange ()
   func trigger ()
   func unregister ()
 }
@@ -55,16 +55,16 @@ do index idx
 class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtocol {
   weak var mTriggerObject : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
   
-  var mTransientIndex : Int {
-    get {
-      return k_%![mValue identifierRepresentation]%
-    }
-  }
+  var mTransientIndex : Int { get { return k_%![mValue identifierRepresentation]% } }
   
   init (object : %![[mValue stringByDeletingPathExtension] pathExtension]%) {
     mTriggerObject = object
     super.init ()
     noteObjectAllocation (self) ;
+  }
+
+  func noteTransientDidChange () {
+    mTriggerObject?.%![mValue identifierRepresentation]%_noteDidChange ()
   }
 
   func unregister () {
@@ -74,14 +74,8 @@ class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtoc
     noteObjectDeallocation (self) ;
   }
 
-  func noteTransientChanged () {
-    if mTriggerObject != nil {
-      mTriggerObject!.%![mValue pathExtension]%_cache = nil
-    }
-  }
-  
   func trigger () {
-    mTriggerObject?.%![mValue identifierRepresentation]%_didChange ()
+    mTriggerObject?.%![mValue identifierRepresentation]%_trigger ()
   }
 }
 %end%
@@ -128,7 +122,7 @@ func flushTriggers () {
 %  //-------------------------------------------------------------------------------------------------------------------*
 
   private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
-    inObject.noteTransientChanged ()
+    inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
     case kTriggerOutletDisplay :

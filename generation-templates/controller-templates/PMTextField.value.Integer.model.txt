@@ -49,6 +49,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
   
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.$MODEL$)) {
       mOutlet!.integerValue = Int (mObject!.$MODEL$)

@@ -78,7 +78,12 @@ end
     }
   }
 
-  func %!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_didChange () {
+  func %!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_noteDidChange () {
+    %!lkey.string%_cache = nil
+  }
+  
+
+  func %!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_trigger () {
     for anyObject in %!lkey.string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)

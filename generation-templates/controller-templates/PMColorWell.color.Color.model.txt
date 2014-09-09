@@ -41,6 +41,11 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
   
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.$MODEL$) {
       mOutlet!.color = mObject!.$MODEL$

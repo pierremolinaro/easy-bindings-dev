@@ -210,15 +210,19 @@ override method @unifiedTypeDeclaration typeInventory
 #--------------------------------------------------- Analyze array controllers
   @arrayControllerMap arrayControllerMap := {} ;
   for () in mArrayControllerDeclarationListAST do
-    const signature := [@lstring new !kindName + "." + mControllerName + ".canRemove" !mControllerName->location] ;
+    const canRemove_propertySignature := [@lstring new !kindName + "." + mControllerName + ".canRemove" !mControllerName->location] ;
     [@unifiedTypeProxy makeProxy !?ioUnifiedTypeMap !["Bool" nowhere] ??@unifiedTypeProxy boolTypeProxy] ;
     const @decoratedObservablePropertyMap arrayControllerObservablePropertyMap := {
       !["canRemove" nowhere]
       !boolTypeProxy
       !false # mIsTransient ;
-      !signature
+      !canRemove_propertySignature
       !false # mIsCollection ;
     } ;
+    const arrayController_propertySignature := [@lstring new
+      !kindName + "." + mTypeName + "." + mControllerName
+      !mControllerName->location
+    ] ;
     [!?arrayControllerMap insertKey
       !mControllerName
       !mBoundModel
@@ -226,6 +230,7 @@ override method @unifiedTypeDeclaration typeInventory
       !mArrayControllerBoundColumnListAST
       !{!["add" nowhere], !["remove" nowhere]}
       !arrayControllerObservablePropertyMap
+      !arrayController_propertySignature
     ] ;
   end for ;
 #------------------------------------- Enter in type map

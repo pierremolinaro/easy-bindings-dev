@@ -118,7 +118,7 @@ local routine unifiedTypeAnalysis
         [inActionMap searchKey !mRunActionName] ;
         targetActionList += !lkey->string !"self" !mRunActionName->string ;
       else # It is a controller
-        [inArrayControllerMap searchKey !mRunTargetName ?3* ??@actionMap arrayControllerActionMap ?*] ;
+        [inArrayControllerMap searchKey !mRunTargetName ?3* ??@actionMap arrayControllerActionMap ?2*] ;
         [arrayControllerActionMap searchKey !mRunActionName] ;
         targetActionList += !lkey->string !mRunTargetName->string !mRunActionName->string ;
       end if ;
@@ -522,6 +522,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     !mArrayControllerName
     ?4*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
+    ?*
   ] ;
 #---    
   [arrayControllerObservablePropertyMap searchKey
@@ -611,6 +612,77 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     : outBoundRootTomanyRelationshipName, outRelationshipTypeProxy
   ;
 end method ;
+
+#----------------------------------------------------------------------------*
+# propertySignature                                                          *
+#----------------------------------------------------------------------------*
+
+#! propertySignature
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractObservablePropertyAST propertySignature
+  ??@string inKind
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy inRootypeProxy
+  -> @lstring outSignature
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @selfObservablePropertyAST propertySignature
+  ??@string inKind
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @lstring outSignature
+:
+  outSignature := [@lstring new
+    !inKind + "." + inSelfTypeName + "." + mSelfObservablePropertyName
+    !mSelfObservablePropertyName->location
+  ] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @rootObservablePropertyAST propertySignature
+  ??@string unused inKind
+  ??@string unused inSelfTypeName
+  ??@unifiedTypeProxy inRootypeProxy
+  -> @lstring outSignature
+:
+  outSignature := [@lstring new
+    !"entity." + [inRootypeProxy key] + "." + mRootObservablePropertyName
+    !mRootObservablePropertyName->location
+  ] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @preferenceObservablePropertyAST propertySignature
+  ??@string unused inKind
+  ??@string unused inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @lstring outSignature
+:
+  outSignature := [@lstring new
+    !"preferences." + mPreferenceName + "." + mPreferenceObservablePropertyName
+    !mPreferenceObservablePropertyName->location
+  ] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @arrayControllerObservablePropertyAST propertySignature
+  ??@string inKind
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @lstring outSignature
+:
+  outSignature := [@lstring new
+    !inKind + "." + inSelfTypeName + "." + mArrayControllerObservablePropertyName
+    !mArrayControllerObservablePropertyName->location
+  ] ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 

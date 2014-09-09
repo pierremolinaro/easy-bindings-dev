@@ -172,6 +172,27 @@ routine buildTransientDependencyGraph
         !property_mIsTransient
       ] ;
     end for ;
+#  @abstractObservablePropertyAST mBoundModel ;
+#  @lstring mTableViewOutletName ;
+#  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
+#  @actionMap mActionMap ;
+#  @decoratedObservablePropertyMap mObservablePropertyMap ;
+    for () arrayController_ in type_mArrayControllerMap do
+      [!?transientDependencyGraph addNode
+        !arrayController_mPropertySignature
+        !arrayController_mPropertySignature->string
+        !true # Is transient
+      ] ;
+    #--- Add dependency arc from model to array controller
+      [!?transientDependencyGraph addEdge
+        ![arrayController_mBoundModel propertySignature
+           ![type_mTypeKind kindName]
+           !type_lkey->string
+           !type_mRootEntityType
+         ]
+        !arrayController_mPropertySignature
+      ] ;
+    end for ;
     for () transient_ in type_mDecoratedTransientMap do
       @decoratedObservablePropertyMap allObservableProperties := type_mObservablePropertyMap ;
       @unifiedTypeProxy t := type_mSuperType ;
