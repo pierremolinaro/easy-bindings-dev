@@ -1,5 +1,5 @@
 outletClass PMButton run ;
-controllerTemplate PMButton $enabled : Bool model ;
+#controllerTemplate PMButton $enabled : Bool model ;
 
 outletClass PMColorWell ;
 controllerTemplate PMColorWell $color : Color model {sendContinously : Bool} ;

@@ -64,12 +64,23 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
-
+  var nameController_cache : NSArray?
+  func document_2E_PMDocument_2E_nameController_didChange () {
+    nameController?.arrayModelSizeDidChange ()
+  }
+  var triggerObjectFor_document_2E_PMDocument_2E_nameController_cache : PMTrigger_document_2E_PMDocument_2E_nameController?
+  var triggerObjectFor_document_2E_PMDocument_2E_nameController : PMTrigger_document_2E_PMDocument_2E_nameController {
+    get {
+      if triggerObjectFor_document_2E_PMDocument_2E_nameController_cache == nil {
+        triggerObjectFor_document_2E_PMDocument_2E_nameController_cache = PMTrigger_document_2E_PMDocument_2E_nameController (object:self)
+      }
+      return triggerObjectFor_document_2E_PMDocument_2E_nameController_cache!
+    }
+  }
+  
+//  var mControllerArray = NSMutableArray ()
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
@@ -97,6 +108,8 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
   //--------------------------- Transient observers
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
+//    mControllerArray.addObject (PMTrigger_document_2E_PMDocument_2E_nameController (object: self))
   //--------------------------- Array controller
     nameController = ArrayController_MyRootEntity_mNames_mNamesTableView (
       object:rootObject,
@@ -105,7 +118,6 @@ import Cocoa
       line:__LINE__
     )
   //--------------------------- Simple controller
-    mControllerArray.addObject (Controller_nameController_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -122,11 +134,6 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
     nameController?.unregister ()
-    for object in mControllerArray {
-      let controller = object as PMTriggerProtocol
-      controller.unregister ()
-    }
-    mControllerArray.removeAllObjects ()
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

@@ -41,10 +41,11 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(ArrayController_MyRootEntity_mNames_mNamesTableView)
-class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
+class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableViewDataSource, NSTableViewDelegate {
   var mUndoManager : NSUndoManager?
   var mObject : MyRootEntity
   var mTableView : PMTableView?
+  var mDisplayTrigger : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -88,10 +89,10 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
       if ok {
         mTableView?.setDataSource (self)
         mTableView?.setDelegate (self)
+        mDisplayTrigger = TriggerFor_MyRootEntity_mNames_mNamesTableView (object: self)
       }
     }
     noteObjectAllocation (self)
-    object.addObserverOf_mNames (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -99,7 +100,6 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
   //-------------------------------------------------------------------------------------------------------------------*
 
   func unregister () {
-    mObject.removeObserverOf_mNames (self)
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as  NameEntity
       managedObject.removeObserverOf_name (triggerObjectForModelChange)
@@ -117,50 +117,20 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    For PMTriggerProtocol                                                                                          *
+  //    arrayModelSizeDidChange                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
+  func arrayModelSizeDidChange () {
+    if let trigger = mDisplayTrigger {
+      enterTriggerWithObject (trigger)
+    }
   }
-
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var mCurrentObjectSet = NSMutableSet ()
   private var mCurrentObjectArray = NSArray ()
   
-  func trigger () {
-    mCurrentObjectArray = mObject.mNames.copy () as NSArray
-  //--- Update observers for handling model change
-    let oldObjectSet = mCurrentObjectSet
-    mCurrentObjectSet = NSMutableSet ()
-    mCurrentObjectSet.addObjectsFromArray (mObject.mNames)
-  //--- Removed object set
-    var removedObjectSet = NSMutableSet ()
-    removedObjectSet.setSet (oldObjectSet)
-    removedObjectSet.minusSet (mCurrentObjectSet)
-    for object : AnyObject in removedObjectSet {
-      let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (triggerObjectForModelChange)
-      managedObject.removeObserverOf_aValue (triggerObjectForModelChange)
-    }
-  //--- Added object set
-    var addedObjectSet = NSMutableSet ()
-    addedObjectSet.setSet (mCurrentObjectSet)
-    addedObjectSet.minusSet (oldObjectSet)
-    for object : AnyObject in addedObjectSet {
-      let managedObject = object as  NameEntity
-      managedObject.addObserverOf_name (triggerObjectForModelChange)
-      managedObject.addObserverOf_aValue (triggerObjectForModelChange)
-    }
-  //---
-    refreshDisplay ()
-    updateCanRemoveProperty ()
-  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -193,6 +163,29 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
   //-------------------------------------------------------------------------------------------------------------------*
   
   func refreshDisplay () {
+    mCurrentObjectArray = mObject.mNames.copy () as NSArray
+  //--- Update observers for handling model change
+    let oldObjectSet = mCurrentObjectSet
+    mCurrentObjectSet = NSMutableSet ()
+    mCurrentObjectSet.addObjectsFromArray (mObject.mNames)
+  //--- Removed object set
+    var removedObjectSet = NSMutableSet ()
+    removedObjectSet.setSet (oldObjectSet)
+    removedObjectSet.minusSet (mCurrentObjectSet)
+    for object : AnyObject in removedObjectSet {
+      let managedObject = object as  NameEntity
+      managedObject.removeObserverOf_name (triggerObjectForModelChange)
+      managedObject.removeObserverOf_aValue (triggerObjectForModelChange)
+    }
+  //--- Added object set
+    var addedObjectSet = NSMutableSet ()
+    addedObjectSet.setSet (mCurrentObjectSet)
+    addedObjectSet.minusSet (oldObjectSet)
+    for object : AnyObject in addedObjectSet {
+      let managedObject = object as  NameEntity
+      managedObject.addObserverOf_name (triggerObjectForModelChange)
+      managedObject.addObserverOf_aValue (triggerObjectForModelChange)
+    }
   //--- Sort local array for display
     let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
     let descriptorArray = NSArray (object:sortDescriptor)
@@ -211,6 +204,7 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerP
         }
       }
     }
+    updateCanRemoveProperty ()
   }
 
   var triggerObjectForModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
