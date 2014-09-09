@@ -340,8 +340,8 @@ for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + lkey.string stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!lkey.string%_observers = NSMutableSet ()\n%
-%  var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
+%  private var %!lkey.string%_observers = NSMutableSet ()\n%
+%  private var %!lkey.string%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!lkey.string% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
 %      if %!lkey.string%_cache == nil {\n%
@@ -358,7 +358,11 @@ end
     }
   }
 
-  func %!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_didChange () {
+  func %!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_noteDidChange () {
+    %!lkey.string%_cache = nil
+  }
+
+  func %!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_trigger () {
     for anyObject in %!lkey.string%_observers {
       let object = anyObject as PMTriggerProtocol
       enterTriggerWithObject (object)

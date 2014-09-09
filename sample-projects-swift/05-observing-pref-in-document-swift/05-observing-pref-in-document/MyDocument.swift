@@ -60,6 +60,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
+
   var mControllerArray = NSMutableArray ()
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -80,12 +81,13 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is nil") ;
     }
   //--------------------------- Transient observers
+  //--------------------------- Array controller
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyPrefs_prefTransientString_PMTextField_value (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_MyRootEntity_transientConcatString_PMTextField_value (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-  //--------------------------- Array controller
+  //--------------------------- Set targets / actions
   //--------------------------- Update display
     flushTriggers ()
   }
@@ -101,6 +103,7 @@ import Cocoa
       controller.unregister ()
     }
     mControllerArray.removeAllObjects ()
+  //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)
   }
