@@ -291,6 +291,11 @@
 													<bool key="NSIsResizeable">YES</bool>
 													<bool key="NSIsEditable">YES</bool>
 													<reference key="NSTableView" ref="187949471"/>
+													<object class="NSSortDescriptor" key="NSSortDescriptorPrototype">
+														<string key="NSKey">name</string>
+														<bool key="NSAscending">YES</bool>
+														<string key="NSSelector">compare:</string>
+													</object>
 												</object>
 											</array>
 											<double key="NSIntercellSpacingWidth">3</double>
@@ -309,7 +314,7 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">17</double>
-											<int key="NSTvFlags">-490733568</int>
+											<int key="NSTvFlags">-88080384</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<string key="NSAutosaveName">PMTableViewAutosaveName</string>
@@ -789,7 +794,6 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="568628114"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="606346608"/>
 							<reference ref="578916943"/>
 							<reference ref="741986817"/>
 							<reference ref="430688898"/>
@@ -797,6 +801,7 @@
 							<reference ref="442663384"/>
 							<reference ref="686913787"/>
 							<reference ref="792290375"/>
+							<reference ref="606346608"/>
 						</array>
 						<reference key="parent" ref="275939982"/>
 						<object class="IBMemberPropertyStorage" key="memberPropertyStorage">
@@ -844,14 +849,14 @@
 							<object class="NSMutableDictionary" key="IBToManyRelationshipCandidates">
 								<string key="NS.key.0">ibDesignableContentView.ibShadowedSubviews</string>
 								<object class="NSOrderedSet" key="NS.object.0">
-									<reference key="NS.object.0" ref="606346608"/>
-									<reference key="NS.object.1" ref="741986817"/>
-									<reference key="NS.object.2" ref="430688898"/>
-									<reference key="NS.object.3" ref="872532476"/>
-									<reference key="NS.object.4" ref="442663384"/>
-									<reference key="NS.object.5" ref="686913787"/>
-									<reference key="NS.object.6" ref="792290375"/>
-									<reference key="NS.object.7" ref="578916943"/>
+									<reference key="NS.object.0" ref="741986817"/>
+									<reference key="NS.object.1" ref="430688898"/>
+									<reference key="NS.object.2" ref="872532476"/>
+									<reference key="NS.object.3" ref="442663384"/>
+									<reference key="NS.object.4" ref="686913787"/>
+									<reference key="NS.object.5" ref="792290375"/>
+									<reference key="NS.object.6" ref="578916943"/>
+									<reference key="NS.object.7" ref="606346608"/>
 								</object>
 							</object>
 						</object>
