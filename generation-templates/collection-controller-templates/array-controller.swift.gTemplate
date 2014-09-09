@@ -7,16 +7,12 @@ import Cocoa
 
 @objc(TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
 class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol {
-  weak var mTriggerObject : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
   
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
   
   init (object : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%) {
-    mTriggerObject = object
+    mArrayController = object
     super.init ()
     noteObjectAllocation (self) ;
   }
@@ -28,11 +24,12 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
     noteObjectDeallocation (self) ;
   }
 
-  func noteTransientChanged () {
+  func noteTransientDidChange () {
   }
   
   func trigger () {
-    mTriggerObject?.refreshDisplay ()
+    mArrayController?.refreshDisplay ()
+    mArrayController?.updateCanRemoveProperty ()
   }
 }
 
@@ -41,11 +38,15 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
-class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol, NSTableViewDataSource, NSTableViewDelegate {
-  var mUndoManager : NSUndoManager?
-  var mObject : %!OBJECT_TYPE_NAME%
-  var mTableView : PMTableView?
+class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, NSTableViewDataSource, NSTableViewDelegate {
+  private var mUndoManager : NSUndoManager?
+  private var mObject : %!OBJECT_TYPE_NAME%
+  private var mTableView : PMTableView?
+  private var mDisplayTrigger : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
 
+  private var mCurrentObjectSet = NSMutableSet ()
+  private var mCurrentObjectArray = NSArray ()
+ 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -78,10 +79,10 @@ end
 %      if ok {
         mTableView?.setDataSource (self)
         mTableView?.setDelegate (self)
+        mDisplayTrigger = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object: self)
       }
     }
     noteObjectAllocation (self)
-    object.addObserverOf_%!RELATIONSHIP_NAME% (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -89,12 +90,11 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   func unregister () {
-    mObject.removeObserverOf_%!RELATIONSHIP_NAME% (self)
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
 end
 %    }
     mCurrentObjectSet = NSMutableSet ()
@@ -109,55 +109,16 @@ end
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    For PMTriggerProtocol                                                                                          *
+  //    arrayModelSizeDidChange                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
+  func arrayModelSizeDidChange () {
+    if let trigger = mDisplayTrigger {
+      enterTriggerWithObject (trigger)
+    }
   }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mCurrentObjectSet = NSMutableSet ()
-  private var mCurrentObjectArray = NSArray ()
   
-  func trigger () {
-    mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.copy () as NSArray
-  //--- Update observers for handling model change
-    let oldObjectSet = mCurrentObjectSet
-    mCurrentObjectSet = NSMutableSet ()
-    mCurrentObjectSet.addObjectsFromArray (mObject.%!RELATIONSHIP_NAME%)
-  //--- Removed object set
-    var removedObjectSet = NSMutableSet ()
-    removedObjectSet.setSet (oldObjectSet)
-    removedObjectSet.minusSet (mCurrentObjectSet)
-    for object : AnyObject in removedObjectSet {
-      let managedObject = object as  %!ELEMENT_TYPE_NAME%
-%
-for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
-end
-%    }
-  //--- Added object set
-    var addedObjectSet = NSMutableSet ()
-    addedObjectSet.setSet (mCurrentObjectSet)
-    addedObjectSet.minusSet (oldObjectSet)
-    for object : AnyObject in addedObjectSet {
-      let managedObject = object as  %!ELEMENT_TYPE_NAME%
-%
-for () in BOUND_COLUMNS do
-%      managedObject.addObserverOf_%!mObservablePropertyName% (triggerObjectForModelChange)\n%
-end
-%    }
-  //---
-    refreshDisplay ()
-    updateCanRemoveProperty ()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
+   //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -189,6 +150,33 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
   
   func refreshDisplay () {
+   mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.copy () as NSArray
+  //--- Update observers for handling model change
+    let oldObjectSet = mCurrentObjectSet
+    mCurrentObjectSet = NSMutableSet ()
+    mCurrentObjectSet.addObjectsFromArray (mObject.%!RELATIONSHIP_NAME%)
+  //--- Removed object set
+    var removedObjectSet = NSMutableSet ()
+    removedObjectSet.setSet (oldObjectSet)
+    removedObjectSet.minusSet (mCurrentObjectSet)
+    for object : AnyObject in removedObjectSet {
+      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
+end
+%    }
+  //--- Added object set
+    var addedObjectSet = NSMutableSet ()
+    addedObjectSet.setSet (mCurrentObjectSet)
+    addedObjectSet.minusSet (oldObjectSet)
+    for object : AnyObject in addedObjectSet {
+      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%      managedObject.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
+end
+%    }
   //--- Sort local array for display
     let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
     let descriptorArray = NSArray (object:sortDescriptor)
@@ -207,15 +195,15 @@ end
         }
       }
     }
-  }
+ }
 
-  var triggerObjectForModelChange_cache : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
-  var triggerObjectForModelChange : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% {
+  private var mTriggerObjectForModelChange_cache : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  private var mTriggerObjectForModelChange : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% {
     get {
-      if triggerObjectForModelChange_cache == nil {
-        triggerObjectForModelChange_cache = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object:self)
+      if mTriggerObjectForModelChange_cache == nil {
+        mTriggerObjectForModelChange_cache = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object:self)
       }
-      return triggerObjectForModelChange_cache!
+      return mTriggerObjectForModelChange_cache!
     }
   }
 

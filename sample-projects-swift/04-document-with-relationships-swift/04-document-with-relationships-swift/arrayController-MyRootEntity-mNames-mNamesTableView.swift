@@ -7,16 +7,12 @@ import Cocoa
 
 @objc(TriggerFor_MyRootEntity_mNames_mNamesTableView)
 class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol {
-  weak var mTriggerObject : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
+  private weak var mArrayController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
   
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
   
   init (object : ArrayController_MyRootEntity_mNames_mNamesTableView) {
-    mTriggerObject = object
+    mArrayController = object
     super.init ()
     noteObjectAllocation (self) ;
   }
@@ -28,11 +24,12 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
     noteObjectDeallocation (self) ;
   }
 
-  func noteTransientChanged () {
+  func noteTransientDidChange () {
   }
   
   func trigger () {
-    mTriggerObject?.refreshDisplay ()
+    mArrayController?.refreshDisplay ()
+    mArrayController?.updateCanRemoveProperty ()
   }
 }
 
@@ -42,11 +39,14 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
 
 @objc(ArrayController_MyRootEntity_mNames_mNamesTableView)
 class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableViewDataSource, NSTableViewDelegate {
-  var mUndoManager : NSUndoManager?
-  var mObject : MyRootEntity
-  var mTableView : PMTableView?
-  var mDisplayTrigger : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
+  private var mUndoManager : NSUndoManager?
+  private var mObject : MyRootEntity
+  private var mTableView : PMTableView?
+  private var mDisplayTrigger : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
 
+  private var mCurrentObjectSet = NSMutableSet ()
+  private var mCurrentObjectArray = NSArray ()
+ 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -102,8 +102,8 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
   func unregister () {
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (triggerObjectForModelChange)
-      managedObject.removeObserverOf_aValue (triggerObjectForModelChange)
+      managedObject.removeObserverOf_name (mTriggerObjectForModelChange)
+      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange)
     }
     mCurrentObjectSet = NSMutableSet ()
   }
@@ -126,12 +126,7 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
     }
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mCurrentObjectSet = NSMutableSet ()
-  private var mCurrentObjectArray = NSArray ()
-  
-  //-------------------------------------------------------------------------------------------------------------------*
+   //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -163,7 +158,7 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
   //-------------------------------------------------------------------------------------------------------------------*
   
   func refreshDisplay () {
-    mCurrentObjectArray = mObject.mNames.copy () as NSArray
+   mCurrentObjectArray = mObject.mNames.copy () as NSArray
   //--- Update observers for handling model change
     let oldObjectSet = mCurrentObjectSet
     mCurrentObjectSet = NSMutableSet ()
@@ -174,8 +169,8 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
     removedObjectSet.minusSet (mCurrentObjectSet)
     for object : AnyObject in removedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (triggerObjectForModelChange)
-      managedObject.removeObserverOf_aValue (triggerObjectForModelChange)
+      managedObject.removeObserverOf_name (mTriggerObjectForModelChange)
+      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange)
     }
   //--- Added object set
     var addedObjectSet = NSMutableSet ()
@@ -183,8 +178,8 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
     addedObjectSet.minusSet (oldObjectSet)
     for object : AnyObject in addedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.addObserverOf_name (triggerObjectForModelChange)
-      managedObject.addObserverOf_aValue (triggerObjectForModelChange)
+      managedObject.addObserverOf_name (mTriggerObjectForModelChange)
+      managedObject.addObserverOf_aValue (mTriggerObjectForModelChange)
     }
   //--- Sort local array for display
     let sortDescriptor = NSSortDescriptor (key :"aValue", ascending:true)
@@ -204,16 +199,15 @@ class ArrayController_MyRootEntity_mNames_mNamesTableView : NSObject, NSTableVie
         }
       }
     }
-    updateCanRemoveProperty ()
-  }
+ }
 
-  var triggerObjectForModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
-  var triggerObjectForModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
+  private var mTriggerObjectForModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
+  private var mTriggerObjectForModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
     get {
-      if triggerObjectForModelChange_cache == nil {
-        triggerObjectForModelChange_cache = TriggerFor_MyRootEntity_mNames_mNamesTableView (object:self)
+      if mTriggerObjectForModelChange_cache == nil {
+        mTriggerObjectForModelChange_cache = TriggerFor_MyRootEntity_mNames_mNamesTableView (object:self)
       }
-      return triggerObjectForModelChange_cache!
+      return mTriggerObjectForModelChange_cache!
     }
   }
 

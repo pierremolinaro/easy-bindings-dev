@@ -61,16 +61,20 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    windowControllerDidLoadNib                                                                                     *
+  //    Array controller: nameController                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
 
-  var nameController : ArrayController_MyRootEntity_mNames_mNamesTableView? = nil
-  var nameController_cache : NSArray?
-  func document_2E_PMDocument_2E_nameController_didChange () {
+  func document_2E_PMDocument_2E_nameController_noteDidChange () {
+  }
+
+  func document_2E_PMDocument_2E_nameController_trigger () {
     nameController?.arrayModelSizeDidChange ()
   }
-  var triggerObjectFor_document_2E_PMDocument_2E_nameController_cache : PMTrigger_document_2E_PMDocument_2E_nameController?
-  var triggerObjectFor_document_2E_PMDocument_2E_nameController : PMTrigger_document_2E_PMDocument_2E_nameController {
+
+  private var triggerObjectFor_document_2E_PMDocument_2E_nameController_cache : PMTrigger_document_2E_PMDocument_2E_nameController?
+  private var triggerObjectFor_document_2E_PMDocument_2E_nameController : PMTrigger_document_2E_PMDocument_2E_nameController {
     get {
       if triggerObjectFor_document_2E_PMDocument_2E_nameController_cache == nil {
         triggerObjectFor_document_2E_PMDocument_2E_nameController_cache = PMTrigger_document_2E_PMDocument_2E_nameController (object:self)
@@ -78,9 +82,9 @@ import Cocoa
       return triggerObjectFor_document_2E_PMDocument_2E_nameController_cache!
     }
   }
-  
-//  var mControllerArray = NSMutableArray ()
-  
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
@@ -108,8 +112,8 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
   //--------------------------- Transient observers
+  //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
-//    mControllerArray.addObject (PMTrigger_document_2E_PMDocument_2E_nameController (object: self))
   //--------------------------- Array controller
     nameController = ArrayController_MyRootEntity_mNames_mNamesTableView (
       object:rootObject,

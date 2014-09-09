@@ -1,0 +1,59 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled)
+class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerProtocol {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMButton? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$?, outlet : PMButton?, file : String, line : Int) {
+    mObject = object
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMButton) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMButton")
+      }else{
+        mOutlet = unwrappedOutlet
+      }
+    }
+    mObject?.addObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.$MODEL$) {
+      mOutlet!. enabled = mObject!.$MODEL$
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+

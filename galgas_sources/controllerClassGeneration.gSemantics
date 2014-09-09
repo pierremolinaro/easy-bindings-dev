@@ -6,23 +6,21 @@ routine generateControllerClasses
   ??@stringset inControllerStringSet
   ??@string inOutputDirectory
 :
-  if [inControllerStringSet count] > 0 then
-  #--- Header
-    var s := "import Cocoa\n\n" ;
-    for controllerString in inControllerStringSet do
-      s += controllerString ;
-    end for ;
-    s += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n" ;
-    [@string generateFileWithPattern
-      !inOutputDirectory
-      !"controller-classes.swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"\n\n" # Defaut user zone2
-      !"\n\n"
-    ] ;
-  end if ;
+#--- Header
+  var s := "import Cocoa\n\n" ;
+  for controllerString in inControllerStringSet do
+    s += controllerString ;
+  end for ;
+  s += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n" ;
+  [@string generateFileWithPattern
+    !inOutputDirectory
+    !"controller-classes.swift"
+    !"//"
+    !"\n\n" # Defaut user zone1
+    !s
+    !"\n\n" # Defaut user zone2
+    !"\n\n"
+  ] ;
 end routine ;
 
 ##----------------------------------------------------------------------------*
