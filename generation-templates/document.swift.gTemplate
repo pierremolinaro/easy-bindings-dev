@@ -88,17 +88,40 @@ end
     }
   }
 
+%
+for () in ARRAY_CONTROLLER_LIST do
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Array controller: " + mControllerName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil
+
+  func document_2E_PMDocument_2E_%!mControllerName%_noteDidChange () {
+  }
+
+  func document_2E_PMDocument_2E_%!mControllerName%_trigger () {
+    %!mControllerName%?.arrayModelSizeDidChange ()
+  }
+
+  private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache : PMTrigger_document_2E_PMDocument_2E_%!mControllerName%?
+  private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName% : PMTrigger_document_2E_PMDocument_2E_%!mControllerName% {
+    get {
+      if triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache == nil {
+        triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache = PMTrigger_document_2E_PMDocument_2E_%!mControllerName% (object:self)
+      }
+      return triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache!
+    }
+  }
+
+%
+end
+%  //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
 %if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
 %  var mControllerArray = NSMutableArray ()\n\n%
 %  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-end
-for () in ARRAY_CONTROLLER_LIST
-do %  var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%_%!mTableViewOutletName%? = nil\n%
-after %\n  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 end
 %  override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
@@ -116,6 +139,11 @@ for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%)\n%
 end
+end
+%  //--------------------------- Array controller as observers
+%
+for () in ARRAY_CONTROLLER_LIST do
+%    rootObject.addObserverOf_%!mTomanyRelationshipName% (triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%)\n%
 end
 %  //--------------------------- Array controller
 %
