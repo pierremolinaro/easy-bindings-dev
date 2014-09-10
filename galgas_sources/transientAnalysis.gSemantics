@@ -79,8 +79,8 @@ override method @transientControllerDependency buildTransientDependencyGraph
   ] ;
 #--- Add dependency arc
   [!?ioTransientDependencyGraph addEdge
-    !inTransientPropertySignature
     !masterPropertySignature
+    !inTransientPropertySignature
   ] ;
 end method ;
 
@@ -118,8 +118,8 @@ override method @transientRootDependency buildTransientDependencyGraph
   ] ;
 #--- Add dependency arc
   [!?ioTransientDependencyGraph addEdge
-    !inTransientPropertySignature
     !masterPropertySignature
+    !inTransientPropertySignature
   ] ;
 end method ;
 
@@ -150,8 +150,8 @@ override method @transientPreferenceDependency buildTransientDependencyGraph
   ] ;
 #--- Add dependency arc
   [!?ioTransientDependencyGraph addEdge
-    !inTransientPropertySignature
     !masterPropertySignature
+    !inTransientPropertySignature
   ] ;
 end method ;
 
@@ -172,11 +172,6 @@ routine buildTransientDependencyGraph
         !property_mIsTransient
       ] ;
     end for ;
-#  @abstractObservablePropertyAST mBoundModel ;
-#  @lstring mTableViewOutletName ;
-#  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST ;
-#  @actionMap mActionMap ;
-#  @decoratedObservablePropertyMap mObservablePropertyMap ;
     for () arrayController_ in type_mArrayControllerMap do
       [!?transientDependencyGraph addNode
         !arrayController_mPropertySignature
@@ -390,254 +385,6 @@ override method @transientPreferenceDependency transientDependencySemanticAnalys
   ioTransientDependencyListForGeneration += !masterType !mMasterName->string ;
 end method ;
 
-##----------------------------------------------------------------------------*
-##! EX
-##----------------------------------------------------------------------------*
-#
-#abstract method @abstractTransientDependency EXanalyze
-#  ??@lstring inTransientName
-#  ??@EXobservablePropertyMap inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
-#  ??@string inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist ioRootSignDependencyList
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientRootSignDependency EXanalyze
-#  ??@lstring inTransientName
-#  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList unused ioDirectDependancyList
-#  ?!@stringlist ioRootSignDependencyList
-#:
-#  if inRootEntityName == "" then
-#    error mDeclarationLocation: "no root object in this context" ;
-#  end if ;
-##--- Add dependency arc
-#  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
-#    ![@lstring new !"entity." . inRootEntityName . ".sign" !mDeclarationLocation]
-#    !inTransientPropertySignature
-#  ] ;
-##---
-#  ioRootSignDependencyList += !inTransientPropertySignature->string . inTransientName ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientLocalDependency EXanalyze
-#  ??@lstring unused inTransientName
-#  ??@EXobservablePropertyMap inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-#  [inLocalObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@EXebType masterType
-#    ?*
-#    ?@lstring masterPropertySignature
-#    ?@bool isCollection
-#  ] ;
-#  if mNamesCountOption & not isCollection then
-#      error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
-#  elsif isCollection & not mNamesCountOption then
-#      error mMasterName: "to-many relationships requires the 'count' option" ;
-#  end if ;
-##--- Add dependency arc
-#  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
-#    !masterPropertySignature
-#    !inTransientPropertySignature
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromSelfForImplementation new !masterType !mMasterName->string !mNamesCountOption] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientControllerDependency EXanalyze
-#  ??@lstring unused inTransientName
-#  ??@EXobservablePropertyMap inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-##--- Search controller in controller map
-#  [inLocalObservablePropertyMap searchKey
-#    !mControllerName
-#    ?@EXebType type
-#    ?3*
-#  ] ;
-#  if type->mKind != [@EXTypeKind controllerClassType] then
-#    error mControllerName : "'" . mControllerName . "' is not a controller" ;
-#  end if ;
-##--- Search controller observable attribute map
-#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-#    !type->mTypeName
-#    ?*
-#    ?@EXTypeKind typeKind
-#    ?@EXobservablePropertyMap controllerObservablePropertyMap
-#  ] ;
-##--- Search controller observed attribute
-#  [controllerObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@EXebType masterType
-#    ?*
-#    ?@lstring masterPropertySignature
-#    ?*
-#  ] ;
-##--- Add dependency arc
-#  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
-#    !masterPropertySignature
-#    !inTransientPropertySignature
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromControllerForImplementation new !masterType !mControllerName->string !mMasterName->string] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientRootDependency EXanalyze
-#  ??@lstring unused inTransientName
-#  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet unused ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-#  [inRootObjectObservablePropertyMap searchKey
-#    !mMasterName
-#    ?@EXebType masterType
-#    ?*
-#    ?@lstring masterDependencyKey
-#    ?@bool isCollection
-#  ] ;
-##--- Has 'count' option ?
-#  if mNamesCountOption & not isCollection then
-#    error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
-#  end if ;
-##--- Add dependency arc
-#  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
-#    !masterDependencyKey
-#    !inTransientPropertySignature
-#  ] ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromRootForImplementation new
-#    !masterType
-#    !mMasterName->string
-#    !mNamesCountOption
-#    ![masterDependencyKey identifierRepresentation]
-# ] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#override method @transientPreferenceDependency EXanalyze
-#  ??@lstring unused inTransientName
-#  ??@EXobservablePropertyMap unused inLocalObservablePropertyMap
-#  ??@EXobservablePropertyMap unused inRootObjectObservablePropertyMap
-#  ??@string unused inRootEntityName
-#  ??@lstring inTransientPropertySignature
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@directDependancyList ioDirectDependancyList
-#  ?!@stringlist unused ioRootSignDependencyList
-#:
-##--- Get preferences observables properties
-#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
-#    !mPreferencesName
-#    ?*
-#    ?@EXTypeKind kind
-#    ?@EXobservablePropertyMap observablePropertyMap
-#  ] ;
-##--- Check
-#  if kind != [@EXTypeKind preferencesType] then
-#    error mPreferencesName : "'" . mPreferencesName . "' is not a preference" ;
-#  end if ;
-##---
-#  [observablePropertyMap searchKey
-#    !mMasterName
-#    ?@EXebType masterType
-#    ?@bool isTransient
-#    ?@lstring masterPropertySignature
-#    ?*
-#  ] ;
-##--- Add dependency arc
-#  [!?ioContextAnalysisStruct->mTransientDependencyGraph addEdge
-#    !masterPropertySignature
-#    !inTransientPropertySignature
-#  ] ;
-##--- Add preference header
-#  ioFileInclusionSet->mImplementationFileInclusionSet += !mPreferencesName->string ;
-##---
-#  ioDirectDependancyList += ![@transientDependencyFromPreferenceForImplementation new
-#    !masterType
-#    !mPreferencesName->string
-#    !mMasterName->string
-#    !isTransient
-#  ] ;
-#end method ;
-#
-##----------------------------------------------------------------------------*
-#
-#routine analyzeTransientProperties
-#  ??@transientList inTransientList
-#  ??@EXobservablePropertyMap inRootObjectObservablePropertyMap
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ??@string inRootEntityName
-#  ??@EXobservablePropertyMap inSelfObjectObservablePropertyMap
-#  ?!@fileInclusionSet ioFileInclusionSet
-#  !@transientListForImplementation outTransientListForImplementation
-#:
-#  outTransientListForImplementation := [@transientListForImplementation emptyList] ;
-#  foreach inTransientList do
-#    [inSelfObjectObservablePropertyMap searchKey
-#      !mTransientName
-#      ?@EXebType type
-#      ?*
-#      ?@lstring transientPropertySignature
-#      ?*
-#    ] ;
-#  #--- Analyze dependencies
-#    @directDependancyList directDependancyList [emptyList] ;
-#    @stringlist rootSignDependencyList [emptyList] ;
-#    foreach mDependencyList do
-#      [mDependency EXanalyze
-#        !mTransientName
-#        !inSelfObjectObservablePropertyMap
-#        !inRootObjectObservablePropertyMap
-#        !inRootEntityName
-#        !transientPropertySignature
-#        !?ioFileInclusionSet
-#        !?ioContextAnalysisStruct
-#        !?directDependancyList
-#        !?rootSignDependencyList
-#      ] ;
-#    end foreach ;
-#  #--- Add transient implementation
-#    outTransientListForImplementation += !type ![mTransientName string] !directDependancyList !rootSignDependencyList ;
-#  end foreach ;
-#end routine ;
-#
 #----------------------------------------------------------------------------*
 
 end semantics ;

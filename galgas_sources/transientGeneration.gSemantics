@@ -157,6 +157,9 @@ end reader ;
 
 override reader @transientRootDependency generateForComputeFunction -> @string outResult :
   outResult := "rootObject." + mMasterName->string ;
+  if mNamesCountOption then
+    outResult += ".count" ;
+  end if ;
 end reader ;
 
 #-----------------------------------------------------------------------------*

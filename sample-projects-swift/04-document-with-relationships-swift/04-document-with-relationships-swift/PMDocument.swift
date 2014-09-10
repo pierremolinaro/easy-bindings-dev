@@ -117,6 +117,7 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
   //--------------------------- Transient observers
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage)
   //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
   //--------------------------- Array controller
@@ -129,6 +130,7 @@ import Cocoa
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_value (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_PMDocument_countItemMessage_PMTextField_value (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__, sendContinously:false))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -155,6 +157,52 @@ import Cocoa
     removePathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient: countItemMessage                                                                                    *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var countItemMessage_observers = NSMutableSet ()
+  var countItemMessage_cache : String?
+  var countItemMessage : String {
+    get {
+      if countItemMessage_cache == nil {
+        countItemMessage_cache = compute_PMDocument_countItemMessage (rootObject.mNames.count)
+      }
+      return countItemMessage_cache!
+    }
+    set {
+    }
+  }
+
+  func document_2E_PMDocument_2E_countItemMessage_noteDidChange () {
+    countItemMessage_cache = nil
+  }
+
+  func document_2E_PMDocument_2E_countItemMessage_trigger () {
+    for anyObject in countItemMessage_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+ 
+   func addObserverOf_countItemMessage (inObserver : PMTriggerProtocol) {
+    countItemMessage_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_countItemMessage (inObserver : PMTriggerProtocol) {
+    countItemMessage_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache : PMTrigger_document_2E_PMDocument_2E_countItemMessage? = nil
+  var triggerObjectFor_document_2E_PMDocument_2E_countItemMessage : PMTrigger_document_2E_PMDocument_2E_countItemMessage {
+    if triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache == nil {
+      triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache = PMTrigger_document_2E_PMDocument_2E_countItemMessage (object:self)
+    }
+    return triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache!
   }
 
 
