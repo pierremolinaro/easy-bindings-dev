@@ -1,4 +1,4 @@
-      result.textField.objectValue = NSNumber.numberWithLongLong (object.$MODEL$)
+      result.textField.objectValue = NSNumber (longLong:object.$MODEL$)
       result.textField.target = self
       result.textField.action = "set_$MODEL$_Action:"
       let tf : PMTextField = result.textField as PMTextField
