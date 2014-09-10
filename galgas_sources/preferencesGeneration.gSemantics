@@ -66,7 +66,7 @@ reader @unifiedTypeProxy preferencesSwiftSetter
   switch [selfcopy mTypeKind]
   when boolType : outResult := "à compléter preferencesSwiftSetter" ;
   when uintegerType : outResult := "à compléter preferencesSwiftSetter" ;
-  when integerType : outResult := "NSNumber.numberWithLongLong (" + inPropertyName + ")" ;
+  when integerType : outResult := "NSNumber (longLong:" + inPropertyName + ")" ;
   when doubleType : outResult := "à compléter preferencesSwiftSetter" ;
   when stringType : outResult := inPropertyName ;
   when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;
