@@ -74,11 +74,11 @@ extension NSDictionary {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func readInt64 (inKey : String) -> Int64 {
-    var result : Int64 = 0
+  func readInt (inKey : String) -> Int {
+    var result : Int = 0
     let object : AnyObject? = valueForKey (inKey)
     if let d = object as? NSNumber {
-      result = d.longLongValue 
+      result = d.integerValue
     }
     return result
   }

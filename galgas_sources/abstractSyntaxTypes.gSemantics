@@ -78,6 +78,7 @@ class @selfObservablePropertyAST extends @abstractObservablePropertyAST {
 
 class @rootObservablePropertyAST extends @abstractObservablePropertyAST {
   @lstring mRootObservablePropertyName ;
+  @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*

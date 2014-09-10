@@ -28,7 +28,7 @@ document PMDocument root MyRootEntity {
   bind model : nameController.canRemove to removePathButton $enabled ;
 
   outlet PMTextField countItemTextField ; # $value root.mNames.count ;
-  bind model : root.mNames.count to countItemTextField $value ;
+  bind model : root.mNames.count to countItemTextField $value { sendContinously : no} ;
 
 #  transient String countItemMessage dependsFrom root.mNames.count ;
 

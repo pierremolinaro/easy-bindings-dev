@@ -225,7 +225,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.mIntegerValue)) {
+    if (mOutlet != nil) && (mObject != nil) {
       mOutlet!.integerValue = Int (mObject!.mIntegerValue)
     }
   }
@@ -233,8 +233,8 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.mIntegerValue)) {
-      mObject!.mIntegerValue = Int64 (mOutlet!.integerValue)
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.mIntegerValue) {
+      mObject!.mIntegerValue = mOutlet!.integerValue
     }
   }
 
