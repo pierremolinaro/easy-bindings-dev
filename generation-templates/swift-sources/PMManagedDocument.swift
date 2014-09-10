@@ -151,8 +151,8 @@ class PMManagedDocument : NSDocument {
     if nil != windowForSheet { // Document has been opened in the user interface
       if (windowForSheet!.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
         let windowSize = windowForSheet.frame.size ;
-        mMetadataDictionary.setObject (NSNumber.numberWithDouble (Double (windowSize.width)), forKey:"PMWindowWidth")
-        mMetadataDictionary.setObject (NSNumber.numberWithDouble (Double (windowSize.height)), forKey:"PMWindowHeight")
+        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:"PMWindowWidth")
+        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:"PMWindowHeight")
       }
     }else{ // Document has not been opened in the user interface, use values read from file, if they exist
 /*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;

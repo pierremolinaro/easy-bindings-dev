@@ -242,7 +242,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let tf : PMTextField = result.textField as PMTextField
       tf.setSendContinously (true)
     }else if columnIdentifier == "int" {
-      result.textField.objectValue = NSNumber.numberWithLongLong (object.aValue)
+      result.textField.objectValue = NSNumber (longLong:object.aValue)
       result.textField.target = self
       result.textField.action = "set_aValue_Action:"
       let tf : PMTextField = result.textField as PMTextField
