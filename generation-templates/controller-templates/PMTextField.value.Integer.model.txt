@@ -55,7 +55,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.$MODEL$)) {
+    if (mOutlet != nil) && (mObject != nil) {
       mOutlet!.integerValue = Int (mObject!.$MODEL$)
     }
   }
@@ -63,8 +63,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != Int (mObject!.$MODEL$)) {
-      mObject!.$MODEL$ = Int64 (mOutlet!.integerValue)
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.$MODEL$) {
+      mObject!.$MODEL$ = mOutlet!.integerValue
     }
   }
 

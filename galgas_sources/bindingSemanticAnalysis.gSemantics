@@ -15,8 +15,8 @@ reader @unifiedTypeProxy swiftTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
-  when uintegerType : outResult := "UInt64" ;
-  when integerType : outResult := "Int64" ;
+  when uintegerType : outResult := "UInt" ;
+  when integerType : outResult := "Int" ;
   when doubleType : outResult := "Double" ;
   when stringType : outResult := "String" ;
   when colorType : outResult := "NSColor" ;
@@ -64,8 +64,8 @@ reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSNumber (bool:" + inPropertyName + ")" ;
-  when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inPropertyName + ")" ;
-  when integerType : outResult := "NSNumber (longLong:" + inPropertyName + ")" ;
+  when uintegerType : outResult := "NSNumber (unsignedInteger:" + inPropertyName + ")" ;
+  when integerType : outResult := "NSNumber (integer:" + inPropertyName + ")" ;
   when doubleType : outResult := "NSNumber (double:" + inPropertyName + ")" ;
   when stringType : outResult := inPropertyName ;
   when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;
@@ -89,8 +89,8 @@ reader @unifiedTypeProxy transformerForRegisterUndoWithTarget ??@string inOldVal
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSNumber (bool:" + inOldValue + ")" ;
-  when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inOldValue + ")" ;
-  when integerType : outResult := "NSNumber (longLong:" + inOldValue + ")" ;
+  when uintegerType : outResult := "NSNumber (unsignedInteger:" + inOldValue + ")" ;
+  when integerType : outResult := "NSNumber (integer:" + inOldValue + ")" ;
   when doubleType : outResult := "NSNumber (double:" + inOldValue + ")" ;
   when stringType, colorType : outResult := inOldValue ;
   when dataType : outResult := "NSData" ;
@@ -139,7 +139,7 @@ reader @unifiedTypeProxy transformerForUndo ??@string inValue -> @string outResu
   switch [selfcopy mTypeKind]
   when boolType : outResult := inValue + ".boolValue" ;
   when uintegerType : outResult := inValue + ".unsignedIntegerValue" ;
-  when integerType : outResult := inValue + ".longLongValue" ;
+  when integerType : outResult := inValue + ".integerValue" ;
   when doubleType : outResult := inValue + ".doubleValue" ;
   when stringType, colorType : outResult := inValue ;
   when dataType : outResult := inValue ;
@@ -176,7 +176,7 @@ reader @unifiedTypeProxy transformerForTableViewAction ??@string inSenderOutletN
 :
   switch [selfcopy mTypeKind]
   when stringType : outResult := inSenderOutletName + ".stringValue" ;
-  when integerType : outResult := "Int64 (" + inSenderOutletName + ".integerValue)" ;
+  when integerType : outResult := inSenderOutletName + ".integerValue" ;
 #--- TODO
   when boolType : outResult := "NSNumber (bool:" + inSenderOutletName + ")" ;
   when uintegerType : outResult := "NSNumber (unsignedLongLong:" + inSenderOutletName + ")" ;

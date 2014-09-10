@@ -64,4 +64,114 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Controller MyRootEntity mNames_count - PMTextField $value                                                         *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Controller_MyRootEntity_mNames_count_PMTextField_value)
+class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+
+  weak var mObject : MyRootEntity? = nil
+  weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMTextField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+        unwrappedOutlet.setSendContinously(sendContinously)
+        if unwrappedOutlet.formatter == nil {
+          presentErrorWindow (file, line, "the outlet has no formatter")
+        }else{
+          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
+          if !formatter.isKindOfClass (NSNumberFormatter) {
+            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+          }
+        }
+      }
+    }
+    mObject?.addObserverOf_mNames_count (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mOutlet?.delegate = nil
+    mObject?.removeObserverOf_mNames_count (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) {
+      mOutlet!.integerValue = Int (mObject!.mNames_count)
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.mNames_count) {
+      mObject!.mNames_count = mOutlet!.integerValue
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    NSTextFieldDelegate delegate function                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func control (control: NSControl!,
+                didFailToFormatString string: String!,
+                errorDescription error: String!) -> Bool {
+    let alert = NSAlert ()
+    alert.messageText = error
+    alert.informativeText = "Please provide a valid value."
+    alert.addButtonWithTitle ("Ok")
+    alert.addButtonWithTitle ("Discard Change")
+    alert.beginSheetModalForWindow (mOutlet!.window, completionHandler:{(response : NSModalResponse) -> Void in
+      if response == NSAlertSecondButtonReturn { // Discard Change
+        self.mOutlet!.integerValue = Int (self.mObject!.mNames_count)
+      }
+    })
+    return false
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

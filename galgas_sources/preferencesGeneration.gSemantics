@@ -40,7 +40,7 @@ reader @unifiedTypeProxy preferencesSwiftGetter
   switch [selfcopy mTypeKind]
   when boolType : outResult := "value as String" ;
   when uintegerType : outResult := "à compléter preferencesSwiftGetter" ;
-  when integerType : outResult := "(value as NSNumber).longLongValue" ;
+  when integerType : outResult := "(value as NSNumber).integerValue" ;
   when doubleType : outResult := "à compléter preferencesSwiftGetter" ;
   when stringType : outResult := "value as String" ;
   when colorType : outResult := "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor" ;
@@ -66,7 +66,7 @@ reader @unifiedTypeProxy preferencesSwiftSetter
   switch [selfcopy mTypeKind]
   when boolType : outResult := "à compléter preferencesSwiftSetter" ;
   when uintegerType : outResult := "à compléter preferencesSwiftSetter" ;
-  when integerType : outResult := "NSNumber (longLong:" + inPropertyName + ")" ;
+  when integerType : outResult := "NSNumber (integer:" + inPropertyName + ")" ;
   when doubleType : outResult := "à compléter preferencesSwiftSetter" ;
   when stringType : outResult := inPropertyName ;
   when colorType : outResult := "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")" ;

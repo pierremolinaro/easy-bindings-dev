@@ -8,8 +8,8 @@ reader @unifiedTypeProxy transientReturnTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
-  when uintegerType : outResult := "UInt64" ;
-  when integerType : outResult := "Int64" ;
+  when uintegerType : outResult := "UInt" ;
+  when integerType : outResult := "Int" ;
   when doubleType : outResult := "Double" ;
   when stringType : outResult := "String" ;
   when colorType : outResult := "NSColor" ;
@@ -32,8 +32,8 @@ reader @unifiedTypeProxy transientFormalArgumentTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
-  when uintegerType : outResult := "UInt64" ;
-  when integerType : outResult := "Int64" ;
+  when uintegerType : outResult := "UInt" ;
+  when integerType : outResult := "Int" ;
   when doubleType : outResult := "Double" ;
   when stringType : outResult := "String" ;
   when colorType : outResult := "NSColor" ;

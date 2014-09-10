@@ -128,7 +128,7 @@ end
   func undoFor_%!mRelationshipName% (object:NSMutableArray) {
     %!mRelationshipName% = object
   }
-   
+
   func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
     %!mRelationshipName%_observers.addObject (inObserver)
     enterTriggerWithObject (inObserver)
@@ -137,6 +137,16 @@ end
   func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
     %!mRelationshipName%_observers.removeObject (inObserver)
     enterTriggerWithObject (inObserver)
+  }
+  
+  var %!mRelationshipName%_count : Int { get { return %!mRelationshipName%.count } set {} }
+
+  func addObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol) {
+    addObserverOf_%!mRelationshipName% (inObserver)
+  }
+
+  func removeObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol) {
+    removeObserverOf_%!mRelationshipName% (inObserver)
   }
 %
   end

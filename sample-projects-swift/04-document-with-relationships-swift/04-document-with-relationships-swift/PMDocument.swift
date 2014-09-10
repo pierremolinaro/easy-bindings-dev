@@ -128,6 +128,7 @@ import Cocoa
     )
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
+    mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_value (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__, sendContinously:false))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"

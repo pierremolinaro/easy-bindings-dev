@@ -434,7 +434,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inSelectorName
   ??@string unused inCurrentTypeName
@@ -452,13 +452,21 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;
-  if isCollection then
+  if isCollection & not mNamesCountOption then
     error mRootObservablePropertyName : "the observable property should not be a collection" ;
+  elsif mNamesCountOption & not isCollection then
+    error mRootObservablePropertyName : "the observable property should be a collection" ;
   end if ;
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
-  ioBoundPropertyTypeList += !propertyType !inSelectorName ;
-  ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;
   ioBoundObjectNameList += !"rootObject" ;
+  if mNamesCountOption then
+    ioControllerSignature += ".Integer." + inSelectorName ;
+    ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string + "_count" ;  
+    ioBoundPropertyTypeList += ![@unifiedTypeProxy searchKey !inUnifiedTypeMap !["Integer" nowhere]] !inSelectorName ;
+  else
+    ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
+    ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;  
+    ioBoundPropertyTypeList += !propertyType !inSelectorName ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

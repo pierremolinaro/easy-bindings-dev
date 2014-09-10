@@ -738,8 +738,10 @@ rule <observable_property> !@abstractObservablePropertyAST outObservableProperty
   $root$ ;
   $.$ ;
   $identifier$ ??@lstring observableProperty ;
+  <count_option> ??@bool namesCountOption ;
   outObservablePropertyAST := [@rootObservablePropertyAST new
     !observableProperty
+    !namesCountOption
   ] ;
 end rule ;
 
