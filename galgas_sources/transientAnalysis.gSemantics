@@ -12,6 +12,7 @@ abstract method @abstractTransientDependency buildTransientDependencyGraph
   ??@lstring inTransientName
   ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
+  ??@arrayControllerMap inArrayControllerMap
   ??@lstring inTransientPropertySignature
 ;
 
@@ -23,6 +24,7 @@ override method @transientRootSignDependency buildTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring unused inTransientPropertySignature
 :
 end method ;
@@ -35,6 +37,7 @@ override method @transientLocalDependency buildTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
   [inLocalObservablePropertyMap searchKey
@@ -57,18 +60,17 @@ override method @transientControllerDependency buildTransientDependencyGraph
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
-  ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
+  ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
+  ??@arrayControllerMap inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
-  [inLocalObservablePropertyMap searchKey
+  [inArrayControllerMap searchKey
     !mControllerName
-    ??@unifiedTypeProxy controllerType
-    ?*
-    ?*
+    ?4*
+    ??@decoratedObservablePropertyMap controllerObservablePropertyMap
     ?*
   ] ;
-  const controllerObservablePropertyMap := [controllerType mObservablePropertyMap] ;
 #---
   [controllerObservablePropertyMap searchKey
     !mMasterName
@@ -92,6 +94,7 @@ override method @transientRootDependency buildTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
 #--- Get root entity observables properties
@@ -131,6 +134,7 @@ override method @transientPreferenceDependency buildTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
 #--- Get preferences observables properties
@@ -210,6 +214,7 @@ routine buildTransientDependencyGraph
           !transient_lkey
           !allObservableProperties
           !type_mRootEntityType
+          !type_mArrayControllerMap
           !transient_mTransientSignature
         ] ;
       end for ;
@@ -249,6 +254,7 @@ override method @transientRootSignDependency transientDependencySemanticAnalysis
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@unifiedTypeProxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration unused ioTransientDependencyListForGeneration
@@ -261,6 +267,7 @@ override method @transientLocalDependency transientDependencySemanticAnalysis
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@unifiedTypeProxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
@@ -285,29 +292,25 @@ end method ;
 override method @transientControllerDependency transientDependencySemanticAnalysis
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@lstring unused inTransientName
-  ??@decoratedObservablePropertyMap inAllObservablePropertyMap
+  ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
+  ??@arrayControllerMap inArrayControllerMap
   ??@unifiedTypeProxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
-  [inAllObservablePropertyMap searchKey
+  [inArrayControllerMap searchKey
     !mControllerName
-    ??@unifiedTypeProxy controllerType
-    ?*
-    ?*
+    ?4*
+    ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
     ?*
   ] ;
-  const controllerObservablePropertyMap := [controllerType mObservablePropertyMap] ;
-  [controllerObservablePropertyMap searchKey
+  [arrayControllerObservablePropertyMap searchKey
     !mMasterName
     ??@unifiedTypeProxy masterType
     ?*
     ?*
     ?*
   ] ;
-  if [controllerType mTypeKind] != [@typeKind controllerClassType] then
-    error mControllerName : "the '" . mControllerName . "' attribute is not a controller" ;
-  end if ;
 #---
   ioTransientDependencyListForGeneration += !masterType !mMasterName->string ;
 end method ;
@@ -318,6 +321,7 @@ override method @transientRootDependency transientDependencySemanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@unifiedTypeProxy inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
@@ -358,6 +362,7 @@ override method @transientPreferenceDependency transientDependencySemanticAnalys
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
+  ??@arrayControllerMap unused inArrayControllerMap
   ??@unifiedTypeProxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration

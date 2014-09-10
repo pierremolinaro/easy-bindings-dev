@@ -134,6 +134,16 @@ for () in OUTLET_GENERATION_MAP do
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
    %    }\n%
 end
+%  //--------------------------- Array controller
+%
+for () in ARRAY_CONTROLLER_LIST do
+%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% (
+      object:rootObject,
+      tableView:%!mTableViewOutletName%,
+      file:__FILE__,
+      line:__LINE__
+    )\n%
+end
 %  //--------------------------- Transient observers
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
@@ -145,16 +155,6 @@ end
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    rootObject.addObserverOf_%!mTomanyRelationshipName% (triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%)\n%
-end
-%  //--------------------------- Array controller
-%
-for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% (
-      object:rootObject,
-      tableView:%!mTableViewOutletName%,
-      file:__FILE__,
-      line:__LINE__
-    )\n%
 end
 %  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do

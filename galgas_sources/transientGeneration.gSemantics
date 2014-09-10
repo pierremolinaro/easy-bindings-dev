@@ -129,7 +129,7 @@ abstract reader @abstractTransientDependency generateForComputeFunction -> @stri
 #-----------------------------------------------------------------------------*
 
 override reader @transientControllerDependency generateForComputeFunction -> @string outResult :
-  outResult := "??@transientControllerDependency??" ;
+  outResult := "(" + mControllerName->string + " != nil) ? (" + mControllerName->string + "?." + mMasterName + ")! : false" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -172,7 +172,7 @@ abstract reader @abstractTransientDependency generateAddObserverCall -> @string 
 #-----------------------------------------------------------------------------*
 
 override reader @transientControllerDependency generateAddObserverCall -> @string outResult :
-  outResult := "??@transientControllerDependency??" ;
+  outResult := mControllerName->string + "?.addObserverOf_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -209,7 +209,7 @@ abstract reader @abstractTransientDependency generateRemoveObserverCall -> @stri
 #-----------------------------------------------------------------------------*
 
 override reader @transientControllerDependency generateRemoveObserverCall -> @string outResult :
-  outResult := "??@transientControllerDependency??" ;
+  outResult := mControllerName->string + "?.removeObserverOf_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
