@@ -14,7 +14,7 @@ let TRACE_TRANSIENT_TRIGGER = false
 
 %for () in PROPERTY_LIST
 do index idx
-%// %!mSignature% = %![idx string]%\n%
+%// %!mSignature%\n%
 end
 %
 
@@ -119,7 +119,8 @@ func flushTriggers () {
   for () in TRANSIENT_LIST do index idx
 %  private var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx string]%\n%
   end  
-%  //-------------------------------------------------------------------------------------------------------------------*
+%
+  //-------------------------------------------------------------------------------------------------------------------*
 
   private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
     inObject.noteTransientDidChange ()

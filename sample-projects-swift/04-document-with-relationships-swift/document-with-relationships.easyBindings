@@ -27,12 +27,13 @@ document PMDocument root MyRootEntity {
   outlet PMButton removePathButton run nameController.remove ;
   bind model : nameController.canRemove to removePathButton $enabled ;
 
-  outlet PMTextField countItemTextField ; # $value root.mNames.count ;
+  outlet PMTextField countItemTextField ;
   bind model : root.mNames.count to countItemTextField $value { sendContinously : no} ;
 
-#  transient String countItemMessage dependsFrom root.mNames.count ;
+  transient String countItemMessage dependsFrom root.mNames.count ;
 
-  outlet PMTextField countItemMessageTextField ; # $value self.countItemMessage ;
+  outlet PMTextField countItemMessageTextField ;
+  bind model : self.countItemMessage to countItemMessageTextField $value { sendContinously : no} ;
 
 #  transient Integer total dependsFrom root.mNames.count ;
 
