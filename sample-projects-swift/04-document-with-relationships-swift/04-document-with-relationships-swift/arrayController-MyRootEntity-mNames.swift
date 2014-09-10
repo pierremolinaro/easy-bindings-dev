@@ -297,15 +297,11 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func remove (inSender : AnyObject!) {
     if let tableView = mTableView {
       var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
-      let selectedRowIndexes = tableView.selectedRowIndexes
-      selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
-        stop.initialize (false)
-        let object = self.mCurrentObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__) as? NameEntity
-        if let unwrappedObject = object {
-          newObjectArray.removeObjectIdenticalTo (unwrappedObject)
-        }
-      })
+      for object in mSelectedObjectArray {
+        newObjectArray.removeObjectIdenticalTo (object)
+      }
       mObject.mNames = newObjectArray
+      mSelectedObjectArray = NSArray ()
     }
   }
 

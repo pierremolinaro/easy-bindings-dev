@@ -282,16 +282,12 @@ end
 
   func remove (inSender : AnyObject!) {
     if let tableView = mTableView {
-      var newObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
-      let selectedRowIndexes = tableView.selectedRowIndexes
-      selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
-        stop.initialize (false)
-        let object = self.mCurrentObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__) as? %!ELEMENT_TYPE_NAME%
-        if let unwrappedObject = object {
-          newObjectArray.removeObjectIdenticalTo (unwrappedObject)
-        }
-      })
-      mObject.%!RELATIONSHIP_NAME% = newObjectArray
+      var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+      for object in mSelectedObjectArray {
+        newObjectArray.removeObjectIdenticalTo (object)
+      }
+      mObject.mNames = newObjectArray
+      mSelectedObjectArray = NSArray ()
     }
   }
 
