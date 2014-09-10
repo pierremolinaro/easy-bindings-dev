@@ -148,7 +148,7 @@ local routine unifiedTypeAnalysis
       !oppositeRelationIsToMany
     ;
   end for ;
-#--- Analyze array controllers
+#--------------------------------------------- Analyze array controllers
   @arrayControllerForGeneration documentArrayControllerForGeneration := {} ;
   for () in inArrayControllerMap do
   #--- Check model is a tomany relationship
@@ -204,6 +204,7 @@ local routine unifiedTypeAnalysis
         !inUnifiedTypeMap
         !lkey
         !inAllObservablePropertyMap
+        !inArrayControllerMap
         !inRootEntityType
         !mTransientSignature
         !?transientDependencyListForGeneration
@@ -375,6 +376,7 @@ abstract method @abstractTransientDependency transientDependencySemanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstring inTransientName
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
+  ??@arrayControllerMap inArrayControllerMap
   ??@unifiedTypeProxy inRootEntityType
   ??@lstring inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration

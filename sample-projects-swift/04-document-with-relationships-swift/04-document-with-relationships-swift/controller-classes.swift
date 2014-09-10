@@ -174,6 +174,89 @@ class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTrigg
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Controller PMDocument canRemoveString - PMTextField $value                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Controller_PMDocument_canRemoveString_PMTextField_value)
+class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTriggerProtocol {
+
+  weak var mObject : PMDocument? = nil
+  weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mObject = object
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMTextField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+        unwrappedOutlet.setSendContinously(sendContinously)
+        if unwrappedOutlet.formatter != nil {
+          presentErrorWindow (file, line, "the outlet has a formatter")
+        }
+      }
+    }
+    mObject?.addObserverOf_canRemoveString (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mObject?.removeObserverOf_canRemoveString (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.canRemoveString) {
+      mOutlet!.stringValue = mObject!.canRemoveString
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.canRemoveString) {
+      mObject!.canRemoveString = mOutlet!.stringValue
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int {
+    get {
+      return kTriggerOutletDisplay
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Controller PMDocument countItemMessage - PMTextField $value                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

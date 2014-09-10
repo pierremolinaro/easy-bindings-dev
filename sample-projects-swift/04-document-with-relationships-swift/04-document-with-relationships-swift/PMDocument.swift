@@ -116,10 +116,6 @@ import Cocoa
     if nil == totalTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
     }
-  //--------------------------- Transient observers
-    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage)
-  //--------------------------- Array controller as observers
-    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
   //--------------------------- Array controller
     nameController = ArrayController_MyRootEntity_mNames (
       object:rootObject,
@@ -127,7 +123,13 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
+  //--------------------------- Transient observers
+    nameController?.addObserverOf_canRemove (triggerObjectFor_document_2E_PMDocument_2E_canRemoveString)
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage)
+  //--------------------------- Array controller as observers
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
   //--------------------------- Simple controller
+    mControllerArray.addObject (Controller_PMDocument_canRemoveString_PMTextField_value (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_value (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_PMDocument_countItemMessage_PMTextField_value (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__, sendContinously:false))
@@ -157,6 +159,52 @@ import Cocoa
     removePathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient: canRemoveString                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var canRemoveString_observers = NSMutableSet ()
+  var canRemoveString_cache : String?
+  var canRemoveString : String {
+    get {
+      if canRemoveString_cache == nil {
+        canRemoveString_cache = compute_PMDocument_canRemoveString ((nameController != nil) ? (nameController?.canRemove)! : false)
+      }
+      return canRemoveString_cache!
+    }
+    set {
+    }
+  }
+
+  func document_2E_PMDocument_2E_canRemoveString_noteDidChange () {
+    canRemoveString_cache = nil
+  }
+
+  func document_2E_PMDocument_2E_canRemoveString_trigger () {
+    for anyObject in canRemoveString_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+ 
+   func addObserverOf_canRemoveString (inObserver : PMTriggerProtocol) {
+    canRemoveString_observers.addObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+ 
+  func removeObserverOf_canRemoveString (inObserver : PMTriggerProtocol) {
+    canRemoveString_observers.removeObject (inObserver)
+    enterTriggerWithObject (inObserver)
+  }
+
+  var triggerObjectFor_document_2E_PMDocument_2E_canRemoveString_cache : PMTrigger_document_2E_PMDocument_2E_canRemoveString? = nil
+  var triggerObjectFor_document_2E_PMDocument_2E_canRemoveString : PMTrigger_document_2E_PMDocument_2E_canRemoveString {
+    if triggerObjectFor_document_2E_PMDocument_2E_canRemoveString_cache == nil {
+      triggerObjectFor_document_2E_PMDocument_2E_canRemoveString_cache = PMTrigger_document_2E_PMDocument_2E_canRemoveString (object:self)
+    }
+    return triggerObjectFor_document_2E_PMDocument_2E_canRemoveString_cache!
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

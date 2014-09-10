@@ -19,8 +19,9 @@ document PMDocument root MyRootEntity {
      column "int"  PMTextField aValue { sendContinously : yes}
   ;
 
-#  transient String canRemoveString dependsFrom nameController.canRemove ;
-  outlet PMTextField canRemoveTextField ; # $value self.canRemoveString ;
+  transient String canRemoveString dependsFrom nameController.canRemove ;
+  outlet PMTextField canRemoveTextField ;
+  bind model : self.canRemoveString to canRemoveTextField $value { sendContinously : no} ;
 
   outlet PMButton addPathButton run nameController.add ;
 
