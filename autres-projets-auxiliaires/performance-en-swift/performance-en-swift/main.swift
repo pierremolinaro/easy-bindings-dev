@@ -40,7 +40,7 @@ func alloNSNumberInNativeArray () {
   var start = NSDate ()
   var array : [NSNumber] = []
   for i in 0..<COUNT {
-    array.append (NSNumber.numberWithBool (true))
+    array.append (NSNumber (bool:true))
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
@@ -60,7 +60,7 @@ func allocNSNumberInNSMutableArray () {
   var start = NSDate ()
   var array = NSMutableArray ()
   for i in 0..<COUNT {
-    array.addObject (NSNumber.numberWithBool (true))
+    array.addObject (NSNumber (bool:true))
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
