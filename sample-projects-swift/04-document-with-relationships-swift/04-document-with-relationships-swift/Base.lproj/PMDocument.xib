@@ -80,7 +80,7 @@
 															<string key="NSAntiCompressionPriority">{250, 750}</string>
 															<bool key="NSEnabled">YES</bool>
 															<object class="NSTextFieldCell" key="NSCell" id="867523580">
-																<int key="NSCellFlags">67108928</int>
+																<int key="NSCellFlags">337641537</int>
 																<int key="NSCellFlags2">-1874851840</int>
 																<string key="NSContents">Table View Cell</string>
 																<object class="NSFont" key="NSSupport" id="1018602138">
@@ -175,7 +175,7 @@
 															<string key="NSAntiCompressionPriority">{250, 750}</string>
 															<bool key="NSEnabled">YES</bool>
 															<object class="NSTextFieldCell" key="NSCell" id="52576580">
-																<int key="NSCellFlags">67108928</int>
+																<int key="NSCellFlags">337641537</int>
 																<int key="NSCellFlags2">272631808</int>
 																<string key="NSContents">Table View Cell</string>
 																<reference key="NSSupport" ref="1018602138"/>
@@ -196,7 +196,7 @@
 											<string key="NSFrameSize">{465, 329}</string>
 											<reference key="NSSuperview" ref="613078658"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="586368143"/>
+											<reference key="NSNextKeyView" ref="655830748"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -379,7 +379,7 @@
 							<string key="NSFrame">{{20, 80}, {467, 347}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="655830748"/>
+							<reference key="NSNextKeyView" ref="613078658"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="648925949"/>
@@ -448,7 +448,6 @@
 							<string key="NSFrame">{{352, 21}, {143, 17}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="195900147">

@@ -178,39 +178,46 @@ list @outletDeclarationList {
 
 #----------------------------------------------------------------------------*
 
-abstract class @abstractTransientDependency {
+abstract class @abstractTransientDependencyAST {
 }
 
 #----------------------------------------------------------------------------*
 
-class @transientRootSignDependency extends @abstractTransientDependency {
+class @transientRootSignDependencyAST extends @abstractTransientDependencyAST {
   @location mDeclarationLocation ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @transientLocalDependency extends @abstractTransientDependency {
+class @transientLocalDependencyAST extends @abstractTransientDependencyAST {
   @lstring mMasterName ;
   @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @transientRootDependency extends @abstractTransientDependency {
+class @transientRootDependencyAST extends @abstractTransientDependencyAST {
   @lstring mMasterName ;
   @bool mNamesCountOption ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @transientControllerDependency extends @abstractTransientDependency {
+class @transientRootRelationshipDependencyAST extends @abstractTransientDependencyAST {
+  @lstring mRelationshipName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientControllerDependencyAST extends @abstractTransientDependencyAST {
   @lstring mControllerName ;
   @lstring mMasterName ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @transientPreferenceDependency extends @abstractTransientDependency {
+class @transientPreferenceDependencyAST extends @abstractTransientDependencyAST {
   @lstring mPreferencesName ;
   @lstring mMasterName ;
 }
@@ -218,7 +225,7 @@ class @transientPreferenceDependency extends @abstractTransientDependency {
 #----------------------------------------------------------------------------*
 
 list @dependanceList {
-  @abstractTransientDependency mDependency ;
+  @abstractTransientDependencyAST mDependency ;
 }
 
 #----------------------------------------------------------------------------*

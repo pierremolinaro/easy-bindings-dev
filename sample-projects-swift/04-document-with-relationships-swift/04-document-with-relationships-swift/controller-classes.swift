@@ -23,13 +23,13 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
         mOutlet = unwrappedOutlet
       }
     }
-    mObject?.addObserverOf_canRemove (self)
+    mObject?.addObserverOf_canRemove (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_canRemove (self)
+    mObject?.removeObserverOf_canRemove (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -95,13 +95,13 @@ class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTrig
         }
       }
     }
-    mObject?.addObserverOf_mNames_count (self)
+    mObject?.addObserverOf_mNames_count (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mNames_count (self)
+    mObject?.removeObserverOf_mNames_count (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -161,13 +161,13 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
         }
       }
     }
-    mObject?.addObserverOf_canRemoveString (self)
+    mObject?.addObserverOf_canRemoveString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_canRemoveString (self)
+    mObject?.removeObserverOf_canRemoveString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -227,13 +227,13 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.addObserverOf_countItemMessage (self)
+    mObject?.addObserverOf_countItemMessage (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_countItemMessage (self)
+    mObject?.removeObserverOf_countItemMessage (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -252,6 +252,78 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.countItemMessage) {
       mOutlet!.stringValue = mObject!.countItemMessage
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Controller PMDocument total - PMTextField $rvalue                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Controller_PMDocument_total_PMTextField_rvalue)
+class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+
+  weak var mObject : PMDocument? = nil
+  weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMTextField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      }else{
+        mOutlet = unwrappedOutlet
+        if unwrappedOutlet.formatter == nil {
+          presentErrorWindow (file, line, "the outlet has no formatter")
+        }else{
+          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
+          if !formatter.isKindOfClass (NSNumberFormatter) {
+            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+          }
+        }
+      }
+    }
+    mObject?.addObserverOf_total (self, inTrigger:true)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mObject?.removeObserverOf_total (self, inTrigger:false)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) {
+      mOutlet!.integerValue = Int (mObject!.total)
     }
   }
 

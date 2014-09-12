@@ -4,7 +4,7 @@ import Cocoa
 
 func compute_%!KIND_NAME%_%!TRANSIENT_NAME% (%?^
 for () in DEPENDENCY_LIST
-do !mMasterName% : %![mMasterType transientFormalArgumentTypeName]
+do !mComputeFunctionFormalArgumentName% : %!mSwiftTypeNameForComputeFunctionFormalArgument
 between %,\n%!^
 end
 %) -> %![TRANSIENT_TYPE transientReturnTypeName]

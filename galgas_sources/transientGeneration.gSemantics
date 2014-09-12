@@ -70,14 +70,10 @@ routine generateTransients
     !inSortedTransientNodes
     !transientList
   ] ;
-  [@string generateFileWithPattern
+  [@string generateFile
     ![inSourceFile stringByDeletingLastPathComponent]
     !"PMApplication.swift"
-    !"//"
-    !"\n\n" # Defaut user zone1
     !s
-    !"\n\n" # Defaut user zone2
-    !""
   ] ;
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
@@ -120,27 +116,27 @@ local filewrapper transientManager in "../generation-templates" {
 }
 
 #-----------------------------------------------------------------------------*
-#   generateForComputeFunction                                                *
+#   generateActualParameterForComputeFunction                                 *
 #-----------------------------------------------------------------------------*
-#! generateForComputeFunction
+#! generateActualParameterForComputeFunction
 
-abstract reader @abstractTransientDependency generateForComputeFunction -> @string outResult ;
+abstract reader @abstractTransientDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientControllerDependency generateForComputeFunction -> @string outResult :
+override reader @transientControllerDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
   outResult := "(" + mControllerName->string + " != nil) ? (" + mControllerName->string + "?." + mMasterName + ")! : false" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootSignDependency generateForComputeFunction -> @string outResult :
+override reader @transientRootSignDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
   outResult := "??@@transientRootSignDependency??" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientLocalDependency generateForComputeFunction -> @string outResult :
+override reader @transientLocalDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
   outResult := mMasterName->string ;
   if mNamesCountOption then
     outResult += ".count" ;
@@ -149,13 +145,13 @@ end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientPreferenceDependency generateForComputeFunction -> @string outResult :
+override reader @transientPreferenceDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
   outResult := "g_" + mPreferencesName->string + "!." + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootDependency generateForComputeFunction -> @string outResult :
+override reader @transientRootDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
   outResult := "rootObject." + mMasterName->string ;
   if mNamesCountOption then
     outResult += ".count" ;
@@ -163,40 +159,52 @@ override reader @transientRootDependency generateForComputeFunction -> @string o
 end reader ;
 
 #-----------------------------------------------------------------------------*
+
+override reader @transientRootRelationshipDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
+  outResult := "(rootObject." + mRelationshipName->string + " as NSArray) as [" + [mElementType key] + "_" + mMasterName + "]";
+end reader ;
+
+#-----------------------------------------------------------------------------*
 #   generateAddObserverCall                                                   *
 #-----------------------------------------------------------------------------*
 #! generateAddObserverCall
 
-abstract reader @abstractTransientDependency generateAddObserverCall -> @string outResult ;
+abstract reader @abstractTransientDependencyForGeneration generateAddObserverCall -> @string outResult ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientControllerDependency generateAddObserverCall -> @string outResult :
+override reader @transientControllerDependencyForGeneration generateAddObserverCall -> @string outResult :
   outResult := mControllerName->string + "?.addObserverOf_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootSignDependency generateAddObserverCall -> @string outResult :
+override reader @transientRootSignDependencyForGeneration generateAddObserverCall -> @string outResult :
   outResult := "??@@transientRootSignDependency??" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientLocalDependency generateAddObserverCall -> @string outResult :
+override reader @transientLocalDependencyForGeneration generateAddObserverCall -> @string outResult :
   outResult := "addObserverOf_" + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientPreferenceDependency generateAddObserverCall -> @string outResult :
+override reader @transientPreferenceDependencyForGeneration generateAddObserverCall -> @string outResult :
   outResult := "g_" + mPreferencesName->string + "?.addObserverOf_" + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootDependency generateAddObserverCall -> @string outResult :
-  outResult := "rootObject.addObserverOf_" + mMasterName->string ;
+override reader @transientRootDependencyForGeneration generateAddObserverCall -> @string outResult :
+  outResult := "rootObject.addObserverOf_" + mMasterName ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootRelationshipDependencyForGeneration generateAddObserverCall -> @string outResult :
+  outResult := "rootObject.addObserverOf_" + mRelationshipName + "_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
@@ -204,36 +212,42 @@ end reader ;
 #-----------------------------------------------------------------------------*
 #! generateRemoveObserverCall
 
-abstract reader @abstractTransientDependency generateRemoveObserverCall -> @string outResult ;
+abstract reader @abstractTransientDependencyForGeneration generateRemoveObserverCall -> @string outResult ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientControllerDependency generateRemoveObserverCall -> @string outResult :
+override reader @transientControllerDependencyForGeneration generateRemoveObserverCall -> @string outResult :
   outResult := mControllerName->string + "?.removeObserverOf_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootSignDependency generateRemoveObserverCall -> @string outResult :
+override reader @transientRootSignDependencyForGeneration generateRemoveObserverCall -> @string outResult :
   outResult := "??@@transientRootSignDependency??" ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientLocalDependency generateRemoveObserverCall -> @string outResult :
+override reader @transientLocalDependencyForGeneration generateRemoveObserverCall -> @string outResult :
   outResult := "removeObserverOf_" + mMasterName->string ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientPreferenceDependency generateRemoveObserverCall -> @string outResult :
-  outResult := "g_" + mPreferencesName->string + "?.removeObserverOf_" + mMasterName->string ;
+override reader @transientPreferenceDependencyForGeneration generateRemoveObserverCall -> @string outResult :
+  outResult := "g_" + mPreferencesName->string + "?.removeObserverOf_" + mMasterName ;
 end reader ;
 
 #-----------------------------------------------------------------------------*
 
-override reader @transientRootDependency generateRemoveObserverCall -> @string outResult :
-  outResult := "rootObject.removeObserverOf_" + mMasterName->string ;
+override reader @transientRootDependencyForGeneration generateRemoveObserverCall -> @string outResult :
+  outResult := "rootObject.removeObserverOf_" + mMasterName ;
+end reader ;
+
+#-----------------------------------------------------------------------------*
+
+override reader @transientRootRelationshipDependencyForGeneration generateRemoveObserverCall -> @string outResult :
+  outResult := "rootObject.removeObserverOf_" + mRelationshipName + "_" + mMasterName ;
 end reader ;
 
 #----------------------------------------------------------------------------*

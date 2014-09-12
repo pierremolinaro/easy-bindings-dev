@@ -112,15 +112,17 @@ import Cocoa
       line:__LINE__
     )
   //--------------------------- Transient observers
-    nameController?.addObserverOf_canRemove (triggerObjectFor_document_2E_PMDocument_2E_canRemoveString)
-    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage)
+    nameController?.addObserverOf_canRemove (triggerObjectFor_document_2E_PMDocument_2E_canRemoveString, inTrigger:true)
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage, inTrigger:true)
+    rootObject.addObserverOf_mNames_aValue (triggerObjectFor_document_2E_PMDocument_2E_total, inTrigger:true)
   //--------------------------- Array controller as observers
-    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController, inTrigger:true)
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.addObject (Controller_PMDocument_total_PMTextField_rvalue (object:self, outlet:totalTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -175,14 +177,18 @@ import Cocoa
     }
   }
  
-   func addObserverOf_canRemoveString (inObserver : PMTriggerProtocol) {
+   func addObserverOf_canRemoveString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemoveString_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_canRemoveString (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_canRemoveString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemoveString_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
   var triggerObjectFor_document_2E_PMDocument_2E_canRemoveString_cache : PMTrigger_document_2E_PMDocument_2E_canRemoveString? = nil
@@ -219,14 +225,18 @@ import Cocoa
     }
   }
  
-   func addObserverOf_countItemMessage (inObserver : PMTriggerProtocol) {
+   func addObserverOf_countItemMessage (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     countItemMessage_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_countItemMessage (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_countItemMessage (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     countItemMessage_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
   var triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache : PMTrigger_document_2E_PMDocument_2E_countItemMessage? = nil
@@ -235,6 +245,54 @@ import Cocoa
       triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache = PMTrigger_document_2E_PMDocument_2E_countItemMessage (object:self)
     }
     return triggerObjectFor_document_2E_PMDocument_2E_countItemMessage_cache!
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient: total                                                                                               *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var total_observers = NSMutableSet ()
+  var total_cache : Int?
+  var total : Int {
+    get {
+      if total_cache == nil {
+        total_cache = compute_PMDocument_total ((rootObject.mNames as NSArray) as [NameEntity_aValue])
+      }
+      return total_cache!
+    }
+  }
+
+  func document_2E_PMDocument_2E_total_noteDidChange () {
+    total_cache = nil
+  }
+
+  func document_2E_PMDocument_2E_total_trigger () {
+    for anyObject in total_observers {
+      let object = anyObject as PMTriggerProtocol
+      enterTriggerWithObject (object)
+    }
+  }
+ 
+   func addObserverOf_total (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    total_observers.addObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
+  }
+ 
+  func removeObserverOf_total (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    total_observers.removeObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
+  }
+
+  var triggerObjectFor_document_2E_PMDocument_2E_total_cache : PMTrigger_document_2E_PMDocument_2E_total? = nil
+  var triggerObjectFor_document_2E_PMDocument_2E_total : PMTrigger_document_2E_PMDocument_2E_total {
+    if triggerObjectFor_document_2E_PMDocument_2E_total_cache == nil {
+      triggerObjectFor_document_2E_PMDocument_2E_total_cache = PMTrigger_document_2E_PMDocument_2E_total (object:self)
+    }
+    return triggerObjectFor_document_2E_PMDocument_2E_total_cache!
   }
 
 

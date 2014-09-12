@@ -8,7 +8,7 @@ semantics preferencesGeneration :
 list @preferenceListForGeneration {
   @string mPreferenceName ;
   @attributeListForGeneration mAttributeListForGeneration ;
-  @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+  @transientDefinitionListForGeneration mDecoratedTransientListForGeneration ;
   @decoratedOutletMap mOutletMap ;
   @stringlist mControllerInstanciationStringList ;
 }
@@ -91,7 +91,7 @@ local filewrapper prefsGenerationTemplate in "../generation-templates" {
   template preferencesInSwift "preferences.swift.gTemplate"
     ?@string PREFERENCES_NAME
     ?@attributeListForGeneration ATTRIBUTE_LIST_FOR_GENERATION
-    ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
@@ -110,7 +110,7 @@ routine generatePreferences
     const s := [filewrapper prefsGenerationTemplate.preferencesInSwift
       !mPreferenceName
       !mAttributeListForGeneration
-      !mDecoratedTransientMapForGeneration
+      !mDecoratedTransientListForGeneration
       !mOutletMap
       !{}
       !{}

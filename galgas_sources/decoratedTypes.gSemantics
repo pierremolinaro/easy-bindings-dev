@@ -75,12 +75,27 @@ map @decoratedEntityRelationshipMap {
 
 #----------------------------------------------------------------------------*
 
+list @dependanceListForGeneration {
+  @abstractTransientDependencyForGeneration mDependency ;
+}
+
+#----------------------------------------------------------------------------*
+
 map @decoratedTransientMap {
   insert insertKey error message "the '%K' transient is already declared" ;
   search searchKey error message "the '%K' transient is not declared" ;
   @unifiedTypeProxy mTransientType ;
   @lstring mTransientSignature ;
   @dependanceList mDependencyList ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @transientDefinitionListForGeneration {
+  @string mTransientName ;
+  @unifiedTypeProxy mTransientType ;
+  @lstring mTransientSignature ;
+  @dependanceListForGeneration mDependencyList ;
 }
 
 #----------------------------------------------------------------------------*
@@ -175,8 +190,8 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 list @transientDependencyListForGeneration {
-  @unifiedTypeProxy mMasterType ;
-  @string mMasterName ;
+  @string mSwiftTypeNameForComputeFunctionFormalArgument ;
+  @string mComputeFunctionFormalArgumentName ;
 }
 
 #----------------------------------------------------------------------------*
@@ -225,6 +240,52 @@ list @targetActionList {
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractTransientDependencyForGeneration {
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootSignDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @location mDeclarationLocation ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientLocalDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @lstring mMasterName ;
+  @bool mNamesCountOption ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @lstring mMasterName ;
+  @bool mNamesCountOption ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootRelationshipDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @unifiedTypeProxy mElementType ;
+  @lstring mRelationshipName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientControllerDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @lstring mControllerName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientPreferenceDependencyForGeneration extends @abstractTransientDependencyForGeneration {
+  @lstring mPreferencesName ;
+  @lstring mMasterName ;
+}
+
+#----------------------------------------------------------------------------*
 
 
 
@@ -240,414 +301,7 @@ list @targetActionList {
 
 
 
-##----------------------------------------------------------------------------*
-#
-#map @enumConstantMap {
-#  insert insertKey error message "the '%K' enumeration constant is already declared" ;
-#  search searchKey error message "the '%K' enumeration constant is not declared" ;
-#}
-#
-#
-##----------------------------------------------------------------------------*
-#
-#struct @fileInclusionSet {
-#  @stringset mHeaderPredeclarationSet ;
-#  @stringset mHeaderFileInclusionSet ;
-#  @stringset mImplementationFileInclusionSet ;
-#}
-#
-##-----------------------------------------------------------------------------*
-#
-#map @globalEnumConstantMap {
-#  @lstring mEnumTypeName ;
-#  insert insertKey error message "the '%K' enumeration constant is already declared" ;
-#  search searchKey error message "the '%K' enumeration constant is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @enumMap {
-#  @lstringlist mConstantOrderedList ;
-#  @enumConstantMap mEnumConstantMap ;
-#  insert insertKey error message "the '%K' enumeration is already declared" ;
-#  search searchKey error message "the '%K' enumeration is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @userCursorMap {
-#  @double mHotSpotX ;
-#  @double mHotSpotY ;
-#  insert insertKey error message "the '%K' cursor is already declared" ;
-#  search searchKey error message "the '%K' cursor is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @structTypeMap {
-##  @structFieldList mFieldList ;
-#  insert insertKey error message "the '%K' struct is already declared" ;
-#  search searchKey error message "the '%K' struct is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#struct @EXcontextAnalysisStruct {
-#  @EXobservablePropertyMapMap mObservablePropertyMapMap ;
-#  @structTypeMap mStructTypeMap ;
-#  @enumMap mEnumMap ;
-#  @globalEnumConstantMap mGlobalEnumConstantMap ;
-#  @userCursorMap mUserCursorMap ;
-#  @classMap mClassMap ;
-#  @protocolMap mProtocolMap ;
-#  @preferencesMap mPreferencesMap ;
-#  @entityMap mEntityMap ;
-#  @controllerClassMap mControllerClassMap ;
-#  @outletClassMap mOutletClassMap ;
-#  @EXtransientDependencyGraph mTransientDependencyGraph ;
-#  @bool mContainsDocument ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @classMap {
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @propertyArrayMap mAllArrayPropertyForImplementation ;
-#  insert insertKey error message "the '%K' class is already declared" ;
-#  search searchKey error message "the '%K' class is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @entityMap {
-#  @string mSuperEntityName ;
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @relationshipList mCurrentRelationshipList ;
-#  @relationshipList mAllRelationshipList ;
-#  @propertyMap mAllPropertyMap ;
-#  @relationshipMap mCurrentRelationshipMap ;
-#  @relationshipMap mAllRelationshipMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-##  @signListForGeneration mSignList ;
-#  insert insertKey error message "the '%K' entity is already declared" ;
-#  search searchKey error message "the '%K' entity is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @entityListForGeneration {
-#  @string mEntityName ;
-#  @string mSuperEntityName ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @relationshipList mCurrentRelationshipList ;
-#  @relationshipList mAllRelationshipList ;
-#  @propertyMap mAllPropertyMap ;
-#  @relationshipMap mCurrentRelationshipMap ;
-#  @relationshipMap mAllRelationshipMap ;
-#  @2stringlist mToManyRelationshipList ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @2stringlist mToOneRelationshipList ;
-##  @signListForGeneration mSignList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @runBindingForGeneration extends @abstractBindingForGeneration {
-#  @string mTargetName ;
-#  @string mActionName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @treeControllerForGeneration extends @abstractBindingForGeneration {
-#  @string mChildrenKeyPathName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @bindingOptionListForGeneration {
-#  @string mOptionName ;
-#  @string mObjectiveCOptionString ;
-#  @string mSwiftOptionString ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @regularBindingForGeneration extends @abstractBindingForGeneration {
-##  @EXebType mObservableAttributeType ;
-#  @string mBindingName ;
-#  @formatterEnum mRequiredFormatter ;
-#  @string mObservedObjectName ;
-#  @string mObservableAttributeName ;
-#  @bool mRequiresInterrogationMark ;
-#  @bindingOptionListForGeneration mOutletBindingOptionList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @columnBindingForTableValueBindingForGeneration {
-#  @string mColumnIdentifier ;
-#  @string mRequiredCellClass ;
-#  @string mObservableAttributeName ;
-#  @2stringlist mOutletBindingOptionList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @tableValueBindingForGeneration extends @abstractBindingForGeneration {
-#  @string mControllerName ;
-#  @columnBindingForTableValueBindingForGeneration mColumnBindingForTableValueBindingForGeneration ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @protocolMap {
-#  @bool mIsPredefined ; # Generate import otherwise
-#  insert insertKey error message "the '%K' protocol is already declared" ;
-#  search searchKey error message "the '%K' protocol is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @protocolList {
-#  @bool mNeedsInclusionInHeader ;
-#  @string mProtocolName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @outletClassMap {
-#  @generationKind mGenerationKind ;
-#  @string mSuperClassName ;
-#  @protocolList mAdoptedProtocolList ;
-#  @bool mImplementsDeallocProtocol ;
-##  @outletClassBindingMap mAllBindingMap ;
-##  @outletClassBindingMap mCurrentBindingMap ;
-#  @bool mHasTableValueBinding ;
-#  insert insertKey error message "the '%K' outlet class is already declared" ;
-#  search searchKey error message "the '%K' outlet class is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @controllerClassMap {
-#  @controllerKind mControllerKind ;
-#  @generationKind mGenerationKind ;
-##  @outletClassBindingMap mBindingMap ;
-#  @actionMap mActionMap ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-##  @outletClassBindingOptionMap mControlledObjectAvailableBindingOptionMap ;
-#  insert insertKey error message "the '%K' controller class is already declared" ;
-#  search searchKey error message "the '%K' controller class is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @relationshipMap {
-#  @bool mIsToMany ;
-#  @lstring mDestinationEntityName ;
-#  @lstring mInverseRelationshipName ;
-#  @bool mInverseIsToMany ;
-#  @deleteRuleEnum mDeleteRule ;
-#  insert insertKey error message "the '%K' relationship is already declared" ;
-#  search searchKey error message "the '%K' relationship is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @propertyMap {
-#  insert insertKey error message "there is already a '%K' property (attribute, transient or relationship)" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @attributeListForImplementation {
-##  @EXebType mType ;
-#  @string mAttributeName ;
-#  @string mDefaultValueAsObjectiveCObject ;
-#  @string mDirectOCDefaultValue ;
-#  @string mDirectSwiftDefaultValue ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#abstract class @abstractBindingForGeneration {
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @outletBindingListForGeneration {
-#  @abstractBindingForGeneration mBinding ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @outletGenerationList {
-#  @string mOutletType ;
-#  @string mOutletName ;
-#  @outletBindingListForGeneration mOutletBindingList ;
-#  @bool mImplementsDeallocProtocol ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @preferencesMap {
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @lstringlist mActionList ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @controllerMap mControllerMap ;
-#  insert insertKey error message "the '%K' preference is already declared" ;
-#  search searchKey error message "the '%K' preference is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @nibClassMap {
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @lstringlist mActionList ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @controllerMap mControllerMap ;
-#  @propertyArrayMap mArrayMap ;
-#  insert insertKey error message "the '%K' nib class is already declared" ;
-#  search searchKey error message "the '%K' nib class is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @observableObjectMap {
-#  @string mObservableObjectOCName ;
-#  @string mObservableObjectTypeOCName ;
-#  @string mIncludeFileName ; # Empty string if no file to include
-#  @EXobservablePropertyMap mObservableProperties ;
-#  insert insertKey error message "the '%K' observable object is already declared" ;
-#  search searchKey error message "the '%K' observable object is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#map @controllerMap {
-#  @string mControllerClassName ;
-#  @lstring mControlledClassOrEntityName ;
-#  @bool mIsEntity ;
-#  @outletBindingListForGeneration mControllerBindingList ;
-#  @actionMap mActionMap ;
-#  @EXobservablePropertyMap mObservableAttributeMap ;
-#  insert insertKey error message "the '%K' controller is already declared" ;
-#  search searchKey error message "the '%K' controller is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#abstract class @abstractTransientDependencyForImplementation {
-#  @EXebType mMasterAttributeType ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @transientDependencyFromSelfForImplementation extends @abstractTransientDependencyForImplementation {
-#  @string mMasterAttributeName ;
-#  @bool mNamesCountOption ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @transientDependencyFromControllerForImplementation extends @abstractTransientDependencyForImplementation {
-#  @string mControllerName ;
-#  @string mMasterAttributeName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @transientDependencyFromRootForImplementation extends @abstractTransientDependencyForImplementation {
-#  @string mMasterAttributeName ;
-#  @bool mNamesCountOption ;
-#  @string mTriggerRoutineName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @transientDependencyFromPreferenceForImplementation extends @abstractTransientDependencyForImplementation {
-#  @string mPreferenceName ;
-#  @string mMasterAttributeName ;
-#  @bool mMasterIsTransient ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @directDependancyList {
-#  @abstractTransientDependencyForImplementation mDependency ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @transientListForImplementation {
-#  @EXebType mTransientType ;
-#  @string mTransientName ;
-#  @directDependancyList mDependencyList ;
-#  @stringlist mRootSignDependencyList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#graph @EXtransientDependencyGraph (@stringlist) {
-#  insert addNode error message "the '%K' transient is already declared at %L" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateObjectiveCBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateSwiftBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract method @abstractBinding analyzeOutletBinding
-#  ??@EXobservablePropertyMap inRootEntityObservableAttributeMap
-#  ??@EXobservablePropertyMap inSelfObservableAttributeMap
-#  ??@outletClassBindingMap inBoundObjectBindingMap
-#  ??@controllerMap inControllerMap
-#  ??@actionMap inActionMap
-#  ??@bool inHasTableValueBinding
-#  ??@EXcontextAnalysisStruct inContextAnalysisStruct
-#  ?!@outletBindingListForGeneration ioOutletBindingListForGeneration
-#  ?!@fileInclusionSet ioFileInclusionSet
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateObjectiveCRemoveBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract reader @abstractBindingForGeneration generateSwiftRemoveBinding
-#  ??@string inOutletName
-#  -> @string outResult
-#;
-#
+
 #----------------------------------------------------------------------------*
 
 abstract method @abstractDefaultValue analyzeDefaultValueType 
