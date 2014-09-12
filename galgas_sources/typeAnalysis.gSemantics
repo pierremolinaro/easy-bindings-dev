@@ -193,7 +193,8 @@ local routine unifiedTypeAnalysis
     ;
   end for ;
   ioGeneration->mAllArrayControllerForGeneration += documentArrayControllerForGeneration ;
-#--- Analyze transient dependancies
+#------------------------------------------------- Analyze transient dependancies
+  @transientDefinitionListForGeneration transientDefinitionListForGeneration := {} ;
   for () in decoratedTransientMap do
     @transientDependencyListForGeneration transientDependencyListForGeneration := {} ;
     for () in mDependencyList do
@@ -210,6 +211,16 @@ local routine unifiedTypeAnalysis
         !?transientDependencyListForGeneration
       ] ;
     end for ;
+    @dependanceListForGeneration dependencyListForGeneration := {} ;
+    for () in mDependencyList do
+      dependencyListForGeneration += ![mDependency buildDecoratedRepresentation !inRootEntityType] ;
+    end for ;
+    transientDefinitionListForGeneration +=
+      !lkey->string
+      !mTransientType
+      !mTransientSignature
+      !dependencyListForGeneration
+    ;
     ioGeneration->mTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
   end for ;
 #--- Analyze attribute default value
@@ -347,7 +358,7 @@ local routine unifiedTypeAnalysis
       !inTypeName->string
       !if [inSuperType isNull] then "" else [inSuperType key] end
       !attributeListForGeneration
-      !decoratedTransientMap
+      !transientDefinitionListForGeneration
       !entityRelationshipListForGeneration
     ;
   when documentType :
@@ -355,7 +366,7 @@ local routine unifiedTypeAnalysis
       !inTypeName->string
       ![inRootEntityType key]
       !attributeListForGeneration
-      !decoratedTransientMap
+      !transientDefinitionListForGeneration
       !decoratedOutletMap
       !controllerInstanciationStringList
       !documentArrayControllerForGeneration
@@ -365,7 +376,7 @@ local routine unifiedTypeAnalysis
     ioGeneration->mPreferenceListForGeneration +=
       !inTypeName->string
       !attributeListForGeneration
-      !decoratedTransientMap
+      !transientDefinitionListForGeneration
       !decoratedOutletMap
       !controllerInstanciationStringList
     ;
@@ -377,7 +388,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-abstract method @abstractTransientDependency transientDependencySemanticAnalysis
+abstract method @abstractTransientDependencyAST transientDependencySemanticAnalysis
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@lstring inTransientName
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
@@ -760,6 +771,75 @@ override reader @arrayControllerObservablePropertyAST modelSignatureForArrayCont
   -> @string outSignature
 :
   outSignature := inSelfTypeName + "_" + mArrayControllerObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+#! buildDecoratedRepresentation
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractTransientDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientRootSignDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy unused inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  outResult := [@transientRootSignDependencyForGeneration new !mDeclarationLocation] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientLocalDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy unused inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  outResult := [@transientLocalDependencyForGeneration new !mMasterName !mNamesCountOption] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientRootDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy unused inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  outResult := [@transientRootDependencyForGeneration new !mMasterName !mNamesCountOption] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientRootRelationshipDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  [[inRootEntityType mCurrentRelationshipMap] searchKey
+    !mRelationshipName
+    ?*
+    ??@unifiedTypeProxy elementType
+    ?*
+  ] ;
+  outResult := [@transientRootRelationshipDependencyForGeneration new !elementType !mRelationshipName !mMasterName] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientControllerDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy unused inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  outResult := [@transientControllerDependencyForGeneration new !mControllerName !mMasterName] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @transientPreferenceDependencyAST buildDecoratedRepresentation
+  ??@unifiedTypeProxy unused inRootEntityType
+  -> @abstractTransientDependencyForGeneration outResult
+:
+  outResult := [@transientPreferenceDependencyForGeneration new !mPreferencesName !mMasterName] ;
 end reader ;
 
 #----------------------------------------------------------------------------*

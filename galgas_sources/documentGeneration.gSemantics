@@ -9,7 +9,7 @@ list @documentListForGeneration {
   @string mDocumentName ;
   @string mRootEntityName ;
   @attributeListForGeneration mAttributeListForGeneration ;
-  @decoratedTransientMap mDecoratedTransientMapForGeneration ;
+  @transientDefinitionListForGeneration mDecoratedTransientListForGeneration ;
   @decoratedOutletMap mOutletMap ;
   @stringlist mControllerInstanciationStringList ;
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration ;
@@ -25,7 +25,7 @@ local filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@attributeListForGeneration ATTRIBUTE_LIST
-    ?@decoratedTransientMap TRANSIENT_MAP_FOR_IMPLEMENTATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@stringlist CONTROLLER_INSTANCIATION_LIST
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
@@ -44,7 +44,7 @@ routine generateDocuments
       !mDocumentName
       !mRootEntityName
       !mAttributeListForGeneration
-      !mDecoratedTransientMapForGeneration
+      !mDecoratedTransientListForGeneration
       !mOutletMap
       !mControllerInstanciationStringList
       !mDocumentArrayControllerForGeneration

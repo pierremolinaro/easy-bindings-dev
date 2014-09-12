@@ -115,8 +115,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func unregister () {
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (mTriggerObjectForModelChange)
-      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange)
+      managedObject.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
     }
   }
   
@@ -187,8 +187,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     removedObjectSet.minusSet (mCurrentObjectSet)
     for object : AnyObject in removedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (mTriggerObjectForModelChange)
-      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange)
+      managedObject.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
     }
   //--- Added object set
     var addedObjectSet = NSMutableSet ()
@@ -196,8 +196,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     addedObjectSet.minusSet (oldObjectSet)
     for object : AnyObject in addedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.addObserverOf_name (mTriggerObjectForModelChange)
-      managedObject.addObserverOf_aValue (mTriggerObjectForModelChange)
+      managedObject.addObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.addObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
     }
     refreshDisplay ()
   }
@@ -267,8 +267,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func set_name_Action (sender : PMTextField) {
     if let tableView = mTableView {
       let row = tableView.rowForView (sender)
-      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  NameEntity
-      object.name = sender.stringValue
+      if row >= 0 {
+        let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
+        object.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+        object.name = sender.stringValue
+        object.addObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+      }
     }
   }
 
@@ -277,8 +281,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func set_aValue_Action (sender : PMTextField) {
     if let tableView = mTableView {
       let row = tableView.rowForView (sender)
-      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  NameEntity
-      object.aValue = sender.integerValue
+      if row >= 0 {
+        let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
+        object.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+        object.aValue = sender.integerValue
+        object.addObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+      }
     }
   }
 
@@ -336,14 +344,18 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   
   private var canRemove_observers = NSMutableSet ()
   
-  func addObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+  func addObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemove_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemove_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
 }

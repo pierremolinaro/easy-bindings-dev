@@ -43,6 +43,7 @@ protocol PMTriggerProtocol : NSObjectProtocol {
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
+  var className : String! { get } // Handled by NSObject
 }
 
 %
@@ -117,7 +118,7 @@ func flushTriggers () {
 
 %
   for () in TRANSIENT_LIST do index idx
-%  private var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx string]%\n%
+%  private var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx+1 string]%\n%
   end  
 %
   //-------------------------------------------------------------------------------------------------------------------*

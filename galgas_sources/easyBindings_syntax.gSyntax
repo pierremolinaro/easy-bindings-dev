@@ -36,8 +36,8 @@ rule <start_symbol>
     <class_declaration> !inIsUserDefined !?ioDeclarationAST ;
   while
     <entity_declaration>  !inIsUserDefined  !?ioDeclarationAST ;
-  while
-    <nib_class_declaration>  !inIsUserDefined  !?ioDeclarationAST ;
+#  while
+#    <nib_class_declaration>  !inIsUserDefined  !?ioDeclarationAST ;
   while
     <preferences_declaration> !inIsUserDefined !?ioDeclarationAST ;
   while
@@ -145,7 +145,7 @@ rule <action_declaration>
   ?!@lstringlist ioActionDeclarationList
 :
   $action$ ;
-  $identifier$ ? @lstring actionName ;
+  $identifier$ ??@lstring actionName ;
   $;$ ;
   ioActionDeclarationList += !actionName ;
 end rule ;
@@ -157,7 +157,7 @@ rule <preferences_declaration>
   ?!@astDeclarationStruct ioDeclarationAST
 :
   $preferences$ ;
-  $Identifier$ ? @lstring preferencesName ;
+  $Identifier$ ??@lstring preferencesName ;
   ${$ ;
   @outletDeclarationList outletDeclarationList [emptyList] ;
   @attributeList attributeList [emptyList] ;
@@ -199,35 +199,35 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-rule <nib_class_declaration>
-  ??@bool unused inIsUserDefined
-  ?!@astDeclarationStruct unused ioDeclarationAST
-:
-  $nibClass$ ;
-  $Identifier$ ? @lstring preferencesName ;
-  ${$ ;
-  @outletDeclarationList outletDeclarationList [emptyList] ;
-  @attributeList attributeList [emptyList] ;
-  @transientList transientList [emptyList] ;
-  @lstringlist actionDeclarationList [emptyList] ;
-  @bindingList bindingList [emptyList] ;
-  @classArrayList classArrayList [emptyList] ;
-  repeat
-  while
-    <action_declaration> !?actionDeclarationList ;
-  while
-    <attribute_declaration> !?attributeList ;
-  while
-    <outlet_declaration> !?outletDeclarationList ;
-  while
-    <transient_declaration> !?transientList ;
-  while
-    <binding_declaration> !?bindingList ;
-  while
-    <array_declaration> !?classArrayList ;
-  end repeat ;
-  $}$ ;
-end rule ;
+#rule <nib_class_declaration>
+#  ??@bool unused inIsUserDefined
+#  ?!@astDeclarationStruct unused ioDeclarationAST
+#:
+#  $nibClass$ ;
+#  $Identifier$ ??@lstring preferencesName ;
+#  ${$ ;
+#  @outletDeclarationList outletDeclarationList [emptyList] ;
+#  @attributeList attributeList [emptyList] ;
+#  @transientList transientList [emptyList] ;
+#  @lstringlist actionDeclarationList [emptyList] ;
+#  @bindingList bindingList [emptyList] ;
+#  @classArrayList classArrayList [emptyList] ;
+#  repeat
+#  while
+#    <action_declaration> !?actionDeclarationList ;
+#  while
+#    <attribute_declaration> !?attributeList ;
+#  while
+#    <outlet_declaration> !?outletDeclarationList ;
+#  while
+#    <transient_declaration> !?transientList ;
+#  while
+#    <binding_declaration> !?bindingList ;
+#  while
+#    <array_declaration> !?classArrayList ;
+#  end repeat ;
+#  $}$ ;
+#end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -302,9 +302,9 @@ rule <document_declaration>
   ?!@astDeclarationStruct ioDeclarationAST
 :
   $document$ ;
-  $Identifier$ ? @lstring documentName ;
+  $Identifier$ ??@lstring documentName ;
   $root$ ;
-  $Identifier$ ? @lstring rootEntityName ;
+  $Identifier$ ??@lstring rootEntityName ;
   ${$ ;
   @outletDeclarationList outletDeclarationList [emptyList] ;
   @bindingList bindingList [emptyList] ;
@@ -365,7 +365,7 @@ rule <explicit_value>
     $literal_string$ ?@lstring stringValue ;
     outDefaultValue := [@stringAsDefaultValue new !stringValue] ;
   or
-    $identifier$ ? @lstring stringValue ;
+    $identifier$ ??@lstring stringValue ;
     outDefaultValue := [@identifierAsDefaultValue new !stringValue] ;
   or
     $($ ;
@@ -389,7 +389,7 @@ rule <class_declaration>
   ?!@astDeclarationStruct ioDeclarationAST
 :
   $class$ ;
-  $Identifier$ ? @lstring className ;
+  $Identifier$ ??@lstring className ;
   @lstring superClassName ;
   select
     superClassName := ["" nowhere] ;
@@ -452,7 +452,7 @@ rule <transient_declaration>
 :
   $transient$ ;
   $Identifier$ ?@lstring transientTypeName ;
-  $identifier$ ? @lstring transientName ;
+  $identifier$ ??@lstring transientName ;
   $dependsFrom$ ;
   @dependanceList dependanceList [emptyList] ;
   repeat
@@ -460,29 +460,36 @@ rule <transient_declaration>
       $root$ ;
       $.$ ;
       $signature$ ;
-      dependanceList += ![@transientRootSignDependency new !here] ;
+      dependanceList += ![@transientRootSignDependencyAST new !here] ;
     or
       $self$ ;
       $.$ ;
-      $identifier$ ? @lstring masterName ;
+      $identifier$ ??@lstring masterName ;
       <count_option> ?@bool namesCountOption ;
-      dependanceList += ![@transientLocalDependency new !masterName !namesCountOption] ;
+      dependanceList += ![@transientLocalDependencyAST new !masterName !namesCountOption] ;
     or
       $root$ ;
       $.$ ;
-      $identifier$ ? @lstring masterName ;
+      $identifier$ ??@lstring masterName ;
       <count_option> ?@bool namesCountOption ;
-      dependanceList += ![@transientRootDependency new !masterName !namesCountOption] ;
+      dependanceList += ![@transientRootDependencyAST new !masterName !namesCountOption] ;
+    or
+      $root$ ;
+      $.$ ;
+      $identifier$ ??@lstring relationshipName ;
+      $.$ ;
+      $identifier$ ??@lstring masterName ;
+      dependanceList += ![@transientRootRelationshipDependencyAST new !relationshipName !masterName] ;
     or
       $identifier$ ?@lstring controllerName ;
       $.$ ;
-      $identifier$ ? @lstring masterName ;
-      dependanceList += ![@transientControllerDependency new !controllerName !masterName] ;
+      $identifier$ ??@lstring masterName ;
+      dependanceList += ![@transientControllerDependencyAST new !controllerName !masterName] ;
     or
       $Identifier$ ?@lstring preferenceName ;
       $.$ ;
-      $identifier$ ? @lstring masterName ;
-      dependanceList += ![@transientPreferenceDependency new !preferenceName !masterName] ;
+      $identifier$ ??@lstring masterName ;
+      dependanceList += ![@transientPreferenceDependencyAST new !preferenceName !masterName] ;
     end select ;
   while
     $,$ ;
@@ -564,170 +571,12 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-#rule <controller_declaration>
-#  ?!@controllerList ioControllerList
-#:
-#  $controller$ ;
-#  $Identifier$ ? @lstring controllerClassName ;
-#  $identifier$ ? @lstring controllerName ;
-#  <bindings> ?@bindingList controllerBindingList ;
-#  $;$ ;
-#  ioControllerList +=
-#    ![@controllerKind simpleController]
-#    !controllerClassName
-#    !controllerName
-#    ![@lbool new !false !here] # Any value, no controlled object
-#    ![@lstring new !"" ! here] # No controlled Object
-#    ![@outletBindingOptionList emptyList]
-#    !controllerBindingList
-#    !["" nowhere]
-#  ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <controller_declaration>
-#  ?!@controllerList ioControllerList
-#:
-#  $arrayController$ ;
-#  $Identifier$ ?@lstring controllerClassName ;
-#  $identifier$ ? @lstring controllerName ;
-#  $:$ ;
-#  @lbool isRoot ;
-#  select
-#    $root$ ;
-#    isRoot := [@lbool new !true !here] ;
-#  or
-#    $self$ ;
-#    isRoot := [@lbool new !false !here] ;
-#  end select ;
-#  $.$ ;
-#  $identifier$ ?@lstring controlledObject ;
-#  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
-#  <bindings> ?@bindingList controllerBindingList ;
-#  $;$ ;
-#  ioControllerList +=
-#    ![@controllerKind arrayController]
-#    !controllerClassName
-#    !controllerName
-#    !isRoot
-#    !controlledObject
-#    !controlledObjectBindingOptionList
-#    !controllerBindingList
-#    !["" nowhere]
-#  ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <controller_declaration>
-#  ?!@controllerList ioControllerList
-#:
-#  $entityArrayController$ ;
-#  $Identifier$ ?@lstring controllerClassName ;
-#  $identifier$ ? @lstring controllerName ;
-#  $:$ ;
-#  @lbool isRoot ;
-#  select
-#    $root$ ;
-#    isRoot := [@lbool new !true !here] ;
-#  or
-#    $self$ ;
-#    isRoot := [@lbool new !false !here] ;
-#  end select ;
-#  $.$ ;
-#  $identifier$ ?@lstring controlledObject ;
-#  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
-#  <bindings> ?@bindingList controllerBindingList ;
-#  $;$ ;
-#  ioControllerList +=
-#    ![@controllerKind entityArrayController]
-#    !controllerClassName
-#    !controllerName
-#    !isRoot
-#    !controlledObject
-#    !controlledObjectBindingOptionList
-#    !controllerBindingList
-#    !["" nowhere]
-#  ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <controller_declaration>
-#  ?!@controllerList ioControllerList
-#:
-#  $objectController$ ;
-#  $Identifier$ ? @lstring controllerClassName ;
-#  $identifier$ ? @lstring controllerName ;
-#  $:$ ;
-#  @lbool isRoot ;
-#  select
-#    $root$ ;
-#    isRoot := [@lbool new !true !here] ;
-#  or
-#    $self$ ;
-#    isRoot := [@lbool new !false !here] ;
-#  end select ;
-#  $.$ ;
-#  $identifier$ ?@lstring controlledObject ;
-#  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
-#  <bindings> ?@bindingList controllerBindingList ;
-#  $;$ ;
-#  ioControllerList +=
-#    ![@controllerKind objectController]
-#    !controllerClassName
-#    !controllerName
-#    !isRoot
-#    !controlledObject
-#    !controlledObjectBindingOptionList
-#    !controllerBindingList
-#    !["" nowhere]
-#  ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <controller_declaration>
-#  ?!@controllerList ioControllerList
-#:
-#  $entityController$ ;
-#  $Identifier$ ? @lstring controllerClassName ;
-#  $identifier$ ? @lstring controllerName ;
-#  $:$ ;
-#  @lbool isRoot ;
-#  select
-#    $root$ ;
-#    isRoot := [@lbool new !true !here] ;
-#  or
-#    $self$ ;
-#    isRoot := [@lbool new !false !here] ;
-#  end select ;
-#  $.$ ;
-#  $identifier$ ?@lstring controlledObject ;
-#  <binding_options> ?@outletBindingOptionList controlledObjectBindingOptionList ;
-#  <bindings> ?@bindingList controllerBindingList ;
-#  $;$ ;
-#  ioControllerList +=
-#    ![@controllerKind entityController]
-#    !controllerClassName
-#    !controllerName
-#    !isRoot
-#    !controlledObject
-#    !controlledObjectBindingOptionList
-#    !controllerBindingList
-#    !["" nowhere]
-#  ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
 rule <entity_declaration>
   ??@bool inIsUserDefined
   ?!@astDeclarationStruct ioDeclarationAST
 :
   $entity$ ;
-  $Identifier$ ? @lstring entityName ;
+  $Identifier$ ??@lstring entityName ;
   @lstring superEntityName ;
   select
     superEntityName := ["" nowhere] ;
@@ -744,7 +593,7 @@ rule <entity_declaration>
   while
     $signature$ ;
     repeat
-      $identifier$ ? @lstring propertyName ;
+      $identifier$ ??@lstring propertyName ;
       signList += !propertyName ;
     while
       $,$ ;
@@ -839,7 +688,7 @@ end rule ;
 #    $predefined$ ; isPredefined := true ;
 #  end select ;
 #  $protocol$ ;
-#  $Identifier$ ? @lstring protocolName ;
+#  $Identifier$ ??@lstring protocolName ;
 #  $;$ ;
 #  outEXDeclaration := [@protocolDeclaration new
 #    !inIsUserDefined
@@ -854,7 +703,7 @@ end rule ;
 #  ?!@cursorList ioCursorList
 #:
 #  $cursor$ ;
-#  $identifier$ ? @lstring cursorName ;
+#  $identifier$ ??@lstring cursorName ;
 #  $($ ;
 #  $literal_double$ ?@ldouble hotSpotX ?* ;
 #  $,$ ;
@@ -914,7 +763,7 @@ end rule ;
 #    ${$ ;
 #    repeat
 #    while
-#      $Identifier$ ? @lstring optionName ;
+#      $Identifier$ ??@lstring optionName ;
 #      $:$ ;
 #      <type_list> ?@lstringlist optionTypeList ;
 #      $;$ ;
@@ -928,7 +777,7 @@ end rule ;
 #    ${$ ;
 #    repeat
 #    while
-#      $Identifier$ ? @lstring optionName ;
+#      $Identifier$ ??@lstring optionName ;
 #      $:$ ;
 #      <type_list> ?@lstringlist optionTypeList ;
 #      $;$ ;
@@ -942,7 +791,7 @@ end rule ;
 #    ${$ ;
 #    repeat
 #    while
-#      $Identifier$ ? @lstring optionName ;
+#      $Identifier$ ??@lstring optionName ;
 #      $:$ ;
 #      <type_list> ?@lstringlist optionTypeList ;
 #      $;$ ;
@@ -956,7 +805,7 @@ end rule ;
 #    ${$ ;
 #    repeat
 #    while
-#      $Identifier$ ? @lstring optionName ;
+#      $Identifier$ ??@lstring optionName ;
 #      $:$ ;
 #      <type_list> ?@lstringlist optionTypeList ;
 #      $;$ ;
@@ -970,7 +819,7 @@ end rule ;
 #    ${$ ;
 #    repeat
 #    while
-#      $Identifier$ ? @lstring optionName ;
+#      $Identifier$ ??@lstring optionName ;
 #      $:$ ;
 #      <type_list> ?@lstringlist optionTypeList ;
 #      $;$ ;
@@ -985,8 +834,8 @@ end rule ;
 #  repeat
 #  while
 #    $attribute$ ;
-#    $Identifier$ ? @lstring attributeTypeName ;
-#    $identifier$ ? @lstring attributeName ;
+#    $Identifier$ ??@lstring attributeTypeName ;
+#    $identifier$ ??@lstring attributeName ;
 #    $;$ ;
 #    controllerObservablePropertyList += !attributeTypeName !attributeName ;
 #  while
@@ -1014,7 +863,7 @@ end rule ;
 #      ${$ ;
 #      repeat
 #      while
-#        $Identifier$ ? @lstring optionName ;
+#        $Identifier$ ??@lstring optionName ;
 #        $:$ ;
 #        <type_list> ?@lstringlist optionTypeList ;
 #        $;$ ;
