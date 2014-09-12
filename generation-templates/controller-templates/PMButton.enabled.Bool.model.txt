@@ -17,13 +17,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerPro
         mOutlet = unwrappedOutlet
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self)
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_$MODEL$ (self)
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

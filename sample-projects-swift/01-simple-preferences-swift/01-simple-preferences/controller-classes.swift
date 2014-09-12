@@ -28,7 +28,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol 
         unwrappedOutlet.continuous = true
       }
     }
-    mObject?.addObserverOf_mColor (self)
+    mObject?.addObserverOf_mColor (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -36,7 +36,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol 
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mColor (self)
+    mObject?.removeObserverOf_mColor (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -110,7 +110,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol {
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.addObserverOf_mDate (self)
+    mObject?.addObserverOf_mDate (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -118,7 +118,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol {
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mDate (self)
+    mObject?.removeObserverOf_mDate (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -199,7 +199,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
         }
       }
     }
-    mObject?.addObserverOf_mIntegerValue (self)
+    mObject?.addObserverOf_mIntegerValue (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -208,7 +208,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
     mOutlet?.target = nil
     mOutlet?.action = nil
     mOutlet?.delegate = nil
-    mObject?.removeObserverOf_mIntegerValue (self)
+    mObject?.removeObserverOf_mIntegerValue (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -303,7 +303,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
         }
       }
     }
-    mObject?.addObserverOf_myString (self)
+    mObject?.addObserverOf_myString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -311,7 +311,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_myString (self)
+    mObject?.removeObserverOf_myString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

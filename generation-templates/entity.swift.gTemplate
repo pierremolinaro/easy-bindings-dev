@@ -28,14 +28,18 @@ import Cocoa
     %!mAttributeName% = %![mAttributeType transformerForUndo !"value"]%
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.removeObject (inObserver)
+    if inTrigger {
     enterTriggerWithObject (inObserver)
+    }
   }
 
 %
@@ -51,19 +55,19 @@ for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
 %  private var %!mRelationshipName%_%!lkey.string%_observers = NSMutableSet ()
 
-  func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol) {
+  func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers.addObject (inObserver)
     for object : AnyObject in %!mRelationshipName% {
       let managedObject = object as NameEntity
-      managedObject.addObserverOf_aValue (inObserver)
+      managedObject.addObserverOf_aValue (inObserver, inTrigger:inTrigger)
     }
   }
 
-  func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers.removeObject (inObserver)
     for object : AnyObject in %!mRelationshipName% {
       let managedObject = object as NameEntity
-      managedObject.removeObserverOf_aValue (inObserver)
+      managedObject.removeObserverOf_aValue (inObserver, inTrigger:inTrigger)
     }
   }
 
@@ -94,7 +98,7 @@ end
 if not mIsCollection then
 %          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
             let observer = anyObserver as PMTriggerProtocol
-            managedObject.removeObserverOf_%!lkey.string% (observer)
+            managedObject.removeObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
 end
@@ -110,7 +114,7 @@ end
 if not mIsCollection then
 %          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
             let observer = anyObserver as PMTriggerProtocol
-            managedObject.addObserverOf_%!lkey.string% (observer)
+            managedObject.addObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
 end
@@ -129,24 +133,28 @@ end
     %!mRelationshipName% = object
   }
 
-  func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
+  func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mRelationshipName%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
-  func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mRelationshipName%_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
   
   var %!mRelationshipName%_count : Int { get { return %!mRelationshipName%.count } }
 
-  func addObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol) {
-    addObserverOf_%!mRelationshipName% (inObserver)
+  func addObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    addObserverOf_%!mRelationshipName% (inObserver, inTrigger:inTrigger)
   }
 
-  func removeObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol) {
-    removeObserverOf_%!mRelationshipName% (inObserver)
+  func removeObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    removeObserverOf_%!mRelationshipName% (inObserver, inTrigger:inTrigger)
   }
 %
   end
@@ -207,12 +215,12 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
     %!mRelationshipName% = object
   }
 
-  func addObserverOf_%!mRelationshipName% (inObserver : AnyObject) {
+  func addObserverOf_%!mRelationshipName% (inObserver : AnyObject, inTrigger:Bool) {
     %!mRelationshipName%_observers.addObject (inObserver)
     NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
 
-  func removeObserverOf_%!mRelationshipName% (inObserver : AnyObject) {
+  func removeObserverOf_%!mRelationshipName% (inObserver : AnyObject, inTrigger:Bool) {
     %!mRelationshipName%_observers.removeObject (inObserver)
     NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
   }
@@ -232,7 +240,7 @@ if [TRANSIENT_MAP_FOR_IMPLEMENTATION count] > 0 then
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%)\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%, inTrigger:true)\n%
 end
 end
 %  }
@@ -267,7 +275,7 @@ if [TRANSIENT_MAP_FOR_IMPLEMENTATION count] > 0 then
 %
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%)\n%
+%    %![mDependency generateRemoveObserverCall]% (triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%, inTrigger:false)\n%
 end
 end
 %  }
@@ -379,14 +387,18 @@ end
     }
   }
 
-   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!lkey.string%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!lkey.string%_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
   var triggerObjectFor_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%_cache : PMTrigger_%!["entity." + ENTITY_NAME + "." + lkey.string identifierRepresentation]%? = nil
