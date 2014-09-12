@@ -29,7 +29,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
         }
       }
     }
-    mObject?.addObserverOf_myPrefString (self)
+    mObject?.addObserverOf_myPrefString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -37,7 +37,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_myPrefString (self)
+    mObject?.removeObserverOf_myPrefString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -109,13 +109,13 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.addObserverOf_prefTransientString (self)
+    mObject?.addObserverOf_prefTransientString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_prefTransientString (self)
+    mObject?.removeObserverOf_prefTransientString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -178,7 +178,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
         }
       }
     }
-    mObject?.addObserverOf_docString (self)
+    mObject?.addObserverOf_docString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -186,7 +186,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_docString (self)
+    mObject?.removeObserverOf_docString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -258,13 +258,13 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObjec
         }
       }
     }
-    mObject?.addObserverOf_transientConcatString (self)
+    mObject?.addObserverOf_transientConcatString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_transientConcatString (self)
+    mObject?.removeObserverOf_transientConcatString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

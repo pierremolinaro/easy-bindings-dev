@@ -29,7 +29,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
         }
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self)
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -38,7 +38,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
     mOutlet?.target = nil
     mOutlet?.action = nil
     mOutlet?.delegate = nil
-    mObject?.removeObserverOf_$MODEL$ (self)
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

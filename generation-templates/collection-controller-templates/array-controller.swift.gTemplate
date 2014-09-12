@@ -109,7 +109,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
 end
 %    }
   }
@@ -183,7 +183,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
 end
 %    }
   //--- Added object set
@@ -194,7 +194,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange)\n%
+%      managedObject.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
 end
 %    }
     refreshDisplay ()
@@ -263,8 +263,12 @@ for () in BOUND_COLUMNS do
   func set_%!mObservablePropertyName%_Action (sender : %!mColumnOutletTypeName%) {
     if let tableView = mTableView {
       let row = tableView.rowForView (sender)
-      let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
-      object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+      if row >= 0 {
+        let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as %!ELEMENT_TYPE_NAME%
+        object.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)
+        object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+        object.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)
+      }
     }
   }
 
@@ -324,14 +328,18 @@ end
   
   private var canRemove_observers = NSMutableSet ()
   
-  func addObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+  func addObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemove_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     canRemove_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
 }

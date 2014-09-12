@@ -35,14 +35,18 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
     }
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
 %
@@ -88,14 +92,18 @@ end
     }
   }
  
-   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+   func addObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!lkey.string%_observers.addObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
  
-  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol) {
+  func removeObserverOf_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
     %!lkey.string%_observers.removeObject (inObserver)
-    enterTriggerWithObject (inObserver)
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
   var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%? = nil
@@ -201,7 +209,7 @@ for () in OUTLET_MAP do
 end
 for () in TRANSIENT_MAP_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%)\n%
+%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%, inTrigger:true)\n%
 end
 end
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do

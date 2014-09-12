@@ -28,7 +28,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerPro
         unwrappedOutlet.continuous = true
       }
     }
-    mObject?.addObserverOf_myColor (self)
+    mObject?.addObserverOf_myColor (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -36,7 +36,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerPro
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_myColor (self)
+    mObject?.removeObserverOf_myColor (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -110,7 +110,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.addObserverOf_myEnumeration (self)
+    mObject?.addObserverOf_myEnumeration (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -118,7 +118,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_myEnumeration (self)
+    mObject?.removeObserverOf_myEnumeration (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -193,7 +193,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
         }
       }
     }
-    mObject?.addObserverOf_myString (self)
+    mObject?.addObserverOf_myString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -201,7 +201,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_myString (self)
+    mObject?.removeObserverOf_myString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -273,13 +273,13 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.addObserverOf_myStringConcat (self)
+    mObject?.addObserverOf_myStringConcat (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_myStringConcat (self)
+    mObject?.removeObserverOf_myStringConcat (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -339,13 +339,13 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrigg
         }
       }
     }
-    mObject?.addObserverOf_myStringMaj (self)
+    mObject?.addObserverOf_myStringMaj (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_myStringMaj (self)
+    mObject?.removeObserverOf_myStringMaj (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -405,13 +405,13 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrigg
         }
       }
     }
-    mObject?.addObserverOf_myStringMin (self)
+    mObject?.addObserverOf_myStringMin (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_myStringMin (self)
+    mObject?.removeObserverOf_myStringMin (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

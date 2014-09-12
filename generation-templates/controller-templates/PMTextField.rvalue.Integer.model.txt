@@ -26,13 +26,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerP
         }
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self)
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_$MODEL$ (self)
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

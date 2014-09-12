@@ -29,7 +29,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
         }
       }
     }
-    mObject?.addObserverOf_mFirstName (self)
+    mObject?.addObserverOf_mFirstName (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -37,7 +37,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mFirstName (self)
+    mObject?.removeObserverOf_mFirstName (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -109,13 +109,13 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtoco
         }
       }
     }
-    mObject?.addObserverOf_mFullName (self)
+    mObject?.addObserverOf_mFullName (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mFullName (self)
+    mObject?.removeObserverOf_mFullName (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -178,7 +178,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol {
         }
       }
     }
-    mObject?.addObserverOf_mName (self)
+    mObject?.addObserverOf_mName (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -186,7 +186,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol {
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mName (self)
+    mObject?.removeObserverOf_mName (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -258,13 +258,13 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTrigg
         }
       }
     }
-    mObject?.addObserverOf_mUpperCaseFullName (self)
+    mObject?.addObserverOf_mUpperCaseFullName (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mUpperCaseFullName (self)
+    mObject?.removeObserverOf_mUpperCaseFullName (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
