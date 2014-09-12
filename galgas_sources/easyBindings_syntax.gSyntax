@@ -60,6 +60,14 @@ rule <controller_template_declaration>
   $Identifier$ ??@lstring outletClassName ;
   $binding$ ??@lstring bindingName ;
   $:$ ;
+  @bool modelShouldBeWritableProperty ;
+  select
+    $property$ ;
+    modelShouldBeWritableProperty := true ;
+  or
+    $transient$ ;
+    modelShouldBeWritableProperty := false ;
+  end select ;
   $Identifier$ ??@lstring modelTypeName ;
   $identifier$ ??@lstring modelName ;
   
@@ -84,58 +92,10 @@ rule <controller_template_declaration>
     !bindingName
     !modelTypeName
     !modelName
+    !modelShouldBeWritableProperty
     !bindingOptionList
   ;
 end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <struct_declaration>
-#  ??@bool inIsUserDefined
-#  ?!@astDeclarationList ioDeclarationAST
-#:
-#  $struct$ ;
-#  $Identifier$ ? @lstring structName ;
-#  @structFieldASTList structFieldList [emptyList] ;
-#  ${$ ;
-#  repeat
-#    $Identifier$ ?@lstring fieldTypeName ;
-#    $identifier$ ?@lstring fieldName ;
-#    structFieldList += !fieldTypeName !fieldName ;
-#  while
-#    $,$ ;
-#  end repeat ;
-#  $}$ ;
-#  ioDeclarationAST += ![@structDeclaration new
-#    !inIsUserDefined
-#    !structName
-#    !structFieldList
-#  ] ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <binding_options>
-#  !@outletBindingOptionList outBindingOptionList
-#:
-#  outBindingOptionList := [@outletBindingOptionList emptyList] ;
-#  select
-#  or
-#    ${$ ;
-#    repeat
-#      $Identifier$ ? @lstring optionName ;
-#      $:$ ;
-#      <explicit_value> ?@abstractDefaultValue defaultValue ;
-#      outBindingOptionList +=
-#        !optionName
-#        !defaultValue
-#      ;
-#    while
-#      $,$ ;
-#    end repeat ;
-#    $}$ ;
-#  end select ;
-#end rule ;
 
 #----------------------------------------------------------------------------*
 
@@ -150,196 +110,6 @@ rule <count_option>
     outCountOptionOn := true ;
   end select ;
 end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <multi_value_binding_element>
-#  ?!@multiValuedBindingList ioMultiValuedBindingList
-#:
-#  @bool negate ;
-#  select
-#    negate := false ;
-#  or
-#    $!$ ;
-#    negate := true ;
-#  end select ;
-#  @multiValuedBindingBoundModel boundModel ;
-#  select
-#    $self$ ;
-#    $.$ ;
-#    $identifier$ ?@lstring boundPropertyName ;
-#    boundModel := [@multiValuedBindingBoundToSelf new !boundPropertyName] ;
-#  or
-#    $root$ ;
-#    $.$ ;
-#    $identifier$ ?@lstring boundPropertyName ;
-#    boundModel := [@multiValuedBindingBoundToRoot new !boundPropertyName] ;
-#  or
-#    $identifier$ ?@lstring controllerName ;
-#    $.$ ;
-#    select
-#      $selection$ ;
-#      $.$ ;
-#      $identifier$ ? @lstring boundPropertyName ;
-#      boundModel := [@multiValuedBindingBoundToControllerSelection new !boundPropertyName !controllerName] ;
-#    or
-#      $identifier$ ?@lstring boundPropertyName ;
-#      boundModel := [@multiValuedBindingBoundToController new !boundPropertyName !controllerName] ;
-#    end select ;
-#  or
-#    $Identifier$ ?@lstring preferenceName ;
-#    $.$ ;
-#    $identifier$ ?@lstring boundPropertyName ;
-#    boundModel := [@multiValuedBindingBoundToPref new !boundPropertyName !preferenceName] ;
-#  end select ;
-#  <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#  ioMultiValuedBindingList += !negate !boundModel !outletBindingOptionList ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <enabled_editable_bindings>
-#  ?!@bindingList ioBindingList
-#:
-#  @lstring bindingName ;
-#  select
-#    $enabled$ ;
-#    bindingName := [@lstring new !"enabled" !here] ;
-#  or
-#    $editable$ ;
-#    bindingName := [@lstring new !"editable" !here] ;
-#  end select ;
-#  @multiValuedBindingList multiValuedBindingList [emptyList] ;
-#  repeat
-#    <multi_value_binding_element> !?multiValuedBindingList ;
-#  while
-#    $&$ ;
-#  end repeat ;
-#  ioBindingList += ![@multiValuedBinding new
-#    !bindingName
-#    !multiValuedBindingList
-#  ] ;
-#end rule ;
-
-#----------------------------------------------------------------------------*
-
-#rule <bindings>
-#  !@bindingList outOutletBindingList
-#:
-#  outOutletBindingList := [@bindingList emptyList] ;
-#  repeat
-#  while
-#    <enabled_editable_bindings> !?outOutletBindingList ;
-#  while
-#    $hidden$ ;
-#    const bindingName := [@lstring new !"hidden" !here] ;
-#    @multiValuedBindingList multiValuedBindingList [emptyList] ;
-#    repeat 
-#      <multi_value_binding_element> !?multiValuedBindingList ;
-#    while
-#      $|$ ;
-#    end repeat ;
-#    outOutletBindingList += ![@multiValuedBinding new
-#      !bindingName
-#      !multiValuedBindingList
-#    ] ;
-#  while
-#    $run$ ;
-#    @lstring targetName ;
-#    select
-#      $self$ ;
-#      targetName := [@lstring new !"self" !here] ;
-#    or
-#      $identifier$ ?targetName ;
-#    end select ;
-#    $.$ ;
-#    $identifier$ ?@lstring actionName ;
-#    outOutletBindingList += ![@runBinding new
-#      !targetName
-#      !actionName
-#    ] ;
-#  while
-#    $tableValue$ ;
-#    $identifier$ ?@lstring controllerName ;
-#    ${$ ;
-#    @tableValueColumnBinding tableValueColumnBinding [emptyList] ;
-#    repeat
-#    while
-#      $column$ ;
-#      $literal_string$ ?@lstring columnName ;
-#      $Identifier$ ?@lstring cellTypeName ;
-#      $identifier$ ?@lstring boundPropertyName ;
-#      tableValueColumnBinding += !columnName !cellTypeName !boundPropertyName ;
-#      $;$ ;
-#    end repeat ;
-#    outOutletBindingList += ![@tableValueBinding new !controllerName !tableValueColumnBinding] ;
-#    $}$ ;
-#  while
-#    $binding$ ? @lstring bindingName ;
-#    select
-#      $root$ ;
-#      $.$ ;
-#      $identifier$ ? @lstring rootObservablePropertyName ;
-#      <count_option> ?@bool namesCountOption ;
-#      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#      outOutletBindingList += ![@regularRootBinding new
-#        !bindingName
-#        !rootObservablePropertyName
-#        !outletBindingOptionList
-#        !namesCountOption
-#      ] ;
-#    or
-#      $self$ ;
-#      $.$ ;
-#      $identifier$ ? @lstring rootObservablePropertyName ;
-#      <count_option> ?@bool namesCountOption ;
-#      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#      outOutletBindingList += ![@regularSelfBinding new
-#        !bindingName
-#        !rootObservablePropertyName
-#        !outletBindingOptionList
-#        !namesCountOption
-#      ] ;
-#    or
-#      $identifier$ ? @lstring controllerName ;
-#      $.$ ;
-#      select
-#        $selection$ ;
-#        $.$ ;
-#        $identifier$ ? @lstring controllerObservablePropertyName ;
-#        <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#        outOutletBindingList += ![@regularControllerSelectionBinding new
-#          !bindingName
-#          !controllerName
-#          !controllerObservablePropertyName
-#          !outletBindingOptionList
-#        ] ;
-#      or
-#        $identifier$ ? @lstring controllerObservablePropertyName ;
-#        <count_option> ?@bool namesCountOption ;
-#        <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#        outOutletBindingList += ![@regularControllerBinding new
-#          !bindingName
-#          !controllerName
-#          !controllerObservablePropertyName
-#          !outletBindingOptionList
-#          !namesCountOption
-#        ] ;
-#      end select ;
-#    or
-#      $Identifier$ ?@lstring preferenceName ;
-#      $.$ ;
-#      $identifier$ ? @lstring preferenceObservablePropertyName ;
-#      <binding_options> ?@outletBindingOptionList outletBindingOptionList ;
-#      outOutletBindingList += ![@regularPreferenceBinding new
-#        !bindingName
-#        !preferenceName
-#        !preferenceObservablePropertyName
-#        !outletBindingOptionList
-#      ] ;
-#    end select ;
-#  end repeat ;
-#end rule ;
 
 #----------------------------------------------------------------------------*
 

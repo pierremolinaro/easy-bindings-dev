@@ -91,9 +91,18 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         ok = false
       }
       if ok {
-        mTableView?.setDataSource (self)
-        mTableView?.setDelegate (self)
+        unwrappedTableView.setDataSource (self)
+        unwrappedTableView.setDelegate (self)
         mDisplayTrigger = TriggerFor_MyRootEntity_mNames_mNamesTableView (object: self)
+        let col_name : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("name")
+        col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name", ascending:true)
+        let col_aValue : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("int")
+        col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue", ascending:true)
+        let columns = unwrappedTableView.tableColumns as NSArray
+        if columns.count > 0 {
+          let firstColumn = columns [0] as NSTableColumn
+          unwrappedTableView.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+        }
       }
     }
     noteObjectAllocation (self)
@@ -165,7 +174,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------------------------------------------------------------------------------------------------*
   
   func reloadData () {
-   mCurrentObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+    mCurrentObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
+    mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
   //--- Update observers for handling model change
     let oldObjectSet = mCurrentObjectSet
     mCurrentObjectSet = NSMutableSet ()

@@ -248,18 +248,18 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity myStringConcat - PMTextField $value                                                       *
+//   Controller MyRootEntity myStringConcat - PMTextField $rvalue                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_myStringConcat_PMTextField_value)
-class Controller_MyRootEntity_myStringConcat_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_MyRootEntity_myStringConcat_PMTextField_rvalue)
+class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -268,9 +268,6 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_value : NSObject, PMTri
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -282,8 +279,6 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_value : NSObject, PMTri
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_myStringConcat (self)
   }
 
@@ -308,19 +303,7 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_value : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringConcat) {
-      mObject!.myStringConcat = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -331,18 +314,18 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_value : NSObject, PMTri
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity myStringMaj - PMTextField $value                                                          *
+//   Controller MyRootEntity myStringMaj - PMTextField $rvalue                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_myStringMaj_PMTextField_value)
-class Controller_MyRootEntity_myStringMaj_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_MyRootEntity_myStringMaj_PMTextField_rvalue)
+class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -351,9 +334,6 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_value : NSObject, PMTrigge
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -365,8 +345,6 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_value : NSObject, PMTrigge
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_myStringMaj (self)
   }
 
@@ -391,19 +369,7 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_value : NSObject, PMTrigge
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringMaj) {
-      mObject!.myStringMaj = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -414,18 +380,18 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_value : NSObject, PMTrigge
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity myStringMin - PMTextField $value                                                          *
+//   Controller MyRootEntity myStringMin - PMTextField $rvalue                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_myStringMin_PMTextField_value)
-class Controller_MyRootEntity_myStringMin_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_MyRootEntity_myStringMin_PMTextField_rvalue)
+class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -434,9 +400,6 @@ class Controller_MyRootEntity_myStringMin_PMTextField_value : NSObject, PMTrigge
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -448,8 +411,6 @@ class Controller_MyRootEntity_myStringMin_PMTextField_value : NSObject, PMTrigge
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_myStringMin (self)
   }
 
@@ -474,19 +435,7 @@ class Controller_MyRootEntity_myStringMin_PMTextField_value : NSObject, PMTrigge
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringMin) {
-      mObject!.myStringMin = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -84,18 +84,18 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyPrefs prefTransientString - PMTextField $value                                                       *
+//   Controller MyPrefs prefTransientString - PMTextField $rvalue                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyPrefs_prefTransientString_PMTextField_value)
-class Controller_MyPrefs_prefTransientString_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_MyPrefs_prefTransientString_PMTextField_rvalue)
+class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : MyPrefs? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyPrefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyPrefs?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -104,9 +104,6 @@ class Controller_MyPrefs_prefTransientString_PMTextField_value : NSObject, PMTri
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -118,8 +115,6 @@ class Controller_MyPrefs_prefTransientString_PMTextField_value : NSObject, PMTri
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_prefTransientString (self)
   }
 
@@ -144,19 +139,7 @@ class Controller_MyPrefs_prefTransientString_PMTextField_value : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.prefTransientString) {
-      mObject!.prefTransientString = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -250,18 +233,18 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity transientConcatString - PMTextField $value                                                *
+//   Controller MyRootEntity transientConcatString - PMTextField $rvalue                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_transientConcatString_PMTextField_value)
-class Controller_MyRootEntity_transientConcatString_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_MyRootEntity_transientConcatString_PMTextField_rvalue)
+class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -270,9 +253,6 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_value : NSObject
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -284,8 +264,6 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_value : NSObject
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_transientConcatString (self)
   }
 
@@ -310,19 +288,7 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_value : NSObject
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.transientConcatString) {
-      mObject!.transientConcatString = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

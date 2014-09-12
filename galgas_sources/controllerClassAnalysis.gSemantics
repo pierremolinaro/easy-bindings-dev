@@ -22,6 +22,7 @@ map @templateControllerMap {
   @string mTemplateString ;
   @unifiedTypeProxy mModelTypeProxy ;
   @lstring mModelSelector ;
+  @bool mModelShouldBeWritableProperty ;
   @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList ;
   insert insertKey error message "the '%K' controller template is already declared in %L" ;
   search searchKey error message "there is no '%K' controller template" ;
@@ -53,6 +54,7 @@ routine buildControllerTemplateMap
       !templateText
       !modelTypeProxy
       !mModelSelector
+      !mModelShouldBeWritableProperty
       !controllerBindingOptionDecoratedList
     ] ;
   end for ;

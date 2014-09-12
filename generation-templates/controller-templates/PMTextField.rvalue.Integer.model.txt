@@ -1,0 +1,68 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue)
+class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$?, outlet : PMTextField?, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMTextField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      }else{
+        mOutlet = unwrappedOutlet
+        if unwrappedOutlet.formatter == nil {
+          presentErrorWindow (file, line, "the outlet has no formatter")
+        }else{
+          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
+          if !formatter.isKindOfClass (NSNumberFormatter) {
+            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+          }
+        }
+      }
+    }
+    mObject?.addObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mObject?.removeObserverOf_$MODEL$ (self)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) {
+      mOutlet!.integerValue = Int (mObject!.$MODEL$)
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+

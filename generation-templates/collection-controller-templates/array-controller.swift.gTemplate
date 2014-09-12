@@ -81,9 +81,20 @@ for () in BOUND_COLUMNS do
 %
 end
 %      if ok {
-        mTableView?.setDataSource (self)
-        mTableView?.setDelegate (self)
+        unwrappedTableView.setDataSource (self)
+        unwrappedTableView.setDelegate (self)
         mDisplayTrigger = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object: self)
+%
+for () in BOUND_COLUMNS do
+%        let col_%!mObservablePropertyName% : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("%!mColumnName%")\n%
+%        col_%!mObservablePropertyName%.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%", ascending:true)\n%
+end
+
+%        let columns = unwrappedTableView.tableColumns as NSArray
+        if columns.count > 0 {
+          let firstColumn = columns [0] as NSTableColumn
+          unwrappedTableView.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+        }
       }
     }
     noteObjectAllocation (self)
@@ -157,7 +168,9 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
   
   func reloadData () {
-   mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
+    mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
+    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
+    mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
   //--- Update observers for handling model change
     let oldObjectSet = mCurrentObjectSet
     mCurrentObjectSet = NSMutableSet ()

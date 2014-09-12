@@ -84,18 +84,18 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Prefs mFullName - PMTextField $value                                                                   *
+//   Controller Prefs mFullName - PMTextField $rvalue                                                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_Prefs_mFullName_PMTextField_value)
-class Controller_Prefs_mFullName_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_Prefs_mFullName_PMTextField_rvalue)
+class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : Prefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : Prefs?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -104,9 +104,6 @@ class Controller_Prefs_mFullName_PMTextField_value : NSObject, PMTriggerProtocol
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -118,8 +115,6 @@ class Controller_Prefs_mFullName_PMTextField_value : NSObject, PMTriggerProtocol
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_mFullName (self)
   }
 
@@ -144,19 +139,7 @@ class Controller_Prefs_mFullName_PMTextField_value : NSObject, PMTriggerProtocol
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.mFullName) {
-      mObject!.mFullName = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -250,18 +233,18 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Prefs mUpperCaseFullName - PMTextField $value                                                          *
+//   Controller Prefs mUpperCaseFullName - PMTextField $rvalue                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_Prefs_mUpperCaseFullName_PMTextField_value)
-class Controller_Prefs_mUpperCaseFullName_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue)
+class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : Prefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : Prefs?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -270,9 +253,6 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_value : NSObject, PMTrigge
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -284,8 +264,6 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_value : NSObject, PMTrigge
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_mUpperCaseFullName (self)
   }
 
@@ -310,19 +288,7 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_value : NSObject, PMTrigge
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.mUpperCaseFullName) {
-      mObject!.mUpperCaseFullName = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -139,7 +139,7 @@ end
     enterTriggerWithObject (inObserver)
   }
   
-  var %!mRelationshipName%_count : Int { get { return %!mRelationshipName%.count } set {} }
+  var %!mRelationshipName%_count : Int { get { return %!mRelationshipName%.count } }
 
   func addObserverOf_%!mRelationshipName%_count (inObserver : PMTriggerProtocol) {
     addObserverOf_%!mRelationshipName% (inObserver)

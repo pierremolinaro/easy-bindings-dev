@@ -214,7 +214,6 @@ override method @unifiedTypeDeclaration typeInventory
       !kindName + "." + mTypeName + "." + mControllerName
       !mControllerName->location
     ] ;
-#    const canRemove_propertySignature := [@lstring new !kindName + "." + mControllerName + ".canRemove" !mControllerName->location] ;
     [@unifiedTypeProxy makeProxy !?ioUnifiedTypeMap !["Bool" nowhere] ??@unifiedTypeProxy boolTypeProxy] ;
     const @decoratedObservablePropertyMap arrayControllerObservablePropertyMap := {
       !["canRemove" nowhere]

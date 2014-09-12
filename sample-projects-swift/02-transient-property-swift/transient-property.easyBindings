@@ -8,9 +8,9 @@ preferences Prefs {
   outlet PMTextField mFirstNameTextField ;
   bind model : self.mFirstName to mFirstNameTextField $value {sendContinously:no} ;
   outlet PMTextField mFullNameTextField ;
-  bind model : self.mFullName to mFullNameTextField $value {sendContinously:no} ;
+  bind model : self.mFullName to mFullNameTextField $rvalue ;
   outlet PMTextField mUpperCaseFullNameTextField ;
-  bind model : self.mUpperCaseFullName to mUpperCaseFullNameTextField $value {sendContinously:no} ;
+  bind model : self.mUpperCaseFullName to mUpperCaseFullNameTextField $rvalue ;
   
   action monAction ;
 }

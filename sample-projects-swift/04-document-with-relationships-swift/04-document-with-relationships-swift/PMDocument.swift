@@ -27,14 +27,6 @@ import Cocoa
 
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override init () {
-    super.init ()
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -54,11 +46,7 @@ import Cocoa
   //    rootObject                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var rootObject : MyRootEntity {
-    get {
-      return mRootObject as MyRootEntity
-    }
-  }
+  var rootObject : MyRootEntity { get { return mRootObject as MyRootEntity } }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Array controller: nameController                                                                               *
@@ -129,10 +117,10 @@ import Cocoa
   //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController)
   //--------------------------- Simple controller
-    mControllerArray.addObject (Controller_PMDocument_canRemoveString_PMTextField_value (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_value (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_PMDocument_countItemMessage_PMTextField_value (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyRootEntity_mNames_count_PMTextField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.addObject (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -173,8 +161,6 @@ import Cocoa
         canRemoveString_cache = compute_PMDocument_canRemoveString ((nameController != nil) ? (nameController?.canRemove)! : false)
       }
       return canRemoveString_cache!
-    }
-    set {
     }
   }
 
@@ -219,8 +205,6 @@ import Cocoa
         countItemMessage_cache = compute_PMDocument_countItemMessage (rootObject.mNames.count)
       }
       return countItemMessage_cache!
-    }
-    set {
     }
   }
 

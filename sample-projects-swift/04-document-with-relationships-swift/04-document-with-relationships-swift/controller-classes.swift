@@ -64,18 +64,18 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity mNames_count - PMTextField $value                                                         *
+//   Controller MyRootEntity mNames_count - PMTextField $rvalue                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_mNames_count_PMTextField_value)
-class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+@objc(Controller_MyRootEntity_mNames_count_PMTextField_rvalue)
+class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -85,9 +85,6 @@ class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTrigg
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter == nil {
           presentErrorWindow (file, line, "the outlet has no formatter")
         }else{
@@ -104,9 +101,6 @@ class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTrigg
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
-    mOutlet?.delegate = nil
     mObject?.removeObserverOf_mNames_count (self)
   }
 
@@ -131,39 +125,7 @@ class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTrigg
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.mNames_count) {
-      mObject!.mNames_count = mOutlet!.integerValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    NSTextFieldDelegate delegate function                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func control (control: NSControl!,
-                didFailToFormatString string: String!,
-                errorDescription error: String!) -> Bool {
-    let alert = NSAlert ()
-    alert.messageText = error
-    alert.informativeText = "Please provide a valid value."
-    alert.addButtonWithTitle ("Ok")
-    alert.addButtonWithTitle ("Discard Change")
-    alert.beginSheetModalForWindow (mOutlet!.window, completionHandler:{(response : NSModalResponse) -> Void in
-      if response == NSAlertSecondButtonReturn { // Discard Change
-        self.mOutlet!.integerValue = Int (self.mObject!.mNames_count)
-      }
-    })
-    return false
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -174,18 +136,18 @@ class Controller_MyRootEntity_mNames_count_PMTextField_value : NSObject, PMTrigg
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller PMDocument canRemoveString - PMTextField $value                                                        *
+//   Controller PMDocument canRemoveString - PMTextField $rvalue                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMDocument_canRemoveString_PMTextField_value)
-class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_PMDocument_canRemoveString_PMTextField_rvalue)
+class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -194,9 +156,6 @@ class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTrig
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -208,8 +167,6 @@ class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTrig
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_canRemoveString (self)
   }
 
@@ -234,19 +191,7 @@ class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.canRemoveString) {
-      mObject!.canRemoveString = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -257,18 +202,18 @@ class Controller_PMDocument_canRemoveString_PMTextField_value : NSObject, PMTrig
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller PMDocument countItemMessage - PMTextField $value                                                       *
+//   Controller PMDocument countItemMessage - PMTextField $rvalue                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMDocument_countItemMessage_PMTextField_value)
-class Controller_PMDocument_countItemMessage_PMTextField_value : NSObject, PMTriggerProtocol {
+@objc(Controller_PMDocument_countItemMessage_PMTextField_rvalue)
+class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTriggerProtocol {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -277,9 +222,6 @@ class Controller_PMDocument_countItemMessage_PMTextField_value : NSObject, PMTri
         presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
       }else{
         mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter != nil {
           presentErrorWindow (file, line, "the outlet has a formatter")
         }
@@ -291,8 +233,6 @@ class Controller_PMDocument_countItemMessage_PMTextField_value : NSObject, PMTri
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
     mObject?.removeObserverOf_countItemMessage (self)
   }
 
@@ -317,19 +257,7 @@ class Controller_PMDocument_countItemMessage_PMTextField_value : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.countItemMessage) {
-      mObject!.countItemMessage = mOutlet!.stringValue
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
