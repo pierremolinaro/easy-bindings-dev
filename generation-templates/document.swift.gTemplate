@@ -55,14 +55,6 @@ for () in ATTRIBUTE_LIST do
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
-  //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override init () {
-    super.init ()
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -82,11 +74,7 @@ end
   //    rootObject                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var rootObject : MyRootEntity {
-    get {
-      return mRootObject as %!ROOT_ENTITY_NAME%
-    }
-  }
+  var rootObject : MyRootEntity { get { return mRootObject as %!ROOT_ENTITY_NAME% } }
 
 %
 for () in ARRAY_CONTROLLER_LIST do
@@ -215,8 +203,6 @@ end
 %      }\n%
 %      return %!lkey.string%_cache!\n%
 %    }
-    set {
-    }
   }
 
   func %!["document." + DOCUMENT_NAME + "." + lkey.string identifierRepresentation]%_noteDidChange () {

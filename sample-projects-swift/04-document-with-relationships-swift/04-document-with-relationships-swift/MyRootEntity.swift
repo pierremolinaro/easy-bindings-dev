@@ -127,7 +127,7 @@ import Cocoa
     enterTriggerWithObject (inObserver)
   }
   
-  var mNames_count : Int { get { return mNames.count } set {} }
+  var mNames_count : Int { get { return mNames.count } }
 
   func addObserverOf_mNames_count (inObserver : PMTriggerProtocol) {
     addObserverOf_mNames (inObserver)

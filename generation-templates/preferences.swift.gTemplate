@@ -74,8 +74,6 @@ end
 %      }\n%
 %      return %!lkey.string%_cache!\n%
 %    }
-    set {
-    }
   }
 
   func %!["preference." + PREFERENCES_NAME + "." + lkey.string identifierRepresentation]%_noteDidChange () {

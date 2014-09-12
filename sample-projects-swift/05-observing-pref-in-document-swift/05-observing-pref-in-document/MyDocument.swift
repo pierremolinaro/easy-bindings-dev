@@ -24,14 +24,6 @@ import Cocoa
 
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override init () {
-    super.init ()
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -51,11 +43,7 @@ import Cocoa
   //    rootObject                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var rootObject : MyRootEntity {
-    get {
-      return mRootObject as MyRootEntity
-    }
-  }
+  var rootObject : MyRootEntity { get { return mRootObject as MyRootEntity } }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
@@ -80,14 +68,14 @@ import Cocoa
     if nil == transientConcatStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is nil") ;
     }
+  //--------------------------- Array controller
   //--------------------------- Transient observers
   //--------------------------- Array controller as observers
-  //--------------------------- Array controller
   //--------------------------- Simple controller
     mControllerArray.addObject (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_MyPrefs_prefTransientString_PMTextField_value (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_MyRootEntity_transientConcatString_PMTextField_value (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.addObject (Controller_MyPrefs_prefTransientString_PMTextField_rvalue (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.addObject (Controller_MyRootEntity_transientConcatString_PMTextField_rvalue (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     flushTriggers ()

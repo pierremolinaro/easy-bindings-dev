@@ -168,7 +168,7 @@ local routine unifiedTypeAnalysis
       [[outElementTypeProxy mObservablePropertyMap] searchKey
         !mObservablePropertyName
         ??@unifiedTypeProxy propertyType
-        ?* # ?@bool mIsTransient
+        ?* #?@bool boundModelIsTransient
         ?* #?@lstring mPropertySignature
         ??@bool mIsCollection
       ] ;
@@ -221,7 +221,7 @@ local routine unifiedTypeAnalysis
     ] ;
     attributeListForGeneration += !mAttributeType !lkey->string !swiftDefaultValueAsString ;
   end for ;
-#--- Analyze bindings
+#---------------------------------------------------------------- Analyze bindings
   @stringlist controllerInstanciationStringList := {} ;
   for () in inBindingList do
     var controllerSignature := "" ;
@@ -239,6 +239,7 @@ local routine unifiedTypeAnalysis
       !?boundPropertyTypeList
       !?typePropertyNameList
       !?boundObjectNameList
+      ??@bool modelIsTransient
     ] ;
     [decoratedOutletMap searchKey !mOutletName ??@lstring outletTypeName ?2*] ;
     controllerSignature := outletTypeName->string + "." + mBindingName + controllerSignature ;
@@ -246,14 +247,18 @@ local routine unifiedTypeAnalysis
       !controllerSignature
       !mBindingName->location
     ] ;
-    var @unifiedTypeProxySelectorList modelPropertyTypeList := {} ;
     [inTemplateControllerMap searchKey
       !controllerTemplateName
       ??@string templateString
       ??@unifiedTypeProxy modelTypeProxy
       ??@lstring modelSelector
+      ??@bool modelShouldBeWritableProperty
       ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
     ] ;
+    if modelShouldBeWritableProperty & modelIsTransient then
+      error mSelectorName : "the model is transient and the binding requires an writable model" ;
+    end if ;
+    var @unifiedTypeProxySelectorList modelPropertyTypeList := {} ;
     modelPropertyTypeList += !modelTypeProxy !modelSelector ;
   #--- Check bound models types and selectors
     if [boundPropertyTypeList length] != [modelPropertyTypeList length] then
@@ -401,6 +406,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
   ?!@stringlist ioBoundObjectNameList
+  !@bool outModelIsTransient
 ;
 
 #----------------------------------------------------------------------------*
@@ -416,11 +422,12 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimp
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
   ?!@stringlist ioBoundObjectNameList
+  !@bool outModelIsTransient
 :
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
     ??@unifiedTypeProxy propertyType
-    ?* # ?@bool isTransient
+    ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;
@@ -446,11 +453,12 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
   ?!@stringlist ioBoundObjectNameList
+  !@bool outModelIsTransient
 :
   [[inRootEntityType mObservablePropertyMap] searchKey
     !mRootObservablePropertyName
     ??@unifiedTypeProxy propertyType
-    ?* # ?@bool isTransient
+    ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;
@@ -484,6 +492,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
   ?!@stringlist ioBoundObjectNameList
+  !@bool outModelIsTransient
 :
 #--- Get preference type
   [inUnifiedTypeMap searchKey
@@ -500,7 +509,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   [observablePropertyMap searchKey
     !mPreferenceObservablePropertyName
     ??@unifiedTypeProxy propertyType
-    ?* # ?@bool isTransient
+    ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;
@@ -526,6 +535,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
   ?!@stringlist ioBoundObjectNameList
+  !@bool outModelIsTransient
 :
 #--- Get preference type
   [inArrayControllerMap searchKey
@@ -539,7 +549,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   [arrayControllerObservablePropertyMap searchKey
     !mArrayControllerObservablePropertyName
     ??@unifiedTypeProxy propertyType
-    ?* # ?@bool isTransient
+    ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;

@@ -24,6 +24,7 @@ list @controllerTemplateList {
   @lstring mBindingName ;
   @lstring mModelTypeName ;
   @lstring mModelSelector ;
+  @bool mModelShouldBeWritableProperty ;
   @controllerBindingOptionList mBindingOptionList ;
 }
 

@@ -24,10 +24,10 @@ document MyDocument root MyRootEntity {
   bind model : MyPrefs.myPrefString to prefStringTextField $value {sendContinously : no} ;
 
   outlet PMTextField prefTransientStringTextField ;
-  bind model : MyPrefs.prefTransientString to prefTransientStringTextField $value {sendContinously : no} ;
+  bind model : MyPrefs.prefTransientString to prefTransientStringTextField $rvalue ;
 
   outlet PMTextField transientConcatStringTextField ;
-  bind model : root.transientConcatString to transientConcatStringTextField $value {sendContinously : no} ;
+  bind model : root.transientConcatString to transientConcatStringTextField $rvalue ;
 }
 
 #--------------------------------------------------------------*
