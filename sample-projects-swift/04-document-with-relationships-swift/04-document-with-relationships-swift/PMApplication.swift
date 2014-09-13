@@ -28,11 +28,13 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
-let k_document_2E_PMDocument_2E_canRemoveString = 1
-let k_document_2E_PMDocument_2E_countItemMessage = 2
-let k_document_2E_PMDocument_2E_total = 3
-let k_document_2E_PMDocument_2E_nameController = 4
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
+  case k_document_2E_PMDocument_2E_canRemoveString // 1
+  case k_document_2E_PMDocument_2E_countItemMessage // 2
+  case k_document_2E_PMDocument_2E_total // 3
+  case k_document_2E_PMDocument_2E_nameController // 4
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -40,30 +42,31 @@ let k_document_2E_PMDocument_2E_nameController = 4
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTriggerProtocol)
-protocol PMTriggerProtocol : NSObjectProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+protocol PMTriggerProtocol {
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
-  var className : String! { get } // Handled by NSObject
+  var uniqueIndex : Int { get }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_document_2E_PMDocument_2E_canRemoveString)
-class PMTrigger_document_2E_PMDocument_2E_canRemoveString : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.canRemoveString" }
 
-  var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_canRemoveString } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -84,18 +87,20 @@ class PMTrigger_document_2E_PMDocument_2E_canRemoveString : NSObject, PMTriggerP
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_document_2E_PMDocument_2E_countItemMessage)
-class PMTrigger_document_2E_PMDocument_2E_countItemMessage : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.countItemMessage" }
 
-  var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_countItemMessage } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -116,18 +121,20 @@ class PMTrigger_document_2E_PMDocument_2E_countItemMessage : NSObject, PMTrigger
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_document_2E_PMDocument_2E_total)
-class PMTrigger_document_2E_PMDocument_2E_total : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.total" }
 
-  var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_total } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_total } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -148,18 +155,20 @@ class PMTrigger_document_2E_PMDocument_2E_total : NSObject, PMTriggerProtocol, P
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_document_2E_PMDocument_2E_nameController)
-class PMTrigger_document_2E_PMDocument_2E_nameController : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.nameController" }
 
-  var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_nameController } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_nameController } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -210,14 +219,14 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString = NSMutableSet () // 1
-  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage = NSMutableSet () // 2
-  private var mTriggerSet_document_2E_PMDocument_2E_total = NSMutableSet () // 3
-  private var mTriggerSet_document_2E_PMDocument_2E_nameController = NSMutableSet () // 4
+  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTriggerProtocol] = [:] // 1
+  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTriggerProtocol] = [:] // 2
+  private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTriggerProtocol] = [:] // 3
+  private var mTriggerSet_document_2E_PMDocument_2E_nameController : [Int : PMTriggerProtocol] = [:] // 4
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -225,29 +234,28 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
-      mTriggerOutletDisplaySet.addObject (inObject)
-    case k_document_2E_PMDocument_2E_canRemoveString :
-      mTriggerSet_document_2E_PMDocument_2E_canRemoveString.addObject (inObject)
+    case PMTransientIndex.kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
+    case PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString :
+      mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.canRemoveString, %d objects", mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count)
       }
-    case k_document_2E_PMDocument_2E_countItemMessage :
-      mTriggerSet_document_2E_PMDocument_2E_countItemMessage.addObject (inObject)
+    case PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage :
+      mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.countItemMessage, %d objects", mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count)
       }
-    case k_document_2E_PMDocument_2E_total :
-      mTriggerSet_document_2E_PMDocument_2E_total.addObject (inObject)
+    case PMTransientIndex.k_document_2E_PMDocument_2E_total :
+      mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.total, %d objects", mTriggerSet_document_2E_PMDocument_2E_total.count)
       }
-    case k_document_2E_PMDocument_2E_nameController :
-      mTriggerSet_document_2E_PMDocument_2E_nameController.addObject (inObject)
+    case PMTransientIndex.k_document_2E_PMDocument_2E_nameController :
+      mTriggerSet_document_2E_PMDocument_2E_nameController [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.nameController, %d objects", mTriggerSet_document_2E_PMDocument_2E_nameController.count)
       }
-    default: break
     }
   }
 
@@ -284,39 +292,34 @@ func flushTriggers () {
   
   private func runTriggers () {
     if mTriggerSet_document_2E_PMDocument_2E_nameController.count > 0 { // 4
-      for anyObject in mTriggerSet_document_2E_PMDocument_2E_nameController {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
         object.trigger ()
       }
-      mTriggerSet_document_2E_PMDocument_2E_nameController = NSMutableSet ()
+      mTriggerSet_document_2E_PMDocument_2E_nameController = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_total.count > 0 { // 3
-      for anyObject in mTriggerSet_document_2E_PMDocument_2E_total {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
         object.trigger ()
       }
-      mTriggerSet_document_2E_PMDocument_2E_total = NSMutableSet ()
+      mTriggerSet_document_2E_PMDocument_2E_total = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count > 0 { // 2
-      for anyObject in mTriggerSet_document_2E_PMDocument_2E_countItemMessage {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
         object.trigger ()
       }
-      mTriggerSet_document_2E_PMDocument_2E_countItemMessage = NSMutableSet ()
+      mTriggerSet_document_2E_PMDocument_2E_countItemMessage = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count > 0 { // 1
-      for anyObject in mTriggerSet_document_2E_PMDocument_2E_canRemoveString {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
         object.trigger ()
       }
-      mTriggerSet_document_2E_PMDocument_2E_canRemoveString = NSMutableSet ()
+      mTriggerSet_document_2E_PMDocument_2E_canRemoveString = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
-      for anyObject in mTriggerOutletDisplaySet {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerOutletDisplaySet.values {
         object.trigger ()
       }
-      mTriggerOutletDisplaySet = NSMutableSet ()
+      mTriggerOutletDisplaySet = [:]
     }
   }
 

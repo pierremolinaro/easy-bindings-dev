@@ -16,7 +16,13 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : ArrayController_MyRootEntity_mNames?, outlet : PMButton?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -57,7 +63,7 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -83,7 +89,13 @@ class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -133,7 +145,7 @@ class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -159,7 +171,13 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -203,7 +221,7 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -229,7 +247,13 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -273,7 +297,7 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -299,7 +323,13 @@ class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtoc
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -349,7 +379,7 @@ class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtoc
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

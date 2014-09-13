@@ -57,7 +57,7 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
+  var mControllerArray : [PMTriggerProtocol] = []
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -86,12 +86,12 @@ import Cocoa
   //--------------------------- Transient observers
   //--------------------------- Array controller as observers
   //--------------------------- Simple controller
-    mControllerArray.addObject (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.addObject (Controller_MyRootEntity_myStringMaj_PMTextField_rvalue (object:rootObject, outlet:myTextMajField, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_myStringMin_PMTextField_rvalue (object:rootObject, outlet:myTextMinField, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_myStringConcat_PMTextField_rvalue (object:rootObject, outlet:myTextConcatField, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex (object:rootObject, outlet:myMatrix, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_myColor_PMColorWell_color (object:rootObject, outlet:myColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.append (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:true))
+    mControllerArray.append (Controller_MyRootEntity_myStringMaj_PMTextField_rvalue (object:rootObject, outlet:myTextMajField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_myStringMin_PMTextField_rvalue (object:rootObject, outlet:myTextMinField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_myStringConcat_PMTextField_rvalue (object:rootObject, outlet:myTextConcatField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex (object:rootObject, outlet:myMatrix, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_myColor_PMColorWell_color (object:rootObject, outlet:myColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     flushTriggers ()
@@ -103,11 +103,10 @@ import Cocoa
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
-    for object in mControllerArray {
-      let controller = object as PMTriggerProtocol
+    for controller in mControllerArray {
       controller.unregister ()
     }
-    mControllerArray.removeAllObjects ()
+    mControllerArray = []
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)

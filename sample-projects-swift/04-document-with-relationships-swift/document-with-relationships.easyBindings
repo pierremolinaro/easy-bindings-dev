@@ -36,7 +36,6 @@ document PMDocument root MyRootEntity {
   outlet PMTextField countItemMessageTextField ;
   bind model : self.countItemMessage to countItemMessageTextField $rvalue ;
 
-#  transient Integer total dependsFrom root.mNames.aValue ;
   transient Integer total dependsFrom root.mNames.aValue ;
   outlet PMTextField totalTextField ;
   bind model : self.total to totalTextField $rvalue ;

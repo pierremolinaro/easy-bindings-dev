@@ -73,17 +73,17 @@ func allocNSNumberInNSMutableArray () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 var unCompteurSansImportance = 0
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 @objc(MonProtocole) protocol MonProtocole : NSObjectProtocol {
   func doSomething ()
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 @objc(MaObjcClasse) class MaObjcClasse : NSObject, MonProtocole {
   func doSomething () {
@@ -91,7 +91,7 @@ var unCompteurSansImportance = 0
   }
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocObjcClassInNativeArray () {
   print ("Append Objc class in native Swift array... ")
@@ -110,7 +110,7 @@ func allocObjcClassInNativeArray () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 // https://github.com/evilpenguin/Swift-Stuff/blob/master/Set.swift
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 
@@ -138,7 +138,7 @@ struct PMArray <T : AnyObject> {
   }
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocInNSArray () {
   print ("Append Objc class in NSArray... ")
@@ -158,7 +158,7 @@ func allocInNSArray () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 struct PMSequentialSet <T : AnyObject> {
   var items : [T] = []
@@ -187,7 +187,7 @@ struct PMSequentialSet <T : AnyObject> {
   }
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocInSequentialSet1 () {
   print ("Append in sequential set (by add1)... ")
@@ -206,7 +206,7 @@ func allocInSequentialSet1 () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocInSequentialSet2 () {
   print ("Append in sequential set (by add2)... ")
@@ -225,7 +225,7 @@ func allocInSequentialSet2 () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 // https://github.com/evilpenguin/Swift-Stuff/blob/master/Set.swift
 // https://gist.github.com/JaviSoto/1243db46afe5132034e2
 // http://natashatherobot.com/swift-conform-to-sequence-protocol/
@@ -254,7 +254,7 @@ struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
   }
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 /*struct PMSetWithNSMutableSetGenerator <T : AnyObject> : Generator {
   let valueArray : NSArray
@@ -274,7 +274,7 @@ struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
   }
 }*/
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
   let mSet : NSSet
@@ -290,7 +290,7 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
   }
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocInNSMutableSet () {
   print ("Append Objc class in NSMutableSet... ")
@@ -309,13 +309,15 @@ func allocInNSMutableSet () {
   println ("\(duration) ms")
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
+//   allocSwiftClassInNativeArray                                                                                      *
+//---------------------------------------------------------------------------------------------------------------------*
 
 protocol MonProtocoleSwift {
   func doSomething ()
 }
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class MaClasseSwift : MonProtocoleSwift {
   func doSomething () {
@@ -323,8 +325,7 @@ class MaClasseSwift : MonProtocoleSwift {
   }
 }
 
-
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 func allocSwiftClassInNativeArray () {
   print ("Append Swift class in native Swift array... ")
@@ -344,6 +345,49 @@ func allocSwiftClassInNativeArray () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//   allocSwiftClassInNativeArray                                                                                      *
+//---------------------------------------------------------------------------------------------------------------------*
+
+private var gAllocationCounter = 0
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class MaClasseSwiftPourDictionnaire : MonProtocoleSwift {
+  private var mAllocationIndex : Int
+  
+  func allocationIndex () -> Int { return mAllocationIndex }
+  
+  init () {
+    mAllocationIndex = gAllocationCounter
+    gAllocationCounter += 1
+  }
+
+  func doSomething () {
+    unCompteurSansImportance += 1
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func allocSwiftClassInNativeDictionary () {
+  print ("Append Swift class in native Swift dictionary... ")
+  var start = NSDate ()
+  var dictionary : [Int : MaClasseSwiftPourDictionnaire] = [:]
+  for i in 0..<COUNT {
+    let object = MaClasseSwiftPourDictionnaire ()
+    dictionary [object.allocationIndex ()] = object
+  }
+  var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  print ("\(duration) ms, \(dictionary.count) elements, enumeration... ")
+  start = NSDate ()
+  for object in dictionary.values {
+    object.doSomething ()
+  }
+  duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  println ("\(duration) ms")
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 
 allocBoolInNativeArray ()
 alloNSNumberInNativeArray ()
@@ -352,4 +396,5 @@ allocObjcClassInNativeArray ()
 allocSwiftClassInNativeArray ()
 allocInNSArray ()
 allocInNSMutableSet ()
+allocSwiftClassInNativeDictionary ()
 println ("END")

@@ -24,9 +24,11 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
-let k_preference_2E_Prefs_2E_mUpperCaseFullName = 1
-let k_preference_2E_Prefs_2E_mFullName = 2
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
+  case k_preference_2E_Prefs_2E_mUpperCaseFullName // 1
+  case k_preference_2E_Prefs_2E_mFullName // 2
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -34,30 +36,31 @@ let k_preference_2E_Prefs_2E_mFullName = 2
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTriggerProtocol)
-protocol PMTriggerProtocol : NSObjectProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+protocol PMTriggerProtocol {
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
-  var className : String! { get } // Handled by NSObject
+  var uniqueIndex : Int { get }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName)
-class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : Prefs? = nil
 
   func userClassName () -> String { return "PMTrigger_preference.Prefs.mUpperCaseFullName" }
 
-  var mTransientIndex : Int { get { return k_preference_2E_Prefs_2E_mUpperCaseFullName } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : Prefs) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -78,18 +81,20 @@ class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : NSObject, PMTriggerP
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_preference_2E_Prefs_2E_mFullName)
-class PMTrigger_preference_2E_Prefs_2E_mFullName : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : Prefs? = nil
 
   func userClassName () -> String { return "PMTrigger_preference.Prefs.mFullName" }
 
-  var mTransientIndex : Int { get { return k_preference_2E_Prefs_2E_mFullName } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mFullName } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : Prefs) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -140,12 +145,12 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName = NSMutableSet () // 1
-  private var mTriggerSet_preference_2E_Prefs_2E_mFullName = NSMutableSet () // 2
+  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTriggerProtocol] = [:] // 1
+  private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTriggerProtocol] = [:] // 2
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -153,19 +158,18 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
-      mTriggerOutletDisplaySet.addObject (inObject)
-    case k_preference_2E_Prefs_2E_mUpperCaseFullName :
-      mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.addObject (inObject)
+    case PMTransientIndex.kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
+    case PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName :
+      mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger preference.Prefs.mUpperCaseFullName, %d objects", mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.count)
       }
-    case k_preference_2E_Prefs_2E_mFullName :
-      mTriggerSet_preference_2E_Prefs_2E_mFullName.addObject (inObject)
+    case PMTransientIndex.k_preference_2E_Prefs_2E_mFullName :
+      mTriggerSet_preference_2E_Prefs_2E_mFullName [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger preference.Prefs.mFullName, %d objects", mTriggerSet_preference_2E_Prefs_2E_mFullName.count)
       }
-    default: break
     }
   }
 
@@ -202,25 +206,22 @@ func flushTriggers () {
   
   private func runTriggers () {
     if mTriggerSet_preference_2E_Prefs_2E_mFullName.count > 0 { // 2
-      for anyObject in mTriggerSet_preference_2E_Prefs_2E_mFullName {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_preference_2E_Prefs_2E_mFullName.values {
         object.trigger ()
       }
-      mTriggerSet_preference_2E_Prefs_2E_mFullName = NSMutableSet ()
+      mTriggerSet_preference_2E_Prefs_2E_mFullName = [:]
     }    
     if mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.count > 0 { // 1
-      for anyObject in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.values {
         object.trigger ()
       }
-      mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName = NSMutableSet ()
+      mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
-      for anyObject in mTriggerOutletDisplaySet {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerOutletDisplaySet.values {
         object.trigger ()
       }
-      mTriggerOutletDisplaySet = NSMutableSet ()
+      mTriggerOutletDisplaySet = [:]
     }
   }
 

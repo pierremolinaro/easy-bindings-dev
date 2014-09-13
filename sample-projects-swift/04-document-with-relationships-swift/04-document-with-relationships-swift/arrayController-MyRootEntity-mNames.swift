@@ -5,15 +5,17 @@ import Cocoa
 //    TriggerFor_MyRootEntity_mNames_mNamesTableView                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(TriggerFor_MyRootEntity_mNames_mNamesTableView)
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol, PMUserClassName {
+class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTriggerProtocol, PMUserClassName {
   private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
-  
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+ 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+ 
   init (object : ArrayController_MyRootEntity_mNames) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mArrayController = object
-    super.init ()
     noteObjectAllocation (self) ;
   }
   
@@ -38,7 +40,6 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
 //    ArrayController_MyRootEntity_mNames                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(ArrayController_MyRootEntity_mNames)
 class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate, PMUserClassName {
   private var mUndoManager : NSUndoManager?
   private var mObject : MyRootEntity
@@ -343,24 +344,23 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     let newValue = mSelectedObjectArray.count > 0
     if canRemove_private != newValue {
       canRemove_private = newValue
-      for anyObject in canRemove_observers {
-        let object = anyObject as PMTriggerProtocol
+      for object in canRemove_observers.values {
         enterTriggerWithObject (object)
       }
     }
   }
   
-  private var canRemove_observers = NSMutableSet ()
+  private var canRemove_observers : [Int : PMTriggerProtocol] = [:]
   
   func addObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    canRemove_observers.addObject (inObserver)
+    canRemove_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    canRemove_observers.removeObject (inObserver)
+    canRemove_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
