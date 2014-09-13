@@ -16,27 +16,11 @@ import Cocoa
     super.init (coder:coder)
     self.delegate = self
     noteObjectAllocation (self)
-    if formatter == nil {
-      presentErrorWindow (__FILE__, __LINE__, "the outlet has no formatter")
-    }else{
-      let formatter : NSFormatter = self.formatter as NSFormatter
-      if (formatter is NSNumberFormatter) {
-//        numberFormatter.partialStringValidationEnabled = true
-      }else{
-        presentErrorWindow (__FILE__, __LINE__, "the formatter should be an NSNumberFormatter")
-      }
-    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
-    if mSendContinously {
-      NSNotificationCenter.defaultCenter().removeObserver (self,
-        name: NSControlTextDidChangeNotification,
-        object: self
-      )
-    }
     noteObjectDeallocation (self)
   }
 
@@ -47,28 +31,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   func setSendContinously (flag : Bool) {
-    if mSendContinously != flag {
-      mSendContinously = flag
-      if mSendContinously {
-        NSNotificationCenter.defaultCenter().addObserver (self,
-          selector: "continouslySendAction:",
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }else{
-        NSNotificationCenter.defaultCenter().removeObserver (self,
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func continouslySendAction (notification : NSNotification) {
-    validateEditing ()
-//    NSApp.sendAction (self.action, to: self.target, from: self)
+    mSendContinously = flag
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -98,6 +61,24 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    NSTextFieldDelegate delegate function                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
+
+  override func controlTextDidChange (inNotification : NSNotification) {
+    if mSendContinously {
+      let inputString = currentEditor().string
+      // NSLog ("inputString %@", inputString)
+      let numberFormatter = self.formatter as NSNumberFormatter
+      let number = numberFormatter.numberFromString (inputString)
+      if number == nil {
+        control (self, didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString))
+      }else{
+        NSApp.sendAction (self.action, to: self.target, from: self)
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    NSTextFieldDelegate delegate function                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
   
   func control (control: NSControl!,
                 didFailToFormatString string: String!,
@@ -109,8 +90,8 @@ import Cocoa
     alert.addButtonWithTitle ("Discard Change")
     alert.beginSheetModalForWindow (control.window, completionHandler:{(response : NSModalResponse) -> Void in
       if response == NSAlertSecondButtonReturn { // Discard Change
-        control.currentEditor()?.discardEditing()
-       // self.integerValue = self.myIntegerValue
+//        control.currentEditor()?.discardEditing()
+        self.integerValue = self.myIntegerValue
       }
     })
     return false

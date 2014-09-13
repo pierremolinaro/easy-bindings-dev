@@ -57,7 +57,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTrigge
 
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = Int (mObject!.$MODEL$)
+      mOutlet!.integerValue = mObject!.$MODEL$
     }
   }
 

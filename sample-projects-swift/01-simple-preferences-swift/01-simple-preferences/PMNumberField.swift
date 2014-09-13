@@ -13,20 +13,14 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init (coder: NSCoder!) {
-    NSLog ("%@", __FUNCTION__)
     super.init (coder:coder)
+    self.delegate = self
     noteObjectAllocation (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
-    if mSendContinously {
-      NSNotificationCenter.defaultCenter().removeObserver (self,
-        name: NSControlTextDidChangeNotification,
-        object: self
-      )
-    }
     noteObjectDeallocation (self)
   }
 
@@ -37,29 +31,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   func setSendContinously (flag : Bool) {
-    if mSendContinously != flag {
-      self.delegate = self
-      mSendContinously = flag
-      if mSendContinously {
-        NSNotificationCenter.defaultCenter().addObserver (self,
-          selector: "continouslySendAction:",
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }else{
-        NSNotificationCenter.defaultCenter().removeObserver (self,
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func continouslySendAction (notification : NSNotification) {
-    NSLog ("%@", __FUNCTION__)
-    NSApp.sendAction (self.action, to: self.target, from: self)
+    mSendContinously = flag
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -89,11 +61,28 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
   //    NSTextFieldDelegate delegate function                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
+
+  override func controlTextDidChange (inNotification : NSNotification) {
+    if mSendContinously {
+      let inputString = currentEditor().string
+      // NSLog ("inputString %@", inputString)
+      let numberFormatter = self.formatter as NSNumberFormatter
+      let number = numberFormatter.numberFromString (inputString)
+      if number == nil {
+        control (self, didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString))
+      }else{
+        NSApp.sendAction (self.action, to: self.target, from: self)
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    NSTextFieldDelegate delegate function                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
   
   func control (control: NSControl!,
                 didFailToFormatString string: String!,
                 errorDescription error: String!) -> Bool {
-    NSLog ("%@", __FUNCTION__)
     let alert = NSAlert ()
     alert.messageText = error
     alert.informativeText = "Please provide a valid value."

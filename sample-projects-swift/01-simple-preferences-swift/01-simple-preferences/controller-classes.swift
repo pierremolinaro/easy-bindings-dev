@@ -210,7 +210,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTrigger
         mOutlet = unwrappedOutlet
         unwrappedOutlet.target = self
         unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously (sendContinously)
+        unwrappedOutlet.setSendContinously(sendContinously)
         if unwrappedOutlet.formatter == nil {
           presentErrorWindow (file, line, "the outlet has no formatter")
         }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {

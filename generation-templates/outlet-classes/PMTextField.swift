@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName {
+@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -14,18 +14,13 @@ import Cocoa
 
   required init (coder: NSCoder!) {
     super.init (coder:coder)
+    self.delegate = self
     noteObjectAllocation (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
-    if mSendContinously {
-      NSNotificationCenter.defaultCenter().removeObserver (self,
-        name: NSControlTextDidChangeNotification,
-        object: self
-      )
-    }
     noteObjectDeallocation (self)
   }
 
@@ -36,27 +31,15 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   func setSendContinously (flag : Bool) {
-    if mSendContinously != flag {
-      mSendContinously = flag
-      if mSendContinously {
-        NSNotificationCenter.defaultCenter().addObserver (self,
-          selector: "continouslySendAction:",
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }else{
-        NSNotificationCenter.defaultCenter().removeObserver (self,
-          name: NSControlTextDidChangeNotification,
-          object: self
-        )
-      }
-    }
+    mSendContinously = flag
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func continouslySendAction (notification : NSNotification) {
-    NSApp.sendAction (self.action, to: self.target, from: self)
+  override func controlTextDidChange (inNotification : NSNotification) {
+    if mSendContinously {
+      NSApp.sendAction (self.action, to: self.target, from: self)
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

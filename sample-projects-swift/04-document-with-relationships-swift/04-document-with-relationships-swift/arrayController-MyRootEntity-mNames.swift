@@ -266,7 +266,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       tf.myIntegerValue = object.aValue
       tf.target = self
       tf.action = "set_aValue_Action:"
-   //   tf.setSendContinously (true)
+      tf.setSendContinously (true)
     }
     return result
   }
