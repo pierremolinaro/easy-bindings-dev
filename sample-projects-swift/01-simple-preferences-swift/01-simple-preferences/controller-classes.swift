@@ -5,11 +5,15 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mColor_PMColorWell_color)
-class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol {
+class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMPrefs.mColor.PMColorWell.color" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -90,10 +94,14 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mDate_PMDatePicker_date)
-class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol {
+class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMDatePicker? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMPrefs.mDate.PMDatePicker.date" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -169,10 +177,14 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mIntegerValue_PMTextField_value)
-class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMPrefs.mIntegerValue.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -279,10 +291,14 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_myString_PMTextField_value)
-class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMPrefs.myString.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

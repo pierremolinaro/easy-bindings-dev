@@ -5,11 +5,15 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myColor_PMColorWell_color)
-class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myColor.PMColorWell.color" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -90,10 +94,14 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerPro
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex)
-class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMMatrix? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myEnumeration.PMMatrix.selectedIndex" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -169,10 +177,14 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myString_PMTextField_value)
-class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myString.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -252,10 +264,14 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringConcat_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myStringConcat.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -318,10 +334,14 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringMaj_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myStringMaj.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -384,10 +404,14 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrigg
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringMin_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.myStringMin.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

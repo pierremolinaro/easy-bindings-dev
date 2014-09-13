@@ -11,13 +11,19 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
-@objc(PMDataScanner) class PMDataScanner : NSObject {
+class PMDataScanner : NSObject, PMUserClassName {
   var mData : NSData
   var mReadIndex : Int = 0
   var mReadOk : Bool = true
   var mExpectedBytes : Array<UInt8> = []
   var mProgressWindow : NSWindow? = nil
   var mProgressIndicator : NSProgressIndicator? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMDataScanner" }
 
   //---------------------------------------------------------------------------*
   //  init                                                                     *

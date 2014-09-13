@@ -26,7 +26,7 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : NSObject, PMSignatureObserverProtocol {
+class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   var savingIndex = 0
   weak var mUndoManager : NSUndoManager?
 //--- Signature
@@ -38,6 +38,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     var mExplorerObjectIndex : Int
     var mExplorerWindow : NSWindow?
 //  #endif
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMManagedObject" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *

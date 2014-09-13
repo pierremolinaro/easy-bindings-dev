@@ -53,9 +53,11 @@ protocol PMTriggerProtocol : NSObjectProtocol {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_document_2E_PMDocument_2E_canRemoveString)
-class PMTrigger_document_2E_PMDocument_2E_canRemoveString : NSObject, PMTriggerProtocol {
+class PMTrigger_document_2E_PMDocument_2E_canRemoveString : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_document.PMDocument.canRemoveString" }
+
   var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_canRemoveString } }
   
   init (object : PMDocument) {
@@ -83,9 +85,11 @@ class PMTrigger_document_2E_PMDocument_2E_canRemoveString : NSObject, PMTriggerP
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_document_2E_PMDocument_2E_countItemMessage)
-class PMTrigger_document_2E_PMDocument_2E_countItemMessage : NSObject, PMTriggerProtocol {
+class PMTrigger_document_2E_PMDocument_2E_countItemMessage : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_document.PMDocument.countItemMessage" }
+
   var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_countItemMessage } }
   
   init (object : PMDocument) {
@@ -113,9 +117,11 @@ class PMTrigger_document_2E_PMDocument_2E_countItemMessage : NSObject, PMTrigger
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_document_2E_PMDocument_2E_total)
-class PMTrigger_document_2E_PMDocument_2E_total : NSObject, PMTriggerProtocol {
+class PMTrigger_document_2E_PMDocument_2E_total : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_document.PMDocument.total" }
+
   var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_total } }
   
   init (object : PMDocument) {
@@ -143,9 +149,11 @@ class PMTrigger_document_2E_PMDocument_2E_total : NSObject, PMTriggerProtocol {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_document_2E_PMDocument_2E_nameController)
-class PMTrigger_document_2E_PMDocument_2E_nameController : NSObject, PMTriggerProtocol {
+class PMTrigger_document_2E_PMDocument_2E_nameController : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : PMDocument? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_document.PMDocument.nameController" }
+
   var mTransientIndex : Int { get { return k_document_2E_PMDocument_2E_nameController } }
   
   init (object : PMDocument) {

@@ -4,8 +4,12 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMColorWell) class PMColorWell : NSColorWell {
+@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMColorWell" }
+ 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init (coder: NSCoder!) {

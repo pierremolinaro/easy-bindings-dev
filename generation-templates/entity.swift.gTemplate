@@ -4,7 +4,8 @@ import Cocoa
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//---------------------------------------------------------------------------------------------------------------------*
 
-@objc(%!ENTITY_NAME%_%!mAttributeName%) protocol %!ENTITY_NAME%_%!mAttributeName% : NSObjectProtocol {
+//@objc(%!ENTITY_NAME%_%!mAttributeName%) protocol %!ENTITY_NAME%_%!mAttributeName% : NSObjectProtocol {
+protocol %!ENTITY_NAME%_%!mAttributeName% {
   var %!mAttributeName% : %![mAttributeType swiftTypeName]% { get }
 }
 
@@ -17,6 +18,8 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %, %!ENTITY_NAME%_%!mAttributeName
 end
 % {
+  override func userClassName () -> String { return "%!ENTITY_NAME%" }
+
 
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %

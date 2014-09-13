@@ -5,10 +5,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mFirstName_PMTextField_value)
-class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.Prefs.mFirstName.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -88,10 +92,14 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mFullName_PMTextField_rvalue)
-class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.Prefs.mFullName.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -154,10 +162,14 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtoco
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mName_PMTextField_value)
-class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.Prefs.mName.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -237,10 +249,14 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue)
-class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.Prefs.mUpperCaseFullName.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
