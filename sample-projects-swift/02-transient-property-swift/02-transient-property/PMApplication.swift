@@ -47,9 +47,11 @@ protocol PMTriggerProtocol : NSObjectProtocol {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName)
-class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : NSObject, PMTriggerProtocol {
+class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : Prefs? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_preference.Prefs.mUpperCaseFullName" }
+
   var mTransientIndex : Int { get { return k_preference_2E_Prefs_2E_mUpperCaseFullName } }
   
   init (object : Prefs) {
@@ -77,9 +79,11 @@ class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : NSObject, PMTriggerP
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_preference_2E_Prefs_2E_mFullName)
-class PMTrigger_preference_2E_Prefs_2E_mFullName : NSObject, PMTriggerProtocol {
+class PMTrigger_preference_2E_Prefs_2E_mFullName : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : Prefs? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_preference.Prefs.mFullName" }
+
   var mTransientIndex : Int { get { return k_preference_2E_Prefs_2E_mFullName } }
   
   init (object : Prefs) {

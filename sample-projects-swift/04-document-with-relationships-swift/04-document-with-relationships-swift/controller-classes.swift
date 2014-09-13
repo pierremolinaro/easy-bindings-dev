@@ -5,10 +5,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled)
-class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled : NSObject, PMTriggerProtocol {
+class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : ArrayController_MyRootEntity_mNames? = nil
   weak var mOutlet : PMButton? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.ArrayController_MyRootEntity_mNames.canRemove.PMButton.enabled" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -68,10 +72,14 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_mNames_count_PMTextField_rvalue)
-class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.mNames_count.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -140,10 +148,14 @@ class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTrig
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_canRemoveString_PMTextField_rvalue)
-class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMDocument.canRemoveString.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -206,10 +218,14 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_countItemMessage_PMTextField_rvalue)
-class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMDocument.countItemMessage.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -272,10 +288,14 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_total_PMTextField_rvalue)
-class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate {
+class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMDocument.total.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

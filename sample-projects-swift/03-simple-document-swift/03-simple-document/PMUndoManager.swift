@@ -15,7 +15,13 @@ let traceUndoManager = false
 
 //---------------------------------------------------------------------------*
 
-@objc(PMUndoManager) class PMUndoManager : NSUndoManager {
+@objc(PMUndoManager) class PMUndoManager : NSUndoManager, PMUserClassName {
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMUndoManager" }
 
   //-----------------------------------------------------------------------------*
   //    init                                                                     *

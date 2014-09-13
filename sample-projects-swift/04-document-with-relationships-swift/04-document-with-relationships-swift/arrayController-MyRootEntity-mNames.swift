@@ -6,7 +6,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(TriggerFor_MyRootEntity_mNames_mNamesTableView)
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol {
+class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtocol, PMUserClassName {
   private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
   var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
@@ -30,6 +30,8 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
   func trigger () {
     mArrayController?.reloadData ()
   }
+
+  func userClassName () -> String { return "triggerFor_MyRootEntity_mNames_mNamesTableView" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -37,7 +39,7 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : NSObject, PMTriggerProtoc
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(ArrayController_MyRootEntity_mNames)
-class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate {
+class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate, PMUserClassName {
   private var mUndoManager : NSUndoManager?
   private var mObject : MyRootEntity
   private var mTableView : PMTableView?
@@ -50,6 +52,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       updateCanRemoveProperty ()
     }
   }
+ 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "ArrayController_MyRootEntity_mNames" }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *

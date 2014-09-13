@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CFABFD7719B8D60A00935A08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABFD7619B8D60A00935A08 /* main.swift */; };
+		CFBA28CA19C431BD005A6036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA28C919C431BD005A6036 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		CFABFD7319B8D60A00935A08 /* performance-en-swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "performance-en-swift"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFABFD7619B8D60A00935A08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CFBA28C919C431BD005A6036 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 		CFABFD6A19B8D60900935A08 = {
 			isa = PBXGroup;
 			children = (
-				CFABFD7519B8D60A00935A08 /* performance-en-swift */,
+				CFBA28C919C431BD005A6036 /* main.swift */,
 				CFABFD7419B8D60A00935A08 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,14 +52,6 @@
 				CFABFD7319B8D60A00935A08 /* performance-en-swift */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CFABFD7519B8D60A00935A08 /* performance-en-swift */ = {
-			isa = PBXGroup;
-			children = (
-				CFABFD7619B8D60A00935A08 /* main.swift */,
-			);
-			path = "performance-en-swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFABFD7719B8D60A00935A08 /* main.swift in Sources */,
+				CFBA28CA19C431BD005A6036 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +199,7 @@
 		CFABFD7B19B8D60A00935A08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_NS_ASSERTIONS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -237,6 +230,7 @@
 				CFABFD7C19B8D60A00935A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

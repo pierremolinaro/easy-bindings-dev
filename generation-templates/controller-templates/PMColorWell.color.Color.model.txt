@@ -1,9 +1,13 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color)
-class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerProtocol {
+class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMColorWell.color" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

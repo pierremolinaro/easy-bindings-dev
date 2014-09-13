@@ -20,10 +20,16 @@ enum PMDocumentCompressionEnum {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedDocument : NSDocument {
+class PMManagedDocument : NSDocument, PMUserClassName {
   var mRootObject : PMManagedObject?
   var mReadMetadataStatus : UInt8 = 0
   var mMetadataDictionary : NSMutableDictionary = [:]
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMManagedDocument" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *

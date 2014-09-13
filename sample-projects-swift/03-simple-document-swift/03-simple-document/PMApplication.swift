@@ -50,9 +50,11 @@ protocol PMTriggerProtocol : NSObjectProtocol {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : NSObject, PMTriggerProtocol {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringConcat" }
+
   var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringConcat } }
   
   init (object : MyRootEntity) {
@@ -80,9 +82,11 @@ class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : NSObject, PMTriggerPr
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : NSObject, PMTriggerProtocol {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringMaj" }
+
   var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringMaj } }
   
   init (object : MyRootEntity) {
@@ -110,9 +114,11 @@ class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : NSObject, PMTriggerProto
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringMin)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringMin : NSObject, PMTriggerProtocol {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringMin : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringMin" }
+
   var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringMin } }
   
   init (object : MyRootEntity) {

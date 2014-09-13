@@ -4,8 +4,12 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTextField) class PMTextField : NSTextField {
+@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName {
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMTextField" }
+ 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init (coder: NSCoder!) {

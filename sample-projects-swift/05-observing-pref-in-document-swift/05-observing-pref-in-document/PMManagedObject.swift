@@ -26,7 +26,7 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : NSObject, PMSignatureObserverProtocol {
+class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   var savingIndex = 0
   weak var mUndoManager : NSUndoManager?
 //--- Signature
@@ -38,6 +38,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     var mExplorerObjectIndex : Int
     var mExplorerWindow : NSWindow?
 //  #endif
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMManagedObject" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *
@@ -311,7 +317,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     var stringValue = "nil"
     if let unwrappedObject = object {
       let objectIndex = unwrappedObject.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%s) %p", objectIndex, unwrappedObject.className, unwrappedObject)
+      stringValue = NSString (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
     button?.enabled = object != nil
     button?.title = stringValue

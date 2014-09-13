@@ -1,8 +1,12 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue)
-class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

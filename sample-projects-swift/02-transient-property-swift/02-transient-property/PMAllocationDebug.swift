@@ -2,6 +2,12 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+protocol PMUserClassName {
+  func userClassName () -> String
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 class PMAllocationItemDisplay : NSObject {
   var mClassname : String
   var mAllCount : Int
@@ -300,7 +306,7 @@ var gDebugObject : PMAllocationDebug? = nil
 //    R O U T I N E S                                                                                                  *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func noteObjectAllocation (inObject : NSObject) {
+func noteObjectAllocation (inObject : PMUserClassName) {
   if (nil == gDebugObject) {
     var debugObject = PMAllocationDebug ()
     gDebugObject = debugObject
@@ -311,14 +317,14 @@ func noteObjectAllocation (inObject : NSObject) {
       presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
     }
   }
-  let className = inObject.className 
+  let className = inObject.userClassName ()
   gDebugObject?.pmNoteObjectAllocation (className)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-func noteObjectDeallocation (inObject : NSObject) {
-  let className = inObject.className
+func noteObjectDeallocation (inObject : PMUserClassName) {
+  let className = inObject.userClassName ()
   gDebugObject?.pmNoteObjectDeallocation (className)
 }
 

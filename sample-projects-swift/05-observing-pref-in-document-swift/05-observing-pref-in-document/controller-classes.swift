@@ -5,10 +5,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyPrefs_myPrefString_PMTextField_value)
-class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyPrefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyPrefs.myPrefString.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -88,10 +92,14 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyPrefs_prefTransientString_PMTextField_rvalue)
-class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyPrefs? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyPrefs.prefTransientString.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -154,10 +162,14 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_docString_PMTextField_value)
-class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.docString.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -237,10 +249,14 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_transientConcatString_PMTextField_rvalue)
-class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObject, PMTriggerProtocol {
+class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.MyRootEntity.transientConcatString.PMTextField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

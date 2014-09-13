@@ -1,8 +1,12 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex)
-class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol {
+class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMMatrix? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMMatrix.selectedIndex" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -6,7 +6,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%)
-class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol {
+class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : NSObject, PMTriggerProtocol, PMUserClassName {
   private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%? = nil
   
   var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
@@ -30,6 +30,8 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
   func trigger () {
     mArrayController?.reloadData ()
   }
+
+  func userClassName () -> String { return "triggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -37,7 +39,7 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%)
-class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTableViewDataSource, NSTableViewDelegate {
+class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTableViewDataSource, NSTableViewDelegate, PMUserClassName {
   private var mUndoManager : NSUndoManager?
   private var mObject : %!OBJECT_TYPE_NAME%
   private var mTableView : PMTableView?
@@ -50,6 +52,12 @@ class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTab
       updateCanRemoveProperty ()
     }
   }
+ 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%" }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *

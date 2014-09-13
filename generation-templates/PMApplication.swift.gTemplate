@@ -53,9 +53,11 @@ do index idx
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMTrigger_%![mValue identifierRepresentation]%)
-class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtocol {
+class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
-  
+
+  func userClassName () -> String { return "PMTrigger_%!mValue%" }
+
   var mTransientIndex : Int { get { return k_%![mValue identifierRepresentation]% } }
   
   init (object : %![[mValue stringByDeletingPathExtension] pathExtension]%) {

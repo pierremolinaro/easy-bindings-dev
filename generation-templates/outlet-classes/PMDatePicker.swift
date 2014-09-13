@@ -4,8 +4,12 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMDatePicker) class PMDatePicker : NSDatePicker {
+@objc(PMDatePicker) class PMDatePicker : NSDatePicker, PMUserClassName {
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMDatePicker" }
+ 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init (coder: NSCoder!) {

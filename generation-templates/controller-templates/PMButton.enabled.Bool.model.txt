@@ -1,8 +1,12 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled)
-class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerProtocol {
+class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet : PMButton? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMButton.enabled" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

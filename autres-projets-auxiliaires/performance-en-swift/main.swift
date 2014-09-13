@@ -1,18 +1,77 @@
 //
 //  main.swift
-//  set-in-swift
+//  performance-en-swift
 //
-//  Created by Pierre Molinaro on 04/08/2014.
+//  Created by Pierre Molinaro on 04/09/2014.
 //  Copyright (c) 2014 Pierre Molinaro. All rights reserved.
 //
-//http://stackoverflow.com/questions/24044190/how-to-create-array-of-unique-object-list-in-swift
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
+
+let COUNT = 1_000_000
+
+//---------------------------------------------------------------------------------------------------------------------*
 
 import Foundation
 
-//---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
-let COUNT = 1_000_000
+func allocBoolInNativeArray () {
+  print ("Append Bool in native Swift array... ")
+  var start = NSDate ()
+  var array : [Bool] = []
+  for i in 0..<COUNT {
+    array.append (true)
+  }
+  var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
+  var sum = 0
+  start = NSDate ()
+  for b in array {
+    sum += Int (b)
+  }
+  duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  println ("\(duration) ms")
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func alloNSNumberInNativeArray () {
+  print ("Append NSNumber in native Swift array... ")
+  var start = NSDate ()
+  var array : [NSNumber] = []
+  for i in 0..<COUNT {
+    array.append (NSNumber (bool:true))
+  }
+  var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
+  var sum = 0
+  start = NSDate ()
+  for b in array {
+    sum += Int (b.boolValue)
+  }
+  duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  println ("\(duration) ms")
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func allocNSNumberInNSMutableArray () {
+  print ("Append NSNumber in NSMutableArray... ")
+  var start = NSDate ()
+  var array = NSMutableArray ()
+  for i in 0..<COUNT {
+    array.addObject (NSNumber (bool:true))
+  }
+  var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
+  var sum = 0
+  start = NSDate ()
+  for b in array {
+    sum += Int (b.boolValue)
+  }
+  duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  println ("\(duration) ms")
+}
 
 //---------------------------------------------------------------------------*
 
@@ -26,21 +85,20 @@ var unCompteurSansImportance = 0
 
 //---------------------------------------------------------------------------*
 
-@objc(MaClasse) class MaClasse : NSObject, MonProtocole {
+@objc(MaObjcClasse) class MaObjcClasse : NSObject, MonProtocole {
   func doSomething () {
     unCompteurSansImportance += 1
   }
 }
 
-
 //---------------------------------------------------------------------------*
 
-func allocInNativeArray () {
-  print ("Append in native Swift array... ")
+func allocObjcClassInNativeArray () {
+  print ("Append Objc class in native Swift array... ")
   var start = NSDate ()
   var array : [MonProtocole] = [] // Ok en beta 6
   for i in 0..<COUNT {
-    array.append (MaClasse ())
+    array.append (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
@@ -83,17 +141,17 @@ struct PMArray <T : AnyObject> {
 //---------------------------------------------------------------------------*
 
 func allocInNSArray () {
-  print ("Append in NSArray... ")
+  print ("Append Objc class in NSArray... ")
   var start = NSDate ()
-  var array : PMArray<MaClasse> = PMArray<MaClasse> ()
+  var array : PMArray<MaObjcClasse> = PMArray<MaObjcClasse> ()
   for i in 0..<COUNT {
-    array.add (MaClasse ())
+    array.add (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for i in 0..<array.count {
-    let object : MaClasse = array [i]
+    let object : MaObjcClasse = array [i]
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
@@ -134,9 +192,9 @@ struct PMSequentialSet <T : AnyObject> {
 func allocInSequentialSet1 () {
   print ("Append in sequential set (by add1)... ")
   var start = NSDate ()
-  var array : PMSequentialSet<MaClasse> = PMSequentialSet<MaClasse> ()
+  var array : PMSequentialSet<MaObjcClasse> = PMSequentialSet<MaObjcClasse> ()
   for i in 0..<COUNT {
-    array.add1 (MaClasse ())
+    array.add1 (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
@@ -153,9 +211,9 @@ func allocInSequentialSet1 () {
 func allocInSequentialSet2 () {
   print ("Append in sequential set (by add2)... ")
   var start = NSDate ()
-  var array : PMSequentialSet<MaClasse> = PMSequentialSet ()
+  var array : PMSequentialSet<MaObjcClasse> = PMSequentialSet ()
   for i in 0..<COUNT {
-    array.add2 (MaClasse ())
+    array.add2 (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
@@ -235,16 +293,16 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
 //---------------------------------------------------------------------------*
 
 func allocInNSMutableSet () {
-  print ("Append in NSMutableSet... ")
+  print ("Append Objc class in NSMutableSet... ")
   var start = NSDate ()
-  var array : PMSetWithNSMutableSet<MaClasse> = PMSetWithNSMutableSet ()
+  var array : PMSetWithNSMutableSet<MaObjcClasse> = PMSetWithNSMutableSet ()
   for i in 0..<COUNT {
-    array.add (MaClasse ())
+    array.add (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
   print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
-  for object : MaClasse in array {
+  for object : MaObjcClasse in array {
     object.doSomething ()
   }
   duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
@@ -252,14 +310,46 @@ func allocInNSMutableSet () {
 }
 
 //---------------------------------------------------------------------------*
-//   M A I N                                                                 *
+
+protocol MonProtocoleSwift {
+  func doSomething ()
+}
+
 //---------------------------------------------------------------------------*
 
-allocInNativeArray ()
+class MaClasseSwift : MonProtocoleSwift {
+  func doSomething () {
+    unCompteurSansImportance += 1
+  }
+}
+
+
+//---------------------------------------------------------------------------*
+
+func allocSwiftClassInNativeArray () {
+  print ("Append Swift class in native Swift array... ")
+  var start = NSDate ()
+  var array : [MonProtocoleSwift] = []
+  for i in 0..<COUNT {
+    array.append (MaClasseSwift ())
+  }
+  var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
+  start = NSDate ()
+  for object in array {
+    object.doSomething ()
+  }
+  duration = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
+  println ("\(duration) ms")
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+allocBoolInNativeArray ()
+alloNSNumberInNativeArray ()
+allocNSNumberInNSMutableArray ()
+allocObjcClassInNativeArray ()
+allocSwiftClassInNativeArray ()
 allocInNSArray ()
 allocInNSMutableSet ()
-//allocInSequentialSet1 ()
-//allocInSequentialSet2 ()
 println ("END")
-
-//---------------------------------------------------------------------------*
