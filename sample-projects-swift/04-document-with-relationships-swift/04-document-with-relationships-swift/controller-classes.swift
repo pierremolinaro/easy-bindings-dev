@@ -107,11 +107,8 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
         mOutlet = unwrappedOutlet
         if unwrappedOutlet.formatter == nil {
           presentErrorWindow (file, line, "the outlet has no formatter")
-        }else{
-          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
-          if !formatter.isKindOfClass (NSNumberFormatter) {
-            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
-          }
+        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
+          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
         }
       }
     }
@@ -139,7 +136,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = Int (mObject!.mNames_count)
+      mOutlet!.integerValue = mObject!.mNames_count
     }
   }
 
@@ -341,11 +338,8 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTriggerProt
         mOutlet = unwrappedOutlet
         if unwrappedOutlet.formatter == nil {
           presentErrorWindow (file, line, "the outlet has no formatter")
-        }else{
-          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
-          if !formatter.isKindOfClass (NSNumberFormatter) {
-            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
-          }
+        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
+          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
         }
       }
     }
@@ -373,7 +367,7 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTriggerProt
 
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = Int (mObject!.total)
+      mOutlet!.integerValue = mObject!.total
     }
   }
 
