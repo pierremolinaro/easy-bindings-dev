@@ -33,7 +33,7 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTriggerProtocol, PMUser
     mArrayController?.reloadData ()
   }
 
-  func userClassName () -> String { return "triggerFor_MyRootEntity_mNames_mNamesTableView" }
+  func userClassName () -> String { return "TriggerFor_MyRootEntity_mNames_mNamesTableView" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -87,8 +87,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       }
       if let anyObject: AnyObject = unwrappedTableView.makeViewWithIdentifier ("int", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMTextField) {
-            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMTextField")
+          if !(unwrappedTableCellView.textField is PMNumberField) {
+            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
             ok = false
           }
         }else{
@@ -262,11 +262,11 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let tf : PMTextField = result.textField as PMTextField
       tf.setSendContinously (true)
     }else if columnIdentifier == "int" {
-      result.textField.objectValue = NSNumber (integer:object.aValue)
-      result.textField.target = self
-      result.textField.action = "set_aValue_Action:"
-      let tf : PMTextField = result.textField as PMTextField
-      tf.setSendContinously (true)
+      let tf : PMNumberField = result.textField as PMNumberField
+      tf.myIntegerValue = object.aValue
+      tf.target = self
+      tf.action = "set_aValue_Action:"
+   //   tf.setSendContinously (true)
     }
     return result
   }
@@ -287,7 +287,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
  //-------------------------------------------------------------------------------------------------------------------*
 
-  func set_aValue_Action (sender : PMTextField) {
+  func set_aValue_Action (sender : PMNumberField) {
     if let tableView = mTableView {
       let row = tableView.rowForView (sender)
       if row >= 0 {
@@ -300,14 +300,6 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   }
 
  //-------------------------------------------------------------------------------------------------------------------*
-
-  func control (control: NSControl!,
-                didFailToValidatePartialString: String!,
-                errorDescription: String!) {
-     NSLog ("didFailToValidatePartialString")
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    add                                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 

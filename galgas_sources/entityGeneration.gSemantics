@@ -68,14 +68,10 @@ routine generateEntities
 #      !mSignList
 #      !signSet
     ] ;
-    [@string generateFileWithPattern
+    [@string generateFile
       !inOutputDirectory
       !mEntityName . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
       !s
-      !"\n\n" # Defaut user zone2
-      !"\n"
     ] ;
   end for ;
 #----- 

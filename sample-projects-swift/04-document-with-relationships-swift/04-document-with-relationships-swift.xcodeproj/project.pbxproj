@@ -28,6 +28,7 @@
 		CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C642F1960619500BE14DF /* PMUndoManager.swift */; };
 		CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */; };
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
+		CFBE8C0919C484CF001F0735 /* PMNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0819C484CF001F0735 /* PMNumberField.swift */; };
 		CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */; };
 		CFE3F3E01965FA3C0017DFCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3DF1965FA3C0017DFCE /* libz.dylib */; };
@@ -60,6 +61,7 @@
 		CF7C642F1960619500BE14DF /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
 		CF7C643B196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CFBE8C0819C484CF001F0735 /* PMNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMNumberField.swift; sourceTree = "<group>"; };
 		CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "04-document-with-relationships-swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+total.swift"; sourceTree = "<group>"; };
 		CFE3F3DF1965FA3C0017DFCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -101,9 +103,9 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
-				CF32289119BE2F2900ACB419 /* controller-classes.swift */,
 				CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */,
 				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */,
+				CF32289119BE2F2900ACB419 /* controller-classes.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C6409196060D800BE14DF /* Images.xcassets */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
@@ -122,6 +124,7 @@
 				CF7C642D1960619500BE14DF /* PMManagedDocument.swift */,
 				CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */,
 				CF7C642E1960619500BE14DF /* PMManagedObject.swift */,
+				CFBE8C0819C484CF001F0735 /* PMNumberField.swift */,
 				CF793CB019BA3AB4005DBEAF /* PMTableView.swift */,
 				CF793CB119BA3AB4005DBEAF /* PMTextField.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
@@ -214,6 +217,7 @@
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
+				CFBE8C0919C484CF001F0735 /* PMNumberField.swift in Sources */,
 				CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */,

@@ -18,10 +18,10 @@ import Cocoa
   @IBOutlet var addPathButton : PMButton?
   @IBOutlet var canRemoveTextField : PMTextField?
   @IBOutlet var countItemMessageTextField : PMTextField?
-  @IBOutlet var countItemTextField : PMTextField?
+  @IBOutlet var countItemTextField : PMNumberField?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var removePathButton : PMButton?
-  @IBOutlet var totalTextField : PMTextField?
+  @IBOutlet var totalTextField : PMNumberField?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Controllers                                                                                                    *
@@ -126,9 +126,9 @@ import Cocoa
   //--------------------------- Simple controller
     mControllerArray.append (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_mNames_count_PMTextField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_mNames_count_PMNumberField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_PMDocument_total_PMTextField_rvalue (object:self, outlet:totalTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_PMDocument_total_PMNumberField_rvalue (object:self, outlet:totalTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"

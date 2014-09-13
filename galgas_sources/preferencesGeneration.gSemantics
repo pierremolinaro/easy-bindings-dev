@@ -116,14 +116,10 @@ routine generatePreferences
       !{}
       !mControllerInstanciationStringList
     ] ;
-    [@string generateFileWithPattern
+    [@string generateFile
       !inOutputDirectory
       !mPreferenceName . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
       !s
-      !"\n\n" # Defaut user zone2
-      !"\n\n"
     ] ;
   end for ;
 end routine ;

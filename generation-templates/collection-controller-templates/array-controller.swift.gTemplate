@@ -33,7 +33,7 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
     mArrayController?.reloadData ()
   }
 
-  func userClassName () -> String { return "triggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
+  func userClassName () -> String { return "TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -284,14 +284,6 @@ for () in BOUND_COLUMNS do
 %
 end
 % //-------------------------------------------------------------------------------------------------------------------*
-
-  func control (control: NSControl!,
-                didFailToValidatePartialString: String!,
-                errorDescription: String!) {
-     NSLog ("didFailToValidatePartialString")
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    add                                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 

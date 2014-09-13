@@ -19,9 +19,21 @@ class PMAllocationItemDisplay : NSObject {
     mAllCount = allCount
     mLive = live
     mSnapshot = snapshot
-    super.init ()
   }
   
+/*  func objectForKey (propertyName : String) -> NSObject? {
+    var result : NSObject? = nil
+    if propertyName == "mClassname" {
+      result = mClassname
+    }else if propertyName == "mAllCount" {
+      result = NSNumber (integer:mAllCount)
+    }else if propertyName == "mLive" {
+      result = NSNumber (integer:mLive)
+    }else if propertyName == "mSnapshot" {
+      result = NSNumber (integer:mSnapshot)
+    }
+    return result
+  }*/
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -41,9 +53,9 @@ var gDebugObject : PMAllocationDebug? = nil
   @IBOutlet var mStatsTableView : NSTableView?
 
 
-  var mTopLevelObjects : NSArray?
+  private var mTopLevelObjects : NSArray?
 
-  var mDebugMenuInstalled = false
+  private var mDebugMenuInstalled = false
 
   var mAllocationStatsWindowVisibleAtLaunch : Bool = true {
     didSet {
@@ -51,33 +63,33 @@ var gDebugObject : PMAllocationDebug? = nil
     }
   }
 
-  var mAllocatedObjectCount : Int = 0 {
+  private var mAllocatedObjectCount : Int = 0 {
     didSet {
       mCurrentlyAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mAllocatedObjectCount)
     }
   }
 
-  var mTotalAllocatedObjectCount : Int = 0 {
+  private var mTotalAllocatedObjectCount : Int = 0 {
     didSet {
       mTotalAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mTotalAllocatedObjectCount)
     }
   }
 
-  var mDisplayFilter : Int = 0 {
+  private var mDisplayFilter : Int = 0 {
     didSet {
       mRefreshDisplay = true
     }
   }
 
-  var mAllocatedObjectCountByClass = NSCountedSet ()
+  private var mAllocatedObjectCountByClass = NSCountedSet ()
 
-  var mTotalAllocatedObjectCountByClass = NSCountedSet ()
+  private var mTotalAllocatedObjectCountByClass = NSCountedSet ()
 
-  var mSnapShotDictionary = NSMutableDictionary ()
+  private var mSnapShotDictionary = NSMutableDictionary ()
  
-  var mRefreshDisplay = false
+  private var mRefreshDisplay = false
 
-  var mAllocationStatsDataSource : [PMAllocationItemDisplay] = []
+  private var mAllocationStatsDataSource = NSMutableArray ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -141,6 +153,11 @@ var gDebugObject : PMAllocationDebug? = nil
     mDisplayFilterPopUpButton?.selectItemAtIndex (mDisplayFilter)
     mDisplayFilterPopUpButton?.target = self
     mDisplayFilterPopUpButton?.action = "setDisplayFilerAction:"
+    let columns = mStatsTableView!.tableColumns as NSArray
+    if columns.count > 0 {
+      let firstColumn = columns [0] as NSTableColumn
+      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -193,7 +210,7 @@ var gDebugObject : PMAllocationDebug? = nil
   //    pmNoteObjectAllocation:                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func pmNoteObjectAllocation (inObjectClassName : NSString!) {
+  private func pmNoteObjectAllocation (inObjectClassName : NSString!) {
   //NSLog (@"objectClassName %@", inObjectClassName) ;
     mAllocatedObjectCountByClass.addObject (inObjectClassName)
     mTotalAllocatedObjectCountByClass.addObject (inObjectClassName)
@@ -204,7 +221,7 @@ var gDebugObject : PMAllocationDebug? = nil
   //    pmNoteObjectDeallocation:                                                                                      *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func pmNoteObjectDeallocation (inObjectClassName : NSString) {
+  private func pmNoteObjectDeallocation (inObjectClassName : NSString) {
   // NSLog (@"DEALLOC objectClassName %@", inObjectClassName) ;
     mAllocatedObjectCountByClass.removeObject (inObjectClassName)
     mRefreshDisplay = true
@@ -222,7 +239,7 @@ var gDebugObject : PMAllocationDebug? = nil
       var liveObjectCount : Int = 0
       var totalObjectCount : Int = 0
     //---
-      var array : [PMAllocationItemDisplay] = []
+      mAllocationStatsDataSource = NSMutableArray ()
       let allObjects = mTotalAllocatedObjectCountByClass.allObjects
       for object : AnyObject in allObjects {
         let liveByClass = mAllocatedObjectCountByClass.countForObject (object)
@@ -237,7 +254,7 @@ var gDebugObject : PMAllocationDebug? = nil
           display = liveByClass != snapShotByClass ;
         }
         if display {
-          array.append (PMAllocationItemDisplay (
+          mAllocationStatsDataSource.addObject (PMAllocationItemDisplay (
             classname : object as NSString,
             allCount : totalByClass,
             live : liveByClass,
@@ -248,7 +265,8 @@ var gDebugObject : PMAllocationDebug? = nil
       mAllocatedObjectCount = liveObjectCount ;
       mTotalAllocatedObjectCount = totalObjectCount ;
     //---
-      mAllocationStatsDataSource = array
+      let sortDescriptors : [AnyObject]! = mStatsTableView?.sortDescriptors
+      mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)
       mStatsTableView?.setDataSource (self)
       mStatsTableView?.reloadData ()
     }
@@ -262,7 +280,7 @@ var gDebugObject : PMAllocationDebug? = nil
   func tableView (aTableView : NSTableView,
                   objectValueForTableColumn: NSTableColumn,
                   row:NSInteger) -> AnyObject! {
-    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row]
+    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as PMAllocationItemDisplay
     return theRecord.valueForKey (objectValueForTableColumn.identifier as String)
   }
   
@@ -272,6 +290,17 @@ var gDebugObject : PMAllocationDebug? = nil
     return mAllocationStatsDataSource.count
   }
   
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func tableView (aTableView: NSTableView!,
+                 sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+    let sortDescriptors : [AnyObject]! = mStatsTableView?.sortDescriptors
+    mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)
+    mStatsTableView?.reloadData ()
+  }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    S H O W     A L L O C A T I O N    S T A T S    W I N D O W                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
