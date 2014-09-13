@@ -21,8 +21,8 @@ preferences PMPrefs {
   bind model : self.mDate to mDatePicker $date ;
 #--- Number
   property Integer mIntegerValue default 123 ;
-  outlet PMTextField mInteger32TextField ;
-  bind model : self.mIntegerValue to mInteger32TextField $value {sendContinously : no} ;
+  outlet PMNumberField mInteger32TextField ;
+  bind model : self.mIntegerValue to mInteger32TextField $value {sendContinously : yes} ;
 #--- Actions  
   action monAction ;
   action autreAction ;

@@ -196,7 +196,7 @@
 											<string key="NSFrameSize">{465, 329}</string>
 											<reference key="NSSuperview" ref="613078658"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="655830748"/>
+											<reference key="NSNextKeyView" ref="586368143"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -379,7 +379,7 @@
 							<string key="NSFrame">{{20, 80}, {467, 347}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="613078658"/>
+							<reference key="NSNextKeyView" ref="655830748"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="648925949"/>
@@ -448,6 +448,7 @@
 							<string key="NSFrame">{{352, 21}, {143, 17}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="195900147">
@@ -1071,7 +1072,7 @@
 				<string key="100074.CustomClassName">PMTextField</string>
 				<string key="100074.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100075.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100085.CustomClassName">PMTextField</string>
+				<string key="100085.CustomClassName">PMNumberField</string>
 				<object class="NSMutableDictionary" key="100085.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">AccessibilityDescription</string>
 					<object class="IBAccessibilityAttribute" key="NS.object.0">
@@ -1096,14 +1097,14 @@
 				</object>
 				<string key="100099.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100100.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100117.CustomClassName">PMTextField</string>
+				<string key="100117.CustomClassName">PMNumberField</string>
 				<string key="100117.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100118.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="1041" key="100120.IBNumberFormatterBehaviorMetadataKey"/>
 				<boolean value="YES" key="100120.IBNumberFormatterLocalizesFormatMetadataKey"/>
 				<string key="100120.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100122.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100123.CustomClassName">PMTextField</string>
+				<string key="100123.CustomClassName">PMNumberField</string>
 				<string key="100123.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100124.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100126.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1142,10 +1143,10 @@
 						<string key="addPathButton">PMButton</string>
 						<string key="canRemoveTextField">PMTextField</string>
 						<string key="countItemMessageTextField">PMTextField</string>
-						<string key="countItemTextField">PMTextField</string>
+						<string key="countItemTextField">PMNumberField</string>
 						<string key="mNamesTableView">PMTableView</string>
 						<string key="removePathButton">PMButton</string>
-						<string key="totalTextField">PMTextField</string>
+						<string key="totalTextField">PMNumberField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="addPathButton">
@@ -1162,7 +1163,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="countItemTextField">
 							<string key="name">countItemTextField</string>
-							<string key="candidateClassName">PMTextField</string>
+							<string key="candidateClassName">PMNumberField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mNamesTableView">
 							<string key="name">mNamesTableView</string>
@@ -1174,7 +1175,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="totalTextField">
 							<string key="name">totalTextField</string>
-							<string key="candidateClassName">PMTextField</string>
+							<string key="candidateClassName">PMNumberField</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1203,6 +1204,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../04-document-with-relationships-swift/PMManagedDocument.swift</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PMNumberField</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../04-document-with-relationships-swift/PMNumberField.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

@@ -16,7 +16,7 @@ document PMDocument root MyRootEntity {
   outlet PMTableView mNamesTableView ;
   arrayController nameController bind root.mNames to mNamesTableView
      column "name" PMTextField name { sendContinously : yes}
-     column "int"  PMTextField aValue { sendContinously : yes}
+     column "int"  PMNumberField aValue { sendContinously : yes}
   ;
 
   transient String canRemoveString dependsFrom nameController.canRemove ;
@@ -28,7 +28,7 @@ document PMDocument root MyRootEntity {
   outlet PMButton removePathButton run nameController.remove ;
   bind model : nameController.canRemove to removePathButton $enabled ;
 
-  outlet PMTextField countItemTextField ;
+  outlet PMNumberField countItemTextField ;
   bind model : root.mNames.count to countItemTextField $rvalue ;
 
   transient String countItemMessage dependsFrom root.mNames.count ;
@@ -37,7 +37,7 @@ document PMDocument root MyRootEntity {
   bind model : self.countItemMessage to countItemMessageTextField $rvalue ;
 
   transient Integer total dependsFrom root.mNames.aValue ;
-  outlet PMTextField totalTextField ;
+  outlet PMNumberField totalTextField ;
   bind model : self.total to totalTextField $rvalue ;
 }
 

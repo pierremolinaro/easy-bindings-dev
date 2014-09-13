@@ -74,18 +74,18 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity mNames_count - PMTextField $rvalue                                                        *
+//   Controller MyRootEntity mNames_count - PMNumberField $rvalue                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_mNames_count_PMTextField_rvalue)
-class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+@objc(Controller_MyRootEntity_mNames_count_PMNumberField_rvalue)
+class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.MyRootEntity.mNames_count.PMTextField.rvalue" }
+  func userClassName () -> String { return "Controller.MyRootEntity.mNames_count.PMNumberField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -94,15 +94,15 @@ class Controller_MyRootEntity_mNames_count_PMTextField_rvalue : NSObject, PMTrig
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
+  init (object : MyRootEntity?, outlet : PMNumberField?, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMTextField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      if !unwrappedOutlet.isKindOfClass (PMNumberField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMNumberField")
       }else{
         mOutlet = unwrappedOutlet
         if unwrappedOutlet.formatter == nil {
@@ -308,18 +308,18 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller PMDocument total - PMTextField $rvalue                                                                 *
+//   Controller PMDocument total - PMNumberField $rvalue                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMDocument_total_PMTextField_rvalue)
-class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+@objc(Controller_PMDocument_total_PMNumberField_rvalue)
+class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMDocument.total.PMTextField.rvalue" }
+  func userClassName () -> String { return "Controller.PMDocument.total.PMNumberField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -328,15 +328,15 @@ class Controller_PMDocument_total_PMTextField_rvalue : NSObject, PMTriggerProtoc
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMDocument?, outlet : PMTextField?, file : String, line : Int) {
+  init (object : PMDocument?, outlet : PMNumberField?, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMTextField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      if !unwrappedOutlet.isKindOfClass (PMNumberField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMNumberField")
       }else{
         mOutlet = unwrappedOutlet
         if unwrappedOutlet.formatter == nil {

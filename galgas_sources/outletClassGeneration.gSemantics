@@ -19,14 +19,10 @@ routine generateOutletClasses
   for key in inNeededOutletClasses do
   #--- Header
     const s := [w textFileContentsAtPath !"/" + key + ".swift"] ;
-    [@string generateFileWithPattern
+    [@string generateFile
       !inOutputDirectory
       !key . ".swift"
-      !"//"
-      !"\n\n" # Defaut user zone1
       !s
-      !"\n\n" # Defaut user zone2
-      !"\n\n"
     ] ;
   end for ;
 end routine ;

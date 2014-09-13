@@ -8,13 +8,19 @@ controllerTemplate PMColorWell $color : property Color model {sendContinously : 
 outletClass PMDatePicker ;
 controllerTemplate PMDatePicker $date : property Date model ;
 
+
 outletClass PMMatrix ;
 controllerTemplate PMMatrix $selectedIndex : property Enum model ;
 
+
+outletClass PMNumberField ;
+controllerTemplate PMNumberField $value : property Integer model {sendContinously : Bool} ;
+controllerTemplate PMNumberField $rvalue : transient Integer model ;
+
+
 outletClass PMTableView ;
+
 
 outletClass PMTextField ;
 controllerTemplate PMTextField $value : property String model {sendContinously : Bool} ;
 controllerTemplate PMTextField $rvalue : transient String model ;
-controllerTemplate PMTextField $value : property Integer model {sendContinously : Bool} ;
-controllerTemplate PMTextField $rvalue : transient Integer model ;

@@ -1,0 +1,88 @@
+@objc(Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value)
+class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+
+  weak var mObject : $OBJECTCLASS$? = nil
+  weak var mOutlet: PMNumberField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMNumberField.value" }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : $OBJECTCLASS$?, outlet : PMNumberField?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMNumberField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMNumberField")
+      }else{
+        mOutlet = unwrappedOutlet
+        unwrappedOutlet.target = self
+        unwrappedOutlet.action = "action:"
+        unwrappedOutlet.setSendContinously(sendContinously)
+        if unwrappedOutlet.formatter == nil {
+          presentErrorWindow (file, line, "the outlet has no formatter")
+        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
+          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+        }
+      }
+    }
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mOutlet?.target = nil
+    mOutlet?.action = nil
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) {
+      mOutlet!.myIntegerValue = mObject!.$MODEL$
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func action (sender : AnyObject!) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.$MODEL$) {
+      mObject!.$MODEL$ = mOutlet!.integerValue
+    }
+  }
+
+   //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+

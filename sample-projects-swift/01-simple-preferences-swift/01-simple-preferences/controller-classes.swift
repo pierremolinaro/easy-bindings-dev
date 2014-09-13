@@ -177,18 +177,18 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller PMPrefs mIntegerValue - PMTextField $value                                                             *
+//   Controller PMPrefs mIntegerValue - PMNumberField $value                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMPrefs_mIntegerValue_PMTextField_value)
-class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+@objc(Controller_PMPrefs_mIntegerValue_PMNumberField_value)
+class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTriggerProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMPrefs.mIntegerValue.PMTextField.value" }
+  func userClassName () -> String { return "Controller.PMPrefs.mIntegerValue.PMNumberField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -197,27 +197,24 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMPrefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMPrefs?, outlet : PMNumberField?, file : String, line : Int, sendContinously : Bool) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMTextField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
+      if !unwrappedOutlet.isKindOfClass (PMNumberField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMNumberField")
       }else{
         mOutlet = unwrappedOutlet
         unwrappedOutlet.target = self
         unwrappedOutlet.action = "action:"
-        unwrappedOutlet.setSendContinously(sendContinously)
+        unwrappedOutlet.setSendContinously (sendContinously)
         if unwrappedOutlet.formatter == nil {
           presentErrorWindow (file, line, "the outlet has no formatter")
-        }else{
-          let formatter : NSFormatter = unwrappedOutlet.formatter as NSFormatter
-          if !formatter.isKindOfClass (NSNumberFormatter) {
-            presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
-          }
+        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
+          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
         }
       }
     }
@@ -229,7 +226,6 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mOutlet?.delegate = nil
     mObject?.removeObserverOf_mIntegerValue (self, inTrigger:false)
   }
 
@@ -248,7 +244,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
 
   func trigger () {
     if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = Int (mObject!.mIntegerValue)
+      mOutlet!.myIntegerValue = mObject!.mIntegerValue
     }
   }
 
@@ -260,27 +256,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    NSTextFieldDelegate delegate function                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func control (control: NSControl!,
-                didFailToFormatString string: String!,
-                errorDescription error: String!) -> Bool {
-    let alert = NSAlert ()
-    alert.messageText = error
-    alert.informativeText = "Please provide a valid value."
-    alert.addButtonWithTitle ("Ok")
-    alert.addButtonWithTitle ("Discard Change")
-    alert.beginSheetModalForWindow (mOutlet!.window, completionHandler:{(response : NSModalResponse) -> Void in
-      if response == NSAlertSecondButtonReturn { // Discard Change
-        self.mOutlet!.integerValue = Int (self.mObject!.mIntegerValue)
-      }
-    })
-    return false
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
+   //-------------------------------------------------------------------------------------------------------------------*
 
   var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 

@@ -32,14 +32,10 @@ routine generateEnums
         !mEnumName
         !mEnumConstantList
       ] ;
-      [@string generateFileWithPattern
+      [@string generateFile
         !inOutputDirectory
         !mEnumName . ".swift"
-        !"//"
-        !"\n\n" # Defaut user zone1
         !s
-        !"\n\n" # Defaut user zone2
-        !"\n"
       ] ;
     end if ;
   end for ;
