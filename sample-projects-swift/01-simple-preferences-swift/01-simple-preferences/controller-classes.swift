@@ -17,7 +17,13 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMPrefs?, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mSendContinously = sendContinously
     super.init ()
@@ -75,11 +81,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -105,7 +107,13 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMPrefs?, outlet : PMDatePicker?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -158,11 +166,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -188,7 +192,13 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMPrefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -272,11 +282,7 @@ class Controller_PMPrefs_mIntegerValue_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -302,7 +308,13 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : PMPrefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -359,11 +371,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

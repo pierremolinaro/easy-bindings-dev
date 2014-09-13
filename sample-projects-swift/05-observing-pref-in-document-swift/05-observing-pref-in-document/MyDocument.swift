@@ -55,7 +55,7 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
+  var mControllerArray : [PMTriggerProtocol] = []
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -78,10 +78,10 @@ import Cocoa
   //--------------------------- Transient observers
   //--------------------------- Array controller as observers
   //--------------------------- Simple controller
-    mControllerArray.addObject (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_MyPrefs_prefTransientString_PMTextField_rvalue (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_MyRootEntity_transientConcatString_PMTextField_rvalue (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
+    mControllerArray.append (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
+    mControllerArray.append (Controller_MyPrefs_prefTransientString_PMTextField_rvalue (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_transientConcatString_PMTextField_rvalue (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     flushTriggers ()
@@ -93,11 +93,10 @@ import Cocoa
 
   override func removeWindowController (inWindowController : NSWindowController) {
   //--------------------------- Remove controllers
-    for object in mControllerArray {
-      let controller = object as PMTriggerProtocol
+    for controller in mControllerArray {
       controller.unregister ()
     }
-    mControllerArray.removeAllObjects ()
+    mControllerArray = []
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)

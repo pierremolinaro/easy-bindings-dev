@@ -16,7 +16,13 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : MyPrefs?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -103,7 +109,13 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : MyPrefs?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -173,7 +185,13 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -260,7 +278,13 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObjec
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : MyRootEntity?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)

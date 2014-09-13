@@ -24,26 +24,27 @@ end
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
 %
 for () in TRANSIENT_LIST
 do index idx
-%let k_%![mValue identifierRepresentation]% = %![idx + 1 string]%\n%
+%  case k_%![mValue identifierRepresentation]% // %![idx + 1 string]%\n%
 end
-%
+%}
+
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T R A N S I E N T    T R I G G E R    C L A S S E S                                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTriggerProtocol)
-protocol PMTriggerProtocol : NSObjectProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+protocol PMTriggerProtocol {
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
-  var className : String! { get } // Handled by NSObject
+  var uniqueIndex : Int { get }
 }
 
 %
@@ -52,18 +53,20 @@ do index idx
 %
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_%![mValue identifierRepresentation]%)
-class PMTrigger_%![mValue identifierRepresentation]% : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_%![mValue identifierRepresentation]% : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
 
   func userClassName () -> String { return "PMTrigger_%!mValue%" }
 
-  var mTransientIndex : Int { get { return k_%![mValue identifierRepresentation]% } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_%![mValue identifierRepresentation]% } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : %![[mValue stringByDeletingPathExtension] pathExtension]%) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -114,13 +117,13 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
   for () in TRANSIENT_LIST do index idx
-%  private var mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet () // %![idx+1 string]%\n%
+%  private var mTriggerSet_%![mValue identifierRepresentation]% : [Int : PMTriggerProtocol] = [:] // %![idx+1 string]%\n%
   end  
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -129,16 +132,15 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
-      mTriggerOutletDisplaySet.addObject (inObject)
+    case PMTransientIndex.kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
 %for () in TRANSIENT_LIST do index idx
-%    case k_%![mValue identifierRepresentation]% :
-      mTriggerSet_%![mValue identifierRepresentation]%.addObject (inObject)
+%    case PMTransientIndex.k_%![mValue identifierRepresentation]% :
+      mTriggerSet_%![mValue identifierRepresentation]% [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger %!mValue%, \%d objects", mTriggerSet_%![mValue identifierRepresentation]%.count)
       }\n%
-end%    default: break
-    }
+end%    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -176,19 +178,17 @@ end%    default: break
 %
   for > () in TRANSIENT_LIST do index idx
 %    if mTriggerSet_%![mValue identifierRepresentation]%.count > 0 { // %![[TRANSIENT_LIST length] - idx string]%
-      for anyObject in mTriggerSet_%![mValue identifierRepresentation]% {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_%![mValue identifierRepresentation]%.values {
         object.trigger ()
       }
-      mTriggerSet_%![mValue identifierRepresentation]% = NSMutableSet ()
+      mTriggerSet_%![mValue identifierRepresentation]% = [:]
     }    
 %  end  
 %    if mTriggerOutletDisplaySet.count > 0 {
-      for anyObject in mTriggerOutletDisplaySet {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerOutletDisplaySet.values {
         object.trigger ()
       }
-      mTriggerOutletDisplaySet = NSMutableSet ()
+      mTriggerOutletDisplaySet = [:]
     }
   }
 

@@ -10,7 +10,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : $OBJECTCLASS$?, outlet : PMButton?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
@@ -51,7 +57,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

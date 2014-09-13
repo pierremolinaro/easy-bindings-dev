@@ -24,7 +24,9 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -32,13 +34,12 @@ let kTriggerOutletDisplay = 0
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTriggerProtocol)
-protocol PMTriggerProtocol : NSObjectProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+protocol PMTriggerProtocol {
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
-  var className : String! { get } // Handled by NSObject
+  var uniqueIndex : Int { get }
 }
 
 
@@ -74,7 +75,7 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -85,9 +86,8 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
-      mTriggerOutletDisplaySet.addObject (inObject)
-    default: break
+    case PMTransientIndex.kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     }
   }
 
@@ -124,11 +124,10 @@ func flushTriggers () {
   
   private func runTriggers () {
     if mTriggerOutletDisplaySet.count > 0 {
-      for anyObject in mTriggerOutletDisplaySet {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerOutletDisplaySet.values {
         object.trigger ()
       }
-      mTriggerOutletDisplaySet = NSMutableSet ()
+      mTriggerOutletDisplaySet = [:]
     }
   }
 

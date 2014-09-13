@@ -26,10 +26,12 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
-let k_entity_2E_MyRootEntity_2E_myStringConcat = 1
-let k_entity_2E_MyRootEntity_2E_myStringMaj = 2
-let k_entity_2E_MyRootEntity_2E_myStringMin = 3
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
+  case k_entity_2E_MyRootEntity_2E_myStringConcat // 1
+  case k_entity_2E_MyRootEntity_2E_myStringMaj // 2
+  case k_entity_2E_MyRootEntity_2E_myStringMin // 3
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -37,30 +39,31 @@ let k_entity_2E_MyRootEntity_2E_myStringMin = 3
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTriggerProtocol)
-protocol PMTriggerProtocol : NSObjectProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+protocol PMTriggerProtocol {
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
-  var className : String! { get } // Handled by NSObject
+  var uniqueIndex : Int { get }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringConcat" }
 
-  var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringConcat } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringConcat } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : MyRootEntity) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -81,18 +84,20 @@ class PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat : NSObject, PMTriggerPr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringMaj" }
 
-  var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringMaj } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMaj } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : MyRootEntity) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -113,18 +118,20 @@ class PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj : NSObject, PMTriggerProto
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMTrigger_entity_2E_MyRootEntity_2E_myStringMin)
-class PMTrigger_entity_2E_MyRootEntity_2E_myStringMin : NSObject, PMTriggerProtocol, PMUserClassName {
+class PMTrigger_entity_2E_MyRootEntity_2E_myStringMin : PMTriggerProtocol, PMUserClassName {
   weak var mTriggerObject : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.myStringMin" }
 
-  var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_myStringMin } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMin } }
+
+  private let mPrivateUniqueIndex : Int
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : MyRootEntity) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mTriggerObject = object
-    super.init ()
-    noteObjectAllocation (self) ;
+    noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
@@ -175,13 +182,13 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = NSMutableSet ()
+  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = NSMutableSet () // 1
-  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = NSMutableSet () // 2
-  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = NSMutableSet () // 3
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat : [Int : PMTriggerProtocol] = [:] // 1
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj : [Int : PMTriggerProtocol] = [:] // 2
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin : [Int : PMTriggerProtocol] = [:] // 3
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -189,24 +196,23 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
-      mTriggerOutletDisplaySet.addObject (inObject)
-    case k_entity_2E_MyRootEntity_2E_myStringConcat :
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.addObject (inObject)
+    case PMTransientIndex.kTriggerOutletDisplay :
+      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
+    case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringConcat :
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringConcat, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.count)
       }
-    case k_entity_2E_MyRootEntity_2E_myStringMaj :
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.addObject (inObject)
+    case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMaj :
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringMaj, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.count)
       }
-    case k_entity_2E_MyRootEntity_2E_myStringMin :
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.addObject (inObject)
+    case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMin :
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringMin, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.count)
       }
-    default: break
     }
   }
 
@@ -243,32 +249,28 @@ func flushTriggers () {
   
   private func runTriggers () {
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.count > 0 { // 3
-      for anyObject in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.values {
         object.trigger ()
       }
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = NSMutableSet ()
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.count > 0 { // 2
-      for anyObject in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.values {
         object.trigger ()
       }
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = NSMutableSet ()
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.count > 0 { // 1
-      for anyObject in mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.values {
         object.trigger ()
       }
-      mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = NSMutableSet ()
+      mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
-      for anyObject in mTriggerOutletDisplaySet {
-        let object = anyObject as PMTriggerProtocol
+      for object in mTriggerOutletDisplaySet.values {
         object.trigger ()
       }
-      mTriggerOutletDisplaySet = NSMutableSet ()
+      mTriggerOutletDisplaySet = [:]
     }
   }
 

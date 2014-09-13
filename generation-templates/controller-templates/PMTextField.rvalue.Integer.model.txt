@@ -10,7 +10,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerP
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : $OBJECTCLASS$?, outlet : PMTextField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -60,7 +66,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTriggerP
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

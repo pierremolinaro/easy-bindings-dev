@@ -11,7 +11,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   init (object : $OBJECTCLASS$?, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
+    mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     mSendContinously = sendContinously
     super.init ()
@@ -69,11 +75,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

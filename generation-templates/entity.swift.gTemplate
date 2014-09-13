@@ -4,7 +4,6 @@ import Cocoa
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//---------------------------------------------------------------------------------------------------------------------*
 
-//@objc(%!ENTITY_NAME%_%!mAttributeName%) protocol %!ENTITY_NAME%_%!mAttributeName% : NSObjectProtocol {
 protocol %!ENTITY_NAME%_%!mAttributeName% {
   var %!mAttributeName% : %![mAttributeType swiftTypeName]% { get }
 }
@@ -27,14 +26,13 @@ end
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
 %  private var %!mAttributeName%_explorer : NSTextField? = nil\n%
-%  private var %!mAttributeName%_observers = NSMutableSet ()\n%
+%  private var %!mAttributeName%_observers : [Int : PMTriggerProtocol] = [:]\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
         %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
-        for anyObject in %!mAttributeName%_observers {
-          let object = anyObject as PMTriggerProtocol
+        for object in %!mAttributeName%_observers.values {
           enterTriggerWithObject (object)
         }
       }
@@ -46,14 +44,14 @@ end
   }
 
   func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.addObject (inObserver)
+    %!mAttributeName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.removeObject (inObserver)
+    %!mAttributeName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
@@ -70,10 +68,10 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 %
 for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%  private var %!mRelationshipName%_%!lkey.string%_observers = NSMutableSet ()
+%  private var %!mRelationshipName%_%!lkey.string%_observers : [Int : PMTriggerProtocol] = [:]
 
   func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_%!lkey.string%_observers.addObject (inObserver)
+    %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in %!mRelationshipName% {
       let managedObject = object as NameEntity
       managedObject.addObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
@@ -81,7 +79,7 @@ if not mIsCollection then
   }
 
   func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_%!lkey.string%_observers.removeObject (inObserver)
+    %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in %!mRelationshipName% {
       let managedObject = object as NameEntity
       managedObject.removeObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
@@ -94,7 +92,7 @@ if not mIsCollection then
 end
 end
 
-%  private var %!mRelationshipName%_observers = NSMutableSet ()
+%  private var %!mRelationshipName%_observers : [Int : PMTriggerProtocol] = [:]
   private var %!mRelationshipName%_explorer : NSPopUpButton?
   var %!mRelationshipName% : NSMutableArray = NSMutableArray () { // Set of %![mRelationshipType key]% entities
     didSet {
@@ -113,8 +111,7 @@ end
           let managedObject = object as %![mRelationshipType key]%
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
-            let observer = anyObserver as PMTriggerProtocol
+%          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
             managedObject.removeObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
@@ -129,8 +126,7 @@ end
           let managedObject = object as %![mRelationshipType key]%
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for anyObserver in %!mRelationshipName%_%!lkey.string%_observers {
-            let observer = anyObserver as PMTriggerProtocol
+%          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
             managedObject.addObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
@@ -138,8 +134,7 @@ end
 %          managedObject.%!mOppositeRelationshipName% = self
         }
       //--- Notify observers object count did change
-        for anyObject in %!mRelationshipName%_observers {
-          let object = anyObject as PMTriggerProtocol
+        for object in %!mRelationshipName%_observers.values {
           enterTriggerWithObject (object)
         }
       }
@@ -151,14 +146,14 @@ end
   }
 
   func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers.addObject (inObserver)
+    %!mRelationshipName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
 
   func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers.removeObject (inObserver)
+    %!mRelationshipName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
@@ -183,7 +178,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   //    %!["To one relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var %!mRelationshipName%_observers = NSMutableSet ()
+  private var %!mRelationshipName%_observers : [Int : PMTriggerProtocol] = [:]
   private var %!mRelationshipName%_explorer : NSButton?
   var %!mRelationshipName% : %![mRelationshipType key]%? = nil {
     didSet {
@@ -220,8 +215,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         %!mRelationshipName%?.%!mOppositeRelationshipName% = self
 %    end
 %      //--- Notify observers
-        for anyObject in %!mRelationshipName%_observers {
-          let object = anyObject as PMTriggerProtocol
+        for object in %!mRelationshipName%_observers.values {
           enterTriggerWithObject (object)
         }
       }
@@ -232,14 +226,18 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
     %!mRelationshipName% = object
   }
 
-  func addObserverOf_%!mRelationshipName% (inObserver : AnyObject, inTrigger:Bool) {
-    %!mRelationshipName%_observers.addObject (inObserver)
-    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  func addObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    %!mRelationshipName%_observers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 
-  func removeObserverOf_%!mRelationshipName% (inObserver : AnyObject, inTrigger:Bool) {
-    %!mRelationshipName%_observers.removeObject (inObserver)
-    NSApp.sendAction ("%!["entity." + ENTITY_NAME + "." + mRelationshipName identifierRepresentation]%_didChange", to:inObserver, from:self)
+  func removeObserverOf_%!mRelationshipName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+    %!mRelationshipName%_observers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      enterTriggerWithObject (inObserver)
+    }
   }
 %
   end
@@ -375,7 +373,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mTransientName%_observers = NSMutableSet ()\n%
+%  private var %!mTransientName%_observers : [Int : PMTriggerProtocol] = [:]\n%
 %  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -398,21 +396,20 @@ end
   }
 
   func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for anyObject in %!mTransientName%_observers {
-      let object = anyObject as PMTriggerProtocol
+    for object in %!mTransientName%_observers.values {
       enterTriggerWithObject (object)
     }
   }
 
    func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.addObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.removeObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }

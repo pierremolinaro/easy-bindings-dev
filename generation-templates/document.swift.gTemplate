@@ -119,7 +119,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
 %if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%  var mControllerArray = NSMutableArray ()\n\n%
+%  var mControllerArray : [PMTriggerProtocol] = []\n\n%
 %  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 end
 %  override func windowControllerDidLoadNib (aController: NSWindowController) {
@@ -156,7 +156,7 @@ for () in ARRAY_CONTROLLER_LIST do
 end
 %  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do
-%    mControllerArray.addObject (%!mValue%)\n%
+%    mControllerArray.append (%!mValue%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -178,11 +178,10 @@ for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%?.unregister ()\n%
 end
 if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%    for object in mControllerArray {
-      let controller = object as PMTriggerProtocol
+%    for controller in mControllerArray {
       controller.unregister ()
     }
-    mControllerArray.removeAllObjects ()
+    mControllerArray = []
 %
 end
 %  //--------------------------- Remove targets / actions
@@ -199,7 +198,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mTransientName%_observers = NSMutableSet ()\n%
+%  var %!mTransientName%_observers : [Int : PMTriggerProtocol] = [:]\n%
 %  var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -220,21 +219,20 @@ end
   }
 
   func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for anyObject in %!mTransientName%_observers {
-      let object = anyObject as PMTriggerProtocol
+    for object in %!mTransientName%_observers.values {
       enterTriggerWithObject (object)
     }
   }
  
    func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.addObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.removeObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }

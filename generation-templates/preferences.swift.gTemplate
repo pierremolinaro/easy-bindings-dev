@@ -27,12 +27,11 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers = NSMutableSet ()\n%
+%  var %!mAttributeName%_observers : [Int : PMTriggerProtocol] = [:]\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
-        for anyObject in %!mAttributeName%_observers {
-          let object = anyObject as PMTriggerProtocol
+        for object in %!mAttributeName%_observers.values {
           enterTriggerWithObject (object)
         }
       }
@@ -40,14 +39,14 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
   }
 
   func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.addObject (inObserver)
+    %!mAttributeName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.removeObject (inObserver)
+    %!mAttributeName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
@@ -68,7 +67,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mTransientName%_observers = NSMutableSet ()\n%
+%  private var %!mTransientName%_observers : [Int : PMTriggerProtocol] = [:]\n%
 %  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -90,21 +89,20 @@ end
   
 
   func %!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for anyObject in %!mTransientName%_observers {
-      let object = anyObject as PMTriggerProtocol
+    for object in %!mTransientName%_observers.values {
       enterTriggerWithObject (object)
     }
   }
  
    func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.addObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
   }
  
   func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers.removeObject (inObserver)
+    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
       enterTriggerWithObject (inObserver)
     }
