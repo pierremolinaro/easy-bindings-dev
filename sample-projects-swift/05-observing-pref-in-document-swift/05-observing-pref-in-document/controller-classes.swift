@@ -79,11 +79,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -159,7 +155,7 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -248,11 +244,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTriggerP
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int {
-    get {
-      return kTriggerOutletDisplay
-    }
-  }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -328,7 +320,7 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObjec
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : Int { get { return kTriggerOutletDisplay } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -455,7 +455,7 @@ override method @transientRootRelationshipDependencyAST transientDependencySeman
     error mMasterName : "this property should not be a collection" ;
   end if ;
 #---
-  ioTransientDependencyListForGeneration += !"[" + [relationshipElementType key] + "_" + mMasterName + "]" !"arrayOf_" + mMasterName ;
+  ioTransientDependencyListForGeneration += !"NSArray /* [" + [relationshipElementType key] + "_" + mMasterName + "] */" !"arrayOf_" + mMasterName ;
 end method ;
 
 #----------------------------------------------------------------------------*
