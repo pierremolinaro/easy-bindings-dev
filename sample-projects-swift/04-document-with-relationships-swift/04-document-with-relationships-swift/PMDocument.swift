@@ -259,7 +259,7 @@ import Cocoa
   var total : Int {
     get {
       if total_cache == nil {
-        total_cache = compute_PMDocument_total ((rootObject.mNames as NSArray) as [NameEntity_aValue])
+        total_cache = compute_PMDocument_total (rootObject.mNames /* (rootObject.mNames as NSArray) as [NameEntity_aValue] */)
       }
       return total_cache!
     }

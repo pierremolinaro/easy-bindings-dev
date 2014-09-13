@@ -161,7 +161,7 @@ end reader ;
 #-----------------------------------------------------------------------------*
 
 override reader @transientRootRelationshipDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult :
-  outResult := "(rootObject." + mRelationshipName->string + " as NSArray) as [" + [mElementType key] + "_" + mMasterName + "]";
+  outResult := "rootObject." + mRelationshipName + " /* (rootObject." + mRelationshipName + " as NSArray) as [" + [mElementType key] + "_" + mMasterName + "] */";
 end reader ;
 
 #-----------------------------------------------------------------------------*

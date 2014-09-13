@@ -25,10 +25,12 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-let kTriggerOutletDisplay = 0
-let k_entity_2E_MyRootEntity_2E_otherTransientConcatString = 1
-let k_entity_2E_MyRootEntity_2E_transientConcatString = 2
-let k_preference_2E_MyPrefs_2E_prefTransientString = 3
+enum PMTransientIndex {
+  case kTriggerOutletDisplay // 0
+  case k_entity_2E_MyRootEntity_2E_otherTransientConcatString // 1
+  case k_entity_2E_MyRootEntity_2E_transientConcatString // 2
+  case k_preference_2E_MyPrefs_2E_prefTransientString // 3
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -37,7 +39,7 @@ let k_preference_2E_MyPrefs_2E_prefTransientString = 3
 //---------------------------------------------------------------------------------------------------------------------*
 
 protocol PMTriggerProtocol {
-  var mTransientIndex : Int { get } // Note: we cannot use an enumeration here
+  var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
@@ -52,7 +54,7 @@ class PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTrigger
 
   func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.otherTransientConcatString" }
 
-  var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_otherTransientConcatString } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
@@ -86,7 +88,7 @@ class PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString : PMTriggerProto
 
   func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.transientConcatString" }
 
-  var mTransientIndex : Int { get { return k_entity_2E_MyRootEntity_2E_transientConcatString } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
@@ -120,7 +122,7 @@ class PMTrigger_preference_2E_MyPrefs_2E_prefTransientString : PMTriggerProtocol
 
   func userClassName () -> String { return "PMTrigger_preference.MyPrefs.prefTransientString" }
 
-  var mTransientIndex : Int { get { return k_preference_2E_MyPrefs_2E_prefTransientString } }
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
@@ -193,24 +195,23 @@ func flushTriggers () {
     inObject.noteTransientDidChange ()
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
-    case kTriggerOutletDisplay :
+    case PMTransientIndex.kTriggerOutletDisplay :
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
-    case k_entity_2E_MyRootEntity_2E_otherTransientConcatString :
+    case PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString :
       mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.otherTransientConcatString, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.count)
       }
-    case k_entity_2E_MyRootEntity_2E_transientConcatString :
+    case PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString :
       mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.transientConcatString, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.count)
       }
-    case k_preference_2E_MyPrefs_2E_prefTransientString :
+    case PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString :
       mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger preference.MyPrefs.prefTransientString, %d objects", mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.count)
       }
-    default: break
     }
   }
 
