@@ -56,10 +56,11 @@ end
       enterTriggerWithObject (inObserver)
     }
   }
-
+%if not mNeedsValidation then%
   func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
 
 %
+end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

@@ -433,6 +433,13 @@ rule <attribute_declaration>
   ?!@attributeList ioAttributeList
 :
   $property$ ;
+  @bool needsValidation ;
+  select
+    needsValidation := false ;
+  or
+    $validates$ ;
+    needsValidation := true ;
+  end select ;
   $Identifier$ ?@lstring attributeTypeName ;
   $identifier$ ?@lstring attributeName ;
   $default$ ;
@@ -442,6 +449,7 @@ rule <attribute_declaration>
     !attributeTypeName
     !attributeName
     !defaultValue
+    !needsValidation
   ;
 end rule ;
 

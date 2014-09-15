@@ -1,0 +1,49 @@
+semantics validationRoutineStubGeneration :
+  import "typeAnalysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine generateValidationRoutineStubs
+  ??@string inOutputDirectory
+  ??@validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration
+:
+  const defaultUserZone2 := "    var result = PMValidationResult.ok\n"
+    + "    let validates = false // Add your validation condition here\n"
+    + "    if !validates {\n"
+    + "      result = PMValidationResult.rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"
+    + "    }\n"
+    + "    return result\n"
+  ;    
+  for () in inValidationStubRoutineListForGeneration do
+    const s := [filewrapper validationStubExtension.actionGeneration
+      !mObjectTypeName
+      !mModelName
+      !mModelTypeName
+    ] ;
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !mObjectTypeName . "+validation+" . mModelName . ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !defaultUserZone2
+      !"  }\n}\n\n//----------------------------------------------------------------------------*\n"
+    ] ;
+  end for ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+filewrapper validationStubExtension in "../generation-templates" {
+}{
+}{
+  template actionGeneration "validation-stub-extension.swift.gTemplate"
+    ?@string OBJECT_TYPE_NAME
+    ?@string MODEL_NAME
+    ?@string MODEL_TYPE_NAME
+  ;
+ }
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

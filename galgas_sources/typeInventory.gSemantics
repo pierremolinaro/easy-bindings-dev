@@ -129,6 +129,7 @@ override method @unifiedTypeDeclaration typeInventory
       !mAttributeName
       !attributeType
       !mDefaultValue
+      !mNeedsValidation
      ] ;
     [!?observablePropertyMap insertKey
       !mAttributeName

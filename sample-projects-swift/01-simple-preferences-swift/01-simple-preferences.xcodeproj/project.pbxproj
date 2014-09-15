@@ -15,6 +15,7 @@
 		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
+		CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */; };
 		CFBE8C0719C47F91001F0735 /* PMNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0619C47F91001F0735 /* PMNumberField.swift */; };
 		CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE26DC199FB921002DA21E /* controller-classes.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
@@ -34,6 +35,7 @@
 		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
 		CFBE8C0619C47F91001F0735 /* PMNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMNumberField.swift; sourceTree = "<group>"; };
 		CFCE26DC199FB921002DA21E /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
 				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
 				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
+				CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
@@ -176,6 +179,7 @@
 				CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */,
 				CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */,
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
+				CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
 				CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */,

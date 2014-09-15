@@ -84,28 +84,26 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
   func action (sender : PMColorWell) {
     if let outlet = mOutlet {
       if let object = mObject {
-        if (outlet.color != object.mColor) {
-          let validationResult = object.validate_mColor (outlet.color)
-          switch validationResult {
-          case PMValidationResult.ok :
-            object.mColor = outlet.color
-            if mSendContinously {
-              flushTriggers ()
-            }
-          case PMValidationResult.rejectWithBeep :
-            NSBeep ()
-          case PMValidationResult.rejectWithAlert (let informativeText) :
-            let alert = NSAlert ()
-            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.color = object.mColor
-              }
-            })
+        let validationResult = object.validate_mColor (outlet.color)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.mColor = outlet.color
+          if mSendContinously {
+            flushTriggers ()
           }
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.color = object.mColor
+            }
+          })
         }
       }
     }

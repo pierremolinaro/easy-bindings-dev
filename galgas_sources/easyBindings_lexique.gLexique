@@ -44,33 +44,23 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "toMany",
   "toOne",
   "transient",
+  "validates",
   "yes"
 ;
 
 rule 'a'->'z' :
   repeat
     enterCharacterIntoString !?tokenString !* ;
-  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  while 'a'->'z' | 'A'->'Z' | '0'->'9' :
   end repeat ;
   send search tokenString in lowerCaseKeyWordList default $identifier$ ;
 end rule ;
 
-#list upperCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
-#  "NSNumberFormatter",
-#  "NSDateFormatter",
-#  "AnyNumber",
-#  "AnyScalar",
-#  "YES",
-#  "NO"
-#;
-
-
 rule 'A'->'Z' :
   repeat
     enterCharacterIntoString !?tokenString !* ;
-  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  while 'a'->'z' | 'A'->'Z' | '0'->'9' :
   end repeat ;
-#  send search tokenString in upperCaseKeyWordList default $Identifier$ ;
   send $Identifier$ ;
 end rule ;
 

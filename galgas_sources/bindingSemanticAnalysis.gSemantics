@@ -7,6 +7,7 @@ list @attributeListForGeneration {
   @unifiedTypeProxy mAttributeType ;
   @string mAttributeName ;
   @string mDefaultValueInSwift ;
+  @bool mNeedsValidation ;
 }
 
 #----------------------------------------------------------------------------*

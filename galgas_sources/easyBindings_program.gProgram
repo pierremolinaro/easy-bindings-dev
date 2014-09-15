@@ -10,6 +10,7 @@ import "outletClassGeneration.gSemantics" ;
 import "controllerClassAnalysis.gSemantics" ;
 import "controllerClassGeneration.gSemantics" ;
 import "transientAnalysis.gSemantics" ;
+import "validationRoutineStubGeneration.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -193,6 +194,10 @@ local routine generateCode
   generateSwiftApplicationFiles
     !outputDirectory
     ![inGeneration->mEntityListForGeneration length] > 0
+  ;
+  generateValidationRoutineStubs
+    !outputDirectory
+    !inGeneration->mValidationStubRoutineListForGeneration
   ;
 end routine ;
 

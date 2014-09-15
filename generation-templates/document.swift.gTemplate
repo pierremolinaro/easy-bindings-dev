@@ -60,10 +60,11 @@ for () in ATTRIBUTE_LIST do
       enterTriggerWithObject (inObserver)
     }
   }
-
+%if not mNeedsValidation then%
   func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
 
 %
+end
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*

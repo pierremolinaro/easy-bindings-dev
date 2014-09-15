@@ -155,6 +155,7 @@ list @attributeList {
   @lstring mAttributeTypeName ;
   @lstring mAttributeName ;
   @abstractDefaultValue mDefaultValue ;
+  @bool mNeedsValidation ;
 }
 
 #----------------------------------------------------------------------------*
