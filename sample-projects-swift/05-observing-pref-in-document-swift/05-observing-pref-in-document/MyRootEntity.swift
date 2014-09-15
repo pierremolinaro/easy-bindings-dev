@@ -49,6 +49,8 @@ protocol MyRootEntity_docString {
     }
   }
 
+  func validate_docString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *

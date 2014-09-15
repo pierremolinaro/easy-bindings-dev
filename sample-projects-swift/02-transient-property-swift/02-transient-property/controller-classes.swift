@@ -71,9 +71,28 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.mFirstName) {
-      mObject!.mFirstName = mOutlet!.stringValue
+  func action (sender : PMTextField) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_mFirstName (outlet.stringValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.mFirstName = outlet.stringValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.mFirstName
+            }
+          })
+        }
+      }
     }
   }
 
@@ -236,9 +255,28 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol, PM
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.mName) {
-      mObject!.mName = mOutlet!.stringValue
+  func action (sender : PMTextField) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_mName (outlet.stringValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.mName = outlet.stringValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.mName
+            }
+          })
+        }
+      }
     }
   }
 

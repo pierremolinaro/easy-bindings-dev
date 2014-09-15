@@ -57,6 +57,8 @@ var g_PMPrefs : PMPrefs? = nil
     }
   }
 
+  func validate_mColor (proposedValue : NSColor) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: mDate                                                                                               *
@@ -86,6 +88,8 @@ var g_PMPrefs : PMPrefs? = nil
       enterTriggerWithObject (inObserver)
     }
   }
+
+  func validate_mDate (proposedValue : NSDate) -> PMValidationResult { return PMValidationResult.ok }
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -117,6 +121,8 @@ var g_PMPrefs : PMPrefs? = nil
     }
   }
 
+  func validate_mIntegerValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: myString                                                                                            *
@@ -146,6 +152,8 @@ var g_PMPrefs : PMPrefs? = nil
       enterTriggerWithObject (inObserver)
     }
   }
+
+  func validate_myString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -244,7 +252,6 @@ var g_PMPrefs : PMPrefs? = nil
     mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_value (object:self, outlet:mInteger32TextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue (object:self, outlet:mInteger32ObserverTextField, file:__FILE__, line:__LINE__))
   }
-
   
   //-------------------------------------------------------------------------------------------------------------------*
   //    deinit                                                                                                         *
@@ -267,14 +274,6 @@ var g_PMPrefs : PMPrefs? = nil
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  func validate_mIntegerValue (candidateValue : Int) -> PMValidationResult {
-    var result = PMValidationResult.ok
-    if (candidateValue & 1) != 0 {
-      result = PMValidationResult.rejectWithAlert ("azerty", "uiop")
-    }
-    return result
-  }
 
 }
 

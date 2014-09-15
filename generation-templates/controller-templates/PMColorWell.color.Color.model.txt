@@ -75,6 +75,36 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func action (sender : PMColorWell) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_$MODEL$ (outlet.color)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.$MODEL$ = outlet.color
+          if mSendContinously {
+            flushTriggers ()
+          }
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.color = object.$MODEL$
+            }
+          })
+        }
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*

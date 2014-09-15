@@ -21,6 +21,7 @@ removeEntryButton = window.findFirst (AXDescription='removeEntry')
 entryCountTextField = window.findFirst (AXDescription='entryCount')
 entryCountStringTextField = window.findFirst (AXDescription='entryCountString')
 canRemoveEntryTextField = window.findFirst (AXDescription='canRemoveEntry')
+removeEntryButton.Press ()
 
 #--- Add Entry
 addEntryButton.Press ()

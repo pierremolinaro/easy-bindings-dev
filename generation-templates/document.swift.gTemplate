@@ -61,6 +61,8 @@ for () in ATTRIBUTE_LIST do
     }
   }
 
+  func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
+
 %
 end
 %

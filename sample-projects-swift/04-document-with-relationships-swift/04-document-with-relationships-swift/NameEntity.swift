@@ -55,6 +55,8 @@ protocol NameEntity_name {
     }
   }
 
+  func validate_aValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: name                                                                                                *
@@ -91,6 +93,8 @@ protocol NameEntity_name {
       enterTriggerWithObject (inObserver)
     }
   }
+
+  func validate_name (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    To one relationship: mRoot                                                                                     *
