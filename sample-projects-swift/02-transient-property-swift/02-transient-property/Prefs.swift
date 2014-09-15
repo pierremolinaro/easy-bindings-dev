@@ -52,6 +52,8 @@ var g_Prefs : Prefs? = nil
     }
   }
 
+  func validate_mFirstName (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: mName                                                                                               *
@@ -81,6 +83,8 @@ var g_Prefs : Prefs? = nil
       enterTriggerWithObject (inObserver)
     }
   }
+
+  func validate_mName (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: mFullName                                                                                           *

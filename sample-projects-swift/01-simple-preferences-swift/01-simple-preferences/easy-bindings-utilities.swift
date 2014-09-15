@@ -129,9 +129,7 @@ func getUniqueIndex () -> Int {
 enum PMValidationResult {
   case ok
   case rejectWithBeep
-  case rejectSilently
-  case rejectAndDiscard
-  case rejectWithAlert (String /* message */, String /* informativeText */)
+  case rejectWithAlert (String /* informativeText */)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

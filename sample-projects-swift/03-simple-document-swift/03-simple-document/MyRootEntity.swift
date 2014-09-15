@@ -61,6 +61,8 @@ protocol MyRootEntity_myString {
     }
   }
 
+  func validate_myColor (proposedValue : NSColor) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: myEnumeration                                                                                       *
@@ -98,6 +100,8 @@ protocol MyRootEntity_myString {
     }
   }
 
+  func validate_myEnumeration (proposedValue : MonEnumeration) -> PMValidationResult { return PMValidationResult.ok }
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: myString                                                                                            *
@@ -134,6 +138,8 @@ protocol MyRootEntity_myString {
       enterTriggerWithObject (inObserver)
     }
   }
+
+  func validate_myString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
 
 
   //-------------------------------------------------------------------------------------------------------------------*

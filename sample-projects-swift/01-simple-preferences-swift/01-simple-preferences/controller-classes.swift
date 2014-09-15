@@ -81,6 +81,38 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func action (sender : PMColorWell) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        if (outlet.color != object.mColor) {
+          let validationResult = object.validate_mColor (outlet.color)
+          switch validationResult {
+          case PMValidationResult.ok :
+            object.mColor = outlet.color
+            if mSendContinously {
+              flushTriggers ()
+            }
+          case PMValidationResult.rejectWithBeep :
+            NSBeep ()
+          case PMValidationResult.rejectWithAlert (let informativeText) :
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                outlet.color = object.mColor
+              }
+            })
+          }
+        }
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -330,24 +362,26 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTrigger
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMNumberField) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.mIntegerValue) {
-      let validationResult = mObject!.validate_mIntegerValue (mOutlet!.integerValue)
-      switch validationResult {
-      case PMValidationResult.ok :  mObject!.mIntegerValue = mOutlet!.integerValue
-      case PMValidationResult.rejectWithBeep : NSBeep ()
-      case PMValidationResult.rejectSilently : NSBeep ()
-      case PMValidationResult.rejectAndDiscard : NSBeep ()
-      case PMValidationResult.rejectWithAlert (let message, let informativeText) :
-        let alert = NSAlert ()
-        alert.messageText = message
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet!.myIntegerValue = self.mObject!.mIntegerValue
-          }
-        })
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_mIntegerValue (outlet.integerValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.mIntegerValue = outlet.integerValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.myIntegerValue = object.mIntegerValue
+            }
+          })
+        }
       }
     }
   }
@@ -435,9 +469,28 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myString) {
-      mObject!.myString = mOutlet!.stringValue
+  func action (sender : PMTextField) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_myString (outlet.stringValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.myString = outlet.stringValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.myString
+            }
+          })
+        }
+      }
     }
   }
 

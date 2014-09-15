@@ -65,9 +65,28 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
-      mObject!.$MODEL$ = mOutlet!.stringValue
+  func action (sender : PMTextField) {
+    if let outlet = mOutlet {
+      if let object = mObject {
+        let validationResult = object.validate_$MODEL$ (outlet.stringValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.$MODEL$ = outlet.stringValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          let alert = NSAlert ()
+          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.$MODEL$
+            }
+          })
+        }
+      }
     }
   }
 

@@ -57,6 +57,8 @@ end
     }
   }
 
+  func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
+
 %
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do

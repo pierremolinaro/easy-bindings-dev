@@ -49,6 +49,8 @@ var g_MyPrefs : MyPrefs? = nil
     }
   }
 
+  func validate_myPrefString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: prefTransientString                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
