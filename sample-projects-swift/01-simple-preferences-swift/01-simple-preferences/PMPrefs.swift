@@ -21,6 +21,7 @@ var g_PMPrefs : PMPrefs? = nil
   @IBOutlet var mColorWell : PMColorWell? = nil
   @IBOutlet var mContinousColorWell : PMColorWell? = nil
   @IBOutlet var mDatePicker : PMDatePicker? = nil
+  @IBOutlet var mInteger32ObserverTextField : PMNumberField? = nil
   @IBOutlet var mInteger32TextField : PMNumberField? = nil
   @IBOutlet var mObserverColorWell : PMColorWell? = nil
   @IBOutlet var myObserverTextField : PMTextField? = nil
@@ -209,6 +210,10 @@ var g_PMPrefs : PMPrefs? = nil
     if nil == mDatePicker {
       presentErrorWindow (__FILE__, __LINE__, "the 'mDatePicker' outlet is nil")
     }
+  //--- Check mInteger32ObserverTextField' outlet not nil
+    if nil == mInteger32ObserverTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32ObserverTextField' outlet is nil")
+    }
   //--- Check mInteger32TextField' outlet not nil
     if nil == mInteger32TextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32TextField' outlet is nil")
@@ -237,7 +242,9 @@ var g_PMPrefs : PMPrefs? = nil
     mControllerArray.addObject (Controller_PMPrefs_mColor_PMColorWell_color (object:self, outlet:mObserverColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_PMPrefs_mDate_PMDatePicker_date (object:self, outlet:mDatePicker, file:__FILE__, line:__LINE__))
     mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_value (object:self, outlet:mInteger32TextField, file:__FILE__, line:__LINE__, sendContinously:true))
+    mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue (object:self, outlet:mInteger32ObserverTextField, file:__FILE__, line:__LINE__))
   }
+
   
   //-------------------------------------------------------------------------------------------------------------------*
   //    deinit                                                                                                         *
@@ -260,6 +267,14 @@ var g_PMPrefs : PMPrefs? = nil
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
+
+  func validate_mIntegerValue (candidateValue : Int) -> PMValidationResult {
+    var result = PMValidationResult.ok
+    if (candidateValue & 1) != 0 {
+      result = PMValidationResult.rejectWithAlert ("azerty", "uiop")
+    }
+    return result
+  }
 
 }
 

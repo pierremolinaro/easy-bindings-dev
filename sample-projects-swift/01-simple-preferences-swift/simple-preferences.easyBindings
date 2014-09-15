@@ -23,6 +23,8 @@ preferences PMPrefs {
   property Integer mIntegerValue default 123 ;
   outlet PMNumberField mInteger32TextField ;
   bind model : self.mIntegerValue to mInteger32TextField $value {sendContinously : yes} ;
+  outlet PMNumberField mInteger32ObserverTextField ;
+  bind model : self.mIntegerValue to mInteger32ObserverTextField $rvalue ;
 #--- Actions  
   action monAction ;
   action autreAction ;

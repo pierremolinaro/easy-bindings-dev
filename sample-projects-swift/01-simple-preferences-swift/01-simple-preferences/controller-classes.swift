@@ -177,6 +177,85 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Controller PMPrefs mIntegerValue - PMNumberField $rvalue                                                          *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue)
+class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+
+  weak var mObject : PMPrefs? = nil
+  weak var mOutlet: PMNumberField? = nil
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  func userClassName () -> String { return "Controller.PMPrefs.mIntegerValue.PMNumberField.rvalue" }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private let mPrivateUniqueIndex : Int ;
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  init (object : PMPrefs?, outlet : PMNumberField?, file : String, line : Int) {
+    mPrivateUniqueIndex = getUniqueIndex ()
+    mObject = object
+    mOutlet = outlet
+    super.init ()
+    noteObjectAllocation (self)
+    if let unwrappedOutlet = outlet {
+      if !unwrappedOutlet.isKindOfClass (PMNumberField) {
+        presentErrorWindow (file, line, "outlet is not an instance of PMNumberField")
+      }else{
+        mOutlet = unwrappedOutlet
+        if unwrappedOutlet.formatter == nil {
+          presentErrorWindow (file, line, "the outlet has no formatter")
+        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
+          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+        }
+      }
+    }
+    mObject?.addObserverOf_mIntegerValue (self, inTrigger:true)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func unregister () {
+    mObject?.removeObserverOf_mIntegerValue (self, inTrigger:false)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientDidChange () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func trigger () {
+    if (mOutlet != nil) && (mObject != nil) {
+      mOutlet!.integerValue = mObject!.mIntegerValue
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func noteTransientChanged () {
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Controller PMPrefs mIntegerValue - PMNumberField $value                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -250,9 +329,26 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTrigger
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
+  func action (sender : PMNumberField) {
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.integerValue != mObject!.mIntegerValue) {
-      mObject!.mIntegerValue = mOutlet!.integerValue
+      let validationResult = mObject!.validate_mIntegerValue (mOutlet!.integerValue)
+      switch validationResult {
+      case PMValidationResult.ok :  mObject!.mIntegerValue = mOutlet!.integerValue
+      case PMValidationResult.rejectWithBeep : NSBeep ()
+      case PMValidationResult.rejectSilently : NSBeep ()
+      case PMValidationResult.rejectAndDiscard : NSBeep ()
+      case PMValidationResult.rejectWithAlert (let message, let informativeText) :
+        let alert = NSAlert ()
+        alert.messageText = message
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.mOutlet!.myIntegerValue = self.mObject!.mIntegerValue
+          }
+        })
+      }
     }
   }
 
