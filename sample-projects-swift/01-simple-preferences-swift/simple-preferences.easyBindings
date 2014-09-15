@@ -20,7 +20,7 @@ preferences PMPrefs {
   outlet PMDatePicker mDatePicker ;
   bind model : self.mDate to mDatePicker $date ;
 #--- Number
-  property Integer mIntegerValue default 123 ;
+  property validates Integer mIntegerValue default 123 ;
   outlet PMNumberField mInteger32TextField ;
   bind model : self.mIntegerValue to mInteger32TextField $value {sendContinously : yes} ;
   outlet PMNumberField mInteger32ObserverTextField ;

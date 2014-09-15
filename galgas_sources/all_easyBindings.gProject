@@ -49,6 +49,8 @@ project all_easyBindings (0:0:1) -> "easyBindings":
 
   semantics "actionGeneration.gSemantics" ;
 
+  semantics "validationRoutineStubGeneration.gSemantics" ;
+
   program "easyBindings_program.gProgram" ;
 end project ;
 

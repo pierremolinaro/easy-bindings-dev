@@ -9,6 +9,14 @@ semantics typeAnalysis :
 
 #----------------------------------------------------------------------------*
 
+list @validationStubRoutineListForGeneration {
+  @string mObjectTypeName ;
+  @string mModelName ;
+  @string mModelTypeName ;
+}
+
+#----------------------------------------------------------------------------*
+
 struct @structForGeneration{
   @transientListForGeneration mTransientListForGeneration ;
   @actionListForGeneration mActionListForGeneration ;
@@ -19,6 +27,7 @@ struct @structForGeneration{
   @stringset mNeededOutletClasses ;
   @stringset mControllerGenerationStringSet ;
   @arrayControllerForGeneration mAllArrayControllerForGeneration ;
+  @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration ;
 }
 
 #----------------------------------------------------------------------------*
@@ -223,14 +232,21 @@ local routine unifiedTypeAnalysis
     ;
     ioGeneration->mTransientListForGeneration += !mTransientSignature->string !mTransientType !transientDependencyListForGeneration ;  
   end for ;
-#--- Analyze attribute default value
+#--- Analyze attributes default value
   @attributeListForGeneration attributeListForGeneration := {} ;
   for () in decoratedAttributeMap do
     [mDefaultValue analyzeDefaultValueType 
       !{!mAttributeType}
       ??@string swiftDefaultValueAsString
     ] ;
-    attributeListForGeneration += !mAttributeType !lkey->string !swiftDefaultValueAsString ;
+    attributeListForGeneration += !mAttributeType !lkey->string !swiftDefaultValueAsString !mNeedsValidation ;
+    if mNeedsValidation then
+      ioGeneration->mValidationStubRoutineListForGeneration +=
+        !inTypeName->string
+        !lkey->string
+        ![mAttributeType swiftTypeName]
+      ;
+    end if ;
   end for ;
 #---------------------------------------------------------------- Analyze bindings
   @stringlist controllerInstanciationStringList := {} ;

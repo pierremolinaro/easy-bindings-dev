@@ -121,9 +121,6 @@ var g_PMPrefs : PMPrefs? = nil
     }
   }
 
-  func validate_mIntegerValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
-
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: myString                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*

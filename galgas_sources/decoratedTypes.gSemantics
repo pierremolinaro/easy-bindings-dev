@@ -113,6 +113,7 @@ map @decoratedOutletMap {
 map @decoratedAttributeMap {
   @unifiedTypeProxy mAttributeType ;
   @abstractDefaultValue mDefaultValue ;
+  @bool mNeedsValidation ;
   insert insertKey error message "the '%K' attribute is already declared in %L" ;
   search searchKey error message "there is no '%K' attribute" ;
 }

@@ -1,0 +1,6 @@
+import Cocoa
+
+//----------------------------------------------------------------------------*
+
+extension %!OBJECT_TYPE_NAME% {
+  func validate_%!MODEL_NAME% (proposedValue : %!MODEL_TYPE_NAME%) -> PMValidationResult {
