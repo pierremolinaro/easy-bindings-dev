@@ -102,7 +102,6 @@ for () in ARRAY_CONTROLLER_LIST do
 
   func document_2E_PMDocument_2E_%!mControllerName%_trigger () {
     %!mControllerName%?.arrayModelSizeDidChange ()
-    %!mControllerName%?.updateCanRemoveProperty ()
   }
 
   private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache : PMTrigger_document_2E_PMDocument_2E_%!mControllerName%?
@@ -155,7 +154,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.addObserverOf_%!mTomanyRelationshipName% (triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%, inTrigger:true)\n%
+%    rootObject.addObserverOf_%!mTomanyRelationshipName% (triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%, inTrigger:false)\n%
 end
 %  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do

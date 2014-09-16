@@ -42,7 +42,7 @@ enum PMTransientIndex {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMTriggerProtocol {
+protocol PMTriggerProtocol : PMUserClassName {
   var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
@@ -53,7 +53,7 @@ protocol PMTriggerProtocol {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.canRemoveString" }
@@ -235,7 +235,9 @@ func flushTriggers () {
     let transientIndex = inObject.mTransientIndex
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
+      NSLog ("Enter display trigger (%d) #%d:%@", mTriggerOutletDisplaySet.count, inObject.uniqueIndex, inObject.userClassName())
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
+      NSLog ("Display trigger (%d)", mTriggerOutletDisplaySet.count)
     case PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString :
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
@@ -292,31 +294,37 @@ func flushTriggers () {
   
   private func runTriggers () {
     if mTriggerSet_document_2E_PMDocument_2E_nameController.count > 0 { // 4
+      NSLog ("mTriggerSet_document_2E_PMDocument_2E_nameController")
       for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_nameController = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_total.count > 0 { // 3
+      NSLog ("mTriggerSet_document_2E_PMDocument_2E_total")
       for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_total = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count > 0 { // 2
+      NSLog ("mTriggerSet_document_2E_PMDocument_2E_countItemMessage")
       for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count > 0 { // 1
+      NSLog ("mTriggerSet_document_2E_PMDocument_2E_canRemoveString")
       for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      NSLog ("mTriggerOutletDisplaySet %d", mTriggerOutletDisplaySet.count)
       for object in mTriggerOutletDisplaySet.values {
+        NSLog ("flush display trigger #%d:%@", object.uniqueIndex, object.userClassName())
         object.trigger ()
       }
       mTriggerOutletDisplaySet = [:]

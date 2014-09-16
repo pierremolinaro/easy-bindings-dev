@@ -65,7 +65,6 @@ import Cocoa
 
   func document_2E_PMDocument_2E_nameController_trigger () {
     nameController?.arrayModelSizeDidChange ()
-    nameController?.updateCanRemoveProperty ()
   }
 
   private var triggerObjectFor_document_2E_PMDocument_2E_nameController_cache : PMTrigger_document_2E_PMDocument_2E_nameController?
@@ -122,7 +121,7 @@ import Cocoa
     rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_countItemMessage, inTrigger:true)
     rootObject.addObserverOf_mNames_aValue (triggerObjectFor_document_2E_PMDocument_2E_total, inTrigger:true)
   //--------------------------- Array controller as observers
-    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController, inTrigger:true)
+    rootObject.addObserverOf_mNames (triggerObjectFor_document_2E_PMDocument_2E_nameController, inTrigger:false)
   //--------------------------- Simple controller
     mControllerArray.append (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
