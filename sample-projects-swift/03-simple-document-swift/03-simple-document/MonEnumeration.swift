@@ -19,7 +19,7 @@ enum MonEnumeration : Int {
 
   func enumfromRawValue (rawValue : Int) -> MonEnumeration {
     var result = self
-    let v : MonEnumeration? = MonEnumeration.fromRaw (rawValue) ;
+    let v : MonEnumeration? = MonEnumeration (rawValue:rawValue) ;
     if let unwrappedV = v {
       result = unwrappedV
     }
@@ -31,7 +31,7 @@ enum MonEnumeration : Int {
 
 /*  func storeInDictionary (inKey : String,
                           inout ioDictionary : NSMutableDictionary) {
-    ioDictionary.setObject (NSNumber.numberWithInteger (toRaw ()), forKey: inKey)
+    ioDictionary.setObject (NSNumber.numberWithInteger (rawValue), forKey: inKey)
   }*/
  
 //---------------------------------------------------------------------------------------------------------------------*
@@ -41,7 +41,7 @@ extension NSDictionary {
     let v : Int? = objectForKey (inKey)?.integerValue
     var result = MonEnumeration.premier
     if v != nil {
-      let e : MonEnumeration? = MonEnumeration.fromRaw (v!)
+      let e : MonEnumeration? = MonEnumeration (rawValue:v!)
       if e != nil {
         result = e!
       }

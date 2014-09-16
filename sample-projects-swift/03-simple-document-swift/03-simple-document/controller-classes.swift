@@ -181,15 +181,15 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.toRaw ()) {
-      mOutlet!.selectCellAtRow (mObject!.myEnumeration.toRaw (), column:0)
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.rawValue) {
+      mOutlet!.selectCellAtRow (mObject!.myEnumeration.rawValue, column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.toRaw ()) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.rawValue) {
       mObject!.myEnumeration = mObject!.myEnumeration.enumfromRawValue (mOutlet!.selectedRow)
     }
   }
