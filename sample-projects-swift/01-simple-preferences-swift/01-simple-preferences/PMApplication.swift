@@ -66,6 +66,7 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
+  private var mFlushLevel = 1
   private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
@@ -112,7 +113,11 @@ func flushTriggers () {
     let transientIndex = inObject.mTransientIndex
     if logEvents () {
       let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      mTransientEventExplorerTextView?.appendMessageString (str)
+      if transientIndex.rawValue < mFlushLevel {
+        mTransientEventExplorerTextView?.appendMessageString (str)
+      }else{
+        mTransientEventExplorerTextView?.appendErrorString (str)
+      }
     }
     inObject.noteTransientDidChange ()
     switch transientIndex {
@@ -153,10 +158,13 @@ func flushTriggers () {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
+    var emptyFlush = true ;
     if mTriggerOutletDisplaySet.count > 0 {
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
+      mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -165,7 +173,11 @@ func flushTriggers () {
       }
       mTriggerOutletDisplaySet = [:]
     }
-  }
+    mFlushLevel = 1
+    if !emptyFlush && logEvents () {
+       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+ }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

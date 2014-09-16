@@ -210,6 +210,7 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
+  private var mFlushLevel = 5
   private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
@@ -260,7 +261,11 @@ func flushTriggers () {
     let transientIndex = inObject.mTransientIndex
     if logEvents () {
       let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      mTransientEventExplorerTextView?.appendMessageString (str)
+      if transientIndex.rawValue < mFlushLevel {
+        mTransientEventExplorerTextView?.appendMessageString (str)
+      }else{
+        mTransientEventExplorerTextView?.appendErrorString (str)
+      }
     }
     inObject.noteTransientDidChange ()
     switch transientIndex {
@@ -321,10 +326,13 @@ func flushTriggers () {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
+    var emptyFlush = true ;
     if mTriggerSet_document_2E_PMDocument_2E_nameController.count > 0 { // 4
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 4: document.PMDocument.nameController\n")
       }
+      mFlushLevel = 4
       for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -334,9 +342,11 @@ func flushTriggers () {
       mTriggerSet_document_2E_PMDocument_2E_nameController = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_total.count > 0 { // 3
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: document.PMDocument.total\n")
       }
+      mFlushLevel = 3
       for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -346,9 +356,11 @@ func flushTriggers () {
       mTriggerSet_document_2E_PMDocument_2E_total = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count > 0 { // 2
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: document.PMDocument.countItemMessage\n")
       }
+      mFlushLevel = 2
       for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -358,9 +370,11 @@ func flushTriggers () {
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count > 0 { // 1
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: document.PMDocument.canRemoveString\n")
       }
+      mFlushLevel = 1
       for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -370,9 +384,11 @@ func flushTriggers () {
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
+      mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -381,7 +397,11 @@ func flushTriggers () {
       }
       mTriggerOutletDisplaySet = [:]
     }
-  }
+    mFlushLevel = 5
+    if !emptyFlush && logEvents () {
+       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+ }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
