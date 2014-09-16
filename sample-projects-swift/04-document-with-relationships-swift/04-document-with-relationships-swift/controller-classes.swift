@@ -56,7 +56,9 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
+    NSLog ("%@", __FUNCTION__)
     if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.canRemove) {
+      NSLog ("ENABLE %@", mObject!.canRemove ? "yes" : "no")
       mOutlet!.enabled = mObject!.canRemove
     }
   }

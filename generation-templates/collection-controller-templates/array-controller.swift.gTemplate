@@ -1,11 +1,13 @@
 
 import Cocoa
 
+private let displayDebugMessage = false
+
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["TriggerFor_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTriggerProtocol, PMUserClassName {
+class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTriggerProtocol {
   private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%? = nil
   
   var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
@@ -30,7 +32,7 @@ class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NA
   }
   
   func trigger () {
-    mArrayController?.reloadData ()
+    mArrayController?.modelDidChange ()
   }
 
   func userClassName () -> String { return "TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
@@ -53,6 +55,10 @@ class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTab
       updateCanRemoveProperty ()
     }
   }
+  
+  private var mSelectNewObject = true
+  private var mAllowsEmptySelection = false
+  private var mAllowsMultipleSelection = true
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    userClassName                                                                                                  *
@@ -70,6 +76,8 @@ class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTab
     mUndoManager = object.undoManager ()
     super.init ()
     if let unwrappedTableView = tableView {
+      unwrappedTableView.allowsEmptySelection = mAllowsEmptySelection
+      unwrappedTableView.allowsMultipleSelection = mAllowsMultipleSelection
       var ok = true
 %
 for () in BOUND_COLUMNS do
@@ -146,6 +154,9 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableViewSelectionDidChange (NSNotification!) {
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
     var selectedObjectArray = NSMutableArray ()
     if let tableView = mTableView {
       let selectedRowIndexes = tableView.selectedRowIndexes
@@ -167,6 +178,9 @@ end
 
   func tableView (aTableView: NSTableView!,
                  sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
     mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
     refreshDisplay ()
@@ -176,7 +190,10 @@ end
   //    Observing model change                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func reloadData () {
+  func modelDidChange () {
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
     mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
     mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
@@ -212,16 +229,23 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
   
   func refreshDisplay () {
-    mTableView?.reloadData ()
-  //--- try to restore selection (if any)
-    var newSelectionIndexSet = NSMutableIndexSet ()
-    for object in mSelectedObjectArray {
-      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (object)
-      if idx != NSNotFound {
-        newSelectionIndexSet.addIndex (idx)
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
+    if let tableView = mTableView {
+      tableView.reloadData ()
+      var newSelectionIndexSet = NSMutableIndexSet ()
+      for object in mSelectedObjectArray {
+        let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (object)
+        if idx != NSNotFound {
+          newSelectionIndexSet.addIndex (idx)
+        }
+      }
+      let currentSelectedRowIndexes = tableView.selectedRowIndexes
+      if !currentSelectedRowIndexes.isEqualToIndexSet (newSelectionIndexSet) {
+        tableView.selectRowIndexes (newSelectionIndexSet, byExtendingSelection:false)
       }
     }
-    mTableView?.selectRowIndexes (newSelectionIndexSet, byExtendingSelection:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -242,6 +266,9 @@ end
   // http://thegreyblog.blogspot.fr/2014/06/nscontroltexteditingdelegate-methods.html
 
   func numberOfRowsInTableView (NSTableView!) -> Int {
+    if displayDebugMessage {
+      NSLog ("\%@ \%d objects", __FUNCTION__, mCurrentObjectArray.count)
+    }
     return mCurrentObjectArray.count
   }
 
@@ -251,6 +278,9 @@ end
                   viewForTableColumn : NSTableColumn,
                   row : NSInteger) -> NSView! {
     let columnIdentifier = viewForTableColumn.identifier as String
+    if displayDebugMessage {
+      NSLog ("\%@, identifier '\%@\', row \%d", __FUNCTION__, columnIdentifier, row)
+    }
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
    %
@@ -283,15 +313,21 @@ for () in BOUND_COLUMNS do
 
 %
 end
-% //-------------------------------------------------------------------------------------------------------------------*
+%  //-------------------------------------------------------------------------------------------------------------------*
   //    add                                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func add (inSender : AnyObject!) {
-    var newObject : PMManagedObject = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
+    var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
     array.addObject (newObject)
     mObject.%!RELATIONSHIP_NAME% = array
+    if mSelectNewObject {
+      mSelectedObjectArray = NSArray (object:newObject)
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -317,6 +353,9 @@ end
   var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
+    if displayDebugMessage {
+      NSLog ("\%@", __FUNCTION__)
+    }
     let newValue = mSelectedObjectArray.count > 0
     if canRemove_private != newValue {
       canRemove_private = newValue

@@ -39,7 +39,7 @@ end
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMTriggerProtocol {
+protocol PMTriggerProtocol, PMUserClassName {
   var mTransientIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
@@ -53,7 +53,7 @@ do index idx
 %
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_%![mValue identifierRepresentation]% : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_%![mValue identifierRepresentation]% : PMTriggerProtocol {
   weak var mTriggerObject : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
 
   func userClassName () -> String { return "PMTrigger_%!mValue%" }
