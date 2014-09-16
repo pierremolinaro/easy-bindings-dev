@@ -76,7 +76,7 @@ reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
   when bezierPathType : outResult := "NSBezierPath" ;
-  when enumType : outResult := "NSNumber (integer:" + inPropertyName + ".toRaw ())" ;
+  when enumType : outResult := "NSNumber (integer:" + inPropertyName + ".rawValue)" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
   preferencesType, nibClassType, outletClassType, protocolType :
@@ -99,7 +99,7 @@ reader @unifiedTypeProxy transformerForRegisterUndoWithTarget ??@string inOldVal
   when imageType : outResult := "NSImage" ;
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
-  when enumType : outResult := "NSNumber (integer:" + inOldValue + ".toRaw ())" ;
+  when enumType : outResult := "NSNumber (integer:" + inOldValue + ".rawValue)" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
@@ -148,7 +148,7 @@ reader @unifiedTypeProxy transformerForUndo ??@string inValue -> @string outResu
   when imageType : outResult := inValue ;
   when fontType : outResult := inValue ;
   when menuType : outResult := inValue ;
-  when enumType : outResult := [selfcopy key] + ".fromRaw (" + inValue + ".integerValue)!" ;
+  when enumType : outResult := [selfcopy key] + " (rawValue:" + inValue + ".integerValue)!" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,
@@ -188,7 +188,7 @@ reader @unifiedTypeProxy transformerForTableViewAction ??@string inSenderOutletN
   when imageType : outResult := "NSImage" ;
   when fontType : outResult := "NSFont" ;
   when menuType : outResult := "NSMenu" ;
-  when enumType : outResult := "NSNumber (integer:" + inSenderOutletName + ".toRaw ())" ;
+  when enumType : outResult := "NSNumber (integer:" + inSenderOutletName + ".rawValue)" ;
   when bezierPathType : outResult := "NSBezierPath" ;
   when structType : outResult := [selfcopy key] ;
   when classType, controllerClassType, documentType, entityType,

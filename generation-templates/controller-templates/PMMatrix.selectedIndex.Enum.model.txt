@@ -54,15 +54,15 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTrig
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
-      mOutlet!.selectCellAtRow (mObject!.$MODEL$.toRaw (), column:0)
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.rawValue) {
+      mOutlet!.selectCellAtRow (mObject!.$MODEL$.rawValue, column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.toRaw ()) {
+    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.rawValue) {
       mObject!.$MODEL$ = mObject!.$MODEL$.enumfromRawValue (mOutlet!.selectedRow)
     }
   }

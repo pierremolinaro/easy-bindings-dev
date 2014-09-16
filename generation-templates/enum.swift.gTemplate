@@ -21,7 +21,7 @@ end
 
   func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {
     var result = self
-    let v : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME%.fromRaw (rawValue) ;
+    let v : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:rawValue) ;
     if let unwrappedV = v {
       result = unwrappedV
     }
@@ -33,7 +33,7 @@ end
 
 /*  func storeInDictionary (inKey : String,
                           inout ioDictionary : NSMutableDictionary) {
-    ioDictionary.setObject (NSNumber.numberWithInteger (toRaw ()), forKey: inKey)
+    ioDictionary.setObject (NSNumber.numberWithInteger (rawValue), forKey: inKey)
   }*/
  
 //---------------------------------------------------------------------------------------------------------------------*
@@ -43,7 +43,7 @@ extension NSDictionary {
     let v : Int? = objectForKey (inKey)?.integerValue
     var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
     if v != nil {
-      let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME%.fromRaw (v!)
+      let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:v!)
       if e != nil {
         result = e!
       }

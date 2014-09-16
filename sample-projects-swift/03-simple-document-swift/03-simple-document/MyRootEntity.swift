@@ -73,7 +73,7 @@ protocol MyRootEntity_myString {
   var myEnumeration : MonEnumeration = MonEnumeration.deuxieme {
     didSet {
       if myEnumeration != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber (integer:oldValue.toRaw ()))
+        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber (integer:oldValue.rawValue))
         myEnumeration_explorer?.stringValue = myEnumeration.string ()
         for object in myEnumeration_observers.values {
           enterTriggerWithObject (object)
@@ -83,7 +83,7 @@ protocol MyRootEntity_myString {
   }
 
   func undoFor_myEnumeration (value : NSNumber) {
-    myEnumeration = MonEnumeration.fromRaw (value.integerValue)!
+    myEnumeration = MonEnumeration (rawValue:value.integerValue)!
   }
 
   func addObserverOf_myEnumeration (inObserver : PMTriggerProtocol, inTrigger:Bool) {
@@ -214,7 +214,7 @@ protocol MyRootEntity_myString {
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
     ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor), forKey: "myColor")
-    ioDictionary.setValue (NSNumber (integer:myEnumeration.toRaw ()), forKey: "myEnumeration")
+    ioDictionary.setValue (NSNumber (integer:myEnumeration.rawValue), forKey: "myEnumeration")
     ioDictionary.setValue (myString, forKey: "myString")
   }
 
