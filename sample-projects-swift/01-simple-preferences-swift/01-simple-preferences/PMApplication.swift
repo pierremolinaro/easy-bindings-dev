@@ -111,17 +111,19 @@ func flushTriggers () {
 
   private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
-    if logEvents () {
-      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      if transientIndex.rawValue < mFlushLevel {
-        mTransientEventExplorerTextView?.appendMessageString (str)
-      }else{
-        mTransientEventExplorerTextView?.appendErrorString (str)
-      }
-    }
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     }
   }

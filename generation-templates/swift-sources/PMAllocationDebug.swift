@@ -1,35 +1,11 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-//    R O U T I N E S                                                                                                  *
-//---------------------------------------------------------------------------------------------------------------------*
-  
-func addItemToDebugMenu (inMenuItem : NSMenuItem) {
-  if (nil == gDebugObject) {
-    var debugObject = PMAllocationDebug ()
-    gDebugObject = debugObject
-    var mainBundle = NSBundle.mainBundle ()
-    let ok = mainBundle.loadNibNamed ("PMAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
-    if !ok {
-      presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
-    }
-    gDebugObject?.addDebugMenuItem (inMenuItem)
-  }
-}
-
+//    Public routines                                                                                                  *
 //---------------------------------------------------------------------------------------------------------------------*
 
 func noteObjectAllocation (inObject : PMUserClassName) {
-  if (nil == gDebugObject) {
-    var debugObject = PMAllocationDebug ()
-    gDebugObject = debugObject
-    var topLevelObjects : NSArray?
-    var mainBundle = NSBundle.mainBundle ()
-    let ok = mainBundle.loadNibNamed ("PMAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
-    if !ok {
-      presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
-    }
-  }
+  installDebugMenu ()
   let className = inObject.userClassName ()
   gDebugObject?.pmNoteObjectAllocation (className)
 }
@@ -45,6 +21,29 @@ func noteObjectDeallocation (inObject : PMUserClassName) {
 
 func displayAllocation () {
   gDebugObject?.displayAllocation ()
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func addItemToDebugMenu (item : NSMenuItem) {
+  installDebugMenu ()
+  gDebugObject?.mDebugMenu?.addItem (item)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//    Private routine                                                                                                  *
+//---------------------------------------------------------------------------------------------------------------------*
+
+private func installDebugMenu () {
+  if nil == gDebugObject {
+    var debugObject = PMAllocationDebug ()
+    gDebugObject = debugObject
+    var mainBundle = NSBundle.mainBundle ()
+    let ok = mainBundle.loadNibNamed ("PMAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
+    if !ok {
+      presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
+    }
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -155,14 +154,6 @@ private var gDebugObject : PMAllocationDebug? = nil
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    addDebugMenuItem:                                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  private func addDebugMenuItem (inMenuItem : NSMenuItem) {
-    mDebugMenu?.addItem (inMenuItem)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //    awakeFromNib                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
   
@@ -261,7 +252,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func displayAllocation () {
-    self.pmInstallDebugMenu ()
+    pmInstallDebugMenu ()
     if mRefreshDisplay {
       mRefreshDisplay = false
     //---
@@ -331,32 +322,6 @@ private var gDebugObject : PMAllocationDebug? = nil
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    S H O W     A L L O C A T I O N    S T A T S    W I N D O W                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func pmShowAllocationStatsWindow () {
-    mStatsTableView?.window?.makeKeyAndOrderFront (nil)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  class func routineShowAllocationStatsWindow () {
-    gDebugObject?.pmShowAllocationStatsWindow ()
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  class func addItemToDebugMenu (inMenuItem : NSMenuItem) {
-    if (nil == gDebugObject) {
-      var debugObject = PMAllocationDebug ()
-      gDebugObject = debugObject
-      var mainBundle = NSBundle.mainBundle ()
-      let ok = mainBundle.loadNibNamed ("PMAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
-      if !ok {
-        presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
-      }
-    }
-  }
 
 }
 
