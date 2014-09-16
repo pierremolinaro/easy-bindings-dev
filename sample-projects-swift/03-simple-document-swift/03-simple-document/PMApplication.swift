@@ -221,29 +221,61 @@ func flushTriggers () {
 
   private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
-    if logEvents () {
-      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      if transientIndex.rawValue < mFlushLevel {
-        mTransientEventExplorerTextView?.appendMessageString (str)
-      }else{
-        mTransientEventExplorerTextView?.appendErrorString (str)
-      }
-    }
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringConcat :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringConcat, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.count)
       }
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMaj :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringMaj, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.count)
       }
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMin :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger entity.MyRootEntity.myStringMin, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.count)

@@ -200,6 +200,19 @@ extension NSTextView {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  func appendMessageString (inString : String, color:NSColor) {
+    let attributes : [String : NSObject] = [
+      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSForegroundColorAttributeName : color
+    ]
+    let str = NSAttributedString (string:inString, attributes:attributes)
+    var textStorage = layoutManager.textStorage
+    textStorage.appendAttributedString (str)
+    displayAndScrollToEndOfText ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func appendErrorString (inString : String) {
     let attributes : [String : NSObject] = [
       NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),

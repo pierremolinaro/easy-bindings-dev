@@ -259,34 +259,76 @@ func flushTriggers () {
 
   private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
-    if logEvents () {
-      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      if transientIndex.rawValue < mFlushLevel {
-        mTransientEventExplorerTextView?.appendMessageString (str)
-      }else{
-        mTransientEventExplorerTextView?.appendErrorString (str)
-      }
-    }
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.canRemoveString, %d objects", mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count)
       }
     case PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.countItemMessage, %d objects", mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count)
       }
     case PMTransientIndex.k_document_2E_PMDocument_2E_total :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.total, %d objects", mTriggerSet_document_2E_PMDocument_2E_total.count)
       }
     case PMTransientIndex.k_document_2E_PMDocument_2E_nameController :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_document_2E_PMDocument_2E_nameController [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_document_2E_PMDocument_2E_nameController [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
         NSLog ("Trigger document.PMDocument.nameController, %d objects", mTriggerSet_document_2E_PMDocument_2E_nameController.count)
