@@ -15,7 +15,6 @@
 		CF793CB319BA3AB4005DBEAF /* PMTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CB019BA3AB4005DBEAF /* PMTableView.swift */; };
 		CF793CB419BA3AB4005DBEAF /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CB119BA3AB4005DBEAF /* PMTextField.swift */; };
 		CF7C6403196060D800BE14DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6402196060D800BE14DF /* main.swift */; };
-		CF7C640A196060D800BE14DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7C6409196060D800BE14DF /* Images.xcassets */; };
 		CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C640B196060D800BE14DF /* MainMenu.xib */; };
 		CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */; };
 		CF7C64301960619500BE14DF /* NameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64261960619500BE14DF /* NameEntity.swift */; };
@@ -47,7 +46,6 @@
 		CF7C63FD196060D800BE14DF /* 04-document-with-relationships-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "04-document-with-relationships-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7C6401196060D800BE14DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF7C6402196060D800BE14DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		CF7C6409196060D800BE14DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF7C640C196060D800BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CF7C64231960618800BE14DF /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */,
 				CF32289119BE2F2900ACB419 /* controller-classes.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
-				CF7C6409196060D800BE14DF /* Images.xcassets */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
 				CF7C64231960618800BE14DF /* MyRootEntity.swift */,
 				CF7C64261960619500BE14DF /* NameEntity.swift */,
@@ -199,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7C640A196060D800BE14DF /* Images.xcassets in Resources */,
 				CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */,
 				CF7C640D196060D800BE14DF /* MainMenu.xib in Resources */,
 				CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */,
@@ -288,7 +284,6 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -301,6 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LLVM_LTO = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -338,6 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LLVM_LTO = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
@@ -355,6 +352,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "04-document-with-relationships-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LLVM_LTO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "04-document-with-relationships-swift/04-document-with-relationships-swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -370,6 +368,7 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "04-document-with-relationships-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "04-document-with-relationships-swift/04-document-with-relationships-swift-Bridging-Header.h";
 			};

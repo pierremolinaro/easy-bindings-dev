@@ -28,7 +28,7 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum PMTransientIndex {
+enum PMTransientIndex : Int {
   case kTriggerOutletDisplay // 0
   case k_document_2E_PMDocument_2E_canRemoveString // 1
   case k_document_2E_PMDocument_2E_countItemMessage // 2
@@ -41,15 +41,6 @@ enum PMTransientIndex {
 //    T R A N S I E N T    T R I G G E R    C L A S S E S                                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
-
-protocol PMTriggerProtocol : PMUserClassName {
-  var mTransientIndex : PMTransientIndex { get }
-  func noteTransientDidChange ()
-  func trigger ()
-  func unregister ()
-  var uniqueIndex : Int { get }
-}
-
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -87,7 +78,7 @@ class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.countItemMessage" }
@@ -121,7 +112,7 @@ class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol, 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.total" }
@@ -155,7 +146,7 @@ class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol, PMUserClass
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol {
   weak var mTriggerObject : PMDocument? = nil
 
   func userClassName () -> String { return "PMTrigger_document.PMDocument.nameController" }
@@ -196,7 +187,7 @@ class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol, PM
 
 func enterTriggerWithObject (inObject : PMTriggerProtocol) {
   var theApp = NSApp as PMApplication
-  theApp.enterTriggerWithObject (inObject) ;
+  theApp.postTransientEvent (inObject) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -207,7 +198,7 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 
 func flushTriggers () {
   var theApp = NSApp as PMApplication
-  theApp.runTriggers ()
+  theApp.flushTransientEvents ()
   displayAllocation ()
 }
 
@@ -223,6 +214,41 @@ func flushTriggers () {
  
   //-------------------------------------------------------------------------------------------------------------------*
 
+  @IBOutlet var mTransientEventExplorerWindow : NSWindow?
+  @IBOutlet var mTransientEventExplorerTextView : NSTextView?
+ 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func awakeFromNib () {
+    var menuItem = NSMenuItem (
+      title:"Show Transient Event Log Window",
+      action:"showTransientEventLogWindow:",
+      keyEquivalent:""
+    )
+    addItemToDebugMenu (menuItem)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func showTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+    mTransientEventExplorerWindow?.makeKeyAndOrderFront (sender)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func clearTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func logEvents () -> Bool {
+    return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.visible
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTriggerProtocol] = [:] // 1
   private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTriggerProtocol] = [:] // 2
   private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTriggerProtocol] = [:] // 3
@@ -230,14 +256,16 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
-    inObject.noteTransientDidChange ()
+  private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
+    if logEvents () {
+      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+      mTransientEventExplorerTextView?.appendMessageString (str)
+    }
+    inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
-      NSLog ("Enter display trigger (%d) #%d:%@", mTriggerOutletDisplaySet.count, inObject.uniqueIndex, inObject.userClassName())
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
-      NSLog ("Display trigger (%d)", mTriggerOutletDisplaySet.count)
     case PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString :
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
       if TRACE_TRANSIENT_TRIGGER {
@@ -270,7 +298,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send event done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
   }
@@ -284,7 +312,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send action done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
     return result
@@ -292,39 +320,63 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private func runTriggers () {
+  private func flushTransientEvents () {
     if mTriggerSet_document_2E_PMDocument_2E_nameController.count > 0 { // 4
-      NSLog ("mTriggerSet_document_2E_PMDocument_2E_nameController")
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 4: document.PMDocument.nameController\n")
+      }
       for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_nameController = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_total.count > 0 { // 3
-      NSLog ("mTriggerSet_document_2E_PMDocument_2E_total")
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: document.PMDocument.total\n")
+      }
       for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_total = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count > 0 { // 2
-      NSLog ("mTriggerSet_document_2E_PMDocument_2E_countItemMessage")
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: document.PMDocument.countItemMessage\n")
+      }
       for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage = [:]
     }    
     if mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count > 0 { // 1
-      NSLog ("mTriggerSet_document_2E_PMDocument_2E_canRemoveString")
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: document.PMDocument.canRemoveString\n")
+      }
       for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
-      NSLog ("mTriggerOutletDisplaySet %d", mTriggerOutletDisplaySet.count)
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
+      }
       for object in mTriggerOutletDisplaySet.values {
-        NSLog ("flush display trigger #%d:%@", object.uniqueIndex, object.userClassName())
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerOutletDisplaySet = [:]

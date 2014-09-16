@@ -90,19 +90,19 @@ class PMManagedDocument : NSDocument, PMUserClassName {
           action:"showObjectExplorerWindow:",
           keyEquivalent:""
         )
-        gDebugObject?.addDebugMenuItem (menuItem)
+        addItemToDebugMenu (menuItem)
         menuItem = NSMenuItem (
           title:"Check Relationships",
           action:"checkRelationships:",
           keyEquivalent:""
         )
-        gDebugObject?.addDebugMenuItem (menuItem)
+        addItemToDebugMenu (menuItem)
         menuItem = NSMenuItem (
           title:"Check All Objects are Reachable",
           action:"checkEntityReachability:",
           keyEquivalent:""
         )
-        gDebugObject?.addDebugMenuItem (menuItem)
+        addItemToDebugMenu (menuItem)
       }
     //-------------- Check relationships
 /*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;

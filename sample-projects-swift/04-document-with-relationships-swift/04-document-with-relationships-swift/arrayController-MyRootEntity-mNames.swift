@@ -1,13 +1,13 @@
 
 import Cocoa
 
-private let displayDebugMessage = true
+private let displayDebugMessage = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    TriggerFor_MyRootEntity_mNames_mNamesTableView                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTriggerProtocol, PMUserClassName {
+class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTriggerProtocol {
   private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
   var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
@@ -369,17 +369,14 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
-    if let tableView = mTableView {
-      let newValue = tableView.selectedRowIndexes.count > 0
-      if displayDebugMessage {
-        NSLog ("%@, %@", __FUNCTION__, newValue ? "yes" : "no")
-      }
-      if canRemove_private != newValue {
-        canRemove_private = newValue
-        NSLog ("Trigger %d observers", canRemove_observers.count)
-        for object in canRemove_observers.values {
-          enterTriggerWithObject (object)
-        }
+    if displayDebugMessage {
+      NSLog ("%@", __FUNCTION__)
+    }
+    let newValue = mSelectedObjectArray.count > 0
+    if canRemove_private != newValue {
+      canRemove_private = newValue
+      for object in canRemove_observers.values {
+        enterTriggerWithObject (object)
       }
     }
   }
