@@ -173,6 +173,7 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
+  private var mFlushLevel = 4
   private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
@@ -222,7 +223,11 @@ func flushTriggers () {
     let transientIndex = inObject.mTransientIndex
     if logEvents () {
       let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      mTransientEventExplorerTextView?.appendMessageString (str)
+      if transientIndex.rawValue < mFlushLevel {
+        mTransientEventExplorerTextView?.appendMessageString (str)
+      }else{
+        mTransientEventExplorerTextView?.appendErrorString (str)
+      }
     }
     inObject.noteTransientDidChange ()
     switch transientIndex {
@@ -278,10 +283,13 @@ func flushTriggers () {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
+    var emptyFlush = true ;
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.count > 0 { // 3
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: entity.MyRootEntity.myStringMin\n")
       }
+      mFlushLevel = 3
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -291,9 +299,11 @@ func flushTriggers () {
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.count > 0 { // 2
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: entity.MyRootEntity.myStringMaj\n")
       }
+      mFlushLevel = 2
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -303,9 +313,11 @@ func flushTriggers () {
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.count > 0 { // 1
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: entity.MyRootEntity.myStringConcat\n")
       }
+      mFlushLevel = 1
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -315,9 +327,11 @@ func flushTriggers () {
       mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
+      mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -326,7 +340,11 @@ func flushTriggers () {
       }
       mTriggerOutletDisplaySet = [:]
     }
-  }
+    mFlushLevel = 4
+    if !emptyFlush && logEvents () {
+       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+ }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

@@ -136,6 +136,7 @@ func flushTriggers () {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
+  private var mFlushLevel = 3
   private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
@@ -184,7 +185,11 @@ func flushTriggers () {
     let transientIndex = inObject.mTransientIndex
     if logEvents () {
       let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      mTransientEventExplorerTextView?.appendMessageString (str)
+      if transientIndex.rawValue < mFlushLevel {
+        mTransientEventExplorerTextView?.appendMessageString (str)
+      }else{
+        mTransientEventExplorerTextView?.appendErrorString (str)
+      }
     }
     inObject.noteTransientDidChange ()
     switch transientIndex {
@@ -235,10 +240,13 @@ func flushTriggers () {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
+    var emptyFlush = true ;
     if mTriggerSet_preference_2E_Prefs_2E_mFullName.count > 0 { // 2
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: preference.Prefs.mFullName\n")
       }
+      mFlushLevel = 2
       for object in mTriggerSet_preference_2E_Prefs_2E_mFullName.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -248,9 +256,11 @@ func flushTriggers () {
       mTriggerSet_preference_2E_Prefs_2E_mFullName = [:]
     }    
     if mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.count > 0 { // 1
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: preference.Prefs.mUpperCaseFullName\n")
       }
+      mFlushLevel = 1
       for object in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -260,9 +270,11 @@ func flushTriggers () {
       mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
+      mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -271,7 +283,11 @@ func flushTriggers () {
       }
       mTriggerOutletDisplaySet = [:]
     }
-  }
+    mFlushLevel = 3
+    if !emptyFlush && logEvents () {
+       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+ }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
