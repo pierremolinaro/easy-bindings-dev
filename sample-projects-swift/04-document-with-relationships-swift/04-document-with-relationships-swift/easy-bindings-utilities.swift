@@ -133,3 +133,83 @@ enum PMValidationResult {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//    PMUserClassName protocol                                                                                         *
+//---------------------------------------------------------------------------------------------------------------------*
+
+protocol PMUserClassName {
+  func userClassName () -> String
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//    PMTriggerProtocol protocol                                                                                       *
+//---------------------------------------------------------------------------------------------------------------------*
+
+protocol PMTriggerProtocol : PMUserClassName {
+  var mTransientIndex : PMTransientIndex { get }
+  func noteTransientDidChange ()
+  func trigger ()
+  func unregister ()
+  var uniqueIndex : Int { get }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//    NSTExtView extension                                                                                             *
+//---------------------------------------------------------------------------------------------------------------------*
+
+extension NSTextView {
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func displayAndScrollToEndOfText () {
+    var textStorage = layoutManager.textStorage
+    let endOfText = NSRange (location:textStorage.length, length:0)
+    scrollRangeToVisible (endOfText)
+    displayIfNeeded ()
+  }
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func clear () {
+    let str = NSAttributedString (string:"", attributes:nil)
+    var textStorage = layoutManager.textStorage
+    textStorage.setAttributedString (str)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendAttributedString (inAttributedString : NSAttributedString) {
+    var textStorage = layoutManager.textStorage
+    textStorage.appendAttributedString (inAttributedString)
+    displayAndScrollToEndOfText ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendMessageString (inString : String) {
+    let attributes : [String : NSObject] = [
+      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSForegroundColorAttributeName : NSColor.blackColor()
+    ]
+    let str = NSAttributedString (string:inString, attributes:attributes)
+    var textStorage = layoutManager.textStorage
+    textStorage.appendAttributedString (str)
+    displayAndScrollToEndOfText ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendErrorString (inString : String) {
+    let attributes : [String : NSObject] = [
+      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSForegroundColorAttributeName : NSColor.redColor()
+    ]
+    let str = NSAttributedString (string:inString, attributes:attributes)
+    var textStorage = layoutManager.textStorage
+    textStorage.appendAttributedString (str)
+    displayAndScrollToEndOfText ()
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*

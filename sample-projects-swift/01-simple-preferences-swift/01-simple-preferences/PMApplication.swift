@@ -24,7 +24,7 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum PMTransientIndex {
+enum PMTransientIndex : Int {
   case kTriggerOutletDisplay // 0
 }
 
@@ -33,15 +33,6 @@ enum PMTransientIndex {
 //    T R A N S I E N T    T R I G G E R    C L A S S E S                                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
-
-protocol PMTriggerProtocol {
-  var mTransientIndex : PMTransientIndex { get }
-  func noteTransientDidChange ()
-  func trigger ()
-  func unregister ()
-  var uniqueIndex : Int { get }
-}
-
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -52,7 +43,7 @@ protocol PMTriggerProtocol {
 
 func enterTriggerWithObject (inObject : PMTriggerProtocol) {
   var theApp = NSApp as PMApplication
-  theApp.enterTriggerWithObject (inObject) ;
+  theApp.postTransientEvent (inObject) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -63,7 +54,7 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 
 func flushTriggers () {
   var theApp = NSApp as PMApplication
-  theApp.runTriggers ()
+  theApp.flushTransientEvents ()
   displayAllocation ()
 }
 
@@ -79,12 +70,51 @@ func flushTriggers () {
  
   //-------------------------------------------------------------------------------------------------------------------*
 
+  @IBOutlet var mTransientEventExplorerWindow : NSWindow?
+  @IBOutlet var mTransientEventExplorerTextView : NSTextView?
+ 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func awakeFromNib () {
+    var menuItem = NSMenuItem (
+      title:"Show Transient Event Log Window",
+      action:"showTransientEventLogWindow:",
+      keyEquivalent:""
+    )
+    addItemToDebugMenu (menuItem)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func showTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+    mTransientEventExplorerWindow?.makeKeyAndOrderFront (sender)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func clearTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func logEvents () -> Bool {
+    return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.visible
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
-    inObject.noteTransientDidChange ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
+    if logEvents () {
+      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+      mTransientEventExplorerTextView?.appendMessageString (str)
+    }
+    inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
@@ -100,7 +130,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send event done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
   }
@@ -114,7 +144,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send action done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
     return result
@@ -122,9 +152,15 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private func runTriggers () {
+  private func flushTransientEvents () {
     if mTriggerOutletDisplaySet.count > 0 {
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
+      }
       for object in mTriggerOutletDisplaySet.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerOutletDisplaySet = [:]

@@ -24,7 +24,7 @@ let TRACE_TRANSIENT_TRIGGER = false
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum PMTransientIndex {
+enum PMTransientIndex : Int {
   case kTriggerOutletDisplay // 0
   case k_preference_2E_Prefs_2E_mUpperCaseFullName // 1
   case k_preference_2E_Prefs_2E_mFullName // 2
@@ -36,18 +36,9 @@ enum PMTransientIndex {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMTriggerProtocol {
-  var mTransientIndex : PMTransientIndex { get }
-  func noteTransientDidChange ()
-  func trigger ()
-  func unregister ()
-  var uniqueIndex : Int { get }
-}
-
-
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol {
   weak var mTriggerObject : Prefs? = nil
 
   func userClassName () -> String { return "PMTrigger_preference.Prefs.mUpperCaseFullName" }
@@ -81,7 +72,7 @@ class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol, P
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol, PMUserClassName {
+class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol {
   weak var mTriggerObject : Prefs? = nil
 
   func userClassName () -> String { return "PMTrigger_preference.Prefs.mFullName" }
@@ -122,7 +113,7 @@ class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol, PMUserClas
 
 func enterTriggerWithObject (inObject : PMTriggerProtocol) {
   var theApp = NSApp as PMApplication
-  theApp.enterTriggerWithObject (inObject) ;
+  theApp.postTransientEvent (inObject) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -133,7 +124,7 @@ func enterTriggerWithObject (inObject : PMTriggerProtocol) {
 
 func flushTriggers () {
   var theApp = NSApp as PMApplication
-  theApp.runTriggers ()
+  theApp.flushTransientEvents ()
   displayAllocation ()
 }
 
@@ -149,14 +140,53 @@ func flushTriggers () {
  
   //-------------------------------------------------------------------------------------------------------------------*
 
+  @IBOutlet var mTransientEventExplorerWindow : NSWindow?
+  @IBOutlet var mTransientEventExplorerTextView : NSTextView?
+ 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func awakeFromNib () {
+    var menuItem = NSMenuItem (
+      title:"Show Transient Event Log Window",
+      action:"showTransientEventLogWindow:",
+      keyEquivalent:""
+    )
+    addItemToDebugMenu (menuItem)
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func showTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+    mTransientEventExplorerWindow?.makeKeyAndOrderFront (sender)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  @IBAction func clearTransientEventLogWindow (sender : NSObject) {
+    mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func logEvents () -> Bool {
+    return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.visible
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTriggerProtocol] = [:] // 1
   private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTriggerProtocol] = [:] // 2
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func enterTriggerWithObject (inObject : PMTriggerProtocol) {
-    inObject.noteTransientDidChange ()
+  private func postTransientEvent (inObject : PMTriggerProtocol) {
     let transientIndex = inObject.mTransientIndex
+    if logEvents () {
+      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+      mTransientEventExplorerTextView?.appendMessageString (str)
+    }
+    inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
@@ -182,7 +212,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send event done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
   }
@@ -196,7 +226,7 @@ func flushTriggers () {
     mLevel -= 1
     // NSLog ("send action done %d", mLevel)
     if 0 == mLevel {
-      runTriggers ()
+      flushTransientEvents ()
       displayAllocation ()
     }
     return result
@@ -204,21 +234,39 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private func runTriggers () {
+  private func flushTransientEvents () {
     if mTriggerSet_preference_2E_Prefs_2E_mFullName.count > 0 { // 2
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: preference.Prefs.mFullName\n")
+      }
       for object in mTriggerSet_preference_2E_Prefs_2E_mFullName.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_preference_2E_Prefs_2E_mFullName = [:]
     }    
     if mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.count > 0 { // 1
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: preference.Prefs.mUpperCaseFullName\n")
+      }
       for object in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
+      }
       for object in mTriggerOutletDisplaySet.values {
+        if logEvents () {
+          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+        }
         object.trigger ()
       }
       mTriggerOutletDisplaySet = [:]
