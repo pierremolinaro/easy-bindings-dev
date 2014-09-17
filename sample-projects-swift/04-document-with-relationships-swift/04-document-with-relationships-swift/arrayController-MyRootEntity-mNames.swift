@@ -340,10 +340,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     var newObject : NameEntity = NameEntity (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
     array.addObject (newObject)
+    mObject.mNames = array
     if mSelectNewObject {
       mSelectedObjectArray = NSArray (object:newObject)
     }
-    mObject.mNames = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

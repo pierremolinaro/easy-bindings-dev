@@ -335,22 +335,24 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   func remove (inSender : AnyObject!) {
-    if let tableView = mTableView {
-      var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
-      for object in mSelectedObjectArray {
-        newObjectArray.removeObjectIdenticalTo (object)
-      }
-      if newObjectArray.count == 0 {
-        mSelectedObjectArray = NSArray ()
-      }else{
-        let idx = tableView.selectedRow
-        if idx < mCurrentObjectArray.count {
-          mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
-        }else{
-          mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+    if mSelectedObjectArray.count > 0 {
+      if let tableView = mTableView {
+        var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+        for object in mSelectedObjectArray {
+          newObjectArray.removeObjectIdenticalTo (object)
         }
+        if newObjectArray.count == 0 {
+          mSelectedObjectArray = NSArray ()
+        }else{
+          let idx = tableView.selectedRow
+          if idx < mCurrentObjectArray.count {
+            mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
+          }else{
+            mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+          }
+        }
+        mObject.mNames = newObjectArray
       }
-      mObject.mNames = newObjectArray
     }
   }
 
