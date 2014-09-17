@@ -340,10 +340,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     var newObject : NameEntity = NameEntity (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
     array.addObject (newObject)
-    mObject.mNames = array
     if mSelectNewObject {
       mSelectedObjectArray = NSArray (object:newObject)
     }
+    mObject.mNames = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -356,8 +356,17 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       for object in mSelectedObjectArray {
         newObjectArray.removeObjectIdenticalTo (object)
       }
+      if newObjectArray.count == 0 {
+        mSelectedObjectArray = NSArray ()
+      }else{
+        let idx = tableView.selectedRow
+        if idx < mCurrentObjectArray.count {
+          mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
+        }else{
+          mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+        }
+      }
       mObject.mNames = newObjectArray
-      mSelectedObjectArray = NSArray ()
     }
   }
 
