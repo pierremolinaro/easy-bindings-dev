@@ -324,10 +324,10 @@ end
     var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
     array.addObject (newObject)
-    mObject.%!RELATIONSHIP_NAME% = array
     if mSelectNewObject {
       mSelectedObjectArray = NSArray (object:newObject)
     }
+    mObject.%!RELATIONSHIP_NAME% = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -340,8 +340,17 @@ end
       for object in mSelectedObjectArray {
         newObjectArray.removeObjectIdenticalTo (object)
       }
+      if newObjectArray.count == 0 {
+        mSelectedObjectArray = NSArray ()
+      }else{
+        let idx = tableView.selectedRow
+        if idx < mCurrentObjectArray.count {
+          mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
+        }else{
+          mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+        }
+      }
       mObject.mNames = newObjectArray
-      mSelectedObjectArray = NSArray ()
     }
   }
 
