@@ -24,28 +24,28 @@ var g_MyPrefs : MyPrefs? = nil
   //    Attribute: myPrefString                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var myPrefString_observers : [Int : PMTriggerProtocol] = [:]
+  var myPrefString_observers : [Int : PMTransientEventProtocol] = [:]
   var myPrefString : String = "pref string" {
     didSet {
       if myPrefString != oldValue {
         for object in myPrefString_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_myPrefString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_myPrefString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myPrefString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myPrefString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myPrefString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myPrefString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -55,7 +55,7 @@ var g_MyPrefs : MyPrefs? = nil
   //    Transient: prefTransientString                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var prefTransientString_observers : [Int : PMTriggerProtocol] = [:]
+  private var prefTransientString_observers : [Int : PMTransientEventProtocol] = [:]
   private var prefTransientString_cache : String?
   var prefTransientString : String {
     get {
@@ -73,30 +73,30 @@ var g_MyPrefs : MyPrefs? = nil
 
   func preference_2E_MyPrefs_2E_prefTransientString_trigger () {
     for object in prefTransientString_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
  
-   func addObserverOf_prefTransientString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_prefTransientString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     prefTransientString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_prefTransientString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_prefTransientString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     prefTransientString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString_cache : PMTrigger_preference_2E_MyPrefs_2E_prefTransientString? = nil
-  var triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString : PMTrigger_preference_2E_MyPrefs_2E_prefTransientString {
-    if triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString_cache == nil {
-      triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString_cache = PMTrigger_preference_2E_MyPrefs_2E_prefTransientString (object:self)
+  var event_preference_2E_MyPrefs_2E_prefTransientString_cache : PMEvent_preference_2E_MyPrefs_2E_prefTransientString? = nil
+  var event_preference_2E_MyPrefs_2E_prefTransientString : PMEvent_preference_2E_MyPrefs_2E_prefTransientString {
+    if event_preference_2E_MyPrefs_2E_prefTransientString_cache == nil {
+      event_preference_2E_MyPrefs_2E_prefTransientString_cache = PMEvent_preference_2E_MyPrefs_2E_prefTransientString (object:self)
     }
-    return triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString_cache!
+    return event_preference_2E_MyPrefs_2E_prefTransientString_cache!
   }
 
 
@@ -142,7 +142,7 @@ var g_MyPrefs : MyPrefs? = nil
     if nil == myPrefStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
     }
-    addObserverOf_myPrefString (triggerObjectFor_preference_2E_MyPrefs_2E_prefTransientString, inTrigger:true)
+    addObserverOf_myPrefString (event_preference_2E_MyPrefs_2E_prefTransientString, inTrigger:true)
     mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:self, outlet:myPrefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
   }
   

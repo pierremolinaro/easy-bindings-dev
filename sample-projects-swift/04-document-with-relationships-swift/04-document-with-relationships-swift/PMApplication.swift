@@ -38,8 +38,6 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//---------------------------------------------------------------------------------------------------------------------*
-
 class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtocol {
   weak private var mObserver : PMDocument? = nil
 
@@ -50,7 +48,7 @@ class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtoc
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : PMDocument) {
+  init (object : PMDocument?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -71,7 +69,6 @@ class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtoc
     mObserver?.document_2E_PMDocument_2E_canRemoveString_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProtocol {
@@ -84,7 +81,7 @@ class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProto
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : PMDocument) {
+  init (object : PMDocument?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -105,7 +102,6 @@ class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProto
     mObserver?.document_2E_PMDocument_2E_countItemMessage_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
@@ -118,7 +114,7 @@ class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : PMDocument) {
+  init (object : PMDocument?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -139,7 +135,6 @@ class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
     mObserver?.document_2E_PMDocument_2E_total_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtocol {
@@ -152,7 +147,7 @@ class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtoco
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : PMDocument) {
+  init (object : PMDocument?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -200,6 +195,17 @@ func flushTriggers () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//    A P P E N D    T O    T R A N S I E N T    E V E N T    L O G                                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendToTransientEventLog (message : String) {
+  var theApp = NSApp as PMApplication
+  theApp.appendToTransientEventLog (message)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //    A P P L I C A T I O N    C L A S S                                                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -236,6 +242,14 @@ func flushTriggers () {
  
   @IBAction func clearTransientEventLogWindow (sender : NSObject) {
     mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func appendToTransientEventLog (message : String) {
+    if logEvents () {
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blueColor ())
+    }
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

@@ -18,14 +18,14 @@ protocol MyRootEntity_docString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var docString_explorer : NSTextField? = nil
-  private var docString_observers : [Int : PMTriggerProtocol] = [:]
+  private var docString_observers : [Int : PMTransientEventProtocol] = [:]
   var docString : String = "doc string" {
     didSet {
       if docString != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docString:", object:oldValue)
         docString_explorer?.stringValue = docString
         for object in docString_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -35,17 +35,17 @@ protocol MyRootEntity_docString {
     docString = value
   }
 
-  func addObserverOf_docString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_docString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     docString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_docString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_docString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     docString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -59,10 +59,10 @@ protocol MyRootEntity_docString {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Register trigger objects
-    g_MyPrefs?.addObserverOf_myPrefString (triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:true)
-    addObserverOf_docString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
-    g_MyPrefs?.addObserverOf_myPrefString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
-    g_MyPrefs?.addObserverOf_prefTransientString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
+    g_MyPrefs?.addObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:true)
+    addObserverOf_docString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
+    g_MyPrefs?.addObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
+    g_MyPrefs?.addObserverOf_prefTransientString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -80,10 +80,10 @@ protocol MyRootEntity_docString {
 
   deinit {
   //--- Unregister trigger objects
-    g_MyPrefs?.removeObserverOf_myPrefString (triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:false)
-    removeObserverOf_docString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
-    g_MyPrefs?.removeObserverOf_myPrefString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
-    g_MyPrefs?.removeObserverOf_prefTransientString (triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
+    g_MyPrefs?.removeObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:false)
+    removeObserverOf_docString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
+    g_MyPrefs?.removeObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
+    g_MyPrefs?.removeObserverOf_prefTransientString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -130,7 +130,7 @@ protocol MyRootEntity_docString {
   //    Transient: otherTransientConcatString                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var otherTransientConcatString_observers : [Int : PMTriggerProtocol] = [:]
+  private var otherTransientConcatString_observers : [Int : PMTransientEventProtocol] = [:]
   private var otherTransientConcatString_cache : String?
   var otherTransientConcatString : String {
     get {
@@ -149,37 +149,37 @@ protocol MyRootEntity_docString {
 
   func entity_2E_MyRootEntity_2E_otherTransientConcatString_trigger () {
     for object in otherTransientConcatString_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
 
-   func addObserverOf_otherTransientConcatString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_otherTransientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     otherTransientConcatString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_otherTransientConcatString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_otherTransientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     otherTransientConcatString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache : PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString? = nil
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString {
-    if nil == triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache {
-      triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache = PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString (object:self)
+  var event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache : PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString? = nil
+  var event_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString {
+    if nil == event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache {
+      event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache = PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString (object:self)
     }
-    return triggerObjectFor_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache!
+    return event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache!
   }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: transientConcatString                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var transientConcatString_observers : [Int : PMTriggerProtocol] = [:]
+  private var transientConcatString_observers : [Int : PMTransientEventProtocol] = [:]
   private var transientConcatString_cache : String?
   var transientConcatString : String {
     get {
@@ -198,30 +198,30 @@ protocol MyRootEntity_docString {
 
   func entity_2E_MyRootEntity_2E_transientConcatString_trigger () {
     for object in transientConcatString_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
 
-   func addObserverOf_transientConcatString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_transientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     transientConcatString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_transientConcatString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_transientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     transientConcatString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString_cache : PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString? = nil
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString : PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString {
-    if nil == triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString_cache {
-      triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString_cache = PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString (object:self)
+  var event_entity_2E_MyRootEntity_2E_transientConcatString_cache : PMEvent_entity_2E_MyRootEntity_2E_transientConcatString? = nil
+  var event_entity_2E_MyRootEntity_2E_transientConcatString : PMEvent_entity_2E_MyRootEntity_2E_transientConcatString {
+    if nil == event_entity_2E_MyRootEntity_2E_transientConcatString_cache {
+      event_entity_2E_MyRootEntity_2E_transientConcatString_cache = PMEvent_entity_2E_MyRootEntity_2E_transientConcatString (object:self)
     }
-    return triggerObjectFor_entity_2E_MyRootEntity_2E_transientConcatString_cache!
+    return event_entity_2E_MyRootEntity_2E_transientConcatString_cache!
   }
  
   //-------------------------------------------------------------------------------------------------------------------*

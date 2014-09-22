@@ -28,7 +28,6 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //    T R A N S I E N T    T R I G G E R    C L A S S E S                                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -52,6 +51,17 @@ func flushTriggers () {
   var theApp = NSApp as PMApplication
   theApp.flushTransientEvents ()
   displayAllocation ()
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//    A P P E N D    T O    T R A N S I E N T    E V E N T    L O G                                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendToTransientEventLog (message : String) {
+  var theApp = NSApp as PMApplication
+  theApp.appendToTransientEventLog (message)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -92,6 +102,14 @@ func flushTriggers () {
  
   @IBAction func clearTransientEventLogWindow (sender : NSObject) {
     mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func appendToTransientEventLog (message : String) {
+    if logEvents () {
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blueColor ())
+    }
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
