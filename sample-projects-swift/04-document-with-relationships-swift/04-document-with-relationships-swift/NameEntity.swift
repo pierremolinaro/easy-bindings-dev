@@ -24,14 +24,14 @@ protocol NameEntity_name {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var aValue_explorer : NSTextField? = nil
-  private var aValue_observers : [Int : PMTriggerProtocol] = [:]
+  private var aValue_observers : [Int : PMTransientEventProtocol] = [:]
   var aValue : Int = 123 {
     didSet {
       if aValue != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:NSNumber (integer:oldValue))
         aValue_explorer?.stringValue = NSString (format:"%ld", aValue)
         for object in aValue_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -41,17 +41,17 @@ protocol NameEntity_name {
     aValue = value.integerValue
   }
 
-  func addObserverOf_aValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     aValue_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_aValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     aValue_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -63,14 +63,14 @@ protocol NameEntity_name {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var name_explorer : NSTextField? = nil
-  private var name_observers : [Int : PMTriggerProtocol] = [:]
+  private var name_observers : [Int : PMTransientEventProtocol] = [:]
   var name : String = "Name" {
     didSet {
       if name != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue)
         name_explorer?.stringValue = name
         for object in name_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -80,17 +80,17 @@ protocol NameEntity_name {
     name = value
   }
 
-  func addObserverOf_name (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     name_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_name (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     name_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -100,7 +100,7 @@ protocol NameEntity_name {
   //    To one relationship: mRoot                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mRoot_observers : [Int : PMTriggerProtocol] = [:]
+  private var mRoot_observers : [Int : PMTransientEventProtocol] = [:]
   private var mRoot_explorer : NSButton?
   var mRoot : MyRootEntity? = nil {
     didSet {
@@ -131,7 +131,7 @@ protocol NameEntity_name {
         }
       //--- Notify observers
         for object in mRoot_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -141,17 +141,17 @@ protocol NameEntity_name {
     mRoot = object
   }
 
-  func addObserverOf_mRoot (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mRoot (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mRoot_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  func removeObserverOf_mRoot (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mRoot (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mRoot_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 

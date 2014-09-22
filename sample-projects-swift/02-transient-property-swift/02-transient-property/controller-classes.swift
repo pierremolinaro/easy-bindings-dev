@@ -5,7 +5,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mFirstName_PMTextField_value)
-class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
@@ -98,7 +98,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -113,7 +113,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTriggerProtoco
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mFullName_PMTextField_rvalue)
-class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
@@ -174,7 +174,7 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -189,7 +189,7 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTriggerProtoco
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mName_PMTextField_value)
-class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
@@ -282,7 +282,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol, PM
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -297,7 +297,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTriggerProtocol, PM
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue)
-class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
   weak var mOutlet: PMTextField? = nil
@@ -358,7 +358,7 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTrigg
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

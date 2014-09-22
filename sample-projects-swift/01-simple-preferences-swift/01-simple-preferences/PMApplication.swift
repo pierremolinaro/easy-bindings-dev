@@ -3,10 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-let TRACE_TRANSIENT_TRIGGER = false
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
 //                                                                                                                     *
@@ -37,11 +33,11 @@ enum PMTransientIndex : Int {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    F U N C T I O N                                                            *
+//    P O S T    T R A N S I E N T    E V E N T                                                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+func postTransientEvent (inObject : PMTransientEventProtocol) {
   var theApp = NSApp as PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -67,7 +63,7 @@ func flushTriggers () {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 1
-  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -109,8 +105,8 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTriggerProtocol) {
-    let transientIndex = inObject.mTransientIndex
+  private func postTransientEvent (inObject : PMTransientEventProtocol) {
+    let transientIndex = inObject.transientEventIndex
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :

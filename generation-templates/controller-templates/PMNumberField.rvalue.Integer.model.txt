@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue)
-class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -63,7 +63,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTrigge
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

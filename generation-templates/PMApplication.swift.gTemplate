@@ -3,10 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-let TRACE_TRANSIENT_TRIGGER = false
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
 //                                                                                                                     *
@@ -44,24 +40,24 @@ do index idx
 %
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_%![mValue identifierRepresentation]% : PMTriggerProtocol {
-  weak var mTriggerObject : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
+class PMEvent_%![mValue identifierRepresentation]% : PMTransientEventProtocol {
+  weak private var mObserver : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
 
-  func userClassName () -> String { return "PMTrigger_%!mValue%" }
+  func userClassName () -> String { return "PMEvent_%!mValue%" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_%![mValue identifierRepresentation]% } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_%![mValue identifierRepresentation]% } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : %![[mValue stringByDeletingPathExtension] pathExtension]%) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.%![mValue identifierRepresentation]%_noteDidChange ()
+    mObserver?.%![mValue identifierRepresentation]%_noteDidChange ()
   }
 
   func unregister () {
@@ -72,18 +68,18 @@ class PMTrigger_%![mValue identifierRepresentation]% : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.%![mValue identifierRepresentation]%_trigger ()
+    mObserver?.%![mValue identifierRepresentation]%_trigger ()
   }
 }
 %end%
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    F U N C T I O N                                                            *
+//    P O S T    T R A N S I E N T    E V E N T                                                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+func postTransientEvent (inObject : PMTransientEventProtocol) {
   var theApp = NSApp as PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -109,7 +105,7 @@ func flushTriggers () {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = %![[TRANSIENT_LIST length] + 1 string]%
-  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -150,13 +146,13 @@ func flushTriggers () {
 
 %
   for () in TRANSIENT_LIST do index idx
-%  private var mTriggerSet_%![mValue identifierRepresentation]% : [Int : PMTriggerProtocol] = [:] // %![idx+1 string]%\n%
+%  private var mTriggerSet_%![mValue identifierRepresentation]% : [Int : PMTransientEventProtocol] = [:] // %![idx+1 string]%\n%
   end  
 %
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTriggerProtocol) {
-    let transientIndex = inObject.mTransientIndex
+  private func postTransientEvent (inObject : PMTransientEventProtocol) {
+    let transientIndex = inObject.transientEventIndex
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
@@ -183,10 +179,7 @@ func flushTriggers () {
           mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
         }
       }
-      mTriggerSet_%![mValue identifierRepresentation]% [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger %!mValue%, \%d objects", mTriggerSet_%![mValue identifierRepresentation]%.count)
-      }\n%
+      mTriggerSet_%![mValue identifierRepresentation]% [inObject.uniqueIndex] = inObject\n%
 end%    }
   }
 

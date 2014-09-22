@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date)
-class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMDatePicker? = nil
@@ -69,7 +69,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

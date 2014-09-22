@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value)
-class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -95,7 +95,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTrigger
 
    //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
