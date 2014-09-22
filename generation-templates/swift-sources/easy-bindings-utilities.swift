@@ -141,17 +141,16 @@ protocol PMUserClassName {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//    PMTriggerProtocol protocol                                                                                       *
+//    PMTransientEventProtocol protocol                                                                                *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMTriggerProtocol : PMUserClassName {
-  var mTransientIndex : PMTransientIndex { get }
+protocol PMTransientEventProtocol : PMUserClassName {
+  var transientEventIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
   var uniqueIndex : Int { get }
 }
-
 
 //---------------------------------------------------------------------------------------------------------------------*
 //    NSTExtView extension                                                                                             *

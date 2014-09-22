@@ -40,24 +40,24 @@ for () in ATTRIBUTE_LIST do
     didSet {
       if %!mAttributeName% != oldValue {
         for anyObject in %!mAttributeName%_observers {
-          let object = anyObject as PMTriggerProtocol
-          enterTriggerWithObject (object)
+          let object = anyObject as PMTransientEventProtocol
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.addObject (inObserver)
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers.removeObject (inObserver)
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 %if not mNeedsValidation then%
@@ -104,13 +104,13 @@ for () in ARRAY_CONTROLLER_LIST do
     %!mControllerName%?.arrayModelSizeDidChange ()
   }
 
-  private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache : PMTrigger_document_2E_PMDocument_2E_%!mControllerName%?
-  private var triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName% : PMTrigger_document_2E_PMDocument_2E_%!mControllerName% {
+  private var event_document_2E_PMDocument_2E_%!mControllerName%_cache : PMEvent_document_2E_PMDocument_2E_%!mControllerName%?
+  private var event_document_2E_PMDocument_2E_%!mControllerName% : PMEvent_document_2E_PMDocument_2E_%!mControllerName% {
     get {
-      if triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache == nil {
-        triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache = PMTrigger_document_2E_PMDocument_2E_%!mControllerName% (object:self)
+      if event_document_2E_PMDocument_2E_%!mControllerName%_cache == nil {
+        event_document_2E_PMDocument_2E_%!mControllerName%_cache = PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self)
       }
-      return triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%_cache!
+      return event_document_2E_PMDocument_2E_%!mControllerName%_cache!
     }
   }
 
@@ -121,7 +121,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
 %if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%  var mControllerArray : [PMTriggerProtocol] = []\n\n%
+%  var mControllerArray : [PMTransientEventProtocol] = []\n\n%
 %  //-------------------------------------------------------------------------------------------------------------------*\n\n%
 end
 %  override func windowControllerDidLoadNib (aController: NSWindowController) {
@@ -148,13 +148,13 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+%    %![mDependency generateAddObserverCall]% (event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
 end
 end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.addObserverOf_%!mTomanyRelationshipName% (triggerObjectFor_document_2E_PMDocument_2E_%!mControllerName%, inTrigger:false)\n%
+%    rootObject.addObserverOf_%!mTomanyRelationshipName% (event_document_2E_PMDocument_2E_%!mControllerName%, inTrigger:false)\n%
 end
 %  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do
@@ -200,7 +200,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mTransientName%_observers : [Int : PMTriggerProtocol] = [:]\n%
+%  var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -222,30 +222,30 @@ end
 
   func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
     for object in %!mTransientName%_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
  
-   func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mTransientName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% {
-    if triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
-      triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache = PMTrigger_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+  var event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% {
+    if event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
+      event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache!
+    return event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache!
   }\n
 %end
 %

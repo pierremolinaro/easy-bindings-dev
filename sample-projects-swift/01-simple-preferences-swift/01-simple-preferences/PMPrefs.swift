@@ -32,28 +32,28 @@ var g_PMPrefs : PMPrefs? = nil
   //    Attribute: mColor                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mColor_observers : [Int : PMTriggerProtocol] = [:]
+  var mColor_observers : [Int : PMTransientEventProtocol] = [:]
   var mColor : NSColor = NSColor.yellowColor () {
     didSet {
       if mColor != oldValue {
         for object in mColor_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_mColor (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mColor_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_mColor (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mColor_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -64,28 +64,28 @@ var g_PMPrefs : PMPrefs? = nil
   //    Attribute: mDate                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mDate_observers : [Int : PMTriggerProtocol] = [:]
+  var mDate_observers : [Int : PMTransientEventProtocol] = [:]
   var mDate : NSDate = NSDate () {
     didSet {
       if mDate != oldValue {
         for object in mDate_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_mDate (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mDate (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mDate_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_mDate (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mDate (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mDate_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -96,28 +96,28 @@ var g_PMPrefs : PMPrefs? = nil
   //    Attribute: mIntegerValue                                                                                       *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mIntegerValue_observers : [Int : PMTriggerProtocol] = [:]
+  var mIntegerValue_observers : [Int : PMTransientEventProtocol] = [:]
   var mIntegerValue : Int = 123 {
     didSet {
       if mIntegerValue != oldValue {
         for object in mIntegerValue_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_mIntegerValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mIntegerValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mIntegerValue_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_mIntegerValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mIntegerValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mIntegerValue_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -125,28 +125,28 @@ var g_PMPrefs : PMPrefs? = nil
   //    Attribute: myString                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var myString_observers : [Int : PMTriggerProtocol] = [:]
+  var myString_observers : [Int : PMTransientEventProtocol] = [:]
   var myString : String = "hello" {
     didSet {
       if myString != oldValue {
         for object in myString_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_myString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 

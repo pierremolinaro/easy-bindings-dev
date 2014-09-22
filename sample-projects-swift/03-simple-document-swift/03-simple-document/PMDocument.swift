@@ -57,7 +57,7 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray : [PMTriggerProtocol] = []
+  var mControllerArray : [PMTransientEventProtocol] = []
 
   //-------------------------------------------------------------------------------------------------------------------*
 

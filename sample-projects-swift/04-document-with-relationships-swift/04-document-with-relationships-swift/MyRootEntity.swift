@@ -10,9 +10,9 @@ import Cocoa
   //    To many relationship: mNames                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mNames_aValue_observers : [Int : PMTriggerProtocol] = [:]
+  private var mNames_aValue_observers : [Int : PMTransientEventProtocol] = [:]
 
-  func addObserverOf_mNames_aValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mNames_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_aValue_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in mNames {
       let managedObject = object as NameEntity
@@ -20,7 +20,7 @@ import Cocoa
     }
   }
 
-  func removeObserverOf_mNames_aValue (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mNames_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_aValue_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in mNames {
       let managedObject = object as NameEntity
@@ -30,9 +30,9 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mNames_name_observers : [Int : PMTriggerProtocol] = [:]
+  private var mNames_name_observers : [Int : PMTransientEventProtocol] = [:]
 
-  func addObserverOf_mNames_name (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mNames_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_name_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in mNames {
       let managedObject = object as NameEntity
@@ -40,7 +40,7 @@ import Cocoa
     }
   }
 
-  func removeObserverOf_mNames_name (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mNames_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_name_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in mNames {
       let managedObject = object as NameEntity
@@ -50,7 +50,7 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mNames_observers : [Int : PMTriggerProtocol] = [:]
+  private var mNames_observers : [Int : PMTransientEventProtocol] = [:]
   private var mNames_explorer : NSPopUpButton?
   var mNames : NSMutableArray = NSMutableArray () { // Set of NameEntity entities
     didSet {
@@ -91,7 +91,7 @@ import Cocoa
         }
       //--- Notify observers object count did change
         for object in mNames_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -101,27 +101,27 @@ import Cocoa
     mNames = object
   }
 
-  func addObserverOf_mNames (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mNames (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  func removeObserverOf_mNames (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mNames (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
   
   var mNames_count : Int { get { return mNames.count } }
 
-  func addObserverOf_mNames_count (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_mNames_count (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     addObserverOf_mNames (inObserver, inTrigger:inTrigger)
   }
 
-  func removeObserverOf_mNames_count (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_mNames_count (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     removeObserverOf_mNames (inObserver, inTrigger:inTrigger)
   }
 

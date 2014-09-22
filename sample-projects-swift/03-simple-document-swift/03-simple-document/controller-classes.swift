@@ -5,7 +5,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myColor_PMColorWell_color)
-class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMColorWell? = nil
@@ -111,7 +111,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -126,7 +126,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTriggerPro
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex)
-class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMMatrix? = nil
@@ -196,7 +196,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -211,7 +211,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myString_PMTextField_value)
-class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
@@ -304,7 +304,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -319,7 +319,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTriggerPr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringConcat_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
@@ -380,7 +380,7 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -395,7 +395,7 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringMaj_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
@@ -456,7 +456,7 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrigg
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -471,7 +471,7 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrigg
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_myStringMin_PMTextField_rvalue)
-class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMTextField? = nil
@@ -532,7 +532,7 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrigg
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

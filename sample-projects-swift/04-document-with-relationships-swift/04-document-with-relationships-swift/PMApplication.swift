@@ -3,10 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-let TRACE_TRANSIENT_TRIGGER = false
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
 //                                                                                                                     *
@@ -44,24 +40,24 @@ enum PMTransientIndex : Int {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol {
-  weak var mTriggerObject : PMDocument? = nil
+class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtocol {
+  weak private var mObserver : PMDocument? = nil
 
-  func userClassName () -> String { return "PMTrigger_document.PMDocument.canRemoveString" }
+  func userClassName () -> String { return "PMEvent_document.PMDocument.canRemoveString" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.document_2E_PMDocument_2E_canRemoveString_noteDidChange ()
+    mObserver?.document_2E_PMDocument_2E_canRemoveString_noteDidChange ()
   }
 
   func unregister () {
@@ -72,30 +68,30 @@ class PMTrigger_document_2E_PMDocument_2E_canRemoveString : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.document_2E_PMDocument_2E_canRemoveString_trigger ()
+    mObserver?.document_2E_PMDocument_2E_canRemoveString_trigger ()
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol {
-  weak var mTriggerObject : PMDocument? = nil
+class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProtocol {
+  weak private var mObserver : PMDocument? = nil
 
-  func userClassName () -> String { return "PMTrigger_document.PMDocument.countItemMessage" }
+  func userClassName () -> String { return "PMEvent_document.PMDocument.countItemMessage" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.document_2E_PMDocument_2E_countItemMessage_noteDidChange ()
+    mObserver?.document_2E_PMDocument_2E_countItemMessage_noteDidChange ()
   }
 
   func unregister () {
@@ -106,30 +102,30 @@ class PMTrigger_document_2E_PMDocument_2E_countItemMessage : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.document_2E_PMDocument_2E_countItemMessage_trigger ()
+    mObserver?.document_2E_PMDocument_2E_countItemMessage_trigger ()
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol {
-  weak var mTriggerObject : PMDocument? = nil
+class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
+  weak private var mObserver : PMDocument? = nil
 
-  func userClassName () -> String { return "PMTrigger_document.PMDocument.total" }
+  func userClassName () -> String { return "PMEvent_document.PMDocument.total" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_total } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_total } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.document_2E_PMDocument_2E_total_noteDidChange ()
+    mObserver?.document_2E_PMDocument_2E_total_noteDidChange ()
   }
 
   func unregister () {
@@ -140,30 +136,30 @@ class PMTrigger_document_2E_PMDocument_2E_total : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.document_2E_PMDocument_2E_total_trigger ()
+    mObserver?.document_2E_PMDocument_2E_total_trigger ()
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol {
-  weak var mTriggerObject : PMDocument? = nil
+class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtocol {
+  weak private var mObserver : PMDocument? = nil
 
-  func userClassName () -> String { return "PMTrigger_document.PMDocument.nameController" }
+  func userClassName () -> String { return "PMEvent_document.PMDocument.nameController" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_nameController } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_document_2E_PMDocument_2E_nameController } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : PMDocument) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.document_2E_PMDocument_2E_nameController_noteDidChange ()
+    mObserver?.document_2E_PMDocument_2E_nameController_noteDidChange ()
   }
 
   func unregister () {
@@ -174,18 +170,18 @@ class PMTrigger_document_2E_PMDocument_2E_nameController : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.document_2E_PMDocument_2E_nameController_trigger ()
+    mObserver?.document_2E_PMDocument_2E_nameController_trigger ()
   }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    F U N C T I O N                                                            *
+//    P O S T    T R A N S I E N T    E V E N T                                                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+func postTransientEvent (inObject : PMTransientEventProtocol) {
   var theApp = NSApp as PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -211,7 +207,7 @@ func flushTriggers () {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 5
-  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -250,15 +246,15 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTriggerProtocol] = [:] // 1
-  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTriggerProtocol] = [:] // 2
-  private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTriggerProtocol] = [:] // 3
-  private var mTriggerSet_document_2E_PMDocument_2E_nameController : [Int : PMTriggerProtocol] = [:] // 4
+  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTransientEventProtocol] = [:] // 1
+  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTransientEventProtocol] = [:] // 2
+  private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTransientEventProtocol] = [:] // 3
+  private var mTriggerSet_document_2E_PMDocument_2E_nameController : [Int : PMTransientEventProtocol] = [:] // 4
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTriggerProtocol) {
-    let transientIndex = inObject.mTransientIndex
+  private func postTransientEvent (inObject : PMTransientEventProtocol) {
+    let transientIndex = inObject.transientEventIndex
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
@@ -285,9 +281,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger document.PMDocument.canRemoveString, %d objects", mTriggerSet_document_2E_PMDocument_2E_canRemoveString.count)
-      }
     case PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage :
       if logEvents () {
         let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
@@ -300,9 +293,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger document.PMDocument.countItemMessage, %d objects", mTriggerSet_document_2E_PMDocument_2E_countItemMessage.count)
-      }
     case PMTransientIndex.k_document_2E_PMDocument_2E_total :
       if logEvents () {
         let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
@@ -315,9 +305,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger document.PMDocument.total, %d objects", mTriggerSet_document_2E_PMDocument_2E_total.count)
-      }
     case PMTransientIndex.k_document_2E_PMDocument_2E_nameController :
       if logEvents () {
         let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
@@ -330,9 +317,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_document_2E_PMDocument_2E_nameController [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger document.PMDocument.nameController, %d objects", mTriggerSet_document_2E_PMDocument_2E_nameController.count)
-      }
     }
   }
 

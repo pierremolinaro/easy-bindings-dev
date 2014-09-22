@@ -7,10 +7,10 @@ private let displayDebugMessage = false
 //    %!["TriggerFor_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTriggerProtocol {
+class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTransientEventProtocol {
   private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%? = nil
   
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
  
   private let mPrivateUniqueIndex : Int ;
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
@@ -126,7 +126,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
 end
 %    }
   }
@@ -145,7 +145,7 @@ end
 
   func arrayModelSizeDidChange () {
     if let trigger = mDisplayTrigger {
-      enterTriggerWithObject (trigger)
+      postTransientEvent (trigger)
     }
   }
   
@@ -209,7 +209,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
+%      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
 end
 %    }
   //--- Added object set
@@ -220,7 +220,7 @@ end
       let managedObject = object as  %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
-%      managedObject.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)\n%
+%      managedObject.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
 end
 %    }
     refreshDisplay ()
@@ -250,13 +250,13 @@ end
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerObjectForModelChange_cache : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
-  private var mTriggerObjectForModelChange : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% {
+  private var eventModelChange_cache : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
+  private var eventModelChange : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% {
     get {
-      if mTriggerObjectForModelChange_cache == nil {
-        mTriggerObjectForModelChange_cache = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object:self)
+      if eventModelChange_cache == nil {
+        eventModelChange_cache = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object:self)
       }
-      return mTriggerObjectForModelChange_cache!
+      return eventModelChange_cache!
     }
   }
 
@@ -304,9 +304,9 @@ for () in BOUND_COLUMNS do
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as %!ELEMENT_TYPE_NAME%
-        object.removeObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)
+        object.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)
         object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
-        object.addObserverOf_%!mObservablePropertyName% (mTriggerObjectForModelChange, inTrigger:false)
+        object.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)
       }
     }
   }
@@ -371,24 +371,24 @@ end
     if canRemove_private != newValue {
       canRemove_private = newValue
       for object in canRemove_observers.values {
-        enterTriggerWithObject (object)
+        postTransientEvent (object)
       }
     }
   }
   
-  private var canRemove_observers : [Int : PMTriggerProtocol] = [:]
+  private var canRemove_observers : [Int : PMTransientEventProtocol] = [:]
   
-  func addObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     canRemove_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     canRemove_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 

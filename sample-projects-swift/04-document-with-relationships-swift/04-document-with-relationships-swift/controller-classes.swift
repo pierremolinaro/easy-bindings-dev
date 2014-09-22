@@ -5,7 +5,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled)
-class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : ArrayController_MyRootEntity_mNames? = nil
   weak var mOutlet : PMButton? = nil
@@ -63,7 +63,7 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -78,7 +78,7 @@ class Controller_ArrayController_MyRootEntity_mNames_canRemove_PMButton_enabled 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_MyRootEntity_mNames_count_PMNumberField_rvalue)
-class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -142,7 +142,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -157,7 +157,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_canRemoveString_PMTextField_rvalue)
-class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
@@ -218,7 +218,7 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -233,7 +233,7 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTri
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_countItemMessage_PMTextField_rvalue)
-class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMTextField? = nil
@@ -294,7 +294,7 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -309,7 +309,7 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDocument_total_PMNumberField_rvalue)
-class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -373,7 +373,7 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTriggerProt
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

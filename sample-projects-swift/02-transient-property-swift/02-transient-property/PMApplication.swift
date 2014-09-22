@@ -3,10 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-let TRACE_TRANSIENT_TRIGGER = false
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
 //                                                                                                                     *
@@ -38,24 +34,24 @@ enum PMTransientIndex : Int {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol {
-  weak var mTriggerObject : Prefs? = nil
+class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtocol {
+  weak private var mObserver : Prefs? = nil
 
-  func userClassName () -> String { return "PMTrigger_preference.Prefs.mUpperCaseFullName" }
+  func userClassName () -> String { return "PMEvent_preference.Prefs.mUpperCaseFullName" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : Prefs) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.preference_2E_Prefs_2E_mUpperCaseFullName_noteDidChange ()
+    mObserver?.preference_2E_Prefs_2E_mUpperCaseFullName_noteDidChange ()
   }
 
   func unregister () {
@@ -66,30 +62,30 @@ class PMTrigger_preference_2E_Prefs_2E_mUpperCaseFullName : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.preference_2E_Prefs_2E_mUpperCaseFullName_trigger ()
+    mObserver?.preference_2E_Prefs_2E_mUpperCaseFullName_trigger ()
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol {
-  weak var mTriggerObject : Prefs? = nil
+class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
+  weak private var mObserver : Prefs? = nil
 
-  func userClassName () -> String { return "PMTrigger_preference.Prefs.mFullName" }
+  func userClassName () -> String { return "PMEvent_preference.Prefs.mFullName" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mFullName } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_Prefs_2E_mFullName } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
   init (object : Prefs) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.preference_2E_Prefs_2E_mFullName_noteDidChange ()
+    mObserver?.preference_2E_Prefs_2E_mFullName_noteDidChange ()
   }
 
   func unregister () {
@@ -100,18 +96,18 @@ class PMTrigger_preference_2E_Prefs_2E_mFullName : PMTriggerProtocol {
   }
 
   func trigger () {
-    mTriggerObject?.preference_2E_Prefs_2E_mFullName_trigger ()
+    mObserver?.preference_2E_Prefs_2E_mFullName_trigger ()
   }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    F U N C T I O N                                                            *
+//    P O S T    T R A N S I E N T    E V E N T                                                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+func postTransientEvent (inObject : PMTransientEventProtocol) {
   var theApp = NSApp as PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -137,7 +133,7 @@ func flushTriggers () {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 3
-  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -176,13 +172,13 @@ func flushTriggers () {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTriggerProtocol] = [:] // 1
-  private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTriggerProtocol] = [:] // 2
+  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTransientEventProtocol] = [:] // 1
+  private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTransientEventProtocol] = [:] // 2
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTriggerProtocol) {
-    let transientIndex = inObject.mTransientIndex
+  private func postTransientEvent (inObject : PMTransientEventProtocol) {
+    let transientIndex = inObject.transientEventIndex
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
@@ -209,9 +205,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger preference.Prefs.mUpperCaseFullName, %d objects", mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.count)
-      }
     case PMTransientIndex.k_preference_2E_Prefs_2E_mFullName :
       if logEvents () {
         let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
@@ -224,9 +217,6 @@ func flushTriggers () {
         }
       }
       mTriggerSet_preference_2E_Prefs_2E_mFullName [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger preference.Prefs.mFullName, %d objects", mTriggerSet_preference_2E_Prefs_2E_mFullName.count)
-      }
     }
   }
 

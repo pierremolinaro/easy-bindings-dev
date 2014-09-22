@@ -30,14 +30,14 @@ protocol MyRootEntity_myString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var myColor_explorer : NSTextField? = nil
-  private var myColor_observers : [Int : PMTriggerProtocol] = [:]
+  private var myColor_observers : [Int : PMTransientEventProtocol] = [:]
   var myColor : NSColor = NSColor.yellowColor () {
     didSet {
       if myColor != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue)
         myColor_explorer?.stringValue = myColor.description
         for object in myColor_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -47,17 +47,17 @@ protocol MyRootEntity_myString {
     myColor = value
   }
 
-  func addObserverOf_myColor (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_myColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myColor_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myColor (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myColor_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -69,14 +69,14 @@ protocol MyRootEntity_myString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var myEnumeration_explorer : NSTextField? = nil
-  private var myEnumeration_observers : [Int : PMTriggerProtocol] = [:]
+  private var myEnumeration_observers : [Int : PMTransientEventProtocol] = [:]
   var myEnumeration : MonEnumeration = MonEnumeration.deuxieme {
     didSet {
       if myEnumeration != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber (integer:oldValue.rawValue))
         myEnumeration_explorer?.stringValue = myEnumeration.string ()
         for object in myEnumeration_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -86,17 +86,17 @@ protocol MyRootEntity_myString {
     myEnumeration = MonEnumeration (rawValue:value.integerValue)!
   }
 
-  func addObserverOf_myEnumeration (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_myEnumeration (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myEnumeration_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myEnumeration (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myEnumeration (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myEnumeration_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -108,14 +108,14 @@ protocol MyRootEntity_myString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var myString_explorer : NSTextField? = nil
-  private var myString_observers : [Int : PMTriggerProtocol] = [:]
+  private var myString_observers : [Int : PMTransientEventProtocol] = [:]
   var myString : String = "Hello" {
     didSet {
       if myString != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue)
         myString_explorer?.stringValue = myString
         for object in myString_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
@@ -125,17 +125,17 @@ protocol MyRootEntity_myString {
     myString = value
   }
 
-  func addObserverOf_myString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myString_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myString (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myString_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
@@ -149,10 +149,10 @@ protocol MyRootEntity_myString {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Register trigger objects
-    addObserverOf_myStringMaj (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
-    addObserverOf_myStringMin (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
-    addObserverOf_myString (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:true)
-    addObserverOf_myString (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:true)
+    addObserverOf_myStringMaj (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
+    addObserverOf_myStringMin (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
+    addObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:true)
+    addObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -170,10 +170,10 @@ protocol MyRootEntity_myString {
 
   deinit {
   //--- Unregister trigger objects
-    removeObserverOf_myStringMaj (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:false)
-    removeObserverOf_myStringMin (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:false)
-    removeObserverOf_myString (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:false)
-    removeObserverOf_myString (triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:false)
+    removeObserverOf_myStringMaj (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:false)
+    removeObserverOf_myStringMin (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:false)
+    removeObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:false)
+    removeObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -234,7 +234,7 @@ protocol MyRootEntity_myString {
   //    Transient: myStringConcat                                                                                      *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var myStringConcat_observers : [Int : PMTriggerProtocol] = [:]
+  private var myStringConcat_observers : [Int : PMTransientEventProtocol] = [:]
   private var myStringConcat_cache : String?
   var myStringConcat : String {
     get {
@@ -253,37 +253,37 @@ protocol MyRootEntity_myString {
 
   func entity_2E_MyRootEntity_2E_myStringConcat_trigger () {
     for object in myStringConcat_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
 
-   func addObserverOf_myStringConcat (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_myStringConcat (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringConcat_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myStringConcat (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myStringConcat (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringConcat_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat_cache : PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat? = nil
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat : PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat {
-    if nil == triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat_cache {
-      triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat_cache = PMTrigger_entity_2E_MyRootEntity_2E_myStringConcat (object:self)
+  var event_entity_2E_MyRootEntity_2E_myStringConcat_cache : PMEvent_entity_2E_MyRootEntity_2E_myStringConcat? = nil
+  var event_entity_2E_MyRootEntity_2E_myStringConcat : PMEvent_entity_2E_MyRootEntity_2E_myStringConcat {
+    if nil == event_entity_2E_MyRootEntity_2E_myStringConcat_cache {
+      event_entity_2E_MyRootEntity_2E_myStringConcat_cache = PMEvent_entity_2E_MyRootEntity_2E_myStringConcat (object:self)
     }
-    return triggerObjectFor_entity_2E_MyRootEntity_2E_myStringConcat_cache!
+    return event_entity_2E_MyRootEntity_2E_myStringConcat_cache!
   }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: myStringMaj                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var myStringMaj_observers : [Int : PMTriggerProtocol] = [:]
+  private var myStringMaj_observers : [Int : PMTransientEventProtocol] = [:]
   private var myStringMaj_cache : String?
   var myStringMaj : String {
     get {
@@ -302,37 +302,37 @@ protocol MyRootEntity_myString {
 
   func entity_2E_MyRootEntity_2E_myStringMaj_trigger () {
     for object in myStringMaj_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
 
-   func addObserverOf_myStringMaj (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_myStringMaj (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringMaj_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myStringMaj (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myStringMaj (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringMaj_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj_cache : PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj? = nil
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj : PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj {
-    if nil == triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj_cache {
-      triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj_cache = PMTrigger_entity_2E_MyRootEntity_2E_myStringMaj (object:self)
+  var event_entity_2E_MyRootEntity_2E_myStringMaj_cache : PMEvent_entity_2E_MyRootEntity_2E_myStringMaj? = nil
+  var event_entity_2E_MyRootEntity_2E_myStringMaj : PMEvent_entity_2E_MyRootEntity_2E_myStringMaj {
+    if nil == event_entity_2E_MyRootEntity_2E_myStringMaj_cache {
+      event_entity_2E_MyRootEntity_2E_myStringMaj_cache = PMEvent_entity_2E_MyRootEntity_2E_myStringMaj (object:self)
     }
-    return triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMaj_cache!
+    return event_entity_2E_MyRootEntity_2E_myStringMaj_cache!
   }
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: myStringMin                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var myStringMin_observers : [Int : PMTriggerProtocol] = [:]
+  private var myStringMin_observers : [Int : PMTransientEventProtocol] = [:]
   private var myStringMin_cache : String?
   var myStringMin : String {
     get {
@@ -351,30 +351,30 @@ protocol MyRootEntity_myString {
 
   func entity_2E_MyRootEntity_2E_myStringMin_trigger () {
     for object in myStringMin_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
 
-   func addObserverOf_myStringMin (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_myStringMin (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringMin_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_myStringMin (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_myStringMin (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     myStringMin_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin_cache : PMTrigger_entity_2E_MyRootEntity_2E_myStringMin? = nil
-  var triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin : PMTrigger_entity_2E_MyRootEntity_2E_myStringMin {
-    if nil == triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin_cache {
-      triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin_cache = PMTrigger_entity_2E_MyRootEntity_2E_myStringMin (object:self)
+  var event_entity_2E_MyRootEntity_2E_myStringMin_cache : PMEvent_entity_2E_MyRootEntity_2E_myStringMin? = nil
+  var event_entity_2E_MyRootEntity_2E_myStringMin : PMEvent_entity_2E_MyRootEntity_2E_myStringMin {
+    if nil == event_entity_2E_MyRootEntity_2E_myStringMin_cache {
+      event_entity_2E_MyRootEntity_2E_myStringMin_cache = PMEvent_entity_2E_MyRootEntity_2E_myStringMin (object:self)
     }
-    return triggerObjectFor_entity_2E_MyRootEntity_2E_myStringMin_cache!
+    return event_entity_2E_MyRootEntity_2E_myStringMin_cache!
   }
  
   //-------------------------------------------------------------------------------------------------------------------*

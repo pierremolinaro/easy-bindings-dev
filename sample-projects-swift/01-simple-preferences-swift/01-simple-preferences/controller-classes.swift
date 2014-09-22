@@ -5,7 +5,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mColor_PMColorWell_color)
-class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMColorWell? = nil
@@ -111,7 +111,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -126,7 +126,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTriggerProtocol,
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mDate_PMDatePicker_date)
-class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMDatePicker? = nil
@@ -196,7 +196,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -211,7 +211,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTriggerProtocol, 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue)
-class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTriggerProtocol, NSTextFieldDelegate, PMUserClassName {
+class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -275,7 +275,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTrigge
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -290,7 +290,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTrigge
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_mIntegerValue_PMNumberField_value)
-class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMNumberField? = nil
@@ -386,7 +386,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTrigger
 
    //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -401,7 +401,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTrigger
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMPrefs_myString_PMTextField_value)
-class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
   weak var mOutlet: PMTextField? = nil
@@ -494,7 +494,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTriggerProtoco
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

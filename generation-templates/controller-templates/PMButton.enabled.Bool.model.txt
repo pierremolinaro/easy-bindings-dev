@@ -1,5 +1,5 @@
 @objc(Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled)
-class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerProtocol, PMUserClassName {
+class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
   weak var mOutlet : PMButton? = nil
@@ -57,7 +57,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTriggerPro
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

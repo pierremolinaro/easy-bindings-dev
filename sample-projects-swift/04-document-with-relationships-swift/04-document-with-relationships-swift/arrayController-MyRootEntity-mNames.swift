@@ -7,10 +7,10 @@ private let displayDebugMessage = false
 //    TriggerFor_MyRootEntity_mNames_mNamesTableView                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTriggerProtocol {
+class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEventProtocol {
   private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
  
   private let mPrivateUniqueIndex : Int ;
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
@@ -132,8 +132,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func unregister () {
     for object : AnyObject in mCurrentObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
-      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.removeObserverOf_name (eventModelChange, inTrigger:false)
+      managedObject.removeObserverOf_aValue (eventModelChange, inTrigger:false)
     }
   }
   
@@ -151,7 +151,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   func arrayModelSizeDidChange () {
     if let trigger = mDisplayTrigger {
-      enterTriggerWithObject (trigger)
+      postTransientEvent (trigger)
     }
   }
   
@@ -213,8 +213,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     removedObjectSet.minusSet (mCurrentObjectSet)
     for object : AnyObject in removedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
-      managedObject.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.removeObserverOf_name (eventModelChange, inTrigger:false)
+      managedObject.removeObserverOf_aValue (eventModelChange, inTrigger:false)
     }
   //--- Added object set
     var addedObjectSet = NSMutableSet ()
@@ -222,8 +222,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     addedObjectSet.minusSet (oldObjectSet)
     for object : AnyObject in addedObjectSet {
       let managedObject = object as  NameEntity
-      managedObject.addObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
-      managedObject.addObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+      managedObject.addObserverOf_name (eventModelChange, inTrigger:false)
+      managedObject.addObserverOf_aValue (eventModelChange, inTrigger:false)
     }
     refreshDisplay ()
   }
@@ -252,13 +252,13 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerObjectForModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
-  private var mTriggerObjectForModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
+  private var eventModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
+  private var eventModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
     get {
-      if mTriggerObjectForModelChange_cache == nil {
-        mTriggerObjectForModelChange_cache = TriggerFor_MyRootEntity_mNames_mNamesTableView (object:self)
+      if eventModelChange_cache == nil {
+        eventModelChange_cache = TriggerFor_MyRootEntity_mNames_mNamesTableView (object:self)
       }
-      return mTriggerObjectForModelChange_cache!
+      return eventModelChange_cache!
     }
   }
 
@@ -308,9 +308,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-        object.removeObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+        object.removeObserverOf_name (eventModelChange, inTrigger:false)
         object.name = sender.stringValue
-        object.addObserverOf_name (mTriggerObjectForModelChange, inTrigger:false)
+        object.addObserverOf_name (eventModelChange, inTrigger:false)
       }
     }
   }
@@ -322,9 +322,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-        object.removeObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+        object.removeObserverOf_aValue (eventModelChange, inTrigger:false)
         object.aValue = sender.integerValue
-        object.addObserverOf_aValue (mTriggerObjectForModelChange, inTrigger:false)
+        object.addObserverOf_aValue (eventModelChange, inTrigger:false)
       }
     }
   }
@@ -340,10 +340,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     var newObject : NameEntity = NameEntity (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.mNames.mutableCopy () as NSMutableArray
     array.addObject (newObject)
-    mObject.mNames = array
     if mSelectNewObject {
       mSelectedObjectArray = NSArray (object:newObject)
     }
+    mObject.mNames = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -351,22 +351,24 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------------------------------------------------------------------------------------------------*
 
   func remove (inSender : AnyObject!) {
-    if let tableView = mTableView {
-      var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
-      for object in mSelectedObjectArray {
-        newObjectArray.removeObjectIdenticalTo (object)
-      }
-      if newObjectArray.count == 0 {
-        mSelectedObjectArray = NSArray ()
-      }else{
-        let idx = tableView.selectedRow
-        if idx < mCurrentObjectArray.count {
-          mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
-        }else{
-          mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+    if mSelectedObjectArray.count > 0 {
+      if let tableView = mTableView {
+        var newObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+        for object in mSelectedObjectArray {
+          newObjectArray.removeObjectIdenticalTo (object)
         }
+        if newObjectArray.count == 0 {
+          mSelectedObjectArray = NSArray ()
+        }else{
+          let idx = tableView.selectedRow
+          if idx < mCurrentObjectArray.count {
+            mSelectedObjectArray = NSArray (object:mCurrentObjectArray [idx])
+          }else{
+            mSelectedObjectArray = NSArray (object:newObjectArray.lastObject!)
+          }
+        }
+        mObject.mNames = newObjectArray
       }
-      mObject.mNames = newObjectArray
     }
   }
 
@@ -385,24 +387,24 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     if canRemove_private != newValue {
       canRemove_private = newValue
       for object in canRemove_observers.values {
-        enterTriggerWithObject (object)
+        postTransientEvent (object)
       }
     }
   }
   
-  private var canRemove_observers : [Int : PMTriggerProtocol] = [:]
+  private var canRemove_observers : [Int : PMTransientEventProtocol] = [:]
   
-  func addObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     canRemove_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_canRemove (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     canRemove_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 

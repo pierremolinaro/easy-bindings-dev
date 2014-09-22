@@ -27,28 +27,28 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers : [Int : PMTriggerProtocol] = [:]\n%
+%  var %!mAttributeName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
         for object in %!mAttributeName%_observers.values {
-          enterTriggerWithObject (object)
+          postTransientEvent (object)
         }
       }
     }
   }
 
-  func addObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func addObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mAttributeName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 %if not mNeedsValidation then%
@@ -70,7 +70,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mTransientName%_observers : [Int : PMTriggerProtocol] = [:]\n%
+%  private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -93,30 +93,30 @@ end
 
   func %!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
     for object in %!mTransientName%_observers.values {
-      enterTriggerWithObject (object)
+      postTransientEvent (object)
     }
   }
  
-   func addObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
  
-  func removeObserverOf_%!mTransientName% (inObserver : PMTriggerProtocol, inTrigger:Bool) {
+  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mTransientName%_observers [inObserver.uniqueIndex] = nil
     if inTrigger {
-      enterTriggerWithObject (inObserver)
+      postTransientEvent (inObserver)
     }
   }
 
-  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% : PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% {
-    if triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
-      triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache = PMTrigger_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+  var event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% {
+    if event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
+      event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% (object:self)
     }
-    return triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache!
+    return event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache!
   }\n
 %end
 %
@@ -214,7 +214,7 @@ for () in OUTLET_MAP do
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (triggerObjectFor_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+%    %![mDependency generateAddObserverCall]% (event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
 end
 end
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do
