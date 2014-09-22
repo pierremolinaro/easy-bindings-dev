@@ -141,17 +141,16 @@ protocol PMUserClassName {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//    PMTriggerProtocol protocol                                                                                       *
+//    PMTransientEventProtocol protocol                                                                                *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMTriggerProtocol : PMUserClassName {
-  var mTransientIndex : PMTransientIndex { get }
+protocol PMTransientEventProtocol : PMUserClassName {
+  var transientEventIndex : PMTransientIndex { get }
   func noteTransientDidChange ()
   func trigger ()
   func unregister ()
   var uniqueIndex : Int { get }
 }
-
 
 //---------------------------------------------------------------------------------------------------------------------*
 //    NSTExtView extension                                                                                             *
@@ -191,6 +190,19 @@ extension NSTextView {
     let attributes : [String : NSObject] = [
       NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
       NSForegroundColorAttributeName : NSColor.blackColor()
+    ]
+    let str = NSAttributedString (string:inString, attributes:attributes)
+    var textStorage = layoutManager.textStorage
+    textStorage.appendAttributedString (str)
+    displayAndScrollToEndOfText ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendMessageString (inString : String, color:NSColor) {
+    let attributes : [String : NSObject] = [
+      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSForegroundColorAttributeName : color
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
     var textStorage = layoutManager.textStorage

@@ -46,7 +46,6 @@ class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : NSObject, NSTab
   private var mUndoManager : NSUndoManager?
   private var mObject : %!OBJECT_TYPE_NAME%
   private var mTableView : PMTableView?
-  private var mDisplayTrigger : TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%? = nil
 
   private var mCurrentObjectSet = NSMutableSet ()
   private var mCurrentObjectArray = NSMutableArray ()
@@ -100,7 +99,6 @@ end
 %      if ok {
         unwrappedTableView.setDataSource (self)
         unwrappedTableView.setDelegate (self)
-        mDisplayTrigger = TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% (object: self)
 %
 for () in BOUND_COLUMNS do
 %        let col_%!mObservablePropertyName% : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("%!mColumnName%")\n%
@@ -140,22 +138,12 @@ end
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    arrayModelSizeDidChange                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func arrayModelSizeDidChange () {
-    if let trigger = mDisplayTrigger {
-      postTransientEvent (trigger)
-    }
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableViewSelectionDidChange (NSNotification!) {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     var selectedObjectArray = NSMutableArray ()
     if let tableView = mTableView {
@@ -179,11 +167,11 @@ end
   func tableView (aTableView: NSTableView!,
                  sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
     mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
-    refreshDisplay ()
+    display ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -192,54 +180,83 @@ end
   
   func modelDidChange () {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
-    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
-    mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
-  //--- Update observers for handling model change
-    let oldObjectSet = mCurrentObjectSet
-    mCurrentObjectSet = NSMutableSet ()
-    mCurrentObjectSet.addObjectsFromArray (mObject.%!RELATIONSHIP_NAME%)
-  //--- Removed object set
-    var removedObjectSet = NSMutableSet ()
-    removedObjectSet.setSet (oldObjectSet)
-    removedObjectSet.minusSet (mCurrentObjectSet)
-    for object : AnyObject in removedObjectSet {
-      let managedObject = object as  %!ELEMENT_TYPE_NAME%
-%
-for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
-end
-%    }
-  //--- Added object set
-    var addedObjectSet = NSMutableSet ()
-    addedObjectSet.setSet (mCurrentObjectSet)
-    addedObjectSet.minusSet (oldObjectSet)
-    for object : AnyObject in addedObjectSet {
-      let managedObject = object as  %!ELEMENT_TYPE_NAME%
-%
-for () in BOUND_COLUMNS do
-%      managedObject.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
-end
-%    }
-    refreshDisplay ()
+  //--- Build new selected objects array
+    var selectedArrayShouldBeChanged = false
+    var newSelectedArray = NSMutableArray ()
+    for object in mSelectedObjectArray {
+      let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (object)
+      if idx == NSNotFound {
+        selectedArrayShouldBeChanged = true ;
+      }else{
+        newSelectedArray.addObject (object)
+      }
+    }
+    if selectedArrayShouldBeChanged {
+      mObject.undoManager()?.registerUndoWithTarget(self, selector:"undoFor_selectedObjectArray:", object:mSelectedObjectArray)
+      mSelectedObjectArray = newSelectedArray ;
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func refreshDisplay () {
+  func undoFor_selectedObjectArray (selectedObjectArray : NSArray) {
+    mSelectedObjectArray = selectedObjectArray
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func display () {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     if let tableView = mTableView {
+      let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
+      mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
+    //--- Update observers for handling model change
+      let oldObjectSet = mCurrentObjectSet
+      mCurrentObjectSet = NSMutableSet ()
+      mCurrentObjectSet.addObjectsFromArray (mObject.%!RELATIONSHIP_NAME%)
+    //--- Removed object set
+      var removedObjectSet = NSMutableSet ()
+      removedObjectSet.setSet (oldObjectSet)
+      removedObjectSet.minusSet (mCurrentObjectSet)
+      for object : AnyObject in removedObjectSet {
+        let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%        managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
+end
+%      }
+    //--- Added object set
+      var addedObjectSet = NSMutableSet ()
+      addedObjectSet.setSet (mCurrentObjectSet)
+      addedObjectSet.minusSet (oldObjectSet)
+      for object : AnyObject in addedObjectSet {
+        let managedObject = object as  %!ELEMENT_TYPE_NAME%
+%
+for () in BOUND_COLUMNS do
+%        managedObject.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
+end
+%      }
+    //--- Reload data
       tableView.reloadData ()
+      var newSelectedArray = mCurrentObjectArray.mutableCopy () as NSMutableArray
+      var selectedArrayShouldBeChanged = false
       var newSelectionIndexSet = NSMutableIndexSet ()
       for object in mSelectedObjectArray {
         let idx = mCurrentObjectArray.indexOfObjectIdenticalTo (object)
-        if idx != NSNotFound {
+        if idx == NSNotFound {
+          selectedArrayShouldBeChanged = true ;
+        }else{
           newSelectionIndexSet.addIndex (idx)
+          newSelectedArray.addObject (object)
         }
+      }
+      if selectedArrayShouldBeChanged {
+        mCurrentObjectArray = newSelectedArray ;
       }
       let currentSelectedRowIndexes = tableView.selectedRowIndexes
       if !currentSelectedRowIndexes.isEqualToIndexSet (newSelectionIndexSet) {
@@ -267,7 +284,7 @@ end
 
   func numberOfRowsInTableView (NSTableView!) -> Int {
     if displayDebugMessage {
-      NSLog ("\%@ \%d objects", __FUNCTION__, mCurrentObjectArray.count)
+      appendToTransientEventLog (NSString (format:"    \%@ (\%ld objects)\\n", __FUNCTION__, mCurrentObjectArray.count))
     }
     return mCurrentObjectArray.count
   }
@@ -279,7 +296,7 @@ end
                   row : NSInteger) -> NSView! {
     let columnIdentifier = viewForTableColumn.identifier as String
     if displayDebugMessage {
-      NSLog ("\%@, identifier '\%@\', row \%d", __FUNCTION__, columnIdentifier, row)
+      appendToTransientEventLog (NSString (format:"    \%@, identifier '\%@\', row \%d\\n", __FUNCTION__, columnIdentifier, row))
     }
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
@@ -319,7 +336,7 @@ end
 
   func add (inSender : AnyObject!) {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
     var array : NSMutableArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
@@ -365,7 +382,7 @@ end
   
   func updateCanRemoveProperty () {
     if displayDebugMessage {
-      NSLog ("\%@", __FUNCTION__)
+      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
     }
     let newValue = mSelectedObjectArray.count > 0
     if canRemove_private != newValue {

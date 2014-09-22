@@ -98,20 +98,11 @@ for () in ARRAY_CONTROLLER_LIST do
   private var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%? = nil
 
   func document_2E_PMDocument_2E_%!mControllerName%_noteDidChange () {
+    %!mControllerName%?.modelDidChange ()
   }
 
   func document_2E_PMDocument_2E_%!mControllerName%_trigger () {
-    %!mControllerName%?.arrayModelSizeDidChange ()
-  }
-
-  private var event_document_2E_PMDocument_2E_%!mControllerName%_cache : PMEvent_document_2E_PMDocument_2E_%!mControllerName%?
-  private var event_document_2E_PMDocument_2E_%!mControllerName% : PMEvent_document_2E_PMDocument_2E_%!mControllerName% {
-    get {
-      if event_document_2E_PMDocument_2E_%!mControllerName%_cache == nil {
-        event_document_2E_PMDocument_2E_%!mControllerName%_cache = PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self)
-      }
-      return event_document_2E_PMDocument_2E_%!mControllerName%_cache!
-    }
+    %!mControllerName%?.display ()
   }
 
 %
@@ -154,7 +145,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.addObserverOf_%!mTomanyRelationshipName% (event_document_2E_PMDocument_2E_%!mControllerName%, inTrigger:false)\n%
+%    rootObject.addObserverOf_%!mTomanyRelationshipName% (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:false)\n%
 end
 %  //--------------------------- Simple controller
 %for () in CONTROLLER_INSTANCIATION_LIST do

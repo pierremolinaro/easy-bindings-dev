@@ -35,8 +35,6 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//---------------------------------------------------------------------------------------------------------------------*
-
 class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtocol {
   weak private var mObserver : MyRootEntity? = nil
 
@@ -47,7 +45,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtoco
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyRootEntity) {
+  init (object : MyRootEntity?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -68,7 +66,6 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtoco
     mObserver?.entity_2E_MyRootEntity_2E_myStringConcat_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
@@ -81,7 +78,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyRootEntity) {
+  init (object : MyRootEntity?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -102,7 +99,6 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
     mObserver?.entity_2E_MyRootEntity_2E_myStringMaj_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 class PMEvent_entity_2E_MyRootEntity_2E_myStringMin : PMTransientEventProtocol {
@@ -115,7 +111,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringMin : PMTransientEventProtocol {
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyRootEntity) {
+  init (object : MyRootEntity?) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObserver = object
     noteObjectAllocation (self)
@@ -163,6 +159,17 @@ func flushTriggers () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//    A P P E N D    T O    T R A N S I E N T    E V E N T    L O G                                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendToTransientEventLog (message : String) {
+  var theApp = NSApp as PMApplication
+  theApp.appendToTransientEventLog (message)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //    A P P L I C A T I O N    C L A S S                                                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -199,6 +206,14 @@ func flushTriggers () {
  
   @IBAction func clearTransientEventLogWindow (sender : NSObject) {
     mTransientEventExplorerTextView?.string = ""
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private func appendToTransientEventLog (message : String) {
+    if logEvents () {
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blueColor ())
+    }
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

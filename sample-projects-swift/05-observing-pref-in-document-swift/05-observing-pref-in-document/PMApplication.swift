@@ -3,10 +3,6 @@
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-let TRACE_TRANSIENT_TRIGGER = false
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
 //                                                                                                                     *
@@ -38,26 +34,24 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//---------------------------------------------------------------------------------------------------------------------*
+class PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTransientEventProtocol {
+  weak private var mObserver : MyRootEntity? = nil
 
-class PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTriggerProtocol {
-  weak var mTriggerObject : MyRootEntity? = nil
+  func userClassName () -> String { return "PMEvent_entity.MyRootEntity.otherTransientConcatString" }
 
-  func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.otherTransientConcatString" }
-
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyRootEntity) {
+  init (object : MyRootEntity?) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.entity_2E_MyRootEntity_2E_otherTransientConcatString_noteDidChange ()
+    mObserver?.entity_2E_MyRootEntity_2E_otherTransientConcatString_noteDidChange ()
   }
 
   func unregister () {
@@ -68,30 +62,29 @@ class PMTrigger_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTrigger
   }
 
   func trigger () {
-    mTriggerObject?.entity_2E_MyRootEntity_2E_otherTransientConcatString_trigger ()
+    mObserver?.entity_2E_MyRootEntity_2E_otherTransientConcatString_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString : PMTriggerProtocol {
-  weak var mTriggerObject : MyRootEntity? = nil
+class PMEvent_entity_2E_MyRootEntity_2E_transientConcatString : PMTransientEventProtocol {
+  weak private var mObserver : MyRootEntity? = nil
 
-  func userClassName () -> String { return "PMTrigger_entity.MyRootEntity.transientConcatString" }
+  func userClassName () -> String { return "PMEvent_entity.MyRootEntity.transientConcatString" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyRootEntity) {
+  init (object : MyRootEntity?) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.entity_2E_MyRootEntity_2E_transientConcatString_noteDidChange ()
+    mObserver?.entity_2E_MyRootEntity_2E_transientConcatString_noteDidChange ()
   }
 
   func unregister () {
@@ -102,30 +95,29 @@ class PMTrigger_entity_2E_MyRootEntity_2E_transientConcatString : PMTriggerProto
   }
 
   func trigger () {
-    mTriggerObject?.entity_2E_MyRootEntity_2E_transientConcatString_trigger ()
+    mObserver?.entity_2E_MyRootEntity_2E_transientConcatString_trigger ()
   }
 }
-
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMTrigger_preference_2E_MyPrefs_2E_prefTransientString : PMTriggerProtocol {
-  weak var mTriggerObject : MyPrefs? = nil
+class PMEvent_preference_2E_MyPrefs_2E_prefTransientString : PMTransientEventProtocol {
+  weak private var mObserver : MyPrefs? = nil
 
-  func userClassName () -> String { return "PMTrigger_preference.MyPrefs.prefTransientString" }
+  func userClassName () -> String { return "PMEvent_preference.MyPrefs.prefTransientString" }
 
-  var mTransientIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString } }
+  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString } }
 
   private let mPrivateUniqueIndex : Int
   var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
   
-  init (object : MyPrefs) {
+  init (object : MyPrefs?) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mTriggerObject = object
+    mObserver = object
     noteObjectAllocation (self)
   }
 
   func noteTransientDidChange () {
-    mTriggerObject?.preference_2E_MyPrefs_2E_prefTransientString_noteDidChange ()
+    mObserver?.preference_2E_MyPrefs_2E_prefTransientString_noteDidChange ()
   }
 
   func unregister () {
@@ -136,18 +128,18 @@ class PMTrigger_preference_2E_MyPrefs_2E_prefTransientString : PMTriggerProtocol
   }
 
   func trigger () {
-    mTriggerObject?.preference_2E_MyPrefs_2E_prefTransientString_trigger ()
+    mObserver?.preference_2E_MyPrefs_2E_prefTransientString_trigger ()
   }
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    F U N C T I O N                                                            *
+//    P O S T    T R A N S I E N T    E V E N T                                                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func enterTriggerWithObject (inObject : PMTriggerProtocol) {
+func postTransientEvent (inObject : PMTransientEventProtocol) {
   var theApp = NSApp as PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -166,13 +158,25 @@ func flushTriggers () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//    A P P E N D    T O    T R A N S I E N T    E V E N T    L O G                                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendToTransientEventLog (message : String) {
+  var theApp = NSApp as PMApplication
+  theApp.appendToTransientEventLog (message)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //    A P P L I C A T I O N    C L A S S                                                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet : [Int : PMTriggerProtocol] = [:]
+  private var mFlushLevel = 4
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -205,43 +209,78 @@ func flushTriggers () {
   
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private func appendToTransientEventLog (message : String) {
+    if logEvents () {
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blueColor ())
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
   private func logEvents () -> Bool {
     return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.visible
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString : [Int : PMTriggerProtocol] = [:] // 1
-  private var mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString : [Int : PMTriggerProtocol] = [:] // 2
-  private var mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString : [Int : PMTriggerProtocol] = [:] // 3
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString : [Int : PMTransientEventProtocol] = [:] // 1
+  private var mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString : [Int : PMTransientEventProtocol] = [:] // 2
+  private var mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString : [Int : PMTransientEventProtocol] = [:] // 3
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTriggerProtocol) {
-    let transientIndex = inObject.mTransientIndex
-    if logEvents () {
-      let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-      mTransientEventExplorerTextView?.appendMessageString (str)
-    }
+  private func postTransientEvent (inObject : PMTransientEventProtocol) {
+    let transientIndex = inObject.transientEventIndex
     inObject.noteTransientDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger entity.MyRootEntity.otherTransientConcatString, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.count)
-      }
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString :
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
+      }
       mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger entity.MyRootEntity.transientConcatString, %d objects", mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.count)
-      }
     case PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString :
-      mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] = inObject
-      if TRACE_TRANSIENT_TRIGGER {
-        NSLog ("Trigger preference.MyPrefs.prefTransientString, %d objects", mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.count)
+      if logEvents () {
+        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        if transientIndex.rawValue >= mFlushLevel {
+          mTransientEventExplorerTextView?.appendErrorString (str)
+        }else if mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] == nil {
+          mTransientEventExplorerTextView?.appendMessageString (str)
+        }else{ // Event already posted
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
+        }
       }
+      mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] = inObject
     }
   }
 
@@ -277,10 +316,13 @@ func flushTriggers () {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
+    var emptyFlush = true ;
     if mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.count > 0 { // 3
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: preference.MyPrefs.prefTransientString\n")
       }
+      mFlushLevel = 3
       for object in mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -290,9 +332,11 @@ func flushTriggers () {
       mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.count > 0 { // 2
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: entity.MyRootEntity.transientConcatString\n")
       }
+      mFlushLevel = 2
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -302,9 +346,11 @@ func flushTriggers () {
       mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString = [:]
     }    
     if mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.count > 0 { // 1
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: entity.MyRootEntity.otherTransientConcatString\n")
       }
+      mFlushLevel = 1
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -314,9 +360,11 @@ func flushTriggers () {
       mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString = [:]
     }    
     if mTriggerOutletDisplaySet.count > 0 {
+      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
+      mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
@@ -325,7 +373,11 @@ func flushTriggers () {
       }
       mTriggerOutletDisplaySet = [:]
     }
-  }
+    mFlushLevel = 4
+    if !emptyFlush && logEvents () {
+       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+ }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
