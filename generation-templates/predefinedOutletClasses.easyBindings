@@ -1,4 +1,4 @@
-outletClass PMButton run ;
+outletClass PMButton run enabled ;
 controllerTemplate PMButton $enabled : transient Bool model ;
 
 outletClass PMColorWell ;

@@ -25,6 +25,7 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "default",
   "dependsFrom",
   "document",
+  "enabled",
   "enum",
   "entity",
   "include",

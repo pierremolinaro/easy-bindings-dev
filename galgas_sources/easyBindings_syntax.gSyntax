@@ -113,15 +113,25 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+enum @runActionDescriptor {
+  noAction,
+  action (@lstring, @lstring)
+}
+
+#----------------------------------------------------------------------------*
+
 rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
   $outlet$ ;
   $Identifier$ ??outletTypeName ;
   $identifier$ ??outletName ;
+#--- Run
   @lstring runTargetName ;
   @lstring runActionName ;
+  @runActionDescriptor runActionDescriptor ; 
   select
+    runActionDescriptor := [@runActionDescriptor noAction] ;
     runTargetName := ["" nowhere] ;
     runActionName := ["" nowhere] ;
   or
@@ -134,9 +144,18 @@ rule <outlet_declaration>
     end select ;
     $.$ ;
     $identifier$ ?runActionName ;
+    runActionDescriptor := [@runActionDescriptor action !runTargetName !runActionName] ;
   end select ;
+#--- Enabled
+
+#---
   $;$ ;
-  ioOutletDeclarationList += !outletTypeName !outletName !runTargetName !runActionName ;
+  ioOutletDeclarationList +=
+    !outletTypeName
+    !outletName
+    !runTargetName
+    !runActionName
+  ;
 end rule ;
 
 #----------------------------------------------------------------------------*
@@ -667,18 +686,22 @@ rule <outlet_class_declaration>
 :
   $outletClass$ ;
   $Identifier$ ??@lstring outletClassName ;
-  @bool hasRunAction ;
-  select
-    hasRunAction := false ;
-  or
+  @bool hasRunAction := false ;
+  @bool hasEnabled := false ;
+  repeat
+  while
     $run$ ;
     hasRunAction := true ;
-  end select ;
+  while
+    $enabled$ ;
+    hasEnabled := true ;
+  end repeat ;
   $;$ ;
   ioOutletClassDeclarationList +=
     !inIsUserDefined
     !outletClassName
     !hasRunAction
+    !hasEnabled
   ;
 end rule ;
 
