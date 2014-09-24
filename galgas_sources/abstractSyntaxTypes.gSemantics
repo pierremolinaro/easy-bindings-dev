@@ -119,6 +119,7 @@ list @outletClassDeclarationList {
   @bool mUserDefined ;
   @lstring mOutletClassName ;
   @bool mHasRunAction ;
+  @bool mHasEnabled ;
 }
 
 #----------------------------------------------------------------------------*

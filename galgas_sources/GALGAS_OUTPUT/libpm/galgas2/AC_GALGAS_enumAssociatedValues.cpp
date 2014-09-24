@@ -1,10 +1,10 @@
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//  AC_GALGAS_class : Base class for GALGAS class                                                                      *
+//  AC_GALGAS_enumAssociatedValues : class for enum associated values                                                  *
 //                                                                                                                     *
 //  This file is part of libpm library                                                                                 *
 //                                                                                                                     *
-//  Copyright (C) 2008, ..., 2014 Pierre Molinaro.                                                                     *
+//  Copyright (C) 2014, ..., 2014 Pierre Molinaro.                                                                     *
 //                                                                                                                     *
 //  e-mail : pierre.molinaro@irccyn.ec-nantes.fr                                                                       *
 //                                                                                                                     *
@@ -23,52 +23,58 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef AC_GALGAS_CLASS_DEFINED
-#define AC_GALGAS_CLASS_DEFINED
+#include "galgas2/AC_GALGAS_enumAssociatedValues.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/AC_GALGAS_root.h"
+cEnumAssociatedValues::cEnumAssociatedValues (LOCATION_ARGS) :
+C_SharedObject (THERE) {
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class C_String ;
-class C_galgas_type_descriptor ;
-class acPtr_class ;
+AC_GALGAS_enumAssociatedValues::AC_GALGAS_enumAssociatedValues (void) :
+mSharedPtr (NULL) {
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class AC_GALGAS_class : public AC_GALGAS_root { // AC_GALGAS_class est une classe abstraite
-//--- Attribute
-  protected : acPtr_class * mObjectPtr ;
-  public : inline const acPtr_class * ptr (void) const { return mObjectPtr ; }
-
-//--- Default constructor
-  protected : AC_GALGAS_class (void) ;
-  
-//--- Constructor from pointer
-  protected : AC_GALGAS_class (const acPtr_class * inPointer) ;
-  
-//--- Destructor
-  protected : virtual ~ AC_GALGAS_class (void) ;
-
-//--- Is valid
-  public : virtual bool isValid (void) const { return NULL != mObjectPtr ; }
-  
-//--- Drop
-  public : virtual void drop (void) ;
-  
-//--- Handle copy
-  protected : AC_GALGAS_class (const AC_GALGAS_class & inSource) ;
-  protected : AC_GALGAS_class & operator = (const AC_GALGAS_class & inSource) ;
-  
-//--- Dynamic Type Descriptor
-  public : virtual const C_galgas_type_descriptor * dynamicTypeDescriptor (void) const ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-} ;
+void AC_GALGAS_enumAssociatedValues::setPointer (const cEnumAssociatedValues * inUniquePtr)  {
+  macroAssignSharedObject (mSharedPtr, inUniquePtr) ;
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#endif
+AC_GALGAS_enumAssociatedValues::AC_GALGAS_enumAssociatedValues (const AC_GALGAS_enumAssociatedValues & inSource) :
+mSharedPtr (NULL) {
+  macroAssignSharedObject (mSharedPtr, inSource.mSharedPtr) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_enumAssociatedValues & AC_GALGAS_enumAssociatedValues::operator = (const AC_GALGAS_enumAssociatedValues & inSource) {
+  if (mSharedPtr != inSource.mSharedPtr) {
+    macroAssignSharedObject (mSharedPtr, inSource.mSharedPtr) ;
+  }
+  return *this ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_enumAssociatedValues::~ AC_GALGAS_enumAssociatedValues (void) {
+  macroDetachSharedObject (mSharedPtr) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+/*AC_GALGAS_root * AC_GALGAS_enumAssociatedValues::clonedObject (void) const {
+  return NULL ;
+}*/
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+/*const C_galgas_type_descriptor * AC_GALGAS_enumAssociatedValues::staticTypeDescriptor (void) const {
+  return NULL ;
+}*/
+
+//---------------------------------------------------------------------------------------------------------------------*
