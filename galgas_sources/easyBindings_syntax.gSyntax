@@ -114,7 +114,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 enum @runActionDescriptor {
-  noAction,
+  no_Action,
   action (@lstring, @lstring)
 }
 
@@ -131,7 +131,7 @@ rule <outlet_declaration>
   @lstring runActionName ;
   @runActionDescriptor runActionDescriptor ; 
   select
-    runActionDescriptor := [@runActionDescriptor noAction] ;
+    runActionDescriptor := [@runActionDescriptor no_Action] ;
     runTargetName := ["" nowhere] ;
     runActionName := ["" nowhere] ;
   or
@@ -146,6 +146,11 @@ rule <outlet_declaration>
     $identifier$ ?runActionName ;
     runActionDescriptor := [@runActionDescriptor action !runTargetName !runActionName] ;
   end select ;
+  log runActionDescriptor ;
+  switch runActionDescriptor
+  when no_Action :
+  when action (*) :
+  end switch ;
 #--- Enabled
 
 #---
