@@ -199,8 +199,8 @@ override method @unifiedTypeDeclaration typeInventory
     [!?decoratedOutletMap insertKey
       !mOutletName
       !mOutletType
-      !mRunTargetName
-      !mRunActionName
+      !mRunDescriptor
+      !mEnabledBindingDescriptor
     ] ;
   end foreach ;
 #--------------------------------------------------- Analyze actions

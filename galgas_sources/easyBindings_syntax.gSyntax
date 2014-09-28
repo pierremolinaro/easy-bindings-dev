@@ -113,13 +113,6 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
-enum @runActionDescriptor {
-  no_Action,
-  action (@lstring, @lstring)
-}
-
-#----------------------------------------------------------------------------*
-
 rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
@@ -127,39 +120,38 @@ rule <outlet_declaration>
   $Identifier$ ??outletTypeName ;
   $identifier$ ??outletName ;
 #--- Run
-  @lstring runTargetName ;
-  @lstring runActionName ;
   @runActionDescriptor runActionDescriptor ; 
   select
-    runActionDescriptor := [@runActionDescriptor no_Action] ;
-    runTargetName := ["" nowhere] ;
-    runActionName := ["" nowhere] ;
+    runActionDescriptor := [@runActionDescriptor noAction] ;
   or
     $run$ ;
+    @lstring runTargetName ;
     select
       $self$ ;
       runTargetName := [@lstring new !"self" !here] ;
     or
-      $identifier$ ?runTargetName ; # Controller
+      $identifier$ ?runTargetName ;
     end select ;
     $.$ ;
-    $identifier$ ?runActionName ;
+    $identifier$ ??@lstring runActionName ;
     runActionDescriptor := [@runActionDescriptor action !runTargetName !runActionName] ;
   end select ;
-  log runActionDescriptor ;
-  switch runActionDescriptor
-  when no_Action :
-  when action (*) :
-  end switch ;
 #--- Enabled
-
+  @enabledBindingDescriptor enabledBindingDescriptor ;
+  select
+    enabledBindingDescriptor := [@enabledBindingDescriptor noEnabledBinding] ;
+  or
+    $enabled$ ;
+    <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
+    enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !observablePropertyAST] ;
+  end select ;
 #---
   $;$ ;
   ioOutletDeclarationList +=
     !outletTypeName
     !outletName
-    !runTargetName
-    !runActionName
+    !runActionDescriptor
+    !enabledBindingDescriptor
   ;
 end rule ;
 

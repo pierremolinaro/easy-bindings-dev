@@ -171,11 +171,24 @@ list @relationshipList {
 
 #----------------------------------------------------------------------------*
 
+enum @runActionDescriptor {
+  noAction,
+  action (@lstring target, @lstring action)
+}
+
+#----------------------------------------------------------------------------*
+
+enum @enabledBindingDescriptor {
+  noEnabledBinding,
+  enabledBinding (@abstractObservablePropertyAST property)
+}
+#----------------------------------------------------------------------------*
+
 list @outletDeclarationList {
   @lstring mOutletType ;
   @lstring mOutletName ;
-  @lstring mRunTargetName ;
-  @lstring mRunActionName ;
+  @runActionDescriptor mRunDescriptor ;
+  @enabledBindingDescriptor mEnabledBindingDescriptor ;
 }
 
 #----------------------------------------------------------------------------*
