@@ -115,23 +115,39 @@ local routine unifiedTypeAnalysis
   ??@arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
 :
-#--- Check outlet types are declared, check action
+#-------------------------------------------- Outlets
   @targetActionList targetActionList := {} ;
   for () in decoratedOutletMap do
     [inOutletClassMap searchKey !mOutletTypeName ??@bool handlesRunAction] ;
     ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
-    if (mRunTargetName->string != "") then
+  #--- run
+    switch mRunActionDescriptor
+    when noAction :
+    when action (@lstring target @lstring action) :
       if not handlesRunAction then
         error mOutletTypeName : "the '" . mOutletTypeName . "' type does not handle run action" ;
-      elsif mRunTargetName->string == "self" then
-        [inActionMap searchKey !mRunActionName] ;
-        targetActionList += !lkey->string !"self" !mRunActionName->string ;
+      elsif target->string == "self" then
+        [inActionMap searchKey !action] ;
+        targetActionList += !lkey->string !"self" !action->string ;
       else # It is a controller
-        [inArrayControllerMap searchKey !mRunTargetName ?3* ??@actionMap arrayControllerActionMap ?2*] ;
-        [arrayControllerActionMap searchKey !mRunActionName] ;
-        targetActionList += !lkey->string !mRunTargetName->string !mRunActionName->string ;
+        [inArrayControllerMap searchKey !target ?3* ??@actionMap arrayControllerActionMap ?2*] ;
+        [arrayControllerActionMap searchKey !action] ;
+        targetActionList += !lkey->string !target->string !action->string ;
       end if ;
-    end if ;
+    end switch ;
+  #--- Enabled
+    switch mEnabledBindingDescriptor
+    when  noEnabledBinding :
+    when enabledBinding (@abstractObservablePropertyAST property) :
+      [property analyzeBoundObservablePropertyForEnabledBinding
+        !inUnifiedTypeMap
+        !inArrayControllerMap
+        !inCurrentObservablePropertyMap
+        !inRootEntityType
+        ??@string observedObject
+        ??@string observedModel
+      ] ;
+    end switch ;
   end for ;
 #--- Analyze relationships
   @entityRelationshipListForGeneration entityRelationshipListForGeneration := {} ;
@@ -413,6 +429,151 @@ abstract method @abstractTransientDependencyAST transientDependencySemanticAnaly
   ??@lstring inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 ;
+
+#----------------------------------------------------------------------------*
+# analyzeBoundObservablePropertyForEnabledBinding                            *
+#----------------------------------------------------------------------------*
+
+#! analyzeBoundObservablePropertyForEnabledBinding
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  !@string outObservedObject
+  !@string outObservedModel
+;
+
+#----------------------------------------------------------------------------*
+
+override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@arrayControllerMap unused inArrayControllerMap
+  ??@decoratedObservablePropertyMap inObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  !@string outObservedObject
+  !@string outObservedModel
+:
+  [inObservablePropertyMap searchKey
+    !mSelfObservablePropertyName
+    ?* # ?@unifiedTypeProxy propertyType
+    ?* #outModelIsTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if isCollection then
+    error mSelfObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  outObservedObject := "self" ;
+  outObservedModel := mSelfObservablePropertyName->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@arrayControllerMap unused inArrayControllerMap
+  ??@decoratedObservablePropertyMap unused inObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  !@string outObservedObject
+  !@string outObservedModel
+:
+  [[inRootEntityType mObservablePropertyMap] searchKey
+    !mRootObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* #outModelIsTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if not [[propertyType mTypeKind] isBoolType] then
+    error mRootObservablePropertyName: "this property should be boolean" ;
+  end if ;
+  if isCollection & not mNamesCountOption then
+    error mRootObservablePropertyName : "the observable property should not be a collection" ;
+  elsif mNamesCountOption & not isCollection then
+    error mRootObservablePropertyName : "the observable property should be a collection" ;
+  end if ;
+  outObservedObject := "rootObject" ;
+  outObservedModel := mRootObservablePropertyName->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap unused inArrayControllerMap
+  ??@decoratedObservablePropertyMap unused inObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  !@string outObservedObject
+  !@string outObservedModel
+:
+#--- Get preference type
+  [inUnifiedTypeMap searchKey
+    !mPreferenceName
+    ??@typeKind typeKind
+    ?5*
+    ??@decoratedObservablePropertyMap observablePropertyMap
+    ?6*
+  ] ;
+  if typeKind != [@typeKind preferencesType] then
+    error mPreferenceName : "there is no '" . mPreferenceName . "' preferences" ;
+  end if ;
+#---    
+  [observablePropertyMap searchKey
+    !mPreferenceObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* #outModelIsTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if not [[propertyType mTypeKind] isBoolType] then
+    error mPreferenceObservablePropertyName: "this property should be boolean" ;
+  end if ;
+  if isCollection then
+    error mPreferenceObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  outObservedObject := "g_" + mPreferenceName ;
+  outObservedModel := mPreferenceObservablePropertyName->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @arrayControllerObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@unifiedTypeMap unused inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap unused inObservablePropertyMap
+  ??@unifiedTypeProxy unused inRootEntityType
+  !@string outObservedObject
+  !@string outObservedModel
+:
+#--- Get preference type
+  [inArrayControllerMap searchKey
+    !mArrayControllerName
+    ?* # ?@abstractObservablePropertyAST boundModel
+    ?3*
+    ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
+    ?*
+  ] ;
+#---    
+  [arrayControllerObservablePropertyMap searchKey
+    !mArrayControllerObservablePropertyName
+    ??@unifiedTypeProxy propertyType
+    ?* # outModelIsTransient
+    ?* #?@lstring propertySignature
+    ??@bool isCollection
+  ] ;
+  if not [[propertyType mTypeKind] isBoolType] then
+    error mArrayControllerObservablePropertyName: "this property should be boolean" ;
+  end if ;
+  if isCollection then
+    error mArrayControllerObservablePropertyName : "the observable property should not be a collection" ;
+  end if ;
+  outObservedObject := mArrayControllerName->string ;
+  outObservedModel := mArrayControllerObservablePropertyName->string ;
+end method ;
 
 #----------------------------------------------------------------------------*
 # analyzeBoundObservablePropertyForSimpleBinding                             *

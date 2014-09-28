@@ -104,8 +104,8 @@ map @decoratedOutletMap {
   insert insertKey error message "the '%K' transient is already declared" ;
   search searchKey error message "the '%K' transient is not declared" ;
   @lstring mOutletTypeName ;
-  @lstring mRunTargetName ;
-  @lstring mRunActionName ;
+  @runActionDescriptor mRunActionDescriptor ;
+  @enabledBindingDescriptor mEnabledBindingDescriptor ;
 }
 
 #----------------------------------------------------------------------------*
