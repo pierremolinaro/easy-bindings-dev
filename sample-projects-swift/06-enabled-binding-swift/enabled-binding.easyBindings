@@ -1,21 +1,22 @@
 entity MyRootEntity {
-  attribute Bool docBool default YES ;
+  property Bool docBool default yes ;
 }
 
 #--------------------------------------------------------------*
 
 preferences MyPrefs {
-  attribute Bool prefBoolean default YES ;
-  outlet NSButton prefBoolCheckBox $value self.prefBoolean ;
+  property Bool prefBoolean default yes ;
+  outlet PMSwitch prefBoolCheckBox ; # $value self.prefBoolean ;
+  bind model : self.prefBoolean to prefBoolCheckBox $value ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
-  outlet NSButton docBoolCheckBox $value root.docBool ;
-  outlet NSButton myButton $enabled ! root.docBool & MyPrefs.prefBoolean ;
+  outlet PMSwitch docBoolCheckBox ; # $value root.docBool ;
+  bind model : root.docBool to docBoolCheckBox $value ;
+  outlet PMButton myButton enabled ! root.docBool & MyPrefs.prefBoolean ;
 }
 
 #--------------------------------------------------------------*
 
-end

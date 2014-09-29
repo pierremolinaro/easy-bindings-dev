@@ -17,6 +17,10 @@ controllerTemplate PMNumberField $value : property Integer model {sendContinousl
 controllerTemplate PMNumberField $rvalue : transient Integer model ;
 
 
+outletClass PMSwitch ;
+controllerTemplate PMSwitch $value : property Bool model ;
+
+
 outletClass PMTableView ;
 
 
