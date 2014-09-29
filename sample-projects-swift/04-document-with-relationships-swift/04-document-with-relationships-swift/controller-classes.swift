@@ -313,7 +313,7 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEv
 @objc(EnableController_PMDocument_removePathButton)
 class EnableController_PMDocument_removePathButton : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  weak var mObject : ArrayController_MyRootEntity_mNames? = nil
+  weak var mObject0 : ArrayController_MyRootEntity_mNames? = nil
   weak var mOutlet : PMEnableProtocol? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -327,21 +327,21 @@ class EnableController_PMDocument_removePathButton : NSObject, PMTransientEventP
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : ArrayController_MyRootEntity_mNames?, outlet : PMEnableProtocol?, file : String, line : Int) {
+  init (object0 : ArrayController_MyRootEntity_mNames?, outlet : PMEnableProtocol?, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mObject = object
+    mObject0 = object0
     super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
       mOutlet = unwrappedOutlet
     }
-    mObject?.addObserverOf_canRemove (self, inTrigger:true)
+    mObject0?.addObserverOf_canRemove (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_canRemove (self, inTrigger:false)
+    mObject0?.removeObserverOf_canRemove (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -359,8 +359,8 @@ class EnableController_PMDocument_removePathButton : NSObject, PMTransientEventP
 
   func trigger () {
     if let outlet = mOutlet {
-      if let object = mObject {
-        outlet.setEnableFromBinding (object.canRemove)
+      if let object0 = mObject0 {
+        outlet.setEnableFromBinding (object0.canRemove)
       }
     }
   }
