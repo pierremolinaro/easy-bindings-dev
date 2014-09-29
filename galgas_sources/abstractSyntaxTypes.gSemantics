@@ -178,26 +178,26 @@ enum @runActionDescriptor {
 
 #----------------------------------------------------------------------------*
 
-abstract class @abstractEnableBindingExpressionAST {
+abstract class @abstractBooleanMultipleBindingExpressionAST {
 }
 
 #----------------------------------------------------------------------------*
 
-class @negateBooleanMultipleBindingExpressionAST extends @abstractEnableBindingExpressionAST {
-  @abstractEnableBindingExpressionAST mBinding ;
+class @negateBooleanMultipleBindingExpressionAST extends @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mBinding ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @andBooleanMultipleBindingExpressionAST,
-       @orBooleanMultipleBindingExpressionAST extends @abstractEnableBindingExpressionAST {
-  @abstractEnableBindingExpressionAST mLeftBinding ;
-  @abstractEnableBindingExpressionAST mRightBinding ;
+       @orBooleanMultipleBindingExpressionAST extends @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mLeftBinding ;
+  @abstractBooleanMultipleBindingExpressionAST mRightBinding ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @observablePropertyAsEnableBindingExpressionAST extends @abstractEnableBindingExpressionAST {
+class @observablePropertyAsEnableBindingExpressionAST extends @abstractBooleanMultipleBindingExpressionAST {
   @abstractObservablePropertyAST mProperty ;
 }
 
@@ -205,7 +205,7 @@ class @observablePropertyAsEnableBindingExpressionAST extends @abstractEnableBin
 
 enum @enabledBindingDescriptor {
   noEnabledBinding,
-  enabledBinding (@abstractEnableBindingExpressionAST expression)
+  enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression)
 }
 #----------------------------------------------------------------------------*
 

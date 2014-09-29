@@ -9,13 +9,13 @@ semantics controllerClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractEnableBindingExpressionForGeneration observedObjectTypeNameList
+abstract reader @abstractBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
   -> @stringlist outObservedObjectTypeNameList
 ;
 
 #----------------------------------------------------------------------------*
 
-override reader @observablePropertyAsEnableBindingExpressionForGeneration observedObjectTypeNameList
+override reader @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
   -> @stringlist outObservedObjectTypeNameList
 :
   outObservedObjectTypeNameList := {!mObservedTypeName} ;
@@ -53,13 +53,13 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractEnableBindingExpressionForGeneration enableExpressionString
+abstract reader @abstractBooleanMultipleBindingExpressionForGeneration enableExpressionString
   -> @string outEnableExpressionString
 ;
 
 #----------------------------------------------------------------------------*
 
-override reader @observablePropertyAsEnableBindingExpressionForGeneration enableExpressionString
+override reader @observablePropertyAsBooleanMultipleBindingExpressionForGeneration enableExpressionString
   -> @string outEnableExpressionString
 :
   outEnableExpressionString := "object" + mIndex + "." + mObservedModel ;
@@ -97,13 +97,13 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractEnableBindingExpressionForGeneration observedModelNameList
+abstract reader @abstractBooleanMultipleBindingExpressionForGeneration observedModelNameList
   -> @stringlist outObservedModelNameList
 ;
 
 #----------------------------------------------------------------------------*
 
-override reader @observablePropertyAsEnableBindingExpressionForGeneration observedModelNameList
+override reader @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelNameList
   -> @stringlist outObservedModelNameList
 :
   outObservedModelNameList := {!mObservedModel} ;
@@ -150,7 +150,7 @@ filewrapper controllerTemplates in "../generation-templates/controller-templates
     ?@string OUTLET_NAME
 #    ?@string OBJECT_CLASS
 #    ?@string MODEL
-    ?@abstractEnableBindingExpressionForGeneration ENABLE_EXPRESSION
+    ?@abstractBooleanMultipleBindingExpressionForGeneration ENABLE_EXPRESSION
   ;
 }
 

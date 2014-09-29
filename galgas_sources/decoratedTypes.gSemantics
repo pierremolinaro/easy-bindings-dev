@@ -4,12 +4,12 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
-abstract class @abstractEnableBindingExpressionForGeneration {
+abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 }
 
 #----------------------------------------------------------------------------*
 
-class @observablePropertyAsEnableBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
+class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration extends @abstractBooleanMultipleBindingExpressionForGeneration {
   @string mObservedObject ;
   @string mObservedModel ;
   @string mObservedTypeName ;
@@ -18,16 +18,16 @@ class @observablePropertyAsEnableBindingExpressionForGeneration extends @abstrac
 
 #----------------------------------------------------------------------------*
 
-class @negateBooleanMultipleBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
-  @abstractEnableBindingExpressionForGeneration mBinding ;
+class @negateBooleanMultipleBindingExpressionForGeneration extends @abstractBooleanMultipleBindingExpressionForGeneration {
+  @abstractBooleanMultipleBindingExpressionForGeneration mBinding ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @orBooleanMultipleBindingExpressionForGeneration,
-       @andBooleanMultipleBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
-  @abstractEnableBindingExpressionForGeneration mLeftBinding ;
-  @abstractEnableBindingExpressionForGeneration mRightBinding ;
+       @andBooleanMultipleBindingExpressionForGeneration extends @abstractBooleanMultipleBindingExpressionForGeneration {
+  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding ;
+  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding ;
 }
 
 #----------------------------------------------------------------------------*

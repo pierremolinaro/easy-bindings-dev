@@ -114,13 +114,13 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <booleanMultipleBindingExpression> 
-  !@abstractEnableBindingExpressionAST outBinding
+  !@abstractBooleanMultipleBindingExpressionAST outBinding
 :
   <booleanMultipleBindingTerm> ?outBinding ;
   repeat
   while
     $&$ ;
-    <booleanMultipleBindingTerm> ??@abstractEnableBindingExpressionAST binding ;
+    <booleanMultipleBindingTerm> ??@abstractBooleanMultipleBindingExpressionAST binding ;
     outBinding := [@andBooleanMultipleBindingExpressionAST new !outBinding !binding] ;
   end repeat ;
 end rule ;
@@ -128,13 +128,13 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <booleanMultipleBindingTerm> 
-  !@abstractEnableBindingExpressionAST outBinding
+  !@abstractBooleanMultipleBindingExpressionAST outBinding
 :
   <booleanMultipleBindingOperand> ?outBinding ;
   repeat
   while
     $|$ ;
-    <booleanMultipleBindingOperand> ??@abstractEnableBindingExpressionAST binding ;
+    <booleanMultipleBindingOperand> ??@abstractBooleanMultipleBindingExpressionAST binding ;
     outBinding := [@orBooleanMultipleBindingExpressionAST new !outBinding !binding] ;
   end repeat ;
 end rule ;
@@ -142,7 +142,7 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <booleanMultipleBindingOperand> 
-  !@abstractEnableBindingExpressionAST outBinding
+  !@abstractBooleanMultipleBindingExpressionAST outBinding
 :
   <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
   outBinding := [@observablePropertyAsEnableBindingExpressionAST new !observablePropertyAST] ;
@@ -151,17 +151,17 @@ end rule ;
 #----------------------------------------------------------------------------*
 
 rule <booleanMultipleBindingOperand> 
-  !@abstractEnableBindingExpressionAST outBinding
+  !@abstractBooleanMultipleBindingExpressionAST outBinding
 :
   $!$ ;
-  <booleanMultipleBindingOperand> ??@abstractEnableBindingExpressionAST binding ;
+  <booleanMultipleBindingOperand> ??@abstractBooleanMultipleBindingExpressionAST binding ;
   outBinding := [@negateBooleanMultipleBindingExpressionAST new !binding] ;
 end rule ;
 
 #----------------------------------------------------------------------------*
 
 rule <booleanMultipleBindingOperand> 
-  !@abstractEnableBindingExpressionAST outBinding
+  !@abstractBooleanMultipleBindingExpressionAST outBinding
 :
   $($ ;
   <booleanMultipleBindingExpression> ?outBinding ;
@@ -199,7 +199,7 @@ rule <outlet_declaration>
     enabledBindingDescriptor := [@enabledBindingDescriptor noEnabledBinding] ;
   or
     $enabled$ ;
-    <booleanMultipleBindingExpression> ??@abstractEnableBindingExpressionAST bindingExpression ;
+    <booleanMultipleBindingExpression> ??@abstractBooleanMultipleBindingExpressionAST bindingExpression ;
     enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !bindingExpression] ;
   end select ;
 #---
