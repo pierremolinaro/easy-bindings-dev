@@ -115,37 +115,47 @@ local routine unifiedTypeAnalysis
   ??@arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
 :
+  @stringlist controllerInstanciationStringList := {} ;
 #-------------------------------------------- Outlets
   @targetActionList targetActionList := {} ;
-  for () in decoratedOutletMap do
-    [inOutletClassMap searchKey !mOutletTypeName ??@bool handlesRunAction] ;
-    ioGeneration->mNeededOutletClasses += !mOutletTypeName->string ;
+  for () outlet_ in decoratedOutletMap do
+    [inOutletClassMap searchKey !outlet_mOutletTypeName ??@bool handlesRunAction] ;
+    ioGeneration->mNeededOutletClasses += !outlet_mOutletTypeName->string ;
   #--- run
-    switch mRunActionDescriptor
+    switch outlet_mRunActionDescriptor
     when noAction :
     when action (@lstring target @lstring action) :
       if not handlesRunAction then
-        error mOutletTypeName : "the '" . mOutletTypeName . "' type does not handle run action" ;
+        error outlet_mOutletTypeName : "the '" . outlet_mOutletTypeName . "' type does not handle run action" ;
       elsif target->string == "self" then
         [inActionMap searchKey !action] ;
-        targetActionList += !lkey->string !"self" !action->string ;
+        targetActionList += !outlet_lkey->string !"self" !action->string ;
       else # It is a controller
-        [inArrayControllerMap searchKey !target ?3* ??@actionMap arrayControllerActionMap ?2*] ;
+        [inArrayControllerMap searchKey !target ?3* ??@actionMap arrayControllerActionMap ?3*] ;
         [arrayControllerActionMap searchKey !action] ;
-        targetActionList += !lkey->string !target->string !action->string ;
+        targetActionList += !outlet_lkey->string !target->string !action->string ;
       end if ;
     end switch ;
   #--- Enabled
-    switch mEnabledBindingDescriptor
+    switch outlet_mEnabledBindingDescriptor
     when  noEnabledBinding :
     when enabledBinding (@abstractObservablePropertyAST property) :
       [property analyzeBoundObservablePropertyForEnabledBinding
+        !inTypeName->string
         !inUnifiedTypeMap
         !inArrayControllerMap
         !inCurrentObservablePropertyMap
         !inRootEntityType
         ??@string observedObject
         ??@string observedModel
+        ??@string observedTypeName
+      ] ;
+      controllerInstanciationStringList += !"EnableController_" + inTypeName + "_" + outlet_lkey + " (object:" + observedObject + ", outlet:" + outlet_lkey + ", file:__FILE__, line:__LINE__)" ;
+      ioGeneration->mControllerGenerationStringSet += ![filewrapper controllerTemplates.enabledBindingGeneration
+        !inTypeName->string
+        !outlet_lkey->string
+        !observedTypeName
+        !observedModel
       ] ;
     end switch ;
   end for ;
@@ -265,7 +275,6 @@ local routine unifiedTypeAnalysis
     end if ;
   end for ;
 #---------------------------------------------------------------- Analyze bindings
-  @stringlist controllerInstanciationStringList := {} ;
   for () in inBindingList do
     var controllerSignature := "" ;
     var @unifiedTypeProxySelectorList boundPropertyTypeList := {} ;
@@ -439,32 +448,39 @@ abstract method @abstractTransientDependencyAST transientDependencySemanticAnaly
 #----------------------------------------------------------------------------*
 
 abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@string inSelfTypeName
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   !@string outObservedObject
   !@string outObservedModel
+  !@string outObservedTypeName
 ;
 
 #----------------------------------------------------------------------------*
 
 override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@string inSelfTypeName
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   !@string outObservedObject
   !@string outObservedModel
+  !@string outObservedTypeName
 :
+  outObservedTypeName := inSelfTypeName ;
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
-    ?* # ?@unifiedTypeProxy propertyType
+    ??@unifiedTypeProxy propertyType
     ?* #outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
   ] ;
-  if isCollection then
+  if not [[propertyType mTypeKind] isBoolType] then
+    error mSelfObservablePropertyName: "this property should be boolean" ;
+  elsif isCollection then
     error mSelfObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
   outObservedObject := "self" ;
@@ -474,28 +490,31 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@string unused inSelfTypeName
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   !@string outObservedObject
   !@string outObservedModel
+  !@string outObservedTypeName
 :
+  outObservedTypeName := [inRootEntityType key] ;
   [[inRootEntityType mObservablePropertyMap] searchKey
     !mRootObservablePropertyName
     ??@unifiedTypeProxy propertyType
     ?* #outModelIsTransient
     ?* #?@lstring propertySignature
-    ??@bool isCollection
+    ?* #?@bool isCollection
   ] ;
   if not [[propertyType mTypeKind] isBoolType] then
     error mRootObservablePropertyName: "this property should be boolean" ;
   end if ;
-  if isCollection & not mNamesCountOption then
-    error mRootObservablePropertyName : "the observable property should not be a collection" ;
-  elsif mNamesCountOption & not isCollection then
-    error mRootObservablePropertyName : "the observable property should be a collection" ;
-  end if ;
+#  if isCollection & not mNamesCountOption then
+#    error mRootObservablePropertyName : "the observable property should not be a collection" ;
+#  elsif mNamesCountOption & not isCollection then
+#    error mRootObservablePropertyName : "the observable property should be a collection" ;
+#  end if ;
   outObservedObject := "rootObject" ;
   outObservedModel := mRootObservablePropertyName->string ;
 end method ;
@@ -503,13 +522,16 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@string unused inSelfTypeName
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   !@string outObservedObject
   !@string outObservedModel
+  !@string outObservedTypeName
 :
+  outObservedTypeName := mPreferenceName->string ;
 #--- Get preference type
   [inUnifiedTypeMap searchKey
     !mPreferenceName
@@ -542,12 +564,14 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @arrayControllerObservablePropertyAST analyzeBoundObservablePropertyForEnabledBinding
+  ??@string unused inSelfTypeName
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   !@string outObservedObject
   !@string outObservedModel
+  !@string outObservedTypeName
 :
 #--- Get preference type
   [inArrayControllerMap searchKey
@@ -556,6 +580,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     ?3*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
     ?*
+    ?outObservedTypeName
   ] ;
 #---    
   [arrayControllerObservablePropertyMap searchKey
@@ -731,7 +756,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     ??@abstractObservablePropertyAST boundModel
     ?3*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
-    ?*
+    ?2*
   ] ;
 #---    
   [arrayControllerObservablePropertyMap searchKey
@@ -894,6 +919,60 @@ override reader @arrayControllerObservablePropertyAST propertySignature
     !inKind + "." + inSelfTypeName + "." + mArrayControllerObservablePropertyName
     !mArrayControllerObservablePropertyName->location
   ] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+# arrayControllerTypeName                                                    *
+#----------------------------------------------------------------------------*
+
+#! arrayControllerTypeName
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractObservablePropertyAST arrayControllerTypeName
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy inRootypeProxy
+  -> @string outTypeName
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @selfObservablePropertyAST arrayControllerTypeName
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @string outTypeName
+:
+  outTypeName := "ArrayController_" + inSelfTypeName + "_" + mSelfObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @rootObservablePropertyAST arrayControllerTypeName
+  ??@string unused inSelfTypeName
+  ??@unifiedTypeProxy inRootypeProxy
+  -> @string outTypeName
+:
+  outTypeName := "ArrayController_" + [inRootypeProxy key] + "_" + mRootObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @preferenceObservablePropertyAST arrayControllerTypeName
+  ??@string unused inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @string outTypeName
+:
+  outTypeName := "ArrayController_" + mPreferenceName + "_" + mPreferenceObservablePropertyName ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @arrayControllerObservablePropertyAST arrayControllerTypeName
+  ??@string inSelfTypeName
+  ??@unifiedTypeProxy unused inRootypeProxy
+  -> @string outTypeName
+:
+  outTypeName := "ArrayController_" + inSelfTypeName + "_" + mArrayControllerObservablePropertyName ;
 end reader ;
 
 #----------------------------------------------------------------------------*

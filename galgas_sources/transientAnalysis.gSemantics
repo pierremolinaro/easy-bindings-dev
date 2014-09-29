@@ -69,7 +69,7 @@ override method @transientControllerDependencyAST buildTransientDependencyGraph
     !mControllerName
     ?4*
     ??@decoratedObservablePropertyMap controllerObservablePropertyMap
-    ?*
+    ?2*
   ] ;
 #---
   [controllerObservablePropertyMap searchKey
@@ -355,7 +355,7 @@ override method @transientControllerDependencyAST transientDependencySemanticAna
     !mControllerName
     ?4*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
-    ?*
+    ?2*
   ] ;
   [arrayControllerObservablePropertyMap searchKey
     !mMasterName

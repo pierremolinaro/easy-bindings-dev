@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMButton) class PMButton : NSButton, PMUserClassName {
+@objc(PMButton) class PMButton : NSButton, PMUserClassName, PMEnableProtocol {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -21,6 +21,12 @@ import Cocoa
 
   deinit {
     noteObjectDeallocation (self)
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func setEnableFromBinding (flag : Bool) {
+    self.enabled = flag
   }
 
 }

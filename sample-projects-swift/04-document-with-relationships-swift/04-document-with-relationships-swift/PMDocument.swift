@@ -113,7 +113,8 @@ import Cocoa
     rootObject.addObserverOf_mNames_aValue (event_document_2E_PMDocument_2E_total, inTrigger:true)
   //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:false)
-  //--------------------------- Simple controller
+  //--------------------------- Simple controllers
+    mControllerArray.append (EnableController_PMDocument_removePathButton (object:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_MyRootEntity_mNames_count_PMNumberField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))

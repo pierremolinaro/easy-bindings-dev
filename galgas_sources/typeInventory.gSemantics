@@ -231,6 +231,7 @@ override method @unifiedTypeDeclaration typeInventory
       !{!["add" nowhere], !["remove" nowhere]}
       !arrayControllerObservablePropertyMap
       !arrayController_propertySignature
+      ![mBoundModel arrayControllerTypeName !mTypeName->string !rootEntityType]
     ] ;
   end for ;
 #------------------------------------- Enter in type map

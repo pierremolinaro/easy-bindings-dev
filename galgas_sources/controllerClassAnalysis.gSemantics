@@ -3,10 +3,16 @@ semantics controllerClassAnalysis :
 
 #----------------------------------------------------------------------------*
 
-local filewrapper controllerTemplates in "../generation-templates/controller-templates" {
+filewrapper controllerTemplates in "../generation-templates/controller-templates" {
   "txt"
 }{
 }{
+  template enabledBindingGeneration "enabled-binding.swift.gTemplate"
+    ?@string OUTLET_PROPRIETARY_CLASS_NAME
+    ?@string OUTLET_NAME
+    ?@string OBJECT_CLASS
+    ?@string MODEL
+  ;
 }
 
 #----------------------------------------------------------------------------*
