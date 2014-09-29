@@ -77,7 +77,7 @@ import Cocoa
   //--------------------------- Array controller
   //--------------------------- Transient observers
   //--------------------------- Array controller as observers
-  //--------------------------- Simple controller
+  //--------------------------- Simple controllers
     mControllerArray.append (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.append (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.append (Controller_MyPrefs_prefTransientString_PMTextField_rvalue (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__))

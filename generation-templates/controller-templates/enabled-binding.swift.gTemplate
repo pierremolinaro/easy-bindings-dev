@@ -1,12 +1,12 @@
-@objc(Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled)
-class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTransientEventProtocol, PMUserClassName {
+@objc(EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME%)
+class EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME% : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  weak var mObject : $OBJECTCLASS$? = nil
-  weak var mOutlet : PMButton? = nil
+  weak var mObject : %!OBJECT_CLASS%? = nil
+  weak var mOutlet : PMEnableProtocol? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.$OBJECTCLASS$.$MODEL$.PMButton.enabled" }
+  func userClassName () -> String { return "EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME%" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -15,25 +15,21 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTransientE
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : $OBJECTCLASS$?, outlet : PMButton?, file : String, line : Int) {
+  init (object : %!OBJECT_CLASS%?, outlet : PMEnableProtocol?, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
     super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMButton) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMButton")
-      }else{
-        mOutlet = unwrappedOutlet
-      }
+      mOutlet = unwrappedOutlet
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.addObserverOf_%!MODEL% (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.removeObserverOf_%!MODEL% (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -50,8 +46,10 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMButton_enabled : NSObject, PMTransientE
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.enabled != mObject!.$MODEL$) {
-      mOutlet!.enabled = mObject!.$MODEL$
+    if let outlet = mOutlet {
+      if let object = mObject {
+        outlet.setEnableFromBinding (object.%!MODEL%)
+      }
     }
   }
 
