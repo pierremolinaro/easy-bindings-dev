@@ -26,9 +26,9 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : NSObject, PMSignatureObserverProtocol {
+class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   var savingIndex = 0
-  weak var mEntityManager : PMObjectManager?
+  weak var mUndoManager : NSUndoManager?
 //--- Signature
   var mSignatureCache = 0
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
@@ -40,11 +40,17 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
 //  #endif
 
   //-------------------------------------------------------------------------------------------------------------------*
+  //    userClassName                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func userClassName () -> String { return "PMManagedObject" }
+
+  //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (entityManager : PMObjectManager) {
-    mEntityManager = entityManager
+  init (undoManager : NSUndoManager) {
+    mUndoManager = undoManager
     gAllocatedEntityCount = gAllocatedEntityCount + 1
  //   #ifdef PM_COCOA_DEBUG
       mExplorerObjectIndex = gExplorerObjectIndex
@@ -54,6 +60,14 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     noteObjectAllocation (self)
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  prepareForDeletion                                                                                               *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func prepareForDeletion () {
+    mUndoManager = nil
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
   //  deinit                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -123,12 +137,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //  Getters                                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func entityManager () -> PMObjectManager {
-    return mEntityManager!
-  }
-
-  func undoManager () -> PMUndoManager {
-    return mEntityManager!.mUndoManager
+  func undoManager () -> PMUndoManager? {
+    return mUndoManager as PMUndoManager?
   }
 
   func explorerObjectIndex () -> Int {
@@ -276,7 +286,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //   updateManagedObjectToManyRelationshipDisplayForKey                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : NSString, popUpButton : NSPopUpButton) {
+  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : NSString, popUpButton : NSPopUpButton?) {
     var objectArray : NSArray = valueForKey (inKey) as NSArray
     var title = "No Object" ;
     if objectArray.count == 1 {
@@ -284,17 +294,17 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
     }else if objectArray.count > 1 {
       title = NSString (format:"%lu objects", objectArray.count)
     }
-    popUpButton.removeAllItems ()
-    popUpButton.addItemWithTitle (title)
-    popUpButton.enabled = objectArray.count > 0
+    popUpButton?.removeAllItems ()
+    popUpButton?.addItemWithTitle (title)
+    popUpButton?.enabled = objectArray.count > 0
     for obj : AnyObject in objectArray {
       let object = obj as PMManagedObject
       let objectIndex = object.explorerObjectIndex ()
       let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
-      popUpButton.addItemWithTitle (stringValue)
-      var item = popUpButton.lastItem
-      item.target = object
-      item.action = "showObjectWindowFromExplorerButton:"
+      popUpButton?.addItemWithTitle (stringValue)
+      var item = popUpButton?.lastItem
+      item?.target = object
+      item?.action = "showObjectWindowFromExplorerButton:"
     }
   }
 
@@ -302,18 +312,18 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol {
   //   updateManagedObjectToOneRelationshipDisplayForKey                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton) {
-    var object = valueForKey (inKey) as PMManagedObject
+  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton?) {
+    var object = valueForKey (inKey) as PMManagedObject?
     var stringValue = "nil"
-    if nil != object {
-      let objectIndex = object.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
+    if let unwrappedObject = object {
+      let objectIndex = unwrappedObject.explorerObjectIndex ()
+      stringValue = NSString (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
-    button.enabled = object != nil
-    button.title = stringValue
-    button.toolTip = stringValue
-    button.target = object
-    button.action = "showObjectWindowFromExplorerButton:"
+    button?.enabled = object != nil
+    button?.title = stringValue
+    button?.toolTip = stringValue
+    button?.target = object
+    button?.action = "showObjectWindowFromExplorerButton:"
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
