@@ -2,6 +2,144 @@ semantics controllerClassAnalysis :
   import "decoratedTypes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+# observedObjectTypeNameList                                                 *
+#----------------------------------------------------------------------------*
+
+#! observedObjectTypeNameList
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractEnableBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedObjectTypeNameList
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @observablePropertyAsEnableBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedObjectTypeNameList
+:
+  outObservedObjectTypeNameList := {!mObservedTypeName} ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @negateBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mBinding observedObjectTypeNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @orBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @andBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+# enableExpressionString                                                     *
+#----------------------------------------------------------------------------*
+
+#! enableExpressionString
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractEnableBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @observablePropertyAsEnableBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+:
+  outEnableExpressionString := "object" + mIndex + "." + mObservedModel ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @negateBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+:
+  outEnableExpressionString := "!(" + [mBinding enableExpressionString] + ")" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @orBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+:
+  outEnableExpressionString := "(" + [mLeftBinding enableExpressionString] +  " || " + [mRightBinding enableExpressionString] + ")" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @andBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+:
+  outEnableExpressionString := "(" + [mLeftBinding enableExpressionString] +  " && " + [mRightBinding enableExpressionString] + ")" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+# observedModelNameList                                                      *
+#----------------------------------------------------------------------------*
+
+#! observedModelNameList
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractEnableBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @observablePropertyAsEnableBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := {!mObservedModel} ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @negateBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mBinding observedModelNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @orBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @andBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+:
+  outObservedModelNameList := [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+# filewrapper controllerTemplates                                            *
+#----------------------------------------------------------------------------*
+
+#! filewrapper controllerTemplates
+
+#----------------------------------------------------------------------------*
 
 filewrapper controllerTemplates in "../generation-templates/controller-templates" {
   "txt"
@@ -10,8 +148,9 @@ filewrapper controllerTemplates in "../generation-templates/controller-templates
   template enabledBindingGeneration "enabled-binding.swift.gTemplate"
     ?@string OUTLET_PROPRIETARY_CLASS_NAME
     ?@string OUTLET_NAME
-    ?@string OBJECT_CLASS
-    ?@string MODEL
+#    ?@string OBJECT_CLASS
+#    ?@string MODEL
+    ?@abstractEnableBindingExpressionForGeneration ENABLE_EXPRESSION
   ;
 }
 

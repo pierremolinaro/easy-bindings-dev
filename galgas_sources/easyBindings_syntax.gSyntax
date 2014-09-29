@@ -113,6 +113,63 @@ end rule ;
 
 #----------------------------------------------------------------------------*
 
+rule <booleanMultipleBindingExpression> 
+  !@abstractEnableBindingExpressionAST outBinding
+:
+  <booleanMultipleBindingTerm> ?outBinding ;
+  repeat
+  while
+    $&$ ;
+    <booleanMultipleBindingTerm> ??@abstractEnableBindingExpressionAST binding ;
+    outBinding := [@andBooleanMultipleBindingExpressionAST new !outBinding !binding] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingTerm> 
+  !@abstractEnableBindingExpressionAST outBinding
+:
+  <booleanMultipleBindingOperand> ?outBinding ;
+  repeat
+  while
+    $|$ ;
+    <booleanMultipleBindingOperand> ??@abstractEnableBindingExpressionAST binding ;
+    outBinding := [@orBooleanMultipleBindingExpressionAST new !outBinding !binding] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractEnableBindingExpressionAST outBinding
+:
+  <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
+  outBinding := [@observablePropertyAsEnableBindingExpressionAST new !observablePropertyAST] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractEnableBindingExpressionAST outBinding
+:
+  $!$ ;
+  <booleanMultipleBindingOperand> ??@abstractEnableBindingExpressionAST binding ;
+  outBinding := [@negateBooleanMultipleBindingExpressionAST new !binding] ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractEnableBindingExpressionAST outBinding
+:
+  $($ ;
+  <booleanMultipleBindingExpression> ?outBinding ;
+  $)$ ;
+end rule ;
+
+#----------------------------------------------------------------------------*
+
 rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
 :
@@ -142,8 +199,8 @@ rule <outlet_declaration>
     enabledBindingDescriptor := [@enabledBindingDescriptor noEnabledBinding] ;
   or
     $enabled$ ;
-    <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
-    enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !observablePropertyAST] ;
+    <booleanMultipleBindingExpression> ??@abstractEnableBindingExpressionAST bindingExpression ;
+    enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !bindingExpression] ;
   end select ;
 #---
   $;$ ;

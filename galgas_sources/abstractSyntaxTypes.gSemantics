@@ -178,9 +178,34 @@ enum @runActionDescriptor {
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractEnableBindingExpressionAST {
+}
+
+#----------------------------------------------------------------------------*
+
+class @negateBooleanMultipleBindingExpressionAST extends @abstractEnableBindingExpressionAST {
+  @abstractEnableBindingExpressionAST mBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @andBooleanMultipleBindingExpressionAST,
+       @orBooleanMultipleBindingExpressionAST extends @abstractEnableBindingExpressionAST {
+  @abstractEnableBindingExpressionAST mLeftBinding ;
+  @abstractEnableBindingExpressionAST mRightBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @observablePropertyAsEnableBindingExpressionAST extends @abstractEnableBindingExpressionAST {
+  @abstractObservablePropertyAST mProperty ;
+}
+
+#----------------------------------------------------------------------------*
+
 enum @enabledBindingDescriptor {
   noEnabledBinding,
-  enabledBinding (@abstractObservablePropertyAST property)
+  enabledBinding (@abstractEnableBindingExpressionAST expression)
 }
 #----------------------------------------------------------------------------*
 

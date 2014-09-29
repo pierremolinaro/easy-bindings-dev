@@ -1,8 +1,10 @@
 @objc(EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME%)
 class EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME% : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  weak var mObject : %!OBJECT_CLASS%? = nil
-  weak var mOutlet : PMEnableProtocol? = nil
+%for () in [ENABLE_EXPRESSION observedObjectTypeNameList] do index idx
+  %  weak var mObject%![idx string]% : %!mValue%? = nil\n%
+end
+%  weak var mOutlet : PMEnableProtocol? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -15,22 +17,35 @@ class EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME% : NSObjec
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : %!OBJECT_CLASS%?, outlet : PMEnableProtocol?, file : String, line : Int) {
+  init (%
+for () in [ENABLE_EXPRESSION observedObjectTypeNameList] do index idx
+  %object%![idx string]% : %!mValue%?, %
+end  
+%outlet : PMEnableProtocol?, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
-    mObject = object
-    super.init ()
+%
+for () in [ENABLE_EXPRESSION observedObjectTypeNameList] do index idx
+  %    mObject%![idx string]% = object%![idx string]%\n%
+end  
+%    super.init ()
     noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
       mOutlet = unwrappedOutlet
     }
-    mObject?.addObserverOf_%!MODEL% (self, inTrigger:true)
-  }
+%
+for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
+  %    mObject%![idx string]%?.addObserverOf_%!mValue% (self, inTrigger:true)\n%
+end  
+%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_%!MODEL% (self, inTrigger:false)
-  }
+%
+for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
+  %    mObject%![idx string]%?.removeObserverOf_%!mValue% (self, inTrigger:true)\n%
+end  
+%  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
@@ -47,10 +62,15 @@ class EnableController_%!OUTLET_PROPRIETARY_CLASS_NAME%_%!OUTLET_NAME% : NSObjec
 
   func trigger () {
     if let outlet = mOutlet {
-      if let object = mObject {
-        outlet.setEnableFromBinding (object.%!MODEL%)
-      }
-    }
+%
+for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
+  %      if let object%![idx string]% = mObject%![idx string]% {\n%
+end  
+%        outlet.setEnableFromBinding (%![ENABLE_EXPRESSION enableExpressionString]%)
+%for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
+  %      }\n%
+end  
+%    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

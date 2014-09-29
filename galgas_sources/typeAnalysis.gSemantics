@@ -139,23 +139,30 @@ local routine unifiedTypeAnalysis
   #--- Enabled
     switch outlet_mEnabledBindingDescriptor
     when  noEnabledBinding :
-    when enabledBinding (@abstractObservablePropertyAST property) :
-      [property analyzeBoundObservablePropertyForEnabledBinding
+    when enabledBinding (@abstractEnableBindingExpressionAST expression) :
+      @uint idx := 0 ;
+      [expression analyzeExpressionForEnabledBinding
         !inTypeName->string
         !inUnifiedTypeMap
         !inArrayControllerMap
         !inCurrentObservablePropertyMap
         !inRootEntityType
-        ??@string observedObject
-        ??@string observedModel
-        ??@string observedTypeName
+#        ??@string observedObject
+#        ??@string observedModel
+#        ??@string observedTypeName
+        !?idx
+        ??@abstractEnableBindingExpressionForGeneration enableExpression
       ] ;
-      controllerInstanciationStringList += !"EnableController_" + inTypeName + "_" + outlet_lkey + " (object:" + observedObject + ", outlet:" + outlet_lkey + ", file:__FILE__, line:__LINE__)" ;
+      var controllerInstanciation := "EnableController_" + inTypeName + "_" + outlet_lkey + " (" ;
+      for (s) in [enableExpression observedObjectList] do index idx
+        controllerInstanciation += "object" + idx + ":" + s + ", " ;
+      end for ;
+      controllerInstanciation += "outlet:" + outlet_lkey + ", file:__FILE__, line:__LINE__)" ;
+      controllerInstanciationStringList += ! controllerInstanciation ;
       ioGeneration->mControllerGenerationStringSet += ![filewrapper controllerTemplates.enabledBindingGeneration
         !inTypeName->string
         !outlet_lkey->string
-        !observedTypeName
-        !observedModel
+        !enableExpression
       ] ;
     end switch ;
   end for ;
@@ -440,6 +447,177 @@ abstract method @abstractTransientDependencyAST transientDependencySemanticAnaly
 ;
 
 #----------------------------------------------------------------------------*
+# analyzeExpressionForEnabledBinding                                         *
+#----------------------------------------------------------------------------*
+
+#! analyzeExpressionForEnabledBinding
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractEnableBindingExpressionAST analyzeExpressionForEnabledBinding
+  ??@string inSelfTypeName
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+;
+
+#----------------------------------------------------------------------------*
+
+override method @observablePropertyAsEnableBindingExpressionAST analyzeExpressionForEnabledBinding
+  ??@string inSelfTypeName
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+:
+  [mProperty analyzeBoundObservablePropertyForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?outEnableExpression
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ??@string inSelfTypeName
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+:
+  [mBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?@abstractEnableBindingExpressionForGeneration expression
+  ] ;
+  outEnableExpression := [@negateBooleanMultipleBindingExpressionForGeneration new !expression] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ??@string inSelfTypeName
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+:
+  [mLeftBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?@abstractEnableBindingExpressionForGeneration leftExpression
+  ] ;
+  [mRightBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?@abstractEnableBindingExpressionForGeneration rightExpression
+  ] ;
+  outEnableExpression := [@orBooleanMultipleBindingExpressionForGeneration new !leftExpression !rightExpression] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ??@string inSelfTypeName
+  ??@unifiedTypeMap inUnifiedTypeMap
+  ??@arrayControllerMap inArrayControllerMap
+  ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ??@unifiedTypeProxy inRootEntityType
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+:
+  [mLeftBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?@abstractEnableBindingExpressionForGeneration leftExpression
+  ] ;
+  [mRightBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    !?ioIndex
+    ?@abstractEnableBindingExpressionForGeneration rightExpression
+  ] ;
+  outEnableExpression := [@andBooleanMultipleBindingExpressionForGeneration new !leftExpression !rightExpression] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+# observedObjectList                                                         *
+#----------------------------------------------------------------------------*
+
+#! observedObjectList
+
+#----------------------------------------------------------------------------*
+
+abstract reader @abstractEnableBindingExpressionForGeneration observedObjectList
+  -> @stringlist outObservedObjectList
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @observablePropertyAsEnableBindingExpressionForGeneration observedObjectList
+  -> @stringlist outObservedObjectList
+:
+  outObservedObjectList := {!mObservedObject} ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @negateBooleanMultipleBindingExpressionForGeneration observedObjectList
+  -> @stringlist outObservedObjectList
+:
+  outObservedObjectList := [mBinding observedObjectList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @orBooleanMultipleBindingExpressionForGeneration observedObjectList
+  -> @stringlist outObservedObjectList
+:
+  outObservedObjectList := [mLeftBinding observedObjectList] + [mRightBinding observedObjectList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @andBooleanMultipleBindingExpressionForGeneration observedObjectList
+  -> @stringlist outObservedObjectList
+:
+  outObservedObjectList := [mLeftBinding observedObjectList] + [mRightBinding observedObjectList] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
 # analyzeBoundObservablePropertyForEnabledBinding                            *
 #----------------------------------------------------------------------------*
 
@@ -453,9 +631,8 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
-  !@string outObservedObject
-  !@string outObservedModel
-  !@string outObservedTypeName
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outExpression
 ;
 
 #----------------------------------------------------------------------------*
@@ -466,11 +643,10 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
-  !@string outObservedObject
-  !@string outObservedModel
-  !@string outObservedTypeName
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outExpression
 :
-  outObservedTypeName := inSelfTypeName ;
+#  outObservedTypeName := inSelfTypeName ;
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
     ??@unifiedTypeProxy propertyType
@@ -483,8 +659,15 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
   elsif isCollection then
     error mSelfObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  outObservedObject := "self" ;
-  outObservedModel := mSelfObservablePropertyName->string ;
+#  outObservedObject := "self" ;
+#  outObservedModel := mSelfObservablePropertyName->string ;
+  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+    !"self"
+    !mSelfObservablePropertyName->string
+    !inSelfTypeName
+    !ioIndex
+  ] ;
+  ioIndex ++ ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -495,11 +678,10 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
-  !@string outObservedObject
-  !@string outObservedModel
-  !@string outObservedTypeName
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outExpression
 :
-  outObservedTypeName := [inRootEntityType key] ;
+#  outObservedTypeName := [inRootEntityType key] ;
   [[inRootEntityType mObservablePropertyMap] searchKey
     !mRootObservablePropertyName
     ??@unifiedTypeProxy propertyType
@@ -515,8 +697,15 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnab
 #  elsif mNamesCountOption & not isCollection then
 #    error mRootObservablePropertyName : "the observable property should be a collection" ;
 #  end if ;
-  outObservedObject := "rootObject" ;
-  outObservedModel := mRootObservablePropertyName->string ;
+#  outObservedObject := "rootObject" ;
+#  outObservedModel := mRootObservablePropertyName->string ;
+  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+    !"rootObject"
+    !mRootObservablePropertyName->string
+    ![inRootEntityType key]
+    !ioIndex
+  ] ;
+  ioIndex ++ ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -527,11 +716,10 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
-  !@string outObservedObject
-  !@string outObservedModel
-  !@string outObservedTypeName
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outExpression
 :
-  outObservedTypeName := mPreferenceName->string ;
+#  outObservedTypeName := mPreferenceName->string ;
 #--- Get preference type
   [inUnifiedTypeMap searchKey
     !mPreferenceName
@@ -557,8 +745,15 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   if isCollection then
     error mPreferenceObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  outObservedObject := "g_" + mPreferenceName ;
-  outObservedModel := mPreferenceObservablePropertyName->string ;
+#  outObservedObject := "g_" + mPreferenceName ;
+#  outObservedModel := mPreferenceObservablePropertyName->string ;
+  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+    !"g_" + mPreferenceName
+    !mPreferenceObservablePropertyName->string
+    !mPreferenceName->string
+    !ioIndex
+  ] ;
+  ioIndex ++ ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -569,9 +764,8 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
-  !@string outObservedObject
-  !@string outObservedModel
-  !@string outObservedTypeName
+  ?!@uint ioIndex
+  !@abstractEnableBindingExpressionForGeneration outExpression
 :
 #--- Get preference type
   [inArrayControllerMap searchKey
@@ -580,7 +774,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     ?3*
     ??@decoratedObservablePropertyMap arrayControllerObservablePropertyMap
     ?*
-    ?outObservedTypeName
+    ??@string observedTypeName
   ] ;
 #---    
   [arrayControllerObservablePropertyMap searchKey
@@ -596,8 +790,15 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   if isCollection then
     error mArrayControllerObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-  outObservedObject := mArrayControllerName->string ;
-  outObservedModel := mArrayControllerObservablePropertyName->string ;
+#  outObservedObject := mArrayControllerName->string ;
+#  outObservedModel := mArrayControllerObservablePropertyName->string ;
+  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+    !mArrayControllerName->string
+    !mArrayControllerObservablePropertyName->string
+    !observedTypeName
+    !ioIndex
+  ] ;
+  ioIndex ++ ;
 end method ;
 
 #----------------------------------------------------------------------------*

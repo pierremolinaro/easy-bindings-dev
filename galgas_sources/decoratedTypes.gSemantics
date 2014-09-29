@@ -4,6 +4,34 @@ semantics decoratedTypes :
 
 #----------------------------------------------------------------------------*
 
+abstract class @abstractEnableBindingExpressionForGeneration {
+}
+
+#----------------------------------------------------------------------------*
+
+class @observablePropertyAsEnableBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
+  @string mObservedObject ;
+  @string mObservedModel ;
+  @string mObservedTypeName ;
+  @uint mIndex ; # In expression
+}
+
+#----------------------------------------------------------------------------*
+
+class @negateBooleanMultipleBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
+  @abstractEnableBindingExpressionForGeneration mBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @orBooleanMultipleBindingExpressionForGeneration,
+       @andBooleanMultipleBindingExpressionForGeneration extends @abstractEnableBindingExpressionForGeneration {
+  @abstractEnableBindingExpressionForGeneration mLeftBinding ;
+  @abstractEnableBindingExpressionForGeneration mRightBinding ;
+}
+
+#----------------------------------------------------------------------------*
+
 list @unifiedTypeProxySelectorList {
   @unifiedTypeProxy mType ;
   @lstring mSelector ;
