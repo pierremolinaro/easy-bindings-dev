@@ -139,7 +139,7 @@ local routine unifiedTypeAnalysis
   #--- Enabled
     switch outlet_mEnabledBindingDescriptor
     when  noEnabledBinding :
-    when enabledBinding (@abstractEnableBindingExpressionAST expression) :
+    when enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression) :
       @uint idx := 0 ;
       [expression analyzeExpressionForEnabledBinding
         !inTypeName->string
@@ -151,7 +151,7 @@ local routine unifiedTypeAnalysis
 #        ??@string observedModel
 #        ??@string observedTypeName
         !?idx
-        ??@abstractEnableBindingExpressionForGeneration enableExpression
+        ??@abstractBooleanMultipleBindingExpressionForGeneration enableExpression
       ] ;
       var controllerInstanciation := "EnableController_" + inTypeName + "_" + outlet_lkey + " (" ;
       for (s) in [enableExpression observedObjectList] do index idx
@@ -454,14 +454,14 @@ abstract method @abstractTransientDependencyAST transientDependencySemanticAnaly
 
 #----------------------------------------------------------------------------*
 
-abstract method @abstractEnableBindingExpressionAST analyzeExpressionForEnabledBinding
+abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
   ??@string inSelfTypeName
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 ;
 
 #----------------------------------------------------------------------------*
@@ -473,7 +473,7 @@ override method @observablePropertyAsEnableBindingExpressionAST analyzeExpressio
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
   [mProperty analyzeBoundObservablePropertyForEnabledBinding
     !inSelfTypeName
@@ -495,7 +495,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForE
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
   [mBinding analyzeExpressionForEnabledBinding
     !inSelfTypeName
@@ -504,7 +504,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForE
     !inCurrentObservablePropertyMap
     !inRootEntityType
     !?ioIndex
-    ?@abstractEnableBindingExpressionForGeneration expression
+    ?@abstractBooleanMultipleBindingExpressionForGeneration expression
   ] ;
   outEnableExpression := [@negateBooleanMultipleBindingExpressionForGeneration new !expression] ;
 end method ;
@@ -518,7 +518,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabl
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
   [mLeftBinding analyzeExpressionForEnabledBinding
     !inSelfTypeName
@@ -527,7 +527,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabl
     !inCurrentObservablePropertyMap
     !inRootEntityType
     !?ioIndex
-    ?@abstractEnableBindingExpressionForGeneration leftExpression
+    ?@abstractBooleanMultipleBindingExpressionForGeneration leftExpression
   ] ;
   [mRightBinding analyzeExpressionForEnabledBinding
     !inSelfTypeName
@@ -536,7 +536,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabl
     !inCurrentObservablePropertyMap
     !inRootEntityType
     !?ioIndex
-    ?@abstractEnableBindingExpressionForGeneration rightExpression
+    ?@abstractBooleanMultipleBindingExpressionForGeneration rightExpression
   ] ;
   outEnableExpression := [@orBooleanMultipleBindingExpressionForGeneration new !leftExpression !rightExpression] ;
 end method ;
@@ -550,7 +550,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnab
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outEnableExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
   [mLeftBinding analyzeExpressionForEnabledBinding
     !inSelfTypeName
@@ -559,7 +559,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnab
     !inCurrentObservablePropertyMap
     !inRootEntityType
     !?ioIndex
-    ?@abstractEnableBindingExpressionForGeneration leftExpression
+    ?@abstractBooleanMultipleBindingExpressionForGeneration leftExpression
   ] ;
   [mRightBinding analyzeExpressionForEnabledBinding
     !inSelfTypeName
@@ -568,7 +568,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnab
     !inCurrentObservablePropertyMap
     !inRootEntityType
     !?ioIndex
-    ?@abstractEnableBindingExpressionForGeneration rightExpression
+    ?@abstractBooleanMultipleBindingExpressionForGeneration rightExpression
   ] ;
   outEnableExpression := [@andBooleanMultipleBindingExpressionForGeneration new !leftExpression !rightExpression] ;
 end method ;
@@ -581,13 +581,13 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-abstract reader @abstractEnableBindingExpressionForGeneration observedObjectList
+abstract reader @abstractBooleanMultipleBindingExpressionForGeneration observedObjectList
   -> @stringlist outObservedObjectList
 ;
 
 #----------------------------------------------------------------------------*
 
-override reader @observablePropertyAsEnableBindingExpressionForGeneration observedObjectList
+override reader @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedObjectList
   -> @stringlist outObservedObjectList
 :
   outObservedObjectList := {!mObservedObject} ;
@@ -632,7 +632,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 ;
 
 #----------------------------------------------------------------------------*
@@ -644,7 +644,7 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@decoratedObservablePropertyMap inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
 #  outObservedTypeName := inSelfTypeName ;
   [inObservablePropertyMap searchKey
@@ -661,7 +661,7 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
   end if ;
 #  outObservedObject := "self" ;
 #  outObservedModel := mSelfObservablePropertyName->string ;
-  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+  outExpression := [@observablePropertyAsBooleanMultipleBindingExpressionForGeneration new
     !"self"
     !mSelfObservablePropertyName->string
     !inSelfTypeName
@@ -679,7 +679,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
 #  outObservedTypeName := [inRootEntityType key] ;
   [[inRootEntityType mObservablePropertyMap] searchKey
@@ -697,9 +697,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnab
 #  elsif mNamesCountOption & not isCollection then
 #    error mRootObservablePropertyName : "the observable property should be a collection" ;
 #  end if ;
-#  outObservedObject := "rootObject" ;
-#  outObservedModel := mRootObservablePropertyName->string ;
-  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+  outExpression := [@observablePropertyAsBooleanMultipleBindingExpressionForGeneration new
     !"rootObject"
     !mRootObservablePropertyName->string
     ![inRootEntityType key]
@@ -717,9 +715,8 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
-#  outObservedTypeName := mPreferenceName->string ;
 #--- Get preference type
   [inUnifiedTypeMap searchKey
     !mPreferenceName
@@ -745,9 +742,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   if isCollection then
     error mPreferenceObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-#  outObservedObject := "g_" + mPreferenceName ;
-#  outObservedModel := mPreferenceObservablePropertyName->string ;
-  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+  outExpression := [@observablePropertyAsBooleanMultipleBindingExpressionForGeneration new
     !"g_" + mPreferenceName
     !mPreferenceObservablePropertyName->string
     !mPreferenceName->string
@@ -765,7 +760,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
   ??@unifiedTypeProxy unused inRootEntityType
   ?!@uint ioIndex
-  !@abstractEnableBindingExpressionForGeneration outExpression
+  !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
 #--- Get preference type
   [inArrayControllerMap searchKey
@@ -790,9 +785,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   if isCollection then
     error mArrayControllerObservablePropertyName : "the observable property should not be a collection" ;
   end if ;
-#  outObservedObject := mArrayControllerName->string ;
-#  outObservedModel := mArrayControllerObservablePropertyName->string ;
-  outExpression := [@observablePropertyAsEnableBindingExpressionForGeneration new
+  outExpression := [@observablePropertyAsBooleanMultipleBindingExpressionForGeneration new
     !mArrayControllerName->string
     !mArrayControllerObservablePropertyName->string
     !observedTypeName
