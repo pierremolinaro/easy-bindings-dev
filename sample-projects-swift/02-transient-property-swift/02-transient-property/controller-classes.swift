@@ -81,16 +81,18 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
-          let alert = NSAlert ()
-          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.mFirstName
-            }
-          })
+          if let window = sender.window {
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                outlet.stringValue = object.mFirstName
+              }
+            })
+          }
         }
       }
     }
@@ -265,16 +267,18 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
-          let alert = NSAlert ()
-          alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (sender.window, completionHandler:{(response : NSModalResponse) -> Void in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.mName
-            }
-          })
+          if let window = sender.window {
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                outlet.stringValue = object.mName
+              }
+            })
+          }
         }
       }
     }

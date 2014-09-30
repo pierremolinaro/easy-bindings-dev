@@ -39,11 +39,11 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     super.init ()
     noteObjectAllocation (self)
     undoManager = PMUndoManager ()
-    hookOfInit () ;
-    undoManager.disableUndoRegistration ()
+    hookOfInit ()
+    undoManager?.disableUndoRegistration ()
     mRootObject = newInstanceOfEntityNamed (rootEntityClassName ())
     hookOfNewDocumentCreation ()
-    undoManager.enableUndoRegistration ()
+    undoManager?.enableUndoRegistration ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -154,9 +154,9 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //---
     hookOfWillSave ()
   //--- Add to metadata dictionary the witdth and the height of main window
-    if nil != windowForSheet { // Document has been opened in the user interface
-      if (windowForSheet!.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
-        let windowSize = windowForSheet.frame.size ;
+    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
+      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
+        let windowSize = unwrappedWindowForSheet.frame.size ;
         mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:"PMWindowWidth")
         mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:"PMWindowHeight")
       }
@@ -248,7 +248,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   override func readFromData (data: NSData?,
                               ofType typeName: String?,
                               error outError: NSErrorPointer) -> Bool {
-    undoManager.disableUndoRegistration ()
+    undoManager?.disableUndoRegistration ()
   //---- Define input data scanner
     var dataScanner = PMDataScanner (
       data:data!,
@@ -380,7 +380,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     if (nil != outError) {
       outError.memory = error
     }
-    undoManager.enableUndoRegistration ()
+    undoManager?.enableUndoRegistration ()
   //---
     return nil == error
   }
@@ -419,14 +419,16 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   override func showWindows () {
     super.showWindows ()
-    if (windowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
-      var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
-      var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
-      if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
-        let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
-        var windowFrame : NSRect = windowForSheet.frame
-        windowFrame.size = newSize
-        windowForSheet.setFrame (windowFrame, display:true)
+    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
+      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
+        var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
+        var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
+        if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
+          let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
+          var windowFrame : NSRect = unwrappedWindowForSheet.frame
+          windowFrame.size = newSize
+          unwrappedWindowForSheet.setFrame (windowFrame, display:true)
+        }
       }
     }
   }
@@ -461,9 +463,9 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     tf.drawsBackground = false
     tf.editable = false
     tf.font = NSFont.boldSystemFontOfSize (0.0)
-    panel.contentView.addSubview (tf)
+    panel.contentView?.addSubview (tf)
     NSApp.beginSheet (panel,
-      modalForWindow:windowForSheet,
+      modalForWindow:windowForSheet!,
       modalDelegate:nil,
       didEndSelector:nil,
       contextInfo:nil
@@ -479,7 +481,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     alert.informativeText = NSString (format:"There are %lu reachable objects from root object.",
       reachableCount
     )
-    alert.beginSheetModalForWindow (windowForSheet,
+    alert.beginSheetModalForWindow (windowForSheet!,
       completionHandler:nil
     )
   }

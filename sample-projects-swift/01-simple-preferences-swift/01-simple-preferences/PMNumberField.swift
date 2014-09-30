@@ -12,7 +12,7 @@ import Cocoa
  
   //-------------------------------------------------------------------------------------------------------------------*
 
-  required init (coder: NSCoder!) {
+  required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
     noteObjectAllocation (self)
@@ -64,14 +64,15 @@ import Cocoa
 
   override func controlTextDidChange (inNotification : NSNotification) {
     if mSendContinously {
-      let inputString = currentEditor().string
-      // NSLog ("inputString %@", inputString)
-      let numberFormatter = self.formatter as NSNumberFormatter
-      let number = numberFormatter.numberFromString (inputString)
-      if number == nil {
-        control (self, didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString))
-      }else{
-        NSApp.sendAction (self.action, to: self.target, from: self)
+      if let inputString = currentEditor()?.string {
+        // NSLog ("inputString %@", inputString)
+        let numberFormatter = self.formatter as NSNumberFormatter
+        let number = numberFormatter.numberFromString (inputString)
+        if number == nil {
+          control (self, didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString))
+        }else{
+          NSApp.sendAction (self.action, to: self.target, from: self)
+        }
       }
     }
   }
@@ -84,16 +85,17 @@ import Cocoa
                 didFailToFormatString string: String!,
                 errorDescription error: String!) -> Bool {
     let alert = NSAlert ()
-    alert.messageText = error
-    alert.informativeText = "Please provide a valid value."
-    alert.addButtonWithTitle ("Ok")
-    alert.addButtonWithTitle ("Discard Change")
-    alert.beginSheetModalForWindow (control.window, completionHandler:{(response : NSModalResponse) -> Void in
-      if response == NSAlertSecondButtonReturn { // Discard Change
-//        control.currentEditor()?.discardEditing()
-        self.integerValue = self.myIntegerValue
-      }
-    })
+    if let window = control.window {
+      alert.messageText = error
+      alert.informativeText = "Please provide a valid value."
+      alert.addButtonWithTitle ("Ok")
+      alert.addButtonWithTitle ("Discard Change")
+      alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+        if response == NSAlertSecondButtonReturn { // Discard Change
+          self.integerValue = self.myIntegerValue
+        }
+      })
+    }
     return false
   }
 

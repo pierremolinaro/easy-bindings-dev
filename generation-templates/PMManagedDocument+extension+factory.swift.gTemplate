@@ -12,19 +12,21 @@ extension PMManagedDocument {
 
   func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
     var result : PMManagedObject?
+    if let unwrappedUndoManager = undoManager {
 %
 for () in ENTITY_LIST
 before
-  %    %
+  %      %
 do
   %if inEntityTypeName == "%!mEntityName%" {\n%
-  %      result = %!mEntityName% (undoManager:undoManager)\n%
+  %        result = %!mEntityName% (undoManager:unwrappedUndoManager)\n%
 between
-  %    }else %
+  %      }else %
 after
-  %    }\n%
+  %      }\n%
 end
-%    return result
+%    }
+    return result
   }
 }
 

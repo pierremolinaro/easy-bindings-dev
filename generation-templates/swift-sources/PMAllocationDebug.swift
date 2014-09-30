@@ -141,15 +141,17 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func pmInstallDebugMenu () {
-    if (!mDebugMenuInstalled) && (NSApp.mainMenu != nil) {
-      var item = NSMenuItem (
-        title:"",
-        action:nil,
-        keyEquivalent:""
-      )
-      item.submenu = mDebugMenu
-      NSApp.mainMenu?.addItem (item)
-      mDebugMenuInstalled = true
+    if let mainMenu = NSApp.mainMenu {
+      if !mDebugMenuInstalled {
+        var item = NSMenuItem (
+          title:"",
+          action:nil,
+          keyEquivalent:""
+        )
+        item.submenu = mDebugMenu
+        mainMenu!.addItem (item)
+        mDebugMenuInstalled = true
+      }
     }
   }
 
@@ -176,7 +178,7 @@ private var gDebugObject : PMAllocationDebug? = nil
     let columns = mStatsTableView!.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as NSTableColumn
-      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!)
     }
   }
 
