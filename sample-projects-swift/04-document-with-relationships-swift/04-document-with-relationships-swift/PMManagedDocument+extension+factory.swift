@@ -12,10 +12,12 @@ extension PMManagedDocument {
 
   func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
     var result : PMManagedObject?
-    if inEntityTypeName == "MyRootEntity" {
-      result = MyRootEntity (undoManager:undoManager)
-    }else if inEntityTypeName == "NameEntity" {
-      result = NameEntity (undoManager:undoManager)
+    if let unwrappedUndoManager = undoManager {
+      if inEntityTypeName == "MyRootEntity" {
+        result = MyRootEntity (undoManager:unwrappedUndoManager)
+      }else if inEntityTypeName == "NameEntity" {
+        result = NameEntity (undoManager:unwrappedUndoManager)
+      }
     }
     return result
   }

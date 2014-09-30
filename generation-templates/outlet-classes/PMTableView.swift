@@ -12,7 +12,7 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  required init (coder: NSCoder!) {
+  required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
   }

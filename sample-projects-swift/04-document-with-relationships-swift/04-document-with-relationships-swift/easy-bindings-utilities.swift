@@ -161,10 +161,13 @@ extension NSTextView {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func displayAndScrollToEndOfText () {
-    var textStorage = layoutManager.textStorage
-    let endOfText = NSRange (location:textStorage.length, length:0)
-    scrollRangeToVisible (endOfText)
-    displayIfNeeded ()
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        let endOfText = NSRange (location:ts.length, length:0)
+        scrollRangeToVisible (endOfText)
+        displayIfNeeded ()
+      }
+    }
   }
 
 
@@ -172,16 +175,22 @@ extension NSTextView {
 
   func clear () {
     let str = NSAttributedString (string:"", attributes:nil)
-    var textStorage = layoutManager.textStorage
-    textStorage.setAttributedString (str)
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        ts.setAttributedString (str)
+      }
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func appendAttributedString (inAttributedString : NSAttributedString) {
-    var textStorage = layoutManager.textStorage
-    textStorage.appendAttributedString (inAttributedString)
-    displayAndScrollToEndOfText ()
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        ts.appendAttributedString (inAttributedString)
+        displayAndScrollToEndOfText ()
+      }
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -192,9 +201,12 @@ extension NSTextView {
       NSForegroundColorAttributeName : NSColor.blackColor()
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
-    var textStorage = layoutManager.textStorage
-    textStorage.appendAttributedString (str)
-    displayAndScrollToEndOfText ()
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        ts.appendAttributedString (str)
+        displayAndScrollToEndOfText ()
+      }
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -205,9 +217,12 @@ extension NSTextView {
       NSForegroundColorAttributeName : color
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
-    var textStorage = layoutManager.textStorage
-    textStorage.appendAttributedString (str)
-    displayAndScrollToEndOfText ()
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        ts.appendAttributedString (str)
+        displayAndScrollToEndOfText ()
+      }
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -218,9 +233,12 @@ extension NSTextView {
       NSForegroundColorAttributeName : NSColor.redColor()
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
-    var textStorage = layoutManager.textStorage
-    textStorage.appendAttributedString (str)
-    displayAndScrollToEndOfText ()
+    if let unwrappedLayoutManager = layoutManager {
+      if let ts = unwrappedLayoutManager.textStorage {
+        ts.appendAttributedString (str)
+        displayAndScrollToEndOfText ()
+      }
+    }
   }
 }
 

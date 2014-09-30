@@ -336,7 +336,7 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  override func sendEvent (inEvent : NSEvent!) {
+  override func sendEvent (inEvent : NSEvent) {
     mLevel += 1
     // NSLog ("send event %d", mLevel)
     super.sendEvent (inEvent)

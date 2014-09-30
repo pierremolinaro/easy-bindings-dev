@@ -101,14 +101,17 @@ end
         unwrappedTableView.setDelegate (self)
 %
 for () in BOUND_COLUMNS do
-%        let col_%!mObservablePropertyName% : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("%!mColumnName%")\n%
-%        col_%!mObservablePropertyName%.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%", ascending:true)\n%
+%        if let col_%!mObservablePropertyName% : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("%!mColumnName%") {\n%
+%          col_%!mObservablePropertyName%.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%", ascending:true)\n%
+%        }\n%
 end
 
 %        let columns = unwrappedTableView.tableColumns as NSArray
         if columns.count > 0 {
           let firstColumn = columns [0] as NSTableColumn
-          unwrappedTableView.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+          if let sdp = firstColumn.sortDescriptorPrototype {
+            unwrappedTableView.sortDescriptors = NSArray (object:sdp)
+          }
         }
       }
     }

@@ -191,7 +191,7 @@ rule <outlet_declaration>
     end select ;
     $.$ ;
     $identifier$ ??@lstring runActionName ;
-    runActionDescriptor := [@runActionDescriptor action !runTargetName !runActionName] ;
+    runActionDescriptor := [@runActionDescriptor action !target:runTargetName !action:runActionName] ;
   end select ;
 #--- Enabled
   @enabledBindingDescriptor enabledBindingDescriptor ;
@@ -200,7 +200,7 @@ rule <outlet_declaration>
   or
     $enabled$ ;
     <booleanMultipleBindingExpression> ??@abstractBooleanMultipleBindingExpressionAST bindingExpression ;
-    enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !bindingExpression] ;
+    enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !expression:bindingExpression] ;
   end select ;
 #---
   $;$ ;

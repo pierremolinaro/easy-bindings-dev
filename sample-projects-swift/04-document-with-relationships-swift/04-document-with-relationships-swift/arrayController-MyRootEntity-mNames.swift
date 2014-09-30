@@ -109,14 +109,18 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       if ok {
         unwrappedTableView.setDataSource (self)
         unwrappedTableView.setDelegate (self)
-        let col_name : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("name")
-        col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name", ascending:true)
-        let col_aValue : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("int")
-        col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue", ascending:true)
+        if let col_name : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("name") {
+          col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name", ascending:true)
+        }
+        if let col_aValue : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("int") {
+          col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue", ascending:true)
+        }
         let columns = unwrappedTableView.tableColumns as NSArray
         if columns.count > 0 {
           let firstColumn = columns [0] as NSTableColumn
-          unwrappedTableView.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype)
+          if let sdp = firstColumn.sortDescriptorPrototype {
+            unwrappedTableView.sortDescriptors = NSArray (object:sdp)
+          }
         }
       }
     }
@@ -303,9 +307,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
     let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  NameEntity
     if columnIdentifier == "name" {
-      result.textField.stringValue = object.name
-      result.textField.target = self
-      result.textField.action = "set_name_Action:"
+      result.textField?.stringValue = object.name
+      result.textField?.target = self
+      result.textField?.action = "set_name_Action:"
       let tf : PMTextField = result.textField as PMTextField
       tf.setSendContinously (true)
     }else if columnIdentifier == "int" {

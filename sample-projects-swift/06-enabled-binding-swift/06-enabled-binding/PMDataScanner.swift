@@ -53,57 +53,59 @@ class PMDataScanner : NSObject, PMUserClassName {
   //---------------------------------------------------------------------------*
 
   func openProgressWindowWithTitle (inTitle : String) {
-    let visibleFrame = NSScreen.mainScreen ().visibleFrame
-    let windowWidth = 400.0
-    let windowHeight = 65.0
-    let windowRect = NSMakeRect (
-      NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),
-      NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),
-      CGFloat (windowWidth),
-      CGFloat (windowHeight)
-    )
-    mProgressWindow = NSWindow (
-      contentRect:windowRect,
-      styleMask:NSTitledWindowMask,
-      backing:NSBackingStoreType.Buffered,
-      defer:false
-    )
-    mProgressWindow!.excludedFromWindowsMenu = true
-    mProgressWindow!.title = "Progress"
-    let contientViewRect : NSRect = mProgressWindow!.contentView.frame
-  //--- Add comment text
-    let ts_r = NSRect (
-      x:25.0,
-      y:30.0,
-      width:NSMaxX (contientViewRect) - 40.0,
-      height:20.0
-    )
-    var ts = NSTextField (frame:ts_r)
-    ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
-    ts.stringValue = NSString (format:"Opening %@…", inTitle)
-    ts.bezeled = false
-    ts.bordered = false
-    ts.editable = false
-    ts.drawsBackground = false
-    mProgressWindow!.contentView.addSubview (ts)
-  //--- Add progress indicator
-    let ps_r = NSRect (
-      x:20.0,
-      y:10.0,
-      width:NSMaxX (contientViewRect) - 40.0,
-      height: 20.0
-    )
-    mProgressIndicator = NSProgressIndicator (frame:ps_r)
-    mProgressIndicator!.indeterminate = true
-    mProgressWindow!.contentView.addSubview (mProgressIndicator!)
-  //---
-    mProgressIndicator!.minValue = 0.0
-    mProgressIndicator!.maxValue = Double (mData.length)
-    mProgressIndicator!.doubleValue = Double (mReadIndex)
-    mProgressIndicator!.indeterminate = false
-    mProgressIndicator!.display ()
-  //---
-    mProgressWindow!.makeKeyAndOrderFront (nil)
+    if let visibleFrame = NSScreen.mainScreen ()?.visibleFrame {
+      let windowWidth = 400.0
+      let windowHeight = 65.0
+      let windowRect = NSMakeRect (
+        NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),
+        NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),
+        CGFloat (windowWidth),
+        CGFloat (windowHeight)
+      )
+      let progressWindow = NSWindow (
+        contentRect:windowRect,
+        styleMask:NSTitledWindowMask,
+        backing:NSBackingStoreType.Buffered,
+        defer:false
+      )
+      mProgressWindow = progressWindow
+      progressWindow.excludedFromWindowsMenu = true
+      progressWindow.title = "Progress"
+      let contientViewRect : NSRect = progressWindow.contentView!.frame
+    //--- Add comment text
+      let ts_r = NSRect (
+        x:25.0,
+        y:30.0,
+        width:NSMaxX (contientViewRect) - 40.0,
+        height:20.0
+      )
+      var ts = NSTextField (frame:ts_r)
+      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
+      ts.stringValue = NSString (format:"Opening %@…", inTitle)
+      ts.bezeled = false
+      ts.bordered = false
+      ts.editable = false
+      ts.drawsBackground = false
+      progressWindow.contentView!.addSubview (ts)
+    //--- Add progress indicator
+      let ps_r = NSRect (
+        x:20.0,
+        y:10.0,
+        width:NSMaxX (contientViewRect) - 40.0,
+        height: 20.0
+      )
+      mProgressIndicator = NSProgressIndicator (frame:ps_r)
+      mProgressIndicator!.indeterminate = true
+      progressWindow.contentView!.addSubview (mProgressIndicator!)
+    //---
+      mProgressIndicator!.minValue = 0.0
+      mProgressIndicator!.maxValue = Double (mData.length)
+      mProgressIndicator!.doubleValue = Double (mReadIndex)
+      mProgressIndicator!.indeterminate = false
+      mProgressIndicator!.display ()
+    //---
+      progressWindow.makeKeyAndOrderFront (nil)
+    }
   }
 
   //---------------------------------------------------------------------------*
