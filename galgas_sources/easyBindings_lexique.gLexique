@@ -25,7 +25,6 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "default",
   "dependsFrom",
   "document",
-  "enabled",
   "enum",
   "entity",
   "include",
@@ -37,7 +36,6 @@ list lowerCaseKeyWordList error message "the '%K' keyword" style keywordsStyle :
   "preferences",
   "property",
   "root",
-  "run",
   "self",
   "signature",
   "struct",
@@ -72,6 +70,11 @@ end rule ;
 style bindingNameStyle -> "Binding Names" ;
 style reservedBindingNameStyle -> "Reserved binding names" ;
 
+list reservedBindingNameKeyWordList error message "the '$%K' keyword" style reservedBindingNameStyle :
+  "enabled",
+  "run"
+;
+
 $binding$ ! tokenString error message "a binding name (identifier prefixed by '$')" style bindingNameStyle ;
 
 rule '$' :
@@ -80,7 +83,7 @@ rule '$' :
    'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
     enterCharacterIntoString !?tokenString !* ;
   end repeat ;
-  send $binding$ ;
+  send search tokenString in reservedBindingNameKeyWordList default $binding$ ;
 end rule ;
 
 #----------------------------------------------------------------------------*
