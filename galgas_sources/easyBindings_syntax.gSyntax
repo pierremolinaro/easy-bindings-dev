@@ -172,16 +172,20 @@ end rule ;
 
 rule <outlet_declaration>
   ?!@outletDeclarationList ioOutletDeclarationList
+  ?!@bindingList ioBindingList
 :
   $outlet$ ;
   $Identifier$ ??outletTypeName ;
   $identifier$ ??outletName ;
 #--- Run
-  @runActionDescriptor runActionDescriptor ; 
-  select
-    runActionDescriptor := [@runActionDescriptor noAction] ;
-  or
+  @runActionDescriptor runActionDescriptor := [@runActionDescriptor noAction] ; 
+  @enabledBindingDescriptor enabledBindingDescriptor := [@enabledBindingDescriptor noEnabledBinding] ;
+  repeat
+  while
     $run$ ;
+    if runActionDescriptor != [@runActionDescriptor noAction] then
+      error here : "duplicated $run binding" ;
+    end if ;
     @lstring runTargetName ;
     select
       $self$ ;
@@ -192,16 +196,27 @@ rule <outlet_declaration>
     $.$ ;
     $identifier$ ??@lstring runActionName ;
     runActionDescriptor := [@runActionDescriptor action !target:runTargetName !action:runActionName] ;
-  end select ;
 #--- Enabled
-  @enabledBindingDescriptor enabledBindingDescriptor ;
-  select
-    enabledBindingDescriptor := [@enabledBindingDescriptor noEnabledBinding] ;
-  or
+  while
     $enabled$ ;
+    if enabledBindingDescriptor != [@enabledBindingDescriptor noEnabledBinding] then
+      error here : "duplicated $enabled binding" ;
+    end if ;
     <booleanMultipleBindingExpression> ??@abstractBooleanMultipleBindingExpressionAST bindingExpression ;
     enabledBindingDescriptor := [@enabledBindingDescriptor enabledBinding !expression:bindingExpression] ;
-  end select ;
+#--- Regular binding
+  while
+    $binding$ ??@lstring bindingName ;
+    <observable_property> ??@abstractObservablePropertyAST observablePropertyAST ;
+    <binding_option_list> ??bindingOptions ;
+    ioBindingList +=
+      ![@lstring new !"model" !bindingName->location]
+      !observablePropertyAST
+      !outletName
+      !bindingName
+      !bindingOptions
+    ;
+  end repeat ;
 #---
   $;$ ;
   ioOutletDeclarationList +=
@@ -244,7 +259,7 @@ rule <preferences_declaration>
   while
     <attribute_declaration> !?attributeList ;
   while
-    <outlet_declaration> !?outletDeclarationList ;
+    <outlet_declaration> !?outletDeclarationList !?bindingList ;
   while
     <transient_declaration> !?transientList ;
   while
@@ -393,7 +408,7 @@ rule <document_declaration>
   while
     <transient_declaration> !?transientList ;
   while
-    <outlet_declaration> !?outletDeclarationList ;
+    <outlet_declaration> !?outletDeclarationList !?bindingList ;
   while
     <binding_declaration> !?bindingList ;
   while
