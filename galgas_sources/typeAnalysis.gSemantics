@@ -314,7 +314,7 @@ local routine unifiedTypeAnalysis
       ??@bool modelShouldBeWritableProperty
       ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
     ] ;
-    if modelShouldBeWritableProperty & modelIsTransient then
+    if modelShouldBeWritableProperty && modelIsTransient then
       error mSelectorName : "the model is transient and the binding requires an writable model" ;
     end if ;
     var @unifiedTypeProxySelectorList modelPropertyTypeList := {} ;

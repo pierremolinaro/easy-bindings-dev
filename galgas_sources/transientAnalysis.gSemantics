@@ -274,7 +274,7 @@ routine buildTransientDependencyGraph
     end for ;
   end for ;
 #------------------------------------------- Output graphviz file ?
-  if ([@uint errorCount] == 0) & [option easyBindings_options.outputTransientDependencyGraph value] then
+  if ([@uint errorCount] == 0) && [option easyBindings_options.outputTransientDependencyGraph value] then
     const s := [transientDependencyGraph graphviz] ;
     const path := inSourceFile . ".transientDependancyGraph.dot" ;
     [s writeToFileWhenDifferentContents !path ?*] ;
@@ -332,9 +332,9 @@ override method @transientLocalDependencyAST transientDependencySemanticAnalysis
     ?* #@lstring masterPropertySignature
     ?@bool isCollection
   ] ;
-  if mNamesCountOption & not isCollection then
+  if mNamesCountOption && not isCollection then
     error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
-  elsif isCollection & not mNamesCountOption then
+  elsif isCollection && not mNamesCountOption then
     error mMasterName: "to-many relationships requires the 'count' option" ;
   end if ;
   ioTransientDependencyListForGeneration += ![masterType transientFormalArgumentTypeName] !mMasterName->string ;
@@ -402,7 +402,7 @@ override method @transientRootDependencyAST transientDependencySemanticAnalysis
     ?@bool isCollection
   ] ;
 #--- Has 'count' option ?
-  if mNamesCountOption & not isCollection then
+  if mNamesCountOption && not isCollection then
     error mMasterName: "the 'count' option is only allowed for to-many relationships" ;
   end if ;
 #---
