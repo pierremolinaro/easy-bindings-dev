@@ -33,14 +33,14 @@ class @orBooleanMultipleBindingExpressionForGeneration,
 #----------------------------------------------------------------------------*
 
 list @unifiedTypeProxySelectorList {
-  @unifiedTypeProxy mType ;
+  @unifiedTypeMap-proxy mType ;
   @lstring mSelector ;
 }
 
 #----------------------------------------------------------------------------*
 
 list @unifiedTypeProxyList {
-  @unifiedTypeProxy mType ;
+  @unifiedTypeMap-proxy mType ;
 }
 
 #----------------------------------------------------------------------------*
@@ -59,13 +59,13 @@ map @arrayControllerMap {
 
 #----------------------------------------------------------------------------*
 
-uniquemap @unifiedTypeMap @unifiedTypeProxy {
+sharedmap @unifiedTypeMap {
   insert insertKey error message "the '%K' type is already declared" ;
   search searchKey error message "the '%K' type is not declared" ;
 
   @typeKind mTypeKind ;
-  @unifiedTypeProxy mSuperType ;
-  @unifiedTypeProxy mRootEntityType ;
+  @unifiedTypeMap-proxy mSuperType ;
+  @unifiedTypeMap-proxy mRootEntityType ;
   @decoratedAttributeMap mDecoratedAttributeMap ;
   @decoratedTransientMap mDecoratedTransientMap ;
   @decoratedOutletMap mDecoratedOutletMap ;
@@ -98,7 +98,7 @@ map @decoratedEntityRelationshipMap {
   insert insertKey error message "the '%K' relationship is already declared" ;
   search searchKey error message "the '%K' relationship is not declared" ;
   @bool mIsToMany ;
-  @unifiedTypeProxy mRelationshipType ;
+  @unifiedTypeMap-proxy mRelationshipType ;
   @lstring mOppositeRelationshipName ;
 }
 
@@ -113,7 +113,7 @@ list @dependanceListForGeneration {
 map @decoratedTransientMap {
   insert insertKey error message "the '%K' transient is already declared" ;
   search searchKey error message "the '%K' transient is not declared" ;
-  @unifiedTypeProxy mTransientType ;
+  @unifiedTypeMap-proxy mTransientType ;
   @lstring mTransientSignature ;
   @dependanceList mDependencyList ;
 }
@@ -122,7 +122,7 @@ map @decoratedTransientMap {
 
 list @transientDefinitionListForGeneration {
   @string mTransientName ;
-  @unifiedTypeProxy mTransientType ;
+  @unifiedTypeMap-proxy mTransientType ;
   @lstring mTransientSignature ;
   @dependanceListForGeneration mDependencyList ;
 }
@@ -140,7 +140,7 @@ map @decoratedOutletMap {
 #----------------------------------------------------------------------------*
 
 map @decoratedAttributeMap {
-  @unifiedTypeProxy mAttributeType ;
+  @unifiedTypeMap-proxy mAttributeType ;
   @abstractDefaultValue mDefaultValue ;
   @bool mNeedsValidation ;
   insert insertKey error message "the '%K' attribute is already declared in %L" ;
@@ -158,7 +158,7 @@ map @outletClassMap {
 #----------------------------------------------------------------------------*
 
 map @decoratedObservablePropertyMap {
-  @unifiedTypeProxy mPropertyType ;
+  @unifiedTypeMap-proxy mPropertyType ;
   @bool mIsTransient ;
   @lstring mPropertySignature ;
   @bool mIsCollection ;
@@ -228,7 +228,7 @@ list @transientDependencyListForGeneration {
 
 list @transientListForGeneration {
   @string mTransientSignature ;
-  @unifiedTypeProxy mTransientType ;
+  @unifiedTypeMap-proxy mTransientType ;
   @transientDependencyListForGeneration mTransientDependencyListForGeneration ;
 }
 
@@ -245,7 +245,7 @@ list @arrayControllerBoundColumnListForGeneration {
   @string mColumnName ;
   @string mColumnOutletTypeName ;
   @string mObservablePropertyName ;
-  @unifiedTypeProxy mPropertyType ;
+  @unifiedTypeMap-proxy mPropertyType ;
   @bindingOptionList mBindingOptionList ;
 }
 
@@ -296,7 +296,7 @@ class @transientRootDependencyForGeneration extends @abstractTransientDependency
 #----------------------------------------------------------------------------*
 
 class @transientRootRelationshipDependencyForGeneration extends @abstractTransientDependencyForGeneration {
-  @unifiedTypeProxy mElementType ;
+  @unifiedTypeMap-proxy mElementType ;
   @lstring mRelationshipName ;
   @lstring mMasterName ;
 }

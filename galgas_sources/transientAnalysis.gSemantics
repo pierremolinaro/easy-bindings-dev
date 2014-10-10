@@ -11,7 +11,7 @@ abstract method @abstractTransientDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring inTransientName
   ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@arrayControllerMap inArrayControllerMap
   ??@lstring inTransientPropertySignature
 ;
@@ -23,7 +23,7 @@ override method @transientRootSignDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph unused ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring unused inTransientPropertySignature
 :
@@ -36,13 +36,13 @@ override method @transientLocalDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap inLocalObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
   [inLocalObservablePropertyMap searchKey
     !mMasterName
-    ?@unifiedTypeProxy masterType
+    ?@unifiedTypeMap-proxy masterType
     ?*
     ?@lstring masterPropertySignature
     ?@bool isCollection
@@ -61,7 +61,7 @@ override method @transientControllerDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@arrayControllerMap inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
@@ -93,7 +93,7 @@ override method @transientRootDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
@@ -133,7 +133,7 @@ override method @transientRootRelationshipDependencyAST buildTransientDependency
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
@@ -154,7 +154,7 @@ override method @transientRootRelationshipDependencyAST buildTransientDependency
   end loop ; 
   [allObservablePropertyMap searchKey
     !mRelationshipName
-    ??@unifiedTypeProxy relationshipElementType
+    ??@unifiedTypeMap-proxy relationshipElementType
     ?*
     ?*
     ?@bool isCollection
@@ -186,7 +186,7 @@ override method @transientPreferenceDependencyAST buildTransientDependencyGraph
   ?!@transientDependencyGraph ioTransientDependencyGraph
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inLocalObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@arrayControllerMap unused inArrayControllerMap
   ??@lstring inTransientPropertySignature
 :
@@ -247,7 +247,7 @@ routine buildTransientDependencyGraph
     end for ;
     for () transient_ in type_mDecoratedTransientMap do
       @decoratedObservablePropertyMap allObservableProperties := type_mObservablePropertyMap ;
-      @unifiedTypeProxy t := type_mSuperType ;
+      @unifiedTypeMap-proxy t := type_mSuperType ;
       loop [inUnifiedTypeMap count] : while not [t isNull] do
         for () super_ in [t mObservablePropertyMap] do
           [!?allObservableProperties insertKey
@@ -308,7 +308,7 @@ override method @transientRootSignDependencyAST transientDependencySemanticAnaly
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
   ??@arrayControllerMap unused inArrayControllerMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration unused ioTransientDependencyListForGeneration
 :
@@ -321,13 +321,13 @@ override method @transientLocalDependencyAST transientDependencySemanticAnalysis
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@arrayControllerMap unused inArrayControllerMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
   [inAllObservablePropertyMap searchKey
     !mMasterName
-    ?@unifiedTypeProxy masterType
+    ?@unifiedTypeMap-proxy masterType
     ?*
     ?* #@lstring masterPropertySignature
     ?@bool isCollection
@@ -347,7 +347,7 @@ override method @transientControllerDependencyAST transientDependencySemanticAna
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
   ??@arrayControllerMap inArrayControllerMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
@@ -359,7 +359,7 @@ override method @transientControllerDependencyAST transientDependencySemanticAna
   ] ;
   [arrayControllerObservablePropertyMap searchKey
     !mMasterName
-    ??@unifiedTypeProxy masterType
+    ??@unifiedTypeMap-proxy masterType
     ?*
     ?*
     ?*
@@ -375,7 +375,7 @@ override method @transientRootDependencyAST transientDependencySemanticAnalysis
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
   ??@arrayControllerMap unused inArrayControllerMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
@@ -396,7 +396,7 @@ override method @transientRootDependencyAST transientDependencySemanticAnalysis
   end loop ; 
   [allObservablePropertyMap searchKey
     !mMasterName
-    ??@unifiedTypeProxy masterType
+    ??@unifiedTypeMap-proxy masterType
     ?*
     ?*
     ?@bool isCollection
@@ -416,7 +416,7 @@ override method @transientRootRelationshipDependencyAST transientDependencySeman
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
   ??@arrayControllerMap unused inArrayControllerMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
@@ -437,7 +437,7 @@ override method @transientRootRelationshipDependencyAST transientDependencySeman
   end loop ; 
   [allObservablePropertyMap searchKey
     !mRelationshipName
-    ??@unifiedTypeProxy relationshipElementType
+    ??@unifiedTypeMap-proxy relationshipElementType
     ?*
     ?*
     ?@bool isCollection
@@ -465,7 +465,7 @@ override method @transientPreferenceDependencyAST transientDependencySemanticAna
   ??@lstring unused inTransientName
   ??@decoratedObservablePropertyMap unused inAllObservablePropertyMap
   ??@arrayControllerMap unused inArrayControllerMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ??@lstring unused inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 :
@@ -484,7 +484,7 @@ override method @transientPreferenceDependencyAST transientDependencySemanticAna
 #---
   [observablePropertyMap searchKey
     !mMasterName
-    ??@unifiedTypeProxy masterType
+    ??@unifiedTypeMap-proxy masterType
     ?*
     ?* # ?@lstring masterPropertySignature
     ?*

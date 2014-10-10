@@ -4,7 +4,7 @@ semantics bindingSemanticAnalysis :
 #----------------------------------------------------------------------------*
 
 list @attributeListForGeneration {
-  @unifiedTypeProxy mAttributeType ;
+  @unifiedTypeMap-proxy mAttributeType ;
   @string mAttributeName ;
   @string mDefaultValueInSwift ;
   @bool mNeedsValidation ;
@@ -12,7 +12,7 @@ list @attributeListForGeneration {
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy swiftTypeName -> @string outResult
+reader @unifiedTypeMap-proxy swiftTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
@@ -36,7 +36,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy valueAccessorForExplorerWindow ??@string inPropertyName -> @string outResult
+reader @unifiedTypeMap-proxy valueAccessorForExplorerWindow ??@string inPropertyName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\")" ;
@@ -61,7 +61,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transformForSavingInDictionary ??@string inPropertyName -> @string outResult
+reader @unifiedTypeMap-proxy transformForSavingInDictionary ??@string inPropertyName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSNumber (bool:" + inPropertyName + ")" ;
@@ -86,7 +86,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transformerForRegisterUndoWithTarget ??@string inOldValue -> @string outResult
+reader @unifiedTypeMap-proxy transformerForRegisterUndoWithTarget ??@string inOldValue -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSNumber (bool:" + inOldValue + ")" ;
@@ -110,7 +110,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy swiftTypeUndoArgument -> @string outResult
+reader @unifiedTypeMap-proxy swiftTypeUndoArgument -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "NSNumber" ;
@@ -135,7 +135,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transformerForUndo ??@string inValue -> @string outResult
+reader @unifiedTypeMap-proxy transformerForUndo ??@string inValue -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := inValue + ".boolValue" ;
@@ -159,7 +159,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy typeNameForControllerTemplateName -> @string outResult
+reader @unifiedTypeMap-proxy typeNameForControllerTemplateName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when enumType : outResult := "Enum" ;
@@ -173,7 +173,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transformerForTableViewAction ??@string inSenderOutletName -> @string outResult
+reader @unifiedTypeMap-proxy transformerForTableViewAction ??@string inSenderOutletName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when stringType : outResult := inSenderOutletName + ".stringValue" ;

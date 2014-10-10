@@ -158,14 +158,14 @@ filewrapper controllerTemplates in "../generation-templates/controller-templates
 
 list @controllerBindingOptionDecoratedList {
   @lstring mOptionName ;
-  @unifiedTypeProxy mOptionType ;
+  @unifiedTypeMap-proxy mOptionType ;
 }
 
 #----------------------------------------------------------------------------*
 
 map @templateControllerMap {
   @string mTemplateString ;
-  @unifiedTypeProxy mModelTypeProxy ;
+  @unifiedTypeMap-proxy mModelTypeProxy ;
   @lstring mModelSelector ;
   @bool mModelShouldBeWritableProperty ;
   @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList ;
@@ -188,10 +188,10 @@ routine buildControllerTemplateMap
       !mBindingName->location
     ] ;
     const templateText := [fw textFileContentsAtPath !"/" + templateName + ".txt"] ;
-    const modelTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mModelTypeName] ;
+    const modelTypeProxy := [@unifiedTypeMap-proxy searchKey !inUnifiedTypeMap !mModelTypeName] ;
     @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList := {} ;
     for () in mBindingOptionList do
-      const bindingOptionTypeProxy := [@unifiedTypeProxy searchKey !inUnifiedTypeMap !mOptionTypeName] ;
+      const bindingOptionTypeProxy := [@unifiedTypeMap-proxy searchKey !inUnifiedTypeMap !mOptionTypeName] ;
       controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy ;    
     end for ;
     [!?outTemplateControllerMap insertKey

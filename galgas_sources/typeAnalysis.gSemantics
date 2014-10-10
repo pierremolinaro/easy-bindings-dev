@@ -41,8 +41,8 @@ routine typeAnalysis
   outGeneration := [@structForGeneration default] ;
   for (@lstring lkey
        @typeKind typeKind
-       @unifiedTypeProxy superType
-       @unifiedTypeProxy rootEntityType
+       @unifiedTypeMap-proxy superType
+       @unifiedTypeMap-proxy rootEntityType
        @decoratedAttributeMap decoratedAttributeMap
        @decoratedTransientMap decoratedTransientMap
        @decoratedOutletMap decoratedOutletMap
@@ -100,8 +100,8 @@ local routine unifiedTypeAnalysis
   ??@templateControllerMap inTemplateControllerMap
   ??@lstring inTypeName
   ??@typeKind inTypeKind
-  ??@unifiedTypeProxy inSuperType
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inSuperType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@decoratedAttributeMap decoratedAttributeMap
   ??@decoratedTransientMap decoratedTransientMap
   ??@decoratedOutletMap decoratedOutletMap
@@ -172,7 +172,7 @@ local routine unifiedTypeAnalysis
     [[mRelationshipType mCurrentRelationshipMap] searchKey
       !mOppositeRelationshipName
       ??@bool oppositeRelationIsToMany
-      ??@unifiedTypeProxy oppositeRelationshipType
+      ??@unifiedTypeMap-proxy oppositeRelationshipType
       ??@lstring oppositeOfOppositeRelationshipName
     ] ;
     if oppositeOfOppositeRelationshipName->string != lkey->string then
@@ -196,7 +196,7 @@ local routine unifiedTypeAnalysis
   #--- Check model is a tomany relationship
     [mBoundModel analyzeBoundObservablePropertyForArrayControllerBinding
       ![inRootEntityType mCurrentRelationshipMap]
-      ??@unifiedTypeProxy outElementTypeProxy
+      ??@unifiedTypeMap-proxy outElementTypeProxy
       ??@lstring outBoundRootTomanyRelationshipName
     ] ;
   #--- Check outlet is a PMTableView
@@ -209,7 +209,7 @@ local routine unifiedTypeAnalysis
     for () in mArrayControllerBoundColumnListAST do
       [[outElementTypeProxy mObservablePropertyMap] searchKey
         !mObservablePropertyName
-        ??@unifiedTypeProxy propertyType
+        ??@unifiedTypeMap-proxy propertyType
         ?* #?@bool boundModelIsTransient
         ?* #?@lstring mPropertySignature
         ??@bool mIsCollection
@@ -309,7 +309,7 @@ local routine unifiedTypeAnalysis
     [inTemplateControllerMap searchKey
       !controllerTemplateName
       ??@string templateString
-      ??@unifiedTypeProxy modelTypeProxy
+      ??@unifiedTypeMap-proxy modelTypeProxy
       ??@lstring modelSelector
       ??@bool modelShouldBeWritableProperty
       ??@controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
@@ -441,7 +441,7 @@ abstract method @abstractTransientDependencyAST transientDependencySemanticAnaly
   ??@lstring inTransientName
   ??@decoratedObservablePropertyMap inAllObservablePropertyMap
   ??@arrayControllerMap inArrayControllerMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ??@lstring inTransientPropertySignature
   ?!@transientDependencyListForGeneration ioTransientDependencyListForGeneration
 ;
@@ -459,7 +459,7 @@ abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionFo
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 ;
@@ -471,7 +471,7 @@ override method @observablePropertyAsEnableBindingExpressionAST analyzeExpressio
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
@@ -493,7 +493,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForE
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
@@ -516,7 +516,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabl
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
@@ -548,7 +548,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnab
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inCurrentObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
 :
@@ -630,7 +630,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 ;
@@ -642,14 +642,14 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
 #  outObservedTypeName := inSelfTypeName ;
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?* #outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -677,14 +677,14 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForEnab
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
 #  outObservedTypeName := [inRootEntityType key] ;
   [[inRootEntityType mObservablePropertyMap] searchKey
     !mRootObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?* #outModelIsTransient
     ?* #?@lstring propertySignature
     ?* #?@bool isCollection
@@ -713,7 +713,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   ??@unifiedTypeMap inUnifiedTypeMap
   ??@arrayControllerMap unused inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
@@ -731,7 +731,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
 #---    
   [observablePropertyMap searchKey
     !mPreferenceObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?* #outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -758,7 +758,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ??@unifiedTypeMap unused inUnifiedTypeMap
   ??@arrayControllerMap inArrayControllerMap
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ?!@uint ioIndex
   !@abstractBooleanMultipleBindingExpressionForGeneration outExpression
 :
@@ -774,7 +774,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
 #---    
   [arrayControllerObservablePropertyMap searchKey
     !mArrayControllerObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?* # outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -808,7 +808,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
   ??@lstring inSelectorName
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -824,7 +824,7 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimp
   ??@lstring inSelectorName
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -833,7 +833,7 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimp
 :
   [inObservablePropertyMap searchKey
     !mSelfObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -855,7 +855,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
   ??@lstring inSelectorName
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -864,7 +864,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
 :
   [[inRootEntityType mObservablePropertyMap] searchKey
     !mRootObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -878,7 +878,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
   if mNamesCountOption then
     ioControllerSignature += ".Integer." + inSelectorName ;
     ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string + "_count" ;  
-    ioBoundPropertyTypeList += ![@unifiedTypeProxy searchKey !inUnifiedTypeMap !["Integer" nowhere]] !inSelectorName ;
+    ioBoundPropertyTypeList += ![@unifiedTypeMap-proxy searchKey !inUnifiedTypeMap !["Integer" nowhere]] !inSelectorName ;
   else
     ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName ;
     ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName->string ;  
@@ -894,7 +894,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
   ??@lstring inSelectorName
   ??@string unused inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -915,7 +915,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
 #---    
   [observablePropertyMap searchKey
     !mPreferenceObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -937,7 +937,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ??@lstring inSelectorName
   ??@string inCurrentTypeName
   ??@decoratedObservablePropertyMap unused inObservablePropertyMap
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   ?!@string ioControllerSignature
   ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
   ?!@2stringlist ioTypePropertyNameList
@@ -955,7 +955,7 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
 #---    
   [arrayControllerObservablePropertyMap searchKey
     !mArrayControllerObservablePropertyName
-    ??@unifiedTypeProxy propertyType
+    ??@unifiedTypeMap-proxy propertyType
     ?outModelIsTransient
     ?* #?@lstring propertySignature
     ??@bool isCollection
@@ -982,7 +982,7 @@ end method ;
 
 abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
   ??@decoratedEntityRelationshipMap inCurrentRelationshipMap
-  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@unifiedTypeMap-proxy outRelationshipTypeProxy
   !@lstring outBoundRootTomanyRelationshipName
 ;
 
@@ -990,7 +990,7 @@ abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyFor
 
 override method @selfObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
   ??@decoratedEntityRelationshipMap unused inCurrentRelationshipMap
-  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@unifiedTypeMap-proxy outRelationshipTypeProxy
   !@lstring outBoundRootTomanyRelationshipName
 :
   error mSelfObservablePropertyName
@@ -1003,7 +1003,7 @@ end method ;
 
 override method @rootObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
   ??@decoratedEntityRelationshipMap inCurrentRelationshipMap
-  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@unifiedTypeMap-proxy outRelationshipTypeProxy
   !@lstring outBoundRootTomanyRelationshipName
 :
   [inCurrentRelationshipMap searchKey
@@ -1022,7 +1022,7 @@ end method ;
 
 override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
   ??@decoratedEntityRelationshipMap unused inCurrentRelationshipMap
-  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@unifiedTypeMap-proxy outRelationshipTypeProxy
   !@lstring outBoundRootTomanyRelationshipName
 :
   error mPreferenceObservablePropertyName
@@ -1035,7 +1035,7 @@ end method ;
 
 override method @arrayControllerObservablePropertyAST analyzeBoundObservablePropertyForArrayControllerBinding
   ??@decoratedEntityRelationshipMap unused inCurrentRelationshipMap
-  !@unifiedTypeProxy outRelationshipTypeProxy
+  !@unifiedTypeMap-proxy outRelationshipTypeProxy
   !@lstring outBoundRootTomanyRelationshipName
 :
   error mArrayControllerObservablePropertyName
@@ -1055,7 +1055,7 @@ end method ;
 abstract reader @abstractObservablePropertyAST propertySignature
   ??@string inKind
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   -> @lstring outSignature
 ;
 
@@ -1064,7 +1064,7 @@ abstract reader @abstractObservablePropertyAST propertySignature
 override reader @selfObservablePropertyAST propertySignature
   ??@string inKind
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @lstring outSignature
 :
   outSignature := [@lstring new
@@ -1078,7 +1078,7 @@ end reader ;
 override reader @rootObservablePropertyAST propertySignature
   ??@string unused inKind
   ??@string unused inSelfTypeName
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   -> @lstring outSignature
 :
   outSignature := [@lstring new
@@ -1092,7 +1092,7 @@ end reader ;
 override reader @preferenceObservablePropertyAST propertySignature
   ??@string unused inKind
   ??@string unused inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @lstring outSignature
 :
   outSignature := [@lstring new
@@ -1106,7 +1106,7 @@ end reader ;
 override reader @arrayControllerObservablePropertyAST propertySignature
   ??@string inKind
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @lstring outSignature
 :
   outSignature := [@lstring new
@@ -1125,7 +1125,7 @@ end reader ;
 
 abstract reader @abstractObservablePropertyAST arrayControllerTypeName
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   -> @string outTypeName
 ;
 
@@ -1133,7 +1133,7 @@ abstract reader @abstractObservablePropertyAST arrayControllerTypeName
 
 override reader @selfObservablePropertyAST arrayControllerTypeName
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @string outTypeName
 :
   outTypeName := "ArrayController_" + inSelfTypeName + "_" + mSelfObservablePropertyName ;
@@ -1143,7 +1143,7 @@ end reader ;
 
 override reader @rootObservablePropertyAST arrayControllerTypeName
   ??@string unused inSelfTypeName
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   -> @string outTypeName
 :
   outTypeName := "ArrayController_" + [inRootypeProxy key] + "_" + mRootObservablePropertyName ;
@@ -1153,7 +1153,7 @@ end reader ;
 
 override reader @preferenceObservablePropertyAST arrayControllerTypeName
   ??@string unused inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @string outTypeName
 :
   outTypeName := "ArrayController_" + mPreferenceName + "_" + mPreferenceObservablePropertyName ;
@@ -1163,7 +1163,7 @@ end reader ;
 
 override reader @arrayControllerObservablePropertyAST arrayControllerTypeName
   ??@string inSelfTypeName
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   -> @string outTypeName
 :
   outTypeName := "ArrayController_" + inSelfTypeName + "_" + mArrayControllerObservablePropertyName ;
@@ -1178,7 +1178,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 abstract reader @abstractObservablePropertyAST modelSignatureForArrayController
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   ??@string inSelfTypeName
   -> @string outSignature
 ;
@@ -1186,7 +1186,7 @@ abstract reader @abstractObservablePropertyAST modelSignatureForArrayController
 #----------------------------------------------------------------------------*
 
 override reader @selfObservablePropertyAST modelSignatureForArrayController
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   ??@string inSelfTypeName
   -> @string outSignature
 :
@@ -1196,7 +1196,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @rootObservablePropertyAST modelSignatureForArrayController
-  ??@unifiedTypeProxy inRootypeProxy
+  ??@unifiedTypeMap-proxy inRootypeProxy
   ??@string unused inSelfTypeName
   -> @string outSignature
 :
@@ -1206,7 +1206,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @preferenceObservablePropertyAST modelSignatureForArrayController
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   ??@string unused inSelfTypeName
   -> @string outSignature
 :
@@ -1216,7 +1216,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @arrayControllerObservablePropertyAST modelSignatureForArrayController
-  ??@unifiedTypeProxy unused inRootypeProxy
+  ??@unifiedTypeMap-proxy unused inRootypeProxy
   ??@string inSelfTypeName
   -> @string outSignature
 :
@@ -1228,14 +1228,14 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 abstract reader @abstractTransientDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 ;
 
 #----------------------------------------------------------------------------*
 
 override reader @transientRootSignDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   outResult := [@transientRootSignDependencyForGeneration new !mDeclarationLocation] ;
@@ -1244,7 +1244,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @transientLocalDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   outResult := [@transientLocalDependencyForGeneration new !mMasterName !mNamesCountOption] ;
@@ -1253,7 +1253,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @transientRootDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   outResult := [@transientRootDependencyForGeneration new !mMasterName !mNamesCountOption] ;
@@ -1262,13 +1262,13 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @transientRootRelationshipDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy inRootEntityType
+  ??@unifiedTypeMap-proxy inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   [[inRootEntityType mCurrentRelationshipMap] searchKey
     !mRelationshipName
     ?*
-    ??@unifiedTypeProxy elementType
+    ??@unifiedTypeMap-proxy elementType
     ?*
   ] ;
   outResult := [@transientRootRelationshipDependencyForGeneration new !elementType !mRelationshipName !mMasterName] ;
@@ -1277,7 +1277,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @transientControllerDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   outResult := [@transientControllerDependencyForGeneration new !mControllerName !mMasterName] ;
@@ -1286,7 +1286,7 @@ end reader ;
 #----------------------------------------------------------------------------*
 
 override reader @transientPreferenceDependencyAST buildDecoratedRepresentation
-  ??@unifiedTypeProxy unused inRootEntityType
+  ??@unifiedTypeMap-proxy unused inRootEntityType
   -> @abstractTransientDependencyForGeneration outResult
 :
   outResult := [@transientPreferenceDependencyForGeneration new !mPreferencesName !mMasterName] ;
