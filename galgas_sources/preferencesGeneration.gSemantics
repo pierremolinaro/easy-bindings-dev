@@ -34,7 +34,7 @@ map @preferencesPropertyArrayMap {
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy preferencesSwiftGetter
+reader @unifiedTypeMap-proxy preferencesSwiftGetter
   -> @string outResult
 :
   switch [selfcopy mTypeKind]
@@ -59,7 +59,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy preferencesSwiftSetter
+reader @unifiedTypeMap-proxy preferencesSwiftSetter
   ??@string inPropertyName
   -> @string outResult
 :

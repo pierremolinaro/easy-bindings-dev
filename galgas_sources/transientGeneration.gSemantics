@@ -4,7 +4,7 @@ semantics transientGeneration :
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transientReturnTypeName -> @string outResult
+reader @unifiedTypeMap-proxy transientReturnTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
@@ -28,7 +28,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-reader @unifiedTypeProxy transientFormalArgumentTypeName -> @string outResult
+reader @unifiedTypeMap-proxy transientFormalArgumentTypeName -> @string outResult
 :
   switch [selfcopy mTypeKind]
   when boolType : outResult := "Bool" ;
@@ -111,7 +111,7 @@ local filewrapper transientManager in "../generation-templates" {
     ?@string KIND_NAME
     ?@string TRANSIENT_NAME
     ?@transientDependencyListForGeneration DEPENDENCY_LIST
-    ?@unifiedTypeProxy TRANSIENT_TYPE
+    ?@unifiedTypeMap-proxy TRANSIENT_TYPE
   ;
 }
 

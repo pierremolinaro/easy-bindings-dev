@@ -10,8 +10,8 @@ override method @predefinedTypeDeclaration typeInventory
   [!?ioUnifiedTypeMap insertKey
     ![mTypeName nowhere]
     !mKind
-    ![@unifiedTypeProxy null] # Super type
-    ![@unifiedTypeProxy null] # Root entity
+    ![@unifiedTypeMap-proxy null] # Super type
+    ![@unifiedTypeMap-proxy null] # Root entity
     !@decoratedAttributeMap {}
     !@decoratedTransientMap {}
     !@decoratedOutletMap {}
@@ -37,8 +37,8 @@ override method @enumDeclaration typeInventory
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
     ![@typeKind enumType]
-    ![@unifiedTypeProxy null] # Super type
-    ![@unifiedTypeProxy null] # Root entity
+    ![@unifiedTypeMap-proxy null] # Super type
+    ![@unifiedTypeMap-proxy null] # Root entity
     !@decoratedAttributeMap {}
     !@decoratedTransientMap {}
     !@decoratedOutletMap {}
@@ -67,8 +67,8 @@ override method @structDeclaration typeInventory
   [!?ioUnifiedTypeMap insertKey
     !mStructTypeName
     ![@typeKind structType]
-    ![@unifiedTypeProxy null] # Super type
-    ![@unifiedTypeProxy null] # Root entity
+    ![@unifiedTypeMap-proxy null] # Super type
+    ![@unifiedTypeMap-proxy null] # Root entity
     !@decoratedAttributeMap {}
     !@decoratedTransientMap {}
     !@decoratedOutletMap {}
@@ -89,11 +89,11 @@ override method @unifiedTypeDeclaration typeInventory
 :
   const kindName := [mTypeKind kindName] ;
 #------------------------------- Super type ?
-  @unifiedTypeProxy superTypeProxy ;
+  @unifiedTypeMap-proxy superTypeProxy ;
   if mSuperTypeName->string == "" then
-    superTypeProxy := [@unifiedTypeProxy null] ;
+    superTypeProxy := [@unifiedTypeMap-proxy null] ;
   else
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mSuperTypeName
       ?superTypeProxy
@@ -104,11 +104,11 @@ override method @unifiedTypeDeclaration typeInventory
     ] ;
   end if ;
 #------------------------------------------------ Root Entity ?
-  @unifiedTypeProxy rootEntityType ;
+  @unifiedTypeMap-proxy rootEntityType ;
   if mRootEntityName->string == "" then
-    rootEntityType := [@unifiedTypeProxy null] ;
+    rootEntityType := [@unifiedTypeMap-proxy null] ;
   else
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mRootEntityName
       ?rootEntityType
@@ -119,10 +119,10 @@ override method @unifiedTypeDeclaration typeInventory
   @decoratedObservablePropertyMap observablePropertyMap := {} ;
   @decoratedAttributeMap decoratedAttributeMap := {} ;
   foreach mAttributeList do
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mAttributeTypeName
-      ??@unifiedTypeProxy attributeType
+      ??@unifiedTypeMap-proxy attributeType
     ] ;
     [!?ioUnifiedTypeMap enterEdge !mTypeName !mAttributeTypeName] ;
     [!?decoratedAttributeMap insertKey
@@ -142,10 +142,10 @@ override method @unifiedTypeDeclaration typeInventory
 #---------------------------------------- Analyze relationship (only check name is unique)
   @decoratedEntityRelationshipMap currentRelationshipMap := {} ;
   foreach mRelationshipList do
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mDestinationEntityName
-      ??@unifiedTypeProxy destinationTypeProxy
+      ??@unifiedTypeMap-proxy destinationTypeProxy
     ] ;
     [!?currentRelationshipMap insertKey
       !mRelationshipName
@@ -164,10 +164,10 @@ override method @unifiedTypeDeclaration typeInventory
 #------------------------------------- Analyze transient properties
   @decoratedTransientMap decoratedTransientMap := {} ;
   foreach mTransientList do
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mTransientTypeName
-      ??@unifiedTypeProxy transientType
+      ??@unifiedTypeMap-proxy transientType
     ] ;
     const signature := [@lstring new !kindName + "." + mTypeName + "." + mTransientName !mTransientName->location] ;
     [!?decoratedTransientMap insertKey
@@ -186,7 +186,7 @@ override method @unifiedTypeDeclaration typeInventory
   end foreach ;
 #---------------------------------- Analyze arraies
   foreach mArrayList do
-    [@unifiedTypeProxy makeProxy
+    [@unifiedTypeMap-proxy makeProxy
       !?ioUnifiedTypeMap
       !mElementClassName
       ?*
@@ -215,7 +215,7 @@ override method @unifiedTypeDeclaration typeInventory
       !kindName + "." + mTypeName + "." + mControllerName
       !mControllerName->location
     ] ;
-    [@unifiedTypeProxy makeProxy !?ioUnifiedTypeMap !["Bool" nowhere] ??@unifiedTypeProxy boolTypeProxy] ;
+    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !["Bool" nowhere] ??@unifiedTypeMap-proxy boolTypeProxy] ;
     const @decoratedObservablePropertyMap arrayControllerObservablePropertyMap := {
       !["canRemove" nowhere]
       !boolTypeProxy

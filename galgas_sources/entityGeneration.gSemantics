@@ -8,7 +8,7 @@ semantics entityGeneration :
 list @entityRelationshipListForGeneration {
   @string mRelationshipName ;
   @bool mIsToMany ;
-  @unifiedTypeProxy mRelationshipType ;
+  @unifiedTypeMap-proxy mRelationshipType ;
   @string mOppositeRelationshipName ;
   @bool mOppositeRelationshipIsToMany ;
 }
