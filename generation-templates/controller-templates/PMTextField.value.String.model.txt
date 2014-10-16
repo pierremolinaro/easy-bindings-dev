@@ -81,7 +81,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.stringValue = object.$MODEL$
               }

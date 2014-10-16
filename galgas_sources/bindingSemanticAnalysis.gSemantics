@@ -199,4 +199,30 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+reader @unifiedTypeMap-proxy formatterStringForFormatPrinting -> @string outResult
+:
+  switch [selfcopy mTypeKind]
+  when stringType : outResult := "%@" ;
+  when integerType : outResult := "%d" ;
+#--- TODO
+  when boolType : outResult := "%d" ;
+  when uintegerType : outResult := "%u" ;
+  when doubleType : outResult := "%g" ;
+  when colorType : outResult := "%@" ;
+  when dataType : outResult := "%@" ;
+  when dateType : outResult := "%@" ;
+  when imageType : outResult := "%@" ;
+  when fontType : outResult := "%@" ;
+  when menuType : outResult := "%@" ;
+  when enumType : outResult := "%d" ;
+  when bezierPathType : outResult := "%@" ;
+  when structType : outResult := [selfcopy key] ;
+  when classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult := "<type '" + [selfcopy key] + "' >" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 end semantics ;
