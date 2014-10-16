@@ -100,7 +100,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.color = object.mColor
               }
@@ -377,7 +377,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.myIntegerValue = object.mIntegerValue
               }
@@ -487,7 +487,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.stringValue = object.myString
               }

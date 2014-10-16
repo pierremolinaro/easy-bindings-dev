@@ -87,7 +87,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientE
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.stringValue = object.myPrefString
               }
@@ -273,7 +273,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransien
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 outlet.stringValue = object.docString
               }

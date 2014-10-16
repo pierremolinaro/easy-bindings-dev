@@ -324,9 +324,28 @@ for () in BOUND_COLUMNS do
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as %!ELEMENT_TYPE_NAME%
-        object.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)
-        object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
-        object.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)
+        let validationResult = object.validate_%!mObservablePropertyName% (%![mPropertyType transformerForTableViewAction !"sender"]%)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          if let window = sender.window {
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The value “%![mPropertyType formatterStringForFormatPrinting]%” is invalid.", %![mPropertyType transformerForTableViewAction !"sender"]%)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                object.removeObserverOf_%!mObservablePropertyName% (self.eventModelChange, inTrigger:false)
+                object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+                object.addObserverOf_%!mObservablePropertyName% (self.eventModelChange, inTrigger:false)
+              }
+            })
+          }
+        }
       }
     }
   }

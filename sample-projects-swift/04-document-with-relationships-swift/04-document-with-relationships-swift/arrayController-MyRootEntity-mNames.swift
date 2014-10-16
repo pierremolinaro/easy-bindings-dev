@@ -329,9 +329,28 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-        object.removeObserverOf_name (eventModelChange, inTrigger:false)
-        object.name = sender.stringValue
-        object.addObserverOf_name (eventModelChange, inTrigger:false)
+        let validationResult = object.validate_name (sender.stringValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.name = sender.stringValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          if let window = sender.window {
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The value “%@” is invalid.", sender.stringValue)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                object.removeObserverOf_name (self.eventModelChange, inTrigger:false)
+                object.name = sender.stringValue
+                object.addObserverOf_name (self.eventModelChange, inTrigger:false)
+              }
+            })
+          }
+        }
       }
     }
   }
@@ -343,9 +362,28 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as NameEntity
-        object.removeObserverOf_aValue (eventModelChange, inTrigger:false)
-        object.aValue = sender.integerValue
-        object.addObserverOf_aValue (eventModelChange, inTrigger:false)
+        let validationResult = object.validate_aValue (sender.integerValue)
+        switch validationResult {
+        case PMValidationResult.ok :
+          object.aValue = sender.integerValue
+        case PMValidationResult.rejectWithBeep :
+          NSBeep ()
+        case PMValidationResult.rejectWithAlert (let informativeText) :
+          if let window = sender.window {
+            let alert = NSAlert ()
+            alert.messageText = NSString (format:"The value “%d” is invalid.", sender.integerValue)
+            alert.informativeText = informativeText
+            alert.addButtonWithTitle ("Ok")
+            alert.addButtonWithTitle ("Discard Change")
+            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+              if response == NSAlertSecondButtonReturn { // Discard Change
+                object.removeObserverOf_aValue (self.eventModelChange, inTrigger:false)
+                object.aValue = sender.integerValue
+                object.addObserverOf_aValue (self.eventModelChange, inTrigger:false)
+              }
+            })
+          }
+        }
       }
     }
   }
