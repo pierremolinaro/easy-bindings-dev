@@ -1,0 +1,226 @@
+
+
+#----------------------------------------------------------------------------*
+
+filewrapper predefinedOutletClasses in "../generation-templates" {
+}{
+}{
+  template sourceFile "predefinedOutletClasses.easyBindings"
+}
+
+#----------------------------------------------------------------------------*
+
+case . "easyBindings"
+message "a source text file with the .easyBindings extension"
+?sourceFilePath:@lstring inSourceFile {
+#--- Parse predefined outlets
+  var declarationStruct =@astDeclarationStruct.default
+  grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
+    !userDefined:false
+    !?declarationStruct
+    ?*
+#--- Parse source file
+  grammar easyBindings_grammar in inSourceFile
+    !userDefined:true
+    !?declarationStruct
+    ?var @location endOfSourceFile
+#--- Enter predefined types
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"String" !@typeKind. stringType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Color" !@typeKind. colorType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Enum" !@typeKind. enumType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Date" !@typeKind. dateType}
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Font" ![@typeKind fontType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Image" ![@typeKind imageType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"Menu" ![@typeKind menuType]] ;
+#  declarationStruct->mDeclarationList += ![@predefinedTypeDeclaration new !false !"BezierPath" ![@typeKind bezierPathType]] ;
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Integer" !@typeKind. integerType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"UInteger" !@typeKind. uintegerType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Bool" !@typeKind. boolType}
+  declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Double" !@typeKind. doubleType}
+#------------------------------------------------------- Type Inventory
+   var unifiedTypeMap =@unifiedTypeMap.emptyMap{}
+  for () in  declarationStruct.mDeclarationList do
+    [mDeclaration typeInventory !?unifiedTypeMap]
+  end
+  if [option easyBindings_options.outputClassDependencyGraph value] then
+    let s = [unifiedTypeMap edgeGraphvizRepresentation]
+    let path = inSourceFile.string + ".classDependancyGraph.dot"
+    [s writeToFileWhenDifferentContents !path ?*]
+  end
+#------------------------------------------- Check all types are defined
+  let unsolvedProxyList = [unifiedTypeMap unsolvedProxyList]
+  for () in  unsolvedProxyList do
+    error mValue :"type " + mValue + " is undefined"
+  end
+#------------------------------------------- Topological sort types and continue
+  if [unsolvedProxyList length] == 0 then
+    [unifiedTypeMap topologicalSort
+      ?var @lstringlist sortedTypeNames
+      ?var @lstringlist unsortedTypeNames
+    ]
+    if [unsortedTypeNames length] > 0 then
+      var s = "cannot sort types ; the following types are involved in circular dependence:"
+      for () in  unsortedTypeNames do
+        s += "\n-- " + mValue
+      end
+      error @location.here : s
+    else
+      semanticAnalysis (
+        !unifiedTypeMap
+        !sortedTypeNames
+        !inSourceFile.string
+        !declarationStruct
+        ?let @transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
+        ?let @structForGeneration generation
+      )
+      if @uint. errorCount == 0 then
+        generateCode (
+          !sortedTransientAndObservablePropertyNodes
+          !generation
+          !inSourceFile.string
+        )
+      end
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#   S E M A N T I C    A N A L Y S I S                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+private proc semanticAnalysis
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @lstringlist unused inSortedKeys
+  ?let @string inSourceFile
+  ?let @astDeclarationStruct inAstDeclarationStruct
+  !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
+  !@structForGeneration outGeneration {
+#--- Build transient dependancy graph
+  buildTransientDependencyGraph (
+    !inUnifiedTypeMap
+    !inSourceFile
+    ?outSortedTransientAndObservablePropertyNodes
+  )
+#--- Build controller template map
+  buildControllerTemplateMap (
+    !inUnifiedTypeMap
+    !inAstDeclarationStruct.mControllerTemplateList
+    ?let @templateControllerMap templateControllerMap
+  )
+#--- Build outlet class map
+  @outletClassMap outletClassMap = {}
+  for () in inAstDeclarationStruct.mOutletClassDeclarationList do
+    [!?outletClassMap insertKey !mOutletClassName !mHasRunAction]
+  end
+#--- Type analysis
+  if @uint. errorCount == 0 then
+    typeAnalysis (
+      !inUnifiedTypeMap
+      !outletClassMap
+      !templateControllerMap
+      ?outGeneration
+    )
+  else
+    outGeneration = @structForGeneration.default
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#   G E N E R A T E    C O D E                                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+private proc generateCode
+  ?let @transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
+  ?let @structForGeneration inGeneration
+  ?let @string inSourceFile {
+  generateTransients (
+    !inSourceFile
+    !inSortedTransientAndObservablePropertyNodes
+    !inGeneration.mTransientListForGeneration
+  )
+  generateActions (
+    !inSourceFile
+    !inGeneration.mActionListForGeneration
+  )
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  generatePreferences (
+    !inGeneration.mPreferenceListForGeneration
+    !outputDirectory
+  )
+  generateOutletClasses (
+    !inGeneration.mNeededOutletClasses
+    !outputDirectory
+  )
+  generateControllerClasses (
+    !inGeneration.mControllerGenerationStringSet
+    !outputDirectory
+  )
+  generateEntities (
+    !inGeneration.mEntityListForGeneration
+    !outputDirectory
+  )
+  generateEnums (
+    !inGeneration.mEnumListForGeneration
+    !outputDirectory
+  )
+  generateDocuments (
+    !inGeneration.mDocumentListForGeneration
+    !outputDirectory
+  )
+  generateArrayControllers (
+    !inGeneration.mAllArrayControllerForGeneration
+    !outputDirectory
+  )
+  generateSwiftApplicationFiles (
+    !outputDirectory
+    ![inGeneration.mEntityListForGeneration length] > 0
+  )
+  generateValidationRoutineStubs (
+    !outputDirectory
+    !inGeneration.mValidationStubRoutineListForGeneration
+  )
+}
+
+#----------------------------------------------------------------------------*
+
+filewrapper swift_sources in "../generation-templates/swift-sources" {
+  "xib", "swift"
+}{
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+private proc generateSwiftApplicationFiles
+  ?let @string inOutputDirectory
+  ?let @bool inHasEntities {
+  @stringlist swiftFiles = {!"PMAllocationDebug", !"easy-bindings-utilities"}
+  if inHasEntities then
+    swiftFiles += !"PMManagedObject"
+    swiftFiles += !"PMManagedDocument"
+    swiftFiles += !"PMUndoManager"
+    swiftFiles += !"PMDataScanner"
+  end
+  @stringlist xibFiles = {!"PMAllocationDebug"}
+  var fw = [filewrapper swift_sources]
+  for (@string s) in swiftFiles do
+    let contents = [fw textFileContentsAtPath !s + ".swift"]
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".swift"
+      !contents
+    ]
+  end
+  for (@string s) in xibFiles do
+    let contents = [fw textFileContentsAtPath !s + ".xib"]
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".xib"
+      !contents
+    ]
+  end
+}

@@ -1,0 +1,83 @@
+
+
+#----------------------------------------------------------------------------*
+
+proc generateControllerClasses
+  ?let @stringset inControllerStringSet
+  ?let @string inOutputDirectory {
+#--- Header
+  var s = "import Cocoa\n\n"
+  for controllerString in inControllerStringSet do
+    s += controllerString
+  end
+  s += "//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n\n"
+  [@string generateFile
+    !inOutputDirectory
+    !"controller-classes.swift"
+    !s
+  ]
+}
+
+##----------------------------------------------------------------------------*
+#
+#filewrapper controllerGenerationTemplate in "../generation-templates/controller-generation" {
+#}{
+#}{
+#  template controllerDeclarationPart1 "controller-1.h.gTemplate"
+#    ?@string CONTROLLER_CLASS_NAME
+#    ?@outletClassBindingMap BINDING_MAP
+#  ;
+#  
+#  template controllerDeclarationPart2 "controller-2.h.gTemplate"
+#    ?@EXobservablePropertyMap OBSERVABLE_PROPERTY_MAP
+#  ;
+#  
+#  template controllerImplementation "controller.m.gTemplate"
+#    ?@string CONTROLLER_CLASS_NAME
+#    ?@outletClassBindingMap BINDING_MAP
+#    ?@EXobservablePropertyMap OBSERVABLE_PROPERTY_MAP
+#  ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#override method @controllerClassGeneration generate
+#??@string inOutputDirectory
+#:
+##--- Header
+#  @string s := [filewrapper controllerGenerationTemplate.controllerDeclarationPart1
+#    !mGenerationName
+#    !mBindingMap
+#  ] ;
+#  @string s2 := [filewrapper controllerGenerationTemplate.controllerDeclarationPart2
+#    !mObservablePropertyMap
+#  ] ;
+#  [@string generateFileWithPattern
+#    !inOutputDirectory
+#    !mGenerationName . ".h"
+#    !"//"
+#    !"\n\n" # Defaut user zone1
+#    !s
+#    !"\n\n}\n\n" # Defaut user zone2
+#    !s2
+#  ] ;
+##--- Implementation
+#  s := [filewrapper controllerGenerationTemplate.controllerImplementation
+#    !mGenerationName
+#    !mBindingMap
+#    !mObservablePropertyMap
+#  ] ;
+#  [@string generateFileWithPattern
+#    !inOutputDirectory
+#    !mGenerationName . ".m"
+#    !"//"
+#    !"\n\n" # Defaut user zone1
+#    !s
+#    !"\n\n" # Defaut user zone2
+#    !"@end\n"
+#  ] ;
+#end method ;
+#
+#----------------------------------------------------------------------------*
+
+

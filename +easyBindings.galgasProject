@@ -1,0 +1,56 @@
+project (0:0:1) -> "easyBindings"{
+  %makefile-macosx
+  %Mavericks
+  %applicationBundleBase : "fr.irccyn"
+
+  "galgas-sources/easyBindings_lexique.galgas"
+  "galgas-sources/abstractSyntaxTypes.galgas"
+  "galgas-sources/easyBindings_options.galgas"
+  "galgas-sources/easyBindings_syntax.galgas"
+  "galgas-sources/easyBindings_grammar.galgas"
+  "galgas-sources/easyBindings_cocoa.galgas"
+
+  "galgas-sources/decoratedTypes.galgas"
+  
+  "galgas-sources/typeInventory.galgas"
+  
+  "galgas-sources/typeAnalysis.galgas"
+  
+  "galgas-sources/enumGeneration.galgas"
+
+  "galgas-sources/structAnalysis.galgas"
+  "galgas-sources/structGeneration.galgas"
+
+  "galgas-sources/bindingSemanticAnalysis.galgas"
+  "galgas-sources/bindingsGeneration.galgas"
+
+  "galgas-sources/classAnalysis.galgas"
+  "galgas-sources/classGeneration.galgas"
+
+  "galgas-sources/nibClassAnalysis.galgas"
+  "galgas-sources/nibClassGeneration.galgas"
+
+  "galgas-sources/preferencesGeneration.galgas"
+
+  "galgas-sources/entityGeneration.galgas"
+
+  "galgas-sources/documentGeneration.galgas"
+  
+  "galgas-sources/arrayControllerGeneration.galgas"
+  
+  "galgas-sources/outletClassAnalysis.galgas"
+  "galgas-sources/outletClassGeneration.galgas"
+
+  "galgas-sources/controllerClassAnalysis.galgas"
+  "galgas-sources/controllerClassGeneration.galgas"
+
+  "galgas-sources/transientAnalysis.galgas"
+  "galgas-sources/transientGeneration.galgas"
+
+  "galgas-sources/actionGeneration.galgas"
+
+  "galgas-sources/validationRoutineStubGeneration.galgas"
+
+  "galgas-sources/easyBindings_program.galgas"
+}
+

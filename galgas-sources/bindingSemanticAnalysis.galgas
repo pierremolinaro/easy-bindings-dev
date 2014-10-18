@@ -1,0 +1,217 @@
+
+
+#----------------------------------------------------------------------------*
+
+list @attributeListForGeneration {
+  @unifiedTypeMap-proxy mAttributeType
+  @string mAttributeName
+  @string mDefaultValueInSwift
+  @bool mNeedsValidation
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy swiftTypeName -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "Bool"
+  case uintegerType : outResult = "UInt"
+  case integerType : outResult = "Int"
+  case doubleType : outResult = "Double"
+  case stringType : outResult = "String"
+  case colorType : outResult = "NSColor"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType, enumType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<invalid return type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy valueAccessorForExplorerWindow ?let @string inPropertyName -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\")"
+  case uintegerType : outResult = "NSString (format:\"%lu\", " + inPropertyName + ")"
+  case integerType : outResult = "NSString (format:\"%ld\", " + inPropertyName + ")"
+  case doubleType : outResult = "NSString (format:\"%g\", " + inPropertyName + ")"
+  case stringType : outResult = inPropertyName
+  case colorType : outResult = inPropertyName + ".description"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case enumType : outResult = inPropertyName + ".string ()"
+  case menuType : outResult = "NSMenu"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transformForSavingInDictionary ?let @string inPropertyName -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ")"
+  case uintegerType : outResult = "NSNumber (unsignedInteger:" + inPropertyName + ")"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ")"
+  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ")"
+  case stringType : outResult = inPropertyName
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case bezierPathType : outResult = "NSBezierPath"
+  case enumType : outResult = "NSNumber (integer:" + inPropertyName + ".rawValue)"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transformerForRegisterUndoWithTarget ?let @string inOldValue -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "NSNumber (bool:" + inOldValue + ")"
+  case uintegerType : outResult = "NSNumber (unsignedInteger:" + inOldValue + ")"
+  case integerType : outResult = "NSNumber (integer:" + inOldValue + ")"
+  case doubleType : outResult = "NSNumber (double:" + inOldValue + ")"
+  case stringType, colorType : outResult = inOldValue
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case enumType : outResult = "NSNumber (integer:" + inOldValue + ".rawValue)"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy swiftTypeUndoArgument -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "NSNumber"
+  case uintegerType : outResult = "NSNumber"
+  case integerType : outResult = "NSNumber"
+  case doubleType : outResult = "NSNumber"
+  case stringType : outResult = "String"
+  case colorType : outResult = "NSColor"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case enumType : outResult = "NSNumber"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType : outResult = "NSNumber"
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transformerForUndo ?let @string inValue -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = inValue + ".boolValue"
+  case uintegerType : outResult = inValue + ".unsignedIntegerValue"
+  case integerType : outResult = inValue + ".integerValue"
+  case doubleType : outResult = inValue + ".doubleValue"
+  case stringType, colorType : outResult = inValue
+  case dataType : outResult = inValue
+  case dateType : outResult = inValue
+  case imageType : outResult = inValue
+  case fontType : outResult = inValue
+  case menuType : outResult = inValue
+  case enumType : outResult = [self key] + " (rawValue:" + inValue + ".integerValue)!"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy typeNameForControllerTemplateName -> @string outResult {
+  switch [self mTypeKind]
+  case enumType : outResult = "Enum"
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType,
+  bezierPathType, structType, menuType, fontType, imageType, dateType,
+  dataType, stringType, colorType, doubleType, integerType, uintegerType, boolType :
+    outResult = [self key]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transformerForTableViewAction ?let @string inSenderOutletName -> @string outResult {
+  switch [self mTypeKind]
+  case stringType : outResult = inSenderOutletName + ".stringValue"
+  case integerType : outResult = inSenderOutletName + ".integerValue"
+#--- TODO
+  case boolType : outResult = "NSNumber (bool:" + inSenderOutletName + ")"
+  case uintegerType : outResult = "NSNumber (unsignedLongLong:" + inSenderOutletName + ")"
+  case doubleType : outResult = "NSNumber (double:" + inSenderOutletName + ")"
+  case colorType : outResult = inSenderOutletName + ".stringValue"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case enumType : outResult = "NSNumber (integer:" + inSenderOutletName + ".rawValue)"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy formatterStringForFormatPrinting -> @string outResult {
+  switch [self mTypeKind]
+  case stringType : outResult = "%@"
+  case integerType : outResult = "%d"
+#--- TODO
+  case boolType : outResult = "%d"
+  case uintegerType : outResult = "%u"
+  case doubleType : outResult = "%g"
+  case colorType : outResult = "%@"
+  case dataType : outResult = "%@"
+  case dateType : outResult = "%@"
+  case imageType : outResult = "%@"
+  case fontType : outResult = "%@"
+  case menuType : outResult = "%@"
+  case enumType : outResult = "%d"
+  case bezierPathType : outResult = "%@"
+  case structType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+

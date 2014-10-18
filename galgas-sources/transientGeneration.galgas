@@ -1,0 +1,247 @@
+
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transientReturnTypeName -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "Bool"
+  case uintegerType : outResult = "UInt"
+  case integerType : outResult = "Int"
+  case doubleType : outResult = "Double"
+  case stringType : outResult = "String"
+  case colorType : outResult = "NSColor"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case bezierPathType : outResult = "NSBezierPath"
+  case structType, enumType : outResult = [self key]
+  case classType, controllerClassType, documentType, entityType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<invalid return type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+getter @unifiedTypeMap-proxy transientFormalArgumentTypeName -> @string outResult {
+  switch [self mTypeKind]
+  case boolType : outResult = "Bool"
+  case uintegerType : outResult = "UInt"
+  case integerType : outResult = "Int"
+  case doubleType : outResult = "Double"
+  case stringType : outResult = "String"
+  case colorType : outResult = "NSColor"
+  case dataType : outResult = "NSData"
+  case dateType : outResult = "NSDate"
+  case imageType : outResult = "NSImage"
+  case fontType : outResult = "NSFont"
+  case menuType : outResult = "NSMenu"
+  case bezierPathType : outResult = "NSBezierPath"
+  case entityType : outResult = "Int" # Only used for .count binding
+  case structType, enumType : outResult = [self key]
+  case classType, controllerClassType, documentType,
+  preferencesType, nibClassType, outletClassType, protocolType :
+    outResult = "<invalid return type '" + [self key] + "' >"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc generateTransients
+  ?let @string inSourceFile
+  ?let @transientDependencyGraphNodeInfoList inSortedTransientNodes
+  ?let @transientListForGeneration inTransientListForGeneration {
+#--------------------------- Generate PMApplication class
+#--- build a string list of all transients
+  @stringlist transientList = {}
+  for () in inSortedTransientNodes do
+    if mIsTransient then
+      transientList += !mSignature
+    end
+  end
+  let @string s = [filewrapper transientManager.applicationInSwift
+    !inSortedTransientNodes
+    !transientList
+  ]
+  [@string generateFile
+    ![inSourceFile stringByDeletingLastPathComponent]
+    !"PMApplication.swift"
+    !s
+  ]
+#--------------------------- Generate transient routines
+  for () in inTransientListForGeneration do
+    let @stringlist decomposedTransientSignature = [mTransientSignature componentsSeparatedByString !"."]
+    let s = [filewrapper transientManager.transientComputationFunctionFile
+      ![decomposedTransientSignature mValueAtIndex !1]
+      ![decomposedTransientSignature mValueAtIndex !2]
+      !mTransientDependencyListForGeneration
+      !mTransientType 
+    ]
+    let fileName = [decomposedTransientSignature mValueAtIndex !1] + "+transient+" + [decomposedTransientSignature mValueAtIndex !2] + ".swift"
+    [@string generateFileWithPattern
+      ![inSourceFile stringByDeletingLastPathComponent]
+      !fileName
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"}\n\n//----------------------------------------------------------------------------*\n"
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+private filewrapper transientManager in "../generation-templates" {
+}{
+}{
+  template applicationInSwift "PMApplication.swift.gTemplate"
+    ?@transientDependencyGraphNodeInfoList PROPERTY_LIST
+    ?@stringlist TRANSIENT_LIST
+
+  template transientComputationFunctionFile "transient-computation-function.swift.gTemplate"
+    ?@string KIND_NAME
+    ?@string TRANSIENT_NAME
+    ?@transientDependencyListForGeneration DEPENDENCY_LIST
+    ?@unifiedTypeMap-proxy TRANSIENT_TYPE
+}
+
+#-----------------------------------------------------------------------------*
+#   generateActualParameterForComputeFunction                                 *
+#-----------------------------------------------------------------------------*
+#! generateActualParameterForComputeFunction
+
+abstract getter @abstractTransientDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientControllerDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = "(" + mControllerName.string + " != nil) ? (" + mControllerName.string + "?." + mMasterName + ")! : false"
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootSignDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = "??@@transientRootSignDependency??"
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientLocalDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = mMasterName.string
+  if mNamesCountOption then
+    outResult += ".count"
+  end
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientPreferenceDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = "g_" + mPreferencesName.string + "!." + mMasterName.string
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = "rootObject." + mMasterName.string
+  if mNamesCountOption then
+    outResult += ".count"
+  end
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootRelationshipDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
+  outResult = "rootObject." + mRelationshipName + " /* (rootObject." + mRelationshipName + " as NSArray) as [" + [mElementType key] + "_" + mMasterName + "] */"
+}
+
+#-----------------------------------------------------------------------------*
+#   generateAddObserverCall                                                   *
+#-----------------------------------------------------------------------------*
+#! generateAddObserverCall
+
+abstract getter @abstractTransientDependencyForGeneration generateAddObserverCall -> @string outResult
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientControllerDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = mControllerName.string + "?.addObserverOf_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootSignDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = "??@@transientRootSignDependency??"
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientLocalDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = "addObserverOf_" + mMasterName.string
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientPreferenceDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = "g_" + mPreferencesName.string + "?.addObserverOf_" + mMasterName.string
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = "rootObject.addObserverOf_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootRelationshipDependencyForGeneration generateAddObserverCall -> @string outResult {
+  outResult = "rootObject.addObserverOf_" + mRelationshipName + "_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+#   generateRemoveObserverCall                                                *
+#-----------------------------------------------------------------------------*
+#! generateRemoveObserverCall
+
+abstract getter @abstractTransientDependencyForGeneration generateRemoveObserverCall -> @string outResult
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientControllerDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = mControllerName.string + "?.removeObserverOf_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootSignDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = "??@@transientRootSignDependency??"
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientLocalDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = "removeObserverOf_" + mMasterName.string
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientPreferenceDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = "g_" + mPreferencesName.string + "?.removeObserverOf_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = "rootObject.removeObserverOf_" + mMasterName
+}
+
+#-----------------------------------------------------------------------------*
+
+override getter @transientRootRelationshipDependencyForGeneration generateRemoveObserverCall -> @string outResult {
+  outResult = "rootObject.removeObserverOf_" + mRelationshipName + "_" + mMasterName
+}
+
+#----------------------------------------------------------------------------*
+

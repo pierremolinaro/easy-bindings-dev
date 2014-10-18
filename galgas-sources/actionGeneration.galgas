@@ -1,0 +1,37 @@
+
+
+#----------------------------------------------------------------------------*
+
+proc generateActions
+  ?let @string inSourceFile
+  ?let @actionListForGeneration inActionListForGeneration {
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  for () in inActionListForGeneration do
+    let s = [filewrapper actionGenerationTemplate.actionGeneration
+      !mClassName
+      !mActionName
+    ]
+    [@string generateFileWithPattern
+      !outputDirectory
+      !mClassName + "+action+" + mActionName + ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"    NSBeep ()\n" # Defaut user zone2
+      !"  }\n}\n\n//----------------------------------------------------------------------------*\n"
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+filewrapper actionGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template actionGeneration "action-extension.swift.gTemplate"
+    ?@string EXTENDED_CLASS_NAME
+    ?@string ACTION_NAME
+ }
+
+#----------------------------------------------------------------------------*
+

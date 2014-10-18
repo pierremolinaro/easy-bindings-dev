@@ -1,0 +1,153 @@
+
+
+##----------------------------------------------------------------------------*
+#
+#routine analyzeAttributeDeclaration
+#  ??@attributeList inAttributeList
+#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@fileInclusionSet ioFileInclusionSet
+#  !@attributeListForImplementation outAttributeListForImplementation
+#  ?!@attributeListForImplementation ioAttributeListForInitHeader
+#:
+#  outAttributeListForImplementation := [@attributeListForImplementation emptyList] ;
+#  foreach inAttributeList do
+#    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@EXebType type ?2*] ;
+#    [mDefaultValue analyzeDefaultValueType
+#      ![@EXebTypeList listWithValue !type]
+#      !ioContextAnalysisStruct
+#      ?@string directDefaultValueAsString
+#      ?@string objectiveCDefaultValueAsString
+#      ?@string swiftDefaultValueAsString
+#      !?ioFileInclusionSet
+#    ] ;
+#    outAttributeListForImplementation +=
+#      !type
+#      ![mAttributeName string]
+#      !objectiveCDefaultValueAsString
+#      !directDefaultValueAsString
+#      !swiftDefaultValueAsString
+#    ;
+#    ioAttributeListForInitHeader +=
+#       !type
+#       ![mAttributeName string]
+#       !objectiveCDefaultValueAsString
+#       !directDefaultValueAsString
+#       !swiftDefaultValueAsString
+#    ;
+#  end foreach ;
+#end routine ;
+#
+##----------------------------------------------------------------------------*
+#
+#routine buildObservablePropertyMap
+#  ??@attributeList inAttributeList
+#  ??@classArrayList inArrayList
+#  ??@transientList inTransientList
+#  ??@controllerList inControllerList
+#  ??@controllerObservablePropertyList inControllerObservablePropertyList
+#  ?!@EXobservablePropertyMapMap unused ioObservablePropertyMapMap
+#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ??@string inObjectName # "document." . documentName
+#  ?!@EXobservablePropertyMap ioSelfObservableAttributeMap
+#:
+##--- Attributes
+#  foreach inAttributeList do
+#    [inUnifiedTypeMap searchKey !mAttributeTypeName ?@EXebType type ?2*] ;
+#    const observationDependencyKey := [@lstring new
+#      !inObjectName . "." . mAttributeName
+#      !mAttributeName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mAttributeName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey
+#      !false # Is not collection
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##--- Arraies
+#  foreach inArrayList do
+#    [inUnifiedTypeMap searchKey !mElementClassName ?@EXebType type ?2*] ;
+#    const observationDependencyKey := [@lstring new
+#      !inObjectName . "." . mArrayName
+#      !mArrayName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mArrayName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey
+#      !true # Is a collection
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##--- Transients
+#  foreach inTransientList do
+#    [inUnifiedTypeMap searchKey !mTransientTypeName ?@EXebType type ?2*] ;
+#    const observationDependencyKey := [@lstring new
+#      !inObjectName . "." . mTransientName
+#      !mTransientName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mTransientName
+#      !type
+#      !true # is transient
+#      !observationDependencyKey
+#      !false # Is not collection
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##--- Controllers
+#  foreach inControllerList do
+#    [inUnifiedTypeMap searchKey !mControllerClassName ?@EXebType type ?2*] ;
+#    const observationDependencyKey := [@lstring new
+#      !inObjectName . "." . mControllerName
+#      !mControllerName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mControllerName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey
+#      !false # Is not collection
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+##--- Controller attributes
+#  foreach inControllerObservablePropertyList do
+#    [inUnifiedTypeMap searchKey !mTypeName ?@EXebType type ?2*] ;
+#    const observationDependencyKey := [@lstring new
+#      !inObjectName . "." . mPropertyName
+#      !mPropertyName->location
+#    ] ;
+#    [!?ioSelfObservableAttributeMap insertKey
+#      !mPropertyName
+#      !type
+#      !false # is not transient
+#      !observationDependencyKey
+#      !false # Is not collection
+#    ] ;
+#    [!?ioTransientDependencyGraph addNode
+#      !observationDependencyKey
+#      !observationDependencyKey->string
+#    ] ;
+#  end foreach ;
+#end routine ;
+
+#----------------------------------------------------------------------------*
+
