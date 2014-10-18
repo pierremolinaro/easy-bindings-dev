@@ -1,0 +1,190 @@
+
+
+#----------------------------------------------------------------------------*
+# observedObjectTypeNameList                                                 *
+#----------------------------------------------------------------------------*
+
+#! observedObjectTypeNameList
+
+#----------------------------------------------------------------------------*
+
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedObjectTypeNameList
+
+#----------------------------------------------------------------------------*
+
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedObjectTypeNameList {
+  outObservedObjectTypeNameList = {!mObservedTypeName}
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @negateBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mBinding observedObjectTypeNameList]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @orBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @andBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList]
+}
+
+#----------------------------------------------------------------------------*
+# enableExpressionString                                                     *
+#----------------------------------------------------------------------------*
+
+#! enableExpressionString
+
+#----------------------------------------------------------------------------*
+
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString
+
+#----------------------------------------------------------------------------*
+
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString {
+  outEnableExpressionString = "object" + mIndex + "." + mObservedModel
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @negateBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString {
+  outEnableExpressionString = "!(" + [mBinding enableExpressionString] + ")"
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @orBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString {
+  outEnableExpressionString = "(" + [mLeftBinding enableExpressionString] +  " || " + [mRightBinding enableExpressionString] + ")"
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @andBooleanMultipleBindingExpressionForGeneration enableExpressionString
+  -> @string outEnableExpressionString {
+  outEnableExpressionString = "(" + [mLeftBinding enableExpressionString] +  " && " + [mRightBinding enableExpressionString] + ")"
+}
+
+#----------------------------------------------------------------------------*
+# observedModelNameList                                                      *
+#----------------------------------------------------------------------------*
+
+#! observedModelNameList
+
+#----------------------------------------------------------------------------*
+
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList
+
+#----------------------------------------------------------------------------*
+
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = {!mObservedModel}
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mBinding observedModelNameList]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @orBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @andBooleanMultipleBindingExpressionForGeneration observedModelNameList
+  -> @stringlist outObservedModelNameList {
+  outObservedModelNameList = [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList]
+}
+
+#----------------------------------------------------------------------------*
+# filewrapper controllerTemplates                                            *
+#----------------------------------------------------------------------------*
+
+#! filewrapper controllerTemplates
+
+#----------------------------------------------------------------------------*
+
+filewrapper controllerTemplates in "../generation-templates/controller-templates" {
+  "txt"
+}{
+}{
+  template enabledBindingGeneration "enabled-binding.swift.gTemplate"
+    ?@string OUTLET_PROPRIETARY_CLASS_NAME
+    ?@string OUTLET_NAME
+#    ?@string OBJECT_CLASS
+#    ?@string MODEL
+    ?@abstractBooleanMultipleBindingExpressionForGeneration ENABLE_EXPRESSION
+}
+
+#----------------------------------------------------------------------------*
+
+list @controllerBindingOptionDecoratedList {
+  @lstring mOptionName
+  @unifiedTypeMap-proxy mOptionType
+}
+
+#----------------------------------------------------------------------------*
+
+map @templateControllerMap {
+  @string mTemplateString
+  @unifiedTypeMap-proxy mModelTypeProxy
+  @lstring mModelSelector
+  @bool mModelShouldBeWritableProperty
+  @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList
+  insert insertKey error message "the '%K' controller template is already declared in %L"
+  search searchKey error message "there is no '%K' controller template"
+}
+
+#----------------------------------------------------------------------------*
+
+proc buildControllerTemplateMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @controllerTemplateList inControllerTemplateList
+  !@templateControllerMap outTemplateControllerMap {
+  outTemplateControllerMap = {}
+  let @filewrapper fw = [filewrapper controllerTemplates]
+  for () in inControllerTemplateList do
+    let templateName = @lstring. new {
+      !mOutletClassName.string + "." + mBindingName.string + "." + mModelTypeName.string + "." + mModelSelector.string
+      !mBindingName.location}
+    let templateText = [fw textFileContentsAtPath !"/" + templateName + ".txt"]
+    let modelTypeProxy = @unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !mModelTypeName}
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    for () in mBindingOptionList do
+      let bindingOptionTypeProxy = @unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !mOptionTypeName}
+      controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy    
+    end
+    [!?outTemplateControllerMap insertKey
+      !templateName
+      !templateText
+      !modelTypeProxy
+      !mModelSelector
+      !mModelShouldBeWritableProperty
+      !controllerBindingOptionDecoratedList
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+

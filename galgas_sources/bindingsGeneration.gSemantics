@@ -1,5 +1,0 @@
-semantics bindingsGeneration :
-  import "decoratedTypes.gSemantics" ;
-
-
-end semantics ;

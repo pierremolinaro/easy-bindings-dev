@@ -1,0 +1,42 @@
+
+
+#----------------------------------------------------------------------------*
+
+private filewrapper enumGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template enumGenerationInSwift "enum.swift.gTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+}
+
+#----------------------------------------------------------------------------*
+
+list @enumListForGeneration {
+  @string mEnumName
+  @lstringlist mEnumConstantList
+}
+
+#----------------------------------------------------------------------------*
+
+proc generateEnums
+  ?let @enumListForGeneration inEnumListForGeneration
+  ?let @string inOutputDirectory {
+  for () in inEnumListForGeneration do
+    if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
+      let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
+        !mEnumName
+        !mEnumConstantList
+      ]
+      [@string generateFile
+        !inOutputDirectory
+        !mEnumName + ".swift"
+        !s
+      ]
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+

@@ -1,0 +1,42 @@
+
+
+#----------------------------------------------------------------------------*
+
+private filewrapper collectionControllerGenerationTemplate in "../generation-templates/collection-controller-templates" {
+  "txt"
+}{
+}{
+  template arrayControllerImplementationInSwift "array-controller.swift.gTemplate"
+    ?@string OBJECT_TYPE_NAME
+    ?@string RELATIONSHIP_NAME
+    ?@string ELEMENT_TYPE_NAME
+    ?@string TABLE_VIEW_OUTLET_NAME
+    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@filewrapper FILE_WRAPPER
+}
+
+#----------------------------------------------------------------------------*
+
+proc generateArrayControllers
+  ?let @arrayControllerForGeneration inArrayControllerListForGeneration
+  ?let @string inOutputDirectory {
+  for () in inArrayControllerListForGeneration do
+    let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
+      !mObjectTypeName
+      !mTomanyRelationshipName
+      !mElementTypeName
+      !mTableViewOutletName
+      !mArrayControllerBoundColumnListForGeneration
+      ![filewrapper collectionControllerGenerationTemplate]
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + ".swift"
+      !s
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+

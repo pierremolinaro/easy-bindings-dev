@@ -1,0 +1,947 @@
+syntax easyBindings_syntax (easyBindings_lexique) {
+
+#----------------------------------------------------------------------------*
+
+rule <start_symbol>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST
+  !@location outEndOfFile {
+  repeat
+  while
+    $include$
+    $literal_string$ ?var @lstring filePath
+    $;$
+    let sourceFile = @lstring. new {
+      ![filePath.string absolutePathFromPath ![@string. stringWithSourceFilePath stringByDeletingLastPathComponent]]
+      !filePath.location}
+    grammar easyBindings_grammar in sourceFile
+      !userDefined:inIsUserDefined
+      !?ioDeclarationAST
+      ?*
+#  while
+#    <struct_declaration> !inIsUserDefined !?ioDeclarationAST ;
+  while
+    <enum_declaration> !inIsUserDefined !?ioDeclarationAST
+#  while
+#    <cursor_declaration> !?ioCursorList ;
+#  while
+#    <protocol_declaration> !inIsUserDefined !?ioDeclarationAST ;
+  while
+    <class_declaration> !inIsUserDefined !?ioDeclarationAST
+  while
+    <entity_declaration>  !inIsUserDefined  !?ioDeclarationAST
+#  while
+#    <nib_class_declaration>  !inIsUserDefined  !?ioDeclarationAST ;
+  while
+    <preferences_declaration> !inIsUserDefined !?ioDeclarationAST
+  while
+    <document_declaration> !inIsUserDefined !?ioDeclarationAST
+  while
+    <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST.mOutletClassDeclarationList
+  while
+    <controller_template_declaration> !inIsUserDefined !?ioDeclarationAST.mControllerTemplateList
+  end
+  outEndOfFile = @location.here
+}
+
+#----------------------------------------------------------------------------*
+
+rule <controller_template_declaration>
+  ?let @bool inIsUserDefined
+  ?!@controllerTemplateList ioControllerTemplateList {
+  $controllerTemplate$
+  $Identifier$ ?let @lstring outletClassName
+  $binding$ ?let @lstring bindingName
+  $:$
+  @bool modelShouldBeWritableProperty
+  select
+    $property$
+    modelShouldBeWritableProperty = true
+  or
+    $transient$
+    modelShouldBeWritableProperty = false
+  end
+  $Identifier$ ?let @lstring modelTypeName
+  $identifier$ ?let @lstring modelName
+  
+  @controllerBindingOptionList bindingOptionList = {}
+  select
+  or
+    ${$
+    repeat
+      $identifier$ ?let @lstring optionName
+      $:$
+      $Identifier$ ?let @lstring optionType
+      bindingOptionList += !optionName !optionType
+    while
+      $,$
+    end
+    $}$
+  end
+  $;$
+  ioControllerTemplateList +=
+    !inIsUserDefined
+    !outletClassName
+    !bindingName
+    !modelTypeName
+    !modelName
+    !modelShouldBeWritableProperty
+    !bindingOptionList
+}
+
+#----------------------------------------------------------------------------*
+
+rule <count_option>
+  !@bool outCountOptionOn {
+  select
+    outCountOptionOn = false
+  or
+    $.$
+    $count$
+    outCountOptionOn = true
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingExpression> 
+  !@abstractBooleanMultipleBindingExpressionAST outBinding {
+  <booleanMultipleBindingTerm> ?outBinding
+  repeat
+  while
+    $&$
+    <booleanMultipleBindingTerm> ?let @abstractBooleanMultipleBindingExpressionAST binding
+    outBinding = @andBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingTerm> 
+  !@abstractBooleanMultipleBindingExpressionAST outBinding {
+  <booleanMultipleBindingOperand> ?outBinding
+  repeat
+  while
+    $|$
+    <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
+    outBinding = @orBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractBooleanMultipleBindingExpressionAST outBinding {
+  <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
+  outBinding = @observablePropertyAsEnableBindingExpressionAST. new { !observablePropertyAST}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractBooleanMultipleBindingExpressionAST outBinding {
+  $!$
+  <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
+  outBinding = @negateBooleanMultipleBindingExpressionAST. new { !binding}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <booleanMultipleBindingOperand> 
+  !@abstractBooleanMultipleBindingExpressionAST outBinding {
+  $($
+  <booleanMultipleBindingExpression> ?outBinding
+  $)$
+}
+
+#----------------------------------------------------------------------------*
+
+rule <outlet_declaration>
+  ?!@outletDeclarationList ioOutletDeclarationList
+  ?!@bindingList ioBindingList {
+  $outlet$
+  $Identifier$ ?let outletTypeName
+  $identifier$ ?let outletName
+#--- Run
+  @runActionDescriptor runActionDescriptor = @runActionDescriptor. noAction 
+  @enabledBindingDescriptor enabledBindingDescriptor = @enabledBindingDescriptor. noEnabledBinding
+  repeat
+  while
+    $run$
+    if runActionDescriptor != @runActionDescriptor. noAction then
+      error @location.here : "duplicated $run binding"
+    end
+    @lstring runTargetName
+    select
+      $self$
+      runTargetName = @lstring. new { !"self" !@location.here}
+    or
+      $identifier$ ?runTargetName
+    end
+    $.$
+    $identifier$ ?let @lstring runActionName
+    runActionDescriptor = @runActionDescriptor. action { !target:runTargetName !action:runActionName}
+#--- Enabled
+  while
+    $enabled$
+    if enabledBindingDescriptor != @enabledBindingDescriptor. noEnabledBinding then
+      error @location.here : "duplicated $enabled binding"
+    end
+    <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+    enabledBindingDescriptor = @enabledBindingDescriptor. enabledBinding { !expression:bindingExpression}
+#--- Regular binding
+  while
+    $binding$ ?let @lstring bindingName
+    <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
+    <binding_option_list> ?let bindingOptions
+    ioBindingList +=
+      !@lstring. new { !"model" !bindingName.location}
+      !observablePropertyAST
+      !outletName
+      !bindingName
+      !bindingOptions
+  end
+#---
+  $;$
+  ioOutletDeclarationList +=
+    !outletTypeName
+    !outletName
+    !runActionDescriptor
+    !enabledBindingDescriptor
+}
+
+#----------------------------------------------------------------------------*
+
+rule <action_declaration>
+  ?!@lstringlist ioActionDeclarationList {
+  $action$
+  $identifier$ ?let @lstring actionName
+  $;$
+  ioActionDeclarationList += !actionName
+}
+
+#----------------------------------------------------------------------------*
+
+rule <preferences_declaration>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST {
+  $preferences$
+  $Identifier$ ?let @lstring preferencesName
+  ${$
+  var outletDeclarationList =@outletDeclarationList.emptyList{}
+  var attributeList =@attributeList.emptyList{}
+  var transientList =@transientList.emptyList{}
+  var actionDeclarationList =@lstringlist.emptyList{}
+  var bindingList =@bindingList.emptyList{}
+  var classArrayList =@classArrayList.emptyList{}
+  repeat
+  while
+    <action_declaration> !?actionDeclarationList
+  while
+    <attribute_declaration> !?attributeList
+  while
+    <outlet_declaration> !?outletDeclarationList !?bindingList
+  while
+    <transient_declaration> !?transientList
+  while
+    <binding_declaration> !?bindingList
+  while
+    <array_declaration> !?classArrayList
+  end
+  $}$
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+    !inIsUserDefined
+    !preferencesName
+    !@typeKind. preferencesType
+    !["" nowhere] # NoSuper type
+    !outletDeclarationList
+    !["" nowhere] # No root entity
+    !attributeList
+    !@relationshipList {}
+    !classArrayList
+    !transientList
+    !bindingList
+    !actionDeclarationList
+    !{}}
+}
+
+#----------------------------------------------------------------------------*
+
+#rule <nib_class_declaration>
+#  ??@bool unused inIsUserDefined
+#  ?!@astDeclarationStruct unused ioDeclarationAST
+#:
+#  $nibClass$ ;
+#  $Identifier$ ??@lstring preferencesName ;
+#  ${$ ;
+#  @outletDeclarationList outletDeclarationList [emptyList] ;
+#  @attributeList attributeList [emptyList] ;
+#  @transientList transientList [emptyList] ;
+#  @lstringlist actionDeclarationList [emptyList] ;
+#  @bindingList bindingList [emptyList] ;
+#  @classArrayList classArrayList [emptyList] ;
+#  repeat
+#  while
+#    <action_declaration> !?actionDeclarationList ;
+#  while
+#    <attribute_declaration> !?attributeList ;
+#  while
+#    <outlet_declaration> !?outletDeclarationList ;
+#  while
+#    <transient_declaration> !?transientList ;
+#  while
+#    <binding_declaration> !?bindingList ;
+#  while
+#    <array_declaration> !?classArrayList ;
+#  end repeat ;
+#  $}$ ;
+#end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <array_declaration>
+  ?!@classArrayList ioClassArrayList {
+  $array$
+  $Identifier$ ?var @lstring className
+  $identifier$ ?var @lstring arrayName
+  $;$
+  ioClassArrayList += !className !arrayName
+}
+
+#----------------------------------------------------------------------------*
+
+rule <array_controller_declaration>
+  ?!@arrayControllerDeclarationListAST ioArrayControllerDeclarationListAST {
+  $arrayController$
+  $identifier$ ?let @lstring controllerName
+  $bind$
+  <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
+  $to$
+  $identifier$ ?let @lstring tableViewOutletName
+  @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+  repeat
+    $column$
+    $literal_string$ ?let columnName
+    $Identifier$ ?let columnOutletTypeName
+    $identifier$ ?let observablePropertyName
+    <binding_option_list> ?let bindingOptions
+    arrayControllerBoundColumnListAST +=
+      !columnName
+      !columnOutletTypeName
+      !observablePropertyName
+      !bindingOptions
+  while
+  end
+  $;$
+  ioArrayControllerDeclarationListAST +=
+    !controllerName
+    !observablePropertyAST
+    !tableViewOutletName
+    !arrayControllerBoundColumnListAST
+}
+
+#----------------------------------------------------------------------------*
+
+rule <binding_option_list> !@bindingOptionList outBindingOptions {
+  outBindingOptions = {}
+  select
+  or
+    ${$
+    repeat
+      $identifier$ ?let @lstring optionName
+      $:$
+      <explicit_value> ?let @abstractDefaultValue optionValue
+      outBindingOptions += !optionName !optionValue
+    while
+      $,$
+    end
+    $}$
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+rule <document_declaration>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST {
+  $document$
+  $Identifier$ ?let @lstring documentName
+  $root$
+  $Identifier$ ?let @lstring rootEntityName
+  ${$
+  var outletDeclarationList =@outletDeclarationList.emptyList{}
+  var bindingList =@bindingList.emptyList{}
+  var actionDeclarationList =@lstringlist.emptyList{}
+  var transientList =@transientList.emptyList{}
+  var attributeList =@attributeList.emptyList{}
+  @arrayControllerDeclarationListAST arrayControllerDeclarationListAST = {}
+  repeat
+  while
+    <attribute_declaration> !?attributeList
+  while
+    <action_declaration> !?actionDeclarationList
+  while
+    <transient_declaration> !?transientList
+  while
+    <outlet_declaration> !?outletDeclarationList !?bindingList
+  while
+    <binding_declaration> !?bindingList
+  while
+    <array_controller_declaration> !?arrayControllerDeclarationListAST
+  end
+  $}$
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+    !inIsUserDefined
+    !documentName
+    !@typeKind. documentType
+    !["" nowhere] # No super type
+    !outletDeclarationList
+    !rootEntityName
+    !attributeList
+    !@relationshipList {}
+    !@classArrayList {}
+    !transientList
+    !bindingList
+    !actionDeclarationList
+    !arrayControllerDeclarationListAST}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <explicit_value>
+  !@abstractDefaultValue outDefaultValue {
+  select
+    $yes$
+    outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !true !@location.here}}
+  or
+    $no$
+    outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !false !@location.here}}
+  or
+    $literal_integer$ ?var  @luint integerValue
+    outDefaultValue = @integerAsDefaultValue. new { !integerValue}
+  or
+    $literal_double$ ?var  @ldouble doubleValue ?*
+    outDefaultValue = @doubleAsDefaultValue. new { !doubleValue}
+  or
+    $literal_string$ ?var @lstring stringValue
+    outDefaultValue = @stringAsDefaultValue. new { !stringValue}
+  or
+    $identifier$ ?let @lstring stringValue
+    outDefaultValue = @identifierAsDefaultValue. new { !stringValue}
+  or
+    $($
+    let @location startLocation = @location.here
+    var defaultValueList =@defaultValueList.emptyList{}
+    repeat
+      <explicit_value> ?var @abstractDefaultValue defaultValue
+      defaultValueList += !defaultValue
+    while
+      $,$
+    end
+    $)$
+    outDefaultValue = @listAsDefaultValue. new { !startLocation !defaultValueList}
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+rule <class_declaration>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST {
+  $class$
+  $Identifier$ ?let @lstring className
+  @lstring superClassName
+  select
+    superClassName = ["" nowhere]
+  or
+    $:$
+    $Identifier$ ? superClassName
+  end
+  ${$
+  var attributeList =@attributeList.emptyList{}
+  var classTransientList =@transientList.emptyList{}
+  var classArrayList =@classArrayList.emptyList{}
+  repeat
+  while
+    <attribute_declaration> !?attributeList
+  while
+    <transient_declaration> !?classTransientList
+  while
+    <array_declaration> !?classArrayList
+  end
+  $}$
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+    !inIsUserDefined
+    !className
+    !@typeKind. classType
+    !superClassName
+    !@outletDeclarationList {}
+    !["" nowhere] # No root entity
+    !attributeList
+    !@relationshipList {}
+    !classArrayList
+    !classTransientList
+    !@bindingList {}
+    !@lstringlist {} # No action
+    !{}}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <attribute_declaration>
+  ?!@attributeList ioAttributeList {
+  $property$
+  @bool needsValidation
+  select
+    needsValidation = false
+  or
+    $validates$
+    needsValidation = true
+  end
+  $Identifier$ ?var @lstring attributeTypeName
+  $identifier$ ?var @lstring attributeName
+  $default$
+  <explicit_value> ?var @abstractDefaultValue defaultValue
+  $;$
+  ioAttributeList +=
+    !attributeTypeName
+    !attributeName
+    !defaultValue
+    !needsValidation
+}
+
+#----------------------------------------------------------------------------*
+
+rule <transient_declaration>
+  ?!@transientList ioTransientList {
+  $transient$
+  $Identifier$ ?var @lstring transientTypeName
+  $identifier$ ?let @lstring transientName
+  $dependsFrom$
+  var dependanceList =@dependanceList.emptyList{}
+  repeat
+    select
+      $root$
+      $.$
+      $signature$
+      dependanceList += !@transientRootSignDependencyAST. new { !@location.here}
+    or
+      $self$
+      $.$
+      $identifier$ ?let @lstring masterName
+      <count_option> ?var @bool namesCountOption
+      dependanceList += !@transientLocalDependencyAST. new { !masterName !namesCountOption}
+    or
+      $root$
+      $.$
+      $identifier$ ?let @lstring masterName
+      <count_option> ?var @bool namesCountOption
+      dependanceList += !@transientRootDependencyAST. new { !masterName !namesCountOption}
+    or
+      $root$
+      $.$
+      $identifier$ ?let @lstring relationshipName
+      $.$
+      $identifier$ ?let @lstring masterName
+      dependanceList += !@transientRootRelationshipDependencyAST. new { !relationshipName !masterName}
+    or
+      $identifier$ ?var @lstring controllerName
+      $.$
+      $identifier$ ?let @lstring masterName
+      dependanceList += !@transientControllerDependencyAST. new { !controllerName !masterName}
+    or
+      $Identifier$ ?var @lstring preferenceName
+      $.$
+      $identifier$ ?let @lstring masterName
+      dependanceList += !@transientPreferenceDependencyAST. new { !preferenceName !masterName}
+    end
+  while
+    $,$
+  end
+  $;$
+  ioTransientList += !transientTypeName !transientName !dependanceList
+}
+
+#----------------------------------------------------------------------------*
+
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST {
+  $self$
+  $.$
+  $identifier$ ?let @lstring observableProperty
+  outObservablePropertyAST = @selfObservablePropertyAST. new {
+    !observableProperty}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST {
+  $root$
+  $.$
+  $identifier$ ?let @lstring observableProperty
+  <count_option> ?let @bool namesCountOption
+  outObservablePropertyAST = @rootObservablePropertyAST. new {
+    !observableProperty
+    !namesCountOption}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST {
+  $Identifier$ ?let @lstring preferenceName
+  $.$
+  $identifier$ ?let @lstring observableProperty
+  outObservablePropertyAST = @preferenceObservablePropertyAST. new {
+    !preferenceName
+    !observableProperty}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <observable_property> !@abstractObservablePropertyAST outObservablePropertyAST {
+  $identifier$ ?let @lstring arrayControllerName
+  $.$
+  $identifier$ ?let @lstring observableProperty
+  outObservablePropertyAST = @arrayControllerObservablePropertyAST. new {
+    !arrayControllerName
+    !observableProperty}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <binding_declaration>
+  ?!@bindingList ioBindingList {
+  $bind$
+  $identifier$ ?let @lstring modelSelectorName
+  $:$
+  <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
+  $to$
+  $identifier$ ?let @lstring outletName
+  $binding$ ?let @lstring bindingName
+  <binding_option_list> ?let bindingOptions
+  $;$
+  ioBindingList +=
+    !modelSelectorName
+    !observablePropertyAST
+    !outletName
+    !bindingName
+    !bindingOptions
+}
+
+#----------------------------------------------------------------------------*
+
+rule <entity_declaration>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST {
+  $entity$
+  $Identifier$ ?let @lstring entityName
+  @lstring superEntityName
+  select
+    superEntityName = ["" nowhere]
+  or
+    $:$
+    $Identifier$ ? superEntityName
+  end
+  ${$
+  var attributeList =@attributeList.emptyList{}
+  var classTransientList =@transientList.emptyList{}
+  var relationshipList =@relationshipList.emptyList{}
+  var signList =@lstringlist.emptyList{}
+  repeat
+  while
+    $signature$
+    repeat
+      $identifier$ ?let @lstring propertyName
+      signList += !propertyName
+    while
+      $,$
+    end
+    $;$
+  while
+    <attribute_declaration> !?attributeList
+  while
+    <transient_declaration> !?classTransientList
+  while
+    @bool isToMany
+    select
+      $toOne$
+      isToMany = false
+    or
+      $toMany$
+      isToMany = true
+    end
+    $Identifier$ ?let @lstring destinationEntityName
+    $identifier$ ?let @lstring relationshipName
+    $inverse$
+    @bool inverseIsToMany
+    select
+      $toOne$
+      inverseIsToMany = false
+    or
+      $toMany$
+      inverseIsToMany = true
+    end
+    $identifier$ ?let @lstring inverseRelationshipName
+    $;$
+    relationshipList +=
+      !isToMany
+      !destinationEntityName
+      !relationshipName
+      !inverseRelationshipName
+      !inverseIsToMany
+  end
+  $}$
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+    !inIsUserDefined
+    !entityName
+    !@typeKind. entityType
+    !superEntityName
+    !@outletDeclarationList {}
+    !["" nowhere] # No root entity
+    !attributeList
+    !relationshipList
+    !@classArrayList {}
+    !classTransientList
+    !@bindingList {}
+    !@lstringlist {} # No action
+    !{}}
+}
+
+#----------------------------------------------------------------------------*
+
+rule <outlet_class_declaration>
+  ?let @bool inIsUserDefined
+  ?!@outletClassDeclarationList ioOutletClassDeclarationList {
+  $outletClass$
+  $Identifier$ ?let @lstring outletClassName
+  @bool hasRunAction = false
+  @bool hasEnabled = false
+  repeat
+  while
+    $run$
+    hasRunAction = true
+  while
+    $enabled$
+    hasEnabled = true
+  end
+  $;$
+  ioOutletClassDeclarationList +=
+    !inIsUserDefined
+    !outletClassName
+    !hasRunAction
+    !hasEnabled
+}
+
+#----------------------------------------------------------------------------*
+
+#rule <protocol_declaration>
+#  ??@bool inIsUserDefined
+#  !@protocolDeclaration outEXDeclaration
+#  ?!@astDeclarationList unused ioDeclarationAST
+#:
+#  @bool isPredefined ;
+#  select
+#    $extern$ ; isPredefined := false ;
+#  or
+#    $predefined$ ; isPredefined := true ;
+#  end select ;
+#  $protocol$ ;
+#  $Identifier$ ??@lstring protocolName ;
+#  $;$ ;
+#  outEXDeclaration := [@protocolDeclaration new
+#    !inIsUserDefined
+#    !isPredefined
+#    !protocolName
+#  ] ;
+#end rule ;
+#
+#----------------------------------------------------------------------------*
+
+#rule <cursor_declaration>
+#  ?!@cursorList ioCursorList
+#:
+#  $cursor$ ;
+#  $identifier$ ??@lstring cursorName ;
+#  $($ ;
+#  $literal_double$ ?@ldouble hotSpotX ?* ;
+#  $,$ ;
+#  $literal_double$ ?@ldouble hotSpotY ?* ;
+#  $)$ ;
+#  $;$ ;
+#  ioCursorList += !cursorName !hotSpotX !hotSpotY ;
+#end rule ;
+
+#----------------------------------------------------------------------------*
+
+rule <enum_declaration>
+  ?let @bool inIsUserDefined
+  ?!@astDeclarationStruct ioDeclarationAST {
+  $enum$
+  $Identifier$ ?let @lstring enumName
+  ${$
+  var enumConstants =@lstringlist.emptyList{}
+  repeat
+    $identifier$ ?let @lstring constantName
+    enumConstants += !constantName
+  while
+    $,$
+  end
+  $}$
+  ioDeclarationAST.mDeclarationList += !@enumDeclaration. new { !inIsUserDefined !enumName !enumConstants}
+}
+
+#----------------------------------------------------------------------------*
+
+#rule <controller_class_declaration>
+#  ??@bool inIsUserDefined
+#  ?!@astDeclarationList ioDeclarationAST
+#:
+#  @generationKind generationKind ;
+#  select
+#    generationKind := [@generationKind fullGeneration] ;
+#  or
+#    $predefined$ ;
+#    generationKind := [@generationKind noGeneration] ;
+#  or
+#    $extern$ ;
+#    generationKind := [@generationKind generateImport] ;
+#  end select ;
+#  @controllerKind controllerKind ;
+#  @lstring controllerClassName ;
+#  @bindingOptionList controlledObjectBindingOptionList [emptyList] ;
+#  select
+#    $controller$ ;
+#    controllerKind := [@controllerKind simpleController] ;
+#    $Identifier$ ?controllerClassName ;
+#  or
+#    $objectController$ ;
+#    controllerKind := [@controllerKind objectController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ??@lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $entityController$ ;
+#    controllerKind := [@controllerKind entityController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ??@lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $arrayController$ ;
+#    controllerKind := [@controllerKind arrayController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ??@lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $entityArrayController$ ;
+#    controllerKind := [@controllerKind entityArrayController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ??@lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  or
+#    $treeController$ ;
+#    controllerKind := [@controllerKind treeController] ;
+#    $Identifier$ ?controllerClassName ;
+#    ${$ ;
+#    repeat
+#    while
+#      $Identifier$ ??@lstring optionName ;
+#      $:$ ;
+#      <type_list> ?@lstringlist optionTypeList ;
+#      $;$ ;
+#      controlledObjectBindingOptionList += !optionName !optionTypeList ;
+#    end repeat ;
+#    $}$ ;
+#  end select ;
+#  ${$ ;
+#  @outletClassBindingList controllerClassBindingList [emptyList] ;
+#  @lstringlist actionDeclarationList [emptyList] ;
+#  @controllerObservablePropertyList controllerObservablePropertyList [emptyList] ;
+#  repeat
+#  while
+#    $attribute$ ;
+#    $Identifier$ ??@lstring attributeTypeName ;
+#    $identifier$ ??@lstring attributeName ;
+#    $;$ ;
+#    controllerObservablePropertyList += !attributeTypeName !attributeName ;
+#  while
+#    <action_declaration> !?actionDeclarationList ;
+#  while
+#    @lstring bindingName ;
+#    select
+#      $binding$ ? bindingName ;
+#    or
+#      $hidden$ ;
+#      bindingName := [@lstring new !"hidden" !here] ;
+#    or
+#      $editable$ ;
+#      bindingName := [@lstring new !"editable" !here] ;
+#    or
+#      $enabled$ ;
+#      bindingName := [@lstring new !"enabled" !here] ;
+#    end select ;
+#    $:$ ;
+#    <type_formatter_list> ?@attributeASTTypeAndFormatterList easyBindingTypeFormatterList ;
+#    @bindingOptionList bindingOptionList [emptyList] ;
+#    select
+#      $;$ ;
+#    or
+#      ${$ ;
+#      repeat
+#      while
+#        $Identifier$ ??@lstring optionName ;
+#        $:$ ;
+#        <type_list> ?@lstringlist optionTypeList ;
+#        $;$ ;
+#        bindingOptionList += !optionName !optionTypeList ;
+#      end repeat ;
+#      $}$ ;
+#    end select ;
+#    controllerClassBindingList += !bindingName !easyBindingTypeFormatterList !bindingOptionList ;
+#  end repeat ;
+#  $}$ ;
+#  ioDeclarationAST += ![@controllerClassDeclaration new
+#    !inIsUserDefined
+#    !controllerKind
+#    !controllerClassName
+#    !controlledObjectBindingOptionList
+#    !generationKind
+#    !controllerClassBindingList
+#    !actionDeclarationList
+#    !controllerObservablePropertyList
+#  ] ;
+#end rule ;
+
+#----------------------------------------------------------------------------*
+
+}

@@ -1,0 +1,47 @@
+
+
+##----------------------------------------------------------------------------*
+#
+#filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
+#}{
+#}{
+#  template classImplementationInSwift "class.swift.gTemplate"
+#    ?@string CLASS_NAME
+#    ?@string SUPER_CLASS_NAME
+#    ?@attributeListForImplementation ATTRIBUTE_LIST
+#    ?@transientListForImplementation TRANSIENT_LIST_FOR_IMPLEMENTATION
+#    ?@attributeListForImplementation ALL_PROPERTIES_FOR_INIT_METHOD_HEADER
+#    ?@attributeListForImplementation INHERITED_PROPERTIES_FOR_SUPER_INIT_CALL
+#    ?@stringset IMPLEMENTATION_INCLUSION_SET
+#    ?@propertyArrayMap CURRENT_ARRAY_MAP
+#  ;
+#}
+#
+##----------------------------------------------------------------------------*
+#
+#override method @classTypeGeneration generate
+#  ??@string inOutputDirectory
+#:
+#  var s := [filewrapper classGenerationTemplate.classImplementationInSwift
+#    !mGenerationName
+#    !mSuperClassName
+#    !mAttributeListForImplementation
+#    !mTransientListForImplementation
+#    !mAttributeListForInitMethodHeader
+#    !mInheritedAttributeListForImplementation
+#    !mInclusionSet->mImplementationFileInclusionSet
+#    !mCurrentArrayPropertyForImplementation
+#  ] ;
+#  [@string generateFileWithPattern
+#    !inOutputDirectory
+#    !mGenerationName . ".swift"
+#    !"//"
+#    !"\n\n" # Defaut user zone1
+#    !s
+#    !"\n\n" # Defaut user zone2
+#    !"\n"
+#  ] ;
+#end method ;
+#
+#----------------------------------------------------------------------------*
+

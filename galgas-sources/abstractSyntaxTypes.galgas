@@ -1,0 +1,396 @@
+
+
+#-----------------------------------------------------------------------------*
+
+struct @astDeclarationStruct {
+  @astDeclarationList mDeclarationList
+  @cursorList mCursorList
+  @outletClassDeclarationList mOutletClassDeclarationList
+  @controllerTemplateList mControllerTemplateList
+}
+
+#----------------------------------------------------------------------------*
+
+list @controllerBindingOptionList {
+  @lstring mOptionName
+  @lstring mOptionTypeName
+}
+
+#-----------------------------------------------------------------------------*
+
+list @controllerTemplateList {
+  @bool mIsUserDefined
+  @lstring mOutletClassName
+  @lstring mBindingName
+  @lstring mModelTypeName
+  @lstring mModelSelector
+  @bool mModelShouldBeWritableProperty
+  @controllerBindingOptionList mBindingOptionList
+}
+
+#-----------------------------------------------------------------------------*
+
+abstract class @astDeclaration {
+  @bool mUserDefined
+}
+
+#-----------------------------------------------------------------------------*
+
+list @astDeclarationList {
+  @astDeclaration mDeclaration
+}
+
+#----------------------------------------------------------------------------*
+
+class @unifiedTypeDeclaration : @astDeclaration {
+  @lstring mTypeName
+  @typeKind mTypeKind
+  @lstring mSuperTypeName
+  @outletDeclarationList mOutletDeclarationList
+  @lstring mRootEntityName
+  @attributeList mAttributeList
+  @relationshipList mRelationshipList
+  @classArrayList mArrayList
+  @transientList mTransientList
+  @bindingList mBindingList
+  @lstringlist mActionDeclarationList
+  @arrayControllerDeclarationListAST mArrayControllerDeclarationListAST
+}
+
+#----------------------------------------------------------------------------*
+
+list @bindingOptionList {
+  @lstring mOptionName
+  @abstractDefaultValue mOptionValue
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractObservablePropertyAST {
+}
+
+#----------------------------------------------------------------------------*
+
+class @selfObservablePropertyAST : @abstractObservablePropertyAST {
+  @lstring mSelfObservablePropertyName
+}
+
+#----------------------------------------------------------------------------*
+
+class @rootObservablePropertyAST : @abstractObservablePropertyAST {
+  @lstring mRootObservablePropertyName
+  @bool mNamesCountOption
+}
+
+#----------------------------------------------------------------------------*
+
+class @preferenceObservablePropertyAST : @abstractObservablePropertyAST {
+  @lstring mPreferenceName
+  @lstring mPreferenceObservablePropertyName
+}
+
+#----------------------------------------------------------------------------*
+
+class @arrayControllerObservablePropertyAST : @abstractObservablePropertyAST {
+  @lstring mArrayControllerName
+  @lstring mArrayControllerObservablePropertyName
+}
+
+#----------------------------------------------------------------------------*
+
+list @bindingList {
+  @lstring mSelectorName
+  @abstractObservablePropertyAST mObservableProperty
+  @lstring mOutletName
+  @lstring mBindingName
+  @bindingOptionList mBindingOptionList
+}
+
+#----------------------------------------------------------------------------*
+
+class @predefinedTypeDeclaration : @astDeclaration {
+  @string mTypeName
+  @typeKind mKind
+}
+
+#----------------------------------------------------------------------------*
+
+list @outletClassDeclarationList {
+  @bool mUserDefined
+  @lstring mOutletClassName
+  @bool mHasRunAction
+  @bool mHasEnabled
+}
+
+#----------------------------------------------------------------------------*
+
+class @structDeclaration : @astDeclaration {
+  @lstring mStructTypeName
+  @structFieldASTList mFieldList
+}
+
+#----------------------------------------------------------------------------*
+
+class @enumDeclaration : @astDeclaration {
+  @lstring mEnumTypeName
+  @lstringlist mEnumConstantNameList
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-----------------------------------------------------------------------------*
+
+list @attributeList {
+  @lstring mAttributeTypeName
+  @lstring mAttributeName
+  @abstractDefaultValue mDefaultValue
+  @bool mNeedsValidation
+}
+
+#----------------------------------------------------------------------------*
+
+list @relationshipList {
+  @bool mIsToMany
+  @lstring mDestinationEntityName
+  @lstring mRelationshipName
+  @lstring mInverseRelationshipName
+  @bool mInverseRelationIsToMany
+}
+
+#----------------------------------------------------------------------------*
+
+enum @runActionDescriptor {
+  case noAction 
+  case action (@lstring target  @lstring action)
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractBooleanMultipleBindingExpressionAST {
+}
+
+#----------------------------------------------------------------------------*
+
+class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mBinding
+}
+
+#----------------------------------------------------------------------------*
+
+class @andBooleanMultipleBindingExpressionAST,
+       @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#----------------------------------------------------------------------------*
+
+class @observablePropertyAsEnableBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @abstractObservablePropertyAST mProperty
+}
+
+#----------------------------------------------------------------------------*
+
+enum @enabledBindingDescriptor {
+  case noEnabledBinding 
+  case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression)
+}
+#----------------------------------------------------------------------------*
+
+list @outletDeclarationList {
+  @lstring mOutletType
+  @lstring mOutletName
+  @runActionDescriptor mRunDescriptor
+  @enabledBindingDescriptor mEnabledBindingDescriptor
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractTransientDependencyAST {
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootSignDependencyAST : @abstractTransientDependencyAST {
+  @location mDeclarationLocation
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientLocalDependencyAST : @abstractTransientDependencyAST {
+  @lstring mMasterName
+  @bool mNamesCountOption
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootDependencyAST : @abstractTransientDependencyAST {
+  @lstring mMasterName
+  @bool mNamesCountOption
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientRootRelationshipDependencyAST : @abstractTransientDependencyAST {
+  @lstring mRelationshipName
+  @lstring mMasterName
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientControllerDependencyAST : @abstractTransientDependencyAST {
+  @lstring mControllerName
+  @lstring mMasterName
+}
+
+#----------------------------------------------------------------------------*
+
+class @transientPreferenceDependencyAST : @abstractTransientDependencyAST {
+  @lstring mPreferencesName
+  @lstring mMasterName
+}
+
+#----------------------------------------------------------------------------*
+
+list @dependanceList {
+  @abstractTransientDependencyAST mDependency
+}
+
+#----------------------------------------------------------------------------*
+
+list @transientList {
+  @lstring mTransientTypeName
+  @lstring mTransientName
+  @dependanceList mDependencyList
+}
+
+#----------------------------------------------------------------------------*
+
+list @classArrayList {
+  @lstring mElementClassName
+  @lstring mArrayName
+}
+
+#----------------------------------------------------------------------------*
+
+list @arrayControllerBoundColumnListAST {
+  @lstring mColumnName
+  @lstring mColumnOutletTypeName
+  @lstring mObservablePropertyName
+  @bindingOptionList mBindingOptionList
+}
+
+#----------------------------------------------------------------------------*
+
+list @arrayControllerDeclarationListAST {
+  @lstring mControllerName
+  @abstractObservablePropertyAST mBoundModel
+  @lstring mTableViewOutletName
+  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+}
+
+#----------------------------------------------------------------------------*
+
+list @cursorList {
+  @lstring mCursorName
+  @ldouble mHotSpotX
+  @ldouble mHotSpotY
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @abstractDefaultValue {
+}
+
+#----------------------------------------------------------------------------*
+
+class @boolAsDefaultValue : @abstractDefaultValue {
+  @lbool mValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @doubleAsDefaultValue : @abstractDefaultValue {
+  @ldouble mValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @integerAsDefaultValue : @abstractDefaultValue {
+  @luint mValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @stringAsDefaultValue : @abstractDefaultValue {
+  @lstring mValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @identifierAsDefaultValue : @abstractDefaultValue {
+  @lstring mValue
+}
+
+#----------------------------------------------------------------------------*
+
+list @defaultValueList {
+  @abstractDefaultValue mDefaultValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @listAsDefaultValue : @abstractDefaultValue {
+  @location mStartLocation
+  @defaultValueList mDefaultValueList
+}
+
+#----------------------------------------------------------------------------*
+
+list @structFieldASTList {
+  @lstring mFieldTypeName
+  @lstring mFieldName
+}
+
+#----------------------------------------------------------------------------*
+
+enum @typeKind {
+  case classType 
+  case controllerClassType 
+  case documentType 
+  case entityType 
+  case enumType 
+  case nibClassType 
+  case outletClassType 
+  case preferencesType 
+  case protocolType 
+  case structType 
+#--- Predefined Type
+  case boolType 
+  case integerType 
+  case uintegerType 
+  case doubleType 
+  case stringType 
+  case colorType 
+  case dataType 
+  case dateType 
+  case fontType 
+  case imageType 
+  case menuType 
+  case bezierPathType
+}
+
+#----------------------------------------------------------------------------*
+

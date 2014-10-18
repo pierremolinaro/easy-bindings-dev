@@ -1,0 +1,30 @@
+
+
+#----------------------------------------------------------------------------*
+
+filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
+  "swift"
+}{
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+proc generateOutletClasses
+  ?let @stringset inNeededOutletClasses
+  ?let @string inOutputDirectory {
+  let @filewrapper w = [filewrapper outletClassGeneration]
+  for key in inNeededOutletClasses do
+  #--- Header
+    let s = [w textFileContentsAtPath !"/" + key + ".swift"]
+    [@string generateFile
+      !inOutputDirectory
+      !key + ".swift"
+      !s
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+

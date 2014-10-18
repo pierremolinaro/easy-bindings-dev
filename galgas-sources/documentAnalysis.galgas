@@ -1,0 +1,374 @@
+
+
+#----------------------------------------------------------------------------*
+
+#----------------------------------------------------------------------------*
+
+#override method @documentDeclaration EXTypeInventory
+#  ?!@EXunifiedTypeMap ioUnifiedTypeMap
+#:
+##------------------------------------------------ Root Entity
+#  [@EXunifiedTypeProxy makeProxy
+#    !?ioUnifiedTypeMap
+#    !mRootEntityName
+#    ?@EXunifiedTypeProxy rootEntityType
+#  ] ;
+#  [!?ioUnifiedTypeMap enterEdge !mDocumentName !mRootEntityName] ;
+##---------------------------------- Analyze attributes
+#  foreach mAttributeList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mAttributeTypeName
+#      ?*
+#    ] ;
+#  [!?ioUnifiedTypeMap enterEdge !mDocumentName !mAttributeTypeName] ;
+#  end foreach ;
+##---------------------------------- Analyze transient properties
+#  foreach mTransientList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mTransientTypeName
+#      ?*
+#    ] ;
+#  [!?ioUnifiedTypeMap enterEdge !mDocumentName !mTransientTypeName] ;
+#  end foreach ;
+##-------------------------------------------------- Analyze controllers
+#  foreach mControllerList do
+#    [@EXunifiedTypeProxy makeProxy
+#      !?ioUnifiedTypeMap
+#      !mControllerClassName
+#      ?*
+#    ] ;
+#  [!?ioUnifiedTypeMap enterEdge !mDocumentName !mControllerClassName] ;
+#  end foreach ;
+##----------------------------------
+#  [!?ioUnifiedTypeMap insertKey
+#    !mDocumentName
+#    ![@EXebType new !mDocumentName ![@EXTypeKind documentType]]
+#    !selfcopy
+#    !@EXentityRelationshipMap {}
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @documentDeclaration buildObservablePropertyMap
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
+#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
+#:
+#  @EXobservablePropertyMap observablePropertyMap [emptyMap] ;
+##----------------------------------
+#  buildObservablePropertyMap
+#    !mAttributeList
+#    ![@classArrayList emptyList]
+#    !mTransientList
+#    !mControllerList
+#    ![@controllerObservablePropertyList emptyList]
+#    !?ioObservablePropertyMapMap
+#    !?ioTransientDependencyGraph
+#    !inUnifiedTypeMap
+#    !"document." . mDocumentName
+#    !?observablePropertyMap
+#  ;
+##---------------------------------- Enter class in observable map
+#  [!?ioObservablePropertyMapMap insertKey
+#    !mDocumentName
+#    !mUserDefined
+#    ![@EXTypeKind documentType]
+#    !observablePropertyMap
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#override method @documentDeclaration semanticAnalysis
+#  ??@EXunifiedTypeMap inUnifiedTypeMap
+#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
+#  ?!@generationList ioGenerationList
+#:
+#  ioContextAnalysisStruct->mContainsDocument := true ;
+##------------------------------------------------ Get root object features
+#  [ioContextAnalysisStruct->mEntityMap searchKey
+#    !mRootEntityName
+#    ?*
+#    ?8*
+#    ?@relationshipMap rootObjectRelationshipMap
+#    ?2*
+#  ] ;
+#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#    !mRootEntityName
+#    ?2*
+#    ?@EXobservablePropertyMap rootObjectObservablePropertyMap
+#  ] ;
+##------------------------------------------------ Document observable properties
+#  [ioContextAnalysisStruct->mObservablePropertyMapMap searchKey
+#    !mDocumentName
+#    ?2*
+#    ?@EXobservablePropertyMap selfObservableAttributeMap
+#  ] ;
+##-------------------------------------------------- Analyze attributes
+#  @fileInclusionSet fileInclusionSet [default] ;
+#  @attributeListForImplementation attributeListForInitHeader [emptyList] ;
+#  analyzeAttributeDeclaration
+#    !mAttributeList
+#    !?ioContextAnalysisStruct
+#    !inUnifiedTypeMap
+#    !?fileInclusionSet
+#    ?@attributeListForImplementation attributeListForImplementation
+#    !?attributeListForInitHeader # Unused
+#  ;
+##-------------------------------------------------- Analyze controllers
+#  analyzeControllers
+#    !mControllerList
+#    !rootObjectRelationshipMap
+#    !rootObjectObservablePropertyMap
+#    !ioContextAnalysisStruct
+#    !?fileInclusionSet
+#    ?@controllerMap controllerMap
+#  ;
+##-------------------------------------------------- Analyze transient properties
+#  analyzeTransientProperties
+#    !mTransientList
+#    !rootObjectObservablePropertyMap
+#    !?ioContextAnalysisStruct
+#    !mRootEntityName->string
+#    !selfObservableAttributeMap
+#    !?fileInclusionSet
+#    ?@transientListForImplementation transientListForImplementation
+#  ;
+##--------------------------------------------------- Analyze actions
+#  @actionMap documentActionMap [emptyMap] ;
+#  for actionName in mActionDeclarationList do
+#    [!?documentActionMap insertKey !actionName->mValue] ;
+#  end for ;
+##--------------------------------------------------- Analyze outlets and bindings
+#  @outletGenerationList outletGenerationList [emptyList] ;
+#  foreach mOutletDeclarationList do
+#    [ioContextAnalysisStruct->mOutletClassMap searchKey
+#      !mOutletType
+#      ?@generationKind generationKind
+#      ?2*
+#      ?@bool implementsDeallocProtocol
+#      ?@outletClassBindingMap bindingMap
+#      ?*
+#      ?@bool hasTableValueBinding
+#    ] ;
+#    if generationKind != [@generationKind noGeneration] then
+#      fileInclusionSet->mHeaderPredeclarationSet += !mOutletType->string ;
+#      fileInclusionSet->mImplementationFileInclusionSet += !mOutletType->string ;
+#    end if ;
+#    @outletBindingListForGeneration outletBindingList [emptyList] ;
+#    foreach mOutletBindingList do
+#      [mBinding analyzeOutletBinding
+#        !rootObjectObservablePropertyMap
+#        !selfObservableAttributeMap
+#        !bindingMap
+#        !controllerMap
+#        !documentActionMap
+#        !hasTableValueBinding
+#        !ioContextAnalysisStruct
+#        !?outletBindingList
+#        !?fileInclusionSet
+#      ] ;
+#    end foreach ;
+#    outletGenerationList +=
+#      ![mOutletType string]
+#      ![mOutletName string]
+#      !outletBindingList
+#      !implementsDeallocProtocol
+#    ;
+#  end foreach ;
+##-------------------------------- Generation
+#  [!?fileInclusionSet->mImplementationFileInclusionSet removeKey !""] ;
+#  ioGenerationList += ![@documentGeneration new
+#    !mDocumentName->string
+#    !mRootEntityName->string
+#    !outletGenerationList
+#    !controllerMap
+#    !mActionDeclarationList
+#    !transientListForImplementation
+#    !fileInclusionSet
+#    !attributeListForImplementation
+#  ] ;
+#end method ;
+#
+##----------------------------------------------------------------------------*
+#
+#routine analyzeControllers
+#  ??@controllerList inControllerList
+#  ??@relationshipMap inRootObjectRelationshipMap
+#  ??@EXobservablePropertyMap inRootEntityObservableAttributeMap
+#  ??@EXcontextAnalysisStruct inContextAnalysisStruct
+#  ?!@fileInclusionSet ioFileInclusionSet
+#  !@controllerMap outControllerMap
+#:
+#  outControllerMap := [@controllerMap emptyMap] ;
+#  foreach inControllerList do
+#    [inContextAnalysisStruct->mControllerClassMap searchKey
+#      !mControllerClassName
+#      ?@controllerKind controllerKind
+#      ?@generationKind generationKind
+#      ?@outletClassBindingMap controllerClassBindingMap
+#      ?@actionMap controllerActionMap
+#      ?@EXobservablePropertyMap controllerObservablePropertyMap
+#      ?@outletClassBindingOptionMap controlledObjectAvailableBindingOptionMap
+#    ] ;
+#  #---
+#    if generationKind != [@generationKind noGeneration] then
+#      ioFileInclusionSet->mHeaderPredeclarationSet += !mControllerClassName->string ;
+#      ioFileInclusionSet->mImplementationFileInclusionSet += !mControllerClassName->string ;
+#    end if ;
+#  #---
+#    @outletBindingListForGeneration bindingListForGeneration [emptyList] ;
+#    @lstring destinationEntityName ;
+#    switch controllerKind
+#    when simpleController :
+#      destinationEntityName := ["" nowhere] ;
+#    when objectController :
+#      error mControllerName : "use an entityController, as PMEntityController" : destinationEntityName ;
+#    when entityController :
+#      if not mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'root' is allowed here"
+#        ;
+#      end if ;
+#      [inRootObjectRelationshipMap searchKey
+#        !mControlledObjectName
+#        ?@bool isToMany
+#        ?destinationEntityName
+#        ?3*
+#      ] ;
+#      if isToMany then
+#        error mControlledObjectName: "this should be a single object" ;
+#      end if ;
+#      [inContextAnalysisStruct->mEntityMap searchKey
+#        !destinationEntityName
+#        ?7*
+#        ?@propertyMap controlledObjectAllPropertyMap
+#        ?4*
+#      ] ;
+#      checkBindingOptions
+#        !inContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
+#        !?ioFileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        ![@EXebType new !["<unused1>" nowhere] ![@EXTypeKind classType]]
+#        !"contentObject"
+#        ![@formatterEnum noFormatter]
+#        !"self.rootObject"
+#        !mControlledObjectName->string
+#        !true # Optional property, requires '?'
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    when arrayController :
+#      error mControllerName : "use an entityArrayController, as PMEntityArrayController" : destinationEntityName ;
+#    when entityArrayController :
+#      if not mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'root' is allowed here"
+#        ;
+#      end if ;
+#      [inRootObjectRelationshipMap searchKey
+#        !mControlledObjectName
+#        ?@bool isToMany
+#        ?destinationEntityName
+#        ?3*
+#      ] ;
+#      ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
+#      if not isToMany then
+#        error mControlledObjectName: "this should be a collection" ;
+#      end if ;
+#      [inContextAnalysisStruct->mEntityMap searchKey
+#        !destinationEntityName
+#        ?7*
+#        ?@propertyMap controlledObjectAllPropertyMap
+#        ?4*
+#      ] ;
+#      checkBindingOptions
+#        !inContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
+#        !?ioFileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        ![@EXebType new !["<unused2>" nowhere] ![@EXTypeKind classType]]
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self.rootObject"
+#        !mControlledObjectName->string
+#        !false # Non optional property, no '?'
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    when treeController :
+#      if not mIsRootObject->bool then
+#        error mIsRootObject
+#        : "only 'root' is allowed here"
+#        ;
+#      end if ;
+#      [inRootObjectRelationshipMap searchKey
+#        !mControlledObjectName
+#        ?@bool isToMany
+#        ?destinationEntityName
+#        ?3*
+#      ] ;
+#      ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
+#      if not isToMany then
+#        error mControlledObjectName: "this should be a collection" ;
+#      end if ;
+#      [inContextAnalysisStruct->mEntityMap searchKey
+#        !destinationEntityName
+#        ?7*
+#        ?@propertyMap controlledObjectAllPropertyMap
+#        ?4*
+#      ] ;
+#      checkBindingOptions
+#        !inContextAnalysisStruct
+#        !mControlledObjectBindingOptionList
+#        !controlledObjectAvailableBindingOptionMap
+#        ?@bindingOptionListForGeneration controlledObjectBindingOptionListForGeneration
+#        !?ioFileInclusionSet
+#      ;
+#      bindingListForGeneration += ![@regularBindingForGeneration new
+#        ![@EXebType new !["<unused3>" nowhere] ![@EXTypeKind classType]]
+#        !"contentArray"
+#        ![@formatterEnum noFormatter]
+#        !"self.rootObject"
+#        !mControlledObjectName->string
+#        !false # Non optional property, no '?'
+#        !controlledObjectBindingOptionListForGeneration
+#      ] ;
+#    end switch ;
+#    ioFileInclusionSet->mImplementationFileInclusionSet += !destinationEntityName->string ;
+#  #---
+#    foreach mControllerBindingList do
+#      [mBinding analyzeOutletBinding
+#        !inRootEntityObservableAttributeMap
+#        ![@EXobservablePropertyMap emptyMap] # No self observable attributes
+#        !controllerClassBindingMap
+#        !outControllerMap
+#        !controllerActionMap
+#        !false # No tableValue binding
+#        !inContextAnalysisStruct
+#        !?bindingListForGeneration
+#        !?ioFileInclusionSet
+#      ] ;
+#    end foreach ;
+#    [!?outControllerMap insertKey
+#      !mControllerName
+#      !mControllerClassName->string
+#      !destinationEntityName
+#      !true # Is an entity
+#      !bindingListForGeneration
+#      !controllerActionMap
+#      !controllerObservablePropertyMap
+#    ] ;
+#  end foreach ;
+#end routine ;
+#
+#----------------------------------------------------------------------------*
+
