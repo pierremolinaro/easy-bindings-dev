@@ -1,4 +1,4 @@
 #!/bin/sh
 cd `dirname $0` &&
-../../makefile_macosx/easyBindings_debug -v enabled-binding.easyBindings &&
+../../makefile-macosx/easyBindings-debug -v enabled-binding.easyBindings &&
 /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild 
