@@ -6,7 +6,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
   "txt"
 }{
 }{
-  template arrayControllerImplementationInSwift "array-controller.swift.gTemplate"
+  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
     ?@string OBJECT_TYPE_NAME
     ?@string RELATIONSHIP_NAME
     ?@string ELEMENT_TYPE_NAME

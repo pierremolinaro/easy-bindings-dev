@@ -33,12 +33,12 @@
 #filewrapper structGenerationTemplate in "../generation-templates/struct-generation" {
 #}{
 #}{
-#  template structDeclaration "struct.h.gTemplate"
+#  template structDeclaration "struct.h.galgasTemplate"
 #    ?@stringset HEADER_INCLUSIONS
 #    ?@string STRUCT_TYPE_NAME
 #    ?@structFieldList STRUCT_FIELD_LIST
 #  ;
-#  template structGeneration "struct.m.gTemplate"
+#  template structGeneration "struct.m.galgasTemplate"
 #    ?@string STRUCT_TYPE_NAME
 #    ?@structFieldList STRUCT_FIELD_LIST
 #  ;

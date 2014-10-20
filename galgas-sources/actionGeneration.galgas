@@ -28,7 +28,7 @@ proc generateActions
 filewrapper actionGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template actionGeneration "action-extension.swift.gTemplate"
+  template actionGeneration "action-extension.swift.galgasTemplate"
     ?@string EXTENDED_CLASS_NAME
     ?@string ACTION_NAME
  }
