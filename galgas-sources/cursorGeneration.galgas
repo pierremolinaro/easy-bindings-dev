@@ -5,12 +5,12 @@
 #filewrapper cursorsGenerationTemplate in "../generation-templates/cursors-generation" {
 #}{
 #}{
-#  template cursorsDeclaration "cursors.h.gTemplate"
+#  template cursorsDeclaration "cursors.h.galgasTemplate"
 #    ?@userCursorMap CURSOR_MAP
 #    ?@stringlist PREDEFINED_CURSOR_LIST
 #  ;
 #  
-#  template cursorsImplementation "cursors.m.gTemplate"
+#  template cursorsImplementation "cursors.m.galgasTemplate"
 #    ?@userCursorMap CURSOR_MAP
 #    ?@stringlist PREDEFINED_CURSOR_LIST
 #  ;

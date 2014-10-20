@@ -5,7 +5,7 @@
 #filewrapper classGenerationTemplate in "../generation-templates/class-generation" {
 #}{
 #}{
-#  template classImplementationInSwift "class.swift.gTemplate"
+#  template classImplementationInSwift "class.swift.galgasTemplate"
 #    ?@string CLASS_NAME
 #    ?@string SUPER_CLASS_NAME
 #    ?@attributeListForImplementation ATTRIBUTE_LIST

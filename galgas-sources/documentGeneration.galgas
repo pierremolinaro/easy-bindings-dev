@@ -18,7 +18,7 @@ list @documentListForGeneration {
 private filewrapper documentGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template documentImplementationInSwift "document.swift.gTemplate"
+  template documentImplementationInSwift "document.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@attributeListForGeneration ATTRIBUTE_LIST

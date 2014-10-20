@@ -83,7 +83,7 @@ getter @unifiedTypeMap-proxy preferencesSwiftSetter
 private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template preferencesInSwift "preferences.swift.gTemplate"
+  template preferencesInSwift "preferences.swift.galgasTemplate"
     ?@string PREFERENCES_NAME
     ?@attributeListForGeneration ATTRIBUTE_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION

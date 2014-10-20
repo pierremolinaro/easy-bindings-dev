@@ -129,7 +129,7 @@ filewrapper controllerTemplates in "../generation-templates/controller-templates
   "txt"
 }{
 }{
-  template enabledBindingGeneration "enabled-binding.swift.gTemplate"
+  template enabledBindingGeneration "enabled-binding.swift.galgasTemplate"
     ?@string OUTLET_PROPRIETARY_CLASS_NAME
     ?@string OUTLET_NAME
 #    ?@string OBJECT_CLASS

@@ -97,11 +97,11 @@ proc generateTransients
 private filewrapper transientManager in "../generation-templates" {
 }{
 }{
-  template applicationInSwift "PMApplication.swift.gTemplate"
+  template applicationInSwift "PMApplication.swift.galgasTemplate"
     ?@transientDependencyGraphNodeInfoList PROPERTY_LIST
     ?@stringlist TRANSIENT_LIST
 
-  template transientComputationFunctionFile "transient-computation-function.swift.gTemplate"
+  template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
     ?@string KIND_NAME
     ?@string TRANSIENT_NAME
     ?@transientDependencyListForGeneration DEPENDENCY_LIST
