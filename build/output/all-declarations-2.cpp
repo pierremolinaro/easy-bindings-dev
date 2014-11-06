@@ -11201,29 +11201,55 @@ GALGAS_string categoryReader_kindName (const GALGAS_typeKind & inObject,
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_typeKind temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_classType: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+    {
       result_outResult = GALGAS_string ("class") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_controllerClassType: {
-      result_outResult = GALGAS_string ("controller") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_documentType: {
-      result_outResult = GALGAS_string ("document") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_entityType: {
-      result_outResult = GALGAS_string ("entity") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_preferencesType: {
-      result_outResult = GALGAS_string ("preference") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_boolType: case GALGAS_typeKind::kEnum_integerType: case GALGAS_typeKind::kEnum_uintegerType: case GALGAS_typeKind::kEnum_doubleType: case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_colorType: case GALGAS_typeKind::kEnum_dataType: case GALGAS_typeKind::kEnum_dateType: case GALGAS_typeKind::kEnum_fontType: case GALGAS_typeKind::kEnum_imageType: case GALGAS_typeKind::kEnum_menuType: case GALGAS_typeKind::kEnum_bezierPathType: case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
-      result_outResult = GALGAS_string ("<kindName \?\?>") ;
-      } break ;
     }
+    break ;
+  case GALGAS_typeKind::kEnum_controllerClassType:
+    {
+      result_outResult = GALGAS_string ("controller") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_documentType:
+    {
+      result_outResult = GALGAS_string ("document") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_entityType:
+    {
+      result_outResult = GALGAS_string ("entity") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_preferencesType:
+    {
+      result_outResult = GALGAS_string ("preference") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+  case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_uintegerType:
+  case GALGAS_typeKind::kEnum_doubleType:
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_colorType:
+  case GALGAS_typeKind::kEnum_dataType:
+  case GALGAS_typeKind::kEnum_dateType:
+  case GALGAS_typeKind::kEnum_fontType:
+  case GALGAS_typeKind::kEnum_imageType:
+  case GALGAS_typeKind::kEnum_menuType:
+  case GALGAS_typeKind::kEnum_bezierPathType:
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
+      result_outResult = GALGAS_string ("<kindName \?\?>") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -11243,17 +11269,39 @@ GALGAS_bool categoryReader_suitableForObservableProperty (const GALGAS_typeKind 
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool result_outResult ; // Returned variable
   const GALGAS_typeKind temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       result_outResult = GALGAS_bool (false) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_boolType: case GALGAS_typeKind::kEnum_integerType: case GALGAS_typeKind::kEnum_uintegerType: case GALGAS_typeKind::kEnum_doubleType: case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_colorType: case GALGAS_typeKind::kEnum_dataType: case GALGAS_typeKind::kEnum_dateType: case GALGAS_typeKind::kEnum_fontType: case GALGAS_typeKind::kEnum_imageType: case GALGAS_typeKind::kEnum_menuType: case GALGAS_typeKind::kEnum_bezierPathType: case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
-      result_outResult = GALGAS_bool (true) ;
-      } break ;
     }
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+  case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_uintegerType:
+  case GALGAS_typeKind::kEnum_doubleType:
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_colorType:
+  case GALGAS_typeKind::kEnum_dataType:
+  case GALGAS_typeKind::kEnum_dateType:
+  case GALGAS_typeKind::kEnum_fontType:
+  case GALGAS_typeKind::kEnum_imageType:
+  case GALGAS_typeKind::kEnum_menuType:
+  case GALGAS_typeKind::kEnum_bezierPathType:
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
+      result_outResult = GALGAS_bool (true) ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15117,55 +15165,89 @@ GALGAS_string categoryReader_swiftTypeName (const GALGAS_unifiedTypeMap_2D_proxy
                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 15)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 15)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 15)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("Bool") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("UInt") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("Int") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("Double") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("String") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSColor") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 28)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15186,58 +15268,93 @@ GALGAS_string categoryReader_valueAccessorForExplorerWindow (const GALGAS_unifie
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 38)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 38)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 38)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSString (format:\"%s\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 39)).add_operation (GALGAS_string (" \? \"true\" : \"false\")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 39)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("NSString (format:\"%lu\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 40)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 40)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("NSString (format:\"%ld\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 41)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 41)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("NSString (format:\"%g\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 42)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 42)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = constinArgument_inPropertyName ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".description"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 44)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".string ()"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 49)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 52)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15258,58 +15375,93 @@ GALGAS_string categoryReader_transformForSavingInDictionary (const GALGAS_unifie
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 62)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 62)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 62)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 63)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 63)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (unsignedInteger:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 64)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 64)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 65)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 65)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 66)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 66)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = constinArgument_inPropertyName ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 68)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 68)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 75)).add_operation (GALGAS_string (".rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 75)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 76)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15330,55 +15482,89 @@ GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const GALGAS_
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 86)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 86)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 86)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 87)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 87)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (unsignedInteger:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 88)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 88)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 89)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 89)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 90)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 90)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = constinArgument_inOldValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 97)).add_operation (GALGAS_string (".rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 97)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 99)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15398,57 +15584,92 @@ GALGAS_string categoryReader_swiftTypeUndoArgument (const GALGAS_unifiedTypeMap_
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 109)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 109)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 109)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("String") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSColor") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       result_outResult = GALGAS_string ("NSNumber") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15469,56 +15690,90 @@ GALGAS_string categoryReader_transformerForUndo (const GALGAS_unifiedTypeMap_2D_
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 133)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 133)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 133)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".boolValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 134)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".unsignedIntegerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 135)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 136)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".doubleValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 137)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = constinArgument_inValue ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (GALGAS_string (" (rawValue:"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (GALGAS_string (".integerValue)!"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 146)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_3 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_3.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15538,18 +15793,40 @@ GALGAS_string categoryReader_typeNameForControllerTemplateName (const GALGAS_uni
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 156)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 156)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 156)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("Enum") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: case GALGAS_typeKind::kEnum_bezierPathType: case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_menuType: case GALGAS_typeKind::kEnum_fontType: case GALGAS_typeKind::kEnum_imageType: case GALGAS_typeKind::kEnum_dateType: case GALGAS_typeKind::kEnum_dataType: case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_colorType: case GALGAS_typeKind::kEnum_doubleType: case GALGAS_typeKind::kEnum_integerType: case GALGAS_typeKind::kEnum_uintegerType: case GALGAS_typeKind::kEnum_boolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+  case GALGAS_typeKind::kEnum_bezierPathType:
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_menuType:
+  case GALGAS_typeKind::kEnum_fontType:
+  case GALGAS_typeKind::kEnum_imageType:
+  case GALGAS_typeKind::kEnum_dateType:
+  case GALGAS_typeKind::kEnum_dataType:
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_colorType:
+  case GALGAS_typeKind::kEnum_doubleType:
+  case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_uintegerType:
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 162)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15570,58 +15847,93 @@ GALGAS_string categoryReader_transformerForTableViewAction (const GALGAS_unified
                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 169)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 169)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 169)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 170)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 171)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 173)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 173)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (unsignedLongLong:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 174)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 174)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 175)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 175)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 176)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 182)).add_operation (GALGAS_string (".rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 182)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 184)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15641,58 +15953,93 @@ GALGAS_string categoryReader_formatterStringForFormatPrinting (const GALGAS_unif
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 194)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 194)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 194)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("%d") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("%d") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("%u") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("%g") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("%d") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("%@") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 209)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15712,54 +16059,88 @@ GALGAS_string categoryReader_preferencesSwiftGetter (const GALGAS_unifiedTypeMap
                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 36)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 36)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 36)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("(value as NSNumber).boolValue") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("(value as NSNumber).integerValue") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("value as String") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("value as NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 52)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 52)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15780,54 +16161,88 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 61)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 61)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 61)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = constinArgument_inPropertyName ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 67)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 67)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = constinArgument_inPropertyName ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15847,55 +16262,89 @@ GALGAS_string categoryReader_transientReturnTypeName (const GALGAS_unifiedTypeMa
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 6)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 6)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 6)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("Bool") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("UInt") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("Int") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("Double") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("String") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSColor") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 19)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_entityType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_entityType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15915,58 +16364,93 @@ GALGAS_string categoryReader_transientFormalArgumentTypeName (const GALGAS_unifi
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  if (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 29)).isValid ()) {
-    switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 29)).enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType: {
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 29)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
       result_outResult = GALGAS_string ("Bool") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_uintegerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
       result_outResult = GALGAS_string ("UInt") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_integerType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
       result_outResult = GALGAS_string ("Int") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_doubleType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
       result_outResult = GALGAS_string ("Double") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_stringType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
       result_outResult = GALGAS_string ("String") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_colorType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
       result_outResult = GALGAS_string ("NSColor") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dataType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
       result_outResult = GALGAS_string ("NSData") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_dateType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
       result_outResult = GALGAS_string ("NSDate") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_imageType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
       result_outResult = GALGAS_string ("NSImage") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_fontType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
       result_outResult = GALGAS_string ("NSFont") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_menuType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
       result_outResult = GALGAS_string ("NSMenu") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
       result_outResult = GALGAS_string ("NSBezierPath") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_entityType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_entityType:
+    {
       result_outResult = GALGAS_string ("Int") ;
-      } break ;
-    case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_enumType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
       result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 43)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_documentType: case GALGAS_typeKind::kEnum_preferencesType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_documentType:
+  case GALGAS_typeKind::kEnum_preferencesType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
       const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
       result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)) ;
-      } break ;
     }
+    break ;
   }
 //---
   return result_outResult ;

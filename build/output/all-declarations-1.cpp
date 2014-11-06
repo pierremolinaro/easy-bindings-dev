@@ -11839,13 +11839,15 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
     GALGAS_bool var_handlesRunAction ;
     constinArgument_inOutletClassMap.method_searchKey (enumerator_3992.current_mOutletTypeName (HERE), var_handlesRunAction, inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 113)) ;
     ioArgument_ioGeneration.mAttribute_mNeededOutletClasses.addAssign_operation (enumerator_3992.current_mOutletTypeName (HERE).mAttribute_string  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 114)) ;
-    if (enumerator_3992.current_mRunActionDescriptor (HERE).isValid ()) {
-      switch (enumerator_3992.current_mRunActionDescriptor (HERE).enumValue ()) {
-      case GALGAS_runActionDescriptor::kNotBuilt:
-        break ;
-      case GALGAS_runActionDescriptor::kEnum_noAction: {
-        } break ;
-      case GALGAS_runActionDescriptor::kEnum_action: {
+    switch (enumerator_3992.current_mRunActionDescriptor (HERE).enumValue ()) {
+    case GALGAS_runActionDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_noAction:
+      {
+      }
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_action:
+      {
         const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_4842 = dynamic_cast<const cEnumAssociatedValues_runActionDescriptor_action *> (enumerator_3992.current_mRunActionDescriptor (HERE).unsafePointer ()) ;
         const GALGAS_lstring extractedValue_target = extractPtr_4842->mAssociatedValue0 ;
         const GALGAS_lstring extractedValue_action = extractPtr_4842->mAssociatedValue1 ;
@@ -11871,16 +11873,18 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
             var_targetActionList.addAssign_operation (enumerator_3992.current_lkey (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 127)) ;
           }
         }
-        } break ;
       }
+      break ;
     }
-    if (enumerator_3992.current_mEnabledBindingDescriptor (HERE).isValid ()) {
-      switch (enumerator_3992.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
-      case GALGAS_enabledBindingDescriptor::kNotBuilt:
-        break ;
-      case GALGAS_enabledBindingDescriptor::kEnum_noEnabledBinding: {
-        } break ;
-      case GALGAS_enabledBindingDescriptor::kEnum_enabledBinding: {
+    switch (enumerator_3992.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_enabledBindingDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_enabledBindingDescriptor::kEnum_noEnabledBinding:
+      {
+      }
+      break ;
+    case GALGAS_enabledBindingDescriptor::kEnum_enabledBinding:
+      {
         const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding * extractPtr_6054 = dynamic_cast<const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding *> (enumerator_3992.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
         const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_6054->mAssociatedValue0 ;
         GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
@@ -11897,8 +11901,8 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
         var_controllerInstanciation.dotAssign_operation (GALGAS_string ("outlet:").add_operation (enumerator_3992.current_lkey (HERE).reader_string (SOURCE_FILE ("typeAnalysis.galgas", 151)), inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 151)).add_operation (GALGAS_string (", file:__FILE__, line:__LINE__)"), inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 151))  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 151)) ;
         var_controllerInstanciationStringList.addAssign_operation (var_controllerInstanciation  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 152)) ;
         ioArgument_ioGeneration.mAttribute_mControllerGenerationStringSet.addAssign_operation (GALGAS_string (filewrapperTemplate_controllerTemplates_enabledBindingGeneration (inCompiler, constinArgument_inTypeName.mAttribute_string, enumerator_3992.current_lkey (HERE).mAttribute_string, var_enableExpression COMMA_SOURCE_FILE ("typeAnalysis.galgas", 153)))  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 153)) ;
-        } break ;
       }
+      break ;
     }
     enumerator_3992.gotoNextObject () ;
   }
@@ -12132,14 +12136,16 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
     ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, enumerator_16026.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 379)) ;
     enumerator_16026.gotoNextObject () ;
   }
-  if (constinArgument_inTypeKind.isValid ()) {
-    switch (constinArgument_inTypeKind.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_enumType: {
+  switch (constinArgument_inTypeKind.enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
       ioArgument_ioGeneration.mAttribute_mEnumListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, constinArgument_inEnumConstantList  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 384)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_entityType: {
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_entityType:
+    {
       GALGAS_string temp_31 ;
       const enumGalgasBool test_32 = constinArgument_inSuperType.reader_isNull (SOURCE_FILE ("typeAnalysis.galgas", 390)).boolEnum () ;
       if (kBoolTrue == test_32) {
@@ -12148,16 +12154,39 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
         temp_31 = constinArgument_inSuperType.reader_key (inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 390)) ;
       }
       ioArgument_ioGeneration.mAttribute_mEntityListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, temp_31, var_attributeListForGeneration, var_transientDefinitionListForGeneration, var_entityRelationshipListForGeneration  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 388)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_documentType: {
-      ioArgument_ioGeneration.mAttribute_mDocumentListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, constinArgument_inRootEntityType.reader_key (inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 397)), var_attributeListForGeneration, var_transientDefinitionListForGeneration, constinArgument_decoratedOutletMap, var_controllerInstanciationStringList, var_documentArrayControllerForGeneration, var_targetActionList  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 395)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_preferencesType: {
-      ioArgument_ioGeneration.mAttribute_mPreferenceListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, var_attributeListForGeneration, var_transientDefinitionListForGeneration, constinArgument_decoratedOutletMap, var_controllerInstanciationStringList  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 405)) ;
-      } break ;
-    case GALGAS_typeKind::kEnum_bezierPathType: case GALGAS_typeKind::kEnum_boolType: case GALGAS_typeKind::kEnum_colorType: case GALGAS_typeKind::kEnum_classType: case GALGAS_typeKind::kEnum_controllerClassType: case GALGAS_typeKind::kEnum_dataType: case GALGAS_typeKind::kEnum_dateType: case GALGAS_typeKind::kEnum_doubleType: case GALGAS_typeKind::kEnum_fontType: case GALGAS_typeKind::kEnum_imageType: case GALGAS_typeKind::kEnum_integerType: case GALGAS_typeKind::kEnum_menuType: case GALGAS_typeKind::kEnum_nibClassType: case GALGAS_typeKind::kEnum_outletClassType: case GALGAS_typeKind::kEnum_protocolType: case GALGAS_typeKind::kEnum_stringType: case GALGAS_typeKind::kEnum_structType: case GALGAS_typeKind::kEnum_uintegerType: {
-      } break ;
     }
+    break ;
+  case GALGAS_typeKind::kEnum_documentType:
+    {
+      ioArgument_ioGeneration.mAttribute_mDocumentListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, constinArgument_inRootEntityType.reader_key (inCompiler COMMA_SOURCE_FILE ("typeAnalysis.galgas", 397)), var_attributeListForGeneration, var_transientDefinitionListForGeneration, constinArgument_decoratedOutletMap, var_controllerInstanciationStringList, var_documentArrayControllerForGeneration, var_targetActionList  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 395)) ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_preferencesType:
+    {
+      ioArgument_ioGeneration.mAttribute_mPreferenceListForGeneration.addAssign_operation (constinArgument_inTypeName.mAttribute_string, var_attributeListForGeneration, var_transientDefinitionListForGeneration, constinArgument_decoratedOutletMap, var_controllerInstanciationStringList  COMMA_SOURCE_FILE ("typeAnalysis.galgas", 405)) ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+  case GALGAS_typeKind::kEnum_boolType:
+  case GALGAS_typeKind::kEnum_colorType:
+  case GALGAS_typeKind::kEnum_classType:
+  case GALGAS_typeKind::kEnum_controllerClassType:
+  case GALGAS_typeKind::kEnum_dataType:
+  case GALGAS_typeKind::kEnum_dateType:
+  case GALGAS_typeKind::kEnum_doubleType:
+  case GALGAS_typeKind::kEnum_fontType:
+  case GALGAS_typeKind::kEnum_imageType:
+  case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_menuType:
+  case GALGAS_typeKind::kEnum_nibClassType:
+  case GALGAS_typeKind::kEnum_outletClassType:
+  case GALGAS_typeKind::kEnum_protocolType:
+  case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_structType:
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
+    }
+    break ;
   }
 }
 
