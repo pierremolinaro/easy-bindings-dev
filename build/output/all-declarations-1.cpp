@@ -11848,7 +11848,7 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
       break ;
     case GALGAS_runActionDescriptor::kEnum_action:
       {
-        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_4842 = dynamic_cast<const cEnumAssociatedValues_runActionDescriptor_action *> (enumerator_3992.current_mRunActionDescriptor (HERE).unsafePointer ()) ;
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_4842 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_3992.current_mRunActionDescriptor (HERE).unsafePointer ()) ;
         const GALGAS_lstring extractedValue_target = extractPtr_4842->mAssociatedValue0 ;
         const GALGAS_lstring extractedValue_action = extractPtr_4842->mAssociatedValue1 ;
         const enumGalgasBool test_0 = var_handlesRunAction.operator_not (SOURCE_FILE ("typeAnalysis.galgas", 119)).boolEnum () ;
@@ -11885,7 +11885,7 @@ void routine_unifiedTypeAnalysis (const GALGAS_unifiedTypeMap constinArgument_in
       break ;
     case GALGAS_enabledBindingDescriptor::kEnum_enabledBinding:
       {
-        const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding * extractPtr_6054 = dynamic_cast<const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding *> (enumerator_3992.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding * extractPtr_6054 = (const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding *) (enumerator_3992.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
         const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_6054->mAssociatedValue0 ;
         GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
         GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression ;
