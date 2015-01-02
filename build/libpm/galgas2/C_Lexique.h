@@ -161,7 +161,7 @@ class C_Lexique : public C_Compiler {
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const = 0 ;
 
 //--- Lexical analysis methods
-  protected : void performLexicalAnalysis (void) ;
+  public : void performLexicalAnalysis (void) ;
 
   protected : bool testForCharWithFunction (bool (*inFunction) (const utf32 inUnicodeCharacter)) ;
 
@@ -228,6 +228,16 @@ class C_Lexique : public C_Compiler {
 //--- Execution array built during first pass, and used by second pass parsing
   private : TC_UniqueArray <int16_t> mArrayForSecondPassParsing ;
   private : int32_t mIndexForSecondPassParsing ;
+
+//--- Latex string (for --mode=latex command line option)
+  private : C_String mLatexOutputString ;
+  private : int32_t mLatexNextCharacterToEnterIndex ;
+  private : void generateLatexFile (void) ;
+  private : void appendCharacterToLatexFile (const utf32 inUnicodeCharacter) ;
+  protected : void enterDroppedTerminal (const int32_t inTerminalIndex) ;
+//--- Style name 
+  protected : virtual uint32_t styleIndexForTerminal (const int32_t inTerminalIndex) const = 0 ;
+  protected : virtual C_String styleNameForIndex (const uint32_t inStyleIndex) const = 0 ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

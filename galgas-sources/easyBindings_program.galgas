@@ -12,6 +12,7 @@ filewrapper predefinedOutletClasses in "../generation-templates" {
 
 case . "easyBindings"
 message "a source text file with the .easyBindings extension"
+grammar easyBindings_grammar
 ?sourceFilePath:@lstring inSourceFile {
 #--- Parse predefined outlets
   var declarationStruct =@astDeclarationStruct.default
