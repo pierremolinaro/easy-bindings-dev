@@ -91,11 +91,11 @@ rule '$' {
 #----------------------------------------------------------------------------*
 
 style integerStyle -> "Integer Constants"
-style float_csts -> "Floating Point Constants"
+style floatStyle -> "Floating Point Constants"
 @uint uint32value
 $literal_integer$ !uint32value  style integerStyle error message "a 32-bit unsigned decimal number"
 @double floatValue
-$literal_double$ !floatValue !tokenString  style float_csts error message "a float number"
+$literal_double$ !floatValue !tokenString  style floatStyle error message "a float number"
 message floatNumberConversionError : "invalid float number"
 
 message decimalNumberTooLarge : "decimal number too large"

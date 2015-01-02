@@ -10199,6 +10199,32 @@ void cGrammar_easyBindings_5F_grammar::nt_start_5F_symbol_ (const GALGAS_bool  p
   }
 }
 
+void cGrammar_easyBindings_5F_grammar::performIndexing (C_Compiler * /* inCompiler */,
+             const C_String & /* inSourceFilePath */) {
+}
+
+void cGrammar_easyBindings_5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performLexicalAnalysis () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_easyBindings_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,
+                                     gActionTableIndex_easyBindings_grammar, gSuccessorTable_easyBindings_grammar,
+                                     gProductionsTable_easyBindings_grammar) ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        Grammar start symbol implementation                                          *

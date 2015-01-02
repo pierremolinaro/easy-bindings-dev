@@ -173,6 +173,10 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
 
 //--- Enter Token
   protected : void enterToken (const cTokenFor_easyBindings_5F_lexique & inToken) ;
+
+//--- Style name for Latex
+  protected : virtual C_String styleNameForIndex (const uint32_t inStyleIndex) const ;
+  protected : virtual uint32_t styleIndexForTerminal (const int32_t inTerminalIndex) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7075,11 +7079,7 @@ class cPtr_unifiedTypeDeclaration : public cPtr_astDeclaration {
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-//class C_Compiler ;
-//class GALGAS_lstring ;
-//class GALGAS_string ;
-
+//  GRAMMAR easyBindings_grammar
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
@@ -7275,6 +7275,18 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
                                                      GALGAS_astDeclarationStruct & ioArgument1,
                                                      GALGAS_location & outArgument2
                                                      COMMA_LOCATION_ARGS) ;
+
+//--- Indexing
+  public : static void performIndexing (C_Compiler * inCompiler,
+                                        const C_String & inSourceFilePath) ;
+
+//--- Only lexical analysis
+  public : static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+                                                   const C_String & inSourceFilePath) ;
+
+//--- Only syntax analysis
+  public : static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                  const C_String & inSourceFilePath) ;
 
 //------------------------------------- 'transient_declaration' non terminal
 //--- 'parse' label

@@ -25,27 +25,27 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
   outArgument_outSortedTransientAndObservablePropertyNodes.drop () ; // Release 'out' argument
   outArgument_outGeneration.drop () ; // Release 'out' argument
   {
-  routine_buildTransientDependencyGraph (constinArgument_inUnifiedTypeMap, constinArgument_inSourceFile, outArgument_outSortedTransientAndObservablePropertyNodes, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 101)) ;
+  routine_buildTransientDependencyGraph (constinArgument_inUnifiedTypeMap, constinArgument_inSourceFile, outArgument_outSortedTransientAndObservablePropertyNodes, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 102)) ;
   }
   GALGAS_templateControllerMap var_templateControllerMap ;
   {
-  routine_buildControllerTemplateMap (constinArgument_inUnifiedTypeMap, constinArgument_inAstDeclarationStruct.mAttribute_mControllerTemplateList, var_templateControllerMap, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 107)) ;
+  routine_buildControllerTemplateMap (constinArgument_inUnifiedTypeMap, constinArgument_inAstDeclarationStruct.mAttribute_mControllerTemplateList, var_templateControllerMap, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 108)) ;
   }
-  GALGAS_outletClassMap var_outletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("easyBindings_program.galgas", 113)) ;
-  cEnumerator_outletClassDeclarationList enumerator_5107 (constinArgument_inAstDeclarationStruct.mAttribute_mOutletClassDeclarationList, kEnumeration_up) ;
-  while (enumerator_5107.hasCurrentObject ()) {
+  GALGAS_outletClassMap var_outletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("easyBindings_program.galgas", 114)) ;
+  cEnumerator_outletClassDeclarationList enumerator_5136 (constinArgument_inAstDeclarationStruct.mAttribute_mOutletClassDeclarationList, kEnumeration_up) ;
+  while (enumerator_5136.hasCurrentObject ()) {
     {
-    var_outletClassMap.modifier_insertKey (enumerator_5107.current_mOutletClassName (HERE), enumerator_5107.current_mHasRunAction (HERE), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 115)) ;
+    var_outletClassMap.modifier_insertKey (enumerator_5136.current_mOutletClassName (HERE), enumerator_5136.current_mHasRunAction (HERE), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 116)) ;
     }
-    enumerator_5107.gotoNextObject () ;
+    enumerator_5136.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("easyBindings_program.galgas", 118)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("easyBindings_program.galgas", 119)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
     {
-    routine_typeAnalysis (constinArgument_inUnifiedTypeMap, var_outletClassMap, var_templateControllerMap, outArgument_outGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 119)) ;
+    routine_typeAnalysis (constinArgument_inUnifiedTypeMap, var_outletClassMap, var_templateControllerMap, outArgument_outGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 120)) ;
     }
   }else if (kBoolFalse == test_0) {
-    outArgument_outGeneration = GALGAS_structForGeneration::constructor_default (SOURCE_FILE ("easyBindings_program.galgas", 126)) ;
+    outArgument_outGeneration = GALGAS_structForGeneration::constructor_default (SOURCE_FILE ("easyBindings_program.galgas", 127)) ;
   }
 }
 
@@ -62,38 +62,38 @@ void routine_generateCode (const GALGAS_transientDependencyGraphNodeInfoList con
                            C_Compiler * inCompiler
                            COMMA_UNUSED_LOCATION_ARGS) {
   {
-  routine_generateTransients (constinArgument_inSourceFile, constinArgument_inSortedTransientAndObservablePropertyNodes, constinArgument_inGeneration.mAttribute_mTransientListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 140)) ;
+  routine_generateTransients (constinArgument_inSourceFile, constinArgument_inSortedTransientAndObservablePropertyNodes, constinArgument_inGeneration.mAttribute_mTransientListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 141)) ;
   }
   {
-  routine_generateActions (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mActionListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 145)) ;
+  routine_generateActions (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mActionListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 146)) ;
   }
-  GALGAS_string var_outputDirectory = constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("easyBindings_program.galgas", 149)) ;
+  GALGAS_string var_outputDirectory = constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("easyBindings_program.galgas", 150)) ;
   {
-  routine_generatePreferences (constinArgument_inGeneration.mAttribute_mPreferenceListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 150)) ;
-  }
-  {
-  routine_generateOutletClasses (constinArgument_inGeneration.mAttribute_mNeededOutletClasses, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 154)) ;
+  routine_generatePreferences (constinArgument_inGeneration.mAttribute_mPreferenceListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 151)) ;
   }
   {
-  routine_generateControllerClasses (constinArgument_inGeneration.mAttribute_mControllerGenerationStringSet, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 158)) ;
+  routine_generateOutletClasses (constinArgument_inGeneration.mAttribute_mNeededOutletClasses, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 155)) ;
   }
   {
-  routine_generateEntities (constinArgument_inGeneration.mAttribute_mEntityListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 162)) ;
+  routine_generateControllerClasses (constinArgument_inGeneration.mAttribute_mControllerGenerationStringSet, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 159)) ;
   }
   {
-  routine_generateEnums (constinArgument_inGeneration.mAttribute_mEnumListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 166)) ;
+  routine_generateEntities (constinArgument_inGeneration.mAttribute_mEntityListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 163)) ;
   }
   {
-  routine_generateDocuments (constinArgument_inGeneration.mAttribute_mDocumentListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 170)) ;
+  routine_generateEnums (constinArgument_inGeneration.mAttribute_mEnumListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 167)) ;
   }
   {
-  routine_generateArrayControllers (constinArgument_inGeneration.mAttribute_mAllArrayControllerForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 174)) ;
+  routine_generateDocuments (constinArgument_inGeneration.mAttribute_mDocumentListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 171)) ;
   }
   {
-  routine_generateSwiftApplicationFiles (var_outputDirectory, GALGAS_bool (kIsStrictSup, constinArgument_inGeneration.mAttribute_mEntityListForGeneration.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 180)).objectCompare (GALGAS_uint ((uint32_t) 0U))), inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 178)) ;
+  routine_generateArrayControllers (constinArgument_inGeneration.mAttribute_mAllArrayControllerForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 175)) ;
   }
   {
-  routine_generateValidationRoutineStubs (var_outputDirectory, constinArgument_inGeneration.mAttribute_mValidationStubRoutineListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 182)) ;
+  routine_generateSwiftApplicationFiles (var_outputDirectory, GALGAS_bool (kIsStrictSup, constinArgument_inGeneration.mAttribute_mEntityListForGeneration.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 181)).objectCompare (GALGAS_uint ((uint32_t) 0U))), inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 179)) ;
+  }
+  {
+  routine_generateValidationRoutineStubs (var_outputDirectory, constinArgument_inGeneration.mAttribute_mValidationStubRoutineListForGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 183)) ;
   }
 }
 
@@ -3973,36 +3973,36 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             const GALGAS_bool constinArgument_inHasEntities,
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 201)) ;
-  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 201)) ;
-  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 201)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
+  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
   GALGAS_stringlist var_swiftFiles = temp_0 ;
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 203)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 204)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 205)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 206)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 204)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 205)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 206)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 207)) ;
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 208)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 208)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 209)) ;
+  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 209)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_7931 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_7931.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_7931.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 211)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 211)) ;
+  cEnumerator_stringlist enumerator_7960 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_7960.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_7960.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_7931.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 214)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_7960.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 215)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 213)) ;
     }
-    enumerator_7931.gotoNextObject () ;
+    enumerator_7960.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_8124 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_8124.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8124.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 219)) ;
+  cEnumerator_stringlist enumerator_8153 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_8153.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8153.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8124.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 222)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8153.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 223)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 221)) ;
     }
-    enumerator_8124.gotoNextObject () ;
+    enumerator_8153.gotoNextObject () ;
   }
 }
 
@@ -10966,65 +10966,65 @@ static void routine_after (C_Compiler * /* inCompiler */
 static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_inSourceFile,
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astDeclarationStruct var_declarationStruct = GALGAS_astDeclarationStruct::constructor_default (SOURCE_FILE ("easyBindings_program.galgas", 17)) ;
-  GALGAS_location joker_642 ; // Joker input parameter
-  cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (inCompiler, GALGAS_string (filewrapperTemplate_predefinedOutletClasses_sourceFile (inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 18))), GALGAS_bool (false), var_declarationStruct, joker_642  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 18)) ;
+  GALGAS_astDeclarationStruct var_declarationStruct = GALGAS_astDeclarationStruct::constructor_default (SOURCE_FILE ("easyBindings_program.galgas", 18)) ;
+  GALGAS_location joker_671 ; // Joker input parameter
+  cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (inCompiler, GALGAS_string (filewrapperTemplate_predefinedOutletClasses_sourceFile (inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 19))), GALGAS_bool (false), var_declarationStruct, joker_671  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 19)) ;
   GALGAS_location var_endOfSourceFile ;
   var_endOfSourceFile.drop () ;
-  cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct, var_endOfSourceFile  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 23)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("String"), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("easyBindings_program.galgas", 28))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 28))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 28)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Color"), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("easyBindings_program.galgas", 29))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 29))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 29)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Enum"), GALGAS_typeKind::constructor_enumType (SOURCE_FILE ("easyBindings_program.galgas", 30))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 30))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 30)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Date"), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("easyBindings_program.galgas", 31))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 31))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 31)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Integer"), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("easyBindings_program.galgas", 36))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 36))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 36)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("UInteger"), GALGAS_typeKind::constructor_uintegerType (SOURCE_FILE ("easyBindings_program.galgas", 37))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 37))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 37)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Bool"), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("easyBindings_program.galgas", 38))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 38))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 38)) ;
-  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Double"), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("easyBindings_program.galgas", 39))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 39))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 39)) ;
-  GALGAS_unifiedTypeMap var_unifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("easyBindings_program.galgas", 41)) ;
-  cEnumerator_astDeclarationList enumerator_2386 (var_declarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
-  while (enumerator_2386.hasCurrentObject ()) {
-    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_2386.current_mDeclaration (HERE).ptr (), var_unifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 43)) ;
-    enumerator_2386.gotoNextObject () ;
+  cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct, var_endOfSourceFile  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 24)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("String"), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("easyBindings_program.galgas", 29))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 29))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 29)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Color"), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("easyBindings_program.galgas", 30))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 30))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 30)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Enum"), GALGAS_typeKind::constructor_enumType (SOURCE_FILE ("easyBindings_program.galgas", 31))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 31))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 31)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Date"), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("easyBindings_program.galgas", 32))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 32))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 32)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Integer"), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("easyBindings_program.galgas", 37))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 37))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 37)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("UInteger"), GALGAS_typeKind::constructor_uintegerType (SOURCE_FILE ("easyBindings_program.galgas", 38))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 38))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 38)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Bool"), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("easyBindings_program.galgas", 39))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 39))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 39)) ;
+  var_declarationStruct.mAttribute_mDeclarationList.addAssign_operation (GALGAS_predefinedTypeDeclaration::constructor_new (GALGAS_bool (false), GALGAS_string ("Double"), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("easyBindings_program.galgas", 40))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 40))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 40)) ;
+  GALGAS_unifiedTypeMap var_unifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("easyBindings_program.galgas", 42)) ;
+  cEnumerator_astDeclarationList enumerator_2415 (var_declarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_2415.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_2415.current_mDeclaration (HERE).ptr (), var_unifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 44)) ;
+    enumerator_2415.gotoNextObject () ;
   }
   const enumGalgasBool test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputClassDependencyGraph.reader_value ()).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = var_unifiedTypeMap.reader_edgeGraphvizRepresentation (SOURCE_FILE ("easyBindings_program.galgas", 46)) ;
-    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".classDependancyGraph.dot"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 47)) ;
-    GALGAS_bool joker_2687 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_path, joker_2687, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 48)) ;
+    GALGAS_string var_s = var_unifiedTypeMap.reader_edgeGraphvizRepresentation (SOURCE_FILE ("easyBindings_program.galgas", 47)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".classDependancyGraph.dot"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 48)) ;
+    GALGAS_bool joker_2716 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_2716, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 49)) ;
   }
-  GALGAS_lstringlist var_unsolvedProxyList = var_unifiedTypeMap.reader_unsolvedProxyList (SOURCE_FILE ("easyBindings_program.galgas", 51)) ;
-  cEnumerator_lstringlist enumerator_2860 (var_unsolvedProxyList, kEnumeration_up) ;
-  while (enumerator_2860.hasCurrentObject ()) {
-    GALGAS_location location_1 (enumerator_2860.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("type ").add_operation (enumerator_2860.current_mValue (HERE).reader_string (SOURCE_FILE ("easyBindings_program.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 53)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 53))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 53)) ;
-    enumerator_2860.gotoNextObject () ;
+  GALGAS_lstringlist var_unsolvedProxyList = var_unifiedTypeMap.reader_unsolvedProxyList (SOURCE_FILE ("easyBindings_program.galgas", 52)) ;
+  cEnumerator_lstringlist enumerator_2889 (var_unsolvedProxyList, kEnumeration_up) ;
+  while (enumerator_2889.hasCurrentObject ()) {
+    GALGAS_location location_1 (enumerator_2889.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+    inCompiler->emitSemanticError (location_1, GALGAS_string ("type ").add_operation (enumerator_2889.current_mValue (HERE).reader_string (SOURCE_FILE ("easyBindings_program.galgas", 54)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 54)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 54))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 54)) ;
+    enumerator_2889.gotoNextObject () ;
   }
-  const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, var_unsolvedProxyList.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 56)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, var_unsolvedProxyList.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 57)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_2) {
     GALGAS_lstringlist var_sortedTypeNames ;
     GALGAS_lstringlist var_unsortedTypeNames ;
-    var_unifiedTypeMap.method_topologicalSort (var_sortedTypeNames, var_unsortedTypeNames, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 57)) ;
-    const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 61)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    var_unifiedTypeMap.method_topologicalSort (var_sortedTypeNames, var_unsortedTypeNames, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 58)) ;
+    const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames.reader_length (SOURCE_FILE ("easyBindings_program.galgas", 62)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_3) {
       GALGAS_string var_s = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
-      cEnumerator_lstringlist enumerator_3340 (var_unsortedTypeNames, kEnumeration_up) ;
-      while (enumerator_3340.hasCurrentObject ()) {
+      cEnumerator_lstringlist enumerator_3369 (var_unsortedTypeNames, kEnumeration_up) ;
+      while (enumerator_3369.hasCurrentObject ()) {
         var_s.dotAssign_operation (GALGAS_string ("\n"
-          "-- ").add_operation (enumerator_3340.current_mValue (HERE).reader_string (SOURCE_FILE ("easyBindings_program.galgas", 64)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 64))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 64)) ;
-        enumerator_3340.gotoNextObject () ;
+          "-- ").add_operation (enumerator_3369.current_mValue (HERE).reader_string (SOURCE_FILE ("easyBindings_program.galgas", 65)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 65))  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 65)) ;
+        enumerator_3369.gotoNextObject () ;
       }
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 66)), var_s  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 66)) ;
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 67)), var_s  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 67)) ;
     }else if (kBoolFalse == test_3) {
       GALGAS_transientDependencyGraphNodeInfoList var_sortedTransientAndObservablePropertyNodes ;
       GALGAS_structForGeneration var_generation ;
       {
-      routine_semanticAnalysis (var_unifiedTypeMap, var_sortedTypeNames, constinArgument_inSourceFile.mAttribute_string, var_declarationStruct, var_sortedTransientAndObservablePropertyNodes, var_generation, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 68)) ;
+      routine_semanticAnalysis (var_unifiedTypeMap, var_sortedTypeNames, constinArgument_inSourceFile.mAttribute_string, var_declarationStruct, var_sortedTransientAndObservablePropertyNodes, var_generation, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 69)) ;
       }
-      const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("easyBindings_program.galgas", 76)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("easyBindings_program.galgas", 77)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
         {
-        routine_generateCode (var_sortedTransientAndObservablePropertyNodes, var_generation, constinArgument_inSourceFile.mAttribute_string, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 77)) ;
+        routine_generateCode (var_sortedTransientAndObservablePropertyNodes, var_generation, constinArgument_inSourceFile.mAttribute_string, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 78)) ;
         }
       }
     }
@@ -11064,7 +11064,6 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
       routine_before (commonLexique COMMA_HERE) ;
       verboseOptionOn = gOption_galgas_5F_builtin_5F_options_verbose_5F_output.mValue ;
       for (int32_t i=0 ; i<sourceFilesArray.count () ; i++) {
-        setCurrentCompiledFilePath (sourceFilesArray (i COMMA_HERE)) ;
         if (gOption_galgas_5F_builtin_5F_options_trace.mValue) {
           enableTraceWithPath (sourceFilesArray (i COMMA_HERE)) ;
         }
@@ -11074,7 +11073,23 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
         const GALGAS_lstring sourceFilePath (sfp, location) ;
         int16_t r = 0 ;
         if (fileExtension == "easyBindings") {
-          routine_programRule_5F__30_ (sourceFilePath, commonLexique COMMA_HERE) ;
+          switch (executionMode ()) {
+          case kExecutionModeNormal :
+            routine_programRule_5F__30_ (sourceFilePath, commonLexique COMMA_HERE) ;
+            break ;
+          case kExecutionModeLexicalAnalysisOnly :
+            cGrammar_easyBindings_5F_grammar::performOnlyLexicalAnalysis (commonLexique, sourceFilesArray (i COMMA_HERE)) ;
+            break ;
+          case kExecutionModeSyntaxAnalysisOnly :
+            cGrammar_easyBindings_5F_grammar::performOnlySyntaxAnalysis (commonLexique, sourceFilesArray (i COMMA_HERE)) ;
+            break ;
+          case kExecutionModeIndexing :
+            cGrammar_easyBindings_5F_grammar::performIndexing (commonLexique, sourceFilesArray (i COMMA_HERE)) ;
+            break ;
+          case kExecutionModeLatex :
+            cGrammar_easyBindings_5F_grammar::performOnlyLexicalAnalysis (commonLexique, sourceFilesArray (i COMMA_HERE)) ;
+            break ;
+          }
         }else{
           printf ("*** Error: unhandled extension for file '%s' ***\n", sourceFilesArray (i COMMA_HERE).cString (HERE)) ;
           r = 1 ;

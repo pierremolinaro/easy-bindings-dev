@@ -2733,6 +2733,7 @@ bool C_Lexique_easyBindings_5F_lexique::parseLexicalToken (void) {
           }
         }while (mLoop) ;
         mLoop = true ;
+        enterDroppedTerminal (kToken_comment) ;
       }else if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE (' '))) {
       }else if (testForInputUTF32Char (TO_UNICODE ('\0'))) { // End of source text ? 
         token.mTokenCode = kToken_ ; // Empty string code
@@ -2770,21 +2771,21 @@ void C_Lexique_easyBindings_5F_lexique::enterToken (const cTokenFor_easyBindings
 
 //---------------------------------------------------------------------------------------------------------------------*
 //               A T T R I B U T E   A C C E S S                                                                       *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 double C_Lexique_easyBindings_5F_lexique::attributeValue_floatValue (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_floatValue ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_easyBindings_5F_lexique::attributeValue_tokenString (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_tokenString ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_easyBindings_5F_lexique::attributeValue_uint_33__32_value (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
@@ -2793,7 +2794,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::attributeValue_uint_33__32_value (vo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //         A S S I G N    F R O M    A T T R I B U T E                                                                 *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ldouble C_Lexique_easyBindings_5F_lexique::synthetizedAttribute_floatValue (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
@@ -2804,7 +2805,7 @@ GALGAS_ldouble C_Lexique_easyBindings_5F_lexique::synthetizedAttribute_floatValu
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_easyBindings_5F_lexique::synthetizedAttribute_tokenString (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
@@ -2815,7 +2816,7 @@ GALGAS_lstring C_Lexique_easyBindings_5F_lexique::synthetizedAttribute_tokenStri
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_luint C_Lexique_easyBindings_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
   cTokenFor_easyBindings_5F_lexique * ptr = (cTokenFor_easyBindings_5F_lexique *) mCurrentTokenPtr ;
@@ -2887,6 +2888,96 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("&") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("<") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string (">") COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
+  static const uint32_t kTerminalSymbolStyles [56] = {0,
+    2 /* easyBindings_lexique_1_identifier */,
+    3 /* easyBindings_lexique_1_Identifier */,
+    4 /* easyBindings_lexique_1_binding */,
+    6 /* easyBindings_lexique_1_literal_5F_integer */,
+    7 /* easyBindings_lexique_1_literal_5F_double */,
+    8 /* easyBindings_lexique_1_literal_5F_string */,
+    10 /* easyBindings_lexique_1_comment */,
+    1 /* easyBindings_lexique_1_action */,
+    1 /* easyBindings_lexique_1_array */,
+    1 /* easyBindings_lexique_1_arrayController */,
+    1 /* easyBindings_lexique_1_bind */,
+    1 /* easyBindings_lexique_1_class */,
+    1 /* easyBindings_lexique_1_column */,
+    1 /* easyBindings_lexique_1_controllerTemplate */,
+    1 /* easyBindings_lexique_1_count */,
+    1 /* easyBindings_lexique_1_default */,
+    1 /* easyBindings_lexique_1_dependsFrom */,
+    1 /* easyBindings_lexique_1_document */,
+    1 /* easyBindings_lexique_1_enum */,
+    1 /* easyBindings_lexique_1_entity */,
+    1 /* easyBindings_lexique_1_include */,
+    1 /* easyBindings_lexique_1_inverse */,
+    1 /* easyBindings_lexique_1_nibClass */,
+    1 /* easyBindings_lexique_1_no */,
+    1 /* easyBindings_lexique_1_outlet */,
+    1 /* easyBindings_lexique_1_outletClass */,
+    1 /* easyBindings_lexique_1_preferences */,
+    1 /* easyBindings_lexique_1_property */,
+    1 /* easyBindings_lexique_1_root */,
+    1 /* easyBindings_lexique_1_self */,
+    1 /* easyBindings_lexique_1_signature */,
+    1 /* easyBindings_lexique_1_struct */,
+    1 /* easyBindings_lexique_1_to */,
+    1 /* easyBindings_lexique_1_toMany */,
+    1 /* easyBindings_lexique_1_toOne */,
+    1 /* easyBindings_lexique_1_transient */,
+    1 /* easyBindings_lexique_1_validates */,
+    1 /* easyBindings_lexique_1_yes */,
+    5 /* easyBindings_lexique_1_enabled */,
+    5 /* easyBindings_lexique_1_run */,
+    9 /* easyBindings_lexique_1__3A_ */,
+    9 /* easyBindings_lexique_1__2C_ */,
+    9 /* easyBindings_lexique_1__3B_ */,
+    9 /* easyBindings_lexique_1__21_ */,
+    9 /* easyBindings_lexique_1__5B_ */,
+    9 /* easyBindings_lexique_1__5D_ */,
+    9 /* easyBindings_lexique_1__7B_ */,
+    9 /* easyBindings_lexique_1__7D_ */,
+    9 /* easyBindings_lexique_1__28_ */,
+    9 /* easyBindings_lexique_1__29_ */,
+    9 /* easyBindings_lexique_1__2E_ */,
+    9 /* easyBindings_lexique_1__7C_ */,
+    9 /* easyBindings_lexique_1__26_ */,
+    9 /* easyBindings_lexique_1__3C_ */,
+    9 /* easyBindings_lexique_1__3E_ */
+  } ;
+  return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   N A M E    F O R    S T Y L E    I N D E X                                                            *
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_String C_Lexique_easyBindings_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
+  C_String result ;
+  if (inStyleIndex < 11) {
+    static const char * kStyleArray [11] = {
+      "",
+      "keywordsStyle",
+      "idfStyle",
+      "IdfStyle",
+      "bindingNameStyle",
+      "reservedBindingNameStyle",
+      "integerStyle",
+      "floatStyle",
+      "stringStyle",
+      "delimitersStyle",
+      "commentStyle"
+    } ;
+    result = kStyleArray [inStyleIndex] ;
+  }
   return result ;
 }
 
