@@ -1,65 +1,93 @@
-#----------------------------------------------------------------------------------------------------------------------*
-#                                                                                                                      *
-# MAKEFILE for building "easyBindings" 64-bits command line tools for Mac OS X                                      *
-#                                                                                                                      *
-#----------------------------------------------------------------------------------------------------------------------*
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                               Executables                                                                            *
+#     Options for all compilers                                                                                        *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-EXECUTABLE := easyBindings
-EXECUTABLE_DEBUG := easyBindings-debug
+def allCompilerOptions (platformOptions):
+  result = platformOptions
+  result.append ("-Wall")
+  result.append ("-Werror")
+  result.append ("-Wreturn-type")
+  result.append ("-Wformat")
+  result.append ("-Wsign-compare")
+  result.append ("-Wpointer-arith")
+#--- Options added for GALGAS 1.9.0
+  result.append ("-ansi")
+  result.append ("-W")
+#  result.append ("-Wshadow")
+#  result.append ("-Wcast-qual")
+  result.append ("-Wwrite-strings")
+  result.append ("-ffunction-sections")
+  result.append ("-fdata-sections")
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                         Object files directories                                                                     *
+#     Release options                                                                                                  *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-OBJECTS_DIR       := ../build/cli-objects/makefile-maxosx-objects
-DEBUG_OBJECTS_DIR := ../build/cli-objects/makefile-maxosx-debug-objects
+def compilerReleaseOptions (platformOptions):
+  result = platformOptions
+  result.append ("-fomit-frame-pointer")
+  result.append ("-DDO_NOT_GENERATE_CHECKINGS")
+  result.append ("-Wunused-variable")
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                  Install directory (for "install" goal)                                                              *
+#     Debug options                                                                                                    *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-INSTALL_DIR := /usr/local/bin
+def compilerDebugOptions (platformOptions):
+  result = platformOptions
+  result.append ("-g")
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                       Linker Options for Mac OS X                                                                    *
+#     C compiler options                                                                                               *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-PLATFORM_LINKER_OPTIONS :=
+def C_CompilerOptions (platformOptions):
+  result = platformOptions
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                        Include Common Definitions                                                                    *
+#     C++ compiler options                                                                                             *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-include ../build/output/file-list.mak
+def Cpp_CompilerOptions (platformOptions):
+  result = platformOptions
+  result.append ("-Woverloaded-virtual")
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                      Include gcc tools for MAC OS X                                                                  *
+#     Objective C compiler options                                                                                     *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-include $(LIBPM_DIRECTORY_PATH)/included_makefiles/macosx_gcc_tools.mak
+def ObjectiveC_CompilerOptions (platformOptions):
+  result = platformOptions
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #                                                                                                                      *
-#                Include makefile that performs actual work                                                            *
+#     Objective C++ compiler options                                                                                   *
 #                                                                                                                      *
 #----------------------------------------------------------------------------------------------------------------------*
 
-include $(LIBPM_DIRECTORY_PATH)/included_makefiles/generic-makefile-wo-download.mak
+def ObjectiveCpp_CompilerOptions (platformOptions):
+  result = platformOptions
+  return result
 
 #----------------------------------------------------------------------------------------------------------------------*
