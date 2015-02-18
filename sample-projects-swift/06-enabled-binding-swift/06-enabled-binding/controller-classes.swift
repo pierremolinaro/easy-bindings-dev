@@ -8,7 +8,7 @@ import Cocoa
 class Controller_MyPrefs_prefBoolean_PMSwitch_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyPrefs? = nil
-  weak var mOutlet: PMSwitch? = nil
+  weak  var mOutlet: PMSwitch? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -100,7 +100,7 @@ class Controller_MyPrefs_prefBoolean_PMSwitch_value : NSObject, PMTransientEvent
 class Controller_MyRootEntity_docBool_PMSwitch_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMSwitch? = nil
+  weak  var mOutlet: PMSwitch? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

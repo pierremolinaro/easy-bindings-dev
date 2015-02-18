@@ -70,17 +70,6 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.mColor) {
-      mObject!.mColor = mOutlet!.color
-      if mSendContinously {
-        flushTriggers ()
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   func action (sender : PMColorWell) {
     if let outlet = mOutlet {
       if let object = mObject {
@@ -96,7 +85,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
+            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -373,7 +362,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -483,7 +472,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")

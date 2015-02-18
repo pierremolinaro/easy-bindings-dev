@@ -49,7 +49,7 @@ import Cocoa
   //    rootObject                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var rootObject : MyRootEntity { get { return mRootObject as MyRootEntity } }
+  var rootObject : MyRootEntity { get { return mRootObject as! MyRootEntity } }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *

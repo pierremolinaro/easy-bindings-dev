@@ -25,7 +25,7 @@ func compute_MyRootEntity_transientConcatString (docString : String,
     docString,
     myPrefString,
     prefTransientString
-  )
+  ) as! String
 //--- END OF USER ZONE 2
 
 }

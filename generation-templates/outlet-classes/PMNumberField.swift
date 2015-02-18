@@ -38,7 +38,7 @@ import Cocoa
 
   var enableFromEnableBinding : Bool = true {
     didSet {
-      self.enabled = enableFromEnableBinding & enableFromValueBinding
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
     }
   }
 
@@ -46,7 +46,7 @@ import Cocoa
 
   var enableFromValueBinding : Bool = true {
     didSet {
-      self.enabled = enableFromEnableBinding & enableFromValueBinding
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
     }
   }
 
@@ -66,10 +66,13 @@ import Cocoa
     if mSendContinously {
       if let inputString = currentEditor()?.string {
         // NSLog ("inputString %@", inputString)
-        let numberFormatter = self.formatter as NSNumberFormatter
+        let numberFormatter = self.formatter as! NSNumberFormatter
         let number = numberFormatter.numberFromString (inputString)
         if number == nil {
-          control (self, didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString))
+          control (
+            self,
+            didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString) as? String
+          )
         }else{
           NSApp.sendAction (self.action, to: self.target, from: self)
         }
@@ -81,9 +84,9 @@ import Cocoa
   //    NSTextFieldDelegate delegate function                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func control (control: NSControl!,
-                didFailToFormatString string: String!,
-                errorDescription error: String!) -> Bool {
+  func control (control: NSControl,
+                didFailToFormatString string: String,
+                errorDescription error: String?) -> Bool {
     let alert = NSAlert ()
     if let window = control.window {
       alert.messageText = error

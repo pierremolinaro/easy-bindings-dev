@@ -70,7 +70,7 @@ var g_MyPrefs : MyPrefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("MyPrefs:prefBoolean")
     if value != nil {
-      prefBoolean = (value as NSNumber).boolValue
+      prefBoolean = (value as! NSNumber).boolValue
     }
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,

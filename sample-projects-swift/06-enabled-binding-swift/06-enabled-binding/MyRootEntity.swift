@@ -23,7 +23,7 @@ protocol MyRootEntity_docBool {
     didSet {
       if docBool != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docBool:", object:NSNumber (bool:oldValue))
-        docBool_explorer?.stringValue = NSString (format:"%s", docBool ? "true" : "false")
+        docBool_explorer?.stringValue = NSString (format:"%s", docBool ? "true" : "false") as! String
         for object in docBool_observers.values {
           postTransientEvent (object)
         }
@@ -69,7 +69,7 @@ protocol MyRootEntity_docBool {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
     docBool_explorer = createEntryForAttributeNamed ("docBool", ioRect:&ioRect, view:view)
     if let explorer = docBool_explorer {
-      explorer.stringValue = NSString (format:"%s", docBool ? "true" : "false")
+      explorer.stringValue = NSString (format:"%s", docBool ? "true" : "false") as! String
     }
   }
 
