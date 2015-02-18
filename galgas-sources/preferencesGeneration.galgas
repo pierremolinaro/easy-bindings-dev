@@ -34,14 +34,14 @@ map @preferencesPropertyArrayMap {
 getter @unifiedTypeMap-proxy preferencesSwiftGetter
   -> @string outResult {
   switch [self mTypeKind]
-  case boolType : outResult = "(value as NSNumber).boolValue"
+  case boolType : outResult = "(value as! NSNumber).boolValue"
   case uintegerType : outResult = "à compléter preferencesSwiftGetter"
-  case integerType : outResult = "(value as NSNumber).integerValue"
+  case integerType : outResult = "(value as! NSNumber).integerValue"
   case doubleType : outResult = "à compléter preferencesSwiftGetter"
-  case stringType : outResult = "value as String"
-  case colorType : outResult = "NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor"
+  case stringType : outResult = "value as! String"
+  case colorType : outResult = "NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor"
   case dataType : outResult = "à compléter preferencesSwiftGetter"
-  case dateType : outResult = "value as NSDate"
+  case dateType : outResult = "value as! NSDate"
   case imageType : outResult = "à compléter preferencesSwiftGetter"
   case fontType : outResult = "à compléter preferencesSwiftGetter"
   case menuType : outResult = "à compléter preferencesSwiftGetter"

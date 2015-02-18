@@ -36,10 +36,10 @@ getter @unifiedTypeMap-proxy swiftTypeName -> @string outResult {
 
 getter @unifiedTypeMap-proxy valueAccessorForExplorerWindow ?let @string inPropertyName -> @string outResult {
   switch [self mTypeKind]
-  case boolType : outResult = "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\")"
-  case uintegerType : outResult = "NSString (format:\"%lu\", " + inPropertyName + ")"
-  case integerType : outResult = "NSString (format:\"%ld\", " + inPropertyName + ")"
-  case doubleType : outResult = "NSString (format:\"%g\", " + inPropertyName + ")"
+  case boolType : outResult = "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\") as! String"
+  case uintegerType : outResult = "NSString (format:\"%lu\", " + inPropertyName + ") as! String"
+  case integerType : outResult = "NSString (format:\"%ld\", " + inPropertyName + ") as! String"
+  case doubleType : outResult = "NSString (format:\"%g\", " + inPropertyName + ") as! String"
   case stringType : outResult = inPropertyName
   case colorType : outResult = inPropertyName + ".description"
   case dataType : outResult = "NSData"

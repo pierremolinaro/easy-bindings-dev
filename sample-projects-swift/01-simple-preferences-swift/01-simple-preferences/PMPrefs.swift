@@ -171,19 +171,19 @@ var g_PMPrefs : PMPrefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("PMPrefs:mColor")
     if value != nil {
-      mColor = NSUnarchiver.unarchiveObjectWithData (value as NSData) as NSColor
+      mColor = NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor
     }
     value = ud.objectForKey ("PMPrefs:mDate")
     if value != nil {
-      mDate = value as NSDate
+      mDate = value as! NSDate
     }
     value = ud.objectForKey ("PMPrefs:mIntegerValue")
     if value != nil {
-      mIntegerValue = (value as NSNumber).integerValue
+      mIntegerValue = (value as! NSNumber).integerValue
     }
     value = ud.objectForKey ("PMPrefs:myString")
     if value != nil {
-      myString = value as String
+      myString = value as! String
     }
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,

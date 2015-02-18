@@ -8,7 +8,7 @@ import Cocoa
 class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMColorWell? = nil
+  /* weak */  var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -70,17 +70,6 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.myColor) {
-      mObject!.myColor = mOutlet!.color
-      if mSendContinously {
-        flushTriggers ()
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   func action (sender : PMColorWell) {
     if let outlet = mOutlet {
       if let object = mObject {
@@ -96,7 +85,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color)
+            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -131,7 +120,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
 class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMMatrix? = nil
+  /* weak */  var mOutlet: PMMatrix? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -216,7 +205,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
 class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMTextField? = nil
+  /* weak */ var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -291,7 +280,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -326,7 +315,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
 class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMTextField? = nil
+  /* weak */  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -402,7 +391,7 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
 class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMTextField? = nil
+  /* weak */  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -478,7 +467,7 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrans
 class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMTextField? = nil
+  /* weak */  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

@@ -18,7 +18,7 @@ import Cocoa
 func compute_MyPrefs_prefTransientString (myPrefString : String) -> String  {
 
 //--- START OF USER ZONE 2
-  return NSString (format:"<%@>", myPrefString)
+  return NSString (format:"<%@>", myPrefString) as! String
 //--- END OF USER ZONE 2
 
 }

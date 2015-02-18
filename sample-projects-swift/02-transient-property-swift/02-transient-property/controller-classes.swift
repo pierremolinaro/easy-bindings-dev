@@ -83,7 +83,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -269,7 +269,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue)
+            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")

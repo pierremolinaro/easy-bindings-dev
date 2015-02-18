@@ -201,11 +201,11 @@ var g_Prefs : Prefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("Prefs:mFirstName")
     if value != nil {
-      mFirstName = value as String
+      mFirstName = value as! String
     }
     value = ud.objectForKey ("Prefs:mName")
     if value != nil {
-      mName = value as String
+      mName = value as! String
     }
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,

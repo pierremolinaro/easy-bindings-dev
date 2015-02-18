@@ -26,7 +26,7 @@ func presentErrorWindow (file : String!,
     defer:true
   )
   window.title = "Outlet Error"
-  let contentView : NSView! = window.contentView as NSView
+  let contentView : NSView! = window.contentView as! NSView
   let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
   var tf = NSTextField.init (frame:tfRect)
   tf.editable = false

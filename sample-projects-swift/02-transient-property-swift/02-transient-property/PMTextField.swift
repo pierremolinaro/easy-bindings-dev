@@ -46,7 +46,7 @@ import Cocoa
 
   var enableFromEnableBinding : Bool = true {
     didSet {
-      self.enabled = enableFromEnableBinding & enableFromValueBinding
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
     }
   }
 
@@ -54,7 +54,7 @@ import Cocoa
 
   var enableFromValueBinding : Bool = true {
     didSet {
-      self.enabled = enableFromEnableBinding & enableFromValueBinding
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
     }
   }
 }

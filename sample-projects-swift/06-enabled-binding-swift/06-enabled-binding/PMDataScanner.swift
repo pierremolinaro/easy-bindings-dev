@@ -71,7 +71,7 @@ class PMDataScanner : NSObject, PMUserClassName {
       mProgressWindow = progressWindow
       progressWindow.excludedFromWindowsMenu = true
       progressWindow.title = "Progress"
-      let contientViewRect : NSRect = progressWindow.contentView!.frame
+      let contientViewRect : NSRect = progressWindow.contentView.frame
     //--- Add comment text
       let ts_r = NSRect (
         x:25.0,
@@ -81,12 +81,12 @@ class PMDataScanner : NSObject, PMUserClassName {
       )
       var ts = NSTextField (frame:ts_r)
       ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
-      ts.stringValue = NSString (format:"Opening %@…", inTitle)
+      ts.stringValue = NSString (format:"Opening %@…", inTitle) as! String
       ts.bezeled = false
       ts.bordered = false
       ts.editable = false
       ts.drawsBackground = false
-      progressWindow.contentView!.addSubview (ts)
+      progressWindow.contentView.addSubview (ts)
     //--- Add progress indicator
       let ps_r = NSRect (
         x:20.0,
@@ -96,7 +96,7 @@ class PMDataScanner : NSObject, PMUserClassName {
       )
       mProgressIndicator = NSProgressIndicator (frame:ps_r)
       mProgressIndicator!.indeterminate = true
-      progressWindow.contentView!.addSubview (mProgressIndicator!)
+      progressWindow.contentView.addSubview (mProgressIndicator!)
     //---
       mProgressIndicator!.minValue = 0.0
       mProgressIndicator!.maxValue = Double (mData.length)
@@ -210,7 +210,7 @@ class PMDataScanner : NSObject, PMUserClassName {
         }else{
           var message = ""
           for b in mExpectedBytes {
-            message += NSString (format:"0x%02hhx, ", b)
+            message += NSString (format:"0x%02hhx, ", b) as! String
           }
           NSLog ("%s: invalid current byte (0x%02x): expected bytes:%@0x%02x", sourceFile, byte, message, inByte) ;
           mReadOk = false

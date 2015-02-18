@@ -118,7 +118,7 @@ var g_MyPrefs : MyPrefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("MyPrefs:myPrefString")
     if value != nil {
-      myPrefString = value as String
+      myPrefString = value as! String
     }
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
