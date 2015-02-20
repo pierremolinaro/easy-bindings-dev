@@ -71,7 +71,7 @@ import Cocoa
         if number == nil {
           control (
             self,
-            didFailToFormatString:inputString, errorDescription:NSString (format:"The value “%@” is invalid.", inputString) as? String
+            didFailToFormatString:inputString, errorDescription:String (format:"The value “%@” is invalid.", inputString)
           )
         }else{
           NSApp.sendAction (self.action, to: self.target, from: self)

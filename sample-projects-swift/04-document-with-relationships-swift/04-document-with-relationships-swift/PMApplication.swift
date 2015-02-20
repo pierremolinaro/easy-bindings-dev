@@ -177,7 +177,7 @@ class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtoco
 //---------------------------------------------------------------------------------------------------------------------*
 
 func postTransientEvent (inObject : PMTransientEventProtocol) {
-  var theApp = NSApp as PMApplication
+  var theApp = NSApp as! PMApplication
   theApp.postTransientEvent (inObject) ;
 }
 
@@ -188,7 +188,7 @@ func postTransientEvent (inObject : PMTransientEventProtocol) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func flushTriggers () {
-  var theApp = NSApp as PMApplication
+  var theApp = NSApp as! PMApplication
   theApp.flushTransientEvents ()
   displayAllocation ()
 }
@@ -200,7 +200,7 @@ func flushTriggers () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendToTransientEventLog (message : String) {
-  var theApp = NSApp as PMApplication
+  var theApp = NSApp as! PMApplication
   theApp.appendToTransientEventLog (message)
 }
 
@@ -273,7 +273,7 @@ func appendToTransientEventLog (message : String) {
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
           mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
@@ -285,7 +285,7 @@ func appendToTransientEventLog (message : String) {
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
           mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] == nil {
@@ -297,7 +297,7 @@ func appendToTransientEventLog (message : String) {
       mTriggerSet_document_2E_PMDocument_2E_canRemoveString [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
           mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] == nil {
@@ -309,7 +309,7 @@ func appendToTransientEventLog (message : String) {
       mTriggerSet_document_2E_PMDocument_2E_countItemMessage [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_document_2E_PMDocument_2E_total :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
           mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] == nil {
@@ -321,7 +321,7 @@ func appendToTransientEventLog (message : String) {
       mTriggerSet_document_2E_PMDocument_2E_total [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_document_2E_PMDocument_2E_nameController :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
           mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_document_2E_PMDocument_2E_nameController [inObject.uniqueIndex] == nil {
@@ -375,7 +375,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 4
       for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -389,7 +389,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 3
       for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -403,7 +403,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 2
       for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -417,7 +417,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 1
       for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -431,7 +431,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }

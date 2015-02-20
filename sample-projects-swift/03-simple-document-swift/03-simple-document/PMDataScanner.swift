@@ -81,7 +81,7 @@ class PMDataScanner : NSObject, PMUserClassName {
       )
       var ts = NSTextField (frame:ts_r)
       ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
-      ts.stringValue = NSString (format:"Opening %@…", inTitle) as! String
+      ts.stringValue = String (format:"Opening %@…", inTitle)
       ts.bezeled = false
       ts.bordered = false
       ts.editable = false
@@ -210,7 +210,7 @@ class PMDataScanner : NSObject, PMUserClassName {
         }else{
           var message = ""
           for b in mExpectedBytes {
-            message += NSString (format:"0x%02hhx, ", b) as! String
+            message += String (format:"0x%02hhx, ", b)
           }
           NSLog ("%s: invalid current byte (0x%02x): expected bytes:%@0x%02x", sourceFile, byte, message, inByte) ;
           mReadOk = false

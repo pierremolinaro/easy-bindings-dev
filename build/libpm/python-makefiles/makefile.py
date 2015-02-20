@@ -27,17 +27,6 @@ def processorCount () :
   return coreCount
 
 #----------------------------------------------------------------------------------------------------------------------*
-#   fileExtension                                                                                                     *
-#----------------------------------------------------------------------------------------------------------------------*
-
-def fileExtension (fileName) :
-  components = fileName.split ('.')
-  if len (components) > 0 :
-    return components [len (components) - 1]
-  else:
-    return ""
-
-#----------------------------------------------------------------------------------------------------------------------*
 #   FOR PRINTING IN COLOR                                                                                              *
 #----------------------------------------------------------------------------------------------------------------------*
 
@@ -113,6 +102,23 @@ def BOLD_GREEN () :
 
 def BOLD_RED () :
   return BOLD () + RED ()
+
+#----------------------------------------------------------------------------------------------------------------------*
+#   runHiddenCommand                                                                                                   *
+#----------------------------------------------------------------------------------------------------------------------*
+
+def runHiddenCommand (cmd) :
+  result = ""
+  childProcess = subprocess.Popen (cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+  while True:
+    line = childProcess.stdout.readline ()
+    if line != "":
+      result += line
+    else:
+      childProcess.wait ()
+      if childProcess.returncode != 0 :
+        sys.exit (childProcess.returncode)
+      return result
 
 #----------------------------------------------------------------------------------------------------------------------*
 #   runCommand                                                                                                         *
@@ -231,13 +237,15 @@ class Job:
     postCommand = self.mPostCommands [0]
     self.mCommand = postCommand.mCommand
     displayLock.acquire ()
-    if postCommand.mTitle != "":
-      print BOLD_BLUE () + postCommand.mTitle + ENDC ()
-    if (postCommand.mTitle == "") or showCommand:
+    print BOLD_BLUE () + postCommand.mTitle + ENDC ()
+    if showCommand:
       cmdAsString = ""
       for s in self.mCommand:
-        cmdAsString += s.replace (" ", "\\ ") + " "
-      print BOLD_BLUE () + cmdAsString + ENDC ()
+        if (s == "") or (s.find (" ") >= 0):
+          cmdAsString += '"' + s + '" '
+        else:
+          cmdAsString += s + ' '
+      print cmdAsString
     displayLock.release ()
     thread = threading.Thread (target=runInThread, args=(self, displayLock, terminationSemaphore))
     thread.start()

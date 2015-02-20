@@ -117,9 +117,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         }
         let columns = unwrappedTableView.tableColumns as NSArray
         if columns.count > 0 {
-          let firstColumn = columns [0] as NSTableColumn
+          let firstColumn = columns [0] as! NSTableColumn
           if let sdp = firstColumn.sortDescriptorPrototype {
-            unwrappedTableView.sortDescriptors = NSArray (object:sdp)
+            unwrappedTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
           }
         }
       }
@@ -133,7 +133,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   func unregister () {
     for object : AnyObject in mCurrentObjectSet {
-      let managedObject = object as  NameEntity
+      let managedObject = object as! NameEntity
       managedObject.removeObserverOf_name (eventModelChange, inTrigger:false)
       managedObject.removeObserverOf_aValue (eventModelChange, inTrigger:false)
     }
@@ -151,9 +151,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableViewSelectionDidChange (NSNotification!) {
+  func tableViewSelectionDidChange (NSNotification) {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    %@\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
     var selectedObjectArray = NSMutableArray ()
     if let tableView = mTableView {
@@ -174,10 +174,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableView (aTableView: NSTableView!,
-                 sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+  func tableView (aTableView: NSTableView,
+                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    %@\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
     mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
@@ -190,9 +190,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   
   func modelDidChange () {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    %@\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
-    mCurrentObjectArray = mObject.mNames.mutableCopy () as NSMutableArray
+    mCurrentObjectArray = mObject.mNames.mutableCopy () as! NSMutableArray
   //--- Build new selected objects array
     var selectedArrayShouldBeChanged = false
     var newSelectedArray = NSMutableArray ()
@@ -288,9 +288,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------------------------------------------------------------------------------------------------*
   // http://thegreyblog.blogspot.fr/2014/06/nscontroltexteditingdelegate-methods.html
 
-  func numberOfRowsInTableView (NSTableView!) -> Int {
+  func numberOfRowsInTableView (NSTableView) -> Int {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    %@ (%ld objects)\n", __FUNCTION__, mCurrentObjectArray.count))
+      appendToTransientEventLog (String (format:"    %@ (%ld objects)\n", __FUNCTION__, mCurrentObjectArray.count))
     }
     return mCurrentObjectArray.count
   }
@@ -298,19 +298,19 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (tableView : NSTableView,
-                  viewForTableColumn : NSTableColumn,
-                  row : NSInteger) -> NSView! {
-    let columnIdentifier = viewForTableColumn.identifier as String
+                  viewForTableColumn : NSTableColumn?,
+                  row : NSInteger) -> NSView {
+    let columnIdentifier = viewForTableColumn!.identifier
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    %@, identifier '%@\', row %d\n", __FUNCTION__, columnIdentifier, row))
+      appendToTransientEventLog (String (format:"    %@, identifier '%@\', row %d\n", __FUNCTION__, columnIdentifier, row))
     }
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
-    let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  NameEntity
+    let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as! NameEntity
     if columnIdentifier == "name" {
       result.textField?.stringValue = object.name
       result.textField?.target = self
       result.textField?.action = "set_name_Action:"
-      let tf : PMTextField = result.textField as PMTextField
+      let tf : PMTextField = result.textField as! PMTextField
       tf.setSendContinously (true)
     }else if columnIdentifier == "int" {
       let tf : PMNumberField = result.textField as PMNumberField

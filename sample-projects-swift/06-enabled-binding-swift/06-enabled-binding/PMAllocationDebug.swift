@@ -93,13 +93,13 @@ private var gDebugObject : PMAllocationDebug? = nil
 
   private var mAllocatedObjectCount : Int = 0 {
     didSet {
-      mCurrentlyAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mAllocatedObjectCount) as! String
+      mCurrentlyAllocatedObjectCountTextField?.stringValue = String (format:"%d", mAllocatedObjectCount)
     }
   }
 
   private var mTotalAllocatedObjectCount : Int = 0 {
     didSet {
-      mTotalAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mTotalAllocatedObjectCount) as! String
+      mTotalAllocatedObjectCountTextField?.stringValue = String (format:"%d", mTotalAllocatedObjectCount)
     }
   }
 

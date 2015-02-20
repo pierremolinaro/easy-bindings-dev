@@ -8,7 +8,7 @@ import Cocoa
 class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
-  weak var mOutlet: PMColorWell? = nil
+  weak  var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -85,7 +85,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color) as? String
+            alert.messageText = String (format:"The color “%@” is invalid.", outlet.color)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -120,7 +120,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
 class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
-  weak var mOutlet: PMDatePicker? = nil
+  weak  var mOutlet: PMDatePicker? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -205,7 +205,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventPro
 class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
-  weak var mOutlet: PMNumberField? = nil
+  weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -284,7 +284,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransi
 class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMPrefs? = nil
-  weak var mOutlet: PMNumberField? = nil
+  weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -362,7 +362,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -472,7 +472,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")

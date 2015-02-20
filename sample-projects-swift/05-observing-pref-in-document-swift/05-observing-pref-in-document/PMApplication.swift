@@ -235,49 +235,49 @@ func appendToTransientEventLog (message : String) {
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
-          mTransientEventExplorerTextView?.appendErrorString (str as! String)
+          mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
-          mTransientEventExplorerTextView?.appendMessageString (str as! String)
+          mTransientEventExplorerTextView?.appendMessageString (str)
         }else{ // Event already posted
-          mTransientEventExplorerTextView?.appendMessageString (str as! String, color:NSColor.brownColor ())
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
         }
       }
       mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_otherTransientConcatString :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
-          mTransientEventExplorerTextView?.appendErrorString (str as! String)
+          mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString [inObject.uniqueIndex] == nil {
-          mTransientEventExplorerTextView?.appendMessageString (str as! String)
+          mTransientEventExplorerTextView?.appendMessageString (str)
         }else{ // Event already posted
-          mTransientEventExplorerTextView?.appendMessageString (str as! String, color:NSColor.brownColor ())
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
         }
       }
       mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_entity_2E_MyRootEntity_2E_transientConcatString :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
-          mTransientEventExplorerTextView?.appendErrorString (str as! String)
+          mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString [inObject.uniqueIndex] == nil {
-          mTransientEventExplorerTextView?.appendMessageString (str as! String)
+          mTransientEventExplorerTextView?.appendMessageString (str)
         }else{ // Event already posted
-          mTransientEventExplorerTextView?.appendMessageString (str as! String, color:NSColor.brownColor ())
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
         }
       }
       mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString [inObject.uniqueIndex] = inObject
     case PMTransientIndex.k_preference_2E_MyPrefs_2E_prefTransientString :
       if logEvents () {
-        let str = NSString (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
+        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
         if transientIndex.rawValue >= mFlushLevel {
-          mTransientEventExplorerTextView?.appendErrorString (str as! String)
+          mTransientEventExplorerTextView?.appendErrorString (str)
         }else if mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] == nil {
-          mTransientEventExplorerTextView?.appendMessageString (str as! String)
+          mTransientEventExplorerTextView?.appendMessageString (str)
         }else{ // Event already posted
-          mTransientEventExplorerTextView?.appendMessageString (str as! String, color:NSColor.brownColor ())
+          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
         }
       }
       mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString [inObject.uniqueIndex] = inObject
@@ -325,7 +325,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 3
       for object in mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()) as! String)
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -339,7 +339,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 2
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()) as! String)
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -353,7 +353,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 1
       for object in mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()) as! String)
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }
@@ -367,7 +367,7 @@ func appendToTransientEventLog (message : String) {
       mFlushLevel = 0
       for object in mTriggerOutletDisplaySet.values {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (NSString (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()) as! String)
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
         object.trigger ()
       }

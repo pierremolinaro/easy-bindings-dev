@@ -96,29 +96,6 @@ class GenericGalgasMakefile :
         rule.mCommand += includeDirs
         rule.mCommand += ["-MD", "-MP", "-MF", objectFile + ".dep"]
         make.addRule (rule) ;
-  #--------------------------------------------------------------------------- Add Compile rule for sources debug
-  #--- Object file directory
-    debugObjectDirectory = os.path.normpath (os.getcwd () + "/../build/cli-objects/makefile-" + self.mTargetName + "-debug-objects")
-  #---
-    debugObjectFileList = []
-    for source in SOURCES:
-      objectFile = debugObjectDirectory + "/" + source + ".o"
-      debugObjectFileList.append (objectFile)
-      sourcePath = make.searchFileInDirectories (source, SOURCES_DIR)
-      if sourcePath != "" :
-        rule = makefile.Rule (objectFile, self.mCompilationMessage + " (debug): " + source)
-        rule.mPriority = os.path.getsize (os.path.abspath (sourcePath))
-        #rule.mDependences.append (sourcePath)
-        rule.enterSecondaryDependanceFile (objectFile + ".dep")
-        rule.mCommand += self.mCompilerTool
-        rule.mCommand += self.mCompilerDebugOptions
-        rule.mCommand += self.mAllCompilerOptions
-        rule.mCommand += self.m_Cpp_CompilerOptions
-        rule.mCommand += ["-c", sourcePath]
-        rule.mCommand += ["-o", objectFile]
-        rule.mCommand += includeDirs
-        rule.mCommand += ["-MD", "-MP", "-MF", objectFile + ".dep"]
-        make.addRule (rule) ;
   #--------------------------------------------------------------------------- Add EXECUTABLE link rule
     EXECUTABLE = self.mExecutable + self.mExecutableSuffix
     rule = makefile.Rule (EXECUTABLE, self.mLinkingMessage + ": " + EXECUTABLE)
@@ -131,7 +108,31 @@ class GenericGalgasMakefile :
     postCommand.mCommand += self.mStripTool
     postCommand.mCommand.append (EXECUTABLE)
     rule.mPostCommands.append (postCommand)
+    rule.mPriority = 1
     make.addRule (rule) ;
+  #--------------------------------------------------------------------------- Add Compile rule for sources debug
+  #--- Object file directory
+    debugObjectDirectory = os.path.normpath (os.getcwd () + "/../build/cli-objects/makefile-" + self.mTargetName + "-debug-objects")
+  #---
+    debugObjectFileList = []
+    for source in SOURCES:
+      objectFile = debugObjectDirectory + "/" + source + ".o"
+      debugObjectFileList.append (objectFile)
+      sourcePath = make.searchFileInDirectories (source, SOURCES_DIR)
+      if sourcePath != "" :
+        rule = makefile.Rule (objectFile, self.mCompilationMessage + " (debug): " + source)
+        #rule.mPriority = os.path.getsize (os.path.abspath (sourcePath))
+        rule.mDependences.append (sourcePath)
+        rule.enterSecondaryDependanceFile (objectFile + ".dep")
+        rule.mCommand += self.mCompilerTool
+        rule.mCommand += self.mCompilerDebugOptions
+        rule.mCommand += self.mAllCompilerOptions
+        rule.mCommand += self.m_Cpp_CompilerOptions
+        rule.mCommand += ["-c", sourcePath]
+        rule.mCommand += ["-o", objectFile]
+        rule.mCommand += includeDirs
+        rule.mCommand += ["-MD", "-MP", "-MF", objectFile + ".dep"]
+        make.addRule (rule) ;
   #--------------------------------------------------------------------------- Add EXECUTABLE_DEBUG link rule
     EXECUTABLE_DEBUG = self.mExecutable + "-debug" + self.mExecutableSuffix
     rule = makefile.Rule (EXECUTABLE_DEBUG, self.mLinkingMessage + " (debug): " + EXECUTABLE_DEBUG)

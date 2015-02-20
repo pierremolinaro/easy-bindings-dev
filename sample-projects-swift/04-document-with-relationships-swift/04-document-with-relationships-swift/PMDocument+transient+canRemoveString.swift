@@ -18,7 +18,7 @@ import Cocoa
 func compute_PMDocument_canRemoveString (canRemove : Bool) -> String  {
 
 //--- START OF USER ZONE 2
-  return NSString (format:"Can remove: %@", canRemove ? "yes" : "no")
+  return String (format:"Can remove: %@", canRemove ? "yes" : "no")
 //--- END OF USER ZONE 2
 
 }

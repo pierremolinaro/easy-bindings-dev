@@ -93,13 +93,13 @@ private var gDebugObject : PMAllocationDebug? = nil
 
   private var mAllocatedObjectCount : Int = 0 {
     didSet {
-      mCurrentlyAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mAllocatedObjectCount)
+      mCurrentlyAllocatedObjectCountTextField?.stringValue = String (format:"%d", mAllocatedObjectCount)
     }
   }
 
   private var mTotalAllocatedObjectCount : Int = 0 {
     didSet {
-      mTotalAllocatedObjectCountTextField?.stringValue = NSString (format:"%d", mTotalAllocatedObjectCount)
+      mTotalAllocatedObjectCountTextField?.stringValue = String (format:"%d", mTotalAllocatedObjectCount)
     }
   }
 
@@ -177,8 +177,8 @@ private var gDebugObject : PMAllocationDebug? = nil
     mDisplayFilterPopUpButton?.action = "setDisplayFilerAction:"
     let columns = mStatsTableView!.tableColumns as NSArray
     if columns.count > 0 {
-      let firstColumn = columns [0] as NSTableColumn
-      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!)
+      let firstColumn = columns [0] as! NSTableColumn
+      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]
     }
   }
 
@@ -221,7 +221,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   @IBAction func performSnapShotAction (AnyObject) {
     mSnapShotDictionary = NSMutableDictionary ()
     for c : AnyObject in mAllocatedObjectCountByClass.allObjects  {
-      let className = c as String
+      let className = c as! String
       let liveByClass = mAllocatedObjectCountByClass.countForObject (className)
       mSnapShotDictionary.setObject (liveByClass, forKey:className)
     }
@@ -277,7 +277,7 @@ private var gDebugObject : PMAllocationDebug? = nil
         }
         if display {
           mAllocationStatsDataSource.addObject (PMAllocationItemDisplay (
-            classname : object as NSString,
+            classname : object as! String,
             allCount : totalByClass,
             live : liveByClass,
             snapshot : ((snapShotByClass != nil) ? snapShotByClass! : 0)
@@ -300,10 +300,10 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
   
   func tableView (aTableView : NSTableView,
-                  objectValueForTableColumn: NSTableColumn,
+                  objectValueForTableColumn: NSTableColumn?,
                   row:NSInteger) -> AnyObject! {
-    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as PMAllocationItemDisplay
-    return theRecord.valueForKey (objectValueForTableColumn.identifier as String)
+    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay
+    return theRecord.valueForKey (objectValueForTableColumn!.identifier as String)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -316,8 +316,8 @@ private var gDebugObject : PMAllocationDebug? = nil
   //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableView (aTableView: NSTableView!,
-                 sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+  func tableView (aTableView: NSTableView,
+                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
     let sortDescriptors : [AnyObject]! = mStatsTableView?.sortDescriptors
     mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)
     mStatsTableView?.reloadData ()

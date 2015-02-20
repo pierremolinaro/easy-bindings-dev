@@ -120,7 +120,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   override func removeWindowController (inWindowController : NSWindowController) {
     let managedObjectArray = reachableObjectsFromRootObject ()
     for object in managedObjectArray {
-      let managedObject = object as PMManagedObject
+      let managedObject = object as! PMManagedObject
       managedObject.prepareForDeletion ()
     }
     super.removeWindowController (inWindowController)
@@ -220,14 +220,14 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //--- Set savingIndex for each object
     var idx = 0 ;
     for anyObject in objectsToSaveArray {
-      let object = anyObject as PMManagedObject
+      let object = anyObject as! PMManagedObject
       object.savingIndex = idx
       idx += 1
     }
   //---
     var saveDataArray : [NSDictionary] = []
     for anyObject in objectsToSaveArray {
-      let object = anyObject as PMManagedObject
+      let object = anyObject as! PMManagedObject
       var d : NSMutableDictionary = [
         "--entity" : object.className
       ]
@@ -269,8 +269,8 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       options:0, // NSPropertyListReadOptions.Immutable,
       format:nil,
       error:nil
-    ) as NSDictionary
-    mMetadataDictionary = metadataDictionary.mutableCopy () as NSMutableDictionary
+    ) as! NSDictionary
+    mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
      //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
   //--- Read data dictionary
     let dataFormat = dataScanner.parseByte ()
@@ -394,16 +394,16 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       format:nil,
       error:nil
     )!
-    let dictionaryArray : [NSDictionary] = v as [NSDictionary]
+    let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
     var objectArray = NSMutableArray  ()
     for d in dictionaryArray {
-      let className = d.objectForKey ("--entity") as String
+      let className = d.objectForKey ("--entity") as! String
       let object = newInstanceOfEntityNamed (className)
       objectArray.addObject (object!)
     }
     var idx = 0
     for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx] as PMManagedObject
+      var object : PMManagedObject = objectArray [idx] as! PMManagedObject
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
@@ -463,7 +463,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     tf.drawsBackground = false
     tf.editable = false
     tf.font = NSFont.boldSystemFontOfSize (0.0)
-    panel.contentView?.addSubview (tf)
+    panel.contentView.addSubview (tf)
     NSApp.beginSheet (panel,
       modalForWindow:windowForSheet!,
       modalDelegate:nil,
@@ -478,7 +478,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     let reachableCount = reachableObjects.count
     var alert = NSAlert ()
     alert.messageText = "Object Graph Analysis"
-    alert.informativeText = NSString (format:"There are %lu reachable objects from root object.",
+    alert.informativeText = String (format:"There are %lu reachable objects from root object.",
       reachableCount
     )
     alert.beginSheetModalForWindow (windowForSheet!,
@@ -510,12 +510,12 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       // let start = NSDate()
       //   NSLog ("start")
       while (objectsToExploreArray.count > 0) {
-        let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as PMManagedObject
+        let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as! PMManagedObject
         objectsToExploreArray.removeLastObject ()
         var accessible = NSMutableArray ()
         objectToExplore.accessibleObjects (&accessible)
         for object : AnyObject in accessible {
-          let managedObject = object as PMManagedObject
+          let managedObject = object as! PMManagedObject
           if !reachableObjectSet.containsObject (managedObject) {
             reachableObjectSet.addObject (managedObject)
             managedObject.savingIndex = reachableObjectArray.count
@@ -541,11 +541,11 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 extension NSMutableData {
 
   func writeSignature (inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
       appendBytes (&byte, length:1)
-      trace += NSString (format:"%02hhX ", byte)
+      trace += String (format:"%02hhX ", byte)
     }
     trace += "\n"
   }
@@ -555,7 +555,7 @@ extension NSMutableData {
   func writeAutosizedData (inData: NSData,
                            inout trace: String) {
     writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     appendData (inData)
     trace += "(data, length \(inData.length))\n"
   }
@@ -564,8 +564,8 @@ extension NSMutableData {
 
   func writeByte (inByte: UInt8,
                   inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += NSString (format:"%02hhX ", inByte)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%02hhX ", inByte)
     var byte = inByte
     appendBytes (&byte, length:1)
     trace += "\n"
@@ -575,7 +575,7 @@ extension NSMutableData {
 
   func writeAutosizedUnsigned (inValue: UInt64,
                                inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += "U "
     var value = inValue
     do{
@@ -584,7 +584,7 @@ extension NSMutableData {
       if (value != 0) {
         byte |= 0x80
       }
-      trace += NSString (format:"%02hhX ", byte)
+      trace += String (format:"%02hhX ", byte)
       appendBytes (&byte, length:1)
     }while value != 0
     trace += "\n"

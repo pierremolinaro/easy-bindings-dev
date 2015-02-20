@@ -201,13 +201,13 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "  private var mAllocatedObjectCount : Int = 0 {\n"
   "    didSet {\n"
-  "      mCurrentlyAllocatedObjectCountTextField\?.stringValue = NSString (format:\"%d\", mAllocatedObjectCount) as! String\n"
+  "      mCurrentlyAllocatedObjectCountTextField\?.stringValue = String (format:\"%d\", mAllocatedObjectCount)\n"
   "    }\n"
   "  }\n"
   "\n"
   "  private var mTotalAllocatedObjectCount : Int = 0 {\n"
   "    didSet {\n"
-  "      mTotalAllocatedObjectCountTextField\?.stringValue = NSString (format:\"%d\", mTotalAllocatedObjectCount) as! String\n"
+  "      mTotalAllocatedObjectCountTextField\?.stringValue = String (format:\"%d\", mTotalAllocatedObjectCount)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -441,7 +441,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "PMAllocationDebug.swift",
   "swift",
   true, // Text file
-  15407, // Text length
+  15381, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
@@ -2095,7 +2095,7 @@ const char * gWrapperFileContent_2_swift_5F_sources = "//\n"
   "      )\n"
   "      var ts = NSTextField (frame:ts_r)\n"
   "      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())\n"
-  "      ts.stringValue = NSString (format:\"Opening %@\xE2""\x80""\xA6""\", inTitle) as! String\n"
+  "      ts.stringValue = String (format:\"Opening %@\xE2""\x80""\xA6""\", inTitle)\n"
   "      ts.bezeled = false\n"
   "      ts.bordered = false\n"
   "      ts.editable = false\n"
@@ -2224,7 +2224,7 @@ const char * gWrapperFileContent_2_swift_5F_sources = "//\n"
   "        }else{\n"
   "          var message = \"\"\n"
   "          for b in mExpectedBytes {\n"
-  "            message += NSString (format:\"0x%02hhx, \", b) as! String\n"
+  "            message += String (format:\"0x%02hhx, \", b)\n"
   "          }\n"
   "          NSLog (\"%s: invalid current byte (0x%02x): expected bytes:%@0x%02x\", sourceFile, byte, message, inByte) ;\n"
   "          mReadOk = false\n"
@@ -2316,7 +2316,7 @@ const cRegularFileWrapper gWrapperFile_2_swift_5F_sources (
   "PMDataScanner.swift",
   "swift",
   true, // Text file
-  10802, // Text length
+  10776, // Text length
   gWrapperFileContent_2_swift_5F_sources
 ) ;
 
@@ -2802,9 +2802,9 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "    let reachableCount = reachableObjects.count\n"
   "    var alert = NSAlert ()\n"
   "    alert.messageText = \"Object Graph Analysis\"\n"
-  "    alert.informativeText = NSString (format:\"There are %lu reachable objects from root object.\",\n"
+  "    alert.informativeText = String (format:\"There are %lu reachable objects from root object.\",\n"
   "      reachableCount\n"
-  "    ) as\? String\n"
+  "    )\n"
   "    alert.beginSheetModalForWindow (windowForSheet!,\n"
   "      completionHandler:nil\n"
   "    )\n"
@@ -2865,11 +2865,11 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "extension NSMutableData {\n"
   "\n"
   "  func writeSignature (inout trace: String) {\n"
-  "    trace += NSString (format:\"%03lu %03lu \", length / 1000, length % 1000) as! String\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
   "    for c in kFormatSignature.utf8 {\n"
   "      var byte : UInt8 = UInt8 (c)\n"
   "      appendBytes (&byte, length:1)\n"
-  "      trace += NSString (format:\"%02hhX \", byte) as! String\n"
+  "      trace += String (format:\"%02hhX \", byte)\n"
   "    }\n"
   "    trace += \"\\n\"\n"
   "  }\n"
@@ -2879,7 +2879,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "  func writeAutosizedData (inData: NSData,\n"
   "                           inout trace: String) {\n"
   "    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)\n"
-  "    trace += NSString (format:\"%03lu %03lu \", length / 1000, length % 1000) as! String\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
   "    appendData (inData)\n"
   "    trace += \"(data, length \\(inData.length))\\n\"\n"
   "  }\n"
@@ -2888,8 +2888,8 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "\n"
   "  func writeByte (inByte: UInt8,\n"
   "                  inout trace: String) {\n"
-  "    trace += NSString (format:\"%03lu %03lu \", length / 1000, length % 1000) as! String\n"
-  "    trace += NSString (format:\"%02hhX \", inByte) as! String\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
+  "    trace += String (format:\"%02hhX \", inByte)\n"
   "    var byte = inByte\n"
   "    appendBytes (&byte, length:1)\n"
   "    trace += \"\\n\"\n"
@@ -2899,7 +2899,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "\n"
   "  func writeAutosizedUnsigned (inValue: UInt64,\n"
   "                               inout trace: String) {\n"
-  "    trace += NSString (format:\"%03lu %03lu \", length / 1000, length % 1000) as! String\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
   "    trace += \"U \"\n"
   "    var value = inValue\n"
   "    do{\n"
@@ -2908,7 +2908,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "      if (value != 0) {\n"
   "        byte |= 0x80\n"
   "      }\n"
-  "      trace += NSString (format:\"%02hhX \", byte) as! String\n"
+  "      trace += String (format:\"%02hhX \", byte)\n"
   "      appendBytes (&byte, length:1)\n"
   "    }while value != 0\n"
   "    trace += \"\\n\"\n"
@@ -2923,7 +2923,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "PMManagedDocument.swift",
   "swift",
   true, // Text file
-  26214, // Text length
+  26110, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -3203,7 +3203,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\n"
   "    closeButton!.target = self\n"
   "    closeButton!.action = \"deleteWindowAction:\"\n"
   "  //--- Set window title\n"
-  "    let windowTitle = NSString (format:\"#%ld (%@) at %p\", mExplorerObjectIndex, className, self) as! String\n"
+  "    let windowTitle = String (format:\"#%ld (%@) at %p\", mExplorerObjectIndex, className, self)\n"
   "    mExplorerWindow!.title = windowTitle\n"
   "  //--- Add Scroll view\n"
   "    let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))\n"
@@ -3223,7 +3223,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\n"
   "    if objectArray.count == 1 {\n"
   "      title = \"1 Object\" ;\n"
   "    }else if objectArray.count > 1 {\n"
-  "      title = NSString (format:\"%lu objects\", objectArray.count) as! String\n"
+  "      title = String (format:\"%lu objects\", objectArray.count)\n"
   "    }\n"
   "    popUpButton\?.removeAllItems ()\n"
   "    popUpButton\?.addItemWithTitle (title)\n"
@@ -3231,7 +3231,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\n"
   "    for obj : AnyObject in objectArray {\n"
   "      let object = obj as! PMManagedObject\n"
   "      let objectIndex = object.explorerObjectIndex ()\n"
-  "      let stringValue = NSString (format:\"#%d (%@) %p\", objectIndex, object.className, object) as! String\n"
+  "      let stringValue = String (format:\"#%d (%@) %p\", objectIndex, object.className, object)\n"
   "      popUpButton\?.addItemWithTitle (stringValue)\n"
   "      var item = popUpButton\?.lastItem\n"
   "      item\?.target = object\n"
@@ -3248,7 +3248,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\n"
   "    var stringValue = \"nil\"\n"
   "    if let unwrappedObject = object {\n"
   "      let objectIndex = unwrappedObject.explorerObjectIndex ()\n"
-  "      stringValue = NSString (format:\"#%d (%@) %p\", objectIndex, unwrappedObject.className, unwrappedObject) as! String\n"
+  "      stringValue = String (format:\"#%d (%@) %p\", objectIndex, unwrappedObject.className, unwrappedObject)\n"
   "    }\n"
   "    button\?.enabled = object != nil\n"
   "    button\?.title = stringValue\n"
@@ -3570,7 +3570,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "PMManagedObject.swift",
   "swift",
   true, // Text file
-  28560, // Text length
+  28508, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 

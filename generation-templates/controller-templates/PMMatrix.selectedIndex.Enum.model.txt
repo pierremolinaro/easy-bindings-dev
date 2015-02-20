@@ -2,7 +2,7 @@
 class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  /* weak */  var mOutlet: PMMatrix? = nil
+  weak  var mOutlet: PMMatrix? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

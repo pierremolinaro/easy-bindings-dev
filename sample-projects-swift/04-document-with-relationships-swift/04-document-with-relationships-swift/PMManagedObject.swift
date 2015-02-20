@@ -111,7 +111,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     if mSignatureHasBeenComputed {
       mSignatureHasBeenComputed = false ;
       for anyObject in mSignatureObserverSet {
-        let object = anyObject as PMSignatureObserverProtocol
+        let object = anyObject as! PMSignatureObserverProtocol
         object.triggerSignatureComputing ()
       }
     }
@@ -138,7 +138,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func undoManager () -> PMUndoManager? {
-    return mUndoManager as PMUndoManager?
+    return mUndoManager as! PMUndoManager?
   }
 
   func explorerObjectIndex () -> Int {
@@ -272,7 +272,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     closeButton!.target = self
     closeButton!.action = "deleteWindowAction:"
   //--- Set window title
-    let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
+    let windowTitle = String (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
@@ -286,21 +286,21 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   //   updateManagedObjectToManyRelationshipDisplayForKey                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : NSString, popUpButton : NSPopUpButton?) {
-    var objectArray : NSArray = valueForKey (inKey) as NSArray
+  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : String, popUpButton : NSPopUpButton?) {
+    var objectArray : NSArray = valueForKey (inKey) as! NSArray
     var title = "No Object" ;
     if objectArray.count == 1 {
       title = "1 Object" ;
     }else if objectArray.count > 1 {
-      title = NSString (format:"%lu objects", objectArray.count)
+      title = String (format:"%lu objects", objectArray.count)
     }
     popUpButton?.removeAllItems ()
     popUpButton?.addItemWithTitle (title)
     popUpButton?.enabled = objectArray.count > 0
     for obj : AnyObject in objectArray {
-      let object = obj as PMManagedObject
+      let object = obj as! PMManagedObject
       let objectIndex = object.explorerObjectIndex ()
-      let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object)
+      let stringValue = String (format:"#%d (%@) %p", objectIndex, object.className, object)
       popUpButton?.addItemWithTitle (stringValue)
       var item = popUpButton?.lastItem
       item?.target = object
@@ -312,12 +312,12 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   //   updateManagedObjectToOneRelationshipDisplayForKey                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : NSString, button : NSButton?) {
-    var object = valueForKey (inKey) as PMManagedObject?
+  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : String, button : NSButton?) {
+    var object = valueForKey (inKey) as! PMManagedObject?
     var stringValue = "nil"
     if let unwrappedObject = object {
       let objectIndex = unwrappedObject.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
+      stringValue = String (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
     button?.enabled = object != nil
     button?.title = stringValue
@@ -364,7 +364,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     if inEntityArray.count > 0 {
       var indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
-        let managedObject = object as PMManagedObject
+        let managedObject = object as! PMManagedObject
         indexArray.addObject (NSNumber (unsignedInteger:object.savingIndex))
       }
       ioDictionary.setObject (indexArray, forKey:inRelationshipName)
@@ -409,8 +409,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   var result = NSMutableArray ()
   if nil != indexArray {
     for object : AnyObject in indexArray! {
-      let number = object as NSNumber
-      let managedObject = managedObjectArray [number.unsignedIntegerValue] as PMManagedObject
+      let number = object as! NSNumber
+      let managedObject = managedObjectArray [number.unsignedIntegerValue] as! PMManagedObject
       result.addObject (managedObject)
     }
   }

@@ -2,7 +2,7 @@
 class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  /* weak */  var mOutlet: PMColorWell? = nil
+  weak  var mOutlet: PMColorWell? = nil
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -79,7 +79,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The color “%@” is invalid.", outlet.color) as? String
+            alert.messageText = String (format:"The color “%@” is invalid.", outlet.color)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")

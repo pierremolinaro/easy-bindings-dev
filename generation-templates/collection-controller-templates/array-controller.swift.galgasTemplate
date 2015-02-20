@@ -108,9 +108,9 @@ end
 
 %        let columns = unwrappedTableView.tableColumns as NSArray
         if columns.count > 0 {
-          let firstColumn = columns [0] as NSTableColumn
+          let firstColumn = columns [0] as! NSTableColumn
           if let sdp = firstColumn.sortDescriptorPrototype {
-            unwrappedTableView.sortDescriptors = NSArray (object:sdp)
+            unwrappedTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
           }
         }
       }
@@ -124,7 +124,7 @@ end
 
   func unregister () {
     for object : AnyObject in mCurrentObjectSet {
-      let managedObject = object as  %!ELEMENT_TYPE_NAME%
+      let managedObject = object as! %!ELEMENT_TYPE_NAME%
 %
 for () in BOUND_COLUMNS do
 %      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
@@ -144,9 +144,9 @@ end
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableViewSelectionDidChange (NSNotification!) {
+  func tableViewSelectionDidChange (NSNotification) {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
     var selectedObjectArray = NSMutableArray ()
     if let tableView = mTableView {
@@ -167,10 +167,10 @@ end
   //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableView (aTableView: NSTableView!,
-                 sortDescriptorsDidChange oldDescriptors: [AnyObject]!) {
+  func tableView (aTableView: NSTableView,
+                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
     mCurrentObjectArray.sortUsingDescriptors (sortDescriptors)
@@ -183,9 +183,9 @@ end
   
   func modelDidChange () {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    \%@\\n", __FUNCTION__))
+      appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
-    mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as NSMutableArray
+    mCurrentObjectArray = mObject.%!RELATIONSHIP_NAME%.mutableCopy () as! NSMutableArray
   //--- Build new selected objects array
     var selectedArrayShouldBeChanged = false
     var newSelectedArray = NSMutableArray ()
@@ -285,9 +285,9 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
   // http://thegreyblog.blogspot.fr/2014/06/nscontroltexteditingdelegate-methods.html
 
-  func numberOfRowsInTableView (NSTableView!) -> Int {
+  func numberOfRowsInTableView (NSTableView) -> Int {
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    \%@ (\%ld objects)\\n", __FUNCTION__, mCurrentObjectArray.count))
+      appendToTransientEventLog (String (format:"    \%@ (\%ld objects)\\n", __FUNCTION__, mCurrentObjectArray.count))
     }
     return mCurrentObjectArray.count
   }
@@ -295,14 +295,14 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (tableView : NSTableView,
-                  viewForTableColumn : NSTableColumn,
-                  row : NSInteger) -> NSView! {
-    let columnIdentifier = viewForTableColumn.identifier as String
+                  viewForTableColumn : NSTableColumn?,
+                  row : NSInteger) -> NSView {
+    let columnIdentifier = viewForTableColumn!.identifier
     if displayDebugMessage {
-      appendToTransientEventLog (NSString (format:"    \%@, identifier '\%@\', row \%d\\n", __FUNCTION__, columnIdentifier, row))
+      appendToTransientEventLog (String (format:"    \%@, identifier '\%@\', row \%d\\n", __FUNCTION__, columnIdentifier, row))
     }
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as NSTableCellView
-    let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as  %!ELEMENT_TYPE_NAME%
+    let object = mCurrentObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__) as! %!ELEMENT_TYPE_NAME%
    %
 for () in BOUND_COLUMNS
 do

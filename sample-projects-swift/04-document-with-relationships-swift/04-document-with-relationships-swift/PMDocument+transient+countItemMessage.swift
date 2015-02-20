@@ -22,7 +22,7 @@ func compute_PMDocument_countItemMessage (mNames : Int) -> String  {
   if mNames == 1 {
     result = "1 Item"
   }else if mNames > 1 {
-    result = NSString (format:"%ld Items", mNames)
+    result = String (format:"%ld Items", mNames)
   }
   return result
 //--- END OF USER ZONE 2

@@ -478,9 +478,9 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     let reachableCount = reachableObjects.count
     var alert = NSAlert ()
     alert.messageText = "Object Graph Analysis"
-    alert.informativeText = NSString (format:"There are %lu reachable objects from root object.",
+    alert.informativeText = String (format:"There are %lu reachable objects from root object.",
       reachableCount
-    ) as? String
+    )
     alert.beginSheetModalForWindow (windowForSheet!,
       completionHandler:nil
     )
@@ -541,11 +541,11 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 extension NSMutableData {
 
   func writeSignature (inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000) as! String
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
       appendBytes (&byte, length:1)
-      trace += NSString (format:"%02hhX ", byte) as! String
+      trace += String (format:"%02hhX ", byte)
     }
     trace += "\n"
   }
@@ -555,7 +555,7 @@ extension NSMutableData {
   func writeAutosizedData (inData: NSData,
                            inout trace: String) {
     writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000) as! String
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     appendData (inData)
     trace += "(data, length \(inData.length))\n"
   }
@@ -564,8 +564,8 @@ extension NSMutableData {
 
   func writeByte (inByte: UInt8,
                   inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000) as! String
-    trace += NSString (format:"%02hhX ", inByte) as! String
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%02hhX ", inByte)
     var byte = inByte
     appendBytes (&byte, length:1)
     trace += "\n"
@@ -575,7 +575,7 @@ extension NSMutableData {
 
   func writeAutosizedUnsigned (inValue: UInt64,
                                inout trace: String) {
-    trace += NSString (format:"%03lu %03lu ", length / 1000, length % 1000) as! String
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += "U "
     var value = inValue
     do{
@@ -584,7 +584,7 @@ extension NSMutableData {
       if (value != 0) {
         byte |= 0x80
       }
-      trace += NSString (format:"%02hhX ", byte) as! String
+      trace += String (format:"%02hhX ", byte)
       appendBytes (&byte, length:1)
     }while value != 0
     trace += "\n"

@@ -8,7 +8,7 @@ import Cocoa
 class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  weak var mOutlet: PMNumberField? = nil
+  weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -87,7 +87,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -163,7 +163,7 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTra
 class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -239,7 +239,7 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
 class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : PMDocument? = nil
-  weak var mOutlet: PMNumberField? = nil
+  weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

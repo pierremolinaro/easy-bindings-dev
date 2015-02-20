@@ -8,7 +8,7 @@ import Cocoa
 class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyPrefs? = nil
-  /* weak */ var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -83,7 +83,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientE
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -118,7 +118,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientE
 class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyPrefs? = nil
-  /* weak */  var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -194,7 +194,7 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
 class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  /* weak */ var mOutlet: PMTextField? = nil
+  weak var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -269,7 +269,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransien
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -304,7 +304,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransien
 class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
-  /* weak */  var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
