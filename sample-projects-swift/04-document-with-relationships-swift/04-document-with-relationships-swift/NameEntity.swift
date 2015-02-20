@@ -29,7 +29,7 @@ protocol NameEntity_name {
     didSet {
       if aValue != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:NSNumber (integer:oldValue))
-        aValue_explorer?.stringValue = NSString (format:"%ld", aValue)
+        aValue_explorer?.stringValue = NSString (format:"%ld", aValue) as! String
         for object in aValue_observers.values {
           postTransientEvent (object)
         }
@@ -115,7 +115,7 @@ protocol NameEntity_name {
         if let unwrappedOldValue = oldValue {
           let idx = unwrappedOldValue.mNames.indexOfObjectIdenticalTo (self)
           if idx != NSNotFound {
-            var array = unwrappedOldValue.mNames.mutableCopy () as NSMutableArray
+            var array = unwrappedOldValue.mNames.mutableCopy () as! NSMutableArray
             array.removeObjectAtIndex (idx)
             unwrappedOldValue.mNames = array
           }
@@ -124,7 +124,7 @@ protocol NameEntity_name {
         if let root = mRoot {
           let idx = root.mNames.indexOfObjectIdenticalTo (self)
           if idx == NSNotFound {
-            var array = root.mNames.mutableCopy () as NSMutableArray
+            var array = root.mNames.mutableCopy () as! NSMutableArray
             array.addObject (self)
             root.mNames = array
           }
@@ -173,7 +173,7 @@ protocol NameEntity_name {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
     aValue_explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
     if let explorer = aValue_explorer {
-      explorer.stringValue = NSString (format:"%ld", aValue)
+      explorer.stringValue = NSString (format:"%ld", aValue) as! String
     }
     name_explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
     if let explorer = name_explorer {

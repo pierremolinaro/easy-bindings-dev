@@ -130,7 +130,7 @@ struct PMArray <T : AnyObject> {
 
   subscript (index: Int) -> T {
     get {
-      return mArray.objectAtIndex (index) as T
+      return mArray.objectAtIndex (index) as! T
     }
     set (newValue) {
       mArray.replaceObjectAtIndex (index, withObject:newValue)
@@ -246,7 +246,7 @@ struct PMSetWithNSMutableSet <T : AnyObject> : SequenceType {
   }
   
   var allObjects : NSSet {
-    return mSet.copy () as NSSet
+    return mSet.copy () as! NSSet
   }
   
   func generate () -> PMSetWithNSMutableSetGenerator<T> {
@@ -281,7 +281,7 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
   var mEnumerator : NSEnumerator
   
   init (valueSet : NSSet) {
-    mSet = valueSet.copy () as NSSet
+    mSet = valueSet.copy () as! NSSet
     mEnumerator = mSet.objectEnumerator ()
   }
   

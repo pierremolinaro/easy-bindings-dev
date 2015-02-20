@@ -15,7 +15,7 @@ import Cocoa
   func addObserverOf_mNames_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_aValue_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in mNames {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.addObserverOf_aValue (inObserver, inTrigger:inTrigger)
     }
   }
@@ -23,7 +23,7 @@ import Cocoa
   func removeObserverOf_mNames_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_aValue_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in mNames {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.removeObserverOf_aValue (inObserver, inTrigger:inTrigger)
     }
   }
@@ -35,7 +35,7 @@ import Cocoa
   func addObserverOf_mNames_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_name_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in mNames {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.addObserverOf_name (inObserver, inTrigger:inTrigger)
     }
   }
@@ -43,7 +43,7 @@ import Cocoa
   func removeObserverOf_mNames_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mNames_name_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in mNames {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.removeObserverOf_name (inObserver, inTrigger:inTrigger)
     }
   }
@@ -52,9 +52,9 @@ import Cocoa
 
   private var mNames_observers : [Int : PMTransientEventProtocol] = [:]
   private var mNames_explorer : NSPopUpButton?
-  var mNames : NSMutableArray = NSMutableArray () { // Set of NameEntity entities
+  var mNames : Array<NameEntity> = Array () {
     didSet {
-      if oldValue !== mNames {
+      if oldValue != mNames {
       //--- Register old value in undo manager
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_mNames:", object:oldValue)
       //--- Update explorer
@@ -62,11 +62,9 @@ import Cocoa
           updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames_explorer)
         }
       //--- Removed object set
-        var removedObjectSet = NSMutableSet ()
-        removedObjectSet.addObjectsFromArray (oldValue)
-        removedObjectSet.minusSet (NSSet (array:mNames))
-        for object : AnyObject in removedObjectSet {
-          let managedObject = object as NameEntity
+        var removedObjectSet : Set<NameEntity> = Set (oldValue)
+        removedObjectSet.subtractInPlace (mNames)
+        for managedObject : NameEntity in removedObjectSet {
           for observer in mNames_aValue_observers.values {
             managedObject.removeObserverOf_aValue (observer, inTrigger:true)
           }
@@ -76,11 +74,9 @@ import Cocoa
           managedObject.mRoot = nil ;
         }
       //--- Added object set
-        var addedObjectSet = NSMutableSet ()
-        addedObjectSet.addObjectsFromArray (mNames)
-        addedObjectSet.minusSet (NSSet (array:oldValue))
-        for object : AnyObject in addedObjectSet {
-          let managedObject = object as NameEntity
+        var addedObjectSet : Set<NameEntity> = Set (mNames)
+        addedObjectSet.subtractInPlace (oldValue)
+        for managedObject : NameEntity in addedObjectSet {
           for observer in mNames_aValue_observers.values {
             managedObject.addObserverOf_aValue (observer, inTrigger:true)
           }
@@ -97,8 +93,8 @@ import Cocoa
     }
   }
 
-  func undoFor_mNames (object:NSMutableArray) {
-    mNames = object
+  func undoFor_mNames (object:NSArray) {
+    mNames = object as! Array<NameEntity>
   }
 
   func addObserverOf_mNames (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
@@ -131,7 +127,7 @@ import Cocoa
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
-    mNames = NSMutableArray ()
+    mNames = Array<NameEntity> ()
   }
   
 
@@ -180,7 +176,7 @@ import Cocoa
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
     for object : AnyObject in mNames {
-      let managedObject = object as PMManagedObject
+      let managedObject = object as! PMManagedObject
       objects.addObject (managedObject)
     }
   }

@@ -2,7 +2,7 @@
 class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  /* weak */  var mOutlet: PMNumberField? = nil
+  weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

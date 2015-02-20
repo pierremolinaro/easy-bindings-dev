@@ -76,7 +76,7 @@ if not mIsCollection then
   func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.addObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
     }
   }
@@ -84,7 +84,7 @@ if not mIsCollection then
   func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as NameEntity
+      let managedObject = object as! NameEntity
       managedObject.removeObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
     }
   }
@@ -97,9 +97,9 @@ end
 
 %  private var %!mRelationshipName%_observers : [Int : PMTransientEventProtocol] = [:]
   private var %!mRelationshipName%_explorer : NSPopUpButton?
-  var %!mRelationshipName% : NSMutableArray = NSMutableArray () { // Set of %![mRelationshipType key]% entities
+  var %!mRelationshipName% : Array<%![mRelationshipType key]%> = Array () {
     didSet {
-      if oldValue !== %!mRelationshipName% {
+      if oldValue != %!mRelationshipName% {
       //--- Register old value in undo manager
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
       //--- Update explorer
@@ -107,11 +107,9 @@ end
           updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName%", popUpButton:%!mRelationshipName%_explorer)
         }
       //--- Removed object set
-        var removedObjectSet = NSMutableSet ()
-        removedObjectSet.addObjectsFromArray (oldValue)
-        removedObjectSet.minusSet (NSSet (array:%!mRelationshipName%))
-        for object : AnyObject in removedObjectSet {
-          let managedObject = object as %![mRelationshipType key]%
+        var removedObjectSet : Set<%![mRelationshipType key]%> = Set (oldValue)
+        removedObjectSet.subtractInPlace (%!mRelationshipName%)
+        for managedObject : %![mRelationshipType key]% in removedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
 %          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
@@ -122,11 +120,9 @@ end
 %          managedObject.%!mOppositeRelationshipName% = nil ;
         }
       //--- Added object set
-        var addedObjectSet = NSMutableSet ()
-        addedObjectSet.addObjectsFromArray (%!mRelationshipName%)
-        addedObjectSet.minusSet (NSSet (array:oldValue))
-        for object : AnyObject in addedObjectSet {
-          let managedObject = object as %![mRelationshipType key]%
+        var addedObjectSet : Set<%![mRelationshipType key]%> = Set (%!mRelationshipName%)
+        addedObjectSet.subtractInPlace (oldValue)
+        for managedObject : %![mRelationshipType key]% in addedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
 %          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
@@ -144,8 +140,8 @@ end
     }
   }
 
-  func undoFor_%!mRelationshipName% (object:NSMutableArray) {
-    %!mRelationshipName% = object
+  func undoFor_%!mRelationshipName% (object:NSArray) {
+    %!mRelationshipName% = object as! Array<%![mRelationshipType key]%>
   }
 
   func addObserverOf_%!mRelationshipName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
@@ -197,7 +193,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         if let unwrappedOldValue = oldValue {
           let idx = unwrappedOldValue.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
           if idx != NSNotFound {
-            var array = unwrappedOldValue.%!mOppositeRelationshipName%.mutableCopy () as NSMutableArray
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%.mutableCopy () as! NSMutableArray
             array.removeObjectAtIndex (idx)
             unwrappedOldValue.%!mOppositeRelationshipName% = array
           }
@@ -206,7 +202,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         if let root = %!mRelationshipName% {
           let idx = root.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
           if idx == NSNotFound {
-            var array = root.%!mOppositeRelationshipName%.mutableCopy () as NSMutableArray
+            var array = root.%!mOppositeRelationshipName%.mutableCopy () as! NSMutableArray
             array.addObject (self)
             root.%!mOppositeRelationshipName% = array
           }
@@ -274,7 +270,7 @@ end
 %
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-    %    %!mRelationshipName% = NSMutableArray ()\n%
+    %    %!mRelationshipName% = Array<%![mRelationshipType key]%> ()\n%
   else
     %    %!mRelationshipName% = nil\n%
   end
@@ -437,7 +433,7 @@ end
 %for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
 %    for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as PMManagedObject
+      let managedObject = object as! PMManagedObject
       objects.addObject (managedObject)
     }\n%
   else

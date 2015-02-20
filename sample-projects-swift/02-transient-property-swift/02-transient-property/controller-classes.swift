@@ -83,7 +83,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -118,7 +118,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
 class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -269,7 +269,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
         case PMValidationResult.rejectWithAlert (let informativeText) :
           if let window = sender.window {
             let alert = NSAlert ()
-            alert.messageText = NSString (format:"The value “%@” is invalid.", outlet.stringValue) as? String
+            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
             alert.informativeText = informativeText
             alert.addButtonWithTitle ("Ok")
             alert.addButtonWithTitle ("Discard Change")
@@ -304,7 +304,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
 class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : Prefs? = nil
-  weak var mOutlet: PMTextField? = nil
+  weak  var mOutlet: PMTextField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

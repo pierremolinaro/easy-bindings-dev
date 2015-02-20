@@ -2,7 +2,7 @@
 class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
   weak var mObject : $OBJECTCLASS$? = nil
-  /* weak */  var mOutlet: PMSwitch? = nil
+  weak  var mOutlet: PMSwitch? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  

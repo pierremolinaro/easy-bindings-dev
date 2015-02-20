@@ -272,7 +272,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     closeButton!.target = self
     closeButton!.action = "deleteWindowAction:"
   //--- Set window title
-    let windowTitle = NSString (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self) as! String
+    let windowTitle = String (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
@@ -292,7 +292,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     if objectArray.count == 1 {
       title = "1 Object" ;
     }else if objectArray.count > 1 {
-      title = NSString (format:"%lu objects", objectArray.count) as! String
+      title = String (format:"%lu objects", objectArray.count)
     }
     popUpButton?.removeAllItems ()
     popUpButton?.addItemWithTitle (title)
@@ -300,7 +300,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     for obj : AnyObject in objectArray {
       let object = obj as! PMManagedObject
       let objectIndex = object.explorerObjectIndex ()
-      let stringValue = NSString (format:"#%d (%@) %p", objectIndex, object.className, object) as! String
+      let stringValue = String (format:"#%d (%@) %p", objectIndex, object.className, object)
       popUpButton?.addItemWithTitle (stringValue)
       var item = popUpButton?.lastItem
       item?.target = object
@@ -317,7 +317,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
     var stringValue = "nil"
     if let unwrappedObject = object {
       let objectIndex = unwrappedObject.explorerObjectIndex ()
-      stringValue = NSString (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject) as! String
+      stringValue = String (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
     button?.enabled = object != nil
     button?.title = stringValue
