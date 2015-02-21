@@ -32,8 +32,8 @@ end
       if %!mAttributeName% != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
         %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
-        for object in %!mAttributeName%_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in %!mAttributeName%_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -97,9 +97,11 @@ end
 
 %  private var %!mRelationshipName%_observers : [Int : PMTransientEventProtocol] = [:]
   private var %!mRelationshipName%_explorer : NSPopUpButton?
+  var %!mRelationshipName%_set = Set<%![mRelationshipType key]%> ()
   var %!mRelationshipName% : Array<%![mRelationshipType key]%> = Array () {
     didSet {
       if oldValue != %!mRelationshipName% {
+        %!mRelationshipName%_set = Set (%!mRelationshipName%)
       //--- Register old value in undo manager
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
       //--- Update explorer
@@ -112,7 +114,7 @@ end
         for managedObject : %![mRelationshipType key]% in removedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
+%          for (key, observer) in %!mRelationshipName%_%!lkey.string%_observers {
             managedObject.removeObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
@@ -125,7 +127,7 @@ end
         for managedObject : %![mRelationshipType key]% in addedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for observer in %!mRelationshipName%_%!lkey.string%_observers.values {
+%          for (key, observer) in %!mRelationshipName%_%!lkey.string%_observers {
             managedObject.addObserverOf_%!lkey.string% (observer, inTrigger:true)
           }
 %end
@@ -133,8 +135,8 @@ end
 %          managedObject.%!mOppositeRelationshipName% = self
         }
       //--- Notify observers object count did change
-        for object in %!mRelationshipName%_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in %!mRelationshipName%_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -191,15 +193,16 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 %    if mOppositeRelationshipIsToMany then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          let optIdx : Int? = find (unwrappedOldValue.%!mOppositeRelationshipName%, self)
-          if let idx = optIdx {
-            unwrappedOldValue.%!mOppositeRelationshipName%.removeAtIndex (idx)
+          if unwrappedOldValue.%!mOppositeRelationshipName%_set.contains (self) {
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%
+            let idx = find (array, self)
+            array.removeAtIndex (idx!)
+            unwrappedOldValue.%!mOppositeRelationshipName% = array
           }
         }
       //--- Set new opposite relation ship
         if let root = %!mRelationshipName% {
-          let optIdx : Int? = find (root.%!mOppositeRelationshipName%, self)
-          if optIdx == nil {
+          if !root.%!mOppositeRelationshipName%_set.contains (self) {
             root.%!mOppositeRelationshipName%.append (self)
           }
         }
@@ -210,8 +213,8 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         %!mRelationshipName%?.%!mOppositeRelationshipName% = self
 %    end
 %      //--- Notify observers
-        for object in %!mRelationshipName%_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in %!mRelationshipName%_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -391,8 +394,8 @@ end
   }
 
   func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for object in %!mTransientName%_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in %!mTransientName%_observers {
+      postTransientEvent (observer)
     }
   }
 

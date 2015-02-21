@@ -145,7 +145,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.addObserverOf_%!mTomanyRelationshipName% (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:false)\n%
+%    rootObject.addObserverOf_%!mTomanyRelationshipName% (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:true)\n%
 end
 %  //--------------------------- Simple controllers
 %for () in CONTROLLER_INSTANCIATION_LIST do

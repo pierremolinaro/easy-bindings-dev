@@ -30,8 +30,8 @@ protocol NameEntity_name {
       if aValue != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:NSNumber (integer:oldValue))
         aValue_explorer?.stringValue = NSString (format:"%ld", aValue) as! String
-        for object in aValue_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in aValue_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -69,8 +69,8 @@ protocol NameEntity_name {
       if name != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue)
         name_explorer?.stringValue = name
-        for object in name_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in name_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -113,21 +113,22 @@ protocol NameEntity_name {
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          let optIdx : Int? = find (unwrappedOldValue.mNames, self)
-          if let idx = optIdx {
-            unwrappedOldValue.mNames.removeAtIndex (idx)
+          if unwrappedOldValue.mNames_set.contains (self) {
+            var array = unwrappedOldValue.mNames
+            let idx = find (array, self)
+            array.removeAtIndex (idx!)
+            unwrappedOldValue.mNames = array
           }
         }
       //--- Set new opposite relation ship
         if let root = mRoot {
-          let optIdx : Int? = find (root.mNames, self)
-          if optIdx == nil {
+          if !root.mNames_set.contains (self) {
             root.mNames.append (self)
           }
         }
       //--- Notify observers
-        for object in mRoot_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in mRoot_observers {
+          postTransientEvent (observer)
         }
       }
     }
