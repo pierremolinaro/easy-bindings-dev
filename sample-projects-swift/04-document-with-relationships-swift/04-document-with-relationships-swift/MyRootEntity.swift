@@ -52,9 +52,11 @@ import Cocoa
 
   private var mNames_observers : [Int : PMTransientEventProtocol] = [:]
   private var mNames_explorer : NSPopUpButton?
+  var mNames_set = Set<NameEntity> ()
   var mNames : Array<NameEntity> = Array () {
     didSet {
       if oldValue != mNames {
+        mNames_set = Set (mNames)
       //--- Register old value in undo manager
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_mNames:", object:oldValue)
       //--- Update explorer
@@ -65,10 +67,10 @@ import Cocoa
         var removedObjectSet : Set<NameEntity> = Set (oldValue)
         removedObjectSet.subtractInPlace (mNames)
         for managedObject : NameEntity in removedObjectSet {
-          for observer in mNames_aValue_observers.values {
+          for (key, observer) in mNames_aValue_observers {
             managedObject.removeObserverOf_aValue (observer, inTrigger:true)
           }
-          for observer in mNames_name_observers.values {
+          for (key, observer) in mNames_name_observers {
             managedObject.removeObserverOf_name (observer, inTrigger:true)
           }
           managedObject.mRoot = nil ;
@@ -77,17 +79,17 @@ import Cocoa
         var addedObjectSet : Set<NameEntity> = Set (mNames)
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : NameEntity in addedObjectSet {
-          for observer in mNames_aValue_observers.values {
+          for (key, observer) in mNames_aValue_observers {
             managedObject.addObserverOf_aValue (observer, inTrigger:true)
           }
-          for observer in mNames_name_observers.values {
+          for (key, observer) in mNames_name_observers {
             managedObject.addObserverOf_name (observer, inTrigger:true)
           }
           managedObject.mRoot = self
         }
       //--- Notify observers object count did change
-        for object in mNames_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in mNames_observers {
+          postTransientEvent (observer)
         }
       }
     }

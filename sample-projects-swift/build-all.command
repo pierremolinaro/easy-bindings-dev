@@ -4,7 +4,7 @@ set -e
 cd `dirname $0`/.. &&
 galgas -v +easyBindings.galgasProject &&
 cd `dirname $0`/../makefile-macosx &&
-make -f makefile easyBindings-debug --warn-undefined-variables -j `sysctl -n hw.ncpu` &&
+python build.py debug &&
 cd `dirname $0` &&
 
 for d in `ls`

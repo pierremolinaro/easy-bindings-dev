@@ -13,14 +13,14 @@ atomac.launchAppByBundlePath (scriptDir + "/build/Release/01-simple-preferences-
 
 bundleName = 'fr.free.pcmolinaro.-1-simple-preferences-swift'
 monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.8)
+time.sleep (0.8)
 
 window = monAppli.windows('01-simple-preferences')[0]
 
 text1 = window.findFirst (AXDescription='texte1')
 text2 = window.findFirst (AXDescription='texte2')
 
-testValue = ''.join (random.choice (string.ascii_uppercase + string.digits) for x in range(16))
+testValue = ''.join (random.choice (string.ascii_uppercase + string.digits) for x in range (16))
 #--- Enter text via 'text1'
 text1.AXValue = testValue
 monAppli.sendKey ('\n')
