@@ -395,22 +395,22 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       error:nil
     )!
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
-    var objectArray = NSMutableArray  ()
+    var objectArray : Array<PMManagedObject> = Array  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as! String
       let object = newInstanceOfEntityNamed (className)
-      objectArray.addObject (object!)
+      objectArray.append (object!)
     }
     var idx = 0
     for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx] as! PMManagedObject
+      var object : PMManagedObject = objectArray [idx]
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
     // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
     // NSLog ("Read %f ms", timeTaken)
   //--- Set root object
-    mRootObject = objectArray [0] as? PMManagedObject
+    mRootObject = objectArray [0]
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

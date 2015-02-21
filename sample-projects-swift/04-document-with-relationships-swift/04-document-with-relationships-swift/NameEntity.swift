@@ -113,20 +113,16 @@ protocol NameEntity_name {
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          let idx = unwrappedOldValue.mNames.indexOfObjectIdenticalTo (self)
-          if idx != NSNotFound {
-            var array = unwrappedOldValue.mNames.mutableCopy () as! NSMutableArray
-            array.removeObjectAtIndex (idx)
-            unwrappedOldValue.mNames = array
+          let optIdx : Int? = find (unwrappedOldValue.mNames, self)
+          if let idx = optIdx {
+            unwrappedOldValue.mNames.removeAtIndex (idx)
           }
         }
       //--- Set new opposite relation ship
         if let root = mRoot {
-          let idx = root.mNames.indexOfObjectIdenticalTo (self)
-          if idx == NSNotFound {
-            var array = root.mNames.mutableCopy () as! NSMutableArray
-            array.addObject (self)
-            root.mNames = array
+          let optIdx : Int? = find (root.mNames, self)
+          if optIdx == nil {
+            root.mNames.append (self)
           }
         }
       //--- Notify observers
@@ -209,7 +205,7 @@ protocol NameEntity_name {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) {
+                                     managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     aValue = inDictionary.readInt ("aValue")
     name = inDictionary.readString ("name")
