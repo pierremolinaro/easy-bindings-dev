@@ -63,20 +63,16 @@ class Controller_MyPrefs_prefBoolean_PMSwitch_value : NSObject, PMTransientEvent
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        outlet.state = object.prefBoolean ? 1 : 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      outlet.state = object.prefBoolean ? 1 : 0
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMSwitch) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        object.prefBoolean = outlet.state != 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      object.prefBoolean = outlet.state != 0
     }
   }
 
@@ -155,20 +151,16 @@ class Controller_MyRootEntity_docBool_PMSwitch_value : NSObject, PMTransientEven
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        outlet.state = object.docBool ? 1 : 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      outlet.state = object.docBool ? 1 : 0
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMSwitch) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        object.docBool = outlet.state != 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      object.docBool = outlet.state != 0
     }
   }
 

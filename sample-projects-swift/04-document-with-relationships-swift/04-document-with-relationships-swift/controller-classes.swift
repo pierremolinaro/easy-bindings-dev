@@ -62,8 +62,8 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = mObject!.mNames_count
+    if let outlet = mOutlet, object = mObject {
+      outlet.integerValue = object.mNames_count
     }
   }
 
@@ -138,8 +138,8 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTra
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.canRemoveString) {
-      mOutlet!.stringValue = mObject!.canRemoveString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.canRemoveString {
+      outlet.stringValue = object.canRemoveString
     }
   }
 
@@ -214,8 +214,8 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.countItemMessage) {
-      mOutlet!.stringValue = mObject!.countItemMessage
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.countItemMessage {
+      outlet.stringValue = object.countItemMessage
     }
   }
 
@@ -293,8 +293,8 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEv
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = mObject!.total
+    if let outlet = mOutlet, object = mObject {
+      outlet.integerValue = object.total
     }
   }
 

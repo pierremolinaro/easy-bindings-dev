@@ -63,38 +63,36 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.myColor) {
-      mOutlet!.color = mObject!.myColor
+    if let outlet = mOutlet, object = mObject where outlet.color != object.myColor {
+      outlet.color = object.myColor
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMColorWell) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        let validationResult = object.validate_myColor (outlet.color)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.myColor = outlet.color
-          if mSendContinously {
-            flushTriggers ()
-          }
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The color “%@” is invalid.", outlet.color)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.color = object.myColor
-              }
-            })
-          }
+    if let outlet = mOutlet, object = mObject {
+      let validationResult = object.validate_myColor (outlet.color)
+      switch validationResult {
+      case PMValidationResult.ok :
+        object.myColor = outlet.color
+        if mSendContinously {
+          flushTriggers ()
+        }
+      case PMValidationResult.rejectWithBeep :
+         NSBeep ()
+      case PMValidationResult.rejectWithAlert (let informativeText) :
+        if let window = sender.window {
+          let alert = NSAlert ()
+          alert.messageText = String (format:"The color “%@” is invalid.", outlet.color)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            outlet.color = object.myColor
+            }
+          })
         }
       }
     }
@@ -172,16 +170,16 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.rawValue) {
-      mOutlet!.selectCellAtRow (mObject!.myEnumeration.rawValue, column:0)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.rawValue {
+      outlet.selectCellAtRow (object.myEnumeration.rawValue, column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.myEnumeration.rawValue) {
-      mObject!.myEnumeration = mObject!.myEnumeration.enumfromRawValue (mOutlet!.selectedRow)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.rawValue {
+      object.myEnumeration = object.myEnumeration.enumfromRawValue (outlet.selectedRow)
     }
   }
 
@@ -261,35 +259,33 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myString) {
-      mOutlet!.stringValue = mObject!.myString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myString {
+      outlet.stringValue = object.myString
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        let validationResult = object.validate_myString (outlet.stringValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.myString = outlet.stringValue
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.stringValue = object.myString
-              }
-            })
-          }
+    if let outlet = mOutlet, object = mObject {
+      let validationResult = object.validate_myString (outlet.stringValue)
+      switch validationResult {
+      case PMValidationResult.ok :
+        object.myString = outlet.stringValue
+      case PMValidationResult.rejectWithBeep :
+        NSBeep ()
+      case PMValidationResult.rejectWithAlert (let informativeText) :
+        if let window = sender.window {
+          let alert = NSAlert ()
+          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.myString
+            }
+          })
         }
       }
     }
@@ -366,8 +362,8 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringConcat) {
-      mOutlet!.stringValue = mObject!.myStringConcat
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringConcat {
+      outlet.stringValue = object.myStringConcat
     }
   }
 
@@ -442,8 +438,8 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrans
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringMaj) {
-      mOutlet!.stringValue = mObject!.myStringMaj
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMaj {
+      outlet.stringValue = object.myStringMaj
     }
   }
 
@@ -518,8 +514,8 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrans
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myStringMin) {
-      mOutlet!.stringValue = mObject!.myStringMin
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMin {
+      outlet.stringValue = object.myStringMin
     }
   }
 

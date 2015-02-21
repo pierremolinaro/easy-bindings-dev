@@ -16699,38 +16699,36 @@ const char * gWrapperFileContent_0_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.color != mObject!.$MODEL$) {\n"
-  "      mOutlet!.color = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.color != object.$MODEL$ {\n"
+  "      outlet.color = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMColorWell) {\n"
-  "    if let outlet = mOutlet {\n"
-  "      if let object = mObject {\n"
-  "        let validationResult = object.validate_$MODEL$ (outlet.color)\n"
-  "        switch validationResult {\n"
-  "        case PMValidationResult.ok :\n"
-  "          object.$MODEL$ = outlet.color\n"
-  "          if mSendContinously {\n"
-  "            flushTriggers ()\n"
-  "          }\n"
-  "        case PMValidationResult.rejectWithBeep :\n"
-  "          NSBeep ()\n"
-  "        case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-  "          if let window = sender.window {\n"
-  "            let alert = NSAlert ()\n"
-  "            alert.messageText = String (format:\"The color \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.color)\n"
-  "            alert.informativeText = informativeText\n"
-  "            alert.addButtonWithTitle (\"Ok\")\n"
-  "            alert.addButtonWithTitle (\"Discard Change\")\n"
-  "            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-  "              if response == NSAlertSecondButtonReturn { // Discard Change\n"
-  "                outlet.color = object.$MODEL$\n"
-  "              }\n"
-  "            })\n"
-  "          }\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      let validationResult = object.validate_$MODEL$ (outlet.color)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$ = outlet.color\n"
+  "        if mSendContinously {\n"
+  "          flushTriggers ()\n"
+  "        }\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "         NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The color \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.color)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "            outlet.color = object.$MODEL$\n"
+  "            }\n"
+  "          })\n"
   "        }\n"
   "      }\n"
   "    }\n"
@@ -16753,7 +16751,7 @@ const cRegularFileWrapper gWrapperFile_0_controllerTemplates (
   "PMColorWell.color.Color.model.txt",
   "txt",
   true, // Text file
-  4174, // Text length
+  4098, // Text length
   gWrapperFileContent_0_controllerTemplates
 ) ;
 
@@ -16815,16 +16813,16 @@ const char * gWrapperFileContent_1_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && !mOutlet!.dateValue.isEqualToDate (mObject!.$MODEL$) {\n"
-  "      mOutlet!.dateValue = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$) {\n"
+  "      outlet.dateValue = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : AnyObject!) {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && !mOutlet!.dateValue.isEqualToDate (mObject!.$MODEL$) {\n"
-  "      mObject!.$MODEL$ = mOutlet!.dateValue\n"
+  "    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$) {\n"
+  "      object.$MODEL$ = outlet.dateValue\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -16845,7 +16843,7 @@ const cRegularFileWrapper gWrapperFile_1_controllerTemplates (
   "PMDatePicker.date.Date.model.txt",
   "txt",
   true, // Text file
-  3146, // Text length
+  3140, // Text length
   gWrapperFileContent_1_controllerTemplates
 ) ;
 
@@ -16907,16 +16905,16 @@ const char * gWrapperFileContent_2_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.rawValue) {\n"
-  "      mOutlet!.selectCellAtRow (mObject!.$MODEL$.rawValue, column:0)\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.rawValue {\n"
+  "      outlet.selectCellAtRow (object.$MODEL$.rawValue, column:0)\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : AnyObject!) {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.selectedRow != mObject!.$MODEL$.rawValue) {\n"
-  "      mObject!.$MODEL$ = mObject!.$MODEL$.enumfromRawValue (mOutlet!.selectedRow)\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.rawValue {\n"
+  "      object.$MODEL$ = object.$MODEL$.enumfromRawValue (outlet.selectedRow)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -16937,7 +16935,7 @@ const cRegularFileWrapper gWrapperFile_2_controllerTemplates (
   "PMMatrix.selectedIndex.Enum.model.txt",
   "txt",
   true, // Text file
-  3206, // Text length
+  3194, // Text length
   gWrapperFileContent_2_controllerTemplates
 ) ;
 
@@ -17001,8 +16999,8 @@ const char * gWrapperFileContent_3_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) {\n"
-  "      mOutlet!.integerValue = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.integerValue = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -17023,7 +17021,7 @@ const cRegularFileWrapper gWrapperFile_3_controllerTemplates (
   "PMNumberField.rvalue.Integer.model.txt",
   "txt",
   true, // Text file
-  2986, // Text length
+  2984, // Text length
   gWrapperFileContent_3_controllerTemplates
 ) ;
 
@@ -17092,35 +17090,33 @@ const char * gWrapperFileContent_4_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) {\n"
-  "      mOutlet!.myIntegerValue = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.myIntegerValue = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMNumberField) {\n"
-  "    if let outlet = mOutlet {\n"
-  "      if let object = mObject {\n"
-  "        let validationResult = object.validate_$MODEL$ (outlet.integerValue)\n"
-  "        switch validationResult {\n"
-  "        case PMValidationResult.ok :\n"
-  "          object.$MODEL$ = outlet.integerValue\n"
-  "        case PMValidationResult.rejectWithBeep :\n"
-  "          NSBeep ()\n"
-  "        case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-  "          if let window = sender.window {\n"
-  "            let alert = NSAlert ()\n"
-  "            alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
-  "            alert.informativeText = informativeText\n"
-  "            alert.addButtonWithTitle (\"Ok\")\n"
-  "            alert.addButtonWithTitle (\"Discard Change\")\n"
-  "            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-  "              if response == NSAlertSecondButtonReturn { // Discard Change\n"
-  "                outlet.myIntegerValue = object.$MODEL$\n"
-  "              }\n"
-  "            })\n"
-  "          }\n"
+  "    if let outlet = mOutlet,object = mObject {\n"
+  "      let validationResult = object.validate_$MODEL$ (outlet.integerValue)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$ = outlet.integerValue\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "        NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "            if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "              outlet.myIntegerValue = object.$MODEL$\n"
+  "            }\n"
+  "          })\n"
   "        }\n"
   "      }\n"
   "    }\n"
@@ -17143,7 +17139,7 @@ const cRegularFileWrapper gWrapperFile_4_controllerTemplates (
   "PMNumberField.value.Integer.model.txt",
   "txt",
   true, // Text file
-  4374, // Text length
+  4309, // Text length
   gWrapperFileContent_4_controllerTemplates
 ) ;
 
@@ -17208,20 +17204,16 @@ const char * gWrapperFileContent_5_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if let outlet = mOutlet {\n"
-  "      if let object = mObject {\n"
-  "        outlet.state = object.$MODEL$ \? 1 : 0\n"
-  "      }\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.state = object.$MODEL$ \? 1 : 0\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMSwitch) {\n"
-  "    if let outlet = mOutlet {\n"
-  "      if let object = mObject {\n"
-  "        object.$MODEL$ = outlet.state != 0\n"
-  "      }\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      object.$MODEL$ = outlet.state != 0\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -17242,7 +17234,7 @@ const cRegularFileWrapper gWrapperFile_5_controllerTemplates (
   "PMSwitch.value.Bool.model.txt",
   "txt",
   true, // Text file
-  3184, // Text length
+  3136, // Text length
   gWrapperFileContent_5_controllerTemplates
 ) ;
 
@@ -17303,8 +17295,8 @@ const char * gWrapperFileContent_6_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {\n"
-  "      mOutlet!.stringValue = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {\n"
+  "      outlet.stringValue = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -17325,7 +17317,7 @@ const cRegularFileWrapper gWrapperFile_6_controllerTemplates (
   "PMTextField.rvalue.String.model.txt",
   "txt",
   true, // Text file
-  2815, // Text length
+  2810, // Text length
   gWrapperFileContent_6_controllerTemplates
 ) ;
 
@@ -17391,35 +17383,33 @@ const char * gWrapperFileContent_7_controllerTemplates = "@objc(Controller_$OBJE
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func trigger () {\n"
-  "    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {\n"
-  "      mOutlet!.stringValue = mObject!.$MODEL$\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {\n"
+  "      outlet.stringValue = object.$MODEL$\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMTextField) {\n"
-  "    if let outlet = mOutlet {\n"
-  "      if let object = mObject {\n"
-  "        let validationResult = object.validate_$MODEL$ (outlet.stringValue)\n"
-  "        switch validationResult {\n"
-  "        case PMValidationResult.ok :\n"
-  "          object.$MODEL$ = outlet.stringValue\n"
-  "        case PMValidationResult.rejectWithBeep :\n"
-  "          NSBeep ()\n"
-  "        case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-  "          if let window = sender.window {\n"
-  "            let alert = NSAlert ()\n"
-  "            alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
-  "            alert.informativeText = informativeText\n"
-  "            alert.addButtonWithTitle (\"Ok\")\n"
-  "            alert.addButtonWithTitle (\"Discard Change\")\n"
-  "            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-  "              if response == NSAlertSecondButtonReturn { // Discard Change\n"
-  "                outlet.stringValue = object.$MODEL$\n"
-  "              }\n"
-  "            })\n"
-  "          }\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      let validationResult = object.validate_$MODEL$ (outlet.stringValue)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$ = outlet.stringValue\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "        NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "            if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "              outlet.stringValue = object.$MODEL$\n"
+  "            }\n"
+  "          })\n"
   "        }\n"
   "      }\n"
   "    }\n"
@@ -17442,7 +17432,7 @@ const cRegularFileWrapper gWrapperFile_7_controllerTemplates (
   "PMTextField.value.String.model.txt",
   "txt",
   true, // Text file
-  4213, // Text length
+  4146, // Text length
   gWrapperFileContent_7_controllerTemplates
 ) ;
 

@@ -64,35 +64,33 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientE
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.myPrefString) {
-      mOutlet!.stringValue = mObject!.myPrefString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myPrefString {
+      outlet.stringValue = object.myPrefString
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        let validationResult = object.validate_myPrefString (outlet.stringValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.myPrefString = outlet.stringValue
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.stringValue = object.myPrefString
-              }
-            })
-          }
+    if let outlet = mOutlet, object = mObject {
+      let validationResult = object.validate_myPrefString (outlet.stringValue)
+      switch validationResult {
+      case PMValidationResult.ok :
+        object.myPrefString = outlet.stringValue
+      case PMValidationResult.rejectWithBeep :
+        NSBeep ()
+      case PMValidationResult.rejectWithAlert (let informativeText) :
+        if let window = sender.window {
+          let alert = NSAlert ()
+          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.myPrefString
+            }
+          })
         }
       }
     }
@@ -169,8 +167,8 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.prefTransientString) {
-      mOutlet!.stringValue = mObject!.prefTransientString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.prefTransientString {
+      outlet.stringValue = object.prefTransientString
     }
   }
 
@@ -250,35 +248,33 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransien
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.docString) {
-      mOutlet!.stringValue = mObject!.docString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.docString {
+      outlet.stringValue = object.docString
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        let validationResult = object.validate_docString (outlet.stringValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.docString = outlet.stringValue
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.stringValue = object.docString
-              }
-            })
-          }
+    if let outlet = mOutlet, object = mObject {
+      let validationResult = object.validate_docString (outlet.stringValue)
+      switch validationResult {
+      case PMValidationResult.ok :
+        object.docString = outlet.stringValue
+      case PMValidationResult.rejectWithBeep :
+        NSBeep ()
+      case PMValidationResult.rejectWithAlert (let informativeText) :
+        if let window = sender.window {
+          let alert = NSAlert ()
+          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.docString
+            }
+          })
         }
       }
     }
@@ -355,8 +351,8 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObjec
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.transientConcatString) {
-      mOutlet!.stringValue = mObject!.transientConcatString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.transientConcatString {
+      outlet.stringValue = object.transientConcatString
     }
   }
 

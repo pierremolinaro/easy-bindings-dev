@@ -56,8 +56,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransi
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) {
-      mOutlet!.integerValue = mObject!.$MODEL$
+    if let outlet = mOutlet, object = mObject {
+      outlet.integerValue = object.$MODEL$
     }
   }
 
