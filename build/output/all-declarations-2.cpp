@@ -3349,13 +3349,13 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\n"
   "\n"
   "  func readEntityArrayFromDictionary (inRelationshipName: String,\n"
   "                                     inDictionary : NSDictionary,\n"
-  "                                     managedObjectArray : Array<PMManagedObject>) -> Array<NameEntity> {\n"
+  "                                     managedObjectArray : Array<PMManagedObject>) -> Array<PMManagedObject> {\n"
   "    let opIndexArray : Array<Int>\? = inDictionary.valueForKey (inRelationshipName) as\? Array<Int>\n"
-  "    var result : Array<NameEntity> = Array ()\n"
+  "    var result = Array<PMManagedObject> ()\n"
   "    if let indexArray = opIndexArray {\n"
   "      for number : Int in indexArray {\n"
   "        let managedObject = managedObjectArray [number]\n"
-  "        result.append (managedObject as! NameEntity)\n"
+  "        result.append (managedObject)\n"
   "      }\n"
   "    }\n"
   "    return result\n"
@@ -3586,7 +3586,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "PMManagedObject.swift",
   "swift",
   true, // Text file
-  28746, // Text length
+  28733, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 

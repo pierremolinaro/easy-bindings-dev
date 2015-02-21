@@ -36,8 +36,8 @@ protocol MyRootEntity_myString {
       if myColor != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue)
         myColor_explorer?.stringValue = myColor.description
-        for object in myColor_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in myColor_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -75,8 +75,8 @@ protocol MyRootEntity_myString {
       if myEnumeration != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:NSNumber (integer:oldValue.rawValue))
         myEnumeration_explorer?.stringValue = myEnumeration.string ()
-        for object in myEnumeration_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in myEnumeration_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -114,8 +114,8 @@ protocol MyRootEntity_myString {
       if myString != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue)
         myString_explorer?.stringValue = myString
-        for object in myString_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in myString_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -223,7 +223,7 @@ protocol MyRootEntity_myString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) {
+                                     managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     myColor = inDictionary.readNSColor ("myColor")
     myEnumeration = inDictionary.readMonEnumeration ("myEnumeration")
@@ -252,8 +252,8 @@ protocol MyRootEntity_myString {
   }
 
   func entity_2E_MyRootEntity_2E_myStringConcat_trigger () {
-    for object in myStringConcat_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in myStringConcat_observers {
+      postTransientEvent (observer)
     }
   }
 
@@ -301,8 +301,8 @@ protocol MyRootEntity_myString {
   }
 
   func entity_2E_MyRootEntity_2E_myStringMaj_trigger () {
-    for object in myStringMaj_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in myStringMaj_observers {
+      postTransientEvent (observer)
     }
   }
 
@@ -350,8 +350,8 @@ protocol MyRootEntity_myString {
   }
 
   func entity_2E_MyRootEntity_2E_myStringMin_trigger () {
-    for object in myStringMin_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in myStringMin_observers {
+      postTransientEvent (observer)
     }
   }
 

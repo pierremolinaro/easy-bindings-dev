@@ -76,7 +76,7 @@ if not mIsCollection then
   func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = inObserver
     for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as! NameEntity
+      let managedObject = object as! %![mRelationshipType key]%
       managedObject.addObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
     }
   }
@@ -84,7 +84,7 @@ if not mIsCollection then
   func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = nil
     for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as! NameEntity
+      let managedObject = object as! %![mRelationshipType key]%
       managedObject.removeObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
     }
   }
