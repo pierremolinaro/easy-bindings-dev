@@ -191,20 +191,16 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 %    if mOppositeRelationshipIsToMany then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          let idx = unwrappedOldValue.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
-          if idx != NSNotFound {
-            var array = unwrappedOldValue.%!mOppositeRelationshipName%.mutableCopy () as! NSMutableArray
-            array.removeObjectAtIndex (idx)
-            unwrappedOldValue.%!mOppositeRelationshipName% = array
+          let optIdx : Int? = find (unwrappedOldValue.%!mOppositeRelationshipName%, self)
+          if let idx = optIdx {
+            unwrappedOldValue.%!mOppositeRelationshipName%.removeAtIndex (idx)
           }
         }
       //--- Set new opposite relation ship
         if let root = %!mRelationshipName% {
-          let idx = root.%!mOppositeRelationshipName%.indexOfObjectIdenticalTo (self)
-          if idx == NSNotFound {
-            var array = root.%!mOppositeRelationshipName%.mutableCopy () as! NSMutableArray
-            array.addObject (self)
-            root.%!mOppositeRelationshipName% = array
+          let optIdx : Int? = find (root.%!mOppositeRelationshipName%, self)
+          if optIdx == nil {
+            root.%!mOppositeRelationshipName%.append (self)
           }
         }
 %    else
@@ -353,7 +349,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) {
+                                     managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %    %!mAttributeName% = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
