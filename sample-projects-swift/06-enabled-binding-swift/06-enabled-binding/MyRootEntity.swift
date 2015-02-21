@@ -24,8 +24,8 @@ protocol MyRootEntity_docBool {
       if docBool != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docBool:", object:NSNumber (bool:oldValue))
         docBool_explorer?.stringValue = NSString (format:"%s", docBool ? "true" : "false") as! String
-        for object in docBool_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in docBool_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -96,7 +96,7 @@ protocol MyRootEntity_docBool {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) {
+                                     managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     docBool = inDictionary.readBool ("docBool")
   }

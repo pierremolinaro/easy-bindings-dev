@@ -31,7 +31,7 @@ var g_Prefs : Prefs? = nil
   var mFirstName : String = "Schmurtz" {
     didSet {
       if mFirstName != oldValue {
-        for object in mFirstName_observers.values {
+        for (key, object) in mFirstName_observers {
           postTransientEvent (object)
         }
       }
@@ -63,7 +63,7 @@ var g_Prefs : Prefs? = nil
   var mName : String = "Amédée" {
     didSet {
       if mName != oldValue {
-        for object in mName_observers.values {
+        for (key, object) in mName_observers {
           postTransientEvent (object)
         }
       }
@@ -107,7 +107,7 @@ var g_Prefs : Prefs? = nil
   
 
   func preference_2E_Prefs_2E_mFullName_trigger () {
-    for object in mFullName_observers.values {
+    for (key, object) in mFullName_observers {
       postTransientEvent (object)
     }
   }
@@ -155,7 +155,7 @@ var g_Prefs : Prefs? = nil
   
 
   func preference_2E_Prefs_2E_mUpperCaseFullName_trigger () {
-    for object in mUpperCaseFullName_observers.values {
+    for (key, object) in mUpperCaseFullName_observers {
       postTransientEvent (object)
     }
   }

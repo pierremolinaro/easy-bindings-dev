@@ -212,7 +212,7 @@ end
   }
 
   func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for object in %!mTransientName%_observers.values {
+    for (key, object) in %!mTransientName%_observers {
       postTransientEvent (object)
     }
   }

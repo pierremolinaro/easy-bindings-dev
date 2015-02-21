@@ -323,7 +323,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: preference.MyPrefs.prefTransientString\n")
       }
       mFlushLevel = 3
-      for object in mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString.values {
+      for (key, object) in mTriggerSet_preference_2E_MyPrefs_2E_prefTransientString {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -337,7 +337,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: entity.MyRootEntity.transientConcatString\n")
       }
       mFlushLevel = 2
-      for object in mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString.values {
+      for (key, object) in mTriggerSet_entity_2E_MyRootEntity_2E_transientConcatString {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -351,7 +351,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: entity.MyRootEntity.otherTransientConcatString\n")
       }
       mFlushLevel = 1
-      for object in mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString.values {
+      for (key, object) in mTriggerSet_entity_2E_MyRootEntity_2E_otherTransientConcatString {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -365,7 +365,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }

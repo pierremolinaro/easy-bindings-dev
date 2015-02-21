@@ -373,7 +373,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 4: document.PMDocument.nameController\n")
       }
       mFlushLevel = 4
-      for object in mTriggerSet_document_2E_PMDocument_2E_nameController.values {
+      for (key, object) in mTriggerSet_document_2E_PMDocument_2E_nameController {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -387,7 +387,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: document.PMDocument.total\n")
       }
       mFlushLevel = 3
-      for object in mTriggerSet_document_2E_PMDocument_2E_total.values {
+      for (key, object) in mTriggerSet_document_2E_PMDocument_2E_total {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -401,7 +401,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: document.PMDocument.countItemMessage\n")
       }
       mFlushLevel = 2
-      for object in mTriggerSet_document_2E_PMDocument_2E_countItemMessage.values {
+      for (key, object) in mTriggerSet_document_2E_PMDocument_2E_countItemMessage {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -415,7 +415,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: document.PMDocument.canRemoveString\n")
       }
       mFlushLevel = 1
-      for object in mTriggerSet_document_2E_PMDocument_2E_canRemoveString.values {
+      for (key, object) in mTriggerSet_document_2E_PMDocument_2E_canRemoveString {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -429,7 +429,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }

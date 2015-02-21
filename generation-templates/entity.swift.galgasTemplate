@@ -359,9 +359,17 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    %!mRelationshipName% = readEntityArrayFromDictionary ("%!mRelationshipName%", inDictionary:inDictionary, managedObjectArray:managedObjectArray)\n%
+%    %!mRelationshipName% = readEntityArrayFromDictionary (
+        "%!mRelationshipName%",
+        inDictionary:inDictionary,
+        managedObjectArray:managedObjectArray
+      ) as! Array<%![mRelationshipType key]%>\n%
   elsif not mOppositeRelationshipIsToMany then
-%    %!mRelationshipName% = readEntityFromDictionary ("%!mRelationshipName%", inDictionary:inDictionary, managedObjectArray:managedObjectArray) as? %![mRelationshipType key]%\n%
+%    %!mRelationshipName% = readEntityFromDictionary (
+        "%!mRelationshipName%",
+        inDictionary:inDictionary,
+        managedObjectArray:managedObjectArray
+      ) as? %![mRelationshipType key]%\n%
   end
 end
 %  }

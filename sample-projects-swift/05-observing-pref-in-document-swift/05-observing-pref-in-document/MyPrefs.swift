@@ -28,7 +28,7 @@ var g_MyPrefs : MyPrefs? = nil
   var myPrefString : String = "pref string" {
     didSet {
       if myPrefString != oldValue {
-        for object in myPrefString_observers.values {
+        for (key, object) in myPrefString_observers {
           postTransientEvent (object)
         }
       }
@@ -72,7 +72,7 @@ var g_MyPrefs : MyPrefs? = nil
   
 
   func preference_2E_MyPrefs_2E_prefTransientString_trigger () {
-    for object in prefTransientString_observers.values {
+    for (key, object) in prefTransientString_observers {
       postTransientEvent (object)
     }
   }

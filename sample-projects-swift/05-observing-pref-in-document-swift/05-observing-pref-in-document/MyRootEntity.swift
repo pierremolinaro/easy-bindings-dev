@@ -24,8 +24,8 @@ protocol MyRootEntity_docString {
       if docString != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docString:", object:oldValue)
         docString_explorer?.stringValue = docString
-        for object in docString_observers.values {
-          postTransientEvent (object)
+        for (key, observer) in docString_observers {
+          postTransientEvent (observer)
         }
       }
     }
@@ -121,7 +121,7 @@ protocol MyRootEntity_docString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) {
+                                     managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     docString = inDictionary.readString ("docString")
   }
@@ -148,8 +148,8 @@ protocol MyRootEntity_docString {
   }
 
   func entity_2E_MyRootEntity_2E_otherTransientConcatString_trigger () {
-    for object in otherTransientConcatString_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in otherTransientConcatString_observers {
+      postTransientEvent (observer)
     }
   }
 
@@ -197,8 +197,8 @@ protocol MyRootEntity_docString {
   }
 
   func entity_2E_MyRootEntity_2E_transientConcatString_trigger () {
-    for object in transientConcatString_observers.values {
-      postTransientEvent (object)
+    for (key, observer) in transientConcatString_observers {
+      postTransientEvent (observer)
     }
   }
 

@@ -168,7 +168,11 @@ import Cocoa
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    mNames = readEntityArrayFromDictionary ("mNames", inDictionary:inDictionary, managedObjectArray:managedObjectArray)
+    mNames = readEntityArrayFromDictionary (
+        "mNames",
+        inDictionary:inDictionary,
+        managedObjectArray:managedObjectArray
+      ) as! Array<NameEntity>
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

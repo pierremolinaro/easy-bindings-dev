@@ -241,7 +241,7 @@ end%    }
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level %![[TRANSIENT_LIST length] - idx string]%: %!mValue%\\n")
       }
       mFlushLevel = %![[TRANSIENT_LIST length] - idx string]%
-      for object in mTriggerSet_%![mValue identifierRepresentation]%.values {
+      for (key, object) in mTriggerSet_%![mValue identifierRepresentation]% {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#\%d:\%@\\n", object.uniqueIndex, object.userClassName()))
         }
@@ -256,7 +256,7 @@ end%    }
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#\%d:\%@\\n", object.uniqueIndex, object.userClassName()))
         }

@@ -25,7 +25,7 @@ if not ok:
 
 bundleName = 'fr.free.pcmolinaro.-3-simple-document-swift'
 monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.5)
+time.sleep(.8)
 
 window = monAppli.windows()[0]
 
