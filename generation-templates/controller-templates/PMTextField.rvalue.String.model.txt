@@ -53,8 +53,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTransien
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
-      mOutlet!.stringValue = mObject!.$MODEL$
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {
+      outlet.stringValue = object.$MODEL$
     }
   }
 

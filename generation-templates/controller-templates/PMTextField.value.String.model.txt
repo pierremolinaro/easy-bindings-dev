@@ -58,35 +58,33 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if (mOutlet != nil) && (mObject != nil) && (mOutlet!.stringValue != mObject!.$MODEL$) {
-      mOutlet!.stringValue = mObject!.$MODEL$
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {
+      outlet.stringValue = object.$MODEL$
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        let validationResult = object.validate_$MODEL$ (outlet.stringValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.$MODEL$ = outlet.stringValue
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                outlet.stringValue = object.$MODEL$
-              }
-            })
-          }
+    if let outlet = mOutlet, object = mObject {
+      let validationResult = object.validate_$MODEL$ (outlet.stringValue)
+      switch validationResult {
+      case PMValidationResult.ok :
+        object.$MODEL$ = outlet.stringValue
+      case PMValidationResult.rejectWithBeep :
+        NSBeep ()
+      case PMValidationResult.rejectWithAlert (let informativeText) :
+        if let window = sender.window {
+          let alert = NSAlert ()
+          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
+          alert.informativeText = informativeText
+          alert.addButtonWithTitle ("Ok")
+          alert.addButtonWithTitle ("Discard Change")
+          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+            if response == NSAlertSecondButtonReturn { // Discard Change
+              outlet.stringValue = object.$MODEL$
+            }
+          })
         }
       }
     }

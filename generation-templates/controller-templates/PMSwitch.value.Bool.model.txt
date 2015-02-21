@@ -57,20 +57,16 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEve
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        outlet.state = object.$MODEL$ ? 1 : 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      outlet.state = object.$MODEL$ ? 1 : 0
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMSwitch) {
-    if let outlet = mOutlet {
-      if let object = mObject {
-        object.$MODEL$ = outlet.state != 0
-      }
+    if let outlet = mOutlet, object = mObject {
+      object.$MODEL$ = outlet.state != 0
     }
   }
 
