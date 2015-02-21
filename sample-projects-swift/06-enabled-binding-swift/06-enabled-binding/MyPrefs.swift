@@ -28,7 +28,7 @@ var g_MyPrefs : MyPrefs? = nil
   var prefBoolean : Bool = true {
     didSet {
       if prefBoolean != oldValue {
-        for object in prefBoolean_observers.values {
+        for (key, object) in prefBoolean_observers {
           postTransientEvent (object)
         }
       }

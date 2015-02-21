@@ -36,7 +36,7 @@ var g_PMPrefs : PMPrefs? = nil
   var mColor : NSColor = NSColor.yellowColor () {
     didSet {
       if mColor != oldValue {
-        for object in mColor_observers.values {
+        for (key, object) in mColor_observers {
           postTransientEvent (object)
         }
       }
@@ -68,7 +68,7 @@ var g_PMPrefs : PMPrefs? = nil
   var mDate : NSDate = NSDate () {
     didSet {
       if mDate != oldValue {
-        for object in mDate_observers.values {
+        for (key, object) in mDate_observers {
           postTransientEvent (object)
         }
       }
@@ -100,7 +100,7 @@ var g_PMPrefs : PMPrefs? = nil
   var mIntegerValue : Int = 123 {
     didSet {
       if mIntegerValue != oldValue {
-        for object in mIntegerValue_observers.values {
+        for (key, object) in mIntegerValue_observers {
           postTransientEvent (object)
         }
       }
@@ -129,7 +129,7 @@ var g_PMPrefs : PMPrefs? = nil
   var myString : String = "hello" {
     didSet {
       if myString != oldValue {
-        for object in myString_observers.values {
+        for (key, object) in myString_observers {
           postTransientEvent (object)
         }
       }

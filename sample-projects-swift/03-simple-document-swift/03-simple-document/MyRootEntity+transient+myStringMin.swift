@@ -18,7 +18,8 @@ import Cocoa
 func compute_MyRootEntity_myStringMin (myString : String) -> String  {
 
 //--- START OF USER ZONE 2
-  return myString.lowercaseString
+  let s : NSString = myString as NSString
+  return s.lowercaseString as String
 //--- END OF USER ZONE 2
 
 }

@@ -166,7 +166,7 @@ import Cocoa
   }
 
   func document_2E_PMDocument_2E_canRemoveString_trigger () {
-    for object in canRemoveString_observers.values {
+    for (key, object) in canRemoveString_observers {
       postTransientEvent (object)
     }
   }
@@ -213,7 +213,7 @@ import Cocoa
   }
 
   func document_2E_PMDocument_2E_countItemMessage_trigger () {
-    for object in countItemMessage_observers.values {
+    for (key, object) in countItemMessage_observers {
       postTransientEvent (object)
     }
   }
@@ -260,7 +260,7 @@ import Cocoa
   }
 
   func document_2E_PMDocument_2E_total_trigger () {
-    for object in total_observers.values {
+    for (key, object) in total_observers {
       postTransientEvent (object)
     }
   }

@@ -275,7 +275,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: preference.Prefs.mFullName\n")
       }
       mFlushLevel = 2
-      for object in mTriggerSet_preference_2E_Prefs_2E_mFullName.values {
+      for (key, object) in mTriggerSet_preference_2E_Prefs_2E_mFullName {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -289,7 +289,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: preference.Prefs.mUpperCaseFullName\n")
       }
       mFlushLevel = 1
-      for object in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName.values {
+      for (key, object) in mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -303,7 +303,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }

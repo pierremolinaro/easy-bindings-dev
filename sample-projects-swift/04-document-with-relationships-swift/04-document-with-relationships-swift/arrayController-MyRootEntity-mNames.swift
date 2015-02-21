@@ -445,7 +445,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     let newValue = mSelectedObjectArray.count > 0
     if canRemove_private != newValue {
       canRemove_private = newValue
-      for object in canRemove_observers.values {
+      for (key, object) in canRemove_observers {
         postTransientEvent (object)
       }
     }

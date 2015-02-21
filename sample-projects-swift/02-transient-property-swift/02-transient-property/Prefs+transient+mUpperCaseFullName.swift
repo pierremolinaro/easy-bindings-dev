@@ -18,7 +18,8 @@ import Cocoa
 func compute_Prefs_mUpperCaseFullName (mFullName : String) -> String  {
 
 //--- START OF USER ZONE 2
-  return mFullName.uppercaseString
+  let s = mFullName as NSString
+  return s.uppercaseString as String
 //--- END OF USER ZONE 2
 
 }

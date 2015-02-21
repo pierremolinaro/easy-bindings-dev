@@ -181,7 +181,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }

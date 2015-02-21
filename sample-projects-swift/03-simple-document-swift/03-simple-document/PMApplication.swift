@@ -324,7 +324,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 3: entity.MyRootEntity.myStringMin\n")
       }
       mFlushLevel = 3
-      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin.values {
+      for (key, object) in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMin {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -338,7 +338,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 2: entity.MyRootEntity.myStringMaj\n")
       }
       mFlushLevel = 2
-      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj.values {
+      for (key, object) in mTriggerSet_entity_2E_MyRootEntity_2E_myStringMaj {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -352,7 +352,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 1: entity.MyRootEntity.myStringConcat\n")
       }
       mFlushLevel = 1
-      for object in mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat.values {
+      for (key, object) in mTriggerSet_entity_2E_MyRootEntity_2E_myStringConcat {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }
@@ -366,7 +366,7 @@ func appendToTransientEventLog (message : String) {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
       mFlushLevel = 0
-      for object in mTriggerOutletDisplaySet.values {
+      for (key, object) in mTriggerOutletDisplaySet {
         if logEvents () {
           mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
         }

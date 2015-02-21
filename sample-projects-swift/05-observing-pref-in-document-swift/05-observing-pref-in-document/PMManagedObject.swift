@@ -81,7 +81,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
-                            managedObjectArray : NSArray) {
+                            managedObjectArray : Array<PMManagedObject>) {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -389,14 +389,14 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   func readEntityFromDictionary (inRelationshipName: String,
                                  inDictionary : NSDictionary,
-                                 managedObjectArray : NSArray) -> PMManagedObject? {
-  let value : NSNumber? = inDictionary.valueForKey (inRelationshipName) as? NSNumber
-  var result : PMManagedObject? = nil
-  if nil != value {
-    result = managedObjectArray [value!.unsignedIntegerValue] as? PMManagedObject
+                                 managedObjectArray : Array<PMManagedObject>) -> PMManagedObject? {
+    let opValue : Int? = inDictionary.valueForKey (inRelationshipName) as? Int
+    var result : PMManagedObject? = nil
+    if let value = opValue {
+      result = managedObjectArray [value]
+    }
+    return result
   }
-  return result
-}
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   readEntityArrayFromDictionary                                                                                   *
@@ -404,21 +404,23 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
-                                     managedObjectArray : NSArray) -> NSMutableArray {
-  let indexArray : NSArray? = inDictionary.valueForKey (inRelationshipName) as? NSArray
-  var result = NSMutableArray ()
-  if nil != indexArray {
-    for object : AnyObject in indexArray! {
-      let number = object as! NSNumber
-      let managedObject = managedObjectArray [number.unsignedIntegerValue] as! PMManagedObject
-      result.addObject (managedObject)
+                                     managedObjectArray : Array<PMManagedObject>) -> Array<PMManagedObject> {
+    let opIndexArray : Array<Int>? = inDictionary.valueForKey (inRelationshipName) as? Array<Int>
+    var result = Array<PMManagedObject> ()
+    if let indexArray = opIndexArray {
+      for number : Int in indexArray {
+        let managedObject = managedObjectArray [number]
+        result.append (managedObject)
+      }
     }
+    return result
   }
-  return result
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
 }
 
-
-}
+//---------------------------------------------------------------------------------------------------------------------*
 
 /*
 //---------------------------------------------------------------------------*
