@@ -404,13 +404,13 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
-                                     managedObjectArray : Array<PMManagedObject>) -> Array<NameEntity> {
+                                     managedObjectArray : Array<PMManagedObject>) -> Array<PMManagedObject> {
     let opIndexArray : Array<Int>? = inDictionary.valueForKey (inRelationshipName) as? Array<Int>
-    var result : Array<NameEntity> = Array ()
+    var result = Array<PMManagedObject> ()
     if let indexArray = opIndexArray {
       for number : Int in indexArray {
         let managedObject = managedObjectArray [number]
-        result.append (managedObject as! NameEntity)
+        result.append (managedObject)
       }
     }
     return result

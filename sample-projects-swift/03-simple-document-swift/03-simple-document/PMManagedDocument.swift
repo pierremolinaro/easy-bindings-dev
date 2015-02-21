@@ -387,30 +387,44 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
+  let logReadFileDuration = false
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func readManagedObjectsFromData (inData : NSData) {
-    // let start = NSDate()
+    let startDate = NSDate ()
     let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
       options:0, // NSPropertyListReadOptions.Immutable,
       format:nil,
       error:nil
     )!
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
-    var objectArray = NSMutableArray  ()
+    if logReadFileDuration {
+      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+      NSLog ("Dictionary array: +%g s", timeTaken)
+    }
+    var objectArray : Array<PMManagedObject> = Array  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as! String
       let object = newInstanceOfEntityNamed (className)
-      objectArray.addObject (object!)
+      objectArray.append (object!)
+    }
+    if logReadFileDuration {
+      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+      NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
     }
     var idx = 0
     for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx] as! PMManagedObject
+      var object : PMManagedObject = objectArray [idx]
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
-    // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
-    // NSLog ("Read %f ms", timeTaken)
+    if logReadFileDuration {
+      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+      NSLog ("Read: +%g s", timeTaken)
+    }
   //--- Set root object
-    mRootObject = objectArray [0] as? PMManagedObject
+    mRootObject = objectArray [0]
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
