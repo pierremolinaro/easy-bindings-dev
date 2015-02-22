@@ -3975,9 +3975,27 @@ const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
   gWrapperFileContent_6_swift_5F_sources
 ) ;
 
+//--- File '/main.swift'
+
+const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "NSApplicationMain (Process.argc, Process.unsafeArgv)\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
+  "main.swift",
+  "swift",
+  true, // Text file
+  311, // Text length
+  gWrapperFileContent_7_swift_5F_sources
+) ;
+
 //--- All files of '' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [8] = {
+static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [9] = {
   & gWrapperFile_0_swift_5F_sources,
   & gWrapperFile_1_swift_5F_sources,
   & gWrapperFile_2_swift_5F_sources,
@@ -3985,6 +4003,7 @@ static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [8] = {
   & gWrapperFile_4_swift_5F_sources,
   & gWrapperFile_5_swift_5F_sources,
   & gWrapperFile_6_swift_5F_sources,
+  & gWrapperFile_7_swift_5F_sources,
   NULL
 } ;
 
@@ -3998,7 +4017,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_swift_5F_sources_0 [1] =
 
 const cDirectoryWrapper gWrapperDirectory_0_swift_5F_sources (
   "",
-  7,
+  8,
   gWrapperAllFiles_swift_5F_sources_0,
   0,
   gWrapperAllDirectories_swift_5F_sources_0
@@ -4016,6 +4035,7 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
+  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
   temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
   temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
   GALGAS_stringlist var_swiftFiles = temp_0 ;
@@ -4030,21 +4050,21 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
   temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 209)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_7960 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_7960.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_7960.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
+  cEnumerator_stringlist enumerator_7969 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_7969.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_7969.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_7960.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 215)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 213)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_7969.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 215)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 213)) ;
     }
-    enumerator_7960.gotoNextObject () ;
+    enumerator_7969.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_8153 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_8153.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8153.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)) ;
+  cEnumerator_stringlist enumerator_8162 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_8162.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8162.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8153.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 223)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 221)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8162.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 223)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 221)) ;
     }
-    enumerator_8153.gotoNextObject () ;
+    enumerator_8162.gotoNextObject () ;
   }
 }
 
