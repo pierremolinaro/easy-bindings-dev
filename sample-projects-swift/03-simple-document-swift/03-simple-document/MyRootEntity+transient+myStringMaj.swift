@@ -18,8 +18,7 @@ import Cocoa
 func compute_MyRootEntity_myStringMaj (myString : String) -> String  {
 
 //--- START OF USER ZONE 2
-  let s : NSString = myString as NSString
-  return s.uppercaseString as String
+  return myString.uppercaseString
 //--- END OF USER ZONE 2
 
 }
