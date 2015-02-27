@@ -30,13 +30,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTransien
         }
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -53,8 +53,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTransien
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {
-      outlet.stringValue = object.$MODEL$
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$.value {
+      outlet.stringValue = object.$MODEL$.value
     }
   }
 

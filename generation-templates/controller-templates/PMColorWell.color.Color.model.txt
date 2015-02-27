@@ -32,7 +32,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
         unwrappedOutlet.continuous = true
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -40,7 +40,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -57,8 +57,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.color != object.$MODEL$ {
-      outlet.color = object.$MODEL$
+    if let outlet = mOutlet, object = mObject where outlet.color != object.$MODEL$.value {
+      outlet.color = object.$MODEL$.value
     }
   }
 
@@ -66,10 +66,10 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
 
   func action (sender : PMColorWell) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate_$MODEL$ (outlet.color)
+      let validationResult = object.$MODEL$.validate (outlet.color)
       switch validationResult {
       case PMValidationResult.ok :
-        object.$MODEL$ = outlet.color
+        object.$MODEL$.value = outlet.color
         if mSendContinously {
           flushTriggers ()
         }
@@ -84,7 +84,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransient
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            outlet.color = object.$MODEL$
+            outlet.color = object.$MODEL$.value
             }
           })
         }

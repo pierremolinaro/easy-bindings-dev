@@ -21,41 +21,23 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 for () in OUTLET_MAP do
 %  @IBOutlet var %!lkey.string% : %!mOutletTypeName.string%? = nil\n%
 end
-
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %
   //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
-%  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
-    didSet {
-      if %!mAttributeName% != oldValue {
-        for (key, object) in %!mAttributeName%_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-%if not mNeedsValidation then%
-  func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
+  //    Attributes                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 %
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%  var %!mAttributeName% = PMProperty<%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transients                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  var %!mTransientName% = PMTransientProperty<%![mTransientType swiftTypeName]%> (PMTransientIndex.k_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%)\n%
 end
 
 for () in CONTROLLER_MAP do
@@ -65,60 +47,6 @@ for () in CONTROLLER_MAP do
   
   var %!lkey.string% = %!mControllerClassName% ()\n%
 end
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
-%  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
-%    get {\n%
-%      if %!mTransientName%_cache == nil {\n%
-%        %!mTransientName%_cache = compute_%!PREFERENCES_NAME%_%!mTransientName% (%
-for () in mDependencyList
-do ![mDependency generateActualParameterForComputeFunction]
-between %, %
-end
-%)\n%
-%      }\n%
-%      return %!mTransientName%_cache!\n%
-%    }
-  }
-
-  func %!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_noteDidChange () {
-    %!mTransientName%_cache = nil
-  }
-  
-
-  func %!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for (key, object) in %!mTransientName%_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% {
-    if event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
-      event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]% (object:self)
-    }
-    return event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%_cache!
-  }\n
-%end
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -148,7 +76,7 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
     %    if value != nil {\n%
-    %      %!mAttributeName% = %![mAttributeType preferencesSwiftGetter]%\n%
+    %      %!mAttributeName%.value = %![mAttributeType preferencesSwiftGetter]%\n%
     %    }\n%
 end
 
@@ -186,7 +114,7 @@ end
   //    awakeFromNib                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
+  var mControllerArray = [AnyObject] ()
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -208,17 +136,38 @@ for () in OUTLET_MAP do
    %    if nil == %!lkey.string% {\n%
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
-#  for () in mOutletBindingList do
- #   ![mBinding generateSwiftBinding !mOutletName]
-#  end
 end
+%
+  //--- Property validation functions
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+  if mNeedsValidation then
+    %    %!mAttributeName%.setValidationFunction ({ (proposedValue : %
+    ![mAttributeType swiftTypeName]
+    %) -> PMValidationResult in return self.validate_%!mAttributeName% (proposedValue)})\n%
+  end
+end
+%  //--- Transition compute functions
+%
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+  %    %!mTransientName%.setComputeFunction ({return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  for () in mDependencyList
+  do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+  between %, %
+  end
+%)})\n%
 end
+%  //--- Property observers
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  for () in mDependencyList do
+    %    %![mDependency generateActualParameterForComputeFunction]%.addObserver (%!mTransientName%.event, inTrigger:true)\n%
+  end
 end
+%  //--- Outlet triggers
+%
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do
-%    mControllerArray.addObject (%!mValue%)\n%
+%    mControllerArray.append (%!mValue%)\n%
 end
 %  }
   
