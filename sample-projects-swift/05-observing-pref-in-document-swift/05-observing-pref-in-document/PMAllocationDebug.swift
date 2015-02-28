@@ -19,12 +19,6 @@ func noteObjectDeallocation (inObject : PMUserClassName) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-func displayAllocation () {
-  gDebugObject?.displayAllocation ()
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 func addItemToDebugMenu (item : NSMenuItem) {
   installDebugMenu ()
   gDebugObject?.mDebugMenu?.addItem (item)
@@ -70,7 +64,7 @@ private var gDebugObject : PMAllocationDebug? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource {
+@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource, NSWindowDelegate {
   @IBOutlet var mPerformSnapShotButton  : NSButton?
   @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton?
   @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton?
@@ -118,6 +112,8 @@ private var gDebugObject : PMAllocationDebug? = nil
   private var mRefreshDisplay = false
 
   private var mAllocationStatsDataSource = NSMutableArray ()
+  
+  private var mRefreshTimer : NSTimer? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -141,17 +137,15 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func pmInstallDebugMenu () {
-    if let mainMenu = NSApp.mainMenu {
-      if !mDebugMenuInstalled {
-        var item = NSMenuItem (
-          title:"",
-          action:nil,
-          keyEquivalent:""
-        )
-        item.submenu = mDebugMenu
-        mainMenu!.addItem (item)
-        mDebugMenuInstalled = true
-      }
+    if !mDebugMenuInstalled && NSApp.mainMenu != nil, let menu = NSApp.mainMenu! {
+      var item = NSMenuItem (
+        title:"",
+        action:nil,
+        keyEquivalent:""
+      )
+      item.submenu = mDebugMenu
+      menu.addItem (item)
+      mDebugMenuInstalled = true
     }
   }
 
@@ -180,8 +174,48 @@ private var gDebugObject : PMAllocationDebug? = nil
       let firstColumn = columns [0] as! NSTableColumn
       mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]
     }
+  //--- will call windowDidBecomeKey: and windowWillClose:
+    mAllocationStatsWindow?.delegate = self
+    pmInstallDebugMenu ()
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowDidBecomeKey: create and validate timer                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func windowDidBecomeKey (NSNotification) {
+    if mRefreshTimer == nil {
+      displayAllocation ()
+      mRefreshTimer = NSTimer (
+        timeInterval: 1.0,
+        target:self,
+        selector:"refreshDisplay:",
+        userInfo: nil,
+        repeats: true
+      )
+      NSRunLoop.currentRunLoop().addTimer (mRefreshTimer!, forMode:NSDefaultRunLoopMode)
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowWillClose: invalidate timer and release timer                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func windowWillClose (NSNotification) {
+    if let timer = mRefreshTimer {
+      timer.invalidate ()
+      mRefreshTimer = nil
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    refreshDisplay:                                                                                                *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func refreshDisplay (timer : NSTimer) {
+    displayAllocation ()
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
   //    setAllocationStatsWindowVisibleAtLaunchAction:                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -237,6 +271,7 @@ private var gDebugObject : PMAllocationDebug? = nil
     mAllocatedObjectCountByClass.addObject (inObjectClassName)
     mTotalAllocatedObjectCountByClass.addObject (inObjectClassName)
     mRefreshDisplay = true
+    pmInstallDebugMenu ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -254,7 +289,6 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func displayAllocation () {
-    pmInstallDebugMenu ()
     if mRefreshDisplay {
       mRefreshDisplay = false
     //---

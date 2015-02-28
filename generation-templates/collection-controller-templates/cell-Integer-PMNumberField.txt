@@ -2,4 +2,3 @@
       tf.myIntegerValue = object.$MODEL$
       tf.target = self
       tf.action = "set_$MODEL$_Action:"
-      tf.setSendContinously (true)
