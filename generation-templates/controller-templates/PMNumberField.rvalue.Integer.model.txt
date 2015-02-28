@@ -33,13 +33,13 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransi
         }
       }
     }
-    mObject?.$MODEL$.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -57,7 +57,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransi
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.integerValue = object.$MODEL$.value
+      outlet.integerValue = object.$MODEL$
     }
   }
 

@@ -5,7 +5,7 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//---------------------------------------------------------------------------------------------------------------------*
 
 protocol %!ENTITY_NAME%_%!mAttributeName% {
-  var %!mAttributeName% : PMProperty<%![mAttributeType swiftTypeName]%> { get }
+  var %!mAttributeName% : %![mAttributeType swiftTypeName]% { get }
 }
 
 %
@@ -19,34 +19,13 @@ end
 % {
   override func userClassName () -> String { return "%!ENTITY_NAME%" }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transients                                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty<%![mTransientType swiftTypeName]%> (PMTransientIndex.k_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%)\n%
-end
-
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var %!mAttributeName% = PMProperty<%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)
-  private var %!mAttributeName%_explorer : NSTextField? = nil
-
-  func %!mAttributeName%_didChange (oldValue : %![mAttributeType swiftTypeName]%) {
-    mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
-    %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
-  }
-
-  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeUndoArgument]%) {
-    %!mAttributeName%.value = %![mAttributeType transformerForUndo !"value"]%
-  }
-
- /*  private var %!mAttributeName%_explorer : NSTextField? = nil\n%
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  private var %!mAttributeName%_explorer : NSTextField? = nil\n%
 %  private var %!mAttributeName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
@@ -82,7 +61,6 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 
 %
 end
-% */ %
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
@@ -271,56 +249,24 @@ if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
-  //--- Transient compute functions
+  //--- Register trigger objects
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.setComputeFunction ({return compute_%!ENTITY_NAME%_%!mTransientName% (%
-  for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
-    between %, %
-  end
-  %)})\n%
+for () in mDependencyList do
+%    %![mDependency generateAddObserverCall]% (event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
 end
-end
-
-%  //--- Register trigger objects
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateObserverReference]%.addObserver (%!mTransientName%.event, inTrigger:true)\n%
-  end
-end
-%  //--- Register property 'didChangeFunction' functions
-%
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.didChangeFunction = self.%!mAttributeName%_didChange\n%
 end
 %  }
-
+%
+end
+%
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
-  //--- Reset property 'didChange' functions
 %
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.didChangeFunction = nil\n%
-end
-% //--- Remove observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateObserverReference]%.removeObserver (%!mTransientName%.event, inTrigger:false)\n%
-  end
-end
-% //--- Reset transient computation functions
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.resetComputationFunction ()\n%
-end
-
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %    %!mRelationshipName% = Array<%![mRelationshipType key]%> ()\n%
@@ -329,6 +275,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   end
 end
 %  }
+  
 %
 if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 %
@@ -339,14 +286,15 @@ if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   deinit {
   //--- Unregister trigger objects
 %
-  for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-    for () in mDependencyList do
-      % //   %![mDependency generateObserverReference]%.removeObserver (%!mTransientName%.event, inTrigger:false)\n%
-    end
-  end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in mDependencyList do
+%    %![mDependency generateRemoveObserverCall]% (event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:false)\n%
+end
 end
 %  }
-
+%
+end
+%
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -407,7 +355,7 @@ end
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.value = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
+%    %!mAttributeName% = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
@@ -426,7 +374,64 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
+  //-------------------------------------------------------------------------------------------------------------------*\n\n%
+%  private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
+%  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
+%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
+%    get {\n%
+%      if %!mTransientName%_cache == nil {\n%
+%        %!mTransientName%_cache = compute_%!ENTITY_NAME%_%!mTransientName% (%
+for () in mDependencyList
+do ![mDependency generateActualParameterForComputeFunction]
+between %, %
+end
+%)\n%
+%      }\n%
+%      return %!mTransientName%_cache!\n%
+%    }
+    set {
+    }
+  }
+
+  func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_noteDidChange () {
+    %!mTransientName%_cache = nil
+  }
+
+  func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
+    for (key, observer) in %!mTransientName%_observers {
+      postTransientEvent (observer)
+    }
+  }
+
+   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+ 
+  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+
+  var event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%? = nil
+  var event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% {
+    if nil == event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache {
+      event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% (object:self)
+    }
+    return event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache!
+  }
+ 
+%
+end
+%  //-------------------------------------------------------------------------------------------------------------------*
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -434,7 +439,8 @@ end
     super.accessibleObjects (&objects)
 %for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    for managedObject : PMManagedObject in %!mRelationshipName% {
+%    for object : AnyObject in %!mRelationshipName% {
+      let managedObject = object as! PMManagedObject
       objects.addObject (managedObject)
     }\n%
   else

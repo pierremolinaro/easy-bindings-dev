@@ -38,7 +38,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
         unwrappedOutlet.continuous = true
       }
     }
-    mObject?.myColor.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myColor (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -46,7 +46,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.myColor.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myColor (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -63,8 +63,8 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.color != object.myColor.value {
-      outlet.color = object.myColor.value
+    if let outlet = mOutlet, object = mObject where outlet.color != object.myColor {
+      outlet.color = object.myColor
     }
   }
 
@@ -72,10 +72,10 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
 
   func action (sender : PMColorWell) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.myColor.validate (outlet.color)
+      let validationResult = object.validate_myColor (outlet.color)
       switch validationResult {
       case PMValidationResult.ok :
-        object.myColor.value = outlet.color
+        object.myColor = outlet.color
         if mSendContinously {
           flushTriggers ()
         }
@@ -90,7 +90,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            outlet.color = object.myColor.value
+            outlet.color = object.myColor
             }
           })
         }
@@ -145,7 +145,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.myEnumeration.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myEnumeration (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -153,7 +153,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.myEnumeration.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myEnumeration (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -170,16 +170,16 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.value.rawValue {
-      outlet.selectCellAtRow (object.myEnumeration.value.rawValue, column:0)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.rawValue {
+      outlet.selectCellAtRow (object.myEnumeration.rawValue, column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.value.rawValue {
-      object.myEnumeration.value = object.myEnumeration.value.enumfromRawValue (outlet.selectedRow)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.myEnumeration.rawValue {
+      object.myEnumeration = object.myEnumeration.enumfromRawValue (outlet.selectedRow)
     }
   }
 
@@ -234,7 +234,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
         }
       }
     }
-    mObject?.myString.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -242,7 +242,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.myString.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -259,8 +259,8 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myString.value {
-      outlet.stringValue = object.myString.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myString {
+      outlet.stringValue = object.myString
     }
   }
 
@@ -268,10 +268,10 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
 
   func action (sender : PMTextField) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.myString.validate (outlet.stringValue)
+      let validationResult = object.validate_myString (outlet.stringValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.myString.value = outlet.stringValue
+        object.myString = outlet.stringValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -283,7 +283,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.myString.value
+              outlet.stringValue = object.myString
             }
           })
         }
@@ -339,13 +339,13 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.myStringConcat.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myStringConcat (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.myStringConcat.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myStringConcat (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -362,8 +362,8 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringConcat.value {
-      outlet.stringValue = object.myStringConcat.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringConcat {
+      outlet.stringValue = object.myStringConcat
     }
   }
 
@@ -415,13 +415,13 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrans
         }
       }
     }
-    mObject?.myStringMaj.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myStringMaj (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.myStringMaj.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myStringMaj (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -438,8 +438,8 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrans
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMaj.value {
-      outlet.stringValue = object.myStringMaj.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMaj {
+      outlet.stringValue = object.myStringMaj
     }
   }
 
@@ -491,13 +491,13 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrans
         }
       }
     }
-    mObject?.myStringMin.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myStringMin (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.myStringMin.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myStringMin (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -514,8 +514,8 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrans
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMin.value {
-      outlet.stringValue = object.myStringMin.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myStringMin {
+      outlet.stringValue = object.myStringMin
     }
   }
 
