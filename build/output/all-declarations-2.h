@@ -11,6 +11,21 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                             Routine 'semanticAnalysis'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
+                               const class GALGAS_lstringlist constinArgument1,
+                               const class GALGAS_string constinArgument2,
+                               const class GALGAS_astDeclarationStruct constinArgument3,
+                               class GALGAS_transientDependencyGraphNodeInfoList & outArgument4,
+                               class GALGAS_structForGeneration & outArgument5,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                               Routine 'generateCode'                                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -46,8 +61,6 @@ extern const char * gWrapperFileContent_4_swift_5F_sources ;
 extern const char * gWrapperFileContent_5_swift_5F_sources ;
 extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
-extern const char * gWrapperFileContent_8_swift_5F_sources ;
-extern const char * gWrapperFileContent_9_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -62,8 +75,6 @@ extern const cRegularFileWrapper gWrapperFile_4_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_5_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
-extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
-extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1254,27 +1265,6 @@ class GALGAS_string callCategoryReader_modelSignatureForArrayController (const c
                                                                          const GALGAS_string & constin_inSelfTypeName,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Abstract category reader '@abstractTransientDependencyForGeneration generateRemoveObserverCall'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateRemoveObserverCall) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                                                                            class C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_generateRemoveObserverCall (const int32_t inClassIndex,
-                                                     categoryReaderSignature_abstractTransientDependencyForGeneration_generateRemoveObserverCall inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string callCategoryReader_generateRemoveObserverCall (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

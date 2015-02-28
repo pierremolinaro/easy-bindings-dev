@@ -4521,6 +4521,27 @@ class GALGAS_string callCategoryReader_generateActualParameterForComputeFunction
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//            Abstract category reader '@abstractTransientDependencyForGeneration generateAddObserverCall'             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateAddObserverCall) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                                                                         class C_Compiler * inCompiler
+                                                                                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryReader_generateAddObserverCall (const int32_t inClassIndex,
+                                                  categoryReaderSignature_abstractTransientDependencyForGeneration_generateAddObserverCall inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string callCategoryReader_generateAddObserverCall (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                           Category Reader '@unifiedTypeMap-proxy preferencesSwiftGetter'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4602,24 +4623,24 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityFactoryImplemen
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Abstract category reader '@abstractTransientDependencyForGeneration generateObserverReference'            *
+//           Abstract category reader '@abstractTransientDependencyForGeneration generateRemoveObserverCall'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateObserverReference) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                                                                           class C_Compiler * inCompiler
-                                                                                                                           COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateRemoveObserverCall) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                                                                            class C_Compiler * inCompiler
+                                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_generateObserverReference (const int32_t inClassIndex,
-                                                    categoryReaderSignature_abstractTransientDependencyForGeneration_generateObserverReference inMethod) ;
+void enterCategoryReader_generateRemoveObserverCall (const int32_t inClassIndex,
+                                                     categoryReaderSignature_abstractTransientDependencyForGeneration_generateRemoveObserverCall inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string callCategoryReader_generateObserverReference (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
+class GALGAS_string callCategoryReader_generateRemoveObserverCall (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4728,27 +4749,6 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
                                                                                             const class GALGAS_arrayControllerForGeneration & in_ARRAY_5F_CONTROLLER_5F_LIST,
                                                                                             const class GALGAS_targetActionList & in_TARGET_5F_ACTION_5F_LIST
                                                                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//            Abstract category reader '@abstractTransientDependencyForGeneration generateAddObserverCall'             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateAddObserverCall) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                                                                         class C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_generateAddObserverCall (const int32_t inClassIndex,
-                                                  categoryReaderSignature_abstractTransientDependencyForGeneration_generateAddObserverCall inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string callCategoryReader_generateAddObserverCall (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5246,20 +5246,5 @@ extern const cDirectoryWrapper gWrapperDirectory_9_predefinedOutletClasses ;
 
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             Routine 'semanticAnalysis'                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
-                               const class GALGAS_lstringlist constinArgument1,
-                               const class GALGAS_string constinArgument2,
-                               const class GALGAS_astDeclarationStruct constinArgument3,
-                               class GALGAS_transientDependencyGraphNodeInfoList & outArgument4,
-                               class GALGAS_structForGeneration & outArgument5,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
 
 #endif

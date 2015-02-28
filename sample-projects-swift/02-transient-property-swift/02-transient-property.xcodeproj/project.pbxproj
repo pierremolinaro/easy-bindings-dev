@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF01C13D1AA0B81500132071 /* PMTransientProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01C13C1AA0B81500132071 /* PMTransientProperty.swift */; };
-		CF135B761AA09D2500258618 /* PMProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF135B751AA09D2500258618 /* PMProperty.swift */; };
 		CF713F461944C1CC000826E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F451944C1CC000826E7 /* main.swift */; };
 		CF713F4A1944C1CC000826E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF713F491944C1CC000826E7 /* Images.xcassets */; };
 		CF713F4D1944C1CC000826E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F4B1944C1CC000826E7 /* MainMenu.xib */; };
@@ -25,8 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF01C13C1AA0B81500132071 /* PMTransientProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTransientProperty.swift; sourceTree = "<group>"; };
-		CF135B751AA09D2500258618 /* PMProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMProperty.swift; sourceTree = "<group>"; };
 		CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF713F441944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF713F451944C1CC000826E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -83,8 +79,6 @@
 				CF713F651944C608000826E7 /* PMApplication.swift */,
 				CFC4B9D119B255CE0008BE21 /* PMTextField.swift */,
 				CF713F661944C608000826E7 /* Prefs.swift */,
-				CF135B751AA09D2500258618 /* PMProperty.swift */,
-				CF01C13C1AA0B81500132071 /* PMTransientProperty.swift */,
 				CF713F741944D887000826E7 /* Prefs+action+monAction.swift */,
 				CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */,
 				CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */,
@@ -176,13 +170,11 @@
 				CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */,
 				CF713F6B1944C608000826E7 /* Prefs.swift in Sources */,
 				CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */,
-				CF135B761AA09D2500258618 /* PMProperty.swift in Sources */,
 				CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */,
 				CFC4B9D219B255CE0008BE21 /* PMTextField.swift in Sources */,
 				CF713F461944C1CC000826E7 /* main.swift in Sources */,
 				CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */,
 				CFA0FAB319B25A7000878C64 /* controller-classes.swift in Sources */,
-				CF01C13D1AA0B81500132071 /* PMTransientProperty.swift in Sources */,
 				CF713F6A1944C608000826E7 /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,7 +38,7 @@ for () in TRANSIENT_LIST
 do index idx
 %//---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_%![mValue identifierRepresentation]% : PMTransientEventProtocol {
+class PMEvent_%![mValue identifierRepresentation]% : PMTransientEventProtocol {
   weak private var mObserver : %![[mValue stringByDeletingPathExtension] pathExtension]%? = nil
 
   func userClassName () -> String { return "PMEvent_%!mValue%" }
@@ -68,7 +68,7 @@ do index idx
   func trigger () {
     mObserver?.%![mValue identifierRepresentation]%_trigger ()
   }
-} */
+}
 %end%
 
 //---------------------------------------------------------------------------------------------------------------------*

@@ -33,7 +33,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
         }
       }
     }
-    mObject?.$MODEL$.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -41,7 +41,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -58,8 +58,8 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$.value {
-      outlet.stringValue = object.$MODEL$.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$ {
+      outlet.stringValue = object.$MODEL$
     }
   }
 
@@ -67,10 +67,10 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
 
   func action (sender : PMTextField) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.$MODEL$.validate (outlet.stringValue)
+      let validationResult = object.validate_$MODEL$ (outlet.stringValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.$MODEL$.value = outlet.stringValue
+        object.$MODEL$ = outlet.stringValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -82,7 +82,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransient
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.$MODEL$.value
+              outlet.stringValue = object.$MODEL$
             }
           })
         }

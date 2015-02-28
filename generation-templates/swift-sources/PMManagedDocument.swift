@@ -424,7 +424,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       NSLog ("Read: +%g s", timeTaken)
     }
   //--- Set root object
-    mRootObject?.prepareForDeletion ()
     mRootObject = objectArray [0]
   }
 

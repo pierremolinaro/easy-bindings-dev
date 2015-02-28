@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF610E5B1AA0EBA400FBAD8F /* PMProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF610E591AA0EBA400FBAD8F /* PMProperty.swift */; };
-		CF610E5C1AA0EBA400FBAD8F /* PMTransientProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF610E5A1AA0EBA400FBAD8F /* PMTransientProperty.swift */; };
 		CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */; };
 		CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
@@ -27,8 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF610E591AA0EBA400FBAD8F /* PMProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMProperty.swift; sourceTree = "<group>"; };
-		CF610E5A1AA0EBA400FBAD8F /* PMTransientProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTransientProperty.swift; sourceTree = "<group>"; };
 		CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+autreAction.swift"; sourceTree = "<group>"; };
 		CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+monAction.swift"; sourceTree = "<group>"; };
 		CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,9 +87,7 @@
 				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
 				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
 				CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */,
-				CF610E591AA0EBA400FBAD8F /* PMProperty.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
-				CF610E5A1AA0EBA400FBAD8F /* PMTransientProperty.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
 			path = "01-simple-preferences";
@@ -177,8 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
-				CF610E5C1AA0EBA400FBAD8F /* PMTransientProperty.swift in Sources */,
-				CF610E5B1AA0EBA400FBAD8F /* PMProperty.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
 				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
 				CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */,

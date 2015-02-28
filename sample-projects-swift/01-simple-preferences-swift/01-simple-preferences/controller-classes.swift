@@ -38,7 +38,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
         unwrappedOutlet.continuous = true
       }
     }
-    mObject?.mColor.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_mColor (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -46,7 +46,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.mColor.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_mColor (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -63,8 +63,8 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.color != object.mColor.value {
-      outlet.color = object.mColor.value
+    if let outlet = mOutlet, object = mObject where outlet.color != object.mColor {
+      outlet.color = object.mColor
     }
   }
 
@@ -72,10 +72,10 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
 
   func action (sender : PMColorWell) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.mColor.validate (outlet.color)
+      let validationResult = object.validate_mColor (outlet.color)
       switch validationResult {
       case PMValidationResult.ok :
-        object.mColor.value = outlet.color
+        object.mColor = outlet.color
         if mSendContinously {
           flushTriggers ()
         }
@@ -90,7 +90,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            outlet.color = object.mColor.value
+            outlet.color = object.mColor
             }
           })
         }
@@ -145,7 +145,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventPro
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.mDate.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_mDate (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -153,7 +153,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventPro
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.mDate.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_mDate (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -170,16 +170,16 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventPro
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.mDate.value) {
-      outlet.dateValue = object.mDate.value
+    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.mDate) {
+      outlet.dateValue = object.mDate
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.mDate.value) {
-      object.mDate.value = outlet.dateValue
+    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.mDate) {
+      object.mDate = outlet.dateValue
     }
   }
 
@@ -234,13 +234,13 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransi
         }
       }
     }
-    mObject?.mIntegerValue.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_mIntegerValue (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.mIntegerValue.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_mIntegerValue (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -258,7 +258,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransi
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.integerValue = object.mIntegerValue.value
+      outlet.integerValue = object.mIntegerValue
     }
   }
 
@@ -316,7 +316,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
         }
       }
     }
-    mObject?.mIntegerValue.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_mIntegerValue (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -324,7 +324,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.mIntegerValue.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_mIntegerValue (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -342,7 +342,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.myIntegerValue = object.mIntegerValue.value
+      outlet.myIntegerValue = object.mIntegerValue
     }
   }
 
@@ -350,10 +350,10 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
 
   func action (sender : PMNumberField) {
     if let outlet = mOutlet,object = mObject {
-      let validationResult = object.mIntegerValue.validate (outlet.integerValue)
+      let validationResult = object.validate_mIntegerValue (outlet.integerValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.mIntegerValue.value = outlet.integerValue
+        object.mIntegerValue = outlet.integerValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -365,7 +365,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.myIntegerValue = object.mIntegerValue.value
+              outlet.myIntegerValue = object.mIntegerValue
             }
           })
         }
@@ -424,7 +424,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
         }
       }
     }
-    mObject?.myString.addObserver (self, inTrigger:true)
+    mObject?.addObserverOf_myString (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -432,7 +432,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.myString.removeObserver (self, inTrigger:false)
+    mObject?.removeObserverOf_myString (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -449,8 +449,8 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myString.value {
-      outlet.stringValue = object.myString.value
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.myString {
+      outlet.stringValue = object.myString
     }
   }
 
@@ -458,10 +458,10 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
 
   func action (sender : PMTextField) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.myString.validate (outlet.stringValue)
+      let validationResult = object.validate_myString (outlet.stringValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.myString.value = outlet.stringValue
+        object.myString = outlet.stringValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -473,7 +473,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.myString.value
+              outlet.stringValue = object.myString
             }
           })
         }

@@ -199,13 +199,7 @@ filewrapper swift_sources in "../generation-templates/swift-sources" {
 private proc generateSwiftApplicationFiles
   ?let @string inOutputDirectory
   ?let @bool inHasEntities {
-  @stringlist swiftFiles = {
-    !"main",
-    !"PMAllocationDebug",
-    !"easy-bindings-utilities",
-    !"PMProperty",
-    !"PMTransientProperty"
-  }
+  @stringlist swiftFiles = {!"main", !"PMAllocationDebug", !"easy-bindings-utilities"}
   if inHasEntities then
     swiftFiles += !"PMManagedObject"
     swiftFiles += !"PMManagedDocument"

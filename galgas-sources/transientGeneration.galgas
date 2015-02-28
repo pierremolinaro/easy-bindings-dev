@@ -243,48 +243,5 @@ override getter @transientRootRelationshipDependencyForGeneration generateRemove
   outResult = "rootObject.removeObserverOf_" + mRelationshipName + "_" + mMasterName
 }
 
-#-----------------------------------------------------------------------------*
-#   generateObserverReference                                                 *
-#-----------------------------------------------------------------------------*
-#! generateObserverReference
-
-abstract getter @abstractTransientDependencyForGeneration generateObserverReference -> @string outResult
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientControllerDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = mControllerName.string + "?." + mMasterName
-}
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientRootSignDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = "??@@transientRootSignDependency??"
-}
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientLocalDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = mMasterName.string
-}
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientPreferenceDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = "g_" + mPreferencesName.string + "?." + mMasterName
-}
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientRootDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = "rootObject." + mMasterName
-}
-
-#-----------------------------------------------------------------------------*
-
-override getter @transientRootRelationshipDependencyForGeneration generateObserverReference -> @string outResult {
-  outResult = "rootObject." + mRelationshipName + "_" + mMasterName
-}
-
 #----------------------------------------------------------------------------*
 
