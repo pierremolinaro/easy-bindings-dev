@@ -154,7 +154,6 @@ func postTransientEvent (inObject : PMTransientEventProtocol) {
 func flushTriggers () {
   var theApp = NSApp as! PMApplication
   theApp.flushTransientEvents ()
-  displayAllocation ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -295,7 +294,6 @@ func appendToTransientEventLog (message : String) {
     // NSLog ("send event done %d", mLevel)
     if 0 == mLevel {
       flushTransientEvents ()
-      displayAllocation ()
     }
   }
   
@@ -309,7 +307,6 @@ func appendToTransientEventLog (message : String) {
     // NSLog ("send action done %d", mLevel)
     if 0 == mLevel {
       flushTransientEvents ()
-      displayAllocation ()
     }
     return result
   }

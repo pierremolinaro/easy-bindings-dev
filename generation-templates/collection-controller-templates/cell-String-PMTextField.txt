@@ -2,4 +2,3 @@
       result.textField?.target = self
       result.textField?.action = "set_$MODEL$_Action:"
       let tf : PMTextField = result.textField as! PMTextField
-      tf.setSendContinously (true)

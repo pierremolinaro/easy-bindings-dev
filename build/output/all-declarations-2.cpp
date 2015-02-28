@@ -127,12 +127,6 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "func displayAllocation () {\n"
-  "  gDebugObject\?.displayAllocation ()\n"
-  "}\n"
-  "\n"
-  "//---------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
   "func addItemToDebugMenu (item : NSMenuItem) {\n"
   "  installDebugMenu ()\n"
   "  gDebugObject\?.mDebugMenu\?.addItem (item)\n"
@@ -178,7 +172,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource {\n"
+  "@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource, NSWindowDelegate {\n"
   "  @IBOutlet var mPerformSnapShotButton  : NSButton\?\n"
   "  @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton\?\n"
   "  @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton\?\n"
@@ -226,6 +220,8 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  private var mRefreshDisplay = false\n"
   "\n"
   "  private var mAllocationStatsDataSource = NSMutableArray ()\n"
+  "  \n"
+  "  private var mRefreshTimer : NSTimer\? = nil\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "  //    init                                                                                                           *\n"
@@ -249,17 +245,15 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  private func pmInstallDebugMenu () {\n"
-  "    if let mainMenu = NSApp.mainMenu {\n"
-  "      if !mDebugMenuInstalled {\n"
-  "        var item = NSMenuItem (\n"
-  "          title:\"\",\n"
-  "          action:nil,\n"
-  "          keyEquivalent:\"\"\n"
-  "        )\n"
-  "        item.submenu = mDebugMenu\n"
-  "        mainMenu!.addItem (item)\n"
-  "        mDebugMenuInstalled = true\n"
-  "      }\n"
+  "    if !mDebugMenuInstalled && NSApp.mainMenu != nil, let menu = NSApp.mainMenu! {\n"
+  "      var item = NSMenuItem (\n"
+  "        title:\"\",\n"
+  "        action:nil,\n"
+  "        keyEquivalent:\"\"\n"
+  "      )\n"
+  "      item.submenu = mDebugMenu\n"
+  "      menu.addItem (item)\n"
+  "      mDebugMenuInstalled = true\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -273,12 +267,15 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "    var df = NSUserDefaults.standardUserDefaults ()\n"
   "    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (\"PMAllocationDebug:allocationStatsWindowVisible\")\n"
   "    mDisplayFilter = df.integerForKey (\"PMAllocationDebug:allocationStatsDisplayFilter\")\n"
+  "  //--- will call windowDidBecomeKey: and windowWillClose:\n"
+  "    mAllocationStatsWindow\?.delegate = self\n"
   "  //--- Allocation stats window visibility at Launch\n"
   "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.state = Int (mAllocationStatsWindowVisibleAtLaunch)\n"
   "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.target = self\n"
   "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.action = \"setAllocationStatsWindowVisibleAtLaunchAction:\"\n"
   "    if mAllocationStatsWindowVisibleAtLaunch {\n"
   "      mAllocationStatsWindow\?.makeKeyAndOrderFront (nil)\n"
+  "      installTimer ()\n"
   "    }\n"
   "    mDisplayFilterPopUpButton\?.selectItemAtIndex (mDisplayFilter)\n"
   "    mDisplayFilterPopUpButton\?.target = self\n"
@@ -288,8 +285,56 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "      let firstColumn = columns [0] as! NSTableColumn\n"
   "      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]\n"
   "    }\n"
+  "    pmInstallDebugMenu ()\n"
   "  }\n"
   "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    installTimer                                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func installTimer () {\n"
+  "    if mRefreshTimer == nil {\n"
+  "      displayAllocation ()\n"
+  "      mRefreshTimer = NSTimer (\n"
+  "        timeInterval: 1.0,\n"
+  "        target:self,\n"
+  "        selector:\"refreshDisplay:\",\n"
+  "        userInfo: nil,\n"
+  "        repeats: true\n"
+  "      )\n"
+  "      NSRunLoop.currentRunLoop().addTimer (mRefreshTimer!, forMode:NSDefaultRunLoopMode)\n"
+  "      mRefreshDisplay = true\n"
+  "      displayAllocation ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    windowDidBecomeKey: create and validate timer                                                                  *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func windowDidBecomeKey (NSNotification) {\n"
+  "    installTimer ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    windowWillClose: invalidate timer and release timer                                                            *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func windowWillClose (NSNotification) {\n"
+  "    if let timer = mRefreshTimer {\n"
+  "      timer.invalidate ()\n"
+  "      mRefreshTimer = nil\n"
+  "    }\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    refreshDisplay:                                                                                                *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func refreshDisplay (timer : NSTimer) {\n"
+  "    displayAllocation ()\n"
+  "  }\n"
+  "  \n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "  //    setAllocationStatsWindowVisibleAtLaunchAction:                                                                 *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -345,6 +390,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "    mAllocatedObjectCountByClass.addObject (inObjectClassName)\n"
   "    mTotalAllocatedObjectCountByClass.addObject (inObjectClassName)\n"
   "    mRefreshDisplay = true\n"
+  "    pmInstallDebugMenu ()\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -362,7 +408,6 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  private func displayAllocation () {\n"
-  "    pmInstallDebugMenu ()\n"
   "    if mRefreshDisplay {\n"
   "      mRefreshDisplay = false\n"
   "    //---\n"
@@ -441,7 +486,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "PMAllocationDebug.swift",
   "swift",
   true, // Text file
-  15381, // Text length
+  17540, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
@@ -2748,6 +2793,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "      NSLog (\"Read: +%g s\", timeTaken)\n"
   "    }\n"
   "  //--- Set root object\n"
+  "    mRootObject\?.prepareForDeletion ()\n"
   "    mRootObject = objectArray [0]\n"
   "  }\n"
   "\n"
@@ -2937,7 +2983,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "PMManagedDocument.swift",
   "swift",
   true, // Text file
-  26601, // Text length
+  26640, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -19399,126 +19445,6 @@ GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::extractObje
       result = *p ;
     }else{
       inCompiler->castError ("enumConstantMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::GALGAS_actionMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::~ GALGAS_actionMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::GALGAS_actionMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_actionMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_actionMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_actionMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_actionMap_2D_element::objectCompare (const GALGAS_actionMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_actionMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_actionMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_actionMap_2D_element::description (C_String & ioString,
-                                               const int32_t inIndentation) const {
-  ioString << "<struct @actionMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_actionMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                               @actionMap-element type                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_actionMap_2D_element ("actionMap-element",
-                                             NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_actionMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_actionMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_actionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_actionMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_actionMap_2D_element result ;
-  const GALGAS_actionMap_2D_element * p = (const GALGAS_actionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_actionMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("actionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

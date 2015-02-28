@@ -15,8 +15,8 @@ entity NameEntity {
 document PMDocument root MyRootEntity {
   outlet PMTableView mNamesTableView ;
   arrayController nameController bind root.mNames to mNamesTableView
-     column "name" PMTextField name { sendContinously : yes}
-     column "int"  PMNumberField aValue { sendContinously : yes}
+     column "name" PMTextField name { sendContinously : no}
+     column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
   transient String canRemoveString dependsFrom nameController.canRemove ;
