@@ -57,7 +57,7 @@ class Controller_MyPrefs_prefBoolean_PMSwitch_value : NSObject, PMTransientEvent
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -145,7 +145,7 @@ class Controller_MyRootEntity_docBool_PMSwitch_value : NSObject, PMTransientEven
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -222,7 +222,7 @@ class EnableController_MyDocument_myButton : NSObject, PMTransientEventProtocol,
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

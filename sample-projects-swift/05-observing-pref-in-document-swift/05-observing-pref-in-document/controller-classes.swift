@@ -58,7 +58,7 @@ class Controller_MyPrefs_myPrefString_PMTextField_value : NSObject, PMTransientE
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -161,7 +161,7 @@ class Controller_MyPrefs_prefTransientString_PMTextField_rvalue : NSObject, PMTr
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -242,7 +242,7 @@ class Controller_MyRootEntity_docString_PMTextField_value : NSObject, PMTransien
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -345,7 +345,7 @@ class Controller_MyRootEntity_transientConcatString_PMTextField_rvalue : NSObjec
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

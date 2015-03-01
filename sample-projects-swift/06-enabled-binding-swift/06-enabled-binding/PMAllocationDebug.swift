@@ -159,12 +159,15 @@ private var gDebugObject : PMAllocationDebug? = nil
     var df = NSUserDefaults.standardUserDefaults ()
     mAllocationStatsWindowVisibleAtLaunch = df.boolForKey ("PMAllocationDebug:allocationStatsWindowVisible")
     mDisplayFilter = df.integerForKey ("PMAllocationDebug:allocationStatsDisplayFilter")
+  //--- will call windowDidBecomeKey: and windowWillClose:
+    mAllocationStatsWindow?.delegate = self
   //--- Allocation stats window visibility at Launch
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = Int (mAllocationStatsWindowVisibleAtLaunch)
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.target = self
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.action = "setAllocationStatsWindowVisibleAtLaunchAction:"
     if mAllocationStatsWindowVisibleAtLaunch {
       mAllocationStatsWindow?.makeKeyAndOrderFront (nil)
+      installTimer ()
     }
     mDisplayFilterPopUpButton?.selectItemAtIndex (mDisplayFilter)
     mDisplayFilterPopUpButton?.target = self
@@ -174,16 +177,14 @@ private var gDebugObject : PMAllocationDebug? = nil
       let firstColumn = columns [0] as! NSTableColumn
       mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]
     }
-  //--- will call windowDidBecomeKey: and windowWillClose:
-    mAllocationStatsWindow?.delegate = self
     pmInstallDebugMenu ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    windowDidBecomeKey: create and validate timer                                                                  *
+  //    installTimer                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func windowDidBecomeKey (NSNotification) {
+  func installTimer () {
     if mRefreshTimer == nil {
       displayAllocation ()
       mRefreshTimer = NSTimer (
@@ -194,7 +195,17 @@ private var gDebugObject : PMAllocationDebug? = nil
         repeats: true
       )
       NSRunLoop.currentRunLoop().addTimer (mRefreshTimer!, forMode:NSDefaultRunLoopMode)
+      mRefreshDisplay = true
+      displayAllocation ()
     }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    windowDidBecomeKey: create and validate timer                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func windowDidBecomeKey (NSNotification) {
+    installTimer ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

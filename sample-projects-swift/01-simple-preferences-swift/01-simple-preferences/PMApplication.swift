@@ -124,7 +124,7 @@ func appendToTransientEventLog (message : String) {
 
   private func postTransientEvent (inObject : PMTransientEventProtocol) {
     let transientIndex = inObject.transientEventIndex
-    inObject.noteTransientDidChange ()
+    inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {

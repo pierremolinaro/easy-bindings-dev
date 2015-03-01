@@ -13,7 +13,7 @@ ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath)
 
 bundleName = 'fr.free.pcmolinaro.-4-document-with-relationships-swift'
 monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.5)
+time.sleep(.8)
 
 window = monAppli.windows()[0]
 addEntryButton = window.findFirst (AXDescription='addEntry')
