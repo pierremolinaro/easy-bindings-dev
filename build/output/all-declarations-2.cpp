@@ -3896,7 +3896,7 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "//    PMUserClassName protocol                                                                                         *\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "protocol PMUserClassName {\n"
+  "protocol PMUserClassName : class {\n"
   "  func userClassName () -> String\n"
   "}\n"
   "\n"
@@ -3906,7 +3906,7 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "\n"
   "protocol PMTransientEventProtocol : PMUserClassName {\n"
   "  var transientEventIndex : PMTransientIndex { get }\n"
-  "  func noteTransientDidChange ()\n"
+  "  func noteModelDidChange ()\n"
   "  func trigger ()\n"
   "  func unregister ()\n"
   "  var uniqueIndex : Int { get }\n"
@@ -4017,7 +4017,7 @@ const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  10903, // Text length
+  10907, // Text length
   gWrapperFileContent_6_swift_5F_sources
 ) ;
 

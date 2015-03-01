@@ -48,7 +48,7 @@ class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtoc
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.preference_2E_Prefs_2E_mUpperCaseFullName_noteDidChange ()
   }
 
@@ -81,7 +81,7 @@ class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.preference_2E_Prefs_2E_mFullName_noteDidChange ()
   }
 
@@ -194,7 +194,7 @@ func appendToTransientEventLog (message : String) {
 
   private func postTransientEvent (inObject : PMTransientEventProtocol) {
     let transientIndex = inObject.transientEventIndex
-    inObject.noteTransientDidChange ()
+    inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {

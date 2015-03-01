@@ -28,11 +28,12 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEventProtocol 
     noteObjectDeallocation (self) ;
   }
 
-  func noteTransientDidChange () {
-  }
+  func noteModelDidChange () {
+     mArrayController?.modelDidChange ()
+ }
   
   func trigger () {
-    mArrayController?.modelDidChange ()
+    mArrayController?.display ()
   }
 
   func userClassName () -> String { return "TriggerFor_MyRootEntity_mNames_mNamesTableView" }
@@ -50,10 +51,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   private var mObjectSet : Set<NameEntity> = Set ()
   private var mSortedObjectArray : Array<NameEntity> = Array ()
 
-  private var mTableViewSelectionIndexSet = NSMutableIndexSet ()
   private var mSelectedObjectArray : Array<NameEntity> = Array () {
     didSet {
-      updateCanRemoveProperty ()
+      if mSelectedObjectArray != oldValue {
+        mObject.undoManager()?.registerUndoWithTarget(self, selector:"undoFor_selectedObjectArray:", object:oldValue)
+        updateCanRemoveProperty ()
+      }
     }
   }
   
@@ -61,6 +64,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   private var mAllowsEmptySelection = false
   private var mAllowsMultipleSelection = true
  
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func undoFor_selectedObjectArray (previousSelectedObjectArray : NSArray) {
+    mSelectedObjectArray = previousSelectedObjectArray as! Array<NameEntity>
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
   //    userClassName                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -157,18 +166,15 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
     var selectedObjectArray : Array<NameEntity> = Array ()
-    var tableViewSelectionIndexSet = NSMutableIndexSet ()
     if let tableView = mTableView {
       let selectedRowIndexes = tableView.selectedRowIndexes
       selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
         stop.initialize (false)
         let object = self.mSortedObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__)
         selectedObjectArray.append (object)
-        tableViewSelectionIndexSet.addIndex (idx)
       })
     }
     mSelectedObjectArray = selectedObjectArray
-    mTableViewSelectionIndexSet = tableViewSelectionIndexSet
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -221,39 +227,15 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------- Build new selected objects array
     let previousSelectionSet : Set<NameEntity> = Set (mSelectedObjectArray)
     var newSelectedArray : Array<NameEntity> = Array ()
-    var newTableViewSelectionIndexSet = NSMutableIndexSet ()
-    var idx = 0 ;
     for object in mSortedObjectArray {
       if previousSelectionSet.contains (object) {
-        newTableViewSelectionIndexSet.addIndex (idx)
         newSelectedArray.append (object)
       }
-      idx += 1
     }
-    if mSelectedObjectArray != newSelectedArray {
-      mObject.undoManager()?.registerUndoWithTarget(self, selector:"undoFor_selectedObjectArray:", object:mSelectedObjectArray)
-      mSelectedObjectArray = newSelectedArray ;
-    }
-    if !mTableViewSelectionIndexSet.isEqualToIndexSet(newTableViewSelectionIndexSet) {
-      mObject.undoManager()?.registerUndoWithTarget(self, selector:"undoFor_selectedObjectIndexSet:", object:mTableViewSelectionIndexSet)
-      mTableViewSelectionIndexSet = newTableViewSelectionIndexSet
-    }
-    display ()
+    mSelectedObjectArray = newSelectedArray ;
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  func undoFor_selectedObjectArray (selectedObjectArray : NSArray) {
-    mSelectedObjectArray = selectedObjectArray as! Array<NameEntity>
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func undoFor_selectedObjectIndexSet (selectedObjectIndexSet : NSMutableIndexSet) {
-    mTableViewSelectionIndexSet = selectedObjectIndexSet
-  }
-  
-   //-------------------------------------------------------------------------------------------------------------------*
   
   func display () {
     if displayDebugMessage {
@@ -265,10 +247,16 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     //---------------- Reload data
       tableView.reloadData ()
     //---------------- Update table view selection
-      tableView.selectRowIndexes (mTableViewSelectionIndexSet, byExtendingSelection:false)
+      var newTableViewSelectionIndexSet = NSMutableIndexSet ()
+      for object in mSelectedObjectArray {
+        if let idx = find (mSortedObjectArray, object) {
+          newTableViewSelectionIndexSet.addIndex (idx)
+        }
+      }
+      tableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
     //---------------- Scroll first selected row to visible
-      if mTableViewSelectionIndexSet.count > 0 {
-        tableView.scrollRowToVisible (mTableViewSelectionIndexSet.firstIndex)
+      if newTableViewSelectionIndexSet.count > 0 {
+        tableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
       }
     //----------------
       tableView.setDelegate (self)
@@ -421,17 +409,16 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             newObjectArray.removeAtIndex (idx)
           }
         }
-        mTableViewSelectionIndexSet = NSMutableIndexSet ()
         if newObjectArray.count == 0 {
           mSelectedObjectArray = Array ()
         }else{
           let idx = tableView.selectedRow
-          if idx < mSortedObjectArray.count {
-            mSelectedObjectArray = [mSortedObjectArray [idx]]
-            mTableViewSelectionIndexSet.addIndex (idx)
+          if idx < -1 {
+            mSelectedObjectArray = [newObjectArray [0]]
+          }else if idx < newObjectArray.count {
+            mSelectedObjectArray = [newObjectArray [idx]]
           }else{
             mSelectedObjectArray = [newObjectArray.last!]
-            mTableViewSelectionIndexSet.addIndex (newObjectArray.count - 1)
           }
         }
         mObject.mNames = newObjectArray

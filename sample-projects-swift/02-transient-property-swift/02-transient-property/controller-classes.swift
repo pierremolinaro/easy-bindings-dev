@@ -58,7 +58,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -161,7 +161,7 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTransientEvent
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -242,7 +242,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -345,7 +345,7 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTrans
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

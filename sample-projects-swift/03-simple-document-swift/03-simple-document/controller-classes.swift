@@ -57,7 +57,7 @@ class Controller_MyRootEntity_myColor_PMColorWell_color : NSObject, PMTransientE
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -164,7 +164,7 @@ class Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex : NSObject, P
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -253,7 +253,7 @@ class Controller_MyRootEntity_myString_PMTextField_value : NSObject, PMTransient
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -356,7 +356,7 @@ class Controller_MyRootEntity_myStringConcat_PMTextField_rvalue : NSObject, PMTr
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -432,7 +432,7 @@ class Controller_MyRootEntity_myStringMaj_PMTextField_rvalue : NSObject, PMTrans
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -508,7 +508,7 @@ class Controller_MyRootEntity_myStringMin_PMTextField_rvalue : NSObject, PMTrans
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

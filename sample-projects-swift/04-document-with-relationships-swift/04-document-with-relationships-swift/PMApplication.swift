@@ -54,7 +54,7 @@ class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtoc
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.document_2E_PMDocument_2E_canRemoveString_noteDidChange ()
   }
 
@@ -87,7 +87,7 @@ class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProto
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.document_2E_PMDocument_2E_countItemMessage_noteDidChange ()
   }
 
@@ -120,7 +120,7 @@ class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.document_2E_PMDocument_2E_total_noteDidChange ()
   }
 
@@ -153,7 +153,7 @@ class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtoco
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.document_2E_PMDocument_2E_nameController_noteDidChange ()
   }
 
@@ -268,7 +268,7 @@ func appendToTransientEventLog (message : String) {
 
   private func postTransientEvent (inObject : PMTransientEventProtocol) {
     let transientIndex = inObject.transientEventIndex
-    inObject.noteTransientDidChange ()
+    inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {

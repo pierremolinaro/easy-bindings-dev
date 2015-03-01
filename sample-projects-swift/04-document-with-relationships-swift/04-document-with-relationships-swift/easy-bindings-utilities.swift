@@ -150,7 +150,7 @@ enum PMValidationResult {
 //    PMUserClassName protocol                                                                                         *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol PMUserClassName {
+protocol PMUserClassName : class {
   func userClassName () -> String
 }
 
@@ -160,7 +160,7 @@ protocol PMUserClassName {
 
 protocol PMTransientEventProtocol : PMUserClassName {
   var transientEventIndex : PMTransientIndex { get }
-  func noteTransientDidChange ()
+  func noteModelDidChange ()
   func trigger ()
   func unregister ()
   var uniqueIndex : Int { get }

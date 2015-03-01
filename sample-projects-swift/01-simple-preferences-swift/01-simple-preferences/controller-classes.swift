@@ -57,7 +57,7 @@ class Controller_PMPrefs_mColor_PMColorWell_color : NSObject, PMTransientEventPr
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -164,7 +164,7 @@ class Controller_PMPrefs_mDate_PMDatePicker_date : NSObject, PMTransientEventPro
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -251,7 +251,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue : NSObject, PMTransi
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -335,7 +335,7 @@ class Controller_PMPrefs_mIntegerValue_PMNumberField_value : NSObject, PMTransie
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -443,7 +443,7 @@ class Controller_PMPrefs_myString_PMTextField_value : NSObject, PMTransientEvent
   
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

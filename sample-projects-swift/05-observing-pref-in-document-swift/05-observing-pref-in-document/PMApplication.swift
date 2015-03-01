@@ -50,7 +50,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMTransient
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.entity_2E_MyRootEntity_2E_otherTransientConcatString_noteDidChange ()
   }
 
@@ -83,7 +83,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_transientConcatString : PMTransientEvent
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.entity_2E_MyRootEntity_2E_transientConcatString_noteDidChange ()
   }
 
@@ -116,7 +116,7 @@ class PMEvent_preference_2E_MyPrefs_2E_prefTransientString : PMTransientEventPro
     noteObjectAllocation (self)
   }
 
-  func noteTransientDidChange () {
+  func noteModelDidChange () {
     mObserver?.preference_2E_MyPrefs_2E_prefTransientString_noteDidChange ()
   }
 
@@ -230,7 +230,7 @@ func appendToTransientEventLog (message : String) {
 
   private func postTransientEvent (inObject : PMTransientEventProtocol) {
     let transientIndex = inObject.transientEventIndex
-    inObject.noteTransientDidChange ()
+    inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :
       if logEvents () {
