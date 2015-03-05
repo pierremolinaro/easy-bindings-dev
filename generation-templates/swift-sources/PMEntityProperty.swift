@@ -1,23 +1,15 @@
-//
-//  PMProperty.swift
-//  02-transient-property
-//
-//  Created by Pierre Molinaro on 27/02/2015.
-//  Copyright (c) 2015 Pierre Molinaro. All rights reserved.
-//
-//---------------------------------------------------------------------------------------------------------------------*
 
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct PMPreferencesProperty <T : Equatable> {
- 
-  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+struct PMEntityProperty <T : Equatable where T : DescriptionForExplorer> {
+  var explorer : NSTextField? = nil
 
   var value : T {
     didSet {
       if value != oldValue {
+        explorer?.stringValue = value.descriptionForExplorer ()
         for (key, object) in mObservers {
           postTransientEvent (object)
         }
@@ -28,6 +20,8 @@ struct PMPreferencesProperty <T : Equatable> {
   init (_ inValue : T) {
     value = inValue
   }
+
+  private var mObservers : [Int : PMTransientEventProtocol] = [:]
   
   mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = inObserver
@@ -52,12 +46,6 @@ struct PMPreferencesProperty <T : Equatable> {
   func validate (proposedValue : T) -> PMValidationResult {
     return mValidationFunction (proposedValue)
   }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
-  return PMValidationResult.ok
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

@@ -109,7 +109,7 @@ import Cocoa
     )
   //--------------------------- Transient observers
     nameController?.addObserverOf_canRemove (event_document_2E_PMDocument_2E_canRemoveString, inTrigger:true)
-    rootObject.addObserverOf_mNames (event_document_2E_PMDocument_2E_countItemMessage, inTrigger:true)
+    rootObject.mNames.addObserver (event_document_2E_PMDocument_2E_countItemMessage, inTrigger:true)
     rootObject.addObserverOf_mNames_aValue (event_document_2E_PMDocument_2E_total, inTrigger:true)
   //--------------------------- Array controller as observers
     rootObject.addObserverOf_mNames (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:true)

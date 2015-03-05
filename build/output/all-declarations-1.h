@@ -5247,19 +5247,4 @@ extern const cDirectoryWrapper gWrapperDirectory_9_predefinedOutletClasses ;
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             Routine 'semanticAnalysis'                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
-                               const class GALGAS_lstringlist constinArgument1,
-                               const class GALGAS_string constinArgument2,
-                               const class GALGAS_astDeclarationStruct constinArgument3,
-                               class GALGAS_transientDependencyGraphNodeInfoList & outArgument4,
-                               class GALGAS_structForGeneration & outArgument5,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
 #endif

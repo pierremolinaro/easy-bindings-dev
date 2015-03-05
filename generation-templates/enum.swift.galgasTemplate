@@ -3,14 +3,14 @@ import Foundation
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum %!ENUM_TYPE_NAME% : Int {
+enum %!ENUM_TYPE_NAME% : Int, DescriptionForExplorer {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
 end
 %
-  
-  func string () -> String {
+
+  func descriptionForExplorer () -> String {
     switch self {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
@@ -29,13 +29,6 @@ end
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-
-/*  func storeInDictionary (inKey : String,
-                          inout ioDictionary : NSMutableDictionary) {
-    ioDictionary.setObject (NSNumber.numberWithInteger (rawValue), forKey: inKey)
-  }*/
- 
 //---------------------------------------------------------------------------------------------------------------------*
 
 extension NSDictionary {

@@ -5,7 +5,7 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//---------------------------------------------------------------------------------------------------------------------*
 
 protocol %!ENTITY_NAME%_%!mAttributeName% {
-  var %!mAttributeName% : %![mAttributeType swiftTypeName]% { get }
+  var %!mAttributeName% : PMEntityProperty <%![mAttributeType swiftTypeName]%> { get }
 }
 
 %
@@ -19,13 +19,34 @@ end
 % {
   override func userClassName () -> String { return "%!ENTITY_NAME%" }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
-%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+end
+%
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
+                      %> (PMTransientIndex.k_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%)\n%
+end
+
+
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mAttributeName%_explorer : NSTextField? = nil\n%
+% /* private var %!mAttributeName%_explorer : NSTextField? = nil\n%
 %  private var %!mAttributeName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
@@ -55,9 +76,9 @@ end
     if inTrigger {
       postTransientEvent (inObserver)
     }
-  }
+  } */
 %if not mNeedsValidation then%
-  func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
+ // func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
 
 %
 end
@@ -249,17 +270,32 @@ if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
-  //--- Register trigger objects
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+  if mNeedsValidation then
+%    %!mAttributeName%.setValidationFunction (self.validate_%!mAttributeName%)\n%
+  end
+end
+%  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+  %    %!mTransientName%.setComputeFunction ({return compute_%!ENTITY_NAME%_%!mTransientName% (%
+  for () in mDependencyList
+    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    between %, %
+  end
+  %)})\n%
 end
+end
+%  //--- Install property observers for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  for () in mDependencyList do
+    %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
+  end
 end
 %  }
-%
-end
-%
+ 
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -287,9 +323,9 @@ if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
   //--- Unregister trigger objects
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:false)\n%
-end
+  for () in mDependencyList do
+    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
+  end
 end
 %  }
 %
@@ -302,9 +338,9 @@ end
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%_explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
-%    if let explorer = %!mAttributeName%_explorer {\n%
-%      explorer.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%\n%
+%    %!mAttributeName%.explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
+%    if let explorer = %!mAttributeName%.explorer {\n%
+%      explorer.stringValue = %!mAttributeName%.value.descriptionForExplorer ()\n%
 %    }\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
@@ -323,7 +359,7 @@ end%  }
 
   override func clearObjectExplorer () {
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%_explorer = nil\n%
+%    %!mAttributeName%.explorer = nil\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 %    %!mRelationshipName%_explorer = nil\n%
@@ -355,7 +391,7 @@ end
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName% = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
+%    %!mAttributeName%.value = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
@@ -379,7 +415,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
+% /* private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -427,7 +463,7 @@ end
       event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% (object:self)
     }
     return event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache!
-  }
+  } */
  
 %
 end
