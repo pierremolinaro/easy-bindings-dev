@@ -61,7 +61,7 @@ import Cocoa
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_mNames:", object:oldValue)
       //--- Update explorer
         if mNames_explorer != nil {
-          updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames_explorer)
+          updateManagedObjectToManyRelationshipDisplay (mNames, popUpButton:mNames_explorer)
         }
       //--- Removed object set
         var removedObjectSet : Set<NameEntity> = Set (oldValue)
@@ -140,7 +140,7 @@ import Cocoa
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
     mNames_explorer = createEntryForToManyRelationshipNamed ("mNames", ioRect: &ioRect, view: view)
-    updateManagedObjectToManyRelationshipDisplayForKey ("mNames", popUpButton:mNames_explorer!)
+    updateManagedObjectToManyRelationshipDisplay (mNames, popUpButton:mNames_explorer!)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
