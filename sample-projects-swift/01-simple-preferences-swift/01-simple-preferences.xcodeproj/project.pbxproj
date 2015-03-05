@@ -17,7 +17,9 @@
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
 		CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */; };
 		CFBE8C0719C47F91001F0735 /* PMNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0619C47F91001F0735 /* PMNumberField.swift */; };
-		CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE26DC199FB921002DA21E /* controller-classes.swift */; };
+		CFE0C75B1AA8822600CDEE97 /* PMPreferencesProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0C7591AA8822600CDEE97 /* PMPreferencesProperty.swift */; };
+		CFE0C75C1AA8822600CDEE97 /* PMTransientProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0C75A1AA8822600CDEE97 /* PMTransientProperty.swift */; };
+		CFE0C75E1AA8864F00CDEE97 /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0C75D1AA8864F00CDEE97 /* controller-classes.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
 		CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB838199E87B10044D8B0 /* PMColorWell.swift */; };
 		CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */; };
@@ -37,7 +39,9 @@
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
 		CFBE8C0619C47F91001F0735 /* PMNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMNumberField.swift; sourceTree = "<group>"; };
-		CFCE26DC199FB921002DA21E /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
+		CFE0C7591AA8822600CDEE97 /* PMPreferencesProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPreferencesProperty.swift; sourceTree = "<group>"; };
+		CFE0C75A1AA8822600CDEE97 /* PMTransientProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTransientProperty.swift; sourceTree = "<group>"; };
+		CFE0C75D1AA8864F00CDEE97 /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		CFFBB838199E87B10044D8B0 /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
 		CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatePicker.swift; sourceTree = "<group>"; };
@@ -74,7 +78,7 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
-				CFCE26DC199FB921002DA21E /* controller-classes.swift */,
+				CFE0C75D1AA8864F00CDEE97 /* controller-classes.swift */,
 				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
@@ -83,11 +87,13 @@
 				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
 				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
 				CFBE8C0619C47F91001F0735 /* PMNumberField.swift */,
+				CFE0C7591AA8822600CDEE97 /* PMPreferencesProperty.swift */,
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
 				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
 				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
 				CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
+				CFE0C75A1AA8822600CDEE97 /* PMTransientProperty.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
 			path = "01-simple-preferences";
@@ -170,6 +176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE0C75B1AA8822600CDEE97 /* PMPreferencesProperty.swift in Sources */,
+				CFE0C75C1AA8822600CDEE97 /* PMTransientProperty.swift in Sources */,
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
 				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
@@ -181,8 +189,8 @@
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
 				CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
+				CFE0C75E1AA8864F00CDEE97 /* controller-classes.swift in Sources */,
 				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
-				CFCE26DD199FB921002DA21E /* controller-classes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,48 +10,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                             Routine 'semanticAnalysis'                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                               const GALGAS_lstringlist /* constinArgument_inSortedKeys */,
-                               const GALGAS_string constinArgument_inSourceFile,
-                               const GALGAS_astDeclarationStruct constinArgument_inAstDeclarationStruct,
-                               GALGAS_transientDependencyGraphNodeInfoList & outArgument_outSortedTransientAndObservablePropertyNodes,
-                               GALGAS_structForGeneration & outArgument_outGeneration,
-                               C_Compiler * inCompiler
-                               COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outSortedTransientAndObservablePropertyNodes.drop () ; // Release 'out' argument
-  outArgument_outGeneration.drop () ; // Release 'out' argument
-  {
-  routine_buildTransientDependencyGraph (constinArgument_inUnifiedTypeMap, constinArgument_inSourceFile, outArgument_outSortedTransientAndObservablePropertyNodes, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 102)) ;
-  }
-  GALGAS_templateControllerMap var_templateControllerMap ;
-  {
-  routine_buildControllerTemplateMap (constinArgument_inUnifiedTypeMap, constinArgument_inAstDeclarationStruct.mAttribute_mControllerTemplateList, var_templateControllerMap, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 108)) ;
-  }
-  GALGAS_outletClassMap var_outletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("easyBindings_program.galgas", 114)) ;
-  cEnumerator_outletClassDeclarationList enumerator_5136 (constinArgument_inAstDeclarationStruct.mAttribute_mOutletClassDeclarationList, kEnumeration_up) ;
-  while (enumerator_5136.hasCurrentObject ()) {
-    {
-    var_outletClassMap.modifier_insertKey (enumerator_5136.current_mOutletClassName (HERE), enumerator_5136.current_mHasRunAction (HERE), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 116)) ;
-    }
-    enumerator_5136.gotoNextObject () ;
-  }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("easyBindings_program.galgas", 119)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    {
-    routine_typeAnalysis (constinArgument_inUnifiedTypeMap, var_outletClassMap, var_templateControllerMap, outArgument_outGeneration, inCompiler  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 120)) ;
-    }
-  }else if (kBoolFalse == test_0) {
-    outArgument_outGeneration = GALGAS_structForGeneration::constructor_default (SOURCE_FILE ("easyBindings_program.galgas", 127)) ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                               Routine 'generateCode'                                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3633,9 +3591,217 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
-//--- File '/PMUndoManager.swift'
+//--- File '/PMPreferencesProperty.swift'
 
 const char * gWrapperFileContent_5_swift_5F_sources = "//\n"
+  "//  PMProperty.swift\n"
+  "//  02-transient-property\n"
+  "//\n"
+  "//  Created by Pierre Molinaro on 27/02/2015.\n"
+  "//  Copyright (c) 2015 Pierre Molinaro. All rights reserved.\n"
+  "//\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "struct PMPreferencesProperty <T : Equatable> {\n"
+  " \n"
+  "  private var mObservers : [Int : PMTransientEventProtocol] = [:]\n"
+  "\n"
+  "  var value : T {\n"
+  "    didSet {\n"
+  "      if value != oldValue {\n"
+  "        for (key, object) in mObservers {\n"
+  "          postTransientEvent (object)\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "  \n"
+  "  init (_ inValue : T) {\n"
+  "    value = inValue\n"
+  "  }\n"
+  "  \n"
+  "  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {\n"
+  "    mObservers [inObserver.uniqueIndex] = inObserver\n"
+  "    if inTrigger {\n"
+  "      postTransientEvent (inObserver)\n"
+  "    }\n"
+  "  }\n"
+  " \n"
+  "  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {\n"
+  "    mObservers [inObserver.uniqueIndex] = nil\n"
+  "    if inTrigger {\n"
+  "      postTransientEvent (inObserver)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mValidationFunction : (T) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  mutating func setValidationFunction (fonction : (T) -> PMValidationResult) {\n"
+  "    mValidationFunction = fonction\n"
+  "  }\n"
+  "  \n"
+  "  func validate (proposedValue : T) -> PMValidationResult {\n"
+  "    return mValidationFunction (proposedValue)\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {\n"
+  "  return PMValidationResult.ok\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_5_swift_5F_sources (
+  "PMPreferencesProperty.swift",
+  "swift",
+  true, // Text file
+  1854, // Text length
+  gWrapperFileContent_5_swift_5F_sources
+) ;
+
+//--- File '/PMTransientProperty.swift'
+
+const char * gWrapperFileContent_6_swift_5F_sources = "//\n"
+  "//  PMTransientProperty.swift\n"
+  "//  02-transient-property\n"
+  "//\n"
+  "//  Created by Pierre Molinaro on 27/02/2015.\n"
+  "//  Copyright (c) 2015 Pierre Molinaro. All rights reserved.\n"
+  "//\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "import Foundation\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "class PMTransientProperty<T> : PMUserClassName {\n"
+  "  private var mObservers : [Int : PMTransientEventProtocol] = [:]\n"
+  "  private var mValueCache : T\? = nil\n"
+  "  private let mTransientIndex : PMTransientIndex\n"
+  "  private var mComputeFunction : Optional<() -> T>\n"
+  "  \n"
+  "  init (_ inTransientIndex : PMTransientIndex) {\n"
+  "    mTransientIndex = inTransientIndex\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "\n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self) ;\n"
+  "  }\n"
+  "\n"
+  "  func setComputeFunction (function : () -> T) {\n"
+  "    mComputeFunction = function\n"
+  "  }\n"
+  "  \n"
+  "  func userClassName () -> String { return \"PMTransientProperty<T>\"}\n"
+  "  \n"
+  "  var value : T {\n"
+  "    get {\n"
+  "      if mValueCache == nil, let computeFunction = mComputeFunction {\n"
+  "        mValueCache = computeFunction ()\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func noteDidChange () {\n"
+  "    mValueCache = nil\n"
+  "  }\n"
+  "  \n"
+  "\n"
+  "  func trigger () {\n"
+  "    for (key, object) in mObservers {\n"
+  "      postTransientEvent (object)\n"
+  "    }\n"
+  "  }\n"
+  " \n"
+  "  func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {\n"
+  "    mObservers [inObserver.uniqueIndex] = inObserver\n"
+  "    if inTrigger {\n"
+  "      postTransientEvent (inObserver)\n"
+  "    }\n"
+  "  }\n"
+  " \n"
+  "  func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {\n"
+  "    mObservers [inObserver.uniqueIndex] = nil\n"
+  "    if inTrigger {\n"
+  "      postTransientEvent (inObserver)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mEvent : PMTransientEventProtocol\?\n"
+  "\n"
+  "  var event : PMTransientEventProtocol {\n"
+  "    get {\n"
+  "      if mEvent == nil {\n"
+  "        mEvent = PMTransientPropertyEvent<T> (self)\n"
+  "      }\n"
+  "      return mEvent!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func resetComputationFunction () {\n"
+  "    mComputeFunction = nil\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "class PMTransientPropertyEvent<T> : PMTransientEventProtocol {\n"
+  "  weak private var mObserver : PMTransientProperty<T>\? = nil\n"
+  "  private let mTransientIndex : PMTransientIndex\n"
+  "  \n"
+  "  func userClassName () -> String { return \"PMTransientPropertyEvent<T>\" }\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return mTransientIndex } }\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int\n"
+  "\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "  \n"
+  "  init (_ inObject : PMTransientProperty<T>) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObserver = inObject\n"
+  "    mTransientIndex = inObject.mTransientIndex\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "    mObserver\?.noteDidChange ()\n"
+  "  }\n"
+  "\n"
+  "  func unregister () {\n"
+  "  }\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self) ;\n"
+  "  }\n"
+  "\n"
+  "  func trigger () {\n"
+  "    mObserver\?.trigger ()\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
+  "PMTransientProperty.swift",
+  "swift",
+  true, // Text file
+  3140, // Text length
+  gWrapperFileContent_6_swift_5F_sources
+) ;
+
+//--- File '/PMUndoManager.swift'
+
+const char * gWrapperFileContent_7_swift_5F_sources = "//\n"
   "//  PMUndoManager.swift\n"
   "//  essai\n"
   "//\n"
@@ -3731,17 +3897,17 @@ const char * gWrapperFileContent_5_swift_5F_sources = "//\n"
   "\n"
   "//------------------------------------------------------------------------------*\n" ;
 
-const cRegularFileWrapper gWrapperFile_5_swift_5F_sources (
+const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "PMUndoManager.swift",
   "swift",
   true, // Text file
   3872, // Text length
-  gWrapperFileContent_5_swift_5F_sources
+  gWrapperFileContent_7_swift_5F_sources
 ) ;
 
 //--- File '/easy-bindings-utilities.swift'
 
-const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
+const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "//   presentErrorWindow                                                                                                *\n"
@@ -4010,17 +4176,17 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n" ;
 
-const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
+const cRegularFileWrapper gWrapperFile_8_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
   10907, // Text length
-  gWrapperFileContent_6_swift_5F_sources
+  gWrapperFileContent_8_swift_5F_sources
 ) ;
 
 //--- File '/main.swift'
 
-const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
+const char * gWrapperFileContent_9_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
@@ -4028,17 +4194,17 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n" ;
 
-const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
+const cRegularFileWrapper gWrapperFile_9_swift_5F_sources (
   "main.swift",
   "swift",
   true, // Text file
   311, // Text length
-  gWrapperFileContent_7_swift_5F_sources
+  gWrapperFileContent_9_swift_5F_sources
 ) ;
 
 //--- All files of '' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [9] = {
+static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [11] = {
   & gWrapperFile_0_swift_5F_sources,
   & gWrapperFile_1_swift_5F_sources,
   & gWrapperFile_2_swift_5F_sources,
@@ -4047,6 +4213,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [9] = {
   & gWrapperFile_5_swift_5F_sources,
   & gWrapperFile_6_swift_5F_sources,
   & gWrapperFile_7_swift_5F_sources,
+  & gWrapperFile_8_swift_5F_sources,
+  & gWrapperFile_9_swift_5F_sources,
   NULL
 } ;
 
@@ -4060,7 +4228,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_swift_5F_sources_0 [1] =
 
 const cDirectoryWrapper gWrapperDirectory_0_swift_5F_sources (
   "",
-  8,
+  10,
   gWrapperAllFiles_swift_5F_sources_0,
   0,
   gWrapperAllDirectories_swift_5F_sources_0
@@ -4077,37 +4245,39 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             const GALGAS_bool constinArgument_inHasEntities,
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
-  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
-  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
-  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 202)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 207)) ;
+  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 203)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 204)) ;
+  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 205)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMPreferencesProperty")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 206)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMTransientProperty")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 207)) ;
   GALGAS_stringlist var_swiftFiles = temp_0 ;
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 204)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 205)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 206)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 207)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 210)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 211)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 213)) ;
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 209)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 209)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("easyBindings_program.galgas", 215)) ;
+  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("easyBindings_program.galgas", 215)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_7969 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_7969.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_7969.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 212)) ;
+  cEnumerator_stringlist enumerator_8043 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_8043.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8043.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 218)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 218)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_7969.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 215)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 213)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8043.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 221)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 219)) ;
     }
-    enumerator_7969.gotoNextObject () ;
+    enumerator_8043.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_8162 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_8162.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8162.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 220)) ;
+  cEnumerator_stringlist enumerator_8236 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_8236.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_8236.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 226)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8162.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 223)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 221)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_8236.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 229)), var_contents, inCompiler COMMA_SOURCE_FILE ("easyBindings_program.galgas", 227)) ;
     }
-    enumerator_8162.gotoNextObject () ;
+    enumerator_8236.gotoNextObject () ;
   }
 }
 
@@ -16286,7 +16456,7 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
     break ;
   case GALGAS_typeKind::kEnum_boolType:
     {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)) ;
+      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 62)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_uintegerType:
@@ -16296,7 +16466,7 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
     break ;
   case GALGAS_typeKind::kEnum_integerType:
     {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)) ;
+      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 64)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_doubleType:
@@ -16304,14 +16474,9 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
       result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
     }
     break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inPropertyName ;
-    }
-    break ;
   case GALGAS_typeKind::kEnum_colorType:
     {
-      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 67)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 67)) ;
+      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 66)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 66)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_dataType:
@@ -16320,8 +16485,9 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
     }
     break ;
   case GALGAS_typeKind::kEnum_dateType:
+  case GALGAS_typeKind::kEnum_stringType:
     {
-      result_outResult = constinArgument_inPropertyName ;
+      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 68)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_imageType:
@@ -16360,7 +16526,7 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap
   case GALGAS_typeKind::kEnum_protocolType:
     {
       const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 77)) ;
+      result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 76)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 76)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 76)) ;
     }
     break ;
   }

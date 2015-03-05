@@ -36,7 +36,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransie
         }
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -44,7 +44,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransie
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -62,7 +62,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransie
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.myIntegerValue = object.$MODEL$
+      outlet.myIntegerValue = object.$MODEL$.value
     }
   }
 
@@ -70,10 +70,10 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransie
 
   func action (sender : PMNumberField) {
     if let outlet = mOutlet,object = mObject {
-      let validationResult = object.validate_$MODEL$ (outlet.integerValue)
+      let validationResult = object.$MODEL$.validate (outlet.integerValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.$MODEL$ = outlet.integerValue
+        object.$MODEL$.value = outlet.integerValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -85,7 +85,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransie
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.myIntegerValue = object.$MODEL$
+              outlet.myIntegerValue = object.$MODEL$.value
             }
           })
         }

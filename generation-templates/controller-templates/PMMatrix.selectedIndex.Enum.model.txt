@@ -29,7 +29,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTran
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -37,7 +37,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTran
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -54,16 +54,16 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTran
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.rawValue {
-      outlet.selectCellAtRow (object.$MODEL$.rawValue, column:0)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.value.rawValue {
+      outlet.selectCellAtRow (object.$MODEL$.value.rawValue, column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.rawValue {
-      object.$MODEL$ = object.$MODEL$.enumfromRawValue (outlet.selectedRow)
+    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.value.rawValue {
+      object.$MODEL$.value = object.$MODEL$.value.enumfromRawValue (outlet.selectedRow)
     }
   }
 

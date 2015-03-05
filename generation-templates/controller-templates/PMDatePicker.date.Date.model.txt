@@ -29,7 +29,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTransient
         unwrappedOutlet.action = "action:"
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -37,7 +37,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTransient
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -54,16 +54,16 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTransient
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$) {
-      outlet.dateValue = object.$MODEL$
+    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$.value) {
+      outlet.dateValue = object.$MODEL$.value
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$) {
-      object.$MODEL$ = outlet.dateValue
+    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$.value) {
+      object.$MODEL$.value = outlet.dateValue
     }
   }
 
