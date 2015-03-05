@@ -4500,6 +4500,27 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (cl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//   Abstract category reader '@abstractTransientDependencyForGeneration generateActualParameterForComputeFunction'    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateActualParameterForComputeFunction) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                                                                                           class C_Compiler * inCompiler
+                                                                                                                                           COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryReader_generateActualParameterForComputeFunction (const int32_t inClassIndex,
+                                                                    categoryReaderSignature_abstractTransientDependencyForGeneration_generateActualParameterForComputeFunction inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string callCategoryReader_generateActualParameterForComputeFunction (const class cPtr_abstractTransientDependencyForGeneration * inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //            Abstract category reader '@abstractTransientDependencyForGeneration generateAddObserverCall'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4599,27 +4620,6 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
 GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (class C_Compiler * inCompiler,
                                                                                                    const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
                                                                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//   Abstract category reader '@abstractTransientDependencyForGeneration generateActualParameterForComputeFunction'    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_string (*categoryReaderSignature_abstractTransientDependencyForGeneration_generateActualParameterForComputeFunction) (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                                                                                           class C_Compiler * inCompiler
-                                                                                                                                           COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_generateActualParameterForComputeFunction (const int32_t inClassIndex,
-                                                                    categoryReaderSignature_abstractTransientDependencyForGeneration_generateActualParameterForComputeFunction inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string callCategoryReader_generateActualParameterForComputeFunction (const class cPtr_abstractTransientDependencyForGeneration * inObject,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

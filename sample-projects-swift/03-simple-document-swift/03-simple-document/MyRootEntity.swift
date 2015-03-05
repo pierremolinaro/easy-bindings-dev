@@ -149,10 +149,10 @@ protocol MyRootEntity_myString {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Register trigger objects
-    addObserverOf_myStringMaj (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
-    addObserverOf_myStringMin (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
-    addObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:true)
-    addObserverOf_myString (event_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:true)
+    myStringMaj.addObserver (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
+    myStringMin.addObserver (event_entity_2E_MyRootEntity_2E_myStringConcat, inTrigger:true)
+    myString.addObserver (event_entity_2E_MyRootEntity_2E_myStringMaj, inTrigger:true)
+    myString.addObserver (event_entity_2E_MyRootEntity_2E_myStringMin, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -35,7 +35,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtocol {
+/* class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtocol {
   weak private var mObserver : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMEvent_entity.MyRootEntity.myStringConcat" }
@@ -65,10 +65,10 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringConcat : PMTransientEventProtoco
   func trigger () {
     mObserver?.entity_2E_MyRootEntity_2E_myStringConcat_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
+/* class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
   weak private var mObserver : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMEvent_entity.MyRootEntity.myStringMaj" }
@@ -98,10 +98,10 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringMaj : PMTransientEventProtocol {
   func trigger () {
     mObserver?.entity_2E_MyRootEntity_2E_myStringMaj_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_entity_2E_MyRootEntity_2E_myStringMin : PMTransientEventProtocol {
+/* class PMEvent_entity_2E_MyRootEntity_2E_myStringMin : PMTransientEventProtocol {
   weak private var mObserver : MyRootEntity? = nil
 
   func userClassName () -> String { return "PMEvent_entity.MyRootEntity.myStringMin" }
@@ -131,7 +131,7 @@ class PMEvent_entity_2E_MyRootEntity_2E_myStringMin : PMTransientEventProtocol {
   func trigger () {
     mObserver?.entity_2E_MyRootEntity_2E_myStringMin_trigger ()
   }
-}
+} */
 
 
 //---------------------------------------------------------------------------------------------------------------------*
