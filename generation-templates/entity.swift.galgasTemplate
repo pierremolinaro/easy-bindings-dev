@@ -294,15 +294,47 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
   end
 end
+%  //--- Install undoers for properties
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+  %    %!mAttributeName%.registerUndo = {(oldValue : %![mAttributeType swiftTypeName]
+        %) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue) }\n%
+end
 %  }
- 
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Undo methods for properties                                                                                      *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%for () in ATTRIBUTE_LIST_FOR_GENERATION
+  do
+    %  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeUndoArgument]%) {\n%
+    %    %!mAttributeName%.value = %![mAttributeType transformerForUndo !"value"]%\n%
+    %  }\n%
+  between
+  %
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+end
+%
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Uninstall compute functions for transients
 %
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    %!mTransientName%.setComputeFunction (nil)\n%
+end
+%  //--- Uninstall undoers for properties
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+  %    %!mAttributeName%.registerUndo = nil\n%
+end
+
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %    %!mRelationshipName% = Array<%![mRelationshipType key]%> ()\n%

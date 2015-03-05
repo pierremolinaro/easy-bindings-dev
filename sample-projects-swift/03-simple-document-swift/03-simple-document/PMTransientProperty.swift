@@ -26,7 +26,7 @@ class PMTransientProperty<T> : PMUserClassName {
     noteObjectDeallocation (self) ;
   }
 
-  func setComputeFunction (function : () -> T) {
+  func setComputeFunction (function : Optional<() -> T>) {
     mComputeFunction = function
   }
   
