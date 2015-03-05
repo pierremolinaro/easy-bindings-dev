@@ -131,13 +131,23 @@ import Cocoa
   func removeObserverOf_mNames_count (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
     removeObserverOf_mNames (inObserver, inTrigger:inTrigger)
   }
- 
+  //--- Install property observers for transients
+  //--- Install undoers for properties
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Undo methods for properties                                                                                      *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Uninstall compute functions for transients
+  //--- Uninstall undoers for properties
     mNames = Array<NameEntity> ()
   }
   

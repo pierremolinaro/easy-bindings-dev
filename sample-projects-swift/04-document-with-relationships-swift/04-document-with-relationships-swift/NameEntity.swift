@@ -162,13 +162,36 @@ protocol NameEntity_name {
       postTransientEvent (inObserver)
     }
   }
- 
+  //--- Install property observers for transients
+  //--- Install undoers for properties
+    aValue.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:oldValue) }
+    name.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue) }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Undo methods for properties                                                                                      *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func undoFor_aValue (value : NSNumber) {
+    aValue.value = value.integerValue
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func undoFor_name (value : String) {
+    name.value = value
+  }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Uninstall compute functions for transients
+  //--- Uninstall undoers for properties
+    aValue.registerUndo = nil
+    name.registerUndo = nil
     mRoot = nil
   }
   

@@ -297,8 +297,7 @@ end
 %  //--- Install undoers for properties
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    %!mAttributeName%.registerUndo = {(oldValue : %![mAttributeType swiftTypeName]
-        %) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue) }\n%
+  %    %!mAttributeName%.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue) }\n%
 end
 %  }
 
