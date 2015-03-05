@@ -94,7 +94,6 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
   end
 end
 
-
 for () in ARRAY_MAP do
 %    { NSMutableArray * array = [NSMutableArray new] ;
       for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey.string%"]) {

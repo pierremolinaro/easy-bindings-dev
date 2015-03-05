@@ -55,9 +55,3 @@ struct PMPreferencesProperty <T : Equatable> {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
-  return PMValidationResult.ok
-}
-
-//---------------------------------------------------------------------------------------------------------------------*

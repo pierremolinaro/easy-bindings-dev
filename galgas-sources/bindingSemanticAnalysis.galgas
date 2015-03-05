@@ -36,17 +36,17 @@ getter @unifiedTypeMap-proxy swiftTypeName -> @string outResult {
 
 getter @unifiedTypeMap-proxy valueAccessorForExplorerWindow ?let @string inPropertyName -> @string outResult {
   switch [self mTypeKind]
-  case boolType : outResult = "NSString (format:\"%s\", " + inPropertyName + " ? \"true\" : \"false\") as! String"
-  case uintegerType : outResult = "NSString (format:\"%lu\", " + inPropertyName + ") as! String"
-  case integerType : outResult = "NSString (format:\"%ld\", " + inPropertyName + ") as! String"
-  case doubleType : outResult = "NSString (format:\"%g\", " + inPropertyName + ") as! String"
-  case stringType : outResult = inPropertyName
-  case colorType : outResult = inPropertyName + ".description"
+  case boolType : outResult = "NSString (format:\"%s\", " + inPropertyName + ".value ? \"true\" : \"false\") as! String"
+  case uintegerType : outResult = "NSString (format:\"%lu\", " + inPropertyName + ".value) as! String"
+  case integerType : outResult = "NSString (format:\"%ld\", " + inPropertyName + ".value) as! String"
+  case doubleType : outResult = "NSString (format:\"%g\", " + inPropertyName + ".value) as! String"
+  case stringType : outResult = inPropertyName + ".value"
+  case colorType : outResult = inPropertyName + ".value.description"
   case dataType : outResult = "NSData"
   case dateType : outResult = "NSDate"
   case imageType : outResult = "NSImage"
   case fontType : outResult = "NSFont"
-  case enumType : outResult = inPropertyName + ".string ()"
+  case enumType : outResult = inPropertyName + ".value.string ()"
   case menuType : outResult = "NSMenu"
   case bezierPathType : outResult = "NSBezierPath"
   case structType : outResult = [self key]
@@ -60,19 +60,19 @@ getter @unifiedTypeMap-proxy valueAccessorForExplorerWindow ?let @string inPrope
 
 getter @unifiedTypeMap-proxy transformForSavingInDictionary ?let @string inPropertyName -> @string outResult {
   switch [self mTypeKind]
-  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ")"
-  case uintegerType : outResult = "NSNumber (unsignedInteger:" + inPropertyName + ")"
-  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ")"
-  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ")"
-  case stringType : outResult = inPropertyName
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ")"
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".value)"
+  case uintegerType : outResult = "NSNumber (unsignedInteger:" + inPropertyName + ".value)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".value)"
+  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".value)"
+  case stringType : outResult = inPropertyName + ".value"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".value)"
   case dataType : outResult = "NSData"
   case dateType : outResult = "NSDate"
   case imageType : outResult = "NSImage"
   case fontType : outResult = "NSFont"
   case menuType : outResult = "NSMenu"
   case bezierPathType : outResult = "NSBezierPath"
-  case enumType : outResult = "NSNumber (integer:" + inPropertyName + ".rawValue)"
+  case enumType : outResult = "NSNumber (integer:" + inPropertyName + ".value.rawValue)"
   case structType : outResult = [self key]
   case classType, controllerClassType, documentType, entityType,
   preferencesType, nibClassType, outletClassType, protocolType :

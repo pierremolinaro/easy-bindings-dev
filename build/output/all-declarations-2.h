@@ -11,6 +11,21 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                             Routine 'semanticAnalysis'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
+                               const class GALGAS_lstringlist constinArgument1,
+                               const class GALGAS_string constinArgument2,
+                               const class GALGAS_astDeclarationStruct constinArgument3,
+                               class GALGAS_transientDependencyGraphNodeInfoList & outArgument4,
+                               class GALGAS_structForGeneration & outArgument5,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                               Routine 'generateCode'                                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -48,6 +63,7 @@ extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -64,6 +80,7 @@ extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

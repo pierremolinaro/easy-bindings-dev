@@ -38,7 +38,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtocol {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.canRemoveString" }
@@ -68,10 +68,10 @@ class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtoc
   func trigger () {
     mObserver?.document_2E_PMDocument_2E_canRemoveString_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProtocol {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.countItemMessage" }
@@ -101,10 +101,10 @@ class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProto
   func trigger () {
     mObserver?.document_2E_PMDocument_2E_countItemMessage_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.total" }
@@ -134,10 +134,10 @@ class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
   func trigger () {
     mObserver?.document_2E_PMDocument_2E_total_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtocol {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.nameController" }
@@ -167,7 +167,7 @@ class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtoco
   func trigger () {
     mObserver?.document_2E_PMDocument_2E_nameController_trigger ()
   }
-}
+} */
 
 
 //---------------------------------------------------------------------------------------------------------------------*

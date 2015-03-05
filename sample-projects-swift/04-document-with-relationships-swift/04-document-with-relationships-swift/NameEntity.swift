@@ -3,13 +3,13 @@ import Cocoa
 //---------------------------------------------------------------------------------------------------------------------*
 
 protocol NameEntity_aValue {
-  var aValue : Int { get }
+  var aValue : PMEntityProperty <Int> { get }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 protocol NameEntity_name {
-  var name : String { get }
+  var name : PMEntityProperty <String> { get }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17,19 +17,30 @@ protocol NameEntity_name {
 @objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_aValue, NameEntity_name {
   override func userClassName () -> String { return "NameEntity" }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var aValue = PMEntityProperty <Int> (123)
+  var name = PMEntityProperty <String> ("Name")
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: aValue                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var aValue_explorer : NSTextField? = nil
+ /* private var aValue_explorer : NSTextField? = nil
   private var aValue_observers : [Int : PMTransientEventProtocol] = [:]
   var aValue : Int = 123 {
     didSet {
       if aValue != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:NSNumber (integer:oldValue))
-        aValue_explorer?.stringValue = NSString (format:"%ld", aValue) as! String
+        aValue_explorer?.stringValue = NSString (format:"%ld", aValue.value) as! String
         for (key, observer) in aValue_observers {
           postTransientEvent (observer)
         }
@@ -53,22 +64,22 @@ protocol NameEntity_name {
     if inTrigger {
       postTransientEvent (inObserver)
     }
-  }
+  } */
 
-  func validate_aValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
+ // func validate_aValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
 
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Attribute: name                                                                                                *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var name_explorer : NSTextField? = nil
+ /* private var name_explorer : NSTextField? = nil
   private var name_observers : [Int : PMTransientEventProtocol] = [:]
   var name : String = "Name" {
     didSet {
       if name != oldValue {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue)
-        name_explorer?.stringValue = name
+        name_explorer?.stringValue = name.value
         for (key, observer) in name_observers {
           postTransientEvent (observer)
         }
@@ -92,9 +103,9 @@ protocol NameEntity_name {
     if inTrigger {
       postTransientEvent (inObserver)
     }
-  }
+  } */
 
-  func validate_name (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
+ // func validate_name (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    To one relationship: mRoot                                                                                     *
@@ -151,7 +162,7 @@ protocol NameEntity_name {
       postTransientEvent (inObserver)
     }
   }
-
+ 
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -168,13 +179,13 @@ protocol NameEntity_name {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    aValue_explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
-    if let explorer = aValue_explorer {
-      explorer.stringValue = NSString (format:"%ld", aValue) as! String
+    aValue.explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
+    if let explorer = aValue.explorer {
+      explorer.stringValue = aValue.value.descriptionForExplorer ()
     }
-    name_explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
-    if let explorer = name_explorer {
-      explorer.stringValue = name
+    name.explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
+    if let explorer = name.explorer {
+      explorer.stringValue = name.value.descriptionForExplorer ()
     }
     mRoot_explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
     updateManagedObjectToOneRelationshipDisplay (mRoot, button:mRoot_explorer!)
@@ -185,8 +196,8 @@ protocol NameEntity_name {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func clearObjectExplorer () {
-    aValue_explorer = nil
-    name_explorer = nil
+    aValue.explorer = nil
+    name.explorer = nil
     mRoot_explorer = nil
     super.clearObjectExplorer ()
   }
@@ -197,8 +208,8 @@ protocol NameEntity_name {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSNumber (integer:aValue), forKey: "aValue")
-    ioDictionary.setValue (name, forKey: "name")
+    ioDictionary.setValue (NSNumber (integer:aValue.value), forKey: "aValue")
+    ioDictionary.setValue (name.value, forKey: "name")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -208,8 +219,8 @@ protocol NameEntity_name {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    aValue = inDictionary.readInt ("aValue")
-    name = inDictionary.readString ("name")
+    aValue.value = inDictionary.readInt ("aValue")
+    name.value = inDictionary.readString ("name")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

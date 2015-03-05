@@ -210,7 +210,7 @@ abstract getter @abstractTransientDependencyForGeneration generateRemoveObserver
 #-----------------------------------------------------------------------------*
 
 override getter @transientControllerDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = mControllerName.string + "?.removeObserverOf_" + mMasterName
+  outResult = mControllerName.string + "?." + mMasterName + ".removeObserver"
 }
 
 #-----------------------------------------------------------------------------*
@@ -222,25 +222,25 @@ override getter @transientRootSignDependencyForGeneration generateRemoveObserver
 #-----------------------------------------------------------------------------*
 
 override getter @transientLocalDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = "removeObserverOf_" + mMasterName.string
+  outResult = mMasterName.string + ".removeObserver"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientPreferenceDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = "g_" + mPreferencesName.string + "?.removeObserverOf_" + mMasterName
+  outResult = "g_" + mPreferencesName.string + "?." + mMasterName + ".removeObserver"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = "rootObject.removeObserverOf_" + mMasterName
+  outResult = "rootObject." + mMasterName + ".removeObserver"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootRelationshipDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = "rootObject.removeObserverOf_" + mRelationshipName + "_" + mMasterName
+  outResult = "rootObject." + mMasterName + ".removeObserverOf_" + mRelationshipName
 }
 
 #----------------------------------------------------------------------------*

@@ -3,13 +3,13 @@ import Foundation
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum MonEnumeration : Int {
+enum MonEnumeration : Int, DescriptionForExplorer {
   case premier = 0
   case deuxieme = 1
   case troisieme = 2
 
-  
-  func string () -> String {
+
+  func descriptionForExplorer () -> String {
     switch self {
       case premier : return "premier" // 0
       case deuxieme : return "deuxieme" // 1
@@ -27,13 +27,6 @@ enum MonEnumeration : Int {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-
-/*  func storeInDictionary (inKey : String,
-                          inout ioDictionary : NSMutableDictionary) {
-    ioDictionary.setObject (NSNumber.numberWithInteger (rawValue), forKey: inKey)
-  }*/
- 
 //---------------------------------------------------------------------------------------------------------------------*
 
 extension NSDictionary {

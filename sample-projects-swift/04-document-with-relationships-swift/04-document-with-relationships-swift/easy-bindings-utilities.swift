@@ -265,4 +265,44 @@ extension NSTextView {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//    defaultValidationFunction                                                                                        *
+//---------------------------------------------------------------------------------------------------------------------*
+
+func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
+  return PMValidationResult.ok
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//    descriptionForExplorer                                                                                           *
+//---------------------------------------------------------------------------------------------------------------------*
+
+protocol DescriptionForExplorer {
+  func descriptionForExplorer () -> String
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extension NSObject : DescriptionForExplorer {
+  func descriptionForExplorer () -> String {
+    return description
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extension String : DescriptionForExplorer {
+  func descriptionForExplorer () -> String {
+    return self
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extension Int : DescriptionForExplorer {
+  func descriptionForExplorer () -> String {
+    return String (format:"%d", self)
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 

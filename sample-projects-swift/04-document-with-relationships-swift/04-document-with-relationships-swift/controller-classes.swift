@@ -39,13 +39,13 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.addObserverOf_mNames_count (self, inTrigger:true)
+    mObject?.mNames_count.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mNames_count (self, inTrigger:false)
+    mObject?.mNames_count.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -63,7 +63,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.integerValue = object.mNames_count
+      outlet.integerValue = object.mNames_count.value
     }
   }
 
@@ -115,13 +115,13 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTra
         }
       }
     }
-    mObject?.addObserverOf_canRemoveString (self, inTrigger:true)
+    mObject?.canRemoveString.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_canRemoveString (self, inTrigger:false)
+    mObject?.canRemoveString.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -138,8 +138,8 @@ class Controller_PMDocument_canRemoveString_PMTextField_rvalue : NSObject, PMTra
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.canRemoveString {
-      outlet.stringValue = object.canRemoveString
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.canRemoveString.value {
+      outlet.stringValue = object.canRemoveString.value
     }
   }
 
@@ -191,13 +191,13 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.addObserverOf_countItemMessage (self, inTrigger:true)
+    mObject?.countItemMessage.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_countItemMessage (self, inTrigger:false)
+    mObject?.countItemMessage.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -214,8 +214,8 @@ class Controller_PMDocument_countItemMessage_PMTextField_rvalue : NSObject, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.countItemMessage {
-      outlet.stringValue = object.countItemMessage
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.countItemMessage.value {
+      outlet.stringValue = object.countItemMessage.value
     }
   }
 
@@ -270,13 +270,13 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEv
         }
       }
     }
-    mObject?.addObserverOf_total (self, inTrigger:true)
+    mObject?.total.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_total (self, inTrigger:false)
+    mObject?.total.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -294,7 +294,7 @@ class Controller_PMDocument_total_PMNumberField_rvalue : NSObject, PMTransientEv
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.integerValue = object.total
+      outlet.integerValue = object.total.value
     }
   }
 

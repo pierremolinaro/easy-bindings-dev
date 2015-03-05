@@ -211,6 +211,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"PMManagedDocument"
     swiftFiles += !"PMUndoManager"
     swiftFiles += !"PMDataScanner"
+    swiftFiles += !"PMEntityProperty"
   end
   @stringlist xibFiles = {!"PMAllocationDebug"}
   var fw = [filewrapper swift_sources]
