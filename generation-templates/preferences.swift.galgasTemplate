@@ -33,8 +33,6 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 end
 %
 
-//  func validate_mAttributeName (proposedValue : [mAttributeType swiftTypeName]) -> PMValidationResult { return PMValidationResult.ok }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -42,11 +40,13 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]%> ()\n%
+%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
+                      %> (PMTransientIndex.k_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%)\n%
 end
 
 for () in CONTROLLER_MAP do
 %
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Controller: " + lkey stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
@@ -54,7 +54,8 @@ for () in CONTROLLER_MAP do
   var %!lkey.string% = %!mControllerClassName% ()\n%
 end
 
-%  //-------------------------------------------------------------------------------------------------------------------*
+%
+  //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 %
@@ -153,11 +154,25 @@ for () in OUTLET_MAP do
  #   ![mBinding generateSwiftBinding !mOutletName]
 #  end
 end
+%  //--- Install compute functions for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    %!mTransientName%.setComputeFunction ({return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  for () in mDependencyList
+    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    between %, %
+  end
+  %)})\n%
+end
+%  //--- Install property observers for transients
+%
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (event_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+%    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
 end
 end
+%  //--- Install controller for transients
+%
 for () in CONTROLLER_INSTANCIATION_STRINGLIST do
 %    mControllerArray.addObject (%!mValue%)\n%
 end

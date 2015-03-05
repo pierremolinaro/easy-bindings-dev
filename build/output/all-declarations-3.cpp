@@ -5771,7 +5771,7 @@ static GALGAS_string categoryReader_transientLocalDependencyForGeneration_genera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientLocalDependencyForGeneration * object = (const cPtr_transientLocalDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientLocalDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("addObserverOf_").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 182)) ;
+  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 182)) ;
 //---
   return result_outResult ;
 }
@@ -5800,7 +5800,7 @@ static GALGAS_string categoryReader_transientPreferenceDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientPreferenceDependencyForGeneration * object = (const cPtr_transientPreferenceDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPreferenceDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)).add_operation (GALGAS_string ("\?.addObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)) ;
+  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 188)) ;
 //---
   return result_outResult ;
 }
@@ -5829,7 +5829,7 @@ static GALGAS_string categoryReader_transientRootDependencyForGeneration_generat
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootDependencyForGeneration * object = (const cPtr_transientRootDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.addObserverOf_").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 194)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 194)) ;
+  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 194)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 194)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 194)) ;
 //---
   return result_outResult ;
 }

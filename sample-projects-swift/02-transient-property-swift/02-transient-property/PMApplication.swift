@@ -32,7 +32,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtocol {
+/* class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtocol {
   weak private var mObserver : Prefs? = nil
 
   func userClassName () -> String { return "PMEvent_preference.Prefs.mUpperCaseFullName" }
@@ -62,10 +62,10 @@ class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtoc
   func trigger () {
     mObserver?.preference_2E_Prefs_2E_mUpperCaseFullName_trigger ()
   }
-}
+} */
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
+/* class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
   weak private var mObserver : Prefs? = nil
 
   func userClassName () -> String { return "PMEvent_preference.Prefs.mFullName" }
@@ -95,7 +95,7 @@ class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
   func trigger () {
     mObserver?.preference_2E_Prefs_2E_mFullName_trigger ()
   }
-}
+} */
 
 
 //---------------------------------------------------------------------------------------------------------------------*

@@ -38,11 +38,10 @@ var g_PMPrefs : PMPrefs? = nil
   var myString = PMPreferencesProperty <String> ("hello")
 
 
-//  func validate_mAttributeName (proposedValue : [mAttributeType swiftTypeName]) -> PMValidationResult { return PMValidationResult.ok }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -132,6 +131,9 @@ var g_PMPrefs : PMPrefs? = nil
     if nil == myTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil")
     }
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install controller for transients
     mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:false))
     mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myOtherTextField, file:__FILE__, line:__LINE__, sendContinously:true))
     mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myObserverTextField, file:__FILE__, line:__LINE__, sendContinously:false))

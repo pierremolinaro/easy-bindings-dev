@@ -179,19 +179,19 @@ override getter @transientRootSignDependencyForGeneration generateAddObserverCal
 #-----------------------------------------------------------------------------*
 
 override getter @transientLocalDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = "addObserverOf_" + mMasterName.string
+  outResult = mMasterName.string + ".addObserver"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientPreferenceDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = "g_" + mPreferencesName.string + "?.addObserverOf_" + mMasterName.string
+  outResult = "g_" + mPreferencesName.string + "?."  + mMasterName.string + ".addObserver"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = "rootObject.addObserverOf_" + mMasterName
+  outResult = "rootObject." + mMasterName + ".addObserver"
 }
 
 #-----------------------------------------------------------------------------*

@@ -39,7 +39,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
         }
       }
     }
-    mObject?.addObserverOf_mFirstName (self, inTrigger:true)
+    mObject?.mFirstName.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -47,7 +47,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mFirstName (self, inTrigger:false)
+    mObject?.mFirstName.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -64,8 +64,8 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mFirstName {
-      outlet.stringValue = object.mFirstName
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mFirstName.value {
+      outlet.stringValue = object.mFirstName.value
     }
   }
 
@@ -73,10 +73,10 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
 
   func action (sender : PMTextField) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate_mFirstName (outlet.stringValue)
+      let validationResult = object.mFirstName.validate (outlet.stringValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.mFirstName = outlet.stringValue
+        object.mFirstName.value = outlet.stringValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -88,7 +88,7 @@ class Controller_Prefs_mFirstName_PMTextField_value : NSObject, PMTransientEvent
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.mFirstName
+              outlet.stringValue = object.mFirstName.value
             }
           })
         }
@@ -144,13 +144,13 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTransientEvent
         }
       }
     }
-    mObject?.addObserverOf_mFullName (self, inTrigger:true)
+    mObject?.mFullName.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mFullName (self, inTrigger:false)
+    mObject?.mFullName.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -167,8 +167,8 @@ class Controller_Prefs_mFullName_PMTextField_rvalue : NSObject, PMTransientEvent
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mFullName {
-      outlet.stringValue = object.mFullName
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mFullName.value {
+      outlet.stringValue = object.mFullName.value
     }
   }
 
@@ -223,7 +223,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
         }
       }
     }
-    mObject?.addObserverOf_mName (self, inTrigger:true)
+    mObject?.mName.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -231,7 +231,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_mName (self, inTrigger:false)
+    mObject?.mName.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -248,8 +248,8 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mName {
-      outlet.stringValue = object.mName
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mName.value {
+      outlet.stringValue = object.mName.value
     }
   }
 
@@ -257,10 +257,10 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
 
   func action (sender : PMTextField) {
     if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate_mName (outlet.stringValue)
+      let validationResult = object.mName.validate (outlet.stringValue)
       switch validationResult {
       case PMValidationResult.ok :
-        object.mName = outlet.stringValue
+        object.mName.value = outlet.stringValue
       case PMValidationResult.rejectWithBeep :
         NSBeep ()
       case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -272,7 +272,7 @@ class Controller_Prefs_mName_PMTextField_value : NSObject, PMTransientEventProto
           alert.addButtonWithTitle ("Discard Change")
           alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
             if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.mName
+              outlet.stringValue = object.mName.value
             }
           })
         }
@@ -328,13 +328,13 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTrans
         }
       }
     }
-    mObject?.addObserverOf_mUpperCaseFullName (self, inTrigger:true)
+    mObject?.mUpperCaseFullName.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.removeObserverOf_mUpperCaseFullName (self, inTrigger:false)
+    mObject?.mUpperCaseFullName.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -351,8 +351,8 @@ class Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue : NSObject, PMTrans
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mUpperCaseFullName {
-      outlet.stringValue = object.mUpperCaseFullName
+    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.mUpperCaseFullName.value {
+      outlet.stringValue = object.mUpperCaseFullName.value
     }
   }
 
