@@ -3,7 +3,7 @@ import Foundation
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum MonEnumeration : Int, DescriptionForExplorer {
+enum MonEnumeration : Int, EntityPropertyProtocol {
   case premier = 0
   case deuxieme = 1
   case troisieme = 2
@@ -15,6 +15,10 @@ enum MonEnumeration : Int, DescriptionForExplorer {
       case deuxieme : return "deuxieme" // 1
       case troisieme : return "troisieme" // 2
     }
+  }
+
+  func embeddedNSObject () -> NSObject {
+    return NSNumber (integer:self.rawValue)
   }
 
   func enumfromRawValue (rawValue : Int) -> MonEnumeration {

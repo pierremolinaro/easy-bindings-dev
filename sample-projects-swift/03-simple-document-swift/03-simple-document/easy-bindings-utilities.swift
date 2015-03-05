@@ -273,34 +273,44 @@ func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//    descriptionForExplorer                                                                                           *
+//    EntityPropertyProtocol                                                                                           *
 //---------------------------------------------------------------------------------------------------------------------*
 
-protocol DescriptionForExplorer {
+protocol EntityPropertyProtocol {
   func descriptionForExplorer () -> String
+  func embeddedNSObject () -> NSObject
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extension NSObject : DescriptionForExplorer {
+extension NSObject : EntityPropertyProtocol {
   func descriptionForExplorer () -> String {
     return description
   }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extension String : DescriptionForExplorer {
-  func descriptionForExplorer () -> String {
+  func embeddedNSObject () -> NSObject {
     return self
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extension Int : DescriptionForExplorer {
+extension String : EntityPropertyProtocol {
+  func descriptionForExplorer () -> String {
+    return self
+  }
+  func embeddedNSObject () -> NSObject {
+    return self as NSString
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extension Int : EntityPropertyProtocol {
   func descriptionForExplorer () -> String {
     return String (format:"%d", self)
+  }
+  func embeddedNSObject () -> NSObject {
+    return NSNumber (integer:self)
   }
 }
 

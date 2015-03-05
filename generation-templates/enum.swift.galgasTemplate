@@ -3,7 +3,7 @@ import Foundation
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-enum %!ENUM_TYPE_NAME% : Int, DescriptionForExplorer {
+enum %!ENUM_TYPE_NAME% : Int, EntityPropertyProtocol {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
@@ -17,6 +17,10 @@ for () in CONSTANT_ORDERED_LIST do index idx
    %      case %!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }
+  }
+
+  func embeddedNSObject () -> NSObject {
+    return NSNumber (integer:self.rawValue)
   }
 
   func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {

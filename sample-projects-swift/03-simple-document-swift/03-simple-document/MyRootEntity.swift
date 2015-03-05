@@ -173,9 +173,9 @@ protocol MyRootEntity_myString {
     myString.addObserver (myStringMaj.event, inTrigger:true)
     myString.addObserver (myStringMin.event, inTrigger:true)
   //--- Install undoers for properties
-    myColor.registerUndo = {(oldValue : NSColor) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue) }
- //   myEnumeration.registerUndo = {(oldValue : MonEnumeration) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:oldValue) }
-    myString.registerUndo = {(oldValue : String) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue) }
+    myColor.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue) }
+    myEnumeration.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:oldValue) }
+    myString.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue) }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

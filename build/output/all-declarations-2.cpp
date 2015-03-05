@@ -2372,14 +2372,14 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "struct PMEntityProperty <T : Equatable where T : DescriptionForExplorer> {\n"
+  "struct PMEntityProperty <T : Equatable where T : EntityPropertyProtocol> {\n"
   "  var explorer : NSTextField\? = nil\n"
-  "  var registerUndo : Optional <(inOldValue : T) -> ()>\n"
+  "  var registerUndo : Optional <(NSObject) -> ()>\n"
   "\n"
   "  var value : T {\n"
   "    didSet {\n"
   "      if value != oldValue {\n"
-  "        registerUndo\? (inOldValue:oldValue)\n"
+  "        registerUndo\? (oldValue.embeddedNSObject ())\n"
   "        explorer\?.stringValue = value.descriptionForExplorer ()\n"
   "        for (key, object) in mObservers {\n"
   "          postTransientEvent (object)\n"
@@ -2425,7 +2425,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "PMEntityProperty.swift",
   "swift",
   true, // Text file
-  1562, // Text length
+  1565, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -4282,34 +4282,44 @@ const char * gWrapperFileContent_9_swift_5F_sources = "import Cocoa\n"
   "}\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
-  "//    descriptionForExplorer                                                                                           *\n"
+  "//    EntityPropertyProtocol                                                                                           *\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "protocol DescriptionForExplorer {\n"
+  "protocol EntityPropertyProtocol {\n"
   "  func descriptionForExplorer () -> String\n"
+  "  func embeddedNSObject () -> NSObject\n"
   "}\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "extension NSObject : DescriptionForExplorer {\n"
+  "extension NSObject : EntityPropertyProtocol {\n"
   "  func descriptionForExplorer () -> String {\n"
   "    return description\n"
   "  }\n"
-  "}\n"
-  "\n"
-  "//---------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
-  "extension String : DescriptionForExplorer {\n"
-  "  func descriptionForExplorer () -> String {\n"
+  "  func embeddedNSObject () -> NSObject {\n"
   "    return self\n"
   "  }\n"
   "}\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "extension Int : DescriptionForExplorer {\n"
+  "extension String : EntityPropertyProtocol {\n"
+  "  func descriptionForExplorer () -> String {\n"
+  "    return self\n"
+  "  }\n"
+  "  func embeddedNSObject () -> NSObject {\n"
+  "    return self as NSString\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "extension Int : EntityPropertyProtocol {\n"
   "  func descriptionForExplorer () -> String {\n"
   "    return String (format:\"%d\", self)\n"
+  "  }\n"
+  "  func embeddedNSObject () -> NSObject {\n"
+  "    return NSNumber (integer:self)\n"
   "  }\n"
   "}\n"
   "\n"
@@ -4320,7 +4330,7 @@ const cRegularFileWrapper gWrapperFile_9_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  12557, // Text length
+  12810, // Text length
   gWrapperFileContent_9_swift_5F_sources
 ) ;
 

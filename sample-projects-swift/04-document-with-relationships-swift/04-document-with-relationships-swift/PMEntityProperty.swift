@@ -3,12 +3,14 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct PMEntityProperty <T : Equatable where T : DescriptionForExplorer> {
+struct PMEntityProperty <T : Equatable where T : EntityPropertyProtocol> {
   var explorer : NSTextField? = nil
+  var registerUndo : Optional <(NSObject) -> ()>
 
   var value : T {
     didSet {
       if value != oldValue {
+        registerUndo? (oldValue.embeddedNSObject ())
         explorer?.stringValue = value.descriptionForExplorer ()
         for (key, object) in mObservers {
           postTransientEvent (object)
