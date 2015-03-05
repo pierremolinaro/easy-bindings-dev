@@ -106,7 +106,7 @@ end
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
       //--- Update explorer
         if %!mRelationshipName%_explorer != nil {
-          updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName%", popUpButton:%!mRelationshipName%_explorer)
+          updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%, popUpButton:%!mRelationshipName%_explorer)
         }
       //--- Removed object set
         var removedObjectSet : Set<%![mRelationshipType key]%> = Set (oldValue)
@@ -188,7 +188,7 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
       //--- Update explorer
         if %!mRelationshipName%_explorer != nil {
-          updateManagedObjectToOneRelationshipDisplayForKey ("%!mRelationshipName%", button : %!mRelationshipName%_explorer)
+          updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%, button : %!mRelationshipName%_explorer)
         }
 %    if mOppositeRelationshipIsToMany then
 %      //--- Reset old opposite relation ship
@@ -310,10 +310,10 @@ end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
 %    %!mRelationshipName%_explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToManyRelationshipDisplayForKey ("%!mRelationshipName%", popUpButton:%!mRelationshipName%_explorer!)\n%
+    updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%, popUpButton:%!mRelationshipName%_explorer!)\n%
   else
 %    %!mRelationshipName%_explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplayForKey ("%!mRelationshipName%", button:%!mRelationshipName%_explorer!)\n%
+    updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%, button:%!mRelationshipName%_explorer!)\n%
   end
 end%  }
 

@@ -109,7 +109,7 @@ protocol NameEntity_name {
         mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_mRoot:", object:oldValue)
       //--- Update explorer
         if mRoot_explorer != nil {
-          updateManagedObjectToOneRelationshipDisplayForKey ("mRoot", button : mRoot_explorer)
+          updateManagedObjectToOneRelationshipDisplay (mRoot, button : mRoot_explorer)
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
@@ -177,7 +177,7 @@ protocol NameEntity_name {
       explorer.stringValue = name
     }
     mRoot_explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplayForKey ("mRoot", button:mRoot_explorer!)
+    updateManagedObjectToOneRelationshipDisplay (mRoot, button:mRoot_explorer!)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

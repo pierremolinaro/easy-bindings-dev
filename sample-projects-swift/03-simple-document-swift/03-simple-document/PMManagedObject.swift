@@ -283,22 +283,20 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //   updateManagedObjectToManyRelationshipDisplayForKey                                                              *
+  //   updateManagedObjectToManyRelationshipDisplay                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToManyRelationshipDisplayForKey (inKey : String, popUpButton : NSPopUpButton?) {
-    var objectArray : NSArray = valueForKey (inKey) as! NSArray
+  func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [PMManagedObject], popUpButton : NSPopUpButton?) {
     var title = "No Object" ;
-    if objectArray.count == 1 {
+    if inObjectArray.count == 1 {
       title = "1 Object" ;
-    }else if objectArray.count > 1 {
-      title = String (format:"%lu objects", objectArray.count)
+    }else if inObjectArray.count > 1 {
+      title = String (format:"%lu objects", inObjectArray.count)
     }
     popUpButton?.removeAllItems ()
     popUpButton?.addItemWithTitle (title)
-    popUpButton?.enabled = objectArray.count > 0
-    for obj : AnyObject in objectArray {
-      let object = obj as! PMManagedObject
+    popUpButton?.enabled = inObjectArray.count > 0
+    for object : PMManagedObject in inObjectArray {
       let objectIndex = object.explorerObjectIndex ()
       let stringValue = String (format:"#%d (%@) %p", objectIndex, object.className, object)
       popUpButton?.addItemWithTitle (stringValue)
@@ -309,20 +307,19 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //   updateManagedObjectToOneRelationshipDisplayForKey                                                               *
+  //   updateManagedObjectToOneRelationshipDisplay                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func updateManagedObjectToOneRelationshipDisplayForKey (inKey : String, button : NSButton?) {
-    var object = valueForKey (inKey) as! PMManagedObject?
+  func updateManagedObjectToOneRelationshipDisplay (inObject : PMManagedObject?, button : NSButton?) {
     var stringValue = "nil"
-    if let unwrappedObject = object {
+    if let unwrappedObject = inObject {
       let objectIndex = unwrappedObject.explorerObjectIndex ()
       stringValue = String (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
     }
-    button?.enabled = object != nil
+    button?.enabled = inObject != nil
     button?.title = stringValue
     button?.toolTip = stringValue
-    button?.target = object
+    button?.target = inObject
     button?.action = "showObjectWindowFromExplorerButton:"
   }
 
@@ -330,7 +327,7 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   //   showObjectWindowFromExplorerButton                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func showObjectWindowFromExplorerButton (AnyObject!) {
+  func showObjectWindowFromExplorerButton (AnyObject) {
     showExplorerWindow ()
   }
   
