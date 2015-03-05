@@ -32,7 +32,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEve
         }
       }
     }
-    mObject?.addObserverOf_$MODEL$ (self, inTrigger:true)
+    mObject?.$MODEL$.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -40,7 +40,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEve
   func unregister () {
     mOutlet?.target = nil
     mOutlet?.action = nil
-    mObject?.removeObserverOf_$MODEL$ (self, inTrigger:false)
+    mObject?.$MODEL$.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -58,7 +58,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEve
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.state = object.$MODEL$ ? 1 : 0
+      outlet.state = object.$MODEL$.value ? 1 : 0
     }
   }
 
@@ -66,7 +66,7 @@ class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEve
 
   func action (sender : PMSwitch) {
     if let outlet = mOutlet, object = mObject {
-      object.$MODEL$ = outlet.state != 0
+      object.$MODEL$.value = outlet.state != 0
     }
   }
 

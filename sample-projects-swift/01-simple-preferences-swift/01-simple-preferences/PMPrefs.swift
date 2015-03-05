@@ -27,131 +27,22 @@ var g_PMPrefs : PMPrefs? = nil
   @IBOutlet var myObserverTextField : PMTextField? = nil
   @IBOutlet var myOtherTextField : PMTextField? = nil
   @IBOutlet var myTextField : PMTextField? = nil
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: mColor                                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mColor_observers : [Int : PMTransientEventProtocol] = [:]
-  var mColor : NSColor = NSColor.yellowColor () {
-    didSet {
-      if mColor != oldValue {
-        for (key, object) in mColor_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_mColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mColor_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
  
-  func removeObserverOf_mColor (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mColor_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  func validate_mColor (proposedValue : NSColor) -> PMValidationResult { return PMValidationResult.ok }
-
-
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: mDate                                                                                               *
+  //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mDate_observers : [Int : PMTransientEventProtocol] = [:]
-  var mDate : NSDate = NSDate () {
-    didSet {
-      if mDate != oldValue {
-        for (key, object) in mDate_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
+  var mColor = PMPreferencesProperty <NSColor> (NSColor.yellowColor ())
+  var mDate = PMPreferencesProperty <NSDate> (NSDate ())
+  var mIntegerValue = PMPreferencesProperty <Int> (123)
+  var myString = PMPreferencesProperty <String> ("hello")
 
-  func addObserverOf_mDate (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mDate_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_mDate (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mDate_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
 
-  func validate_mDate (proposedValue : NSDate) -> PMValidationResult { return PMValidationResult.ok }
-
+//  func validate_mAttributeName (proposedValue : [mAttributeType swiftTypeName]) -> PMValidationResult { return PMValidationResult.ok }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: mIntegerValue                                                                                       *
+  //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
-
-  var mIntegerValue_observers : [Int : PMTransientEventProtocol] = [:]
-  var mIntegerValue : Int = 123 {
-    didSet {
-      if mIntegerValue != oldValue {
-        for (key, object) in mIntegerValue_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_mIntegerValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mIntegerValue_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_mIntegerValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mIntegerValue_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: myString                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var myString_observers : [Int : PMTransientEventProtocol] = [:]
-  var myString : String = "hello" {
-    didSet {
-      if myString != oldValue {
-        for (key, object) in myString_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    myString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_myString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    myString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  func validate_myString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
-
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -171,20 +62,22 @@ var g_PMPrefs : PMPrefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("PMPrefs:mColor")
     if value != nil {
-      mColor = NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor
+      mColor.value = NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor
     }
     value = ud.objectForKey ("PMPrefs:mDate")
     if value != nil {
-      mDate = value as! NSDate
+      mDate.value = value as! NSDate
     }
     value = ud.objectForKey ("PMPrefs:mIntegerValue")
     if value != nil {
-      mIntegerValue = (value as! NSNumber).integerValue
+      mIntegerValue.value = (value as! NSNumber).integerValue
     }
     value = ud.objectForKey ("PMPrefs:myString")
     if value != nil {
-      myString = value as! String
+      myString.value = value as! String
     }
+  //--- Property validation function
+    mIntegerValue.setValidationFunction (self.validate_mIntegerValue)
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
@@ -264,10 +157,10 @@ var g_PMPrefs : PMPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor), forKey:"PMPrefs:mColor")
-    ud.setObject (mDate, forKey:"PMPrefs:mDate")
-    ud.setObject (NSNumber (integer:mIntegerValue), forKey:"PMPrefs:mIntegerValue")
-    ud.setObject (myString, forKey:"PMPrefs:myString")
+    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.value), forKey:"PMPrefs:mColor")
+    ud.setObject (mDate.value, forKey:"PMPrefs:mDate")
+    ud.setObject (NSNumber (integer:mIntegerValue.value), forKey:"PMPrefs:mIntegerValue")
+    ud.setObject (myString.value, forKey:"PMPrefs:myString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
