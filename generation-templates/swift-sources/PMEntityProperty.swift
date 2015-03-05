@@ -5,10 +5,12 @@ import Cocoa
 
 struct PMEntityProperty <T : Equatable where T : DescriptionForExplorer> {
   var explorer : NSTextField? = nil
+  var registerUndo : Optional <(inOldValue : T) -> ()>
 
   var value : T {
     didSet {
       if value != oldValue {
+        registerUndo? (inOldValue:oldValue)
         explorer?.stringValue = value.descriptionForExplorer ()
         for (key, object) in mObservers {
           postTransientEvent (object)

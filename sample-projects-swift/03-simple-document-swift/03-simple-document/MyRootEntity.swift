@@ -172,14 +172,46 @@ protocol MyRootEntity_myString {
     myStringMin.addObserver (myStringConcat.event, inTrigger:true)
     myString.addObserver (myStringMaj.event, inTrigger:true)
     myString.addObserver (myStringMin.event, inTrigger:true)
+  //--- Install undoers for properties
+    myColor.registerUndo = {(oldValue : NSColor) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myColor:", object:oldValue) }
+ //   myEnumeration.registerUndo = {(oldValue : MonEnumeration) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myEnumeration:", object:oldValue) }
+    myString.registerUndo = {(oldValue : String) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_myString:", object:oldValue) }
   }
- 
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  Undo methods for properties                                                                                      *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func undoFor_myColor (value : NSColor) {
+    myColor.value = value
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func undoFor_myEnumeration (value : NSNumber) {
+    myEnumeration.value = MonEnumeration (rawValue:value.integerValue)!
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func undoFor_myString (value : String) {
+    myString.value = value
+  }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Uninstall compute functions for transients
+    myStringConcat.setComputeFunction (nil)
+    myStringMaj.setComputeFunction (nil)
+    myStringMin.setComputeFunction (nil)
+  //--- Uninstall undoers for properties
+    myColor.registerUndo = nil
+    myEnumeration.registerUndo = nil
+    myString.registerUndo = nil
   }
   
 

@@ -2374,10 +2374,12 @@ const char * gWrapperFileContent_3_swift_5F_sources = "\n"
   "\n"
   "struct PMEntityProperty <T : Equatable where T : DescriptionForExplorer> {\n"
   "  var explorer : NSTextField\? = nil\n"
+  "  var registerUndo : Optional <(inOldValue : T) -> ()>\n"
   "\n"
   "  var value : T {\n"
   "    didSet {\n"
   "      if value != oldValue {\n"
+  "        registerUndo\? (inOldValue:oldValue)\n"
   "        explorer\?.stringValue = value.descriptionForExplorer ()\n"
   "        for (key, object) in mObservers {\n"
   "          postTransientEvent (object)\n"
@@ -2423,7 +2425,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "PMEntityProperty.swift",
   "swift",
   true, // Text file
-  1463, // Text length
+  1562, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -3793,7 +3795,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\n"
   "    noteObjectDeallocation (self) ;\n"
   "  }\n"
   "\n"
-  "  func setComputeFunction (function : () -> T) {\n"
+  "  func setComputeFunction (function : Optional<() -> T>) {\n"
   "    mComputeFunction = function\n"
   "  }\n"
   "  \n"
@@ -3893,7 +3895,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "PMTransientProperty.swift",
   "swift",
   true, // Text file
-  3140, // Text length
+  3150, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
