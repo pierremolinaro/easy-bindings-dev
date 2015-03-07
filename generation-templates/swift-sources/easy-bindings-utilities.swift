@@ -1,13 +1,13 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   presentErrorWindow                                                                                                *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 var gErrorWindows : [NSWindow] = []
 var origin = NSPoint (x:20.0, y:20.0)
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 func presentErrorWindow (file : String!,
                          lineNumber : Int,
@@ -41,9 +41,9 @@ func presentErrorWindow (file : String!,
   gErrorWindows.append (window)
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   NSDictionary extension                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSDictionary {
 
@@ -96,9 +96,9 @@ extension NSDictionary {
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   NSArray extension                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSArray {
   func objectAtIndex (index:Int, file:String, line:Int) -> AnyObject! {
@@ -111,9 +111,9 @@ extension NSArray {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Array<T> extension                                                                                                *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension Array {
   func objectAtIndex (index:Int, file:String, line:Int) -> T {
@@ -125,9 +125,9 @@ extension Array {
     return self [index]
   }
 }
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    getUniqueIndex                                                                                                   *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 private var gUniqueIndex = 0
 
@@ -136,9 +136,9 @@ func getUniqueIndex () -> Int {
   return gUniqueIndex
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMValidationResult                                                                                               *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 enum PMValidationResult {
   case ok
@@ -146,17 +146,17 @@ enum PMValidationResult {
   case rejectWithAlert (String /* informativeText */)
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMUserClassName protocol                                                                                         *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol PMUserClassName : class {
   func userClassName () -> String
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMTransientEventProtocol protocol                                                                                *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol PMTransientEventProtocol : PMUserClassName {
   var transientEventIndex : PMTransientIndex { get }
@@ -166,9 +166,9 @@ protocol PMTransientEventProtocol : PMUserClassName {
   var uniqueIndex : Int { get }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    NSTExtView extension                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSTextView {
 
@@ -256,32 +256,32 @@ extension NSTextView {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMEnableProtocol protocol                                                                                        *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMEnableProtocol) protocol PMEnableProtocol {
   func setEnableFromBinding (flag : Bool)
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    defaultValidationFunction                                                                                        *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
   return PMValidationResult.ok
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    EntityPropertyProtocol                                                                                           *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol EntityPropertyProtocol {
   func descriptionForExplorer () -> String
   func embeddedNSObject () -> NSObject
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSObject : EntityPropertyProtocol {
   func descriptionForExplorer () -> String {
@@ -292,7 +292,7 @@ extension NSObject : EntityPropertyProtocol {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension String : EntityPropertyProtocol {
   func descriptionForExplorer () -> String {
@@ -303,7 +303,7 @@ extension String : EntityPropertyProtocol {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension Int : EntityPropertyProtocol {
   func descriptionForExplorer () -> String {
@@ -314,5 +314,158 @@ extension Int : EntityPropertyProtocol {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadOnlyProperty                                                                                                *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadOnlyProperty <T : Equatable> : PMUserClassName {
+
+  func userClassName () -> String { return "PMReadOnlyProperty<T>"}
+
+  private let mDefaultValue : T
+  
+  init (_ inValue : T) {
+    mDefaultValue = inValue
+  }
+  
+  var value : T { get { return mDefaultValue } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+  
+  func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+ 
+  func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMStoredProperty                                                                                                  *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMStoredProperty <T : Equatable> : PMReadOnlyProperty <T> {
+
+  override init (_ inValue : T) {
+    mValue = inValue
+    super.init (inValue)
+  }
+
+  private var mValue : T {
+    didSet {
+      if mValue != oldValue {
+        for (key, object) in mObservers {
+          postTransientEvent (object)
+        }
+      }
+    }
+  }
+
+  override var value :  T { get { return mValue } }
+
+  func setValue (inValue : T) { mValue = inValue }
+
+  override func userClassName () -> String { return "PMPreferencesProperty<T>"}
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  var validationFunction : (T) -> PMValidationResult = defaultValidationFunction
+  
+  func validate (proposedValue : T) -> PMValidationResult {
+    return validationFunction (proposedValue)
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMTransientProperty                                                                                               *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {
+  private var mValueCache : T? = nil
+  private let mTransientIndex : PMTransientIndex
+  var computeFunction : Optional<() -> T>
+  
+  init (_ inTransientIndex : PMTransientIndex, value : T) {
+    mTransientIndex = inTransientIndex
+    super.init (value)
+  }
+
+  override func userClassName () -> String { return "PMTransientProperty<T>"}
+  
+  override var value : T {
+    get {
+      if mValueCache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          mValueCache = unwrappedComputeFunction ()
+        }else{
+          mValueCache = mDefaultValue
+        }
+      }
+      return mValueCache!
+    }
+  }
+
+  private var mEvent : PMTransientEventProtocol?
+
+  var event : PMTransientEventProtocol {
+    get {
+      if mEvent == nil {
+        mEvent = PMTransientPropertyEvent<T> (self)
+      }
+      return mEvent!
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientPropertyEvent<T : Equatable> : PMTransientEventProtocol {
+  weak private var mObserver : PMTransientProperty<T>? = nil
+  private let mTransientIndex : PMTransientIndex
+  
+  func userClassName () -> String { return "PMTransientPropertyEvent<T>" }
+
+  var transientEventIndex : PMTransientIndex { get { return mTransientIndex } }
+
+  private let mPrivateUniqueIndex : Int
+
+  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
+  
+  init (_ inObject : PMTransientProperty<T>) {
+    mPrivateUniqueIndex = getUniqueIndex ()
+    mObserver = inObject
+    mTransientIndex = inObject.mTransientIndex
+    noteObjectAllocation (self)
+  }
+
+  func noteModelDidChange () {
+    mObserver?.mValueCache = nil
+  }
+
+  func unregister () {
+  }
+  
+  deinit {
+    noteObjectDeallocation (self) ;
+  }
+
+  func trigger () {
+    if let observer = mObserver {
+      for (key, object) in observer.mObservers {
+        postTransientEvent (object)
+      }
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

@@ -1,18 +1,18 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller MyRootEntity mNames_count - PMNumberField $rvalue                                                      *
+//   Controller MyRootEntity mNames - PMNumberField $rvalue                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_MyRootEntity_mNames_count_PMNumberField_rvalue)
-class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
+@objc(Controller_MyRootEntity_mNames_PMNumberField_rvalue)
+class Controller_MyRootEntity_mNames_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {
 
   weak var mObject : MyRootEntity? = nil
   weak  var mOutlet: PMNumberField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.MyRootEntity.mNames_count.PMNumberField.rvalue" }
+  func userClassName () -> String { return "Controller.MyRootEntity.mNames.PMNumberField.rvalue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -39,13 +39,13 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
         }
       }
     }
-    mObject?.mNames_count.addObserver (self, inTrigger:true)
+    mObject?.mNames.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject?.mNames_count.removeObserver (self, inTrigger:false)
+    mObject?.mNames.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -63,7 +63,7 @@ class Controller_MyRootEntity_mNames_count_PMNumberField_rvalue : NSObject, PMTr
 
   func trigger () {
     if let outlet = mOutlet, object = mObject {
-      outlet.integerValue = object.mNames_count.value
+      outlet.integerValue = object.mNames.count
     }
   }
 
@@ -335,13 +335,13 @@ class EnableController_PMDocument_removePathButton : NSObject, PMTransientEventP
     if let unwrappedOutlet = outlet {
       mOutlet = unwrappedOutlet
     }
-    mObject0?.addObserverOf_canRemove (self, inTrigger:true)
+    mObject0?.canRemove.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject0?.removeObserverOf_canRemove (self, inTrigger:true)
+    mObject0?.canRemove.removeObserver(self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

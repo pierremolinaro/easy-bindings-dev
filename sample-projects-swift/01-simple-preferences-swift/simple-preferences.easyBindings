@@ -1,30 +1,21 @@
 preferences PMPrefs {
 #--- String
   property String myString default "hello" ;
-  outlet PMTextField myTextField ;
-  bind model : self.myString to myTextField $value {sendContinously : no};
-  outlet PMTextField myOtherTextField ;
-  bind model : self.myString to myOtherTextField $value {sendContinously : yes} ;
-  outlet PMTextField myObserverTextField ;
-  bind model : self.myString to myObserverTextField $value {sendContinously : no} ;
+  outlet PMTextField myTextField $value self.myString {sendContinously : no} ;
+  outlet PMTextField myOtherTextField $value self.myString {sendContinously : yes} ;
+  outlet PMTextField myObserverTextField $value self.myString {sendContinously : no} ;
 #--- Color
   property Color mColor default yellowColor ;
-  outlet PMColorWell mContinousColorWell ;
-  bind  model : self.mColor to mContinousColorWell $color {sendContinously : yes} ;
-  outlet PMColorWell mColorWell ;
-  bind  model : self.mColor to mColorWell $color {sendContinously : no} ;
-  outlet PMColorWell mObserverColorWell ;
-  bind model : self.mColor to mObserverColorWell $color {sendContinously : no} ;
+  outlet PMColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
+  outlet PMColorWell mColorWell $color self.mColor {sendContinously : no} ;
+  outlet PMColorWell mObserverColorWell $color self.mColor {sendContinously : no} ;
 #--- Date
   property Date mDate default date ;
-  outlet PMDatePicker mDatePicker ;
-  bind model : self.mDate to mDatePicker $date ;
+  outlet PMDatePicker mDatePicker $date self.mDate  ;
 #--- Number
   property validates Integer mIntegerValue default 123 ;
-  outlet PMNumberField mInteger32TextField ;
-  bind model : self.mIntegerValue to mInteger32TextField $value {sendContinously : yes} ;
-  outlet PMNumberField mInteger32ObserverTextField ;
-  bind model : self.mIntegerValue to mInteger32ObserverTextField $rvalue ;
+  outlet PMIntField mInteger32TextField $value self.mIntegerValue {sendContinously : yes} ;
+  outlet PMReadOnlyIntField mInteger32ObserverTextField $readOnlyValue self.mIntegerValue ;
 #--- Actions  
   action monAction ;
   action autreAction ;

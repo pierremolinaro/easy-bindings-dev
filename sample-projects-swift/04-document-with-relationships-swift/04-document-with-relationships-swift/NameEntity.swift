@@ -13,6 +13,67 @@ protocol NameEntity_name {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//    To one relationship: mRoot                                                                                       *
+//---------------------------------------------------------------------------------------------------------------------*
+
+struct ToOneRelationship_NameEntity_mRoot {
+  var explorer : NSButton?
+  var owner : NameEntity?
+ 
+  var value : MyRootEntity? = nil {
+    didSet {
+      if let unwrappedOwner = owner where oldValue !== value {
+      //--- Register old value in undo manager
+        unwrappedOwner.mUndoManager?.registerUndoWithTarget (unwrappedOwner, selector:"undoFor_mRoot:", object:oldValue)
+      //--- Update explorer
+        if let unwrappedExplorer = explorer {
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (value, button : unwrappedExplorer)
+        }
+      //--- Reset old opposite relation ship
+        if let unwrappedOldValue = oldValue {
+          if unwrappedOldValue.mNames.mSet.contains (unwrappedOwner) {
+            var array = unwrappedOldValue.mNames.values
+            let idx = find (array, unwrappedOwner)
+            array.removeAtIndex (idx!)
+            unwrappedOldValue.mNames.values = array
+          }
+        }
+      //--- Set new opposite relation ship
+        if let unwrappedValue = value {
+          if !unwrappedValue.mNames.mSet.contains (unwrappedOwner) {
+            unwrappedValue.mNames.values.append (unwrappedOwner)
+          }
+        }
+      //--- Notify observers
+        for (key, observer) in mObservers {
+          postTransientEvent (observer)
+        }
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+
+  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+
+  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//    Entity: NameEntity                                                                                               *
+//---------------------------------------------------------------------------------------------------------------------*
 
 @objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_aValue, NameEntity_name {
   override func userClassName () -> String { return "NameEntity" }
@@ -22,146 +83,32 @@ protocol NameEntity_name {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var aValue = PMEntityProperty <Int> (123)
+  var aValue_keyCodingValue : Int { get { return aValue.value } }
   var name = PMEntityProperty <String> ("Name")
+  var name_keyCodingValue : String { get { return name.value } }
 
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: aValue                                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
-
- /* private var aValue_explorer : NSTextField? = nil
-  private var aValue_observers : [Int : PMTransientEventProtocol] = [:]
-  var aValue : Int = 123 {
-    didSet {
-      if aValue != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:NSNumber (integer:oldValue))
-        aValue_explorer?.stringValue = NSString (format:"%ld", aValue.value) as! String
-        for (key, observer) in aValue_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
-  func undoFor_aValue (value : NSNumber) {
-    aValue = value.integerValue
-  }
-
-  func addObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    aValue_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    aValue_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  } */
-
- // func validate_aValue (proposedValue : Int) -> PMValidationResult { return PMValidationResult.ok }
-
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: name                                                                                                *
+  //    Relationships                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
- /* private var name_explorer : NSTextField? = nil
-  private var name_observers : [Int : PMTransientEventProtocol] = [:]
-  var name : String = "Name" {
-    didSet {
-      if name != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue)
-        name_explorer?.stringValue = name.value
-        for (key, observer) in name_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
-  func undoFor_name (value : String) {
-    name = value
-  }
-
-  func addObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    name_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    name_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  } */
-
- // func validate_name (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    To one relationship: mRoot                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mRoot_observers : [Int : PMTransientEventProtocol] = [:]
-  private var mRoot_explorer : NSButton?
-  var mRoot : MyRootEntity? = nil {
-    didSet {
-      if oldValue !== mRoot {
-      //--- Register old value in undo manager
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_mRoot:", object:oldValue)
-      //--- Update explorer
-        if mRoot_explorer != nil {
-          updateManagedObjectToOneRelationshipDisplay (mRoot, button : mRoot_explorer)
-        }
-      //--- Reset old opposite relation ship
-        if let unwrappedOldValue = oldValue {
-          if unwrappedOldValue.mNames_set.contains (self) {
-            var array = unwrappedOldValue.mNames
-            let idx = find (array, self)
-            array.removeAtIndex (idx!)
-            unwrappedOldValue.mNames = array
-          }
-        }
-      //--- Set new opposite relation ship
-        if let root = mRoot {
-          if !root.mNames_set.contains (self) {
-            root.mNames.append (self)
-          }
-        }
-      //--- Notify observers
-        for (key, observer) in mRoot_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
+  var mRoot = ToOneRelationship_NameEntity_mRoot ()
   func undoFor_mRoot (object:MyRootEntity) {
-    mRoot = object
+    mRoot.value = object
   }
 
-  func addObserverOf_mRoot (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mRoot_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
 
-  func removeObserverOf_mRoot (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    mRoot_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override init (undoManager : NSUndoManager) {
+    super.init (undoManager:undoManager)
+  //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
     aValue.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:oldValue) }
@@ -192,7 +139,7 @@ protocol NameEntity_name {
   //--- Uninstall undoers for properties
     aValue.registerUndo = nil
     name.registerUndo = nil
-    mRoot = nil
+    mRoot.value = nil
   }
   
 
@@ -210,8 +157,8 @@ protocol NameEntity_name {
     if let explorer = name.explorer {
       explorer.stringValue = name.value.descriptionForExplorer ()
     }
-    mRoot_explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplay (mRoot, button:mRoot_explorer!)
+    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
+    updateManagedObjectToOneRelationshipDisplay (mRoot.value, button:mRoot.explorer!)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -221,7 +168,7 @@ protocol NameEntity_name {
   override func clearObjectExplorer () {
     aValue.explorer = nil
     name.explorer = nil
-    mRoot_explorer = nil
+    mRoot.explorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -252,8 +199,8 @@ protocol NameEntity_name {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    if mRoot != nil {
-      objects.addObject (mRoot!)
+    if let object = mRoot.value {
+      objects.addObject (object)
     }
   }
 

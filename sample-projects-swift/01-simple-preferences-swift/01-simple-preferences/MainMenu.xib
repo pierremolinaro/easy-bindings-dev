@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">13E28</string>
-		<string key="IBDocument.InterfaceBuilderVersion">6246</string>
-		<string key="IBDocument.AppKitVersion">1265.21</string>
-		<string key="IBDocument.HIToolboxVersion">698.00</string>
+		<string key="IBDocument.SystemVersion">14C109</string>
+		<string key="IBDocument.InterfaceBuilderVersion">7519.1</string>
+		<string key="IBDocument.AppKitVersion">1344.72</string>
+		<string key="IBDocument.HIToolboxVersion">757.30</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">6246</string>
+			<string key="NS.object.0">7519.1</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSColorWell</string>
@@ -1880,7 +1880,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="172743043"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1027}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -4047,7 +4047,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="558.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="570.CustomClassName">PMNumberField</string>
+				<string key="570.CustomClassName">PMIntField</string>
 				<string key="570.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="571.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="1041" key="572.IBNumberFormatterBehaviorMetadataKey"/>
@@ -4106,7 +4106,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="631.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="632.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="633.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="634.CustomClassName">PMNumberField</string>
+				<string key="634.CustomClassName">PMReadOnlyIntField</string>
 				<string key="634.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="635.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="1041" key="637.IBNumberFormatterBehaviorMetadataKey"/>
@@ -4133,6 +4133,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<bool key="requiresClassNameFormatting">YES</bool>
+					<string key="superclassName">EntityPropertyProtocol</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../01-simple-preferences/easy-bindings-utilities.swift</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">PMColorWell</string>
 					<string key="superclassName">NSColorWell</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -4149,11 +4158,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PMNumberField</string>
+					<string key="className">PMIntField</string>
 					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../01-simple-preferences/PMNumberField.swift</string>
+						<string key="minorKey">../01-simple-preferences/PMIntField.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -4163,8 +4172,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="mColorWell">PMColorWell</string>
 						<string key="mContinousColorWell">PMColorWell</string>
 						<string key="mDatePicker">PMDatePicker</string>
-						<string key="mInteger32ObserverTextField">PMNumberField</string>
-						<string key="mInteger32TextField">PMNumberField</string>
+						<string key="mInteger32ObserverTextField">PMReadOnlyIntField</string>
+						<string key="mInteger32TextField">PMIntField</string>
 						<string key="mObserverColorWell">PMColorWell</string>
 						<string key="myObserverTextField">PMTextField</string>
 						<string key="myOtherTextField">PMTextField</string>
@@ -4185,11 +4194,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						</object>
 						<object class="IBToOneOutletInfo" key="mInteger32ObserverTextField">
 							<string key="name">mInteger32ObserverTextField</string>
-							<string key="candidateClassName">PMNumberField</string>
+							<string key="candidateClassName">PMReadOnlyIntField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mInteger32TextField">
 							<string key="name">mInteger32TextField</string>
-							<string key="candidateClassName">PMNumberField</string>
+							<string key="candidateClassName">PMIntField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mObserverColorWell">
 							<string key="name">mObserverColorWell</string>
@@ -4211,6 +4220,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../01-simple-preferences/PMPrefs.swift</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PMReadOnlyIntField</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../01-simple-preferences/PMReadOnlyIntField.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -4237,8 +4254,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NSMenuCheckmark">{11, 11}</string>
-			<string key="NSMenuMixedState">{10, 3}</string>
+			<string key="NSMenuCheckmark">{12, 12}</string>
+			<string key="NSMenuMixedState">{10, 2}</string>
 		</dictionary>
 	</data>
 </archive>

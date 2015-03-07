@@ -6,26 +6,7 @@ struct @astDeclarationStruct {
   @astDeclarationList mDeclarationList
   @cursorList mCursorList
   @outletClassDeclarationList mOutletClassDeclarationList
-  @controllerTemplateList mControllerTemplateList
-}
-
-#----------------------------------------------------------------------------*
-
-list @controllerBindingOptionList {
-  @lstring mOptionName
-  @lstring mOptionTypeName
-}
-
-#-----------------------------------------------------------------------------*
-
-list @controllerTemplateList {
-  @bool mIsUserDefined
-  @lstring mOutletClassName
-  @lstring mBindingName
-  @lstring mModelTypeName
-  @lstring mModelSelector
-  @bool mModelShouldBeWritableProperty
-  @controllerBindingOptionList mBindingOptionList
+  @bindingSpecificationListMap mControllerTemplateList
 }
 
 #-----------------------------------------------------------------------------*
@@ -52,7 +33,6 @@ class @unifiedTypeDeclaration : @astDeclaration {
   @relationshipList mRelationshipList
   @classArrayList mArrayList
   @transientList mTransientList
-  @bindingList mBindingList
   @lstringlist mActionDeclarationList
   @arrayControllerDeclarationListAST mArrayControllerDeclarationListAST
 }
@@ -111,15 +91,6 @@ list @bindingList {
 class @predefinedTypeDeclaration : @astDeclaration {
   @string mTypeName
   @typeKind mKind
-}
-
-#----------------------------------------------------------------------------*
-
-list @outletClassDeclarationList {
-  @bool mUserDefined
-  @lstring mOutletClassName
-  @bool mHasRunAction
-  @bool mHasEnabled
 }
 
 #----------------------------------------------------------------------------*
@@ -206,14 +177,6 @@ class @observablePropertyAsEnableBindingExpressionAST : @abstractBooleanMultiple
 enum @enabledBindingDescriptor {
   case noEnabledBinding 
   case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression)
-}
-#----------------------------------------------------------------------------*
-
-list @outletDeclarationList {
-  @lstring mOutletType
-  @lstring mOutletName
-  @runActionDescriptor mRunDescriptor
-  @enabledBindingDescriptor mEnabledBindingDescriptor
 }
 
 #----------------------------------------------------------------------------*

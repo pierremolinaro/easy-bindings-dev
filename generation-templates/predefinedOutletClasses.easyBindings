@@ -1,29 +1,32 @@
 outletClass PMButton $run $enabled ;
 
 outletClass PMColorWell ;
-controllerTemplate PMColorWell $color : property Color model {sendContinously : Bool} ;
+binding PMColorWell $color : property Color {sendContinously : Bool} ;
 
 
 outletClass PMDatePicker ;
-controllerTemplate PMDatePicker $date : property Date model ;
+binding PMDatePicker $date : property Date ;
 
 
 outletClass PMMatrix ;
-controllerTemplate PMMatrix $selectedIndex : property Enum model ;
+binding PMMatrix $selectedIndex : property Enum ;
 
 
-outletClass PMNumberField ;
-controllerTemplate PMNumberField $value : property Integer model {sendContinously : Bool} ;
-controllerTemplate PMNumberField $rvalue : transient Integer model ;
+outletClass PMReadOnlyIntField ;
+binding PMReadOnlyIntField $readOnlyValue : transient Integer ;
+
+
+outletClass PMIntField ;
+binding PMIntField $value : property Integer {sendContinously : Bool} ;
 
 
 outletClass PMSwitch ;
-controllerTemplate PMSwitch $value : property Bool model ;
+binding PMSwitch $value : property Bool ;
 
 
 outletClass PMTableView ;
 
 
 outletClass PMTextField ;
-controllerTemplate PMTextField $value : property String model {sendContinously : Bool} ;
-controllerTemplate PMTextField $rvalue : transient String model ;
+binding PMTextField $value : property String {sendContinously : Bool} ;
+binding PMTextField $rvalue : transient String ;

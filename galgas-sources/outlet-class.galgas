@@ -1,0 +1,72 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  AST                                                                                                                 *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @outletClassDeclarationList {
+  @bool mUserDefined
+  @lstring mOutletClassName
+  @bool mHasRunAction
+  @bool mHasEnabled
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SYNTAX                                                                                                              *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  rule <outlet_class_declaration>
+    ?let @bool inIsUserDefined
+    ?!@outletClassDeclarationList ioOutletClassDeclarationList
+  {
+    $outletClass$
+    $Identifier$ ?let @lstring outletClassName
+    @bool hasRunAction = false
+    @bool hasEnabled = false
+    repeat
+    while
+      $run$
+      hasRunAction = true
+    while
+      $enabled$
+      hasEnabled = true
+    end
+    $;$
+    ioOutletClassDeclarationList +=
+      !inIsUserDefined
+      !outletClassName
+      !hasRunAction
+      !hasEnabled
+  }
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  CODE GENERATION                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
+  "swift"
+}{
+}{
+}
+
+#----------------------------------------------------------------------------------------------------------------------*
+
+proc generateOutletClasses
+  ?let @stringset inNeededOutletClasses
+  ?let @string inOutputDirectory
+{
+  let @filewrapper w = [filewrapper outletClassGeneration]
+  for key in inNeededOutletClasses do
+  #--- Header
+    let s = [w textFileContentsAtPath !"/" + key + ".swift"]
+    [@string generateFile
+      !inOutputDirectory
+      !key + ".swift"
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

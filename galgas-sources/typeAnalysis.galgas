@@ -10,7 +10,7 @@ list @validationStubRoutineListForGeneration {
 
 #----------------------------------------------------------------------------*
 
-struct @structForGeneration{
+struct @structForGeneration {
   @transientListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferenceListForGeneration mPreferenceListForGeneration
@@ -28,8 +28,9 @@ struct @structForGeneration{
 proc typeAnalysis
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @outletClassMap inOutletClassMap
-  ?let @templateControllerMap inTemplateControllerMap
-  !@structForGeneration outGeneration {
+  ?let @bindingSpecificationMap inTemplateControllerMap
+  !@structForGeneration outGeneration
+{
   outGeneration = @structForGeneration.default
   for (@lstring lkey
        @typeKind typeKind
@@ -41,7 +42,6 @@ proc typeAnalysis
        @decoratedObservablePropertyMap observablePropertyMap
        @decoratedEntityRelationshipMap currentRelationshipMap
        @actionMap actionMap
-       @bindingList bindingList
        @lstringlist enumConstantList
        @enumConstantMap enumConstantMap
        @arrayControllerMap arrayControllerMap) in inUnifiedTypeMap do
@@ -75,7 +75,6 @@ proc typeAnalysis
       !currentRelationshipMap
       !allObservableProperties
       !actionMap
-      !bindingList
       !enumConstantList
       !enumConstantMap
       !arrayControllerMap
@@ -89,7 +88,7 @@ proc typeAnalysis
 private proc unifiedTypeAnalysis
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @outletClassMap inOutletClassMap
-  ?let @templateControllerMap inTemplateControllerMap
+  ?let @bindingSpecificationMap inBindingSpecificationMap
   ?let @lstring inTypeName
   ?let @typeKind inTypeKind
   ?let @unifiedTypeMap-proxy inSuperType
@@ -101,62 +100,34 @@ private proc unifiedTypeAnalysis
   ?let @decoratedEntityRelationshipMap inCurrentRelationshipMap
   ?let @decoratedObservablePropertyMap inAllObservablePropertyMap
   ?let @actionMap inActionMap
-  ?let @bindingList inBindingList
   ?let @lstringlist inEnumConstantList
-  ?let @enumConstantMap unused inEnumConstantMap
+  ?let @enumConstantMap inEnumConstantMap
   ?let @arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration {
   @stringlist controllerInstanciationStringList = {}
 #-------------------------------------------- Outlets
-  @targetActionList targetActionList = {}
-  for () outlet_ in decoratedOutletMap do
-    [inOutletClassMap searchKey !outlet_mOutletTypeName ?let @bool handlesRunAction]
-    ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
-  #--- run
-    switch outlet_mRunActionDescriptor
-    case noAction :
-    case action (@lstring target @lstring action) :
-      if not handlesRunAction then
-        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
-      elsif target.string == "self" then
-        [inActionMap searchKey !action]
-        targetActionList += !outlet_lkey.string !"self" !action.string
-      else # It is a controller
-        [inArrayControllerMap searchKey !target ?3* ?let @actionMap arrayControllerActionMap ?3*]
-        [arrayControllerActionMap searchKey !action]
-        targetActionList += !outlet_lkey.string !target.string !action.string
-      end
-    end
-  #--- Enabled
-    switch outlet_mEnabledBindingDescriptor
-    case  noEnabledBinding :
-    case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      @uint idx = 0
-      [expression analyzeExpressionForEnabledBinding
-        !inTypeName.string
-        !inUnifiedTypeMap
-        !inArrayControllerMap
-        !inCurrentObservablePropertyMap
-        !inRootEntityType
-#        ??@string observedObject
-#        ??@string observedModel
-#        ??@string observedTypeName
-        !?idx
-        ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
-      ]
-      var controllerInstanciation = "EnableController_" + inTypeName + "_" + outlet_lkey + " ("
-      for (s) in [enableExpression observedObjectList] do( idx)
-        controllerInstanciation += "object" + idx + ":" + s + ", "
-      end
-      controllerInstanciation += "outlet:" + outlet_lkey + ", file:__FILE__, line:__LINE__)"
-      controllerInstanciationStringList += ! controllerInstanciation
-      ioGeneration.mControllerGenerationStringSet += ![filewrapper controllerTemplates.enabledBindingGeneration
-        !inTypeName.string
-        !outlet_lkey.string
-        !enableExpression
-      ]
-    end
-  end
+  analyzeOutlets (
+    !inUnifiedTypeMap
+    !inOutletClassMap
+    !inBindingSpecificationMap
+    !inTypeName
+    !inTypeKind
+    !inSuperType
+    !inRootEntityType
+    !decoratedAttributeMap
+    !decoratedTransientMap
+    !decoratedOutletMap
+    !inCurrentObservablePropertyMap
+    !inCurrentRelationshipMap
+    !inAllObservablePropertyMap
+    !inActionMap
+    !inEnumConstantList
+    !inEnumConstantMap
+    !inArrayControllerMap
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?let @targetActionList targetActionList
+  )
 #--- Analyze relationships
   @entityRelationshipListForGeneration entityRelationshipListForGeneration = {}
   for () in inCurrentRelationshipMap do
@@ -190,7 +161,7 @@ private proc unifiedTypeAnalysis
       ?let @lstring outBoundRootTomanyRelationshipName
     ]
   #--- Check outlet is a PMTableView
-    [decoratedOutletMap searchKey !mTableViewOutletName ?let outletTypeName ?2*]
+    [decoratedOutletMap searchKey !mTableViewOutletName ?let outletTypeName ?3*]
     if outletTypeName.string != "PMTableView" then
       error mTableViewOutletName : "this outlet is not an instance of PMTableView"
     end
@@ -267,113 +238,6 @@ private proc unifiedTypeAnalysis
         ![mAttributeType swiftTypeName]
     end
   end
-#---------------------------------------------------------------- Analyze bindings
-  for () in inBindingList do
-    var controllerSignature = ""
-    var @unifiedTypeProxySelectorList boundPropertyTypeList = {}
-    var @2stringlist typePropertyNameList = {}
-    var @stringlist boundObjectNameList = {}
-    [mObservableProperty analyzeBoundObservablePropertyForSimpleBinding
-      !inUnifiedTypeMap
-      !inArrayControllerMap
-      !mSelectorName
-      !inTypeName.string
-      !inCurrentObservablePropertyMap
-      !inRootEntityType
-      !?controllerSignature
-      !?boundPropertyTypeList
-      !?typePropertyNameList
-      !?boundObjectNameList
-      ?let @bool modelIsTransient
-    ]
-    [decoratedOutletMap searchKey !mOutletName ?let @lstring outletTypeName ?2*]
-    controllerSignature = outletTypeName.string + "." + mBindingName + controllerSignature
-    let controllerTemplateName = @lstring. new {
-      !controllerSignature
-      !mBindingName.location}
-    [inTemplateControllerMap searchKey
-      !controllerTemplateName
-      ?let @string templateString
-      ?let @unifiedTypeMap-proxy modelTypeProxy
-      ?let @lstring modelSelector
-      ?let @bool modelShouldBeWritableProperty
-      ?let @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
-    ]
-    if modelShouldBeWritableProperty && modelIsTransient then
-      error mSelectorName : "the model is transient and the binding requires an writable model"
-    end
-    var @unifiedTypeProxySelectorList modelPropertyTypeList = {}
-    modelPropertyTypeList += !modelTypeProxy !modelSelector
-  #--- Check bound models types and selectors
-    if [boundPropertyTypeList length] != [modelPropertyTypeList length] then
-      error mOutletName : "internal error"
-    else
-      for () model_ in modelPropertyTypeList, () bound_ in boundPropertyTypeList do
-        if ([model_mType mTypeKind] == @typeKind. enumType) & ([bound_mType mTypeKind] == @typeKind. enumType) then
-        # Always ok for any enum type
-        elsif [model_mType key] != [bound_mType key] then
-          error bound_mSelector : "the type of the observable property is '" + [bound_mType key]
-             + "', but this binding requires the '" + [model_mType key] + "' type"    
-        end
-        if model_mSelector.string != bound_mSelector.string then
-          error bound_mSelector : "the selector of the observable property should be '" + model_mSelector + "'"    
-        end
-      end
-    end
-  #--- Check options
-    var bindingOptionString = ""
-    if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
-      @string s
-      if [controllerBindingOptionDecoratedList length] == 0 then
-        s = "this binding has no option"
-      else 
-        s = "this binding requires the following options:"
-        for () in controllerBindingOptionDecoratedList do
-          s += "\n  - " + mOptionName + " : " + [mOptionType key]
-        end
-      end
-      error mBindingName : s
-    else
-      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
-        if controller_mOptionName.string != binding_mOptionName.string then
-          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
-        end
-        [binding_mOptionValue analyzeDefaultValueType 
-          !{!controller_mOptionType}
-          ?let @string optionValueAsString
-        ]
-        bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
-      end
-    end
-  #--- Build controller string
-    var title = ""
-    for () in typePropertyNameList do
-      title += mValue0 + " " + mValue1
-    end    
-    var controllerString = "//" + @string. stringWithSequenceOfCharacters { !'—' !117} + "*\n"
-    controllerString += "//   Controller " + [title + " - " + outletTypeName + " $" + mBindingName stringByRightPadding !103 !' '] + "*\n"
-    controllerString += "//" + @string. stringWithSequenceOfCharacters { !'—' !117} + "*\n\n"
-    var templateStringWithReplacements = templateString
-    for () in typePropertyNameList do
-      templateStringWithReplacements = [templateStringWithReplacements stringByReplacingStringByString !"$OBJECTCLASS$" !mValue0]
-      templateStringWithReplacements = [templateStringWithReplacements stringByReplacingStringByString !"$MODEL$" !mValue1]
-    end    
-    controllerString += templateStringWithReplacements
-    ioGeneration.mControllerGenerationStringSet += !controllerString
-  #--- Build controller instanciation string
-    var controllerInstanciationString = "Controller"
-    for () in typePropertyNameList do
-      controllerInstanciationString += "_" + mValue0 + "_" + mValue1
-    end    
-    controllerInstanciationString += "_" + outletTypeName + "_" + mBindingName + " ("
-    var prefix = "object"
-    for (s) in boundObjectNameList do( idx)
-      controllerInstanciationString += prefix + ":" + s + ", "
-      prefix = "object" + (idx + 1)
-    end
-    controllerInstanciationString += "outlet:" + mOutletName + ", file:__FILE__, line:__LINE__" + bindingOptionString + ")"
-    controllerInstanciationStringList += !controllerInstanciationString
-  end
 #--- Build action list
   for () action_ in inActionMap do
     ioGeneration.mActionListForGeneration += !inTypeName.string !action_lkey.string
@@ -407,7 +271,8 @@ private proc unifiedTypeAnalysis
       !attributeListForGeneration
       !transientDefinitionListForGeneration
       !decoratedOutletMap
-      !controllerInstanciationStringList
+ #     !controllerInstanciationStringList
+      !regularBindingsGenerationList
   case bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType,
        doubleType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,
        protocolType, stringType, structType, uintegerType:
@@ -630,9 +495,10 @@ override method @selfObservablePropertyAST analyzeBoundObservablePropertyForEnab
 #  outObservedModel := mSelfObservablePropertyName->string ;
   outExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration. new {
     !"self"
-    !mSelfObservablePropertyName.string
+    !mSelfObservablePropertyName.string + ".value"
     !inSelfTypeName
-    !ioIndex}
+    !ioIndex
+  }
   ioIndex ++
 }
 
@@ -686,7 +552,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
     ?let @typeKind typeKind
     ?5*
     ?let @decoratedObservablePropertyMap observablePropertyMap
-    ?6*
+    ?5*
   ]
   if typeKind != @typeKind. preferencesType then
     error mPreferenceName : "there is no '" + mPreferenceName + "' preferences"
@@ -750,180 +616,9 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
     !mArrayControllerName.string
     !mArrayControllerObservablePropertyName.string
     !observedTypeName
-    !ioIndex}
+    !ioIndex
+  }
   ioIndex ++
-}
-
-#----------------------------------------------------------------------------*
-# analyzeBoundObservablePropertyForSimpleBinding                             *
-#----------------------------------------------------------------------------*
-
-#! analyzeBoundObservablePropertyForSimpleBinding
-
-#----------------------------------------------------------------------------*
-
-abstract method @abstractObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @arrayControllerMap inArrayControllerMap
-  ?let @lstring inSelectorName
-  ?let @string inCurrentTypeName
-  ?let @decoratedObservablePropertyMap inObservablePropertyMap
-  ?let @unifiedTypeMap-proxy inRootEntityType
-  ?!@string ioControllerSignature
-  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
-  ?!@2stringlist ioTypePropertyNameList
-  ?!@stringlist ioBoundObjectNameList
-  !@bool outModelIsTransient
-
-#----------------------------------------------------------------------------*
-
-override method @selfObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @arrayControllerMap unused inArrayControllerMap
-  ?let @lstring inSelectorName
-  ?let @string inCurrentTypeName
-  ?let @decoratedObservablePropertyMap inObservablePropertyMap
-  ?let @unifiedTypeMap-proxy unused inRootEntityType
-  ?!@string ioControllerSignature
-  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
-  ?!@2stringlist ioTypePropertyNameList
-  ?!@stringlist ioBoundObjectNameList
-  !@bool outModelIsTransient {
-  [inObservablePropertyMap searchKey
-    !mSelfObservablePropertyName
-    ?let @unifiedTypeMap-proxy propertyType
-    ?outModelIsTransient
-    ?* #?@lstring propertySignature
-    ?let @bool isCollection
-  ]
-  if isCollection then
-    error mSelfObservablePropertyName : "the observable property should not be a collection"
-  end
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName
-  ioBoundPropertyTypeList += !propertyType !inSelectorName
-  ioTypePropertyNameList += !inCurrentTypeName !mSelfObservablePropertyName.string
-  ioBoundObjectNameList += !"self"
-}
-
-#----------------------------------------------------------------------------*
-
-override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @arrayControllerMap unused inArrayControllerMap
-  ?let @lstring inSelectorName
-  ?let @string unused inCurrentTypeName
-  ?let @decoratedObservablePropertyMap unused inObservablePropertyMap
-  ?let @unifiedTypeMap-proxy inRootEntityType
-  ?!@string ioControllerSignature
-  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
-  ?!@2stringlist ioTypePropertyNameList
-  ?!@stringlist ioBoundObjectNameList
-  !@bool outModelIsTransient {
-  [[inRootEntityType mObservablePropertyMap] searchKey
-    !mRootObservablePropertyName
-    ?let @unifiedTypeMap-proxy propertyType
-    ?outModelIsTransient
-    ?* #?@lstring propertySignature
-    ?let @bool isCollection
-  ]
-  if isCollection & not mNamesCountOption then
-    error mRootObservablePropertyName : "the observable property should not be a collection"
-  elsif mNamesCountOption & not isCollection then
-    error mRootObservablePropertyName : "the observable property should be a collection"
-  end
-  ioBoundObjectNameList += !"rootObject"
-  if mNamesCountOption then
-    ioControllerSignature += ".Integer." + inSelectorName
-    ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName.string + "_count"  
-    ioBoundPropertyTypeList += !@unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !["Integer" nowhere]} !inSelectorName
-  else
-    ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName
-    ioTypePropertyNameList += ![inRootEntityType key] !mRootObservablePropertyName.string  
-    ioBoundPropertyTypeList += !propertyType !inSelectorName
-  end
-}
-
-#----------------------------------------------------------------------------*
-
-override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @arrayControllerMap unused inArrayControllerMap
-  ?let @lstring inSelectorName
-  ?let @string unused inCurrentTypeName
-  ?let @decoratedObservablePropertyMap unused inObservablePropertyMap
-  ?let @unifiedTypeMap-proxy unused inRootEntityType
-  ?!@string ioControllerSignature
-  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
-  ?!@2stringlist ioTypePropertyNameList
-  ?!@stringlist ioBoundObjectNameList
-  !@bool outModelIsTransient {
-#--- Get preference type
-  [inUnifiedTypeMap searchKey
-    !mPreferenceName
-    ?let @typeKind typeKind
-    ?5*
-    ?let @decoratedObservablePropertyMap observablePropertyMap
-    ?6*
-  ]
-  if typeKind != @typeKind. preferencesType then
-    error mPreferenceName : "there is no '" + mPreferenceName + "' preferences"
-  end
-#---    
-  [observablePropertyMap searchKey
-    !mPreferenceObservablePropertyName
-    ?let @unifiedTypeMap-proxy propertyType
-    ?outModelIsTransient
-    ?* #?@lstring propertySignature
-    ?let @bool isCollection
-  ]
-  if isCollection then
-    error mPreferenceObservablePropertyName : "the observable property should not be a collection"
-  end
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName
-  ioBoundPropertyTypeList += !propertyType !inSelectorName
-  ioTypePropertyNameList += !mPreferenceName.string !mPreferenceObservablePropertyName.string
-  ioBoundObjectNameList += !"g_" + mPreferenceName
-}
-
-#----------------------------------------------------------------------------*
-
-override method @arrayControllerObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @arrayControllerMap inArrayControllerMap
-  ?let @lstring inSelectorName
-  ?let @string inCurrentTypeName
-  ?let @decoratedObservablePropertyMap unused inObservablePropertyMap
-  ?let @unifiedTypeMap-proxy inRootEntityType
-  ?!@string ioControllerSignature
-  ?!@unifiedTypeProxySelectorList ioBoundPropertyTypeList
-  ?!@2stringlist ioTypePropertyNameList
-  ?!@stringlist ioBoundObjectNameList
-  !@bool outModelIsTransient {
-#--- Get preference type
-  [inArrayControllerMap searchKey
-    !mArrayControllerName
-    ?let @abstractObservablePropertyAST boundModel
-    ?3*
-    ?let @decoratedObservablePropertyMap arrayControllerObservablePropertyMap
-    ?2*
-  ]
-#---    
-  [arrayControllerObservablePropertyMap searchKey
-    !mArrayControllerObservablePropertyName
-    ?let @unifiedTypeMap-proxy propertyType
-    ?outModelIsTransient
-    ?* #?@lstring propertySignature
-    ?let @bool isCollection
-  ]
-  if isCollection then
-    error mArrayControllerObservablePropertyName : "the observable property should not be a collection"
-  end
-  ioControllerSignature += "." + [propertyType typeNameForControllerTemplateName] + "." + inSelectorName
-  ioBoundPropertyTypeList += !propertyType !inSelectorName
-  ioBoundObjectNameList += !mArrayControllerName.string
-  ioTypePropertyNameList +=
-    !"ArrayController_" + [boundModel modelSignatureForArrayController !inRootEntityType !inCurrentTypeName]
-    !mArrayControllerObservablePropertyName.string
 }
 
 #----------------------------------------------------------------------------*

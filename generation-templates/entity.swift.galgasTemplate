@@ -10,11 +10,190 @@ protocol %!ENTITY_NAME%_%!mAttributeName% {
 
 %
 end
+
+
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if mIsToMany then
 %//---------------------------------------------------------------------------------------------------------------------*
+//    %!["To many relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
+//---------------------------------------------------------------------------------------------------------------------*
+
+struct ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
+ 
+  var explorer : NSPopUpButton?
+  var owner : %!ENTITY_NAME%?
+  var mSet = Set<%![mRelationshipType key]%> ()
+  var values : Array<%![mRelationshipType key]%> = Array () {
+    didSet {
+      if oldValue != values {
+        mSet = Set (values)
+      //--- Register old value in undo manager
+        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+      //--- Update explorer
+        if explorer != nil {
+          owner?.updateManagedObjectToManyRelationshipDisplay (values, popUpButton:explorer!)
+        }
+      //--- Removed object set
+        var removedObjectSet : Set<%![mRelationshipType key]%> = Set (oldValue)
+        removedObjectSet.subtractInPlace (values)
+        for managedObject : %![mRelationshipType key]% in removedObjectSet {
+%for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%          for (key, observer) in mObserversOf_%!lkey.string% {
+            managedObject.%!lkey.string%.removeObserver (observer, inTrigger:true)
+          }
+%end
+end
+%          managedObject.%!mOppositeRelationshipName%.owner = nil ;
+        }
+      //--- Added object set
+        var addedObjectSet : Set<%![mRelationshipType key]%> = Set (values)
+        addedObjectSet.subtractInPlace (oldValue)
+        for managedObject : %![mRelationshipType key]% in addedObjectSet {
+%for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%          for (key, observer) in mObserversOf_%!lkey.string% {
+            managedObject.%!lkey.string%.addObserver (observer, inTrigger:true)
+          }
+%end
+end
+%          managedObject.%!mOppositeRelationshipName%.value = owner
+        }
+      //--- Notify observers object count did change
+        for (key, observer) in mObservers {
+          postTransientEvent (observer)
+        }
+      }
+    }
+  }
+
+%
+for () in [mRelationshipType mObservablePropertyMap] do
+if not mIsCollection then
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mObserversOf_%!lkey.string% : [Int : PMTransientEventProtocol] = [:]
+
+  mutating func addObserverOf_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = inObserver
+    for managedObject in values {
+      managedObject.%!lkey.string%.addObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+  mutating func removeObserverOf_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = nil
+    for managedObject in values {
+      managedObject.%!lkey.string%.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+%
+end
+end
+%  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+
+  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+
+  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+  
+  var count : Int { get { return values.count } }
+}
+%
+  end
+end
+
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  if not mIsToMany then
+%//---------------------------------------------------------------------------------------------------------------------*
+//    %!["To one relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
+//---------------------------------------------------------------------------------------------------------------------*
+
+struct ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
+  var explorer : NSButton?
+  var owner : %!ENTITY_NAME%?
+ 
+  var value : %![mRelationshipType key]%? = nil {
+    didSet {
+      if let unwrappedOwner = owner where oldValue !== value {
+      //--- Register old value in undo manager
+        unwrappedOwner.mUndoManager?.registerUndoWithTarget (unwrappedOwner, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+      //--- Update explorer
+        if let unwrappedExplorer = explorer {
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (value, button : unwrappedExplorer)
+        }
+%    if mOppositeRelationshipIsToMany then
+%      //--- Reset old opposite relation ship
+        if let unwrappedOldValue = oldValue {
+          if unwrappedOldValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%.values
+            let idx = find (array, unwrappedOwner)
+            array.removeAtIndex (idx!)
+            unwrappedOldValue.%!mOppositeRelationshipName%.values = array
+          }
+        }
+      //--- Set new opposite relation ship
+        if let unwrappedValue = value {
+          if !unwrappedValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
+            unwrappedValue.%!mOppositeRelationshipName%.values.append (unwrappedOwner)
+          }
+        }
+%    else
+%     //--- Reset old opposite relation ship
+        oldValue?.%!mOppositeRelationshipName% = nil
+      //--- Set new opposite relation ship
+        %!mRelationshipName%?.%!mOppositeRelationshipName% = self
+%    end
+%      //--- Notify observers
+        for (key, observer) in mObservers {
+          postTransientEvent (observer)
+        }
+      }
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+
+  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = inObserver
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+
+  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+    mObservers [inObserver.uniqueIndex] = nil
+    if inTrigger {
+      postTransientEvent (inObserver)
+    }
+  }
+}
+%
+  end
+end
+%
+//---------------------------------------------------------------------------------------------------------------------*
+//    %!["Entity: " + ENTITY_NAME stringByRightPadding !113 !' ']%*
+//---------------------------------------------------------------------------------------------------------------------*
 
 @objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%, %!ENTITY_NAME%_%!mAttributeName
+  %, %!ENTITY_NAME%_%!mAttributeName
 end
 % {
   override func userClassName () -> String { return "%!ENTITY_NAME%" }
@@ -26,6 +205,7 @@ end
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get { return %!mAttributeName%.value } }\n%
 end
 %
 
@@ -40,229 +220,24 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
                       %> (PMTransientIndex.k_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%)\n%
 end
 
-
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    Relationships                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-% /* private var %!mAttributeName%_explorer : NSTextField? = nil\n%
-%  private var %!mAttributeName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
-%  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
-    didSet {
-      if %!mAttributeName% != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:%![mAttributeType transformerForRegisterUndoWithTarget !"oldValue"]%)
-        %!mAttributeName%_explorer?.stringValue = %![mAttributeType valueAccessorForExplorerWindow !mAttributeName]%
-        for (key, observer) in %!mAttributeName%_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
-  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeUndoArgument]%) {
-    %!mAttributeName% = %![mAttributeType transformerForUndo !"value"]%
-  }
-
-  func addObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  } */
-%if not mNeedsValidation then%
- // func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
 
 %
-end
-end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["To many relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
-
-%
-for () in [mRelationshipType mObservablePropertyMap] do
-if not mIsCollection then
-%  private var %!mRelationshipName%_%!lkey.string%_observers : [Int : PMTransientEventProtocol] = [:]
-
-  func addObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = inObserver
-    for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as! %![mRelationshipType key]%
-      managedObject.addObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
-    }
-  }
-
-  func removeObserverOf_%!mRelationshipName%_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_%!lkey.string%_observers [inObserver.uniqueIndex] = nil
-    for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as! %![mRelationshipType key]%
-      managedObject.removeObserverOf_%!lkey.string% (inObserver, inTrigger:inTrigger)
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-%
-end
-end
-
-%  private var %!mRelationshipName%_observers : [Int : PMTransientEventProtocol] = [:]
-  private var %!mRelationshipName%_explorer : NSPopUpButton?
-  var %!mRelationshipName%_set = Set<%![mRelationshipType key]%> ()
-  var %!mRelationshipName% : Array<%![mRelationshipType key]%> = Array () {
-    didSet {
-      if oldValue != %!mRelationshipName% {
-        %!mRelationshipName%_set = Set (%!mRelationshipName%)
-      //--- Register old value in undo manager
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
-      //--- Update explorer
-        if %!mRelationshipName%_explorer != nil {
-          updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%, popUpButton:%!mRelationshipName%_explorer)
-        }
-      //--- Removed object set
-        var removedObjectSet : Set<%![mRelationshipType key]%> = Set (oldValue)
-        removedObjectSet.subtractInPlace (%!mRelationshipName%)
-        for managedObject : %![mRelationshipType key]% in removedObjectSet {
-%for () in [mRelationshipType mObservablePropertyMap] do
-if not mIsCollection then
-%          for (key, observer) in %!mRelationshipName%_%!lkey.string%_observers {
-            managedObject.removeObserverOf_%!lkey.string% (observer, inTrigger:true)
-          }
-%end
-end
-%          managedObject.%!mOppositeRelationshipName% = nil ;
-        }
-      //--- Added object set
-        var addedObjectSet : Set<%![mRelationshipType key]%> = Set (%!mRelationshipName%)
-        addedObjectSet.subtractInPlace (oldValue)
-        for managedObject : %![mRelationshipType key]% in addedObjectSet {
-%for () in [mRelationshipType mObservablePropertyMap] do
-if not mIsCollection then
-%          for (key, observer) in %!mRelationshipName%_%!lkey.string%_observers {
-            managedObject.addObserverOf_%!lkey.string% (observer, inTrigger:true)
-          }
-%end
-end
-%          managedObject.%!mOppositeRelationshipName% = self
-        }
-      //--- Notify observers object count did change
-        for (key, observer) in %!mRelationshipName%_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
-  func undoFor_%!mRelationshipName% (object:NSArray) {
-    %!mRelationshipName% = object as! Array<%![mRelationshipType key]%>
-  }
-
-  func addObserverOf_%!mRelationshipName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  func removeObserverOf_%!mRelationshipName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-  
-  var %!mRelationshipName%_count : Int { get { return %!mRelationshipName%.count } }
-
-  func addObserverOf_%!mRelationshipName%_count (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    addObserverOf_%!mRelationshipName% (inObserver, inTrigger:inTrigger)
-  }
-
-  func removeObserverOf_%!mRelationshipName%_count (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    removeObserverOf_%!mRelationshipName% (inObserver, inTrigger:inTrigger)
-  }
-%
+    %  var %!mRelationshipName% = ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% ()\n%
+    %  func undoFor_%!mRelationshipName% (object:NSArray) {\n%
+    %    %!mRelationshipName%.values = object as! Array<%![mRelationshipType key]%>\n%
+    %  }\n\n%
+  else
+    %  var %!mRelationshipName% = ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% ()\n%
+    %  func undoFor_%!mRelationshipName% (object:%![mRelationshipType key]%) {\n%
+    %    %!mRelationshipName%.value = object\n%
+    %  }\n\n%
   end
 end
-
-for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
-  if not mIsToMany then
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["To one relationship: " + mRelationshipName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var %!mRelationshipName%_observers : [Int : PMTransientEventProtocol] = [:]
-  private var %!mRelationshipName%_explorer : NSButton?
-  var %!mRelationshipName% : %![mRelationshipType key]%? = nil {
-    didSet {
-      if oldValue !== %!mRelationshipName% {
-      //--- Register old value in undo manager
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
-      //--- Update explorer
-        if %!mRelationshipName%_explorer != nil {
-          updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%, button : %!mRelationshipName%_explorer)
-        }
-%    if mOppositeRelationshipIsToMany then
-%      //--- Reset old opposite relation ship
-        if let unwrappedOldValue = oldValue {
-          if unwrappedOldValue.%!mOppositeRelationshipName%_set.contains (self) {
-            var array = unwrappedOldValue.%!mOppositeRelationshipName%
-            let idx = find (array, self)
-            array.removeAtIndex (idx!)
-            unwrappedOldValue.%!mOppositeRelationshipName% = array
-          }
-        }
-      //--- Set new opposite relation ship
-        if let root = %!mRelationshipName% {
-          if !root.%!mOppositeRelationshipName%_set.contains (self) {
-            root.%!mOppositeRelationshipName%.append (self)
-          }
-        }
-%    else
-%     //--- Reset old opposite relation ship
-        oldValue?.%!mOppositeRelationshipName% = nil
-      //--- Set new opposite relation ship
-        %!mRelationshipName%?.%!mOppositeRelationshipName% = self
-%    end
-%      //--- Notify observers
-        for (key, observer) in %!mRelationshipName%_observers {
-          postTransientEvent (observer)
-        }
-      }
-    }
-  }
-
-  func undoFor_%!mRelationshipName% (object:%![mRelationshipType key]%) {
-    %!mRelationshipName% = object
-  }
-
-  func addObserverOf_%!mRelationshipName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  func removeObserverOf_%!mRelationshipName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mRelationshipName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-%
-  end
-end
-
-if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -285,7 +260,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     between %, %
   end
   %)})\n%
-end
 end
 %  //--- Install property observers for transients
 %
@@ -336,9 +310,9 @@ end
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-    %    %!mRelationshipName% = Array<%![mRelationshipType key]%> ()\n%
+    %    %!mRelationshipName%.values = Array<%![mRelationshipType key]%> ()\n%
   else
-    %    %!mRelationshipName% = nil\n%
+    %    %!mRelationshipName%.value = nil\n%
   end
 end
 %  }
@@ -376,11 +350,11 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    %!mRelationshipName%_explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%, popUpButton:%!mRelationshipName%_explorer!)\n%
+%    %!mRelationshipName%.explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
+    updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%.values, popUpButton:%!mRelationshipName%.explorer!)\n%
   else
-%    %!mRelationshipName%_explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%, button:%!mRelationshipName%_explorer!)\n%
+%    %!mRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
+    updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%.value, button:%!mRelationshipName%.explorer!)\n%
   end
 end%  }
 
@@ -393,7 +367,7 @@ end%  }
 %    %!mAttributeName%.explorer = nil\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
-%    %!mRelationshipName%_explorer = nil\n%
+%    %!mRelationshipName%.explorer = nil\n%
 end
 %    super.clearObjectExplorer ()
   }
@@ -409,7 +383,7 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    storeEntityArrayInDictionary (%!mRelationshipName%, inRelationshipName:"%!mRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    storeEntityArrayInDictionary (%!mRelationshipName%.values, inRelationshipName:"%!mRelationshipName%", ioDictionary:ioDictionary) ;\n%
   end
 end
 %  }
@@ -426,13 +400,13 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    %!mRelationshipName% = readEntityArrayFromDictionary (
+%    %!mRelationshipName%.values = readEntityArrayFromDictionary (
         "%!mRelationshipName%",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
       ) as! Array<%![mRelationshipType key]%>\n%
   elsif not mOppositeRelationshipIsToMany then
-%    %!mRelationshipName% = readEntityFromDictionary (
+%    %!mRelationshipName%.value = readEntityFromDictionary (
         "%!mRelationshipName%",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
@@ -506,13 +480,12 @@ end
     super.accessibleObjects (&objects)
 %for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    for object : AnyObject in %!mRelationshipName% {
-      let managedObject = object as! PMManagedObject
+%    for managedObject : PMManagedObject in %!mRelationshipName%.values {
       objects.addObject (managedObject)
     }\n%
   else
-%    if %!mRelationshipName% != nil {\n%
-%      objects.addObject (%!mRelationshipName%!)\n%
+%    if let object = %!mRelationshipName%.value {\n%
+%      objects.addObject (object)\n%
 %    }\n%
   end
 end%  }

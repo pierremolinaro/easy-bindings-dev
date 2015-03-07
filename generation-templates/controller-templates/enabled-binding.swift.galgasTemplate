@@ -34,7 +34,7 @@ end
     }
 %
 for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
-  %    mObject%![idx string]%?.addObserverOf_%!mValue% (self, inTrigger:true)\n%
+  %    mObject%![idx string]%?.%!mValue%.addObserver (self, inTrigger:true)\n%
 end  
 %  }
 
@@ -43,7 +43,7 @@ end
   func unregister () {
 %
 for () in [ENABLE_EXPRESSION observedModelNameList] do index idx
-  %    mObject%![idx string]%?.removeObserverOf_%!mValue% (self, inTrigger:true)\n%
+  %    mObject%![idx string]%?.%!mValue%.removeObserver(self, inTrigger:true)\n%
 end  
 %  }
 

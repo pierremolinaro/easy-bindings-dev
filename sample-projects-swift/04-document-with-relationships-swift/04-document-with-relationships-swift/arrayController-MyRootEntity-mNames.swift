@@ -121,10 +121,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         unwrappedTableView.setDataSource (self)
         unwrappedTableView.setDelegate (self)
         if let col_name : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("name") {
-          col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name", ascending:true)
+          col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
         }
         if let col_aValue : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("int") {
-          col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue", ascending:true)
+          col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
         }
         let columns = unwrappedTableView.tableColumns as NSArray
         if columns.count > 0 {
@@ -144,8 +144,8 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   func unregister () {
     for managedObject : NameEntity in mObjectSet {
-      managedObject.removeObserverOf_name (eventModelChange, inTrigger:false)
-      managedObject.removeObserverOf_aValue (eventModelChange, inTrigger:false)
+      managedObject.name.removeObserver (eventModelChange, inTrigger:false)
+      managedObject.aValue.removeObserver (eventModelChange, inTrigger:false)
     }
   }
   
@@ -204,24 +204,24 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //--------------------------- Update observers for handling model change
     let oldObjectSet = mObjectSet
     mObjectSet = Set ()
-    mObjectSet.unionInPlace (mObject.mNames)
+    mObjectSet.unionInPlace (mObject.mNames.values)
   //--- Removed object set
     var removedObjectSet = oldObjectSet
     removedObjectSet.subtractInPlace (mObjectSet)
     for managedObject : NameEntity in removedObjectSet {
-      managedObject.removeObserverOf_name (eventModelChange, inTrigger:false)
-      managedObject.removeObserverOf_aValue (eventModelChange, inTrigger:false)
+      managedObject.name.removeObserver (eventModelChange, inTrigger:false)
+      managedObject.aValue.removeObserver (eventModelChange, inTrigger:false)
     }
   //--- Added object set
     var addedObjectSet = mObjectSet
     addedObjectSet.subtractInPlace (oldObjectSet)
     for managedObject : NameEntity in addedObjectSet {
-      managedObject.addObserverOf_name (eventModelChange, inTrigger:false)
-      managedObject.addObserverOf_aValue (eventModelChange, inTrigger:false)
+      managedObject.name.addObserver (eventModelChange, inTrigger:false)
+      managedObject.aValue.addObserver (eventModelChange, inTrigger:false)
     }
   //-------------------------- Sort objects
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
-    var currentObjectArrayAsMutableArray = NSMutableArray (array: mObject.mNames)
+    var currentObjectArrayAsMutableArray = NSMutableArray (array: mObject.mNames.values)
     currentObjectArrayAsMutableArray.sortUsingDescriptors (sortDescriptors)
     mSortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
   //-------------------------- Build new selected objects array
@@ -299,13 +299,13 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
     let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
     if columnIdentifier == "name" {
-      result.textField?.stringValue = object.name
+      result.textField?.stringValue = object.name.value
       result.textField?.target = self
       result.textField?.action = "set_name_Action:"
       let tf : PMTextField = result.textField as! PMTextField
     }else if columnIdentifier == "int" {
       let tf : PMNumberField = result.textField as! PMNumberField
-      tf.myIntegerValue = object.aValue
+      tf.myIntegerValue = object.aValue.value
       tf.target = self
       tf.action = "set_aValue_Action:"
     }
@@ -319,10 +319,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
-        let validationResult = object.validate_name (sender.stringValue)
+        let validationResult = object.name.validate (sender.stringValue)
         switch validationResult {
         case PMValidationResult.ok :
-          object.name = sender.stringValue
+          object.name.value = sender.stringValue
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -334,9 +334,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             alert.addButtonWithTitle ("Discard Change")
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
-                object.removeObserverOf_name (self.eventModelChange, inTrigger:false)
-                object.name = sender.stringValue
-                object.addObserverOf_name (self.eventModelChange, inTrigger:false)
+                object.name.removeObserver(self.eventModelChange, inTrigger:false)
+                object.name.value = sender.stringValue
+                object.name.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
           }
@@ -352,10 +352,10 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
-        let validationResult = object.validate_aValue (sender.integerValue)
+        let validationResult = object.aValue.validate (sender.integerValue)
         switch validationResult {
         case PMValidationResult.ok :
-          object.aValue = sender.integerValue
+          object.aValue.value = sender.integerValue
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -367,9 +367,9 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             alert.addButtonWithTitle ("Discard Change")
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
-                object.removeObserverOf_aValue (self.eventModelChange, inTrigger:false)
-                object.aValue = sender.integerValue
-                object.addObserverOf_aValue (self.eventModelChange, inTrigger:false)
+                object.aValue.removeObserver(self.eventModelChange, inTrigger:false)
+                object.aValue.value = sender.integerValue
+                object.aValue.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
           }
@@ -387,12 +387,12 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
     var newObject : NameEntity = NameEntity (undoManager:mUndoManager!)
-    var array = mObject.mNames
+    var array = mObject.mNames.values
     array.append (newObject)
     if mSelectNewObject {
       mSelectedObjectArray = [newObject]
     }
-    mObject.mNames = array
+    mObject.mNames.values = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -402,7 +402,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   func remove (inSender : AnyObject!) {
     if mSelectedObjectArray.count > 0 {
       if let tableView = mTableView {
-        var newObjectArray = mObject.mNames
+        var newObjectArray = mObject.mNames.values
         for object in mSelectedObjectArray {
           let optItx = find (newObjectArray, object)
           if let idx = optItx {
@@ -421,7 +421,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             mSelectedObjectArray = [newObjectArray.last!]
           }
         }
-        mObject.mNames = newObjectArray
+        mObject.mNames.values = newObjectArray
       }
     }
   }
@@ -430,7 +430,13 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var canRemove_private = false // As array is empty initially
+  var canRemove = PMPreferencesProperty <Bool> (false)
+  
+   func updateCanRemoveProperty () {
+     canRemove.value = mSelectedObjectArray.count > 0
+   }
+ 
+/*  private var canRemove_private = false // As array is empty initially
   var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
@@ -461,7 +467,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
       postTransientEvent (inObserver)
     }
   }
-
+*/
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
