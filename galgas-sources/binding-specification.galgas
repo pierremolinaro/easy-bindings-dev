@@ -87,8 +87,8 @@ syntax extension easyBindings_syntax {
 
 map @bindingSpecificationMap {
   @outletBindingSpecificationMap mBindingMap
-  insert insertKey error message "the '%K' controller template is already declared in %L"
-  search searchKey error message "there is no '%K' controller template"
+  insert insertKey error message "the '%K' binding is already declared in %L"
+  search searchKey error message "there is no '%K' binding"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -103,8 +103,8 @@ list @outletBindingSpecificationModelList {
 map @outletBindingSpecificationMap {
   @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
   @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList
-  insert insertKey error message "the '%K' controller template is already declared in %L"
-  search searchKey error message "there is no '%K' controller template"
+  insert insertKey error message "the '%K' binding is already declared in %L"
+  search searchKey error message "there is no '%K' binding"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

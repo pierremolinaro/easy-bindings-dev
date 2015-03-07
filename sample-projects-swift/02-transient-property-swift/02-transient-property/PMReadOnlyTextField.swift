@@ -2,11 +2,11 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMReadOnlyTextField) class PMReadOnlyTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMTextField" }
+  func userClassName () -> String { return "PMReadOnlyTextField" }
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -39,18 +39,16 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  value binding                                                                                                    *
+  //  readOnlyBalue binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMTextField_value?
-  private var mSendContinously : Bool = false
+  private var mValueController : Controller_PMReadOnlyTextField_value?
 
-  func bind_value (object:PMStoredProperty <String>, file:String, line:Int, sendContinously:Bool) {
-    mSendContinously = sendContinously
-    mValueController = Controller_PMTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+  func bind_readOnlyValue (object:PMTransientProperty <String>, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_value () {
+  func unbind_readOnlyValue () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -58,29 +56,21 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  override func controlTextDidChange (inNotification : NSNotification) {
-    if mSendContinously {
-      NSApp.sendAction (self.action, to: self.target, from: self)
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Controller_PMTextField_value                                                                           *
+//   Controller Controller_PMReadOnlyTextField_value                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMTextField_value)
-class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
+@objc(Controller_PMReadOnlyTextField_value)
+class Controller_PMReadOnlyTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  private weak var mOutlet: PMTextField? = nil
-  private weak var mObject : PMStoredProperty <String>?
+  private var mOutlet: PMReadOnlyTextField
+  private var mObject : PMTransientProperty <String>
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMTextField.value" }
+  func userClassName () -> String { return "Controller.PMReadOnlyTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -89,21 +79,17 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMStoredProperty <String>, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object:PMTransientProperty <String>, outlet : PMReadOnlyTextField, file : String, line : Int) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
+    mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
-    if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMTextField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
-      }else{
-        mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        if unwrappedOutlet.formatter != nil {
-          presentErrorWindow (file, line, "the outlet has a formatter")
-        }
+    if !mOutlet.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (file, line, "outlet is not an instance of PMReadOnlyTextField")
+    }else{
+      if mOutlet.formatter != nil {
+        presentErrorWindow (file, line, "the outlet has a formatter")
       }
     }
     object.addObserver (self, inTrigger:true)
@@ -112,9 +98,7 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
-    mObject?.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -131,35 +115,8 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.value {
-      outlet.stringValue = object.value
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func action (sender : PMTextField) {
-    if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate (outlet.stringValue)
-      switch validationResult {
-      case PMValidationResult.ok :
-        object.setValue (outlet.stringValue)
-      case PMValidationResult.rejectWithBeep :
-        NSBeep ()
-      case PMValidationResult.rejectWithAlert (let informativeText) :
-        if let window = sender.window {
-          let alert = NSAlert ()
-          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.value
-            }
-          })
-        }
-      }
+    if mOutlet.stringValue != mObject.value {
+      mOutlet.stringValue = mObject.value
     }
   }
 

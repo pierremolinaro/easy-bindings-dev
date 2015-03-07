@@ -41,7 +41,9 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
-                      %> (PMTransientIndex.k_%!["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]%)\n%
+                      %> (PMTransientIndex.k_%
+                      !["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]
+                      %, defaultValue:%![mTransientType defaultValue]%)\n%
 end
 
 for () in CONTROLLER_MAP do
@@ -152,12 +154,12 @@ end
 %  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.setComputeFunction ({return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  %    %!mTransientName%.computeFunction = {return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
   for () in mDependencyList
     do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
     between %, %
   end
-  %)})\n%
+  %)}\n%
 end
 %  //--- Install property observers for transients
 %

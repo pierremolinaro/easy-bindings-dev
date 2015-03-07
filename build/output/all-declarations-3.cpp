@@ -206,6 +206,138 @@ void callCategoryMethod_typeInventory (const cPtr_astDeclaration * inObject,
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@unifiedTypeMap-proxy defaultValue'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string categoryReader_defaultValue (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
+  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("decoratedTypes.galgas", 600)).enumValue ()) {
+  case GALGAS_typeKind::kNotBuilt:
+    break ;
+  case GALGAS_typeKind::kEnum_stringType:
+    {
+      result_outResult = GALGAS_string ("\"\"") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_bezierPathType:
+    {
+      result_outResult = GALGAS_string ("NSBezierPath ()") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_boolType:
+    {
+      result_outResult = GALGAS_string ("false") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_classType:
+    {
+      result_outResult = GALGAS_string ("<<classType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_colorType:
+    {
+      result_outResult = GALGAS_string ("NSColor.blackColor") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_controllerClassType:
+    {
+      result_outResult = GALGAS_string ("<<controllerClassType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dataType:
+    {
+      result_outResult = GALGAS_string ("NSData ()") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_dateType:
+    {
+      result_outResult = GALGAS_string ("NSDate ()") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_documentType:
+    {
+      result_outResult = GALGAS_string ("<<documentType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_doubleType:
+    {
+      result_outResult = GALGAS_string ("0.0") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_entityType:
+    {
+      result_outResult = GALGAS_string ("<<entityType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_enumType:
+    {
+      result_outResult = GALGAS_string ("<<enumType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_fontType:
+    {
+      result_outResult = GALGAS_string ("NSFont ()") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_imageType:
+    {
+      result_outResult = GALGAS_string ("NSImage ()") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_integerType:
+    {
+      result_outResult = GALGAS_string ("0") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_menuType:
+    {
+      result_outResult = GALGAS_string ("<<menuType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_nibClassType:
+    {
+      result_outResult = GALGAS_string ("<<nibClassType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_outletClassType:
+    {
+      result_outResult = GALGAS_string ("<<outletClassType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_preferencesType:
+    {
+      result_outResult = GALGAS_string ("<<preferencesType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_protocolType:
+    {
+      result_outResult = GALGAS_string ("<<protocolType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_structType:
+    {
+      result_outResult = GALGAS_string ("<<structType>>") ;
+    }
+    break ;
+  case GALGAS_typeKind::kEnum_uintegerType:
+    {
+      result_outResult = GALGAS_string ("0") ;
+    }
+    break ;
+  }
+//---
+  return result_outResult ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_structForGeneration::GALGAS_structForGeneration (void) :
 mAttribute_mTransientListForGeneration (),

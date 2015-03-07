@@ -394,9 +394,9 @@ class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {
   private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> T>
   
-  init (_ inTransientIndex : PMTransientIndex, value : T) {
+  init (_ inTransientIndex : PMTransientIndex, defaultValue : T) {
     mTransientIndex = inTransientIndex
-    super.init (value)
+    super.init (defaultValue)
   }
 
   override func userClassName () -> String { return "PMTransientProperty<T>"}

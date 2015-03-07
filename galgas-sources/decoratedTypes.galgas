@@ -596,135 +596,29 @@ override method @listAsDefaultValue analyzeDefaultValueType
   end
 }
 
-##----------------------------------------------------------------------------*
-#
-#map @EXobservablePropertyMapMap {
-#  @bool mUserDefined ;
-#  @EXTypeKind mType ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#  insert insertKey error message "the '%K' key is already declared" ;
-#  search searchKey error message "the '%K' key is not declared" ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#abstract method @EXastDeclaration buildObservablePropertyMap
-#  ??@EXunifiedTypeMap inUnifiedTypeMap
-#  ?!@EXobservablePropertyMapMap ioObservablePropertyMapMap
-#  ?!@EXtransientDependencyGraph ioTransientDependencyGraph
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract class @generation {
-#  @string mGenerationName ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#list @generationList {
-#  @generation mGeneration ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#abstract method @EXastDeclaration semanticAnalysis
-#  ??@EXunifiedTypeMap inUnifiedTypeMap
-#  ?!@EXcontextAnalysisStruct ioContextAnalysisStruct
-#  ?!@generationList ioGenerationList
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#abstract method @generation generate
-#  ??@string inOutputDirectory
-#;
-#
-##----------------------------------------------------------------------------*
-#
-#class @structTypeGeneration extends @generation {
-#  @structFieldList mFieldList ;
-#  @stringset mHeaderFileInclusionSet ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @enumTypeGeneration extends @generation {
-#  @lstringlist mConstantOrderedList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @classTypeGeneration extends @generation {
-#  @string mSuperClassName ;
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @propertyArrayMap mAllArrayPropertyForImplementation ;
-#  @propertyArrayMap mCurrentArrayPropertyForImplementation ;
-#  @fileInclusionSet mInclusionSet ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @nibClassTypeGeneration extends @generation {
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @lstringlist mActionList ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @controllerMap mControllerMap ;
-#  @propertyArrayMap mArrayMap ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @preferenceTypeGeneration extends @generation {
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @lstringlist mActionList ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @controllerMap mControllerMap ;
-#  @preferencesPropertyArrayMap mArrayMap ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @entityGeneration extends @generation {
-#  @string mSuperEntityName ;
-#  @attributeListForImplementation mAttributeListForInitMethodHeader ;
-#  @attributeListForImplementation mInheritedAttributeListForImplementation ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @relationshipList mCurrentRelationshipList ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @signListForGeneration mSignList ;
-#  @EXentityRelationshipMap mCurrentRelationshipMap ;
-#  @2stringlist mToManyRelationshipList ;
-#  @2stringlist mToOneRelationshipList ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @documentGeneration extends @generation {
-#  @string mRootEntityName ;
-#  @outletGenerationList mOutletDeclarationList ;
-#  @controllerMap mControllerMap ;
-#  @lstringlist mActionList ;
-#  @transientListForImplementation mTransientListForImplementation ;
-#  @fileInclusionSet mFileInclusionSet ;
-#  @attributeListForImplementation mAttributeListForImplementation ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @controllerClassGeneration extends @generation {
-#  @outletClassBindingMap mBindingMap ;
-#  @EXobservablePropertyMap mObservablePropertyMap ;
-#}
-#
-#----------------------------------------------------------------------------*
-
+getter @unifiedTypeMap-proxy defaultValue -> @string outResult {
+  switch [self mTypeKind]
+  case stringType : outResult = "\"\""
+  case bezierPathType : outResult = "NSBezierPath ()"
+  case boolType : outResult = "false"
+  case classType : outResult = "<<classType>>"
+  case colorType : outResult = "NSColor.blackColor"
+  case controllerClassType : outResult = "<<controllerClassType>>"
+  case dataType : outResult = "NSData ()"
+  case dateType : outResult = "NSDate ()"
+  case documentType : outResult = "<<documentType>>"
+  case doubleType : outResult = "0.0"
+  case entityType : outResult = "<<entityType>>"
+  case enumType : outResult = "<<enumType>>"
+  case fontType : outResult = "NSFont ()"
+  case imageType : outResult = "NSImage ()"
+  case integerType : outResult = "0"
+  case menuType : outResult = "<<menuType>>"
+  case nibClassType : outResult = "<<nibClassType>>"
+  case outletClassType : outResult = "<<outletClassType>>"
+  case preferencesType : outResult = "<<preferencesType>>"
+  case protocolType : outResult = "<<protocolType>>"
+  case structType : outResult = "<<structType>>"
+  case uintegerType : outResult = "0"
+  end
+}
