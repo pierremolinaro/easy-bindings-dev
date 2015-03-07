@@ -10,6 +10,1398 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                           Routine 'generateOutletClasses'                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNeededOutletClasses,
+                                    const GALGAS_string constinArgument_inOutputDirectory,
+                                    C_Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_filewrapper var_w = GALGAS_filewrapper (gWrapperDirectory_0_outletClassGeneration) ;
+  cEnumerator_stringset enumerator_2185 (constinArgument_inNeededOutletClasses, kEnumeration_up) ;
+  while (enumerator_2185.hasCurrentObject ()) {
+    GALGAS_string var_s = var_w.reader_textFileContentsAtPath (GALGAS_string ("/").add_operation (enumerator_2185.current (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 62)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 62)) ;
+    {
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_2185.current (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 65)), var_s, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 63)) ;
+    }
+    enumerator_2185.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              Routine 'analyzeOutlets'                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_analyzeOutlets (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                             const GALGAS_outletClassMap constinArgument_inOutletClassMap,
+                             const GALGAS_bindingSpecificationMap constinArgument_inBindingSpecificationMap,
+                             const GALGAS_lstring constinArgument_inTypeName,
+                             const GALGAS_typeKind /* constinArgument_inTypeKind */,
+                             const GALGAS_unifiedTypeMap_2D_proxy /* constinArgument_inSuperType */,
+                             const GALGAS_unifiedTypeMap_2D_proxy constinArgument_inRootEntityType,
+                             const GALGAS_decoratedAttributeMap /* constinArgument_decoratedAttributeMap */,
+                             const GALGAS_decoratedTransientMap /* constinArgument_decoratedTransientMap */,
+                             const GALGAS_decoratedOutletMap constinArgument_decoratedOutletMap,
+                             const GALGAS_decoratedObservablePropertyMap constinArgument_inCurrentObservablePropertyMap,
+                             const GALGAS_decoratedEntityRelationshipMap /* constinArgument_inCurrentRelationshipMap */,
+                             const GALGAS_decoratedObservablePropertyMap /* constinArgument_inAllObservablePropertyMap */,
+                             const GALGAS_actionMap constinArgument_inActionMap,
+                             const GALGAS_lstringlist /* constinArgument_inEnumConstantList */,
+                             const GALGAS_enumConstantMap /* constinArgument_inEnumConstantMap */,
+                             const GALGAS_arrayControllerMap constinArgument_inArrayControllerMap,
+                             GALGAS_structForGeneration & ioArgument_ioGeneration,
+                             GALGAS_regularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
+                             GALGAS_targetActionList & outArgument_outTargetActionList,
+                             C_Compiler * inCompiler
+                             COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outRegularBindingsGenerationList.drop () ; // Release 'out' argument
+  outArgument_outTargetActionList.drop () ; // Release 'out' argument
+  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 129)) ;
+  outArgument_outTargetActionList = GALGAS_targetActionList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 130)) ;
+  cEnumerator_decoratedOutletMap enumerator_5175 (constinArgument_decoratedOutletMap, kEnumeration_up) ;
+  while (enumerator_5175.hasCurrentObject ()) {
+    GALGAS_bool var_handlesRunAction ;
+    constinArgument_inOutletClassMap.method_searchKey (enumerator_5175.current_mOutletTypeName (HERE), var_handlesRunAction, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 132)) ;
+    ioArgument_ioGeneration.mAttribute_mNeededOutletClasses.addAssign_operation (enumerator_5175.current_mOutletTypeName (HERE).mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 133)) ;
+    switch (enumerator_5175.current_mRunActionDescriptor (HERE).enumValue ()) {
+    case GALGAS_runActionDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_noAction:
+      {
+      }
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_action:
+      {
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_6031 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_5175.current_mRunActionDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_target = extractPtr_6031->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_action = extractPtr_6031->mAssociatedValue1 ;
+        const enumGalgasBool test_0 = var_handlesRunAction.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 138)).boolEnum () ;
+        if (kBoolTrue == test_0) {
+          GALGAS_location location_1 (enumerator_5175.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_1, GALGAS_string ("the '").add_operation (enumerator_5175.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 139)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 139)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 139))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 139)) ;
+        }else if (kBoolFalse == test_0) {
+          const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, extractedValue_target.mAttribute_string.objectCompare (GALGAS_string ("self"))).boolEnum () ;
+          if (kBoolTrue == test_2) {
+            constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 141)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_5175.current_lkey (HERE).mAttribute_string, GALGAS_string ("self"), extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 142)) ;
+          }else if (kBoolFalse == test_2) {
+            GALGAS_actionMap var_arrayControllerActionMap ;
+            GALGAS_abstractObservablePropertyAST joker_5839_3 ; // Joker input parameter
+            GALGAS_lstring joker_5839_2 ; // Joker input parameter
+            GALGAS_arrayControllerBoundColumnListAST joker_5839_1 ; // Joker input parameter
+            GALGAS_decoratedObservablePropertyMap joker_5884_3 ; // Joker input parameter
+            GALGAS_lstring joker_5884_2 ; // Joker input parameter
+            GALGAS_string joker_5884_1 ; // Joker input parameter
+            constinArgument_inArrayControllerMap.method_searchKey (extractedValue_target, joker_5839_3, joker_5839_2, joker_5839_1, var_arrayControllerActionMap, joker_5884_3, joker_5884_2, joker_5884_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 144)) ;
+            var_arrayControllerActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 145)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_5175.current_lkey (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 146)) ;
+          }
+        }
+      }
+      break ;
+    }
+    switch (enumerator_5175.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_enabledBindingDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_enabledBindingDescriptor::kEnum_noEnabledBinding:
+      {
+      }
+      break ;
+    case GALGAS_enabledBindingDescriptor::kEnum_enabledBinding:
+      {
+        const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding * extractPtr_7140 = (const cEnumAssociatedValues_enabledBindingDescriptor_enabledBinding *) (enumerator_5175.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_7140->mAssociatedValue0 ;
+        GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression ;
+        callCategoryMethod_analyzeExpressionForEnabledBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inTypeName.mAttribute_string, constinArgument_inUnifiedTypeMap, constinArgument_inArrayControllerMap, constinArgument_inCurrentObservablePropertyMap, constinArgument_inRootEntityType, var_idx, var_enableExpression, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 154)) ;
+        GALGAS_string var_controllerInstanciation = GALGAS_string ("EnableController_").add_operation (constinArgument_inTypeName.reader_string (SOURCE_FILE ("outlet-declaration.galgas", 163)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 163)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 163)).add_operation (enumerator_5175.current_lkey (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 163)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 163)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 163)) ;
+        cEnumerator_stringlist enumerator_6690 (callCategoryReader_observedObjectList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) var_enableExpression.ptr (), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 164)), kEnumeration_up) ;
+        GALGAS_uint index_6645 ((uint32_t) 0) ;
+        while (enumerator_6690.hasCurrentObject ()) {
+          var_controllerInstanciation.dotAssign_operation (GALGAS_string ("object").add_operation (index_6645.reader_string (SOURCE_FILE ("outlet-declaration.galgas", 165)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 165)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 165)).add_operation (enumerator_6690.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 165)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 165))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 165)) ;
+          enumerator_6690.gotoNextObject () ;
+          index_6645.increment_operation (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 164)) ;
+        }
+        var_controllerInstanciation.dotAssign_operation (GALGAS_string ("outlet:").add_operation (enumerator_5175.current_lkey (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 167)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 167)).add_operation (GALGAS_string (", file:__FILE__, line:__LINE__)"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 167))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 167)) ;
+        ioArgument_ioGeneration.mAttribute_mControllerGenerationStringSet.addAssign_operation (GALGAS_string (filewrapperTemplate_controllerTemplates_enabledBindingGeneration (inCompiler, constinArgument_inTypeName.mAttribute_string, enumerator_5175.current_lkey (HERE).mAttribute_string, var_enableExpression COMMA_SOURCE_FILE ("outlet-declaration.galgas", 169)))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 169)) ;
+      }
+      break ;
+    }
+    cEnumerator_regularBindingList enumerator_7213 (enumerator_5175.current_mRegularBindingList (HERE), kEnumeration_up) ;
+    while (enumerator_7213.hasCurrentObject ()) {
+      GALGAS_outletBindingModelList var_boundPropertyTypeList = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 178)) ;
+      GALGAS_stringlist var_boundObjectNameList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 179)) ;
+      cEnumerator_observablePropertyList enumerator_7387 (enumerator_7213.current_mObservablePropertyList (HERE), kEnumeration_up) ;
+      while (enumerator_7387.hasCurrentObject ()) {
+        callCategoryMethod_analyzeBoundObservablePropertyForSimpleBinding ((const cPtr_abstractObservablePropertyAST *) enumerator_7387.current_mObservableProperty (HERE).ptr (), constinArgument_inUnifiedTypeMap, constinArgument_inArrayControllerMap, constinArgument_inTypeName.mAttribute_string, constinArgument_inCurrentObservablePropertyMap, constinArgument_inRootEntityType, var_boundPropertyTypeList, var_boundObjectNameList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 181)) ;
+        enumerator_7387.gotoNextObject () ;
+      }
+      GALGAS_outletBindingSpecificationMap var_bindingMap ;
+      constinArgument_inBindingSpecificationMap.method_searchKey (enumerator_5175.current_mOutletTypeName (HERE), var_bindingMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 192)) ;
+      GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList ;
+      GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList ;
+      var_bindingMap.method_searchKey (enumerator_7213.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 193)) ;
+      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_boundPropertyTypeList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 198)).objectCompare (var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 198)))).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        GALGAS_location location_4 (enumerator_7213.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_4, var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 199)).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 199)).add_operation (GALGAS_string (" model(s) required for this binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 199))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 199)) ;
+      }else if (kBoolFalse == test_3) {
+        cEnumerator_outletBindingSpecificationModelList enumerator_8381 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
+        cEnumerator_outletBindingModelList enumerator_8417 (var_boundPropertyTypeList, kEnumeration_up) ;
+        while (enumerator_8381.hasCurrentObject () && enumerator_8417.hasCurrentObject ()) {
+          GALGAS_bool test_5 = enumerator_8381.current_mModelShouldBeWritableProperty (HERE) ;
+          if (kBoolTrue == test_5.boolEnum ()) {
+            test_5 = enumerator_8417.current_mModelIsTransient (HERE) ;
+          }
+          const enumGalgasBool test_6 = test_5.boolEnum () ;
+          if (kBoolTrue == test_6) {
+            inCompiler->emitSemanticError (enumerator_8417.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 203)) ;
+          }
+          const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, enumerator_8381.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)).objectCompare (enumerator_8417.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)))).boolEnum () ;
+          if (kBoolTrue == test_7) {
+            inCompiler->emitSemanticError (enumerator_8417.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (enumerator_8381.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)) ;
+          }
+          enumerator_8381.gotoNextObject () ;
+          enumerator_8417.gotoNextObject () ;
+        }
+      }
+      GALGAS_string var_bindingOptionString = GALGAS_string::makeEmptyString () ;
+      const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 212)).objectCompare (enumerator_7213.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 212)))).boolEnum () ;
+      if (kBoolTrue == test_8) {
+        GALGAS_string var_s ;
+        const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 214)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        if (kBoolTrue == test_9) {
+          var_s = GALGAS_string ("this binding has no option") ;
+        }else if (kBoolFalse == test_9) {
+          var_s = GALGAS_string ("this binding requires the following options:") ;
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_9255 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+          while (enumerator_9255.hasCurrentObject ()) {
+            var_s.dotAssign_operation (GALGAS_string ("\n"
+              "  - ").add_operation (enumerator_9255.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (enumerator_9255.current_mOptionType (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)) ;
+            enumerator_9255.gotoNextObject () ;
+          }
+        }
+        GALGAS_location location_10 (enumerator_7213.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_10, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 222)) ;
+      }else if (kBoolFalse == test_8) {
+        cEnumerator_controllerBindingOptionDecoratedList enumerator_9461 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+        cEnumerator_bindingOptionList enumerator_9496 (enumerator_7213.current_mBindingOptionList (HERE), kEnumeration_up) ;
+        while (enumerator_9461.hasCurrentObject () && enumerator_9496.hasCurrentObject ()) {
+          const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, enumerator_9461.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_9496.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
+          if (kBoolTrue == test_11) {
+            GALGAS_location location_12 (enumerator_9496.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_12, GALGAS_string ("the option name should be '").add_operation (enumerator_9461.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)) ;
+          }
+          GALGAS_string var_optionValueAsString ;
+          GALGAS_unifiedTypeProxyList temp_13 = GALGAS_unifiedTypeProxyList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
+          temp_13.addAssign_operation (enumerator_9461.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
+          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_9496.current_mOptionValue (HERE).ptr (), temp_13, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)) ;
+          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_9461.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
+          enumerator_9461.gotoNextObject () ;
+          enumerator_9496.gotoNextObject () ;
+        }
+      }
+      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_5175.current_lkey (HERE).mAttribute_string, enumerator_7213.current_mBindingName (HERE).mAttribute_string, var_boundObjectNameList, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 236)) ;
+      enumerator_7213.gotoNextObject () ;
+    }
+    enumerator_5175.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        Routine 'buildControllerTemplateMap'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_buildControllerTemplateMap (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                                         const GALGAS_bindingSpecificationListMap constinArgument_inBindingSpecificationListMap,
+                                         GALGAS_bindingSpecificationMap & outArgument_outTemplateControllerMap,
+                                         C_Compiler * inCompiler
+                                         COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outTemplateControllerMap.drop () ; // Release 'out' argument
+  outArgument_outTemplateControllerMap = GALGAS_bindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 117)) ;
+  cEnumerator_bindingSpecificationListMap enumerator_4596 (constinArgument_inBindingSpecificationListMap, kEnumeration_up) ;
+  while (enumerator_4596.hasCurrentObject ()) {
+    GALGAS_outletBindingSpecificationMap var_outletBindingSpecificationMap = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 119)) ;
+    cEnumerator_outletClassBindingSpecificationList enumerator_4695 (enumerator_4596.current_mList (HERE), kEnumeration_up) ;
+    while (enumerator_4695.hasCurrentObject ()) {
+      GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 121)) ;
+      cEnumerator_outletClassBindingSpecificationModelList enumerator_4840 (enumerator_4695.current_mOutletClassBindingSpecificationModelList (HERE), kEnumeration_up) ;
+      while (enumerator_4840.hasCurrentObject ()) {
+        GALGAS_unifiedTypeMap_2D_proxy var_modelTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_4840.current_mModelTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 123)) ;
+        var_outletBindingSpecificationModelList.addAssign_operation (var_modelTypeProxy, enumerator_4840.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 124)) ;
+        enumerator_4840.gotoNextObject () ;
+      }
+      GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 126)) ;
+      cEnumerator_controllerBindingOptionList enumerator_5167 (enumerator_4695.current_mBindingOptionList (HERE), kEnumeration_up) ;
+      while (enumerator_5167.hasCurrentObject ()) {
+        GALGAS_unifiedTypeMap_2D_proxy var_bindingOptionTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_5167.current_mOptionTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 128)) ;
+        var_controllerBindingOptionDecoratedList.addAssign_operation (enumerator_5167.current_mOptionName (HERE), var_bindingOptionTypeProxy  COMMA_SOURCE_FILE ("binding-specification.galgas", 129)) ;
+        enumerator_5167.gotoNextObject () ;
+      }
+      {
+      var_outletBindingSpecificationMap.modifier_insertKey (enumerator_4695.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 131)) ;
+      }
+      enumerator_4695.gotoNextObject () ;
+    }
+    {
+    outArgument_outTemplateControllerMap.modifier_insertKey (enumerator_4596.current_key (HERE).reader_nowhere (SOURCE_FILE ("binding-specification.galgas", 138)), var_outletBindingSpecificationMap, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 137)) ;
+    }
+    enumerator_4596.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                          Filewrapper 'controllerTemplates'                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- File '/PMColorWell.color.Color.model.txt'
+
+const char * gWrapperFileContent_0_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMColorWell\? = nil\n"
+  "  var mSendContinously : Bool\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMColorWell.color\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMColorWell\?, file : String, line : Int, sendContinously : Bool) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    mSendContinously = sendContinously\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMColorWell) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMColorWell\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "        unwrappedOutlet.continuous = true\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.color != object.$MODEL$.value {\n"
+  "      outlet.color = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : PMColorWell) {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      let validationResult = object.$MODEL$.validate(outlet.color)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$.value = outlet.color\n"
+  "        if mSendContinously {\n"
+  "          flushTriggers ()\n"
+  "        }\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "         NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The color \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.color)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "            outlet.color = object.$MODEL$.value\n"
+  "            }\n"
+  "          })\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_0_controllerTemplates (
+  "PMColorWell.color.Color.model.txt",
+  "txt",
+  true, // Text file
+  4113, // Text length
+  gWrapperFileContent_0_controllerTemplates
+) ;
+
+//--- File '/PMDatePicker.date.Date.model.txt'
+
+const char * gWrapperFileContent_1_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMDatePicker_date : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMDatePicker\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMDatePicker.date\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMDatePicker\?, file : String, line : Int) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMDatePicker) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMDatePicker\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$.value) {\n"
+  "      outlet.dateValue = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : AnyObject!) {\n"
+  "    if let outlet = mOutlet, object = mObject where !outlet.dateValue.isEqualToDate (object.$MODEL$.value) {\n"
+  "      object.$MODEL$.value = outlet.dateValue\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_controllerTemplates (
+  "PMDatePicker.date.Date.model.txt",
+  "txt",
+  true, // Text file
+  3156, // Text length
+  gWrapperFileContent_1_controllerTemplates
+) ;
+
+//--- File '/PMMatrix.selectedIndex.Enum.model.txt'
+
+const char * gWrapperFileContent_2_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMMatrix\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMMatrix.selectedIndex\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMMatrix\?, file : String, line : Int) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMMatrix) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMMatrix\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.value.rawValue {\n"
+  "      outlet.selectCellAtRow (object.$MODEL$.value.rawValue, column:0)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : AnyObject!) {\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.selectedRow != object.$MODEL$.value.rawValue {\n"
+  "      object.$MODEL$.value = object.$MODEL$.value.enumfromRawValue (outlet.selectedRow)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_2_controllerTemplates (
+  "PMMatrix.selectedIndex.Enum.model.txt",
+  "txt",
+  true, // Text file
+  3216, // Text length
+  gWrapperFileContent_2_controllerTemplates
+) ;
+
+//--- File '/PMNumberField.rvalue.Integer.model.txt'
+
+const char * gWrapperFileContent_3_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_rvalue : NSObject, PMTransientEventProtocol, NSTextFieldDelegate, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMNumberField\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMNumberField.rvalue\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMNumberField\?, file : String, line : Int) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    mOutlet = outlet\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMNumberField) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMNumberField\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        if unwrappedOutlet.formatter == nil {\n"
+  "          presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
+  "        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {\n"
+  "          presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.integerValue = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_3_controllerTemplates (
+  "PMNumberField.rvalue.Integer.model.txt",
+  "txt",
+  true, // Text file
+  2982, // Text length
+  gWrapperFileContent_3_controllerTemplates
+) ;
+
+//--- File '/PMNumberField.value.Integer.model.txt'
+
+const char * gWrapperFileContent_4_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMNumberField_value : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMNumberField\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMNumberField.value\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMNumberField\?, file : String, line : Int, sendContinously : Bool) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    mOutlet = outlet\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMNumberField) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMNumberField\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "        unwrappedOutlet.setSendContinously(sendContinously)\n"
+  "        if unwrappedOutlet.formatter == nil {\n"
+  "          presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
+  "        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {\n"
+  "          presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.myIntegerValue = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : PMNumberField) {\n"
+  "    if let outlet = mOutlet,object = mObject {\n"
+  "      let validationResult = object.$MODEL$.validate (outlet.integerValue)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$.value = outlet.integerValue\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "        NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "            if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "              outlet.myIntegerValue = object.$MODEL$.value\n"
+  "            }\n"
+  "          })\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "   //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_4_controllerTemplates (
+  "PMNumberField.value.Integer.model.txt",
+  "txt",
+  true, // Text file
+  4319, // Text length
+  gWrapperFileContent_4_controllerTemplates
+) ;
+
+//--- File '/PMSwitch.value.Bool.model.txt'
+
+const char * gWrapperFileContent_5_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMSwitch_value : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMSwitch\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMSwitch.value\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMSwitch\?, file : String, line : Int) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMSwitch) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMSwitch\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "        if unwrappedOutlet.formatter != nil {\n"
+  "          presentErrorWindow (file, line, \"the outlet has a formatter\")\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      outlet.state = object.$MODEL$.value \? 1 : 0\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : PMSwitch) {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      object.$MODEL$.value = outlet.state != 0\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_5_controllerTemplates (
+  "PMSwitch.value.Bool.model.txt",
+  "txt",
+  true, // Text file
+  3140, // Text length
+  gWrapperFileContent_5_controllerTemplates
+) ;
+
+//--- File '/PMTextField.rvalue.String.model.txt'
+
+const char * gWrapperFileContent_6_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_rvalue : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak  var mOutlet: PMTextField\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMTextField.rvalue\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMTextField\?, file : String, line : Int) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMTextField) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMTextField\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        if unwrappedOutlet.formatter != nil {\n"
+  "          presentErrorWindow (file, line, \"the outlet has a formatter\")\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$.value {\n"
+  "      outlet.stringValue = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_6_controllerTemplates (
+  "PMTextField.rvalue.String.model.txt",
+  "txt",
+  true, // Text file
+  2814, // Text length
+  gWrapperFileContent_6_controllerTemplates
+) ;
+
+//--- File '/PMTextField.value.String.model.txt'
+
+const char * gWrapperFileContent_7_controllerTemplates = "@objc(Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value)\n"
+  "class Controller_$OBJECTCLASS$_$MODEL$_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+  "\n"
+  "  weak var mObject : $OBJECTCLASS$\? = nil\n"
+  "  weak var mOutlet: PMTextField\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  func userClassName () -> String { return \"Controller.$OBJECTCLASS$.$MODEL$.PMTextField.value\" }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private let mPrivateUniqueIndex : Int ;\n"
+  "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : $OBJECTCLASS$\?, outlet : PMTextField\?, file : String, line : Int, sendContinously : Bool) {\n"
+  "    mPrivateUniqueIndex = getUniqueIndex ()\n"
+  "    mObject = object\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    if let unwrappedOutlet = outlet {\n"
+  "      if !unwrappedOutlet.isKindOfClass (PMTextField) {\n"
+  "        presentErrorWindow (file, line, \"outlet is not an instance of PMTextField\")\n"
+  "      }else{\n"
+  "        mOutlet = unwrappedOutlet\n"
+  "        unwrappedOutlet.target = self\n"
+  "        unwrappedOutlet.action = \"action:\"\n"
+  "        unwrappedOutlet.setSendContinously(sendContinously)\n"
+  "        if unwrappedOutlet.formatter != nil {\n"
+  "          presentErrorWindow (file, line, \"the outlet has a formatter\")\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    mObject\?.$MODEL$.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mOutlet\?.target = nil\n"
+  "    mOutlet\?.action = nil\n"
+  "    mObject\?.$MODEL$.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteModelDidChange () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func trigger () {\n"
+  "    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.$MODEL$.value {\n"
+  "      outlet.stringValue = object.$MODEL$.value\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func action (sender : PMTextField) {\n"
+  "    if let outlet = mOutlet, object = mObject {\n"
+  "      let validationResult = object.$MODEL$.validate (outlet.stringValue)\n"
+  "      switch validationResult {\n"
+  "      case PMValidationResult.ok :\n"
+  "        object.$MODEL$.value = outlet.stringValue\n"
+  "      case PMValidationResult.rejectWithBeep :\n"
+  "        NSBeep ()\n"
+  "      case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "        if let window = sender.window {\n"
+  "          let alert = NSAlert ()\n"
+  "          alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", outlet.stringValue)\n"
+  "          alert.informativeText = informativeText\n"
+  "          alert.addButtonWithTitle (\"Ok\")\n"
+  "          alert.addButtonWithTitle (\"Discard Change\")\n"
+  "          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "            if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "              outlet.stringValue = object.$MODEL$.value\n"
+  "            }\n"
+  "          })\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func noteTransientChanged () {\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n" ;
+
+const cRegularFileWrapper gWrapperFile_7_controllerTemplates (
+  "PMTextField.value.String.model.txt",
+  "txt",
+  true, // Text file
+  4162, // Text length
+  gWrapperFileContent_7_controllerTemplates
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_controllerTemplates_0 [9] = {
+  & gWrapperFile_0_controllerTemplates,
+  & gWrapperFile_1_controllerTemplates,
+  & gWrapperFile_2_controllerTemplates,
+  & gWrapperFile_3_controllerTemplates,
+  & gWrapperFile_4_controllerTemplates,
+  & gWrapperFile_5_controllerTemplates,
+  & gWrapperFile_6_controllerTemplates,
+  & gWrapperFile_7_controllerTemplates,
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_controllerTemplates_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_controllerTemplates (
+  "",
+  8,
+  gWrapperAllFiles_controllerTemplates_0,
+  0,
+  gWrapperAllDirectories_controllerTemplates_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Filewrapper template 'controllerTemplates enabledBindingGeneration'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_controllerTemplates_enabledBindingGeneration (C_Compiler * inCompiler,
+                                                                                const GALGAS_string & in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME,
+                                                                                const GALGAS_string & in_OUTLET_5F_NAME,
+                                                                                const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_ENABLE_5F_EXPRESSION
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "@objc(EnableController_" ;
+  result << in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_OUTLET_5F_NAME.stringValue () ;
+  result << ")\n"
+    "class EnableController_" ;
+  result << in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_OUTLET_5F_NAME.stringValue () ;
+  result << " : NSObject, PMTransientEventProtocol, PMUserClassName {\n"
+    "\n" ;
+  GALGAS_uint index_269_idx (0) ;
+  if (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 4)).isValid ()) {
+    cEnumerator_stringlist enumerator_269 (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 4)), kEnumeration_up) ;
+    while (enumerator_269.hasCurrentObject ()) {
+      result << "  weak var mObject" ;
+      result << index_269_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 5)).stringValue () ;
+      result << " : " ;
+      result << enumerator_269.current_mValue (HERE).stringValue () ;
+      result << "\? = nil\n" ;
+      index_269_idx.increment () ;
+      enumerator_269.gotoNextObject () ;
+    }
+  }
+  result << "  weak var mOutlet : PMEnableProtocol\? = nil\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    " \n"
+    "  func userClassName () -> String { return \"EnableController_" ;
+  result << in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_OUTLET_5F_NAME.stringValue () ;
+  result << "\" }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  private let mPrivateUniqueIndex : Int ;\n"
+    "  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  init (" ;
+  GALGAS_uint index_1045_idx (0) ;
+  if (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 21)).isValid ()) {
+    cEnumerator_stringlist enumerator_1045 (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 21)), kEnumeration_up) ;
+    while (enumerator_1045.hasCurrentObject ()) {
+      result << "object" ;
+      result << index_1045_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 22)).stringValue () ;
+      result << " : " ;
+      result << enumerator_1045.current_mValue (HERE).stringValue () ;
+      result << "\?, " ;
+      index_1045_idx.increment () ;
+      enumerator_1045.gotoNextObject () ;
+    }
+  }
+  result << "outlet : PMEnableProtocol\?, file : String, line : Int) {\n"
+    "    mPrivateUniqueIndex = getUniqueIndex ()\n" ;
+  GALGAS_uint index_1266_idx (0) ;
+  if (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 27)).isValid ()) {
+    cEnumerator_stringlist enumerator_1266 (callCategoryReader_observedObjectTypeNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 27)), kEnumeration_up) ;
+    while (enumerator_1266.hasCurrentObject ()) {
+      result << "    mObject" ;
+      result << index_1266_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 28)).stringValue () ;
+      result << " = object" ;
+      result << index_1266_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 28)).stringValue () ;
+      result << "\n" ;
+      index_1266_idx.increment () ;
+      enumerator_1266.gotoNextObject () ;
+    }
+  }
+  result << "    super.init ()\n"
+    "    noteObjectAllocation (self)\n"
+    "    if let unwrappedOutlet = outlet {\n"
+    "      mOutlet = unwrappedOutlet\n"
+    "    }\n" ;
+  GALGAS_uint index_1523_idx (0) ;
+  if (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 36)).isValid ()) {
+    cEnumerator_stringlist enumerator_1523 (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 36)), kEnumeration_up) ;
+    while (enumerator_1523.hasCurrentObject ()) {
+      result << "    mObject" ;
+      result << index_1523_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 37)).stringValue () ;
+      result << "\?." ;
+      result << enumerator_1523.current_mValue (HERE).stringValue () ;
+      result << ".addObserver (self, inTrigger:true)\n" ;
+      index_1523_idx.increment () ;
+      enumerator_1523.gotoNextObject () ;
+    }
+  }
+  result << "  }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "  \n"
+    "  func unregister () {\n" ;
+  GALGAS_uint index_1828_idx (0) ;
+  if (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 45)).isValid ()) {
+    cEnumerator_stringlist enumerator_1828 (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 45)), kEnumeration_up) ;
+    while (enumerator_1828.hasCurrentObject ()) {
+      result << "    mObject" ;
+      result << index_1828_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 46)).stringValue () ;
+      result << "\?." ;
+      result << enumerator_1828.current_mValue (HERE).stringValue () ;
+      result << ".removeObserver(self, inTrigger:true)\n" ;
+      index_1828_idx.increment () ;
+      enumerator_1828.gotoNextObject () ;
+    }
+  }
+  result << "  }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "  \n"
+    "  deinit {\n"
+    "    noteObjectDeallocation (self)\n"
+    "  }\n"
+    "  \n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  func noteModelDidChange () {\n"
+    "  }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  func trigger () {\n"
+    "    if let outlet = mOutlet {\n" ;
+  GALGAS_uint index_2494_idx (0) ;
+  if (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 66)).isValid ()) {
+    cEnumerator_stringlist enumerator_2494 (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 66)), kEnumeration_up) ;
+    while (enumerator_2494.hasCurrentObject ()) {
+      result << "      if let object" ;
+      result << index_2494_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 67)).stringValue () ;
+      result << " = mObject" ;
+      result << index_2494_idx.reader_string (SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 67)).stringValue () ;
+      result << " {\n" ;
+      index_2494_idx.increment () ;
+      enumerator_2494.gotoNextObject () ;
+    }
+  }
+  result << "        outlet.setEnableFromBinding (" ;
+  result << callCategoryReader_enableExpressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 69)).stringValue () ;
+  result << ")\n" ;
+  GALGAS_uint index_2719_idx (0) ;
+  if (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 70)).isValid ()) {
+    cEnumerator_stringlist enumerator_2719 (callCategoryReader_observedModelNameList ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) in_ENABLE_5F_EXPRESSION.ptr (), inCompiler COMMA_SOURCE_FILE ("enabled-binding.swift.galgasTemplate", 70)), kEnumeration_up) ;
+    while (enumerator_2719.hasCurrentObject ()) {
+      result << "      }\n" ;
+      index_2719_idx.increment () ;
+      enumerator_2719.gotoNextObject () ;
+    }
+  }
+  result << "    }\n"
+    "  }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }\n"
+    "\n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "  func noteTransientChanged () {\n"
+    "  }\n"
+    "  \n"
+    "  //-------------------------------------------------------------------------------------------------------------------*\n"
+    "}\n"
+    "\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         Routine 'generateControllerClasses'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateControllerClasses (const GALGAS_stringset constinArgument_inControllerStringSet,
+                                        const GALGAS_string constinArgument_inOutputDirectory,
+                                        C_Compiler * inCompiler
+                                        COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string var_s = GALGAS_string ("import Cocoa\n"
+    "\n") ;
+  cEnumerator_stringset enumerator_275 (constinArgument_inControllerStringSet, kEnumeration_up) ;
+  while (enumerator_275.hasCurrentObject ()) {
+    var_s.dotAssign_operation (enumerator_275.current (HERE)  COMMA_SOURCE_FILE ("controllerClassGeneration.galgas", 11)) ;
+    enumerator_275.gotoNextObject () ;
+  }
+  var_s.dotAssign_operation (GALGAS_string ("//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n")  COMMA_SOURCE_FILE ("controllerClassGeneration.galgas", 13)) ;
+  {
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-classes.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("controllerClassGeneration.galgas", 14)) ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'buildTransientDependencyGraph'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_buildTransientDependencyGraph (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                                            const GALGAS_string constinArgument_inSourceFile,
+                                            GALGAS_transientDependencyGraphNodeInfoList & outArgument_outSortedTransientNodes,
+                                            C_Compiler * inCompiler
+                                            COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outSortedTransientNodes.drop () ; // Release 'out' argument
+  GALGAS_transientDependencyGraph var_transientDependencyGraph = GALGAS_transientDependencyGraph::constructor_emptyGraph (SOURCE_FILE ("transientAnalysis.galgas", 213)) ;
+  cEnumerator_unifiedTypeMap enumerator_7376 (constinArgument_inUnifiedTypeMap, kEnumeration_up) ;
+  while (enumerator_7376.hasCurrentObject ()) {
+    cEnumerator_decoratedObservablePropertyMap enumerator_7431 (enumerator_7376.current_mObservablePropertyMap (HERE), kEnumeration_up) ;
+    while (enumerator_7431.hasCurrentObject ()) {
+      {
+      var_transientDependencyGraph.modifier_addNode (enumerator_7431.current_mPropertySignature (HERE), enumerator_7431.current_mPropertySignature (HERE).mAttribute_string, enumerator_7431.current_mIsTransient (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 216)) ;
+      }
+      enumerator_7431.gotoNextObject () ;
+    }
+    cEnumerator_arrayControllerMap enumerator_7660 (enumerator_7376.current_mArrayControllerMap (HERE), kEnumeration_up) ;
+    while (enumerator_7660.hasCurrentObject ()) {
+      {
+      var_transientDependencyGraph.modifier_addNode (enumerator_7660.current_mPropertySignature (HERE), enumerator_7660.current_mPropertySignature (HERE).mAttribute_string, GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 223)) ;
+      }
+      {
+      var_transientDependencyGraph.modifier_addEdge (callCategoryReader_propertySignature ((const cPtr_abstractObservablePropertyAST *) enumerator_7660.current_mBoundModel (HERE).ptr (), categoryReader_kindName (enumerator_7376.current_mTypeKind (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 231)), enumerator_7376.current_lkey (HERE).mAttribute_string, enumerator_7376.current_mRootEntityType (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 230)), enumerator_7660.current_mPropertySignature (HERE) COMMA_SOURCE_FILE ("transientAnalysis.galgas", 229)) ;
+      }
+      enumerator_7660.gotoNextObject () ;
+    }
+    cEnumerator_decoratedTransientMap enumerator_8218 (enumerator_7376.current_mDecoratedTransientMap (HERE), kEnumeration_up) ;
+    while (enumerator_8218.hasCurrentObject ()) {
+      GALGAS_decoratedObservablePropertyMap var_allObservableProperties = enumerator_7376.current_mObservablePropertyMap (HERE) ;
+      GALGAS_unifiedTypeMap_2D_proxy var_t = enumerator_7376.current_mSuperType (HERE) ;
+      if (constinArgument_inUnifiedTypeMap.reader_count (SOURCE_FILE ("transientAnalysis.galgas", 241)).isValid ()) {
+        uint32_t variant_8372 = constinArgument_inUnifiedTypeMap.reader_count (SOURCE_FILE ("transientAnalysis.galgas", 241)).uintValue () ;
+        bool loop_8372 = true ;
+        while (loop_8372) {
+          loop_8372 = var_t.reader_isNull (SOURCE_FILE ("transientAnalysis.galgas", 241)).operator_not (SOURCE_FILE ("transientAnalysis.galgas", 241)).isValid () ;
+          if (loop_8372) {
+            loop_8372 = var_t.reader_isNull (SOURCE_FILE ("transientAnalysis.galgas", 241)).operator_not (SOURCE_FILE ("transientAnalysis.galgas", 241)).boolValue () ;
+          }
+          if (loop_8372 && (0 == variant_8372)) {
+            loop_8372 = false ;
+            inCompiler->loopRunTimeVariantError (SOURCE_FILE ("transientAnalysis.galgas", 241)) ;
+          }
+          if (loop_8372) {
+            variant_8372 -- ;
+            cEnumerator_decoratedObservablePropertyMap enumerator_8475 (var_t.reader_mObservablePropertyMap (inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 242)), kEnumeration_up) ;
+            while (enumerator_8475.hasCurrentObject ()) {
+              {
+              var_allObservableProperties.modifier_insertKey (enumerator_8475.current_lkey (HERE), enumerator_8475.current_mPropertyType (HERE), enumerator_8475.current_mIsTransient (HERE), enumerator_8475.current_mPropertySignature (HERE), enumerator_8475.current_mIsCollection (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 243)) ;
+              }
+              enumerator_8475.gotoNextObject () ;
+            }
+            var_t = var_t.reader_mSuperType (inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 251)) ;
+          }
+        }
+      }
+      cEnumerator_dependanceList enumerator_8788 (enumerator_8218.current_mDependencyList (HERE), kEnumeration_up) ;
+      while (enumerator_8788.hasCurrentObject ()) {
+        callCategoryMethod_buildTransientDependencyGraph ((const cPtr_abstractTransientDependencyAST *) enumerator_8788.current_mDependency (HERE).ptr (), constinArgument_inUnifiedTypeMap, var_transientDependencyGraph, enumerator_8218.current_lkey (HERE), var_allObservableProperties, enumerator_7376.current_mRootEntityType (HERE), enumerator_7376.current_mArrayControllerMap (HERE), enumerator_8218.current_mTransientSignature (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 254)) ;
+        enumerator_8788.gotoNextObject () ;
+      }
+      enumerator_8218.gotoNextObject () ;
+    }
+    enumerator_7376.gotoNextObject () ;
+  }
+  GALGAS_bool test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("transientAnalysis.galgas", 267)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
+  if (kBoolTrue == test_0.boolEnum ()) {
+    test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputTransientDependencyGraph.reader_value ()) ;
+  }
+  const enumGalgasBool test_1 = test_0.boolEnum () ;
+  if (kBoolTrue == test_1) {
+    GALGAS_string var_s = var_transientDependencyGraph.reader_graphviz (SOURCE_FILE ("transientAnalysis.galgas", 268)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.add_operation (GALGAS_string (".transientDependancyGraph.dot"), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 269)) ;
+    GALGAS_bool joker_9442 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_9442, inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 270)) ;
+  }
+  const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("transientAnalysis.galgas", 273)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  if (kBoolTrue == test_2) {
+    outArgument_outSortedTransientNodes = GALGAS_transientDependencyGraphNodeInfoList::constructor_emptyList (SOURCE_FILE ("transientAnalysis.galgas", 274)) ;
+  }else if (kBoolFalse == test_2) {
+    GALGAS_transientDependencyGraphNodeInfoList var_unsortedNodes ;
+    GALGAS_lstringlist joker_9676 ; // Joker input parameter
+    GALGAS_lstringlist joker_9748 ; // Joker input parameter
+    var_transientDependencyGraph.method_topologicalSort (outArgument_outSortedTransientNodes, joker_9676, var_unsortedNodes, joker_9748, inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 276)) ;
+    const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, var_unsortedNodes.reader_length (SOURCE_FILE ("transientAnalysis.galgas", 282)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      GALGAS_string var_s = GALGAS_string ("cannot sort properties and transient ; the following ones are involved in circular dependence:") ;
+      cEnumerator_transientDependencyGraphNodeInfoList enumerator_9936 (var_unsortedNodes, kEnumeration_up) ;
+      while (enumerator_9936.hasCurrentObject ()) {
+        var_s.dotAssign_operation (GALGAS_string ("\n"
+          "-- ").add_operation (enumerator_9936.current_mSignature (HERE), inCompiler COMMA_SOURCE_FILE ("transientAnalysis.galgas", 285))  COMMA_SOURCE_FILE ("transientAnalysis.galgas", 285)) ;
+        enumerator_9936.gotoNextObject () ;
+      }
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("transientAnalysis.galgas", 287)), var_s  COMMA_SOURCE_FILE ("transientAnalysis.galgas", 287)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                            Routine 'generateTransients'                                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13824,13 +15216,11 @@ void callCategoryMethod_analyzeBoundObservablePropertyForSimpleBinding (const cP
                                                                         const GALGAS_string constin_inCurrentTypeName,
                                                                         const GALGAS_decoratedObservablePropertyMap constin_inObservablePropertyMap,
                                                                         const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                                        GALGAS_unifiedTypeProxySelectorList & io_ioBoundPropertyTypeList,
+                                                                        GALGAS_outletBindingModelList & io_ioBoundPropertyTypeList,
                                                                         GALGAS_stringlist & io_ioBoundObjectNameList,
-                                                                        GALGAS_bool & out_outModelIsTransient,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-  out_outModelIsTransient.drop () ;
 //--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractObservablePropertyAST) ;
@@ -13853,7 +15243,7 @@ void callCategoryMethod_analyzeBoundObservablePropertyForSimpleBinding (const cP
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inUnifiedTypeMap, constin_inArrayControllerMap, constin_inCurrentTypeName, constin_inObservablePropertyMap, constin_inRootEntityType, io_ioBoundPropertyTypeList, io_ioBoundObjectNameList, out_outModelIsTransient, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inUnifiedTypeMap, constin_inArrayControllerMap, constin_inCurrentTypeName, constin_inObservablePropertyMap, constin_inRootEntityType, io_ioBoundPropertyTypeList, io_ioBoundObjectNameList, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -16304,6 +17694,120 @@ GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (void) :
+mAttribute_mObservableProperty () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element::~ GALGAS_observablePropertyList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (const GALGAS_abstractObservablePropertyAST & inOperand0) :
+mAttribute_mObservableProperty (inOperand0) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::constructor_new (const GALGAS_abstractObservablePropertyAST & inOperand0 
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  if (inOperand0.isValid ()) {
+    result = GALGAS_observablePropertyList_2D_element (inOperand0) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_observablePropertyList_2D_element::objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mObservableProperty.objectCompare (inOperand.mAttribute_mObservableProperty) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_observablePropertyList_2D_element::isValid (void) const {
+  return mAttribute_mObservableProperty.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_observablePropertyList_2D_element::drop (void) {
+  mAttribute_mObservableProperty.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_observablePropertyList_2D_element::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "<struct @observablePropertyList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mObservableProperty.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractObservablePropertyAST GALGAS_observablePropertyList_2D_element::reader_mObservableProperty (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mObservableProperty ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @observablePropertyList-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
+                                                          NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_observablePropertyList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_observablePropertyList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_observablePropertyList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  const GALGAS_observablePropertyList_2D_element * p = (const GALGAS_observablePropertyList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_observablePropertyList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (void) :
 mAttribute_mOutletName (),
 mAttribute_mBindingName (),
@@ -16468,1891 +17972,6 @@ GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGeneration
       result = *p ;
     }else{
       inCompiler->castError ("regularBindingsGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element::GALGAS_bindingSpecificationListMap_2D_element (void) :
-mAttribute_key (),
-mAttribute_mList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element::~ GALGAS_bindingSpecificationListMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element::GALGAS_bindingSpecificationListMap_2D_element (const GALGAS_string & inOperand0,
-                                                                                              const GALGAS_outletClassBindingSpecificationList & inOperand1) :
-mAttribute_key (inOperand0),
-mAttribute_mList (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element GALGAS_bindingSpecificationListMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_bindingSpecificationListMap_2D_element (GALGAS_string::constructor_default (HERE),
-                                                        GALGAS_outletClassBindingSpecificationList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element GALGAS_bindingSpecificationListMap_2D_element::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                              const GALGAS_outletClassBindingSpecificationList & inOperand1 
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bindingSpecificationListMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_bindingSpecificationListMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_bindingSpecificationListMap_2D_element::objectCompare (const GALGAS_bindingSpecificationListMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_key.objectCompare (inOperand.mAttribute_key) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mList.objectCompare (inOperand.mAttribute_mList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_bindingSpecificationListMap_2D_element::isValid (void) const {
-  return mAttribute_key.isValid () && mAttribute_mList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingSpecificationListMap_2D_element::drop (void) {
-  mAttribute_key.drop () ;
-  mAttribute_mList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingSpecificationListMap_2D_element::description (C_String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString << "<struct @bindingSpecificationListMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_key.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_bindingSpecificationListMap_2D_element::reader_key (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_key ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList GALGAS_bindingSpecificationListMap_2D_element::reader_mList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @bindingSpecificationListMap-element type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bindingSpecificationListMap_2D_element ("bindingSpecificationListMap-element",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_bindingSpecificationListMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bindingSpecificationListMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_bindingSpecificationListMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bindingSpecificationListMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap_2D_element GALGAS_bindingSpecificationListMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_bindingSpecificationListMap_2D_element result ;
-  const GALGAS_bindingSpecificationListMap_2D_element * p = (const GALGAS_bindingSpecificationListMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingSpecificationListMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bindingSpecificationListMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Abstract category method '@astDeclaration typeInventory'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static TC_UniqueArray <categoryMethodSignature_astDeclaration_typeInventory> gCategoryMethodTable_astDeclaration_typeInventory ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
-                                        categoryMethodSignature_astDeclaration_typeInventory inMethod) {
-  gCategoryMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void freeCategoryMethod_astDeclaration_typeInventory (void) {
-  gCategoryMethodTable_astDeclaration_typeInventory.free () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_astDeclaration_typeInventory (NULL,
-                                                         freeCategoryMethod_astDeclaration_typeInventory) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_typeInventory (const cPtr_astDeclaration * inObject,
-                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_astDeclaration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    categoryMethodSignature_astDeclaration_typeInventory f = NULL ;
-    if (classIndex < gCategoryMethodTable_astDeclaration_typeInventory.count ()) {
-      f = gCategoryMethodTable_astDeclaration_typeInventory (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryMethodTable_astDeclaration_typeInventory.count ()) {
-           f = gCategoryMethodTable_astDeclaration_typeInventory (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gCategoryMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, io_ioUnifiedTypeMap, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration::GALGAS_structForGeneration (void) :
-mAttribute_mTransientListForGeneration (),
-mAttribute_mActionListForGeneration (),
-mAttribute_mPreferenceListForGeneration (),
-mAttribute_mDocumentListForGeneration (),
-mAttribute_mEntityListForGeneration (),
-mAttribute_mEnumListForGeneration (),
-mAttribute_mNeededOutletClasses (),
-mAttribute_mControllerGenerationStringSet (),
-mAttribute_mAllArrayControllerForGeneration (),
-mAttribute_mValidationStubRoutineListForGeneration () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration::~ GALGAS_structForGeneration (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration::GALGAS_structForGeneration (const GALGAS_transientListForGeneration & inOperand0,
-                                                        const GALGAS_actionListForGeneration & inOperand1,
-                                                        const GALGAS_preferenceListForGeneration & inOperand2,
-                                                        const GALGAS_documentListForGeneration & inOperand3,
-                                                        const GALGAS_entityListForGeneration & inOperand4,
-                                                        const GALGAS_enumListForGeneration & inOperand5,
-                                                        const GALGAS_stringset & inOperand6,
-                                                        const GALGAS_stringset & inOperand7,
-                                                        const GALGAS_arrayControllerForGeneration & inOperand8,
-                                                        const GALGAS_validationStubRoutineListForGeneration & inOperand9) :
-mAttribute_mTransientListForGeneration (inOperand0),
-mAttribute_mActionListForGeneration (inOperand1),
-mAttribute_mPreferenceListForGeneration (inOperand2),
-mAttribute_mDocumentListForGeneration (inOperand3),
-mAttribute_mEntityListForGeneration (inOperand4),
-mAttribute_mEnumListForGeneration (inOperand5),
-mAttribute_mNeededOutletClasses (inOperand6),
-mAttribute_mControllerGenerationStringSet (inOperand7),
-mAttribute_mAllArrayControllerForGeneration (inOperand8),
-mAttribute_mValidationStubRoutineListForGeneration (inOperand9) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration GALGAS_structForGeneration::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_structForGeneration (GALGAS_transientListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_actionListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_preferenceListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_documentListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_entityListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_enumListForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_stringset::constructor_emptySet (HERE),
-                                     GALGAS_stringset::constructor_emptySet (HERE),
-                                     GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
-                                     GALGAS_validationStubRoutineListForGeneration::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration GALGAS_structForGeneration::constructor_new (const GALGAS_transientListForGeneration & inOperand0,
-                                                                        const GALGAS_actionListForGeneration & inOperand1,
-                                                                        const GALGAS_preferenceListForGeneration & inOperand2,
-                                                                        const GALGAS_documentListForGeneration & inOperand3,
-                                                                        const GALGAS_entityListForGeneration & inOperand4,
-                                                                        const GALGAS_enumListForGeneration & inOperand5,
-                                                                        const GALGAS_stringset & inOperand6,
-                                                                        const GALGAS_stringset & inOperand7,
-                                                                        const GALGAS_arrayControllerForGeneration & inOperand8,
-                                                                        const GALGAS_validationStubRoutineListForGeneration & inOperand9 
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_structForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
-    result = GALGAS_structForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_structForGeneration::objectCompare (const GALGAS_structForGeneration & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mTransientListForGeneration.objectCompare (inOperand.mAttribute_mTransientListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mActionListForGeneration.objectCompare (inOperand.mAttribute_mActionListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mPreferenceListForGeneration.objectCompare (inOperand.mAttribute_mPreferenceListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mDocumentListForGeneration.objectCompare (inOperand.mAttribute_mDocumentListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEntityListForGeneration.objectCompare (inOperand.mAttribute_mEntityListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEnumListForGeneration.objectCompare (inOperand.mAttribute_mEnumListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mNeededOutletClasses.objectCompare (inOperand.mAttribute_mNeededOutletClasses) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mControllerGenerationStringSet.objectCompare (inOperand.mAttribute_mControllerGenerationStringSet) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mAllArrayControllerForGeneration.objectCompare (inOperand.mAttribute_mAllArrayControllerForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mValidationStubRoutineListForGeneration.objectCompare (inOperand.mAttribute_mValidationStubRoutineListForGeneration) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_structForGeneration::isValid (void) const {
-  return mAttribute_mTransientListForGeneration.isValid () && mAttribute_mActionListForGeneration.isValid () && mAttribute_mPreferenceListForGeneration.isValid () && mAttribute_mDocumentListForGeneration.isValid () && mAttribute_mEntityListForGeneration.isValid () && mAttribute_mEnumListForGeneration.isValid () && mAttribute_mNeededOutletClasses.isValid () && mAttribute_mControllerGenerationStringSet.isValid () && mAttribute_mAllArrayControllerForGeneration.isValid () && mAttribute_mValidationStubRoutineListForGeneration.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_structForGeneration::drop (void) {
-  mAttribute_mTransientListForGeneration.drop () ;
-  mAttribute_mActionListForGeneration.drop () ;
-  mAttribute_mPreferenceListForGeneration.drop () ;
-  mAttribute_mDocumentListForGeneration.drop () ;
-  mAttribute_mEntityListForGeneration.drop () ;
-  mAttribute_mEnumListForGeneration.drop () ;
-  mAttribute_mNeededOutletClasses.drop () ;
-  mAttribute_mControllerGenerationStringSet.drop () ;
-  mAttribute_mAllArrayControllerForGeneration.drop () ;
-  mAttribute_mValidationStubRoutineListForGeneration.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_structForGeneration::description (C_String & ioString,
-                                              const int32_t inIndentation) const {
-  ioString << "<struct @structForGeneration:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mTransientListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mActionListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mPreferenceListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mDocumentListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEntityListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEnumListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mNeededOutletClasses.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mControllerGenerationStringSet.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mAllArrayControllerForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mValidationStubRoutineListForGeneration.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientListForGeneration GALGAS_structForGeneration::reader_mTransientListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mTransientListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionListForGeneration GALGAS_structForGeneration::reader_mActionListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mActionListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_preferenceListForGeneration GALGAS_structForGeneration::reader_mPreferenceListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mPreferenceListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentListForGeneration GALGAS_structForGeneration::reader_mDocumentListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDocumentListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration GALGAS_structForGeneration::reader_mEntityListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEntityListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumListForGeneration GALGAS_structForGeneration::reader_mEnumListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEnumListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_stringset GALGAS_structForGeneration::reader_mNeededOutletClasses (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mNeededOutletClasses ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_stringset GALGAS_structForGeneration::reader_mControllerGenerationStringSet (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mControllerGenerationStringSet ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerForGeneration GALGAS_structForGeneration::reader_mAllArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mAllArrayControllerForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_validationStubRoutineListForGeneration GALGAS_structForGeneration::reader_mValidationStubRoutineListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mValidationStubRoutineListForGeneration ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                              @structForGeneration type                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_structForGeneration ("structForGeneration",
-                                            NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_structForGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_structForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_structForGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_structForGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_structForGeneration GALGAS_structForGeneration::extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_structForGeneration result ;
-  const GALGAS_structForGeneration * p = (const GALGAS_structForGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_structForGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("structForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category Reader '@unifiedTypeMap-proxy swiftTypeName'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_swiftTypeName (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                            C_Compiler * inCompiler
-                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 15)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("Bool") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("UInt") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("Int") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("Double") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 28)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 31)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category Reader '@unifiedTypeMap-proxy valueAccessorForExplorerWindow'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_valueAccessorForExplorerWindow (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                             const GALGAS_string & constinArgument_inPropertyName,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 38)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSString (format:\"%s\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 39)).add_operation (GALGAS_string (".value \? \"true\" : \"false\") as! String"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 39)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("NSString (format:\"%lu\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 40)).add_operation (GALGAS_string (".value) as! String"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 40)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("NSString (format:\"%ld\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 41)).add_operation (GALGAS_string (".value) as! String"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 41)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSString (format:\"%g\", ").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 42)).add_operation (GALGAS_string (".value) as! String"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 42)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 43)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value.description"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 44)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value.string ()"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 49)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 52)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 55)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category Reader '@unifiedTypeMap-proxy transformForSavingInDictionary'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transformForSavingInDictionary (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                             const GALGAS_string & constinArgument_inPropertyName,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 62)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 63)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 63)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (unsignedInteger:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 64)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 64)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 65)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 65)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 66)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 66)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 67)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 68)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 68)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 75)).add_operation (GALGAS_string (".value.rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 75)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 76)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 79)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Category Reader '@unifiedTypeMap-proxy transformerForRegisterUndoWithTarget'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                                   const GALGAS_string & constinArgument_inOldValue,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 86)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 87)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 87)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (unsignedInteger:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 88)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 88)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 89)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 89)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 90)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 90)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = constinArgument_inOldValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inOldValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 97)).add_operation (GALGAS_string (".rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 97)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 99)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 102)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category Reader '@unifiedTypeMap-proxy swiftTypeUndoArgument'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_swiftTypeUndoArgument (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 109)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      result_outResult = GALGAS_string ("NSNumber") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 126)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category Reader '@unifiedTypeMap-proxy transformerForUndo'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transformerForUndo (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                 const GALGAS_string & constinArgument_inValue,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 133)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".boolValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 134)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".unsignedIntegerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 135)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 136)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = constinArgument_inValue.add_operation (GALGAS_string (".doubleValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 137)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = constinArgument_inValue ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (GALGAS_string (" (rawValue:"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)).add_operation (GALGAS_string (".integerValue)!"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 144)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 146)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_3 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_3.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 149)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Category Reader '@unifiedTypeMap-proxy typeNameForControllerTemplateName'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_typeNameForControllerTemplateName (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 156)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("Enum") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-  case GALGAS_typeKind::kEnum_bezierPathType:
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_menuType:
-  case GALGAS_typeKind::kEnum_fontType:
-  case GALGAS_typeKind::kEnum_imageType:
-  case GALGAS_typeKind::kEnum_dateType:
-  case GALGAS_typeKind::kEnum_dataType:
-  case GALGAS_typeKind::kEnum_stringType:
-  case GALGAS_typeKind::kEnum_colorType:
-  case GALGAS_typeKind::kEnum_doubleType:
-  case GALGAS_typeKind::kEnum_integerType:
-  case GALGAS_typeKind::kEnum_uintegerType:
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 162)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Category Reader '@unifiedTypeMap-proxy transformerForTableViewAction'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transformerForTableViewAction (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                            const GALGAS_string & constinArgument_inSenderOutletName,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 169)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 170)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 171)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 173)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 173)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (unsignedLongLong:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 174)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 174)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 175)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 175)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 176)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 182)).add_operation (GALGAS_string (".rawValue)"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 182)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 184)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 187)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Category Reader '@unifiedTypeMap-proxy formatterStringForFormatPrinting'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_formatterStringForFormatPrinting (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 194)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("%d") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("%d") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("%u") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("%g") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("%d") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 209)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("bindingSemanticAnalysis.galgas", 212)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Category Reader '@unifiedTypeMap-proxy preferencesSwiftGetter'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_preferencesSwiftGetter (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 29)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("(value as! NSNumber).boolValue") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("(value as! NSNumber).integerValue") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("value as! String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("value as! NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftGetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 45)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 45)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Category Reader '@unifiedTypeMap-proxy preferencesSwiftSetter'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                     const GALGAS_string & constinArgument_inPropertyName,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 54)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 55)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 55)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 57)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 57)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 59)).add_operation (GALGAS_string (".value)"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 59)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".value"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 61)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("\xC3""\xA0"" compl\xC3""\xA9""ter preferencesSwiftSetter") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = GALGAS_string ("<invalid type '").add_operation (temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 69)), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 69)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("preferencesGeneration.galgas", 69)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Category Reader '@unifiedTypeMap-proxy transientReturnTypeName'                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transientReturnTypeName (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 6)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("Bool") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("UInt") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("Int") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("Double") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 19)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_entityType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 22)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category Reader '@unifiedTypeMap-proxy transientFormalArgumentTypeName'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transientFormalArgumentTypeName (const GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_unifiedTypeMap_2D_proxy temp_0 = inObject ;
-  switch (temp_0.reader_mTypeKind (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 29)).enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("Bool") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_uintegerType:
-    {
-      result_outResult = GALGAS_string ("UInt") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("Int") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("Double") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dataType:
-    {
-      result_outResult = GALGAS_string ("NSData") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_imageType:
-    {
-      result_outResult = GALGAS_string ("NSImage") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_fontType:
-    {
-      result_outResult = GALGAS_string ("NSFont") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_menuType:
-    {
-      result_outResult = GALGAS_string ("NSMenu") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_bezierPathType:
-    {
-      result_outResult = GALGAS_string ("NSBezierPath") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      result_outResult = GALGAS_string ("Int") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_structType:
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_1 = inObject ;
-      result_outResult = temp_1.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 43)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_classType:
-  case GALGAS_typeKind::kEnum_controllerClassType:
-  case GALGAS_typeKind::kEnum_documentType:
-  case GALGAS_typeKind::kEnum_preferencesType:
-  case GALGAS_typeKind::kEnum_nibClassType:
-  case GALGAS_typeKind::kEnum_outletClassType:
-  case GALGAS_typeKind::kEnum_protocolType:
-    {
-      const GALGAS_unifiedTypeMap_2D_proxy temp_2 = inObject ;
-      result_outResult = GALGAS_string ("<invalid return type '").add_operation (temp_2.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)).add_operation (GALGAS_string ("' >"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 46)) ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (void) :
-mAttribute_mDeclaration () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::~ GALGAS_astDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (const GALGAS_astDeclaration & inOperand0) :
-mAttribute_mDeclaration (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::constructor_new (const GALGAS_astDeclaration & inOperand0 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_astDeclarationList_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_astDeclarationList_2D_element::objectCompare (const GALGAS_astDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDeclaration.objectCompare (inOperand.mAttribute_mDeclaration) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_astDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mDeclaration.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::drop (void) {
-  mAttribute_mDeclaration.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @astDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDeclaration.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclaration GALGAS_astDeclarationList_2D_element::reader_mDeclaration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDeclaration ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @astDeclarationList-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astDeclarationList_2D_element ("astDeclarationList-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_astDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_astDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  const GALGAS_astDeclarationList_2D_element * p = (const GALGAS_astDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

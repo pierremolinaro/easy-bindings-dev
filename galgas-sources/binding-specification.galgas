@@ -9,11 +9,17 @@ list @controllerBindingOptionList {
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+list @outletClassBindingSpecificationModelList {
+  @lstring mModelTypeName
+  @bool mModelShouldBeWritableProperty
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 list @outletClassBindingSpecificationList {
   @bool mIsUserDefined
   @lstring mBindingName
-  @lstring mModelTypeName
-  @bool mModelShouldBeWritableProperty
+  @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
   @controllerBindingOptionList mBindingOptionList
 }
 
@@ -35,16 +41,21 @@ syntax extension easyBindings_syntax {
     $Identifier$ ?let @lstring outletClassName
     $bindingName$ ?let @lstring bindingName
     $:$
-    @bool modelShouldBeWritableProperty
-    select
-      $property$
-      modelShouldBeWritableProperty = true
-    or
-      $transient$
-      modelShouldBeWritableProperty = false
+    @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
+    repeat
+      @bool modelShouldBeWritableProperty
+      select
+        $property$
+        modelShouldBeWritableProperty = true
+      or
+        $transient$
+        modelShouldBeWritableProperty = false
+      end
+      $Identifier$ ?let @lstring modelTypeName
+      outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
+    while
+      $,$
     end
-    $Identifier$ ?let @lstring modelTypeName
-    
     @controllerBindingOptionList bindingOptionList = {}
     select
     or
@@ -64,8 +75,7 @@ syntax extension easyBindings_syntax {
       !outletClassName.string
       !inIsUserDefined
       !bindingName
-      !modelTypeName
-      !modelShouldBeWritableProperty
+      !outletClassBindingSpecificationModelList
       !bindingOptionList
   }
 
@@ -83,9 +93,15 @@ map @bindingSpecificationMap {
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-map @outletBindingSpecificationMap {
+list @outletBindingSpecificationModelList {
   @unifiedTypeMap-proxy mModelTypeProxy
   @bool mModelShouldBeWritableProperty
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @outletBindingSpecificationMap {
+  @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
   @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList
   insert insertKey error message "the '%K' controller template is already declared in %L"
   search searchKey error message "there is no '%K' controller template"
@@ -102,7 +118,11 @@ proc buildControllerTemplateMap
   for (key bindingList) in inBindingSpecificationListMap do
     @outletBindingSpecificationMap outletBindingSpecificationMap = {}
     for () in bindingList do
-      let modelTypeProxy = @unifiedTypeMap-proxy.searchKey { !inUnifiedTypeMap !mModelTypeName}
+      @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+      for () in mOutletClassBindingSpecificationModelList do
+        let modelTypeProxy = @unifiedTypeMap-proxy.searchKey { !inUnifiedTypeMap !mModelTypeName}
+        outletBindingSpecificationModelList += !modelTypeProxy !mModelShouldBeWritableProperty
+      end
       @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
       for () in mBindingOptionList do
         let bindingOptionTypeProxy = @unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !mOptionTypeName}
@@ -110,8 +130,7 @@ proc buildControllerTemplateMap
       end
       [!?outletBindingSpecificationMap insertKey
         !mBindingName
-        !modelTypeProxy
-        !mModelShouldBeWritableProperty
+        !outletBindingSpecificationModelList
         !controllerBindingOptionDecoratedList
       ]
     end

@@ -9,4 +9,46 @@
 
 #include "all-declarations-2.h"
 
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Category Reader '@unifiedTypeMap-proxy valueAccessorForExplorerWindow'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_valueAccessorForExplorerWindow (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                   const class GALGAS_string & constinArgument0,
+                                                                   class C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Category Reader '@unifiedTypeMap-proxy transformerForRegisterUndoWithTarget'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                         const class GALGAS_string & constinArgument0,
+                                                                         class C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Category Reader '@unifiedTypeMap-proxy typeNameForControllerTemplateName'                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_typeNameForControllerTemplateName (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                      class C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Category Reader '@unifiedTypeMap-proxy transientFormalArgumentTypeName'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transientFormalArgumentTypeName (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                    class C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
 #endif
