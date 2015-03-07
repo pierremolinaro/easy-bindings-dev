@@ -326,6 +326,11 @@ class PMReadOnlyProperty <T : Equatable> : PMUserClassName {
   
   init (_ inValue : T) {
     mDefaultValue = inValue
+    noteObjectAllocation (self)
+  }
+  
+  deinit {
+    noteObjectDeallocation (self)
   }
   
   var value : T { get { return mDefaultValue } }
@@ -354,6 +359,7 @@ class PMReadOnlyProperty <T : Equatable> : PMUserClassName {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty <T : Equatable> : PMReadOnlyProperty <T> {
+  override func userClassName () -> String { return "PMStoredProperty<T>"}
 
   override init (_ inValue : T) {
     mValue = inValue
@@ -374,8 +380,6 @@ class PMStoredProperty <T : Equatable> : PMReadOnlyProperty <T> {
 
   func setValue (inValue : T) { mValue = inValue }
 
-  override func userClassName () -> String { return "PMPreferencesProperty<T>"}
-
   //-------------------------------------------------------------------------------------------------------------------*
  
   var validationFunction : (T) -> PMValidationResult = defaultValidationFunction
@@ -386,10 +390,40 @@ class PMStoredProperty <T : Equatable> : PMReadOnlyProperty <T> {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMEntityProperty                                                                                                  *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMEntityProperty <T : Equatable where T : EntityPropertyProtocol> : PMStoredProperty <T> {
+  override func userClassName () -> String { return "PMEntityProperty<T>"}
+
+  var undoRegisterFonction : Optional <(NSObject) -> Void>
+  var explorer : NSTextField?
+
+  override init (_ inValue : T) {
+    super.init (inValue)
+  }
+
+  override private var mValue : T {
+    didSet {
+      if mValue != oldValue {
+        explorer?.stringValue = mValue.descriptionForExplorer ()
+        undoRegisterFonction? (oldValue.embeddedNSObject ())
+        for (key, object) in mObservers {
+          postTransientEvent (object)
+        }
+      }
+    }
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMTransientProperty                                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {
+  override func userClassName () -> String { return "PMTransientProperty<T>"}
+
   private var mValueCache : T? = nil
   private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> T>
@@ -399,8 +433,6 @@ class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {
     super.init (defaultValue)
   }
 
-  override func userClassName () -> String { return "PMTransientProperty<T>"}
-  
   override var value : T {
     get {
       if mValueCache == nil {
@@ -429,10 +461,10 @@ class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientPropertyEvent<T : Equatable> : PMTransientEventProtocol {
+  func userClassName () -> String { return "PMTransientPropertyEvent<T>" }
+
   weak private var mObserver : PMTransientProperty<T>? = nil
   private let mTransientIndex : PMTransientIndex
-  
-  func userClassName () -> String { return "PMTransientPropertyEvent<T>" }
 
   var transientEventIndex : PMTransientIndex { get { return mTransientIndex } }
 

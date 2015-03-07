@@ -204,12 +204,13 @@ end
 
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
-%  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get { return %!mAttributeName%.value } }\n%
+  %  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+  %  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get { return %!mAttributeName%.value } }\n%
+  %  func undoFor_%!mAttributeName% (oldValue : %![mAttributeType swiftTypeUndoArgument]%) {\n%
+  %    %!mAttributeName%.setValue (%![mAttributeType transformerForUndo !"oldValue"]%)\n%
+  %  }\n\n%
 end
-%
-
-  //-------------------------------------------------------------------------------------------------------------------*
+%  //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -217,10 +218,13 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
-                      %> (PMTransientIndex.k_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%)\n%
+                      %> (PMTransientIndex.k_%
+                      !["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
+                      %, defaultValue:%![mTransientType defaultValue]%)\n%
 end
 
-%  //-------------------------------------------------------------------------------------------------------------------*
+%
+  //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -254,12 +258,12 @@ end
 %  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.setComputeFunction ({return compute_%!ENTITY_NAME%_%!mTransientName% (%
+  %    %!mTransientName%.computeFunction = {return compute_%!ENTITY_NAME%_%!mTransientName% (%
   for () in mDependencyList
     do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
     between %, %
   end
-  %)})\n%
+  %)}\n%
 end
 %  //--- Install property observers for transients
 %
@@ -271,26 +275,12 @@ end
 %  //--- Install undoers for properties
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    %!mAttributeName%.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue) }\n%
+  %    %!mAttributeName%.undoRegisterFonction = {(oldValue : NSObject) in\n%
+  %      self.mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue)\n%
+  %    }\n%
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  Undo methods for properties                                                                                      *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-%for () in ATTRIBUTE_LIST_FOR_GENERATION
-  do
-    %  func undoFor_%!mAttributeName% (value : %![mAttributeType swiftTypeUndoArgument]%) {\n%
-    %    %!mAttributeName%.value = %![mAttributeType transformerForUndo !"value"]%\n%
-    %  }\n%
-  between
-  %
-  //-------------------------------------------------------------------------------------------------------------------*
-
-%
-end
-%
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -300,12 +290,12 @@ end
   //--- Uninstall compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.setComputeFunction (nil)\n%
+  %    %!mTransientName%.computeFunction = nil\n%
 end
 %  //--- Uninstall undoers for properties
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    %!mAttributeName%.registerUndo = nil\n%
+  %    %!mAttributeName%.undoRegisterFonction = nil\n%
 end
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
@@ -396,7 +386,7 @@ end
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.value = inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%")\n%
+%    %!mAttributeName%.setValue (inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%"))\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
@@ -406,73 +396,16 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
         managedObjectArray:managedObjectArray
       ) as! Array<%![mRelationshipType key]%>\n%
   elsif not mOppositeRelationshipIsToMany then
-%    %!mRelationshipName%.value = readEntityFromDictionary (
+%    %!mRelationshipName%.setValue (readEntityFromDictionary (
         "%!mRelationshipName%",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
-      ) as? %![mRelationshipType key]%\n%
+      ) as? %![mRelationshipType key]%)\n%
   end
 end
 %  }
 
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-% /* private var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
-%  private var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
-%    get {\n%
-%      if %!mTransientName%_cache == nil {\n%
-%        %!mTransientName%_cache = compute_%!ENTITY_NAME%_%!mTransientName% (%
-for () in mDependencyList
-do ![mDependency generateActualParameterForComputeFunction]
-between %, %
-end
-%)\n%
-%      }\n%
-%      return %!mTransientName%_cache!\n%
-%    }
-    set {
-    }
-  }
-
-  func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_noteDidChange () {
-    %!mTransientName%_cache = nil
-  }
-
-  func %!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for (key, observer) in %!mTransientName%_observers {
-      postTransientEvent (observer)
-    }
-  }
-
-   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% {
-    if nil == event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache {
-      event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]% (object:self)
-    }
-    return event_%!["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]%_cache!
-  } */
- 
-%
-end
-%  //-------------------------------------------------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 

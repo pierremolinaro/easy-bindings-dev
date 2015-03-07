@@ -1356,9 +1356,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_attributeListForGeneration & in_mAttributeListForGeneration,
                                                   const class GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                   const class GALGAS_decoratedOutletMap & in_mOutletMap,
-                                                  const class GALGAS_stringlist & in_mControllerInstanciationStringList,
                                                   const class GALGAS_arrayControllerForGeneration & in_mDocumentArrayControllerForGeneration,
-                                                  const class GALGAS_targetActionList & in_mTargetActionList
+                                                  const class GALGAS_targetActionList & in_mTargetActionList,
+                                                  const class GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -1379,9 +1379,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                                               const class GALGAS_attributeListForGeneration & inOperand2,
                                                                               const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                               const class GALGAS_decoratedOutletMap & inOperand4,
-                                                                              const class GALGAS_stringlist & inOperand5,
-                                                                              const class GALGAS_arrayControllerForGeneration & inOperand6,
-                                                                              const class GALGAS_targetActionList & inOperand7
+                                                                              const class GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                              const class GALGAS_targetActionList & inOperand6,
+                                                                              const class GALGAS_regularBindingsGenerationList & inOperand7
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -1394,9 +1394,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_attributeListForGeneration & inOperand2,
                                                       const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                       const class GALGAS_decoratedOutletMap & inOperand4,
-                                                      const class GALGAS_stringlist & inOperand5,
-                                                      const class GALGAS_arrayControllerForGeneration & inOperand6,
-                                                      const class GALGAS_targetActionList & inOperand7
+                                                      const class GALGAS_arrayControllerForGeneration & inOperand5,
+                                                      const class GALGAS_targetActionList & inOperand6,
+                                                      const class GALGAS_regularBindingsGenerationList & inOperand7
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_documentListForGeneration operator_concat (const GALGAS_documentListForGeneration & inOperand
@@ -1414,9 +1414,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_attributeListForGeneration constinArgument2,
                                                          class GALGAS_transientDefinitionListForGeneration constinArgument3,
                                                          class GALGAS_decoratedOutletMap constinArgument4,
-                                                         class GALGAS_stringlist constinArgument5,
-                                                         class GALGAS_arrayControllerForGeneration constinArgument6,
-                                                         class GALGAS_targetActionList constinArgument7,
+                                                         class GALGAS_arrayControllerForGeneration constinArgument5,
+                                                         class GALGAS_targetActionList constinArgument6,
+                                                         class GALGAS_regularBindingsGenerationList constinArgument7,
                                                          class GALGAS_uint constinArgument8,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
@@ -1426,9 +1426,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                     class GALGAS_attributeListForGeneration & outArgument2,
                                                     class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                     class GALGAS_decoratedOutletMap & outArgument4,
-                                                    class GALGAS_stringlist & outArgument5,
-                                                    class GALGAS_arrayControllerForGeneration & outArgument6,
-                                                    class GALGAS_targetActionList & outArgument7,
+                                                    class GALGAS_arrayControllerForGeneration & outArgument5,
+                                                    class GALGAS_targetActionList & outArgument6,
+                                                    class GALGAS_regularBindingsGenerationList & outArgument7,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -1437,9 +1437,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                    class GALGAS_attributeListForGeneration & outArgument2,
                                                    class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                    class GALGAS_decoratedOutletMap & outArgument4,
-                                                   class GALGAS_stringlist & outArgument5,
-                                                   class GALGAS_arrayControllerForGeneration & outArgument6,
-                                                   class GALGAS_targetActionList & outArgument7,
+                                                   class GALGAS_arrayControllerForGeneration & outArgument5,
+                                                   class GALGAS_targetActionList & outArgument6,
+                                                   class GALGAS_regularBindingsGenerationList & outArgument7,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -1448,9 +1448,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_attributeListForGeneration & outArgument2,
                                                          class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                          class GALGAS_decoratedOutletMap & outArgument4,
-                                                         class GALGAS_stringlist & outArgument5,
-                                                         class GALGAS_arrayControllerForGeneration & outArgument6,
-                                                         class GALGAS_targetActionList & outArgument7,
+                                                         class GALGAS_arrayControllerForGeneration & outArgument5,
+                                                         class GALGAS_targetActionList & outArgument6,
+                                                         class GALGAS_regularBindingsGenerationList & outArgument7,
                                                          class GALGAS_uint constinArgument8,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
@@ -1462,9 +1462,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                                class GALGAS_attributeListForGeneration & outArgument2,
                                                class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                class GALGAS_decoratedOutletMap & outArgument4,
-                                               class GALGAS_stringlist & outArgument5,
-                                               class GALGAS_arrayControllerForGeneration & outArgument6,
-                                               class GALGAS_targetActionList & outArgument7,
+                                               class GALGAS_arrayControllerForGeneration & outArgument5,
+                                               class GALGAS_targetActionList & outArgument6,
+                                               class GALGAS_regularBindingsGenerationList & outArgument7,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -1473,9 +1473,9 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
                                               class GALGAS_attributeListForGeneration & outArgument2,
                                               class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                               class GALGAS_decoratedOutletMap & outArgument4,
-                                              class GALGAS_stringlist & outArgument5,
-                                              class GALGAS_arrayControllerForGeneration & outArgument6,
-                                              class GALGAS_targetActionList & outArgument7,
+                                              class GALGAS_arrayControllerForGeneration & outArgument5,
+                                              class GALGAS_targetActionList & outArgument6,
+                                              class GALGAS_regularBindingsGenerationList & outArgument7,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -1485,10 +1485,6 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_attributeListForGeneration reader_mAttributeListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                C_Compiler * inCompiler
                                                                                                                COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist reader_mControllerInstanciationStringListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mDecoratedTransientListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                                   C_Compiler * inCompiler
@@ -1505,6 +1501,10 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap reader_mOutletMapAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList reader_mRegularBindingsGenerationListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                     C_Compiler * inCompiler
+                                                                                                                     COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mRootEntityNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                C_Compiler * inCompiler
@@ -1545,9 +1545,9 @@ class cEnumerator_documentListForGeneration : public cGenericAbstractEnumerator 
   public : class GALGAS_attributeListForGeneration current_mAttributeListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_transientDefinitionListForGeneration current_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_decoratedOutletMap current_mOutletMap (LOCATION_ARGS) const ;
-  public : class GALGAS_stringlist current_mControllerInstanciationStringList (LOCATION_ARGS) const ;
   public : class GALGAS_arrayControllerForGeneration current_mDocumentArrayControllerForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_targetActionList current_mTargetActionList (LOCATION_ARGS) const ;
+  public : class GALGAS_regularBindingsGenerationList current_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_documentListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -1569,9 +1569,9 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_attributeListForGeneration mAttribute_mAttributeListForGeneration ;
   public : GALGAS_transientDefinitionListForGeneration mAttribute_mDecoratedTransientListForGeneration ;
   public : GALGAS_decoratedOutletMap mAttribute_mOutletMap ;
-  public : GALGAS_stringlist mAttribute_mControllerInstanciationStringList ;
   public : GALGAS_arrayControllerForGeneration mAttribute_mDocumentArrayControllerForGeneration ;
   public : GALGAS_targetActionList mAttribute_mTargetActionList ;
+  public : GALGAS_regularBindingsGenerationList mAttribute_mRegularBindingsGenerationList ;
 
 
 //--------------------------------- Accessors
@@ -1593,9 +1593,9 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
                                                         const GALGAS_attributeListForGeneration & in_mAttributeListForGeneration,
                                                         const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                         const GALGAS_decoratedOutletMap & in_mOutletMap,
-                                                        const GALGAS_stringlist & in_mControllerInstanciationStringList,
                                                         const GALGAS_arrayControllerForGeneration & in_mDocumentArrayControllerForGeneration,
-                                                        const GALGAS_targetActionList & in_mTargetActionList) ;
+                                                        const GALGAS_targetActionList & in_mTargetActionList,
+                                                        const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList) ;
 
 //-- Start of generic part --*
 
@@ -1613,9 +1613,9 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
                                                                                const class GALGAS_attributeListForGeneration & inOperand2,
                                                                                const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                                const class GALGAS_decoratedOutletMap & inOperand4,
-                                                                               const class GALGAS_stringlist & inOperand5,
-                                                                               const class GALGAS_arrayControllerForGeneration & inOperand6,
-                                                                               const class GALGAS_targetActionList & inOperand7
+                                                                               const class GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                               const class GALGAS_targetActionList & inOperand6,
+                                                                               const class GALGAS_regularBindingsGenerationList & inOperand7
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -1632,8 +1632,6 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_attributeListForGeneration reader_mAttributeListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist reader_mControllerInstanciationStringList (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_mDocumentArrayControllerForGeneration (LOCATION_ARGS) const ;
@@ -1641,6 +1639,8 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mDocumentName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap reader_mOutletMap (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList reader_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mRootEntityName (LOCATION_ARGS) const ;
 
@@ -5212,9 +5212,9 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
                                                                                             const class GALGAS_attributeListForGeneration & in_ATTRIBUTE_5F_LIST,
                                                                                             const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                             const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
-                                                                                            const class GALGAS_stringlist & in_CONTROLLER_5F_INSTANCIATION_5F_LIST,
                                                                                             const class GALGAS_arrayControllerForGeneration & in_ARRAY_5F_CONTROLLER_5F_LIST,
-                                                                                            const class GALGAS_targetActionList & in_TARGET_5F_ACTION_5F_LIST
+                                                                                            const class GALGAS_targetActionList & in_TARGET_5F_ACTION_5F_LIST,
+                                                                                            const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST
                                                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*

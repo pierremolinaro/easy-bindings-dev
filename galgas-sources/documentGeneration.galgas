@@ -8,9 +8,9 @@ list @documentListForGeneration {
   @attributeListForGeneration mAttributeListForGeneration
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @decoratedOutletMap mOutletMap
-  @stringlist mControllerInstanciationStringList
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration
   @targetActionList mTargetActionList 
+  @regularBindingsGenerationList mRegularBindingsGenerationList 
 }
 
 #----------------------------------------------------------------------------*
@@ -24,9 +24,9 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@attributeListForGeneration ATTRIBUTE_LIST
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
-    ?@stringlist CONTROLLER_INSTANCIATION_LIST
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
     ?@targetActionList TARGET_ACTION_LIST
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
 }
 
 #----------------------------------------------------------------------------*
@@ -41,9 +41,9 @@ proc generateDocuments
       !mAttributeListForGeneration
       !mDecoratedTransientListForGeneration
       !mOutletMap
-      !mControllerInstanciationStringList
       !mDocumentArrayControllerForGeneration
       !mTargetActionList
+      !mRegularBindingsGenerationList
     ]
     [@string generateFile
       !inOutputDirectory

@@ -202,8 +202,8 @@ proc analyzeOutlets
           if required_mModelShouldBeWritableProperty && found_mModelIsTransient then
             error found_mErrorLocation : "the model is transient and the binding requires an writable model"
           end
-          if [required_mModelTypeProxy key] != [found_mModelTypeProxy key] then
-            error found_mErrorLocation : "the model type should be " + [required_mModelTypeProxy key]
+          if [required_mModelTypeProxy typeNameForBindingTypeCheck] != [found_mModelTypeProxy typeNameForBindingTypeCheck] then
+            error found_mErrorLocation : "the model type should be " + [required_mModelTypeProxy typeNameForBindingTypeCheck]
           end
         end
       end

@@ -85,12 +85,8 @@ class Controller_PMReadOnlyTextField_value : NSObject, PMTransientEventProtocol,
     mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
-    if !mOutlet.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (file, line, "outlet is not an instance of PMReadOnlyTextField")
-    }else{
-      if mOutlet.formatter != nil {
-        presentErrorWindow (file, line, "the outlet has a formatter")
-      }
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
     }
     object.addObserver (self, inTrigger:true)
   }

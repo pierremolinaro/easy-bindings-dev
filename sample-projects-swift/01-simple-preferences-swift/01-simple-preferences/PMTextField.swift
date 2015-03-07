@@ -75,8 +75,8 @@ import Cocoa
 @objc(Controller_PMTextField_value)
 class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  private weak var mOutlet: PMTextField? = nil
-  private weak var mObject : PMStoredProperty <String>?
+  private var mOutlet: PMTextField
+  private var mObject : PMStoredProperty <String>
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -89,22 +89,16 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMStoredProperty <String>, outlet : PMTextField?, file : String, line : Int, sendContinously : Bool) {
+  init (object:PMStoredProperty <String>, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
+    mOutlet = outlet
     super.init ()
     noteObjectAllocation (self)
-    if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMTextField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMTextField")
-      }else{
-        mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        if unwrappedOutlet.formatter != nil {
-          presentErrorWindow (file, line, "the outlet has a formatter")
-        }
-      }
+    mOutlet.target = self
+    mOutlet.action = "action:"
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line, "the PMTextField outlet has a formatter")
     }
     object.addObserver (self, inTrigger:true)
   }
@@ -112,9 +106,9 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
-    mObject?.removeObserver (self, inTrigger:false)
+    mOutlet.target = nil
+    mOutlet.action = nil
+    mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -131,34 +125,32 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.stringValue != object.value {
-      outlet.stringValue = object.value
+    if mOutlet.stringValue != mObject.value {
+      mOutlet.stringValue = mObject.value
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate (outlet.stringValue)
-      switch validationResult {
-      case PMValidationResult.ok :
-        object.setValue (outlet.stringValue)
-      case PMValidationResult.rejectWithBeep :
-        NSBeep ()
-      case PMValidationResult.rejectWithAlert (let informativeText) :
-        if let window = sender.window {
-          let alert = NSAlert ()
-          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.stringValue = object.value
-            }
-          })
-        }
+    let validationResult = mObject.validate (mOutlet.stringValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      mObject.setValue (mOutlet.stringValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      if let window = sender.window {
+        let alert = NSAlert ()
+        alert.messageText = String (format:"The value “%@” is invalid.", mOutlet.stringValue)
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.mOutlet.stringValue = self.mObject.value
+          }
+        })
       }
     }
   }

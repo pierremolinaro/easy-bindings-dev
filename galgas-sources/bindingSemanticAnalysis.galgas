@@ -152,7 +152,7 @@ getter @unifiedTypeMap-proxy transformerForUndo ?let @string inValue -> @string 
 
 #----------------------------------------------------------------------------*
 
-getter @unifiedTypeMap-proxy typeNameForControllerTemplateName -> @string outResult {
+getter @unifiedTypeMap-proxy typeNameForBindingTypeCheck -> @string outResult {
   switch [self mTypeKind]
   case enumType : outResult = "Enum"
   case classType, controllerClassType, documentType, entityType,

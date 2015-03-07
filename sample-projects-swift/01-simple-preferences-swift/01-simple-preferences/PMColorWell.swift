@@ -1,8 +1,6 @@
-//---------------------------------------------------------------------------------------------------------------------*
-
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
 
@@ -51,8 +49,8 @@ import Cocoa
 @objc(Controller_PMColorWell_color)
 class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
 
-  weak var mObject : PMStoredProperty <NSColor>? = nil
-  weak  var mOutlet: PMColorWell? = nil
+  var mObject : PMStoredProperty <NSColor>
+  var mOutlet: PMColorWell
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -66,31 +64,25 @@ class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserC
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty <NSColor>, outlet : PMColorWell?, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMStoredProperty <NSColor>, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
     mPrivateUniqueIndex = getUniqueIndex ()
     mObject = object
+    mOutlet = outlet
     mSendContinously = sendContinously
     super.init ()
     noteObjectAllocation (self)
-    if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMColorWell) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMColorWell")
-      }else{
-        mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        unwrappedOutlet.continuous = true
-      }
-    }
-    mObject?.addObserver (self, inTrigger:true)
+    mOutlet.target = self
+    mOutlet.action = "action:"
+    mOutlet.continuous = true
+    mObject.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
-    mObject?.removeObserver (self, inTrigger:false)
+    mOutlet.target = nil
+    mOutlet.action = nil
+    mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -107,37 +99,35 @@ class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
 
   func trigger () {
-    if let outlet = mOutlet, object = mObject where outlet.color != object.value {
-      outlet.color = object.value
+    if mOutlet.color != mObject.value {
+      mOutlet.color = mObject.value
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMColorWell) {
-    if let outlet = mOutlet, object = mObject {
-      let validationResult = object.validate(outlet.color)
-      switch validationResult {
-      case PMValidationResult.ok :
-        object.setValue (outlet.color)
-        if mSendContinously {
-          flushTriggers ()
-        }
-      case PMValidationResult.rejectWithBeep :
-         NSBeep ()
-      case PMValidationResult.rejectWithAlert (let informativeText) :
-        if let window = sender.window {
-          let alert = NSAlert ()
-          alert.messageText = String (format:"The color “%@” is invalid.", outlet.color)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.color = object.value
-            }
-          })
-        }
+    let validationResult = mObject.validate (mOutlet.color)
+    switch validationResult {
+    case PMValidationResult.ok :
+      mObject.setValue (mOutlet.color)
+      if mSendContinously {
+        flushTriggers ()
+      }
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      if let window = sender.window {
+        let alert = NSAlert ()
+        alert.messageText = String (format:"The color “%@” is invalid.", mOutlet.color)
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.mOutlet.color = self.mObject.value
+          }
+        })
       }
     }
   }
@@ -154,4 +144,4 @@ class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserC
   //-------------------------------------------------------------------------------------------------------------------*
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

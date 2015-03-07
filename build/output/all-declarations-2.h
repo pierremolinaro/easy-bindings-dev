@@ -157,6 +157,16 @@ class GALGAS_stringlist callCategoryReader_observedObjectList (const class cPtr_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                         Category Reader '@unifiedTypeMap-proxy typeNameForBindingTypeCheck'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_typeNameForBindingTypeCheck (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                class C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //     Abstract category method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
