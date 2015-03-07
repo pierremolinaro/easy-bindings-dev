@@ -226,34 +226,34 @@ void routine_buildControllerTemplateMap (const GALGAS_unifiedTypeMap constinArgu
                                          COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outTemplateControllerMap.drop () ; // Release 'out' argument
   outArgument_outTemplateControllerMap = GALGAS_bindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 117)) ;
-  cEnumerator_bindingSpecificationListMap enumerator_4596 (constinArgument_inBindingSpecificationListMap, kEnumeration_up) ;
-  while (enumerator_4596.hasCurrentObject ()) {
+  cEnumerator_bindingSpecificationListMap enumerator_4548 (constinArgument_inBindingSpecificationListMap, kEnumeration_up) ;
+  while (enumerator_4548.hasCurrentObject ()) {
     GALGAS_outletBindingSpecificationMap var_outletBindingSpecificationMap = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 119)) ;
-    cEnumerator_outletClassBindingSpecificationList enumerator_4695 (enumerator_4596.current_mList (HERE), kEnumeration_up) ;
-    while (enumerator_4695.hasCurrentObject ()) {
+    cEnumerator_outletClassBindingSpecificationList enumerator_4647 (enumerator_4548.current_mList (HERE), kEnumeration_up) ;
+    while (enumerator_4647.hasCurrentObject ()) {
       GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 121)) ;
-      cEnumerator_outletClassBindingSpecificationModelList enumerator_4840 (enumerator_4695.current_mOutletClassBindingSpecificationModelList (HERE), kEnumeration_up) ;
-      while (enumerator_4840.hasCurrentObject ()) {
-        GALGAS_unifiedTypeMap_2D_proxy var_modelTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_4840.current_mModelTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 123)) ;
-        var_outletBindingSpecificationModelList.addAssign_operation (var_modelTypeProxy, enumerator_4840.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 124)) ;
-        enumerator_4840.gotoNextObject () ;
+      cEnumerator_outletClassBindingSpecificationModelList enumerator_4792 (enumerator_4647.current_mOutletClassBindingSpecificationModelList (HERE), kEnumeration_up) ;
+      while (enumerator_4792.hasCurrentObject ()) {
+        GALGAS_unifiedTypeMap_2D_proxy var_modelTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_4792.current_mModelTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 123)) ;
+        var_outletBindingSpecificationModelList.addAssign_operation (var_modelTypeProxy, enumerator_4792.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 124)) ;
+        enumerator_4792.gotoNextObject () ;
       }
       GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 126)) ;
-      cEnumerator_controllerBindingOptionList enumerator_5167 (enumerator_4695.current_mBindingOptionList (HERE), kEnumeration_up) ;
-      while (enumerator_5167.hasCurrentObject ()) {
-        GALGAS_unifiedTypeMap_2D_proxy var_bindingOptionTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_5167.current_mOptionTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 128)) ;
-        var_controllerBindingOptionDecoratedList.addAssign_operation (enumerator_5167.current_mOptionName (HERE), var_bindingOptionTypeProxy  COMMA_SOURCE_FILE ("binding-specification.galgas", 129)) ;
-        enumerator_5167.gotoNextObject () ;
+      cEnumerator_controllerBindingOptionList enumerator_5119 (enumerator_4647.current_mBindingOptionList (HERE), kEnumeration_up) ;
+      while (enumerator_5119.hasCurrentObject ()) {
+        GALGAS_unifiedTypeMap_2D_proxy var_bindingOptionTypeProxy = GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, enumerator_5119.current_mOptionTypeName (HERE), inCompiler  COMMA_SOURCE_FILE ("binding-specification.galgas", 128)) ;
+        var_controllerBindingOptionDecoratedList.addAssign_operation (enumerator_5119.current_mOptionName (HERE), var_bindingOptionTypeProxy  COMMA_SOURCE_FILE ("binding-specification.galgas", 129)) ;
+        enumerator_5119.gotoNextObject () ;
       }
       {
-      var_outletBindingSpecificationMap.modifier_insertKey (enumerator_4695.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 131)) ;
+      var_outletBindingSpecificationMap.modifier_insertKey (enumerator_4647.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 131)) ;
       }
-      enumerator_4695.gotoNextObject () ;
+      enumerator_4647.gotoNextObject () ;
     }
     {
-    outArgument_outTemplateControllerMap.modifier_insertKey (enumerator_4596.current_key (HERE).reader_nowhere (SOURCE_FILE ("binding-specification.galgas", 138)), var_outletBindingSpecificationMap, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 137)) ;
+    outArgument_outTemplateControllerMap.modifier_insertKey (enumerator_4548.current_key (HERE).reader_nowhere (SOURCE_FILE ("binding-specification.galgas", 138)), var_outletBindingSpecificationMap, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 137)) ;
     }
-    enumerator_4596.gotoNextObject () ;
+    enumerator_4548.gotoNextObject () ;
   }
 }
 
@@ -2940,7 +2940,9 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "outletClass PMTextField ;\n"
     "binding PMTextField $value : property String {sendContinously : Bool} ;\n"
-    "binding PMTextField $rvalue : transient String ;\n" ;
+    "\n"
+    "outletClass PMReadOnlyTextField ;\n"
+    "binding PMReadOnlyTextField $readOnlyValue : transient String ;\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -7137,9 +7139,9 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "  private let mTransientIndex : PMTransientIndex\n"
   "  var computeFunction : Optional<() -> T>\n"
   "  \n"
-  "  init (_ inTransientIndex : PMTransientIndex, value : T) {\n"
+  "  init (_ inTransientIndex : PMTransientIndex, defaultValue : T) {\n"
   "    mTransientIndex = inTransientIndex\n"
-  "    super.init (value)\n"
+  "    super.init (defaultValue)\n"
   "  }\n"
   "\n"
   "  override func userClassName () -> String { return \"PMTransientProperty<T>\"}\n"
@@ -7217,7 +7219,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  17600, // Text length
+  17614, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 

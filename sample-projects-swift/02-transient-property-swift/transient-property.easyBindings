@@ -3,14 +3,10 @@ preferences Prefs {
   property String mFirstName default "Schmurtz" ;
   transient String mFullName dependsFrom self.mName, self.mFirstName ;
   transient String mUpperCaseFullName dependsFrom self.mFullName ;
-  outlet PMTextField mNameTextField ;
-  bind model : self.mName to mNameTextField $value {sendContinously:no} ;
-  outlet PMTextField mFirstNameTextField ;
-  bind model : self.mFirstName to mFirstNameTextField $value {sendContinously:no} ;
-  outlet PMTextField mFullNameTextField ;
-  bind model : self.mFullName to mFullNameTextField $rvalue ;
-  outlet PMTextField mUpperCaseFullNameTextField ;
-  bind model : self.mUpperCaseFullName to mUpperCaseFullNameTextField $rvalue ;
+  outlet PMTextField mNameTextField $value self.mName {sendContinously:no} ;
+  outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
+  outlet PMReadOnlyTextField mFullNameTextField $readOnlyValue self.mFullName ;
+  outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;
   
   action monAction ;
 }

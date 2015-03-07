@@ -19,24 +19,24 @@ var g_Prefs : Prefs? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   @IBOutlet var mFirstNameTextField : PMTextField? = nil
-  @IBOutlet var mFullNameTextField : PMTextField? = nil
+  @IBOutlet var mFullNameTextField : PMReadOnlyTextField? = nil
   @IBOutlet var mNameTextField : PMTextField? = nil
-  @IBOutlet var mUpperCaseFullNameTextField : PMTextField? = nil
+  @IBOutlet var mUpperCaseFullNameTextField : PMReadOnlyTextField? = nil
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFirstName = PMPreferencesProperty <String> ("Schmurtz")
-  var mName = PMPreferencesProperty <String> ("Amédée")
+  var mFirstName = PMStoredProperty <String> ("Schmurtz")
+  var mName = PMStoredProperty <String> ("Amédée")
 
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mFullName)
-  var mUpperCaseFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName)
+  var mFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mFullName, defaultValue:"")
+  var mUpperCaseFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName, defaultValue:"")
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -56,11 +56,11 @@ var g_Prefs : Prefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("Prefs:mFirstName")
     if value != nil {
-      mFirstName.value = value as! String
+      mFirstName.setValue (value as! String)
     }
     value = ud.objectForKey ("Prefs:mName")
     if value != nil {
-      mName.value = value as! String
+      mName.setValue (value as! String)
     }
   //--- Property validation function
   //---
@@ -74,10 +74,6 @@ var g_Prefs : Prefs? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    awakeFromNib                                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mControllerArray = NSMutableArray ()
-
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
@@ -98,17 +94,17 @@ var g_Prefs : Prefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.setComputeFunction ({return compute_Prefs_mFullName (self.mName.value, self.mFirstName.value)})
-    mUpperCaseFullName.setComputeFunction ({return compute_Prefs_mUpperCaseFullName (self.mFullName.value)})
+    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.value, self.mFirstName.value)}
+    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.value)}
   //--- Install property observers for transients
     mName.addObserver (mFullName.event, inTrigger:true)
     mFirstName.addObserver (mFullName.event, inTrigger:true)
     mFullName.addObserver (mUpperCaseFullName.event, inTrigger:true)
-  //--- Install controller for transients
-    mControllerArray.addObject (Controller_Prefs_mName_PMTextField_value (object:self, outlet:mNameTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_Prefs_mFirstName_PMTextField_value (object:self, outlet:mFirstNameTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_Prefs_mFullName_PMTextField_rvalue (object:self, outlet:mFullNameTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_Prefs_mUpperCaseFullName_PMTextField_rvalue (object:self, outlet:mUpperCaseFullNameTextField, file:__FILE__, line:__LINE__))
+  //--- Install bindings
+    mFirstNameTextField?.bind_value (self.mFirstName, file:__FILE__, line:__LINE__, sendContinously:false)
+    mFullNameTextField?.bind_readOnlyValue (self.mFullName, file:__FILE__, line:__LINE__)
+    mNameTextField?.bind_value (self.mName, file:__FILE__, line:__LINE__, sendContinously:false)
+    mUpperCaseFullNameTextField?.bind_readOnlyValue (self.mUpperCaseFullName, file:__FILE__, line:__LINE__)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

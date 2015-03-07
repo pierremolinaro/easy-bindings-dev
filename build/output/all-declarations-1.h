@@ -5021,6 +5021,16 @@ class GALGAS_string callCategoryReader_generateAddObserverCall (const class cPtr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                Category Reader '@unifiedTypeMap-proxy defaultValue'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_defaultValue (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                           Category Reader '@unifiedTypeMap-proxy preferencesSwiftGetter'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5301,6 +5311,7 @@ extern const char * gWrapperFileContent_5_outletClassGeneration ;
 extern const char * gWrapperFileContent_6_outletClassGeneration ;
 extern const char * gWrapperFileContent_7_outletClassGeneration ;
 extern const char * gWrapperFileContent_8_outletClassGeneration ;
+extern const char * gWrapperFileContent_9_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5316,6 +5327,7 @@ extern const cRegularFileWrapper gWrapperFile_5_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_6_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_7_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_9_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

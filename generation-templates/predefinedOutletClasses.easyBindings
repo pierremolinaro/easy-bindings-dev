@@ -29,4 +29,6 @@ outletClass PMTableView ;
 
 outletClass PMTextField ;
 binding PMTextField $value : property String {sendContinously : Bool} ;
-binding PMTextField $rvalue : transient String ;
+
+outletClass PMReadOnlyTextField ;
+binding PMReadOnlyTextField $readOnlyValue : transient String ;
