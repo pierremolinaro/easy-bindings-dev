@@ -1,0 +1,126 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  AST                                                                                                                 *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @controllerBindingOptionList {
+  @lstring mOptionName
+  @lstring mOptionTypeName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @outletClassBindingSpecificationList {
+  @bool mIsUserDefined
+  @lstring mBindingName
+  @lstring mModelTypeName
+  @bool mModelShouldBeWritableProperty
+  @controllerBindingOptionList mBindingOptionList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+listmap @bindingSpecificationListMap (@outletClassBindingSpecificationList)
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SYNTAX                                                                                                              *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  rule <binding_specification>
+    ?let @bool inIsUserDefined
+    ?!@bindingSpecificationListMap ioControllerTemplateList
+  {
+    $binding$
+    $Identifier$ ?let @lstring outletClassName
+    $bindingName$ ?let @lstring bindingName
+    $:$
+    @bool modelShouldBeWritableProperty
+    select
+      $property$
+      modelShouldBeWritableProperty = true
+    or
+      $transient$
+      modelShouldBeWritableProperty = false
+    end
+    $Identifier$ ?let @lstring modelTypeName
+    
+    @controllerBindingOptionList bindingOptionList = {}
+    select
+    or
+      ${$
+      repeat
+        $identifier$ ?let @lstring optionName
+        $:$
+        $Identifier$ ?let @lstring optionType
+        bindingOptionList += !optionName !optionType
+      while
+        $,$
+      end
+      $}$
+    end
+    $;$
+    ioControllerTemplateList +=
+      !outletClassName.string
+      !inIsUserDefined
+      !bindingName
+      !modelTypeName
+      !modelShouldBeWritableProperty
+      !bindingOptionList
+  }
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SEMANTICS                                                                                                           *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @bindingSpecificationMap {
+  @outletBindingSpecificationMap mBindingMap
+  insert insertKey error message "the '%K' controller template is already declared in %L"
+  search searchKey error message "there is no '%K' controller template"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @outletBindingSpecificationMap {
+  @unifiedTypeMap-proxy mModelTypeProxy
+  @bool mModelShouldBeWritableProperty
+  @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList
+  insert insertKey error message "the '%K' controller template is already declared in %L"
+  search searchKey error message "there is no '%K' controller template"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc buildControllerTemplateMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @bindingSpecificationListMap inBindingSpecificationListMap
+  !@bindingSpecificationMap outTemplateControllerMap
+{
+  outTemplateControllerMap = {}
+  for (key bindingList) in inBindingSpecificationListMap do
+    @outletBindingSpecificationMap outletBindingSpecificationMap = {}
+    for () in bindingList do
+      let modelTypeProxy = @unifiedTypeMap-proxy.searchKey { !inUnifiedTypeMap !mModelTypeName}
+      @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+      for () in mBindingOptionList do
+        let bindingOptionTypeProxy = @unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !mOptionTypeName}
+        controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy
+      end
+      [!?outletBindingSpecificationMap insertKey
+        !mBindingName
+        !modelTypeProxy
+        !mModelShouldBeWritableProperty
+        !controllerBindingOptionDecoratedList
+      ]
+    end
+    [!?outTemplateControllerMap insertKey
+      ![key nowhere]
+      !outletBindingSpecificationMap
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

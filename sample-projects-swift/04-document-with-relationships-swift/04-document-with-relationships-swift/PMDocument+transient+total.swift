@@ -21,7 +21,7 @@ func compute_PMDocument_total (arrayOf_aValue : NSArray /* [NameEntity_aValue] *
   var total = 0
   for object in arrayOf_aValue {
     let managedObject = object as! NameEntity
-    total += managedObject.aValue
+    total += managedObject.aValue.value
   }
   return total
 //--- END OF USER ZONE 2

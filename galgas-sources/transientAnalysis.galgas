@@ -187,7 +187,7 @@ override method @transientPreferenceDependencyAST buildTransientDependencyGraph
     ?* #?@typeKind kind
     ?5*
     ?let @decoratedObservablePropertyMap observablePropertyMap
-    ?6*
+    ?5*
   ]
 #---
   [observablePropertyMap searchKey
@@ -459,7 +459,7 @@ override method @transientPreferenceDependencyAST transientDependencySemanticAna
     ?let @typeKind kind
     ?5*
     ?let @decoratedObservablePropertyMap observablePropertyMap
-    ?6*
+    ?5*
   ]
 #--- Check
   if kind != @typeKind. preferencesType then

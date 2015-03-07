@@ -167,7 +167,7 @@ abstract getter @abstractTransientDependencyForGeneration generateAddObserverCal
 #-----------------------------------------------------------------------------*
 
 override getter @transientControllerDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = mControllerName.string + "?.addObserverOf_" + mMasterName
+  outResult = mControllerName.string + "?." + mMasterName + ".addObserver"
 }
 
 #-----------------------------------------------------------------------------*
@@ -197,7 +197,7 @@ override getter @transientRootDependencyForGeneration generateAddObserverCall ->
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootRelationshipDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = "rootObject.addObserverOf_" + mRelationshipName + "_" + mMasterName
+  outResult = "rootObject." + mRelationshipName + ".addObserverOf_" + mMasterName
 }
 
 #-----------------------------------------------------------------------------*

@@ -113,7 +113,7 @@ end
 %
 for () in BOUND_COLUMNS do
 %        if let col_%!mObservablePropertyName% : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("%!mColumnName%") {\n%
-%          col_%!mObservablePropertyName%.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%", ascending:true)\n%
+%          col_%!mObservablePropertyName%.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true)\n%
 %        }\n%
 end
 
@@ -137,7 +137,7 @@ end
     for managedObject : %!ELEMENT_TYPE_NAME% in mObjectSet {
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
+%      managedObject.%!mObservablePropertyName%.removeObserver (eventModelChange, inTrigger:false)\n%
 end
 %    }
   }
@@ -197,14 +197,14 @@ end
   //--------------------------- Update observers for handling model change
     let oldObjectSet = mObjectSet
     mObjectSet = Set ()
-    mObjectSet.unionInPlace (mObject.%!RELATIONSHIP_NAME%)
+    mObjectSet.unionInPlace (mObject.%!RELATIONSHIP_NAME%.values)
   //--- Removed object set
     var removedObjectSet = oldObjectSet
     removedObjectSet.subtractInPlace (mObjectSet)
     for managedObject : %!ELEMENT_TYPE_NAME% in removedObjectSet {
 %
 for () in BOUND_COLUMNS do
-%      managedObject.removeObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
+%      managedObject.%!mObservablePropertyName%.removeObserver (eventModelChange, inTrigger:false)\n%
 end
 %    }
   //--- Added object set
@@ -213,12 +213,12 @@ end
     for managedObject : %!ELEMENT_TYPE_NAME% in addedObjectSet {
 %
 for () in BOUND_COLUMNS do
-%      managedObject.addObserverOf_%!mObservablePropertyName% (eventModelChange, inTrigger:false)\n%
+%      managedObject.%!mObservablePropertyName%.addObserver (eventModelChange, inTrigger:false)\n%
 end
 %    }
   //-------------------------- Sort objects
     let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
-    var currentObjectArrayAsMutableArray = NSMutableArray (array: mObject.%!RELATIONSHIP_NAME%)
+    var currentObjectArrayAsMutableArray = NSMutableArray (array: mObject.%!RELATIONSHIP_NAME%.values)
     currentObjectArrayAsMutableArray.sortUsingDescriptors (sortDescriptors)
     mSortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<%!ELEMENT_TYPE_NAME%>
   //-------------------------- Build new selected objects array
@@ -316,10 +316,10 @@ for () in BOUND_COLUMNS do
       let row = tableView.rowForView (sender)
       if row >= 0 {
         let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
-        let validationResult = object.validate_%!mObservablePropertyName% (%![mPropertyType transformerForTableViewAction !"sender"]%)
+        let validationResult = object.%!mObservablePropertyName%.validate (%![mPropertyType transformerForTableViewAction !"sender"]%)
         switch validationResult {
         case PMValidationResult.ok :
-          object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
+          object.%!mObservablePropertyName%.value = %![mPropertyType transformerForTableViewAction !"sender"]%
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -331,9 +331,9 @@ for () in BOUND_COLUMNS do
             alert.addButtonWithTitle ("Discard Change")
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
-                object.removeObserverOf_%!mObservablePropertyName% (self.eventModelChange, inTrigger:false)
-                object.%!mObservablePropertyName% = %![mPropertyType transformerForTableViewAction !"sender"]%
-                object.addObserverOf_%!mObservablePropertyName% (self.eventModelChange, inTrigger:false)
+                object.%!mObservablePropertyName%.removeObserver(self.eventModelChange, inTrigger:false)
+                object.%!mObservablePropertyName%.value = %![mPropertyType transformerForTableViewAction !"sender"]%
+                object.%!mObservablePropertyName%.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
           }
@@ -353,12 +353,12 @@ end
       appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
     var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:mUndoManager!)
-    var array = mObject.%!RELATIONSHIP_NAME%
+    var array = mObject.%!RELATIONSHIP_NAME%.values
     array.append (newObject)
     if mSelectNewObject {
       mSelectedObjectArray = [newObject]
     }
-    mObject.%!RELATIONSHIP_NAME% = array
+    mObject.%!RELATIONSHIP_NAME%.values = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -368,7 +368,7 @@ end
   func remove (inSender : AnyObject!) {
     if mSelectedObjectArray.count > 0 {
       if let tableView = mTableView {
-        var newObjectArray = mObject.%!RELATIONSHIP_NAME%
+        var newObjectArray = mObject.%!RELATIONSHIP_NAME%.values
         for object in mSelectedObjectArray {
           let optItx = find (newObjectArray, object)
           if let idx = optItx {
@@ -387,7 +387,7 @@ end
             mSelectedObjectArray = [newObjectArray.last!]
           }
         }
-        mObject.%!RELATIONSHIP_NAME% = newObjectArray
+        mObject.%!RELATIONSHIP_NAME%.values = newObjectArray
       }
     }
   }
@@ -396,7 +396,13 @@ end
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var canRemove_private = false // As array is empty initially
+  var canRemove = PMPreferencesProperty <Bool> (false)
+  
+   func updateCanRemoveProperty () {
+     canRemove.value = mSelectedObjectArray.count > 0
+   }
+ 
+/*  private var canRemove_private = false // As array is empty initially
   var canRemove : Bool { get { return canRemove_private } }
   
   func updateCanRemoveProperty () {
@@ -427,7 +433,7 @@ end
       postTransientEvent (inObserver)
     }
   }
-
+*/
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

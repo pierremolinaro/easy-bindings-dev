@@ -15,7 +15,7 @@ message "a source text file with the .easyBindings extension"
 grammar easyBindings_grammar
 ?sourceFilePath:@lstring inSourceFile {
 #--- Parse predefined outlets
-  var declarationStruct =@astDeclarationStruct.default
+  var declarationStruct = @astDeclarationStruct.default
   grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
     !userDefined:false
     !?declarationStruct
@@ -39,7 +39,7 @@ grammar easyBindings_grammar
   declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Bool" !@typeKind. boolType}
   declarationStruct.mDeclarationList += !@predefinedTypeDeclaration. new { !false !"Double" !@typeKind. doubleType}
 #------------------------------------------------------- Type Inventory
-   var unifiedTypeMap =@unifiedTypeMap.emptyMap{}
+  var unifiedTypeMap = @unifiedTypeMap.emptyMap {}
   for () in  declarationStruct.mDeclarationList do
     [mDeclaration typeInventory !?unifiedTypeMap]
   end
@@ -108,7 +108,7 @@ private proc semanticAnalysis
   buildControllerTemplateMap (
     !inUnifiedTypeMap
     !inAstDeclarationStruct.mControllerTemplateList
-    ?let @templateControllerMap templateControllerMap
+    ?let @bindingSpecificationMap templateControllerMap
   )
 #--- Build outlet class map
   @outletClassMap outletClassMap = {}
@@ -202,16 +202,13 @@ private proc generateSwiftApplicationFiles
   @stringlist swiftFiles = {
     !"main",
     !"PMAllocationDebug",
-    !"easy-bindings-utilities",
-    !"PMPreferencesProperty",
-    !"PMTransientProperty"
+    !"easy-bindings-utilities"
   }
   if inHasEntities then
     swiftFiles += !"PMManagedObject"
     swiftFiles += !"PMManagedDocument"
     swiftFiles += !"PMUndoManager"
     swiftFiles += !"PMDataScanner"
-    swiftFiles += !"PMEntityProperty"
   end
   @stringlist xibFiles = {!"PMAllocationDebug"}
   var fw = [filewrapper swift_sources]

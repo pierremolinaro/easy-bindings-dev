@@ -39,54 +39,9 @@ rule <start_symbol>
   while
     <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST.mOutletClassDeclarationList
   while
-    <controller_template_declaration> !inIsUserDefined !?ioDeclarationAST.mControllerTemplateList
+    <binding_specification> !inIsUserDefined !?ioDeclarationAST.mControllerTemplateList
   end
   outEndOfFile = @location.here
-}
-
-#----------------------------------------------------------------------------*
-
-rule <controller_template_declaration>
-  ?let @bool inIsUserDefined
-  ?!@controllerTemplateList ioControllerTemplateList {
-  $controllerTemplate$
-  $Identifier$ ?let @lstring outletClassName
-  $binding$ ?let @lstring bindingName
-  $:$
-  @bool modelShouldBeWritableProperty
-  select
-    $property$
-    modelShouldBeWritableProperty = true
-  or
-    $transient$
-    modelShouldBeWritableProperty = false
-  end
-  $Identifier$ ?let @lstring modelTypeName
-  $identifier$ ?let @lstring modelName
-  
-  @controllerBindingOptionList bindingOptionList = {}
-  select
-  or
-    ${$
-    repeat
-      $identifier$ ?let @lstring optionName
-      $:$
-      $Identifier$ ?let @lstring optionType
-      bindingOptionList += !optionName !optionType
-    while
-      $,$
-    end
-    $}$
-  end
-  $;$
-  ioControllerTemplateList +=
-    !inIsUserDefined
-    !outletClassName
-    !bindingName
-    !modelTypeName
-    !modelName
-    !modelShouldBeWritableProperty
-    !bindingOptionList
 }
 
 #----------------------------------------------------------------------------*
@@ -156,62 +111,6 @@ rule <booleanMultipleBindingOperand>
 
 #----------------------------------------------------------------------------*
 
-rule <outlet_declaration>
-  ?!@outletDeclarationList ioOutletDeclarationList
-  ?!@bindingList ioBindingList {
-  $outlet$
-  $Identifier$ ?let outletTypeName
-  $identifier$ ?let outletName
-#--- Run
-  @runActionDescriptor runActionDescriptor = @runActionDescriptor. noAction 
-  @enabledBindingDescriptor enabledBindingDescriptor = @enabledBindingDescriptor. noEnabledBinding
-  repeat
-  while
-    $run$
-    if runActionDescriptor != @runActionDescriptor. noAction then
-      error @location.here : "duplicated $run binding"
-    end
-    @lstring runTargetName
-    select
-      $self$
-      runTargetName = @lstring. new { !"self" !@location.here}
-    or
-      $identifier$ ?runTargetName
-    end
-    $.$
-    $identifier$ ?let @lstring runActionName
-    runActionDescriptor = @runActionDescriptor. action { !target:runTargetName !action:runActionName}
-#--- Enabled
-  while
-    $enabled$
-    if enabledBindingDescriptor != @enabledBindingDescriptor. noEnabledBinding then
-      error @location.here : "duplicated $enabled binding"
-    end
-    <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-    enabledBindingDescriptor = @enabledBindingDescriptor. enabledBinding { !expression:bindingExpression}
-#--- Regular binding
-  while
-    $binding$ ?let @lstring bindingName
-    <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
-    <binding_option_list> ?let bindingOptions
-    ioBindingList +=
-      !@lstring. new { !"model" !bindingName.location}
-      !observablePropertyAST
-      !outletName
-      !bindingName
-      !bindingOptions
-  end
-#---
-  $;$
-  ioOutletDeclarationList +=
-    !outletTypeName
-    !outletName
-    !runActionDescriptor
-    !enabledBindingDescriptor
-}
-
-#----------------------------------------------------------------------------*
-
 rule <action_declaration>
   ?!@lstringlist ioActionDeclarationList {
   $action$
@@ -232,7 +131,6 @@ rule <preferences_declaration>
   var attributeList =@attributeList.emptyList{}
   var transientList =@transientList.emptyList{}
   var actionDeclarationList =@lstringlist.emptyList{}
-  var bindingList =@bindingList.emptyList{}
   var classArrayList =@classArrayList.emptyList{}
   repeat
   while
@@ -240,16 +138,16 @@ rule <preferences_declaration>
   while
     <attribute_declaration> !?attributeList
   while
-    <outlet_declaration> !?outletDeclarationList !?bindingList
+    <outlet_declaration> !?outletDeclarationList
   while
     <transient_declaration> !?transientList
-  while
-    <binding_declaration> !?bindingList
+#  while
+#    <binding_declaration> !?bindingList
   while
     <array_declaration> !?classArrayList
   end
   $}$
-  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration.new {
     !inIsUserDefined
     !preferencesName
     !@typeKind. preferencesType
@@ -260,9 +158,9 @@ rule <preferences_declaration>
     !@relationshipList {}
     !classArrayList
     !transientList
-    !bindingList
     !actionDeclarationList
-    !{}}
+    !{}
+  }
 }
 
 #----------------------------------------------------------------------------*
@@ -383,9 +281,9 @@ rule <document_declaration>
   while
     <transient_declaration> !?transientList
   while
-    <outlet_declaration> !?outletDeclarationList !?bindingList
-  while
-    <binding_declaration> !?bindingList
+    <outlet_declaration> !?outletDeclarationList
+#  while
+#    <binding_declaration> !?bindingList
   while
     <array_controller_declaration> !?arrayControllerDeclarationListAST
   end
@@ -401,7 +299,6 @@ rule <document_declaration>
     !@relationshipList {}
     !@classArrayList {}
     !transientList
-    !bindingList
     !actionDeclarationList
     !arrayControllerDeclarationListAST}
 }
@@ -481,7 +378,6 @@ rule <class_declaration>
     !@relationshipList {}
     !classArrayList
     !classTransientList
-    !@bindingList {}
     !@lstringlist {} # No action
     !{}}
 }
@@ -608,24 +504,24 @@ rule <observable_property> !@abstractObservablePropertyAST outObservableProperty
 
 #----------------------------------------------------------------------------*
 
-rule <binding_declaration>
-  ?!@bindingList ioBindingList {
-  $bind$
-  $identifier$ ?let @lstring modelSelectorName
-  $:$
-  <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
-  $to$
-  $identifier$ ?let @lstring outletName
-  $binding$ ?let @lstring bindingName
-  <binding_option_list> ?let bindingOptions
-  $;$
-  ioBindingList +=
-    !modelSelectorName
-    !observablePropertyAST
-    !outletName
-    !bindingName
-    !bindingOptions
-}
+#rule <binding_declaration>
+#  ?!@bindingList ioBindingList {
+#  $bind$
+#  $identifier$ ?let @lstring modelSelectorName
+#  $:$
+#  <observable_property> ?let @abstractObservablePropertyAST observablePropertyAST
+#  $to$
+#  $identifier$ ?let @lstring outletName
+#  $bindingName$ ?let @lstring bindingName
+#  <binding_option_list> ?let bindingOptions
+#  $;$
+#  ioBindingList +=
+#    !modelSelectorName
+#    !observablePropertyAST
+#    !outletName
+#    !bindingName
+#    !bindingOptions
+#}
 
 #----------------------------------------------------------------------------*
 
@@ -690,7 +586,7 @@ rule <entity_declaration>
       !inverseIsToMany
   end
   $}$
-  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration. new {
+  ioDeclarationAST.mDeclarationList += !@unifiedTypeDeclaration.new {
     !inIsUserDefined
     !entityName
     !@typeKind. entityType
@@ -701,34 +597,8 @@ rule <entity_declaration>
     !relationshipList
     !@classArrayList {}
     !classTransientList
-    !@bindingList {}
     !@lstringlist {} # No action
     !{}}
-}
-
-#----------------------------------------------------------------------------*
-
-rule <outlet_class_declaration>
-  ?let @bool inIsUserDefined
-  ?!@outletClassDeclarationList ioOutletClassDeclarationList {
-  $outletClass$
-  $Identifier$ ?let @lstring outletClassName
-  @bool hasRunAction = false
-  @bool hasEnabled = false
-  repeat
-  while
-    $run$
-    hasRunAction = true
-  while
-    $enabled$
-    hasEnabled = true
-  end
-  $;$
-  ioOutletClassDeclarationList +=
-    !inIsUserDefined
-    !outletClassName
-    !hasRunAction
-    !hasEnabled
 }
 
 #----------------------------------------------------------------------------*

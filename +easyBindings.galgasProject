@@ -38,8 +38,11 @@ project (0:0:1) -> "easyBindings"{
   
   "galgas-sources/arrayControllerGeneration.galgas"
   
-  "galgas-sources/outletClassAnalysis.galgas"
-  "galgas-sources/outletClassGeneration.galgas"
+  "galgas-sources/outlet-class.galgas"
+
+  "galgas-sources/outlet-declaration.galgas"
+
+  "galgas-sources/binding-specification.galgas"
 
   "galgas-sources/controllerClassAnalysis.galgas"
   "galgas-sources/controllerClassGeneration.galgas"

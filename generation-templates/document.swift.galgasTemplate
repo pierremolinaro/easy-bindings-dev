@@ -35,7 +35,7 @@ for () in ATTRIBUTE_LIST do
   //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mAttributeName%_observers = NSMutableSet ()\n%
+% /* var %!mAttributeName%_observers = NSMutableSet ()\n%
 %  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
     didSet {
       if %!mAttributeName% != oldValue {
@@ -65,7 +65,30 @@ for () in ATTRIBUTE_LIST do
 
 %
 end
+% */ %
 end
+%  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+for () in ATTRIBUTE_LIST do
+%  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+end
+
+
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
+                      %> (PMTransientIndex.k_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%)\n%
+end
+
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -139,13 +162,13 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%, inTrigger:true)\n%
+%    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
 end
 end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.addObserverOf_%!mTomanyRelationshipName% (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:true)\n%
+% //   rootObject.%!mTomanyRelationshipName%.addObserver (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:true)\n%
 end
 %  //--------------------------- Simple controllers
 %for () in CONTROLLER_INSTANCIATION_LIST do
@@ -191,7 +214,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*\n\n%
-%  var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
+% /* var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
 %  var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
 %  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
 %    get {\n%
@@ -237,7 +260,7 @@ end
       event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
     }
     return event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache!
-  }\n
+  } */\n
 %end
 %
 

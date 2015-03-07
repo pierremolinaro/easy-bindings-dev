@@ -32,7 +32,6 @@ class @orBooleanMultipleBindingExpressionForGeneration,
 
 list @unifiedTypeProxySelectorList {
   @unifiedTypeMap-proxy mType
-  @lstring mSelector
 }
 
 #----------------------------------------------------------------------------*
@@ -70,7 +69,6 @@ sharedmap @unifiedTypeMap {
   @decoratedObservablePropertyMap mObservablePropertyMap
   @decoratedEntityRelationshipMap mCurrentRelationshipMap
   @actionMap mActionMap
-  @bindingList mBindingList
   @lstringlist mEnumConstantList
   @enumConstantMap mEnumConstantMap
   @arrayControllerMap mArrayControllerMap
@@ -133,6 +131,8 @@ map @decoratedOutletMap {
   @lstring mOutletTypeName
   @runActionDescriptor mRunActionDescriptor
   @enabledBindingDescriptor mEnabledBindingDescriptor
+  @regularBindingList mRegularBindingList
+
 }
 
 #----------------------------------------------------------------------------*
@@ -723,15 +723,6 @@ override method @listAsDefaultValue analyzeDefaultValueType
 #  @transientListForImplementation mTransientListForImplementation ;
 #  @fileInclusionSet mFileInclusionSet ;
 #  @attributeListForImplementation mAttributeListForImplementation ;
-#}
-#
-##----------------------------------------------------------------------------*
-#
-#class @outletClassGeneration extends @generation {
-#  @string mSuperClassName ;
-#  @protocolList mAdoptedProtocolList ;
-#  @bool mImplementsDeallocProtocol ;
-#  @outletClassBindingMap mCurrentBindingMap ;
 #}
 #
 ##----------------------------------------------------------------------------*

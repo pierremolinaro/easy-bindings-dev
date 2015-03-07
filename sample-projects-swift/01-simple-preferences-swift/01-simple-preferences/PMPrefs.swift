@@ -21,8 +21,8 @@ var g_PMPrefs : PMPrefs? = nil
   @IBOutlet var mColorWell : PMColorWell? = nil
   @IBOutlet var mContinousColorWell : PMColorWell? = nil
   @IBOutlet var mDatePicker : PMDatePicker? = nil
-  @IBOutlet var mInteger32ObserverTextField : PMNumberField? = nil
-  @IBOutlet var mInteger32TextField : PMNumberField? = nil
+  @IBOutlet var mInteger32ObserverTextField : PMReadOnlyIntField? = nil
+  @IBOutlet var mInteger32TextField : PMIntField? = nil
   @IBOutlet var mObserverColorWell : PMColorWell? = nil
   @IBOutlet var myObserverTextField : PMTextField? = nil
   @IBOutlet var myOtherTextField : PMTextField? = nil
@@ -32,10 +32,10 @@ var g_PMPrefs : PMPrefs? = nil
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mColor = PMPreferencesProperty <NSColor> (NSColor.yellowColor ())
-  var mDate = PMPreferencesProperty <NSDate> (NSDate ())
-  var mIntegerValue = PMPreferencesProperty <Int> (123)
-  var myString = PMPreferencesProperty <String> ("hello")
+  var mColor = PMStoredProperty <NSColor> (NSColor.yellowColor ())
+  var mDate = PMStoredProperty <NSDate> (NSDate ())
+  var mIntegerValue = PMStoredProperty <Int> (123)
+  var myString = PMStoredProperty <String> ("hello")
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -61,22 +61,22 @@ var g_PMPrefs : PMPrefs? = nil
     var value : AnyObject?
     value = ud.objectForKey ("PMPrefs:mColor")
     if value != nil {
-      mColor.value = NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor
+      mColor.setValue (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
     }
     value = ud.objectForKey ("PMPrefs:mDate")
     if value != nil {
-      mDate.value = value as! NSDate
+      mDate.setValue (value as! NSDate)
     }
     value = ud.objectForKey ("PMPrefs:mIntegerValue")
     if value != nil {
-      mIntegerValue.value = (value as! NSNumber).integerValue
+      mIntegerValue.setValue ((value as! NSNumber).integerValue)
     }
     value = ud.objectForKey ("PMPrefs:myString")
     if value != nil {
-      myString.value = value as! String
+      myString.setValue (value as! String)
     }
   //--- Property validation function
-    mIntegerValue.setValidationFunction (self.validate_mIntegerValue)
+    mIntegerValue.validationFunction = self.validate_mIntegerValue
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
@@ -88,10 +88,6 @@ var g_PMPrefs : PMPrefs? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    awakeFromNib                                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mControllerArray = NSMutableArray ()
-
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
@@ -133,16 +129,16 @@ var g_PMPrefs : PMPrefs? = nil
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
-  //--- Install controller for transients
-    mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myOtherTextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.addObject (Controller_PMPrefs_myString_PMTextField_value (object:self, outlet:myObserverTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_PMPrefs_mColor_PMColorWell_color (object:self, outlet:mContinousColorWell, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.addObject (Controller_PMPrefs_mColor_PMColorWell_color (object:self, outlet:mColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_PMPrefs_mColor_PMColorWell_color (object:self, outlet:mObserverColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.addObject (Controller_PMPrefs_mDate_PMDatePicker_date (object:self, outlet:mDatePicker, file:__FILE__, line:__LINE__))
-    mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_value (object:self, outlet:mInteger32TextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.addObject (Controller_PMPrefs_mIntegerValue_PMNumberField_rvalue (object:self, outlet:mInteger32ObserverTextField, file:__FILE__, line:__LINE__))
+  //--- Install bindings
+    mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    mContinousColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:true)
+    mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
+    mInteger32ObserverTextField?.bind_readOnlyValue (self.mIntegerValue, file:__FILE__, line:__LINE__)
+    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
+    mObserverColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    myObserverTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
+    myOtherTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:true)
+    myTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

@@ -29,7 +29,7 @@ end
 
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%  var %!mAttributeName% = PMPreferencesProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  var %!mAttributeName% = PMStoredProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 %
 
@@ -83,14 +83,14 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
     %    if value != nil {\n%
-    %      %!mAttributeName%.value = %![mAttributeType preferencesSwiftGetter]%\n%
+    %      %!mAttributeName%.setValue (%![mAttributeType preferencesSwiftGetter]%)\n%
     %    }\n%
 end
 %  //--- Property validation function
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
   if mNeedsValidation then
-%    %!mAttributeName%.setValidationFunction (self.validate_%!mAttributeName%)\n%
+%    %!mAttributeName%.validationFunction = self.validate_%!mAttributeName%\n%
   end
 end
 
@@ -125,10 +125,6 @@ end
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    awakeFromNib                                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mControllerArray = NSMutableArray ()
-
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
@@ -170,10 +166,14 @@ for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
 end
 end
-%  //--- Install controller for transients
+%  //--- Install bindings
 %
-for () in CONTROLLER_INSTANCIATION_STRINGLIST do
-%    mControllerArray.addObject (%!mValue%)\n%
+for () in REGULAR_BINDINGS_GENERATION_LIST do
+  %    %!mOutletName%?.bind_%!mBindingName% (%
+  for () in mBoundObjectStringList do
+    !mValue%, %
+  end
+  %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
 end
 %  }
   

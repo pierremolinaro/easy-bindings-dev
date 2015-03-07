@@ -11,6 +11,210 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                            Routine 'generateTransients'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTransients (const class GALGAS_string constinArgument0,
+                                 const class GALGAS_transientDependencyGraphNodeInfoList constinArgument1,
+                                 const class GALGAS_transientListForGeneration constinArgument2,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Filewrapper 'transientManager'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_6_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_7_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_8_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_9_transientManager ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                             Filewrapper template 'transientManager applicationInSwift'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_transientManager_applicationInSwift (class C_Compiler * inCompiler,
+                                                                       const class GALGAS_transientDependencyGraphNodeInfoList & in_PROPERTY_5F_LIST,
+                                                                       const class GALGAS_stringlist & in_TRANSIENT_5F_LIST
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Filewrapper template 'transientManager transientComputationFunctionFile'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
+                                                                                     const class GALGAS_string & in_KIND_5F_NAME,
+                                                                                     const class GALGAS_string & in_TRANSIENT_5F_NAME,
+                                                                                     const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
+                                                                                     const class GALGAS_unifiedTypeMap_2D_proxy & in_TRANSIENT_5F_TYPE
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Category Reader '@unifiedTypeMap-proxy transientReturnTypeName'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transientReturnTypeName (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                            class C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              Routine 'generateActions'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateActions (const class GALGAS_string constinArgument0,
+                              const class GALGAS_actionListForGeneration constinArgument1,
+                              class C_Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Filewrapper 'actionGenerationTemplate'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_6_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_7_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_8_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_9_actionGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                          Filewrapper template 'actionGenerationTemplate actionGeneration'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class C_Compiler * inCompiler,
+                                                                             const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                             const class GALGAS_string & in_ACTION_5F_NAME
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Routine 'generateValidationRoutineStubs'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
+                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        Filewrapper 'validationStubExtension'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_6_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_7_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_8_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_9_validationStubExtension ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Filewrapper template 'validationStubExtension actionGeneration'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
+                                                                            const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
+                                                                            const class GALGAS_string & in_MODEL_5F_NAME,
+                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        Filewrapper 'predefinedOutletClasses'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_1_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_2_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_4_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_5_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_6_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_7_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_8_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_9_predefinedOutletClasses ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Filewrapper template 'predefinedOutletClasses sourceFile'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                             Routine 'semanticAnalysis'                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -62,8 +266,6 @@ extern const char * gWrapperFileContent_5_swift_5F_sources ;
 extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
-extern const char * gWrapperFileContent_9_swift_5F_sources ;
-extern const char * gWrapperFileContent_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -79,8 +281,6 @@ extern const cRegularFileWrapper gWrapperFile_5_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
-extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
-extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1270,6 +1470,28 @@ class GALGAS_string callCategoryReader_modelSignatureForArrayController (const c
                                                                          const GALGAS_unifiedTypeMap_2D_proxy & constin_inRootypeProxy,
                                                                          const GALGAS_string & constin_inSelfTypeName,
                                                                          C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Category Reader '@unifiedTypeMap-proxy valueAccessorForExplorerWindow'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_valueAccessorForExplorerWindow (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                   const class GALGAS_string & constinArgument0,
+                                                                   class C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Category Reader '@unifiedTypeMap-proxy transformerForRegisterUndoWithTarget'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                                         const class GALGAS_string & constinArgument0,
+                                                                         class C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*

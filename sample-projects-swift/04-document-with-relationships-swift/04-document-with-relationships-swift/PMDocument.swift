@@ -31,6 +31,18 @@ import Cocoa
   //    Document attributes                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var canRemoveString = PMTransientProperty <String> (PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString)
+  var countItemMessage = PMTransientProperty <String> (PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage)
+  var total = PMTransientProperty <Int> (PMTransientIndex.k_document_2E_PMDocument_2E_total)
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -108,15 +120,15 @@ import Cocoa
       line:__LINE__
     )
   //--------------------------- Transient observers
-    nameController?.addObserverOf_canRemove (event_document_2E_PMDocument_2E_canRemoveString, inTrigger:true)
-    rootObject.mNames.addObserver (event_document_2E_PMDocument_2E_countItemMessage, inTrigger:true)
-    rootObject.addObserverOf_mNames_aValue (event_document_2E_PMDocument_2E_total, inTrigger:true)
+    nameController?.canRemove.addObserver (canRemoveString.event, inTrigger:true)
+    rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)
+    rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
   //--------------------------- Array controller as observers
-    rootObject.addObserverOf_mNames (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:true)
+ //   rootObject.mNames.addObserver (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:true)
   //--------------------------- Simple controllers
     mControllerArray.append (EnableController_PMDocument_removePathButton (object0:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_mNames_count_PMNumberField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
+    mControllerArray.append (Controller_MyRootEntity_mNames_PMNumberField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))
     mControllerArray.append (Controller_PMDocument_total_PMNumberField_rvalue (object:self, outlet:totalTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
@@ -150,7 +162,7 @@ import Cocoa
   //    Transient: canRemoveString                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemoveString_observers : [Int : PMTransientEventProtocol] = [:]
+ /* var canRemoveString_observers : [Int : PMTransientEventProtocol] = [:]
   var canRemoveString_cache : String?
   var canRemoveString : String {
     get {
@@ -191,13 +203,13 @@ import Cocoa
       event_document_2E_PMDocument_2E_canRemoveString_cache = PMEvent_document_2E_PMDocument_2E_canRemoveString (object:self)
     }
     return event_document_2E_PMDocument_2E_canRemoveString_cache!
-  }
+  } */
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: countItemMessage                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var countItemMessage_observers : [Int : PMTransientEventProtocol] = [:]
+ /* var countItemMessage_observers : [Int : PMTransientEventProtocol] = [:]
   var countItemMessage_cache : String?
   var countItemMessage : String {
     get {
@@ -238,13 +250,13 @@ import Cocoa
       event_document_2E_PMDocument_2E_countItemMessage_cache = PMEvent_document_2E_PMDocument_2E_countItemMessage (object:self)
     }
     return event_document_2E_PMDocument_2E_countItemMessage_cache!
-  }
+  } */
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient: total                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var total_observers : [Int : PMTransientEventProtocol] = [:]
+ /* var total_observers : [Int : PMTransientEventProtocol] = [:]
   var total_cache : Int?
   var total : Int {
     get {
@@ -285,7 +297,7 @@ import Cocoa
       event_document_2E_PMDocument_2E_total_cache = PMEvent_document_2E_PMDocument_2E_total (object:self)
     }
     return event_document_2E_PMDocument_2E_total_cache!
-  }
+  } */
 
 
 

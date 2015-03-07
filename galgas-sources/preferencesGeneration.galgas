@@ -7,14 +7,7 @@ list @preferenceListForGeneration {
   @attributeListForGeneration mAttributeListForGeneration
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @decoratedOutletMap mOutletMap
-  @stringlist mControllerInstanciationStringList
-}
-
-#----------------------------------------------------------------------------*
-
-list @outletGenerationList {
-  @string mOutletName
-  @string mOutletType
+  @regularBindingsGenerationList mRegularBindingsGenerationList
 }
 
 #----------------------------------------------------------------------------*
@@ -89,15 +82,15 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@decoratedOutletMap OUTLET_MAP
     ?@preferencesPropertyArrayMap ARRAY_MAP
     ?@controllerMap CONTROLLER_MAP
-    ?@stringlist CONTROLLER_INSTANCIATION_STRINGLIST
-  
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
 }
 
 #----------------------------------------------------------------------------*
 
 proc generatePreferences
   ?let @preferenceListForGeneration inPreferenceListForGeneration
-  ?let @string inOutputDirectory {
+  ?let @string inOutputDirectory
+{
   for () in inPreferenceListForGeneration do
     let s = [filewrapper prefsGenerationTemplate.preferencesInSwift
       !mPreferenceName
@@ -106,7 +99,7 @@ proc generatePreferences
       !mOutletMap
       !{}
       !{}
-      !mControllerInstanciationStringList
+      !mRegularBindingsGenerationList
     ]
     [@string generateFile
       !inOutputDirectory

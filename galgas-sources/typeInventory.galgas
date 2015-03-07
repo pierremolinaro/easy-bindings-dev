@@ -15,7 +15,6 @@ override method @predefinedTypeDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
-    !@bindingList {}
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
     !{} # No array controller
@@ -41,7 +40,6 @@ override method @enumDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
-    !@bindingList {}
     !mEnumConstantNameList
     !enumConstantMap
     !{} # No array controller
@@ -70,7 +68,6 @@ override method @structDeclaration typeInventory
     !@decoratedObservablePropertyMap {}
     !@decoratedEntityRelationshipMap {}
     !@actionMap {}
-    !@bindingList {}
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
     !{} # No array controller
@@ -195,6 +192,7 @@ override method @unifiedTypeDeclaration typeInventory
       !mOutletType
       !mRunDescriptor
       !mEnabledBindingDescriptor
+      !mRegularBindingList
     ]
   end
 #--------------------------------------------------- Analyze actions
@@ -239,7 +237,6 @@ override method @unifiedTypeDeclaration typeInventory
     !observablePropertyMap
     !currentRelationshipMap
     !documentActionMap
-    !mBindingList
     !@lstringlist {} # mEnumConstantList
     !@enumConstantMap {} # mEnumConstantMap
     !arrayControllerMap
