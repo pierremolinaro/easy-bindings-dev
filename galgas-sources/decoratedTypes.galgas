@@ -30,12 +30,6 @@ class @orBooleanMultipleBindingExpressionForGeneration,
 
 #----------------------------------------------------------------------------*
 
-list @unifiedTypeProxySelectorList {
-  @unifiedTypeMap-proxy mType
-}
-
-#----------------------------------------------------------------------------*
-
 list @unifiedTypeProxyList {
   @unifiedTypeMap-proxy mType
 }

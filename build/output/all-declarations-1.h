@@ -2934,6 +2934,295 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityRelationshipL
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                      @observablePropertyList_2D_element struct                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_observablePropertyList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_abstractObservablePropertyAST mAttribute_mObservableProperty ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_observablePropertyList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_observablePropertyList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_observablePropertyList_2D_element (const GALGAS_abstractObservablePropertyAST & in_mObservableProperty) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_observablePropertyList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_observablePropertyList_2D_element constructor_new (const class GALGAS_abstractObservablePropertyAST & inOperand0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractObservablePropertyAST reader_mObservableProperty (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_observablePropertyList_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                            @outletBindingModelList list                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_outletBindingModelList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_outletBindingModelList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_outletBindingModelList (cSharedList * inSharedListPtr) ;
+
+//--------------------------------- Element constructor used by listmap
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
+                                                  const class GALGAS_bool & in_mModelIsTransient,
+                                                  const class GALGAS_location & in_mErrorLocation
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_outletBindingModelList extractObject (const GALGAS_object & inObject,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_outletBindingModelList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static GALGAS_outletBindingModelList constructor_listWithValue (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                                           const class GALGAS_bool & inOperand1,
+                                                                           const class GALGAS_location & inOperand2
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_outletBindingModelList inOperand
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                      const class GALGAS_bool & inOperand1,
+                                                      const class GALGAS_location & inOperand2
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- . (concat) operator
+  public : VIRTUAL_IN_DEBUG GALGAS_outletBindingModelList operator_concat (const GALGAS_outletBindingModelList & inOperand
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_outletBindingModelList add_operation (const GALGAS_outletBindingModelList & inOperand,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_unifiedTypeMap_2D_proxy constinArgument0,
+                                                         class GALGAS_bool constinArgument1,
+                                                         class GALGAS_location constinArgument2,
+                                                         class GALGAS_uint constinArgument3,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                    class GALGAS_bool & outArgument1,
+                                                    class GALGAS_location & outArgument2,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                   class GALGAS_bool & outArgument1,
+                                                   class GALGAS_location & outArgument2,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                         class GALGAS_bool & outArgument1,
+                                                         class GALGAS_location & outArgument2,
+                                                         class GALGAS_uint constinArgument3,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                               class GALGAS_bool & outArgument1,
+                                               class GALGAS_location & outArgument2,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                              class GALGAS_bool & outArgument1,
+                                              class GALGAS_location & outArgument2,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mErrorLocationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelIsTransientAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingModelList reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingModelList reader_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_outletBindingModelList ;
+ 
+} ; // End of GALGAS_outletBindingModelList class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_outletBindingModelList : public cGenericAbstractEnumerator {
+  public : cEnumerator_outletBindingModelList (const GALGAS_outletBindingModelList & inEnumeratedObject,
+                                               const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_unifiedTypeMap_2D_proxy current_mModelTypeProxy (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mModelIsTransient (LOCATION_ARGS) const ;
+  public : class GALGAS_location current_mErrorLocation (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_outletBindingModelList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @outletBindingModelList_2D_element struct                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_outletBindingModelList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_unifiedTypeMap_2D_proxy mAttribute_mModelTypeProxy ;
+  public : GALGAS_bool mAttribute_mModelIsTransient ;
+  public : GALGAS_location mAttribute_mErrorLocation ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_outletBindingModelList_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_outletBindingModelList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletBindingModelList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_outletBindingModelList_2D_element (const GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
+                                                     const GALGAS_bool & in_mModelIsTransient,
+                                                     const GALGAS_location & in_mErrorLocation) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_outletBindingModelList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_outletBindingModelList_2D_element constructor_new (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                                            const class GALGAS_bool & inOperand1,
+                                                                            const class GALGAS_location & inOperand2
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_outletBindingModelList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mErrorLocation (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelIsTransient (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxy (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_outletBindingModelList_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                   @controllerBindingOptionList_2D_element struct                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3005,6 +3294,77 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOp
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                             @outletClassBindingSpecificationModelList_2D_element struct                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_outletClassBindingSpecificationModelList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_lstring mAttribute_mModelTypeName ;
+  public : GALGAS_bool mAttribute_mModelShouldBeWritableProperty ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_outletClassBindingSpecificationModelList_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_outletClassBindingSpecificationModelList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletClassBindingSpecificationModelList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_outletClassBindingSpecificationModelList_2D_element (const GALGAS_lstring & in_mModelTypeName,
+                                                                       const GALGAS_bool & in_mModelShouldBeWritableProperty) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_outletClassBindingSpecificationModelList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_outletClassBindingSpecificationModelList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                              const class GALGAS_bool & inOperand1
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_outletClassBindingSpecificationModelList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mModelTypeName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_outletClassBindingSpecificationModelList_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                      @outletClassBindingSpecificationList list                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3020,8 +3380,7 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_bool & in_mIsUserDefined,
                                                   const class GALGAS_lstring & in_mBindingName,
-                                                  const class GALGAS_lstring & in_mModelTypeName,
-                                                  const class GALGAS_bool & in_mModelShouldBeWritableProperty,
+                                                  const class GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
                                                   const class GALGAS_controllerBindingOptionList & in_mBindingOptionList
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -3040,9 +3399,8 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 
   public : static GALGAS_outletClassBindingSpecificationList constructor_listWithValue (const class GALGAS_bool & inOperand0,
                                                                                         const class GALGAS_lstring & inOperand1,
-                                                                                        const class GALGAS_lstring & inOperand2,
-                                                                                        const class GALGAS_bool & inOperand3,
-                                                                                        const class GALGAS_controllerBindingOptionList & inOperand4
+                                                                                        const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                                        const class GALGAS_controllerBindingOptionList & inOperand3
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -3052,9 +3410,8 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_bool & inOperand0,
                                                       const class GALGAS_lstring & inOperand1,
-                                                      const class GALGAS_lstring & inOperand2,
-                                                      const class GALGAS_bool & inOperand3,
-                                                      const class GALGAS_controllerBindingOptionList & inOperand4
+                                                      const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                      const class GALGAS_controllerBindingOptionList & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_outletClassBindingSpecificationList operator_concat (const GALGAS_outletClassBindingSpecificationList & inOperand
@@ -3069,35 +3426,31 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_bool constinArgument0,
                                                          class GALGAS_lstring constinArgument1,
-                                                         class GALGAS_lstring constinArgument2,
-                                                         class GALGAS_bool constinArgument3,
-                                                         class GALGAS_controllerBindingOptionList constinArgument4,
-                                                         class GALGAS_uint constinArgument5,
+                                                         class GALGAS_outletClassBindingSpecificationModelList constinArgument2,
+                                                         class GALGAS_controllerBindingOptionList constinArgument3,
+                                                         class GALGAS_uint constinArgument4,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_bool & outArgument0,
                                                     class GALGAS_lstring & outArgument1,
-                                                    class GALGAS_lstring & outArgument2,
-                                                    class GALGAS_bool & outArgument3,
-                                                    class GALGAS_controllerBindingOptionList & outArgument4,
+                                                    class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                    class GALGAS_controllerBindingOptionList & outArgument3,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_bool & outArgument0,
                                                    class GALGAS_lstring & outArgument1,
-                                                   class GALGAS_lstring & outArgument2,
-                                                   class GALGAS_bool & outArgument3,
-                                                   class GALGAS_controllerBindingOptionList & outArgument4,
+                                                   class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                   class GALGAS_controllerBindingOptionList & outArgument3,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_bool & outArgument0,
                                                          class GALGAS_lstring & outArgument1,
-                                                         class GALGAS_lstring & outArgument2,
-                                                         class GALGAS_bool & outArgument3,
-                                                         class GALGAS_controllerBindingOptionList & outArgument4,
-                                                         class GALGAS_uint constinArgument5,
+                                                         class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                         class GALGAS_controllerBindingOptionList & outArgument3,
+                                                         class GALGAS_uint constinArgument4,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -3105,17 +3458,15 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_bool & outArgument0,
                                                class GALGAS_lstring & outArgument1,
-                                               class GALGAS_lstring & outArgument2,
-                                               class GALGAS_bool & outArgument3,
-                                               class GALGAS_controllerBindingOptionList & outArgument4,
+                                               class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                               class GALGAS_controllerBindingOptionList & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_bool & outArgument0,
                                               class GALGAS_lstring & outArgument1,
-                                              class GALGAS_lstring & outArgument2,
-                                              class GALGAS_bool & outArgument3,
-                                              class GALGAS_controllerBindingOptionList & outArgument4,
+                                              class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                              class GALGAS_controllerBindingOptionList & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -3134,13 +3485,9 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritablePropertyAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mModelTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList reader_mOutletClassBindingSpecificationModelListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                           C_Compiler * inCompiler
+                                                                                                                                           COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationList reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                                       C_Compiler * inCompiler
@@ -3170,8 +3517,7 @@ class cEnumerator_outletClassBindingSpecificationList : public cGenericAbstractE
 //--- Current element access
   public : class GALGAS_bool current_mIsUserDefined (LOCATION_ARGS) const ;
   public : class GALGAS_lstring current_mBindingName (LOCATION_ARGS) const ;
-  public : class GALGAS_lstring current_mModelTypeName (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+  public : class GALGAS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
   public : class GALGAS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletClassBindingSpecificationList_2D_element current (LOCATION_ARGS) const ;
@@ -3191,8 +3537,7 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 //--------------------------------- Public data members
   public : GALGAS_bool mAttribute_mIsUserDefined ;
   public : GALGAS_lstring mAttribute_mBindingName ;
-  public : GALGAS_lstring mAttribute_mModelTypeName ;
-  public : GALGAS_bool mAttribute_mModelShouldBeWritableProperty ;
+  public : GALGAS_outletClassBindingSpecificationModelList mAttribute_mOutletClassBindingSpecificationModelList ;
   public : GALGAS_controllerBindingOptionList mAttribute_mBindingOptionList ;
 
 
@@ -3212,8 +3557,7 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 //--------------------------------- Native constructor
   public : GALGAS_outletClassBindingSpecificationList_2D_element (const GALGAS_bool & in_mIsUserDefined,
                                                                   const GALGAS_lstring & in_mBindingName,
-                                                                  const GALGAS_lstring & in_mModelTypeName,
-                                                                  const GALGAS_bool & in_mModelShouldBeWritableProperty,
+                                                                  const GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
                                                                   const GALGAS_controllerBindingOptionList & in_mBindingOptionList) ;
 
 //-- Start of generic part --*
@@ -3229,9 +3573,8 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 //--------------------------------- GALGAS constructors
   public : static GALGAS_outletClassBindingSpecificationList_2D_element constructor_new (const class GALGAS_bool & inOperand0,
                                                                                          const class GALGAS_lstring & inOperand1,
-                                                                                         const class GALGAS_lstring & inOperand2,
-                                                                                         const class GALGAS_bool & inOperand3,
-                                                                                         const class GALGAS_controllerBindingOptionList & inOperand4
+                                                                                         const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                                         const class GALGAS_controllerBindingOptionList & inOperand3
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -3252,9 +3595,7 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mIsUserDefined (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mModelTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList reader_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -3411,17 +3752,15 @@ class GALGAS_outletBindingSpecificationMap : public AC_GALGAS_map {
 
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_unifiedTypeMap_2D_proxy & inOperand1,
-                                                      const class GALGAS_bool & inOperand2,
-                                                      const class GALGAS_controllerBindingOptionDecoratedList & inOperand3,
+                                                      const class GALGAS_outletBindingSpecificationModelList & inOperand1,
+                                                      const class GALGAS_controllerBindingOptionDecoratedList & inOperand2,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void modifier_insertKey (class GALGAS_lstring constinArgument0,
-                                                     class GALGAS_unifiedTypeMap_2D_proxy constinArgument1,
-                                                     class GALGAS_bool constinArgument2,
-                                                     class GALGAS_controllerBindingOptionDecoratedList constinArgument3,
+                                                     class GALGAS_outletBindingSpecificationModelList constinArgument1,
+                                                     class GALGAS_controllerBindingOptionDecoratedList constinArgument2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
@@ -3430,22 +3769,16 @@ class GALGAS_outletBindingSpecificationMap : public AC_GALGAS_map {
                                                                                           C_Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void modifier_setMModelShouldBeWritablePropertyForKey (class GALGAS_bool constinArgument0,
-                                                                                   class GALGAS_string constinArgument1,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_setMModelTypeProxyForKey (class GALGAS_unifiedTypeMap_2D_proxy constinArgument0,
-                                                                    class GALGAS_string constinArgument1,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void modifier_setMOutletBindingSpecificationModelListForKey (class GALGAS_outletBindingSpecificationModelList constinArgument0,
+                                                                                         class GALGAS_string constinArgument1,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
-                                                   class GALGAS_unifiedTypeMap_2D_proxy & outArgument1,
-                                                   class GALGAS_bool & outArgument2,
-                                                   class GALGAS_controllerBindingOptionDecoratedList & outArgument3,
+                                                   class GALGAS_outletBindingSpecificationModelList & outArgument1,
+                                                   class GALGAS_controllerBindingOptionDecoratedList & outArgument2,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
@@ -3456,13 +3789,9 @@ class GALGAS_outletBindingSpecificationMap : public AC_GALGAS_map {
                                                                                                                                   C_Compiler * inCompiler
                                                                                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritablePropertyForKey (const class GALGAS_string & constinOperand0,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxyForKey (const class GALGAS_string & constinOperand0,
-                                                                                               C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationModelList reader_mOutletBindingSpecificationModelListForKey (const class GALGAS_string & constinOperand0,
+                                                                                                                                C_Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationMap reader_overriddenMap (C_Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
@@ -3490,8 +3819,7 @@ class cEnumerator_outletBindingSpecificationMap : public cGenericAbstractEnumera
 
 //--- Current element access
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
-  public : class GALGAS_unifiedTypeMap_2D_proxy current_mModelTypeProxy (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+  public : class GALGAS_outletBindingSpecificationModelList current_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
   public : class GALGAS_controllerBindingOptionDecoratedList current_mControllerBindingOptionDecoratedList (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletBindingSpecificationMap_2D_element current (LOCATION_ARGS) const ;
@@ -3738,20 +4066,154 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOp
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                      @outletBindingSpecificationModelList list                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_outletBindingSpecificationModelList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_outletBindingSpecificationModelList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_outletBindingSpecificationModelList (cSharedList * inSharedListPtr) ;
+
+//--------------------------------- Element constructor used by listmap
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
+                                                  const class GALGAS_bool & in_mModelShouldBeWritableProperty
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_outletBindingSpecificationModelList extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_outletBindingSpecificationModelList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static GALGAS_outletBindingSpecificationModelList constructor_listWithValue (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                                                        const class GALGAS_bool & inOperand1
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_outletBindingSpecificationModelList inOperand
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                      const class GALGAS_bool & inOperand1
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- . (concat) operator
+  public : VIRTUAL_IN_DEBUG GALGAS_outletBindingSpecificationModelList operator_concat (const GALGAS_outletBindingSpecificationModelList & inOperand
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_outletBindingSpecificationModelList add_operation (const GALGAS_outletBindingSpecificationModelList & inOperand,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_unifiedTypeMap_2D_proxy constinArgument0,
+                                                         class GALGAS_bool constinArgument1,
+                                                         class GALGAS_uint constinArgument2,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                    class GALGAS_bool & outArgument1,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                   class GALGAS_bool & outArgument1,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                                         class GALGAS_bool & outArgument1,
+                                                         class GALGAS_uint constinArgument2,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                               class GALGAS_bool & outArgument1,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_unifiedTypeMap_2D_proxy & outArgument0,
+                                              class GALGAS_bool & outArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritablePropertyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationModelList reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationModelList reader_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_outletBindingSpecificationModelList ;
+ 
+} ; // End of GALGAS_outletBindingSpecificationModelList class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_outletBindingSpecificationModelList : public cGenericAbstractEnumerator {
+  public : cEnumerator_outletBindingSpecificationModelList (const GALGAS_outletBindingSpecificationModelList & inEnumeratedObject,
+                                                            const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_unifiedTypeMap_2D_proxy current_mModelTypeProxy (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_outletBindingSpecificationModelList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              Class for element of '@outletBindingSpecificationMap' map                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cMapElement_outletBindingSpecificationMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_unifiedTypeMap_2D_proxy mAttribute_mModelTypeProxy ;
-  public : GALGAS_bool mAttribute_mModelShouldBeWritableProperty ;
+  public : GALGAS_outletBindingSpecificationModelList mAttribute_mOutletBindingSpecificationModelList ;
   public : GALGAS_controllerBindingOptionDecoratedList mAttribute_mControllerBindingOptionDecoratedList ;
 
 //--- Constructor
   public : cMapElement_outletBindingSpecificationMap (const GALGAS_lstring & inKey,
-                                                      const GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
-                                                      const GALGAS_bool & in_mModelShouldBeWritableProperty,
+                                                      const GALGAS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
                                                       const GALGAS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionDecoratedList
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -3777,8 +4239,7 @@ class cMapElement_outletBindingSpecificationMap : public cMapElement {
 class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_unifiedTypeMap_2D_proxy mAttribute_mModelTypeProxy ;
-  public : GALGAS_bool mAttribute_mModelShouldBeWritableProperty ;
+  public : GALGAS_outletBindingSpecificationModelList mAttribute_mOutletBindingSpecificationModelList ;
   public : GALGAS_controllerBindingOptionDecoratedList mAttribute_mControllerBindingOptionDecoratedList ;
 
 
@@ -3797,8 +4258,7 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Native constructor
   public : GALGAS_outletBindingSpecificationMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                            const GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
-                                                            const GALGAS_bool & in_mModelShouldBeWritableProperty,
+                                                            const GALGAS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
                                                             const GALGAS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionDecoratedList) ;
 
 //-- Start of generic part --*
@@ -3813,9 +4273,8 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_outletBindingSpecificationMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                   const class GALGAS_unifiedTypeMap_2D_proxy & inOperand1,
-                                                                                   const class GALGAS_bool & inOperand2,
-                                                                                   const class GALGAS_controllerBindingOptionDecoratedList & inOperand3
+                                                                                   const class GALGAS_outletBindingSpecificationModelList & inOperand1,
+                                                                                   const class GALGAS_controllerBindingOptionDecoratedList & inOperand2
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -3834,9 +4293,7 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_controllerBindingOptionDecoratedList reader_mControllerBindingOptionDecoratedList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxy (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationModelList reader_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -3848,6 +4305,77 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationMap_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               @outletBindingSpecificationModelList_2D_element struct                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_outletBindingSpecificationModelList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_unifiedTypeMap_2D_proxy mAttribute_mModelTypeProxy ;
+  public : GALGAS_bool mAttribute_mModelShouldBeWritableProperty ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_outletBindingSpecificationModelList_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_outletBindingSpecificationModelList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletBindingSpecificationModelList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_outletBindingSpecificationModelList_2D_element (const GALGAS_unifiedTypeMap_2D_proxy & in_mModelTypeProxy,
+                                                                  const GALGAS_bool & in_mModelShouldBeWritableProperty) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_outletBindingSpecificationModelList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_outletBindingSpecificationModelList_2D_element constructor_new (const class GALGAS_unifiedTypeMap_2D_proxy & inOperand0,
+                                                                                         const class GALGAS_bool & inOperand1
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_outletBindingSpecificationModelList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap_2D_proxy reader_mModelTypeProxy (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_outletBindingSpecificationModelList_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList_2D_element ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4792,393 +5320,5 @@ extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_outletClassGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           Routine 'generateOutletClasses'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateOutletClasses (const class GALGAS_stringset constinArgument0,
-                                    const class GALGAS_string constinArgument1,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            @abstractBooleanMultipleBindingExpressionForGeneration class                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_GALGAS_class {
-//--- Constructor
-  public : GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (void) ;
-
-//---
-  public : inline const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * ptr (void) const { return (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_abstractBooleanMultipleBindingExpressionForGeneration extractObject (const GALGAS_object & inObject,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_abstractBooleanMultipleBindingExpressionForGeneration class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionForGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Pointer class for @abstractBooleanMultipleBindingExpressionForGeneration class                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acPtr_class {
-//--- Attributes
-
-//--- Constructor
-  public : cPtr_abstractBooleanMultipleBindingExpressionForGeneration (LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
-
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          Filewrapper 'controllerTemplates'                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const char * gWrapperFileContent_0_controllerTemplates ;
-extern const char * gWrapperFileContent_1_controllerTemplates ;
-extern const char * gWrapperFileContent_2_controllerTemplates ;
-extern const char * gWrapperFileContent_3_controllerTemplates ;
-extern const char * gWrapperFileContent_4_controllerTemplates ;
-extern const char * gWrapperFileContent_5_controllerTemplates ;
-extern const char * gWrapperFileContent_6_controllerTemplates ;
-extern const char * gWrapperFileContent_7_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cRegularFileWrapper gWrapperFile_0_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_1_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_2_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_3_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_4_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_5_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_6_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_7_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Filewrapper template 'controllerTemplates enabledBindingGeneration'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_controllerTemplates_enabledBindingGeneration (class C_Compiler * inCompiler,
-                                                                                const class GALGAS_string & in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME,
-                                                                                const class GALGAS_string & in_OUTLET_5F_NAME,
-                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_ENABLE_5F_EXPRESSION
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//        Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedObjectList'         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                     class C_Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedObjectList (const int32_t inClassIndex,
-                                             categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedObjectList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//     Abstract category method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding'      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForEnabledBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                        const class GALGAS_string constinArgument0,
-                                                                                                                        const class GALGAS_unifiedTypeMap constinArgument1,
-                                                                                                                        const class GALGAS_arrayControllerMap constinArgument2,
-                                                                                                                        const class GALGAS_decoratedObservablePropertyMap constinArgument3,
-                                                                                                                        const class GALGAS_unifiedTypeMap_2D_proxy constinArgument4,
-                                                                                                                        class GALGAS_uint & ioArgument5,
-                                                                                                                        class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument6,
-                                                                                                                        class C_Compiler * inCompiler
-                                                                                                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_analyzeExpressionForEnabledBinding (const int32_t inClassIndex,
-                                                             categoryMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForEnabledBinding inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_analyzeExpressionForEnabledBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                            const GALGAS_string constin_inSelfTypeName,
-                                                            const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                            const GALGAS_arrayControllerMap constin_inArrayControllerMap,
-                                                            const GALGAS_decoratedObservablePropertyMap constin_inCurrentObservablePropertyMap,
-                                                            const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                            GALGAS_uint & io_ioIndex,
-                                                            GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Abstract category method '@abstractObservablePropertyAST analyzeBoundObservablePropertyForSimpleBinding'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractObservablePropertyAST_analyzeBoundObservablePropertyForSimpleBinding) (const class cPtr_abstractObservablePropertyAST * inObject,
-                                                                                                                      const class GALGAS_unifiedTypeMap constinArgument0,
-                                                                                                                      const class GALGAS_arrayControllerMap constinArgument1,
-                                                                                                                      const class GALGAS_string constinArgument2,
-                                                                                                                      const class GALGAS_decoratedObservablePropertyMap constinArgument3,
-                                                                                                                      const class GALGAS_unifiedTypeMap_2D_proxy constinArgument4,
-                                                                                                                      class GALGAS_unifiedTypeProxySelectorList & ioArgument5,
-                                                                                                                      class GALGAS_stringlist & ioArgument6,
-                                                                                                                      class GALGAS_bool & outArgument7,
-                                                                                                                      class C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_analyzeBoundObservablePropertyForSimpleBinding (const int32_t inClassIndex,
-                                                                         categoryMethodSignature_abstractObservablePropertyAST_analyzeBoundObservablePropertyForSimpleBinding inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_analyzeBoundObservablePropertyForSimpleBinding (const class cPtr_abstractObservablePropertyAST * inObject,
-                                                                        const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                                        const GALGAS_arrayControllerMap constin_inArrayControllerMap,
-                                                                        const GALGAS_string constin_inCurrentTypeName,
-                                                                        const GALGAS_decoratedObservablePropertyMap constin_inObservablePropertyMap,
-                                                                        const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                                        GALGAS_unifiedTypeProxySelectorList & io_ioBoundPropertyTypeList,
-                                                                        GALGAS_stringlist & io_ioBoundObjectNameList,
-                                                                        GALGAS_bool & out_outModelIsTransient,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Routine 'buildControllerTemplateMap'                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_buildControllerTemplateMap (const class GALGAS_unifiedTypeMap constinArgument0,
-                                         const class GALGAS_bindingSpecificationListMap constinArgument1,
-                                         class GALGAS_bindingSpecificationMap & outArgument2,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration enableExpressionString'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_string (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_enableExpressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                     class C_Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_enableExpressionString (const int32_t inClassIndex,
-                                                 categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_enableExpressionString inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string callCategoryReader_enableExpressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//       Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedModelNameList'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                        class C_Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedModelNameList (const int32_t inClassIndex,
-                                                categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedModelNameList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList'     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectTypeNameList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                             class C_Compiler * inCompiler
-                                                                                                                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedObjectTypeNameList (const int32_t inClassIndex,
-                                                     categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectTypeNameList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedObjectTypeNameList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         Routine 'generateControllerClasses'                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateControllerClasses (const class GALGAS_stringset constinArgument0,
-                                        const class GALGAS_string constinArgument1,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Routine 'buildTransientDependencyGraph'                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_buildTransientDependencyGraph (const class GALGAS_unifiedTypeMap constinArgument0,
-                                            const class GALGAS_string constinArgument1,
-                                            class GALGAS_transientDependencyGraphNodeInfoList & outArgument2,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Abstract category reader '@abstractObservablePropertyAST propertySignature'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_lstring (*categoryReaderSignature_abstractObservablePropertyAST_propertySignature) (const class cPtr_abstractObservablePropertyAST * inObject,
-                                                                                                         const class GALGAS_string & constinArgument0,
-                                                                                                         const class GALGAS_string & constinArgument1,
-                                                                                                         const class GALGAS_unifiedTypeMap_2D_proxy & constinArgument2,
-                                                                                                         class C_Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_propertySignature (const int32_t inClassIndex,
-                                            categoryReaderSignature_abstractObservablePropertyAST_propertySignature inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_lstring callCategoryReader_propertySignature (const class cPtr_abstractObservablePropertyAST * inObject,
-                                                           const GALGAS_string & constin_inKind,
-                                                           const GALGAS_string & constin_inSelfTypeName,
-                                                           const GALGAS_unifiedTypeMap_2D_proxy & constin_inRootypeProxy,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Category Reader '@typeKind kindName'                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_kindName (const class GALGAS_typeKind & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//              Abstract category method '@abstractTransientDependencyAST buildTransientDependencyGraph'               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractTransientDependencyAST_buildTransientDependencyGraph) (const class cPtr_abstractTransientDependencyAST * inObject,
-                                                                                                      const class GALGAS_unifiedTypeMap constinArgument0,
-                                                                                                      class GALGAS_transientDependencyGraph & ioArgument1,
-                                                                                                      const class GALGAS_lstring constinArgument2,
-                                                                                                      const class GALGAS_decoratedObservablePropertyMap constinArgument3,
-                                                                                                      const class GALGAS_unifiedTypeMap_2D_proxy constinArgument4,
-                                                                                                      const class GALGAS_arrayControllerMap constinArgument5,
-                                                                                                      const class GALGAS_lstring constinArgument6,
-                                                                                                      class C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_buildTransientDependencyGraph (const int32_t inClassIndex,
-                                                        categoryMethodSignature_abstractTransientDependencyAST_buildTransientDependencyGraph inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_buildTransientDependencyGraph (const class cPtr_abstractTransientDependencyAST * inObject,
-                                                       const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                       GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
-                                                       const GALGAS_lstring constin_inTransientName,
-                                                       const GALGAS_decoratedObservablePropertyMap constin_inLocalObservablePropertyMap,
-                                                       const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                       const GALGAS_arrayControllerMap constin_inArrayControllerMap,
-                                                       const GALGAS_lstring constin_inTransientPropertySignature,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
 
 #endif
