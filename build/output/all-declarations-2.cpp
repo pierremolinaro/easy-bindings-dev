@@ -161,9 +161,9 @@ void routine_analyzeOutlets (const GALGAS_unifiedTypeMap constinArgument_inUnifi
           if (kBoolTrue == test_6) {
             inCompiler->emitSemanticError (enumerator_8417.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 203)) ;
           }
-          const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, enumerator_8381.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)).objectCompare (enumerator_8417.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)))).boolEnum () ;
+          const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, categoryReader_typeNameForBindingTypeCheck (enumerator_8381.current_mModelTypeProxy (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)).objectCompare (categoryReader_typeNameForBindingTypeCheck (enumerator_8417.current_mModelTypeProxy (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 205)))).boolEnum () ;
           if (kBoolTrue == test_7) {
-            inCompiler->emitSemanticError (enumerator_8417.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (enumerator_8381.current_mModelTypeProxy (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)) ;
+            inCompiler->emitSemanticError (enumerator_8417.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_typeNameForBindingTypeCheck (enumerator_8381.current_mModelTypeProxy (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)) ;
           }
           enumerator_8381.gotoNextObject () ;
           enumerator_8417.gotoNextObject () ;
@@ -178,31 +178,31 @@ void routine_analyzeOutlets (const GALGAS_unifiedTypeMap constinArgument_inUnifi
           var_s = GALGAS_string ("this binding has no option") ;
         }else if (kBoolFalse == test_9) {
           var_s = GALGAS_string ("this binding requires the following options:") ;
-          cEnumerator_controllerBindingOptionDecoratedList enumerator_9255 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-          while (enumerator_9255.hasCurrentObject ()) {
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_9327 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+          while (enumerator_9327.hasCurrentObject ()) {
             var_s.dotAssign_operation (GALGAS_string ("\n"
-              "  - ").add_operation (enumerator_9255.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (enumerator_9255.current_mOptionType (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)) ;
-            enumerator_9255.gotoNextObject () ;
+              "  - ").add_operation (enumerator_9327.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)).add_operation (enumerator_9327.current_mOptionType (HERE).reader_key (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)) ;
+            enumerator_9327.gotoNextObject () ;
           }
         }
         GALGAS_location location_10 (enumerator_7213.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
         inCompiler->emitSemanticError (location_10, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 222)) ;
       }else if (kBoolFalse == test_8) {
-        cEnumerator_controllerBindingOptionDecoratedList enumerator_9461 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-        cEnumerator_bindingOptionList enumerator_9496 (enumerator_7213.current_mBindingOptionList (HERE), kEnumeration_up) ;
-        while (enumerator_9461.hasCurrentObject () && enumerator_9496.hasCurrentObject ()) {
-          const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, enumerator_9461.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_9496.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
+        cEnumerator_controllerBindingOptionDecoratedList enumerator_9533 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+        cEnumerator_bindingOptionList enumerator_9568 (enumerator_7213.current_mBindingOptionList (HERE), kEnumeration_up) ;
+        while (enumerator_9533.hasCurrentObject () && enumerator_9568.hasCurrentObject ()) {
+          const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, enumerator_9533.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_9568.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
           if (kBoolTrue == test_11) {
-            GALGAS_location location_12 (enumerator_9496.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_12, GALGAS_string ("the option name should be '").add_operation (enumerator_9461.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)) ;
+            GALGAS_location location_12 (enumerator_9568.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_12, GALGAS_string ("the option name should be '").add_operation (enumerator_9533.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)) ;
           }
           GALGAS_string var_optionValueAsString ;
           GALGAS_unifiedTypeProxyList temp_13 = GALGAS_unifiedTypeProxyList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
-          temp_13.addAssign_operation (enumerator_9461.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
-          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_9496.current_mOptionValue (HERE).ptr (), temp_13, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)) ;
-          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_9461.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
-          enumerator_9461.gotoNextObject () ;
-          enumerator_9496.gotoNextObject () ;
+          temp_13.addAssign_operation (enumerator_9533.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
+          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_9568.current_mOptionValue (HERE).ptr (), temp_13, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)) ;
+          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_9533.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
+          enumerator_9533.gotoNextObject () ;
+          enumerator_9568.gotoNextObject () ;
         }
       }
       outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_5175.current_lkey (HERE).mAttribute_string, enumerator_7213.current_mBindingName (HERE).mAttribute_string, var_boundObjectNameList, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 236)) ;
@@ -7071,6 +7071,11 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "  \n"
   "  init (_ inValue : T) {\n"
   "    mDefaultValue = inValue\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
   "  }\n"
   "  \n"
   "  var value : T { get { return mDefaultValue } }\n"
@@ -7099,6 +7104,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "\n"
   "class PMStoredProperty <T : Equatable> : PMReadOnlyProperty <T> {\n"
+  "  override func userClassName () -> String { return \"PMStoredProperty<T>\"}\n"
   "\n"
   "  override init (_ inValue : T) {\n"
   "    mValue = inValue\n"
@@ -7119,8 +7125,6 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "\n"
   "  func setValue (inValue : T) { mValue = inValue }\n"
   "\n"
-  "  override func userClassName () -> String { return \"PMPreferencesProperty<T>\"}\n"
-  "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   " \n"
   "  var validationFunction : (T) -> PMValidationResult = defaultValidationFunction\n"
@@ -7131,10 +7135,40 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMEntityProperty                                                                                                  *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMEntityProperty <T : Equatable where T : EntityPropertyProtocol> : PMStoredProperty <T> {\n"
+  "  override func userClassName () -> String { return \"PMEntityProperty<T>\"}\n"
+  "\n"
+  "  var undoRegisterFonction : Optional <(NSObject) -> Void>\n"
+  "  var explorer : NSTextField\?\n"
+  "\n"
+  "  override init (_ inValue : T) {\n"
+  "    super.init (inValue)\n"
+  "  }\n"
+  "\n"
+  "  override private var mValue : T {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue.descriptionForExplorer ()\n"
+  "        undoRegisterFonction\? (oldValue.embeddedNSObject ())\n"
+  "        for (key, object) in mObservers {\n"
+  "          postTransientEvent (object)\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "//   PMTransientProperty                                                                                               *\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "\n"
   "class PMTransientProperty<T : Equatable> : PMReadOnlyProperty <T> {\n"
+  "  override func userClassName () -> String { return \"PMTransientProperty<T>\"}\n"
+  "\n"
   "  private var mValueCache : T\? = nil\n"
   "  private let mTransientIndex : PMTransientIndex\n"
   "  var computeFunction : Optional<() -> T>\n"
@@ -7144,8 +7178,6 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "    super.init (defaultValue)\n"
   "  }\n"
   "\n"
-  "  override func userClassName () -> String { return \"PMTransientProperty<T>\"}\n"
-  "  \n"
   "  override var value : T {\n"
   "    get {\n"
   "      if mValueCache == nil {\n"
@@ -7174,10 +7206,10 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "\n"
   "class PMTransientPropertyEvent<T : Equatable> : PMTransientEventProtocol {\n"
+  "  func userClassName () -> String { return \"PMTransientPropertyEvent<T>\" }\n"
+  "\n"
   "  weak private var mObserver : PMTransientProperty<T>\? = nil\n"
   "  private let mTransientIndex : PMTransientIndex\n"
-  "  \n"
-  "  func userClassName () -> String { return \"PMTransientPropertyEvent<T>\" }\n"
   "\n"
   "  var transientEventIndex : PMTransientIndex { get { return mTransientIndex } }\n"
   "\n"
@@ -7219,7 +7251,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  17614, // Text length
+  18696, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
@@ -17463,9 +17495,9 @@ mAttribute_mRootEntityName (),
 mAttribute_mAttributeListForGeneration (),
 mAttribute_mDecoratedTransientListForGeneration (),
 mAttribute_mOutletMap (),
-mAttribute_mControllerInstanciationStringList (),
 mAttribute_mDocumentArrayControllerForGeneration (),
-mAttribute_mTargetActionList () {
+mAttribute_mTargetActionList (),
+mAttribute_mRegularBindingsGenerationList () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17480,17 +17512,17 @@ GALGAS_documentListForGeneration_2D_element::GALGAS_documentListForGeneration_2D
                                                                                           const GALGAS_attributeListForGeneration & inOperand2,
                                                                                           const GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                                           const GALGAS_decoratedOutletMap & inOperand4,
-                                                                                          const GALGAS_stringlist & inOperand5,
-                                                                                          const GALGAS_arrayControllerForGeneration & inOperand6,
-                                                                                          const GALGAS_targetActionList & inOperand7) :
+                                                                                          const GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                                          const GALGAS_targetActionList & inOperand6,
+                                                                                          const GALGAS_regularBindingsGenerationList & inOperand7) :
 mAttribute_mDocumentName (inOperand0),
 mAttribute_mRootEntityName (inOperand1),
 mAttribute_mAttributeListForGeneration (inOperand2),
 mAttribute_mDecoratedTransientListForGeneration (inOperand3),
 mAttribute_mOutletMap (inOperand4),
-mAttribute_mControllerInstanciationStringList (inOperand5),
-mAttribute_mDocumentArrayControllerForGeneration (inOperand6),
-mAttribute_mTargetActionList (inOperand7) {
+mAttribute_mDocumentArrayControllerForGeneration (inOperand5),
+mAttribute_mTargetActionList (inOperand6),
+mAttribute_mRegularBindingsGenerationList (inOperand7) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17501,9 +17533,9 @@ GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_
                                                       GALGAS_attributeListForGeneration::constructor_emptyList (HERE),
                                                       GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
                                                       GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
-                                                      GALGAS_stringlist::constructor_emptyList (HERE),
                                                       GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
-                                                      GALGAS_targetActionList::constructor_emptyList (HERE)) ;
+                                                      GALGAS_targetActionList::constructor_emptyList (HERE),
+                                                      GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17513,9 +17545,9 @@ GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_
                                                                                                           const GALGAS_attributeListForGeneration & inOperand2,
                                                                                                           const GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                                                           const GALGAS_decoratedOutletMap & inOperand4,
-                                                                                                          const GALGAS_stringlist & inOperand5,
-                                                                                                          const GALGAS_arrayControllerForGeneration & inOperand6,
-                                                                                                          const GALGAS_targetActionList & inOperand7 
+                                                                                                          const GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                                                          const GALGAS_targetActionList & inOperand6,
+                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand7 
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_documentListForGeneration_2D_element result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
@@ -17544,13 +17576,13 @@ typeComparisonResult GALGAS_documentListForGeneration_2D_element::objectCompare 
     result = mAttribute_mOutletMap.objectCompare (inOperand.mAttribute_mOutletMap) ;
   }
   if (result == kOperandEqual) {
-    result = mAttribute_mControllerInstanciationStringList.objectCompare (inOperand.mAttribute_mControllerInstanciationStringList) ;
-  }
-  if (result == kOperandEqual) {
     result = mAttribute_mDocumentArrayControllerForGeneration.objectCompare (inOperand.mAttribute_mDocumentArrayControllerForGeneration) ;
   }
   if (result == kOperandEqual) {
     result = mAttribute_mTargetActionList.objectCompare (inOperand.mAttribute_mTargetActionList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegularBindingsGenerationList.objectCompare (inOperand.mAttribute_mRegularBindingsGenerationList) ;
   }
   return result ;
 }
@@ -17558,7 +17590,7 @@ typeComparisonResult GALGAS_documentListForGeneration_2D_element::objectCompare 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_documentListForGeneration_2D_element::isValid (void) const {
-  return mAttribute_mDocumentName.isValid () && mAttribute_mRootEntityName.isValid () && mAttribute_mAttributeListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mOutletMap.isValid () && mAttribute_mControllerInstanciationStringList.isValid () && mAttribute_mDocumentArrayControllerForGeneration.isValid () && mAttribute_mTargetActionList.isValid () ;
+  return mAttribute_mDocumentName.isValid () && mAttribute_mRootEntityName.isValid () && mAttribute_mAttributeListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mOutletMap.isValid () && mAttribute_mDocumentArrayControllerForGeneration.isValid () && mAttribute_mTargetActionList.isValid () && mAttribute_mRegularBindingsGenerationList.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17569,9 +17601,9 @@ void GALGAS_documentListForGeneration_2D_element::drop (void) {
   mAttribute_mAttributeListForGeneration.drop () ;
   mAttribute_mDecoratedTransientListForGeneration.drop () ;
   mAttribute_mOutletMap.drop () ;
-  mAttribute_mControllerInstanciationStringList.drop () ;
   mAttribute_mDocumentArrayControllerForGeneration.drop () ;
   mAttribute_mTargetActionList.drop () ;
+  mAttribute_mRegularBindingsGenerationList.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17592,11 +17624,11 @@ void GALGAS_documentListForGeneration_2D_element::description (C_String & ioStri
     ioString << ", " ;
     mAttribute_mOutletMap.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mAttribute_mControllerInstanciationStringList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
     mAttribute_mDocumentArrayControllerForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mTargetActionList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -17633,12 +17665,6 @@ GALGAS_decoratedOutletMap GALGAS_documentListForGeneration_2D_element::reader_mO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_stringlist GALGAS_documentListForGeneration_2D_element::reader_mControllerInstanciationStringList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mControllerInstanciationStringList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_arrayControllerForGeneration GALGAS_documentListForGeneration_2D_element::reader_mDocumentArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDocumentArrayControllerForGeneration ;
 }
@@ -17647,6 +17673,12 @@ GALGAS_arrayControllerForGeneration GALGAS_documentListForGeneration_2D_element:
 
 GALGAS_targetActionList GALGAS_documentListForGeneration_2D_element::reader_mTargetActionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetActionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingsGenerationList GALGAS_documentListForGeneration_2D_element::reader_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegularBindingsGenerationList ;
 }
 
 
@@ -17803,177 +17835,6 @@ GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_elemen
       result = *p ;
     }else{
       inCompiler->castError ("observablePropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (void) :
-mAttribute_mOutletName (),
-mAttribute_mBindingName (),
-mAttribute_mBoundObjectStringList (),
-mAttribute_mBindingOptionsString () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element::~ GALGAS_regularBindingsGenerationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (const GALGAS_string & inOperand0,
-                                                                                                  const GALGAS_string & inOperand1,
-                                                                                                  const GALGAS_stringlist & inOperand2,
-                                                                                                  const GALGAS_string & inOperand3) :
-mAttribute_mOutletName (inOperand0),
-mAttribute_mBindingName (inOperand1),
-mAttribute_mBoundObjectStringList (inOperand2),
-mAttribute_mBindingOptionsString (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_regularBindingsGenerationList_2D_element (GALGAS_string::constructor_default (HERE),
-                                                          GALGAS_string::constructor_default (HERE),
-                                                          GALGAS_stringlist::constructor_emptyList (HERE),
-                                                          GALGAS_string::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                                  const GALGAS_string & inOperand1,
-                                                                                                                  const GALGAS_stringlist & inOperand2,
-                                                                                                                  const GALGAS_string & inOperand3 
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_regularBindingsGenerationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_regularBindingsGenerationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_regularBindingsGenerationList_2D_element::objectCompare (const GALGAS_regularBindingsGenerationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletName.objectCompare (inOperand.mAttribute_mOutletName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingName.objectCompare (inOperand.mAttribute_mBindingName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBoundObjectStringList.objectCompare (inOperand.mAttribute_mBoundObjectStringList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingOptionsString.objectCompare (inOperand.mAttribute_mBindingOptionsString) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_regularBindingsGenerationList_2D_element::isValid (void) const {
-  return mAttribute_mOutletName.isValid () && mAttribute_mBindingName.isValid () && mAttribute_mBoundObjectStringList.isValid () && mAttribute_mBindingOptionsString.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_regularBindingsGenerationList_2D_element::drop (void) {
-  mAttribute_mOutletName.drop () ;
-  mAttribute_mBindingName.drop () ;
-  mAttribute_mBoundObjectStringList.drop () ;
-  mAttribute_mBindingOptionsString.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_regularBindingsGenerationList_2D_element::description (C_String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString << "<struct @regularBindingsGenerationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOutletName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBoundObjectStringList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingOptionsString.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_regularBindingsGenerationList_2D_element::reader_mOutletName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_regularBindingsGenerationList_2D_element::reader_mBindingName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_stringlist GALGAS_regularBindingsGenerationList_2D_element::reader_mBoundObjectStringList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBoundObjectStringList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_regularBindingsGenerationList_2D_element::reader_mBindingOptionsString (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingOptionsString ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     @regularBindingsGenerationList-element type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ("regularBindingsGenerationList-element",
-                                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_regularBindingsGenerationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_regularBindingsGenerationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_regularBindingsGenerationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_regularBindingsGenerationList_2D_element result ;
-  const GALGAS_regularBindingsGenerationList_2D_element * p = (const GALGAS_regularBindingsGenerationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_regularBindingsGenerationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("regularBindingsGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

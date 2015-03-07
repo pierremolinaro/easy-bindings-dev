@@ -16,23 +16,17 @@ entity MyRootEntity {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  outlet PMTextField myTextField ;
-  bind model : root.myString to myTextField $value {sendContinously : yes} ;
+  outlet PMTextField myTextField $value root.myString {sendContinously : yes} ;
 
-  outlet PMTextField myTextMajField ;
-  bind model : root.myStringMaj to myTextMajField $rvalue ;
+  outlet PMReadOnlyTextField myTextMajField $readOnlyValue root.myStringMaj ;
 
-  outlet PMTextField myTextMinField ;
-  bind model : root.myStringMin to myTextMinField $rvalue ;
+  outlet PMReadOnlyTextField myTextMinField $readOnlyValue root.myStringMin ;
 
-  outlet PMTextField myTextConcatField ;
-  bind model : root.myStringConcat to myTextConcatField $rvalue ;
+  outlet PMReadOnlyTextField myTextConcatField $readOnlyValue root.myStringConcat ;
 
-  outlet PMMatrix myMatrix ;
-  bind model : root.myEnumeration to myMatrix $selectedIndex ;
+  outlet PMMatrix myMatrix $selectedIndex root.myEnumeration  ;
 
-  outlet PMColorWell myColorWell ;
-  bind model : root.myColor to myColorWell $color {sendContinously : no} ;
+  outlet PMColorWell myColorWell $color root.myColor {sendContinously : no} ;
   
   action monAction ;
   action autreAction ;

@@ -17,18 +17,10 @@ import Cocoa
 
   @IBOutlet var myColorWell : PMColorWell?
   @IBOutlet var myMatrix : PMMatrix?
-  @IBOutlet var myTextConcatField : PMTextField?
+  @IBOutlet var myTextConcatField : PMReadOnlyTextField?
   @IBOutlet var myTextField : PMTextField?
-  @IBOutlet var myTextMajField : PMTextField?
-  @IBOutlet var myTextMinField : PMTextField?
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Controllers                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Document attributes                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  @IBOutlet var myTextMajField : PMReadOnlyTextField?
+  @IBOutlet var myTextMinField : PMReadOnlyTextField?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
@@ -66,41 +58,50 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray : [PMTransientEventProtocol] = []
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == myColorWell {
       presentErrorWindow (__FILE__, __LINE__, "the 'myColorWell' outlet is nil") ;
+    }else if !myColorWell!.isKindOfClass (PMColorWell) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myColorWell' outlet is not an instance of 'PMColorWell'") ;
     }
     if nil == myMatrix {
       presentErrorWindow (__FILE__, __LINE__, "the 'myMatrix' outlet is nil") ;
+    }else if !myMatrix!.isKindOfClass (PMMatrix) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myMatrix' outlet is not an instance of 'PMMatrix'") ;
     }
     if nil == myTextConcatField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextConcatField' outlet is nil") ;
+    }else if !myTextConcatField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextConcatField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
     if nil == myTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil") ;
+    }else if !myTextField!.isKindOfClass (PMTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is not an instance of 'PMTextField'") ;
     }
     if nil == myTextMajField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMajField' outlet is nil") ;
+    }else if !myTextMajField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMajField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
     if nil == myTextMinField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is nil") ;
+    }else if !myTextMinField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
   //--------------------------- Array controller
-  //--------------------------- Transient observers
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install bindings
+    myColorWell?.bind_color (rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    myMatrix?.bind_selectedIndex (rootObject.myEnumeration, file:__FILE__, line:__LINE__)
+    myTextConcatField?.bind_readOnlyValue (rootObject.myStringConcat, file:__FILE__, line:__LINE__)
+    myTextField?.bind_value (rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
+    myTextMajField?.bind_readOnlyValue (rootObject.myStringMaj, file:__FILE__, line:__LINE__)
+    myTextMinField?.bind_readOnlyValue (rootObject.myStringMin, file:__FILE__, line:__LINE__)
   //--------------------------- Array controller as observers
-  //--------------------------- Simple controllers
-    mControllerArray.append (Controller_MyRootEntity_myString_PMTextField_value (object:rootObject, outlet:myTextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.append (Controller_MyRootEntity_myStringMaj_PMTextField_rvalue (object:rootObject, outlet:myTextMajField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_myStringMin_PMTextField_rvalue (object:rootObject, outlet:myTextMinField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_myStringConcat_PMTextField_rvalue (object:rootObject, outlet:myTextConcatField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_myEnumeration_PMMatrix_selectedIndex (object:rootObject, outlet:myMatrix, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_myColor_PMColorWell_color (object:rootObject, outlet:myColorWell, file:__FILE__, line:__LINE__, sendContinously:false))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     flushTriggers ()
@@ -111,16 +112,18 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
+  //--- Unbind
+    myColorWell?.unbind_color ()
+    myMatrix?.unbind_selectedIndex ()
+    myTextConcatField?.unbind_readOnlyValue ()
+    myTextField?.unbind_value ()
+    myTextMajField?.unbind_readOnlyValue ()
+    myTextMinField?.unbind_readOnlyValue ()
   //--------------------------- Remove controllers
-    for controller in mControllerArray {
-      controller.unregister ()
-    }
-    mControllerArray = []
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)
   }
-
 
 
 //---------------------------------------------------------------------------------------------------------------------*

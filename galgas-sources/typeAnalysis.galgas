@@ -104,7 +104,6 @@ private proc unifiedTypeAnalysis
   ?let @enumConstantMap inEnumConstantMap
   ?let @arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration {
-  @stringlist controllerInstanciationStringList = {}
 #-------------------------------------------- Outlets
   analyzeOutlets (
     !inUnifiedTypeMap
@@ -262,16 +261,15 @@ private proc unifiedTypeAnalysis
       !attributeListForGeneration
       !transientDefinitionListForGeneration
       !decoratedOutletMap
-      !controllerInstanciationStringList
       !documentArrayControllerForGeneration
       !targetActionList
+      !regularBindingsGenerationList
   case preferencesType :
     ioGeneration.mPreferenceListForGeneration +=
       !inTypeName.string
       !attributeListForGeneration
       !transientDefinitionListForGeneration
       !decoratedOutletMap
- #     !controllerInstanciationStringList
       !regularBindingsGenerationList
   case bezierPathType, boolType, colorType, classType, controllerClassType, dataType, dateType,
        doubleType, fontType, imageType, integerType, menuType, nibClassType, outletClassType,

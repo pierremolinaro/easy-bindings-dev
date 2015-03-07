@@ -21,53 +21,6 @@ for () in OUTLET_GENERATION_MAP do
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Controllers                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Document attributes                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-%
-
-for () in ATTRIBUTE_LIST do
-%
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Attribute: " + mAttributeName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-% /* var %!mAttributeName%_observers = NSMutableSet ()\n%
-%  var %!mAttributeName% : %![mAttributeType swiftTypeName]% = %!mDefaultValueInSwift% {
-    didSet {
-      if %!mAttributeName% != oldValue {
-        for anyObject in %!mAttributeName%_observers {
-          let object = anyObject as PMTransientEventProtocol
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.addObject (inObserver)
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mAttributeName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mAttributeName%_observers.removeObject (inObserver)
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-%if not mNeedsValidation then%
-  func validate_%!mAttributeName% (proposedValue : %![mAttributeType swiftTypeName]%) -> PMValidationResult { return PMValidationResult.ok }
-
-%
-end
-% */ %
-end
-%  //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -86,7 +39,9 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
-                      %> (PMTransientIndex.k_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%)\n%
+                      %> (PMTransientIndex.k_%
+                      !["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
+                      %, defaultValue:%![mTransientType defaultValue]%)\n%
 end
 
 %
@@ -134,11 +89,7 @@ end
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-%if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%  var mControllerArray : [PMTransientEventProtocol] = []\n\n%
-%  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-end
-%  override func windowControllerDidLoadNib (aController: NSWindowController) {
+  override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
 %
@@ -146,6 +97,8 @@ end
 for () in OUTLET_GENERATION_MAP do
    %    if nil == %!lkey.string% {\n%
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
+   %    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName.string%) {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName.string%'") ;\n%
    %    }\n%
 end
 %  //--------------------------- Array controller
@@ -158,21 +111,36 @@ for () in ARRAY_CONTROLLER_LIST do
       line:__LINE__
     )\n%
 end
-%  //--------------------------- Transient observers
+%  //--- Install compute functions for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    %!mTransientName%.computeFunction = {return compute_%!DOCUMENT_NAME%_%!mTransientName% (%
+  for () in mDependencyList
+    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    between %, %
+  end
+  %)}\n%
+end
+%  //--- Install property observers for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
 end
 end
+%  //--- Install bindings
+%
+for () in REGULAR_BINDINGS_GENERATION_LIST do
+  %    %!mOutletName%?.bind_%!mBindingName% (%
+  for () in mBoundObjectStringList do
+    !mValue%, %
+  end
+  %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
+end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
 % //   rootObject.%!mTomanyRelationshipName%.addObserver (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:true)\n%
-end
-%  //--------------------------- Simple controllers
-%for () in CONTROLLER_INSTANCIATION_LIST do
-%    mControllerArray.append (%!mValue%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -188,17 +156,15 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
-  //--------------------------- Remove controllers
+  //--- Unbind
+%
+for () in REGULAR_BINDINGS_GENERATION_LIST do
+  %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
+end
+%  //--------------------------- Remove controllers
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%?.unregister ()\n%
-end
-if [CONTROLLER_INSTANCIATION_LIST length] > 0 then
-%    for controller in mControllerArray {
-      controller.unregister ()
-    }
-    mControllerArray = []
-%
 end
 %  //--------------------------- Remove targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -208,61 +174,6 @@ end
     super.removeWindowController (inWindowController)
   }
 
-%
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Transient: " + mTransientName stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*\n\n%
-% /* var %!mTransientName%_observers : [Int : PMTransientEventProtocol] = [:]\n%
-%  var %!mTransientName%_cache : %![mTransientType swiftTypeName]%?\n%
-%  var %!mTransientName% : %![mTransientType swiftTypeName]% {\n%
-%    get {\n%
-%      if %!mTransientName%_cache == nil {\n%
-%        %!mTransientName%_cache = compute_%!DOCUMENT_NAME%_%!mTransientName% (%
-for () in mDependencyList
-do ![mDependency generateActualParameterForComputeFunction]
-between %, %
-end
-%)\n%
-%      }\n%
-%      return %!mTransientName%_cache!\n%
-%    }
-  }
-
-  func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_noteDidChange () {
-    %!mTransientName%_cache = nil
-  }
-
-  func %!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_trigger () {
-    for (key, object) in %!mTransientName%_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_%!mTransientName% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    %!mTransientName%_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache : PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%? = nil
-  var event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% : PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% {
-    if event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache == nil {
-      event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache = PMEvent_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]% (object:self)
-    }
-    return event_%!["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]%_cache!
-  } */\n
-%end
-%
 
 //---------------------------------------------------------------------------------------------------------------------*
 

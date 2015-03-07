@@ -308,6 +308,34 @@ class @transientPreferenceDependencyForGeneration : @abstractTransientDependency
 
 #----------------------------------------------------------------------------*
 
+getter @unifiedTypeMap-proxy defaultValue -> @string outResult {
+  switch [self mTypeKind]
+  case stringType : outResult = "\"\""
+  case bezierPathType : outResult = "NSBezierPath ()"
+  case boolType : outResult = "false"
+  case classType : outResult = "<<classType>>"
+  case colorType : outResult = "NSColor.blackColor"
+  case controllerClassType : outResult = "<<controllerClassType>>"
+  case dataType : outResult = "NSData ()"
+  case dateType : outResult = "NSDate ()"
+  case documentType : outResult = "<<documentType>>"
+  case doubleType : outResult = "0.0"
+  case entityType : outResult = "<<entityType>>"
+  case enumType : outResult = "<<enumType>>"
+  case fontType : outResult = "NSFont ()"
+  case imageType : outResult = "NSImage ()"
+  case integerType : outResult = "0"
+  case menuType : outResult = "<<menuType>>"
+  case nibClassType : outResult = "<<nibClassType>>"
+  case outletClassType : outResult = "<<outletClassType>>"
+  case preferencesType : outResult = "<<preferencesType>>"
+  case protocolType : outResult = "<<protocolType>>"
+  case structType : outResult = "<<structType>>"
+  case uintegerType : outResult = "0"
+  end
+}
+
+#----------------------------------------------------------------------------*
 
 
 
@@ -593,32 +621,5 @@ override method @listAsDefaultValue analyzeDefaultValueType
   if not found then
     error mStartLocation
     : "invalid initialization value"  
-  end
-}
-
-getter @unifiedTypeMap-proxy defaultValue -> @string outResult {
-  switch [self mTypeKind]
-  case stringType : outResult = "\"\""
-  case bezierPathType : outResult = "NSBezierPath ()"
-  case boolType : outResult = "false"
-  case classType : outResult = "<<classType>>"
-  case colorType : outResult = "NSColor.blackColor"
-  case controllerClassType : outResult = "<<controllerClassType>>"
-  case dataType : outResult = "NSData ()"
-  case dateType : outResult = "NSDate ()"
-  case documentType : outResult = "<<documentType>>"
-  case doubleType : outResult = "0.0"
-  case entityType : outResult = "<<entityType>>"
-  case enumType : outResult = "<<enumType>>"
-  case fontType : outResult = "NSFont ()"
-  case imageType : outResult = "NSImage ()"
-  case integerType : outResult = "0"
-  case menuType : outResult = "<<menuType>>"
-  case nibClassType : outResult = "<<nibClassType>>"
-  case outletClassType : outResult = "<<outletClassType>>"
-  case preferencesType : outResult = "<<preferencesType>>"
-  case protocolType : outResult = "<<protocolType>>"
-  case structType : outResult = "<<structType>>"
-  case uintegerType : outResult = "0"
   end
 }

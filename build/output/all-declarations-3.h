@@ -33,16 +33,6 @@ class GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category Reader '@unifiedTypeMap-proxy typeNameForControllerTemplateName'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_typeNameForControllerTemplateName (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                                      class C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                       Category Reader '@unifiedTypeMap-proxy transientFormalArgumentTypeName'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
