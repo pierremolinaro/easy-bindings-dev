@@ -125,16 +125,6 @@ extension Array {
     return self [index]
   }
 }
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    getUniqueIndex                                                                                                   *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-private var gUniqueIndex = 0
-
-func getUniqueIndex () -> Int {
-  gUniqueIndex += 1
-  return gUniqueIndex
-}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMValidationResult                                                                                               *
@@ -151,20 +141,22 @@ enum PMValidationResult {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMUserClassName) protocol PMUserClassName {
-  func userClassName () -> String
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMTransientEvent protocol                                                                                        *
+//    PMObject class                                                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMTransientEvent) class PMTransientEvent : NSObject, PMUserClassName {
-  func transientEventIndex () -> PMTransientIndex { return PMTransientIndex.kTriggerOutletDisplay }
-  func noteModelDidChange () {}
-  func trigger () {}
-  func unregister () {}
-  let uniqueIndex : Int = getUniqueIndex ()
-  func userClassName () -> String { return "PMTransientEventProtocol" } // Abstract Method
+@objc(PMObject) class PMObject : NSObject, PMUserClassName {
+
+  override init () {
+    super.init ()
+    noteObjectAllocation (self)
+  }
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -184,7 +176,6 @@ extension NSTextView {
       }
     }
   }
-
 
   //-------------------------------------------------------------------------------------------------------------------*
 

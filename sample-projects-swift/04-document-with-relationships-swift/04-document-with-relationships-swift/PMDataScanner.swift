@@ -11,19 +11,13 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
-class PMDataScanner : NSObject, PMUserClassName {
+class PMDataScanner : PMObject, PMUserClassName {
   var mData : NSData
   var mReadIndex : Int = 0
   var mReadOk : Bool = true
   var mExpectedBytes : Array<UInt8> = []
   var mProgressWindow : NSWindow? = nil
   var mProgressIndicator : NSProgressIndicator? = nil
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "PMDataScanner" }
 
   //---------------------------------------------------------------------------*
   //  init                                                                     *
@@ -33,7 +27,6 @@ class PMDataScanner : NSObject, PMUserClassName {
         displayProgressWindowTitle: String?) {
     mData = data
     super.init ()
-    noteObjectAllocation (self)
     if (nil != displayProgressWindowTitle) {
       openProgressWindowWithTitle (displayProgressWindowTitle!)
     }
@@ -45,7 +38,6 @@ class PMDataScanner : NSObject, PMUserClassName {
 
   deinit {
     mProgressWindow?.orderOut (self)
-    noteObjectDeallocation (self)
   }
 
   //---------------------------------------------------------------------------*

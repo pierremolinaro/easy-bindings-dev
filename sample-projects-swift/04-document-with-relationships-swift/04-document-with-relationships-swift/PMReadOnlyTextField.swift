@@ -6,10 +6,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMReadOnlyTextField" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
@@ -63,14 +59,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMReadOnlyTextField_value)
-class Controller_PMReadOnlyTextField_value : PMTransientEvent {
+class Controller_PMReadOnlyTextField_value : PMOutletEvent {
 
   private var mOutlet : PMReadOnlyTextField
   private var mObject : PMReadOnlyProperty_String
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMReadOnlyTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -86,15 +78,15 @@ class Controller_PMReadOnlyTextField_value : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    if mOutlet.stringValue != mObject.value {
-      mOutlet.stringValue = mObject.value
+  override func updateOutlet () {
+    if mOutlet.stringValue != mObject.prop {
+      mOutlet.stringValue = mObject.prop
     }
   }
 

@@ -45,7 +45,6 @@ project (0:0:1) -> "easyBindings"{
   "galgas-sources/binding-specification.galgas"
 
   "galgas-sources/controllerClassAnalysis.galgas"
-  "galgas-sources/controllerClassGeneration.galgas"
 
   "galgas-sources/transientAnalysis.galgas"
   "galgas-sources/transientGeneration.galgas"

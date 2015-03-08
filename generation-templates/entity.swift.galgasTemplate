@@ -196,7 +196,6 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %, %!ENTITY_NAME%_%!mAttributeName
 end
 % {
-  override func userClassName () -> String { return "%!ENTITY_NAME%" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
@@ -205,19 +204,16 @@ end
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %  var %!mAttributeName% = PMStoredProperty_%![mAttributeType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-  %  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get { return %!mAttributeName%.value } }\n%
 end
-%  //-------------------------------------------------------------------------------------------------------------------*
+%
+  //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]
-                      % (PMTransientIndex.k_%
-                      !["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
-                      %)\n%
+%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
 %
@@ -378,7 +374,7 @@ end
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.setValue (inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%"))\n%
+%    %!mAttributeName%.setProp (inDictionary.read%![mAttributeType swiftTypeName]% ("%!mAttributeName%"))\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

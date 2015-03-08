@@ -6,10 +6,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMDatePicker" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
@@ -44,14 +40,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDatePicker_date)
-class Controller_PMDatePicker_date : PMTransientEvent {
+class Controller_PMDatePicker_date : PMOutletEvent {
 
   var mObject : PMStoredProperty_NSDate
   var mOutlet: PMDatePicker
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMDatePicker.date" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -66,7 +58,7 @@ class Controller_PMDatePicker_date : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
@@ -74,17 +66,17 @@ class Controller_PMDatePicker_date : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    if !mOutlet.dateValue.isEqualToDate (mObject.value) {
-      mOutlet.dateValue = mObject.value
+  override func updateOutlet () {
+    if !mOutlet.dateValue.isEqualToDate (mObject.prop) {
+      mOutlet.dateValue = mObject.prop
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if !mOutlet.dateValue.isEqualToDate (mObject.value) {
-      mObject.setValue (mOutlet.dateValue)
+    if !mOutlet.dateValue.isEqualToDate (mObject.prop) {
+      mObject.setProp (mOutlet.dateValue)
     }
   }
 

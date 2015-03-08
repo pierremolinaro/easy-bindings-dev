@@ -6,10 +6,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMTextField" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
@@ -73,14 +69,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMTextField_value)
-class Controller_PMTextField_value : PMTransientEvent {
+class Controller_PMTextField_value : PMOutletEvent {
 
   private var mOutlet: PMTextField
   private var mObject : PMStoredProperty_String
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -98,7 +90,7 @@ class Controller_PMTextField_value : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
@@ -106,9 +98,9 @@ class Controller_PMTextField_value : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    if mOutlet.stringValue != mObject.value {
-      mOutlet.stringValue = mObject.value
+  override func updateOutlet () {
+    if mOutlet.stringValue != mObject.prop {
+      mOutlet.stringValue = mObject.prop
     }
   }
 
@@ -118,7 +110,7 @@ class Controller_PMTextField_value : PMTransientEvent {
     let validationResult = mObject.validate (mOutlet.stringValue)
     switch validationResult {
     case PMValidationResult.ok :
-      mObject.setValue (mOutlet.stringValue)
+      mObject.setProp (mOutlet.stringValue)
     case PMValidationResult.rejectWithBeep :
       NSBeep ()
     case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -130,7 +122,7 @@ class Controller_PMTextField_value : PMTransientEvent {
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.stringValue = self.mObject.value
+            self.mOutlet.stringValue = self.mObject.prop
           }
         })
       }

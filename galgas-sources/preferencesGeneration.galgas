@@ -52,13 +52,13 @@ getter @unifiedTypeMap-proxy preferencesSwiftSetter
   ?let @string inPropertyName
   -> @string outResult {
   switch [self mTypeKind]
-  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".value)"
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop)"
   case uintegerType : outResult = "à compléter preferencesSwiftSetter"
-  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".value)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop)"
   case doubleType : outResult = "à compléter preferencesSwiftSetter"
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".value)"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop)"
   case dataType : outResult = "à compléter preferencesSwiftSetter"
-  case dateType, stringType : outResult = inPropertyName + ".value"
+  case dateType, stringType : outResult = inPropertyName + ".prop"
   case imageType : outResult = "à compléter preferencesSwiftSetter"
   case fontType : outResult = "à compléter preferencesSwiftSetter"
   case menuType : outResult = "à compléter preferencesSwiftSetter"

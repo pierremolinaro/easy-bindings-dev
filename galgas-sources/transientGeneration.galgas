@@ -51,25 +51,7 @@ getter @unifiedTypeMap-proxy transientFormalArgumentTypeName -> @string outResul
 
 proc generateTransients
   ?let @string inSourceFile
-  ?let @transientDependencyGraphNodeInfoList inSortedTransientNodes
   ?let @transientListForGeneration inTransientListForGeneration {
-#--------------------------- Generate PMApplication class
-#--- build a string list of all transients
-  @stringlist transientList = {}
-  for () in inSortedTransientNodes do
-    if mIsTransient then
-      transientList += !mSignature
-    end
-  end
-  let @string s = [filewrapper transientManager.applicationInSwift
-    !inSortedTransientNodes
-    !transientList
-  ]
-  [@string generateFile
-    ![inSourceFile stringByDeletingLastPathComponent]
-    !"PMApplication.swift"
-    !s
-  ]
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
     let @stringlist decomposedTransientSignature = [mTransientSignature componentsSeparatedByString !"."]
@@ -97,10 +79,6 @@ proc generateTransients
 private filewrapper transientManager in "../generation-templates" {
 }{
 }{
-  template applicationInSwift "PMApplication.swift.galgasTemplate"
-    ?@transientDependencyGraphNodeInfoList PROPERTY_LIST
-    ?@stringlist TRANSIENT_LIST
-
   template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
     ?@string KIND_NAME
     ?@string TRANSIENT_NAME
@@ -130,7 +108,7 @@ override getter @transientRootSignDependencyForGeneration generateActualParamete
 #-----------------------------------------------------------------------------*
 
 override getter @transientLocalDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = mMasterName.string + ".value"
+  outResult = mMasterName.string + ".prop"
   if mNamesCountOption then
     outResult += ".count"
   end
@@ -139,13 +117,13 @@ override getter @transientLocalDependencyForGeneration generateActualParameterFo
 #-----------------------------------------------------------------------------*
 
 override getter @transientPreferenceDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "g_" + mPreferencesName.string + "!." + mMasterName.string + ".value"
+  outResult = "g_" + mPreferencesName.string + "!." + mMasterName.string + ".prop"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "rootObject." + mMasterName.string + ".value"
+  outResult = "rootObject." + mMasterName.string + ".prop"
   if mNamesCountOption then
     outResult += ".count"
   end

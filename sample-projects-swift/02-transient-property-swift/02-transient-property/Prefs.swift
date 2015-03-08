@@ -8,12 +8,8 @@ var g_Prefs : Prefs? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc (Prefs) class Prefs : NSObject, PMUserClassName {
+@objc (Prefs) class Prefs : PMObject {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "Prefs" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -30,13 +26,12 @@ var g_Prefs : Prefs? = nil
   var mFirstName = PMStoredProperty_String ("Schmurtz")
   var mName = PMStoredProperty_String ("Amédée")
 
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFullName = PMTransientProperty_String (PMTransientIndex.k_preference_2E_Prefs_2E_mFullName)
-  var mUpperCaseFullName = PMTransientProperty_String (PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName)
+  var mFullName = PMTransientProperty_String ()
+  var mUpperCaseFullName = PMTransientProperty_String ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -49,18 +44,17 @@ var g_Prefs : Prefs? = nil
 
   override init () {
     super.init ()
-    noteObjectAllocation (self) ;
     g_Prefs = self ;
-     var ud = NSUserDefaults.standardUserDefaults ()
+    var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
     value = ud.objectForKey ("Prefs:mFirstName")
     if value != nil {
-      mFirstName.setValue (value as! String)
+      mFirstName.setProp (value as! String)
     }
     value = ud.objectForKey ("Prefs:mName")
     if value != nil {
-      mName.setValue (value as! String)
+      mName.setProp (value as! String)
     }
   //--- Property validation function
   //---
@@ -94,8 +88,8 @@ var g_Prefs : Prefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.value, self.mFirstName.value)}
-    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.value)}
+    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.prop, self.mFirstName.prop)}
+    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.prop)}
   //--- Install property observers for transients
     mName.addObserver (mFullName.event, inTrigger:true)
     mFirstName.addObserver (mFullName.event, inTrigger:true)
@@ -108,21 +102,13 @@ var g_Prefs : Prefs? = nil
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self) ;
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    applicationWillTerminateAction                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mFirstName.value, forKey:"Prefs:mFirstName")
-    ud.setObject (mName.value, forKey:"Prefs:mName")
+    ud.setObject (mFirstName.prop, forKey:"Prefs:mFirstName")
+    ud.setObject (mName.prop, forKey:"Prefs:mName")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -48,9 +48,7 @@ extension NSDictionary {
 
 class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
 
-  override func userClassName () -> String { return "PMReadOnlyProperty_String" }
-
-  var value : MonEnumeration { get { return MonEnumeration.premier } } // Abstract method
+  var prop : MonEnumeration { get { return MonEnumeration.premier } } // Abstract method
 
   func rawValue () -> Int { return MonEnumeration.premier.rawValue }  // Abstract method
 
@@ -62,8 +60,6 @@ class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumProp
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnumPropertyProtocol {
-  override func userClassName () -> String { return "PMStoredProperty_MonEnumeration"}
-
   var undoManager : NSUndoManager?
   var explorer : NSTextField? {
     didSet {
@@ -81,9 +77,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
       if mValue != oldValue {
         explorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -94,9 +88,9 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
     }
   }
 
-  override var value :  MonEnumeration { get { return mValue } }
+  override var prop :  MonEnumeration { get { return mValue } }
 
-  func setValue (inValue : MonEnumeration) { mValue = inValue }
+  func setProp (inValue : MonEnumeration) { mValue = inValue }
 
   override func rawValue () -> Int {
     return mValue.rawValue
@@ -122,19 +116,16 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
 //    PMTransientProperty_MonEnumeration                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration {
-  override func userClassName () -> String { return "PMTransientProperty_MonEnumeration"}
-
+class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMTransientPropertyProtocol {
   private var mValueCache : MonEnumeration? = nil
-  private let mTransientIndex : PMTransientIndex
+
   var computeFunction : Optional<() -> MonEnumeration>
   
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+  override init () {
     super.init ()
   }
 
-  override var value : MonEnumeration {
+  override var prop : MonEnumeration {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -152,39 +143,16 @@ class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_MonEnumeration (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMTransientPropertyEvent_MonEnumeration                                                                          *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_MonEnumeration : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_MonEnumeration" }
-
-  weak private var mObserver : PMTransientProperty_MonEnumeration? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_MonEnumeration) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }

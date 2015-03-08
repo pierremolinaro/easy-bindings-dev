@@ -6,14 +6,14 @@ import Cocoa
 
 func noteObjectAllocation (inObject : PMUserClassName) {
   installDebugMenu ()
-  let className = inObject.userClassName ()
+  let className = _stdlib_getDemangledTypeName (inObject)
   gDebugObject?.pmNoteObjectAllocation (className)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func noteObjectDeallocation (inObject : PMUserClassName) {
-  let className = inObject.userClassName ()
+  let className = _stdlib_getDemangledTypeName (inObject)
   gDebugObject?.pmNoteObjectDeallocation (className)
 }
 

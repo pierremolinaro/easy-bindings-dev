@@ -8,10 +8,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMIntField" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
@@ -119,14 +115,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMIntField_value)
-class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
+class Controller_PMIntField_value : PMOutletEvent {
 
   var mObject : PMStoredProperty_Int
   var mOutlet : PMIntField
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMIntField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -146,7 +138,7 @@ class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
@@ -154,8 +146,8 @@ class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    mOutlet.myIntegerValue = mObject.value
+  override func updateOutlet () {
+    mOutlet.myIntegerValue = mObject.prop
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -164,7 +156,7 @@ class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
     let validationResult = mObject.validate (mOutlet.integerValue)
     switch validationResult {
     case PMValidationResult.ok :
-      mObject.setValue (mOutlet.integerValue)
+      mObject.setProp (mOutlet.integerValue)
     case PMValidationResult.rejectWithBeep :
       NSBeep ()
     case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -176,7 +168,7 @@ class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.myIntegerValue = self.mObject.value
+            self.mOutlet.myIntegerValue = self.mObject.prop
           }
         })
       }

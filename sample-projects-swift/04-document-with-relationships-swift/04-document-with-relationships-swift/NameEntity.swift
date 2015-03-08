@@ -76,16 +76,14 @@ struct ToOneRelationship_NameEntity_mRoot {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_aValue, NameEntity_name {
-  override func userClassName () -> String { return "NameEntity" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
   var aValue = PMStoredProperty_Int (123)
-  var aValue_keyCodingValue : Int { get { return aValue.value } }
   var name = PMStoredProperty_String ("Name")
-  var name_keyCodingValue : String { get { return name.value } }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -157,8 +155,8 @@ struct ToOneRelationship_NameEntity_mRoot {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSNumber (integer:aValue.value), forKey: "aValue")
-    ioDictionary.setValue (name.value, forKey: "name")
+    ioDictionary.setValue (NSNumber (integer:aValue.prop), forKey: "aValue")
+    ioDictionary.setValue (name.prop, forKey: "name")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -168,8 +166,8 @@ struct ToOneRelationship_NameEntity_mRoot {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    aValue.setValue (inDictionary.readInt ("aValue"))
-    name.setValue (inDictionary.readString ("name"))
+    aValue.setProp (inDictionary.readInt ("aValue"))
+    name.setProp (inDictionary.readString ("name"))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

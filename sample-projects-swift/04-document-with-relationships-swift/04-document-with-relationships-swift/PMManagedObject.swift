@@ -26,7 +26,7 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
+class PMManagedObject : PMObject, PMSignatureObserverProtocol {
   var savingIndex = 0
   weak var mUndoManager : NSUndoManager?
 //--- Signature
@@ -40,12 +40,6 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 //  #endif
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "PMManagedObject" }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -57,7 +51,6 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
       gExplorerObjectIndex = gExplorerObjectIndex + 1
  //   #endif
     super.init ()
-    noteObjectAllocation (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -66,14 +59,6 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   func prepareForDeletion () {
     mUndoManager = nil
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  deinit                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
