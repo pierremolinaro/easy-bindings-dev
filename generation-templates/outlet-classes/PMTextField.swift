@@ -45,7 +45,7 @@ import Cocoa
   private var mValueController : Controller_PMTextField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMStoredProperty <String>, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:PMStoredProperty_String, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -73,28 +73,21 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMTextField_value)
-class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMTextField_value : PMTransientEvent {
 
   private var mOutlet: PMTextField
-  private var mObject : PMStoredProperty <String>
+  private var mObject : PMStoredProperty_String
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMTextField.value" }
+  override func userClassName () -> String { return "Controller.PMTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object:PMStoredProperty <String>, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object:PMStoredProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    noteObjectAllocation (self)
     mOutlet.target = self
     mOutlet.action = "action:"
     if mOutlet.formatter != nil {
@@ -105,26 +98,15 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
+  override func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteModelDidChange () {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func trigger () {
+  override func trigger () {
     if mOutlet.stringValue != mObject.value {
       mOutlet.stringValue = mObject.value
     }
@@ -154,17 +136,6 @@ class Controller_PMTextField_value : NSObject, PMTransientEventProtocol, PMUserC
       }
     }
   }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

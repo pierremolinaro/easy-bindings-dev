@@ -32,7 +32,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEventProtocol {
+/* class PMEvent_preference_2E_Prefs_2E_mUpperCaseFullName : PMTransientEvent {
   weak private var mObserver : Prefs? = nil
 
   func userClassName () -> String { return "PMEvent_preference.Prefs.mUpperCaseFullName" }
@@ -65,7 +65,7 @@ enum PMTransientIndex : Int {
 } */
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEventProtocol {
+/* class PMEvent_preference_2E_Prefs_2E_mFullName : PMTransientEvent {
   weak private var mObserver : Prefs? = nil
 
   func userClassName () -> String { return "PMEvent_preference.Prefs.mFullName" }
@@ -104,7 +104,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func postTransientEvent (inObject : PMTransientEventProtocol) {
+func postTransientEvent (inObject : PMTransientEvent) {
   var theApp = NSApp as! PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -140,7 +140,7 @@ func appendToTransientEventLog (message : String) {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 3
-  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEvent] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -187,13 +187,13 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTransientEventProtocol] = [:] // 1
-  private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTransientEventProtocol] = [:] // 2
+  private var mTriggerSet_preference_2E_Prefs_2E_mUpperCaseFullName : [Int : PMTransientEvent] = [:] // 1
+  private var mTriggerSet_preference_2E_Prefs_2E_mFullName : [Int : PMTransientEvent] = [:] // 2
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTransientEventProtocol) {
-    let transientIndex = inObject.transientEventIndex
+  private func postTransientEvent (inObject : PMTransientEvent) {
+    let transientIndex = inObject.transientEventIndex ()
     inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :

@@ -32,10 +32,10 @@ var g_PMPrefs : PMPrefs? = nil
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mColor = PMStoredProperty <NSColor> (NSColor.yellowColor ())
-  var mDate = PMStoredProperty <NSDate> (NSDate ())
-  var mIntegerValue = PMStoredProperty <Int> (123)
-  var myString = PMStoredProperty <String> ("hello")
+  var mColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
+  var mDate = PMStoredProperty_NSDate (NSDate ())
+  var mIntegerValue = PMStoredProperty_Int (123)
+  var myString = PMStoredProperty_String ("hello")
 
 
   //-------------------------------------------------------------------------------------------------------------------*

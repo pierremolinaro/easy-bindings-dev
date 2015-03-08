@@ -27,16 +27,16 @@ var g_Prefs : Prefs? = nil
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFirstName = PMStoredProperty <String> ("Schmurtz")
-  var mName = PMStoredProperty <String> ("Amédée")
+  var mFirstName = PMStoredProperty_String ("Schmurtz")
+  var mName = PMStoredProperty_String ("Amédée")
 
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mFullName, defaultValue:"")
-  var mUpperCaseFullName = PMTransientProperty <String> (PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName, defaultValue:"")
+  var mFullName = PMTransientProperty_String (PMTransientIndex.k_preference_2E_Prefs_2E_mFullName)
+  var mUpperCaseFullName = PMTransientProperty_String (PMTransientIndex.k_preference_2E_Prefs_2E_mUpperCaseFullName)
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *

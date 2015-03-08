@@ -36,7 +36,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func postTransientEvent (inObject : PMTransientEventProtocol) {
+func postTransientEvent (inObject : PMTransientEvent) {
   var theApp = NSApp as! PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -72,7 +72,7 @@ func appendToTransientEventLog (message : String) {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 1
-  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEvent] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -122,8 +122,8 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTransientEventProtocol) {
-    let transientIndex = inObject.transientEventIndex
+  private func postTransientEvent (inObject : PMTransientEvent) {
+    let transientIndex = inObject.transientEventIndex ()
     inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :

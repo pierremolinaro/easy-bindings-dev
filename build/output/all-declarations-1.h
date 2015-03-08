@@ -5021,16 +5021,6 @@ class GALGAS_string callCategoryReader_generateAddObserverCall (const class cPtr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Reader '@unifiedTypeMap-proxy defaultValue'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_defaultValue (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                           Category Reader '@unifiedTypeMap-proxy preferencesSwiftGetter'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5133,16 +5123,6 @@ class GALGAS_string callCategoryReader_generateRemoveObserverCall (const class c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Reader '@unifiedTypeMap-proxy swiftTypeUndoArgument'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_swiftTypeUndoArgument (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                          class C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                       Category Reader '@unifiedTypeMap-proxy transformForSavingInDictionary'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5151,17 +5131,6 @@ class GALGAS_string categoryReader_transformForSavingInDictionary (const class G
                                                                    const class GALGAS_string & constinArgument0,
                                                                    class C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category Reader '@unifiedTypeMap-proxy transformerForUndo'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_transformerForUndo (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
-                                                       const class GALGAS_string & constinArgument0,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5216,6 +5185,16 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
                                                                                             const class GALGAS_targetActionList & in_TARGET_5F_ACTION_5F_LIST,
                                                                                             const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST
                                                                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@unifiedTypeMap-proxy defaultValue'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_defaultValue (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5312,6 +5291,7 @@ extern const char * gWrapperFileContent_6_outletClassGeneration ;
 extern const char * gWrapperFileContent_7_outletClassGeneration ;
 extern const char * gWrapperFileContent_8_outletClassGeneration ;
 extern const char * gWrapperFileContent_9_outletClassGeneration ;
+extern const char * gWrapperFileContent_10_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5328,6 +5308,7 @@ extern const cRegularFileWrapper gWrapperFile_6_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_7_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_9_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_10_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

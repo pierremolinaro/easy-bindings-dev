@@ -26,7 +26,7 @@ import Cocoa
 
   private var mValueController : Controller_PMMatrix_selectedIndex?
 
-  func bind_selectedIndex (object:PMStoredProperty <MonEnumeration>, file:String, line:Int) {
+  func bind_selectedIndex (object:PMEnumPropertyProtocol, file:String, line:Int) {
     mValueController = Controller_PMMatrix_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
@@ -42,28 +42,21 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMMatrix_selectedIndex)
-class Controller_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMMatrix_selectedIndex : PMTransientEvent {
 
-  var mObject : PMStoredProperty <MonEnumeration>
+  var mObject : PMEnumPropertyProtocol
   var mOutlet: PMMatrix
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMMatrix.selectedIndex" }
+  override func userClassName () -> String { return "Controller.PMMatrix.selectedIndex" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object : PMStoredProperty <MonEnumeration>, outlet : PMMatrix, file : String, line : Int) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object : PMEnumPropertyProtocol, outlet : PMMatrix, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    noteObjectAllocation (self)
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true
@@ -72,46 +65,26 @@ class Controller_PMMatrix_selectedIndex : NSObject, PMTransientEventProtocol, PM
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
+  override func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteModelDidChange () {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func trigger () {
-    if mOutlet.selectedRow != mObject.value.rawValue {
-      mOutlet.selectCellAtRow (mObject.value.rawValue, column:0)
+  override func trigger () {
+    if mOutlet.selectedRow != mObject.rawValue () {
+      mOutlet.selectCellAtRow (mObject.rawValue (), column:0)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMMatrix) {
-    mObject.setValue (mObject.value.enumfromRawValue (mOutlet.selectedRow))
+    mObject.setFromRawValue (mOutlet.selectedRow)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
   //-------------------------------------------------------------------------------------------------------------------*
 }
 

@@ -1,9 +1,8 @@
+import Cocoa
 
-import Foundation
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-//---------------------------------------------------------------------------------------------------------------------*
-
-enum %!ENUM_TYPE_NAME% : Int, EntityPropertyProtocol {
+enum %!ENUM_TYPE_NAME% : Int {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
@@ -19,10 +18,6 @@ end
 %    }
   }
 
-  func embeddedNSObject () -> NSObject {
-    return NSNumber (integer:self.rawValue)
-  }
-
   func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {
     var result = self
     let v : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:rawValue) ;
@@ -33,7 +28,7 @@ end
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSDictionary {
   func read%!ENUM_TYPE_NAME%  (inKey : String) -> %!ENUM_TYPE_NAME% {
@@ -49,5 +44,151 @@ extension NSDictionary {
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["PMReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+class PMReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
+
+  override func userClassName () -> String { return "PMReadOnlyProperty_String" }
+
+  var value : %!ENUM_TYPE_NAME% { get { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string% } } // Abstract method
+
+  func rawValue () -> Int { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%.rawValue }  // Abstract method
+
+  func count () -> Int { return %![[CONSTANT_ORDERED_LIST length] string]% }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["PMStoredProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%, PMEnumPropertyProtocol {
+  override func userClassName () -> String { return "PMStoredProperty_%!ENUM_TYPE_NAME%"}
+
+  var undoManager : NSUndoManager?
+  var explorer : NSTextField? {
+    didSet {
+      explorer?.stringValue = mValue.descriptionForExplorer ()
+    }
+  }
+
+  init (_ inValue : %!ENUM_TYPE_NAME%) {
+    mValue = inValue
+    super.init ()
+  }
+
+  private var mValue : %!ENUM_TYPE_NAME% {
+    didSet {
+      if mValue != oldValue {
+        explorer?.stringValue = mValue.descriptionForExplorer ()
+        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
+        for (key, object) in mObservers {
+          postTransientEvent (object)
+        }
+      }
+    }
+  }
+
+  func performUndo (oldValue : NSNumber) {
+    if let v = %!ENUM_TYPE_NAME% (rawValue:oldValue.integerValue) {
+      mValue = v
+    }
+  }
+
+  override var value :  %!ENUM_TYPE_NAME% { get { return mValue } }
+
+  func setValue (inValue : %!ENUM_TYPE_NAME%) { mValue = inValue }
+
+  override func rawValue () -> Int {
+    return mValue.rawValue
+  }
+
+  func setFromRawValue (rawValue : Int) {
+    if let v = %!ENUM_TYPE_NAME% (rawValue:rawValue) {
+      mValue = v
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  var validationFunction : (%!ENUM_TYPE_NAME%) -> PMValidationResult = defaultValidationFunction
+  
+  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> PMValidationResult {
+    return validationFunction (proposedValue)
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["PMTransientProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME% {
+  override func userClassName () -> String { return "PMTransientProperty_%!ENUM_TYPE_NAME%"}
+
+  private var mValueCache : %!ENUM_TYPE_NAME%? = nil
+  private let mTransientIndex : PMTransientIndex
+  var computeFunction : Optional<() -> %!ENUM_TYPE_NAME%>
+  
+  init (_ inTransientIndex : PMTransientIndex) {
+    mTransientIndex = inTransientIndex
+    super.init ()
+  }
+
+  override var value : %!ENUM_TYPE_NAME% {
+    get {
+      if mValueCache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          mValueCache = unwrappedComputeFunction ()
+        }else{
+          mValueCache = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
+        }
+      }
+      return mValueCache!
+    }
+  }
+
+  private var mEvent : PMTransientEvent?
+
+  var event : PMTransientEvent {
+    get {
+      if mEvent == nil {
+        mEvent = PMTransientPropertyEvent_%!ENUM_TYPE_NAME% (self)
+      }
+      return mEvent!
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["PMTransientPropertyEvent_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientPropertyEvent_%!ENUM_TYPE_NAME% : PMTransientEvent {
+  override func userClassName () -> String { return "PMTransientPropertyEvent_%!ENUM_TYPE_NAME%" }
+
+  weak private var mObserver : PMTransientProperty_%!ENUM_TYPE_NAME%? = nil
+  private let mTransientIndex : PMTransientIndex
+
+  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
+  
+  init (_ inObject : PMTransientProperty_%!ENUM_TYPE_NAME%) {
+    mObserver = inObject
+    mTransientIndex = inObject.mTransientIndex
+  }
+
+  override func noteModelDidChange () {
+    mObserver?.mValueCache = nil
+  }
+
+  override func trigger () {
+    if let observer = mObserver {
+      for (key, object) in observer.mObservers {
+        postTransientEvent (object)
+      }
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

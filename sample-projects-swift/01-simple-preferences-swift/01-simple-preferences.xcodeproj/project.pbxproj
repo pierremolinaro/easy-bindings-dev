@@ -16,6 +16,7 @@
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
 		CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */; };
+		CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBA1AAC533D00958004 /* standard-properties.swift */; };
 		CFBE8C0719C47F91001F0735 /* PMReadOnlyNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
 		CFEA713E1AAAFF4B00302BC0 /* PMIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */; };
@@ -37,6 +38,7 @@
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
+		CFAD6CBA1AAC533D00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyNumberField.swift; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMIntField.swift; sourceTree = "<group>"; };
@@ -76,8 +78,6 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
-				CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */,
-				CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */,
 				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
@@ -85,12 +85,15 @@
 				CFA38985194094C400F20FFB /* PMApplication.swift */,
 				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
 				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
-				CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */,
+				CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */,
 				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
 				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
 				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
 				CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */,
+				CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */,
+				CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
+				CFAD6CBA1AAC533D00958004 /* standard-properties.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
 			path = "01-simple-preferences";
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
+				CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */,
 				CFEA713F1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
 				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
