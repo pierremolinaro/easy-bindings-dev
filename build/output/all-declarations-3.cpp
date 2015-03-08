@@ -10,6 +10,1026 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_validationStubRoutineListForGeneration_2D_element::GALGAS_validationStubRoutineListForGeneration_2D_element (void) :
+mAttribute_mObjectTypeName (),
+mAttribute_mModelName (),
+mAttribute_mModelTypeName () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_validationStubRoutineListForGeneration_2D_element::~ GALGAS_validationStubRoutineListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_validationStubRoutineListForGeneration_2D_element::GALGAS_validationStubRoutineListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                                                    const GALGAS_string & inOperand1,
+                                                                                                                    const GALGAS_string & inOperand2) :
+mAttribute_mObjectTypeName (inOperand0),
+mAttribute_mModelName (inOperand1),
+mAttribute_mModelTypeName (inOperand2) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_validationStubRoutineListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                                   GALGAS_string::constructor_default (HERE),
+                                                                   GALGAS_string::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                                                    const GALGAS_string & inOperand1,
+                                                                                                                                    const GALGAS_string & inOperand2 
+                                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_validationStubRoutineListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_validationStubRoutineListForGeneration_2D_element (inOperand0, inOperand1, inOperand2) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_validationStubRoutineListForGeneration_2D_element::objectCompare (const GALGAS_validationStubRoutineListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mObjectTypeName.objectCompare (inOperand.mAttribute_mObjectTypeName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mModelName.objectCompare (inOperand.mAttribute_mModelName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mModelTypeName.objectCompare (inOperand.mAttribute_mModelTypeName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_validationStubRoutineListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mObjectTypeName.isValid () && mAttribute_mModelName.isValid () && mAttribute_mModelTypeName.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_validationStubRoutineListForGeneration_2D_element::drop (void) {
+  mAttribute_mObjectTypeName.drop () ;
+  mAttribute_mModelName.drop () ;
+  mAttribute_mModelTypeName.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_validationStubRoutineListForGeneration_2D_element::description (C_String & ioString,
+                                                                            const int32_t inIndentation) const {
+  ioString << "<struct @validationStubRoutineListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mObjectTypeName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mModelName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mModelTypeName.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_validationStubRoutineListForGeneration_2D_element::reader_mObjectTypeName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mObjectTypeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_validationStubRoutineListForGeneration_2D_element::reader_mModelName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mModelName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_validationStubRoutineListForGeneration_2D_element::reader_mModelTypeName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mModelTypeName ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                @validationStubRoutineListForGeneration-element type                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration_2D_element ("validationStubRoutineListForGeneration-element",
+                                                                          NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_validationStubRoutineListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_validationStubRoutineListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_validationStubRoutineListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                                  C_Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_validationStubRoutineListForGeneration_2D_element result ;
+  const GALGAS_validationStubRoutineListForGeneration_2D_element * p = (const GALGAS_validationStubRoutineListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_validationStubRoutineListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("validationStubRoutineListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element::GALGAS_enumListForGeneration_2D_element (void) :
+mAttribute_mEnumName (),
+mAttribute_mEnumConstantList () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element::~ GALGAS_enumListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element::GALGAS_enumListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                  const GALGAS_lstringlist & inOperand1) :
+mAttribute_mEnumName (inOperand0),
+mAttribute_mEnumConstantList (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element GALGAS_enumListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_enumListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                  GALGAS_lstringlist::constructor_emptyList (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element GALGAS_enumListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                  const GALGAS_lstringlist & inOperand1 
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_enumListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_enumListForGeneration_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_enumListForGeneration_2D_element::objectCompare (const GALGAS_enumListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mEnumName.objectCompare (inOperand.mAttribute_mEnumName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEnumConstantList.objectCompare (inOperand.mAttribute_mEnumConstantList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_enumListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mEnumName.isValid () && mAttribute_mEnumConstantList.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_enumListForGeneration_2D_element::drop (void) {
+  mAttribute_mEnumName.drop () ;
+  mAttribute_mEnumConstantList.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_enumListForGeneration_2D_element::description (C_String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString << "<struct @enumListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mEnumName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEnumConstantList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_enumListForGeneration_2D_element::reader_mEnumName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEnumName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstringlist GALGAS_enumListForGeneration_2D_element::reader_mEnumConstantList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEnumConstantList ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         @enumListForGeneration-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_enumListForGeneration_2D_element ("enumListForGeneration-element",
+                                                         NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_enumListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_enumListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_enumListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_enumListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_enumListForGeneration_2D_element GALGAS_enumListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_enumListForGeneration_2D_element result ;
+  const GALGAS_enumListForGeneration_2D_element * p = (const GALGAS_enumListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_enumListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("enumListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element::GALGAS_preferenceListForGeneration_2D_element (void) :
+mAttribute_mPreferenceName (),
+mAttribute_mAttributeListForGeneration (),
+mAttribute_mDecoratedTransientListForGeneration (),
+mAttribute_mOutletMap (),
+mAttribute_mRegularBindingsGenerationList () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element::~ GALGAS_preferenceListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element::GALGAS_preferenceListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                              const GALGAS_attributeListForGeneration & inOperand1,
+                                                                                              const GALGAS_transientDefinitionListForGeneration & inOperand2,
+                                                                                              const GALGAS_decoratedOutletMap & inOperand3,
+                                                                                              const GALGAS_regularBindingsGenerationList & inOperand4) :
+mAttribute_mPreferenceName (inOperand0),
+mAttribute_mAttributeListForGeneration (inOperand1),
+mAttribute_mDecoratedTransientListForGeneration (inOperand2),
+mAttribute_mOutletMap (inOperand3),
+mAttribute_mRegularBindingsGenerationList (inOperand4) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element GALGAS_preferenceListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_preferenceListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                        GALGAS_attributeListForGeneration::constructor_emptyList (HERE),
+                                                        GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
+                                                        GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
+                                                        GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element GALGAS_preferenceListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                              const GALGAS_attributeListForGeneration & inOperand1,
+                                                                                                              const GALGAS_transientDefinitionListForGeneration & inOperand2,
+                                                                                                              const GALGAS_decoratedOutletMap & inOperand3,
+                                                                                                              const GALGAS_regularBindingsGenerationList & inOperand4 
+                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_preferenceListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_preferenceListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_preferenceListForGeneration_2D_element::objectCompare (const GALGAS_preferenceListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mPreferenceName.objectCompare (inOperand.mAttribute_mPreferenceName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mAttributeListForGeneration.objectCompare (inOperand.mAttribute_mAttributeListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDecoratedTransientListForGeneration.objectCompare (inOperand.mAttribute_mDecoratedTransientListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletMap.objectCompare (inOperand.mAttribute_mOutletMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegularBindingsGenerationList.objectCompare (inOperand.mAttribute_mRegularBindingsGenerationList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_preferenceListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mPreferenceName.isValid () && mAttribute_mAttributeListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mOutletMap.isValid () && mAttribute_mRegularBindingsGenerationList.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_preferenceListForGeneration_2D_element::drop (void) {
+  mAttribute_mPreferenceName.drop () ;
+  mAttribute_mAttributeListForGeneration.drop () ;
+  mAttribute_mDecoratedTransientListForGeneration.drop () ;
+  mAttribute_mOutletMap.drop () ;
+  mAttribute_mRegularBindingsGenerationList.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_preferenceListForGeneration_2D_element::description (C_String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString << "<struct @preferenceListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mPreferenceName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mAttributeListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDecoratedTransientListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mOutletMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_preferenceListForGeneration_2D_element::reader_mPreferenceName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mPreferenceName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_attributeListForGeneration GALGAS_preferenceListForGeneration_2D_element::reader_mAttributeListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mAttributeListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDefinitionListForGeneration GALGAS_preferenceListForGeneration_2D_element::reader_mDecoratedTransientListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDecoratedTransientListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_decoratedOutletMap GALGAS_preferenceListForGeneration_2D_element::reader_mOutletMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingsGenerationList GALGAS_preferenceListForGeneration_2D_element::reader_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegularBindingsGenerationList ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @preferenceListForGeneration-element type                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_preferenceListForGeneration_2D_element ("preferenceListForGeneration-element",
+                                                               NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_preferenceListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_preferenceListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_preferenceListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_preferenceListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_preferenceListForGeneration_2D_element GALGAS_preferenceListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_preferenceListForGeneration_2D_element result ;
+  const GALGAS_preferenceListForGeneration_2D_element * p = (const GALGAS_preferenceListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_preferenceListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("preferenceListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (void) :
+mAttribute_mEntityName (),
+mAttribute_mSuperEntityName (),
+mAttribute_mAttributeListForGeneration (),
+mAttribute_mDecoratedTransientListForGeneration (),
+mAttribute_mDecoratedEntityRelationshipList () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element::~ GALGAS_entityListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                      const GALGAS_string & inOperand1,
+                                                                                      const GALGAS_attributeListForGeneration & inOperand2,
+                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                      const GALGAS_entityRelationshipListForGeneration & inOperand4) :
+mAttribute_mEntityName (inOperand0),
+mAttribute_mSuperEntityName (inOperand1),
+mAttribute_mAttributeListForGeneration (inOperand2),
+mAttribute_mDecoratedTransientListForGeneration (inOperand3),
+mAttribute_mDecoratedEntityRelationshipList (inOperand4) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_entityListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                    GALGAS_string::constructor_default (HERE),
+                                                    GALGAS_attributeListForGeneration::constructor_emptyList (HERE),
+                                                    GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
+                                                    GALGAS_entityRelationshipListForGeneration::constructor_emptyList (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                      const GALGAS_string & inOperand1,
+                                                                                                      const GALGAS_attributeListForGeneration & inOperand2,
+                                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                                      const GALGAS_entityRelationshipListForGeneration & inOperand4 
+                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_entityListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_entityListForGeneration_2D_element::objectCompare (const GALGAS_entityListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mEntityName.objectCompare (inOperand.mAttribute_mEntityName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mSuperEntityName.objectCompare (inOperand.mAttribute_mSuperEntityName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mAttributeListForGeneration.objectCompare (inOperand.mAttribute_mAttributeListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDecoratedTransientListForGeneration.objectCompare (inOperand.mAttribute_mDecoratedTransientListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDecoratedEntityRelationshipList.objectCompare (inOperand.mAttribute_mDecoratedEntityRelationshipList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_entityListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mEntityName.isValid () && mAttribute_mSuperEntityName.isValid () && mAttribute_mAttributeListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mDecoratedEntityRelationshipList.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_entityListForGeneration_2D_element::drop (void) {
+  mAttribute_mEntityName.drop () ;
+  mAttribute_mSuperEntityName.drop () ;
+  mAttribute_mAttributeListForGeneration.drop () ;
+  mAttribute_mDecoratedTransientListForGeneration.drop () ;
+  mAttribute_mDecoratedEntityRelationshipList.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_entityListForGeneration_2D_element::description (C_String & ioString,
+                                                             const int32_t inIndentation) const {
+  ioString << "<struct @entityListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mSuperEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mAttributeListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDecoratedTransientListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDecoratedEntityRelationshipList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_entityListForGeneration_2D_element::reader_mEntityName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEntityName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_entityListForGeneration_2D_element::reader_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSuperEntityName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_attributeListForGeneration GALGAS_entityListForGeneration_2D_element::reader_mAttributeListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mAttributeListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDefinitionListForGeneration GALGAS_entityListForGeneration_2D_element::reader_mDecoratedTransientListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDecoratedTransientListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityRelationshipListForGeneration GALGAS_entityListForGeneration_2D_element::reader_mDecoratedEntityRelationshipList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDecoratedEntityRelationshipList ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @entityListForGeneration-element type                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_entityListForGeneration_2D_element ("entityListForGeneration-element",
+                                                           NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_entityListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_entityListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_entityListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_entityListForGeneration_2D_element result ;
+  const GALGAS_entityListForGeneration_2D_element * p = (const GALGAS_entityListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_entityListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("entityListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element::GALGAS_documentListForGeneration_2D_element (void) :
+mAttribute_mDocumentName (),
+mAttribute_mRootEntityName (),
+mAttribute_mAttributeListForGeneration (),
+mAttribute_mDecoratedTransientListForGeneration (),
+mAttribute_mOutletMap (),
+mAttribute_mDocumentArrayControllerForGeneration (),
+mAttribute_mTargetActionList (),
+mAttribute_mRegularBindingsGenerationList () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element::~ GALGAS_documentListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element::GALGAS_documentListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                          const GALGAS_string & inOperand1,
+                                                                                          const GALGAS_attributeListForGeneration & inOperand2,
+                                                                                          const GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                          const GALGAS_decoratedOutletMap & inOperand4,
+                                                                                          const GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                                          const GALGAS_targetActionList & inOperand6,
+                                                                                          const GALGAS_regularBindingsGenerationList & inOperand7) :
+mAttribute_mDocumentName (inOperand0),
+mAttribute_mRootEntityName (inOperand1),
+mAttribute_mAttributeListForGeneration (inOperand2),
+mAttribute_mDecoratedTransientListForGeneration (inOperand3),
+mAttribute_mOutletMap (inOperand4),
+mAttribute_mDocumentArrayControllerForGeneration (inOperand5),
+mAttribute_mTargetActionList (inOperand6),
+mAttribute_mRegularBindingsGenerationList (inOperand7) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_documentListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                      GALGAS_string::constructor_default (HERE),
+                                                      GALGAS_attributeListForGeneration::constructor_emptyList (HERE),
+                                                      GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
+                                                      GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
+                                                      GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
+                                                      GALGAS_targetActionList::constructor_emptyList (HERE),
+                                                      GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                          const GALGAS_string & inOperand1,
+                                                                                                          const GALGAS_attributeListForGeneration & inOperand2,
+                                                                                                          const GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                                          const GALGAS_decoratedOutletMap & inOperand4,
+                                                                                                          const GALGAS_arrayControllerForGeneration & inOperand5,
+                                                                                                          const GALGAS_targetActionList & inOperand6,
+                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand7 
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_documentListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
+    result = GALGAS_documentListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_documentListForGeneration_2D_element::objectCompare (const GALGAS_documentListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mDocumentName.objectCompare (inOperand.mAttribute_mDocumentName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRootEntityName.objectCompare (inOperand.mAttribute_mRootEntityName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mAttributeListForGeneration.objectCompare (inOperand.mAttribute_mAttributeListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDecoratedTransientListForGeneration.objectCompare (inOperand.mAttribute_mDecoratedTransientListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletMap.objectCompare (inOperand.mAttribute_mOutletMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDocumentArrayControllerForGeneration.objectCompare (inOperand.mAttribute_mDocumentArrayControllerForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mTargetActionList.objectCompare (inOperand.mAttribute_mTargetActionList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegularBindingsGenerationList.objectCompare (inOperand.mAttribute_mRegularBindingsGenerationList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_documentListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mDocumentName.isValid () && mAttribute_mRootEntityName.isValid () && mAttribute_mAttributeListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mOutletMap.isValid () && mAttribute_mDocumentArrayControllerForGeneration.isValid () && mAttribute_mTargetActionList.isValid () && mAttribute_mRegularBindingsGenerationList.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_documentListForGeneration_2D_element::drop (void) {
+  mAttribute_mDocumentName.drop () ;
+  mAttribute_mRootEntityName.drop () ;
+  mAttribute_mAttributeListForGeneration.drop () ;
+  mAttribute_mDecoratedTransientListForGeneration.drop () ;
+  mAttribute_mOutletMap.drop () ;
+  mAttribute_mDocumentArrayControllerForGeneration.drop () ;
+  mAttribute_mTargetActionList.drop () ;
+  mAttribute_mRegularBindingsGenerationList.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_documentListForGeneration_2D_element::description (C_String & ioString,
+                                                               const int32_t inIndentation) const {
+  ioString << "<struct @documentListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mDocumentName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRootEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mAttributeListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDecoratedTransientListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mOutletMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDocumentArrayControllerForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mTargetActionList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_documentListForGeneration_2D_element::reader_mDocumentName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDocumentName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_documentListForGeneration_2D_element::reader_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRootEntityName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_attributeListForGeneration GALGAS_documentListForGeneration_2D_element::reader_mAttributeListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mAttributeListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDefinitionListForGeneration GALGAS_documentListForGeneration_2D_element::reader_mDecoratedTransientListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDecoratedTransientListForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_decoratedOutletMap GALGAS_documentListForGeneration_2D_element::reader_mOutletMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerForGeneration GALGAS_documentListForGeneration_2D_element::reader_mDocumentArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDocumentArrayControllerForGeneration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_targetActionList GALGAS_documentListForGeneration_2D_element::reader_mTargetActionList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mTargetActionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingsGenerationList GALGAS_documentListForGeneration_2D_element::reader_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegularBindingsGenerationList ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       @documentListForGeneration-element type                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_documentListForGeneration_2D_element ("documentListForGeneration-element",
+                                                             NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_documentListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_documentListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_documentListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentListForGeneration_2D_element GALGAS_documentListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_documentListForGeneration_2D_element result ;
+  const GALGAS_documentListForGeneration_2D_element * p = (const GALGAS_documentListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_documentListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("documentListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (void) :
+mAttribute_mObservableProperty () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element::~ GALGAS_observablePropertyList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (const GALGAS_abstractObservablePropertyAST & inOperand0) :
+mAttribute_mObservableProperty (inOperand0) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::constructor_new (const GALGAS_abstractObservablePropertyAST & inOperand0 
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  if (inOperand0.isValid ()) {
+    result = GALGAS_observablePropertyList_2D_element (inOperand0) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_observablePropertyList_2D_element::objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mObservableProperty.objectCompare (inOperand.mAttribute_mObservableProperty) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_observablePropertyList_2D_element::isValid (void) const {
+  return mAttribute_mObservableProperty.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_observablePropertyList_2D_element::drop (void) {
+  mAttribute_mObservableProperty.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_observablePropertyList_2D_element::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "<struct @observablePropertyList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mObservableProperty.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractObservablePropertyAST GALGAS_observablePropertyList_2D_element::reader_mObservableProperty (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mObservableProperty ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @observablePropertyList-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
+                                                          NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_observablePropertyList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_observablePropertyList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_observablePropertyList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  const GALGAS_observablePropertyList_2D_element * p = (const GALGAS_observablePropertyList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_observablePropertyList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (void) :
 mAttribute_mOutletName (),
 mAttribute_mBindingName (),

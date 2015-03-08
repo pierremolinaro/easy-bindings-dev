@@ -5,7 +5,7 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %//---------------------------------------------------------------------------------------------------------------------*
 
 protocol %!ENTITY_NAME%_%!mAttributeName% {
-  var %!mAttributeName% : PMEntityProperty <%![mAttributeType swiftTypeName]%> { get }
+  var %!mAttributeName% : PMStoredProperty_%![mAttributeType swiftTypeName]% { get }
 }
 
 %
@@ -204,11 +204,8 @@ end
 
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+  %  var %!mAttributeName% = PMStoredProperty_%![mAttributeType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
   %  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get { return %!mAttributeName%.value } }\n%
-  %  func undoFor_%!mAttributeName% (oldValue : %![mAttributeType swiftTypeUndoArgument]%) {\n%
-  %    %!mAttributeName%.setValue (%![mAttributeType transformerForUndo !"oldValue"]%)\n%
-  %  }\n\n%
 end
 %  //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
@@ -217,10 +214,10 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
-                      %> (PMTransientIndex.k_%
+%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]
+                      % (PMTransientIndex.k_%
                       !["entity." + ENTITY_NAME + "." + mTransientName identifierRepresentation]
-                      %, defaultValue:%![mTransientType defaultValue]%)\n%
+                      %)\n%
 end
 
 %
@@ -275,9 +272,7 @@ end
 %  //--- Install undoers for properties
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    %!mAttributeName%.undoRegisterFonction = {(oldValue : NSObject) in\n%
-  %      self.mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_%!mAttributeName%:", object:oldValue)\n%
-  %    }\n%
+  %    %!mAttributeName%.undoManager = undoManager\n%
 end
 %  }
 
@@ -295,7 +290,7 @@ end
 %  //--- Uninstall undoers for properties
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    %!mAttributeName%.undoRegisterFonction = nil\n%
+  %    %!mAttributeName%.undoManager = nil\n%
 end
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
@@ -333,10 +328,7 @@ end
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
 %for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%    %!mAttributeName%.explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
-%    if let explorer = %!mAttributeName%.explorer {\n%
-%      explorer.stringValue = %!mAttributeName%.value.descriptionForExplorer ()\n%
-%    }\n%
+  %    %!mAttributeName%.explorer = createEntryForAttributeNamed ("%!mAttributeName%", ioRect:&ioRect, view:view)\n%
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then

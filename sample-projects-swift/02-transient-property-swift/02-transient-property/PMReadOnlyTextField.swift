@@ -44,7 +44,7 @@ import Cocoa
 
   private var mValueController : Controller_PMReadOnlyTextField_value?
 
-  func bind_readOnlyValue (object:PMTransientProperty <String>, file:String, line:Int) {
+  func bind_readOnlyValue (object:PMReadOnlyProperty_String, file:String, line:Int) {
     mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -63,28 +63,21 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMReadOnlyTextField_value)
-class Controller_PMReadOnlyTextField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMReadOnlyTextField_value : PMTransientEvent {
 
-  private var mOutlet: PMReadOnlyTextField
-  private var mObject : PMTransientProperty <String>
+  private var mOutlet : PMReadOnlyTextField
+  private var mObject : PMReadOnlyProperty_String
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMReadOnlyTextField.value" }
+  override func userClassName () -> String { return "Controller.PMReadOnlyTextField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object:PMTransientProperty <String>, outlet : PMReadOnlyTextField, file : String, line : Int) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object:PMReadOnlyProperty_String, outlet : PMReadOnlyTextField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    noteObjectAllocation (self)
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
     }
@@ -93,38 +86,18 @@ class Controller_PMReadOnlyTextField_value : NSObject, PMTransientEventProtocol,
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
+  override func unregister () {
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteModelDidChange () {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func trigger () {
+  override func trigger () {
     if mOutlet.stringValue != mObject.value {
       mOutlet.stringValue = mObject.value
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
   //-------------------------------------------------------------------------------------------------------------------*
 }
 

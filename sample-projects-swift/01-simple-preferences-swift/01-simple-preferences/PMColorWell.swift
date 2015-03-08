@@ -28,7 +28,7 @@ import Cocoa
   private var mValueController : Controller_PMColorWell_color?
   var mSendContinously = false
 
-  func bind_color (object:PMStoredProperty <NSColor>, file:String, line:Int, sendContinously:Bool) {
+  func bind_color (object:PMStoredProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -46,31 +46,23 @@ import Cocoa
 //   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMColorWell_color)
-class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMColorWell_color : PMTransientEvent {
 
-  var mObject : PMStoredProperty <NSColor>
+  var mObject : PMStoredProperty_NSColor
   var mOutlet: PMColorWell
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMColorWell.color" }
+  override func userClassName () -> String { return "Controller.PMColorWell.color" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object : PMStoredProperty <NSColor>, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object : PMStoredProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
     super.init ()
-    noteObjectAllocation (self)
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true
@@ -79,26 +71,15 @@ class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserC
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
+  override func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteModelDidChange () {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func trigger () {
+  override func trigger () {
     if mOutlet.color != mObject.value {
       mOutlet.color = mObject.value
     }
@@ -132,15 +113,6 @@ class Controller_PMColorWell_color : NSObject, PMTransientEventProtocol, PMUserC
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
   //-------------------------------------------------------------------------------------------------------------------*
 }
 

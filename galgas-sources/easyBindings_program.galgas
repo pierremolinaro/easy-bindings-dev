@@ -202,7 +202,8 @@ private proc generateSwiftApplicationFiles
   @stringlist swiftFiles = {
     !"main",
     !"PMAllocationDebug",
-    !"easy-bindings-utilities"
+    !"easy-bindings-utilities",
+    !"standard-properties"
   }
   if inHasEntities then
     swiftFiles += !"PMManagedObject"

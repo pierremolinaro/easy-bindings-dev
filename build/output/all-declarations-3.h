@@ -33,6 +33,27 @@ class GALGAS_string categoryReader_transformerForRegisterUndoWithTarget (const c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                            Category Reader '@unifiedTypeMap-proxy swiftTypeUndoArgument'                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_swiftTypeUndoArgument (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                          class C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                             Category Reader '@unifiedTypeMap-proxy transformerForUndo'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForUndo (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                       const class GALGAS_string & constinArgument0,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                       Category Reader '@unifiedTypeMap-proxy transientFormalArgumentTypeName'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

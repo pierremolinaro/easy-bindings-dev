@@ -54,7 +54,7 @@ import Cocoa
 
   private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty <Int>, file:String, line:Int) {
+  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)
   }
 
@@ -67,32 +67,25 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMReadOnlyIntField_readOnlyValue                                                                            *
+//   Controller_PMReadOnlyIntField_readOnlyValue                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMReadOnlyIntField_readOnlyValue)
-class Controller_PMReadOnlyIntField_readOnlyValue : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMReadOnlyIntField_readOnlyValue : PMTransientEvent, PMUserClassName {
 
-  weak var mObject : PMReadOnlyProperty <Int>? = nil
+  weak var mObject : PMReadOnlyProperty_Int? = nil
   weak var mOutlet : PMReadOnlyIntField? = nil
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMReadOnlyIntField.value" }
+  override func userClassName () -> String { return "Controller.PMReadOnlyIntField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object : PMReadOnlyProperty <Int>?, outlet : PMReadOnlyIntField?, file : String, line : Int) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object : PMReadOnlyProperty_Int?, outlet : PMReadOnlyIntField?, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    noteObjectAllocation (self)
     if let unwrappedOutlet = outlet {
       if !unwrappedOutlet.isKindOfClass (PMReadOnlyIntField) {
         presentErrorWindow (file, line, "outlet is not an instance of PMReadOnlyIntField")
@@ -110,38 +103,18 @@ class Controller_PMReadOnlyIntField_readOnlyValue : NSObject, PMTransientEventPr
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
+  override func unregister () {
     mObject?.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  func noteModelDidChange () {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func trigger () {
+  override func trigger () {
     if let outlet = mOutlet, object = mObject {
       outlet.myIntegerValue = object.value
     }
   }
 
-   //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
   //-------------------------------------------------------------------------------------------------------------------*
 }
 

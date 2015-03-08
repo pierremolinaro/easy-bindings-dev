@@ -99,7 +99,7 @@ import Cocoa
   private var mValueController : Controller_PMIntField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMStoredProperty <Int>, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:PMStoredProperty_Int, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMIntField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -115,112 +115,74 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMIntField_value                                                                                    *
+//   Controller_PMIntField_value                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMIntField_value)
-class Controller_PMIntField_value : NSObject, PMTransientEventProtocol, PMUserClassName {
+class Controller_PMIntField_value : PMTransientEvent, PMUserClassName {
 
-  weak var mObject : PMStoredProperty <Int>? = nil
-  weak var mOutlet: PMIntField? = nil
+  var mObject : PMStoredProperty_Int
+  var mOutlet : PMIntField
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  func userClassName () -> String { return "Controller.PMIntField.value" }
+  override func userClassName () -> String { return "Controller.PMIntField.value" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  init (object : PMStoredProperty <Int>?, outlet : PMIntField?, file : String, line : Int, sendContinously : Bool) {
-    mPrivateUniqueIndex = getUniqueIndex ()
+  init (object : PMStoredProperty_Int, outlet : PMIntField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    noteObjectAllocation (self)
-    if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMIntField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMIntField")
-      }else{
-        mOutlet = unwrappedOutlet
-        unwrappedOutlet.target = self
-        unwrappedOutlet.action = "action:"
-        if unwrappedOutlet.formatter == nil {
-          presentErrorWindow (file, line, "the outlet has no formatter")
-        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
-          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
-        }
-      }
+    mOutlet.target = self
+    mOutlet.action = "action:"
+    if mOutlet.formatter == nil {
+      presentErrorWindow (file, line, "the outlet has no formatter")
+    }else if !(mOutlet.formatter is NSNumberFormatter) {
+      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject?.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func unregister () {
-    mOutlet?.target = nil
-    mOutlet?.action = nil
-    mObject?.removeObserver (self, inTrigger:false)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteModelDidChange () {
+  override func unregister () {
+    mOutlet.target = nil
+    mOutlet.action = nil
+    mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func trigger () {
-    if let outlet = mOutlet, object = mObject {
-      outlet.myIntegerValue = object.value
-    }
+  override func trigger () {
+    mOutlet.myIntegerValue = mObject.value
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMIntField) {
-    if let outlet = mOutlet,object = mObject {
-      let validationResult = object.validate (outlet.integerValue)
-      switch validationResult {
-      case PMValidationResult.ok :
-        object.setValue (outlet.integerValue)
-      case PMValidationResult.rejectWithBeep :
-        NSBeep ()
-      case PMValidationResult.rejectWithAlert (let informativeText) :
-        if let window = sender.window {
-          let alert = NSAlert ()
-          alert.messageText = String (format:"The value “%@” is invalid.", outlet.stringValue)
-          alert.informativeText = informativeText
-          alert.addButtonWithTitle ("Ok")
-          alert.addButtonWithTitle ("Discard Change")
-          alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-            if response == NSAlertSecondButtonReturn { // Discard Change
-              outlet.myIntegerValue = object.value
-            }
-          })
-        }
+    let validationResult = mObject.validate (mOutlet.integerValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      mObject.setValue (mOutlet.integerValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      if let window = sender.window {
+        let alert = NSAlert ()
+        alert.messageText = String (format:"The value “%@” is invalid.", mOutlet.stringValue)
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.mOutlet.myIntegerValue = self.mObject.value
+          }
+        })
       }
     }
   }
 
-   //-------------------------------------------------------------------------------------------------------------------*
-
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func noteTransientChanged () {
-  }
-  
   //-------------------------------------------------------------------------------------------------------------------*
 }
 
