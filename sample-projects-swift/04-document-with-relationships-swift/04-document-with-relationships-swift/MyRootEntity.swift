@@ -4,110 +4,103 @@ import Cocoa
 //    To many relationship: mNames                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct ToManyRelationship_MyRootEntity_mNames {
- 
-  var explorer : NSPopUpButton?
+class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   var owner : MyRootEntity?
-  var mSet = Set<NameEntity> ()
-  var values : Array<NameEntity> = Array () {
+
+  var explorer : NSPopUpButton? {
     didSet {
-      if oldValue != values {
-        mSet = Set (values)
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:unwrappedExplorer)
+      }
+    }
+  }
+
+  var mSet = Set<NameEntity> ()
+  var props = Array<NameEntity> () {
+    didSet {
+      if oldValue != props {
+        mSet = Set (props)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"undoFor_mNames:", object:oldValue)
+        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (values, popUpButton:explorer!)
+          owner?.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:explorer!)
         }
       //--- Removed object set
         var removedObjectSet : Set<NameEntity> = Set (oldValue)
-        removedObjectSet.subtractInPlace (values)
+        removedObjectSet.subtractInPlace (props)
         for managedObject : NameEntity in removedObjectSet {
-          for (key, observer) in mObserversOf_aValue {
+          for observer in mObserversOf_aValue {
             managedObject.aValue.removeObserver (observer, inTrigger:true)
           }
-          for (key, observer) in mObserversOf_name {
+          for observer in mObserversOf_name {
             managedObject.name.removeObserver (observer, inTrigger:true)
           }
           managedObject.mRoot.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<NameEntity> = Set (values)
+        var addedObjectSet : Set<NameEntity> = Set (props)
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : NameEntity in addedObjectSet {
-          for (key, observer) in mObserversOf_aValue {
+          for observer in mObserversOf_aValue {
             managedObject.aValue.addObserver (observer, inTrigger:true)
           }
-          for (key, observer) in mObserversOf_name {
+          for observer in mObserversOf_name {
             managedObject.name.addObserver (observer, inTrigger:true)
           }
-          managedObject.mRoot.value = owner
+          managedObject.mRoot.prop = owner
         }
       //--- Notify observers object count did change
-        for (key, observer) in mObservers {
-          postTransientEvent (observer)
-        }
+        postEvents ()
       }
     }
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func performUndo (oldValue : Array<NameEntity>) {
+    props = oldValue
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObserversOf_aValue : [Int : PMTransientEvent] = [:]
+  var count : Int { get { return props.count } }
 
-  mutating func addObserverOf_aValue (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_aValue [inObserver.uniqueIndex] = inObserver
-    for managedObject in values {
+
+  var mObserversOf_aValue = Set<PMEvent> ()
+
+  func addObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_aValue.insert (inObserver)
+    for managedObject in props {
       managedObject.aValue.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_aValue (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_aValue [inObserver.uniqueIndex] = nil
-    for managedObject in values {
+  func removeObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_aValue.remove (inObserver)
+    for managedObject in props {
       managedObject.aValue.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  var mObserversOf_name = Set<PMEvent> ()
 
-  private var mObserversOf_name : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserverOf_name (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_name [inObserver.uniqueIndex] = inObserver
-    for managedObject in values {
+  func addObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_name.insert (inObserver)
+    for managedObject in props {
       managedObject.name.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_name (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_name [inObserver.uniqueIndex] = nil
-    for managedObject in values {
+  func removeObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_name.remove (inObserver)
+    for managedObject in props {
       managedObject.name.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mObservers : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
   
-  var count : Int { get { return values.count } }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -131,10 +124,6 @@ struct ToManyRelationship_MyRootEntity_mNames {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var mNames = ToManyRelationship_MyRootEntity_mNames ()
-  func undoFor_mNames (object:NSArray) {
-    mNames.values = object as! Array<NameEntity>
-  }
-
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -155,9 +144,16 @@ struct ToManyRelationship_MyRootEntity_mNames {
     super.prepareForDeletion ()
   //--- Uninstall compute functions for transients
   //--- Uninstall undoers for properties
-    mNames.values = Array<NameEntity> ()
+    mNames.props = Array<NameEntity> ()
   }
   
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+  //--- Unregister trigger objects
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
@@ -166,7 +162,6 @@ struct ToManyRelationship_MyRootEntity_mNames {
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
     mNames.explorer = createEntryForToManyRelationshipNamed ("mNames", ioRect: &ioRect, view: view)
-    updateManagedObjectToManyRelationshipDisplay (mNames.values, popUpButton:mNames.explorer!)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -184,7 +179,7 @@ struct ToManyRelationship_MyRootEntity_mNames {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    storeEntityArrayInDictionary (mNames.values, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
+    storeEntityArrayInDictionary (mNames.props, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -194,7 +189,7 @@ struct ToManyRelationship_MyRootEntity_mNames {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    mNames.values = readEntityArrayFromDictionary (
+    mNames.props = readEntityArrayFromDictionary (
         "mNames",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
@@ -207,7 +202,7 @@ struct ToManyRelationship_MyRootEntity_mNames {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    for managedObject : PMManagedObject in mNames.values {
+    for managedObject : PMManagedObject in mNames.props {
       objects.addObject (managedObject)
     }
   }

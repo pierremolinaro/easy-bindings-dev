@@ -16,58 +16,50 @@ protocol NameEntity_name {
 //    To one relationship: mRoot                                                                                       *
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct ToOneRelationship_NameEntity_mRoot {
+class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   var explorer : NSButton?
-  var owner : NameEntity?
- 
-  var value : MyRootEntity? = nil {
+  var owner : NameEntity? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== value {
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+      }
+    }
+  }
+ 
+  var prop : MyRootEntity? = nil {
+    didSet {
+      if let unwrappedOwner = owner where oldValue !== prop {
       //--- Register old value in undo manager
-        unwrappedOwner.mUndoManager?.registerUndoWithTarget (unwrappedOwner, selector:"undoFor_mRoot:", object:oldValue)
+        unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (value, button : unwrappedExplorer)
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
           if unwrappedOldValue.mNames.mSet.contains (unwrappedOwner) {
-            var array = unwrappedOldValue.mNames.values
+            var array = unwrappedOldValue.mNames.props
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
-            unwrappedOldValue.mNames.values = array
+            unwrappedOldValue.mNames.props = array
           }
         }
       //--- Set new opposite relation ship
-        if let unwrappedValue = value {
+        if let unwrappedValue = prop {
           if !unwrappedValue.mNames.mSet.contains (unwrappedOwner) {
-            unwrappedValue.mNames.values.append (unwrappedOwner)
+            unwrappedValue.mNames.props.append (unwrappedOwner)
           }
         }
       //--- Notify observers
-        for (key, observer) in mObservers {
-          postTransientEvent (observer)
-        }
+        postEvents ()
       }
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
+  func performUndo (oldValue : MyRootEntity?) {
+    prop = oldValue
   }
 }
 
@@ -94,10 +86,6 @@ struct ToOneRelationship_NameEntity_mRoot {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var mRoot = ToOneRelationship_NameEntity_mRoot ()
-  func undoFor_mRoot (object:MyRootEntity) {
-    mRoot.value = object
-  }
-
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
@@ -122,9 +110,16 @@ struct ToOneRelationship_NameEntity_mRoot {
   //--- Uninstall undoers for properties
     aValue.undoManager = nil
     name.undoManager = nil
-    mRoot.value = nil
+    mRoot.prop = nil
   }
   
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    deinit                                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  deinit {
+  //--- Unregister trigger objects
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
@@ -135,7 +130,6 @@ struct ToOneRelationship_NameEntity_mRoot {
     aValue.explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
     name.explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
     mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplay (mRoot.value, button:mRoot.explorer!)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -176,7 +170,7 @@ struct ToOneRelationship_NameEntity_mRoot {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    if let object = mRoot.value {
+    if let object = mRoot.prop {
       objects.addObject (object)
     }
   }
