@@ -7,36 +7,22 @@ private let displayDebugMessage = false
 //    %!["TriggerFor_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME + "_" + TABLE_VIEW_OUTLET_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTransientEventProtocol {
+class TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME% : PMTransientEvent {
   private weak var mArrayController : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%? = nil
   
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
- 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
- 
   init (object : ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%) {
-    mPrivateUniqueIndex = getUniqueIndex ()
     mArrayController = object
-    noteObjectAllocation (self) ;
   }
-  
-  func unregister () {
-  }
-  
-  deinit {
-    noteObjectDeallocation (self) ;
-  }
-
-  func noteModelDidChange () {
+ 
+  override func noteModelDidChange () {
      mArrayController?.modelDidChange ()
  }
   
-  func trigger () {
+  override func trigger () {
     mArrayController?.display ()
   }
 
-  func userClassName () -> String { return "TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
+  override func userClassName () -> String { return "TriggerFor_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME%_%!TABLE_VIEW_OUTLET_NAME%" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -319,7 +305,7 @@ for () in BOUND_COLUMNS do
         let validationResult = object.%!mObservablePropertyName%.validate (%![mPropertyType transformerForTableViewAction !"sender"]%)
         switch validationResult {
         case PMValidationResult.ok :
-          object.%!mObservablePropertyName%.value = %![mPropertyType transformerForTableViewAction !"sender"]%
+          object.%!mObservablePropertyName%.setValue (%![mPropertyType transformerForTableViewAction !"sender"]%)
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -332,7 +318,7 @@ for () in BOUND_COLUMNS do
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 object.%!mObservablePropertyName%.removeObserver(self.eventModelChange, inTrigger:false)
-                object.%!mObservablePropertyName%.value = %![mPropertyType transformerForTableViewAction !"sender"]%
+                object.%!mObservablePropertyName%.setValue (%![mPropertyType transformerForTableViewAction !"sender"]%)
                 object.%!mObservablePropertyName%.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
@@ -396,44 +382,14 @@ end
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemove = PMPreferencesProperty <Bool> (false)
-  
-   func updateCanRemoveProperty () {
-     canRemove.value = mSelectedObjectArray.count > 0
-   }
- 
-/*  private var canRemove_private = false // As array is empty initially
-  var canRemove : Bool { get { return canRemove_private } }
+  var canRemove = PMStoredProperty_Bool (false)
   
   func updateCanRemoveProperty () {
     if displayDebugMessage {
       appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
-    let newValue = mSelectedObjectArray.count > 0
-    if canRemove_private != newValue {
-      canRemove_private = newValue
-      for (key, object) in canRemove_observers {
-        postTransientEvent (object)
-      }
-    }
-  }
-  
-  private var canRemove_observers : [Int : PMTransientEventProtocol] = [:]
-  
-  func addObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemove_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemove_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-*/
+    canRemove.setValue (mSelectedObjectArray.count > 0)
+   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

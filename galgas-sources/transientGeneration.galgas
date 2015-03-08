@@ -130,7 +130,7 @@ override getter @transientRootSignDependencyForGeneration generateActualParamete
 #-----------------------------------------------------------------------------*
 
 override getter @transientLocalDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = mMasterName.string
+  outResult = mMasterName.string + ".value"
   if mNamesCountOption then
     outResult += ".count"
   end
@@ -139,13 +139,13 @@ override getter @transientLocalDependencyForGeneration generateActualParameterFo
 #-----------------------------------------------------------------------------*
 
 override getter @transientPreferenceDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "g_" + mPreferencesName.string + "!." + mMasterName.string
+  outResult = "g_" + mPreferencesName.string + "!." + mMasterName.string + ".value"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "rootObject." + mMasterName.string
+  outResult = "rootObject." + mMasterName.string + ".value"
   if mNamesCountOption then
     outResult += ".count"
   end

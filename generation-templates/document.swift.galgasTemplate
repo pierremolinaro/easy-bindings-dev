@@ -38,10 +38,10 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty <%![mTransientType swiftTypeName]
-                      %> (PMTransientIndex.k_%
+%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]
+                      % (PMTransientIndex.k_%
                       !["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
-                      %, defaultValue:%![mTransientType defaultValue]%)\n%
+                      %)\n%
 end
 
 %
@@ -116,7 +116,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!DOCUMENT_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    do %self.%![mDependency generateActualParameterForComputeFunction]
     between %, %
   end
   %)}\n%

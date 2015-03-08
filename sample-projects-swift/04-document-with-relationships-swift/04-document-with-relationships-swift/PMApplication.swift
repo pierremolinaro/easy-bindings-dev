@@ -38,7 +38,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_canRemoveString : PMTransientEvent {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.canRemoveString" }
@@ -71,7 +71,7 @@ enum PMTransientIndex : Int {
 } */
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_countItemMessage : PMTransientEvent {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.countItemMessage" }
@@ -104,7 +104,7 @@ enum PMTransientIndex : Int {
 } */
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_document_2E_PMDocument_2E_total : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_total : PMTransientEvent {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.total" }
@@ -137,7 +137,7 @@ enum PMTransientIndex : Int {
 } */
 //---------------------------------------------------------------------------------------------------------------------*
 
-/* class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEventProtocol {
+/* class PMEvent_document_2E_PMDocument_2E_nameController : PMTransientEvent {
   weak private var mObserver : PMDocument? = nil
 
   func userClassName () -> String { return "PMEvent_document.PMDocument.nameController" }
@@ -176,7 +176,7 @@ enum PMTransientIndex : Int {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func postTransientEvent (inObject : PMTransientEventProtocol) {
+func postTransientEvent (inObject : PMTransientEvent) {
   var theApp = NSApp as! PMApplication
   theApp.postTransientEvent (inObject) ;
 }
@@ -212,7 +212,7 @@ func appendToTransientEventLog (message : String) {
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
   private var mFlushLevel = 5
-  private var mTriggerOutletDisplaySet : [Int : PMTransientEventProtocol] = [:]
+  private var mTriggerOutletDisplaySet : [Int : PMTransientEvent] = [:]
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -259,15 +259,15 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTransientEventProtocol] = [:] // 1
-  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTransientEventProtocol] = [:] // 2
-  private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTransientEventProtocol] = [:] // 3
-  private var mTriggerSet_document_2E_PMDocument_2E_nameController : [Int : PMTransientEventProtocol] = [:] // 4
+  private var mTriggerSet_document_2E_PMDocument_2E_canRemoveString : [Int : PMTransientEvent] = [:] // 1
+  private var mTriggerSet_document_2E_PMDocument_2E_countItemMessage : [Int : PMTransientEvent] = [:] // 2
+  private var mTriggerSet_document_2E_PMDocument_2E_total : [Int : PMTransientEvent] = [:] // 3
+  private var mTriggerSet_document_2E_PMDocument_2E_nameController : [Int : PMTransientEvent] = [:] // 4
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMTransientEventProtocol) {
-    let transientIndex = inObject.transientEventIndex
+  private func postTransientEvent (inObject : PMTransientEvent) {
+    let transientIndex = inObject.transientEventIndex ()
     inObject.noteModelDidChange ()
     switch transientIndex {
     case PMTransientIndex.kTriggerOutletDisplay :

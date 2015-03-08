@@ -3,13 +3,13 @@ import Cocoa
 //---------------------------------------------------------------------------------------------------------------------*
 
 protocol NameEntity_aValue {
-  var aValue : PMEntityProperty <Int> { get }
+  var aValue : PMStoredProperty_Int { get }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 protocol NameEntity_name {
-  var name : PMEntityProperty <String> { get }
+  var name : PMStoredProperty_String { get }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -54,16 +54,16 @@ struct ToOneRelationship_NameEntity_mRoot {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+  private var mObservers : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       postTransientEvent (inObserver)
     }
   }
 
-  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = nil
     if inTrigger {
       postTransientEvent (inObserver)
@@ -82,15 +82,14 @@ struct ToOneRelationship_NameEntity_mRoot {
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var aValue = PMEntityProperty <Int> (123)
+  var aValue = PMStoredProperty_Int (123)
   var aValue_keyCodingValue : Int { get { return aValue.value } }
-  var name = PMEntityProperty <String> ("Name")
+  var name = PMStoredProperty_String ("Name")
   var name_keyCodingValue : String { get { return name.value } }
-
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
@@ -111,22 +110,8 @@ struct ToOneRelationship_NameEntity_mRoot {
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    aValue.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_aValue:", object:oldValue) }
-    name.registerUndo = {(oldValue : NSObject) in mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_name:", object:oldValue) }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  Undo methods for properties                                                                                      *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func undoFor_aValue (value : NSNumber) {
-    aValue.value = value.integerValue
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func undoFor_name (value : String) {
-    name.value = value
+    aValue.undoManager = undoManager
+    name.undoManager = undoManager
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -137,8 +122,8 @@ struct ToOneRelationship_NameEntity_mRoot {
     super.prepareForDeletion ()
   //--- Uninstall compute functions for transients
   //--- Uninstall undoers for properties
-    aValue.registerUndo = nil
-    name.registerUndo = nil
+    aValue.undoManager = nil
+    name.undoManager = nil
     mRoot.value = nil
   }
   
@@ -150,13 +135,7 @@ struct ToOneRelationship_NameEntity_mRoot {
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
     aValue.explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
-    if let explorer = aValue.explorer {
-      explorer.stringValue = aValue.value.descriptionForExplorer ()
-    }
     name.explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
-    if let explorer = name.explorer {
-      explorer.stringValue = name.value.descriptionForExplorer ()
-    }
     mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
     updateManagedObjectToOneRelationshipDisplay (mRoot.value, button:mRoot.explorer!)
   }
@@ -189,8 +168,8 @@ struct ToOneRelationship_NameEntity_mRoot {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    aValue.value = inDictionary.readInt ("aValue")
-    name.value = inDictionary.readString ("name")
+    aValue.setValue (inDictionary.readInt ("aValue"))
+    name.setValue (inDictionary.readString ("name"))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

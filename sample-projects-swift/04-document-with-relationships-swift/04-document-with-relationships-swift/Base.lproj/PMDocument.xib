@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7515.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7519.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PMDocument">
@@ -37,7 +37,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="100030" viewBased="YES" id="100028" customClass="PMTableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="465.5" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="465" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -147,7 +147,7 @@
                         </buttonCell>
                         <accessibility description="removeEntry"/>
                     </button>
-                    <textField verticalHuggingPriority="750" id="100056" customClass="PMTextField">
+                    <textField verticalHuggingPriority="750" id="100056" customClass="PMReadOnlyTextField">
                         <rect key="frame" x="352" y="21" width="143" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="*** can remove ***" id="100057">
@@ -166,7 +166,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100085" customClass="PMNumberField">
+                    <textField verticalHuggingPriority="750" id="100085" customClass="PMReadOnlyIntField">
                         <rect key="frame" x="165" y="21" width="73" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn" id="100086">
@@ -177,7 +177,7 @@
                         </textFieldCell>
                         <accessibility description="entryCount"/>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100099" customClass="PMTextField">
+                    <textField verticalHuggingPriority="750" id="100099" customClass="PMReadOnlyTextField">
                         <rect key="frame" x="247" y="21" width="103" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn Items" id="100100">
@@ -187,7 +187,7 @@
                         </textFieldCell>
                         <accessibility description="entryCountString"/>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="PMNumberField">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="PMReadOnlyIntField">
                         <rect key="frame" x="23" y="49" width="223" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="…TOTAL…" id="100118">

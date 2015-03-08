@@ -189,7 +189,7 @@ class PMTransientPropertyEvent_String : PMTransientEvent {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_NSColor                                                                                         *
+//   PMReadOnlyProperty_NSColor                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_NSColor : PMAbstractProperty {
@@ -561,6 +561,136 @@ class PMTransientPropertyEvent_Int : PMTransientEvent {
   override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
   
   init (_ inObject : PMTransientProperty_Int) {
+    mObserver = inObject
+    mTransientIndex = inObject.mTransientIndex
+  }
+
+  override func noteModelDidChange () {
+    mObserver?.mValueCache = nil
+  }
+
+  override func trigger () {
+    if let observer = mObserver {
+      for (key, object) in observer.mObservers {
+        postTransientEvent (object)
+      }
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadOnlyProperty_Bool                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadOnlyProperty_Bool : PMAbstractProperty {
+
+  override func userClassName () -> String { return "PMReadOnlyProperty_Bool" }
+
+  var value : Bool { get { return false } } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMStoredProperty_Bool                                                                                             *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
+  override func userClassName () -> String { return "PMStoredProperty_Bool"}
+
+  var undoManager : NSUndoManager?
+
+  var explorer : NSTextField? {
+    didSet {
+      explorer?.stringValue = mValue.description
+    }
+  }
+
+  init (_ inValue : Bool) {
+    mValue = inValue
+    super.init ()
+  }
+
+  private var mValue : Bool {
+    didSet {
+      if mValue != oldValue {
+        explorer?.stringValue = mValue.description
+        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        for (key, object) in mObservers {
+          postTransientEvent (object)
+        }
+      }
+    }
+  }
+
+  func performUndo (oldValue : Bool) {
+    mValue = oldValue
+  }
+
+  override var value :  Bool { get { return mValue } }
+
+  func setValue (inValue : Bool) { mValue = inValue }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+ 
+  var validationFunction : (Bool) -> PMValidationResult = defaultValidationFunction
+  
+  func validate (proposedValue : Bool) -> PMValidationResult {
+    return validationFunction (proposedValue)
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMTransientProperty_Bool                                                                                          *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
+  override func userClassName () -> String { return "PMTransientProperty_Bool"}
+
+  private var mValueCache : Bool? = nil
+  private let mTransientIndex : PMTransientIndex
+  var computeFunction : Optional<() -> Bool>
+  
+  init (_ inTransientIndex : PMTransientIndex) {
+    mTransientIndex = inTransientIndex
+    super.init ()
+  }
+
+  override var value : Bool {
+    get {
+      if mValueCache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          mValueCache = unwrappedComputeFunction ()
+        }else{
+          mValueCache = false
+        }
+      }
+      return mValueCache!
+    }
+  }
+
+  private var mEvent : PMTransientEvent?
+
+  var event : PMTransientEvent {
+    get {
+      if mEvent == nil {
+        mEvent = PMTransientPropertyEvent_Bool (self)
+      }
+      return mEvent!
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientPropertyEvent_Bool : PMTransientEvent {
+  override func userClassName () -> String { return "PMTransientPropertyEvent_Bool" }
+
+  weak private var mObserver : PMTransientProperty_Bool? = nil
+  private let mTransientIndex : PMTransientIndex
+
+  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
+  
+  init (_ inObject : PMTransientProperty_Bool) {
     mObserver = inObject
     mTransientIndex = inObject.mTransientIndex
   }

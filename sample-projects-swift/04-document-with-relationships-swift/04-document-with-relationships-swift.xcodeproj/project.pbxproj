@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */; };
 		CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */; };
-		CF32289219BE2F2900ACB419 /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32289119BE2F2900ACB419 /* controller-classes.swift */; };
-		CF5CC7BD1AA8B1670095C068 /* PMEntityProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CC7BA1AA8B1670095C068 /* PMEntityProperty.swift */; };
-		CF5CC7BE1AA8B1670095C068 /* PMPreferencesProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CC7BB1AA8B1670095C068 /* PMPreferencesProperty.swift */; };
-		CF5CC7BF1AA8B1670095C068 /* PMTransientProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CC7BC1AA8B1670095C068 /* PMTransientProperty.swift */; };
 		CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */; };
 		CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CAF19BA3AB4005DBEAF /* PMButton.swift */; };
 		CF793CB319BA3AB4005DBEAF /* PMTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF793CB019BA3AB4005DBEAF /* PMTableView.swift */; };
@@ -30,6 +26,9 @@
 		CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C642F1960619500BE14DF /* PMUndoManager.swift */; };
 		CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */; };
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
+		CFB43C3E1AAC5B1F003FF870 /* PMReadOnlyIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */; };
+		CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */; };
+		CFB43C401AAC5B1F003FF870 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */; };
 		CFBE8C0919C484CF001F0735 /* PMNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0819C484CF001F0735 /* PMNumberField.swift */; };
 		CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C64231960618800BE14DF /* MyRootEntity.swift */; };
 		CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */; };
@@ -41,10 +40,6 @@
 /* Begin PBXFileReference section */
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
 		CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
-		CF32289119BE2F2900ACB419 /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
-		CF5CC7BA1AA8B1670095C068 /* PMEntityProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEntityProperty.swift; sourceTree = "<group>"; };
-		CF5CC7BB1AA8B1670095C068 /* PMPreferencesProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPreferencesProperty.swift; sourceTree = "<group>"; };
-		CF5CC7BC1AA8B1670095C068 /* PMTransientProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTransientProperty.swift; sourceTree = "<group>"; };
 		CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMManagedDocument+extension+factory.swift"; sourceTree = "<group>"; };
 		CF793CAF19BA3AB4005DBEAF /* PMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMButton.swift; sourceTree = "<group>"; };
 		CF793CB019BA3AB4005DBEAF /* PMTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTableView.swift; sourceTree = "<group>"; };
@@ -65,8 +60,10 @@
 		CF7C642F1960619500BE14DF /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
 		CF7C643B196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyIntField.swift; sourceTree = "<group>"; };
+		CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
+		CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFBE8C0819C484CF001F0735 /* PMNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMNumberField.swift; sourceTree = "<group>"; };
-		CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "04-document-with-relationships-swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+total.swift"; sourceTree = "<group>"; };
 		CFE3F3DF1965FA3C0017DFCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CFE3F3E11965FAB30017DFCE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
@@ -107,9 +104,7 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
-				CFD4E4F619672E33004B38C8 /* 04-document-with-relationships-swift-Bridging-Header.h */,
 				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */,
-				CF32289119BE2F2900ACB419 /* controller-classes.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
 				CF7C64231960618800BE14DF /* MyRootEntity.swift */,
@@ -124,16 +119,16 @@
 				CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */,
 				CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */,
 				CFE3C9671993E6B800AF4AAF /* PMDocument+transient+total.swift */,
-				CF5CC7BA1AA8B1670095C068 /* PMEntityProperty.swift */,
 				CF7C642D1960619500BE14DF /* PMManagedDocument.swift */,
 				CF793CA919BA2040005DBEAF /* PMManagedDocument+extension+factory.swift */,
 				CF7C642E1960619500BE14DF /* PMManagedObject.swift */,
 				CFBE8C0819C484CF001F0735 /* PMNumberField.swift */,
-				CF5CC7BB1AA8B1670095C068 /* PMPreferencesProperty.swift */,
+				CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */,
+				CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */,
 				CF793CB019BA3AB4005DBEAF /* PMTableView.swift */,
 				CF793CB119BA3AB4005DBEAF /* PMTextField.swift */,
-				CF5CC7BC1AA8B1670095C068 /* PMTransientProperty.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
+				CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */,
 				CF7C6400196060D800BE14DF /* Supporting Files */,
 			);
 			path = "04-document-with-relationships-swift";
@@ -219,6 +214,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */,
+				CFB43C3E1AAC5B1F003FF870 /* PMReadOnlyIntField.swift in Sources */,
+				CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */,
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
@@ -226,21 +223,18 @@
 				CFECCFBA19BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */,
-				CF5CC7BD1AA8B1670095C068 /* PMEntityProperty.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
 				CF793CB419BA3AB4005DBEAF /* PMTextField.swift in Sources */,
 				CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */,
-				CF5CC7BE1AA8B1670095C068 /* PMPreferencesProperty.swift in Sources */,
+				CFB43C401AAC5B1F003FF870 /* standard-properties.swift in Sources */,
 				CF793CB319BA3AB4005DBEAF /* PMTableView.swift in Sources */,
 				CFE3C9681993E6B800AF4AAF /* PMDocument+transient+total.swift in Sources */,
 				CF7C6403196060D800BE14DF /* main.swift in Sources */,
 				CF7C64321960619500BE14DF /* PMApplication.swift in Sources */,
 				CF7C64381960619500BE14DF /* PMManagedObject.swift in Sources */,
 				CF7C64371960619500BE14DF /* PMManagedDocument.swift in Sources */,
-				CF32289219BE2F2900ACB419 /* controller-classes.swift in Sources */,
 				CF7C64331960619500BE14DF /* PMDataScanner.swift in Sources */,
 				CF7C64341960619500BE14DF /* PMDocument.swift in Sources */,
-				CF5CC7BF1AA8B1670095C068 /* PMTransientProperty.swift in Sources */,
 				CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

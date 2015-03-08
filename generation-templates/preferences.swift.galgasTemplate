@@ -156,7 +156,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    do %self.%![mDependency generateActualParameterForComputeFunction]
     between %, %
   end
   %)}\n%
