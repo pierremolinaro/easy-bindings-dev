@@ -7,36 +7,22 @@ private let displayDebugMessage = false
 //    TriggerFor_MyRootEntity_mNames_mNamesTableView                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEventProtocol {
+class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEvent {
   private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
   
-  var transientEventIndex : PMTransientIndex { get { return PMTransientIndex.kTriggerOutletDisplay } }
- 
-  private let mPrivateUniqueIndex : Int ;
-  var uniqueIndex : Int { get { return mPrivateUniqueIndex } }
- 
   init (object : ArrayController_MyRootEntity_mNames) {
-    mPrivateUniqueIndex = getUniqueIndex ()
     mArrayController = object
-    noteObjectAllocation (self) ;
   }
-  
-  func unregister () {
-  }
-  
-  deinit {
-    noteObjectDeallocation (self) ;
-  }
-
-  func noteModelDidChange () {
+ 
+  override func noteModelDidChange () {
      mArrayController?.modelDidChange ()
  }
   
-  func trigger () {
+  override func trigger () {
     mArrayController?.display ()
   }
 
-  func userClassName () -> String { return "TriggerFor_MyRootEntity_mNames_mNamesTableView" }
+  override func userClassName () -> String { return "TriggerFor_MyRootEntity_mNames_mNamesTableView" }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -322,7 +308,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         let validationResult = object.name.validate (sender.stringValue)
         switch validationResult {
         case PMValidationResult.ok :
-          object.name.value = sender.stringValue
+          object.name.setValue (sender.stringValue)
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -335,7 +321,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 object.name.removeObserver(self.eventModelChange, inTrigger:false)
-                object.name.value = sender.stringValue
+                object.name.setValue (sender.stringValue)
                 object.name.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
@@ -355,7 +341,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         let validationResult = object.aValue.validate (sender.integerValue)
         switch validationResult {
         case PMValidationResult.ok :
-          object.aValue.value = sender.integerValue
+          object.aValue.setValue (sender.integerValue)
         case PMValidationResult.rejectWithBeep :
           NSBeep ()
         case PMValidationResult.rejectWithAlert (let informativeText) :
@@ -368,7 +354,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
             alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
               if response == NSAlertSecondButtonReturn { // Discard Change
                 object.aValue.removeObserver(self.eventModelChange, inTrigger:false)
-                object.aValue.value = sender.integerValue
+                object.aValue.setValue (sender.integerValue)
                 object.aValue.addObserver (self.eventModelChange, inTrigger:false)
               }
             })
@@ -430,44 +416,14 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemove = PMPreferencesProperty <Bool> (false)
-  
-   func updateCanRemoveProperty () {
-     canRemove.value = mSelectedObjectArray.count > 0
-   }
- 
-/*  private var canRemove_private = false // As array is empty initially
-  var canRemove : Bool { get { return canRemove_private } }
+  var canRemove = PMStoredProperty_Bool (false)
   
   func updateCanRemoveProperty () {
     if displayDebugMessage {
       appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
-    let newValue = mSelectedObjectArray.count > 0
-    if canRemove_private != newValue {
-      canRemove_private = newValue
-      for (key, object) in canRemove_observers {
-        postTransientEvent (object)
-      }
-    }
-  }
-  
-  private var canRemove_observers : [Int : PMTransientEventProtocol] = [:]
-  
-  func addObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemove_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_canRemove (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemove_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-*/
+    canRemove.setValue (mSelectedObjectArray.count > 0)
+   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

@@ -73,16 +73,16 @@ if not mIsCollection then
 %
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObserversOf_%!lkey.string% : [Int : PMTransientEventProtocol] = [:]
+  private var mObserversOf_%!lkey.string% : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserverOf_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserverOf_%!lkey.string% (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = inObserver
     for managedObject in values {
       managedObject.%!lkey.string%.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_%!lkey.string% (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserverOf_%!lkey.string% (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = nil
     for managedObject in values {
       managedObject.%!lkey.string%.removeObserver (inObserver, inTrigger:inTrigger)
@@ -94,16 +94,16 @@ end
 end
 %  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+  private var mObservers : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       postTransientEvent (inObserver)
     }
   }
 
-  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = nil
     if inTrigger {
       postTransientEvent (inObserver)
@@ -167,16 +167,16 @@ struct ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+  private var mObservers : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       postTransientEvent (inObserver)
     }
   }
 
-  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = nil
     if inTrigger {
       postTransientEvent (inObserver)
@@ -257,7 +257,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!ENTITY_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]%.value%
+    do %self.%![mDependency generateActualParameterForComputeFunction]
     between %, %
   end
   %)}\n%

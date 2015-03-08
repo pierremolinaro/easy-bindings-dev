@@ -54,16 +54,16 @@ struct ToManyRelationship_MyRootEntity_mNames {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObserversOf_aValue : [Int : PMTransientEventProtocol] = [:]
+  private var mObserversOf_aValue : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserverOf_aValue (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_aValue [inObserver.uniqueIndex] = inObserver
     for managedObject in values {
       managedObject.aValue.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_aValue (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserverOf_aValue (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_aValue [inObserver.uniqueIndex] = nil
     for managedObject in values {
       managedObject.aValue.removeObserver (inObserver, inTrigger:inTrigger)
@@ -73,16 +73,16 @@ struct ToManyRelationship_MyRootEntity_mNames {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObserversOf_name : [Int : PMTransientEventProtocol] = [:]
+  private var mObserversOf_name : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserverOf_name (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_name [inObserver.uniqueIndex] = inObserver
     for managedObject in values {
       managedObject.name.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_name (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserverOf_name (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObserversOf_name [inObserver.uniqueIndex] = nil
     for managedObject in values {
       managedObject.name.removeObserver (inObserver, inTrigger:inTrigger)
@@ -91,16 +91,16 @@ struct ToManyRelationship_MyRootEntity_mNames {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEventProtocol] = [:]
+  private var mObservers : [Int : PMTransientEvent] = [:]
 
-  mutating func addObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = inObserver
     if inTrigger {
       postTransientEvent (inObserver)
     }
   }
 
-  mutating func removeObserver (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
+  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
     mObservers [inObserver.uniqueIndex] = nil
     if inTrigger {
       postTransientEvent (inObserver)
@@ -121,11 +121,10 @@ struct ToManyRelationship_MyRootEntity_mNames {
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
+
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
@@ -147,11 +146,6 @@ struct ToManyRelationship_MyRootEntity_mNames {
   //--- Install property observers for transients
   //--- Install undoers for properties
   }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  Undo methods for properties                                                                                      *
-  //-------------------------------------------------------------------------------------------------------------------*
-
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *

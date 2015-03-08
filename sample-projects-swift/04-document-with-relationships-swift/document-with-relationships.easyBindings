@@ -20,20 +20,20 @@ document PMDocument root MyRootEntity {
   ;
 
   transient String canRemoveString dependsFrom nameController.canRemove ;
-  outlet PMTextField canRemoveTextField $rvalue self.canRemoveString ;
+  outlet PMReadOnlyTextField canRemoveTextField $readOnlyValue self.canRemoveString ;
 
   outlet PMButton addPathButton $run nameController.add ;
 
   outlet PMButton removePathButton $run nameController.remove $enabled nameController.canRemove ;
 
-  outlet PMNumberField countItemTextField $rvalue root.mNames.count ;
+  outlet PMReadOnlyIntField countItemTextField $readOnlyValue root.mNames.count ;
 
   transient String countItemMessage dependsFrom root.mNames.count ;
 
-  outlet PMTextField countItemMessageTextField $rvalue self.countItemMessage  ;
+  outlet PMReadOnlyTextField countItemMessageTextField $readOnlyValue self.countItemMessage  ;
 
   transient Integer total dependsFrom root.mNames.aValue ;
-  outlet PMNumberField totalTextField $rvalue self.total  ;
+  outlet PMReadOnlyIntField totalTextField $readOnlyValue self.total  ;
 }
 
 #--------------------------------------------------------------*

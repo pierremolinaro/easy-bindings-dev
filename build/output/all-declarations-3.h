@@ -11,6 +11,16 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                Category Reader '@unifiedTypeMap-proxy defaultValue'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_defaultValue (const class GALGAS_unifiedTypeMap_2D_proxy & inObject,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                       Category Reader '@unifiedTypeMap-proxy valueAccessorForExplorerWindow'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

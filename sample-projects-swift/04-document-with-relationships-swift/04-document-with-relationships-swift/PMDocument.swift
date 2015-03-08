@@ -16,20 +16,12 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   @IBOutlet var addPathButton : PMButton?
-  @IBOutlet var canRemoveTextField : PMTextField?
-  @IBOutlet var countItemMessageTextField : PMTextField?
-  @IBOutlet var countItemTextField : PMNumberField?
+  @IBOutlet var canRemoveTextField : PMReadOnlyTextField?
+  @IBOutlet var countItemMessageTextField : PMReadOnlyTextField?
+  @IBOutlet var countItemTextField : PMReadOnlyIntField?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var removePathButton : PMButton?
-  @IBOutlet var totalTextField : PMNumberField?
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Controllers                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Document attributes                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  @IBOutlet var totalTextField : PMReadOnlyIntField?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
@@ -40,9 +32,9 @@ import Cocoa
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemoveString = PMTransientProperty <String> (PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString)
-  var countItemMessage = PMTransientProperty <String> (PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage)
-  var total = PMTransientProperty <Int> (PMTransientIndex.k_document_2E_PMDocument_2E_total)
+  var canRemoveString = PMTransientProperty_String (PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString)
+  var countItemMessage = PMTransientProperty_String (PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage)
+  var total = PMTransientProperty_Int (PMTransientIndex.k_document_2E_PMDocument_2E_total)
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -84,33 +76,43 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray : [PMTransientEventProtocol] = []
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == addPathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'addPathButton' outlet is nil") ;
+    }else if !addPathButton!.isKindOfClass (PMButton) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'addPathButton' outlet is not an instance of 'PMButton'") ;
     }
     if nil == canRemoveTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'canRemoveTextField' outlet is nil") ;
+    }else if !canRemoveTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'canRemoveTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
     if nil == countItemMessageTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'countItemMessageTextField' outlet is nil") ;
+    }else if !countItemMessageTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'countItemMessageTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
     if nil == countItemTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is nil") ;
+    }else if !countItemTextField!.isKindOfClass (PMReadOnlyIntField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
     }
     if nil == mNamesTableView {
       presentErrorWindow (__FILE__, __LINE__, "the 'mNamesTableView' outlet is nil") ;
+    }else if !mNamesTableView!.isKindOfClass (PMTableView) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mNamesTableView' outlet is not an instance of 'PMTableView'") ;
     }
     if nil == removePathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'removePathButton' outlet is nil") ;
+    }else if !removePathButton!.isKindOfClass (PMButton) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'removePathButton' outlet is not an instance of 'PMButton'") ;
     }
     if nil == totalTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
+    }else if !totalTextField!.isKindOfClass (PMReadOnlyIntField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
     }
   //--------------------------- Array controller
     nameController = ArrayController_MyRootEntity_mNames (
@@ -119,18 +121,21 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
-  //--------------------------- Transient observers
+  //--- Install compute functions for transients
+    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.(nameController != nil) ? (nameController?.canRemove)! : false)}
+    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.value.count)}
+    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames /* (rootObject.mNames as NSArray) as [NameEntity_aValue] */)}
+  //--- Install property observers for transients
     nameController?.canRemove.addObserver (canRemoveString.event, inTrigger:true)
     rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)
     rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
+  //--- Install bindings
+    canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
+    countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
+    countItemTextField?.bind_readOnlyValue (rootObject.mNames, file:__FILE__, line:__LINE__)
+    totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
   //--------------------------- Array controller as observers
  //   rootObject.mNames.addObserver (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:true)
-  //--------------------------- Simple controllers
-    mControllerArray.append (EnableController_PMDocument_removePathButton (object0:nameController, outlet:removePathButton, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_PMDocument_canRemoveString_PMTextField_rvalue (object:self, outlet:canRemoveTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_mNames_PMNumberField_rvalue (object:rootObject, outlet:countItemTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_PMDocument_countItemMessage_PMTextField_rvalue (object:self, outlet:countItemMessageTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_PMDocument_total_PMNumberField_rvalue (object:self, outlet:totalTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -145,160 +150,19 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
+  //--- Unbind
+    canRemoveTextField?.unbind_readOnlyValue ()
+    countItemMessageTextField?.unbind_readOnlyValue ()
+    countItemTextField?.unbind_readOnlyValue ()
+    totalTextField?.unbind_readOnlyValue ()
   //--------------------------- Remove controllers
     nameController?.unregister ()
-    for controller in mControllerArray {
-      controller.unregister ()
-    }
-    mControllerArray = []
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
   }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: canRemoveString                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
-
- /* var canRemoveString_observers : [Int : PMTransientEventProtocol] = [:]
-  var canRemoveString_cache : String?
-  var canRemoveString : String {
-    get {
-      if canRemoveString_cache == nil {
-        canRemoveString_cache = compute_PMDocument_canRemoveString ((nameController != nil) ? (nameController?.canRemove)! : false)
-      }
-      return canRemoveString_cache!
-    }
-  }
-
-  func document_2E_PMDocument_2E_canRemoveString_noteDidChange () {
-    canRemoveString_cache = nil
-  }
-
-  func document_2E_PMDocument_2E_canRemoveString_trigger () {
-    for (key, object) in canRemoveString_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_canRemoveString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemoveString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_canRemoveString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    canRemoveString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_document_2E_PMDocument_2E_canRemoveString_cache : PMEvent_document_2E_PMDocument_2E_canRemoveString? = nil
-  var event_document_2E_PMDocument_2E_canRemoveString : PMEvent_document_2E_PMDocument_2E_canRemoveString {
-    if event_document_2E_PMDocument_2E_canRemoveString_cache == nil {
-      event_document_2E_PMDocument_2E_canRemoveString_cache = PMEvent_document_2E_PMDocument_2E_canRemoveString (object:self)
-    }
-    return event_document_2E_PMDocument_2E_canRemoveString_cache!
-  } */
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: countItemMessage                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
- /* var countItemMessage_observers : [Int : PMTransientEventProtocol] = [:]
-  var countItemMessage_cache : String?
-  var countItemMessage : String {
-    get {
-      if countItemMessage_cache == nil {
-        countItemMessage_cache = compute_PMDocument_countItemMessage (rootObject.mNames.count)
-      }
-      return countItemMessage_cache!
-    }
-  }
-
-  func document_2E_PMDocument_2E_countItemMessage_noteDidChange () {
-    countItemMessage_cache = nil
-  }
-
-  func document_2E_PMDocument_2E_countItemMessage_trigger () {
-    for (key, object) in countItemMessage_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_countItemMessage (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    countItemMessage_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_countItemMessage (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    countItemMessage_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_document_2E_PMDocument_2E_countItemMessage_cache : PMEvent_document_2E_PMDocument_2E_countItemMessage? = nil
-  var event_document_2E_PMDocument_2E_countItemMessage : PMEvent_document_2E_PMDocument_2E_countItemMessage {
-    if event_document_2E_PMDocument_2E_countItemMessage_cache == nil {
-      event_document_2E_PMDocument_2E_countItemMessage_cache = PMEvent_document_2E_PMDocument_2E_countItemMessage (object:self)
-    }
-    return event_document_2E_PMDocument_2E_countItemMessage_cache!
-  } */
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: total                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
-
- /* var total_observers : [Int : PMTransientEventProtocol] = [:]
-  var total_cache : Int?
-  var total : Int {
-    get {
-      if total_cache == nil {
-        total_cache = compute_PMDocument_total (rootObject.mNames /* (rootObject.mNames as NSArray) as [NameEntity_aValue] */)
-      }
-      return total_cache!
-    }
-  }
-
-  func document_2E_PMDocument_2E_total_noteDidChange () {
-    total_cache = nil
-  }
-
-  func document_2E_PMDocument_2E_total_trigger () {
-    for (key, object) in total_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_total (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    total_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_total (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    total_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_document_2E_PMDocument_2E_total_cache : PMEvent_document_2E_PMDocument_2E_total? = nil
-  var event_document_2E_PMDocument_2E_total : PMEvent_document_2E_PMDocument_2E_total {
-    if event_document_2E_PMDocument_2E_total_cache == nil {
-      event_document_2E_PMDocument_2E_total_cache = PMEvent_document_2E_PMDocument_2E_total (object:self)
-    }
-    return event_document_2E_PMDocument_2E_total_cache!
-  } */
-
 
 
 //---------------------------------------------------------------------------------------------------------------------*
