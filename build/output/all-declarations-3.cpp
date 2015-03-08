@@ -12115,7 +12115,7 @@ static GALGAS_string categoryReader_transientControllerDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientControllerDependencyForGeneration * object = (const cPtr_transientControllerDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientControllerDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("(").add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (" != nil) \? ("), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (")! : false"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)) ;
+  result_outResult = GALGAS_string ("(self.").add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (" != nil) \? (self."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (")! : false"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)) ;
 //---
   return result_outResult ;
 }
@@ -12171,7 +12171,7 @@ static GALGAS_string categoryReader_transientLocalDependencyForGeneration_genera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientLocalDependencyForGeneration * object = (const cPtr_transientLocalDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientLocalDependencyForGeneration) ;
-  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)) ;
+  result_outResult = GALGAS_string ("self.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)) ;
   const enumGalgasBool test_0 = object->mAttribute_mNamesCountOption.boolEnum () ;
   if (kBoolTrue == test_0) {
     result_outResult.dotAssign_operation (GALGAS_string (".count")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 113)) ;
@@ -12233,7 +12233,7 @@ static GALGAS_string categoryReader_transientRootDependencyForGeneration_generat
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootDependencyForGeneration * object = (const cPtr_transientRootDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)) ;
+  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)) ;
   const enumGalgasBool test_0 = object->mAttribute_mNamesCountOption.boolEnum () ;
   if (kBoolTrue == test_0) {
     result_outResult.dotAssign_operation (GALGAS_string (".count")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 128)) ;
@@ -12266,7 +12266,7 @@ static GALGAS_string categoryReader_transientRootRelationshipDependencyForGenera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootRelationshipDependencyForGeneration * object = (const cPtr_transientRootRelationshipDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootRelationshipDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (GALGAS_string (" /* (rootObject."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (GALGAS_string (" as NSArray) as ["), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (object->mAttribute_mElementType.reader_key (inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)).add_operation (GALGAS_string ("] */"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)) ;
+  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)) ;
 //---
   return result_outResult ;
 }

@@ -116,9 +116,9 @@ import Cocoa
       line:__LINE__
     )
   //--- Install compute functions for transients
-    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.(nameController != nil) ? (nameController?.canRemove)! : false)}
+    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString ((self.nameController != nil) ? (self.nameController?.canRemove)! : false)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.prop.count)}
-    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames /* (rootObject.mNames as NSArray) as [NameEntity_aValue] */)}
+    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames)}
   //--- Install property observers for transients
     nameController?.canRemove.addObserver (canRemoveString.event, inTrigger:true)
     rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)

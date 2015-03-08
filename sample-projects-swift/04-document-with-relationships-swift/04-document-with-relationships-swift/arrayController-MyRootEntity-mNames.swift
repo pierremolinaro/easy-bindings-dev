@@ -29,7 +29,7 @@ class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEvent {
 //    ArrayController_MyRootEntity_mNames                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate, PMUserClassName {
+class ArrayController_MyRootEntity_mNames : PMObject, NSTableViewDataSource, NSTableViewDelegate {
   private var mUndoManager : NSUndoManager?
   private var mObject : MyRootEntity
   private var mTableView : PMTableView?
@@ -56,12 +56,6 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     mSelectedObjectArray = previousSelectedObjectArray as! Array<NameEntity>
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "ArrayController_MyRootEntity_mNames" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -121,7 +115,6 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
         }
       }
     }
-    noteObjectAllocation (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -135,14 +128,6 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
     }
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    tableViewSelectionDidChange                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*

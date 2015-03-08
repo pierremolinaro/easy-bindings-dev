@@ -53,9 +53,9 @@ protocol MyRootEntity_myString {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.myStringMaj.prop, self.myStringMin.prop)}
-    myStringMaj.computeFunction = {return compute_MyRootEntity_myStringMaj (self.myString.prop)}
-    myStringMin.computeFunction = {return compute_MyRootEntity_myStringMin (self.myString.prop)}
+    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.self.myStringMaj.prop, self.self.myStringMin.prop)}
+    myStringMaj.computeFunction = {return compute_MyRootEntity_myStringMaj (self.self.myString.prop)}
+    myStringMin.computeFunction = {return compute_MyRootEntity_myStringMin (self.self.myString.prop)}
   //--- Install property observers for transients
     myStringMaj.addObserver (myStringConcat.event, inTrigger:true)
     myStringMin.addObserver (myStringConcat.event, inTrigger:true)
@@ -83,7 +83,6 @@ protocol MyRootEntity_myString {
     myString.undoManager = nil
   }
   
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    deinit                                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*

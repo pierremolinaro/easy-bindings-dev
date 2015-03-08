@@ -18,28 +18,35 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 //    %!["To many relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
- 
-  var explorer : NSPopUpButton?
+class ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractProperty {
   var owner : %!ENTITY_NAME%?
-  var mSet = Set<%![mRelationshipType key]%> ()
-  var values : Array<%![mRelationshipType key]%> = Array () {
+
+  var explorer : NSPopUpButton? {
     didSet {
-      if oldValue != values {
-        mSet = Set (values)
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:unwrappedExplorer)
+      }
+    }
+  }
+
+  var mSet = Set<%![mRelationshipType key]%> ()
+  var props = Array<%![mRelationshipType key]%> () {
+    didSet {
+      if oldValue != props {
+        mSet = Set (props)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (values, popUpButton:explorer!)
+          owner?.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:explorer!)
         }
       //--- Removed object set
         var removedObjectSet : Set<%![mRelationshipType key]%> = Set (oldValue)
-        removedObjectSet.subtractInPlace (values)
+        removedObjectSet.subtractInPlace (props)
         for managedObject : %![mRelationshipType key]% in removedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for (key, observer) in mObserversOf_%!lkey.string% {
+%          for observer in mObserversOf_%!lkey.string% {
             managedObject.%!lkey.string%.removeObserver (observer, inTrigger:true)
           }
 %end
@@ -47,44 +54,50 @@ end
 %          managedObject.%!mOppositeRelationshipName%.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<%![mRelationshipType key]%> = Set (values)
+        var addedObjectSet : Set<%![mRelationshipType key]%> = Set (props)
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : %![mRelationshipType key]% in addedObjectSet {
 %for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
-%          for (key, observer) in mObserversOf_%!lkey.string% {
+%          for observer in mObserversOf_%!lkey.string% {
             managedObject.%!lkey.string%.addObserver (observer, inTrigger:true)
           }
 %end
 end
-%          managedObject.%!mOppositeRelationshipName%.value = owner
+%          managedObject.%!mOppositeRelationshipName%.prop = owner
         }
       //--- Notify observers object count did change
-        for (key, observer) in mObservers {
-          postTransientEvent (observer)
-        }
+        postEvents ()
       }
     }
   }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func performUndo (oldValue : Array<%![mRelationshipType key]%>) {
+    props = oldValue
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count : Int { get { return props.count } }
 
 %
 for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
 %
-  //-------------------------------------------------------------------------------------------------------------------*
+  var mObserversOf_%!lkey.string% = Set<PMEvent> ()
 
-  private var mObserversOf_%!lkey.string% : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserverOf_%!lkey.string% (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = inObserver
-    for managedObject in values {
+  func addObserverOf_%!lkey.string% (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_%!lkey.string%.insert (inObserver)
+    for managedObject in props {
       managedObject.%!lkey.string%.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  mutating func removeObserverOf_%!lkey.string% (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObserversOf_%!lkey.string% [inObserver.uniqueIndex] = nil
-    for managedObject in values {
+  func removeObserverOf_%!lkey.string% (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_%!lkey.string%.remove (inObserver)
+    for managedObject in props {
       managedObject.%!lkey.string%.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
@@ -92,25 +105,7 @@ if not mIsCollection then
 %
 end
 end
-%  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mObservers : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-  
-  var count : Int { get { return values.count } }
+%  
 }
 %
   end
@@ -122,33 +117,39 @@ for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
 //    %!["To one relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
 //---------------------------------------------------------------------------------------------------------------------*
 
-struct ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
+class ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractProperty {
   var explorer : NSButton?
-  var owner : %!ENTITY_NAME%?
- 
-  var value : %![mRelationshipType key]%? = nil {
+  var owner : %!ENTITY_NAME%? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== value {
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+      }
+    }
+  }
+ 
+  var prop : %![mRelationshipType key]%? = nil {
+    didSet {
+      if let unwrappedOwner = owner where oldValue !== prop {
       //--- Register old value in undo manager
-        unwrappedOwner.mUndoManager?.registerUndoWithTarget (unwrappedOwner, selector:"undoFor_%!mRelationshipName%:", object:oldValue)
+        unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (value, button : unwrappedExplorer)
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
         }
 %    if mOppositeRelationshipIsToMany then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
           if unwrappedOldValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
-            var array = unwrappedOldValue.%!mOppositeRelationshipName%.values
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%.props
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
-            unwrappedOldValue.%!mOppositeRelationshipName%.values = array
+            unwrappedOldValue.%!mOppositeRelationshipName%.props = array
           }
         }
       //--- Set new opposite relation ship
-        if let unwrappedValue = value {
+        if let unwrappedValue = prop {
           if !unwrappedValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
-            unwrappedValue.%!mOppositeRelationshipName%.values.append (unwrappedOwner)
+            unwrappedValue.%!mOppositeRelationshipName%.props.append (unwrappedOwner)
           }
         }
 %    else
@@ -158,29 +159,15 @@ struct ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% {
         %!mRelationshipName%?.%!mOppositeRelationshipName% = self
 %    end
 %      //--- Notify observers
-        for (key, observer) in mObservers {
-          postTransientEvent (observer)
-        }
+        postEvents ()
       }
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mObservers : [Int : PMTransientEvent] = [:]
-
-  mutating func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  mutating func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
+  func performUndo (oldValue : %![mRelationshipType key]%?) {
+    prop = oldValue
   }
 }
 %
@@ -225,14 +212,8 @@ end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
     %  var %!mRelationshipName% = ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% ()\n%
-    %  func undoFor_%!mRelationshipName% (object:NSArray) {\n%
-    %    %!mRelationshipName%.values = object as! Array<%![mRelationshipType key]%>\n%
-    %  }\n\n%
   else
     %  var %!mRelationshipName% = ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% ()\n%
-    %  func undoFor_%!mRelationshipName% (object:%![mRelationshipType key]%) {\n%
-    %    %!mRelationshipName%.value = object\n%
-    %  }\n\n%
   end
 end
 %
@@ -291,16 +272,13 @@ end
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-    %    %!mRelationshipName%.values = Array<%![mRelationshipType key]%> ()\n%
+    %    %!mRelationshipName%.props = Array<%![mRelationshipType key]%> ()\n%
   else
-    %    %!mRelationshipName%.value = nil\n%
+    %    %!mRelationshipName%.prop = nil\n%
   end
 end
 %  }
   
-%
-if [TRANSIENT_LIST_FOR_IMPLEMENTATION length] > 0 then
-%
   //-------------------------------------------------------------------------------------------------------------------*
   //    deinit                                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -314,9 +292,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   end
 end
 %  }
-%
-end
-%
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -328,11 +304,9 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    %!mRelationshipName%.explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToManyRelationshipDisplay (%!mRelationshipName%.values, popUpButton:%!mRelationshipName%.explorer!)\n%
+%    %!mRelationshipName%.explorer = createEntryForToManyRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)\n%
   else
-%    %!mRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)
-    updateManagedObjectToOneRelationshipDisplay (%!mRelationshipName%.value, button:%!mRelationshipName%.explorer!)\n%
+%    %!mRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mRelationshipName%", ioRect: &ioRect, view: view)\n%
   end
 end%  }
 
@@ -361,7 +335,7 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    storeEntityArrayInDictionary (%!mRelationshipName%.values, inRelationshipName:"%!mRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    storeEntityArrayInDictionary (%!mRelationshipName%.props, inRelationshipName:"%!mRelationshipName%", ioDictionary:ioDictionary) ;\n%
   end
 end
 %  }
@@ -378,17 +352,17 @@ end
 end
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    %!mRelationshipName%.values = readEntityArrayFromDictionary (
+%    %!mRelationshipName%.props = readEntityArrayFromDictionary (
         "%!mRelationshipName%",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
       ) as! Array<%![mRelationshipType key]%>\n%
   elsif not mOppositeRelationshipIsToMany then
-%    %!mRelationshipName%.setValue (readEntityFromDictionary (
+%    %!mRelationshipName%.prop = readEntityFromDictionary (
         "%!mRelationshipName%",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
-      ) as? %![mRelationshipType key]%)\n%
+      ) as? %![mRelationshipType key]%\n%
   end
 end
 %  }
@@ -401,11 +375,11 @@ end
     super.accessibleObjects (&objects)
 %for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%    for managedObject : PMManagedObject in %!mRelationshipName%.values {
+%    for managedObject : PMManagedObject in %!mRelationshipName%.props {
       objects.addObject (managedObject)
     }\n%
   else
-%    if let object = %!mRelationshipName%.value {\n%
+%    if let object = %!mRelationshipName%.prop {\n%
 %      objects.addObject (object)\n%
 %    }\n%
   end
