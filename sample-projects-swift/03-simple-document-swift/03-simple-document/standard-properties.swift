@@ -6,9 +6,9 @@ import Cocoa
 
 @objc(PMReadOnlyEnumPropertyProtocol) protocol PMReadOnlyEnumPropertyProtocol {
 
-  func addObserver (inObserver : PMTransientEvent, inTrigger:Bool)
+  func addObserver (inObserver : PMEvent, inTrigger:Bool)
 
-  func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool)
+  func removeObserver (inObserver : PMEvent, inTrigger:Bool)
 
   func count () -> Int
 
@@ -28,33 +28,27 @@ import Cocoa
 //   PMAbstractProperty                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMAbstractProperty) class PMAbstractProperty : PMUserClassName {
+@objc(PMAbstractProperty) class PMAbstractProperty : PMObject {
 
-  func userClassName () -> String { return "PMAbstractProperty" }
+  private var mObservers = Set <PMEvent> ()
   
-  init () {
-    noteObjectAllocation (self)
-  }
-  
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var mObservers : [Int : PMTransientEvent] = [:]
-  
-  func addObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = inObserver
+  func addObserver (inObserver : PMEvent, inTrigger:Bool) {
+    mObservers.insert (inObserver)
     if inTrigger {
-      postTransientEvent (inObserver)
+      inObserver.postEvent ()
     }
   }
  
-  func removeObserver (inObserver : PMTransientEvent, inTrigger:Bool) {
-    mObservers [inObserver.uniqueIndex] = nil
+  func removeObserver (inObserver : PMEvent, inTrigger:Bool) {
+    mObservers.remove (inObserver)
     if inTrigger {
-      postTransientEvent (inObserver)
+      inObserver.postEvent ()
+    }
+  }
+
+  func postEvents () {
+    for object in mObservers {
+      object.postEvent ()
     }
   }
 }
@@ -65,9 +59,7 @@ import Cocoa
 
 class PMReadOnlyProperty_String : PMAbstractProperty {
 
-  override func userClassName () -> String { return "PMReadOnlyProperty_String" }
-
-  var value : String { get { return "" } } // Abstract method
+  var prop : String { get { return "" } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -75,8 +67,6 @@ class PMReadOnlyProperty_String : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_String : PMReadOnlyProperty_String {
-  override func userClassName () -> String { return "PMStoredProperty_String"}
-
   var undoManager : NSUndoManager?
   var explorer : NSTextField? {
     didSet {
@@ -94,9 +84,7 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
       if mValue != oldValue {
         explorer?.stringValue = mValue
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -105,9 +93,9 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
     mValue = oldValue
   }
   
-  override var value :  String { get { return mValue } }
+  override var prop :  String { get { return mValue } }
 
-  func setValue (inValue : String) { mValue = inValue }
+  func setProp (inValue : String) { mValue = inValue }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -123,19 +111,15 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
 //   PMTransientProperty_String                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_String : PMReadOnlyProperty_String {
-  override func userClassName () -> String { return "PMTransientProperty_String"}
-
+class PMTransientProperty_String : PMReadOnlyProperty_String, PMTransientPropertyProtocol {
   private var mValueCache : String? = nil
-  private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> String>
-  
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+
+  override init () {
     super.init ()
   }
 
-  override var value : String {
+  override var prop : String {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -153,37 +137,16 @@ class PMTransientProperty_String : PMReadOnlyProperty_String {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_String (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_String : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_String" }
-
-  weak private var mObserver : PMTransientProperty_String? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_String) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }
@@ -193,10 +156,7 @@ class PMTransientPropertyEvent_String : PMTransientEvent {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_NSColor : PMAbstractProperty {
-
-  override func userClassName () -> String { return "PMReadOnlyProperty_NSColor" }
-
-  var value : NSColor { get { return NSColor.blackColor () } } // Abstract method
+  var prop : NSColor { get { return NSColor.blackColor () } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -204,8 +164,6 @@ class PMReadOnlyProperty_NSColor : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
-  override func userClassName () -> String { return "PMStoredProperty_NSColor"}
-
   var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -224,9 +182,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -235,9 +191,9 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
     mValue = oldValue
   }
 
-  override var value :  NSColor { get { return mValue } }
+  override var prop :  NSColor { get { return mValue } }
 
-  func setValue (inValue : NSColor) { mValue = inValue }
+  func setProp (inValue : NSColor) { mValue = inValue }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -253,19 +209,15 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 //   PMTransientProperty_NSColor                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
-  override func userClassName () -> String { return "PMTransientProperty_NSColor"}
-
+class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor, PMTransientPropertyProtocol {
   private var mValueCache : NSColor? = nil
-  private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> NSColor>
   
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+  override init () {
     super.init ()
   }
 
-  override var value : NSColor {
+  override var prop : NSColor {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -283,37 +235,16 @@ class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_NSColor (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_NSColor : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_NSColor" }
-
-  weak private var mObserver : PMTransientProperty_NSColor? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_NSColor) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }
@@ -323,10 +254,7 @@ class PMTransientPropertyEvent_NSColor : PMTransientEvent {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_NSDate : PMAbstractProperty {
-
-  override func userClassName () -> String { return "PMReadOnlyProperty_NSDate" }
-
-  var value : NSDate { get { return NSDate () } } // Abstract method
+  var prop : NSDate { get { return NSDate () } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -334,8 +262,6 @@ class PMReadOnlyProperty_NSDate : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
-  override func userClassName () -> String { return "PMStoredProperty_NSDate"}
-
   var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -354,9 +280,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -365,9 +289,9 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
     mValue = oldValue
   }
 
-  override var value :  NSDate { get { return mValue } }
+  override var prop :  NSDate { get { return mValue } }
 
-  func setValue (inValue : NSDate) { mValue = inValue }
+  func setProp (inValue : NSDate) { mValue = inValue }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -383,19 +307,15 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 //   PMTransientProperty_NSDate                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
-  override func userClassName () -> String { return "PMTransientProperty_NSDate"}
-
+class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate, PMTransientPropertyProtocol {
   private var mValueCache : NSDate? = nil
-  private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> NSDate>
   
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+  override init () {
     super.init ()
   }
 
-  override var value : NSDate {
+  override var prop : NSDate {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -413,37 +333,15 @@ class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_NSDate (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_NSDate : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_NSDate" }
-
-  weak private var mObserver : PMTransientProperty_NSDate? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_NSDate) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }
@@ -453,10 +351,7 @@ class PMTransientPropertyEvent_NSDate : PMTransientEvent {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_Int : PMAbstractProperty {
-
-  override func userClassName () -> String { return "PMReadOnlyProperty_Int" }
-
-  var value : Int { get { return 0 } } // Abstract method
+  var prop : Int { get { return 0 } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -464,8 +359,6 @@ class PMReadOnlyProperty_Int : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_Int : PMReadOnlyProperty_Int {
-  override func userClassName () -> String { return "PMStoredProperty_Int"}
-
   var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -484,9 +377,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -495,9 +386,9 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
     mValue = oldValue
   }
 
-  override var value :  Int { get { return mValue } }
+  override var prop :  Int { get { return mValue } }
 
-  func setValue (inValue : Int) { mValue = inValue }
+  func setProp (inValue : Int) { mValue = inValue }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -513,19 +404,15 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 //   PMTransientProperty_Int                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Int : PMReadOnlyProperty_Int {
-  override func userClassName () -> String { return "PMTransientProperty_Int"}
-
+class PMTransientProperty_Int : PMReadOnlyProperty_Int, PMTransientPropertyProtocol {
   private var mValueCache : Int? = nil
-  private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> Int>
   
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+  override init () {
     super.init ()
   }
 
-  override var value : Int {
+  override var prop : Int {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -543,37 +430,16 @@ class PMTransientProperty_Int : PMReadOnlyProperty_Int {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_Int (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_Int : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_Int" }
-
-  weak private var mObserver : PMTransientProperty_Int? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_Int) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }
@@ -583,10 +449,7 @@ class PMTransientPropertyEvent_Int : PMTransientEvent {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_Bool : PMAbstractProperty {
-
-  override func userClassName () -> String { return "PMReadOnlyProperty_Bool" }
-
-  var value : Bool { get { return false } } // Abstract method
+  var prop : Bool { get { return false } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -594,8 +457,6 @@ class PMReadOnlyProperty_Bool : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
-  override func userClassName () -> String { return "PMStoredProperty_Bool"}
-
   var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -614,9 +475,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        for (key, object) in mObservers {
-          postTransientEvent (object)
-        }
+        postEvents ()
       }
     }
   }
@@ -625,9 +484,9 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
     mValue = oldValue
   }
 
-  override var value :  Bool { get { return mValue } }
+  override var prop :  Bool { get { return mValue } }
 
-  func setValue (inValue : Bool) { mValue = inValue }
+  func setProp (inValue : Bool) { mValue = inValue }
 
   //-------------------------------------------------------------------------------------------------------------------*
  
@@ -643,19 +502,15 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 //   PMTransientProperty_Bool                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
-  override func userClassName () -> String { return "PMTransientProperty_Bool"}
-
+class PMTransientProperty_Bool : PMReadOnlyProperty_Bool, PMTransientPropertyProtocol {
   private var mValueCache : Bool? = nil
-  private let mTransientIndex : PMTransientIndex
   var computeFunction : Optional<() -> Bool>
   
-  init (_ inTransientIndex : PMTransientIndex) {
-    mTransientIndex = inTransientIndex
+  override init () {
     super.init ()
   }
 
-  override var value : Bool {
+  override var prop : Bool {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
@@ -673,37 +528,16 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
   var event : PMTransientEvent {
     get {
       if mEvent == nil {
-        mEvent = PMTransientPropertyEvent_Bool (self)
+        mEvent = PMTransientEvent (self)
       }
       return mEvent!
     }
   }
-}
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class PMTransientPropertyEvent_Bool : PMTransientEvent {
-  override func userClassName () -> String { return "PMTransientPropertyEvent_Bool" }
-
-  weak private var mObserver : PMTransientProperty_Bool? = nil
-  private let mTransientIndex : PMTransientIndex
-
-  override func transientEventIndex () -> PMTransientIndex { return mTransientIndex }
-  
-  init (_ inObject : PMTransientProperty_Bool) {
-    mObserver = inObject
-    mTransientIndex = inObject.mTransientIndex
-  }
-
-  override func noteModelDidChange () {
-    mObserver?.mValueCache = nil
-  }
-
-  override func trigger () {
-    if let observer = mObserver {
-      for (key, object) in observer.mObservers {
-        postTransientEvent (object)
-      }
+  func noteModelDidChange () {
+    if mValueCache != nil {
+      mValueCache = nil
+      postEvents ()
     }
   }
 }

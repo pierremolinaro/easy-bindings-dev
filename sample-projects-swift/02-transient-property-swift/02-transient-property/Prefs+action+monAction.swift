@@ -18,10 +18,10 @@ import Cocoa
 extension Prefs {
   func monAction (inSender : AnyObject) {
 //--- START OF USER ZONE 2
-    mFirstName.setValue ("Tempo 1")
-    mName.setValue ("Tempo 2")
-    mFirstName.setValue ("Amédée")
-    mName.setValue ("Schmurtz")
+    mFirstName.setProp ("Tempo 1")
+    mName.setProp ("Tempo 2")
+    mFirstName.setProp ("Amédée")
+    mName.setProp ("Schmurtz")
 //--- END OF USER ZONE 2
 
   }

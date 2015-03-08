@@ -8,12 +8,8 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc (%!PREFERENCES_NAME%) class %!PREFERENCES_NAME% : NSObject, PMUserClassName {
+@objc (%!PREFERENCES_NAME%) class %!PREFERENCES_NAME% : PMObject {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "%!PREFERENCES_NAME%" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -32,7 +28,6 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION do
 %  var %!mAttributeName% = PMStoredProperty_%![mAttributeType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
 end
 %
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -40,10 +35,7 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]
-                      % (PMTransientIndex.k_%
-                      !["preference." + PREFERENCES_NAME + "." + mTransientName identifierRepresentation]
-                      %)\n%
+%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
 for () in CONTROLLER_MAP do
@@ -72,9 +64,8 @@ for () in ARRAY_MAP do%  var %!lkey.string% = NSMutableArray ()\n%end
 
   override init () {
     super.init ()
-    noteObjectAllocation (self) ;
     g_%!PREFERENCES_NAME% = self ;
- %
+%
 if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
   %  //---\n%
@@ -85,7 +76,7 @@ for () in ATTRIBUTE_LIST_FOR_GENERATION
   do
     %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
     %    if value != nil {\n%
-    %      %!mAttributeName%.setValue (%![mAttributeType preferencesSwiftGetter]%)\n%
+    %      %!mAttributeName%.setProp (%![mAttributeType preferencesSwiftGetter]%)\n%
     %    }\n%
 end
 %  //--- Property validation function
@@ -178,14 +169,6 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
   %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
 end
 %  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self) ;
-  }
   
   //-------------------------------------------------------------------------------------------------------------------*
   //    applicationWillTerminateAction                                                                                 *

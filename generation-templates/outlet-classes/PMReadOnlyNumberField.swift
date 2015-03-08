@@ -71,14 +71,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMNumberField_readOnlyValue)
-class Controller_PMNumberField_readOnlyValue : PMTransientEvent {
+class Controller_PMNumberField_readOnlyValue : PMOutletEvent {
 
   var mObject : PMReadOnlyProperty_Int
   var mOutlet : PMReadOnlyNumberField
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMNumberField.readOnlyValue" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -96,14 +92,14 @@ class Controller_PMNumberField_readOnlyValue : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    mOutlet.myIntegerValue = mObject.value
+  override func updateOutlet () {
+    mOutlet.myIntegerValue = mObject.prop
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -2,43 +2,50 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    T O P O L O G I C A L    S O R T    O F    P R O P E R T I E S                                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMEvent class                                                                                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-// preference.PMPrefs.mColor
-// preference.PMPrefs.mDate
-// preference.PMPrefs.mIntegerValue
-// preference.PMPrefs.myString
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    T R A N S I E N T    I N D E X E S                                                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-enum PMTransientIndex : Int {
-  case kTriggerOutletDisplay // 0
+@objc(PMEvent) class PMEvent : PMObject {
+  func postEvent () {} // Abstract method
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    T R A N S I E N T    T R I G G E R    C L A S S E S                                                              *
-//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMTransientEvent class                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+@objc(PMTransientEvent) class PMTransientEvent : PMEvent {
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    P O S T    T R A N S I E N T    E V E N T                                                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+  private weak var mTransientProperty : PMTransientPropertyProtocol?
+  
+  init (_ transientProperty : PMTransientPropertyProtocol) {
+    mTransientProperty = transientProperty
+    super.init ()
+  }
+  
+  override func postEvent () {
+    mTransientProperty?.noteModelDidChange ()
+  }
+}
 
-func postTransientEvent (inObject : PMTransientEvent) {
-  var theApp = NSApp as! PMApplication
-  theApp.postTransientEvent (inObject) ;
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMTransientPropertyProtocol                                                                                      *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(PMTransientPropertyProtocol) protocol PMTransientPropertyProtocol {
+  func noteModelDidChange ()
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMOutletEvent class                                                                                              *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(PMOutletEvent) class PMOutletEvent : PMEvent {
+  override func postEvent () {
+    var theApp = NSApp as! PMApplication
+    theApp.postTransientEvent (self) ;
+  }
+  func updateOutlet () {} // Abstract Method
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -71,8 +78,7 @@ func appendToTransientEventLog (message : String) {
 
 @objc(PMApplication) class PMApplication : NSApplication {
   private var mLevel = 0
-  private var mFlushLevel = 1
-  private var mTriggerOutletDisplaySet : [Int : PMTransientEvent] = [:]
+  private var mTriggerOutletDisplaySet = Set <PMOutletEvent> ()
  
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -119,26 +125,16 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private func postTransientEvent (inObject : PMTransientEvent) {
-    let transientIndex = inObject.transientEventIndex ()
-    inObject.noteModelDidChange ()
-    switch transientIndex {
-    case PMTransientIndex.kTriggerOutletDisplay :
-      if logEvents () {
-        let str = String (format:"+level %d, #%d:%@\n", transientIndex.rawValue, inObject.uniqueIndex, inObject.userClassName())
-        if transientIndex.rawValue >= mFlushLevel {
-          mTransientEventExplorerTextView?.appendErrorString (str)
-        }else if mTriggerOutletDisplaySet [inObject.uniqueIndex] == nil {
-          mTransientEventExplorerTextView?.appendMessageString (str)
-        }else{ // Event already posted
-          mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
-        }
+  private func postTransientEvent (inObject : PMOutletEvent) {
+    if logEvents () {
+      let str = String (format:"Post outlet event #%@\n", _stdlib_getDemangledTypeName (inObject))
+      if !mTriggerOutletDisplaySet.contains (inObject) {
+        mTransientEventExplorerTextView?.appendMessageString (str)
+      }else{ // Event already posted
+        mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
       }
-      mTriggerOutletDisplaySet [inObject.uniqueIndex] = inObject
     }
+    mTriggerOutletDisplaySet.insert (inObject)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -171,24 +167,20 @@ func appendToTransientEventLog (message : String) {
   //-------------------------------------------------------------------------------------------------------------------*
   
   private func flushTransientEvents () {
-    var emptyFlush = true ;
     if mTriggerOutletDisplaySet.count > 0 {
-      emptyFlush = false
       if logEvents () {
         mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
       }
-      mFlushLevel = 0
-      for (key, object) in mTriggerOutletDisplaySet {
+      for object in mTriggerOutletDisplaySet {
         if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (String (format:"  -#%d:%@\n", object.uniqueIndex, object.userClassName()))
+          mTransientEventExplorerTextView?.appendMessageString (String (format:"  - %@\n", _stdlib_getDemangledTypeName (object)))
         }
-        object.trigger ()
+        object.updateOutlet ()
       }
-      mTriggerOutletDisplaySet = [:]
+      mTriggerOutletDisplaySet = Set ()
     }
-    mFlushLevel = 1
-    if !emptyFlush && logEvents () {
-       mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+    if logEvents () {
+      mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
     }
  }
 

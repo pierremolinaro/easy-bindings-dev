@@ -8,12 +8,8 @@ var g_PMPrefs : PMPrefs? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc (PMPrefs) class PMPrefs : NSObject, PMUserClassName {
+@objc (PMPrefs) class PMPrefs : PMObject {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "PMPrefs" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -37,7 +33,6 @@ var g_PMPrefs : PMPrefs? = nil
   var mIntegerValue = PMStoredProperty_Int (123)
   var myString = PMStoredProperty_String ("hello")
 
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
@@ -54,26 +49,25 @@ var g_PMPrefs : PMPrefs? = nil
 
   override init () {
     super.init ()
-    noteObjectAllocation (self) ;
     g_PMPrefs = self ;
-     var ud = NSUserDefaults.standardUserDefaults ()
+    var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
     value = ud.objectForKey ("PMPrefs:mColor")
     if value != nil {
-      mColor.setValue (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
+      mColor.setProp (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
     }
     value = ud.objectForKey ("PMPrefs:mDate")
     if value != nil {
-      mDate.setValue (value as! NSDate)
+      mDate.setProp (value as! NSDate)
     }
     value = ud.objectForKey ("PMPrefs:mIntegerValue")
     if value != nil {
-      mIntegerValue.setValue ((value as! NSNumber).integerValue)
+      mIntegerValue.setProp ((value as! NSNumber).integerValue)
     }
     value = ud.objectForKey ("PMPrefs:myString")
     if value != nil {
-      myString.setValue (value as! String)
+      myString.setProp (value as! String)
     }
   //--- Property validation function
     mIntegerValue.validationFunction = self.validate_mIntegerValue
@@ -142,23 +136,15 @@ var g_PMPrefs : PMPrefs? = nil
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self) ;
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    applicationWillTerminateAction                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.value), forKey:"PMPrefs:mColor")
-    ud.setObject (mDate.value, forKey:"PMPrefs:mDate")
-    ud.setObject (NSNumber (integer:mIntegerValue.value), forKey:"PMPrefs:mIntegerValue")
-    ud.setObject (myString.value, forKey:"PMPrefs:myString")
+    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop), forKey:"PMPrefs:mColor")
+    ud.setObject (mDate.prop, forKey:"PMPrefs:mDate")
+    ud.setObject (NSNumber (integer:mIntegerValue.prop), forKey:"PMPrefs:mIntegerValue")
+    ud.setObject (myString.prop, forKey:"PMPrefs:myString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

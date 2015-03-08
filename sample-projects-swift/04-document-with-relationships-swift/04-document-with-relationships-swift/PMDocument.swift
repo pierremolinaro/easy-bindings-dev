@@ -6,12 +6,6 @@ import Cocoa
 @objc(PMDocument) class PMDocument : PMManagedDocument, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override func userClassName () -> String { return "PMDocument" }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -123,7 +117,7 @@ import Cocoa
     )
   //--- Install compute functions for transients
     canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.(nameController != nil) ? (nameController?.canRemove)! : false)}
-    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.value.count)}
+    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.prop.count)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames /* (rootObject.mNames as NSArray) as [NameEntity_aValue] */)}
   //--- Install property observers for transients
     nameController?.canRemove.addObserver (canRemoveString.event, inTrigger:true)

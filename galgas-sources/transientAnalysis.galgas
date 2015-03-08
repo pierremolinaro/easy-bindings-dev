@@ -208,7 +208,7 @@ override method @transientPreferenceDependencyAST buildTransientDependencyGraph
 proc buildTransientDependencyGraph
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @string inSourceFile
-  !@transientDependencyGraphNodeInfoList outSortedTransientNodes {
+{
 #------------------------------------------- Build transient dependancy graph
   var transientDependencyGraph = @transientDependencyGraph. emptyGraph
   for () type_ in inUnifiedTypeMap do
@@ -270,11 +270,12 @@ proc buildTransientDependencyGraph
     [s writeToFileWhenDifferentContents !path ?*]
   end
 #------------------------------------------- Topological sort nodes
+  @transientDependencyGraphNodeInfoList sortedTransientNodes
   if @uint. errorCount != 0 then
-    outSortedTransientNodes = {}
+    sortedTransientNodes = {}
   else
     [transientDependencyGraph topologicalSort
-      ?outSortedTransientNodes
+      ?sortedTransientNodes
       ?*
       ?var @transientDependencyGraphNodeInfoList unsortedNodes
       ?*

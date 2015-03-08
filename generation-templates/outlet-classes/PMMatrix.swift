@@ -6,10 +6,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMMatrix" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
@@ -42,14 +38,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMMatrix_selectedIndex)
-class Controller_PMMatrix_selectedIndex : PMTransientEvent {
+class Controller_PMMatrix_selectedIndex : PMOutletEvent {
 
   var mObject : PMEnumPropertyProtocol
   var mOutlet: PMMatrix
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMMatrix.selectedIndex" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -65,7 +57,7 @@ class Controller_PMMatrix_selectedIndex : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
@@ -73,7 +65,7 @@ class Controller_PMMatrix_selectedIndex : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
+  override func updateOutlet () {
     if mOutlet.selectedRow != mObject.rawValue () {
       mOutlet.selectCellAtRow (mObject.rawValue (), column:0)
     }

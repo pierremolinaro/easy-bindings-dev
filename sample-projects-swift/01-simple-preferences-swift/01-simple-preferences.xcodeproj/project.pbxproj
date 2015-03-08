@@ -11,11 +11,11 @@
 		CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */; };
-		CFA38986194094C400F20FFB /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38985194094C400F20FFB /* PMApplication.swift */; };
 		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
 		CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */; };
+		CFA946591AACA979001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA946581AACA979001C5C57 /* application.swift */; };
 		CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBA1AAC533D00958004 /* standard-properties.swift */; };
 		CFBE8C0719C47F91001F0735 /* PMReadOnlyNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
@@ -33,11 +33,11 @@
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
-		CFA38985194094C400F20FFB /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
+		CFA946581AACA979001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFAD6CBA1AAC533D00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyNumberField.swift; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -78,11 +78,11 @@
 		CF71E6531940938500021EDF /* 01-simple-preferences */ = {
 			isa = PBXGroup;
 			children = (
+				CFA946581AACA979001C5C57 /* application.swift */,
 				CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */,
 				CFE72D1B194A3849004114D6 /* MainMenu.xib */,
 				CFA389891940981D00F20FFB /* PMAllocationDebug.swift */,
 				CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */,
-				CFA38985194094C400F20FFB /* PMApplication.swift */,
 				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
 				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
 				CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */,
@@ -186,11 +186,11 @@
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
 				CFEA713E1AAAFF4B00302BC0 /* PMIntField.swift in Sources */,
 				CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */,
+				CFA946591AACA979001C5C57 /* application.swift in Sources */,
 				CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */,
 				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
 				CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
-				CFA38986194094C400F20FFB /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -312,24 +312,12 @@ class GALGAS_stringlist callCategoryReader_observedObjectTypeNameList (const cla
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                         Routine 'generateControllerClasses'                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateControllerClasses (const class GALGAS_stringset constinArgument0,
-                                        const class GALGAS_string constinArgument1,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                       Routine 'buildTransientDependencyGraph'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_buildTransientDependencyGraph (const class GALGAS_unifiedTypeMap constinArgument0,
                                             const class GALGAS_string constinArgument1,
-                                            class GALGAS_transientDependencyGraphNodeInfoList & outArgument2,
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
@@ -412,8 +400,7 @@ void callCategoryMethod_buildTransientDependencyGraph (const class cPtr_abstract
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateTransients (const class GALGAS_string constinArgument0,
-                                 const class GALGAS_transientDependencyGraphNodeInfoList constinArgument1,
-                                 const class GALGAS_transientListForGeneration constinArgument2,
+                                 const class GALGAS_transientListForGeneration constinArgument1,
                                  class C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
@@ -442,17 +429,6 @@ extern const cDirectoryWrapper gWrapperDirectory_6_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_7_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_8_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_9_transientManager ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Filewrapper template 'transientManager applicationInSwift'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_transientManager_applicationInSwift (class C_Compiler * inCompiler,
-                                                                       const class GALGAS_transientDependencyGraphNodeInfoList & in_PROPERTY_5F_LIST,
-                                                                       const class GALGAS_stringlist & in_TRANSIENT_5F_LIST
-                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -619,8 +595,7 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
                                const class GALGAS_lstringlist constinArgument1,
                                const class GALGAS_string constinArgument2,
                                const class GALGAS_astDeclarationStruct constinArgument3,
-                               class GALGAS_transientDependencyGraphNodeInfoList & outArgument4,
-                               class GALGAS_structForGeneration & outArgument5,
+                               class GALGAS_structForGeneration & outArgument4,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
@@ -630,9 +605,8 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void routine_generateCode (const class GALGAS_transientDependencyGraphNodeInfoList constinArgument0,
-                           const class GALGAS_structForGeneration constinArgument1,
-                           const class GALGAS_string constinArgument2,
+void routine_generateCode (const class GALGAS_structForGeneration constinArgument0,
+                           const class GALGAS_string constinArgument1,
                            class C_Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 

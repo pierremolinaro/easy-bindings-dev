@@ -71,12 +71,10 @@ grammar easyBindings_grammar
         !sortedTypeNames
         !inSourceFile.string
         !declarationStruct
-        ?let @transientDependencyGraphNodeInfoList sortedTransientAndObservablePropertyNodes
         ?let @structForGeneration generation
       )
       if @uint. errorCount == 0 then
         generateCode (
-          !sortedTransientAndObservablePropertyNodes
           !generation
           !inSourceFile.string
         )
@@ -96,13 +94,12 @@ private proc semanticAnalysis
   ?let @lstringlist unused inSortedKeys
   ?let @string inSourceFile
   ?let @astDeclarationStruct inAstDeclarationStruct
-  !@transientDependencyGraphNodeInfoList outSortedTransientAndObservablePropertyNodes
-  !@structForGeneration outGeneration {
+  !@structForGeneration outGeneration
+{
 #--- Build transient dependancy graph
   buildTransientDependencyGraph (
     !inUnifiedTypeMap
     !inSourceFile
-    ?outSortedTransientAndObservablePropertyNodes
   )
 #--- Build controller template map
   buildControllerTemplateMap (
@@ -135,12 +132,10 @@ private proc semanticAnalysis
 #----------------------------------------------------------------------------*
 
 private proc generateCode
-  ?let @transientDependencyGraphNodeInfoList inSortedTransientAndObservablePropertyNodes
   ?let @structForGeneration inGeneration
   ?let @string inSourceFile {
   generateTransients (
     !inSourceFile
-    !inSortedTransientAndObservablePropertyNodes
     !inGeneration.mTransientListForGeneration
   )
   generateActions (
@@ -154,10 +149,6 @@ private proc generateCode
   )
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
-    !outputDirectory
-  )
-  generateControllerClasses (
-    !inGeneration.mControllerGenerationStringSet
     !outputDirectory
   )
   generateEntities (
@@ -203,7 +194,8 @@ private proc generateSwiftApplicationFiles
     !"main",
     !"PMAllocationDebug",
     !"easy-bindings-utilities",
-    !"standard-properties"
+    !"standard-properties",
+    !"application"
   }
   if inHasEntities then
     swiftFiles += !"PMManagedObject"

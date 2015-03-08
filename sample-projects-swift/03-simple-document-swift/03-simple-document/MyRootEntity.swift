@@ -24,25 +24,22 @@ protocol MyRootEntity_myString {
 //---------------------------------------------------------------------------------------------------------------------*
 
 @objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_myColor, MyRootEntity_myEnumeration, MyRootEntity_myString {
-  override func userClassName () -> String { return "MyRootEntity" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
   var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
-  var myColor_keyCodingValue : NSColor { get { return myColor.value } }
   var myEnumeration = PMStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
-  var myEnumeration_keyCodingValue : MonEnumeration { get { return myEnumeration.value } }
   var myString = PMStoredProperty_String ("Hello")
-  var myString_keyCodingValue : String { get { return myString.value } }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var myStringConcat = PMTransientProperty_String (PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringConcat)
-  var myStringMaj = PMTransientProperty_String (PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMaj)
-  var myStringMin = PMTransientProperty_String (PMTransientIndex.k_entity_2E_MyRootEntity_2E_myStringMin)
+  var myStringConcat = PMTransientProperty_String ()
+  var myStringMaj = PMTransientProperty_String ()
+  var myStringMin = PMTransientProperty_String ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
@@ -56,9 +53,9 @@ protocol MyRootEntity_myString {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.myStringMaj.value, self.myStringMin.value)}
-    myStringMaj.computeFunction = {return compute_MyRootEntity_myStringMaj (self.myString.value)}
-    myStringMin.computeFunction = {return compute_MyRootEntity_myStringMin (self.myString.value)}
+    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.myStringMaj.prop, self.myStringMin.prop)}
+    myStringMaj.computeFunction = {return compute_MyRootEntity_myStringMaj (self.myString.prop)}
+    myStringMin.computeFunction = {return compute_MyRootEntity_myStringMin (self.myString.prop)}
   //--- Install property observers for transients
     myStringMaj.addObserver (myStringConcat.event, inTrigger:true)
     myStringMin.addObserver (myStringConcat.event, inTrigger:true)
@@ -127,9 +124,9 @@ protocol MyRootEntity_myString {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.value), forKey: "myColor")
-    ioDictionary.setValue (NSNumber (integer:myEnumeration.value.rawValue), forKey: "myEnumeration")
-    ioDictionary.setValue (myString.value, forKey: "myString")
+    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.prop), forKey: "myColor")
+    ioDictionary.setValue (NSNumber (integer:myEnumeration.prop.rawValue), forKey: "myEnumeration")
+    ioDictionary.setValue (myString.prop, forKey: "myString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -139,9 +136,9 @@ protocol MyRootEntity_myString {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    myColor.setValue (inDictionary.readNSColor ("myColor"))
-    myEnumeration.setValue (inDictionary.readMonEnumeration ("myEnumeration"))
-    myString.setValue (inDictionary.readString ("myString"))
+    myColor.setProp (inDictionary.readNSColor ("myColor"))
+    myEnumeration.setProp (inDictionary.readMonEnumeration ("myEnumeration"))
+    myString.setProp (inDictionary.readString ("myString"))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

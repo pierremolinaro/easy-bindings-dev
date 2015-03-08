@@ -22,10 +22,10 @@
 		CF94924D1945BCC90068A86C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94924C1945BCC90068A86C /* main.swift */; };
 		CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */; };
 		CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */; };
-		CF9492751945C81F0068A86C /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492711945C81F0068A86C /* PMApplication.swift */; };
 		CF9492771945C8840068A86C /* MonEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492761945C8840068A86C /* MonEnumeration.swift */; };
 		CF9492791945D3C10068A86C /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9492781945D3C10068A86C /* MyRootEntity.swift */; };
 		CF94927B1945D4A90068A86C /* PMManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94927A1945D4A90068A86C /* PMManagedObject.swift */; };
+		CFA9465B1AACAB09001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9465A1AACAB09001C5C57 /* application.swift */; };
 		CFCB249E1AAB189F000466B8 /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB249D1AAB189F000466B8 /* PMReadOnlyTextField.swift */; };
 		CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD713F71955D96700BC89A7 /* PMDocument.swift */; };
 		CFD7142A1955DC7C00BC89A7 /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */; };
@@ -52,10 +52,10 @@
 		CF9492561945BCC90068A86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
-		CF9492711945C81F0068A86C /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CF9492761945C8840068A86C /* MonEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonEnumeration.swift; sourceTree = "<group>"; };
 		CF9492781945D3C10068A86C /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 		CF94927A1945D4A90068A86C /* PMManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedObject.swift; sourceTree = "<group>"; };
+		CFA9465A1AACAB09001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFCB249D1AAB189F000466B8 /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
 		CFD713F71955D96700BC89A7 /* PMDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDocument.swift; sourceTree = "<group>"; };
 		CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
@@ -94,6 +94,7 @@
 		CF9492491945BCC90068A86C /* 03-simple-document */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9465A1AACAB09001C5C57 /* application.swift */,
 				CF94926E1945C81F0068A86C /* easy-bindings-utilities.swift */,
 				CF9492551945BCC90068A86C /* MainMenu.xib */,
 				CF9492761945C8840068A86C /* MonEnumeration.swift */,
@@ -103,7 +104,6 @@
 				CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */,
 				CF94926F1945C81F0068A86C /* PMAllocationDebug.swift */,
 				CFD7142B1955E38900BC89A7 /* PMAllocationDebug.xib */,
-				CF9492711945C81F0068A86C /* PMApplication.swift */,
 				CF0086B319B89089000573AC /* PMColorWell.swift */,
 				CFE1BC5E1956D34C00263B1A /* PMDataScanner.swift */,
 				CFD713F71955D96700BC89A7 /* PMDocument.swift */,
@@ -214,6 +214,7 @@
 				CF9492731945C81F0068A86C /* PMAllocationDebug.swift in Sources */,
 				CF9492771945C8840068A86C /* MonEnumeration.swift in Sources */,
 				CF88DE971AAC325F005466BF /* standard-properties.swift in Sources */,
+				CFA9465B1AACAB09001C5C57 /* application.swift in Sources */,
 				CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */,
 				CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */,
 				CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */,
@@ -222,7 +223,6 @@
 				CF94924D1945BCC90068A86C /* main.swift in Sources */,
 				CF0086B819B89089000573AC /* PMTextField.swift in Sources */,
 				CFE1BC5F1956D34C00263B1A /* PMDataScanner.swift in Sources */,
-				CF9492751945C81F0068A86C /* PMApplication.swift in Sources */,
 				CF0086B719B89089000573AC /* PMMatrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

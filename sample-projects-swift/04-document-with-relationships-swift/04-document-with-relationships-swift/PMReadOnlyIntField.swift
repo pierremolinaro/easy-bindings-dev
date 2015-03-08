@@ -8,10 +8,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMReadOnlyIntField" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
@@ -71,48 +67,35 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMReadOnlyIntField_readOnlyValue)
-class Controller_PMReadOnlyIntField_readOnlyValue : PMTransientEvent, PMUserClassName {
+class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
 
-  weak var mObject : PMReadOnlyProperty_Int? = nil
-  weak var mOutlet : PMReadOnlyIntField? = nil
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMReadOnlyIntField.value" }
+  var mObject : PMReadOnlyProperty_Int
+  var mOutlet : PMReadOnlyIntField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Int?, outlet : PMReadOnlyIntField?, file : String, line : Int) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyIntField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    if let unwrappedOutlet = outlet {
-      if !unwrappedOutlet.isKindOfClass (PMReadOnlyIntField) {
-        presentErrorWindow (file, line, "outlet is not an instance of PMReadOnlyIntField")
-      }else{
-        mOutlet = unwrappedOutlet
-        if unwrappedOutlet.formatter == nil {
-          presentErrorWindow (file, line, "the outlet has no formatter")
-        }else if !(unwrappedOutlet.formatter is NSNumberFormatter) {
-          presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
-        }
-      }
+    if mOutlet.formatter == nil {
+      presentErrorWindow (file, line, "the outlet has no formatter")
+    }else if !(mOutlet.formatter is NSNumberFormatter) {
+      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject?.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
-    mObject?.removeObserver (self, inTrigger:false)
+  func unregister () {
+    mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    if let outlet = mOutlet, object = mObject {
-      outlet.myIntegerValue = object.value
-    }
+  override func updateOutlet () {
+    mOutlet.myIntegerValue = mObject.prop
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

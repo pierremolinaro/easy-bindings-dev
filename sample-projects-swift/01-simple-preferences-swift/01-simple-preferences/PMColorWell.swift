@@ -6,10 +6,6 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func userClassName () -> String { return "PMColorWell" }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
@@ -46,15 +42,11 @@ import Cocoa
 //   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMColorWell_color : PMTransientEvent {
+class Controller_PMColorWell_color : PMOutletEvent {
 
   var mObject : PMStoredProperty_NSColor
   var mOutlet: PMColorWell
   var mSendContinously : Bool
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func userClassName () -> String { return "Controller.PMColorWell.color" }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -71,7 +63,7 @@ class Controller_PMColorWell_color : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
   
-  override func unregister () {
+  func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
@@ -79,9 +71,9 @@ class Controller_PMColorWell_color : PMTransientEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func trigger () {
-    if mOutlet.color != mObject.value {
-      mOutlet.color = mObject.value
+  override func updateOutlet () {
+    if mOutlet.color != mObject.prop {
+      mOutlet.color = mObject.prop
     }
   }
 
@@ -91,7 +83,7 @@ class Controller_PMColorWell_color : PMTransientEvent {
     let validationResult = mObject.validate (mOutlet.color)
     switch validationResult {
     case PMValidationResult.ok :
-      mObject.setValue (mOutlet.color)
+      mObject.setProp (mOutlet.color)
       if mSendContinously {
         flushTriggers ()
       }
@@ -106,7 +98,7 @@ class Controller_PMColorWell_color : PMTransientEvent {
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.color = self.mObject.value
+            self.mOutlet.color = self.mObject.prop
           }
         })
       }
