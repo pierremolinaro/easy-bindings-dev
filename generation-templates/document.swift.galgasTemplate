@@ -84,7 +84,6 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
 %
 
@@ -142,7 +141,8 @@ end
 %    %!mOutletName%?.action = "%!mActionName%:"\n%
 end
 %  //--------------------------- Update display
-    flushTriggers ()
+    super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

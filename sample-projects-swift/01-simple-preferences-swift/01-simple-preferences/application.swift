@@ -50,11 +50,11 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    R U N    T R I G G E R S                                                                                         *
+//    F L U S H    O U T L E T    E V E N T S                                                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func flushTriggers () {
+func flushOutletEvents () {
   var theApp = NSApp as! PMApplication
   theApp.flushTransientEvents ()
 }
@@ -178,11 +178,11 @@ func appendToTransientEventLog (message : String) {
         object.updateOutlet ()
       }
       mTriggerOutletDisplaySet = Set ()
+      if logEvents () {
+        mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
+      }
     }
-    if logEvents () {
-      mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
-    }
- }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
 

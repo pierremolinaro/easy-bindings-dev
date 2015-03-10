@@ -34,10 +34,8 @@ class PMManagedObject : PMObject, PMSignatureObserverProtocol {
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
   var mSignatureHasBeenComputed = false
 
- // #ifdef PM_COCOA_DEBUG
-    var mExplorerObjectIndex : Int
-    var mExplorerWindow : NSWindow?
-//  #endif
+  let mExplorerObjectIndex : Int
+  var mExplorerWindow : NSWindow?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *
@@ -45,11 +43,9 @@ class PMManagedObject : PMObject, PMSignatureObserverProtocol {
 
   init (undoManager : NSUndoManager) {
     mUndoManager = undoManager
-    gAllocatedEntityCount = gAllocatedEntityCount + 1
- //   #ifdef PM_COCOA_DEBUG
-      mExplorerObjectIndex = gExplorerObjectIndex
-      gExplorerObjectIndex = gExplorerObjectIndex + 1
- //   #endif
+    gAllocatedEntityCount += 1
+    mExplorerObjectIndex = gExplorerObjectIndex
+    gExplorerObjectIndex += 1
     super.init ()
   }
 

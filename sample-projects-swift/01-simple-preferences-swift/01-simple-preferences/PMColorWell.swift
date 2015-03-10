@@ -85,7 +85,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
     case PMValidationResult.ok :
       mObject.setProp (mOutlet.color)
       if mSendContinously {
-        flushTriggers ()
+        flushOutletEvents ()
       }
     case PMValidationResult.rejectWithBeep :
       NSBeep ()

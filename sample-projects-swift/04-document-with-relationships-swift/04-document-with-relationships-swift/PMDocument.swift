@@ -71,7 +71,6 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == addPathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'addPathButton' outlet is nil") ;
@@ -136,7 +135,8 @@ import Cocoa
     removePathButton?.target = nameController
     removePathButton?.action = "remove:"
   //--------------------------- Update display
-    flushTriggers ()
+    super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
