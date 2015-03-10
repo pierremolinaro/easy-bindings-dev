@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------------------------------------------------*
-
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -42,21 +40,51 @@ import Cocoa
 
 @objc(PMOutletEvent) class PMOutletEvent : PMEvent {
   override func postEvent () {
-    var theApp = NSApp as! PMApplication
-    theApp.postTransientEvent (self) ;
+    postOutletEvent (self)
   }
   func updateOutlet () {} // Abstract Method
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    F L U S H    O U T L E T    E V E N T S                                                                          *
-//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    O U T L E T    E V E N T S                                                                                              *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+private var gPendingOutletEvents = Set <PMOutletEvent> ()
+
+func postOutletEvent (event : PMOutletEvent) {
+  if gPendingOutletEvents.count == 0 {
+    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }
+  }
+  
+  if logEvents () {
+    let str = String (format:"Post outlet event #%@\n", _stdlib_getDemangledTypeName (event))
+    if !gPendingOutletEvents.contains (event) {
+      appendMessageString (str)
+    }else{ // Event already posted
+      appendMessageString (str, NSColor.brownColor ())
+    }
+  }
+  gPendingOutletEvents.insert (event)
+}
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 func flushOutletEvents () {
-  var theApp = NSApp as! PMApplication
-  theApp.flushTransientEvents ()
+  if gPendingOutletEvents.count > 0 {
+    if logEvents () {
+      appendMessageString ("-Flush level 0: display outlets\n")
+    }
+    for object in gPendingOutletEvents {
+      if logEvents () {
+        appendMessageString (String (format:"  - %@\n", _stdlib_getDemangledTypeName (object)))
+      }
+      object.updateOutlet ()
+    }
+    gPendingOutletEvents = Set ()
+    if logEvents () {
+      appendMessageString ("————————————————————————————————————————————————————\n")
+    }
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -65,9 +93,30 @@ func flushOutletEvents () {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
+func logEvents () -> Bool {
+  var theApp = NSApp as! PMApplication
+  return theApp.logEvents ()
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 func appendToTransientEventLog (message : String) {
   var theApp = NSApp as! PMApplication
   theApp.appendToTransientEventLog (message)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendMessageString (message : String) {
+  var theApp = NSApp as! PMApplication
+  theApp.mTransientEventExplorerTextView?.appendMessageString (message)
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+func appendMessageString (message : String, color:NSColor) {
+  var theApp = NSApp as! PMApplication
+  theApp.mTransientEventExplorerTextView?.appendMessageString (message, color:color)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -125,66 +174,6 @@ func appendToTransientEventLog (message : String) {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private func postTransientEvent (inObject : PMOutletEvent) {
-    if logEvents () {
-      let str = String (format:"Post outlet event #%@\n", _stdlib_getDemangledTypeName (inObject))
-      if !mTriggerOutletDisplaySet.contains (inObject) {
-        mTransientEventExplorerTextView?.appendMessageString (str)
-      }else{ // Event already posted
-        mTransientEventExplorerTextView?.appendMessageString (str, color:NSColor.brownColor ())
-      }
-    }
-    mTriggerOutletDisplaySet.insert (inObject)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
- 
-  override func sendEvent (inEvent : NSEvent) {
-    mLevel += 1
-    // NSLog ("send event %d", mLevel)
-    super.sendEvent (inEvent)
-    mLevel -= 1
-    // NSLog ("send event done %d", mLevel)
-    if 0 == mLevel {
-      flushTransientEvents ()
-    }
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override func sendAction (theAction: Selector, to theTarget: AnyObject!, from sender: AnyObject!) -> Bool {
-    mLevel += 1
-    // NSLog ("send action %d", mLevel)
-    let result = super.sendAction (theAction, to:theTarget, from:sender)
-    mLevel -= 1
-    // NSLog ("send action done %d", mLevel)
-    if 0 == mLevel {
-      flushTransientEvents ()
-    }
-    return result
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  private func flushTransientEvents () {
-    if mTriggerOutletDisplaySet.count > 0 {
-      if logEvents () {
-        mTransientEventExplorerTextView?.appendMessageString ("-Flush level 0: display outlets\n")
-      }
-      for object in mTriggerOutletDisplaySet {
-        if logEvents () {
-          mTransientEventExplorerTextView?.appendMessageString (String (format:"  - %@\n", _stdlib_getDemangledTypeName (object)))
-        }
-        object.updateOutlet ()
-      }
-      mTriggerOutletDisplaySet = Set ()
-      if logEvents () {
-        mTransientEventExplorerTextView?.appendMessageString ("————————————————————————————————————————————————————\n")
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
 }
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
