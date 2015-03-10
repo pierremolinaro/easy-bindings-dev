@@ -637,6 +637,9 @@ extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
+extern const char * gWrapperFileContent_11_swift_5F_sources ;
+extern const char * gWrapperFileContent_12_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -653,6 +656,9 @@ extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_11_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_12_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

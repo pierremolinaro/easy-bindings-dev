@@ -113,7 +113,7 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
 
 class PMTransientProperty_String : PMReadOnlyProperty_String, PMTransientPropertyProtocol {
   private var mValueCache : String? = nil
-  var computeFunction : Optional<() -> String>
+  var computeFunction : Optional<() -> String?>
 
   override init () {
     super.init ()
@@ -121,12 +121,11 @@ class PMTransientProperty_String : PMReadOnlyProperty_String, PMTransientPropert
 
   override var prop : String {
     get {
+      if mValueCache == nil, let unwrappedComputeFunction = computeFunction {
+        mValueCache = unwrappedComputeFunction ()
+      }
       if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = ""
-        }
+        mValueCache = ""
       }
       return mValueCache!
     }
@@ -211,7 +210,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 
 class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor, PMTransientPropertyProtocol {
   private var mValueCache : NSColor? = nil
-  var computeFunction : Optional<() -> NSColor>
+  var computeFunction : Optional<() -> NSColor?>
   
   override init () {
     super.init ()
@@ -219,12 +218,11 @@ class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor, PMTransientPrope
 
   override var prop : NSColor {
     get {
+      if mValueCache == nil, let unwrappedComputeFunction = computeFunction {
+        mValueCache = unwrappedComputeFunction ()
+      }
       if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = NSColor.blackColor ()
-        }
+        mValueCache = NSColor.blackColor ()
       }
       return mValueCache!
     }
@@ -309,7 +307,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 
 class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate, PMTransientPropertyProtocol {
   private var mValueCache : NSDate? = nil
-  var computeFunction : Optional<() -> NSDate>
+  var computeFunction : Optional<() -> NSDate?>
   
   override init () {
     super.init ()
@@ -317,12 +315,11 @@ class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate, PMTransientPropert
 
   override var prop : NSDate {
     get {
+      if mValueCache == nil,let unwrappedComputeFunction = computeFunction {
+        mValueCache = unwrappedComputeFunction ()
+      }
       if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = NSDate ()
-        }
+        mValueCache = NSDate ()
       }
       return mValueCache!
     }
@@ -406,7 +403,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 
 class PMTransientProperty_Int : PMReadOnlyProperty_Int, PMTransientPropertyProtocol {
   private var mValueCache : Int? = nil
-  var computeFunction : Optional<() -> Int>
+  var computeFunction : Optional<() -> Int?>
   
   override init () {
     super.init ()
@@ -414,12 +411,11 @@ class PMTransientProperty_Int : PMReadOnlyProperty_Int, PMTransientPropertyProto
 
   override var prop : Int {
     get {
+      if mValueCache == nil, let unwrappedComputeFunction = computeFunction {
+        mValueCache = unwrappedComputeFunction ()
+      }
       if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = 0
-        }
+        mValueCache = 0
       }
       return mValueCache!
     }
@@ -504,7 +500,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 
 class PMTransientProperty_Bool : PMReadOnlyProperty_Bool, PMTransientPropertyProtocol {
   private var mValueCache : Bool? = nil
-  var computeFunction : Optional<() -> Bool>
+  var computeFunction : Optional<() -> Bool?>
   
   override init () {
     super.init ()
@@ -512,12 +508,11 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool, PMTransientPropertyPro
 
   override var prop : Bool {
     get {
+      if mValueCache == nil, let unwrappedComputeFunction = computeFunction {
+        mValueCache = unwrappedComputeFunction ()
+      }
       if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = false
-        }
+        mValueCache = false
       }
       return mValueCache!
     }

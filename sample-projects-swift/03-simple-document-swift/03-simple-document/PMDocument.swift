@@ -53,7 +53,6 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == myColorWell {
       presentErrorWindow (__FILE__, __LINE__, "the 'myColorWell' outlet is nil") ;
@@ -98,7 +97,8 @@ import Cocoa
   //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
-    flushTriggers ()
+    super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

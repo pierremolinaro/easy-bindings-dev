@@ -88,8 +88,8 @@ var g_Prefs : Prefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.prop, self.mFirstName.prop)}
-    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.prop)}
+    mFullName.computeFunction = {return compute_Prefs_mFullName (self.self.mName.prop, self.self.mFirstName.prop)}
+    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.self.mFullName.prop)}
   //--- Install property observers for transients
     mName.addObserver (mFullName.event, inTrigger:true)
     mFirstName.addObserver (mFullName.event, inTrigger:true)
