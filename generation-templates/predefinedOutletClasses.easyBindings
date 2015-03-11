@@ -1,14 +1,14 @@
 outletClass PMButton $run $enabled ;
 
-outletClass PMColorWell ;
+outletClass PMColorWell $enabled ;
 binding PMColorWell $color : property Color {sendContinously : Bool} ;
 
 
-outletClass PMDatePicker ;
+outletClass PMDatePicker $enabled ;
 binding PMDatePicker $date : property Date ;
 
 
-outletClass PMMatrix ;
+outletClass PMMatrix $enabled ;
 binding PMMatrix $selectedIndex : property Enum ;
 
 
@@ -20,14 +20,14 @@ outletClass PMIntField ;
 binding PMIntField $value : property Integer {sendContinously : Bool} ;
 
 
-outletClass PMSwitch ;
+outletClass PMSwitch $enabled ;
 binding PMSwitch $value : property Bool ;
 
 
-outletClass PMTableView ;
+outletClass PMTableView $enabled ;
 
 
-outletClass PMTextField ;
+outletClass PMTextField $enabled ;
 binding PMTextField $value : property String {sendContinously : Bool} ;
 
 outletClass PMReadOnlyTextField ;

@@ -18,6 +18,7 @@
 		CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */; };
 		CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F741944D887000826E7 /* Prefs+action+monAction.swift */; };
 		CFA946571AACA7AC001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA946561AACA7AC001C5C57 /* application.swift */; };
+		CFABCF651AB0CBA10024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF641AB0CBA10024372A /* generic-bindings.swift */; };
 		CFAD6CBD1AAC58DC00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBC1AAC58DC00958004 /* standard-properties.swift */; };
 		CFC4B9D219B255CE0008BE21 /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4B9D119B255CE0008BE21 /* PMTextField.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
 		CF713F741944D887000826E7 /* Prefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+action+monAction.swift"; sourceTree = "<group>"; };
 		CFA946561AACA7AC001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
+		CFABCF641AB0CBA10024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFAD6CBC1AAC58DC00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFC4B9D119B255CE0008BE21 /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 			children = (
 				CFA946561AACA7AC001C5C57 /* application.swift */,
 				CF713F621944C608000826E7 /* easy-bindings-utilities.swift */,
+				CFABCF641AB0CBA10024372A /* generic-bindings.swift */,
 				CF713F4B1944C1CC000826E7 /* MainMenu.xib */,
 				CF713F631944C608000826E7 /* PMAllocationDebug.swift */,
 				CF713F641944C608000826E7 /* PMAllocationDebug.xib */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */,
+				CFABCF651AB0CBA10024372A /* generic-bindings.swift in Sources */,
 				CFA946571AACA7AC001C5C57 /* application.swift in Sources */,
 				CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */,
 				CF713F6B1944C608000826E7 /* Prefs.swift in Sources */,

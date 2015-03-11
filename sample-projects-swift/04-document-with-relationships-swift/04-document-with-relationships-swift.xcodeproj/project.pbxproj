@@ -26,6 +26,7 @@
 		CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C642F1960619500BE14DF /* PMUndoManager.swift */; };
 		CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */; };
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
+		CFABCF691AB0CC070024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF681AB0CC070024372A /* generic-bindings.swift */; };
 		CFB43C3E1AAC5B1F003FF870 /* PMReadOnlyIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */; };
 		CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */; };
 		CFB43C401AAC5B1F003FF870 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */; };
@@ -60,6 +61,7 @@
 		CF7C642F1960619500BE14DF /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMUndoManager.swift; sourceTree = "<group>"; };
 		CF7C643B196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
+		CFABCF681AB0CC070024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyIntField.swift; sourceTree = "<group>"; };
 		CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
 		CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				CF5999B21AACB165008E1909 /* application.swift */,
 				CFECCFB919BDD4AD00D8CB4B /* arrayController-MyRootEntity-mNames.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
+				CFABCF681AB0CC070024372A /* generic-bindings.swift */,
 				CF7C640B196060D800BE14DF /* MainMenu.xib */,
 				CF7C64231960618800BE14DF /* MyRootEntity.swift */,
 				CF7C64261960619500BE14DF /* NameEntity.swift */,
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF7C64391960619500BE14DF /* PMUndoManager.swift in Sources */,
+				CFABCF691AB0CC070024372A /* generic-bindings.swift in Sources */,
 				CFB43C3E1AAC5B1F003FF870 /* PMReadOnlyIntField.swift in Sources */,
 				CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */,
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,

@@ -195,6 +195,7 @@ private proc generateSwiftApplicationFiles
     !"PMAllocationDebug",
     !"easy-bindings-utilities",
     !"standard-properties",
+    !"generic-bindings",
     !"application"
   }
   if inHasEntities then
