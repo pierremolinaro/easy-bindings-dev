@@ -8,97 +8,25 @@ var g_MyPrefs : MyPrefs? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc (MyPrefs) class MyPrefs : NSObject, PMUserClassName {
+@objc (MyPrefs) class MyPrefs : PMObject {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "MyPrefs" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
   @IBOutlet var myPrefStringTextField : PMTextField? = nil
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: myPrefString                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var myPrefString_observers : [Int : PMTransientEventProtocol] = [:]
-  var myPrefString : String = "pref string" {
-    didSet {
-      if myPrefString != oldValue {
-        for (key, object) in myPrefString_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_myPrefString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    myPrefString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
  
-  func removeObserverOf_myPrefString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    myPrefString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  func validate_myPrefString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
-
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: prefTransientString                                                                                 *
+  //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var prefTransientString_observers : [Int : PMTransientEventProtocol] = [:]
-  private var prefTransientString_cache : String?
-  var prefTransientString : String {
-    get {
-      if prefTransientString_cache == nil {
-        prefTransientString_cache = compute_MyPrefs_prefTransientString (myPrefString)
-      }
-      return prefTransientString_cache!
-    }
-  }
+  var myPrefString = PMStoredProperty_String ("pref string")
 
-  func preference_2E_MyPrefs_2E_prefTransientString_noteDidChange () {
-    prefTransientString_cache = nil
-  }
-  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
-  func preference_2E_MyPrefs_2E_prefTransientString_trigger () {
-    for (key, object) in prefTransientString_observers {
-      postTransientEvent (object)
-    }
-  }
- 
-   func addObserverOf_prefTransientString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    prefTransientString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_prefTransientString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    prefTransientString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_preference_2E_MyPrefs_2E_prefTransientString_cache : PMEvent_preference_2E_MyPrefs_2E_prefTransientString? = nil
-  var event_preference_2E_MyPrefs_2E_prefTransientString : PMEvent_preference_2E_MyPrefs_2E_prefTransientString {
-    if event_preference_2E_MyPrefs_2E_prefTransientString_cache == nil {
-      event_preference_2E_MyPrefs_2E_prefTransientString_cache = PMEvent_preference_2E_MyPrefs_2E_prefTransientString (object:self)
-    }
-    return event_preference_2E_MyPrefs_2E_prefTransientString_cache!
-  }
-
+  var prefTransientString = PMTransientProperty_String ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
@@ -111,15 +39,15 @@ var g_MyPrefs : MyPrefs? = nil
 
   override init () {
     super.init ()
-    noteObjectAllocation (self) ;
     g_MyPrefs = self ;
-     var ud = NSUserDefaults.standardUserDefaults ()
+    var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
     value = ud.objectForKey ("MyPrefs:myPrefString")
     if value != nil {
-      myPrefString = value as! String
+      myPrefString.setProp (value as! String)
     }
+  //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
@@ -133,25 +61,17 @@ var g_MyPrefs : MyPrefs? = nil
   //    awakeFromNib                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func awakeFromNib () {
   //--- Check myPrefStringTextField' outlet not nil
     if nil == myPrefStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
     }
-    addObserverOf_myPrefString (event_preference_2E_MyPrefs_2E_prefTransientString, inTrigger:true)
-    mControllerArray.addObject (Controller_MyPrefs_myPrefString_PMTextField_value (object:self, outlet:myPrefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self) ;
+  //--- Install compute functions for transients
+    prefTransientString.computeFunction = {return compute_MyPrefs_prefTransientString (self.self.myPrefString.prop)}
+  //--- Install property observers for transients
+    myPrefString.addObserver (prefTransientString.event, inTrigger:true)
+  //--- Install bindings
+    myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -160,7 +80,7 @@ var g_MyPrefs : MyPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (myPrefString, forKey:"MyPrefs:myPrefString")
+    ud.setObject (myPrefString.prop, forKey:"MyPrefs:myPrefString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

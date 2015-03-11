@@ -22,141 +22,6 @@ void routine_generateOutletClasses (const class GALGAS_stringset constinArgument
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            @abstractBooleanMultipleBindingExpressionForGeneration class                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_GALGAS_class {
-//--- Constructor
-  public : GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (void) ;
-
-//---
-  public : inline const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * ptr (void) const { return (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_abstractBooleanMultipleBindingExpressionForGeneration extractObject (const GALGAS_object & inObject,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_abstractBooleanMultipleBindingExpressionForGeneration class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionForGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Pointer class for @abstractBooleanMultipleBindingExpressionForGeneration class                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acPtr_class {
-//--- Attributes
-
-//--- Constructor
-  public : cPtr_abstractBooleanMultipleBindingExpressionForGeneration (LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
-
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          Filewrapper 'controllerTemplates'                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const char * gWrapperFileContent_0_controllerTemplates ;
-extern const char * gWrapperFileContent_1_controllerTemplates ;
-extern const char * gWrapperFileContent_2_controllerTemplates ;
-extern const char * gWrapperFileContent_3_controllerTemplates ;
-extern const char * gWrapperFileContent_4_controllerTemplates ;
-extern const char * gWrapperFileContent_5_controllerTemplates ;
-extern const char * gWrapperFileContent_6_controllerTemplates ;
-extern const char * gWrapperFileContent_7_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cRegularFileWrapper gWrapperFile_0_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_1_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_2_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_3_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_4_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_5_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_6_controllerTemplates ;
-extern const cRegularFileWrapper gWrapperFile_7_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_controllerTemplates ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Filewrapper template 'controllerTemplates enabledBindingGeneration'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_controllerTemplates_enabledBindingGeneration (class C_Compiler * inCompiler,
-                                                                                const class GALGAS_string & in_OUTLET_5F_PROPRIETARY_5F_CLASS_5F_NAME,
-                                                                                const class GALGAS_string & in_OUTLET_5F_NAME,
-                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_ENABLE_5F_EXPRESSION
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//        Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedObjectList'         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                     class C_Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedObjectList (const int32_t inClassIndex,
-                                             categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedObjectList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                         Category Reader '@unifiedTypeMap-proxy typeNameForBindingTypeCheck'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -177,8 +42,7 @@ typedef void (*categoryMethodSignature_abstractBooleanMultipleBindingExpressionA
                                                                                                                         const class GALGAS_arrayControllerMap constinArgument2,
                                                                                                                         const class GALGAS_decoratedObservablePropertyMap constinArgument3,
                                                                                                                         const class GALGAS_unifiedTypeMap_2D_proxy constinArgument4,
-                                                                                                                        class GALGAS_uint & ioArgument5,
-                                                                                                                        class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument6,
+                                                                                                                        class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument5,
                                                                                                                         class C_Compiler * inCompiler
                                                                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -195,7 +59,6 @@ void callCategoryMethod_analyzeExpressionForEnabledBinding (const class cPtr_abs
                                                             const GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                             const GALGAS_decoratedObservablePropertyMap constin_inCurrentObservablePropertyMap,
                                                             const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                            GALGAS_uint & io_ioIndex,
                                                             GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
@@ -246,69 +109,6 @@ void routine_buildControllerTemplateMap (const class GALGAS_unifiedTypeMap const
                                          class GALGAS_bindingSpecificationMap & outArgument2,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration enableExpressionString'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_string (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_enableExpressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                     class C_Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_enableExpressionString (const int32_t inClassIndex,
-                                                 categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_enableExpressionString inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string callCategoryReader_enableExpressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//       Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedModelNameList'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                        class C_Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedModelNameList (const int32_t inClassIndex,
-                                                categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedModelNameList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList'     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectTypeNameList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                                             class C_Compiler * inCompiler
-                                                                                                                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_observedObjectTypeNameList (const int32_t inClassIndex,
-                                                     categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedObjectTypeNameList inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringlist callCategoryReader_observedObjectTypeNameList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -862,10 +662,7 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                                                            const class GALGAS_string & inOperand1,
-                                                                                                            const class GALGAS_string & inOperand2,
-                                                                                                            const class GALGAS_uint & inOperand3
+  public : static GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_string & inOperand0
                                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -877,13 +674,7 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint reader_mIndex (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mObservedModel (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mObservedObject (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mObservedTypeName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -904,26 +695,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 
 class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 //--- Attributes
-  public : GALGAS_string mAttribute_mObservedObject ;
   public : GALGAS_string mAttribute_mObservedModel ;
-  public : GALGAS_string mAttribute_mObservedTypeName ;
-  public : GALGAS_uint mAttribute_mIndex ;
 
 //--- Constructor
-  public : cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedObject,
-                                                                                   const GALGAS_string & in_mObservedModel,
-                                                                                   const GALGAS_string & in_mObservedTypeName,
-                                                                                   const GALGAS_uint & in_mIndex
+  public : cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedModel
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_string reader_mObservedObject (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string reader_mObservedModel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string reader_mObservedTypeName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_uint reader_mIndex (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1777,8 +1559,7 @@ typedef void (*categoryMethodSignature_abstractObservablePropertyAST_analyzeBoun
                                                                                                                        const class GALGAS_arrayControllerMap constinArgument2,
                                                                                                                        const class GALGAS_decoratedObservablePropertyMap constinArgument3,
                                                                                                                        const class GALGAS_unifiedTypeMap_2D_proxy constinArgument4,
-                                                                                                                       class GALGAS_uint & ioArgument5,
-                                                                                                                       class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument6,
+                                                                                                                       class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument5,
                                                                                                                        class C_Compiler * inCompiler
                                                                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -1795,7 +1576,6 @@ void callCategoryMethod_analyzeBoundObservablePropertyForEnabledBinding (const c
                                                                          const GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                                          const GALGAS_decoratedObservablePropertyMap constin_inObservablePropertyMap,
                                                                          const GALGAS_unifiedTypeMap_2D_proxy constin_inRootEntityType,
-                                                                         GALGAS_uint & io_ioIndex,
                                                                          GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outExpression,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
@@ -1849,5 +1629,26 @@ class GALGAS_string callCategoryReader_modelSignatureForArrayController (const c
                                                                          const GALGAS_string & constin_inSelfTypeName,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//       Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedModelNameList'       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef class GALGAS_stringlist (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                                                        class C_Compiler * inCompiler
+                                                                                                                                        COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryReader_observedModelNameList (const int32_t inClassIndex,
+                                                categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelNameList inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringlist callCategoryReader_observedModelNameList (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 #endif

@@ -8,10 +8,7 @@ abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 #----------------------------------------------------------------------------*
 
 class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @string mObservedObject
   @string mObservedModel
-  @string mObservedTypeName
-  @uint mIndex # In expression
 }
 
 #----------------------------------------------------------------------------*

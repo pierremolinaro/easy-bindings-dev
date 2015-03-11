@@ -8,35 +8,39 @@
 
 #----------------------------------------------------------------------------*
 
-abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
-  -> @stringlist outObservedObjectTypeNameList
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
 
 #----------------------------------------------------------------------------*
 
-override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
-  -> @stringlist outObservedObjectTypeNameList {
-  outObservedObjectTypeNameList = {!mObservedTypeName}
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {!mObservedModel}
 }
 
 #----------------------------------------------------------------------------*
 
-override getter @negateBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
-  -> @stringlist outObservedModelNameList {
-  outObservedModelNameList = [mBinding observedObjectTypeNameList]
+override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = [mBinding observedModelSet]
 }
 
 #----------------------------------------------------------------------------*
 
-override getter @orBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
-  -> @stringlist outObservedModelNameList {
-  outObservedModelNameList = [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList]
+override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
 #----------------------------------------------------------------------------*
 
-override getter @andBooleanMultipleBindingExpressionForGeneration observedObjectTypeNameList
-  -> @stringlist outObservedModelNameList {
-  outObservedModelNameList = [mLeftBinding observedObjectTypeNameList] + [mRightBinding observedObjectTypeNameList]
+override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
 #----------------------------------------------------------------------------*
@@ -54,14 +58,14 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration enableExp
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration enableExpressionString
   -> @string outEnableExpressionString {
-  outEnableExpressionString = "object" + mIndex + "." + mObservedModel
+  outEnableExpressionString = mObservedModel + ".prop"
 }
 
 #----------------------------------------------------------------------------*
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration enableExpressionString
   -> @string outEnableExpressionString {
-  outEnableExpressionString = "!(" + [mBinding enableExpressionString] + ")"
+  outEnableExpressionString = "!" + [mBinding enableExpressionString]
 }
 
 #----------------------------------------------------------------------------*
@@ -92,49 +96,33 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedM
 #----------------------------------------------------------------------------*
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelNameList
-  -> @stringlist outObservedModelNameList {
+  -> @stringlist outObservedModelNameList
+{
   outObservedModelNameList = {!mObservedModel}
 }
 
 #----------------------------------------------------------------------------*
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelNameList
-  -> @stringlist outObservedModelNameList {
+  -> @stringlist outObservedModelNameList
+{
   outObservedModelNameList = [mBinding observedModelNameList]
 }
 
 #----------------------------------------------------------------------------*
 
 override getter @orBooleanMultipleBindingExpressionForGeneration observedModelNameList
-  -> @stringlist outObservedModelNameList {
+  -> @stringlist outObservedModelNameList
+{
   outObservedModelNameList = [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList]
 }
 
 #----------------------------------------------------------------------------*
 
 override getter @andBooleanMultipleBindingExpressionForGeneration observedModelNameList
-  -> @stringlist outObservedModelNameList {
+  -> @stringlist outObservedModelNameList
+{
   outObservedModelNameList = [mLeftBinding observedModelNameList] + [mRightBinding observedModelNameList]
-}
-
-#----------------------------------------------------------------------------*
-# filewrapper controllerTemplates                                            *
-#----------------------------------------------------------------------------*
-
-#! filewrapper controllerTemplates
-
-#----------------------------------------------------------------------------*
-
-filewrapper controllerTemplates in "../generation-templates/controller-templates" {
-  "txt"
-}{
-}{
-  template enabledBindingGeneration "enabled-binding.swift.galgasTemplate"
-    ?@string OUTLET_PROPRIETARY_CLASS_NAME
-    ?@string OUTLET_NAME
-#    ?@string OBJECT_CLASS
-#    ?@string MODEL
-    ?@abstractBooleanMultipleBindingExpressionForGeneration ENABLE_EXPRESSION
 }
 
 #----------------------------------------------------------------------------*

@@ -92,13 +92,14 @@ import Cocoa
   //--------------------------- Array controller
   //--- Install compute functions for transients
   //--- Install property observers for transients
-  //--- Install bindings
+  //--- Install regular bindings
     myColorWell?.bind_color (rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
     myMatrix?.bind_selectedIndex (rootObject.myEnumeration, file:__FILE__, line:__LINE__)
     myTextConcatField?.bind_readOnlyValue (rootObject.myStringConcat, file:__FILE__, line:__LINE__)
     myTextField?.bind_value (rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
     myTextMajField?.bind_readOnlyValue (rootObject.myStringMaj, file:__FILE__, line:__LINE__)
     myTextMinField?.bind_readOnlyValue (rootObject.myStringMin, file:__FILE__, line:__LINE__)
+  //--- Install multiple bindings
   //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
@@ -112,13 +113,14 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
     undoManager?.removeAllActions ()
     undoManager = nil
-  //--- Unbind
+  //--- Unbind regular bindings
     myColorWell?.unbind_color ()
     myMatrix?.unbind_selectedIndex ()
     myTextConcatField?.unbind_readOnlyValue ()
     myTextField?.unbind_value ()
     myTextMajField?.unbind_readOnlyValue ()
     myTextMinField?.unbind_readOnlyValue ()
+  //--- Unbind multiple bindings
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
   //--- Uninstall property observers for transients

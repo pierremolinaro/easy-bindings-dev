@@ -1,15 +1,9 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyDocument) class MyDocument : PMManagedDocument, PMUserClassName {
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override func userClassName () -> String { return "MyDocument" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
@@ -17,15 +11,21 @@ import Cocoa
 
   @IBOutlet var docStringTextField : PMTextField?
   @IBOutlet var prefStringTextField : PMTextField?
-  @IBOutlet var prefTransientStringTextField : PMTextField?
-  @IBOutlet var transientConcatStringTextField : PMTextField?
+  @IBOutlet var prefTransientStringTextField : PMReadOnlyTextField?
+  @IBOutlet var transientConcatStringTextField : PMReadOnlyTextField?
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Controllers                                                                                                    *
+  //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Document attributes                                                                                            *
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Array Controllers                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
 
@@ -55,36 +55,41 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray : [PMTransientEventProtocol] = []
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == docStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'docStringTextField' outlet is nil") ;
+    }else if !docStringTextField!.isKindOfClass (PMTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'docStringTextField' outlet is not an instance of 'PMTextField'") ;
     }
     if nil == prefStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'prefStringTextField' outlet is nil") ;
+    }else if !prefStringTextField!.isKindOfClass (PMTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'prefStringTextField' outlet is not an instance of 'PMTextField'") ;
     }
     if nil == prefTransientStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'prefTransientStringTextField' outlet is nil") ;
+    }else if !prefTransientStringTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'prefTransientStringTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
     if nil == transientConcatStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is nil") ;
+    }else if !transientConcatStringTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
   //--------------------------- Array controller
-  //--------------------------- Transient observers
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install regular bindings
+    docStringTextField?.bind_value (rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)
+    prefStringTextField?.bind_value (g_MyPrefs!.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
+    prefTransientStringTextField?.bind_readOnlyValue (g_MyPrefs!.prefTransientString, file:__FILE__, line:__LINE__)
+    transientConcatStringTextField?.bind_readOnlyValue (rootObject.transientConcatString, file:__FILE__, line:__LINE__)
+  //--- Install multiple bindings
   //--------------------------- Array controller as observers
-  //--------------------------- Simple controllers
-    mControllerArray.append (Controller_MyRootEntity_docString_PMTextField_value (object:rootObject, outlet:docStringTextField, file:__FILE__, line:__LINE__, sendContinously:true))
-    mControllerArray.append (Controller_MyPrefs_myPrefString_PMTextField_value (object:g_MyPrefs, outlet:prefStringTextField, file:__FILE__, line:__LINE__, sendContinously:false))
-    mControllerArray.append (Controller_MyPrefs_prefTransientString_PMTextField_rvalue (object:g_MyPrefs, outlet:prefTransientStringTextField, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_transientConcatString_PMTextField_rvalue (object:rootObject, outlet:transientConcatStringTextField, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
-    flushTriggers ()
+    super.windowControllerDidLoadNib (aController)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -92,19 +97,25 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
-  //--------------------------- Remove controllers
-    for controller in mControllerArray {
-      controller.unregister ()
-    }
-    mControllerArray = []
+    undoManager?.removeAllActions ()
+    undoManager = nil
+  //--- Unbind regular bindings
+    docStringTextField?.unbind_value ()
+    prefStringTextField?.unbind_value ()
+    prefTransientStringTextField?.unbind_readOnlyValue ()
+    transientConcatStringTextField?.unbind_readOnlyValue ()
+  //--- Unbind multiple bindings
+  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind array controllers
+  //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)
   }
 
-
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

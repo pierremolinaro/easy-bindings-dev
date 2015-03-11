@@ -11,6 +11,7 @@ list @documentListForGeneration {
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration
   @targetActionList mTargetActionList 
   @regularBindingsGenerationList mRegularBindingsGenerationList 
+  @multipleBindingGenerationList multipleBindingGenerationList
 }
 
 #----------------------------------------------------------------------------*
@@ -27,13 +28,15 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
     ?@targetActionList TARGET_ACTION_LIST
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
 }
 
 #----------------------------------------------------------------------------*
 
 proc generateDocuments
   ?let @documentListForGeneration inDocumentListForGeneration
-  ?let @string inOutputDirectory {
+  ?let @string inOutputDirectory
+{
   for () in inDocumentListForGeneration do
     let s = [filewrapper documentGenerationTemplate.documentImplementationInSwift
       !mDocumentName
@@ -44,6 +47,7 @@ proc generateDocuments
       !mDocumentArrayControllerForGeneration
       !mTargetActionList
       !mRegularBindingsGenerationList
+      !multipleBindingGenerationList
     ]
     [@string generateFile
       !inOutputDirectory

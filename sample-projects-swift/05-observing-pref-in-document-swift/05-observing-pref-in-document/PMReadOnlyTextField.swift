@@ -1,15 +1,14 @@
-//---------------------------------------------------------------------------------------------------------------------*
-
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMSwitch) class PMSwitch : NSButton, PMUserClassName {
+@objc(PMReadOnlyTextField) class PMReadOnlyTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
+    self.delegate = self
     noteObjectAllocation (self)
   }
 
@@ -18,24 +17,34 @@ import Cocoa
   deinit {
     noteObjectDeallocation (self)
   }
-  
+
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func setEnableFromBinding (flag : Bool) {
-    self.enabled = flag
+  var enableFromEnableBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  value binding                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMSwitch_value?
-
-  func bind_value (object:PMStoredProperty_Bool, file:String, line:Int) {
-    mValueController = Controller_PMSwitch_value (object:object, outlet:self, file:file, line:line)
+  var enableFromValueBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
   }
 
-  func unbind_value () {
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  readOnlyBalue binding                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mValueController : Controller_PMReadOnlyTextField_value?
+
+  func bind_readOnlyValue (object:PMReadOnlyProperty_String, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
+  }
+
+  func unbind_readOnlyValue () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -46,46 +55,41 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Controller_PMSwitch_value                                                                              *
+//   Controller Controller_PMReadOnlyTextField_value                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMSwitch_value) class Controller_PMSwitch_value : PMOutletEvent {
+@objc(Controller_PMReadOnlyTextField_value) class Controller_PMReadOnlyTextField_value : PMOutletEvent {
 
-  private var mOutlet : PMSwitch
-  private var mObject : PMStoredProperty_Bool
+  private var mOutlet : PMReadOnlyTextField
+  private var mObject : PMReadOnlyProperty_String
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMStoredProperty_Bool, outlet : PMSwitch, file : String, line:Int) {
+  init (object:PMReadOnlyProperty_String, outlet : PMReadOnlyTextField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    mOutlet.target = self
-    mOutlet.action = "action:"
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
+    }
     object.addObserver (self, inTrigger:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, inTrigger:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if (mOutlet.state == NSOnState) != mObject.prop {
-      mOutlet.state = mObject.prop ? NSOnState : NSOffState
+    if mOutlet.stringValue != mObject.prop {
+      mOutlet.stringValue = mObject.prop
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  func action (sender : PMSwitch) {
-    mObject.setProp (mOutlet.state == NSOnState)
-  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

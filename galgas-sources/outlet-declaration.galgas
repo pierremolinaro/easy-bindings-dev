@@ -123,11 +123,13 @@ proc analyzeOutlets
   ?let @arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
   !@regularBindingsGenerationList outRegularBindingsGenerationList
+  !@multipleBindingGenerationList outMultipleBindingGenerationList
   !@targetActionList outTargetActionList
 {
 #-------------------------------------------- Outlets
   outRegularBindingsGenerationList = {}
   outTargetActionList = {}
+  outMultipleBindingGenerationList = {}
   for () outlet_ in decoratedOutletMap do
     [inOutletClassMap searchKey !outlet_mOutletTypeName ?let @bool handlesRunAction]
     ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
@@ -150,27 +152,18 @@ proc analyzeOutlets
     switch outlet_mEnabledBindingDescriptor
     case noEnabledBinding :
     case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      @uint idx = 0
       [expression analyzeExpressionForEnabledBinding
         !inTypeName.string
         !inUnifiedTypeMap
         !inArrayControllerMap
         !inCurrentObservablePropertyMap
         !inRootEntityType
-        !?idx
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
       ]
-      var controllerInstanciation = "EnableController_" + inTypeName + "_" + outlet_lkey + " ("
-      for (s) in [enableExpression observedObjectList] do( idx)
-        controllerInstanciation += "object" + idx + ":" + s + ", "
-      end
-      controllerInstanciation += "outlet:" + outlet_lkey + ", file:__FILE__, line:__LINE__)"
-#      controllerInstanciationStringList += ! controllerInstanciation
-      ioGeneration.mControllerGenerationStringSet += ![filewrapper controllerTemplates.enabledBindingGeneration
-        !inTypeName.string
+      outMultipleBindingGenerationList +=
         !outlet_lkey.string
+        !"enabled"
         !enableExpression
-      ]
     end
   #--- Regular bindings
     for () in outlet_mRegularBindingList do
@@ -353,7 +346,7 @@ override method @preferenceObservablePropertyAST analyzeBoundObservablePropertyF
     error mPreferenceObservablePropertyName : "the observable property should not be a collection"
   end
   ioBoundPropertyTypeList += !propertyType !modelIsTransient !mPreferenceObservablePropertyName.location
-  ioBoundObjectNameList += !"g_" + mPreferenceName + "." + mPreferenceObservablePropertyName
+  ioBoundObjectNameList += !"g_" + mPreferenceName + "!." + mPreferenceObservablePropertyName
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -390,6 +383,120 @@ override method @arrayControllerObservablePropertyAST analyzeBoundObservableProp
   ioBoundObjectNameList += !mArrayControllerName.string
 }
 
+#----------------------------------------------------------------------------*
+# analyzeExpressionForEnabledBinding                                         *
+#----------------------------------------------------------------------------*
+
+#! analyzeExpressionForEnabledBinding
+
+#----------------------------------------------------------------------------*
+
+abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ?let @string inSelfTypeName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @arrayControllerMap inArrayControllerMap
+  ?let @decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ?let @unifiedTypeMap-proxy inRootEntityType
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+
+#----------------------------------------------------------------------------*
+
+override method @observablePropertyAsEnableBindingExpressionAST analyzeExpressionForEnabledBinding
+  ?let @string inSelfTypeName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @arrayControllerMap inArrayControllerMap
+  ?let @decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ?let @unifiedTypeMap-proxy inRootEntityType
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+{
+  [mProperty analyzeBoundObservablePropertyForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?outEnableExpression
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ?let @string inSelfTypeName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @arrayControllerMap inArrayControllerMap
+  ?let @decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ?let @unifiedTypeMap-proxy inRootEntityType
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression {
+  [mBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration expression
+  ]
+  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new {!expression}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ?let @string inSelfTypeName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @arrayControllerMap inArrayControllerMap
+  ?let @decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ?let @unifiedTypeMap-proxy inRootEntityType
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+ {
+  [mLeftBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+  ]
+  [mRightBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+  ]
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForEnabledBinding
+  ?let @string inSelfTypeName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @arrayControllerMap inArrayControllerMap
+  ?let @decoratedObservablePropertyMap inCurrentObservablePropertyMap
+  ?let @unifiedTypeMap-proxy inRootEntityType
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+{
+  [mLeftBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+  ]
+  [mRightBinding analyzeExpressionForEnabledBinding
+    !inSelfTypeName
+    !inUnifiedTypeMap
+    !inArrayControllerMap
+    !inCurrentObservablePropertyMap
+    !inRootEntityType
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+  ]
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
 #----------------------------------------------------------------------------------------------------------------------*
 #   GENERATION                                                                                                         *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -401,6 +508,13 @@ list @regularBindingsGenerationList {
   @string mBindingOptionsString
 }
 
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @multipleBindingGenerationList {
+  @string mOutletName
+  @string mBindingName
+  @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+}
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

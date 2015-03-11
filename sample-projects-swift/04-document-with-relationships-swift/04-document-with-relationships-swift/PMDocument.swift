@@ -114,11 +114,17 @@ import Cocoa
     nameController.canRemove.addObserver (canRemoveString.event, inTrigger:true)
     rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)
     rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
-  //--- Install bindings
+  //--- Install regular bindings
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
     countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
     countItemTextField?.bind_readOnlyValue (rootObject.mNames.count, file:__FILE__, line:__LINE__)
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
+  //--- Install multiple bindings
+    removePathButton?.bind_enabled (
+      [self.nameController.canRemove],
+      computeFunction:{ self.nameController.canRemove.prop },
+      file:__FILE__, line:__LINE__
+    )
   //--------------------------- Array controller as observers
     rootObject.mNames.addObserver (nameController.event, inTrigger:true)
   //--------------------------- Set targets / actions
@@ -137,11 +143,13 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
     undoManager?.removeAllActions ()
     undoManager = nil
-  //--- Unbind
+  //--- Unbind regular bindings
     canRemoveTextField?.unbind_readOnlyValue ()
     countItemMessageTextField?.unbind_readOnlyValue ()
     countItemTextField?.unbind_readOnlyValue ()
     totalTextField?.unbind_readOnlyValue ()
+  //--- Unbind multiple bindings
+    removePathButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
     canRemoveString.computeFunction = nil
     countItemMessage.computeFunction = nil
