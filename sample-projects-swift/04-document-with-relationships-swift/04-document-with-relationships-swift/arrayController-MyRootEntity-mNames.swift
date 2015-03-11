@@ -63,6 +63,8 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     mTableViewController?.unregister ()
     mTableViewController = nil
     mInternalSelectedObjectSet = Set ()
+    mModel?.mNames.removeObserverOf_name (event, inTrigger:false)
+    mModel?.mNames.removeObserverOf_aValue (event, inTrigger:false)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -224,8 +226,10 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
         inTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
       }
     }
+    mModel?.mNames.addObserverOf_name (event, inTrigger:true)
+    mModel?.mNames.addObserverOf_aValue (event, inTrigger:true)
   }
-  
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *
   //-------------------------------------------------------------------------------------------------------------------*

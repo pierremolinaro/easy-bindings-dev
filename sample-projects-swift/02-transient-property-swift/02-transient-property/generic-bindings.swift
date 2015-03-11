@@ -2,25 +2,33 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-var gEnabledBindingDictionary = [NSControl : Controller_NSControl_enabled] ()
+var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()
+var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enabled binding                                                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSControl {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  enabled binding                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
   func bind_enabled (object:[PMReadOnlyProperty_Bool], computeFunction: () -> Bool, file:String, line:Int) {
-    let controller = Controller_NSControl_enabled (objectArray:object, outlet:self, computeFunction:computeFunction, file:file, line:line)
-    gEnabledBindingDictionary [self] = controller
+    let controller = Controller_NSControl_enabled (
+      objectArray:object,
+      outlet:self,
+      computeFunction:computeFunction,
+      file:file,
+      line:line
+    )
+    gEnabledBindingControllerDictionary [self] = controller
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+
   func unbind_enabled () {
-    if let controller = gEnabledBindingDictionary [self] {
+    if let controller = gEnabledBindingControllerDictionary [self] {
       controller.unregister ()
-      gEnabledBindingDictionary [self] = nil
+      gEnabledBindingControllerDictionary [self] = nil
+      gEnabledBindingValueDictionary [self] = nil
     }
   }
 }
@@ -59,11 +67,14 @@ extension NSControl {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
+    let result : Bool
     if let computeFunction = mComputeFunction {
-      mOutlet.enabled = computeFunction ()
+      result = computeFunction ()
     }else{
-      mOutlet.enabled = false
+      result = false
     }
+    gEnabledBindingValueDictionary [mOutlet] = result
+    mOutlet.enabled = result
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
