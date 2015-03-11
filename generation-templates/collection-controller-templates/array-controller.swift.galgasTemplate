@@ -65,7 +65,10 @@ end
     mTableViewController?.unregister ()
     mTableViewController = nil
     mInternalSelectedObjectSet = Set ()
-  }
+%for () in BOUND_COLUMNS do
+  %    mModel?.%!RELATIONSHIP_NAME%.removeObserverOf_%!mObservablePropertyName% (event, inTrigger:false)\n%
+end
+%  }
   
   //-------------------------------------------------------------------------------------------------------------------*
   //    Sort descriptors                                                                                               *
@@ -216,8 +219,11 @@ end
         inTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
       }
     }
-  }
-  
+%for () in BOUND_COLUMNS do
+  %    mModel?.%!RELATIONSHIP_NAME%.addObserverOf_%!mObservablePropertyName% (event, inTrigger:true)\n%
+end
+%  }
+
   //-------------------------------------------------------------------------------------------------------------------*
   //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *
   //-------------------------------------------------------------------------------------------------------------------*

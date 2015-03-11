@@ -34,6 +34,12 @@ document PMDocument root MyRootEntity {
 
   transient Integer total dependsFrom root.mNames.aValue ;
   outlet PMReadOnlyIntField totalTextField $readOnlyValue self.total  ;
+  
+  action increment ;
+  outlet PMButton incrementButton $run self.increment ;
+  
+  action decrement ;
+  outlet PMButton decrementButton $run self.decrement ;
 }
 
 #--------------------------------------------------------------*

@@ -13,6 +13,8 @@ import Cocoa
   @IBOutlet var canRemoveTextField : PMReadOnlyTextField?
   @IBOutlet var countItemMessageTextField : PMReadOnlyTextField?
   @IBOutlet var countItemTextField : PMReadOnlyIntField?
+  @IBOutlet var decrementButton : PMButton?
+  @IBOutlet var incrementButton : PMButton?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var removePathButton : PMButton?
   @IBOutlet var totalTextField : PMReadOnlyIntField?
@@ -84,6 +86,16 @@ import Cocoa
     }else if !countItemTextField!.isKindOfClass (PMReadOnlyIntField) {
       presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
     }
+    if nil == decrementButton {
+      presentErrorWindow (__FILE__, __LINE__, "the 'decrementButton' outlet is nil") ;
+    }else if !decrementButton!.isKindOfClass (PMButton) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'decrementButton' outlet is not an instance of 'PMButton'") ;
+    }
+    if nil == incrementButton {
+      presentErrorWindow (__FILE__, __LINE__, "the 'incrementButton' outlet is nil") ;
+    }else if !incrementButton!.isKindOfClass (PMButton) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'incrementButton' outlet is not an instance of 'PMButton'") ;
+    }
     if nil == mNamesTableView {
       presentErrorWindow (__FILE__, __LINE__, "the 'mNamesTableView' outlet is nil") ;
     }else if !mNamesTableView!.isKindOfClass (PMTableView) {
@@ -130,6 +142,10 @@ import Cocoa
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
+    decrementButton?.target = self
+    decrementButton?.action = "decrement:"
+    incrementButton?.target = self
+    incrementButton?.action = "increment:"
     removePathButton?.target = nameController
     removePathButton?.action = "remove:"
   //--------------------------- Update display
@@ -162,6 +178,8 @@ import Cocoa
     rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
+    decrementButton?.target = nil
+    incrementButton?.target = nil
     removePathButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
