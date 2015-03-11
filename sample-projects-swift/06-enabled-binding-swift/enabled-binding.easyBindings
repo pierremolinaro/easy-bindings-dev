@@ -7,14 +7,12 @@ entity MyRootEntity {
 preferences MyPrefs {
   property Bool prefBoolean default yes ;
   outlet PMSwitch prefBoolCheckBox $value self.prefBoolean ;
- # bind model : self.prefBoolean to prefBoolCheckBox $value ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
   outlet PMSwitch docBoolCheckBox $value root.docBool ;
-#  bind model : root.docBool to docBoolCheckBox $value ;
   outlet PMButton myButton $enabled ! root.docBool & MyPrefs.prefBoolean ;
 }
 

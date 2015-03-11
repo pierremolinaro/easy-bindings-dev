@@ -1,56 +1,133 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol MyRootEntity_docBool {
-  var docBool : Bool { get }
+  var docBool : PMStoredProperty_Bool { get }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
 
-@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_docBool {
-  override func userClassName () -> String { return "MyRootEntity" }
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Array of MyRootEntity                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
+  var computeFunction : Optional<() -> [MyRootEntity]?>
 
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.mSet.count }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: docBool                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var docBool_explorer : NSTextField? = nil
-  private var docBool_observers : [Int : PMTransientEventProtocol] = [:]
-  var docBool : Bool = true {
-    didSet {
-      if docBool != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docBool:", object:NSNumber (bool:oldValue))
-        docBool_explorer?.stringValue = NSString (format:"%s", docBool ? "true" : "false") as! String
-        for (key, observer) in docBool_observers {
-          postTransientEvent (observer)
+  var count = PMTransientProperty_Int ()
+
+  func noteModelDidChange () {
+    if (props_cache != nil) {
+      props_cache = nil
+      count.postEvents ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var mSet = Set<MyRootEntity> ()
+
+  var props_cache : Optional <Array<MyRootEntity> >
+
+  var props : Array<MyRootEntity> {
+    get {
+      if props_cache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          props_cache = unwrappedComputeFunction ()
+        }
+        if props_cache == nil {
+          props_cache = Array<MyRootEntity> ()
+        }
+        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        if mSet != newObjectSet {
+        //--- Removed object set
+          var removedObjectSet = mSet
+          removedObjectSet.subtractInPlace (newObjectSet)
+          for managedObject : MyRootEntity in removedObjectSet {
+            for observer in mObserversOf_docBool {
+              managedObject.docBool.removeObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Added object set
+          var addedObjectSet = newObjectSet
+          addedObjectSet.subtractInPlace (mSet)
+          for managedObject : MyRootEntity in addedObjectSet {
+            for observer in mObserversOf_docBool {
+              managedObject.docBool.addObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Update object set
+          mSet = newObjectSet
         }
       }
+      return props_cache!
     }
   }
 
-  func undoFor_docBool (value : NSNumber) {
-    docBool = value.boolValue
-  }
 
-  func addObserverOf_docBool (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    docBool_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_docBool (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    docBool_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mObserversOf_docBool = Set<PMEvent> ()
+
+  func addObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_docBool.insert (inObserver)
+    for managedObject in props {
+      managedObject.docBool.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  func validate_docBool (proposedValue : Bool) -> PMValidationResult { return PMValidationResult.ok }
+  func removeObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_docBool.remove (inObserver)
+    for managedObject in props {
+      managedObject.docBool.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
 
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Entity: MyRootEntity                                                                                             *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_docBool {
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var docBool = PMStoredProperty_Bool (true)
+  var docBool_keyCodingValue : Bool { get {return docBool.prop } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Relationships                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    init                                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override init (undoManager : NSUndoManager) {
+    super.init (undoManager:undoManager)
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install undoers for properties
+    docBool.undoManager = undoManager
+  //--- Install owner for relationships
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  prepareForDeletion                                                                                               *
@@ -58,19 +135,20 @@ protocol MyRootEntity_docBool {
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Remove transients observers
+  //--- Uninstall compute functions for transients
+  //--- Uninstall undoers for properties
+    docBool.undoManager = nil
+  //--- Reset relationships
   }
   
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    docBool_explorer = createEntryForAttributeNamed ("docBool", ioRect:&ioRect, view:view)
-    if let explorer = docBool_explorer {
-      explorer.stringValue = NSString (format:"%s", docBool ? "true" : "false") as! String
-    }
+    docBool.explorer = createEntryForAttributeNamed ("docBool", ioRect:&ioRect, view:view)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -78,7 +156,7 @@ protocol MyRootEntity_docBool {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func clearObjectExplorer () {
-    docBool_explorer = nil
+    docBool.explorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -88,7 +166,7 @@ protocol MyRootEntity_docBool {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSNumber (bool:docBool), forKey: "docBool")
+    ioDictionary.setValue (NSNumber (bool:docBool.prop), forKey: "docBool")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -98,7 +176,7 @@ protocol MyRootEntity_docBool {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    docBool = inDictionary.readBool ("docBool")
+    docBool.setProp (inDictionary.readBool ("docBool"))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

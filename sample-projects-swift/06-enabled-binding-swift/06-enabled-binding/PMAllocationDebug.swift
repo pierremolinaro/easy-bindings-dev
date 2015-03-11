@@ -6,14 +6,14 @@ import Cocoa
 
 func noteObjectAllocation (inObject : PMUserClassName) {
   installDebugMenu ()
-  let className = inObject.userClassName ()
+  let className = _stdlib_getDemangledTypeName (inObject)
   gDebugObject?.pmNoteObjectAllocation (className)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func noteObjectDeallocation (inObject : PMUserClassName) {
-  let className = inObject.userClassName ()
+  let className = _stdlib_getDemangledTypeName (inObject)
   gDebugObject?.pmNoteObjectDeallocation (className)
 }
 
@@ -343,10 +343,10 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
   //    T A B L E   V I E W    D A T A    S O U R C E                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
-  
+
   func tableView (aTableView : NSTableView,
                   objectValueForTableColumn: NSTableColumn?,
-                  row:NSInteger) -> AnyObject! {
+                  row:Int) -> AnyObject? {
     var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay
     return theRecord.valueForKey (objectValueForTableColumn!.identifier as String)
   }
