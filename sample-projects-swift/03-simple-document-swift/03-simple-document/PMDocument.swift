@@ -1,7 +1,7 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMDocument) class PMDocument : PMManagedDocument, PMUserClassName {
 
@@ -23,6 +23,11 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Array Controllers                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
 
@@ -98,7 +103,6 @@ import Cocoa
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
-    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -106,6 +110,8 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
+    undoManager?.removeAllActions ()
+    undoManager = nil
   //--- Unbind
     myColorWell?.unbind_color ()
     myMatrix?.unbind_selectedIndex ()
@@ -113,14 +119,17 @@ import Cocoa
     myTextField?.unbind_value ()
     myTextMajField?.unbind_readOnlyValue ()
     myTextMinField?.unbind_readOnlyValue ()
-  //--------------------------- Remove controllers
+  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind array controllers
+  //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)
   }
 
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

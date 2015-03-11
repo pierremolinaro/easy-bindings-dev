@@ -66,8 +66,7 @@ import Cocoa
 //   Controller_PMReadOnlyIntField_readOnlyValue                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMReadOnlyIntField_readOnlyValue)
-class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
+@objc(Controller_PMReadOnlyIntField_readOnlyValue) class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
 
   var mObject : PMReadOnlyProperty_Int
   var mOutlet : PMReadOnlyIntField
