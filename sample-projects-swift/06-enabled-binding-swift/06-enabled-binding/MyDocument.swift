@@ -1,15 +1,9 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyDocument) class MyDocument : PMManagedDocument, PMUserClassName {
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override func userClassName () -> String { return "MyDocument" }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
@@ -19,11 +13,17 @@ import Cocoa
   @IBOutlet var myButton : PMButton?
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Controllers                                                                                                    *
+  //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Document attributes                                                                                            *
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Array Controllers                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
 
@@ -53,28 +53,33 @@ import Cocoa
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray : [PMTransientEventProtocol] = []
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
     if nil == docBoolCheckBox {
       presentErrorWindow (__FILE__, __LINE__, "the 'docBoolCheckBox' outlet is nil") ;
+    }else if !docBoolCheckBox!.isKindOfClass (PMSwitch) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'docBoolCheckBox' outlet is not an instance of 'PMSwitch'") ;
     }
     if nil == myButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is nil") ;
+    }else if !myButton!.isKindOfClass (PMButton) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is not an instance of 'PMButton'") ;
     }
   //--------------------------- Array controller
-  //--------------------------- Transient observers
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install bindings
+    docBoolCheckBox?.bind_value (rootObject.docBool, file:__FILE__, line:__LINE__)
+    myButton?.bind_enabled (
+     [rootObject.docBool, g_MyPrefs!.prefBoolean],
+     computeFunction: { !self.rootObject.docBool.prop && g_MyPrefs!.prefBoolean.prop},
+     file:__FILE__,
+     line:__LINE__
+  )
   //--------------------------- Array controller as observers
-  //--------------------------- Simple controllers
-    mControllerArray.append (EnableController_MyDocument_myButton (object0:rootObject, object1:g_MyPrefs, outlet:myButton, file:__FILE__, line:__LINE__))
-    mControllerArray.append (Controller_MyRootEntity_docBool_PMSwitch_value (object:rootObject, outlet:docBoolCheckBox, file:__FILE__, line:__LINE__))
   //--------------------------- Set targets / actions
   //--------------------------- Update display
-    flushTriggers ()
+    super.windowControllerDidLoadNib (aController)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -82,19 +87,22 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
-  //--------------------------- Remove controllers
-    for controller in mControllerArray {
-      controller.unregister ()
-    }
-    mControllerArray = []
+    undoManager?.removeAllActions ()
+    undoManager = nil
+  //--- Unbind
+    docBoolCheckBox?.unbind_value ()
+    myButton?.unbind_enabled ()
+  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind array controllers
+  //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //---
     super.removeWindowController (inWindowController)
   }
 
-
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

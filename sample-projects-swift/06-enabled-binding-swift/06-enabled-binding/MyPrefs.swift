@@ -8,48 +8,23 @@ var g_MyPrefs : MyPrefs? = nil
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc (MyPrefs) class MyPrefs : NSObject, PMUserClassName {
+@objc (MyPrefs) class MyPrefs : PMObject {
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "MyPrefs" }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Outlets                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
   @IBOutlet var prefBoolCheckBox : PMSwitch? = nil
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: prefBoolean                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var prefBoolean_observers : [Int : PMTransientEventProtocol] = [:]
-  var prefBoolean : Bool = true {
-    didSet {
-      if prefBoolean != oldValue {
-        for (key, object) in prefBoolean_observers {
-          postTransientEvent (object)
-        }
-      }
-    }
-  }
-
-  func addObserverOf_prefBoolean (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    prefBoolean_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
  
-  func removeObserverOf_prefBoolean (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    prefBoolean_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
-  func validate_prefBoolean (proposedValue : Bool) -> PMValidationResult { return PMValidationResult.ok }
+  var prefBoolean = PMStoredProperty_Bool (true)
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -63,15 +38,15 @@ var g_MyPrefs : MyPrefs? = nil
 
   override init () {
     super.init ()
-    noteObjectAllocation (self) ;
     g_MyPrefs = self ;
-     var ud = NSUserDefaults.standardUserDefaults ()
+    var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
     value = ud.objectForKey ("MyPrefs:prefBoolean")
     if value != nil {
-      prefBoolean = (value as! NSNumber).boolValue
+      prefBoolean.setProp ((value as! NSNumber).boolValue)
     }
+  //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
@@ -85,24 +60,15 @@ var g_MyPrefs : MyPrefs? = nil
   //    awakeFromNib                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mControllerArray = NSMutableArray ()
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
   override func awakeFromNib () {
   //--- Check prefBoolCheckBox' outlet not nil
     if nil == prefBoolCheckBox {
       presentErrorWindow (__FILE__, __LINE__, "the 'prefBoolCheckBox' outlet is nil")
     }
-    mControllerArray.addObject (Controller_MyPrefs_prefBoolean_PMSwitch_value (object:self, outlet:prefBoolCheckBox, file:__FILE__, line:__LINE__))
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self) ;
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install bindings
+    prefBoolCheckBox?.bind_value (self.prefBoolean, file:__FILE__, line:__LINE__)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -111,7 +77,7 @@ var g_MyPrefs : MyPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (bool:prefBoolean), forKey:"MyPrefs:prefBoolean")
+    ud.setObject (NSNumber (bool:prefBoolean.prop), forKey:"MyPrefs:prefBoolean")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
