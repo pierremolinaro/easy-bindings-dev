@@ -30,6 +30,7 @@
 		CF6D23A619D9EE3B0065875D /* PMSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D238E19D9EE3B0065875D /* PMSwitch.swift */; };
 		CF6D23A719D9EE3B0065875D /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D238F19D9EE3B0065875D /* PMUndoManager.swift */; };
 		CF86CCA2159725BF00F6B52D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF86CCA1159725BF00F6B52D /* Cocoa.framework */; };
+		CFABCE8D1AB0C9350024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCE8C1AB0C9350024372A /* generic-bindings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		CF86CCA4159725BF00F6B52D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		CF86CCA5159725BF00F6B52D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CF86CCA6159725BF00F6B52D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFABCE8C1AB0C9350024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "generic-bindings.swift"; path = "06-enabled-binding/generic-bindings.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		CF86CC92159725BE00F6B52D = {
 			isa = PBXGroup;
 			children = (
+				CFABCE8C1AB0C9350024372A /* generic-bindings.swift */,
 				CF6D237719D9EE3B0065875D /* 06-enabled-binding-Info.plist */,
 				CF5CD2561AB064A7005262B7 /* application.swift */,
 				CF6D237919D9EE3B0065875D /* Credits.rtf */,
@@ -219,6 +222,7 @@
 				CF6D23A119D9EE3B0065875D /* PMManagedDocument.swift in Sources */,
 				CF6D23A619D9EE3B0065875D /* PMSwitch.swift in Sources */,
 				CF5CD2591AB064A7005262B7 /* standard-properties.swift in Sources */,
+				CFABCE8D1AB0C9350024372A /* generic-bindings.swift in Sources */,
 				CF6D239319D9EE3B0065875D /* easy-bindings-utilities.swift in Sources */,
 				CF6D239919D9EE3B0065875D /* MyPrefs.swift in Sources */,
 				CF6D239E19D9EE3B0065875D /* PMDataScanner.swift in Sources */,
