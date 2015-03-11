@@ -1,7 +1,7 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument, PMUserClassName {
 
@@ -20,7 +20,7 @@ end
 
 %
 for () in ATTRIBUTE_LIST do
-%  var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  private var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 
@@ -32,12 +32,18 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]
-                      % (PMTransientIndex.k_%
-                      !["document." + DOCUMENT_NAME + "." + mTransientName identifierRepresentation]
-                      %)\n%
+  %  private var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Array Controllers                                                                                              *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+%
+for () in ARRAY_CONTROLLER_LIST do
+%  private var %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% ()\n%
+end
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -61,25 +67,7 @@ end
 
   var rootObject : MyRootEntity { get { return mRootObject as! %!ROOT_ENTITY_NAME% } }
 
-%
-for () in ARRAY_CONTROLLER_LIST do
-%  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Array controller: " + mControllerName stringByRightPadding !111 !' ']%*
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  private var %!mControllerName% : ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName%? = nil
-
-  func document_2E_PMDocument_2E_%!mControllerName%_noteDidChange () {
-    %!mControllerName%?.modelDidChange ()
-  }
-
-  func document_2E_PMDocument_2E_%!mControllerName%_trigger () {
-    %!mControllerName%?.display ()
-  }
-
-%
-end
-%  //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -97,9 +85,9 @@ end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% (
-      object:rootObject,
-      tableView:%!mTableViewOutletName%,
+%    %!mControllerName%.bind_modelAndView (
+      rootObject,
+      tableView:%!mTableViewOutletName%!,
       file:__FILE__,
       line:__LINE__
     )\n%
@@ -133,7 +121,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-% //   rootObject.%!mTomanyRelationshipName%.addObserver (PMEvent_document_2E_PMDocument_2E_%!mControllerName% (object:self), inTrigger:true)\n%
+%    rootObject.%!mTomanyRelationshipName%.addObserver (%!mControllerName%.event, inTrigger:true)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -142,7 +130,6 @@ end
 end
 %  //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
-    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -150,15 +137,29 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
+    undoManager?.removeAllActions ()
+    undoManager = nil
   //--- Unbind
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
-%  //--------------------------- Remove controllers
+%  //--- Uninstall compute functions for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    %!mTransientName%.computeFunction = nil\n%
+end
+%  //--------------------------- Unbind array controllers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName%?.unregister ()\n%
+%    %!mControllerName%.unbind_modelAndView ()\n%
+end
+%  //--- Uninstall property observers for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for () in mDependencyList do
+%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
+end
 end
 %  //--------------------------- Remove targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -168,8 +169,9 @@ end
     super.removeWindowController (inWindowController)
   }
 
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

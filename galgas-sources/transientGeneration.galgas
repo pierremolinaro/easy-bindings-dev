@@ -96,7 +96,7 @@ abstract getter @abstractTransientDependencyForGeneration generateActualParamete
 #-----------------------------------------------------------------------------*
 
 override getter @transientControllerDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "(self." + mControllerName.string + " != nil) ? (self." + mControllerName.string + "?." + mMasterName + ")! : false"
+  outResult = "self." + mControllerName.string + "." + mMasterName + ".prop"
 }
 
 #-----------------------------------------------------------------------------*
@@ -108,10 +108,11 @@ override getter @transientRootSignDependencyForGeneration generateActualParamete
 #-----------------------------------------------------------------------------*
 
 override getter @transientLocalDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "self." + mMasterName.string + ".prop"
+  outResult = "self." + mMasterName.string
   if mNamesCountOption then
     outResult += ".count"
   end
+  outResult += ".prop"
 }
 
 #-----------------------------------------------------------------------------*
@@ -123,16 +124,17 @@ override getter @transientPreferenceDependencyForGeneration generateActualParame
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "self.rootObject." + mMasterName.string + ".prop"
+  outResult = "self.rootObject." + mMasterName.string
   if mNamesCountOption then
     outResult += ".count"
   end
+  outResult += ".prop"
 }
 
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootRelationshipDependencyForGeneration generateActualParameterForComputeFunction -> @string outResult {
-  outResult = "self.rootObject." + mRelationshipName
+  outResult = "self.rootObject." + mRelationshipName + ".props"
 }
 
 #-----------------------------------------------------------------------------*
@@ -145,7 +147,7 @@ abstract getter @abstractTransientDependencyForGeneration generateAddObserverCal
 #-----------------------------------------------------------------------------*
 
 override getter @transientControllerDependencyForGeneration generateAddObserverCall -> @string outResult {
-  outResult = mControllerName.string + "?." + mMasterName + ".addObserver"
+  outResult = mControllerName.string + "." + mMasterName + ".addObserver"
 }
 
 #-----------------------------------------------------------------------------*
@@ -188,7 +190,7 @@ abstract getter @abstractTransientDependencyForGeneration generateRemoveObserver
 #-----------------------------------------------------------------------------*
 
 override getter @transientControllerDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = mControllerName.string + "?." + mMasterName + ".removeObserver"
+  outResult = mControllerName.string + "." + mMasterName + ".removeObserver"
 }
 
 #-----------------------------------------------------------------------------*
@@ -218,7 +220,7 @@ override getter @transientRootDependencyForGeneration generateRemoveObserverCall
 #-----------------------------------------------------------------------------*
 
 override getter @transientRootRelationshipDependencyForGeneration generateRemoveObserverCall -> @string outResult {
-  outResult = "rootObject." + mMasterName + ".removeObserverOf_" + mRelationshipName
+  outResult = "rootObject." + mRelationshipName + ".removeObserverOf_" + mMasterName
 }
 
 #----------------------------------------------------------------------------*

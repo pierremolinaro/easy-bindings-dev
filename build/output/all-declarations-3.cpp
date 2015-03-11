@@ -10,6 +10,280 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_transientDependencyGraphNodeInfoList_2D_element::GALGAS_transientDependencyGraphNodeInfoList_2D_element (void) :
+mAttribute_mSignature (),
+mAttribute_mIsTransient () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyGraphNodeInfoList_2D_element::~ GALGAS_transientDependencyGraphNodeInfoList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyGraphNodeInfoList_2D_element::GALGAS_transientDependencyGraphNodeInfoList_2D_element (const GALGAS_string & inOperand0,
+                                                                                                                const GALGAS_bool & inOperand1) :
+mAttribute_mSignature (inOperand0),
+mAttribute_mIsTransient (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyGraphNodeInfoList_2D_element GALGAS_transientDependencyGraphNodeInfoList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_transientDependencyGraphNodeInfoList_2D_element (GALGAS_string::constructor_default (HERE),
+                                                                 GALGAS_bool::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyGraphNodeInfoList_2D_element GALGAS_transientDependencyGraphNodeInfoList_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                                                const GALGAS_bool & inOperand1 
+                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_transientDependencyGraphNodeInfoList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_transientDependencyGraphNodeInfoList_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_transientDependencyGraphNodeInfoList_2D_element::objectCompare (const GALGAS_transientDependencyGraphNodeInfoList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mSignature.objectCompare (inOperand.mAttribute_mSignature) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mIsTransient.objectCompare (inOperand.mAttribute_mIsTransient) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_transientDependencyGraphNodeInfoList_2D_element::isValid (void) const {
+  return mAttribute_mSignature.isValid () && mAttribute_mIsTransient.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_transientDependencyGraphNodeInfoList_2D_element::drop (void) {
+  mAttribute_mSignature.drop () ;
+  mAttribute_mIsTransient.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_transientDependencyGraphNodeInfoList_2D_element::description (C_String & ioString,
+                                                                          const int32_t inIndentation) const {
+  ioString << "<struct @transientDependencyGraphNodeInfoList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mSignature.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mIsTransient.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_transientDependencyGraphNodeInfoList_2D_element::reader_mSignature (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSignature ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_transientDependencyGraphNodeInfoList_2D_element::reader_mIsTransient (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mIsTransient ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 @transientDependencyGraphNodeInfoList-element type                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_transientDependencyGraphNodeInfoList_2D_element ("transientDependencyGraphNodeInfoList-element",
+                                                                        NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_transientDependencyGraphNodeInfoList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_transientDependencyGraphNodeInfoList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_transientDependencyGraphNodeInfoList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_transientDependencyGraphNodeInfoList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyGraphNodeInfoList_2D_element GALGAS_transientDependencyGraphNodeInfoList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                              C_Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_transientDependencyGraphNodeInfoList_2D_element result ;
+  const GALGAS_transientDependencyGraphNodeInfoList_2D_element * p = (const GALGAS_transientDependencyGraphNodeInfoList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_transientDependencyGraphNodeInfoList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("transientDependencyGraphNodeInfoList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element::GALGAS_transientDependencyListForGeneration_2D_element (void) :
+mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument (),
+mAttribute_mComputeFunctionFormalArgumentName () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element::~ GALGAS_transientDependencyListForGeneration_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element::GALGAS_transientDependencyListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                                                const GALGAS_string & inOperand1) :
+mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument (inOperand0),
+mAttribute_mComputeFunctionFormalArgumentName (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_transientDependencyListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                                 GALGAS_string::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                                                const GALGAS_string & inOperand1 
+                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_transientDependencyListForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_transientDependencyListForGeneration_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_transientDependencyListForGeneration_2D_element::objectCompare (const GALGAS_transientDependencyListForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument.objectCompare (inOperand.mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mComputeFunctionFormalArgumentName.objectCompare (inOperand.mAttribute_mComputeFunctionFormalArgumentName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_transientDependencyListForGeneration_2D_element::isValid (void) const {
+  return mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument.isValid () && mAttribute_mComputeFunctionFormalArgumentName.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_transientDependencyListForGeneration_2D_element::drop (void) {
+  mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument.drop () ;
+  mAttribute_mComputeFunctionFormalArgumentName.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_transientDependencyListForGeneration_2D_element::description (C_String & ioString,
+                                                                          const int32_t inIndentation) const {
+  ioString << "<struct @transientDependencyListForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mComputeFunctionFormalArgumentName.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_transientDependencyListForGeneration_2D_element::reader_mSwiftTypeNameForComputeFunctionFormalArgument (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSwiftTypeNameForComputeFunctionFormalArgument ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_transientDependencyListForGeneration_2D_element::reader_mComputeFunctionFormalArgumentName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mComputeFunctionFormalArgumentName ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 @transientDependencyListForGeneration-element type                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ("transientDependencyListForGeneration-element",
+                                                                        NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_transientDependencyListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_transientDependencyListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_transientDependencyListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                              C_Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_transientDependencyListForGeneration_2D_element result ;
+  const GALGAS_transientDependencyListForGeneration_2D_element * p = (const GALGAS_transientDependencyListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_transientDependencyListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("transientDependencyListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_actionListForGeneration_2D_element::GALGAS_actionListForGeneration_2D_element (void) :
 mAttribute_mClassName (),
 mAttribute_mActionName () {
@@ -11636,7 +11910,7 @@ static void categoryMethod_rootObservablePropertyAST_analyzeBoundObservablePrope
   }
   const enumGalgasBool test_4 = object->mAttribute_mNamesCountOption.boolEnum () ;
   if (kBoolTrue == test_4) {
-    ioArgument_ioBoundObjectNameList.addAssign_operation (GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRootObservablePropertyName.reader_string (SOURCE_FILE ("outlet-declaration.galgas", 311)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 311))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 311)) ;
+    ioArgument_ioBoundObjectNameList.addAssign_operation (GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRootObservablePropertyName.reader_string (SOURCE_FILE ("outlet-declaration.galgas", 311)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 311)).add_operation (GALGAS_string (".count"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 311))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 311)) ;
     ioArgument_ioBoundPropertyTypeList.addAssign_operation (GALGAS_unifiedTypeMap_2D_proxy::constructor_searchKey (constinArgument_inUnifiedTypeMap, GALGAS_string ("Integer").reader_nowhere (SOURCE_FILE ("outlet-declaration.galgas", 313)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)), GALGAS_bool (true), object->mAttribute_mRootObservablePropertyName.mAttribute_location  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 312)) ;
   }else if (kBoolFalse == test_4) {
     ioArgument_ioBoundObjectNameList.addAssign_operation (GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRootObservablePropertyName.reader_string (SOURCE_FILE ("outlet-declaration.galgas", 317)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317)) ;
@@ -11674,17 +11948,17 @@ static void categoryMethod_preferenceObservablePropertyAST_analyzeBoundObservabl
   macroValidSharedObject (object, cPtr_preferenceObservablePropertyAST) ;
   GALGAS_typeKind var_typeKind ;
   GALGAS_decoratedObservablePropertyMap var_observablePropertyMap ;
-  GALGAS_unifiedTypeMap_2D_proxy joker_14490_5 ; // Joker input parameter
-  GALGAS_unifiedTypeMap_2D_proxy joker_14490_4 ; // Joker input parameter
-  GALGAS_decoratedAttributeMap joker_14490_3 ; // Joker input parameter
-  GALGAS_decoratedTransientMap joker_14490_2 ; // Joker input parameter
-  GALGAS_decoratedOutletMap joker_14490_1 ; // Joker input parameter
-  GALGAS_decoratedEntityRelationshipMap joker_14561_5 ; // Joker input parameter
-  GALGAS_actionMap joker_14561_4 ; // Joker input parameter
-  GALGAS_lstringlist joker_14561_3 ; // Joker input parameter
-  GALGAS_enumConstantMap joker_14561_2 ; // Joker input parameter
-  GALGAS_arrayControllerMap joker_14561_1 ; // Joker input parameter
-  constinArgument_inUnifiedTypeMap.method_searchKey (object->mAttribute_mPreferenceName, var_typeKind, joker_14490_5, joker_14490_4, joker_14490_3, joker_14490_2, joker_14490_1, var_observablePropertyMap, joker_14561_5, joker_14561_4, joker_14561_3, joker_14561_2, joker_14561_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 334)) ;
+  GALGAS_unifiedTypeMap_2D_proxy joker_14488_5 ; // Joker input parameter
+  GALGAS_unifiedTypeMap_2D_proxy joker_14488_4 ; // Joker input parameter
+  GALGAS_decoratedAttributeMap joker_14488_3 ; // Joker input parameter
+  GALGAS_decoratedTransientMap joker_14488_2 ; // Joker input parameter
+  GALGAS_decoratedOutletMap joker_14488_1 ; // Joker input parameter
+  GALGAS_decoratedEntityRelationshipMap joker_14559_5 ; // Joker input parameter
+  GALGAS_actionMap joker_14559_4 ; // Joker input parameter
+  GALGAS_lstringlist joker_14559_3 ; // Joker input parameter
+  GALGAS_enumConstantMap joker_14559_2 ; // Joker input parameter
+  GALGAS_arrayControllerMap joker_14559_1 ; // Joker input parameter
+  constinArgument_inUnifiedTypeMap.method_searchKey (object->mAttribute_mPreferenceName, var_typeKind, joker_14488_5, joker_14488_4, joker_14488_3, joker_14488_2, joker_14488_1, var_observablePropertyMap, joker_14559_5, joker_14559_4, joker_14559_3, joker_14559_2, joker_14559_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 334)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_typeKind.objectCompare (GALGAS_typeKind::constructor_preferencesType (SOURCE_FILE ("outlet-declaration.galgas", 341)))).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_location location_1 (object->mAttribute_mPreferenceName.reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -11693,8 +11967,8 @@ static void categoryMethod_preferenceObservablePropertyAST_analyzeBoundObservabl
   GALGAS_unifiedTypeMap_2D_proxy var_propertyType ;
   GALGAS_bool var_modelIsTransient ;
   GALGAS_bool var_isCollection ;
-  GALGAS_lstring joker_14861 ; // Joker input parameter
-  var_observablePropertyMap.method_searchKey (object->mAttribute_mPreferenceObservablePropertyName, var_propertyType, var_modelIsTransient, joker_14861, var_isCollection, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 345)) ;
+  GALGAS_lstring joker_14859 ; // Joker input parameter
+  var_observablePropertyMap.method_searchKey (object->mAttribute_mPreferenceObservablePropertyName, var_propertyType, var_modelIsTransient, joker_14859, var_isCollection, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 345)) ;
   const enumGalgasBool test_2 = var_isCollection.boolEnum () ;
   if (kBoolTrue == test_2) {
     GALGAS_location location_3 (object->mAttribute_mPreferenceObservablePropertyName.reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -11733,18 +12007,18 @@ static void categoryMethod_arrayControllerObservablePropertyAST_analyzeBoundObse
   const cPtr_arrayControllerObservablePropertyAST * object = (const cPtr_arrayControllerObservablePropertyAST *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerObservablePropertyAST) ;
   GALGAS_decoratedObservablePropertyMap var_arrayControllerObservablePropertyMap ;
-  GALGAS_abstractObservablePropertyAST joker_15916 ; // Joker input parameter
-  GALGAS_lstring joker_15971_3 ; // Joker input parameter
-  GALGAS_arrayControllerBoundColumnListAST joker_15971_2 ; // Joker input parameter
-  GALGAS_actionMap joker_15971_1 ; // Joker input parameter
-  GALGAS_lstring joker_16057_2 ; // Joker input parameter
-  GALGAS_string joker_16057_1 ; // Joker input parameter
-  constinArgument_inArrayControllerMap.method_searchKey (object->mAttribute_mArrayControllerName, joker_15916, joker_15971_3, joker_15971_2, joker_15971_1, var_arrayControllerObservablePropertyMap, joker_16057_2, joker_16057_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 371)) ;
+  GALGAS_abstractObservablePropertyAST joker_15914 ; // Joker input parameter
+  GALGAS_lstring joker_15969_3 ; // Joker input parameter
+  GALGAS_arrayControllerBoundColumnListAST joker_15969_2 ; // Joker input parameter
+  GALGAS_actionMap joker_15969_1 ; // Joker input parameter
+  GALGAS_lstring joker_16055_2 ; // Joker input parameter
+  GALGAS_string joker_16055_1 ; // Joker input parameter
+  constinArgument_inArrayControllerMap.method_searchKey (object->mAttribute_mArrayControllerName, joker_15914, joker_15969_3, joker_15969_2, joker_15969_1, var_arrayControllerObservablePropertyMap, joker_16055_2, joker_16055_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 371)) ;
   GALGAS_unifiedTypeMap_2D_proxy var_propertyType ;
   GALGAS_bool var_modelIsTransient ;
   GALGAS_bool var_isCollection ;
-  GALGAS_lstring joker_16242 ; // Joker input parameter
-  var_arrayControllerObservablePropertyMap.method_searchKey (object->mAttribute_mArrayControllerObservablePropertyName, var_propertyType, var_modelIsTransient, joker_16242, var_isCollection, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 379)) ;
+  GALGAS_lstring joker_16240 ; // Joker input parameter
+  var_arrayControllerObservablePropertyMap.method_searchKey (object->mAttribute_mArrayControllerObservablePropertyName, var_propertyType, var_modelIsTransient, joker_16240, var_isCollection, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 379)) ;
   const enumGalgasBool test_0 = var_isCollection.boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_location location_1 (object->mAttribute_mArrayControllerObservablePropertyName.reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -12765,7 +13039,7 @@ static GALGAS_string categoryReader_transientControllerDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientControllerDependencyForGeneration * object = (const cPtr_transientControllerDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientControllerDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("(self.").add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (" != nil) \? (self."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (")! : false"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)) ;
+  result_outResult = GALGAS_string ("self.").add_operation (object->mAttribute_mControllerName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 99)) ;
 //---
   return result_outResult ;
 }
@@ -12821,11 +13095,12 @@ static GALGAS_string categoryReader_transientLocalDependencyForGeneration_genera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientLocalDependencyForGeneration * object = (const cPtr_transientLocalDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientLocalDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("self.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)) ;
+  result_outResult = GALGAS_string ("self.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 111)) ;
   const enumGalgasBool test_0 = object->mAttribute_mNamesCountOption.boolEnum () ;
   if (kBoolTrue == test_0) {
     result_outResult.dotAssign_operation (GALGAS_string (".count")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 113)) ;
   }
+  result_outResult.dotAssign_operation (GALGAS_string (".prop")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 115)) ;
 //---
   return result_outResult ;
 }
@@ -12854,7 +13129,7 @@ static GALGAS_string categoryReader_transientPreferenceDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientPreferenceDependencyForGeneration * object = (const cPtr_transientPreferenceDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPreferenceDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 120)).add_operation (GALGAS_string ("!."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 120)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 120)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 120)) ;
+  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 121)).add_operation (GALGAS_string ("!."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 121)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 121)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 121)) ;
 //---
   return result_outResult ;
 }
@@ -12883,11 +13158,12 @@ static GALGAS_string categoryReader_transientRootDependencyForGeneration_generat
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootDependencyForGeneration * object = (const cPtr_transientRootDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)).add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 126)) ;
+  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 127)) ;
   const enumGalgasBool test_0 = object->mAttribute_mNamesCountOption.boolEnum () ;
   if (kBoolTrue == test_0) {
-    result_outResult.dotAssign_operation (GALGAS_string (".count")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 128)) ;
+    result_outResult.dotAssign_operation (GALGAS_string (".count")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 129)) ;
   }
+  result_outResult.dotAssign_operation (GALGAS_string (".prop")  COMMA_SOURCE_FILE ("transientGeneration.galgas", 131)) ;
 //---
   return result_outResult ;
 }
@@ -12916,7 +13192,7 @@ static GALGAS_string categoryReader_transientRootRelationshipDependencyForGenera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootRelationshipDependencyForGeneration * object = (const cPtr_transientRootRelationshipDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootRelationshipDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 135)) ;
+  result_outResult = GALGAS_string ("self.rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 137)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 137)).add_operation (GALGAS_string (".props"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 137)) ;
 //---
   return result_outResult ;
 }
@@ -12945,7 +13221,7 @@ static GALGAS_string categoryReader_transientControllerDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientControllerDependencyForGeneration * object = (const cPtr_transientControllerDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientControllerDependencyForGeneration) ;
-  result_outResult = object->mAttribute_mControllerName.mAttribute_string.add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 148)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 148)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 148)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 148)) ;
+  result_outResult = object->mAttribute_mControllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 150)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 150)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 150)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 150)) ;
 //---
   return result_outResult ;
 }
@@ -13001,7 +13277,7 @@ static GALGAS_string categoryReader_transientLocalDependencyForGeneration_genera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientLocalDependencyForGeneration * object = (const cPtr_transientLocalDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientLocalDependencyForGeneration) ;
-  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 160)) ;
+  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 162)) ;
 //---
   return result_outResult ;
 }
@@ -13030,7 +13306,7 @@ static GALGAS_string categoryReader_transientPreferenceDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientPreferenceDependencyForGeneration * object = (const cPtr_transientPreferenceDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPreferenceDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 166)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 166)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 166)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 166)) ;
+  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 168)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 168)).add_operation (object->mAttribute_mMasterName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 168)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 168)) ;
 //---
   return result_outResult ;
 }
@@ -13059,7 +13335,7 @@ static GALGAS_string categoryReader_transientRootDependencyForGeneration_generat
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootDependencyForGeneration * object = (const cPtr_transientRootDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 172)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 172)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 172)) ;
+  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 174)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 174)).add_operation (GALGAS_string (".addObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 174)) ;
 //---
   return result_outResult ;
 }
@@ -13088,7 +13364,7 @@ static GALGAS_string categoryReader_transientRootRelationshipDependencyForGenera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootRelationshipDependencyForGeneration * object = (const cPtr_transientRootRelationshipDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootRelationshipDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 178)).add_operation (GALGAS_string (".addObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 178)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 178)) ;
+  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 180)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 180)).add_operation (GALGAS_string (".addObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 180)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 180)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 180)) ;
 //---
   return result_outResult ;
 }
@@ -13117,7 +13393,7 @@ static GALGAS_string categoryReader_transientControllerDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientControllerDependencyForGeneration * object = (const cPtr_transientControllerDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientControllerDependencyForGeneration) ;
-  result_outResult = object->mAttribute_mControllerName.mAttribute_string.add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 191)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 191)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 191)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 191)) ;
+  result_outResult = object->mAttribute_mControllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 193)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 193)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 193)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 193)) ;
 //---
   return result_outResult ;
 }
@@ -13173,7 +13449,7 @@ static GALGAS_string categoryReader_transientLocalDependencyForGeneration_genera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientLocalDependencyForGeneration * object = (const cPtr_transientLocalDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientLocalDependencyForGeneration) ;
-  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 203)) ;
+  result_outResult = object->mAttribute_mMasterName.mAttribute_string.add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 205)) ;
 //---
   return result_outResult ;
 }
@@ -13202,7 +13478,7 @@ static GALGAS_string categoryReader_transientPreferenceDependencyForGeneration_g
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientPreferenceDependencyForGeneration * object = (const cPtr_transientPreferenceDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPreferenceDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 209)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 209)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 209)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 209)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 209)) ;
+  result_outResult = GALGAS_string ("g_").add_operation (object->mAttribute_mPreferencesName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 211)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 211)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 211)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 211)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 211)) ;
 //---
   return result_outResult ;
 }
@@ -13231,7 +13507,7 @@ static GALGAS_string categoryReader_transientRootDependencyForGeneration_generat
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootDependencyForGeneration * object = (const cPtr_transientRootDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 215)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 215)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 215)) ;
+  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 217)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 217)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 217)) ;
 //---
   return result_outResult ;
 }
@@ -13260,7 +13536,7 @@ static GALGAS_string categoryReader_transientRootRelationshipDependencyForGenera
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_transientRootRelationshipDependencyForGeneration * object = (const cPtr_transientRootRelationshipDependencyForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientRootRelationshipDependencyForGeneration) ;
-  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 221)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 221)).add_operation (GALGAS_string (".removeObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 221)).add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 221)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 221)) ;
+  result_outResult = GALGAS_string ("rootObject.").add_operation (object->mAttribute_mRelationshipName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 223)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 223)).add_operation (GALGAS_string (".removeObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 223)).add_operation (object->mAttribute_mMasterName.reader_string (SOURCE_FILE ("transientGeneration.galgas", 223)), inCompiler COMMA_SOURCE_FILE ("transientGeneration.galgas", 223)) ;
 //---
   return result_outResult ;
 }

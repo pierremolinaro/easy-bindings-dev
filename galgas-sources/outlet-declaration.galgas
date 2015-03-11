@@ -308,7 +308,7 @@ override method @rootObservablePropertyAST analyzeBoundObservablePropertyForSimp
     error mRootObservablePropertyName : "the observable property should be a collection"
   end
   if mNamesCountOption then
-    ioBoundObjectNameList += !"rootObject." + mRootObservablePropertyName # + "_count"  
+    ioBoundObjectNameList += !"rootObject." + mRootObservablePropertyName + ".count"  
     ioBoundPropertyTypeList +=
       !@unifiedTypeMap-proxy.searchKey { !inUnifiedTypeMap !["Integer" nowhere]}
       !true # Model is transient

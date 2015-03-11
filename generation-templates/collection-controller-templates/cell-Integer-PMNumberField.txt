@@ -1,4 +1,6 @@
+    //--- From cell-String-PMNumberField.text file
       let tf : PMNumberField = result.textField as! PMNumberField
-      tf.myIntegerValue = object.$MODEL$.value
+      tf.myIntegerValue = object.$MODEL$.prop
       tf.target = self
       tf.action = "set_$MODEL$_Action:"
+    //--- end

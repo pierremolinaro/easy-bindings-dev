@@ -1,24 +1,139 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol NameEntity_aValue {
   var aValue : PMStoredProperty_Int { get }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol NameEntity_name {
   var name : PMStoredProperty_String { get }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Array of NameEntity                                                                                              *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ArrayOf_NameEntity : PMObject, PMTransientPropertyProtocol {
+  var computeFunction : Optional<() -> [NameEntity]?>
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.mSet.count }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count = PMTransientProperty_Int ()
+
+  func noteModelDidChange () {
+    if (props_cache != nil) {
+      props_cache = nil
+      count.postEvents ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var mSet = Set<NameEntity> ()
+
+  var props_cache : Optional <Array<NameEntity> >
+
+  var props : Array<NameEntity> {
+    get {
+      if props_cache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          props_cache = unwrappedComputeFunction ()
+        }
+        if props_cache == nil {
+          props_cache = Array<NameEntity> ()
+        }
+        let newObjectSet = Set<NameEntity> (props_cache!)
+        if mSet != newObjectSet {
+        //--- Removed object set
+          var removedObjectSet = mSet
+          removedObjectSet.subtractInPlace (newObjectSet)
+          for managedObject : NameEntity in removedObjectSet {
+            for observer in mObserversOf_aValue {
+              managedObject.aValue.removeObserver (observer, inTrigger:true)
+            }
+          }
+          for managedObject : NameEntity in removedObjectSet {
+            for observer in mObserversOf_name {
+              managedObject.name.removeObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Added object set
+          var addedObjectSet = newObjectSet
+          addedObjectSet.subtractInPlace (mSet)
+          for managedObject : NameEntity in addedObjectSet {
+            for observer in mObserversOf_aValue {
+              managedObject.aValue.addObserver (observer, inTrigger:true)
+            }
+          }
+           for managedObject : NameEntity in addedObjectSet {
+            for observer in mObserversOf_name {
+              managedObject.name.addObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Update object set
+          mSet = newObjectSet
+        }
+      }
+      return props_cache!
+    }
+  }
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mObserversOf_aValue = Set<PMEvent> ()
+
+  func addObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_aValue.insert (inObserver)
+    for managedObject in props {
+      managedObject.aValue.addObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+  func removeObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_aValue.remove (inObserver)
+    for managedObject in props {
+      managedObject.aValue.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mObserversOf_name = Set<PMEvent> ()
+
+  func addObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_name.insert (inObserver)
+    for managedObject in props {
+      managedObject.name.addObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+  func removeObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_name.remove (inObserver)
+    for managedObject in props {
+      managedObject.name.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    To one relationship: mRoot                                                                                       *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   var explorer : NSButton?
-  var owner : NameEntity? {
+  weak var owner : NameEntity? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
         unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
@@ -61,11 +176,32 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   func performUndo (oldValue : MyRootEntity?) {
     prop = oldValue
   }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func prepareForDeletion () {
+    prop = nil
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func remove (object : MyRootEntity) {
+    if prop === object {
+      prop = nil
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func add (object : MyRootEntity) {
+    prop = object
+  }
+
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    Entity: NameEntity                                                                                               *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_aValue, NameEntity_name {
 
@@ -74,7 +210,10 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var aValue = PMStoredProperty_Int (123)
+  var aValue_keyCodingValue : Int { get {return aValue.prop } }
+
   var name = PMStoredProperty_String ("Name")
+  var name_keyCodingValue : String { get {return name.prop } }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
@@ -98,6 +237,8 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //--- Install undoers for properties
     aValue.undoManager = undoManager
     name.undoManager = undoManager
+  //--- Install owner for relationships
+    mRoot.owner = self
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -106,21 +247,15 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Remove transients observers
   //--- Uninstall compute functions for transients
   //--- Uninstall undoers for properties
     aValue.undoManager = nil
     name.undoManager = nil
-    mRoot.prop = nil
+  //--- Reset relationships
+    mRoot.prepareForDeletion ()
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-  //--- Unregister trigger objects
-  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*

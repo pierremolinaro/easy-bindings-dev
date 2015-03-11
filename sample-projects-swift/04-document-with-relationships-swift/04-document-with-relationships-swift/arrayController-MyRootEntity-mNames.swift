@@ -1,264 +1,258 @@
-
 import Cocoa
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 private let displayDebugMessage = false
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    TriggerFor_MyRootEntity_mNames_mNamesTableView                                                                   *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class TriggerFor_MyRootEntity_mNames_mNamesTableView : PMTransientEvent {
-  private weak var mArrayController : ArrayController_MyRootEntity_mNames? = nil
-  
-  init (object : ArrayController_MyRootEntity_mNames) {
-    mArrayController = object
-  }
- 
-  override func noteModelDidChange () {
-     mArrayController?.modelDidChange ()
- }
-  
-  override func trigger () {
-    mArrayController?.display ()
-  }
-
-  override func userClassName () -> String { return "TriggerFor_MyRootEntity_mNames_mNamesTableView" }
-}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    ArrayController_MyRootEntity_mNames                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NSTableViewDelegate, PMUserClassName {
-  private var mUndoManager : NSUndoManager?
-  private var mObject : MyRootEntity
-  private var mTableView : PMTableView?
+class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransientPropertyProtocol {
+  private let mAllowsEmptySelection = false
+  private let mAllowsMultipleSelection = true
 
-  private var mObjectSet : Set<NameEntity> = Set ()
-  private var mSortedObjectArray : Array<NameEntity> = Array ()
+  private var mModel : MyRootEntity?
 
-  private var mSelectedObjectArray : Array<NameEntity> = Array () {
-    didSet {
-      if mSelectedObjectArray != oldValue {
-        mObject.undoManager()?.registerUndoWithTarget(self, selector:"undoFor_selectedObjectArray:", object:oldValue)
-        updateCanRemoveProperty ()
-      }
-    }
-  }
-  
-  private var mSelectNewObject = true
-  private var mAllowsEmptySelection = false
-  private var mAllowsMultipleSelection = true
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func undoFor_selectedObjectArray (previousSelectedObjectArray : NSArray) {
-    mSelectedObjectArray = previousSelectedObjectArray as! Array<NameEntity>
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
+  private var sortedArray = ArrayOf_NameEntity ()
 
-  func userClassName () -> String { return "ArrayController_MyRootEntity_mNames" }
+  private var mTableViewController : Controller_PMTableView_controller?
  
   //-------------------------------------------------------------------------------------------------------------------*
   //    init                                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : MyRootEntity, tableView:PMTableView?, file:String, line:Int) {
-    mObject = object
-    mTableView = tableView
-    mUndoManager = object.undoManager ()
+  override init () {
     super.init ()
-    if let unwrappedTableView = tableView {
-      unwrappedTableView.allowsEmptySelection = mAllowsEmptySelection
-      unwrappedTableView.allowsMultipleSelection = mAllowsMultipleSelection
-      var ok = true
-      if let anyObject: AnyObject = unwrappedTableView.makeViewWithIdentifier ("name", owner:self) {
-        if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMTextField) {
-            presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
-            ok = false
-          }
-        }else{
-          presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
-          ok = false
-        }
+  //--- Sort Descriptors
+    mSortDescriptors.append (NSSortDescriptor (key:"name_keyCodingValue", ascending:true))
+    mSortDescriptors.append (NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true))
+
+  //--- 'canRemove' transient function 
+    canRemove.computeFunction = { self.selectedObjectSet ().count > 0 }
+  //--- 'sortedArray' transient function 
+    sortedArray.computeFunction = {
+      let sortedObjectArray : Array<NameEntity>
+      if let model = self.mModel {
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.mNames.props)
+        currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
+        sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
       }else{
-        presentErrorWindow (file, line, "\"name\" column view unknown")
-        ok = false
+        sortedObjectArray = Array<NameEntity> ()
       }
-      if let anyObject: AnyObject = unwrappedTableView.makeViewWithIdentifier ("int", owner:self) {
-        if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMNumberField) {
-            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
-            ok = false
-          }
-        }else{
-          presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")
-          ok = false
-        }
-      }else{
-        presentErrorWindow (file, line, "\"int\" column view unknown")
-        ok = false
-      }
-      if ok {
-        unwrappedTableView.setDataSource (self)
-        unwrappedTableView.setDelegate (self)
-        if let col_name : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("name") {
-          col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
-        }
-        if let col_aValue : NSTableColumn = unwrappedTableView.tableColumnWithIdentifier ("int") {
-          col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
-        }
-        let columns = unwrappedTableView.tableColumns as NSArray
-        if columns.count > 0 {
-          let firstColumn = columns [0] as! NSTableColumn
-          if let sdp = firstColumn.sortDescriptorPrototype {
-            unwrappedTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
-          }
-        }
-      }
+      return sortedObjectArray
     }
-    noteObjectAllocation (self)
+ }
+
+   //-------------------------------------------------------------------------------------------------------------------*
+  //    bind_modelAndView                                                                                              *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func bind_modelAndView (object:MyRootEntity, tableView:PMTableView, file:String, line:Int) {
+    mModel = object
+    mTableViewController = Controller_PMTableView_controller (object:self, outlet:tableView, file:file, line:line)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    unregister                                                                                                     *
+  //    unbind_modelAndView                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func unregister () {
-    for managedObject : NameEntity in mObjectSet {
-      managedObject.name.removeObserver (eventModelChange, inTrigger:false)
-      managedObject.aValue.removeObserver (eventModelChange, inTrigger:false)
-    }
+  func unbind_modelAndView () {
+    canRemove.computeFunction = nil
+    sortedArray.computeFunction = nil
+    mTableViewController?.unregister ()
+    mTableViewController = nil
+    mInternalSelectedObjectSet = Set ()
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
+  //    Sort descriptors                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self)
+  
+  private var mSortDescriptors = [AnyObject] () {
+    didSet {
+      noteModelDidChange () // Force sorting
+      postEvents () // Notify outlets display should be done
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    tableViewSelectionDidChange                                                                                    *
+  
+  override func setSortDescriptors (sortDescriptors : [AnyObject]) {
+    mSortDescriptors = sortDescriptors
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Selected object set                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableViewSelectionDidChange (NSNotification) {
-    if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
+  var mSelectedObjectSetShouldBeComputed = true
+
+  var mInternalSelectedObjectSet = Set <NameEntity> ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func selectedObjectSet () -> Set <NameEntity> {
+    if mSelectedObjectSetShouldBeComputed {
+      mSelectedObjectSetShouldBeComputed = false
+      var newInternalSelectedObjectSet = mInternalSelectedObjectSet
+      newInternalSelectedObjectSet.intersectInPlace (sortedArray.props)
+      mInternalSelectedObjectSet = newInternalSelectedObjectSet
+      if (mInternalSelectedObjectSet.count == 0) && (sortedArray.props.count > 0) {
+        mInternalSelectedObjectSet.insert (sortedArray.props [0])
+      }
     }
-    var selectedObjectArray : Array<NameEntity> = Array ()
-    if let tableView = mTableView {
-      let selectedRowIndexes = tableView.selectedRowIndexes
-      selectedRowIndexes.enumerateIndexesUsingBlock ({(idx : Int, stop : UnsafeMutablePointer <ObjCBool>) in
-        stop.initialize (false)
-        let object = self.mSortedObjectArray.objectAtIndex (idx, file:__FILE__, line:__LINE__)
-        selectedObjectArray.append (object)
-      })
-    }
-    mSelectedObjectArray = selectedObjectArray
+    return mInternalSelectedObjectSet
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *
+  
+  func setSelectedObjectSet (objectSet : Set <NameEntity>) {
+    mInternalSelectedObjectSet = objectSet
+    mSelectedObjectSetShouldBeComputed = true
+    canRemove.noteModelDidChange ()
+  }
+
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func tableView (aTableView: NSTableView,
-                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
-    if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
+  override func selectedObjectIndexSet () -> NSIndexSet {
+  //--- Dictionary of object indexes
+    var objectDictionary = [NameEntity : Int] ()
+    for (index, object) in enumerate (sortedArray.props) {
+      objectDictionary [object] = index
     }
-    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
-    var currentObjectArrayAsMutableArray = NSMutableArray (array: mSortedObjectArray)
-    currentObjectArrayAsMutableArray.sortUsingDescriptors (sortDescriptors)
-    mSortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
-    display ()
+    var indexSet = NSMutableIndexSet ()
+    for object in selectedObjectSet () {
+      if let index = objectDictionary [object] {
+        indexSet.addIndex (index)
+      }
+    }
+    return indexSet
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Model observing event                                                                                          *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var eventModelChange_cache : PMTransientEvent? = nil
+  var event : PMTransientEvent {
+    get {
+      if eventModelChange_cache == nil {
+        eventModelChange_cache = PMTransientEvent (self)
+      }
+      return eventModelChange_cache!
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Object array dictionary                                                                                        *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mSortedObjectArrayDictionary = [NameEntity : Int] ()
+  private var mSortedObjectArrayDictionaryShouldBeComputed = true
+  
+  var sortedObjectArrayDictionary : [NameEntity : Int] {
+    get {
+      if mSortedObjectArrayDictionaryShouldBeComputed {
+        mSortedObjectArrayDictionaryShouldBeComputed = false
+        mSortedObjectArrayDictionary = [:]
+        for (idx, object) in enumerate (sortedArray.props) {
+          mSortedObjectArrayDictionary [object] = idx
+        }
+      }
+      return mSortedObjectArrayDictionary
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Observing model change                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func modelDidChange () {
+  func noteModelDidChange () {
     if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
+      NSLog ("%@", __FUNCTION__)
     }
-  //--------------------------- Update observers for handling model change
-    let oldObjectSet = mObjectSet
-    mObjectSet = Set ()
-    mObjectSet.unionInPlace (mObject.mNames.values)
-  //--- Removed object set
-    var removedObjectSet = oldObjectSet
-    removedObjectSet.subtractInPlace (mObjectSet)
-    for managedObject : NameEntity in removedObjectSet {
-      managedObject.name.removeObserver (eventModelChange, inTrigger:false)
-      managedObject.aValue.removeObserver (eventModelChange, inTrigger:false)
-    }
-  //--- Added object set
-    var addedObjectSet = mObjectSet
-    addedObjectSet.subtractInPlace (oldObjectSet)
-    for managedObject : NameEntity in addedObjectSet {
-      managedObject.name.addObserver (eventModelChange, inTrigger:false)
-      managedObject.aValue.addObserver (eventModelChange, inTrigger:false)
-    }
-  //-------------------------- Sort objects
-    let sortDescriptors : [AnyObject]! = mTableView?.sortDescriptors
-    var currentObjectArrayAsMutableArray = NSMutableArray (array: mObject.mNames.values)
-    currentObjectArrayAsMutableArray.sortUsingDescriptors (sortDescriptors)
-    mSortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
-  //-------------------------- Build new selected objects array
-    let previousSelectionSet : Set<NameEntity> = Set (mSelectedObjectArray)
-    var newSelectedArray : Array<NameEntity> = Array ()
-    for object in mSortedObjectArray {
-      if previousSelectionSet.contains (object) {
-        newSelectedArray.append (object)
-      }
-    }
-    mSelectedObjectArray = newSelectedArray ;
+    sortedArray.noteModelDidChange ()
+    mSortedObjectArrayDictionaryShouldBeComputed = true
+    mSelectedObjectSetShouldBeComputed = true
+  //--- Notify tableView outlets model did change
+    postEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  
-  func display () {
-    if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
-    }
-    if let tableView = mTableView {
-    //---------------- So tableViewSelectionDidChange is not called
-      tableView.setDelegate (nil)
-    //---------------- Reload data
-      tableView.reloadData ()
-    //---------------- Update table view selection
-      var newTableViewSelectionIndexSet = NSMutableIndexSet ()
-      for object in mSelectedObjectArray {
-        if let idx = find (mSortedObjectArray, object) {
-          newTableViewSelectionIndexSet.addIndex (idx)
+  //    Configure table view                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  override func configureTableView (inTableView : PMTableView, file : String, line : Int) {
+    inTableView.allowsEmptySelection = mAllowsEmptySelection
+    inTableView.allowsMultipleSelection = mAllowsMultipleSelection
+    if let anyObject: AnyObject = inTableView.makeViewWithIdentifier ("name", owner:self) {
+      if let unwrappedTableCellView = anyObject as? NSTableCellView {
+        if !(unwrappedTableCellView.textField is PMTextField) {
+          presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
         }
+      }else{
+        presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
       }
-      tableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
-    //---------------- Scroll first selected row to visible
-      if newTableViewSelectionIndexSet.count > 0 {
-        tableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
+    }else{
+      presentErrorWindow (file, line, "\"name\" column view unknown")
+    }
+    if let anyObject: AnyObject = inTableView.makeViewWithIdentifier ("int", owner:self) {
+      if let unwrappedTableCellView = anyObject as? NSTableCellView {
+        if !(unwrappedTableCellView.textField is PMNumberField) {
+          presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
+        }
+      }else{
+        presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")
       }
-    //----------------
-      tableView.setDelegate (self)
+    }else{
+      presentErrorWindow (file, line, "\"int\" column view unknown")
+    }
+    inTableView.setDataSource (self)
+    inTableView.setDelegate (self)
+    if let col_name : NSTableColumn = inTableView.tableColumnWithIdentifier ("name") {
+      col_name.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
+    }
+    if let col_aValue : NSTableColumn = inTableView.tableColumnWithIdentifier ("int") {
+      col_aValue.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
+    }
+    let columns = inTableView.tableColumns as NSArray
+    if columns.count > 0 {
+      let firstColumn = columns [0] as! NSTableColumn
+      if let sdp = firstColumn.sortDescriptorPrototype {
+        inTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
+      }
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func tableViewSelectionDidChange (notication : NSNotification) {
+    if displayDebugMessage {
+      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
+    }
+    let tableView : AnyObject? = notication.object
+    if let tableView = notication.object as? NSTableView, model = mModel {
+      var newSelectedObjectSet = Set <NameEntity> ()
+      for index in tableView.selectedRowIndexes {
+        newSelectedObjectSet.insert (sortedArray.props.objectAtIndex (index, file: __FILE__, line: __LINE__))
+      }
+      setSelectedObjectSet (newSelectedObjectSet)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
+  //    T A B L E V I E W    D E L E G A T E : tableView:sortDescriptorsDidChange:                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var eventModelChange_cache : TriggerFor_MyRootEntity_mNames_mNamesTableView? = nil
-  private var eventModelChange : TriggerFor_MyRootEntity_mNames_mNamesTableView {
-    get {
-      if eventModelChange_cache == nil {
-        eventModelChange_cache = TriggerFor_MyRootEntity_mNames_mNamesTableView (object:self)
-      }
-      return eventModelChange_cache!
+  func tableView (aTableView: NSTableView,
+                  sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
+    if displayDebugMessage {
+      NSLog ("%@", __FUNCTION__)
     }
+    mSortDescriptors = aTableView.sortDescriptors
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -268,32 +262,37 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
 
   func numberOfRowsInTableView (NSTableView) -> Int {
     if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@ (%ld objects)\n", __FUNCTION__, mSortedObjectArray.count))
+      appendToTransientEventLog (String (format:"    %@ (%ld objects)\n", __FUNCTION__, sortedArray.props.count))
     }
-    return mSortedObjectArray.count
+    return sortedArray.props.count
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (tableView : NSTableView,
                   viewForTableColumn : NSTableColumn?,
-                  row : NSInteger) -> NSView {
-    let columnIdentifier = viewForTableColumn!.identifier
+                  row : Int) -> NSView {
     if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@, identifier '%@\', row %d\n", __FUNCTION__, columnIdentifier, row))
+//      NSLog ("%@, row %d, column %@", __FUNCTION__, row, viewForTableColumn!.identifier)
     }
+    let columnIdentifier = viewForTableColumn!.identifier
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
-    let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    result.textField?.tag = row
+    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
     if columnIdentifier == "name" {
-      result.textField?.stringValue = object.name.value
+    //--- From cell-String-PMTextField.text file
+      result.textField?.stringValue = object.name.prop
       result.textField?.target = self
       result.textField?.action = "set_name_Action:"
       let tf : PMTextField = result.textField as! PMTextField
+    //--- End
     }else if columnIdentifier == "int" {
+    //--- From cell-String-PMNumberField.text file
       let tf : PMNumberField = result.textField as! PMNumberField
-      tf.myIntegerValue = object.aValue.value
+      tf.myIntegerValue = object.aValue.prop
       tf.target = self
       tf.action = "set_aValue_Action:"
+    //--- end
     }
     return result
   }
@@ -301,32 +300,28 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //-------------------------------------------------------------------------------------------------------------------*
 
   func set_name_Action (sender : PMTextField) {
-    if let tableView = mTableView {
-      let row = tableView.rowForView (sender)
-      if row >= 0 {
-        let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
-        let validationResult = object.name.validate (sender.stringValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.name.setValue (sender.stringValue)
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%@” is invalid.", sender.stringValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                object.name.removeObserver(self.eventModelChange, inTrigger:false)
-                object.name.setValue (sender.stringValue)
-                object.name.addObserver (self.eventModelChange, inTrigger:false)
-              }
-            })
+    let row = sender.tag
+    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let validationResult = object.name.validate (sender.stringValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      object.name.setProp (sender.stringValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      if let window = sender.window {
+        let alert = NSAlert ()
+        alert.messageText = String (format:"The value “%@” is invalid.", sender.stringValue)
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+         //   object.name.removeObserver(self.eventModelChange, inTrigger:false)
+            object.name.setProp (sender.stringValue)
+         //   object.name.addObserver (self.eventModelChange, inTrigger:false)
           }
-        }
+        })
       }
     }
   }
@@ -334,32 +329,28 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
  //-------------------------------------------------------------------------------------------------------------------*
 
   func set_aValue_Action (sender : PMNumberField) {
-    if let tableView = mTableView {
-      let row = tableView.rowForView (sender)
-      if row >= 0 {
-        let object = mSortedObjectArray.objectAtIndex (row, file:__FILE__, line:__LINE__)
-        let validationResult = object.aValue.validate (sender.integerValue)
-        switch validationResult {
-        case PMValidationResult.ok :
-          object.aValue.setValue (sender.integerValue)
-        case PMValidationResult.rejectWithBeep :
-          NSBeep ()
-        case PMValidationResult.rejectWithAlert (let informativeText) :
-          if let window = sender.window {
-            let alert = NSAlert ()
-            alert.messageText = String (format:"The value “%d” is invalid.", sender.integerValue)
-            alert.informativeText = informativeText
-            alert.addButtonWithTitle ("Ok")
-            alert.addButtonWithTitle ("Discard Change")
-            alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-              if response == NSAlertSecondButtonReturn { // Discard Change
-                object.aValue.removeObserver(self.eventModelChange, inTrigger:false)
-                object.aValue.setValue (sender.integerValue)
-                object.aValue.addObserver (self.eventModelChange, inTrigger:false)
-              }
-            })
+    let row = sender.tag
+    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let validationResult = object.aValue.validate (sender.integerValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      object.aValue.setProp (sender.integerValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      if let window = sender.window {
+        let alert = NSAlert ()
+        alert.messageText = String (format:"The value “%d” is invalid.", sender.integerValue)
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle ("Ok")
+        alert.addButtonWithTitle ("Discard Change")
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+         //   object.aValue.removeObserver(self.eventModelChange, inTrigger:false)
+            object.aValue.setProp (sender.integerValue)
+         //   object.aValue.addObserver (self.eventModelChange, inTrigger:false)
           }
-        }
+        })
       }
     }
   }
@@ -368,47 +359,85 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //    add                                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func add (inSender : AnyObject!) {
+   func add (inSender : NSButton?) {
     if displayDebugMessage {
       appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
     }
-    var newObject : NameEntity = NameEntity (undoManager:mUndoManager!)
-    var array = mObject.mNames.values
-    array.append (newObject)
-    if mSelectNewObject {
-      mSelectedObjectArray = [newObject]
+    if let object = mModel, undoManager = object.undoManager () {
+      var newObject : NameEntity = NameEntity (undoManager:undoManager)
+      var array = object.mNames.props
+      array.append (newObject)
+    //--- New object is the selection
+      var newSelectedObjectSet = Set <NameEntity> ()
+      newSelectedObjectSet.insert (newObject)
+      setSelectedObjectSet (newSelectedObjectSet)
+      object.mNames.props = array
     }
-    mObject.mNames.values = array
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    remove                                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func remove (inSender : AnyObject!) {
-    if mSelectedObjectArray.count > 0 {
-      if let tableView = mTableView {
-        var newObjectArray = mObject.mNames.values
-        for object in mSelectedObjectArray {
-          let optItx = find (newObjectArray, object)
-          if let idx = optItx {
-            newObjectArray.removeAtIndex (idx)
-          }
-        }
-        if newObjectArray.count == 0 {
-          mSelectedObjectArray = Array ()
-        }else{
-          let idx = tableView.selectedRow
-          if idx < -1 {
-            mSelectedObjectArray = [newObjectArray [0]]
-          }else if idx < newObjectArray.count {
-            mSelectedObjectArray = [newObjectArray [idx]]
-          }else{
-            mSelectedObjectArray = [newObjectArray.last!]
-          }
-        }
-        mObject.mNames.values = newObjectArray
+  func remove (inSender : NSButton?) {
+    if let model = mModel where selectedObjectSet ().count > 0 {
+    //------------- Find the object to be selected after selected object removing
+    //--- Dictionary of object sorted indexes
+      var sortedObjectDictionary = [NameEntity : Int] ()
+      for (index, object) in enumerate (sortedArray.props) {
+        sortedObjectDictionary [object] = index
       }
+      var indexArrayOfSelectedObjects = [Int] ()
+      for object in selectedObjectSet () {
+        let index = sortedObjectDictionary [object]
+        if let idx = index {
+          indexArrayOfSelectedObjects.append (idx)
+        }
+      }
+    //--- Sort
+      indexArrayOfSelectedObjects.sort { $0 < $1 }
+    //--- Find the first index of a non selected object
+      var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
+      for index in indexArrayOfSelectedObjects {
+        if newSelectionIndex < index {
+          break
+        }else{
+          newSelectionIndex = index + 1
+        }
+      }
+      var newSelectedObject : NameEntity? = nil
+      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.props.count) {
+        newSelectedObject = sortedArray.props [newSelectionIndex]
+      }
+    //----------------------------------------- Remove selected object
+    //--- Dictionary of object absolute indexes
+      var objectDictionary = [NameEntity : Int] ()
+      for (index, object) in enumerate (model.mNames.props) {
+        objectDictionary [object] = index
+      }
+    //--- Build selected objects index array
+      var selectedObjectIndexArray = [Int] ()
+      for object in selectedObjectSet () {
+        let index = objectDictionary [object]
+        if let idx = index {
+          selectedObjectIndexArray.append (idx)
+        }
+      }
+    //--- Sort in reverse order
+      selectedObjectIndexArray.sort { $1 < $0 }
+    //--- Remove objects, in reverse of order of their index
+      var newObjectArray = model.mNames.props
+      for index in selectedObjectIndexArray {
+        newObjectArray.removeAtIndex (index)
+      }
+    //----------------------------------------- Set new selection
+      var newSelectionSet = Set <NameEntity> ()
+      if let object = newSelectedObject {
+        newSelectionSet.insert (object)
+      }
+      setSelectedObjectSet (newSelectionSet)
+    //----------------------------------------- Set new object array
+      model.mNames.props = newObjectArray
     }
   }
 
@@ -416,14 +445,7 @@ class ArrayController_MyRootEntity_mNames : NSObject, NSTableViewDataSource, NST
   //  Transient: canRemove                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemove = PMStoredProperty_Bool (false)
-  
-  func updateCanRemoveProperty () {
-    if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@\n", __FUNCTION__))
-    }
-    canRemove.setValue (mSelectedObjectArray.count > 0)
-   }
+  var canRemove = PMTransientProperty_Bool ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

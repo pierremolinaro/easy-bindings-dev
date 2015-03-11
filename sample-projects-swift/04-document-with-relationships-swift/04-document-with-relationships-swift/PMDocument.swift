@@ -1,7 +1,7 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMDocument) class PMDocument : PMManagedDocument, PMUserClassName {
 
@@ -26,9 +26,15 @@ import Cocoa
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemoveString = PMTransientProperty_String (PMTransientIndex.k_document_2E_PMDocument_2E_canRemoveString)
-  var countItemMessage = PMTransientProperty_String (PMTransientIndex.k_document_2E_PMDocument_2E_countItemMessage)
-  var total = PMTransientProperty_Int (PMTransientIndex.k_document_2E_PMDocument_2E_total)
+  private var canRemoveString = PMTransientProperty_String ()
+  private var countItemMessage = PMTransientProperty_String ()
+  private var total = PMTransientProperty_Int ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Array Controllers                                                                                              *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var nameController = ArrayController_MyRootEntity_mNames ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -51,20 +57,6 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   var rootObject : MyRootEntity { get { return mRootObject as! MyRootEntity } }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Array controller: nameController                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  private var nameController : ArrayController_MyRootEntity_mNames? = nil
-
-  func document_2E_PMDocument_2E_nameController_noteDidChange () {
-    nameController?.modelDidChange ()
-  }
-
-  func document_2E_PMDocument_2E_nameController_trigger () {
-    nameController?.display ()
-  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowControllerDidLoadNib                                                                                     *
@@ -108,27 +100,27 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
     }
   //--------------------------- Array controller
-    nameController = ArrayController_MyRootEntity_mNames (
-      object:rootObject,
-      tableView:mNamesTableView,
+    nameController.bind_modelAndView (
+      rootObject,
+      tableView:mNamesTableView!,
       file:__FILE__,
       line:__LINE__
     )
   //--- Install compute functions for transients
-    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString ((self.nameController != nil) ? (self.nameController?.canRemove)! : false)}
-    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.prop.count)}
-    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames)}
+    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.canRemove.prop)}
+    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
+    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.props)}
   //--- Install property observers for transients
-    nameController?.canRemove.addObserver (canRemoveString.event, inTrigger:true)
+    nameController.canRemove.addObserver (canRemoveString.event, inTrigger:true)
     rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)
     rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
   //--- Install bindings
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
     countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
-    countItemTextField?.bind_readOnlyValue (rootObject.mNames, file:__FILE__, line:__LINE__)
+    countItemTextField?.bind_readOnlyValue (rootObject.mNames.count, file:__FILE__, line:__LINE__)
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
   //--------------------------- Array controller as observers
- //   rootObject.mNames.addObserver (PMEvent_document_2E_PMDocument_2E_nameController (object:self), inTrigger:true)
+    rootObject.mNames.addObserver (nameController.event, inTrigger:true)
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -136,7 +128,6 @@ import Cocoa
     removePathButton?.action = "remove:"
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
-    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -144,13 +135,23 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func removeWindowController (inWindowController : NSWindowController) {
+    undoManager?.removeAllActions ()
+    undoManager = nil
   //--- Unbind
     canRemoveTextField?.unbind_readOnlyValue ()
     countItemMessageTextField?.unbind_readOnlyValue ()
     countItemTextField?.unbind_readOnlyValue ()
     totalTextField?.unbind_readOnlyValue ()
-  //--------------------------- Remove controllers
-    nameController?.unregister ()
+  //--- Uninstall compute functions for transients
+    canRemoveString.computeFunction = nil
+    countItemMessage.computeFunction = nil
+    total.computeFunction = nil
+  //--------------------------- Unbind array controllers
+    nameController.unbind_modelAndView ()
+  //--- Uninstall property observers for transients
+    nameController.canRemove.removeObserver (canRemoveString.event, inTrigger:false)
+    rootObject.mNames.removeObserver (countItemMessage.event, inTrigger:false)
+    rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil
@@ -158,8 +159,9 @@ import Cocoa
     super.removeWindowController (inWindowController)
   }
 
-
 //---------------------------------------------------------------------------------------------------------------------*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
