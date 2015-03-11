@@ -22,7 +22,6 @@ project (0:0:1) -> "easyBindings"{
   "galgas-sources/structGeneration.galgas"
 
   "galgas-sources/bindingSemanticAnalysis.galgas"
-  "galgas-sources/bindingsGeneration.galgas"
 
   "galgas-sources/classAnalysis.galgas"
   "galgas-sources/classGeneration.galgas"

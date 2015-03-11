@@ -2,7 +2,7 @@ import Cocoa
 
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%//---------------------------------------------------------------------------------------------------------------------*
+%//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol %!ENTITY_NAME%_%!mAttributeName% {
   var %!mAttributeName% : PMStoredProperty_%![mAttributeType swiftTypeName]% { get }
@@ -10,16 +10,108 @@ protocol %!ENTITY_NAME%_%!mAttributeName% {
 
 %
 end
+%
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["Array of " + ENTITY_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+class ArrayOf_%!ENTITY_NAME% : PMObject, PMTransientPropertyProtocol {
+  var computeFunction : Optional<() -> [%!ENTITY_NAME%]?>
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.mSet.count }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count = PMTransientProperty_Int ()
+
+  func noteModelDidChange () {
+    if (props_cache != nil) {
+      props_cache = nil
+      count.postEvents ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var mSet = Set<%!ENTITY_NAME%> ()
+
+  var props_cache : Optional <Array<%!ENTITY_NAME%> >
+
+  var props : Array<%!ENTITY_NAME%> {
+    get {
+      if props_cache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          props_cache = unwrappedComputeFunction ()
+        }
+        if props_cache == nil {
+          props_cache = Array<%!ENTITY_NAME%> ()
+        }
+        let newObjectSet = Set<%!ENTITY_NAME%> (props_cache!)
+        if mSet != newObjectSet {
+        //--- Removed object set
+          var removedObjectSet = mSet
+          removedObjectSet.subtractInPlace (newObjectSet)
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%          for managedObject : %!ENTITY_NAME% in removedObjectSet {
+            for observer in mObserversOf_%!mAttributeName% {
+              managedObject.%!mAttributeName%.removeObserver (observer, inTrigger:true)
+            }
+          }
+%end%        //--- Added object set
+          var addedObjectSet = newObjectSet
+          addedObjectSet.subtractInPlace (mSet)
+%for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%          for managedObject : %!ENTITY_NAME% in addedObjectSet {
+            for observer in mObserversOf_%!mAttributeName% {
+              managedObject.%!mAttributeName%.addObserver (observer, inTrigger:true)
+            }
+          }
+ %end%       //--- Update object set
+          mSet = newObjectSet
+        }
+      }
+      return props_cache!
+    }
+  }
+
+%
+for () in ATTRIBUTE_LIST_FOR_GENERATION do
+%
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mObserversOf_%!mAttributeName% = Set<PMEvent> ()
+
+  func addObserverOf_%!mAttributeName% (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_%!mAttributeName%.insert (inObserver)
+    for managedObject in props {
+      managedObject.%!mAttributeName%.addObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+  func removeObserverOf_%!mAttributeName% (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_%!mAttributeName%.remove (inObserver)
+    for managedObject in props {
+      managedObject.%!mAttributeName%.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+%
+end
+%}
+
+%
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if mIsToMany then
-%//---------------------------------------------------------------------------------------------------------------------*
+%//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["To many relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractProperty {
-  var owner : %!ENTITY_NAME%?
+  weak var owner : %!ENTITY_NAME%?
 
   var explorer : NSPopUpButton? {
     didSet {
@@ -29,13 +121,32 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractPropert
     }
   }
 
+ //-------------------------------------------------------------------------------------------------------------------*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.props.count }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func prepareForDeletion () {
+    props = Array<%![mRelationshipType key]%> ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count = PMTransientProperty_Int ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   var mSet = Set<%![mRelationshipType key]%> ()
   var props = Array<%![mRelationshipType key]%> () {
     didSet {
       if oldValue != props {
         mSet = Set (props)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"performUndo:", object:oldValue)
+        owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
           owner?.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:explorer!)
@@ -68,6 +179,9 @@ end
         }
       //--- Notify observers object count did change
         postEvents ()
+        if oldValue.count != props.count {
+          count.noteModelDidChange ()
+        }
       }
     }
   }
@@ -80,8 +194,26 @@ end
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var count : Int { get { return props.count } }
+  func remove (object : %![mRelationshipType key]%) {
+    if mSet.contains (object) {
+      var array = props
+      let idx = find (array, object)
+      array.removeAtIndex (idx!)
+      props = array
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
 
+  func add (object : %![mRelationshipType key]%) {
+    if !mSet.contains (object) {
+      var array = props
+      array.append (object)
+      props = array
+    }
+  }
+  
+ 
 %
 for () in [mRelationshipType mObservablePropertyMap] do
 if not mIsCollection then
@@ -113,13 +245,13 @@ end
 
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
   if not mIsToMany then
-%//---------------------------------------------------------------------------------------------------------------------*
+%//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["To one relationship: " + mRelationshipName stringByRightPadding !113 !' ']%*
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractProperty {
   var explorer : NSButton?
-  var owner : %!ENTITY_NAME%? {
+  weak var owner : %!ENTITY_NAME%? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
         unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
@@ -169,14 +301,35 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mRelationshipName% : PMAbstractProperty
   func performUndo (oldValue : %![mRelationshipType key]%?) {
     prop = oldValue
   }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func prepareForDeletion () {
+    prop = nil
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func remove (object : %![mRelationshipType key]%) {
+    if prop === object {
+      prop = nil
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func add (object : %![mRelationshipType key]%) {
+    prop = object
+  }
+
 }
 %
   end
 end
 %
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["Entity: " + ENTITY_NAME stringByRightPadding !113 !' ']%*
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
@@ -191,9 +344,9 @@ end
 %
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %  var %!mAttributeName% = PMStoredProperty_%![mAttributeType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+  %  var %!mAttributeName%_keyCodingValue : %![mAttributeType swiftTypeName]% { get {return %!mAttributeName%.prop } }\n\n%
 end
-%
-  //-------------------------------------------------------------------------------------------------------------------*
+%  //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -251,6 +404,11 @@ end
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %    %!mAttributeName%.undoManager = undoManager\n%
 end
+%  //--- Install owner for relationships
+%
+for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
+  %    %!mRelationshipName%.owner = self\n%
+end
 %  }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -259,7 +417,14 @@ end
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
-  //--- Uninstall compute functions for transients
+  //--- Remove transients observers
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  for () in mDependencyList do
+    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
+  end
+end
+%  //--- Uninstall compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = nil\n%
@@ -269,30 +434,13 @@ end
 for () in ATTRIBUTE_LIST_FOR_GENERATION do
   %    %!mAttributeName%.undoManager = nil\n%
 end
-
+%  //--- Reset relationships
+%
 for () in ENTITY_CURRENT_RELATIONSHIP_LIST do
-  if mIsToMany then
-    %    %!mRelationshipName%.props = Array<%![mRelationshipType key]%> ()\n%
-  else
-    %    %!mRelationshipName%.prop = nil\n%
-  end
+    %    %!mRelationshipName%.prepareForDeletion ()\n%
 end
 %  }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-  //--- Unregister trigger objects
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
-  end
-end
-%  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*

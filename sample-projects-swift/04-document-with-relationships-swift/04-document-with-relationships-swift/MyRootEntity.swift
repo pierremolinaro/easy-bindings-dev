@@ -1,11 +1,68 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Array of MyRootEntity                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
+  var computeFunction : Optional<() -> [MyRootEntity]?>
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.mSet.count }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count = PMTransientProperty_Int ()
+
+  func noteModelDidChange () {
+    if (props_cache != nil) {
+      props_cache = nil
+      count.postEvents ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var mSet = Set<MyRootEntity> ()
+
+  var props_cache : Optional <Array<MyRootEntity> >
+
+  var props : Array<MyRootEntity> {
+    get {
+      if props_cache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          props_cache = unwrappedComputeFunction ()
+        }
+        if props_cache == nil {
+          props_cache = Array<MyRootEntity> ()
+        }
+        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        if mSet != newObjectSet {
+        //--- Removed object set
+          var removedObjectSet = mSet
+          removedObjectSet.subtractInPlace (newObjectSet)
+        //--- Added object set
+          var addedObjectSet = newObjectSet
+          addedObjectSet.subtractInPlace (mSet)
+       //--- Update object set
+          mSet = newObjectSet
+        }
+      }
+      return props_cache!
+    }
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    To many relationship: mNames                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
-  var owner : MyRootEntity?
+  weak var owner : MyRootEntity?
 
   var explorer : NSPopUpButton? {
     didSet {
@@ -15,13 +72,32 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
     }
   }
 
+ //-------------------------------------------------------------------------------------------------------------------*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.props.count }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  func prepareForDeletion () {
+    props = Array<NameEntity> ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var count = PMTransientProperty_Int ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
   var mSet = Set<NameEntity> ()
   var props = Array<NameEntity> () {
     didSet {
       if oldValue != props {
         mSet = Set (props)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (owner!, selector:"performUndo:", object:oldValue)
+        owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
           owner?.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:explorer!)
@@ -52,6 +128,9 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
         }
       //--- Notify observers object count did change
         postEvents ()
+        if oldValue.count != props.count {
+          count.noteModelDidChange ()
+        }
       }
     }
   }
@@ -64,8 +143,26 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var count : Int { get { return props.count } }
+  func remove (object : NameEntity) {
+    if mSet.contains (object) {
+      var array = props
+      let idx = find (array, object)
+      array.removeAtIndex (idx!)
+      props = array
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
 
+  func add (object : NameEntity) {
+    if !mSet.contains (object) {
+      var array = props
+      array.append (object)
+      props = array
+    }
+  }
+  
+ 
 
   var mObserversOf_aValue = Set<PMEvent> ()
 
@@ -103,16 +200,15 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    Entity: MyRootEntity                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity) class MyRootEntity : PMManagedObject {
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
-
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
@@ -134,6 +230,8 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
+  //--- Install owner for relationships
+    mNames.owner = self
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -142,19 +240,13 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Remove transients observers
   //--- Uninstall compute functions for transients
   //--- Uninstall undoers for properties
-    mNames.props = Array<NameEntity> ()
+  //--- Reset relationships
+    mNames.prepareForDeletion ()
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-  //--- Unregister trigger objects
-  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*

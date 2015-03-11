@@ -58,8 +58,7 @@ import Cocoa
 //   Controller Controller_PMReadOnlyTextField_value                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMReadOnlyTextField_value)
-class Controller_PMReadOnlyTextField_value : PMOutletEvent {
+@objc(Controller_PMReadOnlyTextField_value) class Controller_PMReadOnlyTextField_value : PMOutletEvent {
 
   private var mOutlet : PMReadOnlyTextField
   private var mObject : PMReadOnlyProperty_String
