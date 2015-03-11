@@ -173,6 +173,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
       NSLog ("%@", __FUNCTION__)
     }
     sortedArray.noteModelDidChange ()
+    canRemove.noteModelDidChange ()
     mSortedObjectArrayDictionaryShouldBeComputed = true
     mSelectedObjectSetShouldBeComputed = true
   //--- Notify tableView outlets model did change
