@@ -387,7 +387,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!ENTITY_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]
+    do ![mDependency generateActualParameterForComputeFunction]
     between %, %
   end
   %)}\n%

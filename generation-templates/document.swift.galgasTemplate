@@ -109,7 +109,7 @@ for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
 end
 end
-%  //--- Install bindings
+%  //--- Install regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.bind_%!mBindingName% (%
@@ -117,6 +117,20 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
     !mValue%, %
   end
   %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
+end
+%  //--- Install multiple bindings
+%
+for () in MULTIPLE_BINDING_GENERATION_LIST do
+  %    %!mOutletName%?.bind_%!mBindingName% (\n%
+  %      [%
+  for () in [mBoundObjectExpression observedModelSet]
+  do !key
+  between %, %  
+  end
+  %],\n%
+  %      computeFunction:{ %![mBoundObjectExpression enableExpressionString]% },\n%
+  %      file:__FILE__, line:__LINE__\n%
+  %    )\n%
 end
 %  //--------------------------- Array controller as observers
 %
@@ -139,9 +153,14 @@ end
   override func removeWindowController (inWindowController : NSWindowController) {
     undoManager?.removeAllActions ()
     undoManager = nil
-  //--- Unbind
+  //--- Unbind regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
+  %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
+end
+%  //--- Unbind multiple bindings
+%
+for () in MULTIPLE_BINDING_GENERATION_LIST do
   %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
 %  //--- Uninstall compute functions for transients

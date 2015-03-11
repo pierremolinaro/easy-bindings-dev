@@ -26,7 +26,7 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
+class PMManagedObject : PMObject, PMSignatureObserverProtocol {
   var savingIndex = 0
   weak var mUndoManager : NSUndoManager?
 //--- Signature
@@ -34,16 +34,8 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
   var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
   var mSignatureHasBeenComputed = false
 
- // #ifdef PM_COCOA_DEBUG
-    var mExplorerObjectIndex : Int
-    var mExplorerWindow : NSWindow?
-//  #endif
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    userClassName                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func userClassName () -> String { return "PMManagedObject" }
+  let mExplorerObjectIndex : Int
+  var mExplorerWindow : NSWindow?
 
   //-------------------------------------------------------------------------------------------------------------------*
   //  init                                                                                                             *
@@ -51,13 +43,10 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   init (undoManager : NSUndoManager) {
     mUndoManager = undoManager
-    gAllocatedEntityCount = gAllocatedEntityCount + 1
- //   #ifdef PM_COCOA_DEBUG
-      mExplorerObjectIndex = gExplorerObjectIndex
-      gExplorerObjectIndex = gExplorerObjectIndex + 1
- //   #endif
+    gAllocatedEntityCount += 1
+    mExplorerObjectIndex = gExplorerObjectIndex
+    gExplorerObjectIndex += 1
     super.init ()
-    noteObjectAllocation (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -66,14 +55,6 @@ class PMManagedObject : NSObject, PMSignatureObserverProtocol, PMUserClassName {
 
   func prepareForDeletion () {
     mUndoManager = nil
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  deinit                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-    noteObjectDeallocation (self)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

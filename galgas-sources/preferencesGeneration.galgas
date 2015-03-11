@@ -8,6 +8,7 @@ list @preferenceListForGeneration {
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @decoratedOutletMap mOutletMap
   @regularBindingsGenerationList mRegularBindingsGenerationList
+  @multipleBindingGenerationList multipleBindingGenerationList
 }
 
 #----------------------------------------------------------------------------*

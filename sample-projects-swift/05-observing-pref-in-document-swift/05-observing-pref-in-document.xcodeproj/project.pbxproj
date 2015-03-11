@@ -13,12 +13,13 @@
 		CF34AD3919866C8500E89971 /* MyPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3219866C8500E89971 /* MyPrefs.swift */; };
 		CF34AD3A19866C8500E89971 /* MyPrefs+transient+prefTransientString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3319866C8500E89971 /* MyPrefs+transient+prefTransientString.swift */; };
 		CF34AD3B19866C8500E89971 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3419866C8500E89971 /* PMAllocationDebug.swift */; };
-		CF34AD3C19866C8500E89971 /* PMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3519866C8500E89971 /* PMApplication.swift */; };
 		CF4627A71595B53B00BF70CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4627A61595B53B00BF70CD /* Cocoa.framework */; };
 		CF4627B11595B53B00BF70CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF4627AF1595B53B00BF70CD /* InfoPlist.strings */; };
 		CF4627B71595B53B00BF70CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF4627B51595B53B00BF70CD /* Credits.rtf */; };
 		CF5B9F761986794C00A26AD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5B9F751986794C00A26AD6 /* main.swift */; };
-		CF9ACC2D19BA10FA0001A06F /* controller-classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9ACC2A19BA10FA0001A06F /* controller-classes.swift */; };
+		CF7EFF0F1AB0977A00E53BB8 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EFF0C1AB0977A00E53BB8 /* application.swift */; };
+		CF7EFF101AB0977A00E53BB8 /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EFF0D1AB0977A00E53BB8 /* PMReadOnlyTextField.swift */; };
+		CF7EFF111AB0977A00E53BB8 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EFF0E1AB0977A00E53BB8 /* standard-properties.swift */; };
 		CF9ACC2E19BA10FA0001A06F /* PMManagedDocument+extension+factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9ACC2B19BA10FA0001A06F /* PMManagedDocument+extension+factory.swift */; };
 		CF9ACC2F19BA10FA0001A06F /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9ACC2C19BA10FA0001A06F /* PMTextField.swift */; };
 		CFB6B40A19866E35005024BB /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6B3FD19866E35005024BB /* MyDocument.swift */; };
@@ -41,7 +42,6 @@
 		CF34AD3219866C8500E89971 /* MyPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrefs.swift; sourceTree = "<group>"; };
 		CF34AD3319866C8500E89971 /* MyPrefs+transient+prefTransientString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyPrefs+transient+prefTransientString.swift"; sourceTree = "<group>"; };
 		CF34AD3419866C8500E89971 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
-		CF34AD3519866C8500E89971 /* PMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMApplication.swift; sourceTree = "<group>"; };
 		CF4627A21595B53B00BF70CD /* 05-observing-pref-in-document-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "05-observing-pref-in-document-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4627A61595B53B00BF70CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF4627A91595B53B00BF70CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -51,7 +51,9 @@
 		CF4627B01595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF4627B61595B53B00BF70CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CF5B9F751986794C00A26AD6 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		CF9ACC2A19BA10FA0001A06F /* controller-classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "controller-classes.swift"; sourceTree = "<group>"; };
+		CF7EFF0C1AB0977A00E53BB8 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
+		CF7EFF0D1AB0977A00E53BB8 /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
+		CF7EFF0E1AB0977A00E53BB8 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CF9ACC2B19BA10FA0001A06F /* PMManagedDocument+extension+factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMManagedDocument+extension+factory.swift"; sourceTree = "<group>"; };
 		CF9ACC2C19BA10FA0001A06F /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
 		CFB6B3FD19866E35005024BB /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocument.swift; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 		CF4627AC1595B53B00BF70CD /* 05-observing-pref-in-document */ = {
 			isa = PBXGroup;
 			children = (
-				CF9ACC2A19BA10FA0001A06F /* controller-classes.swift */,
+				CF7EFF0C1AB0977A00E53BB8 /* application.swift */,
 				CF34AD3119866C8500E89971 /* easy-bindings-utilities.swift */,
 				CF5B9F751986794C00A26AD6 /* main.swift */,
 				CFDA0FAA1782CF500034D5C7 /* MainMenu.xib */,
@@ -135,13 +137,14 @@
 				CFB6B40019866E35005024BB /* MyRootEntity+transient+transientConcatString.swift */,
 				CF34AD3419866C8500E89971 /* PMAllocationDebug.swift */,
 				CFB6B40119866E35005024BB /* PMAllocationDebug.xib */,
-				CF34AD3519866C8500E89971 /* PMApplication.swift */,
 				CFB6B40219866E35005024BB /* PMDataScanner.swift */,
 				CFB6B40519866E35005024BB /* PMManagedDocument.swift */,
 				CF9ACC2B19BA10FA0001A06F /* PMManagedDocument+extension+factory.swift */,
 				CFB6B40619866E35005024BB /* PMManagedObject.swift */,
+				CF7EFF0D1AB0977A00E53BB8 /* PMReadOnlyTextField.swift */,
 				CF9ACC2C19BA10FA0001A06F /* PMTextField.swift */,
 				CFB6B40919866E35005024BB /* PMUndoManager.swift */,
+				CF7EFF0E1AB0977A00E53BB8 /* standard-properties.swift */,
 				CF4627AD1595B53B00BF70CD /* Supporting Files */,
 			);
 			path = "05-observing-pref-in-document";
@@ -223,6 +226,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7EFF0F1AB0977A00E53BB8 /* application.swift in Sources */,
+				CF7EFF111AB0977A00E53BB8 /* standard-properties.swift in Sources */,
 				CFB6B40C19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */,
 				CF5B9F761986794C00A26AD6 /* main.swift in Sources */,
 				CFB6B41319866E35005024BB /* PMManagedObject.swift in Sources */,
@@ -233,13 +238,12 @@
 				CF34AD3819866C8500E89971 /* easy-bindings-utilities.swift in Sources */,
 				CF34AD3919866C8500E89971 /* MyPrefs.swift in Sources */,
 				CF34AD3A19866C8500E89971 /* MyPrefs+transient+prefTransientString.swift in Sources */,
-				CF9ACC2D19BA10FA0001A06F /* controller-classes.swift in Sources */,
 				CF34AD3B19866C8500E89971 /* PMAllocationDebug.swift in Sources */,
+				CF7EFF101AB0977A00E53BB8 /* PMReadOnlyTextField.swift in Sources */,
 				CFB6B40F19866E35005024BB /* PMDataScanner.swift in Sources */,
 				CFB6B41219866E35005024BB /* PMManagedDocument.swift in Sources */,
 				CF9ACC2E19BA10FA0001A06F /* PMManagedDocument+extension+factory.swift in Sources */,
 				CFB6B40B19866E35005024BB /* MyRootEntity.swift in Sources */,
-				CF34AD3C19866C8500E89971 /* PMApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

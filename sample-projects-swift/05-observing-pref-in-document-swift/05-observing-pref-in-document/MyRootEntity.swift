@@ -1,55 +1,121 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 protocol MyRootEntity_docString {
-  var docString : String { get }
+  var docString : PMStoredProperty_String { get }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
 
-@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_docString {
-  override func userClassName () -> String { return "MyRootEntity" }
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Array of MyRootEntity                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
+  var computeFunction : Optional<() -> [MyRootEntity]?>
 
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in return self?.mSet.count }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Attribute: docString                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var docString_explorer : NSTextField? = nil
-  private var docString_observers : [Int : PMTransientEventProtocol] = [:]
-  var docString : String = "doc string" {
-    didSet {
-      if docString != oldValue {
-        mUndoManager?.registerUndoWithTarget (self, selector:"undoFor_docString:", object:oldValue)
-        docString_explorer?.stringValue = docString
-        for (key, observer) in docString_observers {
-          postTransientEvent (observer)
+  var count = PMTransientProperty_Int ()
+
+  func noteModelDidChange () {
+    if (props_cache != nil) {
+      props_cache = nil
+      count.postEvents ()
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  
+  private var mSet = Set<MyRootEntity> ()
+
+  var props_cache : Optional <Array<MyRootEntity> >
+
+  var props : Array<MyRootEntity> {
+    get {
+      if props_cache == nil {
+        if let unwrappedComputeFunction = computeFunction {
+          props_cache = unwrappedComputeFunction ()
+        }
+        if props_cache == nil {
+          props_cache = Array<MyRootEntity> ()
+        }
+        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        if mSet != newObjectSet {
+        //--- Removed object set
+          var removedObjectSet = mSet
+          removedObjectSet.subtractInPlace (newObjectSet)
+          for managedObject : MyRootEntity in removedObjectSet {
+            for observer in mObserversOf_docString {
+              managedObject.docString.removeObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Added object set
+          var addedObjectSet = newObjectSet
+          addedObjectSet.subtractInPlace (mSet)
+          for managedObject : MyRootEntity in addedObjectSet {
+            for observer in mObserversOf_docString {
+              managedObject.docString.addObserver (observer, inTrigger:true)
+            }
+          }
+        //--- Update object set
+          mSet = newObjectSet
         }
       }
+      return props_cache!
     }
   }
 
-  func undoFor_docString (value : String) {
-    docString = value
-  }
 
-  func addObserverOf_docString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    docString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_docString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    docString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mObserversOf_docString = Set<PMEvent> ()
+
+  func addObserverOf_docString (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_docString.insert (inObserver)
+    for managedObject in props {
+      managedObject.docString.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  func validate_docString (proposedValue : String) -> PMValidationResult { return PMValidationResult.ok }
+  func removeObserverOf_docString (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_docString.remove (inObserver)
+    for managedObject in props {
+      managedObject.docString.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    Entity: MyRootEntity                                                                                             *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_docString {
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Properties                                                                                                     *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var docString = PMStoredProperty_String ("doc string")
+  var docString_keyCodingValue : String { get {return docString.prop } }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Transient properties                                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var otherTransientConcatString = PMTransientProperty_String ()
+  var transientConcatString = PMTransientProperty_String ()
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    Relationships                                                                                                  *
+  //-------------------------------------------------------------------------------------------------------------------*
 
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -58,11 +124,17 @@ protocol MyRootEntity_docString {
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
-  //--- Register trigger objects
-    g_MyPrefs?.addObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:true)
-    addObserverOf_docString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
-    g_MyPrefs?.addObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
-    g_MyPrefs?.addObserverOf_prefTransientString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:true)
+  //--- Install compute functions for transients
+    otherTransientConcatString.computeFunction = {return compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop)}
+    transientConcatString.computeFunction = {return compute_MyRootEntity_transientConcatString (self.docString.prop, g_MyPrefs!.myPrefString.prop, g_MyPrefs!.prefTransientString.prop)}
+  //--- Install property observers for transients
+    g_MyPrefs?.myPrefString.addObserver (otherTransientConcatString.event, inTrigger:true)
+    docString.addObserver (transientConcatString.event, inTrigger:true)
+    g_MyPrefs?.myPrefString.addObserver (transientConcatString.event, inTrigger:true)
+    g_MyPrefs?.prefTransientString.addObserver (transientConcatString.event, inTrigger:true)
+  //--- Install undoers for properties
+    docString.undoManager = undoManager
+  //--- Install owner for relationships
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -71,31 +143,26 @@ protocol MyRootEntity_docString {
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
+  //--- Remove transients observers
+    g_MyPrefs?.myPrefString.removeObserver (otherTransientConcatString.event, inTrigger:false)
+    docString.removeObserver (transientConcatString.event, inTrigger:false)
+    g_MyPrefs?.myPrefString.removeObserver (transientConcatString.event, inTrigger:false)
+    g_MyPrefs?.prefTransientString.removeObserver (transientConcatString.event, inTrigger:false)
+  //--- Uninstall compute functions for transients
+    otherTransientConcatString.computeFunction = nil
+    transientConcatString.computeFunction = nil
+  //--- Uninstall undoers for properties
+    docString.undoManager = nil
+  //--- Reset relationships
   }
   
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    deinit                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  deinit {
-  //--- Unregister trigger objects
-    g_MyPrefs?.removeObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_otherTransientConcatString, inTrigger:false)
-    removeObserverOf_docString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
-    g_MyPrefs?.removeObserverOf_myPrefString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
-    g_MyPrefs?.removeObserverOf_prefTransientString (event_entity_2E_MyRootEntity_2E_transientConcatString, inTrigger:false)
-  }
-
   //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindowWithRect                                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    docString_explorer = createEntryForAttributeNamed ("docString", ioRect:&ioRect, view:view)
-    if let explorer = docString_explorer {
-      explorer.stringValue = docString
-    }
+    docString.explorer = createEntryForAttributeNamed ("docString", ioRect:&ioRect, view:view)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -103,7 +170,7 @@ protocol MyRootEntity_docString {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func clearObjectExplorer () {
-    docString_explorer = nil
+    docString.explorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -113,7 +180,7 @@ protocol MyRootEntity_docString {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (docString, forKey: "docString")
+    ioDictionary.setValue (docString.prop, forKey: "docString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -123,107 +190,9 @@ protocol MyRootEntity_docString {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    docString = inDictionary.readString ("docString")
+    docString.setProp (inDictionary.readString ("docString"))
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: otherTransientConcatString                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var otherTransientConcatString_observers : [Int : PMTransientEventProtocol] = [:]
-  private var otherTransientConcatString_cache : String?
-  var otherTransientConcatString : String {
-    get {
-      if otherTransientConcatString_cache == nil {
-        otherTransientConcatString_cache = compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString)
-      }
-      return otherTransientConcatString_cache!
-    }
-    set {
-    }
-  }
-
-  func entity_2E_MyRootEntity_2E_otherTransientConcatString_noteDidChange () {
-    otherTransientConcatString_cache = nil
-  }
-
-  func entity_2E_MyRootEntity_2E_otherTransientConcatString_trigger () {
-    for (key, observer) in otherTransientConcatString_observers {
-      postTransientEvent (observer)
-    }
-  }
-
-   func addObserverOf_otherTransientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    otherTransientConcatString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_otherTransientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    otherTransientConcatString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache : PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString? = nil
-  var event_entity_2E_MyRootEntity_2E_otherTransientConcatString : PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString {
-    if nil == event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache {
-      event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache = PMEvent_entity_2E_MyRootEntity_2E_otherTransientConcatString (object:self)
-    }
-    return event_entity_2E_MyRootEntity_2E_otherTransientConcatString_cache!
-  }
- 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Transient: transientConcatString                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var transientConcatString_observers : [Int : PMTransientEventProtocol] = [:]
-  private var transientConcatString_cache : String?
-  var transientConcatString : String {
-    get {
-      if transientConcatString_cache == nil {
-        transientConcatString_cache = compute_MyRootEntity_transientConcatString (docString, g_MyPrefs!.myPrefString, g_MyPrefs!.prefTransientString)
-      }
-      return transientConcatString_cache!
-    }
-    set {
-    }
-  }
-
-  func entity_2E_MyRootEntity_2E_transientConcatString_noteDidChange () {
-    transientConcatString_cache = nil
-  }
-
-  func entity_2E_MyRootEntity_2E_transientConcatString_trigger () {
-    for (key, observer) in transientConcatString_observers {
-      postTransientEvent (observer)
-    }
-  }
-
-   func addObserverOf_transientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    transientConcatString_observers [inObserver.uniqueIndex] = inObserver
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
- 
-  func removeObserverOf_transientConcatString (inObserver : PMTransientEventProtocol, inTrigger:Bool) {
-    transientConcatString_observers [inObserver.uniqueIndex] = nil
-    if inTrigger {
-      postTransientEvent (inObserver)
-    }
-  }
-
-  var event_entity_2E_MyRootEntity_2E_transientConcatString_cache : PMEvent_entity_2E_MyRootEntity_2E_transientConcatString? = nil
-  var event_entity_2E_MyRootEntity_2E_transientConcatString : PMEvent_entity_2E_MyRootEntity_2E_transientConcatString {
-    if nil == event_entity_2E_MyRootEntity_2E_transientConcatString_cache {
-      event_entity_2E_MyRootEntity_2E_transientConcatString_cache = PMEvent_entity_2E_MyRootEntity_2E_transientConcatString (object:self)
-    }
-    return event_entity_2E_MyRootEntity_2E_transientConcatString_cache!
-  }
- 
   //-------------------------------------------------------------------------------------------------------------------*
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*

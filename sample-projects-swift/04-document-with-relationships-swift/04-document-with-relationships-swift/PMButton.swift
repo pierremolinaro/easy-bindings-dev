@@ -25,8 +25,8 @@ import Cocoa
 
   private var mValueController : Controller_PMButton_enabled?
 
-  func bind_enabled (object:PMReadOnlyProperty_Bool, file:String, line:Int) {
-    mValueController = Controller_PMButton_enabled (object:object, outlet:self, file:file, line:line)
+  func bind_enabled (object:[PMReadOnlyProperty_Bool], computeFunction: () -> Bool, file:String, line:Int) {
+    mValueController = Controller_PMButton_enabled (objectArray:object, outlet:self, computeFunction:computeFunction, file:file, line:line)
   }
 
   func unbind_enabled () {
@@ -43,28 +43,39 @@ import Cocoa
 
 @objc(Controller_PMButton_enabled) class Controller_PMButton_enabled : PMOutletEvent {
 
-  var mObject : PMReadOnlyProperty_Bool
+  var mObjectArray : [PMReadOnlyProperty_Bool]
   var mOutlet : PMButton
+  var mComputeFunction : Optional <() -> Bool>
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Bool, outlet : PMButton, file : String, line : Int) {
-    mObject = object
+  init (objectArray : [PMReadOnlyProperty_Bool], outlet : PMButton, computeFunction: () -> Bool, file : String, line : Int) {
+    mObjectArray = objectArray
     mOutlet = outlet
+    mComputeFunction = computeFunction
     super.init ()
-    mObject.addObserver (self, inTrigger:true)
+    for object in mObjectArray {
+      object.addObserver (self, inTrigger:true)
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeObserver (self, inTrigger:false)
+    mComputeFunction = nil
+    for object in mObjectArray {
+      object.removeObserver (self, inTrigger:false)
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    mOutlet.enabled = mObject.prop
+    if let computeFunction = mComputeFunction {
+      mOutlet.enabled = computeFunction ()
+    }else{
+      mOutlet.enabled = false
+    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

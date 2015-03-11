@@ -10,24 +10,19 @@ preferences MyPrefs {
   property String myPrefString default "pref string" ;
   transient String prefTransientString dependsFrom self.myPrefString ;
 
-  outlet PMTextField myPrefStringTextField ;
-  bind model : self.myPrefString  to myPrefStringTextField $value {sendContinously : no} ;
+  outlet PMTextField myPrefStringTextField $value self.myPrefString {sendContinously : no} ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
-  outlet PMTextField docStringTextField ;
-  bind model : root.docString to docStringTextField $value {sendContinously : yes} ;
+  outlet PMTextField docStringTextField $value root.docString {sendContinously : yes} ;
 
-  outlet PMTextField prefStringTextField ;
-  bind model : MyPrefs.myPrefString to prefStringTextField $value {sendContinously : no} ;
+  outlet PMTextField prefStringTextField $value MyPrefs.myPrefString {sendContinously : no} ;
 
-  outlet PMTextField prefTransientStringTextField ;
-  bind model : MyPrefs.prefTransientString to prefTransientStringTextField $rvalue ;
+  outlet PMReadOnlyTextField prefTransientStringTextField $readOnlyValue MyPrefs.prefTransientString ;
 
-  outlet PMTextField transientConcatStringTextField ;
-  bind model : root.transientConcatString to transientConcatStringTextField $rvalue ;
+  outlet PMReadOnlyTextField transientConcatStringTextField $readOnlyValue root.transientConcatString ;
 }
 
 #--------------------------------------------------------------*

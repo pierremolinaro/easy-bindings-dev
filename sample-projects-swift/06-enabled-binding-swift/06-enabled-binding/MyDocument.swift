@@ -68,14 +68,14 @@ import Cocoa
   //--------------------------- Array controller
   //--- Install compute functions for transients
   //--- Install property observers for transients
-  //--- Install bindings
+  //--- Install regular bindings
     docBoolCheckBox?.bind_value (rootObject.docBool, file:__FILE__, line:__LINE__)
+  //--- Install multiple bindings
     myButton?.bind_enabled (
-     [rootObject.docBool, g_MyPrefs!.prefBoolean],
-     computeFunction: { !self.rootObject.docBool.prop && g_MyPrefs!.prefBoolean.prop},
-     file:__FILE__,
-     line:__LINE__
-  )
+      [g_MyPrefs!.prefBoolean, self.rootObject.docBool],
+      computeFunction:{ (!self.rootObject.docBool.prop && g_MyPrefs!.prefBoolean.prop) },
+      file:__FILE__, line:__LINE__
+    )
   //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
@@ -89,8 +89,9 @@ import Cocoa
   override func removeWindowController (inWindowController : NSWindowController) {
     undoManager?.removeAllActions ()
     undoManager = nil
-  //--- Unbind
+  //--- Unbind regular bindings
     docBoolCheckBox?.unbind_value ()
+  //--- Unbind multiple bindings
     myButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
