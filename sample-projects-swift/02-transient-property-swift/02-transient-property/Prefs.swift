@@ -23,8 +23,8 @@ var g_Prefs : Prefs? = nil
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mFirstName = PMStoredProperty_String ("Schmurtz")
   var mName = PMStoredProperty_String ("Amédée")
+  var mFirstName = PMStoredProperty_String ("Schmurtz")
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
@@ -48,13 +48,13 @@ var g_Prefs : Prefs? = nil
     var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
-    value = ud.objectForKey ("Prefs:mFirstName")
-    if value != nil {
-      mFirstName.setProp (value as! String)
-    }
     value = ud.objectForKey ("Prefs:mName")
     if value != nil {
       mName.setProp (value as! String)
+    }
+    value = ud.objectForKey ("Prefs:mFirstName")
+    if value != nil {
+      mFirstName.setProp (value as! String)
     }
   //--- Property validation function
   //---
@@ -63,7 +63,6 @@ var g_Prefs : Prefs? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  //--- Register trigger objects
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -88,16 +87,16 @@ var g_Prefs : Prefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = {return compute_Prefs_mFullName (self.self.mName.prop, self.self.mFirstName.prop)}
-    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.self.mFullName.prop)}
+    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.prop, self.mFirstName.prop)}
+    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.prop)}
   //--- Install property observers for transients
-    mName.addObserver (mFullName.event, inTrigger:true)
-    mFirstName.addObserver (mFullName.event, inTrigger:true)
-    mFullName.addObserver (mUpperCaseFullName.event, inTrigger:true)
+    self.mName.addObserver (mFullName.event, inTrigger:true)
+    self.mFirstName.addObserver (mFullName.event, inTrigger:true)
+    self.mFullName.addObserver (mUpperCaseFullName.event, inTrigger:true)
   //--- Install bindings
+    mNameTextField?.bind_value (self.mName, file:__FILE__, line:__LINE__, sendContinously:false)
     mFirstNameTextField?.bind_value (self.mFirstName, file:__FILE__, line:__LINE__, sendContinously:false)
     mFullNameTextField?.bind_readOnlyValue (self.mFullName, file:__FILE__, line:__LINE__)
-    mNameTextField?.bind_value (self.mName, file:__FILE__, line:__LINE__, sendContinously:false)
     mUpperCaseFullNameTextField?.bind_readOnlyValue (self.mUpperCaseFullName, file:__FILE__, line:__LINE__)
   }
   
@@ -107,8 +106,8 @@ var g_Prefs : Prefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mFirstName.prop, forKey:"Prefs:mFirstName")
     ud.setObject (mName.prop, forKey:"Prefs:mName")
+    ud.setObject (mFirstName.prop, forKey:"Prefs:mFirstName")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

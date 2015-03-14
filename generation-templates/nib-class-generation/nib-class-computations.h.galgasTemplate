@@ -1,8 +1,0 @@
-#import <Cocoa/Cocoa.h>
-
-//----------------------------------------------------------------------------*
-
-@class %!PREFERENCES_NAME% ;
-
-%!generateTransientFunctionDeclarations [!PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION]%
-//----------------------------------------------------------------------------*

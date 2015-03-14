@@ -93,12 +93,12 @@ import Cocoa
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install regular bindings
-    myColorWell?.bind_color (rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
-    myMatrix?.bind_selectedIndex (rootObject.myEnumeration, file:__FILE__, line:__LINE__)
-    myTextConcatField?.bind_readOnlyValue (rootObject.myStringConcat, file:__FILE__, line:__LINE__)
-    myTextField?.bind_value (rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
-    myTextMajField?.bind_readOnlyValue (rootObject.myStringMaj, file:__FILE__, line:__LINE__)
-    myTextMinField?.bind_readOnlyValue (rootObject.myStringMin, file:__FILE__, line:__LINE__)
+    myTextField?.bind_value (self.rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
+    myTextMajField?.bind_readOnlyValue (self.rootObject.myStringMaj, file:__FILE__, line:__LINE__)
+    myTextMinField?.bind_readOnlyValue (self.rootObject.myStringMin, file:__FILE__, line:__LINE__)
+    myTextConcatField?.bind_readOnlyValue (self.rootObject.myStringConcat, file:__FILE__, line:__LINE__)
+    myMatrix?.bind_selectedIndex (self.rootObject.myEnumeration, file:__FILE__, line:__LINE__)
+    myColorWell?.bind_color (self.rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
@@ -114,12 +114,12 @@ import Cocoa
     undoManager?.removeAllActions ()
     undoManager = nil
   //--- Unbind regular bindings
-    myColorWell?.unbind_color ()
-    myMatrix?.unbind_selectedIndex ()
-    myTextConcatField?.unbind_readOnlyValue ()
     myTextField?.unbind_value ()
     myTextMajField?.unbind_readOnlyValue ()
     myTextMinField?.unbind_readOnlyValue ()
+    myTextConcatField?.unbind_readOnlyValue ()
+    myMatrix?.unbind_selectedIndex ()
+    myColorWell?.unbind_color ()
   //--- Unbind multiple bindings
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers

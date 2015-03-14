@@ -1,0 +1,260 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @entityDeclaration : @astDeclaration {
+  @lstring mEntityName
+  @lstring mSuperEntityName
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @transientList mTransientList
+  @toOneRelationshipList mToOneRelationshipList
+  @toManyRelationshipList mToManyRelationshipList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <entity_declaration>
+    ?let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+  {
+    $entity$
+    $Identifier$ ?let @lstring entityName
+    @lstring superEntityName
+    select
+      superEntityName = ["" nowhere]
+    or
+      $:$
+      $Identifier$ ? superEntityName
+    end
+    ${$
+    @simpleStoredPropertyList simpleStoredAttributeList = {}
+    @transientList transientList = {}
+    @toOneRelationshipList toOneRelationshipList = {}
+    @toManyRelationshipList toManyRelationshipList = {}
+    repeat
+    while
+      <simple_stored_declaration> !?simpleStoredAttributeList
+    while
+      <transient_declaration> !?transientList
+    while
+      <toMany_relationship> !?toManyRelationshipList
+    while
+      <toOne_relationship> !?toOneRelationshipList
+    end
+    $}$
+    ioDeclarationAST.mDeclarationList += !@entityDeclaration.new {
+      !inIsUserDefined
+      !entityName
+      !superEntityName
+      !simpleStoredAttributeList
+      !transientList
+      !toOneRelationshipList
+      !toManyRelationshipList
+    }
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @entityDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+{
+  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
+  [mTransientList typeInventory
+    !"entity." + mEntityName
+    !?ioUnifiedTypeMap
+    !?ioTransientDependencyGraph
+  ]
+  [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
+  [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
+  [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string}]
+  if mSuperEntityName.string != "" then
+    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperEntityName ?*]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @entityObservablePropertyMap {
+  @observablePropertyMap mObservablePropertyMap
+  insert insertKey error message "the '%K' document is already declared in %L"
+  search searchKey error message "there is no '%K' document"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+# Only get current entity observable properties, do not collect in super entities
+override method @entityDeclaration buildObservablePropertyMaps
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@semanticContext ioSemanticContext
+{
+  @observablePropertyMap observablePropertyMap = {}
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Analyze transients
+  [mTransientList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Analyze relationships
+  [mToOneRelationshipList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+  [mToManyRelationshipList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Enter in semantics context  
+  [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
+    !mEntityName
+    !observablePropertyMap
+  ]
+}
+
+#......................................................................................................................*
+
+override method @entityDeclaration semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  ?!@structForGeneration ioGeneration
+{
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    !mEntityName
+    ?let @observablePropertyMap observablePropertyMap
+  ]
+#--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList semanticAnalysis
+    !mEntityName.string
+    !inSemanticContext.mUnifiedTypeMap
+    !?ioGeneration.mValidationStubRoutineListForGeneration
+    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+  ]
+#--- Analyze transients
+  [mTransientList transientSemanticAnalysis
+    !{} # No root entity
+    !inSemanticContext
+    !observablePropertyMap
+    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
+  ]
+#--- Analyze toOne relationships
+  [mToOneRelationshipList semanticAnalysis
+    !inSemanticContext
+    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
+  ]
+#--- Analyze toMany relationships
+  [mToManyRelationshipList semanticAnalysis
+    !inSemanticContext
+    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
+  ]
+#--- Generation
+  ioGeneration.mEntityListForGeneration +=
+    !mEntityName.string
+    !mSuperEntityName.string
+    !simpleStoredPropertyListForGeneration
+    !transientDefinitionListForGeneration
+    !toOneEntityRelationshipListForGeneration
+    !toManyEntityRelationshipListForGeneration
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @entityListForGeneration {
+  @string mEntityName
+  @string mSuperEntityName
+  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
+  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
+  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+}
+
+#......................................................................................................................*
+
+private filewrapper entityGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template entityImplementationInSwift "entity.swift.galgasTemplate"
+    ?@string ENTITY_NAME
+    ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
+    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
+
+  template entityFactoryImplementationFileInSwift "PMManagedDocument+extension+factory.swift.galgasTemplate"
+    ?@entityListForGeneration ENTITY_LIST
+  
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateEntities
+  ?let @entityListForGeneration inEntityListForGeneration
+  ?let @string inOutputDirectory
+{
+  for () in inEntityListForGeneration do
+    let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
+      !mEntityName
+      !mSimpleStoredPropertyListForGeneration
+      !mDecoratedTransientListForGeneration
+      !mToOneEntityRelationshipList
+      !mToManyEntityRelationshipList
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !mEntityName + ".swift"
+      !s
+    ]
+  end
+#----- 
+  if [inEntityListForGeneration length] > 0 then
+    let s = [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
+      !inEntityListForGeneration
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !"PMManagedDocument+extension+factory.swift"
+      !s
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+getter @typeKind transformForSavingInDictionary ?let @string inPropertyName -> @string outResult {
+  switch self
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop)"
+  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop)"
+  case stringType : outResult = inPropertyName + ".prop"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop)"
+  case dateType : outResult = "NSDate"
+  case enumType (* *) : outResult = "NSNumber (integer:" + inPropertyName + ".prop.rawValue)"
+  case entityType (*) :
+    outResult = "<entity is invalid for transformForSavingInDictionary>"
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

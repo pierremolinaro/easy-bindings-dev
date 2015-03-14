@@ -137,7 +137,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func pmInstallDebugMenu () {
-    if !mDebugMenuInstalled && NSApp.mainMenu != nil, let menu = NSApp.mainMenu! {
+    if let menu = NSApp.mainMenu! where !mDebugMenuInstalled && NSApp.mainMenu != nil {
       var item = NSMenuItem (
         title:"",
         action:nil,

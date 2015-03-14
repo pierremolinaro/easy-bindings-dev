@@ -36,7 +36,7 @@ end
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
       if let model = self.mModel {
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.%!RELATIONSHIP_NAME%.props)
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.%!RELATIONSHIP_NAME%.prop)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<%!ELEMENT_TYPE_NAME%>
       }else{
@@ -74,7 +74,7 @@ end
   //    Sort descriptors                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private var mSortDescriptors = [AnyObject] () {
+  private var mSortDescriptors : [AnyObject] = [AnyObject] () {
     didSet {
       noteModelDidChange () // Force sorting
       postEvents () // Notify outlets display should be done
@@ -101,10 +101,10 @@ end
     if mSelectedObjectSetShouldBeComputed {
       mSelectedObjectSetShouldBeComputed = false
       var newInternalSelectedObjectSet = mInternalSelectedObjectSet
-      newInternalSelectedObjectSet.intersectInPlace (sortedArray.props)
+      newInternalSelectedObjectSet.intersectInPlace (sortedArray.prop)
       mInternalSelectedObjectSet = newInternalSelectedObjectSet
-      if (mInternalSelectedObjectSet.count == 0) && (sortedArray.props.count > 0) {
-        mInternalSelectedObjectSet.insert (sortedArray.props [0])
+      if (mInternalSelectedObjectSet.count == 0) && (sortedArray.prop.count > 0) {
+        mInternalSelectedObjectSet.insert (sortedArray.prop [0])
       }
     }
     return mInternalSelectedObjectSet
@@ -123,7 +123,7 @@ end
   override func selectedObjectIndexSet () -> NSIndexSet {
   //--- Dictionary of object indexes
     var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-    for (index, object) in enumerate (sortedArray.props) {
+    for (index, object) in enumerate (sortedArray.prop) {
       objectDictionary [object] = index
     }
     var indexSet = NSMutableIndexSet ()
@@ -161,7 +161,7 @@ end
       if mSortedObjectArrayDictionaryShouldBeComputed {
         mSortedObjectArrayDictionaryShouldBeComputed = false
         mSortedObjectArrayDictionary = [:]
-        for (idx, object) in enumerate (sortedArray.props) {
+        for (idx, object) in enumerate (sortedArray.prop) {
           mSortedObjectArrayDictionary [object] = idx
         }
       }
@@ -236,7 +236,7 @@ end
     if let tableView = notication.object as? NSTableView, model = mModel {
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
       for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (sortedArray.props.objectAtIndex (index, file: __FILE__, line: __LINE__))
+        newSelectedObjectSet.insert (sortedArray.prop.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
       setSelectedObjectSet (newSelectedObjectSet)
     }
@@ -261,9 +261,9 @@ end
 
   func numberOfRowsInTableView (NSTableView) -> Int {
     if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    \%@ (\%ld objects)\\n", __FUNCTION__, sortedArray.props.count))
+      appendToTransientEventLog (String (format:"    \%@ (\%ld objects)\\n", __FUNCTION__, sortedArray.prop.count))
     }
-    return sortedArray.props.count
+    return sortedArray.prop.count
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -277,12 +277,12 @@ end
     let columnIdentifier = viewForTableColumn!.identifier
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
     result.textField?.tag = row
-    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let object = sortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
    %
 for () in BOUND_COLUMNS
 do
 % if columnIdentifier == "%!mColumnName%" {\n%
-  ![[FILE_WRAPPER textFileContentsAtPath !"/cell-" + [mPropertyType key] + "-" + mColumnOutletTypeName + ".txt"] stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName]
+  ![[FILE_WRAPPER textFileContentsAtPath !"/cell-" + [mPropertyType swiftTypeName] + "-" + mColumnOutletTypeName + ".txt"] stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName]
 %    }%
 between %else%
 end
@@ -296,7 +296,7 @@ for () in BOUND_COLUMNS do
 
   func set_%!mObservablePropertyName%_Action (sender : %!mColumnOutletTypeName%) {
     let row = sender.tag
-    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let object = sortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
     let validationResult = object.%!mObservablePropertyName%.validate (%![mPropertyType transformerForTableViewAction !"sender"]%)
     switch validationResult {
     case PMValidationResult.ok :
@@ -333,13 +333,13 @@ end
     }
     if let object = mModel, undoManager = object.undoManager () {
       var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:undoManager)
-      var array = object.%!RELATIONSHIP_NAME%.props
+      var array = object.%!RELATIONSHIP_NAME%.prop
       array.append (newObject)
     //--- New object is the selection
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
       newSelectedObjectSet.insert (newObject)
       setSelectedObjectSet (newSelectedObjectSet)
-      object.%!RELATIONSHIP_NAME%.props = array
+      object.%!RELATIONSHIP_NAME%.prop = array
     }
   }
 
@@ -352,7 +352,7 @@ end
     //------------- Find the object to be selected after selected object removing
     //--- Dictionary of object sorted indexes
       var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in enumerate (sortedArray.props) {
+      for (index, object) in enumerate (sortedArray.prop) {
         sortedObjectDictionary [object] = index
       }
       var indexArrayOfSelectedObjects = [Int] ()
@@ -374,13 +374,13 @@ end
         }
       }
       var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
-      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.props.count) {
-        newSelectedObject = sortedArray.props [newSelectionIndex]
+      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.count) {
+        newSelectedObject = sortedArray.prop [newSelectionIndex]
       }
     //----------------------------------------- Remove selected object
     //--- Dictionary of object absolute indexes
       var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in enumerate (model.%!RELATIONSHIP_NAME%.props) {
+      for (index, object) in enumerate (model.%!RELATIONSHIP_NAME%.prop) {
         objectDictionary [object] = index
       }
     //--- Build selected objects index array
@@ -394,7 +394,7 @@ end
     //--- Sort in reverse order
       selectedObjectIndexArray.sort { $1 < $0 }
     //--- Remove objects, in reverse of order of their index
-      var newObjectArray = model.%!RELATIONSHIP_NAME%.props
+      var newObjectArray = model.%!RELATIONSHIP_NAME%.prop
       for index in selectedObjectIndexArray {
         newObjectArray.removeAtIndex (index)
       }
@@ -405,7 +405,7 @@ end
       }
       setSelectedObjectSet (newSelectionSet)
     //----------------------------------------- Set new object array
-      model.%!RELATIONSHIP_NAME%.props = newObjectArray
+      model.%!RELATIONSHIP_NAME%.prop = newObjectArray
     }
   }
 

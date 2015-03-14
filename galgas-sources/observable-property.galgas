@@ -1,0 +1,298 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  AST                                                                                                                 *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum @observablePropertyAST {
+  case rootProperty (@lstring propertyName)
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName)
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
+  case selfProperty (@lstring propertyName @lstring optionName)
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName)
+  case controllerProperty (@lstring controllerName @lstring propertyName)
+}
+
+#......................................................................................................................*
+
+list @observablePropertyList {
+  @observablePropertyAST mObservableProperty
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SYNTAX                                                                                                              *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  rule <observable_property>
+    !@observablePropertyAST outObservablePropertyAST
+  {
+    select
+      $root$
+      $.$
+      $identifier$ ?let propertyName
+      select
+        outObservablePropertyAST = .rootProperty {!propertyName:propertyName}
+      or
+        $.$
+        select
+          $identifier$ ?let optionName
+          outObservablePropertyAST = .rootPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+        or
+          $all$
+          $.$
+          $identifier$ ?let observablePropertyName
+          outObservablePropertyAST = .rootPropertyRelationship {
+            !relationshipName:propertyName !propertyName:observablePropertyName
+          }
+        end
+      end
+    or
+      $self$
+      <observable_property_extension> ?let propertyName ?let optionName
+      outObservablePropertyAST = .selfProperty {!propertyName:propertyName !optionName:optionName}
+    or
+      $Identifier$ ?let preferenceName
+      <observable_property_extension> ?let propertyName ?let optionName
+      outObservablePropertyAST = .prefsProperty {!prefsName:preferenceName!propertyName:propertyName !optionName:optionName}
+    or
+      $identifier$ ?let controllerName
+      $.$
+      $identifier$ ?let propertyName
+      outObservablePropertyAST = .controllerProperty {!controllerName:controllerName !propertyName:propertyName}
+    end
+  }
+
+  #--------------------------------------------------------------------------------------------------------------------*
+  
+  rule <observable_property_extension>
+    !@lstring outPropertyName
+    !@lstring outOptionName
+  {
+    $.$
+    $identifier$ ?outPropertyName
+    select
+      outOptionName = ["" nowhere]
+    or
+      $.$ ;
+      $identifier$ ?outOptionName
+    end
+  }
+
+}
+   
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SEMANTICS                                                                                                           *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @observablePropertyAST modelString -> @string outResult {
+  switch self
+  case rootProperty (@lstring propertyName) :
+    outResult = "self.rootObject." + propertyName
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "self.rootObject." + propertyName + "." + optionName
+  case rootPropertyRelationship (@lstring relationshipName *) :
+    outResult = "self.rootObject." + relationshipName
+  case selfProperty (@lstring propertyName @lstring optionName) :
+    outResult = "self." + propertyName
+    if optionName.string != "" then
+      outResult += "." + optionName
+    end
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
+    outResult = "g_" + prefsName + "!." + propertyName
+    if optionName.string != "" then
+      outResult += "." + optionName
+    end
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    outResult = "self." + controllerName + "." + propertyName
+  end  
+}
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @observablePropertyAST location -> @location outResult {
+  switch self
+  case rootProperty (@lstring propertyName) :
+    outResult = propertyName.location
+  case rootPropertyWithOption (* @lstring optionName) :
+    outResult = optionName.location
+  case rootPropertyRelationship (* @lstring propertyName) :
+    outResult = propertyName.location
+  case selfProperty (@lstring propertyName *) :
+    outResult = propertyName.location
+  case prefsProperty (* @lstring propertyName *) :
+    outResult = propertyName.location
+  case controllerProperty (* @lstring propertyName) :
+    outResult = propertyName.location
+  end  
+}
+
+#----------------------------------------------------------------------------------------------------------------------*
+#   TRANSIENT DEPENDENCY GRAPH                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @observablePropertyAST enterInTransientDependencyGraph
+  ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
+  ?@lstring inSlavePropertySignature
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+{
+  @string masterSignature
+  switch self
+  case rootProperty (@lstring propertyName) :
+    masterSignature = inDependencyGraphPrefix + ".root." + propertyName
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    masterSignature = inDependencyGraphPrefix + ".root." + propertyName + "." + optionName
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+    masterSignature = inDependencyGraphPrefix + ".root." + relationshipName + "." + propertyName
+  case selfProperty (@lstring propertyName @lstring optionName) :
+    masterSignature = inDependencyGraphPrefix + "." + propertyName
+    if optionName.string != "" then
+      masterSignature += "." + optionName
+    end
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
+    masterSignature = "prefs." + prefsName + "." + propertyName
+    if optionName.string != "" then
+      masterSignature += "." + optionName
+    end
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    masterSignature = "self." + controllerName + "." + propertyName
+  end
+  [!?ioTransientDependencyGraph addEdge
+    !.new {!masterSignature ![self location]}
+    !inSlavePropertySignature
+  ]
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @observablePropertyAST analyzeObservableProperty
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservablePropertyMap
+  !@typeKind outType
+  !@propertyKind outKind
+  !@propertyMultiplicity outMultiplicity
+{
+  switch self
+  case rootProperty (@lstring propertyName) :
+    [inRootObservablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?*
+    ]
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inRootObservablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?*
+    ]
+    if outMultiplicity == .single then
+      error optionName : "a property cannot accept any option"
+    else
+      outKind = .transient
+      outMultiplicity = .single
+      if optionName.string == "count" then
+        outType = .integerType
+      elsif optionName.string == "empty" then
+        outType = .boolType
+      else
+        error optionName : "uknown option (accepted : 'count', 'empty')"
+      end
+    end
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+    [inRootObservablePropertyMap searchKey
+      !relationshipName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?*
+    ]
+    if outMultiplicity == .single then
+      error relationshipName : "a property cannot accept 'all'"
+    end
+    switch outType
+    case stringType, boolType, colorType, dateType, doubleType, integerType :
+      error relationshipName : "a property cannot accept 'all'"
+    case enumType (* *) :
+      error relationshipName : "a property cannot accept 'all'"
+    case entityType (@string entityName) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![entityName nowhere]
+        ?let @observablePropertyMap entityObservablePropertyMap
+      ]
+      [entityObservablePropertyMap searchKey
+        !propertyName
+        ?outType
+        ?outKind
+        ?outMultiplicity
+        ?*
+      ]
+      if outMultiplicity == .collection then
+        error propertyName : "the observed property cannot be a collection"
+      end
+    end
+  case selfProperty (@lstring propertyName @lstring optionName) :
+    [inObservablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?*
+    ]
+    if (optionName.string != "") && (outMultiplicity == .single) then
+      error optionName : "a property cannot accept any option"
+    elsif (outMultiplicity == .collection) && (optionName.string != "") then
+      outKind = .transient
+      outMultiplicity = .single
+      if optionName.string == "count" then
+        outType = .integerType
+      elsif optionName.string == "empty" then
+        outType = .boolType
+      else
+        error optionName : "uknown option (accepted : 'count', 'empty')"
+      end
+    end
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
+    [inSemanticContext.mPrefsObservablePropertyMap searchKey
+      !prefsName
+      ?let @observablePropertyMap observablePropertyMap
+    ]
+    [observablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?*
+    ]
+    if (optionName.string != "") && (outMultiplicity == .single) then
+      error optionName : "a property cannot accet any option"
+    elsif (outMultiplicity == .collection) && (optionName.string != "") then
+      outKind = .transient
+      outMultiplicity = .single
+      if optionName.string == "count" then
+        outType = .integerType
+      elsif optionName.string == "count" then
+        outType = .boolType
+      else
+        error optionName : "uknown option (accepted : 'count', 'empty')"
+      end
+    end
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    if propertyName.string == "canRemove" then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .integerType
+    else
+      error propertyName
+        : "uknown option (accepted : 'canRemove')"
+        : outMultiplicity, outKind, outType
+    end
+  end  
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

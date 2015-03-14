@@ -4,7 +4,7 @@ entity MyRootEntity {
 
 #--------------------------------------------------------------*
 
-preferences MyPrefs {
+prefs MyPrefs {
   property Bool prefBoolean default yes ;
   outlet PMSwitch prefBoolCheckBox $value self.prefBoolean ;
 }

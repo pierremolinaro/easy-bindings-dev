@@ -9,15 +9,15 @@ binding PMDatePicker $date : property Date ;
 
 
 outletClass PMMatrix $enabled ;
-binding PMMatrix $selectedIndex : property Enum ;
+binding PMMatrix $selectedIndex : property enum ;
 
 
 outletClass PMReadOnlyIntField ;
-binding PMReadOnlyIntField $readOnlyValue : transient Integer ;
+binding PMReadOnlyIntField $readOnlyValue : transient Int ;
 
 
 outletClass PMIntField ;
-binding PMIntField $value : property Integer {sendContinously : Bool} ;
+binding PMIntField $value : property Int {sendContinously : Bool} ;
 
 
 outletClass PMSwitch $enabled ;

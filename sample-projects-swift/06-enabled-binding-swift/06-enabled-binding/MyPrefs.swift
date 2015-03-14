@@ -53,7 +53,6 @@ var g_MyPrefs : MyPrefs? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  //--- Register trigger objects
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

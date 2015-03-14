@@ -1,0 +1,145 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @simpleStoredPropertyList {
+  @lstring mPropertyTypeName
+  @lstring mPropertyName
+  @abstractDefaultValue mDefaultValue
+  @bool mNeedsValidation
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <simple_stored_declaration>
+    ?!@simpleStoredPropertyList ioAttributeList
+  {
+    $property$
+    @bool needsValidation
+    select
+      needsValidation = false
+    or
+      $validates$
+      needsValidation = true
+    end
+    $Identifier$ ?var @lstring attributeTypeName
+    $identifier$ ?var @lstring attributeName
+    $default$
+    <explicit_value> ?var @abstractDefaultValue defaultValue
+    $;$
+    ioAttributeList +=
+      !attributeTypeName
+      !attributeName
+      !defaultValue
+      !needsValidation
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @simpleStoredPropertyList typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+{
+  for () in self do
+    [@unifiedTypeMap-proxy makeProxy
+      !?ioUnifiedTypeMap
+      !mPropertyTypeName
+      ?*
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @simpleStoredPropertyList buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type]
+  #--- Check type
+    @typeKindList typeList
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+      typeList = {!type}
+    case enumType (* *) : # Ok
+      typeList = {!type}
+    case entityType (*) :
+      error mPropertyName: "an entity cannot be used as simple property type" : typeList
+    end
+  #--- Enter in property map
+    [!?ioObservableProperties insertKey
+      !mPropertyName
+      !type
+      !.stored
+      !.single
+      !""
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+method @simpleStoredPropertyList semanticAnalysis
+  ?let @string inSwiftClassName
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@validationStubRoutineListForGeneration ioValidationStubRoutineListForGeneration
+  !@simpleStoredPropertyListForGeneration outSimpleStoredPropertyListForGeneration
+{
+  outSimpleStoredPropertyListForGeneration = {}
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type]
+  #--- Check type
+    @typeKindList typeList
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+      typeList = {!type}
+    case enumType (* *) : # Ok
+      typeList = {!type}
+    case entityType (*) :
+      error mPropertyName: "an entity cannot be used as simple property type" : typeList
+    end
+  #--- Analyze default value
+    [mDefaultValue analyzeDefaultValueType !typeList ?let@string swiftDefaultValueAsString]
+  #--- Code Generation
+    outSimpleStoredPropertyListForGeneration +=
+      !type
+      !mPropertyName.string
+      !swiftDefaultValueAsString
+      !mNeedsValidation
+    if mNeedsValidation then
+      ioValidationStubRoutineListForGeneration +=
+        !inSwiftClassName
+        !mPropertyName.string
+        ![type swiftTypeName]
+    end
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   CODE GENERATION                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @simpleStoredPropertyListForGeneration {
+  @typeKind mType
+  @string mStoredPropertyName
+  @string mDefaultValueInSwift
+  @bool mNeedsValidation
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

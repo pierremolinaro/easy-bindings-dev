@@ -1,0 +1,244 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @prefDeclaration : @astDeclaration {
+  @lstring mPrefsName
+  @outletDeclarationList mOutletDeclarationList
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @transientList mTransientList
+  @lstringlist mActionDeclarationList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <preferences_declaration>
+    ?let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+  {
+    $prefs$
+    $Identifier$ ?let @lstring prefsName
+    ${$
+    var outletDeclarationList =@outletDeclarationList.emptyList{}
+    @simpleStoredPropertyList simpleStoredPropertyList = {}
+    var transientList =@transientList.emptyList{}
+    var actionDeclarationList =@lstringlist.emptyList{}
+    repeat
+    while
+      <action_declaration> !?actionDeclarationList
+    while
+      <simple_stored_declaration> !?simpleStoredPropertyList
+    while
+      <outlet_declaration> !?outletDeclarationList
+    while
+      <transient_declaration> !?transientList
+    end
+    $}$
+    ioDeclarationAST.mDeclarationList += !@prefDeclaration.new {
+      !inIsUserDefined
+      !prefsName
+      !outletDeclarationList
+      !simpleStoredPropertyList
+      !transientList
+      !actionDeclarationList
+    }
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @prefDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+{
+  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
+  [mTransientList typeInventory
+    !"prefs." + mPrefsName
+    !?ioUnifiedTypeMap
+    !?ioTransientDependencyGraph
+  ]
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @prefsObservablePropertyMap {
+  @observablePropertyMap mObservablePropertyMap
+  insert insertKey error message "the '%K' prefs is already declared in %L"
+  search searchKey error message "there is no '%K' prefs"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @prefDeclaration buildObservablePropertyMaps
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@semanticContext ioSemanticContext
+{
+  @observablePropertyMap observablePropertyMap = {}
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Analyze transients
+  [mTransientList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Enter in semantics context  
+  [!?ioSemanticContext.mPrefsObservablePropertyMap insertKey
+    !mPrefsName
+    !observablePropertyMap
+  ]
+}
+
+#......................................................................................................................*
+
+override method @prefDeclaration semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  ?!@structForGeneration ioGeneration
+{
+  [inSemanticContext.mPrefsObservablePropertyMap searchKey
+    !mPrefsName
+    ?let @observablePropertyMap observablePropertyMap
+  ]
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList semanticAnalysis
+    !mPrefsName.string
+    !inSemanticContext.mUnifiedTypeMap
+    !?ioGeneration.mValidationStubRoutineListForGeneration
+    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+  ]
+#--- Analyze transients
+  [mTransientList transientSemanticAnalysis
+    !{} # No root entity
+    !inSemanticContext
+    !observablePropertyMap
+    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
+  ]
+#--- Build action map
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  for () in actionMap do
+    ioGeneration.mActionListForGeneration +=
+      !mPrefsName.string
+      !lkey.string
+  end
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !{} # No root entity
+    !inSemanticContext
+    !mOutletDeclarationList
+    !observablePropertyMap
+    !actionMap
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+  )
+#--- Code generation
+  ioGeneration.mPreferenceListForGeneration +=
+    !mPrefsName.string
+    !simpleStoredPropertyListForGeneration
+    !transientDefinitionListForGeneration
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !actionBindingListForGeneration
+    !outletMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @typeKind preferencesSwiftGetter -> @string outResult {
+  switch self
+  case boolType : outResult = "(value as! NSNumber).boolValue"
+  case integerType : outResult = "(value as! NSNumber).integerValue"
+  case doubleType : outResult = "à compléter preferencesSwiftGetter"
+  case stringType : outResult = "value as! String"
+  case colorType : outResult = "NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor"
+  case dateType : outResult = "value as! NSDate"
+  case enumType (* *) : outResult = "à compléter preferencesSwiftGetter"
+  case entityType (*) :
+    outResult = "<invalid entity type>"
+  end
+}
+
+#......................................................................................................................*
+
+getter @typeKind preferencesSwiftSetter ?let @string inPropertyName -> @string outResult
+{
+  switch self
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop)"
+  case doubleType : outResult = "à compléter preferencesSwiftSetter"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop)"
+  case dateType, stringType : outResult = inPropertyName + ".prop"
+  case enumType (* *) : outResult = "à compléter preferencesSwiftSetter"
+  case entityType (*) :
+    outResult = "<invalid entity type>"
+  end
+}
+
+#......................................................................................................................*
+
+list @preferenceListForGeneration {
+  @string mPreferenceName
+  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
+  @regularBindingsGenerationList mRegularBindingsGenerationList
+  @multipleBindingGenerationList mMultipleBindingGenerationList
+  @actionBindingListForGeneration mActionBindingListForGeneration
+  @decoratedOutletMap mOutletMap
+}
+
+private filewrapper prefsGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template preferencesInSwift "preferences.swift.galgasTemplate"
+    ?@string PREFERENCES_NAME
+    ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@decoratedOutletMap OUTLET_MAP
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generatePreferences
+  ?let @preferenceListForGeneration inPreferenceListForGeneration
+  ?let @string inOutputDirectory
+{
+  for () in inPreferenceListForGeneration do
+    let s = [filewrapper prefsGenerationTemplate.preferencesInSwift
+      !mPreferenceName
+      !mSimpleStoredPropertyListForGeneration
+      !mTransientDefinitionListForGeneration
+      !mOutletMap
+      !mRegularBindingsGenerationList
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !mPreferenceName + ".swift"
+      !s
+    ]
+  end
+}
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

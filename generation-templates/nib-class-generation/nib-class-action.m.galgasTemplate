@@ -1,7 +1,0 @@
-#import "%!PREFERENCES_NAME%-computations.h"
-#import "%!PREFERENCES_NAME%.h"
-
-//----------------------------------------------------------------------------*
-
-void %!ACTION_NAME%_%!PREFERENCES_NAME%_action (%?^!PREFERENCES_NAME% * inPreferencesObject,
-  %!^%id inSender) {

@@ -1,0 +1,87 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+abstract method @astDeclaration buildObservablePropertyMaps
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@semanticContext ioSemanticContext
+
+#......................................................................................................................*
+
+abstract method @astDeclaration semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  ?!@structForGeneration ioGeneration
+
+#......................................................................................................................*
+
+struct @semanticContext {
+  @unifiedTypeMap mUnifiedTypeMap
+  @outletClassMap mOutletClassMap
+  @bindingSpecificationMap mBindingSpecificationMap
+  @prefsObservablePropertyMap mPrefsObservablePropertyMap
+  @documentObservablePropertyMap mDocumentObservablePropertyMap
+  @entityObservablePropertyMap mEntityObservablePropertyMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc semanticAnalysis
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @string unused inSourceFile
+  ?let @astDeclarationStruct inAstDeclarationStruct
+  !@structForGeneration outGeneration
+{
+#--- Build outlet class map
+  [inAstDeclarationStruct.mOutletClassDeclarationList buildOutletClassMap ?let @outletClassMap outletClassMap]
+#--- Build binding specification map
+  buildBindingSpecificationMap (
+    !inUnifiedTypeMap
+    !inAstDeclarationStruct.mBindingSpecificationListMap
+    ?let @bindingSpecificationMap bindingSpecificationMap
+  )
+#--- Semantic context
+  @semanticContext semanticContext = .new {
+    !inUnifiedTypeMap
+    !outletClassMap
+    !bindingSpecificationMap
+    !{}
+    !{}
+    !{}
+  }
+#--- Build obsevable property maps
+  for () in inAstDeclarationStruct.mDeclarationList do
+    [mDeclaration buildObservablePropertyMaps
+      !inUnifiedTypeMap
+      !?semanticContext
+    ]  
+  end
+#--- Semantic analysis of declarations
+  outGeneration = .default
+  for () in inAstDeclarationStruct.mDeclarationList do
+    [mDeclaration semanticAnalysis
+      !semanticContext
+      !?outGeneration
+    ]  
+  end
+#--- Build controller template map
+#  buildControllerTemplateMap (
+#    !inUnifiedTypeMap
+#    !inAstDeclarationStruct.mControllerTemplateList
+#    ?let @bindingSpecificationMap templateControllerMap
+#  )
+##--- Type analysis
+#  if @uint. errorCount == 0 then
+#    typeAnalysis (
+#      !inUnifiedTypeMap
+#      !outletClassMap
+#      !templateControllerMap
+#      ?outGeneration
+#    )
+#  else
+#    outGeneration = @structForGeneration.default
+#  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

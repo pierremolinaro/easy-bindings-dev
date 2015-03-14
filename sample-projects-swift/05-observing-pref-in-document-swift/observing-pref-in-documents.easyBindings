@@ -6,7 +6,7 @@ entity MyRootEntity {
 
 #--------------------------------------------------------------*
 
-preferences MyPrefs {
+prefs MyPrefs {
   property String myPrefString default "pref string" ;
   transient String prefTransientString dependsFrom self.myPrefString ;
 

@@ -1,0 +1,230 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @transientList {
+  @lstring mTransientTypeName
+  @lstring mTransientName
+  @observablePropertyList mDependencyList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <transient_declaration>
+    ?!@transientList ioTransientList {
+    $transient$
+    $Identifier$ ?var @lstring transientTypeName
+    $identifier$ ?let @lstring transientName
+    $dependsFrom$
+    @observablePropertyList dependanceList = {}
+    repeat
+      <observable_property> ?let @observablePropertyAST observablePropertyAST
+      dependanceList += !observablePropertyAST
+    while
+      $,$
+    end
+    $;$
+    ioTransientList += !transientTypeName !transientName !dependanceList
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @transientList typeInventory
+  ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+{
+  for () in self do
+    [@unifiedTypeMap-proxy makeProxy
+      !?ioUnifiedTypeMap
+      !mTransientTypeName
+      ?*
+    ]
+    let slaveProperty = @lstring.new {
+      !inDependencyGraphPrefix + "." + mTransientName
+      !mTransientName.location
+     }
+    [!?ioTransientDependencyGraph addNode
+      !slaveProperty
+      !slaveProperty.string
+      !true # Is transient
+    ]
+    for () in mDependencyList do
+      [mObservableProperty enterInTransientDependencyGraph
+        !inDependencyGraphPrefix
+        !slaveProperty
+        !?ioTransientDependencyGraph
+      ]
+    end
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @transientList buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+  #--- Check type
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+    case enumType (* *) : # Ok
+    case entityType (*) :
+      error mTransientName: "an entity cannot be used as simple property type"
+    end
+  #--- Enter in property map
+    [!?ioObservableProperties insertKey
+      !mTransientName
+      !type
+      !.stored
+      !.single
+      !""
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+method @transientList transientSemanticAnalysis
+  ?let @observablePropertyMap inRootObservableProperties
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservableProperties
+  !@transientDefinitionListForGeneration outTransientDefinitionListForGeneration
+{
+  outTransientDefinitionListForGeneration = {}
+  for () in self do
+  #--- Property type
+    [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+  #--- Check type
+    @typeKindList typeList
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+      typeList = {!type}
+    case enumType (* *) : # Ok
+      typeList = {!type}
+    case entityType (*) :
+      error mTransientName: "an entity cannot be used as simple property type" : typeList
+    end
+  #--- Analyse master properties
+    @transientDependencyListForGeneration dependencies = {}
+    for () in mDependencyList do
+      [mObservableProperty analyzeObservableProperty
+        !inRootObservableProperties
+        !inSemanticContext
+        !inObservableProperties
+        ?* # @typeKind outType
+        ?* # @propertyKind outKind
+        ?@propertyMultiplicity outMultiplicity
+      ]
+      if outMultiplicity != .single then
+        error [mObservableProperty location] : "a simple property is required here"
+      end
+      dependencies += !mObservableProperty
+    end
+  #--- Code generation
+    outTransientDefinitionListForGeneration +=
+      !mTransientName.string
+      !type
+      !dependencies
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPE                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @transientDefinitionListForGeneration {
+  @string mTransientName
+  @typeKind mTransientType
+  @transientDependencyListForGeneration mDependencyList
+}
+
+#......................................................................................................................*
+
+list @transientDependencyListForGeneration {
+  @observablePropertyAST mDependency
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+#getter @observablePropertyAST generateActualParameterForComputeFunction -> @string outResult {
+#  switch self
+#  case controllerProperty (@lstring controllerName @lstring propertyName) : 
+#    outResult = "self." + controllerName.string + "." + propertyName
+#  case selfProperty (@lstring masterName @lstring optionName) :
+#    outResult = "self." + masterName.string
+#    if optionName.string != "" then
+#      outResult += "." + optionName
+#    end
+#  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
+#    outResult = "g_" + prefsName.string + "!." + propertyName
+#    if optionName.string != "" then
+#      outResult += "." + optionName
+#    end
+#  case rootProperty (@lstring masterName) :
+#    outResult = "self.rootObject." + masterName
+#  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
+#    outResult = "self.rootObject." + masterName + "." + optionName
+#  case rootPropertyRelationship (@lstring masterName @lstring optionName) :
+#    outResult = "self.rootObject." + masterName + "." + optionName
+#  end
+#}
+
+#......................................................................................................................*
+
+getter @observablePropertyAST generateAddObserverCall -> @string outResult {
+  switch self
+  case controllerProperty (@lstring controllerName @lstring propertyName) : 
+    outResult = controllerName.string + "." + propertyName + ".addObserver"
+  case selfProperty (@lstring masterName *) :
+    outResult = masterName.string + ".addObserver"
+  case prefsProperty (@lstring prefsName @lstring propertyName *) :
+    outResult = "g_" + prefsName + "?."  + propertyName + ".addObserver"
+  case rootProperty (@lstring masterName) :
+    outResult = "rootObject." + masterName + ".addObserver"
+  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
+    outResult = "rootObject." + masterName + "." + optionName + ".addObserver"
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+    outResult = "self.rootObject." + relationshipName + ".addObserverOf_" + propertyName
+  end
+}
+
+#......................................................................................................................*
+
+getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
+  switch self
+  case controllerProperty (@lstring controllerName @lstring propertyName) : 
+    outResult = controllerName.string + "." + propertyName + ".removeObserver"
+  case selfProperty (@lstring masterName *) :
+    outResult = masterName.string + ".removeObserver"
+  case prefsProperty (@lstring prefsName @lstring propertyName *) :
+    outResult = "g_" + prefsName + "?."  + propertyName + ".removeObserver"
+  case rootProperty (@lstring masterName) :
+    outResult = "rootObject." + masterName + ".removeObserver"
+  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
+    outResult = "rootObject." + masterName + "." + optionName + ".removeObserver"
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+    outResult = "self.rootObject." + relationshipName + ".removeObserverOf_" + propertyName
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

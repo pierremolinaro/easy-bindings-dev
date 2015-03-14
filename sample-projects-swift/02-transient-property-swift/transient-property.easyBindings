@@ -1,4 +1,4 @@
-preferences Prefs {
+prefs Prefs {
   property String mName default "Amédée" ;
   property String mFirstName default "Schmurtz" ;
   transient String mFullName dependsFrom self.mName, self.mFirstName ;

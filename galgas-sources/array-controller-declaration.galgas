@@ -1,0 +1,251 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @arrayControllerBoundColumnListAST {
+  @lstring mColumnName
+  @lstring mColumnOutletTypeName
+  @lstring mObservablePropertyName
+  @bindingOptionList mBindingOptionList
+}
+
+#......................................................................................................................*
+
+list @arrayControllerDeclarationListAST {
+  @lstring mControllerName
+  @lstring mRootRelationshipName
+  @lstring mTableViewOutletName
+  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <array_controller_declaration>
+    ?!@arrayControllerDeclarationListAST ioArrayControllerDeclarationListAST
+  {
+    $arrayController$
+    $identifier$ ?let @lstring controllerName
+    $bind$
+    $root$
+    $.$
+    $identifier$ ?let @lstring relationshipName
+    $to$
+    $identifier$ ?let @lstring tableViewOutletName
+    @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    repeat
+      $column$
+      $literal_string$ ?let columnName
+      $Identifier$ ?let columnOutletTypeName
+      $identifier$ ?let observablePropertyName
+      <binding_option_list> ?let bindingOptions
+      arrayControllerBoundColumnListAST +=
+        !columnName
+        !columnOutletTypeName
+        !observablePropertyName
+        !bindingOptions
+    while
+    end
+    $;$
+    ioArrayControllerDeclarationListAST +=
+      !controllerName
+      !relationshipName
+      !tableViewOutletName
+      !arrayControllerBoundColumnListAST
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @string inRootEntityName
+  ?let @semanticContext inSemanticContext
+  ?let @decoratedOutletMap inOutletMap
+  ?let @observablePropertyMap inObservablePropertyMap
+  !@arrayControllerForGeneration outDocumentArrayControllerForGeneration
+  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
+{
+  outDocumentArrayControllerForGeneration = {}
+  for () in self do
+  #--- Check model is a tomany relationship
+    [inRootObservablePropertyMap searchKey
+      !mRootRelationshipName
+      ?let @typeKind modelType
+      ?let @propertyKind kind
+      ?let @propertyMultiplicity multiplicity
+      ?*
+    ]
+  #--- Check bound model type is an entity
+    @string entityName
+    switch modelType
+    case boolType, colorType, dateType, doubleType, integerType, stringType :
+      error mRootRelationshipName : "the model should be a tomany relationship" : entityName
+    case enumType (* *) :
+      error mRootRelationshipName : "the model should be a tomany relationship" : entityName
+    case entityType (@string kEntityName) :
+      entityName = kEntityName
+    end
+  #--- Check bound model is a collection
+    if multiplicity != .collection then
+      error mRootRelationshipName : "the bound property should be a collection"
+    end
+  #--- Check bound model is stored
+    if kind == .transient then
+      error mRootRelationshipName : "the bound property should be stored (not a transient)"
+    end
+  #--- Check outlet is a PMTableView
+    [inOutletMap searchKey !mTableViewOutletName ?let outletTypeName]
+    if outletTypeName != "PMTableView" then
+      error mTableViewOutletName : "this outlet is not an instance of PMTableView"
+    end
+  #--- Check colum bound models (TODO : get also super entity observable property)
+    [inSemanticContext.mEntityObservablePropertyMap searchKey
+      ![entityName nowhere]
+      ?let @observablePropertyMap boundModelObservablePropertyMap
+    ]
+    @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+    for () in mArrayControllerBoundColumnListAST do
+      [boundModelObservablePropertyMap searchKey
+        !mObservablePropertyName
+        ?let @typeKind columnType
+        ?let @propertyKind columnKind
+        ?let @propertyMultiplicity columnMultiplicity
+        ?* #let @string inverseRelationshipName # "" if not a relationship
+      ]
+    #--- Check bound model type is a simple type
+      switch columnType
+      case boolType, colorType, dateType, doubleType, integerType, stringType : # Ok
+      case enumType (* *) : # Ok
+      case entityType (*) :
+        error [mObservablePropertyName location] : "the model should not be a relationship"
+      end
+      if columnMultiplicity == .collection then
+        error mObservablePropertyName : "the bound column property should not be a collection"
+      end
+      arrayControllerBoundColumnListForGeneration +=
+        !mColumnName.string
+        !mColumnOutletTypeName.string
+        !mObservablePropertyName.string
+        !columnType
+        !mBindingOptionList
+    end
+    outDocumentArrayControllerForGeneration +=
+      !mControllerName.string
+      !inRootEntityName
+      !mRootRelationshipName.string
+      ![modelType swiftTypeName]
+      !mTableViewOutletName.string
+      !arrayControllerBoundColumnListForGeneration
+  end
+  ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @arrayControllerForGeneration {
+  @string mControllerName
+  @string mObjectTypeName
+  @string mTomanyRelationshipName
+  @string mElementTypeName
+  @string mTableViewOutletName
+  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+}
+
+#......................................................................................................................*
+
+list @arrayControllerBoundColumnListForGeneration {
+  @string mColumnName
+  @string mColumnOutletTypeName
+  @string mObservablePropertyName
+  @typeKind mPropertyType
+  @bindingOptionList mBindingOptionList
+}
+
+#......................................................................................................................*
+
+getter @typeKind transformerForTableViewAction ?let @string inSenderOutletName -> @string outResult {
+  switch self
+  case stringType : outResult = inSenderOutletName + ".stringValue"
+  case integerType : outResult = inSenderOutletName + ".integerValue"
+#--- TODO
+  case boolType : outResult = "NSNumber (bool:" + inSenderOutletName + ")"
+  case doubleType : outResult = "NSNumber (double:" + inSenderOutletName + ")"
+  case colorType : outResult = inSenderOutletName + ".stringValue"
+  case dateType : outResult = "NSDate"
+  case enumType (* *) :
+    outResult = "<unhandled enum for transformerForTableViewAction>"
+  case entityType (*) :
+    outResult = "<unhandled entity for transformerForTableViewAction>"
+  end
+}
+
+#......................................................................................................................*
+
+getter @typeKind formatterStringForFormatPrinting -> @string outResult {
+  switch self
+  case stringType : outResult = "%@"
+  case integerType : outResult = "%d"
+  case boolType : outResult = "%d"
+  case doubleType : outResult = "%g"
+  case colorType : outResult = "%@"
+  case dateType : outResult = "%@"
+  case enumType (* *) :
+    outResult = "<internal error enum, formatterStringForFormatPrinting' >"
+  case entityType (*) :
+    outResult = "<internal error entity, formatterStringForFormatPrinting' >"
+  end
+}
+
+#......................................................................................................................*
+
+private filewrapper collectionControllerGenerationTemplate in "../generation-templates/collection-controller-templates" {
+  "txt"
+}{
+}{
+  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
+    ?@string OBJECT_TYPE_NAME
+    ?@string RELATIONSHIP_NAME
+    ?@string ELEMENT_TYPE_NAME
+    ?@string TABLE_VIEW_OUTLET_NAME
+    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@filewrapper FILE_WRAPPER
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateArrayControllers
+  ?let @arrayControllerForGeneration inArrayControllerListForGeneration
+  ?let @string inOutputDirectory {
+  for () in inArrayControllerListForGeneration do
+    let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
+      !mObjectTypeName
+      !mTomanyRelationshipName
+      !mElementTypeName
+      !mTableViewOutletName
+      !mArrayControllerBoundColumnListForGeneration
+      ![filewrapper collectionControllerGenerationTemplate]
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + ".swift"
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -54,7 +54,6 @@ var g_MyPrefs : MyPrefs? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  //--- Register trigger objects
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -67,9 +66,9 @@ var g_MyPrefs : MyPrefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    prefTransientString.computeFunction = {return compute_MyPrefs_prefTransientString (self.self.myPrefString.prop)}
+    prefTransientString.computeFunction = {return compute_MyPrefs_prefTransientString (self.myPrefString.prop)}
   //--- Install property observers for transients
-    myPrefString.addObserver (prefTransientString.event, inTrigger:true)
+    self.myPrefString.addObserver (prefTransientString.event, inTrigger:true)
   //--- Install bindings
     myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
   }

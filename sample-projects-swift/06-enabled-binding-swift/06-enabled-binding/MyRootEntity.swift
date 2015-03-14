@@ -24,8 +24,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   var count = PMTransientProperty_Int ()
 
   func noteModelDidChange () {
-    if (props_cache != nil) {
-      props_cache = nil
+    if (prop_cache != nil) {
+      prop_cache = nil
       count.postEvents ()
     }
   }
@@ -34,18 +34,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   
   private var mSet = Set<MyRootEntity> ()
 
-  var props_cache : Optional <Array<MyRootEntity> >
+  var prop_cache : Optional <Array<MyRootEntity> >
 
-  var props : Array<MyRootEntity> {
+  var prop : Array<MyRootEntity> {
     get {
-      if props_cache == nil {
+      if prop_cache == nil {
         if let unwrappedComputeFunction = computeFunction {
-          props_cache = unwrappedComputeFunction ()
+          prop_cache = unwrappedComputeFunction ()
         }
-        if props_cache == nil {
-          props_cache = Array<MyRootEntity> ()
+        if prop_cache == nil {
+          prop_cache = Array<MyRootEntity> ()
         }
-        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        let newObjectSet = Set<MyRootEntity> (prop_cache!)
         if mSet != newObjectSet {
         //--- Removed object set
           var removedObjectSet = mSet
@@ -67,7 +67,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           mSet = newObjectSet
         }
       }
-      return props_cache!
+      return prop_cache!
     }
   }
 
@@ -78,14 +78,14 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   func addObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_docBool.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.docBool.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.docBool.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }

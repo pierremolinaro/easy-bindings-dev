@@ -1,5 +1,5 @@
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  AST                                                                                                                 *
+#   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 list @controllerBindingOptionList {
@@ -7,14 +7,14 @@ list @controllerBindingOptionList {
   @lstring mOptionTypeName
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
 list @outletClassBindingSpecificationModelList {
   @lstring mModelTypeName
   @bool mModelShouldBeWritableProperty
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
 list @outletClassBindingSpecificationList {
   @bool mIsUserDefined
@@ -23,16 +23,18 @@ list @outletClassBindingSpecificationList {
   @controllerBindingOptionList mBindingOptionList
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
 listmap @bindingSpecificationListMap (@outletClassBindingSpecificationList)
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  SYNTAX                                                                                                              *
+#   SYNTAX                                                                                                             *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 syntax extension easyBindings_syntax {
 
+  #....................................................................................................................*
+  
   rule <binding_specification>
     ?let @bool inIsUserDefined
     ?!@bindingSpecificationListMap ioControllerTemplateList
@@ -51,7 +53,13 @@ syntax extension easyBindings_syntax {
         $transient$
         modelShouldBeWritableProperty = false
       end
-      $Identifier$ ?let @lstring modelTypeName
+      @lstring modelTypeName
+      select
+        $Identifier$ ?modelTypeName
+      or
+        $enum$
+        modelTypeName = .new {!"enum" !.here}
+      end
       outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
     while
       $,$
@@ -79,6 +87,8 @@ syntax extension easyBindings_syntax {
       !bindingOptionList
   }
 
+  #....................................................................................................................*
+
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -91,42 +101,49 @@ map @bindingSpecificationMap {
   search searchKey error message "there is no '%K' binding"
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
 list @outletBindingSpecificationModelList {
-  @unifiedTypeMap-proxy mModelTypeProxy
+  @typeKind mModelType
   @bool mModelShouldBeWritableProperty
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
+
+list @controllerBindingOptionDecoratedList {
+  @typeKind mOptionType
+  @lstring mOptionName
+}
+
+#......................................................................................................................*
 
 map @outletBindingSpecificationMap {
   @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
-  @controllerBindingOptionDecoratedList mControllerBindingOptionDecoratedList
+  @controllerBindingOptionDecoratedList mControllerBindingOptionList
   insert insertKey error message "the '%K' binding is already declared in %L"
   search searchKey error message "there is no '%K' binding"
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
-proc buildControllerTemplateMap
+proc buildBindingSpecificationMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @bindingSpecificationListMap inBindingSpecificationListMap
-  !@bindingSpecificationMap outTemplateControllerMap
+  !@bindingSpecificationMap outBindingSpecificationMap
 {
-  outTemplateControllerMap = {}
+  outBindingSpecificationMap = {}
   for (key bindingList) in inBindingSpecificationListMap do
     @outletBindingSpecificationMap outletBindingSpecificationMap = {}
     for () in bindingList do
       @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
       for () in mOutletClassBindingSpecificationModelList do
-        let modelTypeProxy = @unifiedTypeMap-proxy.searchKey { !inUnifiedTypeMap !mModelTypeName}
-        outletBindingSpecificationModelList += !modelTypeProxy !mModelShouldBeWritableProperty
+        [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type]
+        outletBindingSpecificationModelList += !type !mModelShouldBeWritableProperty
       end
       @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
       for () in mBindingOptionList do
-        let bindingOptionTypeProxy = @unifiedTypeMap-proxy. searchKey { !inUnifiedTypeMap !mOptionTypeName}
-        controllerBindingOptionDecoratedList += !mOptionName !bindingOptionTypeProxy
+        [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type]
+        controllerBindingOptionDecoratedList += !type !mOptionName
       end
       [!?outletBindingSpecificationMap insertKey
         !mBindingName
@@ -134,7 +151,7 @@ proc buildControllerTemplateMap
         !controllerBindingOptionDecoratedList
       ]
     end
-    [!?outTemplateControllerMap insertKey
+    [!?outBindingSpecificationMap insertKey
       ![key nowhere]
       !outletBindingSpecificationMap
     ]
@@ -142,4 +159,3 @@ proc buildControllerTemplateMap
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
