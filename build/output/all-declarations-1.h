@@ -1106,6 +1106,189 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                               @arrayControllerMap map                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cMapElement_arrayControllerMap ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * kSearchErrorMessage_arrayControllerMap_searchKey ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerMap : public AC_GALGAS_map {
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerMap (void) ;
+
+//--------------------------------- Handle copy
+  public : GALGAS_arrayControllerMap (const GALGAS_arrayControllerMap & inSource) ;
+  public : GALGAS_arrayControllerMap & operator = (const GALGAS_arrayControllerMap & inSource) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerMap extractObject (const GALGAS_object & inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerMap constructor_emptyMap (LOCATION_ARGS) ;
+
+  public : static GALGAS_arrayControllerMap constructor_mapWithMapToOverride (const class GALGAS_arrayControllerMap & inOperand0
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertKey (class GALGAS_lstring constinArgument0,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerMap reader_overriddenMap (C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public : VIRTUAL_IN_DEBUG cMapElement_arrayControllerMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                                const GALGAS_string & inKey
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
+
+  friend class cEnumerator_arrayControllerMap ;
+ 
+} ; // End of GALGAS_arrayControllerMap class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_arrayControllerMap : public cGenericAbstractEnumerator {
+  public : cEnumerator_arrayControllerMap (const GALGAS_arrayControllerMap & inEnumeratedObject,
+                                           const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_arrayControllerMap_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMap ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   Class for element of '@arrayControllerMap' map                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cMapElement_arrayControllerMap : public cMapElement {
+//--- Map attributes
+
+//--- Constructor
+  public : cMapElement_arrayControllerMap (const GALGAS_lstring & inKey
+                                           COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cMapElement * copy (void) ;
+
+//--- Description
+ public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @arrayControllerMap_2D_element struct                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerMap_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_lstring mAttribute_lkey ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_arrayControllerMap_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerMap_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerMap_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerMap_2D_element (const GALGAS_lstring & in_lkey) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerMap_2D_element extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerMap_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_lkey (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerMap_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMap_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                           @arrayControllerBoundColumnListForGeneration_2D_element struct                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2501,6 +2684,56 @@ void routine_generatePreferences (const class GALGAS_preferenceListForGeneration
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                         Filewrapper 'outletClassGeneration'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * gWrapperFileContent_0_outletClassGeneration ;
+extern const char * gWrapperFileContent_1_outletClassGeneration ;
+extern const char * gWrapperFileContent_2_outletClassGeneration ;
+extern const char * gWrapperFileContent_3_outletClassGeneration ;
+extern const char * gWrapperFileContent_4_outletClassGeneration ;
+extern const char * gWrapperFileContent_5_outletClassGeneration ;
+extern const char * gWrapperFileContent_6_outletClassGeneration ;
+extern const char * gWrapperFileContent_7_outletClassGeneration ;
+extern const char * gWrapperFileContent_8_outletClassGeneration ;
+extern const char * gWrapperFileContent_9_outletClassGeneration ;
+extern const char * gWrapperFileContent_10_outletClassGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cRegularFileWrapper gWrapperFile_0_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_1_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_2_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_3_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_4_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_5_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_6_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_7_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_9_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_10_outletClassGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_outletClassGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Routine 'generateOutletClasses'                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateOutletClasses (const class GALGAS_stringset constinArgument0,
+                                    const class GALGAS_string constinArgument1,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2522,11 +2755,12 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
                              const class GALGAS_outletDeclarationList constinArgument2,
                              const class GALGAS_observablePropertyMap constinArgument3,
                              const class GALGAS_actionMap constinArgument4,
-                             class GALGAS_structForGeneration & ioArgument5,
-                             class GALGAS_regularBindingsGenerationList & outArgument6,
-                             class GALGAS_multipleBindingGenerationList & outArgument7,
-                             class GALGAS_actionBindingListForGeneration & outArgument8,
-                             class GALGAS_decoratedOutletMap & outArgument9,
+                             const class GALGAS_arrayControllerMap constinArgument5,
+                             class GALGAS_structForGeneration & ioArgument6,
+                             class GALGAS_regularBindingsGenerationList & outArgument7,
+                             class GALGAS_multipleBindingGenerationList & outArgument8,
+                             class GALGAS_actionBindingListForGeneration & outArgument9,
+                             class GALGAS_decoratedOutletMap & outArgument10,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 

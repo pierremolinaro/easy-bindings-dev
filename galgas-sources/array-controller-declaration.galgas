@@ -64,8 +64,28 @@ syntax extension easyBindings_syntax {
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPE                                                                                                      *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @arrayControllerMap {
+  insert insertKey error message "the '%K' array controller is already declared"
+  search searchKey error message "the '%K' array controller is not declared"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @arrayControllerDeclarationListAST buildArrayControllerMap
+  !@arrayControllerMap outArrayControllerMap
+{
+  outArrayControllerMap = {}
+  for () in self do
+    [!?outArrayControllerMap insertKey !mControllerName]
+  end
+}
+
+#......................................................................................................................*
 
 method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
   ?let @observablePropertyMap inRootObservablePropertyMap

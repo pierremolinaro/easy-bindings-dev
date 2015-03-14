@@ -34,10 +34,10 @@ proc generateCode
     !inGeneration.mPreferenceListForGeneration
     !outputDirectory
   )
-#  generateOutletClasses (
-#    !inGeneration.mNeededOutletClasses
-#    !outputDirectory
-#  )
+  generateOutletClasses (
+    !inGeneration.mNeededOutletClasses
+    !outputDirectory
+  )
   generateEntities (
     !inGeneration.mEntityListForGeneration
     !outputDirectory
