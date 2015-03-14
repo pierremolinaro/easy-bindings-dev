@@ -487,6 +487,7 @@ void categoryMethod_buildArrayControllerMap (const class GALGAS_arrayControllerD
 //---------------------------------------------------------------------------------------------------------------------*
 
 void categoryMethod_arrayControllerSemanticAnalysis (const class GALGAS_arrayControllerDeclarationListAST inObject,
+                                                     const class GALGAS_string constin_inOwnerName,
                                                      const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
                                                      const class GALGAS_string constin_inRootEntityName,
                                                      const class GALGAS_semanticContext constin_inSemanticContext,

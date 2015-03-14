@@ -90,6 +90,7 @@ import Cocoa
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

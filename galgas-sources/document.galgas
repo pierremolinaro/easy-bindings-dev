@@ -172,6 +172,7 @@ override method @documentDeclaration semanticAnalysis
   )
 #--- Analyze array controllers
   [mArrayControllerDeclarationList arrayControllerSemanticAnalysis
+    !mDocumentName.string
     !rootObservablePropertyMap
     !mRootEntityName.string
     !inSemanticContext

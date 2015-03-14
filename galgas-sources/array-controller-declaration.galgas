@@ -88,6 +88,7 @@ method @arrayControllerDeclarationListAST buildArrayControllerMap
 #......................................................................................................................*
 
 method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
+  ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @string inRootEntityName
   ?let @semanticContext inSemanticContext
@@ -161,6 +162,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
         !mBindingOptionList
     end
     outDocumentArrayControllerForGeneration +=
+      !inOwnerName
       !mControllerName.string
       !inRootEntityName
       !mRootRelationshipName.string
@@ -176,9 +178,10 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 list @arrayControllerForGeneration {
+  @string mOwnerName # document name, prefs name, ...
   @string mControllerName
-  @string mObjectTypeName
-  @string mTomanyRelationshipName
+  @string mRelationshipTypeName
+  @string mToManyRelationshipName
   @string mElementTypeName
   @string mTableViewOutletName
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
@@ -236,8 +239,10 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
 }{
 }{
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
-    ?@string OBJECT_TYPE_NAME
+    ?@string OWNER_NAME
+    ?@string ARRAY_CONTROLLER_NAME
     ?@string RELATIONSHIP_NAME
+    ?@string RELATIONSHIP_TYPE_NAME
     ?@string ELEMENT_TYPE_NAME
     ?@string TABLE_VIEW_OUTLET_NAME
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
@@ -253,8 +258,10 @@ proc generateArrayControllers
   ?let @string inOutputDirectory {
   for () in inArrayControllerListForGeneration do
     let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
-      !mObjectTypeName
-      !mTomanyRelationshipName
+      !mOwnerName
+      !mControllerName
+      !mToManyRelationshipName
+      !mRelationshipTypeName
       !mElementTypeName
       !mTableViewOutletName
       !mArrayControllerBoundColumnListForGeneration
@@ -262,7 +269,7 @@ proc generateArrayControllers
     ]
     [@string generateFile
       !inOutputDirectory
-      !"arrayController-" + mObjectTypeName + "-" +  mTomanyRelationshipName + ".swift"
+      !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
       !s
     ]
   end
