@@ -28,10 +28,10 @@ var g_PMPrefs : PMPrefs? = nil
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  var myString = PMStoredProperty_String ("hello")
   var mColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
   var mDate = PMStoredProperty_NSDate (NSDate ())
   var mIntegerValue = PMStoredProperty_Int (123)
-  var myString = PMStoredProperty_String ("hello")
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
@@ -53,6 +53,10 @@ var g_PMPrefs : PMPrefs? = nil
     var ud = NSUserDefaults.standardUserDefaults ()
   //---
     var value : AnyObject?
+    value = ud.objectForKey ("PMPrefs:myString")
+    if value != nil {
+      myString.setProp (value as! String)
+    }
     value = ud.objectForKey ("PMPrefs:mColor")
     if value != nil {
       mColor.setProp (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
@@ -65,10 +69,6 @@ var g_PMPrefs : PMPrefs? = nil
     if value != nil {
       mIntegerValue.setProp ((value as! NSNumber).integerValue)
     }
-    value = ud.objectForKey ("PMPrefs:myString")
-    if value != nil {
-      myString.setProp (value as! String)
-    }
   //--- Property validation function
     mIntegerValue.validationFunction = self.validate_mIntegerValue
   //---
@@ -77,7 +77,6 @@ var g_PMPrefs : PMPrefs? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  //--- Register trigger objects
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -124,15 +123,15 @@ var g_PMPrefs : PMPrefs? = nil
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
-    mContinousColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:true)
-    mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
-    mInteger32ObserverTextField?.bind_readOnlyValue (self.mIntegerValue, file:__FILE__, line:__LINE__)
-    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
-    mObserverColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
-    myObserverTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
-    myOtherTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:true)
     myTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
+    myOtherTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:true)
+    myObserverTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
+    mContinousColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:true)
+    mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    mObserverColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
+    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
+    mInteger32ObserverTextField?.bind_readOnlyValue (self.mIntegerValue, file:__FILE__, line:__LINE__)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -141,10 +140,10 @@ var g_PMPrefs : PMPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (myString.prop, forKey:"PMPrefs:myString")
     ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop), forKey:"PMPrefs:mColor")
     ud.setObject (mDate.prop, forKey:"PMPrefs:mDate")
     ud.setObject (NSNumber (integer:mIntegerValue.prop), forKey:"PMPrefs:mIntegerValue")
-    ud.setObject (myString.prop, forKey:"PMPrefs:myString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

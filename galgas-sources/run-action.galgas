@@ -1,0 +1,98 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum @runActionDescriptor {
+  case noAction 
+  case action (@lstring target  @lstring action)
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <action_declaration>
+    ?!@lstringlist ioActionDeclarationList {
+    $action$
+    $identifier$ ?let @lstring actionName
+    $;$
+    ioActionDeclarationList += !actionName
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @actionMap {
+  insert insertKey error message "there is already a '%K' action"
+  search searchKey error message "the '%K' action is not defined"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ACTIONS                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc buildActionMap
+  ?let @lstringlist inActionDeclarationList
+  !@actionMap outActionMap
+{
+  outActionMap = {}
+  for () in inActionDeclarationList do
+    [!?outActionMap insertKey !mValue]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @actionListForGeneration {
+  @string mClassName
+  @string mActionName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   CODE GENERATION                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateActions
+  ?let @string inSourceFile
+  ?let @actionListForGeneration inActionListForGeneration
+{
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  for () in inActionListForGeneration do
+    let s = [filewrapper actionGenerationTemplate.actionGeneration
+      !mClassName
+      !mActionName
+    ]
+    [@string generateFileWithPattern
+      !outputDirectory
+      !mClassName + "+action+" + mActionName + ".swift"
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"    ENTER USER CODE HERE\n" # Defaut user zone2
+      !"  }\n}\n\n//----------------------------------------------------------------------------*\n"
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+filewrapper actionGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template actionGeneration "action-extension.swift.galgasTemplate"
+    ?@string EXTENDED_CLASS_NAME
+    ?@string ACTION_NAME
+ }
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

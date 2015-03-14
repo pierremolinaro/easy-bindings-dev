@@ -1,0 +1,398 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+abstract class @abstractDefaultValue {
+}
+
+#......................................................................................................................*
+
+class @boolAsDefaultValue : @abstractDefaultValue {
+  @lbool mValue
+}
+
+#......................................................................................................................*
+
+class @doubleAsDefaultValue : @abstractDefaultValue {
+  @ldouble mValue
+}
+
+#......................................................................................................................*
+
+class @integerAsDefaultValue : @abstractDefaultValue {
+  @luint mValue
+}
+
+#......................................................................................................................*
+
+class @stringAsDefaultValue : @abstractDefaultValue {
+  @lstring mValue
+}
+
+#......................................................................................................................*
+
+class @identifierAsDefaultValue : @abstractDefaultValue {
+  @lstring mValue
+}
+
+#......................................................................................................................*
+
+list @defaultValueList {
+  @abstractDefaultValue mDefaultValue
+}
+
+#......................................................................................................................*
+
+class @listAsDefaultValue : @abstractDefaultValue {
+  @location mStartLocation
+  @defaultValueList mDefaultValueList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+   rule <explicit_value>
+    !@abstractDefaultValue outDefaultValue {
+    select
+      $yes$
+      outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !true !@location.here}}
+    or
+      $no$
+      outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !false !@location.here}}
+    or
+      $literal_integer$ ?var  @luint integerValue
+      outDefaultValue = @integerAsDefaultValue. new { !integerValue}
+    or
+      $literal_double$ ?var  @ldouble doubleValue ?*
+      outDefaultValue = @doubleAsDefaultValue. new { !doubleValue}
+    or
+      $literal_string$ ?var @lstring stringValue
+      outDefaultValue = @stringAsDefaultValue. new { !stringValue}
+    or
+      $identifier$ ?let @lstring stringValue
+      outDefaultValue = @identifierAsDefaultValue. new { !stringValue}
+    or
+      $($
+      let @location startLocation = @location.here
+      var defaultValueList =@defaultValueList.emptyList{}
+      repeat
+        <explicit_value> ?var @abstractDefaultValue defaultValue
+        defaultValueList += !defaultValue
+      while
+        $,$
+      end
+      $)$
+      outDefaultValue = @listAsDefaultValue. new { !startLocation !defaultValueList}
+    end
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTICS                                                                                                          *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+abstract method @abstractDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+
+#......................................................................................................................*
+  
+override method @boolAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+{
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+  for () in  inAttributeActualTypeList while not found do
+    switch mType
+    case boolType :
+      outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
+      found = true
+    case integerType, colorType, dateType, doubleType, stringType :
+    case entityType (*) :
+    case enumType (* *) :
+    end
+  end
+  if not found then
+    error mValue
+    : "only a boolean attribute can be initialized by YES or NO"  
+  end
+}
+
+#......................................................................................................................*
+  
+override method @integerAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+{
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+  for () in  inAttributeActualTypeList while not found do
+    switch mType
+    case integerType :
+      outSwiftDefaultValueAsString = [mValue.uint string]
+      found = true
+    case boolType, colorType, dateType, doubleType, stringType :
+    case entityType (*) :
+    case enumType (* *) :
+    end
+  end
+  if not found then
+    error mValue
+    : "only an integer attribute can be initialized by an integer constant"  
+  end
+}
+
+#......................................................................................................................*
+  
+override method @doubleAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+{
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+  for () in  inAttributeActualTypeList while not found do
+    switch mType
+    case doubleType :
+      outSwiftDefaultValueAsString = [mValue.double string]
+      found = true
+    case boolType, colorType, dateType, integerType, stringType :
+    case entityType (*) :
+    case enumType (* *) :
+    end
+  end
+  if not found then
+    error mValue
+    : "only a double attribute can be initialized by a floating point constant"  
+  end
+}
+
+#......................................................................................................................*
+  
+override method @stringAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+{
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+  for () in  inAttributeActualTypeList while not found do
+    switch mType
+    case stringType :
+      outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
+      found = true
+    case boolType, colorType, dateType, integerType, doubleType :
+    case entityType (*) :
+    case enumType (* *) :
+    end
+  end
+  if not found then
+    error mValue
+    : "only a string attribute can be initialized by a string constant"  
+  end
+}
+
+#......................................................................................................................*
+
+func %once predefinedColors -> @stringset outResult {
+  outResult = @stringset. emptySet
+  outResult += !"blackColor"
+  outResult += !"blueColor"
+  outResult += !"brownColor"
+  outResult += !"clearColor"
+  outResult += !"controlColor"
+  outResult += !"controlDarkShadowColor"
+  outResult += !"controlHighlightColor"
+  outResult += !"controlLightHighlightColor"
+  outResult += !"controlShadowColor"
+  outResult += !"controlTextColor"
+  outResult += !"cyanColor"
+  outResult += !"darkGrayColor"
+  outResult += !"disabledControlTextColor"
+  outResult += !"grayColor"
+  outResult += !"greenColor"
+  outResult += !"gridColor"
+  outResult += !"headerColor"
+  outResult += !"headerTextColor"
+  outResult += !"highlightColor"
+  outResult += !"keyboardFocusIndicatorColor"
+  outResult += !"knobColor"
+  outResult += !"lightGrayColor"
+  outResult += !"magentaColor"
+  outResult += !"orangeColor"
+  outResult += !"purpleColor"
+  outResult += !"redColor"
+  outResult += !"scrollBarColor"
+  outResult += !"selectedControlColor"
+  outResult += !"selectedControlTextColor"
+  outResult += !"selectedKnobColor"
+  outResult += !"selectedMenuItemColor"
+  outResult += !"selectedMenuItemTextColor"
+  outResult += !"selectedTextBackgroundColor"
+  outResult += !"selectedTextColor"
+  outResult += !"shadowColor"
+  outResult += !"textBackgroundColor"
+  outResult += !"textColor"
+  outResult += !"whiteColor"
+  outResult += !"windowBackgroundColor"
+  outResult += !"windowFrameColor"
+  outResult += !"windowFrameTextColor"
+  outResult += !"yellowColor"
+}
+
+#......................................................................................................................*
+
+func %once predefinedDates -> @stringset outResult {
+  outResult = @stringset. emptySet
+  outResult += !"date"
+}
+
+#......................................................................................................................*
+  
+override method @identifierAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString
+{
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+  for () in  inAttributeActualTypeList while not found do
+    switch mType 
+    case colorType :
+      found = true
+      if [predefinedColors () hasKey !mValue.string] then
+        outSwiftDefaultValueAsString = "NSColor." + mValue.string + " ()"
+      else
+        error mValue
+        : "unknown predefined color"  
+      end
+    case dateType :
+      found = true
+      if [predefinedDates () hasKey !mValue.string] then
+        outSwiftDefaultValueAsString = "NSDate ()"
+      else
+        error mValue : "unknown predefined date"  
+      end
+    case enumType (@string enumTypeName @enumConstantMap constantMap) :
+      found = true
+      if [constantMap hasKey !mValue.string] then
+        outSwiftDefaultValueAsString = enumTypeName + "." + mValue.string
+      else
+        error mValue
+        : "the '" + enumTypeName + "' enumeration does not define '" + mValue + "' constant"
+        : outSwiftDefaultValueAsString  
+      end
+    case entityType (*) :
+      error mValue : "invalid entity type"  
+    case boolType :
+      error mValue : "invalid bool type"  
+    case doubleType :
+      error mValue : "invalid double type"  
+    case integerType :
+      error mValue : "invalid integer type"  
+    case stringType :
+      error mValue : "invalid string type"  
+    end
+  end
+  if not found then
+    error mValue
+    : "unknow type for this identifier"  
+  end
+}
+
+#......................................................................................................................*
+
+func %once predefinedFonts -> @stringset outResult {
+  outResult = @stringset. emptySet
+  outResult += !"boldSystemFontOfSize"
+  outResult += !"controlContentFontOfSize"
+  outResult += !"labelFontOfSize"
+  outResult += !"menuFontOfSize"
+  outResult += !"menuBarFontOfSize"
+  outResult += !"messageFontOfSize"
+  outResult += !"paletteFontOfSize"
+  outResult += !"systemFontOfSize"
+  outResult += !"titleBarFontOfSize"
+  outResult += !"toolTipsFontOfSize"
+}
+
+#......................................................................................................................*
+ 
+override method @listAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList unused inAttributeActualTypeList
+  !@string outSwiftDefaultValueAsString {
+  outSwiftDefaultValueAsString = ""
+  @bool found = false
+#  foreach inAttributeActualTypeList while not found do
+#    if [mType mTypeKind] == [@typeKind structType] then
+#      found := true ;
+#      ioFileInclusionSet->mHeaderFileInclusionSet += ![mType ebTypeName] ;
+#      [inContextAnalysisStruct->mStructTypeMap searchKey
+#        !mType->mTypeName
+#        ?@structFieldList fieldList
+#      ] ;
+#      if [mDefaultValueList length] != [fieldList length] then
+#        error mStartLocation : "the '" . [mType ebTypeName] . "' struct needs " . [fieldList length] . " values for initialization" ;
+#      else
+#        outDirectDefaultValueAsString := "make" . [mType ebTypeName] . " (" ;
+#        foreach mDefaultValueList, fieldList
+#        do
+#          [mDefaultValue analyzeDefaultValueType
+#            ![@EXebTypeList listWithValue !mFieldType]
+#            !inContextAnalysisStruct
+#            ?@string directDefaultValueAsString
+#            ?2*
+#            !?ioFileInclusionSet
+#          ] ;
+#          outDirectDefaultValueAsString .= directDefaultValueAsString ;
+#        between
+#          outDirectDefaultValueAsString .= ", " ;
+#        end foreach ; 
+#        outDirectDefaultValueAsString .= ")" ;     
+#      end if ;
+#    elsif mType->mKind == [@EXTypeKind fontType] then
+#      found := true ;
+#      const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
+#      if [mDefaultValueList length] != 2 then
+#        error mStartLocation : errorMessage ; 
+#      else
+#        const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
+#        const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
+#        @identifierAsDefaultValue fontName ;
+#        if (v0 is == @identifierAsDefaultValue) then 
+#          fontName := (cast v0 : @identifierAsDefaultValue) ;
+#        else
+#          error mStartLocation : errorMessage : fontName ;
+#        end if ;
+#        @integerAsDefaultValue fontSize ;
+#        if (v1 is == @integerAsDefaultValue) then 
+#          fontSize := (cast v1 : @integerAsDefaultValue) ;
+#        else
+#          error mStartLocation : errorMessage : fontSize ;
+#        end if ;
+#        if [predefinedFonts [] hasKey ![fontName mValue]->string] then
+#          outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
+#          outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
+#          outSwiftDefaultValueAsString := "NSFont (" . [fontName mValue]->string . ", " . [[fontSize mValue]->uint string] . ")" ;
+#        else
+#          error [fontName mValue]
+#          : "unknown predefined font name"
+#          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
+#          ;  
+#        end if ;
+#      end if ;
+#    end if ;
+#  end foreach ;
+  if not found then
+    error mStartLocation
+    : "invalid initialization value"  
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

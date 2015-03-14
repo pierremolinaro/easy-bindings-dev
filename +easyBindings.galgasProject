@@ -1,57 +1,35 @@
-project (0:0:1) -> "easyBindings"{
+project (0:0:1) -> "easyBindings" {
   %makefile-macosx
   %Mavericks
   %applicationBundleBase : "fr.irccyn"
 
-  "galgas-sources/easyBindings_lexique.galgas"
-  "galgas-sources/abstractSyntaxTypes.galgas"
-  "galgas-sources/easyBindings_options.galgas"
-  "galgas-sources/easyBindings_syntax.galgas"
-  "galgas-sources/easyBindings_grammar.galgas"
-  "galgas-sources/easyBindings_cocoa.galgas"
-
-  "galgas-sources/decoratedTypes.galgas"
+#--- Source files
+  "galgas-sources/lexique.galgas"
+  "galgas-sources/options.galgas"
+  "galgas-sources/grammar-syntax.galgas"
+  "galgas-sources/easyBindings-cocoa.galgas"
+  "galgas-sources/program.galgas"
   
-  "galgas-sources/typeInventory.galgas"
-  
-  "galgas-sources/typeAnalysis.galgas"
-  
-  "galgas-sources/enumGeneration.galgas"
-
-  "galgas-sources/structAnalysis.galgas"
-  "galgas-sources/structGeneration.galgas"
-
-  "galgas-sources/bindingSemanticAnalysis.galgas"
-
-  "galgas-sources/classAnalysis.galgas"
-  "galgas-sources/classGeneration.galgas"
-
-  "galgas-sources/nibClassAnalysis.galgas"
-  "galgas-sources/nibClassGeneration.galgas"
-
-  "galgas-sources/preferencesGeneration.galgas"
-
-  "galgas-sources/entityGeneration.galgas"
-
-  "galgas-sources/documentGeneration.galgas"
-  
-  "galgas-sources/arrayControllerGeneration.galgas"
-  
+  "galgas-sources/enumeration.galgas"
+  "galgas-sources/document.galgas"
+  "galgas-sources/entity.galgas"
+  "galgas-sources/preferences.galgas"
   "galgas-sources/outlet-class.galgas"
-
-  "galgas-sources/outlet-declaration.galgas"
-
   "galgas-sources/binding-specification.galgas"
-
-  "galgas-sources/controllerClassAnalysis.galgas"
-
-  "galgas-sources/transientAnalysis.galgas"
-  "galgas-sources/transientGeneration.galgas"
-
-  "galgas-sources/actionGeneration.galgas"
-
-  "galgas-sources/validationRoutineStubGeneration.galgas"
-
-  "galgas-sources/easyBindings_program.galgas"
+  "galgas-sources/outlet-declaration.galgas"
+  "galgas-sources/observable-property.galgas"
+  "galgas-sources/explicit-default-value.galgas"
+  "galgas-sources/run-action.galgas"
+  "galgas-sources/multiple-binding.galgas"
+  "galgas-sources/regular-binding.galgas"
+  "galgas-sources/transient-property.galgas"
+  "galgas-sources/simple-stored-property.galgas"
+  "galgas-sources/array-controller-declaration.galgas"
+  "galgas-sources/relationships.galgas"
+  "galgas-sources/unified-type.galgas"
+  "galgas-sources/semantic-analysis.galgas"
+  "galgas-sources/code-generation.galgas"
+  "galgas-sources/property-validation-stub-routine.galgas"
 }
+
 

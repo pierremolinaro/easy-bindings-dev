@@ -24,8 +24,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   var count = PMTransientProperty_Int ()
 
   func noteModelDidChange () {
-    if (props_cache != nil) {
-      props_cache = nil
+    if (prop_cache != nil) {
+      prop_cache = nil
       count.postEvents ()
     }
   }
@@ -34,18 +34,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   
   private var mSet = Set<MyRootEntity> ()
 
-  var props_cache : Optional <Array<MyRootEntity> >
+  var prop_cache : Optional <Array<MyRootEntity> >
 
-  var props : Array<MyRootEntity> {
+  var prop : Array<MyRootEntity> {
     get {
-      if props_cache == nil {
+      if prop_cache == nil {
         if let unwrappedComputeFunction = computeFunction {
-          props_cache = unwrappedComputeFunction ()
+          prop_cache = unwrappedComputeFunction ()
         }
-        if props_cache == nil {
-          props_cache = Array<MyRootEntity> ()
+        if prop_cache == nil {
+          prop_cache = Array<MyRootEntity> ()
         }
-        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        let newObjectSet = Set<MyRootEntity> (prop_cache!)
         if mSet != newObjectSet {
         //--- Removed object set
           var removedObjectSet = mSet
@@ -67,7 +67,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           mSet = newObjectSet
         }
       }
-      return props_cache!
+      return prop_cache!
     }
   }
 
@@ -78,14 +78,14 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   func addObserverOf_docString (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_docString.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.docString.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_docString (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_docString.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.docString.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
@@ -110,8 +110,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var otherTransientConcatString = PMTransientProperty_String ()
   var transientConcatString = PMTransientProperty_String ()
+  var otherTransientConcatString = PMTransientProperty_String ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
@@ -125,13 +125,13 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    otherTransientConcatString.computeFunction = {return compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop)}
     transientConcatString.computeFunction = {return compute_MyRootEntity_transientConcatString (self.docString.prop, g_MyPrefs!.myPrefString.prop, g_MyPrefs!.prefTransientString.prop)}
+    otherTransientConcatString.computeFunction = {return compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop)}
   //--- Install property observers for transients
-    g_MyPrefs?.myPrefString.addObserver (otherTransientConcatString.event, inTrigger:true)
     docString.addObserver (transientConcatString.event, inTrigger:true)
     g_MyPrefs?.myPrefString.addObserver (transientConcatString.event, inTrigger:true)
     g_MyPrefs?.prefTransientString.addObserver (transientConcatString.event, inTrigger:true)
+    g_MyPrefs?.myPrefString.addObserver (otherTransientConcatString.event, inTrigger:true)
   //--- Install undoers for properties
     docString.undoManager = undoManager
   //--- Install owner for relationships
@@ -144,13 +144,13 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   override func prepareForDeletion () {
     super.prepareForDeletion ()
   //--- Remove transients observers
-    g_MyPrefs?.myPrefString.removeObserver (otherTransientConcatString.event, inTrigger:false)
     docString.removeObserver (transientConcatString.event, inTrigger:false)
     g_MyPrefs?.myPrefString.removeObserver (transientConcatString.event, inTrigger:false)
     g_MyPrefs?.prefTransientString.removeObserver (transientConcatString.event, inTrigger:false)
+    g_MyPrefs?.myPrefString.removeObserver (otherTransientConcatString.event, inTrigger:false)
   //--- Uninstall compute functions for transients
-    otherTransientConcatString.computeFunction = nil
     transientConcatString.computeFunction = nil
+    otherTransientConcatString.computeFunction = nil
   //--- Uninstall undoers for properties
     docString.undoManager = nil
   //--- Reset relationships

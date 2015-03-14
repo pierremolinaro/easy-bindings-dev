@@ -34,7 +34,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<NameEntity>
       if let model = self.mModel {
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.mNames.props)
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.mNames.prop)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
       }else{
@@ -71,7 +71,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
   //    Sort descriptors                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private var mSortDescriptors = [AnyObject] () {
+  private var mSortDescriptors : [AnyObject] = [AnyObject] () {
     didSet {
       noteModelDidChange () // Force sorting
       postEvents () // Notify outlets display should be done
@@ -98,10 +98,10 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     if mSelectedObjectSetShouldBeComputed {
       mSelectedObjectSetShouldBeComputed = false
       var newInternalSelectedObjectSet = mInternalSelectedObjectSet
-      newInternalSelectedObjectSet.intersectInPlace (sortedArray.props)
+      newInternalSelectedObjectSet.intersectInPlace (sortedArray.prop)
       mInternalSelectedObjectSet = newInternalSelectedObjectSet
-      if (mInternalSelectedObjectSet.count == 0) && (sortedArray.props.count > 0) {
-        mInternalSelectedObjectSet.insert (sortedArray.props [0])
+      if (mInternalSelectedObjectSet.count == 0) && (sortedArray.prop.count > 0) {
+        mInternalSelectedObjectSet.insert (sortedArray.prop [0])
       }
     }
     return mInternalSelectedObjectSet
@@ -120,7 +120,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
   override func selectedObjectIndexSet () -> NSIndexSet {
   //--- Dictionary of object indexes
     var objectDictionary = [NameEntity : Int] ()
-    for (index, object) in enumerate (sortedArray.props) {
+    for (index, object) in enumerate (sortedArray.prop) {
       objectDictionary [object] = index
     }
     var indexSet = NSMutableIndexSet ()
@@ -158,7 +158,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
       if mSortedObjectArrayDictionaryShouldBeComputed {
         mSortedObjectArrayDictionaryShouldBeComputed = false
         mSortedObjectArrayDictionary = [:]
-        for (idx, object) in enumerate (sortedArray.props) {
+        for (idx, object) in enumerate (sortedArray.prop) {
           mSortedObjectArrayDictionary [object] = idx
         }
       }
@@ -242,7 +242,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     if let tableView = notication.object as? NSTableView, model = mModel {
       var newSelectedObjectSet = Set <NameEntity> ()
       for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (sortedArray.props.objectAtIndex (index, file: __FILE__, line: __LINE__))
+        newSelectedObjectSet.insert (sortedArray.prop.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
       setSelectedObjectSet (newSelectedObjectSet)
     }
@@ -267,9 +267,9 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
 
   func numberOfRowsInTableView (NSTableView) -> Int {
     if displayDebugMessage {
-      appendToTransientEventLog (String (format:"    %@ (%ld objects)\n", __FUNCTION__, sortedArray.props.count))
+      appendToTransientEventLog (String (format:"    %@ (%ld objects)\n", __FUNCTION__, sortedArray.prop.count))
     }
-    return sortedArray.props.count
+    return sortedArray.prop.count
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -283,7 +283,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     let columnIdentifier = viewForTableColumn!.identifier
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
     result.textField?.tag = row
-    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let object = sortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
     if columnIdentifier == "name" {
     //--- From cell-String-PMTextField.text file
       result.textField?.stringValue = object.name.prop
@@ -306,7 +306,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
 
   func set_name_Action (sender : PMTextField) {
     let row = sender.tag
-    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let object = sortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
     let validationResult = object.name.validate (sender.stringValue)
     switch validationResult {
     case PMValidationResult.ok :
@@ -335,7 +335,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
 
   func set_aValue_Action (sender : PMNumberField) {
     let row = sender.tag
-    let object = sortedArray.props.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    let object = sortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
     let validationResult = object.aValue.validate (sender.integerValue)
     switch validationResult {
     case PMValidationResult.ok :
@@ -370,13 +370,13 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     }
     if let object = mModel, undoManager = object.undoManager () {
       var newObject : NameEntity = NameEntity (undoManager:undoManager)
-      var array = object.mNames.props
+      var array = object.mNames.prop
       array.append (newObject)
     //--- New object is the selection
       var newSelectedObjectSet = Set <NameEntity> ()
       newSelectedObjectSet.insert (newObject)
       setSelectedObjectSet (newSelectedObjectSet)
-      object.mNames.props = array
+      object.mNames.prop = array
     }
   }
 
@@ -389,7 +389,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     //------------- Find the object to be selected after selected object removing
     //--- Dictionary of object sorted indexes
       var sortedObjectDictionary = [NameEntity : Int] ()
-      for (index, object) in enumerate (sortedArray.props) {
+      for (index, object) in enumerate (sortedArray.prop) {
         sortedObjectDictionary [object] = index
       }
       var indexArrayOfSelectedObjects = [Int] ()
@@ -411,13 +411,13 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
         }
       }
       var newSelectedObject : NameEntity? = nil
-      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.props.count) {
-        newSelectedObject = sortedArray.props [newSelectionIndex]
+      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.count) {
+        newSelectedObject = sortedArray.prop [newSelectionIndex]
       }
     //----------------------------------------- Remove selected object
     //--- Dictionary of object absolute indexes
       var objectDictionary = [NameEntity : Int] ()
-      for (index, object) in enumerate (model.mNames.props) {
+      for (index, object) in enumerate (model.mNames.prop) {
         objectDictionary [object] = index
       }
     //--- Build selected objects index array
@@ -431,7 +431,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
     //--- Sort in reverse order
       selectedObjectIndexArray.sort { $1 < $0 }
     //--- Remove objects, in reverse of order of their index
-      var newObjectArray = model.mNames.props
+      var newObjectArray = model.mNames.prop
       for index in selectedObjectIndexArray {
         newObjectArray.removeAtIndex (index)
       }
@@ -442,7 +442,7 @@ class ArrayController_MyRootEntity_mNames : AbstractArrayController, PMTransient
       }
       setSelectedObjectSet (newSelectionSet)
     //----------------------------------------- Set new object array
-      model.mNames.props = newObjectArray
+      model.mNames.prop = newObjectArray
     }
   }
 

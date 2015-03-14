@@ -1,0 +1,81 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GRAMMAR                                                                                                            *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+grammar easyBindings_grammar "LL1" {
+  syntax easyBindings_syntax
+  <start_symbol>
+    ?userDefined:let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+    !@location outEndOfFile
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+abstract class @astDeclaration {
+  @bool mUserDefined
+}
+
+#......................................................................................................................*
+
+list @astDeclarationList {
+  @astDeclaration mDeclaration
+}
+
+#......................................................................................................................*
+
+struct @astDeclarationStruct {
+  @astDeclarationList mDeclarationList
+  @outletClassDeclarationList mOutletClassDeclarationList
+  @bindingSpecificationListMap mBindingSpecificationListMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax easyBindings_syntax (easyBindings_lexique) {
+
+  #....................................................................................................................*
+  
+  rule <start_symbol>
+    ?userDefined:let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+    !@location outEndOfFile
+  {
+    repeat
+    while
+      $include$
+      $literal_string$ ?var @lstring filePath
+      $;$
+      let sourceFile = @lstring.new {
+        ![filePath.string absolutePathFromPath ![@string.stringWithSourceFilePath stringByDeletingLastPathComponent]]
+        !filePath.location
+      }
+      grammar easyBindings_grammar in sourceFile
+        !userDefined:inIsUserDefined
+        !?ioDeclarationAST
+        ?*
+    while
+      <enum_declaration> !inIsUserDefined !?ioDeclarationAST
+    while
+      <entity_declaration>  !inIsUserDefined  !?ioDeclarationAST
+    while
+      <preferences_declaration> !inIsUserDefined !?ioDeclarationAST
+    while
+      <document_declaration> !inIsUserDefined !?ioDeclarationAST
+    while
+      <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST.mOutletClassDeclarationList
+    while
+      <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
+    end
+    outEndOfFile = @location.here
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

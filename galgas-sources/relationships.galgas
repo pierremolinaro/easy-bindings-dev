@@ -1,0 +1,279 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @toOneRelationshipList {
+  @lstring mDestinationEntityName
+  @lstring mToOneRelationshipName
+  @lstring mInverseRelationshipName
+  @propertyMultiplicity mInverseRelationMultiplicity
+}
+
+#......................................................................................................................*
+
+list @toManyRelationshipList {
+  @lstring mDestinationEntityName
+  @lstring mToManyRelationshipName
+  @lstring mInverseRelationshipName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <toMany_relationship>
+    ?!@toManyRelationshipList ioToManyRelationshipList
+  {
+    $toMany$
+    $Identifier$ ?let @lstring destinationEntityName
+    $identifier$ ?let @lstring relationshipName
+    $inverse$
+    $toOne$
+    $identifier$ ?let @lstring inserseRelationshipName
+    $;$
+    ioToManyRelationshipList +=
+      !destinationEntityName
+      !relationshipName
+      !inserseRelationshipName
+  }
+  
+  #....................................................................................................................*
+
+   rule <toOne_relationship>
+    ?!@toOneRelationshipList ioToOneRelationshipList
+  {
+    $toOne$
+    $Identifier$ ?let @lstring destinationEntityName
+    $identifier$ ?let @lstring relationshipName
+    $inverse$
+    @propertyMultiplicity inverseRelationMultiplicity
+    select
+      $toOne$
+      inverseRelationMultiplicity = .single
+    or
+      $toMany$
+      inverseRelationMultiplicity = .collection
+    end
+    $identifier$ ?let @lstring inverseRelationshipName
+    $;$
+    ioToOneRelationshipList +=
+      !destinationEntityName
+      !relationshipName
+      !inverseRelationshipName
+      !inverseRelationMultiplicity
+  }
+  
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @toOneRelationshipList typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+{
+  for () in self do
+    [@unifiedTypeMap-proxy makeProxy
+      !?ioUnifiedTypeMap
+      !mDestinationEntityName
+      ?*
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+method @toManyRelationshipList typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+{
+  for () in self do
+    [@unifiedTypeMap-proxy makeProxy
+      !?ioUnifiedTypeMap
+      !mDestinationEntityName
+      ?*
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   OBSERVABLE PROPERTY MAP                                                                                            *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @toOneRelationshipList buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+  #--- Check type
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType :
+      error mDestinationEntityName: "a simple type cannot be used as entitytype"
+    case enumType (* *) :
+      error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
+    case entityType (*) : # Ok
+    end
+  #--- Enter in property map
+    [!?ioObservableProperties insertKey
+      !mToOneRelationshipName
+      !type
+      !.stored
+      !.single
+      !mInverseRelationshipName.string
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+method @toManyRelationshipList buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+  #--- Check type
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType :
+      error mDestinationEntityName: "a simple type cannot be used as entitytype"
+    case enumType (* *) :
+      error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
+    case entityType (*) : # Ok
+    end
+  #--- Enter in property map
+    [!?ioObservableProperties insertKey
+      !mToManyRelationshipName
+      !type
+      !.stored
+      !.collection
+      !mInverseRelationshipName.string
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @toOneRelationshipList semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  !@toOneEntityRelationshipListForGeneration outToOneEntityRelationshipListForGeneration
+{
+  outToOneEntityRelationshipListForGeneration = {}
+  for () in self do
+    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inSemanticContext.mEntityObservablePropertyMap searchKey
+      !mDestinationEntityName
+      ?@observablePropertyMap destinationEntityObservablePropertyMap
+    ]
+    outToOneEntityRelationshipListForGeneration +=
+      !mToOneRelationshipName.string
+      !type
+      !mInverseRelationshipName.string
+      !mInverseRelationMultiplicity
+      !destinationEntityObservablePropertyMap
+  #--- Check inverse relationship
+    [destinationEntityObservablePropertyMap searchForInverseRelationship
+       !mInverseRelationshipName
+       ?let @typeKind oppositeType
+       ?let @propertyKind oppositeKind
+       ?let @propertyMultiplicity oppositeMultiplicity
+       ?let @string oppositeOfOpposite
+     ]
+   #--- Check opposite type
+     switch oppositeType
+     case boolType, integerType, stringType, colorType, dateType, doubleType :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+     case enumType (* *) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+     case entityType (*) : # Ok
+     end
+     if oppositeKind == .transient then
+       error mInverseRelationshipName : "this relationship is transient, should be stored"
+     end
+     if mInverseRelationMultiplicity != oppositeMultiplicity then
+       error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
+     end
+     if oppositeOfOpposite != mToOneRelationshipName.string then
+       error mInverseRelationshipName : "inverse relationship does not name '"
+         + mToOneRelationshipName + "' as opposite"
+     end
+  end
+}
+
+#......................................................................................................................*
+
+method @toManyRelationshipList semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  !@toManyEntityRelationshipListForGeneration outToManyEntityRelationshipListForGeneration
+{
+  outToManyEntityRelationshipListForGeneration = {}
+  for () in self do
+    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inSemanticContext.mEntityObservablePropertyMap searchKey
+      !mDestinationEntityName
+      ?@observablePropertyMap destinationEntityObservablePropertyMap
+    ]
+    outToManyEntityRelationshipListForGeneration +=
+      !mToManyRelationshipName.string
+      !type
+      !mInverseRelationshipName.string
+      !destinationEntityObservablePropertyMap
+  #--- Check inverse relationship
+    [destinationEntityObservablePropertyMap searchForInverseRelationship
+       !mInverseRelationshipName
+       ?let @typeKind oppositeType
+       ?let @propertyKind oppositeKind
+       ?let @propertyMultiplicity oppositeMultiplicity
+       ?let @string oppositeOfOpposite
+     ]
+     switch oppositeType
+     case boolType, integerType, stringType, colorType, dateType, doubleType :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+     case enumType (* *) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+     case entityType (*) : # Ok
+     end
+     if oppositeKind == .transient then
+       error mInverseRelationshipName : "this relationship is transient, should be stored"
+     end
+     if oppositeMultiplicity != .single then
+       error mInverseRelationshipName : "the inverse relationship should be toOne"
+     end
+     if oppositeOfOpposite != mToManyRelationshipName.string then
+       error mInverseRelationshipName : "inverse relationship does not name '"
+         + mToManyRelationshipName + "' as opposite"
+     end
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @toOneEntityRelationshipListForGeneration {
+  @string mToOneRelationshipName
+  @typeKind mRelationshipType
+  @string mOppositeRelationshipName
+  @propertyMultiplicity mInverseRelationMultiplicity
+  @observablePropertyMap mDestinationEntityObservablePropertyMap
+}
+
+#......................................................................................................................*
+
+list @toManyEntityRelationshipListForGeneration {
+  @string mToManyRelationshipName
+  @typeKind mRelationshipType
+  @string mOppositeRelationshipName
+  @observablePropertyMap mDestinationEntityObservablePropertyMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

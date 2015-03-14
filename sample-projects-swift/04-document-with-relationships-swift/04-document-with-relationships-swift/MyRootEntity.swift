@@ -18,8 +18,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   var count = PMTransientProperty_Int ()
 
   func noteModelDidChange () {
-    if (props_cache != nil) {
-      props_cache = nil
+    if (prop_cache != nil) {
+      prop_cache = nil
       count.postEvents ()
     }
   }
@@ -28,18 +28,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   
   private var mSet = Set<MyRootEntity> ()
 
-  var props_cache : Optional <Array<MyRootEntity> >
+  var prop_cache : Optional <Array<MyRootEntity> >
 
-  var props : Array<MyRootEntity> {
+  var prop : Array<MyRootEntity> {
     get {
-      if props_cache == nil {
+      if prop_cache == nil {
         if let unwrappedComputeFunction = computeFunction {
-          props_cache = unwrappedComputeFunction ()
+          prop_cache = unwrappedComputeFunction ()
         }
-        if props_cache == nil {
-          props_cache = Array<MyRootEntity> ()
+        if prop_cache == nil {
+          prop_cache = Array<MyRootEntity> ()
         }
-        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        let newObjectSet = Set<MyRootEntity> (prop_cache!)
         if mSet != newObjectSet {
         //--- Removed object set
           var removedObjectSet = mSet
@@ -51,7 +51,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           mSet = newObjectSet
         }
       }
-      return props_cache!
+      return prop_cache!
     }
   }
 
@@ -67,7 +67,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   var explorer : NSPopUpButton? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:unwrappedExplorer)
+        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (prop, popUpButton:unwrappedExplorer)
       }
     }
   }
@@ -76,13 +76,13 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in return self?.props.count }
+    count.computeFunction = { [weak self] in return self?.prop.count }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func prepareForDeletion () {
-    props = Array<NameEntity> ()
+    prop = Array<NameEntity> ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -92,19 +92,19 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   //-------------------------------------------------------------------------------------------------------------------*
 
   var mSet = Set<NameEntity> ()
-  var props = Array<NameEntity> () {
+  var prop : Array<NameEntity> = Array<NameEntity> () {
     didSet {
-      if oldValue != props {
-        mSet = Set (props)
+      if oldValue != prop {
+        mSet = Set (prop)
       //--- Register old value in undo manager
         owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (props, popUpButton:explorer!)
+          owner?.updateManagedObjectToManyRelationshipDisplay (prop, popUpButton:explorer!)
         }
       //--- Removed object set
         var removedObjectSet : Set<NameEntity> = Set (oldValue)
-        removedObjectSet.subtractInPlace (props)
+        removedObjectSet.subtractInPlace (prop)
         for managedObject : NameEntity in removedObjectSet {
           for observer in mObserversOf_aValue {
             managedObject.aValue.removeObserver (observer, inTrigger:true)
@@ -115,7 +115,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
           managedObject.mRoot.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<NameEntity> = Set (props)
+        var addedObjectSet : Set<NameEntity> = Set (prop)
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : NameEntity in addedObjectSet {
           for observer in mObserversOf_aValue {
@@ -128,7 +128,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
         }
       //--- Notify observers object count did change
         postEvents ()
-        if oldValue.count != props.count {
+        if oldValue.count != prop.count {
           count.noteModelDidChange ()
         }
       }
@@ -138,17 +138,17 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func performUndo (oldValue : Array<NameEntity>) {
-    props = oldValue
+    prop = oldValue
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func remove (object : NameEntity) {
     if mSet.contains (object) {
-      var array = props
+      var array = prop
       let idx = find (array, object)
       array.removeAtIndex (idx!)
-      props = array
+      prop = array
     }
   }
   
@@ -156,9 +156,9 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   func add (object : NameEntity) {
     if !mSet.contains (object) {
-      var array = props
+      var array = prop
       array.append (object)
-      props = array
+      prop = array
     }
   }
   
@@ -168,15 +168,32 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   func addObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_aValue.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.aValue.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.aValue.removeObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+
+  var mObserversOf_mRoot = Set<PMEvent> ()
+
+  func addObserverOf_mRoot (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_mRoot.insert (inObserver)
+    for managedObject in prop {
+      managedObject.mRoot.addObserver (inObserver, inTrigger:inTrigger)
+    }
+  }
+
+  func removeObserverOf_mRoot (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_mRoot.remove (inObserver)
+    for managedObject in prop {
+      managedObject.mRoot.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
@@ -185,14 +202,14 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   func addObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_name.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.name.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.name.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
@@ -271,7 +288,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    storeEntityArrayInDictionary (mNames.props, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
+    storeEntityArrayInDictionary (mNames.prop, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -281,7 +298,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    mNames.props = readEntityArrayFromDictionary (
+    mNames.prop = readEntityArrayFromDictionary (
         "mNames",
         inDictionary:inDictionary,
         managedObjectArray:managedObjectArray
@@ -294,7 +311,7 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    for managedObject : PMManagedObject in mNames.props {
+    for managedObject : PMManagedObject in mNames.prop {
       objects.addObject (managedObject)
     }
   }

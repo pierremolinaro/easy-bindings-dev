@@ -11,7 +11,7 @@ import Cocoa
 
 %
 for () in OUTLET_GENERATION_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName.string%?\n%
+%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%?\n%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -19,8 +19,8 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
-for () in ATTRIBUTE_LIST do
-%  private var %!mAttributeName% = PMEntityProperty <%![mAttributeType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+%  private var %!mStoredPropertyName% = PMEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 
@@ -78,8 +78,8 @@ end
 for () in OUTLET_GENERATION_MAP do
    %    if nil == %!lkey.string% {\n%
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
-   %    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName.string%) {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName.string%'") ;\n%
+   %    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
+   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
    %    }\n%
 end
 %  //--------------------------- Array controller
@@ -97,7 +97,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!DOCUMENT_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do ![mDependency generateActualParameterForComputeFunction]
+    do ![mDependency modelString]%.prop%
     between %, %
   end
   %)}\n%
@@ -128,7 +128,7 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   between %, %  
   end
   %],\n%
-  %      computeFunction:{ %![mBoundObjectExpression enableExpressionString]% },\n%
+  %      computeFunction:{ %![mBoundObjectExpression expressionString]% },\n%
   %      file:__FILE__, line:__LINE__\n%
   %    )\n%
 end

@@ -2,8 +2,8 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_myColor {
-  var myColor : PMStoredProperty_NSColor { get }
+protocol MyRootEntity_myString {
+  var myString : PMStoredProperty_String { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -14,8 +14,8 @@ protocol MyRootEntity_myEnumeration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_myString {
-  var myString : PMStoredProperty_String { get }
+protocol MyRootEntity_myColor {
+  var myColor : PMStoredProperty_NSColor { get }
 }
 
 
@@ -63,8 +63,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           var removedObjectSet = mSet
           removedObjectSet.subtractInPlace (newObjectSet)
           for managedObject : MyRootEntity in removedObjectSet {
-            for observer in mObserversOf_myColor {
-              managedObject.myColor.removeObserver (observer, inTrigger:true)
+            for observer in mObserversOf_myString {
+              managedObject.myString.removeObserver (observer, inTrigger:true)
             }
           }
           for managedObject : MyRootEntity in removedObjectSet {
@@ -73,16 +73,16 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
             }
           }
           for managedObject : MyRootEntity in removedObjectSet {
-            for observer in mObserversOf_myString {
-              managedObject.myString.removeObserver (observer, inTrigger:true)
+            for observer in mObserversOf_myColor {
+              managedObject.myColor.removeObserver (observer, inTrigger:true)
             }
           }
         //--- Added object set
           var addedObjectSet = newObjectSet
           addedObjectSet.subtractInPlace (mSet)
           for managedObject : MyRootEntity in addedObjectSet {
-            for observer in mObserversOf_myColor {
-              managedObject.myColor.addObserver (observer, inTrigger:true)
+            for observer in mObserversOf_myString {
+              managedObject.myString.addObserver (observer, inTrigger:true)
             }
           }
            for managedObject : MyRootEntity in addedObjectSet {
@@ -91,8 +91,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
             }
           }
            for managedObject : MyRootEntity in addedObjectSet {
-            for observer in mObserversOf_myString {
-              managedObject.myString.addObserver (observer, inTrigger:true)
+            for observer in mObserversOf_myColor {
+              managedObject.myColor.addObserver (observer, inTrigger:true)
             }
           }
         //--- Update object set
@@ -106,19 +106,19 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mObserversOf_myColor = Set<PMEvent> ()
+  var mObserversOf_myString = Set<PMEvent> ()
 
-  func addObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
-    mObserversOf_myColor.insert (inObserver)
+  func addObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_myString.insert (inObserver)
     for managedObject in props {
-      managedObject.myColor.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.myString.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  func removeObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
-    mObserversOf_myColor.remove (inObserver)
+  func removeObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_myString.remove (inObserver)
     for managedObject in props {
-      managedObject.myColor.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.myString.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
@@ -144,19 +144,19 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var mObserversOf_myString = Set<PMEvent> ()
+  var mObserversOf_myColor = Set<PMEvent> ()
 
-  func addObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
-    mObserversOf_myString.insert (inObserver)
+  func addObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_myColor.insert (inObserver)
     for managedObject in props {
-      managedObject.myString.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.myColor.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
-  func removeObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
-    mObserversOf_myString.remove (inObserver)
+  func removeObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
+    mObserversOf_myColor.remove (inObserver)
     for managedObject in props {
-      managedObject.myString.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.myColor.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
@@ -167,28 +167,28 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 //    Entity: MyRootEntity                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_myColor, MyRootEntity_myEnumeration, MyRootEntity_myString {
+@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_myString, MyRootEntity_myEnumeration, MyRootEntity_myColor {
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Properties                                                                                                     *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
-  var myColor_keyCodingValue : NSColor { get {return myColor.prop } }
+  var myString = PMStoredProperty_String ("Hello")
+  var myString_keyCodingValue : String { get {return myString.prop } }
 
   var myEnumeration = PMStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
   var myEnumeration_keyCodingValue : MonEnumeration { get {return myEnumeration.prop } }
 
-  var myString = PMStoredProperty_String ("Hello")
-  var myString_keyCodingValue : String { get {return myString.prop } }
+  var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
+  var myColor_keyCodingValue : NSColor { get {return myColor.prop } }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var myStringConcat = PMTransientProperty_String ()
   var myStringMaj = PMTransientProperty_String ()
   var myStringMin = PMTransientProperty_String ()
+  var myStringConcat = PMTransientProperty_String ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    Relationships                                                                                                  *
@@ -202,18 +202,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.myStringMaj.prop, self.myStringMin.prop)}
     myStringMaj.computeFunction = {return compute_MyRootEntity_myStringMaj (self.myString.prop)}
     myStringMin.computeFunction = {return compute_MyRootEntity_myStringMin (self.myString.prop)}
+    myStringConcat.computeFunction = {return compute_MyRootEntity_myStringConcat (self.myStringMaj.prop, self.myStringMin.prop)}
   //--- Install property observers for transients
-    myStringMaj.addObserver (myStringConcat.event, inTrigger:true)
-    myStringMin.addObserver (myStringConcat.event, inTrigger:true)
     myString.addObserver (myStringMaj.event, inTrigger:true)
     myString.addObserver (myStringMin.event, inTrigger:true)
+    myStringMaj.addObserver (myStringConcat.event, inTrigger:true)
+    myStringMin.addObserver (myStringConcat.event, inTrigger:true)
   //--- Install undoers for properties
-    myColor.undoManager = undoManager
-    myEnumeration.undoManager = undoManager
     myString.undoManager = undoManager
+    myEnumeration.undoManager = undoManager
+    myColor.undoManager = undoManager
   //--- Install owner for relationships
   }
 
@@ -224,18 +224,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   override func prepareForDeletion () {
     super.prepareForDeletion ()
   //--- Remove transients observers
-    myStringMaj.removeObserver (myStringConcat.event, inTrigger:false)
-    myStringMin.removeObserver (myStringConcat.event, inTrigger:false)
     myString.removeObserver (myStringMaj.event, inTrigger:false)
     myString.removeObserver (myStringMin.event, inTrigger:false)
+    myStringMaj.removeObserver (myStringConcat.event, inTrigger:false)
+    myStringMin.removeObserver (myStringConcat.event, inTrigger:false)
   //--- Uninstall compute functions for transients
-    myStringConcat.computeFunction = nil
     myStringMaj.computeFunction = nil
     myStringMin.computeFunction = nil
+    myStringConcat.computeFunction = nil
   //--- Uninstall undoers for properties
-    myColor.undoManager = nil
-    myEnumeration.undoManager = nil
     myString.undoManager = nil
+    myEnumeration.undoManager = nil
+    myColor.undoManager = nil
   //--- Reset relationships
   }
   
@@ -245,9 +245,9 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    myColor.explorer = createEntryForAttributeNamed ("myColor", ioRect:&ioRect, view:view)
-    myEnumeration.explorer = createEntryForAttributeNamed ("myEnumeration", ioRect:&ioRect, view:view)
     myString.explorer = createEntryForAttributeNamed ("myString", ioRect:&ioRect, view:view)
+    myEnumeration.explorer = createEntryForAttributeNamed ("myEnumeration", ioRect:&ioRect, view:view)
+    myColor.explorer = createEntryForAttributeNamed ("myColor", ioRect:&ioRect, view:view)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -255,9 +255,9 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func clearObjectExplorer () {
-    myColor.explorer = nil
-    myEnumeration.explorer = nil
     myString.explorer = nil
+    myEnumeration.explorer = nil
+    myColor.explorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -267,9 +267,9 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.prop), forKey: "myColor")
-    ioDictionary.setValue (NSNumber (integer:myEnumeration.prop.rawValue), forKey: "myEnumeration")
     ioDictionary.setValue (myString.prop, forKey: "myString")
+    ioDictionary.setValue (NSNumber (integer:myEnumeration.prop.rawValue), forKey: "myEnumeration")
+    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.prop), forKey: "myColor")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -279,9 +279,9 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    myColor.setProp (inDictionary.readNSColor ("myColor"))
-    myEnumeration.setProp (inDictionary.readMonEnumeration ("myEnumeration"))
     myString.setProp (inDictionary.readString ("myString"))
+    myEnumeration.setProp (inDictionary.readMonEnumeration ("myEnumeration"))
+    myColor.setProp (inDictionary.readNSColor ("myColor"))
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

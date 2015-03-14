@@ -1,4 +1,4 @@
-preferences PMPrefs {
+prefs PMPrefs {
 #--- String
   property String myString default "hello" ;
   outlet PMTextField myTextField $value self.myString {sendContinously : no} ;
@@ -13,7 +13,7 @@ preferences PMPrefs {
   property Date mDate default date ;
   outlet PMDatePicker mDatePicker $date self.mDate  ;
 #--- Number
-  property validates Integer mIntegerValue default 123 ;
+  property validates Int mIntegerValue default 123 ;
   outlet PMIntField mInteger32TextField $value self.mIntegerValue {sendContinously : yes} ;
   outlet PMReadOnlyIntField mInteger32ObserverTextField $readOnlyValue self.mIntegerValue ;
 #--- Actions  

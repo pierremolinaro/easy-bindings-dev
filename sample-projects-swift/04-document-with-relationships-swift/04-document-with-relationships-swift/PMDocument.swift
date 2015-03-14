@@ -121,15 +121,15 @@ import Cocoa
   //--- Install compute functions for transients
     canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.canRemove.prop)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
-    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.props)}
+    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
     nameController.canRemove.addObserver (canRemoveString.event, inTrigger:true)
-    rootObject.mNames.addObserver (countItemMessage.event, inTrigger:true)
-    rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
+    rootObject.mNames.count.addObserver (countItemMessage.event, inTrigger:true)
+    self.rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
   //--- Install regular bindings
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
+    countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
     countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
-    countItemTextField?.bind_readOnlyValue (rootObject.mNames.count, file:__FILE__, line:__LINE__)
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
@@ -140,14 +140,10 @@ import Cocoa
   //--------------------------- Array controller as observers
     rootObject.mNames.addObserver (nameController.event, inTrigger:true)
   //--------------------------- Set targets / actions
-    addPathButton?.target = nameController
-    addPathButton?.action = "add:"
-    decrementButton?.target = self
-    decrementButton?.action = "decrement:"
     incrementButton?.target = self
     incrementButton?.action = "increment:"
-    removePathButton?.target = nameController
-    removePathButton?.action = "remove:"
+    decrementButton?.target = self
+    decrementButton?.action = "decrement:"
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
   }
@@ -161,8 +157,8 @@ import Cocoa
     undoManager = nil
   //--- Unbind regular bindings
     canRemoveTextField?.unbind_readOnlyValue ()
-    countItemMessageTextField?.unbind_readOnlyValue ()
     countItemTextField?.unbind_readOnlyValue ()
+    countItemMessageTextField?.unbind_readOnlyValue ()
     totalTextField?.unbind_readOnlyValue ()
   //--- Unbind multiple bindings
     removePathButton?.unbind_enabled ()
@@ -174,13 +170,11 @@ import Cocoa
     nameController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
     nameController.canRemove.removeObserver (canRemoveString.event, inTrigger:false)
-    rootObject.mNames.removeObserver (countItemMessage.event, inTrigger:false)
-    rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
+    rootObject.mNames.count.removeObserver (countItemMessage.event, inTrigger:false)
+    self.rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
   //--------------------------- Remove targets / actions
-    addPathButton?.target = nil
-    decrementButton?.target = nil
     incrementButton?.target = nil
-    removePathButton?.target = nil
+    decrementButton?.target = nil
   //---
     super.removeWindowController (inWindowController)
   }

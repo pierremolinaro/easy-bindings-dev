@@ -16,7 +16,7 @@ var g_%!PREFERENCES_NAME% : %!PREFERENCES_NAME%? = nil
 
 %
 for () in OUTLET_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName.string%? = nil\n%
+%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 % 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -24,8 +24,8 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
 %
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
-%  var %!mAttributeName% = PMStoredProperty_%![mAttributeType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+%  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -38,22 +38,11 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
-for () in CONTROLLER_MAP do
-%
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    %!["Controller: " + lkey stringByRightPadding !111 !' ']%*
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  var %!lkey.string% = %!mControllerClassName% ()\n%
-end
-
 %
   //-------------------------------------------------------------------------------------------------------------------*
   //    Arraies                                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 %
-for () in ARRAY_MAP do%  var %!lkey.string% = NSMutableArray ()\n%end
 
 
 %
@@ -66,45 +55,25 @@ for () in ARRAY_MAP do%  var %!lkey.string% = NSMutableArray ()\n%end
     super.init ()
     g_%!PREFERENCES_NAME% = self ;
 %
-if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
+if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length] ) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
   %  //---\n%
 end
-for () in ATTRIBUTE_LIST_FOR_GENERATION
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
   before
     %    var value : AnyObject?\n%
   do
-    %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mAttributeName%")\n%
+    %    value = ud.objectForKey ("%!PREFERENCES_NAME%:%!mStoredPropertyName%")\n%
     %    if value != nil {\n%
-    %      %!mAttributeName%.setProp (%![mAttributeType preferencesSwiftGetter]%)\n%
+    %      %!mStoredPropertyName%.setProp (%![mType preferencesSwiftGetter]%)\n%
     %    }\n%
 end
 %  //--- Property validation function
 %
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   if mNeedsValidation then
-%    %!mAttributeName%.validationFunction = self.validate_%!mAttributeName%\n%
+%    %!mStoredPropertyName%.validationFunction = self.validate_%!mStoredPropertyName%\n%
   end
-end
-
-for () in ARRAY_MAP do
-%    { NSMutableArray * array = [NSMutableArray new] ;
-      for (NSDictionary * dict in [ud objectForKey:@"%!PREFERENCES_NAME%:%!lkey.string%"]) {
-        %#!mElementType.mTypeName.string
-        % * object = [[%#!mElementType.mTypeName.string
-        % alloc]
-%
-#for () in mAttributeListForImplementation
-#before %          initWith%
-#do     ![mAttributeName stringByCapitalizingFirstCharacter]%:%![mType preferencesSwiftGetter]%([dict objectForKey:@"%!mAttributeName%"])\n%
-#between %          with%
-#end
-%        ] ;
-        [array addObject:object] ;
-      }
-      self.%!lkey.string% = array ;
-    }
-%
 end
 %  //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
@@ -112,42 +81,26 @@ end
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  //--- Register trigger objects
-%#!generateAddSwiftObserverForTransients [!"preference" !PREFERENCES_NAME !TRANSIENT_LIST_FOR_IMPLEMENTATION !"    "]
-%  }
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    awakeFromNib                                                                                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
-% for () in CONTROLLER_MAP do
-  %//--- '%!lkey.string%' controller\n%
-#  %  %!lkey.string%.setObjectClass (%!mControlledClassOrEntityName.string% class)\n%
-end
-#for () in CONTROLLER_MAP do
-# for () in mControllerBindingList
-#  before    %//--- '%!lkey.string%' controller bindings\n%
-#  do
-#   ![mBinding generateObjectiveCBinding !lkey.string]
-#  end
-#end
-
+%
 for () in OUTLET_MAP do
    %  //--- Check %!lkey.string%' outlet not nil\n%
    %    if nil == %!lkey.string% {\n%
    %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
-#  for () in mOutletBindingList do
- #   ![mBinding generateSwiftBinding !mOutletName]
-#  end
 end
 %  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
   for () in mDependencyList
-    do %self.%![mDependency generateActualParameterForComputeFunction]
+    do ![mDependency modelString]%.prop%
     between %, %
   end
   %)}\n%
@@ -155,9 +108,9 @@ end
 %  //--- Install property observers for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
-end
+  for () in mDependencyList do
+    %    %![mDependency modelString]%.addObserver (%!mTransientName%.event, inTrigger:true)\n%
+  end
 end
 %  //--- Install bindings
 %
@@ -176,26 +129,11 @@ end
 
   func applicationWillTerminateAction (NSNotification) {
 %
-if ([ATTRIBUTE_LIST_FOR_GENERATION length] + [ARRAY_MAP count]) > 0 then
+if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length]) > 0 then
   %    var ud = NSUserDefaults.standardUserDefaults ()\n%
 end
-for () in ATTRIBUTE_LIST_FOR_GENERATION do
-  %    ud.setObject (%![mAttributeType preferencesSwiftSetter !mAttributeName]%, forKey:"%!PREFERENCES_NAME%:%!mAttributeName%")\n%
-end
-for () in ARRAY_MAP do
-%  { NSMutableArray * array = [NSMutableArray new] ;
-    for (%#!mElementType.mTypeName.string
-    % * object in self.%!lkey.string%) {
-      [array addObject:[NSDictionary
-        dictionaryWithObjectsAndKeys:
-%#for () in mAttributeListForImplementation do%          %![mType preferencesSetterTransformerFunctionName]%(object.%!mAttributeName%), @"%!mAttributeName%",\n%end
-%          nil
-        ]
-      ] ;
-    }
-    [ud setObject:array forKey:@"%!PREFERENCES_NAME%:%!lkey.string%"] ;
-  }
-%
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+  %    ud.setObject (%![mType preferencesSwiftSetter !mStoredPropertyName]%, forKey:"%!PREFERENCES_NAME%:%!mStoredPropertyName%")\n%
 end
 %  }
 

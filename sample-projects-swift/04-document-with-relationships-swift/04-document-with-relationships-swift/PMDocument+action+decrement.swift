@@ -18,7 +18,7 @@ import Cocoa
 extension PMDocument {
   func decrement (inSender : AnyObject) {
 //--- START OF USER ZONE 2
-    for object in rootObject.mNames.props {
+    for object in rootObject.mNames.prop {
       object.aValue.setProp (object.aValue.prop - 1)
     }
 //--- END OF USER ZONE 2

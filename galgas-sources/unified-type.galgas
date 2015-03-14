@@ -1,0 +1,130 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum @typeKind {
+  case boolType 
+  case integerType 
+  case doubleType
+  case stringType 
+  case colorType 
+  case dateType
+  case enumType (@string enumTypeName @enumConstantMap constantMap)
+  case entityType (@string entityName)
+}
+
+#......................................................................................................................*
+
+sharedmap @unifiedTypeMap {
+  insert insertKey error message "the '%K' type is already declared"
+  search searchKey error message "the '%K' type is not declared"
+  @typeKind mTypeKind
+}
+
+#......................................................................................................................*
+
+list @typeKindList {
+  @typeKind mType
+}
+
+#......................................................................................................................*
+
+abstract method @astDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+
+
+#......................................................................................................................*
+
+list @transientDependencyGraphNodeInfoList {
+  @string mSignature
+  @bool mIsTransient
+}
+
+#......................................................................................................................*
+
+graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
+  insert addNode error message "the '%K' property is already declared at %L"
+}
+
+#......................................................................................................................*
+
+enum @propertyKind {
+  case stored
+  case transient
+}
+
+#......................................................................................................................*
+
+enum @propertyMultiplicity {
+  case single
+  case collection
+}
+
+#......................................................................................................................*
+
+map @observablePropertyMap {
+  @typeKind mType
+  @propertyKind mKind
+  @propertyMultiplicity mMultiplicity
+  @string mInverseRelationshipName # "" if not a relationship
+  insert insertKey error message "the '%K' property is already declared"
+  search searchKey error message "the '%K' property is not declared"
+  search searchForInverseRelationship error message "the destination entity does not define the '%K' relationship"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc typeInventory
+  ?let @lstring inSourceFile
+  ?let @astDeclarationList inDeclarationList
+  !@unifiedTypeMap outUnifiedTypeMap
+{
+  outUnifiedTypeMap = .emptyMap
+  @transientDependencyGraph transientDependencyGraph = .emptyGraph
+#------------------------ Add predefined types
+  [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType]
+  [!?outUnifiedTypeMap insertKey !["Color" nowhere] !.colorType]
+  [!?outUnifiedTypeMap insertKey !["Date" nowhere] !.dateType]
+  [!?outUnifiedTypeMap insertKey !["Int" nowhere] !.integerType]
+  [!?outUnifiedTypeMap insertKey !["Bool" nowhere] !.boolType]
+  [!?outUnifiedTypeMap insertKey !["enum" nowhere] !.enumType {!enumTypeName:"" !constantMap:{}}]
+#------------------------ Add user defined types and compute transient dependancy graph
+  for () in inDeclarationList do
+    [mDeclaration typeInventory !?outUnifiedTypeMap !?transientDependencyGraph]
+  end
+#------------------------ dot files
+  if [option easyBindings_options.outputClassDependencyGraph value] then
+    let s = [outUnifiedTypeMap edgeGraphvizRepresentation]
+    let path = inSourceFile.string + ".typeDependancy.dot"
+    [s writeToFileWhenDifferentContents !path ?*]
+  end
+#------------------------ Output graphviz file ?
+  if (@uint.errorCount == 0) && [option easyBindings_options.outputTransientDependencyGraph value] then
+    let s = [transientDependencyGraph graphviz]
+    let path = inSourceFile.string + ".transientDependancy.dot"
+    [s writeToFileWhenDifferentContents !path ?*]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  TYPE GETTERS                                                                                                        *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @typeKind swiftTypeName -> @string outResult {
+  switch self
+  case stringType : outResult = "String"
+  case boolType : outResult = "Bool"
+  case colorType : outResult = "NSColor"
+  case dateType : outResult = "NSDate"
+  case doubleType : outResult = "Double"
+  case entityType (@string entityName) : outResult = entityName
+  case enumType (@string enumTypeName *) : outResult = enumTypeName
+  case integerType : outResult = "Int"
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

@@ -1,0 +1,114 @@
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+struct @structForGeneration {
+#  @transientListForGeneration mTransientListForGeneration
+  @actionListForGeneration mActionListForGeneration
+  @preferenceListForGeneration mPreferenceListForGeneration
+  @documentListForGeneration mDocumentListForGeneration
+  @entityListForGeneration mEntityListForGeneration
+  @enumListForGeneration mEnumListForGeneration
+  @stringset mNeededOutletClasses
+  @arrayControllerForGeneration mAllArrayControllerForGeneration
+  @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   CODE GENERATION                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateCode
+  ?let @structForGeneration inGeneration
+  ?let @string inSourceFile
+{
+#  generateTransients (
+#    !inSourceFile
+#    !inGeneration.mTransientListForGeneration
+#  )
+  generateActions (
+    !inSourceFile
+    !inGeneration.mActionListForGeneration
+  )
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  generatePreferences (
+    !inGeneration.mPreferenceListForGeneration
+    !outputDirectory
+  )
+#  generateOutletClasses (
+#    !inGeneration.mNeededOutletClasses
+#    !outputDirectory
+#  )
+  generateEntities (
+    !inGeneration.mEntityListForGeneration
+    !outputDirectory
+  )
+  generateEnums (
+    !inGeneration.mEnumListForGeneration
+    !outputDirectory
+  )
+  generateDocuments (
+    !inGeneration.mDocumentListForGeneration
+    !outputDirectory
+  )
+  generateArrayControllers (
+    !inGeneration.mAllArrayControllerForGeneration
+    !outputDirectory
+  )
+  generateSwiftApplicationFiles (
+    !outputDirectory
+    ![inGeneration.mEntityListForGeneration length] > 0
+  )
+  generateValidationRoutineStubs (
+    !outputDirectory
+    !inGeneration.mValidationStubRoutineListForGeneration
+  )
+}
+
+#......................................................................................................................*
+
+filewrapper swift_sources in "../generation-templates/swift-sources" {
+  "xib", "swift"
+}{
+}{
+}
+
+#......................................................................................................................*
+
+private proc generateSwiftApplicationFiles
+  ?let @string inOutputDirectory
+  ?let @bool inHasEntities {
+  @stringlist swiftFiles = {
+    !"main",
+    !"PMAllocationDebug",
+    !"easy-bindings-utilities",
+    !"standard-properties",
+    !"generic-bindings",
+    !"application"
+  }
+  if inHasEntities then
+    swiftFiles += !"PMManagedObject"
+    swiftFiles += !"PMManagedDocument"
+    swiftFiles += !"PMUndoManager"
+    swiftFiles += !"PMDataScanner"
+  end
+  @stringlist xibFiles = {!"PMAllocationDebug"}
+  var fw = [filewrapper swift_sources]
+  for (@string s) in swiftFiles do
+    let contents = [fw textFileContentsAtPath !s + ".swift"]
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".swift"
+      !contents
+    ]
+  end
+  for (@string s) in xibFiles do
+    let contents = [fw textFileContentsAtPath !s + ".xib"]
+    [@string generateFile
+      !inOutputDirectory
+      !s + ".xib"
+      !contents
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

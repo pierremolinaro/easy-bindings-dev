@@ -1,0 +1,128 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @enumDeclaration : @astDeclaration {
+  @lstring mEnumTypeName
+  @lstringlist mEnumConstantNameList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <enum_declaration>
+    ?let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST {
+    $enum$
+    $Identifier$ ?let @lstring enumName
+    ${$
+    var enumConstants =@lstringlist.emptyList{}
+    repeat
+      $identifier$ ?let @lstring constantName
+      enumConstants += !constantName
+    while
+      $,$
+    end
+    $}$
+    ioDeclarationAST.mDeclarationList += !@enumDeclaration. new { !inIsUserDefined !enumName !enumConstants}
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTICS                                                                                                          *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @enumConstantMap {
+  insert insertKey error message "there is already a '%K' constant"
+  search searchKey error message "the '%K' constant is not defined"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @enumDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+{
+  @enumConstantMap enumConstantMap = {}
+  for (s) in mEnumConstantNameList do
+    [!?enumConstantMap insertKey !s]
+  end
+  [!?ioUnifiedTypeMap insertKey
+    !mEnumTypeName
+    !@typeKind.enumType {!enumTypeName:mEnumTypeName.string !constantMap:enumConstantMap}
+  ]
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @enumDeclaration buildObservablePropertyMaps
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
+  ?!@semanticContext unused ioSemanticContext
+{
+}
+
+#......................................................................................................................*
+
+override method @enumDeclaration semanticAnalysis
+  ?let @semanticContext unused inSemanticContext
+  ?!@structForGeneration ioGeneration
+{
+  ioGeneration.mEnumListForGeneration +=
+    !mEnumTypeName.string
+    !mEnumConstantNameList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPE                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @enumListForGeneration {
+  @string mEnumName
+  @lstringlist mEnumConstantList
+}
+
+#......................................................................................................................*
+
+private filewrapper enumGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template enumGenerationInSwift "enum.swift.galgasTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION CODE                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateEnums
+  ?let @enumListForGeneration inEnumListForGeneration
+  ?let @string inOutputDirectory {
+  for () in inEnumListForGeneration do
+    if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
+      let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
+        !mEnumName
+        !mEnumConstantList
+      ]
+      [@string generateFile
+        !inOutputDirectory
+        !mEnumName + ".swift"
+        !s
+      ]
+    end
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -1,0 +1,252 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @documentDeclaration : @astDeclaration {
+  @lstring mDocumentName
+  @lstring mRootEntityName
+  @outletDeclarationList mOutletDeclarationList
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @transientList mTransientList
+  @lstringlist mActionDeclarationList
+  @arrayControllerDeclarationListAST mArrayControllerDeclarationList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <document_declaration>
+    ?let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+  {
+    $document$
+    $Identifier$ ?let @lstring documentName
+    $root$
+    $Identifier$ ?let @lstring rootEntityName
+    ${$
+    @outletDeclarationList outletDeclarationList = {}
+    @regularBindingList bindingList = {}
+    @lstringlist actionDeclarationList = {}
+    @transientList transientList = {}
+    @simpleStoredPropertyList simpleStoredPropertyList = {}
+    @arrayControllerDeclarationListAST arrayControllerDeclarationListAST = {}
+    repeat
+    while
+      <simple_stored_declaration> !?simpleStoredPropertyList
+    while
+      <action_declaration> !?actionDeclarationList
+    while
+      <transient_declaration> !?transientList
+    while
+      <outlet_declaration> !?outletDeclarationList
+    while
+      <array_controller_declaration> !?arrayControllerDeclarationListAST
+    end
+    $}$
+    ioDeclarationAST.mDeclarationList += !@documentDeclaration.new {
+      !inIsUserDefined
+      !documentName
+      !rootEntityName
+      !outletDeclarationList
+      !simpleStoredPropertyList
+      !transientList
+      !actionDeclarationList
+      !arrayControllerDeclarationListAST
+    }
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @documentDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+  ?!@transientDependencyGraph ioTransientDependencyGraph
+{
+  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
+  [mTransientList typeInventory
+    !"document." + mDocumentName
+    !?ioUnifiedTypeMap
+    !?ioTransientDependencyGraph
+  ]
+  [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mRootEntityName ?*]
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @documentObservablePropertyMap {
+  @observablePropertyMap mObservablePropertyMap
+  insert insertKey error message "the '%K' document is already declared in %L"
+  search searchKey error message "there is no '%K' document"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @documentDeclaration buildObservablePropertyMaps
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@semanticContext ioSemanticContext
+{
+  @observablePropertyMap observablePropertyMap = {}
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Analyze transients
+  [mTransientList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Enter in semantics context  
+  [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
+    !mDocumentName
+    !observablePropertyMap
+  ]
+}
+
+#......................................................................................................................*
+
+override method @documentDeclaration semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  ?!@structForGeneration ioGeneration
+{
+  [inSemanticContext.mDocumentObservablePropertyMap searchKey
+    !mDocumentName
+    ?let @observablePropertyMap observablePropertyMap
+  ]
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    !mRootEntityName
+    ?let @observablePropertyMap rootObservablePropertyMap
+  ]
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList semanticAnalysis
+    !mDocumentName.string
+    !inSemanticContext.mUnifiedTypeMap
+    !?ioGeneration.mValidationStubRoutineListForGeneration
+    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+  ]
+#--- Analyze transients
+  [mTransientList transientSemanticAnalysis
+    !rootObservablePropertyMap
+    !inSemanticContext
+    !observablePropertyMap
+    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
+  ]
+#--- Build action map
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  for () in actionMap do
+    ioGeneration.mActionListForGeneration +=
+      !mDocumentName.string
+      !lkey.string
+  end
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !rootObservablePropertyMap
+    !inSemanticContext
+    !mOutletDeclarationList
+    !observablePropertyMap
+    !actionMap
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+  )
+#--- Analyze array controllers
+  [mArrayControllerDeclarationList arrayControllerSemanticAnalysis
+    !rootObservablePropertyMap
+    !mRootEntityName.string
+    !inSemanticContext
+    !outletMap
+    !observablePropertyMap
+    ?let @arrayControllerForGeneration documentArrayControllerForGeneration
+    !?ioGeneration.mAllArrayControllerForGeneration
+  ]
+#--- Code generation
+  ioGeneration.mDocumentListForGeneration +=
+    !mDocumentName.string
+    !mRootEntityName.string
+    !simpleStoredPropertyListForGeneration
+    !transientDefinitionListForGeneration
+    !outletMap
+    !actionBindingListForGeneration
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !documentArrayControllerForGeneration
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @documentListForGeneration {
+  @string mDocumentName
+  @string mRootEntityName
+  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @transientDefinitionListForGeneration mTransientListForGeneration
+  @decoratedOutletMap mOutletMap
+  @actionBindingListForGeneration mTargetActionList 
+  @regularBindingsGenerationList mRegularBindingsGenerationList 
+  @multipleBindingGenerationList multipleBindingGenerationList
+  @arrayControllerForGeneration mDocumentArrayControllerForGeneration
+}
+
+#......................................................................................................................*
+
+private filewrapper documentGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template documentImplementation "document.swift.galgasTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@decoratedOutletMap OUTLET_GENERATION_MAP
+    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@actionBindingListForGeneration TARGET_ACTION_LIST
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateDocuments
+  ?let @documentListForGeneration inDocumentListForGeneration
+  ?let @string inOutputDirectory
+{
+  for () in inDocumentListForGeneration do
+    let s = [filewrapper documentGenerationTemplate.documentImplementation
+      !mDocumentName
+      !mRootEntityName
+      !mSimpleStoredPropertyListForGeneration
+      !mTransientListForGeneration
+      !mOutletMap
+      !mDocumentArrayControllerForGeneration
+      !mTargetActionList
+      !mRegularBindingsGenerationList
+      !multipleBindingGenerationList
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !mDocumentName + ".swift"
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

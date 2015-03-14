@@ -1,0 +1,309 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum @multipleBindingDescriptor {
+  case noEnabledBinding 
+  case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression)
+}
+
+#......................................................................................................................*
+
+abstract class @abstractBooleanMultipleBindingExpressionAST {
+}
+
+#......................................................................................................................*
+
+class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mBinding
+}
+
+#......................................................................................................................*
+
+class @andBooleanMultipleBindingExpressionAST,
+       @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#......................................................................................................................*
+
+class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  @observablePropertyAST mProperty
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <booleanMultipleBindingExpression> 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding
+  {
+    <booleanMultipleBindingTerm> ?outBinding
+    repeat
+    while
+      $&$
+      <booleanMultipleBindingTerm> ?let @abstractBooleanMultipleBindingExpressionAST binding
+      outBinding = @andBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
+    end
+  }
+  
+  #....................................................................................................................*
+  
+  rule <booleanMultipleBindingTerm> 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding
+  {
+    <booleanMultipleBindingOperand> ?outBinding
+    repeat
+    while
+      $|$
+      <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
+      outBinding = @orBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
+    end
+  }
+  
+  #....................................................................................................................*
+  
+  rule <booleanMultipleBindingOperand> 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding
+  {
+    <observable_property> ?let @observablePropertyAST observablePropertyAST
+    outBinding = @observablePropertyInMultipleBindingExpressionAST.new { !observablePropertyAST}
+  }
+  
+  #....................................................................................................................*
+  
+  rule <booleanMultipleBindingOperand> 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding
+  {
+    $!$
+    <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
+    outBinding = @negateBooleanMultipleBindingExpressionAST. new { !binding}
+  }
+  
+  #....................................................................................................................*
+  
+  rule <booleanMultipleBindingOperand> 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding
+  {
+    $($
+    <booleanMultipleBindingExpression> ?outBinding
+    $)$
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @multipleBindingGenerationList {
+  @string mOutletName
+  @string mBindingName
+  @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+}
+
+#......................................................................................................................*
+
+abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
+}
+
+#......................................................................................................................*
+
+class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  @string mObservedModel
+}
+
+#......................................................................................................................*
+
+class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  @abstractBooleanMultipleBindingExpressionForGeneration mBinding
+}
+
+#......................................................................................................................*
+
+class @orBooleanMultipleBindingExpressionForGeneration,
+       @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC                                                                                                           *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+
+#......................................................................................................................*
+
+override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+{
+  [mProperty analyzeObservableProperty
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?let @typeKind outType
+    ?* #let @propertyKind outKind
+    ?let @propertyMultiplicity outMultiplicity
+  ]
+  if outMultiplicity == .collection then
+    error [mProperty location] : "a collection cannot be observed"
+  end
+  switch outType
+  case stringType, boolType, colorType, dateType, doubleType, integerType :
+  case enumType (* *) :
+  case entityType (*) :
+    error [mProperty location] : "an entity cannot be observed"
+  end
+  outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
+    ![mProperty modelString]
+  }
+}
+
+#......................................................................................................................*
+
+override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression {
+  [mBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration expression
+  ]
+  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new {!expression}
+}
+
+#......................................................................................................................*
+
+override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+{
+  [mLeftBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+  ]
+  [mRightBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+  ]
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#......................................................................................................................*
+
+override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+{
+  [mLeftBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+  ]
+  [mRightBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+  ]
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#......................................................................................................................*
+
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+
+#......................................................................................................................*
+
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {!mObservedModel}
+}
+
+#......................................................................................................................*
+
+override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = [mBinding observedModelSet]
+}
+
+#......................................................................................................................*
+
+override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+}
+
+#......................................................................................................................*
+
+override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+}
+
+#......................................................................................................................*
+
+abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString
+
+#......................................................................................................................*
+
+override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString {
+  outExpressionString = mObservedModel + ".prop"
+}
+
+#......................................................................................................................*
+
+override getter @negateBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString {
+  outExpressionString = "!" + [mBinding expressionString]
+}
+
+#......................................................................................................................*
+
+override getter @orBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString {
+  outExpressionString = "(" + [mLeftBinding expressionString] +  " || " + [mRightBinding expressionString] + ")"
+}
+
+#......................................................................................................................*
+
+override getter @andBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString {
+  outExpressionString = "(" + [mLeftBinding expressionString] +  " && " + [mRightBinding expressionString] + ")"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
