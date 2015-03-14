@@ -42,7 +42,7 @@ end
 
 %
 for () in ARRAY_CONTROLLER_LIST do
-%  private var %!mControllerName% = ArrayController_%!mObjectTypeName%_%!mTomanyRelationshipName% ()\n%
+%  private var %!mControllerName% = ArrayController_%!mOwnerName%_%!mControllerName% ()\n%
 end
 %
   //-------------------------------------------------------------------------------------------------------------------*
@@ -86,7 +86,7 @@ end
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
-      rootObject,
+      rootObject.%!mToManyRelationshipName%,
       tableView:%!mTableViewOutletName%!,
       file:__FILE__,
       line:__LINE__
@@ -135,7 +135,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.%!mTomanyRelationshipName%.addObserver (%!mControllerName%.event, inTrigger:true)\n%
+%    rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%.event, inTrigger:true)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -144,6 +144,7 @@ end
 end
 %  //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

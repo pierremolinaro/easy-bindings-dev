@@ -3144,8 +3144,10 @@ extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGeneratio
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                               const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                               const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
                                                                                                                const class GALGAS_string & in_RELATIONSHIP_5F_NAME,
+                                                                                                               const class GALGAS_string & in_RELATIONSHIP_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_string & in_TABLE_5F_VIEW_5F_OUTLET_5F_NAME,
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,

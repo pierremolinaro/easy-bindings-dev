@@ -5,14 +5,14 @@ import Cocoa
 private let displayDebugMessage = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["ArrayController_" + OBJECT_TYPE_NAME + "_" + RELATIONSHIP_NAME stringByRightPadding !113 !' ']%*
+//    %!["ArrayController_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_%!OBJECT_TYPE_NAME%_%!RELATIONSHIP_NAME% : AbstractArrayController, PMTransientPropertyProtocol {
+class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : AbstractArrayController, PMTransientPropertyProtocol {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
-  private var mModel : %!OBJECT_TYPE_NAME%?
+  private var mModel : ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%?
 
   private var sortedArray = ArrayOf_%!ELEMENT_TYPE_NAME% ()
 
@@ -36,7 +36,7 @@ end
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
       if let model = self.mModel {
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.%!RELATIONSHIP_NAME%.prop)
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<%!ELEMENT_TYPE_NAME%>
       }else{
@@ -50,7 +50,7 @@ end
   //    bind_modelAndView                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func bind_modelAndView (object:%!OBJECT_TYPE_NAME%, tableView:PMTableView, file:String, line:Int) {
+  func bind_modelAndView (object:ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%, tableView:PMTableView, file:String, line:Int) {
     mModel = object
     mTableViewController = Controller_PMTableView_controller (object:self, outlet:tableView, file:file, line:line)
   }
@@ -66,7 +66,7 @@ end
     mTableViewController = nil
     mInternalSelectedObjectSet = Set ()
 %for () in BOUND_COLUMNS do
-  %    mModel?.%!RELATIONSHIP_NAME%.removeObserverOf_%!mObservablePropertyName% (event, inTrigger:false)\n%
+  %    mModel?.removeObserverOf_%!mObservablePropertyName% (event, inTrigger:false)\n%
 end
 %  }
   
@@ -220,7 +220,7 @@ end
       }
     }
 %for () in BOUND_COLUMNS do
-  %    mModel?.%!RELATIONSHIP_NAME%.addObserverOf_%!mObservablePropertyName% (event, inTrigger:true)\n%
+  %    mModel?.addObserverOf_%!mObservablePropertyName% (event, inTrigger:true)\n%
 end
 %  }
 
@@ -331,15 +331,15 @@ end
     if displayDebugMessage {
       appendToTransientEventLog (String (format:"    \%@\\n", __FUNCTION__))
     }
-    if let object = mModel, undoManager = object.undoManager () {
+    if let model = mModel, owner = model.owner, undoManager = owner.undoManager () {
       var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:undoManager)
-      var array = object.%!RELATIONSHIP_NAME%.prop
+      var array = model.prop
       array.append (newObject)
     //--- New object is the selection
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
       newSelectedObjectSet.insert (newObject)
       setSelectedObjectSet (newSelectedObjectSet)
-      object.%!RELATIONSHIP_NAME%.prop = array
+      model.prop = array
     }
   }
 
@@ -380,7 +380,7 @@ end
     //----------------------------------------- Remove selected object
     //--- Dictionary of object absolute indexes
       var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in enumerate (model.%!RELATIONSHIP_NAME%.prop) {
+      for (index, object) in enumerate (model.prop) {
         objectDictionary [object] = index
       }
     //--- Build selected objects index array
@@ -394,7 +394,7 @@ end
     //--- Sort in reverse order
       selectedObjectIndexArray.sort { $1 < $0 }
     //--- Remove objects, in reverse of order of their index
-      var newObjectArray = model.%!RELATIONSHIP_NAME%.prop
+      var newObjectArray = model.prop
       for index in selectedObjectIndexArray {
         newObjectArray.removeAtIndex (index)
       }
@@ -405,7 +405,7 @@ end
       }
       setSelectedObjectSet (newSelectionSet)
     //----------------------------------------- Set new object array
-      model.%!RELATIONSHIP_NAME%.prop = newObjectArray
+      model.prop = newObjectArray
     }
   }
 

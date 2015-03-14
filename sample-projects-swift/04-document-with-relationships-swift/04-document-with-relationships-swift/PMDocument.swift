@@ -36,7 +36,7 @@ import Cocoa
   //    Array Controllers                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var nameController = ArrayController_MyRootEntity_mNames ()
+  private var nameController = ArrayController_PMDocument_nameController ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -113,7 +113,7 @@ import Cocoa
     }
   //--------------------------- Array controller
     nameController.bind_modelAndView (
-      rootObject,
+      rootObject.mNames,
       tableView:mNamesTableView!,
       file:__FILE__,
       line:__LINE__
@@ -150,6 +150,7 @@ import Cocoa
     decrementButton?.action = "decrement:"
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
+    flushOutletEvents ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
