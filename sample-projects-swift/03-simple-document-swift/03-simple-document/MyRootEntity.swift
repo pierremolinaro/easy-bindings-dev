@@ -36,8 +36,8 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   var count = PMTransientProperty_Int ()
 
   func noteModelDidChange () {
-    if (props_cache != nil) {
-      props_cache = nil
+    if (prop_cache != nil) {
+      prop_cache = nil
       count.postEvents ()
     }
   }
@@ -46,18 +46,18 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
   
   private var mSet = Set<MyRootEntity> ()
 
-  var props_cache : Optional <Array<MyRootEntity> >
+  var prop_cache : Optional <Array<MyRootEntity> >
 
-  var props : Array<MyRootEntity> {
+  var prop : Array<MyRootEntity> {
     get {
-      if props_cache == nil {
+      if prop_cache == nil {
         if let unwrappedComputeFunction = computeFunction {
-          props_cache = unwrappedComputeFunction ()
+          prop_cache = unwrappedComputeFunction ()
         }
-        if props_cache == nil {
-          props_cache = Array<MyRootEntity> ()
+        if prop_cache == nil {
+          prop_cache = Array<MyRootEntity> ()
         }
-        let newObjectSet = Set<MyRootEntity> (props_cache!)
+        let newObjectSet = Set<MyRootEntity> (prop_cache!)
         if mSet != newObjectSet {
         //--- Removed object set
           var removedObjectSet = mSet
@@ -99,7 +99,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           mSet = newObjectSet
         }
       }
-      return props_cache!
+      return prop_cache!
     }
   }
 
@@ -110,14 +110,14 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   func addObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myString.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myString.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_myString (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myString.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myString.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
@@ -129,14 +129,14 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   func addObserverOf_myEnumeration (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myEnumeration.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myEnumeration.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_myEnumeration (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myEnumeration.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myEnumeration.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }
@@ -148,14 +148,14 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   func addObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myColor.insert (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myColor.addObserver (inObserver, inTrigger:inTrigger)
     }
   }
 
   func removeObserverOf_myColor (inObserver : PMEvent, inTrigger:Bool) {
     mObserversOf_myColor.remove (inObserver)
-    for managedObject in props {
+    for managedObject in prop {
       managedObject.myColor.removeObserver (inObserver, inTrigger:inTrigger)
     }
   }

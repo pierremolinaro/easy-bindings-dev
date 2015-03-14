@@ -48,7 +48,7 @@ syntax extension easyBindings_syntax {
       end
       $.$
       $identifier$ ?let @lstring runActionName
-      runActionDescriptor = @runActionDescriptor. action { !target:runTargetName !action:runActionName}
+      runActionDescriptor = @runActionDescriptor.action { !target:runTargetName !action:runActionName}
   #--- Enabled
     while
       $enabled$
@@ -102,7 +102,7 @@ proc analyzeOutlets
   ?let @outletDeclarationList inOutletDeclarationList
   ?let @observablePropertyMap inObservablePropertyMap
   ?let @actionMap inActionMap
-#  ?let @arrayControllerMap inArrayControllerMap
+  ?let @arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
   !@regularBindingsGenerationList outRegularBindingsGenerationList
   !@multipleBindingGenerationList outMultipleBindingGenerationList
@@ -130,9 +130,8 @@ proc analyzeOutlets
           !"self"
           !action.string
       else # It is a controller
-#        [inArrayControllerMap searchKey !target ?3* ?let @actionMap arrayControllerActionMap ?3*]
-#        [arrayControllerActionMap searchKey !action]
-#        outTargetActionList += !outlet_lkey.string !target.string !action.string
+        [inArrayControllerMap searchKey !target]
+        outTargetActionList += !outlet_mOutletName.string !target.string !action.string
       end
     end
   #--- Enabled

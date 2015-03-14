@@ -471,6 +471,17 @@ void categoryMethod_semanticAnalysis (const class GALGAS_simpleStoredPropertyLis
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                    Category method '@arrayControllerDeclarationListAST buildArrayControllerMap'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_buildArrayControllerMap (const class GALGAS_arrayControllerDeclarationListAST inObject,
+                                             class GALGAS_arrayControllerMap & out_outArrayControllerMap,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                Category method '@arrayControllerDeclarationListAST arrayControllerSemanticAnalysis'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

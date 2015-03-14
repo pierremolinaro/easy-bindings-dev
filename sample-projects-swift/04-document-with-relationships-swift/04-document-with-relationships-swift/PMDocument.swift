@@ -140,6 +140,10 @@ import Cocoa
   //--------------------------- Array controller as observers
     rootObject.mNames.addObserver (nameController.event, inTrigger:true)
   //--------------------------- Set targets / actions
+    addPathButton?.target = nameController
+    addPathButton?.action = "add:"
+    removePathButton?.target = nameController
+    removePathButton?.action = "remove:"
     incrementButton?.target = self
     incrementButton?.action = "increment:"
     decrementButton?.target = self
@@ -173,6 +177,8 @@ import Cocoa
     rootObject.mNames.count.removeObserver (countItemMessage.event, inTrigger:false)
     self.rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
   //--------------------------- Remove targets / actions
+    addPathButton?.target = nil
+    removePathButton?.target = nil
     incrementButton?.target = nil
     decrementButton?.target = nil
   //---

@@ -152,6 +152,10 @@ override method @documentDeclaration semanticAnalysis
       !mDocumentName.string
       !lkey.string
   end
+#--- Build array controller map
+  [mArrayControllerDeclarationList buildArrayControllerMap
+    ?let @arrayControllerMap arrayControllerMap
+  ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !rootObservablePropertyMap
@@ -159,6 +163,7 @@ override method @documentDeclaration semanticAnalysis
     !mOutletDeclarationList
     !observablePropertyMap
     !actionMap
+    !arrayControllerMap
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?let @multipleBindingGenerationList multipleBindingGenerationList
