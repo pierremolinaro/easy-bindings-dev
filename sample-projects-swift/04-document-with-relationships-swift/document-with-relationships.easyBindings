@@ -7,7 +7,7 @@ entity MyRootEntity {
 entity NameEntity {
   toOne MyRootEntity mRoot inverse toMany mNames ;
   property String name default "Name" ;
-  property Int aValue default 1 ;
+  property Int aValue default 100 ;
 }
 
 #--------------------------------------------------------------*

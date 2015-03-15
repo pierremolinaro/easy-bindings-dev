@@ -14444,24 +14444,25 @@ const char * gWrapperFileContent_9_outletClassGeneration = "import Cocoa\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
+  "  // http://stackoverflow.com/questions/7359921/how-to-keep-the-visible-content-after-nstableview-reloaddata\n"
+  "  \n"
   "  override func updateOutlet () {\n"
   "  //---------------- So tableViewSelectionDidChange is not called\n"
   "    mOutlet.setDelegate (nil)\n"
   "  //---------------- Reload data\n"
   "    mOutlet.reloadData ()\n"
   "  //----------------\n"
-  "    mOutlet.setDelegate (mObject)\n"
-  "  //----------------\n"
   "//    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {\n"
-  "    //---------------- Update table view selection\n"
-  "      var newTableViewSelectionIndexSet = self.mObject.selectedObjectIndexSet ()\n"
-  "      self.mOutlet.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)\n"
-  "    //---------------- Scroll first selected row to visible\n"
-  "      if newTableViewSelectionIndexSet.count > 0 {\n"
-  "        self.mOutlet.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)\n"
-  "      }\n"
+  "  //---------------- Update table view selection\n"
+  "    var newTableViewSelectionIndexSet = self.mObject.selectedObjectIndexSet ()\n"
+  "    self.mOutlet.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)\n"
+  "  //---------------- Scroll first selected row to visible\n"
+  "    if newTableViewSelectionIndexSet.count > 0 {\n"
+  "      self.mOutlet.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)\n"
+  "    }\n"
   "  //  }\n"
+  "  //----------------\n"
+  "    mOutlet.setDelegate (mObject)\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -14473,7 +14474,7 @@ const cRegularFileWrapper gWrapperFile_9_outletClassGeneration (
   "PMTableView.swift",
   "swift",
   true, // Text file
-  3724, // Text length
+  3821, // Text length
   gWrapperFileContent_9_outletClassGeneration
 ) ;
 
