@@ -153,15 +153,15 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       [boundModelObservablePropertyMap searchKey
         !mObservablePropertyName
         ?let @typeKind columnType
-        ?* # let @propertyKind columnKind
+        ?let @propertyKind unused columnKind
         ?let @propertyMultiplicity columnMultiplicity
-        ?* #let @string inverseRelationshipName # "" if not a relationship
+        ?let @string unused inverseRelationshipName # "" if not a relationship
       ]
     #--- Check bound model type is a simple type
       switch columnType
       case boolType, colorType, dateType, doubleType, integerType, stringType : # Ok
       case enumType (* *) : # Ok
-      case entityType (*) :
+      case entityType (@string unused entityTypeName) :
         error [mObservablePropertyName location] : "the model should not be a relationship"
       end
       if columnMultiplicity == .collection then
@@ -180,9 +180,9 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       [boundModelObservablePropertyMap searchKey
         !filterPropertyName
         ?let @typeKind filterType
-        ?* # let @propertyKind columnKind
+        ?let @propertyKind unused columnKind
         ?let @propertyMultiplicity filterMultiplicity
-        ?* #let @string inverseRelationshipName # "" if not a relationship
+        ?let @string unused inverseRelationshipName # "" if not a relationship
       ]
       if filterMultiplicity == .collection then
         error filterPropertyName : "the filter property should not be a collection"

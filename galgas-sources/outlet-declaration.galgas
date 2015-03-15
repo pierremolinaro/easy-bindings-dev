@@ -168,7 +168,7 @@ proc analyzeOutlets
           ?@typeKind type
           ?@propertyKind kind
           ?@propertyMultiplicity multiplicity
-          ?* #let @string swiftTypeStringForTransientFunctionArgument
+          ?let @string unused swiftTypeStringForTransientFunctionArgument
         ]
         if multiplicity != .single then
           error [mObservableProperty location]:"a collection cannot be bound"

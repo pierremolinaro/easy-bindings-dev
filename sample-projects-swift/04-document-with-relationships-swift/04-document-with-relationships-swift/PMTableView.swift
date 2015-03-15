@@ -60,12 +60,12 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
   // http://stackoverflow.com/questions/7359921/how-to-keep-the-visible-content-after-nstableview-reloaddata
   
   override func updateOutlet () {
+    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
   //---------------- So tableViewSelectionDidChange is not called
-    mOutlet.setDelegate (nil)
+    self.mOutlet.setDelegate (nil)
   //---------------- Reload data
-    mOutlet.reloadData ()
+    self.mOutlet.reloadData ()
   //----------------
-//    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
   //---------------- Update table view selection
     var newTableViewSelectionIndexSet = self.mObject.selectedObjectIndexSet ()
     self.mOutlet.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
@@ -73,9 +73,9 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
     if newTableViewSelectionIndexSet.count > 0 {
       self.mOutlet.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
-  //  }
   //----------------
-    mOutlet.setDelegate (mObject)
+    self.mOutlet.setDelegate (self.mObject)
+  }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
