@@ -29,14 +29,17 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : AbstractArrayCont
 for () in BOUND_COLUMNS do
   %    mSortDescriptors.append (NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true))\n%
 end
-%
-  //--- 'canRemove' transient function 
+%  //--- 'canRemove' transient function 
     canRemove.computeFunction = { self.selectedObjectSet ().count > 0 }
   //--- 'sortedArray' transient function 
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
       if let model = self.mModel {
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)
+        var array = Array<%!ELEMENT_TYPE_NAME%> ()
+        for object in model.prop {
+          array.append (object)
+        }
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<%!ELEMENT_TYPE_NAME%>
       }else{
@@ -44,9 +47,9 @@ end
       }
       return sortedObjectArray
     }
- }
+  }
 
-   //-------------------------------------------------------------------------------------------------------------------*
+  //-------------------------------------------------------------------------------------------------------------------*
   //    bind_modelAndView                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 

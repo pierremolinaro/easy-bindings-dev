@@ -143,7 +143,12 @@ proc analyzeOutlets
         !inSemanticContext
         !inObservablePropertyMap
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
+        ?let @typeKind type
+        ?let @location errorLocation
       ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
       outMultipleBindingGenerationList +=
         !outlet_mOutletName.string
         !"enabled"

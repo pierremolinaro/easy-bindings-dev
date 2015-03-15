@@ -60,7 +60,8 @@ class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumProp
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnumPropertyProtocol {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
+
   var explorer : NSTextField? {
     didSet {
       explorer?.stringValue = mValue.descriptionForExplorer ()

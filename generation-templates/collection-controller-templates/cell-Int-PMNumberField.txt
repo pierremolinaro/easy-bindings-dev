@@ -1,4 +1,4 @@
-    //--- From cell-String-PMNumberField.text file
+    //--- From cell-Int-PMNumberField.txt file
       let tf : PMNumberField = result.textField as! PMNumberField
       tf.myIntegerValue = object.$MODEL$.prop
       tf.target = self

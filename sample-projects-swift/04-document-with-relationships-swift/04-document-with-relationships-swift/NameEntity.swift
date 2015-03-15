@@ -212,7 +212,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   var name = PMStoredProperty_String ("Name")
   var name_keyCodingValue : String { get {return name.prop } }
 
-  var aValue = PMStoredProperty_Int (123)
+  var aValue = PMStoredProperty_Int (1)
   var aValue_keyCodingValue : Int { get {return aValue.prop } }
 
   //-------------------------------------------------------------------------------------------------------------------*
