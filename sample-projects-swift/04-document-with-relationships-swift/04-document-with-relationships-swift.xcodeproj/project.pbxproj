@@ -38,6 +38,7 @@
 		CFE3F3E01965FA3C0017DFCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3DF1965FA3C0017DFCE /* libz.dylib */; };
 		CFE3F3E21965FAB30017DFCE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE3F3E11965FAB30017DFCE /* libbz2.dylib */; };
 		CFF952F31AB4D75A00278CD7 /* arrayController-PMDocument-nameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF952F21AB4D75A00278CD7 /* arrayController-PMDocument-nameController.swift */; };
+		CFF952F51AB4DDBC00278CD7 /* arrayController-PMDocument-otherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF952F41AB4DDBC00278CD7 /* arrayController-PMDocument-otherController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		CFE3F3DF1965FA3C0017DFCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CFE3F3E11965FAB30017DFCE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		CFF952F21AB4D75A00278CD7 /* arrayController-PMDocument-nameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-nameController.swift"; sourceTree = "<group>"; };
+		CFF952F41AB4DDBC00278CD7 /* arrayController-PMDocument-otherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-otherController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		CF7C63FF196060D800BE14DF /* 04-document-with-relationships-swift */ = {
 			isa = PBXGroup;
 			children = (
+				CFF952F41AB4DDBC00278CD7 /* arrayController-PMDocument-otherController.swift */,
 				CFF952F21AB4D75A00278CD7 /* arrayController-PMDocument-nameController.swift */,
 				CF5999B21AACB165008E1909 /* application.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
@@ -231,6 +234,7 @@
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
 				CFBE8C0919C484CF001F0735 /* PMNumberField.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
+				CFF952F51AB4DDBC00278CD7 /* arrayController-PMDocument-otherController.swift in Sources */,
 				CF793CB219BA3AB4005DBEAF /* PMButton.swift in Sources */,
 				CF7C64311960619500BE14DF /* PMAllocationDebug.swift in Sources */,
 				CF793CB419BA3AB4005DBEAF /* PMTextField.swift in Sources */,

@@ -1,4 +1,4 @@
-    //--- From cell-String-PMTextField.text file
+    //--- From cell-String-PMTextField.txt file
       result.textField?.stringValue = object.$MODEL$.prop
       result.textField?.target = self
       result.textField?.action = "set_$MODEL$_Action:"

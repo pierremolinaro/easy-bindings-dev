@@ -7,7 +7,7 @@ entity MyRootEntity {
 entity NameEntity {
   toOne MyRootEntity mRoot inverse toMany mNames ;
   property String name default "Name" ;
-  property Int aValue default 123 ;
+  property Int aValue default 1 ;
 }
 
 #--------------------------------------------------------------*
@@ -15,6 +15,12 @@ entity NameEntity {
 document PMDocument root MyRootEntity {
   outlet PMTableView mNamesTableView ;
   arrayController nameController bind root.mNames to mNamesTableView
+     column "name" PMTextField name { sendContinously : no}
+     column "int"  PMNumberField aValue { sendContinously : no}
+  ;
+
+  outlet PMTableView mOtherTableView ;
+  arrayController otherController bind root.mNames to mOtherTableView
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
@@ -36,7 +42,7 @@ document PMDocument root MyRootEntity {
   outlet PMReadOnlyIntField totalTextField $readOnlyValue self.total  ;
   
   action increment ;
-  outlet PMButton incrementButton $run self.increment ;
+  outlet PMButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;
   
   action decrement ;
   outlet PMButton decrementButton $run self.decrement ;

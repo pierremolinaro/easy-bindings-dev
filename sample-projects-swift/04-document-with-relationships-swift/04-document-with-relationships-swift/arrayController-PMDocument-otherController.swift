@@ -5,10 +5,10 @@ import Cocoa
 private let displayDebugMessage = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ArrayController_PMDocument_nameController                                                                        *
+//    ArrayController_PMDocument_otherController                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_PMDocument_nameController : AbstractArrayController, PMTransientPropertyProtocol {
+class ArrayController_PMDocument_otherController : AbstractArrayController, PMTransientPropertyProtocol {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 

@@ -67,7 +67,8 @@ class PMReadOnlyProperty_String : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_String : PMReadOnlyProperty_String {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
+  
   var explorer : NSTextField? {
     didSet {
       explorer?.stringValue = mValue
@@ -163,7 +164,7 @@ class PMReadOnlyProperty_NSColor : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
     didSet {
@@ -260,7 +261,7 @@ class PMReadOnlyProperty_NSDate : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
     didSet {
@@ -356,7 +357,7 @@ class PMReadOnlyProperty_Int : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_Int : PMReadOnlyProperty_Int {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
     didSet {
@@ -373,14 +374,14 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
     didSet {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue))
         postEvents ()
       }
     }
   }
 
-  func performUndo (oldValue : Int) {
-    mValue = oldValue
+  func performUndo (oldValue : NSNumber) {
+    mValue = oldValue.integerValue
   }
 
   override var prop :  Int { get { return mValue } }
@@ -453,7 +454,7 @@ class PMReadOnlyProperty_Bool : PMAbstractProperty {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
-  var undoManager : NSUndoManager?
+  weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
     didSet {

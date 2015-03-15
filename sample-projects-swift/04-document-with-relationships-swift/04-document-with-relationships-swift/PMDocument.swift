@@ -16,6 +16,7 @@ import Cocoa
   @IBOutlet var decrementButton : PMButton?
   @IBOutlet var incrementButton : PMButton?
   @IBOutlet var mNamesTableView : PMTableView?
+  @IBOutlet var mOtherTableView : PMTableView?
   @IBOutlet var removePathButton : PMButton?
   @IBOutlet var totalTextField : PMReadOnlyIntField?
 
@@ -37,6 +38,7 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var nameController = ArrayController_PMDocument_nameController ()
+  private var otherController = ArrayController_PMDocument_otherController ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -101,6 +103,11 @@ import Cocoa
     }else if !mNamesTableView!.isKindOfClass (PMTableView) {
       presentErrorWindow (__FILE__, __LINE__, "the 'mNamesTableView' outlet is not an instance of 'PMTableView'") ;
     }
+    if nil == mOtherTableView {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mOtherTableView' outlet is nil") ;
+    }else if !mOtherTableView!.isKindOfClass (PMTableView) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mOtherTableView' outlet is not an instance of 'PMTableView'") ;
+    }
     if nil == removePathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'removePathButton' outlet is nil") ;
     }else if !removePathButton!.isKindOfClass (PMButton) {
@@ -115,6 +122,12 @@ import Cocoa
     nameController.bind_modelAndView (
       rootObject.mNames,
       tableView:mNamesTableView!,
+      file:__FILE__,
+      line:__LINE__
+    )
+    otherController.bind_modelAndView (
+      rootObject.mNames,
+      tableView:mOtherTableView!,
       file:__FILE__,
       line:__LINE__
     )
@@ -137,8 +150,14 @@ import Cocoa
       computeFunction:{ self.nameController.canRemove.prop },
       file:__FILE__, line:__LINE__
     )
+    incrementButton?.bind_enabled (
+      [self.rootObject.mNames.count],
+      computeFunction:{ (self.rootObject.mNames.count.prop > 0) },
+      file:__FILE__, line:__LINE__
+    )
   //--------------------------- Array controller as observers
     rootObject.mNames.addObserver (nameController.event, inTrigger:true)
+    rootObject.mNames.addObserver (otherController.event, inTrigger:true)
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -167,12 +186,14 @@ import Cocoa
     totalTextField?.unbind_readOnlyValue ()
   //--- Unbind multiple bindings
     removePathButton?.unbind_enabled ()
+    incrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
     canRemoveString.computeFunction = nil
     countItemMessage.computeFunction = nil
     total.computeFunction = nil
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
+    otherController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
     nameController.canRemove.removeObserver (canRemoveString.event, inTrigger:false)
     rootObject.mNames.count.removeObserver (countItemMessage.event, inTrigger:false)

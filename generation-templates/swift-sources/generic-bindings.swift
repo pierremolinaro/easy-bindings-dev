@@ -11,7 +11,7 @@ var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
 extension NSControl {
 
-  func bind_enabled (object:[PMReadOnlyProperty_Bool], computeFunction: () -> Bool, file:String, line:Int) {
+  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> Bool, file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -39,13 +39,13 @@ extension NSControl {
 
 @objc(Controller_NSControl_enabled) class Controller_NSControl_enabled : PMOutletEvent {
 
-  var mObjectArray : [PMReadOnlyProperty_Bool]
+  var mObjectArray : [PMAbstractProperty]
   var mOutlet : NSControl
   var mComputeFunction : Optional <() -> Bool>
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (objectArray : [PMReadOnlyProperty_Bool], outlet : NSControl, computeFunction: () -> Bool, file : String, line : Int) {
+  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> Bool, file : String, line : Int) {
     mObjectArray = objectArray
     mOutlet = outlet
     mComputeFunction = computeFunction

@@ -250,8 +250,6 @@ method @observablePropertyAST analyzeObservableProperty
       outMultiplicity = .single
       if optionName.string == "count" then
         outType = .integerType
-      elsif optionName.string == "empty" then
-        outType = .boolType
       else
         error optionName : "uknown option (accepted : 'count', 'empty')"
       end
@@ -275,17 +273,15 @@ method @observablePropertyAST analyzeObservableProperty
       outMultiplicity = .single
       if optionName.string == "count" then
         outType = .integerType
-      elsif optionName.string == "count" then
-        outType = .boolType
       else
         error optionName : "uknown option (accepted : 'count', 'empty')"
       end
     end
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
+  case controllerProperty (* @lstring propertyName) :
     if propertyName.string == "canRemove" then
       outMultiplicity = .single
       outKind = .transient
-      outType = .integerType
+      outType = .boolType
     else
       error propertyName
         : "uknown option (accepted : 'canRemove')"

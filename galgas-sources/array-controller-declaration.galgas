@@ -93,7 +93,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
   ?let @string inRootEntityName
   ?let @semanticContext inSemanticContext
   ?let @decoratedOutletMap inOutletMap
-  ?let @observablePropertyMap inObservablePropertyMap
+  ?let @observablePropertyMap unused inObservablePropertyMap
   !@arrayControllerForGeneration outDocumentArrayControllerForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
 {
@@ -140,7 +140,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       [boundModelObservablePropertyMap searchKey
         !mObservablePropertyName
         ?let @typeKind columnType
-        ?let @propertyKind columnKind
+        ?* # let @propertyKind columnKind
         ?let @propertyMultiplicity columnMultiplicity
         ?* #let @string inverseRelationshipName # "" if not a relationship
       ]
