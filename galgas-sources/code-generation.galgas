@@ -2,7 +2,7 @@
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 struct @structForGeneration {
-#  @transientListForGeneration mTransientListForGeneration
+  @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferenceListForGeneration mPreferenceListForGeneration
   @documentListForGeneration mDocumentListForGeneration
@@ -21,10 +21,10 @@ proc generateCode
   ?let @structForGeneration inGeneration
   ?let @string inSourceFile
 {
-#  generateTransients (
-#    !inSourceFile
-#    !inGeneration.mTransientListForGeneration
-#  )
+  generateTransients (
+    !inSourceFile
+    !inGeneration.mTransientListForGeneration
+  )
   generateActions (
     !inSourceFile
     !inGeneration.mActionListForGeneration

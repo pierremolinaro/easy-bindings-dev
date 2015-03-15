@@ -35,12 +35,24 @@ end
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
       if let model = self.mModel {
-        var array = Array<%!ELEMENT_TYPE_NAME%> ()
-        for object in model.prop {
-          array.append (object)
-        }
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)
-        currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
+%
+if [FILTER_PROPERTIES length] == 0 then
+  %        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)\n%
+else
+  %        var array = Array<%!ELEMENT_TYPE_NAME%> ()\n%
+  %        for object in model.prop {\n%
+  %          if arrayControllerFilter_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (%
+                   for () in FILTER_PROPERTIES
+                   do %object.%!mFilterPropertyName%.prop%
+                   between %, %
+                   end
+                   %) {\n%
+  %            array.append (object)\n%
+  %          }\n%
+  %        }\n%
+  %        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n%
+end
+%        currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<%!ELEMENT_TYPE_NAME%>
       }else{
         sortedObjectArray = Array<%!ELEMENT_TYPE_NAME%> ()

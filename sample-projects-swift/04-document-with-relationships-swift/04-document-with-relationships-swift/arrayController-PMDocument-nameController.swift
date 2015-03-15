@@ -33,11 +33,7 @@ class ArrayController_PMDocument_nameController : AbstractArrayController, PMTra
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<NameEntity>
       if let model = self.mModel {
-        var array = Array<NameEntity> ()
-        for object in model.prop {
-          array.append (object)
-        }
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)
+        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)
         sortedObjectArray = currentObjectArrayAsMutableArray.copy () as! Array<NameEntity>
       }else{
