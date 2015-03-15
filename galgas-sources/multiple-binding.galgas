@@ -240,6 +240,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     ?outType
     ?* #let @propertyKind outKind
     ?let @propertyMultiplicity outMultiplicity
+    ?* #let @string swiftTypeStringForTransientFunctionArgument
   ]
   if outMultiplicity == .collection then
     error [mProperty location] : "a collection cannot be observed"

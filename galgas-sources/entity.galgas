@@ -151,9 +151,11 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   [mTransientList transientSemanticAnalysis
+    !mEntityName.string
     !{} # No root entity
     !inSemanticContext
     !observablePropertyMap
+    !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]
 #--- Analyze toOne relationships

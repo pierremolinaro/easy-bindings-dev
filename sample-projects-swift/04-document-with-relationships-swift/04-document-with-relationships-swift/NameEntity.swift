@@ -2,13 +2,13 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol NameEntity_name {
+@objc(NameEntity_name) protocol NameEntity_name {
   var name : PMStoredProperty_String { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol NameEntity_aValue {
+@objc(NameEntity_aValue) protocol NameEntity_aValue {
   var aValue : PMStoredProperty_Int { get }
 }
 

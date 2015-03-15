@@ -27,8 +27,8 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   //--- Sort Descriptors
     mSortDescriptors.append (NSSortDescriptor (key:"name_keyCodingValue", ascending:true))
     mSortDescriptors.append (NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true))
-  //--- 'canRemove' transient function 
-    canRemove.computeFunction = { self.selectedObjectSet ().count > 0 }
+  //--- 'selectionCount' transient function 
+    selectionCount.computeFunction = { self.selectedObjectSet ().count }
   //--- 'sortedArray' transient function 
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<NameEntity>
@@ -61,7 +61,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   //-------------------------------------------------------------------------------------------------------------------*
 
   func unbind_modelAndView () {
-    canRemove.computeFunction = nil
+    selectionCount.computeFunction = nil
     sortedArray.computeFunction = nil
     mTableViewController?.unregister ()
     mTableViewController = nil
@@ -115,7 +115,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   func setSelectedObjectSet (objectSet : Set <NameEntity>) {
     mInternalSelectedObjectSet = objectSet
     mSelectedObjectSetShouldBeComputed = true
-    canRemove.noteModelDidChange ()
+    selectionCount.noteModelDidChange ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -178,7 +178,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
       NSLog ("%@", __FUNCTION__)
     }
     sortedArray.noteModelDidChange ()
-    canRemove.noteModelDidChange ()
+    selectionCount.noteModelDidChange ()
     mSortedObjectArrayDictionaryShouldBeComputed = true
     mSelectedObjectSetShouldBeComputed = true
   //--- Notify tableView outlets model did change
@@ -450,10 +450,10 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  Transient: canRemove                                                                                             *
+  //  Transient: selectionCount                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemove = PMTransientProperty_Bool ()
+  var selectionCount = PMTransientProperty_Int ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

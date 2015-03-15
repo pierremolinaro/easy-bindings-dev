@@ -103,9 +103,11 @@ method @transientList buildObservablePropertyMap
 #......................................................................................................................*
 
 method @transientList transientSemanticAnalysis
+  ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
+  ?!@structForGeneration ioGeneration
   !@transientDefinitionListForGeneration outTransientDefinitionListForGeneration
 {
   outTransientDefinitionListForGeneration = {}
@@ -129,21 +131,27 @@ method @transientList transientSemanticAnalysis
         !inRootObservableProperties
         !inSemanticContext
         !inObservableProperties
-        ?* # @typeKind outType
+        ?* # let @typeKind dependencyType
         ?* # @propertyKind outKind
         ?@propertyMultiplicity outMultiplicity
+        ?let @string swiftTypeStringForTransientFunctionArgument
       ]
       if outMultiplicity != .single then
-        error [mObservableProperty location] : "a simple property is required here"
+        error [mObservableProperty location] : "a collection cannot be observed"
       end
-      dependencies += !mObservableProperty
+      dependencies +=
+        !mObservableProperty
+        ![[mObservableProperty modelString] nameRepresentation]
+        !swiftTypeStringForTransientFunctionArgument
     end
   #--- Code generation
     outTransientDefinitionListForGeneration +=
+      !inOwnerName
       !mTransientName.string
       !type
       !dependencies
   end
+  ioGeneration.mTransientListForGeneration += outTransientDefinitionListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -151,6 +159,7 @@ method @transientList transientSemanticAnalysis
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 list @transientDefinitionListForGeneration {
+  @string mOwnerName
   @string mTransientName
   @typeKind mTransientType
   @transientDependencyListForGeneration mDependencyList
@@ -160,36 +169,13 @@ list @transientDefinitionListForGeneration {
 
 list @transientDependencyListForGeneration {
   @observablePropertyAST mDependency
+  @string mFunctionArgumentName
+  @string mFunctionArgumentTypeString
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   GENERATION                                                                                                         *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-#getter @observablePropertyAST generateActualParameterForComputeFunction -> @string outResult {
-#  switch self
-#  case controllerProperty (@lstring controllerName @lstring propertyName) : 
-#    outResult = "self." + controllerName.string + "." + propertyName
-#  case selfProperty (@lstring masterName @lstring optionName) :
-#    outResult = "self." + masterName.string
-#    if optionName.string != "" then
-#      outResult += "." + optionName
-#    end
-#  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
-#    outResult = "g_" + prefsName.string + "!." + propertyName
-#    if optionName.string != "" then
-#      outResult += "." + optionName
-#    end
-#  case rootProperty (@lstring masterName) :
-#    outResult = "self.rootObject." + masterName
-#  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-#    outResult = "self.rootObject." + masterName + "." + optionName
-#  case rootPropertyRelationship (@lstring masterName @lstring optionName) :
-#    outResult = "self.rootObject." + masterName + "." + optionName
-#  end
-#}
-
-#......................................................................................................................*
 
 getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   switch self
@@ -225,6 +211,46 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + ".removeObserverOf_" + propertyName
   end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#    TRANSIENT ROUTINE GENERATION                                                                                      *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateTransients
+  ?let @string inSourceFile
+  ?let @transientDefinitionListForGeneration inTransientListForGeneration {
+#--------------------------- Generate transient routines
+  for () in inTransientListForGeneration do
+    let s = [filewrapper transientManager.transientComputationFunctionFile
+      !mOwnerName
+      !mTransientName
+      !mDependencyList
+      !mTransientType 
+    ]
+    let fileName = mOwnerName + "+transient+" + mTransientName + ".swift"
+    [@string generateFileWithPattern
+      ![inSourceFile stringByDeletingLastPathComponent]
+      !fileName
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"\n\n" # Defaut user zone2
+      !"}\n\n//----------------------------------------------------------------------------*\n"
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+private filewrapper transientManager in "../generation-templates" {
+}{
+}{
+  template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
+    ?@string OWNER_NAME
+    ?@string TRANSIENT_NAME
+    ?@transientDependencyListForGeneration DEPENDENCY_LIST
+    ?@typeKind TRANSIENT_TYPE
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
