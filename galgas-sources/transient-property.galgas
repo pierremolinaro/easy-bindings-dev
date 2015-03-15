@@ -131,8 +131,8 @@ method @transientList transientSemanticAnalysis
         !inRootObservableProperties
         !inSemanticContext
         !inObservableProperties
-        ?* # let @typeKind dependencyType
-        ?* # @propertyKind outKind
+        ?let @typeKind unused dependencyType
+        ?let @propertyKind unused dependencyKind
         ?@propertyMultiplicity outMultiplicity
         ?let @string swiftTypeStringForTransientFunctionArgument
       ]
