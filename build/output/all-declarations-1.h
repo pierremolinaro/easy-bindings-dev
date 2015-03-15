@@ -1037,6 +1037,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionListForGenera
 class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_observablePropertyAST mAttribute_mDependency ;
+  public : GALGAS_string mAttribute_mFunctionArgumentName ;
+  public : GALGAS_string mAttribute_mFunctionArgumentTypeString ;
 
 
 //--------------------------------- Accessors
@@ -1050,7 +1052,9 @@ class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_
   public : VIRTUAL_IN_DEBUG ~ GALGAS_transientDependencyListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_transientDependencyListForGeneration_2D_element (const GALGAS_observablePropertyAST & in_mDependency) ;
+  public : GALGAS_transientDependencyListForGeneration_2D_element (const GALGAS_observablePropertyAST & in_mDependency,
+                                                                   const GALGAS_string & in_mFunctionArgumentName,
+                                                                   const GALGAS_string & in_mFunctionArgumentTypeString) ;
 
 //-- Start of generic part --*
 
@@ -1063,7 +1067,9 @@ class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_transientDependencyListForGeneration_2D_element constructor_new (const class GALGAS_observablePropertyAST & inOperand0
+  public : static GALGAS_transientDependencyListForGeneration_2D_element constructor_new (const class GALGAS_observablePropertyAST & inOperand0,
+                                                                                          const class GALGAS_string & inOperand1,
+                                                                                          const class GALGAS_string & inOperand2
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -1079,6 +1085,10 @@ class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST reader_mDependency (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mFunctionArgumentName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mFunctionArgumentTypeString (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -1354,6 +1364,74 @@ class GALGAS_arrayControllerMap_2D_element : public AC_GALGAS_root {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMap_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              @arrayControllerFilterListForGeneration_2D_element struct                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_string mAttribute_mFilterPropertyName ;
+  public : GALGAS_typeKind mAttribute_mFilterPropertyType ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (const GALGAS_string & in_mFilterPropertyName,
+                                                                     const GALGAS_typeKind & in_mFilterPropertyType) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerFilterListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerFilterListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                                            const class GALGAS_typeKind & inOperand1
+                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerFilterListForGeneration_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mFilterPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind reader_mFilterPropertyType (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerFilterListForGeneration_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerFilterListForGeneration_2D_element ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2913,6 +2991,7 @@ void categoryMethod_analyzeObservableProperty (const class GALGAS_observableProp
                                                class GALGAS_typeKind & out_outType,
                                                class GALGAS_propertyKind & out_outKind,
                                                class GALGAS_propertyMultiplicity & out_outMultiplicity,
+                                               class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
                                                class C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -3015,6 +3094,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
 class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Public data members
+  public : GALGAS_transientDefinitionListForGeneration mAttribute_mTransientListForGeneration ;
   public : GALGAS_actionListForGeneration mAttribute_mActionListForGeneration ;
   public : GALGAS_preferenceListForGeneration mAttribute_mPreferenceListForGeneration ;
   public : GALGAS_documentListForGeneration mAttribute_mDocumentListForGeneration ;
@@ -3039,7 +3119,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG ~ GALGAS_structForGeneration (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_structForGeneration (const GALGAS_actionListForGeneration & in_mActionListForGeneration,
+  public : GALGAS_structForGeneration (const GALGAS_transientDefinitionListForGeneration & in_mTransientListForGeneration,
+                                       const GALGAS_actionListForGeneration & in_mActionListForGeneration,
                                        const GALGAS_preferenceListForGeneration & in_mPreferenceListForGeneration,
                                        const GALGAS_documentListForGeneration & in_mDocumentListForGeneration,
                                        const GALGAS_entityListForGeneration & in_mEntityListForGeneration,
@@ -3059,14 +3140,15 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_structForGeneration constructor_new (const class GALGAS_actionListForGeneration & inOperand0,
-                                                              const class GALGAS_preferenceListForGeneration & inOperand1,
-                                                              const class GALGAS_documentListForGeneration & inOperand2,
-                                                              const class GALGAS_entityListForGeneration & inOperand3,
-                                                              const class GALGAS_enumListForGeneration & inOperand4,
-                                                              const class GALGAS_stringset & inOperand5,
-                                                              const class GALGAS_arrayControllerForGeneration & inOperand6,
-                                                              const class GALGAS_validationStubRoutineListForGeneration & inOperand7
+  public : static GALGAS_structForGeneration constructor_new (const class GALGAS_transientDefinitionListForGeneration & inOperand0,
+                                                              const class GALGAS_actionListForGeneration & inOperand1,
+                                                              const class GALGAS_preferenceListForGeneration & inOperand2,
+                                                              const class GALGAS_documentListForGeneration & inOperand3,
+                                                              const class GALGAS_entityListForGeneration & inOperand4,
+                                                              const class GALGAS_enumListForGeneration & inOperand5,
+                                                              const class GALGAS_stringset & inOperand6,
+                                                              const class GALGAS_arrayControllerForGeneration & inOperand7,
+                                                              const class GALGAS_validationStubRoutineListForGeneration & inOperand8
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -3094,6 +3176,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mNeededOutletClasses (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_preferenceListForGeneration reader_mPreferenceListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mTransientListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration reader_mValidationStubRoutineListForGeneration (LOCATION_ARGS) const ;
 
@@ -3190,6 +3274,50 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                            Routine 'generateTransients'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTransients (const class GALGAS_string constinArgument0,
+                                 const class GALGAS_transientDefinitionListForGeneration constinArgument1,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Filewrapper 'transientManager'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Filewrapper template 'transientManager transientComputationFunctionFile'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
+                                                                                     const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                     const class GALGAS_string & in_TRANSIENT_5F_NAME,
+                                                                                     const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
+                                                                                     const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3222,9 +3350,22 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
                                                                                                                const class GALGAS_string & in_RELATIONSHIP_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_string & in_TABLE_5F_VIEW_5F_OUTLET_5F_NAME,
+                                                                                                               const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
                                                                                                                const class GALGAS_filewrapper & in_FILE_5F_WRAPPER
                                                                                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
+                                                                                         const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                         const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                         const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

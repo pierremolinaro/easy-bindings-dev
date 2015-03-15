@@ -140,9 +140,11 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   [mTransientList transientSemanticAnalysis
+    !mDocumentName.string
     !rootObservablePropertyMap
     !inSemanticContext
     !observablePropertyMap
+    !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]
 #--- Build action map

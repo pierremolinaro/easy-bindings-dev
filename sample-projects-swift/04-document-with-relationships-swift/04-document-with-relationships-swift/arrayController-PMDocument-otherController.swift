@@ -35,7 +35,9 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
       if let model = self.mModel {
         var array = Array<NameEntity> ()
         for object in model.prop {
-          array.append (object)
+          if arrayControllerFilter_PMDocument_otherController (object.aValue.prop) {
+            array.append (object)
+          }
         }
         var currentObjectArrayAsMutableArray = NSMutableArray (array:array)
         currentObjectArrayAsMutableArray.sortUsingDescriptors (self.mSortDescriptors)

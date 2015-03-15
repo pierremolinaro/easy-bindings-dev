@@ -15,6 +15,7 @@ list @arrayControllerDeclarationListAST {
   @lstring mControllerName
   @lstring mRootRelationshipName
   @lstring mTableViewOutletName
+  @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 }
 
@@ -38,6 +39,17 @@ syntax extension easyBindings_syntax {
     $to$
     $identifier$ ?let @lstring tableViewOutletName
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    @lstringlist filterProperties = {}
+    select
+    or
+      $filter$
+      repeat
+        $identifier$ ?let @lstring filterProperty
+        filterProperties += !filterProperty
+      while
+        $,$
+      end
+    end
     repeat
       $column$
       $literal_string$ ?let columnName
@@ -56,6 +68,7 @@ syntax extension easyBindings_syntax {
       !controllerName
       !relationshipName
       !tableViewOutletName
+      !filterProperties
       !arrayControllerBoundColumnListAST
   }
 
@@ -161,6 +174,22 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
         !columnType
         !mBindingOptionList
     end
+  #--- Check filter properties
+    @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
+    for (filterPropertyName) in mFilterProperties do
+      [boundModelObservablePropertyMap searchKey
+        !filterPropertyName
+        ?let @typeKind filterType
+        ?* # let @propertyKind columnKind
+        ?let @propertyMultiplicity filterMultiplicity
+        ?* #let @string inverseRelationshipName # "" if not a relationship
+      ]
+      if filterMultiplicity == .collection then
+        error filterPropertyName : "the filter property should not be a collection"
+      end
+      arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
+    end
+  #---
     outDocumentArrayControllerForGeneration +=
       !inOwnerName
       !mControllerName.string
@@ -168,6 +197,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       !mRootRelationshipName.string
       ![modelType swiftTypeName]
       !mTableViewOutletName.string
+      !arrayControllerFilterListForGeneration
       !arrayControllerBoundColumnListForGeneration
   end
   ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
@@ -184,7 +214,15 @@ list @arrayControllerForGeneration {
   @string mToManyRelationshipName
   @string mElementTypeName
   @string mTableViewOutletName
+  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+}
+
+#......................................................................................................................*
+
+list @arrayControllerFilterListForGeneration {
+  @string mFilterPropertyName
+  @typeKind mFilterPropertyType
 }
 
 #......................................................................................................................*
@@ -245,8 +283,14 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string RELATIONSHIP_TYPE_NAME
     ?@string ELEMENT_TYPE_NAME
     ?@string TABLE_VIEW_OUTLET_NAME
+    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@filewrapper FILE_WRAPPER
+
+  template filterFunction "array-controller-filter-function.swift.galgasTemplate"
+    ?@string OWNER_NAME
+    ?@string ARRAY_CONTROLLER_NAME
+    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -264,6 +308,7 @@ proc generateArrayControllers
       !mRelationshipTypeName
       !mElementTypeName
       !mTableViewOutletName
+      !mArrayControllerFilterListForGeneration
       !mArrayControllerBoundColumnListForGeneration
       ![filewrapper collectionControllerGenerationTemplate]
     ]
@@ -272,6 +317,23 @@ proc generateArrayControllers
       !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
       !s
     ]
+    if [mArrayControllerFilterListForGeneration length] > 0 then
+    let s = [filewrapper collectionControllerGenerationTemplate.filterFunction
+      !mOwnerName
+      !mControllerName
+      !mArrayControllerFilterListForGeneration
+    ]
+    let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
+    [@string generateFileWithPattern
+      !inOutputDirectory
+      !fileName
+      !"//"
+      !"\n\n" # Defaut user zone1
+      !s
+      !"  return WHAT ?\n" # Defaut user zone2
+      !"}\n\n//" + ["" stringByRightPadding !116 !'—'] + "*\n"
+    ]
+    end
   end
 }
 

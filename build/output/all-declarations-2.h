@@ -602,9 +602,11 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_transientList
 //---------------------------------------------------------------------------------------------------------------------*
 
 void categoryMethod_transientSemanticAnalysis (const class GALGAS_transientList inObject,
+                                               const class GALGAS_string constin_inOwnerName,
                                                const class GALGAS_observablePropertyMap constin_inRootObservableProperties,
                                                const class GALGAS_semanticContext constin_inSemanticContext,
                                                const class GALGAS_observablePropertyMap constin_inObservableProperties,
+                                               class GALGAS_structForGeneration & io_ioGeneration,
                                                class GALGAS_transientDefinitionListForGeneration & out_outTransientDefinitionListForGeneration,
                                                class C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;

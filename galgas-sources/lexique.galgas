@@ -27,6 +27,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "document",
   "enum",
   "entity",
+  "filter",
   "include",
   "inverse",
   "nibClass",
