@@ -132,11 +132,11 @@ import Cocoa
       line:__LINE__
     )
   //--- Install compute functions for transients
-    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.canRemove.prop)}
+    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectionCount.prop)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
-    nameController.canRemove.addObserver (canRemoveString.event, inTrigger:true)
+    nameController.selectionCount.addObserver (canRemoveString.event, inTrigger:true)
     rootObject.mNames.count.addObserver (countItemMessage.event, inTrigger:true)
     self.rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
   //--- Install regular bindings
@@ -146,11 +146,16 @@ import Cocoa
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
-      [self.nameController.canRemove],
-      computeFunction:{ self.nameController.canRemove.prop },
+      [self.nameController.selectionCount],
+      computeFunction:{ (self.nameController.selectionCount.prop > 0) },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
+      [self.rootObject.mNames.count],
+      computeFunction:{ (self.rootObject.mNames.count.prop > 0) },
+      file:__FILE__, line:__LINE__
+    )
+    decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{ (self.rootObject.mNames.count.prop > 0) },
       file:__FILE__, line:__LINE__
@@ -187,6 +192,7 @@ import Cocoa
   //--- Unbind multiple bindings
     removePathButton?.unbind_enabled ()
     incrementButton?.unbind_enabled ()
+    decrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
     canRemoveString.computeFunction = nil
     countItemMessage.computeFunction = nil
@@ -195,7 +201,7 @@ import Cocoa
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
-    nameController.canRemove.removeObserver (canRemoveString.event, inTrigger:false)
+    nameController.selectionCount.removeObserver (canRemoveString.event, inTrigger:false)
     rootObject.mNames.count.removeObserver (countItemMessage.event, inTrigger:false)
     self.rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
   //--------------------------- Remove targets / actions

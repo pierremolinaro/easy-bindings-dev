@@ -125,9 +125,11 @@ override method @prefDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   [mTransientList transientSemanticAnalysis
+    !mPrefsName.string
     !{} # No root entity
     !inSemanticContext
     !observablePropertyMap
+    !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]
 #--- Build action map

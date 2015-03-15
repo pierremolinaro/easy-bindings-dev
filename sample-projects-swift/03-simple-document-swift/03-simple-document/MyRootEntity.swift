@@ -2,19 +2,19 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_myString {
+@objc(MyRootEntity_myString) protocol MyRootEntity_myString {
   var myString : PMStoredProperty_String { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_myEnumeration {
+@objc(MyRootEntity_myEnumeration) protocol MyRootEntity_myEnumeration {
   var myEnumeration : PMStoredProperty_MonEnumeration { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_myColor {
+@objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
   var myColor : PMStoredProperty_NSColor { get }
 }
 

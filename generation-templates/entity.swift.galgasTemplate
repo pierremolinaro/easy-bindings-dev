@@ -4,7 +4,7 @@ import Cocoa
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol %!ENTITY_NAME%_%!mStoredPropertyName% {
+@objc(%!ENTITY_NAME%_%!mStoredPropertyName%) protocol %!ENTITY_NAME%_%!mStoredPropertyName% {
   var %!mStoredPropertyName% : PMStoredProperty_%![mType swiftTypeName]% { get }
 }
 

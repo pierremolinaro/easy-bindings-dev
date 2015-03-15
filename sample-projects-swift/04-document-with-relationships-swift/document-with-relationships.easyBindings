@@ -25,12 +25,12 @@ document PMDocument root MyRootEntity {
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
-  transient String canRemoveString dependsFrom nameController.canRemove ;
+  transient String canRemoveString dependsFrom nameController.selectionCount ;
   outlet PMReadOnlyTextField canRemoveTextField $readOnlyValue self.canRemoveString ;
 
   outlet PMButton addPathButton $run nameController.add ;
 
-  outlet PMButton removePathButton $run nameController.remove $enabled nameController.canRemove ;
+  outlet PMButton removePathButton $run nameController.remove $enabled nameController.selectionCount > 0 ;
 
   outlet PMReadOnlyIntField countItemTextField $readOnlyValue root.mNames.count ;
 
@@ -45,7 +45,7 @@ document PMDocument root MyRootEntity {
   outlet PMButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;
   
   action decrement ;
-  outlet PMButton decrementButton $run self.decrement ;
+  outlet PMButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
 }
 
 #--------------------------------------------------------------*

@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-protocol MyRootEntity_docString {
+@objc(MyRootEntity_docString) protocol MyRootEntity_docString {
   var docString : PMStoredProperty_String { get }
 }
 

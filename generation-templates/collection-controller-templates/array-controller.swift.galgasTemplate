@@ -29,8 +29,8 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : AbstractArrayCont
 for () in BOUND_COLUMNS do
   %    mSortDescriptors.append (NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true))\n%
 end
-%  //--- 'canRemove' transient function 
-    canRemove.computeFunction = { self.selectedObjectSet ().count > 0 }
+%  //--- 'selectionCount' transient function 
+    selectionCount.computeFunction = { self.selectedObjectSet ().count }
   //--- 'sortedArray' transient function 
     sortedArray.computeFunction = {
       let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
@@ -63,7 +63,7 @@ end
   //-------------------------------------------------------------------------------------------------------------------*
 
   func unbind_modelAndView () {
-    canRemove.computeFunction = nil
+    selectionCount.computeFunction = nil
     sortedArray.computeFunction = nil
     mTableViewController?.unregister ()
     mTableViewController = nil
@@ -118,7 +118,7 @@ end
   func setSelectedObjectSet (objectSet : Set <%!ELEMENT_TYPE_NAME%>) {
     mInternalSelectedObjectSet = objectSet
     mSelectedObjectSetShouldBeComputed = true
-    canRemove.noteModelDidChange ()
+    selectionCount.noteModelDidChange ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -181,7 +181,7 @@ end
       NSLog ("\%@", __FUNCTION__)
     }
     sortedArray.noteModelDidChange ()
-    canRemove.noteModelDidChange ()
+    selectionCount.noteModelDidChange ()
     mSortedObjectArrayDictionaryShouldBeComputed = true
     mSelectedObjectSetShouldBeComputed = true
   //--- Notify tableView outlets model did change
@@ -413,10 +413,10 @@ end
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  Transient: canRemove                                                                                             *
+  //  Transient: selectionCount                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var canRemove = PMTransientProperty_Bool ()
+  var selectionCount = PMTransientProperty_Int ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
