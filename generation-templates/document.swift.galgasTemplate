@@ -106,7 +106,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
+%    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
 end
 end
 %  //--- Install regular bindings
@@ -135,7 +135,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%.event, inTrigger:true)\n%
+%    rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%, postEvent:true)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -178,7 +178,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
+%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%, postEvent:false)\n%
 end
 end
 %  //--------------------------- Remove targets / actions

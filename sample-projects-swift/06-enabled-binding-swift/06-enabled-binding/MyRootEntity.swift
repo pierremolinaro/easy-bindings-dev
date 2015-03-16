@@ -11,7 +11,7 @@ import Cocoa
 //    Array of MyRootEntity                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
+class ArrayOf_MyRootEntity : PMEvent {
   var computeFunction : Optional<() -> [MyRootEntity]?>
 
   override init () {
@@ -23,10 +23,10 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   var count = PMTransientProperty_Int ()
 
-  func noteModelDidChange () {
+  override func postEvent () {
     if (prop_cache != nil) {
       prop_cache = nil
-      count.postEvents ()
+      count.postEvent ()
     }
   }
 
@@ -52,7 +52,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           removedObjectSet.subtractInPlace (newObjectSet)
           for managedObject : MyRootEntity in removedObjectSet {
             for observer in mObserversOf_docBool {
-              managedObject.docBool.removeObserver (observer, inTrigger:true)
+              managedObject.docBool.removeObserver (observer, postEvent:true)
             }
           }
         //--- Added object set
@@ -60,7 +60,7 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
           addedObjectSet.subtractInPlace (mSet)
           for managedObject : MyRootEntity in addedObjectSet {
             for observer in mObserversOf_docBool {
-              managedObject.docBool.addObserver (observer, inTrigger:true)
+              managedObject.docBool.addObserver (observer, postEvent:true)
             }
           }
         //--- Update object set
@@ -76,17 +76,17 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   var mObserversOf_docBool = Set<PMEvent> ()
 
-  func addObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.insert (inObserver)
     for managedObject in prop {
-      managedObject.docBool.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.docBool.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_docBool (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
     for managedObject in prop {
-      managedObject.docBool.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.docBool.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 

@@ -82,13 +82,13 @@ import Cocoa
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

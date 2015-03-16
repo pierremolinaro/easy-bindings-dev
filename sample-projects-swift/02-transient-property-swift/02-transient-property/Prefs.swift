@@ -90,9 +90,9 @@ var g_Prefs : Prefs? = nil
     mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.prop, self.mFirstName.prop)}
     mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.prop)}
   //--- Install property observers for transients
-    self.mName.addObserver (mFullName.event, inTrigger:true)
-    self.mFirstName.addObserver (mFullName.event, inTrigger:true)
-    self.mFullName.addObserver (mUpperCaseFullName.event, inTrigger:true)
+    self.mName.addObserver (mFullName, postEvent:true)
+    self.mFirstName.addObserver (mFullName, postEvent:true)
+    self.mFullName.addObserver (mUpperCaseFullName, postEvent:true)
   //--- Install bindings
     mNameTextField?.bind_value (self.mName, file:__FILE__, line:__LINE__, sendContinously:false)
     mFirstNameTextField?.bind_value (self.mFirstName, file:__FILE__, line:__LINE__, sendContinously:false)

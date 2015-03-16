@@ -68,7 +68,7 @@ var g_MyPrefs : MyPrefs? = nil
   //--- Install compute functions for transients
     prefTransientString.computeFunction = {return compute_MyPrefs_prefTransientString (self.myPrefString.prop)}
   //--- Install property observers for transients
-    self.myPrefString.addObserver (prefTransientString.event, inTrigger:true)
+    self.myPrefString.addObserver (prefTransientString, postEvent:true)
   //--- Install bindings
     myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
   }

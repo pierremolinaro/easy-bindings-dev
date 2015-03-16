@@ -5,7 +5,7 @@ import Cocoa
 //    Array of MyRootEntity                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
+class ArrayOf_MyRootEntity : PMEvent {
   var computeFunction : Optional<() -> [MyRootEntity]?>
 
   override init () {
@@ -17,10 +17,10 @@ class ArrayOf_MyRootEntity : PMObject, PMTransientPropertyProtocol {
 
   var count = PMTransientProperty_Int ()
 
-  func noteModelDidChange () {
+  override func postEvent () {
     if (prop_cache != nil) {
       prop_cache = nil
-      count.postEvents ()
+      count.postEvent ()
     }
   }
 
@@ -107,10 +107,10 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
         removedObjectSet.subtractInPlace (prop)
         for managedObject : NameEntity in removedObjectSet {
           for observer in mObserversOf_aValue {
-            managedObject.aValue.removeObserver (observer, inTrigger:true)
+            managedObject.aValue.removeObserver (observer, postEvent:true)
           }
           for observer in mObserversOf_name {
-            managedObject.name.removeObserver (observer, inTrigger:true)
+            managedObject.name.removeObserver (observer, postEvent:true)
           }
           managedObject.mRoot.owner = nil ;
         }
@@ -119,17 +119,17 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : NameEntity in addedObjectSet {
           for observer in mObserversOf_aValue {
-            managedObject.aValue.addObserver (observer, inTrigger:true)
+            managedObject.aValue.addObserver (observer, postEvent:true)
           }
           for observer in mObserversOf_name {
-            managedObject.name.addObserver (observer, inTrigger:true)
+            managedObject.name.addObserver (observer, postEvent:true)
           }
           managedObject.mRoot.prop = owner
         }
       //--- Notify observers object count did change
-        postEvents ()
+        postEvent ()
         if oldValue.count != prop.count {
-          count.noteModelDidChange ()
+          count.postEvent ()
         }
       }
     }
@@ -166,51 +166,51 @@ class ToManyRelationship_MyRootEntity_mNames : PMAbstractProperty {
 
   var mObserversOf_aValue = Set<PMEvent> ()
 
-  func addObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.insert (inObserver)
     for managedObject in prop {
-      managedObject.aValue.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_aValue (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
     for managedObject in prop {
-      managedObject.aValue.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 
 
   var mObserversOf_mRoot = Set<PMEvent> ()
 
-  func addObserverOf_mRoot (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_mRoot (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_mRoot.insert (inObserver)
     for managedObject in prop {
-      managedObject.mRoot.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.mRoot.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_mRoot (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_mRoot (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_mRoot.remove (inObserver)
     for managedObject in prop {
-      managedObject.mRoot.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.mRoot.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 
 
   var mObserversOf_name = Set<PMEvent> ()
 
-  func addObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.insert (inObserver)
     for managedObject in prop {
-      managedObject.name.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.name.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_name (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
     for managedObject in prop {
-      managedObject.name.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 

@@ -136,9 +136,9 @@ import Cocoa
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
-    nameController.selectionCount.addObserver (canRemoveString.event, inTrigger:true)
-    rootObject.mNames.count.addObserver (countItemMessage.event, inTrigger:true)
-    self.rootObject.mNames.addObserverOf_aValue (total.event, inTrigger:true)
+    nameController.selectionCount.addObserver (canRemoveString, postEvent:true)
+    rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
+    self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
   //--- Install regular bindings
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
     countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
@@ -161,8 +161,8 @@ import Cocoa
       file:__FILE__, line:__LINE__
     )
   //--------------------------- Array controller as observers
-    rootObject.mNames.addObserver (nameController.event, inTrigger:true)
-    rootObject.mNames.addObserver (otherController.event, inTrigger:true)
+    rootObject.mNames.addObserver (nameController, postEvent:true)
+    rootObject.mNames.addObserver (otherController, postEvent:true)
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"
@@ -201,9 +201,9 @@ import Cocoa
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
-    nameController.selectionCount.removeObserver (canRemoveString.event, inTrigger:false)
-    rootObject.mNames.count.removeObserver (countItemMessage.event, inTrigger:false)
-    self.rootObject.mNames.removeObserverOf_aValue (total.event, inTrigger:false)
+    nameController.selectionCount.removeObserver (canRemoveString, postEvent:false)
+    rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)
+    self.rootObject.mNames.removeObserverOf_aValue (total, postEvent:false)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

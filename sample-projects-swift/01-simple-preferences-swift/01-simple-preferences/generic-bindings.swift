@@ -51,7 +51,7 @@ extension NSControl {
     mComputeFunction = computeFunction
     super.init ()
     for object in mObjectArray {
-      object.addObserver (self, inTrigger:true)
+      object.addObserver (self, postEvent:true)
     }
   }
 
@@ -60,7 +60,7 @@ extension NSControl {
   func unregister () {
     mComputeFunction = nil
     for object in mObjectArray {
-      object.removeObserver (self, inTrigger:false)
+      object.removeObserver (self, postEvent:false)
     }
   }
 

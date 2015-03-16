@@ -85,7 +85,7 @@ class Controller_PMTextField_value : PMOutletEvent {
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line, "the PMTextField outlet has a formatter")
     }
-    object.addObserver (self, inTrigger:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -93,7 +93,7 @@ class Controller_PMTextField_value : PMOutletEvent {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

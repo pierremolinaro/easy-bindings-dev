@@ -72,13 +72,13 @@ import Cocoa
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
     }
-    object.addObserver (self, inTrigger:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

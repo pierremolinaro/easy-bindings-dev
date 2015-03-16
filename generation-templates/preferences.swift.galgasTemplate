@@ -109,7 +109,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency modelString]%.addObserver (%!mTransientName%.event, inTrigger:true)\n%
+    %    %![mDependency modelString]%.addObserver (%!mTransientName%, postEvent:true)\n%
   end
 end
 %  //--- Install bindings

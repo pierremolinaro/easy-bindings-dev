@@ -8,7 +8,7 @@ private let displayDebugMessage = false
 //    ArrayController_PMDocument_otherController                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_PMDocument_otherController : AbstractArrayController, PMTransientPropertyProtocol {
+class ArrayController_PMDocument_otherController : AbstractArrayController {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
@@ -68,8 +68,8 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
     mTableViewController?.unregister ()
     mTableViewController = nil
     mInternalSelectedObjectSet = Set ()
-    mModel?.removeObserverOf_name (event, inTrigger:false)
-    mModel?.removeObserverOf_aValue (event, inTrigger:false)
+    mModel?.removeObserverOf_name (self, postEvent:false)
+    mModel?.removeObserverOf_aValue (self, postEvent:false)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -78,8 +78,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   
   private var mSortDescriptors : [AnyObject] = [AnyObject] () {
     didSet {
-      noteModelDidChange () // Force sorting
-      postEvents () // Notify outlets display should be done
+      postEvent () // Force sorting
     }
   }
 
@@ -117,7 +116,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   func setSelectedObjectSet (objectSet : Set <NameEntity>) {
     mInternalSelectedObjectSet = objectSet
     mSelectedObjectSetShouldBeComputed = true
-    selectionCount.noteModelDidChange ()
+    selectionCount.postEvent ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -138,53 +137,18 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    Model observing event                                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var eventModelChange_cache : PMTransientEvent? = nil
-  var event : PMTransientEvent {
-    get {
-      if eventModelChange_cache == nil {
-        eventModelChange_cache = PMTransientEvent (self)
-      }
-      return eventModelChange_cache!
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    Object array dictionary                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mSortedObjectArrayDictionary = [NameEntity : Int] ()
-  private var mSortedObjectArrayDictionaryShouldBeComputed = true
-  
-  var sortedObjectArrayDictionary : [NameEntity : Int] {
-    get {
-      if mSortedObjectArrayDictionaryShouldBeComputed {
-        mSortedObjectArrayDictionaryShouldBeComputed = false
-        mSortedObjectArrayDictionary = [:]
-        for (idx, object) in enumerate (sortedArray.prop) {
-          mSortedObjectArrayDictionary [object] = idx
-        }
-      }
-      return mSortedObjectArrayDictionary
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //    Observing model change                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func noteModelDidChange () {
+  override func postEvent () {
     if displayDebugMessage {
       NSLog ("%@", __FUNCTION__)
     }
-    sortedArray.noteModelDidChange ()
-    selectionCount.noteModelDidChange ()
-    mSortedObjectArrayDictionaryShouldBeComputed = true
+    sortedArray.postEvent ()
+    selectionCount.postEvent ()
     mSelectedObjectSetShouldBeComputed = true
   //--- Notify tableView outlets model did change
-    postEvents ()
+    super.postEvent ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -231,8 +195,8 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
         inTableView.sortDescriptors = NSArray (object:sdp) as! [AnyObject]
       }
     }
-    mModel?.addObserverOf_name (event, inTrigger:true)
-    mModel?.addObserverOf_aValue (event, inTrigger:true)
+    mModel?.addObserverOf_name (self, postEvent:true)
+    mModel?.addObserverOf_aValue (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -254,7 +218,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    T A B L E V I E W    D E L E G A T E : tableView:sortDescriptorsDidChange:                                     *
+  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:                                 *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (aTableView: NSTableView,
@@ -266,7 +230,7 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    T A B L E V I E W    D A T A S O U R C E                                                                       *
+  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView                                             *
   //-------------------------------------------------------------------------------------------------------------------*
   // http://thegreyblog.blogspot.fr/2014/06/nscontroltexteditingdelegate-methods.html
 
@@ -277,6 +241,8 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
     return sortedArray.prop.count
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    T A B L E V I E W    D A T A S O U R C E : tableView:viewForTableColumn:row:                                   *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (tableView : NSTableView,
@@ -327,9 +293,9 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-         //   object.name.removeObserver(self.eventModelChange, inTrigger:false)
+         //   object.name.removeObserver(self.eventModelChange, postEvent:false)
             object.name.setProp (sender.stringValue)
-         //   object.name.addObserver (self.eventModelChange, inTrigger:false)
+         //   object.name.addObserver (self.eventModelChange, postEvent:false)
           }
         })
       }
@@ -356,9 +322,9 @@ class ArrayController_PMDocument_otherController : AbstractArrayController, PMTr
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-         //   object.aValue.removeObserver(self.eventModelChange, inTrigger:false)
+         //   object.aValue.removeObserver(self.eventModelChange, postEvent:false)
             object.aValue.setProp (sender.integerValue)
-         //   object.aValue.addObserver (self.eventModelChange, inTrigger:false)
+         //   object.aValue.addObserver (self.eventModelChange, postEvent:false)
           }
         })
       }

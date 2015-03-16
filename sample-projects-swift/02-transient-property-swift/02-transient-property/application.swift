@@ -9,32 +9,6 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMTransientEvent class                                                                                           *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-@objc(PMTransientEvent) class PMTransientEvent : PMEvent {
-
-  private weak var mTransientProperty : PMTransientPropertyProtocol?
-  
-  init (_ transientProperty : PMTransientPropertyProtocol) {
-    mTransientProperty = transientProperty
-    super.init ()
-  }
-  
-  override func postEvent () {
-    mTransientProperty?.noteModelDidChange ()
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMTransientPropertyProtocol                                                                                      *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-@objc(PMTransientPropertyProtocol) protocol PMTransientPropertyProtocol {
-  func noteModelDidChange ()
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMOutletEvent class                                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
