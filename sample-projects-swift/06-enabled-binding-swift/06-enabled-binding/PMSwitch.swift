@@ -62,7 +62,7 @@ import Cocoa
     super.init ()
     mOutlet.target = self
     mOutlet.action = "action:"
-    object.addObserver (self, inTrigger:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -70,7 +70,7 @@ import Cocoa
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

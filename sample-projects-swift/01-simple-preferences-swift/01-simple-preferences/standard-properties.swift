@@ -6,9 +6,9 @@ import Cocoa
 
 @objc(PMReadOnlyEnumPropertyProtocol) protocol PMReadOnlyEnumPropertyProtocol {
 
-  func addObserver (inObserver : PMEvent, inTrigger:Bool)
+  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool)
 
-  func removeObserver (inObserver : PMEvent, inTrigger:Bool)
+  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool)
 
   func count () -> Int
 
@@ -28,25 +28,25 @@ import Cocoa
 //   PMAbstractProperty                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMAbstractProperty) class PMAbstractProperty : PMObject {
+@objc(PMAbstractProperty) class PMAbstractProperty : PMEvent {
 
   private var mObservers = Set <PMEvent> ()
   
-  func addObserver (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObservers.insert (inObserver)
     if inTrigger {
       inObserver.postEvent ()
     }
   }
  
-  func removeObserver (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObservers.remove (inObserver)
     if inTrigger {
       inObserver.postEvent ()
     }
   }
 
-  func postEvents () {
+  override func postEvent () {
     for object in mObservers {
       object.postEvent ()
     }
@@ -85,7 +85,7 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
       if mValue != oldValue {
         explorer?.stringValue = mValue
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -112,7 +112,7 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
 //   PMTransientProperty_String                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_String : PMReadOnlyProperty_String, PMTransientPropertyProtocol {
+class PMTransientProperty_String : PMReadOnlyProperty_String {
   private var mValueCache : String? = nil
   var computeFunction : Optional<() -> String?>
 
@@ -132,21 +132,10 @@ class PMTransientProperty_String : PMReadOnlyProperty_String, PMTransientPropert
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }
@@ -182,7 +171,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -209,7 +198,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 //   PMTransientProperty_NSColor                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor, PMTransientPropertyProtocol {
+class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
   private var mValueCache : NSColor? = nil
   var computeFunction : Optional<() -> NSColor?>
   
@@ -229,21 +218,10 @@ class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor, PMTransientPrope
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }
@@ -279,7 +257,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -306,7 +284,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 //   PMTransientProperty_NSDate                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate, PMTransientPropertyProtocol {
+class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
   private var mValueCache : NSDate? = nil
   var computeFunction : Optional<() -> NSDate?>
   
@@ -326,20 +304,10 @@ class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate, PMTransientPropert
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }
@@ -375,7 +343,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue))
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -402,7 +370,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 //   PMTransientProperty_Int                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Int : PMReadOnlyProperty_Int, PMTransientPropertyProtocol {
+class PMTransientProperty_Int : PMReadOnlyProperty_Int {
   private var mValueCache : Int? = nil
   var computeFunction : Optional<() -> Int?>
   
@@ -422,21 +390,10 @@ class PMTransientProperty_Int : PMReadOnlyProperty_Int, PMTransientPropertyProto
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }
@@ -472,7 +429,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
       if mValue != oldValue {
         explorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -499,7 +456,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 //   PMTransientProperty_Bool                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Bool : PMReadOnlyProperty_Bool, PMTransientPropertyProtocol {
+class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
   private var mValueCache : Bool? = nil
   var computeFunction : Optional<() -> Bool?>
   
@@ -519,21 +476,10 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool, PMTransientPropertyPro
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }

@@ -15,7 +15,7 @@ end
 //    %!["Array of " + ENTITY_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayOf_%!ENTITY_NAME% : PMObject, PMTransientPropertyProtocol {
+class ArrayOf_%!ENTITY_NAME% : PMEvent {
   var computeFunction : Optional<() -> [%!ENTITY_NAME%]?>
 
   override init () {
@@ -27,10 +27,10 @@ class ArrayOf_%!ENTITY_NAME% : PMObject, PMTransientPropertyProtocol {
 
   var count = PMTransientProperty_Int ()
 
-  func noteModelDidChange () {
+  override func postEvent () {
     if (prop_cache != nil) {
       prop_cache = nil
-      count.postEvents ()
+      count.postEvent ()
     }
   }
 
@@ -57,7 +57,7 @@ class ArrayOf_%!ENTITY_NAME% : PMObject, PMTransientPropertyProtocol {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %          for managedObject : %!ENTITY_NAME% in removedObjectSet {
             for observer in mObserversOf_%!mStoredPropertyName% {
-              managedObject.%!mStoredPropertyName%.removeObserver (observer, inTrigger:true)
+              managedObject.%!mStoredPropertyName%.removeObserver (observer, postEvent:true)
             }
           }
 %end%        //--- Added object set
@@ -66,7 +66,7 @@ class ArrayOf_%!ENTITY_NAME% : PMObject, PMTransientPropertyProtocol {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %          for managedObject : %!ENTITY_NAME% in addedObjectSet {
             for observer in mObserversOf_%!mStoredPropertyName% {
-              managedObject.%!mStoredPropertyName%.addObserver (observer, inTrigger:true)
+              managedObject.%!mStoredPropertyName%.addObserver (observer, postEvent:true)
             }
           }
  %end%       //--- Update object set
@@ -84,17 +84,17 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   var mObserversOf_%!mStoredPropertyName% = Set<PMEvent> ()
 
-  func addObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     for managedObject in prop {
-      managedObject.%!mStoredPropertyName%.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     for managedObject in prop {
-      managedObject.%!mStoredPropertyName%.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 
@@ -157,7 +157,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : PMAbstractP
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.removeObserver (observer, inTrigger:true)
+            managedObject.%!lkey.string%.removeObserver (observer, postEvent:true)
           }
 %end
 end
@@ -170,16 +170,16 @@ end
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.addObserver (observer, inTrigger:true)
+            managedObject.%!lkey.string%.addObserver (observer, postEvent:true)
           }
 %end
 end
 %          managedObject.%!mOppositeRelationshipName%.prop = owner
         }
       //--- Notify observers object count did change
-        postEvents ()
+        postEvent ()
         if oldValue.count != prop.count {
-          count.noteModelDidChange ()
+          count.postEvent ()
         }
       }
     }
@@ -219,17 +219,17 @@ if not [mMultiplicity isCollection] then
 %
   var mObserversOf_%!lkey.string% = Set<PMEvent> ()
 
-  func addObserverOf_%!lkey.string% (inObserver : PMEvent, inTrigger:Bool) {
+  func addObserverOf_%!lkey.string% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!lkey.string%.insert (inObserver)
     for managedObject in prop {
-      managedObject.%!lkey.string%.addObserver (inObserver, inTrigger:inTrigger)
+      managedObject.%!lkey.string%.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
-  func removeObserverOf_%!lkey.string% (inObserver : PMEvent, inTrigger:Bool) {
+  func removeObserverOf_%!lkey.string% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!lkey.string%.remove (inObserver)
     for managedObject in prop {
-      managedObject.%!lkey.string%.removeObserver (inObserver, inTrigger:inTrigger)
+      managedObject.%!lkey.string%.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
 
@@ -288,7 +288,7 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
         %!mToOneRelationshipName%?.%!mOppositeRelationshipName% = self
 %    end
 %      //--- Notify observers
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -391,7 +391,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency generateAddObserverCall]% (%!mTransientName%.event, inTrigger:true)\n%
+    %    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
   end
 end
 %  //--- Install undoers for properties
@@ -419,7 +419,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%.event, inTrigger:false)\n%
+    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%, postEvent:false)\n%
   end
 end
 %  //--- Uninstall compute functions for transients

@@ -45,7 +45,7 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
     mOutlet = outlet
     super.init ()
     mObject.configureTableView (mOutlet, file : file, line : line)
-    object.addObserver (self, inTrigger:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -53,7 +53,7 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
   func unregister () {
     mOutlet.setDataSource (nil)
     mOutlet.setDelegate (nil)
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

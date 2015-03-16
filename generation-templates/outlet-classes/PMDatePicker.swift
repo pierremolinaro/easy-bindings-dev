@@ -53,7 +53,7 @@ class Controller_PMDatePicker_date : PMOutletEvent {
     super.init ()
     mOutlet.target = self
     mOutlet.action = "action:"
-    mObject.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -61,7 +61,7 @@ class Controller_PMDatePicker_date : PMOutletEvent {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -133,7 +133,7 @@ class Controller_PMIntField_value : PMOutletEvent {
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -141,7 +141,7 @@ class Controller_PMIntField_value : PMOutletEvent {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

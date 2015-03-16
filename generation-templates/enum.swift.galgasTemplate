@@ -80,7 +80,7 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
       if mValue != oldValue {
         explorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -119,7 +119,7 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
 //    %!["PMTransientProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%, PMTransientPropertyProtocol {
+class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME% {
   private var mValueCache : %!ENUM_TYPE_NAME%? = nil
 
   var computeFunction : Optional<() -> %!ENUM_TYPE_NAME%>
@@ -141,21 +141,10 @@ class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAM
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }

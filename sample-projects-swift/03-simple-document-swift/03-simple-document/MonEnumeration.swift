@@ -78,7 +78,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
       if mValue != oldValue {
         explorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
-        postEvents ()
+        postEvent ()
       }
     }
   }
@@ -117,7 +117,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
 //    PMTransientProperty_MonEnumeration                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMTransientPropertyProtocol {
+class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration {
   private var mValueCache : MonEnumeration? = nil
 
   var computeFunction : Optional<() -> MonEnumeration>
@@ -139,21 +139,10 @@ class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PM
     }
   }
 
-  private var mEvent : PMTransientEvent?
-
-  var event : PMTransientEvent {
-    get {
-      if mEvent == nil {
-        mEvent = PMTransientEvent (self)
-      }
-      return mEvent!
-    }
-  }
-
-  func noteModelDidChange () {
+  override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
-      postEvents ()
+      super.postEvent ()
     }
   }
 }

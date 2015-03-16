@@ -45,7 +45,7 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
     mOutlet = outlet
     super.init ()
     mObject.configureTableView (mOutlet, file : file, line : line)
-    object.addObserver (self, inTrigger:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -53,19 +53,19 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
   func unregister () {
     mOutlet.setDataSource (nil)
     mOutlet.setDelegate (nil)
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   // http://stackoverflow.com/questions/7359921/how-to-keep-the-visible-content-after-nstableview-reloaddata
   
   override func updateOutlet () {
-    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
   //---------------- So tableViewSelectionDidChange is not called
-    self.mOutlet.setDelegate (nil)
+    mOutlet.setDelegate (nil)
   //---------------- Reload data
-    self.mOutlet.reloadData ()
+    mOutlet.reloadData ()
   //----------------
+//    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
   //---------------- Update table view selection
     var newTableViewSelectionIndexSet = self.mObject.selectedObjectIndexSet ()
     self.mOutlet.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
@@ -73,9 +73,9 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
     if newTableViewSelectionIndexSet.count > 0 {
       self.mOutlet.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
+  //  }
   //----------------
-    self.mOutlet.setDelegate (self.mObject)
-  }
+    mOutlet.setDelegate (mObject)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

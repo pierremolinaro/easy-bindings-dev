@@ -58,7 +58,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true
-    mObject.addObserver (self, inTrigger:true)
+    mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -66,7 +66,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, inTrigger:false)
+    mObject.removeObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
