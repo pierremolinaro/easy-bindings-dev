@@ -310,56 +310,22 @@ class DataSource_PMDocument_nameController : PMAbstractProperty, PMTableViewData
   func set_name_Action (sender : PMTextField) {
     let row = sender.tag
     let object = mSortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
-    let validationResult = object.name.validate (sender.stringValue)
-    switch validationResult {
-    case PMValidationResult.ok :
-      object.name.setProp (sender.stringValue)
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The value “%@” is invalid.", sender.stringValue)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-         //   object.name.removeObserver(self.eventModelChange, postEvent:false)
-            object.name.setProp (sender.stringValue)
-         //   object.name.addObserver (self.eventModelChange, postEvent:false)
-          }
-        })
-      }
-    }
+    object.name.validateAndSetProp (
+      sender.stringValue,
+      windowForSheet:sender.window,
+      discardFunction: { object.name.setProp (sender.stringValue) }
+    )
   }
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func set_aValue_Action (sender : PMNumberField) {
     let row = sender.tag
     let object = mSortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
-    let validationResult = object.aValue.validate (sender.integerValue)
-    switch validationResult {
-    case PMValidationResult.ok :
-      object.aValue.setProp (sender.integerValue)
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The value “%d” is invalid.", sender.integerValue)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-         //   object.aValue.removeObserver(self.eventModelChange, postEvent:false)
-            object.aValue.setProp (sender.integerValue)
-         //   object.aValue.addObserver (self.eventModelChange, postEvent:false)
-          }
-        })
-      }
-    }
+    object.aValue.validateAndSetProp (
+      sender.integerValue,
+      windowForSheet:sender.window,
+      discardFunction: { object.aValue.setProp (sender.integerValue) }
+    )
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

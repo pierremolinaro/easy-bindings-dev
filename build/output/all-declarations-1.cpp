@@ -13649,26 +13649,11 @@ const char * gWrapperFileContent_3_outletClassGeneration = "//------------------
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMIntField) {\n"
-  "    let validationResult = mObject.validate (mOutlet.integerValue)\n"
-  "    switch validationResult {\n"
-  "    case PMValidationResult.ok :\n"
-  "      mObject.setProp (mOutlet.integerValue)\n"
-  "    case PMValidationResult.rejectWithBeep :\n"
-  "      NSBeep ()\n"
-  "    case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-  "      if let window = sender.window {\n"
-  "        let alert = NSAlert ()\n"
-  "        alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", mOutlet.stringValue)\n"
-  "        alert.informativeText = informativeText\n"
-  "        alert.addButtonWithTitle (\"Ok\")\n"
-  "        alert.addButtonWithTitle (\"Discard Change\")\n"
-  "        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-  "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
-  "            self.mOutlet.myIntegerValue = self.mObject.prop\n"
-  "          }\n"
-  "        })\n"
-  "      }\n"
-  "    }\n"
+  "    mObject.validateAndSetProp (\n"
+  "      mOutlet.integerValue,\n"
+  "      windowForSheet:sender.window,\n"
+  "      discardFunction: { self.mOutlet.myIntegerValue = self.mObject.prop }\n"
+  "    )\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -13680,7 +13665,7 @@ const cRegularFileWrapper gWrapperFile_3_outletClassGeneration (
   "PMIntField.swift",
   "swift",
   true, // Text file
-  7372, // Text length
+  6676, // Text length
   gWrapperFileContent_3_outletClassGeneration
 ) ;
 
@@ -14422,26 +14407,11 @@ const char * gWrapperFileContent_10_outletClassGeneration = "import Cocoa\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func action (sender : PMTextField) {\n"
-  "    let validationResult = mObject.validate (mOutlet.stringValue)\n"
-  "    switch validationResult {\n"
-  "    case PMValidationResult.ok :\n"
-  "      mObject.setProp (mOutlet.stringValue)\n"
-  "    case PMValidationResult.rejectWithBeep :\n"
-  "      NSBeep ()\n"
-  "    case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-  "      if let window = sender.window {\n"
-  "        let alert = NSAlert ()\n"
-  "        alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", mOutlet.stringValue)\n"
-  "        alert.informativeText = informativeText\n"
-  "        alert.addButtonWithTitle (\"Ok\")\n"
-  "        alert.addButtonWithTitle (\"Discard Change\")\n"
-  "        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-  "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
-  "            self.mOutlet.stringValue = self.mObject.prop\n"
-  "          }\n"
-  "        })\n"
-  "      }\n"
-  "    }\n"
+  "    mObject.validateAndSetProp (\n"
+  "      mOutlet.stringValue,\n"
+  "      windowForSheet:sender.window,\n"
+  "      discardFunction: { self.mOutlet.stringValue = self.mObject.prop }\n"
+  "    )\n"
   "  }\n"
   "}\n"
   "\n"
@@ -14451,7 +14421,7 @@ const cRegularFileWrapper gWrapperFile_10_outletClassGeneration (
   "PMTextField.swift",
   "swift",
   true, // Text file
-  5222, // Text length
+  4527, // Text length
   gWrapperFileContent_10_outletClassGeneration
 ) ;
 
@@ -15863,48 +15833,19 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
       result << ") {\n"
         "    let row = sender.tag\n"
         "    let object = mSortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)\n"
-        "    let validationResult = object." ;
+        "    object." ;
       result << enumerator_12399.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".validate (" ;
-      result << categoryReader_transformerForTableViewAction (enumerator_12399.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 306)).stringValue () ;
-      result << ")\n"
-        "    switch validationResult {\n"
-        "    case PMValidationResult.ok :\n"
-        "      object." ;
+      result << ".validateAndSetProp (\n"
+        "      " ;
+      result << categoryReader_transformerForTableViewAction (enumerator_12399.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 307)).stringValue () ;
+      result << ",\n"
+        "      windowForSheet:sender.window,\n"
+        "      discardFunction: { object." ;
       result << enumerator_12399.current_mObservablePropertyName (HERE).stringValue () ;
       result << ".setProp (" ;
       result << categoryReader_transformerForTableViewAction (enumerator_12399.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 309)).stringValue () ;
-      result << ")\n"
-        "    case PMValidationResult.rejectWithBeep :\n"
-        "      NSBeep ()\n"
-        "    case PMValidationResult.rejectWithAlert (let informativeText) :\n"
-        "      if let window = sender.window {\n"
-        "        let alert = NSAlert ()\n"
-        "        alert.messageText = String (format:\"The value \xE2""\x80""\x9C""" ;
-      result << categoryReader_formatterStringForFormatPrinting (enumerator_12399.current_mPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 315)).stringValue () ;
-      result << "\xE2""\x80""\x9D"" is invalid.\", " ;
-      result << categoryReader_transformerForTableViewAction (enumerator_12399.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 315)).stringValue () ;
-      result << ")\n"
-        "        alert.informativeText = informativeText\n"
-        "        alert.addButtonWithTitle (\"Ok\")\n"
-        "        alert.addButtonWithTitle (\"Discard Change\")\n"
-        "        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
-        "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
-        "         //   object." ;
-      result << enumerator_12399.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".removeObserver(self.eventModelChange, postEvent:false)\n"
-        "            object." ;
-      result << enumerator_12399.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".setProp (" ;
-      result << categoryReader_transformerForTableViewAction (enumerator_12399.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 322)).stringValue () ;
-      result << ")\n"
-        "         //   object." ;
-      result << enumerator_12399.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".addObserver (self.eventModelChange, postEvent:false)\n"
-        "          }\n"
-        "        })\n"
-        "      }\n"
-        "    }\n"
+      result << ") }\n"
+        "    )\n"
         "  }\n" ;
       index_12399_.increment () ;
       enumerator_12399.gotoNextObject () ;
@@ -15917,7 +15858,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "//    " ;
-  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 337)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 337)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 337)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 337)).stringValue () ;
+  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 320)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 320)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 320)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 320)).stringValue () ;
   result << "*\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "\n"
@@ -15986,45 +15927,45 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    )\n"
     "    tableView.allowsEmptySelection = mAllowsEmptySelection\n"
     "    tableView.allowsMultipleSelection = mAllowsMultipleSelection\n" ;
-  GALGAS_uint index_16627_ (0) ;
+  GALGAS_uint index_15575_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16627 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_16627.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_15575 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_15575.hasCurrentObject ()) {
       result << "  //--- Check '" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "    if let anyObject: AnyObject = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
         "      if let unwrappedTableCellView = anyObject as\? NSTableCellView {\n"
         "        if !(unwrappedTableCellView.textField is " ;
-      result << enumerator_16627.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << ") {\n"
         "          presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view is not an instance of " ;
-      result << enumerator_16627.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "\")\n"
         "        }\n"
         "      }else{\n"
         "        presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column cell view is not an instance of NSTableCellView\")\n"
         "      }\n"
         "    }else{\n"
         "      presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown\")\n"
         "    }\n"
         "    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_16627.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_15575.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "      columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_16627.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_15575.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_keyCodingValue\", ascending:true)\n"
         "    }\n" ;
-      index_16627_.increment () ;
-      enumerator_16627.gotoNextObject () ;
+      index_15575_.increment () ;
+      enumerator_15575.gotoNextObject () ;
     }
   }
   result << "  //--- Set descriptors from first column of table view\n"

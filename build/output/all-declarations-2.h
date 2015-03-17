@@ -875,6 +875,16 @@ void categoryMethod_arrayControllerSemanticAnalysis (const class GALGAS_arrayCon
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                            Category Reader '@typeKind formatterStringForFormatPrinting'                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_formatterStringForFormatPrinting (const class GALGAS_typeKind & inObject,
+                                                                     class C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                               Category method '@toOneRelationshipList typeInventory'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

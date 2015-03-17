@@ -107,26 +107,11 @@ class Controller_PMTextField_value : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMTextField) {
-    let validationResult = mObject.validate (mOutlet.stringValue)
-    switch validationResult {
-    case PMValidationResult.ok :
-      mObject.setProp (mOutlet.stringValue)
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The value “%@” is invalid.", mOutlet.stringValue)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.stringValue = self.mObject.prop
-          }
-        })
-      }
-    }
+    mObject.validateAndSetProp (
+      mOutlet.stringValue,
+      windowForSheet:sender.window,
+      discardFunction: { self.mOutlet.stringValue = self.mObject.prop }
+    )
   }
 }
 

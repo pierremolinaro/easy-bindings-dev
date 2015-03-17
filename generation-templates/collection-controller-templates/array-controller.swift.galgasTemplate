@@ -303,28 +303,11 @@ end
   func set_%!mObservablePropertyName%_Action (sender : %!mColumnOutletTypeName%) {
     let row = sender.tag
     let object = mSortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
-    let validationResult = object.%!mObservablePropertyName%.validate (%![mPropertyType transformerForTableViewAction !"sender"]%)
-    switch validationResult {
-    case PMValidationResult.ok :
-      object.%!mObservablePropertyName%.setProp (%![mPropertyType transformerForTableViewAction !"sender"]%)
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The value “%![mPropertyType formatterStringForFormatPrinting]%” is invalid.", %![mPropertyType transformerForTableViewAction !"sender"]%)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-         //   object.%!mObservablePropertyName%.removeObserver(self.eventModelChange, postEvent:false)
-            object.%!mObservablePropertyName%.setProp (%![mPropertyType transformerForTableViewAction !"sender"]%)
-         //   object.%!mObservablePropertyName%.addObserver (self.eventModelChange, postEvent:false)
-          }
-        })
-      }
-    }
+    object.%!mObservablePropertyName%.validateAndSetProp (
+      %![mPropertyType transformerForTableViewAction !"sender"]%,
+      windowForSheet:sender.window,
+      discardFunction: { object.%!mObservablePropertyName%.setProp (%![mPropertyType transformerForTableViewAction !"sender"]%) }
+    )
   }
 %
 end
