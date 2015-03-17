@@ -3369,16 +3369,6 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Reader '@typeKind formatterStringForFormatPrinting'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_formatterStringForFormatPrinting (const class GALGAS_typeKind & inObject,
-                                                                     class C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                              Category Reader '@typeKind transformerForTableViewAction'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

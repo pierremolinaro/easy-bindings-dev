@@ -98,14 +98,40 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
 
   func setProp (inValue : String) { mValue = inValue }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (String) -> PMValidationResult = defaultValidationFunction
-  
-  func validate (proposedValue : String) -> PMValidationResult {
-    return validationFunction (proposedValue)
-  }
 
+  func validateAndSetProp (candidateValue : String,
+                           windowForSheet inWindow:NSWindow?,
+                           discardFunction : () -> Void) {
+    let validationResult = validationFunction (candidateValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      setProp (candidateValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      let alert = NSAlert ()
+      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
+      alert.informativeText = informativeText
+      alert.addButtonWithTitle ("Ok")
+      alert.addButtonWithTitle ("Discard Change")
+      if let window = inWindow {
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            discardFunction ()
+       //   object.name.removeObserver(self.eventModelChange, postEvent:false)
+       //   object.name.setProp (sender.stringValue)
+       //   object.name.addObserver (self.eventModelChange, postEvent:false)
+          }
+        })
+      }else{
+        alert.runModal ()
+      }
+    }
+  }
+  
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -184,7 +210,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 
   func setProp (inValue : NSColor) { mValue = inValue }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (NSColor) -> PMValidationResult = defaultValidationFunction
   
@@ -270,7 +296,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 
   func setProp (inValue : NSDate) { mValue = inValue }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (NSDate) -> PMValidationResult = defaultValidationFunction
   
@@ -356,12 +382,38 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 
   func setProp (inValue : Int) { mValue = inValue }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : Int) -> PMValidationResult {
-    return validationFunction (proposedValue)
+  func validateAndSetProp (candidateValue : Int,
+                           windowForSheet inWindow:NSWindow?,
+                           discardFunction : () -> Void) {
+    let validationResult = validationFunction (candidateValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      setProp (candidateValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      let alert = NSAlert ()
+      alert.messageText = String (format:"The value “%d” is invalid.", candidateValue)
+      alert.informativeText = informativeText
+      alert.addButtonWithTitle ("Ok")
+      alert.addButtonWithTitle ("Discard Change")
+      if let window = inWindow {
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            discardFunction ()
+       //   object.name.removeObserver(self.eventModelChange, postEvent:false)
+       //   object.name.setProp (sender.stringValue)
+       //   object.name.addObserver (self.eventModelChange, postEvent:false)
+          }
+        })
+      }else{
+        alert.runModal ()
+      }
+    }
   }
 
 }
@@ -442,7 +494,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 
   func setProp (inValue : Bool) { mValue = inValue }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (Bool) -> PMValidationResult = defaultValidationFunction
   
