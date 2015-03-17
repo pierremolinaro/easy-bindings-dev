@@ -161,8 +161,8 @@ import Cocoa
       file:__FILE__, line:__LINE__
     )
   //--------------------------- Array controller as observers
-    rootObject.mNames.addObserver (nameController, postEvent:true)
-    rootObject.mNames.addObserver (otherController, postEvent:true)
+ // §   rootObject.mNames.addObserver (nameController, postEvent:true)
+ // §   rootObject.mNames.addObserver (otherController, postEvent:true)
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"

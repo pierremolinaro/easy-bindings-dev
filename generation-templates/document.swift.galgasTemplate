@@ -135,7 +135,7 @@ end
 %  //--------------------------- Array controller as observers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%, postEvent:true)\n%
+% // §   rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%, postEvent:true)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do

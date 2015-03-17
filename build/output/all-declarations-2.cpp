@@ -10,6 +10,4939 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                         Routine 'generateArrayControllers'                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration constinArgument_inArrayControllerListForGeneration,
+                                       const GALGAS_string constinArgument_inOutputDirectory,
+                                       C_Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
+  cEnumerator_arrayControllerForGeneration enumerator_12639 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_12639.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_12639.current_mOwnerName (HERE), enumerator_12639.current_mControllerName (HERE), enumerator_12639.current_mToManyRelationshipName (HERE), enumerator_12639.current_mRelationshipTypeName (HERE), enumerator_12639.current_mElementTypeName (HERE), enumerator_12639.current_mTableViewOutletName (HERE), enumerator_12639.current_mArrayControllerFilterListForGeneration (HERE), enumerator_12639.current_mArrayControllerBoundColumnListForGeneration (HERE), GALGAS_filewrapper (gWrapperDirectory_0_collectionControllerGenerationTemplate) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 304))) ;
+    {
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_12639.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 317)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 317)).add_operation (enumerator_12639.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 317)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 317)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 315)) ;
+    }
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_12639.current_mArrayControllerFilterListForGeneration (HERE).reader_length (SOURCE_FILE ("array-controller-declaration.galgas", 320)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_12639.current_mOwnerName (HERE), enumerator_12639.current_mControllerName (HERE), enumerator_12639.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 321))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_12639.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 326)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 326)).add_operation (enumerator_12639.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 326)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 326)) ;
+      {
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+        "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
+        "\n"
+        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 334)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 334)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 334)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 327)) ;
+      }
+    }
+    enumerator_12639.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               Routine 'typeInventory'                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
+                            const GALGAS_astDeclarationList constinArgument_inDeclarationList,
+                            GALGAS_unifiedTypeMap & outArgument_outUnifiedTypeMap,
+                            C_Compiler * inCompiler
+                            COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outUnifiedTypeMap.drop () ; // Release 'out' argument
+  outArgument_outUnifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 85)) ;
+  GALGAS_transientDependencyGraph var_transientDependencyGraph = GALGAS_transientDependencyGraph::constructor_emptyGraph (SOURCE_FILE ("unified-type.galgas", 86)) ;
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 88)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 88)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 88)) ;
+  }
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Color").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 89)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 89)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 89)) ;
+  }
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Date").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 90)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 90)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 90)) ;
+  }
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 91)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 91)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 91)) ;
+  }
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 92)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 92)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 92)) ;
+  }
+  {
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 93)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 93))  COMMA_SOURCE_FILE ("unified-type.galgas", 93)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 93)) ;
+  }
+  cEnumerator_astDeclarationList enumerator_3917 (constinArgument_inDeclarationList, kEnumeration_up) ;
+  while (enumerator_3917.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_3917.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, var_transientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 96)) ;
+    enumerator_3917.gotoNextObject () ;
+  }
+  const enumGalgasBool test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputClassDependencyGraph.reader_value ()).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    GALGAS_string var_s = outArgument_outUnifiedTypeMap.reader_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 100)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 101)) ;
+    GALGAS_bool joker_4281 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_4281, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 102)) ;
+  }
+  GALGAS_bool test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("unified-type.galgas", 105)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
+  if (kBoolTrue == test_1.boolEnum ()) {
+    test_1 = GALGAS_bool (gOption_easyBindings_5F_options_outputTransientDependencyGraph.reader_value ()) ;
+  }
+  const enumGalgasBool test_2 = test_1.boolEnum () ;
+  if (kBoolTrue == test_2) {
+    GALGAS_string var_s = var_transientDependencyGraph.reader_graphviz (SOURCE_FILE ("unified-type.galgas", 106)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".transientDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 107)) ;
+    GALGAS_bool joker_4602 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_4602, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 108)) ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Routine 'semanticAnalysis'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                               const GALGAS_string /* constinArgument_inSourceFile */,
+                               const GALGAS_astDeclarationStruct constinArgument_inAstDeclarationStruct,
+                               GALGAS_structForGeneration & outArgument_outGeneration,
+                               C_Compiler * inCompiler
+                               COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outGeneration.drop () ; // Release 'out' argument
+  GALGAS_outletClassMap var_outletClassMap ;
+  categoryMethod_buildOutletClassMap (constinArgument_inAstDeclarationStruct.mAttribute_mOutletClassDeclarationList, var_outletClassMap, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 37)) ;
+  GALGAS_bindingSpecificationMap var_bindingSpecificationMap ;
+  {
+  routine_buildBindingSpecificationMap (constinArgument_inUnifiedTypeMap, constinArgument_inAstDeclarationStruct.mAttribute_mBindingSpecificationListMap, var_bindingSpecificationMap, inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 39)) ;
+  }
+  GALGAS_semanticContext var_semanticContext = GALGAS_semanticContext::constructor_new (constinArgument_inUnifiedTypeMap, var_outletClassMap, var_bindingSpecificationMap, GALGAS_prefsObservablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 49)), GALGAS_documentObservablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 50)), GALGAS_entityObservablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 51))  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 45)) ;
+  cEnumerator_astDeclarationList enumerator_2362 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_2362.hasCurrentObject ()) {
+    callCategoryMethod_buildObservablePropertyMaps ((const cPtr_astDeclaration *) enumerator_2362.current_mDeclaration (HERE).ptr (), constinArgument_inUnifiedTypeMap, var_semanticContext, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 55)) ;
+    enumerator_2362.gotoNextObject () ;
+  }
+  outArgument_outGeneration = GALGAS_structForGeneration::constructor_default (SOURCE_FILE ("semantic-analysis.galgas", 61)) ;
+  cEnumerator_astDeclarationList enumerator_2591 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_2591.hasCurrentObject ()) {
+    callCategoryMethod_semanticAnalysis ((const cPtr_astDeclaration *) enumerator_2591.current_mDeclaration (HERE).ptr (), var_semanticContext, outArgument_outGeneration, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 63)) ;
+    enumerator_2591.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               Routine 'generateCode'                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateCode (const GALGAS_structForGeneration constinArgument_inGeneration,
+                           const GALGAS_string constinArgument_inSourceFile,
+                           C_Compiler * inCompiler
+                           COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  routine_generateTransients (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mTransientListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 24)) ;
+  }
+  {
+  routine_generateActions (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mActionListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 28)) ;
+  }
+  GALGAS_string var_outputDirectory = constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("code-generation.galgas", 32)) ;
+  {
+  routine_generatePreferences (constinArgument_inGeneration.mAttribute_mPreferenceListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 33)) ;
+  }
+  {
+  routine_generateOutletClasses (constinArgument_inGeneration.mAttribute_mNeededOutletClasses, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 37)) ;
+  }
+  {
+  routine_generateEntities (constinArgument_inGeneration.mAttribute_mEntityListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 41)) ;
+  }
+  {
+  routine_generateEnums (constinArgument_inGeneration.mAttribute_mEnumListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 45)) ;
+  }
+  {
+  routine_generateDocuments (constinArgument_inGeneration.mAttribute_mDocumentListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 49)) ;
+  }
+  {
+  routine_generateArrayControllers (constinArgument_inGeneration.mAttribute_mAllArrayControllerForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 53)) ;
+  }
+  {
+  routine_generateSwiftApplicationFiles (var_outputDirectory, GALGAS_bool (kIsStrictSup, constinArgument_inGeneration.mAttribute_mEntityListForGeneration.reader_length (SOURCE_FILE ("code-generation.galgas", 59)).objectCompare (GALGAS_uint ((uint32_t) 0U))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 57)) ;
+  }
+  {
+  routine_generateValidationRoutineStubs (var_outputDirectory, constinArgument_inGeneration.mAttribute_mValidationStubRoutineListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 61)) ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Filewrapper 'swift_sources'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- File '/PMAllocationDebug.swift'
+
+const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//    Public routines                                                                                                  *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func noteObjectAllocation (inObject : PMUserClassName) {\n"
+  "  installDebugMenu ()\n"
+  "  let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "  gDebugObject\?.pmNoteObjectAllocation (className)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func noteObjectDeallocation (inObject : PMUserClassName) {\n"
+  "  let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "  gDebugObject\?.pmNoteObjectDeallocation (className)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func addItemToDebugMenu (item : NSMenuItem) {\n"
+  "  installDebugMenu ()\n"
+  "  gDebugObject\?.mDebugMenu\?.addItem (item)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//    Private routine                                                                                                  *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "private func installDebugMenu () {\n"
+  "  if nil == gDebugObject {\n"
+  "    var debugObject = PMAllocationDebug ()\n"
+  "    gDebugObject = debugObject\n"
+  "    var mainBundle = NSBundle.mainBundle ()\n"
+  "    let ok = mainBundle.loadNibNamed (\"PMAllocationDebug\", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)\n"
+  "    if !ok {\n"
+  "      presentErrorWindow (__FILE__, __LINE__, \"Cannot load 'PMAllocationDebug' nib file\") ;\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//   PMAllocationItemDisplay class                                                                                     *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "@objc(PMAllocationItemDisplay) class PMAllocationItemDisplay : NSObject {\n"
+  "  var mClassname : String\n"
+  "  var mAllCount : Int\n"
+  "  var mLive : Int\n"
+  "  var mSnapshot : Int\n"
+  "\n"
+  "  init (classname : String, allCount : Int, live : Int, snapshot : Int) {\n"
+  "    mClassname = classname\n"
+  "    mAllCount = allCount\n"
+  "    mLive = live\n"
+  "    mSnapshot = snapshot\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "private var gDebugObject : PMAllocationDebug\? = nil\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource, NSWindowDelegate {\n"
+  "  @IBOutlet var mPerformSnapShotButton  : NSButton\?\n"
+  "  @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton\?\n"
+  "  @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton\?\n"
+  "  @IBOutlet var mDebugMenu : NSMenu\?\n"
+  "  @IBOutlet var mAllocationStatsWindow : NSWindow\?\n"
+  "  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField\?\n"
+  "  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField\?\n"
+  "  @IBOutlet var mStatsTableView : NSTableView\?\n"
+  "\n"
+  "\n"
+  "  private var mTopLevelObjects : NSArray\?\n"
+  "\n"
+  "  private var mDebugMenuInstalled = false\n"
+  "\n"
+  "  private var mAllocationStatsWindowVisibleAtLaunch : Bool = true {\n"
+  "    didSet {\n"
+  "      mAllocationStatsWindowVisibleAtLaunchCheckbox\?.state = Int (mAllocationStatsWindowVisibleAtLaunch)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mAllocatedObjectCount : Int = 0 {\n"
+  "    didSet {\n"
+  "      mCurrentlyAllocatedObjectCountTextField\?.stringValue = String (format:\"%d\", mAllocatedObjectCount)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mTotalAllocatedObjectCount : Int = 0 {\n"
+  "    didSet {\n"
+  "      mTotalAllocatedObjectCountTextField\?.stringValue = String (format:\"%d\", mTotalAllocatedObjectCount)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mDisplayFilter : Int = 0 {\n"
+  "    didSet {\n"
+  "      mRefreshDisplay = true\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  private var mAllocatedObjectCountByClass = NSCountedSet ()\n"
+  "\n"
+  "  private var mTotalAllocatedObjectCountByClass = NSCountedSet ()\n"
+  "\n"
+  "  private var mSnapShotDictionary = NSMutableDictionary ()\n"
+  " \n"
+  "  private var mRefreshDisplay = false\n"
+  "\n"
+  "  private var mAllocationStatsDataSource = NSMutableArray ()\n"
+  "  \n"
+  "  private var mRefreshTimer : NSTimer\? = nil\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    init                                                                                                           *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "   override init () {\n"
+  "      //  NSLog (@\"%s %p\", __PRETTY_FUNCTION__, self) ;\n"
+  "    super.init ()\n"
+  "    assert (gDebugObject == nil, \"PMAllocationDebug already exists\", file:__FILE__, line:__LINE__)\n"
+  "    let df = NSNotificationCenter.defaultCenter ()\n"
+  "    df.addObserver (self,\n"
+  "      selector:\"applicationWillTerminateAction:\",\n"
+  "      name:NSApplicationWillTerminateNotification,\n"
+  "      object:nil\n"
+  "    )\n"
+  "    gDebugObject = self\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    pmInstallDebugMenu                                                                                             *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private func pmInstallDebugMenu () {\n"
+  "    if let menu = NSApp.mainMenu! where !mDebugMenuInstalled && NSApp.mainMenu != nil {\n"
+  "      var item = NSMenuItem (\n"
+  "        title:\"\",\n"
+  "        action:nil,\n"
+  "        keyEquivalent:\"\"\n"
+  "      )\n"
+  "      item.submenu = mDebugMenu\n"
+  "      menu.addItem (item)\n"
+  "      mDebugMenuInstalled = true\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    awakeFromNib                                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  override func awakeFromNib () {\n"
+  "  // NSLog (@\"%s %p %p\", __PRETTY_FUNCTION__, self, mDebugMenu) ;\n"
+  "  //--- Allocation Window visibility\n"
+  "    var df = NSUserDefaults.standardUserDefaults ()\n"
+  "    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (\"PMAllocationDebug:allocationStatsWindowVisible\")\n"
+  "    mDisplayFilter = df.integerForKey (\"PMAllocationDebug:allocationStatsDisplayFilter\")\n"
+  "  //--- will call windowDidBecomeKey: and windowWillClose:\n"
+  "    mAllocationStatsWindow\?.delegate = self\n"
+  "  //--- Allocation stats window visibility at Launch\n"
+  "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.state = Int (mAllocationStatsWindowVisibleAtLaunch)\n"
+  "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.target = self\n"
+  "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.action = \"setAllocationStatsWindowVisibleAtLaunchAction:\"\n"
+  "    if mAllocationStatsWindowVisibleAtLaunch {\n"
+  "      mAllocationStatsWindow\?.makeKeyAndOrderFront (nil)\n"
+  "      installTimer ()\n"
+  "    }\n"
+  "    mDisplayFilterPopUpButton\?.selectItemAtIndex (mDisplayFilter)\n"
+  "    mDisplayFilterPopUpButton\?.target = self\n"
+  "    mDisplayFilterPopUpButton\?.action = \"setDisplayFilerAction:\"\n"
+  "    let columns = mStatsTableView!.tableColumns as NSArray\n"
+  "    if columns.count > 0 {\n"
+  "      let firstColumn = columns [0] as! NSTableColumn\n"
+  "      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]\n"
+  "    }\n"
+  "    pmInstallDebugMenu ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    installTimer                                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func installTimer () {\n"
+  "    if mRefreshTimer == nil {\n"
+  "      displayAllocation ()\n"
+  "      mRefreshTimer = NSTimer (\n"
+  "        timeInterval: 1.0,\n"
+  "        target:self,\n"
+  "        selector:\"refreshDisplay:\",\n"
+  "        userInfo: nil,\n"
+  "        repeats: true\n"
+  "      )\n"
+  "      NSRunLoop.currentRunLoop().addTimer (mRefreshTimer!, forMode:NSDefaultRunLoopMode)\n"
+  "      mRefreshDisplay = true\n"
+  "      displayAllocation ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    windowDidBecomeKey: create and validate timer                                                                  *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func windowDidBecomeKey (NSNotification) {\n"
+  "    installTimer ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    windowWillClose: invalidate timer and release timer                                                            *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func windowWillClose (NSNotification) {\n"
+  "    if let timer = mRefreshTimer {\n"
+  "      timer.invalidate ()\n"
+  "      mRefreshTimer = nil\n"
+  "    }\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    refreshDisplay:                                                                                                *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func refreshDisplay (timer : NSTimer) {\n"
+  "    displayAllocation ()\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    setAllocationStatsWindowVisibleAtLaunchAction:                                                                 *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func setAllocationStatsWindowVisibleAtLaunchAction (AnyObject!) {\n"
+  "    mAllocationStatsWindowVisibleAtLaunch = mAllocationStatsWindowVisibleAtLaunchCheckbox\?.state != 0\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    setDisplayFilerAction:                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func setDisplayFilerAction (AnyObject!) {\n"
+  "    if let displayFilterPopUpButton = mDisplayFilterPopUpButton {\n"
+  "      mDisplayFilter = displayFilterPopUpButton.indexOfSelectedItem\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    applicationWillTerminateAction:                                                                                *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func applicationWillTerminateAction (NSNotification) {\n"
+  "    var ud = NSUserDefaults.standardUserDefaults ()\n"
+  "    ud.setBool (mAllocationStatsWindowVisibleAtLaunch,\n"
+  "      forKey:\"PMAllocationDebug:allocationStatsWindowVisible\"\n"
+  "    )\n"
+  "    ud.setInteger (mDisplayFilter,\n"
+  "      forKey:\"PMAllocationDebug:allocationStatsDisplayFilter\"\n"
+  "    )\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    performSnapShotAction:                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  @IBAction func performSnapShotAction (AnyObject) {\n"
+  "    mSnapShotDictionary = NSMutableDictionary ()\n"
+  "    for c : AnyObject in mAllocatedObjectCountByClass.allObjects  {\n"
+  "      let className = c as! String\n"
+  "      let liveByClass = mAllocatedObjectCountByClass.countForObject (className)\n"
+  "      mSnapShotDictionary.setObject (liveByClass, forKey:className)\n"
+  "    }\n"
+  "    mRefreshDisplay = true\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    pmNoteObjectAllocation:                                                                                        *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  private func pmNoteObjectAllocation (inObjectClassName : NSString!) {\n"
+  "  //NSLog (@\"objectClassName %@\", inObjectClassName) ;\n"
+  "    mAllocatedObjectCountByClass.addObject (inObjectClassName)\n"
+  "    mTotalAllocatedObjectCountByClass.addObject (inObjectClassName)\n"
+  "    mRefreshDisplay = true\n"
+  "    pmInstallDebugMenu ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    pmNoteObjectDeallocation:                                                                                      *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  private func pmNoteObjectDeallocation (inObjectClassName : NSString) {\n"
+  "  // NSLog (@\"DEALLOC objectClassName %@\", inObjectClassName) ;\n"
+  "    mAllocatedObjectCountByClass.removeObject (inObjectClassName)\n"
+  "    mRefreshDisplay = true\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    displayAllocation                                                                                              *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private func displayAllocation () {\n"
+  "    if mRefreshDisplay {\n"
+  "      mRefreshDisplay = false\n"
+  "    //---\n"
+  "      var liveObjectCount : Int = 0\n"
+  "      var totalObjectCount : Int = 0\n"
+  "    //---\n"
+  "      mAllocationStatsDataSource = NSMutableArray ()\n"
+  "      let allObjects = mTotalAllocatedObjectCountByClass.allObjects\n"
+  "      for object : AnyObject in allObjects {\n"
+  "        let liveByClass = mAllocatedObjectCountByClass.countForObject (object)\n"
+  "        let totalByClass = mTotalAllocatedObjectCountByClass.countForObject (object)\n"
+  "        let snapShotByClass : Int\? = mSnapShotDictionary.objectForKey (object)\?.unsignedIntegerValue\n"
+  "        liveObjectCount += liveByClass ;\n"
+  "        totalObjectCount += totalByClass ;\n"
+  "        var display = true ;\n"
+  "        if 1 == mDisplayFilter {\n"
+  "          display = liveByClass != 0 ;\n"
+  "        }else if 2 == mDisplayFilter {\n"
+  "          display = liveByClass != snapShotByClass ;\n"
+  "        }\n"
+  "        if display {\n"
+  "          mAllocationStatsDataSource.addObject (PMAllocationItemDisplay (\n"
+  "            classname : object as! String,\n"
+  "            allCount : totalByClass,\n"
+  "            live : liveByClass,\n"
+  "            snapshot : ((snapShotByClass != nil) \? snapShotByClass! : 0)\n"
+  "          ))\n"
+  "        }\n"
+  "      }\n"
+  "      mAllocatedObjectCount = liveObjectCount ;\n"
+  "      mTotalAllocatedObjectCount = totalObjectCount ;\n"
+  "    //---\n"
+  "      let sortDescriptors : [AnyObject]! = mStatsTableView\?.sortDescriptors\n"
+  "      mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)\n"
+  "      mStatsTableView\?.setDataSource (self)\n"
+  "      mStatsTableView\?.reloadData ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    T A B L E   V I E W    D A T A    S O U R C E                                                                  *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func tableView (aTableView : NSTableView,\n"
+  "                  objectValueForTableColumn: NSTableColumn\?,\n"
+  "                  row:Int) -> AnyObject\? {\n"
+  "    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay\n"
+  "    return theRecord.valueForKey (objectValueForTableColumn!.identifier as String)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func numberOfRowsInTableView (NSTableView) -> Int {\n"
+  "    return mAllocationStatsDataSource.count\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    tableView:sortDescriptorsDidChange: NSTableViewDataSource delegate                                             *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func tableView (aTableView: NSTableView,\n"
+  "                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {\n"
+  "    let sortDescriptors : [AnyObject]! = mStatsTableView\?.sortDescriptors\n"
+  "    mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)\n"
+  "    mStatsTableView\?.reloadData ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
+  "PMAllocationDebug.swift",
+  "swift",
+  true, // Text file
+  17565, // Text length
+  gWrapperFileContent_0_swift_5F_sources
+) ;
+
+//--- File '/PMAllocationDebug.xib'
+
+const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
+  "<archive type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"8.00\">\n"
+  "\t<data>\n"
+  "\t\t<int key=\"IBDocument.SystemTarget\">1090</int>\n"
+  "\t\t<string key=\"IBDocument.SystemVersion\">14C109</string>\n"
+  "\t\t<string key=\"IBDocument.InterfaceBuilderVersion\">7515.2</string>\n"
+  "\t\t<string key=\"IBDocument.AppKitVersion\">1344.72</string>\n"
+  "\t\t<string key=\"IBDocument.HIToolboxVersion\">757.30</string>\n"
+  "\t\t<object class=\"NSMutableDictionary\" key=\"IBDocument.PluginVersions\">\n"
+  "\t\t\t<string key=\"NS.key.0\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t<string key=\"NS.object.0\">7515.2</string>\n"
+  "\t\t</object>\n"
+  "\t\t<array key=\"IBDocument.IntegratedClassDependencies\">\n"
+  "\t\t\t<string>NSButton</string>\n"
+  "\t\t\t<string>NSButtonCell</string>\n"
+  "\t\t\t<string>NSCustomObject</string>\n"
+  "\t\t\t<string>NSMenu</string>\n"
+  "\t\t\t<string>NSMenuItem</string>\n"
+  "\t\t\t<string>NSNumberFormatter</string>\n"
+  "\t\t\t<string>NSPopUpButton</string>\n"
+  "\t\t\t<string>NSPopUpButtonCell</string>\n"
+  "\t\t\t<string>NSScrollView</string>\n"
+  "\t\t\t<string>NSScroller</string>\n"
+  "\t\t\t<string>NSTableColumn</string>\n"
+  "\t\t\t<string>NSTableHeaderView</string>\n"
+  "\t\t\t<string>NSTableView</string>\n"
+  "\t\t\t<string>NSTextField</string>\n"
+  "\t\t\t<string>NSTextFieldCell</string>\n"
+  "\t\t\t<string>NSTextView</string>\n"
+  "\t\t\t<string>NSView</string>\n"
+  "\t\t\t<string>NSWindowTemplate</string>\n"
+  "\t\t</array>\n"
+  "\t\t<array key=\"IBDocument.PluginDependencies\">\n"
+  "\t\t\t<string>com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t</array>\n"
+  "\t\t<object class=\"NSMutableDictionary\" key=\"IBDocument.Metadata\">\n"
+  "\t\t\t<string key=\"NS.key.0\">PluginDependencyRecalculationVersion</string>\n"
+  "\t\t\t<integer value=\"1\" key=\"NS.object.0\"/>\n"
+  "\t\t</object>\n"
+  "\t\t<array class=\"NSMutableArray\" key=\"IBDocument.RootObjects\" id=\"1000\">\n"
+  "\t\t\t<object class=\"NSCustomObject\" id=\"1001\">\n"
+  "\t\t\t\t<string key=\"NSClassName\">PMAllocationDebug</string>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<object class=\"NSCustomObject\" id=\"1003\">\n"
+  "\t\t\t\t<string key=\"NSClassName\">FirstResponder</string>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<object class=\"NSCustomObject\" id=\"1004\">\n"
+  "\t\t\t\t<string key=\"NSClassName\">PMApplication</string>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<object class=\"NSMenu\" id=\"832895925\">\n"
+  "\t\t\t\t<string key=\"NSTitle\">Debug</string>\n"
+  "\t\t\t\t<array class=\"NSMutableArray\" key=\"NSMenuItems\">\n"
+  "\t\t\t\t\t<object class=\"NSMenuItem\" id=\"391542348\">\n"
+  "\t\t\t\t\t\t<reference key=\"NSMenu\" ref=\"832895925\"/>\n"
+  "\t\t\t\t\t\t<string key=\"NSTitle\">Show Allocation Stats</string>\n"
+  "\t\t\t\t\t\t<string key=\"NSKeyEquiv\">,</string>\n"
+  "\t\t\t\t\t\t<int key=\"NSKeyEquivModMask\">1310720</int>\n"
+  "\t\t\t\t\t\t<int key=\"NSMnemonicLoc\">2147483647</int>\n"
+  "\t\t\t\t\t\t<object class=\"NSCustomResource\" key=\"NSOnImage\" id=\"538130668\">\n"
+  "\t\t\t\t\t\t\t<string key=\"NSClassName\">NSImage</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSResourceName\">NSMenuCheckmark</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSCustomResource\" key=\"NSMixedImage\" id=\"339904000\">\n"
+  "\t\t\t\t\t\t\t<string key=\"NSClassName\">NSImage</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSResourceName\">NSMenuMixedState</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t</array>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<object class=\"NSWindowTemplate\" id=\"488945732\">\n"
+  "\t\t\t\t<int key=\"NSWindowStyleMask\">15</int>\n"
+  "\t\t\t\t<int key=\"NSWindowBacking\">2</int>\n"
+  "\t\t\t\t<string key=\"NSWindowRect\">{{18, 448}, {532, 360}}</string>\n"
+  "\t\t\t\t<int key=\"NSWTFlags\">1886913536</int>\n"
+  "\t\t\t\t<string key=\"NSWindowTitle\">Allocation Stats</string>\n"
+  "\t\t\t\t<string key=\"NSWindowClass\">NSWindow</string>\n"
+  "\t\t\t\t<object class=\"NSMutableString\" key=\"NSViewClass\">\n"
+  "\t\t\t\t\t<characters key=\"NS.bytes\">View</characters>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<nil key=\"NSUserInterfaceItemIdentifier\"/>\n"
+  "\t\t\t\t<string key=\"NSWindowContentMinSize\">{532, 360}</string>\n"
+  "\t\t\t\t<object class=\"NSView\" key=\"NSWindowView\" id=\"211121235\">\n"
+  "\t\t\t\t\t<reference key=\"NSNextResponder\"/>\n"
+  "\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t<object class=\"NSScrollView\" id=\"694864762\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">274</int>\n"
+  "\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSClipView\" id=\"477363090\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">2322</int>\n"
+  "\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableView\" id=\"54967480\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"477363090\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">4352</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSFrameSize\">{521, 262}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"477363090\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"584677815\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSControlAllowsExpansionToolTips\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableHeaderView\" key=\"NSHeaderView\" id=\"933801029\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"870119755\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSFrameSize\">{521, 17}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"870119755\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"385156970\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTableView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"_NSCornerView\" key=\"NSCornerView\" id=\"385156970\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{521, 0}, {12, 17}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"477363090\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSTableColumns\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableColumn\" id=\"665282369\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSIdentifier\">mClassname</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSWidth\">285.60546875</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMinWidth\">40</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMaxWidth\">1000</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableHeaderCell\" key=\"NSHeaderCell\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">75497536</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">2048</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Class Name</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSFont\" key=\"NSSupport\" id=\"26\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"IBIsSystemFont\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSSize\">11</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSfFlags\">3100</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\" id=\"185912087\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MC4zMzMzMzI5OQA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSTextColor\" id=\"700270135\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">headerTextColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\" id=\"155403614\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MAA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSDataCell\" id=\"820684983\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">1143996481</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">1024</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Text Cell</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\" id=\"730430839\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MQA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSTextColor\" id=\"175780943\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">controlTextColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSColor\" ref=\"155403614\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSResizingMask\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSIsResizeable\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTableView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSSortDescriptor\" key=\"NSSortDescriptorPrototype\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKey\">mClassname</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAscending\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSSelector\">compare:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableColumn\" id=\"856923415\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSIdentifier\">mSnapshot</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSWidth\">66</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMinWidth\">10</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMaxWidth\">3.4028234663852886e+38</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableHeaderCell\" key=\"NSHeaderCell\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">75497536</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134219776</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Snap Shot</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\" id=\"612056213\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">headerColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSColor\" ref=\"730430839\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"700270135\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSDataCell\" id=\"608501593\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">337641536</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134223872</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Text Cell</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\" id=\"1044488591\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">controlBackgroundColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\" id=\"122981434\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MC42NjY2NjY2NjY3AA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSResizingMask\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSIsResizeable\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTableView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSSortDescriptor\" key=\"NSSortDescriptorPrototype\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKey\">mSnapshot</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAscending\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSSelector\">compare:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableColumn\" id=\"404121835\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSIdentifier\">mLive</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSWidth\">79</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMinWidth\">40</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMaxWidth\">1000</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableHeaderCell\" key=\"NSHeaderCell\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">75497536</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134219776</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Live</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"185912087\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"700270135\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSDataCell\" id=\"590032922\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">1143996481</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134218752</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Text Cell</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"730430839\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTableView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSSortDescriptor\" key=\"NSSortDescriptorPrototype\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKey\">mLive</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAscending\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSSelector\">compare:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableColumn\" id=\"610270419\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSIdentifier\">mAllCount</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSWidth\">78.081050000000005</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMinWidth\">31.081050000000001</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSMaxWidth\">1000</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTableHeaderCell\" key=\"NSHeaderCell\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">75497536</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134219776</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Total</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"612056213\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"700270135\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSDataCell\" id=\"236796732\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">1143996481</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134218752</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSContents\">Text Cell</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"1044488591\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTableView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSSortDescriptor\" key=\"NSSortDescriptorPrototype\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKey\">mAllCount</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAscending\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSSelector\">compare:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSIntercellSpacingWidth\">3</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSIntercellSpacingHeight\">2</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"1044488591\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSGridColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">gridColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MC41AA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSRowHeight\">14</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTvFlags\">-490733568</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSDelegate\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSDataSource\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSGridStyleMask\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColumnAutoresizingStyle\">5</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSDraggingSourceMaskForLocal\">15</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSDraggingSourceMaskForNonLocal\">0</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsTypeSelect\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTableViewDraggingDestinationStyle\">0</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTableViewGroupRowStyle\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{0, 17}, {521, 262}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSDocView\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSBGColor\" ref=\"1044488591\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NScvFlags\">4</int>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAutomaticallyAdjustsContentInsets\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSScroller\" id=\"584677815\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{521, 17}, {11, 262}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"466601769\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSControlAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSControlTarget\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSsFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSPercent\">0.95263160000000002</double>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSScroller\" id=\"466601769\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{0, 279}, {521, 11}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSControlAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSControlTarget\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSsFlags\">257</int>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSCurValue\">1</double>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSPercent\">0.97565543071161054</double>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSClipView\" id=\"870119755\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">2338</int>\n"
+  "\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<reference ref=\"933801029\"/>\n"
+  "\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrameSize\">{521, 17}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"933801029\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSDocView\" ref=\"933801029\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAutomaticallyAdjustsContentInsets\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<reference ref=\"385156970\"/>\n"
+  "\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrameSize\">{532, 290}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"870119755\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSsFlags\">133168</int>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSVScroller\" ref=\"584677815\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSHScroller\" ref=\"466601769\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSContentView\" ref=\"477363090\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSHeaderClipView\" ref=\"870119755\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSCornerView\" ref=\"385156970\"/>\n"
+  "\t\t\t\t\t\t\t<bytes key=\"NSScrollAmts\">QSAAAEEgAABBgAAAQYAAAA</bytes>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMinMagnification\">0.25</double>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMaxMagnification\">4</double>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMagnification\">1</double>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSTextField\" id=\"381938415\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{404, 308}, {111, 14}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSCell\" id=\"868904438\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">-2008940544</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">\xE2""\x80""\xA6""live count\xE2""\x80""\xA6"" </string>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSFont\" key=\"NSSupport\" id=\"27\">\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"IBIsSystemFont\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSSize\">11</double>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSfFlags\">3357</int>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSNumberFormatter\" key=\"NSFormatter\" id=\"18967862\">\n"
+  "\t\t\t\t\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"NS.attributes\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<boolean value=\"YES\" key=\"allowsFloats\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<integer value=\"1040\" key=\"formatterBehavior\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSLocale\" key=\"locale\" id=\"866676299\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NS.identifier\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"negativeInfinitySymbol\">-\xE2""\x88""\x9E""</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"nilSymbol\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"positiveInfinitySymbol\">+\xE2""\x88""\x9E""</string>\n"
+  "\t\t\t\t\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.positiveformat\">#</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.negativeformat\">#</string>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.positiveattrs\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.negativeattrs\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.zero\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSAttributedString\" key=\"NS.nil\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"NSString\"/>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSAttributedString\" key=\"NS.nan\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"NSString\">NaN</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t<dictionary key=\"NSAttributes\" id=\"546668749\"/>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSDecimalNumberPlaceholder\" key=\"NS.min\" id=\"446279750\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<int key=\"NS.exponent\">0</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t<int key=\"NS.length\">0</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.negative\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.compact\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<int key=\"NS.mantissa.bo\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bytes key=\"NS.mantissa\">AAAAAAAAAAAAAAAAAAAAAA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NS.max\" ref=\"446279750\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSDecimalNumberHandler\" key=\"NS.rounding\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<int key=\"NS.roundingmode\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.overflow\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.underflow\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.dividebyzero\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.decimal\">.</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.thousand\">,</string>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.hasthousands\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.localized\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.allowsfloats\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"381938415\"/>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\" id=\"277825497\">\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">controlColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSColor\" ref=\"122981434\"/>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSTextFieldAlignmentRectInsetsVersion\">1</int>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSPopUpButton\" id=\"518079538\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{78, 306}, {164, 19}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"336406046\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSPopUpButtonCell\" key=\"NSCell\" id=\"92687822\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">-2076180416</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134350848</int>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"518079538\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags\">-2038284288</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags2\">6</int>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSFont\" key=\"NSAlternateImage\">\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSName\">LucidaGrande</string>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSSize\">11</double>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSfFlags\">16</int>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSAlternateContents\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSKeyEquivalent\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicDelay\">400</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicInterval\">75</int>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSMenuItem\" key=\"NSMenuItem\" id=\"555303939\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSMenu\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSTitle\">All Classes</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSKeyEquiv\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSMnemonicLoc\">2147483647</int>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSState\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSOnImage\" ref=\"538130668\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSMixedImage\" ref=\"339904000\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_popUpItemAction:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"92687822\"/>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<bool key=\"NSMenuItemRespectAlignment\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSMenu\" key=\"NSMenu\" id=\"1027996105\">\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSTitle\">OtherViews</string>\n"
+  "\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSMenuItems\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<reference ref=\"555303939\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSMenuItem\" id=\"590354082\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSMenu\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSTitle\">Allocated Classes</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKeyEquiv\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSMnemonicLoc\">2147483647</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSOnImage\" ref=\"538130668\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSMixedImage\" ref=\"339904000\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_popUpItemAction:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"92687822\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSMenuItem\" id=\"951103194\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSMenu\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSTitle\">Differences with Snap Shot</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSKeyEquiv\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSMnemonicLoc\">2147483647</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSOnImage\" ref=\"538130668\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSMixedImage\" ref=\"339904000\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_popUpItemAction:</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"92687822\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPreferredEdge\">1</int>\n"
+  "\t\t\t\t\t\t\t\t<bool key=\"NSUsesItemFromMenu\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t<bool key=\"NSAltersState\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSArrowPosition\">2</int>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSTextField\" id=\"146764676\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{17, 308}, {56, 14}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"518079538\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSCell\" id=\"1044367949\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">4325376</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Display:</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"27\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"146764676\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"277825497\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSTextFieldAlignmentRectInsetsVersion\">1</int>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSButton\" id=\"477594254\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{19, 333}, {125, 18}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSButtonCell\" key=\"NSCell\" id=\"255990638\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">-2080374784</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">131072</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Visible At Launch</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSCellIdentifier\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"477594254\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags\">1211912448</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags2\">2</int>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSCustomResource\" key=\"NSNormalImage\">\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSClassName\">NSImage</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSResourceName\">NSSwitch</string>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSButtonImageSource\" key=\"NSAlternateImage\">\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSImageName\">NSSwitch</string>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSAlternateContents\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSKeyEquivalent\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicDelay\">200</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicInterval\">25</int>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSTextField\" id=\"336406046\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{255, 307}, {147, 15}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"381938415\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSCell\" id=\"403189114\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">71434240</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Currently Allocated:</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"27\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"336406046\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"277825497\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSTextFieldAlignmentRectInsetsVersion\">1</int>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSTextField\" id=\"300812263\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{404, 335}, {111, 14}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"146764676\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSCell\" id=\"316229116\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">-2008940544</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">\xE2""\x80""\xA6""total count\xE2""\x80""\xA6"" </string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"27\"/>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSNumberFormatter\" key=\"NSFormatter\" id=\"920445510\">\n"
+  "\t\t\t\t\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"NS.attributes\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<boolean value=\"YES\" key=\"allowsFloats\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<integer value=\"1040\" key=\"formatterBehavior\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<reference key=\"locale\" ref=\"866676299\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"negativeInfinitySymbol\">-\xE2""\x88""\x9E""</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"nilSymbol\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"positiveInfinitySymbol\">+\xE2""\x88""\x9E""</string>\n"
+  "\t\t\t\t\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.positiveformat\">#</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.negativeformat\">#</string>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.positiveattrs\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.negativeattrs\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<nil key=\"NS.zero\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSAttributedString\" key=\"NS.nil\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"NSString\"/>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSAttributedString\" key=\"NS.nan\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"NSString\">NaN</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t<reference key=\"NSAttributes\" ref=\"546668749\"/>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NS.min\" ref=\"446279750\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NS.max\" ref=\"446279750\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSDecimalNumberHandler\" key=\"NS.rounding\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<int key=\"NS.roundingmode\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.overflow\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.underflow\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t\t<bool key=\"NS.raise.dividebyzero\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.decimal\">.</string>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NS.thousand\">,</string>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.hasthousands\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.localized\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NS.allowsfloats\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"300812263\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"277825497\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSTextFieldAlignmentRectInsetsVersion\">1</int>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSTextField\" id=\"203767798\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{255, 334}, {147, 15}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"300812263\"/>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSTextFieldCell\" key=\"NSCell\" id=\"621467730\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">71434240</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Total Allocated:</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"27\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"203767798\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"277825497\"/>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSTextColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSTextFieldAlignmentRectInsetsVersion\">1</int>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSButton\" id=\"733945224\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{145, 327}, {102, 28}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"203767798\"/>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSButtonCell\" key=\"NSCell\" id=\"413400078\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134348800</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Snap Shot</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSCellIdentifier\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags\">-2038284288</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags2\">129</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSAlternateContents\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSKeyEquivalent\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicDelay\">200</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicInterval\">25</int>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t<string key=\"NSFrameSize\">{532, 360}</string>\n"
+  "\t\t\t\t\t<reference key=\"NSSuperview\"/>\n"
+  "\t\t\t\t\t<reference key=\"NSWindow\"/>\n"
+  "\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"477594254\"/>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<string key=\"NSScreenRect\">{{0, 0}, {2560, 1418}}</string>\n"
+  "\t\t\t\t<string key=\"NSMinSize\">{532, 382}</string>\n"
+  "\t\t\t\t<string key=\"NSMaxSize\">{10000000000000, 10000000000000}</string>\n"
+  "\t\t\t\t<string key=\"NSFrameAutosaveName\">PMAllactionStatsWindowLocation</string>\n"
+  "\t\t\t\t<bool key=\"NSWindowIsRestorable\">YES</bool>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<object class=\"NSWindowTemplate\" id=\"786576755\">\n"
+  "\t\t\t\t<int key=\"NSWindowStyleMask\">15</int>\n"
+  "\t\t\t\t<int key=\"NSWindowBacking\">2</int>\n"
+  "\t\t\t\t<string key=\"NSWindowRect\">{{283, 305}, {480, 270}}</string>\n"
+  "\t\t\t\t<int key=\"NSWTFlags\">1685586944</int>\n"
+  "\t\t\t\t<string key=\"NSWindowTitle\">Transient Event Log</string>\n"
+  "\t\t\t\t<string key=\"NSWindowClass\">NSWindow</string>\n"
+  "\t\t\t\t<nil key=\"NSViewClass\"/>\n"
+  "\t\t\t\t<nil key=\"NSUserInterfaceItemIdentifier\"/>\n"
+  "\t\t\t\t<object class=\"NSView\" key=\"NSWindowView\" id=\"601444826\">\n"
+  "\t\t\t\t\t<nil key=\"NSNextResponder\"/>\n"
+  "\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t<object class=\"NSScrollView\" id=\"203471625\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">274</int>\n"
+  "\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSClipView\" id=\"556254067\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">2322</int>\n"
+  "\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSSubviews\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextView\" id=\"542085440\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"556254067\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">2322</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSFrameSize\">{465, 236}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"556254067\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"885678129\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:13</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextContainer\" key=\"NSTextContainer\" id=\"436829596\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSLayoutManager\" key=\"NSLayoutManager\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextStorage\" key=\"NSTextStorage\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSMutableString\" key=\"NSString\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<characters key=\"NS.bytes\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSDelegate\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSTextContainers\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference ref=\"436829596\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSLMFlags\">38</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSDelegate\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSTextView\" ref=\"542085440\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<double key=\"NSWidth\">465</double>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTCFlags\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSTextViewSharedData\" key=\"NSSharedData\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSFlags\">67111169</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTextCheckingTypes\">0</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSMarkedAttributes\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSBackgroundColor\" ref=\"730430839\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<dictionary key=\"NSSelectedAttributes\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSBackgroundColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">selectedTextBackgroundColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSColor\" ref=\"122981434\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSCatalogName\">System</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSColorName\">selectedTextColor</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSColor\" ref=\"155403614\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<reference key=\"NSInsertionColor\" ref=\"175780943\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<dictionary key=\"NSLinkAttributes\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSRGB\">MCAwIDEAA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSCursor\" key=\"NSCursor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSHotSpot\">{8, -8}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSCursorType\">13</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<integer value=\"1\" key=\"NSUnderline\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSDefaultParagraphStyle\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSTextFinder\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSPreferredTextFinderStyle\">2</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSTVFlags\">6</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<string key=\"NSMaxSize\">{465, 10000000}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<nil key=\"NSDelegate\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{1, 1}, {465, 236}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"542085440\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:11</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSDocView\" ref=\"542085440\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSBGColor\" ref=\"730430839\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<object class=\"NSCursor\" key=\"NSCursor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t<string key=\"NSHotSpot\">{4, 5}</string>\n"
+  "\t\t\t\t\t\t\t\t\t\t<object class=\"NSImage\" key=\"NSImage\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSImageFlags\">12582912</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"NSReps\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<array>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<integer value=\"0\"/>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSBitmapImageRep\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSData\" key=\"NSTIFFRepresentation\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NS.bytes\">TU0AKgAAAHCAFUqgBVKsAAAAwdVQUqwaEQeIRGJRGFlYqwWLQ+JxuOQpVRmEx2RROKwOQyOUQSPyaUym\n"
+  "SxqWyKXyeYxyZzWbSuJTScRCbz2Nz+gRKhUOfTqeUai0OSxiWTiBQSHSGFquGwekxyAgAAAOAQAAAwAA\n"
+  "AAEAEAAAAQEAAwAAAAEAEAAAAQIAAwAAAAIACAAIAQMAAwAAAAEABQAAAQYAAwAAAAEAAQAAAREABAAA\n"
+  "AAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEAAgAAARYAAwAAAAEAEAAAARcABAAAAAEAAABnARwAAwAA\n"
+  "AAEAAQAAAT0AAwAAAAEAAgAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t<object class=\"NSColor\" key=\"NSColor\">\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<int key=\"NSColorSpace\">3</int>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t\t<bytes key=\"NSWhite\">MCAwAA</bytes>\n"
+  "\t\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NScvFlags\">4</int>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAutomaticallyAdjustsContentInsets\">YES</bool>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSScroller\" id=\"491184262\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">256</int>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{466, 1}, {15, 236}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:85</string>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSControlAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSControlTarget\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSCurValue\">1</double>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSPercent\">0.85256409645080566</double>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t\t<object class=\"NSScroller\" id=\"885678129\">\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSvFlags\">-2147483392</int>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSFrame\">{{-100, -100}, {87, 18}}</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"556254067\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:33</string>\n"
+  "\t\t\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSControlAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSControlTarget\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<int key=\"NSsFlags\">1</int>\n"
+  "\t\t\t\t\t\t\t\t\t<reference key=\"NSTarget\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t\t\t<string key=\"NSAction\">_doScroller:</string>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSCurValue\">1</double>\n"
+  "\t\t\t\t\t\t\t\t\t<double key=\"NSPercent\">0.94565218687057495</double>\n"
+  "\t\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{-1, -1}, {482, 238}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"556254067\"/>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSsFlags\">133138</int>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSVScroller\" ref=\"491184262\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSHScroller\" ref=\"885678129\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSContentView\" ref=\"556254067\"/>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMinMagnification\">0.25</double>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMaxMagnification\">4</double>\n"
+  "\t\t\t\t\t\t\t<double key=\"NSMagnification\">1</double>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"NSButton\" id=\"10925177\">\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextResponder\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t\t<int key=\"NSvFlags\">268</int>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSFrame\">{{15, 239}, {80, 28}}</string>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSSuperview\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSEnabled\">YES</bool>\n"
+  "\t\t\t\t\t\t\t<object class=\"NSButtonCell\" key=\"NSCell\" id=\"385044288\">\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags\">67108864</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSCellFlags2\">134348800</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSContents\">Clear</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSSupport\" ref=\"26\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSCellIdentifier\">_NS:9</string>\n"
+  "\t\t\t\t\t\t\t\t<reference key=\"NSControlView\" ref=\"10925177\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags\">-2038284288</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSButtonFlags2\">129</int>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSAlternateContents\"/>\n"
+  "\t\t\t\t\t\t\t\t<string key=\"NSKeyEquivalent\"/>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicDelay\">200</int>\n"
+  "\t\t\t\t\t\t\t\t<int key=\"NSPeriodicInterval\">25</int>\n"
+  "\t\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t\t<bool key=\"NSAllowsLogicalLayoutDirection\">NO</bool>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t<string key=\"NSFrameSize\">{480, 270}</string>\n"
+  "\t\t\t\t\t<reference key=\"NSNextKeyView\" ref=\"10925177\"/>\n"
+  "\t\t\t\t\t<string key=\"NSReuseIdentifierKey\">_NS:20</string>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<string key=\"NSScreenRect\">{{0, 0}, {2560, 1418}}</string>\n"
+  "\t\t\t\t<string key=\"NSMaxSize\">{10000000000000, 10000000000000}</string>\n"
+  "\t\t\t\t<string key=\"NSFrameAutosaveName\">TransientEventLog</string>\n"
+  "\t\t\t\t<bool key=\"NSWindowIsRestorable\">YES</bool>\n"
+  "\t\t\t</object>\n"
+  "\t\t</array>\n"
+  "\t\t<object class=\"IBObjectContainer\" key=\"IBDocument.Objects\">\n"
+  "\t\t\t<array key=\"connectionRecords\">\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mTransientEventExplorerWindow</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1004\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"786576755\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">223</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mTransientEventExplorerTextView</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1004\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"542085440\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">224</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBActionConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">clearTransientEventLogWindow:</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1004\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"10925177\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">225</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mDebugMenu</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"832895925\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">10</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mAllocationStatsWindow</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"488945732\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">60</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mStatsTableView</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">108</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mAllocationStatsWindowVisibleAtLaunchCheckbox</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"477594254\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">152</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mDisplayFilterPopUpButton</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"518079538\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">153</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mCurrentlyAllocatedObjectCountTextField</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"381938415\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">186</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mTotalAllocatedObjectCountTextField</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"300812263\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">187</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBOutletConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">mPerformSnapShotButton</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">209</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBActionConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">performSnapShotAction:</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">214</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBConnectionRecord\">\n"
+  "\t\t\t\t\t<object class=\"IBActionConnection\" key=\"connection\">\n"
+  "\t\t\t\t\t\t<string key=\"label\">makeKeyAndOrderFront:</string>\n"
+  "\t\t\t\t\t\t<reference key=\"source\" ref=\"488945732\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"destination\" ref=\"391542348\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<int key=\"connectionID\">213</int>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t</array>\n"
+  "\t\t\t<object class=\"IBMutableOrderedSet\" key=\"objectRecords\">\n"
+  "\t\t\t\t<array key=\"orderedObjects\">\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">0</int>\n"
+  "\t\t\t\t\t\t<array key=\"object\" id=\"0\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"children\" ref=\"1000\"/>\n"
+  "\t\t\t\t\t\t<nil key=\"parent\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">-2</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"1001\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t\t<string key=\"objectName\">File's Owner</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">-1</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"1003\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t\t<string key=\"objectName\">First Responder</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">-3</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"1004\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t\t<string key=\"objectName\">Application</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">6</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"832895925\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"391542348\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">7</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"391542348\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"832895925\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">13</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"488945732\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t\t<string key=\"objectName\">AllocationStats Window</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">14</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"518079538\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"146764676\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"381938415\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"477594254\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"336406046\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"300812263\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"203767798\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"733945224\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"488945732\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">15</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"933801029\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"466601769\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"584677815\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">16</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"518079538\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"92687822\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">17</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"146764676\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"1044367949\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">18</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"381938415\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"868904438\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">23</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"868904438\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"18967862\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"381938415\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">24</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"1044367949\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"146764676\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">25</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"92687822\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"518079538\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">26</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"555303939\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"590354082\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"951103194\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"92687822\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">27</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"555303939\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">28</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"590354082\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">29</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"933801029\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">30</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"466601769\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">31</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"584677815\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">32</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"665282369\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"404121835\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"610270419\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"856923415\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"694864762\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">33</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"665282369\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"820684983\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">34</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"404121835\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"590032922\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">35</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"610270419\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"236796732\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">36</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"236796732\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"610270419\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">37</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"590032922\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"404121835\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">38</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"820684983\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"665282369\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">107</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"18967862\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"868904438\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">138</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"477594254\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"255990638\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">139</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"255990638\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"477594254\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">154</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"336406046\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"403189114\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">156</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"403189114\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"336406046\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">171</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"300812263\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"316229116\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">172</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"203767798\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"621467730\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">175</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"621467730\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"203767798\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">177</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"316229116\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"920445510\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"300812263\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">178</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"920445510\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"316229116\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">207</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"413400078\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"211121235\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">208</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"413400078\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"733945224\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">210</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"856923415\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"608501593\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"54967480\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">211</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"608501593\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"856923415\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">212</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"951103194\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"1027996105\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">215</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"786576755\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"0\"/>\n"
+  "\t\t\t\t\t\t<string key=\"objectName\">Transient Event Log</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">216</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"10925177\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"786576755\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">217</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"10925177\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"385044288\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">218</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t\t<array class=\"NSMutableArray\" key=\"children\">\n"
+  "\t\t\t\t\t\t\t<reference ref=\"491184262\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"885678129\"/>\n"
+  "\t\t\t\t\t\t\t<reference ref=\"542085440\"/>\n"
+  "\t\t\t\t\t\t</array>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"601444826\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">219</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"491184262\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">220</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"885678129\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">221</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"542085440\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"203471625\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"IBObjectRecord\">\n"
+  "\t\t\t\t\t\t<int key=\"objectID\">222</int>\n"
+  "\t\t\t\t\t\t<reference key=\"object\" ref=\"385044288\"/>\n"
+  "\t\t\t\t\t\t<reference key=\"parent\" ref=\"10925177\"/>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t</array>\n"
+  "\t\t\t</object>\n"
+  "\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"flattenedProperties\">\n"
+  "\t\t\t\t<string key=\"-1.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"-2.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"-3.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1041\" key=\"107.IBNumberFormatterBehaviorMetadataKey\"/>\n"
+  "\t\t\t\t<boolean value=\"YES\" key=\"107.IBNumberFormatterLocalizesFormatMetadataKey\"/>\n"
+  "\t\t\t\t<string key=\"107.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"13.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"13.IBWindowTemplateEditedContentRect\">{{110, 1018}, {532, 360}}</string>\n"
+  "\t\t\t\t<string key=\"138.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"139.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"14.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"15.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"154.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"156.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"16.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"17.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"171.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"172.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"175.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"177.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1041\" key=\"178.IBNumberFormatterBehaviorMetadataKey\"/>\n"
+  "\t\t\t\t<boolean value=\"YES\" key=\"178.IBNumberFormatterLocalizesFormatMetadataKey\"/>\n"
+  "\t\t\t\t<string key=\"178.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"18.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"207.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"208.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"210.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"211.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"212.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"215.IBPersistedLastKnownCanvasPosition\">{109, 304}</string>\n"
+  "\t\t\t\t<string key=\"215.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<boolean value=\"NO\" key=\"215.NSWindowTemplate.visibleAtLaunch\"/>\n"
+  "\t\t\t\t<reference key=\"216.IBNSViewMetadataConstraints\" ref=\"0\"/>\n"
+  "\t\t\t\t<reference key=\"216.IBNSViewMetadataGestureRecognizers\" ref=\"0\"/>\n"
+  "\t\t\t\t<string key=\"216.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"217.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"218.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"219.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"220.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"221.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"222.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"23.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"24.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"25.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"26.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"27.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"28.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"29.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"29.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"30.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"30.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"31.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"31.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"32.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"33.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"34.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"35.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"36.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"36.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"37.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"37.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"38.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<integer value=\"1\" key=\"38.IBShouldRemoveOnLegacySave\"/>\n"
+  "\t\t\t\t<string key=\"6.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t\t<string key=\"7.IBPluginDependency\">com.apple.InterfaceBuilder.CocoaPlugin</string>\n"
+  "\t\t\t</dictionary>\n"
+  "\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"unlocalizedProperties\"/>\n"
+  "\t\t\t<nil key=\"activeLocalization\"/>\n"
+  "\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"localizations\"/>\n"
+  "\t\t\t<nil key=\"sourceID\"/>\n"
+  "\t\t\t<int key=\"maxID\">225</int>\n"
+  "\t\t</object>\n"
+  "\t\t<object class=\"IBClassDescriber\" key=\"IBDocument.Classes\">\n"
+  "\t\t\t<array class=\"NSMutableArray\" key=\"referencedPartialClassDescriptions\">\n"
+  "\t\t\t\t<object class=\"IBPartialClassDescription\">\n"
+  "\t\t\t\t\t<string key=\"className\">PMAllocationDebug</string>\n"
+  "\t\t\t\t\t<string key=\"superclassName\">NSObject</string>\n"
+  "\t\t\t\t\t<object class=\"NSMutableDictionary\" key=\"actions\">\n"
+  "\t\t\t\t\t\t<string key=\"NS.key.0\">performSnapShotAction:</string>\n"
+  "\t\t\t\t\t\t<string key=\"NS.object.0\">id</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<object class=\"NSMutableDictionary\" key=\"actionInfosByName\">\n"
+  "\t\t\t\t\t\t<string key=\"NS.key.0\">performSnapShotAction:</string>\n"
+  "\t\t\t\t\t\t<object class=\"IBActionInfo\" key=\"NS.object.0\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">performSnapShotAction:</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">id</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"outlets\">\n"
+  "\t\t\t\t\t\t<string key=\"mAllocationStatsWindow\">NSWindow</string>\n"
+  "\t\t\t\t\t\t<string key=\"mAllocationStatsWindowVisibleAtLaunchCheckbox\">NSButton</string>\n"
+  "\t\t\t\t\t\t<string key=\"mCurrentlyAllocatedObjectCountTextField\">NSTextField</string>\n"
+  "\t\t\t\t\t\t<string key=\"mDebugMenu\">NSMenu</string>\n"
+  "\t\t\t\t\t\t<string key=\"mDisplayFilterPopUpButton\">NSPopUpButton</string>\n"
+  "\t\t\t\t\t\t<string key=\"mPerformSnapShotButton\">NSButton</string>\n"
+  "\t\t\t\t\t\t<string key=\"mStatsTableView\">NSTableView</string>\n"
+  "\t\t\t\t\t\t<string key=\"mTotalAllocatedObjectCountTextField\">NSTextField</string>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"toOneOutletInfosByName\">\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mAllocationStatsWindow\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mAllocationStatsWindow</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSWindow</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mAllocationStatsWindowVisibleAtLaunchCheckbox\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mAllocationStatsWindowVisibleAtLaunchCheckbox</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSButton</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mCurrentlyAllocatedObjectCountTextField\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mCurrentlyAllocatedObjectCountTextField</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSTextField</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mDebugMenu\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mDebugMenu</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSMenu</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mDisplayFilterPopUpButton\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mDisplayFilterPopUpButton</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSPopUpButton</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mPerformSnapShotButton\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mPerformSnapShotButton</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSButton</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mStatsTableView\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mStatsTableView</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSTableView</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mTotalAllocatedObjectCountTextField\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mTotalAllocatedObjectCountTextField</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSTextField</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<object class=\"IBClassDescriptionSource\" key=\"sourceIdentifier\">\n"
+  "\t\t\t\t\t\t<string key=\"majorKey\">IBProjectSource</string>\n"
+  "\t\t\t\t\t\t<string key=\"minorKey\">../01-simple-preferences/PMAllocationDebug.swift</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t\t<object class=\"IBPartialClassDescription\">\n"
+  "\t\t\t\t\t<string key=\"className\">PMApplication</string>\n"
+  "\t\t\t\t\t<string key=\"superclassName\">NSApplication</string>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"actions\">\n"
+  "\t\t\t\t\t\t<string key=\"clearTransientEventLogWindow:\">NSObject</string>\n"
+  "\t\t\t\t\t\t<string key=\"showTransientEventLogWindow:\">NSObject</string>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"actionInfosByName\">\n"
+  "\t\t\t\t\t\t<object class=\"IBActionInfo\" key=\"clearTransientEventLogWindow:\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">clearTransientEventLogWindow:</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSObject</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBActionInfo\" key=\"showTransientEventLogWindow:\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">showTransientEventLogWindow:</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSObject</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"outlets\">\n"
+  "\t\t\t\t\t\t<string key=\"mTransientEventExplorerTextView\">NSTextView</string>\n"
+  "\t\t\t\t\t\t<string key=\"mTransientEventExplorerWindow\">NSWindow</string>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<dictionary class=\"NSMutableDictionary\" key=\"toOneOutletInfosByName\">\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mTransientEventExplorerTextView\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mTransientEventExplorerTextView</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSTextView</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t\t<object class=\"IBToOneOutletInfo\" key=\"mTransientEventExplorerWindow\">\n"
+  "\t\t\t\t\t\t\t<string key=\"name\">mTransientEventExplorerWindow</string>\n"
+  "\t\t\t\t\t\t\t<string key=\"candidateClassName\">NSWindow</string>\n"
+  "\t\t\t\t\t\t</object>\n"
+  "\t\t\t\t\t</dictionary>\n"
+  "\t\t\t\t\t<object class=\"IBClassDescriptionSource\" key=\"sourceIdentifier\">\n"
+  "\t\t\t\t\t\t<string key=\"majorKey\">IBProjectSource</string>\n"
+  "\t\t\t\t\t\t<string key=\"minorKey\">../01-simple-preferences/PMApplication.swift</string>\n"
+  "\t\t\t\t\t</object>\n"
+  "\t\t\t\t</object>\n"
+  "\t\t\t</array>\n"
+  "\t\t</object>\n"
+  "\t\t<int key=\"IBDocument.localizationMode\">0</int>\n"
+  "\t\t<string key=\"IBDocument.TargetRuntimeIdentifier\">IBCocoaFramework</string>\n"
+  "\t\t<bool key=\"IBDocument.previouslyAttemptedUpgradeToXcode5\">NO</bool>\n"
+  "\t\t<object class=\"NSMutableDictionary\" key=\"IBDocument.PluginDeclaredDevelopmentDependencies\">\n"
+  "\t\t\t<string key=\"NS.key.0\">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>\n"
+  "\t\t\t<integer value=\"4600\" key=\"NS.object.0\"/>\n"
+  "\t\t</object>\n"
+  "\t\t<bool key=\"IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion\">YES</bool>\n"
+  "\t\t<int key=\"IBDocument.defaultPropertyAccessControl\">3</int>\n"
+  "\t\t<dictionary class=\"NSMutableDictionary\" key=\"IBDocument.LastKnownImageSizes\">\n"
+  "\t\t\t<string key=\"NSMenuCheckmark\">{12, 12}</string>\n"
+  "\t\t\t<string key=\"NSMenuMixedState\">{10, 2}</string>\n"
+  "\t\t\t<string key=\"NSSwitch\">{15, 15}</string>\n"
+  "\t\t</dictionary>\n"
+  "\t</data>\n"
+  "</archive>\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_swift_5F_sources (
+  "PMAllocationDebug.xib",
+  "xib",
+  true, // Text file
+  72644, // Text length
+  gWrapperFileContent_1_swift_5F_sources
+) ;
+
+//--- File '/PMButton.swift'
+
+const char * gWrapperFileContent_2_swift_5F_sources = "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "import Cocoa\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMButton) class PMButton : NSButton, PMUserClassName {\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  required init\? (coder: NSCoder) {\n"
+  "    super.init (coder:coder)\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  enabled binding                                                                                                  *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private var mValueController : Controller_PMButton_enabled\?\n"
+  "\n"
+  "  func bind_enabled (object:PMReadOnlyProperty_Bool, file:String, line:Int) {\n"
+  "    mValueController = Controller_PMButton_enabled (object:object, outlet:self, file:file, line:line)\n"
+  "  }\n"
+  "\n"
+  "  func unbind_enabled () {\n"
+  "    if let valueController = mValueController {\n"
+  "      valueController.unregister ()\n"
+  "    }\n"
+  "    mValueController = nil\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Controller_PMButton_enabled                                                                                       *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(Controller_PMButton_enabled) class Controller_PMButton_enabled : PMOutletEvent {\n"
+  "\n"
+  "  var mObject : PMReadOnlyProperty_Bool\n"
+  "  var mOutlet : PMButton\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (object : PMReadOnlyProperty_Bool, outlet : PMButton, file : String, line : Int) {\n"
+  "    mObject = object\n"
+  "    mOutlet = outlet\n"
+  "    super.init ()\n"
+  "    mObject.addObserver (self, inTrigger:true)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mObject.removeObserver (self, inTrigger:false)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func updateOutlet () {\n"
+  "    mOutlet.enabled = mObject.prop\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n" ;
+
+const cRegularFileWrapper gWrapperFile_2_swift_5F_sources (
+  "PMButton.swift",
+  "swift",
+  true, // Text file
+  2965, // Text length
+  gWrapperFileContent_2_swift_5F_sources
+) ;
+
+//--- File '/PMDataScanner.swift'
+
+const char * gWrapperFileContent_3_swift_5F_sources = "//\n"
+  "//  PMDataScanner.m\n"
+  "//  canari\n"
+  "//\n"
+  "//  Created by Pierre Molinaro on 09/11/07.\n"
+  "//  Copyright 2007 __MyCompanyName__. All rights reserved.\n"
+  "//\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "class PMDataScanner : PMObject, PMUserClassName {\n"
+  "  var mData : NSData\n"
+  "  var mReadIndex : Int = 0\n"
+  "  var mReadOk : Bool = true\n"
+  "  var mExpectedBytes : Array<UInt8> = []\n"
+  "  var mProgressWindow : NSWindow\? = nil\n"
+  "  var mProgressIndicator : NSProgressIndicator\? = nil\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  init                                                                     *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (data: NSData,\n"
+  "        displayProgressWindowTitle: String\?) {\n"
+  "    mData = data\n"
+  "    super.init ()\n"
+  "    if (nil != displayProgressWindowTitle) {\n"
+  "      openProgressWindowWithTitle (displayProgressWindowTitle!)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  deinit                                                                   *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  deinit {\n"
+  "    mProgressWindow\?.orderOut (self)\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  openProgressWindowWithTitle                                              *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func openProgressWindowWithTitle (inTitle : String) {\n"
+  "    if let visibleFrame = NSScreen.mainScreen ()\?.visibleFrame {\n"
+  "      let windowWidth = 400.0\n"
+  "      let windowHeight = 65.0\n"
+  "      let windowRect = NSMakeRect (\n"
+  "        NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),\n"
+  "        NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),\n"
+  "        CGFloat (windowWidth),\n"
+  "        CGFloat (windowHeight)\n"
+  "      )\n"
+  "      let progressWindow = NSWindow (\n"
+  "        contentRect:windowRect,\n"
+  "        styleMask:NSTitledWindowMask,\n"
+  "        backing:NSBackingStoreType.Buffered,\n"
+  "        defer:false\n"
+  "      )\n"
+  "      mProgressWindow = progressWindow\n"
+  "      progressWindow.excludedFromWindowsMenu = true\n"
+  "      progressWindow.title = \"Progress\"\n"
+  "      let contientViewRect : NSRect = progressWindow.contentView.frame\n"
+  "    //--- Add comment text\n"
+  "      let ts_r = NSRect (\n"
+  "        x:25.0,\n"
+  "        y:30.0,\n"
+  "        width:NSMaxX (contientViewRect) - 40.0,\n"
+  "        height:20.0\n"
+  "      )\n"
+  "      var ts = NSTextField (frame:ts_r)\n"
+  "      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())\n"
+  "      ts.stringValue = String (format:\"Opening %@\xE2""\x80""\xA6""\", inTitle)\n"
+  "      ts.bezeled = false\n"
+  "      ts.bordered = false\n"
+  "      ts.editable = false\n"
+  "      ts.drawsBackground = false\n"
+  "      progressWindow.contentView.addSubview (ts)\n"
+  "    //--- Add progress indicator\n"
+  "      let ps_r = NSRect (\n"
+  "        x:20.0,\n"
+  "        y:10.0,\n"
+  "        width:NSMaxX (contientViewRect) - 40.0,\n"
+  "        height: 20.0\n"
+  "      )\n"
+  "      mProgressIndicator = NSProgressIndicator (frame:ps_r)\n"
+  "      mProgressIndicator!.indeterminate = true\n"
+  "      progressWindow.contentView.addSubview (mProgressIndicator!)\n"
+  "    //---\n"
+  "      mProgressIndicator!.minValue = 0.0\n"
+  "      mProgressIndicator!.maxValue = Double (mData.length)\n"
+  "      mProgressIndicator!.doubleValue = Double (mReadIndex)\n"
+  "      mProgressIndicator!.indeterminate = false\n"
+  "      mProgressIndicator!.display ()\n"
+  "    //---\n"
+  "      progressWindow.makeKeyAndOrderFront (nil)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  updateProgressIndicator                                                  *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func updateProgressIndicator () {\n"
+  "    if let progressIndicator = mProgressIndicator {\n"
+  "      progressIndicator.doubleValue = Double (mReadIndex)\n"
+  "      progressIndicator.display ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  ignoreBytes                                                              *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func ignoreBytes (inLengthToIgnore : Int) {\n"
+  "    if mReadOk {\n"
+  "      mReadIndex += inLengthToIgnore ;\n"
+  "      updateProgressIndicator ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  testAcceptByte                                                           *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  // http://stackoverflow.com/questions/24067085/pointers-pointer-arithmetic-and-raw-data-in-swift\n"
+  "\n"
+  "  func testAcceptByte (inByte : UInt8) -> Bool {\n"
+  "    var result = mReadOk\n"
+  "    if result {\n"
+  "      if mReadIndex >= mData.length {\n"
+  "         NSLog (\"Read beyond end of data\")\n"
+  "         mReadOk = false\n"
+  "       }else{\n"
+  "        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes\n"
+  "        var byte = UnsafePointer<UInt8> (byteAsData).memory\n"
+  "     //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))\n"
+  "     //   var array : COpaquePointer = mData.bytes ()\n"
+  "     //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())\n"
+  "        result = byte == inByte\n"
+  "        if result {\n"
+  "          mReadIndex += 1\n"
+  "          mExpectedBytes = []\n"
+  "        }else{\n"
+  "          mExpectedBytes.append (inByte)\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    updateProgressIndicator ()\n"
+  "    return result ;\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  testAcceptFromByte                                                       *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func testAcceptFromByte (lowerBound: UInt8,\n"
+  "                           upperBound: UInt8,\n"
+  "                           inout value:UInt8) -> Bool {\n"
+  "    var result = mReadOk\n"
+  "    if result {\n"
+  "      if mReadIndex >= mData.length {\n"
+  "         NSLog (\"Read beyond end of data\")\n"
+  "         mReadOk = false\n"
+  "       }else{\n"
+  "        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes\n"
+  "        var byte = UnsafePointer<UInt8> (byteAsData).memory\n"
+  "        result = (byte >= lowerBound) && (byte <= upperBound) ;\n"
+  "        if (result) {\n"
+  "          value = byte\n"
+  "          mReadIndex += 1\n"
+  "          mExpectedBytes = []\n"
+  "        }else{\n"
+  "          for i in lowerBound ..< upperBound + 1 {\n"
+  "            mExpectedBytes.append (i)\n"
+  "          }\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    updateProgressIndicator ()\n"
+  "    return result ;\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  acceptRequiredByte                                                       *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func acceptRequiredByte (inByte : UInt8,\n"
+  "                           sourceFile: String) {\n"
+  "    if mReadOk {\n"
+  "      if mReadIndex >= mData.length {\n"
+  "         NSLog (\"Read beyond end of data\")\n"
+  "         mReadOk = false\n"
+  "      }else{\n"
+  "        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes\n"
+  "        var byte = UnsafePointer<UInt8> (byteAsData).memory\n"
+  "        if (byte == inByte) {\n"
+  "          mReadIndex += 1\n"
+  "          mExpectedBytes = []\n"
+  "        }else{\n"
+  "          var message = \"\"\n"
+  "          for b in mExpectedBytes {\n"
+  "            message += String (format:\"0x%02hhx, \", b)\n"
+  "          }\n"
+  "          NSLog (\"%s: invalid current byte (0x%02x): expected bytes:%@0x%02x\", sourceFile, byte, message, inByte) ;\n"
+  "          mReadOk = false\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "    updateProgressIndicator ()\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  parseByte                                                                *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func parseByte () -> UInt8 {\n"
+  "    var result : UInt8 = 0\n"
+  "    if mReadOk {\n"
+  "      if mReadIndex >= mData.length {\n"
+  "         NSLog (\"Read beyond end of data\")\n"
+  "         mReadOk = false\n"
+  "       }else{\n"
+  "        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes\n"
+  "        result = UnsafePointer<UInt8> (byteAsData).memory\n"
+  "        mReadIndex += 1\n"
+  "      }\n"
+  "    }\n"
+  "    updateProgressIndicator ()\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  parseAutosizedUnsignedInteger                                            *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func parseAutosizedUnsignedInteger () -> UInt {\n"
+  "    var result : UInt = 0\n"
+  "    var shift : UInt = 0\n"
+  "    var loop = true\n"
+  "    while loop && mReadOk {\n"
+  "      if mReadIndex >= mData.length {\n"
+  "         NSLog (\"Read beyond end of data\")\n"
+  "         mReadOk = false\n"
+  "      }else{\n"
+  "        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes\n"
+  "        var byte = UnsafePointer<UInt8> (byteAsData).memory\n"
+  "        let w : UInt = UInt (byte) & 0x7F\n"
+  "        result |= (w << shift)\n"
+  "        shift += 7\n"
+  "        loop = (byte & 0x80) != 0\n"
+  "        mReadIndex += 1\n"
+  "      }\n"
+  "    }\n"
+  "    updateProgressIndicator ()\n"
+  "    return result ;\n"
+  "  }\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  parseAutosizedData                                                       *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func parseAutosizedData () -> NSData {\n"
+  "  var result = NSData ()\n"
+  "  if mReadOk {\n"
+  "    let dataLength : Int = Int (parseAutosizedUnsignedInteger ())\n"
+  "    if (mReadIndex + dataLength) >= mData.length {\n"
+  "      NSLog (\"Read beyond end of data\")\n"
+  "      mReadOk = false\n"
+  "    }else{\n"
+  "      result = mData.subdataWithRange (NSMakeRange (mReadIndex, dataLength))\n"
+  "      mReadIndex += dataLength\n"
+  "    }\n"
+  "  }\n"
+  "  updateProgressIndicator ()\n"
+  "  return result ;\n"
+  "}\n"
+  "\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "  //  ok                                                                       *\n"
+  "  //---------------------------------------------------------------------------*\n"
+  "\n"
+  "  func ok () -> Bool {\n"
+  "    return mReadOk\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
+  "PMDataScanner.swift",
+  "swift",
+  true, // Text file
+  10284, // Text length
+  gWrapperFileContent_3_swift_5F_sources
+) ;
+
+//--- File '/PMManagedDocument.swift'
+
+const char * gWrapperFileContent_4_swift_5F_sources = "\n"
+  "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "private let kFormatSignature = \"PM-BINARY-FORMAT\"\n"
+  "private var gDebugMenuItemsAdded = false\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "enum PMDocumentCompressionEnum {\n"
+  "  case PMDocumentNoCompression\n"
+  "  case PMDocumentBZ2Compression\n"
+  "  case PMDocumentZLIBCompression\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//                                                                                                                     *\n"
+  "//  PMManagedDocument                                                                                                  *\n"
+  "//                                                                                                                     *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "class PMManagedDocument : NSDocument, PMUserClassName {\n"
+  "  var mRootObject : PMManagedObject\?\n"
+  "  var mReadMetadataStatus : UInt8 = 0\n"
+  "  var mMetadataDictionary : NSMutableDictionary = [:]\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    init                                                                                                           *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "    undoManager = PMUndoManager ()\n"
+  "    hookOfInit ()\n"
+  "    undoManager\?.disableUndoRegistration ()\n"
+  "    mRootObject = newInstanceOfEntityNamed (rootEntityClassName ())\n"
+  "    hookOfNewDocumentCreation ()\n"
+  "    undoManager\?.enableUndoRegistration ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    deinit                                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    hookOfInit                                                                                                     *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func hookOfInit () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    hookOfNewDocumentCreation                                                                                      *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func hookOfNewDocumentCreation () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    rootEntityClassName                                                                                            *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func rootEntityClassName () -> String {\n"
+  "    return \"\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    windowControllerDidLoadNib:                                                                                    *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func windowControllerDidLoadNib (aController: NSWindowController) {\n"
+  "    super.windowControllerDidLoadNib (aController)\n"
+  "  //--- Add Debug menu items \?\n"
+  "      if !gDebugMenuItemsAdded {\n"
+  "        gDebugMenuItemsAdded = true\n"
+  "        var menuItem = NSMenuItem (\n"
+  "          title:\"Explore document\",\n"
+  "          action:\"showObjectExplorerWindow:\",\n"
+  "          keyEquivalent:\"\"\n"
+  "        )\n"
+  "        addItemToDebugMenu (menuItem)\n"
+  "        menuItem = NSMenuItem (\n"
+  "          title:\"Check Relationships\",\n"
+  "          action:\"checkRelationships:\",\n"
+  "          keyEquivalent:\"\"\n"
+  "        )\n"
+  "        addItemToDebugMenu (menuItem)\n"
+  "        menuItem = NSMenuItem (\n"
+  "          title:\"Check All Objects are Reachable\",\n"
+  "          action:\"checkEntityReachability:\",\n"
+  "          keyEquivalent:\"\"\n"
+  "        )\n"
+  "        addItemToDebugMenu (menuItem)\n"
+  "      }\n"
+  "    //-------------- Check relationships\n"
+  "/*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;\n"
+  "      const BOOL check = [[[sudc values] value_for_key:@\"checkDocumentRelationships\"] boolValue] ;\n"
+  "      if (check) {\n"
+  "        [self.windowForSheet makeKeyAndOrderFront:nil] ;\n"
+  "        [self checkRelationships:nil] ;\n"
+  "      }*/\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   removeWindowController:                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func removeWindowController (inWindowController : NSWindowController) {\n"
+  "    let managedObjectArray = reachableObjectsFromRootObject ()\n"
+  "    for object in managedObjectArray {\n"
+  "      let managedObject = object as! PMManagedObject\n"
+  "      managedObject.prepareForDeletion ()\n"
+  "    }\n"
+  "    super.removeWindowController (inWindowController)\n"
+  "  }\n"
+  "\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  S A V E    T O    D A T A                                                                                        *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func metadataStatusForSaving () -> UInt8 {\n"
+  "    return 0 ;\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func compressDataOnSaving () -> PMDocumentCompressionEnum {\n"
+  "    return PMDocumentCompressionEnum.PMDocumentBZ2Compression ;\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func hookOfWillSave () {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    dataOfType                                                                                                     *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func dataOfType (typeName: String\?, error outError: NSErrorPointer) -> NSData\? {\n"
+  "  //---\n"
+  "    hookOfWillSave ()\n"
+  "  //--- Add to metadata dictionary the witdth and the height of main window\n"
+  "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
+  "      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable\n"
+  "        let windowSize = unwrappedWindowForSheet.frame.size ;\n"
+  "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:\"PMWindowWidth\")\n"
+  "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:\"PMWindowHeight\")\n"
+  "      }\n"
+  "    }else{ // Document has not been opened in the user interface, use values read from file, if they exist\n"
+  "/*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;\n"
+  "      NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@\"PMWindowWidth\"] ;\n"
+  "      if (nil != v) {\n"
+  "        [metadataDictionary setObject:v forKey:@\"PMWindowWidth\"] ;\n"
+  "      }\n"
+  "      v = [metadataDictionaryReadFromFile objectForKey:@\"PMWindowHeight\"] ;\n"
+  "      if (nil != v) {\n"
+  "        [metadataDictionary setObject:v forKey:@\"PMWindowHeight\"] ;\n"
+  "      }*/\n"
+  "    }\n"
+  "  //---\n"
+  "    var fileData = NSMutableData ()\n"
+  "    var trace : String = \"\"\n"
+  "  //--- Append signature\n"
+  "    fileData.writeSignature (&trace)\n"
+  "  //--- Write status\n"
+  "    fileData.writeByte (metadataStatusForSaving (), trace:&trace)\n"
+  "  //--- Append metadata dictionary\n"
+  "    let metaData = NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,\n"
+  "      format:NSPropertyListFormat.BinaryFormat_v1_0,\n"
+  "      options:0,\n"
+  "      error:nil\n"
+  "    )!\n"
+  "    fileData.writeByte (1, trace:&trace)\n"
+  "    fileData.writeAutosizedData (metaData, trace:&trace)\n"
+  "  //--- Append document data\n"
+  "    let documentData = dataForSavingFromRootObject ()\n"
+  "    fileData.writeByte (6, trace:&trace)\n"
+  "    fileData.writeAutosizedData (documentData, trace:&trace)\n"
+  "/*    switch ([self compressDataOnSaving]) {\n"
+  "    case PMDocumentBZ2Compression:\n"
+  "      data = [data bz2CompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;\n"
+  "      [fileData writeByte:5 trace:nil] ;\n"
+  "      [fileData writeAutosizedData:data trace:nil] ;\n"
+  "      break ;\n"
+  "    case PMDocumentZLIBCompression:\n"
+  "      data = [data zlibCompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;\n"
+  "      [fileData writeByte:7 trace:nil] ;\n"
+  "      [fileData writeAutosizedData:data trace:nil] ;\n"
+  "      break ;\n"
+  "    default:\n"
+  "      [fileData writeByte:6 trace:nil] ;\n"
+  "      [fileData writeAutosizedData:data trace:nil] ;\n"
+  "      break ;\n"
+  "    }*/\n"
+  "  //--- Append final byte\n"
+  "    fileData.writeByte (0, trace:&trace)\n"
+  "   // println (trace)\n"
+  "  //---\n"
+  "    return fileData ;\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func dataForSavingFromRootObject () -> NSData {\n"
+  "    let objectsToSaveArray : NSArray = reachableObjectsFromRootObject ()\n"
+  "  //--- Set savingIndex for each object\n"
+  "    var idx = 0 ;\n"
+  "    for anyObject in objectsToSaveArray {\n"
+  "      let object = anyObject as! PMManagedObject\n"
+  "      object.savingIndex = idx\n"
+  "      idx += 1\n"
+  "    }\n"
+  "  //---\n"
+  "    var saveDataArray : [NSDictionary] = []\n"
+  "    for anyObject in objectsToSaveArray {\n"
+  "      let object = anyObject as! PMManagedObject\n"
+  "      var d : NSMutableDictionary = [\n"
+  "        \"--entity\" : object.className\n"
+  "      ]\n"
+  "      object.saveIntoDictionary (d)\n"
+  "      saveDataArray.append (d)\n"
+  "    }\n"
+  "    return NSPropertyListSerialization.dataWithPropertyList (saveDataArray,\n"
+  "      format:NSPropertyListFormat.BinaryFormat_v1_0,\n"
+  "      options:0,\n"
+  "      error:nil\n"
+  "    )!\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    readFromData                                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func readFromData (data: NSData\?,\n"
+  "                              ofType typeName: String\?,\n"
+  "                              error outError: NSErrorPointer) -> Bool {\n"
+  "    undoManager\?.disableUndoRegistration ()\n"
+  "  //---- Define input data scanner\n"
+  "    var dataScanner = PMDataScanner (\n"
+  "      data:data!,\n"
+  "      displayProgressWindowTitle:(data!.length > 30000) \? lastComponentOfFileName.stringByDeletingPathExtension : nil\n"
+  "    )\n"
+  "  //--- Check Signature\n"
+  "    for c in kFormatSignature.utf8 {\n"
+  "      dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)\n"
+  "    }\n"
+  "  //--- Read Status\n"
+  "    mReadMetadataStatus = dataScanner.parseByte ()\n"
+  "  //--- if ok, check byte is 1\n"
+  "    dataScanner.acceptRequiredByte (1, sourceFile:__FUNCTION__)\n"
+  "  //--- Read metadata dictionary\n"
+  "    var error : NSError\?\n"
+  "    let dictionaryData = dataScanner.parseAutosizedData ()\n"
+  "    let metadataDictionary = NSPropertyListSerialization.propertyListWithData (dictionaryData,\n"
+  "      options:0, // NSPropertyListReadOptions.Immutable,\n"
+  "      format:nil,\n"
+  "      error:nil\n"
+  "    ) as! NSDictionary\n"
+  "    mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary\n"
+  "     //  NSLog (@\"mReadMetadataDictionary %@\", mReadMetadataDictionary) ;\n"
+  "  //--- Read data dictionary\n"
+  "    let dataFormat = dataScanner.parseByte ()\n"
+  "    switch dataFormat {\n"
+  "    case 6 :\n"
+  "      let data = dataScanner.parseAutosizedData ()\n"
+  "      readManagedObjectsFromData (data)\n"
+  "    default:\n"
+  "      NSLog (\"unknowm data format: %u\", dataFormat)\n"
+  "    }\n"
+  "/*    BOOL legacyDataWithoutConverterError = NO ;\n"
+  "    if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed\n"
+  "      NSData * data = [dataScanner parseAutosizedData] ;\n"
+  "      if (NULL == legacyFormatLoader) {\n"
+  "        data = nil ;\n"
+  "        legacyDataWithoutConverterError = YES ;\n"
+  "      }else if (nil != data) {\n"
+  "        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;\n"
+  "      }\n"
+  "    }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed\n"
+  "      NSData * compressedData = [dataScanner parseAutosizedData] ;\n"
+  "      NSData * data = nil ;\n"
+  "      if (nil != compressedData) {\n"
+  "         data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;\n"
+  "      }\n"
+  "      if (NULL == legacyFormatLoader) {\n"
+  "        legacyDataWithoutConverterError = YES ;\n"
+  "        data = nil ;\n"
+  "      }else if (nil != data) {\n"
+  "        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;\n"
+  "      }\n"
+  "    }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed\n"
+  "      NSData * compressedData = [dataScanner parseAutosizedData] ;\n"
+  "      NSData * data = nil ;\n"
+  "      if (nil != compressedData) {\n"
+  "        data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;\n"
+  "      }\n"
+  "      if (NULL == legacyFormatLoader) {\n"
+  "        legacyDataWithoutConverterError = YES ;\n"
+  "        data = nil ;\n"
+  "      }else if (nil != data) {\n"
+  "        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;\n"
+  "      }\n"
+  "    }else if ([dataScanner testAcceptByte:6]) { // Not compressed\n"
+  "      NSData * data = [dataScanner parseAutosizedData] ;\n"
+  "      if (nil != data) {\n"
+  "        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;\n"
+  "        macroRetain (mRootObject) ;\n"
+  "      }\n"
+  "    }else if ([dataScanner testAcceptByte:7]) { // ZLIB Compressed\n"
+  "      NSData * compressedData = [dataScanner parseAutosizedData] ;\n"
+  "      if (nil != compressedData) {\n"
+  "        NSData * data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;\n"
+  "        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;\n"
+  "        macroRetain (mRootObject) ;\n"
+  "      }\n"
+  "    }else{\n"
+  "      [dataScanner acceptRequiredByte:5 sourceFile:__FUNCTION__] ; // BZ2 compressed\n"
+  "      NSData * compressedData = [dataScanner parseAutosizedData] ;\n"
+  "      if (nil != compressedData) {\n"
+  "        NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;\n"
+  "        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;\n"
+  "        macroRetain (mRootObject) ;\n"
+  "      }\n"
+  "    }*/\n"
+  "  //--- if ok, check final byte (0)\n"
+  "    dataScanner.acceptRequiredByte (0, sourceFile:__FUNCTION__)\n"
+  "  //--- Scanner error \?\n"
+  "    if !dataScanner.ok () {\n"
+  "      let dictionary = [\n"
+  "        \"Cannot Open Document\" :  NSLocalizedDescriptionKey,\n"
+  "        \"The file has an invalid format\" :  NSLocalizedRecoverySuggestionErrorKey\n"
+  "      ]\n"
+  "      error = NSError (\n"
+  "        domain:NSBundle.mainBundle ().bundleIdentifier!,\n"
+  "        code:1,\n"
+  "        userInfo:dictionary\n"
+  "      )\n"
+  "    }\n"
+  "  //---\n"
+  "/*    if (legacyDataWithoutConverterError) {\n"
+  "      NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:\n"
+  "        @\"Cannot Open Document\",  NSLocalizedDescriptionKey,\n"
+  "        @\"Legacy data, no helper function\",  NSLocalizedRecoverySuggestionErrorKey,\n"
+  "        nil\n"
+  "      ] ;\n"
+  "      macroReleaseSetToNil (error) ;\n"
+  "      error = [[NSError alloc]\n"
+  "        initWithDomain:[NSBundle mainBundle].bundleIdentifier\n"
+  "        code:1\n"
+  "        userInfo:dictionary\n"
+  "      ] ;\n"
+  "    }*/\n"
+  "  //---\n"
+  "    if (error == nil) && (mRootObject == nil) {\n"
+  "      let dictionary = [\n"
+  "        \"Cannot Open Document\" :  NSLocalizedDescriptionKey,\n"
+  "        \"Root object cannot be read\" :  NSLocalizedRecoverySuggestionErrorKey\n"
+  "      ]\n"
+  "      error = NSError (\n"
+  "        domain:NSBundle.mainBundle ().bundleIdentifier!,\n"
+  "        code:1,\n"
+  "        userInfo:dictionary\n"
+  "      )\n"
+  "    }\n"
+  "  //---\n"
+  "    if (nil != outError) {\n"
+  "      outError.memory = error\n"
+  "    }\n"
+  "    undoManager\?.enableUndoRegistration ()\n"
+  "  //---\n"
+  "    return nil == error\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  let logReadFileDuration = false\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readManagedObjectsFromData (inData : NSData) {\n"
+  "    let startDate = NSDate ()\n"
+  "    let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,\n"
+  "      options:0, // NSPropertyListReadOptions.Immutable,\n"
+  "      format:nil,\n"
+  "      error:nil\n"
+  "    )!\n"
+  "    let dictionaryArray : [NSDictionary] = v as! [NSDictionary]\n"
+  "    if logReadFileDuration {\n"
+  "      let timeTaken = NSDate().timeIntervalSinceDate (startDate)\n"
+  "      NSLog (\"Dictionary array: +%g s\", timeTaken)\n"
+  "    }\n"
+  "    var objectArray : Array<PMManagedObject> = Array  ()\n"
+  "    for d in dictionaryArray {\n"
+  "      let className = d.objectForKey (\"--entity\") as! String\n"
+  "      let object = newInstanceOfEntityNamed (className)\n"
+  "      objectArray.append (object!)\n"
+  "    }\n"
+  "    if logReadFileDuration {\n"
+  "      let timeTaken = NSDate().timeIntervalSinceDate (startDate)\n"
+  "      NSLog (\"Creation of %d objects: +%g s\", objectArray.count, timeTaken)\n"
+  "    }\n"
+  "    var idx = 0\n"
+  "    for d in dictionaryArray {\n"
+  "      var object : PMManagedObject = objectArray [idx]\n"
+  "      object.setUpWithDictionary (d, managedObjectArray:objectArray)\n"
+  "      idx += 1\n"
+  "    }\n"
+  "    if logReadFileDuration {\n"
+  "      let timeTaken = NSDate().timeIntervalSinceDate (startDate)\n"
+  "      NSLog (\"Read: +%g s\", timeTaken)\n"
+  "    }\n"
+  "  //--- Set root object\n"
+  "    mRootObject\?.prepareForDeletion ()\n"
+  "    mRootObject = objectArray [0]\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   showWindows                                                                                                     *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func showWindows () {\n"
+  "    super.showWindows ()\n"
+  "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
+  "      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable\n"
+  "        var windowWidthNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"PMWindowWidth\") as\? NSNumber\n"
+  "        var windowHeightNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"PMWindowHeight\") as\? NSNumber\n"
+  "        if (nil != windowWidthNumber) && (nil != windowHeightNumber) {\n"
+  "          let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))\n"
+  "          var windowFrame : NSRect = unwrappedWindowForSheet.frame\n"
+  "          windowFrame.size = newSize\n"
+  "          unwrappedWindowForSheet.setFrame (windowFrame, display:true)\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   C H E C K    E N T I T Y   R E A C H A B I L I T Y                                                              *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  @IBAction func checkEntityReachability (AnyObject!) {\n"
+  "  //--- Build and show Panel\n"
+  "    let panelRect = NSRect (\n"
+  "      x:0.0,\n"
+  "      y:0.0,\n"
+  "      width:295.0,\n"
+  "      height:107.0\n"
+  "    )\n"
+  "    let panel = NSPanel (contentRect:panelRect,\n"
+  "      styleMask:NSTitledWindowMask,\n"
+  "      backing:NSBackingStoreType.Buffered,\n"
+  "      defer:false\n"
+  "    )\n"
+  "    let textRect = NSRect (\n"
+  "     x:17.0,\n"
+  "     y:45.0,\n"
+  "     width:261.0,\n"
+  "     height:17.0\n"
+  "    )\n"
+  "    var tf = NSTextField (frame:textRect)\n"
+  "    tf.stringValue = \"Checking Document Relationships...\"\n"
+  "    tf.bezeled = false\n"
+  "    tf.bordered = false\n"
+  "    tf.drawsBackground = false\n"
+  "    tf.editable = false\n"
+  "    tf.font = NSFont.boldSystemFontOfSize (0.0)\n"
+  "    panel.contentView.addSubview (tf)\n"
+  "    NSApp.beginSheet (panel,\n"
+  "      modalForWindow:windowForSheet!,\n"
+  "      modalDelegate:nil,\n"
+  "      didEndSelector:nil,\n"
+  "      contextInfo:nil\n"
+  "    )\n"
+  "    panel.display ()\n"
+  "    let reachableObjects : NSArray = reachableObjectsFromRootObject ()\n"
+  "  //---\n"
+  "    panel.orderOut (nil) ; NSApp.endSheet (panel)\n"
+  "  //---\n"
+  "    let reachableCount = reachableObjects.count\n"
+  "    var alert = NSAlert ()\n"
+  "    alert.messageText = \"Object Graph Analysis\"\n"
+  "    alert.informativeText = String (format:\"There are %lu reachable objects from root object.\",\n"
+  "      reachableCount\n"
+  "    )\n"
+  "    alert.beginSheetModalForWindow (windowForSheet!,\n"
+  "      completionHandler:nil\n"
+  "    )\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   showObjectExplorerWindow:                                                                                       *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  @IBAction func showObjectExplorerWindow (AnyObject!) {\n"
+  "    mRootObject\?.showExplorerWindow ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T                                                      *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func reachableObjectsFromRootObject () -> NSArray {\n"
+  "    var reachableObjectArray = NSMutableArray ()\n"
+  "    if let rootObject = mRootObject {\n"
+  "      var reachableObjectSet = NSMutableSet ()\n"
+  "      reachableObjectSet.addObject (rootObject)\n"
+  "      var objectsToExploreArray = NSMutableArray ()\n"
+  "      objectsToExploreArray.addObject (rootObject)\n"
+  "      rootObject.savingIndex = reachableObjectArray.count\n"
+  "      reachableObjectArray.addObject (rootObject)\n"
+  "      // let start = NSDate()\n"
+  "      //   NSLog (\"start\")\n"
+  "      while (objectsToExploreArray.count > 0) {\n"
+  "        let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as! PMManagedObject\n"
+  "        objectsToExploreArray.removeLastObject ()\n"
+  "        var accessible = NSMutableArray ()\n"
+  "        objectToExplore.accessibleObjects (&accessible)\n"
+  "        for object : AnyObject in accessible {\n"
+  "          let managedObject = object as! PMManagedObject\n"
+  "          if !reachableObjectSet.containsObject (managedObject) {\n"
+  "            reachableObjectSet.addObject (managedObject)\n"
+  "            managedObject.savingIndex = reachableObjectArray.count\n"
+  "            reachableObjectArray.addObject (managedObject)\n"
+  "            objectsToExploreArray.addObject (managedObject)\n"
+  "          }\n"
+  "        }\n"
+  "      }\n"
+  "      // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000\n"
+  "      // NSLog (\"%f ms\", timeTaken)\n"
+  "    }\n"
+  "    return reachableObjectArray ;\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//                                                                                                                     *\n"
+  "//     NSMutableData extension                                                                                         *\n"
+  "//                                                                                                                     *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "extension NSMutableData {\n"
+  "\n"
+  "  func writeSignature (inout trace: String) {\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
+  "    for c in kFormatSignature.utf8 {\n"
+  "      var byte : UInt8 = UInt8 (c)\n"
+  "      appendBytes (&byte, length:1)\n"
+  "      trace += String (format:\"%02hhX \", byte)\n"
+  "    }\n"
+  "    trace += \"\\n\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func writeAutosizedData (inData: NSData,\n"
+  "                           inout trace: String) {\n"
+  "    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
+  "    appendData (inData)\n"
+  "    trace += \"(data, length \\(inData.length))\\n\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func writeByte (inByte: UInt8,\n"
+  "                  inout trace: String) {\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
+  "    trace += String (format:\"%02hhX \", inByte)\n"
+  "    var byte = inByte\n"
+  "    appendBytes (&byte, length:1)\n"
+  "    trace += \"\\n\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func writeAutosizedUnsigned (inValue: UInt64,\n"
+  "                               inout trace: String) {\n"
+  "    trace += String (format:\"%03lu %03lu \", length / 1000, length % 1000)\n"
+  "    trace += \"U \"\n"
+  "    var value = inValue\n"
+  "    do{\n"
+  "      var byte : UInt8 = UInt8 (value & 0x7F)\n"
+  "      value >>= 7\n"
+  "      if (value != 0) {\n"
+  "        byte |= 0x80\n"
+  "      }\n"
+  "      trace += String (format:\"%02hhX \", byte)\n"
+  "      appendBytes (&byte, length:1)\n"
+  "    }while value != 0\n"
+  "    trace += \"\\n\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
+  "PMManagedDocument.swift",
+  "swift",
+  true, // Text file
+  26210, // Text length
+  gWrapperFileContent_4_swift_5F_sources
+) ;
+
+//--- File '/PMManagedObject.swift'
+
+const char * gWrapperFileContent_5_swift_5F_sources = "//\n"
+  "//  PMManagedObject.swift\n"
+  "//  essai\n"
+  "//\n"
+  "//  Created by Pierre Molinaro on 28/06/13.\n"
+  "//  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.\n"
+  "//\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//   PMSignatureObserverProtocol                                                                                       *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "@objc(PMSignatureObserverProtocol) protocol PMSignatureObserverProtocol {\n"
+  "  func triggerSignatureComputing ()\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "var gExplorerObjectIndex = 0\n"
+  "var gAllocatedEntityCount = 0\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//  PMManagedObject                                                                                                    *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "class PMManagedObject : PMObject, PMSignatureObserverProtocol {\n"
+  "  var savingIndex = 0\n"
+  "  weak var mUndoManager : NSUndoManager\?\n"
+  "//--- Signature\n"
+  "  var mSignatureCache = 0\n"
+  "  var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []\n"
+  "  var mSignatureHasBeenComputed = false\n"
+  "\n"
+  "  let mExplorerObjectIndex : Int\n"
+  "  var mExplorerWindow : NSWindow\?\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  init                                                                                                             *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (undoManager : NSUndoManager) {\n"
+  "    mUndoManager = undoManager\n"
+  "    gAllocatedEntityCount += 1\n"
+  "    mExplorerObjectIndex = gExplorerObjectIndex\n"
+  "    gExplorerObjectIndex += 1\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  prepareForDeletion                                                                                               *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func prepareForDeletion () {\n"
+  "    mUndoManager = nil\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  setup and save                                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func setUpWithDictionary (inDictionary : NSDictionary,\n"
+  "                            managedObjectArray : Array<PMManagedObject>) {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func saveIntoDictionary (ioDictionary : NSMutableDictionary) {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  Signature                                                                                                        *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func addSignatureObserver (inObserver : PMSignatureObserverProtocol) {\n"
+  "    mSignatureObserverSet.addObject (inObserver)\n"
+  "    inObserver.triggerSignatureComputing ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func removeSignatureObserver (inObserver : PMSignatureObserverProtocol) {\n"
+  "    inObserver.triggerSignatureComputing ()\n"
+  "    mSignatureObserverSet.removeObject (inObserver)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func triggerSignatureComputing () {\n"
+  "    if mSignatureHasBeenComputed {\n"
+  "      mSignatureHasBeenComputed = false ;\n"
+  "      for anyObject in mSignatureObserverSet {\n"
+  "        let object = anyObject as! PMSignatureObserverProtocol\n"
+  "        object.triggerSignatureComputing ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func signature () -> Int {\n"
+  "    if !mSignatureHasBeenComputed {\n"
+  "      mSignatureHasBeenComputed = true\n"
+  "      mSignatureCache = computeSignature ()\n"
+  "    }\n"
+  "    return mSignatureCache ;\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func computeSignature () -> Int {\n"
+  "    return 0\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //  Getters                                                                                                          *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func undoManager () -> PMUndoManager\? {\n"
+  "    return mUndoManager as! PMUndoManager\?\n"
+  "  }\n"
+  "\n"
+  "  func explorerObjectIndex () -> Int {\n"
+  "    return mExplorerObjectIndex\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   showExplorerWindow                                                                                              *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func showExplorerWindow () {\n"
+  "    if mExplorerWindow == nil {\n"
+  "      createAndPopulateObjectExplorerWindow ()\n"
+  "    }\n"
+  "    mExplorerWindow\?.makeKeyAndOrderFront (nil)\n"
+  "  }\n"
+  "\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   accessibleObjects                                                                                               *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func accessibleObjects (inout objects : NSMutableArray) {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   secondColumn                                                                                                    *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func secondColumn (inRect : NSRect) -> NSRect {\n"
+  "    var r = inRect\n"
+  "    r.origin.x += inRect.size.width + 2.0 ;\n"
+  "    return r\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    populateExplorerWindow                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    createEntryForAttributeNamed                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func createEntryForAttributeNamed (attributeName : String,\n"
+  "                                     inout ioRect : NSRect,\n"
+  "                                     view : NSView) -> NSTextField {\n"
+  "    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())\n"
+  "    var tf = NSTextField (frame:ioRect)\n"
+  "    tf.enabled = false\n"
+  "    tf.stringValue = attributeName\n"
+  "    tf.font = font\n"
+  "    view.addSubview (tf)\n"
+  "    var tff = NSTextField (frame:secondColumn (ioRect))\n"
+  "    tff.enabled = false\n"
+  "    tff.font = font\n"
+  "    view.addSubview (tff)\n"
+  "    ioRect.origin.y += ioRect.size.height\n"
+  "    return tff\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    createEntryForToOneRelationshipNamed                                                                           *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func createEntryForToOneRelationshipNamed (relationshipName : String,\n"
+  "                                             inout ioRect : NSRect,\n"
+  "                                             view : NSView) -> NSButton {\n"
+  "    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())\n"
+  "    var tf = NSTextField (frame:ioRect)\n"
+  "    tf.enabled = false\n"
+  "    tf.stringValue = relationshipName\n"
+  "    tf.font = font\n"
+  "    view.addSubview (tf)\n"
+  "    var bt = NSButton (frame:secondColumn (ioRect))\n"
+  "    bt.font = font\n"
+  "    view.addSubview (bt)\n"
+  "    ioRect.origin.y += ioRect.size.height\n"
+  "    return bt\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //    createEntryForToManyRelationshipNamed                                                                          *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func createEntryForToManyRelationshipNamed (relationshipName : String,\n"
+  "                                              inout ioRect : NSRect,\n"
+  "                                              view : NSView) -> NSPopUpButton {\n"
+  "    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())\n"
+  "    var tf = NSTextField (frame:ioRect)\n"
+  "    tf.enabled = false\n"
+  "    tf.stringValue = relationshipName\n"
+  "    tf.font = font\n"
+  "    view.addSubview (tf)\n"
+  "    var bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)\n"
+  "    bt.font = font\n"
+  "    view.addSubview (bt)\n"
+  "    ioRect.origin.y += ioRect.size.height ;\n"
+  "    return bt\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   createAndPopulateObjectExplorerWindow                                                                           *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func createAndPopulateObjectExplorerWindow () {\n"
+  "  //-------------------------------------------------- Create Window\n"
+  "    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)\n"
+  "    mExplorerWindow = NSWindow (\n"
+  "      contentRect:r,\n"
+  "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
+  "      backing:NSBackingStoreType.Buffered,\n"
+  "      defer:true,\n"
+  "      screen:nil\n"
+  "    )\n"
+  "  //-------------------------------------------------- Adding properties\n"
+  "    var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)\n"
+  "    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())\n"
+  "    var view = NSView (frame:nameRect)\n"
+  "    populateExplorerWindowWithRect (&nameRect, view:view)\n"
+  "  //-------------------------------------------------- Finish Window construction\n"
+  "  //--- Resize View\n"
+  "    let rr = secondColumn (nameRect)\n"
+  "    view.frame = NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr))\n"
+  "  //--- Set content size\n"
+  "    mExplorerWindow\?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))\n"
+  "  //--- Set close button as 'remove window' button\n"
+  "    var closeButton : NSButton\? = mExplorerWindow\?.standardWindowButton (NSWindowButton.CloseButton)\n"
+  "    closeButton!.target = self\n"
+  "    closeButton!.action = \"deleteWindowAction:\"\n"
+  "  //--- Set window title\n"
+  "    let windowTitle = String (format:\"#%ld (%@) at %p\", mExplorerObjectIndex, className, self)\n"
+  "    mExplorerWindow!.title = windowTitle\n"
+  "  //--- Add Scroll view\n"
+  "    let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))\n"
+  "    var sw = NSScrollView (frame:frame)\n"
+  "    sw.hasVerticalScroller = true\n"
+  "    sw.documentView = view\n"
+  "    mExplorerWindow!.contentView = sw\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   updateManagedObjectToManyRelationshipDisplay                                                                    *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [PMManagedObject], popUpButton : NSPopUpButton\?) {\n"
+  "    var title = \"No Object\" ;\n"
+  "    if inObjectArray.count == 1 {\n"
+  "      title = \"1 Object\" ;\n"
+  "    }else if inObjectArray.count > 1 {\n"
+  "      title = String (format:\"%lu objects\", inObjectArray.count)\n"
+  "    }\n"
+  "    popUpButton\?.removeAllItems ()\n"
+  "    popUpButton\?.addItemWithTitle (title)\n"
+  "    popUpButton\?.enabled = inObjectArray.count > 0\n"
+  "    for object : PMManagedObject in inObjectArray {\n"
+  "      let objectIndex = object.explorerObjectIndex ()\n"
+  "      let stringValue = String (format:\"#%d (%@) %p\", objectIndex, object.className, object)\n"
+  "      popUpButton\?.addItemWithTitle (stringValue)\n"
+  "      var item = popUpButton\?.lastItem\n"
+  "      item\?.target = object\n"
+  "      item\?.action = \"showObjectWindowFromExplorerButton:\"\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   updateManagedObjectToOneRelationshipDisplay                                                                     *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func updateManagedObjectToOneRelationshipDisplay (inObject : PMManagedObject\?, button : NSButton\?) {\n"
+  "    var stringValue = \"nil\"\n"
+  "    if let unwrappedObject = inObject {\n"
+  "      let objectIndex = unwrappedObject.explorerObjectIndex ()\n"
+  "      stringValue = String (format:\"#%d (%@) %p\", objectIndex, unwrappedObject.className, unwrappedObject)\n"
+  "    }\n"
+  "    button\?.enabled = inObject != nil\n"
+  "    button\?.title = stringValue\n"
+  "    button\?.toolTip = stringValue\n"
+  "    button\?.target = inObject\n"
+  "    button\?.action = \"showObjectWindowFromExplorerButton:\"\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   showObjectWindowFromExplorerButton                                                                              *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func showObjectWindowFromExplorerButton (AnyObject) {\n"
+  "    showExplorerWindow ()\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   deleteWindowAction                                                                                              *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func deleteWindowAction (AnyObject) {\n"
+  "    clearObjectExplorer ()\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   clearObjectExplorer                                                                                             *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func clearObjectExplorer () {\n"
+  "    var closeButton = mExplorerWindow\?.standardWindowButton (NSWindowButton.CloseButton)\n"
+  "    closeButton!.target = nil\n"
+  "    mExplorerWindow\?.orderOut (nil)\n"
+  "    mExplorerWindow = nil\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   storeEntityArrayInDictionary                                                                                    *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func storeEntityArrayInDictionary (inEntityArray : NSArray,\n"
+  "                                     inRelationshipName: String,\n"
+  "                                     ioDictionary : NSMutableDictionary) {\n"
+  "\n"
+  "    if inEntityArray.count > 0 {\n"
+  "      var indexArray = NSMutableArray ()\n"
+  "      for object : AnyObject in inEntityArray {\n"
+  "        let managedObject = object as! PMManagedObject\n"
+  "        indexArray.addObject (NSNumber (unsignedInteger:object.savingIndex))\n"
+  "      }\n"
+  "      ioDictionary.setObject (indexArray, forKey:inRelationshipName)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   storeEntityInDictionary                                                                                         *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func storeEntityInDictionary (inObject : PMManagedObject\?,\n"
+  "                                inRelationshipName: String,\n"
+  "                                ioDictionary : NSMutableDictionary) {\n"
+  "    if nil != inObject {\n"
+  "      ioDictionary.setObject (NSNumber (unsignedInteger:inObject!.savingIndex), forKey:inRelationshipName)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   readEntityFromDictionary                                                                                        *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readEntityFromDictionary (inRelationshipName: String,\n"
+  "                                 inDictionary : NSDictionary,\n"
+  "                                 managedObjectArray : Array<PMManagedObject>) -> PMManagedObject\? {\n"
+  "    let opValue : Int\? = inDictionary.valueForKey (inRelationshipName) as\? Int\n"
+  "    var result : PMManagedObject\? = nil\n"
+  "    if let value = opValue {\n"
+  "      result = managedObjectArray [value]\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  //   readEntityArrayFromDictionary                                                                                   *\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readEntityArrayFromDictionary (inRelationshipName: String,\n"
+  "                                     inDictionary : NSDictionary,\n"
+  "                                     managedObjectArray : Array<PMManagedObject>) -> Array<PMManagedObject> {\n"
+  "    let opIndexArray : Array<Int>\? = inDictionary.valueForKey (inRelationshipName) as\? Array<Int>\n"
+  "    var result = Array<PMManagedObject> ()\n"
+  "    if let indexArray = opIndexArray {\n"
+  "      for number : Int in indexArray {\n"
+  "        let managedObject = managedObjectArray [number]\n"
+  "        result.append (managedObject)\n"
+  "      }\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "/*\n"
+  "//---------------------------------------------------------------------------*\n"
+  "//   Signature routines                                                      *\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeIntegerSignature (const NSInteger inSignature,\n"
+  "                                   const NSInteger inValue) ;\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeNSStringSignature (const NSInteger inSignature,\n"
+  "                                    NSString * inValue) ;\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeToOneEntitySignature (const NSInteger inSignature,\n"
+  "                                       PMManagedObject * inToOnePropertyValue) ;\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeToManyEntitySignature (const NSInteger inSignature,\n"
+  "                                        NSArray * inToManyPropertyValue) ;\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "*/\n"
+  "\n"
+  "\n"
+  "\n"
+  "\n"
+  "\n"
+  "/*\n"
+  "#import \"easy-bindings-utilities.h\"\n"
+  "#import \"PMAllocationDebug.h\"\n"
+  "#import \"PMManagedObject.h\"\n"
+  "#import \"PMObjectManager.h\"\n"
+  "#import \"PMRelationshipDescription.h\"\n"
+  "#import \"PMAttributeDescription.h\"\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//  Function used for object explorer                                          *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "NSString * convertBOOLValueToString (NSNumber * inValue) {\n"
+  "  return [inValue boolValue] \? @\"YES\" : @\"NO\" ;\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "#ifdef PM_COCOA_DEBUG\n"
+  "  static NSUInteger gExplorerObjectIndex ;\n"
+  "#endif\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//  Attribute and relationship description caches                              *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "static NSMutableDictionary * gAttributeDescriptionDictionary ;\n"
+  "static NSMutableDictionary * gToOneRelationshipDescriptionDictionary ;\n"
+  "static NSMutableDictionary * gToManyRelationshipDescriptionDictionary ;\n"
+  "static NSUInteger gAllocatedEntityCount = 0 ;\n"
+  "\n"
+  "//----------------------------------------------------------------------------*\n"
+  "//    Dealloc                                                                 *\n"
+  "//----------------------------------------------------------------------------*\n"
+  "\n"
+  "- (void) dealloc {\n"
+  "  gAllocatedEntityCount -- ;\n"
+  "  if (0 == gAllocatedEntityCount) {\n"
+  "    macroReleaseSetToNil (gAttributeDescriptionDictionary) ;\n"
+  "    macroReleaseSetToNil (gToOneRelationshipDescriptionDictionary) ;\n"
+  "    macroReleaseSetToNil (gToManyRelationshipDescriptionDictionary) ;\n"
+  "  }\n"
+  "  macroReleaseSetToNil (mEntityManager) ;\n"
+  "  macroReleaseSetToNil (mUndoManager) ;\n"
+  "  macroNoteObjectDeallocation ;\n"
+  "  macroSuperDealloc ;\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "- (void) setEntityManager: (PMObjectManager *) inManager {\n"
+  "  [mUndoManager\n"
+  "    registerUndoWithTarget:self\n"
+  "    selector: @selector (setEntityManager:)\n"
+  "    object:mEntityManager\n"
+  "  ] ;\n"
+  "  macroAssign (mEntityManager, inManager) ;\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "- (void) resetBeforeDeletion {\n"
+  "  [self setEntityManager:nil] ;\n"
+  "  #ifdef PM_COCOA_DEBUG\n"
+  "    [self clearContextExplorer] ;\n"
+  "  #endif\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "//  S I G N A T U R E                                                        *\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#pragma mark Object Explorer\n"
+  "\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "//   Signature routines                                                      *\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeIntegerSignature (const NSInteger inSignature,\n"
+  "                                   const NSInteger inValue) {\n"
+  "  NSInteger result = inSignature ;\n"
+  "  NSInteger negative = inSignature < 0 ;\n"
+  "  result <<= 1 ;\n"
+  "  result |= negative ;\n"
+  "  result ^= inValue ;\n"
+  "  return result ;  \n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeNSStringSignature (const NSInteger inSignature,\n"
+  "                                    NSString * inValue) {\n"
+  "  NSInteger result = inSignature ;\n"
+  "  for (NSUInteger i=0 ; i<inValue.length ; i++) {\n"
+  "    result = computeIntegerSignature (result, [inValue characterAtIndex:i]) ;\n"
+  "  }\n"
+  "  return result ;  \n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeToOneEntitySignature (const NSInteger inSignature,\n"
+  "                                       PMManagedObject * inToOnePropertyValue) {\n"
+  "  return computeIntegerSignature (inSignature, inToOnePropertyValue.signature) ;\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "NSInteger computeToManyEntitySignature (const NSInteger inSignature,\n"
+  "                                        NSArray * inToManyPropertyValue) {\n"
+  "  NSInteger result = inSignature ;\n"
+  "  for (PMManagedObject * object in inToManyPropertyValue) {\n"
+  "    result = computeIntegerSignature (result, object.signature) ;\n"
+  "  }\n"
+  "  return result ;\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "//  O B J E C T    E X P L O R E R                                           *\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#pragma mark Object Explorer\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#ifdef PM_COCOA_DEBUG\n"
+  "  - (void) showObjectWindowFromSenderTagAction: (id) inSender {\n"
+  "    [self showExplorerWindow] ;\n"
+  "  }\n"
+  "#endif\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#pragma mark Clear Context Explorer\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#pragma mark Attribute did change\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#ifdef PM_COCOA_DEBUG\n"
+  "  - (void) didChangeValueForKey:(NSString *) inKey {\n"
+  "    [super didChangeValueForKey:inKey] ;\n"
+  "    if ([mToManyRelationshipSet containsObject:inKey]) {\n"
+  "      [self updateEntityArrayDisplayForKey:inKey] ;\n"
+  "    }else if ([mToOneRelationshipSet containsObject:inKey]) {\n"
+  "      [self updateEntityDisplayForKey:inKey] ;\n"
+  "    }else{\n"
+  "      for (PMAttributeDescription * description in mAttributeDescriptionArray) {\n"
+  "        if ([inKey isEqualToString:description.attributeName]) {\n"
+  "          [self updateAttributeDisplayForDescription:description] ;\n"
+  "          break ;\n"
+  "        }\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "#endif\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "#ifdef PM_COCOA_DEBUG\n"
+  "  - (void) didChange: (NSKeyValueChange) inChange\n"
+  "           valuesAtIndexes:(NSIndexSet *) inIndexes\n"
+  "           forKey:(NSString *) inKey {\n"
+  "    [super\n"
+  "      didChange:inChange\n"
+  "      valuesAtIndexes:inIndexes\n"
+  "      forKey:inKey\n"
+  "    ] ;\n"
+  "    [self updateEntityArrayDisplayForKey:inKey] ;\n"
+  "  }\n"
+  "#endif\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "@end\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "*/\n" ;
+
+const cRegularFileWrapper gWrapperFile_5_swift_5F_sources (
+  "PMManagedObject.swift",
+  "swift",
+  true, // Text file
+  27588, // Text length
+  gWrapperFileContent_5_swift_5F_sources
+) ;
+
+//--- File '/PMUndoManager.swift'
+
+const char * gWrapperFileContent_6_swift_5F_sources = "//\n"
+  "//  PMUndoManager.swift\n"
+  "//  essai\n"
+  "//\n"
+  "//  Created by Pierre Molinaro on 30/06/14.\n"
+  "//  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.\n"
+  "//\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "let traceUndoManager = false\n"
+  "\n"
+  "//---------------------------------------------------------------------------*\n"
+  "\n"
+  "@objc(PMUndoManager) class PMUndoManager : NSUndoManager, PMUserClassName {\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    init                                                                     *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    deinit                                                                   *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    registerUndoWithTarget                                                   *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "/*  override func prepareWithInvocationTarget (target:AnyObject!) -> AnyObject! {\n"
+  "    let result : AnyObject! = super.prepareWithInvocationTarget (target)\n"
+  "    if traceUndoManager {\n"
+  "      NSLog (\"prepareWithInvocationTarget (%@) target:%@\", undoRegistrationEnabled \? \"yes\" : \"no\", target.description)\n"
+  "    }\n"
+  "    return result\n"
+  "  }*/\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    registerUndoWithTarget                                                   *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func registerUndoWithTarget (target:AnyObject, selector:Selector, object anObject:AnyObject!) {\n"
+  "    super.registerUndoWithTarget (target, selector:selector, object:anObject)\n"
+  "    if traceUndoManager {\n"
+  "      if nil != anObject {\n"
+  "        NSLog (\"registerUndoWithTarget (%@) target:%@, selector:\\\"%@\\\" object:%@\", undoRegistrationEnabled \? \"yes\" : \"no\", target.description, selecto"
+  "r.description, anObject.description)\n"
+  "      }else{\n"
+  "        NSLog (\"registerUndoWithTarget (%@) target:%@, selector:\\\"%@\\\" object:nil\", undoRegistrationEnabled \? \"yes\" : \"no\", target.description, select"
+  "or.description)\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    beginUndoGrouping                                                        *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func beginUndoGrouping () {\n"
+  "    if traceUndoManager {\n"
+  "      NSLog (\"beginUndoGrouping\")\n"
+  "    }\n"
+  "    super.beginUndoGrouping ()\n"
+  "  }\n"
+  "\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "  //    endUndoGrouping                                                          *\n"
+  "  //-----------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func endUndoGrouping () {\n"
+  "    if traceUndoManager {\n"
+  "      NSLog (\"endUndoGrouping\")\n"
+  "    }\n"
+  "    super.endUndoGrouping ()\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
+  "PMUndoManager.swift",
+  "swift",
+  true, // Text file
+  3446, // Text length
+  gWrapperFileContent_6_swift_5F_sources
+) ;
+
+//--- File '/application.swift'
+
+const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    PMEvent class                                                                                                    *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMEvent) class PMEvent : PMObject {\n"
+  "  func postEvent () {} // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    PMOutletEvent class                                                                                              *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMOutletEvent) class PMOutletEvent : PMEvent {\n"
+  "  override func postEvent () {\n"
+  "    postOutletEvent (self)\n"
+  "  }\n"
+  "  func updateOutlet () {} // Abstract Method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    O U T L E T    E V E N T S                                                                                       *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "private var gPendingOutletEvents = Set <PMOutletEvent> ()\n"
+  "\n"
+  "func postOutletEvent (event : PMOutletEvent) {\n"
+  "  if gPendingOutletEvents.count == 0 {\n"
+  "    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }\n"
+  "  }\n"
+  "  \n"
+  "  if logEvents () {\n"
+  "    let str = String (format:\"Post outlet event #%@\\n\", _stdlib_getDemangledTypeName (event))\n"
+  "    if !gPendingOutletEvents.contains (event) {\n"
+  "      appendMessageString (str)\n"
+  "    }else{ // Event already posted\n"
+  "      appendMessageString (str, NSColor.brownColor ())\n"
+  "    }\n"
+  "  }\n"
+  "  gPendingOutletEvents.insert (event)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func flushOutletEvents () {\n"
+  "  if gPendingOutletEvents.count > 0 {\n"
+  "    if logEvents () {\n"
+  "      appendMessageString (\"-Flush level 0: display outlets\\n\")\n"
+  "    }\n"
+  "    for object in gPendingOutletEvents {\n"
+  "      if logEvents () {\n"
+  "        appendMessageString (String (format:\"  - %@\\n\", _stdlib_getDemangledTypeName (object)))\n"
+  "      }\n"
+  "      object.updateOutlet ()\n"
+  "    }\n"
+  "    gPendingOutletEvents = Set ()\n"
+  "    if logEvents () {\n"
+  "      appendMessageString (\"\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\\n\")\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//                                                                                                                     *\n"
+  "//    A P P E N D    T O    T R A N S I E N T    E V E N T    L O G                                                    *\n"
+  "//                                                                                                                     *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func logEvents () -> Bool {\n"
+  "  var theApp = NSApp as! PMApplication\n"
+  "  return theApp.logEvents ()\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func appendToTransientEventLog (message : String) {\n"
+  "  var theApp = NSApp as! PMApplication\n"
+  "  theApp.appendToTransientEventLog (message)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func appendMessageString (message : String) {\n"
+  "  var theApp = NSApp as! PMApplication\n"
+  "  theApp.mTransientEventExplorerTextView\?.appendMessageString (message)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "func appendMessageString (message : String, color:NSColor) {\n"
+  "  var theApp = NSApp as! PMApplication\n"
+  "  theApp.mTransientEventExplorerTextView\?.appendMessageString (message, color:color)\n"
+  "}\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "//                                                                                                                     *\n"
+  "//    A P P L I C A T I O N    C L A S S                                                                               *\n"
+  "//                                                                                                                     *\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "@objc(PMApplication) class PMApplication : NSApplication {\n"
+  "  private var mLevel = 0\n"
+  "  private var mTriggerOutletDisplaySet = Set <PMOutletEvent> ()\n"
+  " \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  @IBOutlet var mTransientEventExplorerWindow : NSWindow\?\n"
+  "  @IBOutlet var mTransientEventExplorerTextView : NSTextView\?\n"
+  " \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func awakeFromNib () {\n"
+  "    var menuItem = NSMenuItem (\n"
+  "      title:\"Show Transient Event Log Window\",\n"
+  "      action:\"showTransientEventLogWindow:\",\n"
+  "      keyEquivalent:\"\"\n"
+  "    )\n"
+  "    addItemToDebugMenu (menuItem)\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  @IBAction func showTransientEventLogWindow (sender : NSObject) {\n"
+  "    mTransientEventExplorerTextView\?.string = \"\"\n"
+  "    mTransientEventExplorerWindow\?.makeKeyAndOrderFront (sender)\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  @IBAction func clearTransientEventLogWindow (sender : NSObject) {\n"
+  "    mTransientEventExplorerTextView\?.string = \"\"\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private func appendToTransientEventLog (message : String) {\n"
+  "    if logEvents () {\n"
+  "      mTransientEventExplorerTextView\?.appendMessageString (message, color:NSColor.blueColor ())\n"
+  "    }\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  private func logEvents () -> Bool {\n"
+  "    return (mTransientEventExplorerWindow == nil) \? false : mTransientEventExplorerWindow!.visible\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n" ;
+
+const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
+  "application.swift",
+  "swift",
+  true, // Text file
+  6862, // Text length
+  gWrapperFileContent_7_swift_5F_sources
+) ;
+
+//--- File '/easy-bindings-utilities.swift'
+
+const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   presentErrorWindow                                                                                                *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "var gErrorWindows : [NSWindow] = []\n"
+  "var origin = NSPoint (x:20.0, y:20.0)\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "func presentErrorWindow (file : String!,\n"
+  "                         lineNumber : Int,\n"
+  "                         errorMessage : String) {\n"
+  "  var message = \"\"\n"
+  "  message += \"File: \" + file + \"\\n\"\n"
+  "  message += \"Line: \\(lineNumber)\\n\"\n"
+  "  message += \"Message: \" + errorMessage + \"\\n\"\n"
+  "  let r = NSRect (origin:origin, size:NSSize (width:300.0, height:200.0))\n"
+  "  origin.x += 20.0 ;\n"
+  "  origin.y += 20.0 ;\n"
+  "  var window = NSWindow.init (\n"
+  "    contentRect:r,\n"
+  "    styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
+  "    backing:NSBackingStoreType.Buffered,\n"
+  "    defer:true\n"
+  "  )\n"
+  "  window.title = \"Outlet Error\"\n"
+  "  let contentView : NSView! = window.contentView as! NSView\n"
+  "  let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)\n"
+  "  var tf = NSTextField.init (frame:tfRect)\n"
+  "  tf.editable = false\n"
+  "  tf.selectable = true\n"
+  "  tf.font = NSFont.boldSystemFontOfSize (0.0)\n"
+  "  tf.textColor = NSColor.redColor ()\n"
+  "  tf.stringValue = message\n"
+  "  contentView.addSubview (tf)\n"
+  "  NSBeep () ;\n"
+  "  window.makeKeyAndOrderFront (nil)\n"
+  "  //---\n"
+  "  gErrorWindows.append (window)\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   NSDictionary extension                                                                                            *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "extension NSDictionary {\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readString (inKey : String) -> String {\n"
+  "    var result = \"\"\n"
+  "    let object : AnyObject\? = valueForKey (inKey)\n"
+  "    if let s = object as\? String {\n"
+  "      result = s\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readNSColor (inKey : String) -> NSColor {\n"
+  "    var result = NSColor.blackColor ()\n"
+  "    let object : AnyObject\? = valueForKey (inKey)\n"
+  "    if let d = object as\? NSData {\n"
+  "      let c : AnyObject\? = NSUnarchiver.unarchiveObjectWithData (d)\n"
+  "      if let color = c as\? NSColor {\n"
+  "        result = color\n"
+  "      }\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readInt (inKey : String) -> Int {\n"
+  "    var result : Int = 0\n"
+  "    let object : AnyObject\? = valueForKey (inKey)\n"
+  "    if let d = object as\? NSNumber {\n"
+  "      result = d.integerValue\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func readBool (inKey : String) -> Bool {\n"
+  "    var result : Bool = false\n"
+  "    let object : AnyObject\? = valueForKey (inKey)\n"
+  "    if let d = object as\? NSNumber {\n"
+  "      result = d.boolValue \n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   NSArray extension                                                                                                 *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "extension NSArray {\n"
+  "  func objectAtIndex (index:Int, file:String, line:Int) -> AnyObject! {\n"
+  "    if index < 0 {\n"
+  "      NSLog (\"Negative index %d in '%@' line %d\", index, file, line)\n"
+  "    }else if index >= count {\n"
+  "      NSLog (\"index %d >= count %d in '%@' line %d\", index, count, file, line)\n"
+  "    }\n"
+  "    return objectAtIndex (index)\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Array<T> extension                                                                                                *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "extension Array {\n"
+  "  func objectAtIndex (index:Int, file:String, line:Int) -> T {\n"
+  "    if index < 0 {\n"
+  "      NSLog (\"Negative index %d in '%@' line %d\", index, file, line)\n"
+  "    }else if index >= count {\n"
+  "      NSLog (\"index %d >= count %d in '%@' line %d\", index, count, file, line)\n"
+  "    }\n"
+  "    return self [index]\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    PMValidationResult                                                                                               *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "enum PMValidationResult {\n"
+  "  case ok\n"
+  "  case rejectWithBeep\n"
+  "  case rejectWithAlert (String /* informativeText */)\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    PMUserClassName protocol                                                                                         *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMUserClassName) protocol PMUserClassName {\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    PMObject class                                                                                                   *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMObject) class PMObject : NSObject, PMUserClassName {\n"
+  "\n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "    noteObjectAllocation (self)\n"
+  "  }\n"
+  "  \n"
+  "  deinit {\n"
+  "    noteObjectDeallocation (self)\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    NSTExtView extension                                                                                             *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "extension NSTextView {\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func displayAndScrollToEndOfText () {\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        let endOfText = NSRange (location:ts.length, length:0)\n"
+  "        scrollRangeToVisible (endOfText)\n"
+  "        displayIfNeeded ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func clear () {\n"
+  "    let str = NSAttributedString (string:\"\", attributes:nil)\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        ts.setAttributedString (str)\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendAttributedString (inAttributedString : NSAttributedString) {\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        ts.appendAttributedString (inAttributedString)\n"
+  "        displayAndScrollToEndOfText ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendMessageString (inString : String) {\n"
+  "    let attributes : [String : NSObject] = [\n"
+  "      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),\n"
+  "      NSForegroundColorAttributeName : NSColor.blackColor()\n"
+  "    ]\n"
+  "    let str = NSAttributedString (string:inString, attributes:attributes)\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        ts.appendAttributedString (str)\n"
+  "        displayAndScrollToEndOfText ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendMessageString (inString : String, color:NSColor) {\n"
+  "    let attributes : [String : NSObject] = [\n"
+  "      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),\n"
+  "      NSForegroundColorAttributeName : color\n"
+  "    ]\n"
+  "    let str = NSAttributedString (string:inString, attributes:attributes)\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        ts.appendAttributedString (str)\n"
+  "        displayAndScrollToEndOfText ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendErrorString (inString : String) {\n"
+  "    let attributes : [String : NSObject] = [\n"
+  "      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),\n"
+  "      NSForegroundColorAttributeName : NSColor.redColor()\n"
+  "    ]\n"
+  "    let str = NSAttributedString (string:inString, attributes:attributes)\n"
+  "    if let unwrappedLayoutManager = layoutManager {\n"
+  "      if let ts = unwrappedLayoutManager.textStorage {\n"
+  "        ts.appendAttributedString (str)\n"
+  "        displayAndScrollToEndOfText ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//    defaultValidationFunction                                                                                        *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {\n"
+  "  return PMValidationResult.ok\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n" ;
+
+const cRegularFileWrapper gWrapperFile_8_swift_5F_sources (
+  "easy-bindings-utilities.swift",
+  "swift",
+  true, // Text file
+  10413, // Text length
+  gWrapperFileContent_8_swift_5F_sources
+) ;
+
+//--- File '/generic-bindings.swift'
+
+const char * gWrapperFileContent_9_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()\n"
+  "var gEnabledBindingValueDictionary = [NSControl : Bool] ()\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Enabled binding                                                                                                   *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "extension NSControl {\n"
+  "\n"
+  "  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> Bool, file:String, line:Int) {\n"
+  "    let controller = Controller_NSControl_enabled (\n"
+  "      objectArray:object,\n"
+  "      outlet:self,\n"
+  "      computeFunction:computeFunction,\n"
+  "      file:file,\n"
+  "      line:line\n"
+  "    )\n"
+  "    gEnabledBindingControllerDictionary [self] = controller\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func unbind_enabled () {\n"
+  "    if let controller = gEnabledBindingControllerDictionary [self] {\n"
+  "      controller.unregister ()\n"
+  "      gEnabledBindingControllerDictionary [self] = nil\n"
+  "      gEnabledBindingValueDictionary [self] = nil\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Controller_NSControl_enabled                                                                                      *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(Controller_NSControl_enabled) class Controller_NSControl_enabled : PMOutletEvent {\n"
+  "\n"
+  "  var mObjectArray : [PMAbstractProperty]\n"
+  "  var mOutlet : NSControl\n"
+  "  var mComputeFunction : Optional <() -> Bool>\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> Bool, file : String, line : Int) {\n"
+  "    mObjectArray = objectArray\n"
+  "    mOutlet = outlet\n"
+  "    mComputeFunction = computeFunction\n"
+  "    super.init ()\n"
+  "    for object in mObjectArray {\n"
+  "      object.addObserver (self, postEvent:true)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mComputeFunction = nil\n"
+  "    for object in mObjectArray {\n"
+  "      object.removeObserver (self, postEvent:false)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  override func updateOutlet () {\n"
+  "    let result : Bool\n"
+  "    if let computeFunction = mComputeFunction {\n"
+  "      result = computeFunction ()\n"
+  "    }else{\n"
+  "      result = false\n"
+  "    }\n"
+  "    gEnabledBindingValueDictionary [mOutlet] = result\n"
+  "    mOutlet.enabled = result\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n" ;
+
+const cRegularFileWrapper gWrapperFile_9_swift_5F_sources (
+  "generic-bindings.swift",
+  "swift",
+  true, // Text file
+  3298, // Text length
+  gWrapperFileContent_9_swift_5F_sources
+) ;
+
+//--- File '/main.swift'
+
+const char * gWrapperFileContent_10_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "NSApplicationMain (Process.argc, Process.unsafeArgv)\n"
+  "\n"
+  "//---------------------------------------------------------------------------------------------------------------------*\n" ;
+
+const cRegularFileWrapper gWrapperFile_10_swift_5F_sources (
+  "main.swift",
+  "swift",
+  true, // Text file
+  311, // Text length
+  gWrapperFileContent_10_swift_5F_sources
+) ;
+
+//--- File '/standard-properties.swift'
+
+const char * gWrapperFileContent_11_swift_5F_sources = "import Cocoa\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyEnumPropertyProtocol                                                                                    *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMReadOnlyEnumPropertyProtocol) protocol PMReadOnlyEnumPropertyProtocol {\n"
+  "\n"
+  "  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool)\n"
+  "\n"
+  "  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool)\n"
+  "\n"
+  "  func count () -> Int\n"
+  "\n"
+  "  func rawValue () -> Int\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMEnumPropertyProtocol                                                                                            *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMEnumPropertyProtocol) protocol PMEnumPropertyProtocol : PMReadOnlyEnumPropertyProtocol {\n"
+  "\n"
+  "  func setFromRawValue (rawValue : Int)\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMAbstractProperty                                                                                                *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(PMAbstractProperty) class PMAbstractProperty : PMEvent {\n"
+  "\n"
+  "  private var mObservers = Set <PMEvent> ()\n"
+  "  \n"
+  "  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {\n"
+  "    mObservers.insert (inObserver)\n"
+  "    if inTrigger {\n"
+  "      inObserver.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  " \n"
+  "  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {\n"
+  "    mObservers.remove (inObserver)\n"
+  "    if inTrigger {\n"
+  "      inObserver.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    for object in mObservers {\n"
+  "      object.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyProperty_String                                                                                         *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadOnlyProperty_String : PMAbstractProperty {\n"
+  "\n"
+  "  var prop : String { get { return \"\" } } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMStoredProperty_String                                                                                           *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMStoredProperty_String : PMReadOnlyProperty_String {\n"
+  "  weak var undoManager : NSUndoManager\?\n"
+  "  \n"
+  "  var explorer : NSTextField\? {\n"
+  "    didSet {\n"
+  "      explorer\?.stringValue = mValue\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  init (_ inValue : String) {\n"
+  "    mValue = inValue\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  private var mValue : String {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue\n"
+  "        undoManager\?.registerUndoWithTarget (self, selector:\"performUndo:\", object: oldValue)\n"
+  "        postEvent ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func performUndo (oldValue : String) {\n"
+  "    mValue = oldValue\n"
+  "  }\n"
+  "  \n"
+  "  override var prop :  String { get { return mValue } }\n"
+  "\n"
+  "  func setProp (inValue : String) { mValue = inValue }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  var validationFunction : (String) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  func validate (proposedValue : String) -> PMValidationResult {\n"
+  "    return validationFunction (proposedValue)\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMTransientProperty_String                                                                                        *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMTransientProperty_String : PMReadOnlyProperty_String {\n"
+  "  private var mValueCache : String\? = nil\n"
+  "  var computeFunction : Optional<() -> String\?>\n"
+  "\n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  override var prop : String {\n"
+  "    get {\n"
+  "      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {\n"
+  "        mValueCache = unwrappedComputeFunction ()\n"
+  "      }\n"
+  "      if mValueCache == nil {\n"
+  "        mValueCache = \"\"\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    if mValueCache != nil {\n"
+  "      mValueCache = nil\n"
+  "      super.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyProperty_NSColor                                                                                        *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadOnlyProperty_NSColor : PMAbstractProperty {\n"
+  "  var prop : NSColor { get { return NSColor.blackColor () } } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMStoredProperty_NSColor                                                                                          *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {\n"
+  "  weak var undoManager : NSUndoManager\?\n"
+  "\n"
+  "  var explorer : NSTextField\? {\n"
+  "    didSet {\n"
+  "      explorer\?.stringValue = mValue.description\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  init (_ inValue : NSColor) {\n"
+  "    mValue = inValue\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  private var mValue : NSColor {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue.description\n"
+  "        undoManager\?.registerUndoWithTarget (self, selector:\"performUndo:\", object:oldValue)\n"
+  "        postEvent ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func performUndo (oldValue : NSColor) {\n"
+  "    mValue = oldValue\n"
+  "  }\n"
+  "\n"
+  "  override var prop :  NSColor { get { return mValue } }\n"
+  "\n"
+  "  func setProp (inValue : NSColor) { mValue = inValue }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  var validationFunction : (NSColor) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  func validate (proposedValue : NSColor) -> PMValidationResult {\n"
+  "    return validationFunction (proposedValue)\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMTransientProperty_NSColor                                                                                       *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {\n"
+  "  private var mValueCache : NSColor\? = nil\n"
+  "  var computeFunction : Optional<() -> NSColor\?>\n"
+  "  \n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  override var prop : NSColor {\n"
+  "    get {\n"
+  "      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {\n"
+  "        mValueCache = unwrappedComputeFunction ()\n"
+  "      }\n"
+  "      if mValueCache == nil {\n"
+  "        mValueCache = NSColor.blackColor ()\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    if mValueCache != nil {\n"
+  "      mValueCache = nil\n"
+  "      super.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyProperty_NSDate                                                                                         *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadOnlyProperty_NSDate : PMAbstractProperty {\n"
+  "  var prop : NSDate { get { return NSDate () } } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMStoredProperty_NSDate                                                                                           *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {\n"
+  "  weak var undoManager : NSUndoManager\?\n"
+  "\n"
+  "  var explorer : NSTextField\? {\n"
+  "    didSet {\n"
+  "      explorer\?.stringValue = mValue.description\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  init (_ inValue : NSDate) {\n"
+  "    mValue = inValue\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  private var mValue : NSDate {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue.description\n"
+  "        undoManager\?.registerUndoWithTarget (self, selector:\"performUndo:\", object:oldValue)\n"
+  "        postEvent ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func performUndo (oldValue : NSDate) {\n"
+  "    mValue = oldValue\n"
+  "  }\n"
+  "\n"
+  "  override var prop :  NSDate { get { return mValue } }\n"
+  "\n"
+  "  func setProp (inValue : NSDate) { mValue = inValue }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  var validationFunction : (NSDate) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  func validate (proposedValue : NSDate) -> PMValidationResult {\n"
+  "    return validationFunction (proposedValue)\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMTransientProperty_NSDate                                                                                        *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {\n"
+  "  private var mValueCache : NSDate\? = nil\n"
+  "  var computeFunction : Optional<() -> NSDate\?>\n"
+  "  \n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  override var prop : NSDate {\n"
+  "    get {\n"
+  "      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {\n"
+  "        mValueCache = unwrappedComputeFunction ()\n"
+  "      }\n"
+  "      if mValueCache == nil {\n"
+  "        mValueCache = NSDate ()\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    if mValueCache != nil {\n"
+  "      mValueCache = nil\n"
+  "      super.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyProperty_Int                                                                                            *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadOnlyProperty_Int : PMAbstractProperty {\n"
+  "  var prop : Int { get { return 0 } } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMStoredProperty_Int                                                                                              *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMStoredProperty_Int : PMReadOnlyProperty_Int {\n"
+  "  weak var undoManager : NSUndoManager\?\n"
+  "\n"
+  "  var explorer : NSTextField\? {\n"
+  "    didSet {\n"
+  "      explorer\?.stringValue = mValue.description\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  init (_ inValue : Int) {\n"
+  "    mValue = inValue\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  private var mValue : Int {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue.description\n"
+  "        undoManager\?.registerUndoWithTarget (self, selector:\"performUndo:\", object:NSNumber (integer:oldValue))\n"
+  "        postEvent ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func performUndo (oldValue : NSNumber) {\n"
+  "    mValue = oldValue.integerValue\n"
+  "  }\n"
+  "\n"
+  "  override var prop :  Int { get { return mValue } }\n"
+  "\n"
+  "  func setProp (inValue : Int) { mValue = inValue }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  func validate (proposedValue : Int) -> PMValidationResult {\n"
+  "    return validationFunction (proposedValue)\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMTransientProperty_Int                                                                                           *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMTransientProperty_Int : PMReadOnlyProperty_Int {\n"
+  "  private var mValueCache : Int\? = nil\n"
+  "  var computeFunction : Optional<() -> Int\?>\n"
+  "  \n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  override var prop : Int {\n"
+  "    get {\n"
+  "      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {\n"
+  "        mValueCache = unwrappedComputeFunction ()\n"
+  "      }\n"
+  "      if mValueCache == nil {\n"
+  "        mValueCache = 0\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    if mValueCache != nil {\n"
+  "      mValueCache = nil\n"
+  "      super.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadOnlyProperty_Bool                                                                                           *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadOnlyProperty_Bool : PMAbstractProperty {\n"
+  "  var prop : Bool { get { return false } } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMStoredProperty_Bool                                                                                             *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {\n"
+  "  weak var undoManager : NSUndoManager\?\n"
+  "\n"
+  "  var explorer : NSTextField\? {\n"
+  "    didSet {\n"
+  "      explorer\?.stringValue = mValue.description\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  init (_ inValue : Bool) {\n"
+  "    mValue = inValue\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  private var mValue : Bool {\n"
+  "    didSet {\n"
+  "      if mValue != oldValue {\n"
+  "        explorer\?.stringValue = mValue.description\n"
+  "        undoManager\?.registerUndoWithTarget (self, selector:\"performUndo:\", object:oldValue)\n"
+  "        postEvent ()\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  func performUndo (oldValue : Bool) {\n"
+  "    mValue = oldValue\n"
+  "  }\n"
+  "\n"
+  "  override var prop :  Bool { get { return mValue } }\n"
+  "\n"
+  "  func setProp (inValue : Bool) { mValue = inValue }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  " \n"
+  "  var validationFunction : (Bool) -> PMValidationResult = defaultValidationFunction\n"
+  "  \n"
+  "  func validate (proposedValue : Bool) -> PMValidationResult {\n"
+  "    return validationFunction (proposedValue)\n"
+  "  }\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMTransientProperty_Bool                                                                                          *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {\n"
+  "  private var mValueCache : Bool\? = nil\n"
+  "  var computeFunction : Optional<() -> Bool\?>\n"
+  "  \n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "\n"
+  "  override var prop : Bool {\n"
+  "    get {\n"
+  "      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {\n"
+  "        mValueCache = unwrappedComputeFunction ()\n"
+  "      }\n"
+  "      if mValueCache == nil {\n"
+  "        mValueCache = false\n"
+  "      }\n"
+  "      return mValueCache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    if mValueCache != nil {\n"
+  "      mValueCache = nil\n"
+  "      super.postEvent ()\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n" ;
+
+const cRegularFileWrapper gWrapperFile_11_swift_5F_sources (
+  "standard-properties.swift",
+  "swift",
+  true, // Text file
+  16523, // Text length
+  gWrapperFileContent_11_swift_5F_sources
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_swift_5F_sources_0 [13] = {
+  & gWrapperFile_0_swift_5F_sources,
+  & gWrapperFile_1_swift_5F_sources,
+  & gWrapperFile_2_swift_5F_sources,
+  & gWrapperFile_3_swift_5F_sources,
+  & gWrapperFile_4_swift_5F_sources,
+  & gWrapperFile_5_swift_5F_sources,
+  & gWrapperFile_6_swift_5F_sources,
+  & gWrapperFile_7_swift_5F_sources,
+  & gWrapperFile_8_swift_5F_sources,
+  & gWrapperFile_9_swift_5F_sources,
+  & gWrapperFile_10_swift_5F_sources,
+  & gWrapperFile_11_swift_5F_sources,
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_swift_5F_sources_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_swift_5F_sources (
+  "",
+  12,
+  gWrapperAllFiles_swift_5F_sources_0,
+  0,
+  gWrapperAllDirectories_swift_5F_sources_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                       Routine 'generateSwiftApplicationFiles'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11072,5755 +16005,4 @@ GALGAS_structForGeneration GALGAS_structForGeneration::extractObject (const GALG
   }
   return result ;
 }
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (void) :
-mAttribute_mDeclaration () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::~ GALGAS_astDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (const GALGAS_astDeclaration & inOperand0) :
-mAttribute_mDeclaration (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::constructor_new (const GALGAS_astDeclaration & inOperand0 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_astDeclarationList_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_astDeclarationList_2D_element::objectCompare (const GALGAS_astDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDeclaration.objectCompare (inOperand.mAttribute_mDeclaration) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_astDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mDeclaration.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::drop (void) {
-  mAttribute_mDeclaration.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @astDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDeclaration.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclaration GALGAS_astDeclarationList_2D_element::reader_mDeclaration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDeclaration ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @astDeclarationList-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astDeclarationList_2D_element ("astDeclarationList-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_astDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_astDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  const GALGAS_astDeclarationList_2D_element * p = (const GALGAS_astDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::GALGAS_enumConstantMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::~ GALGAS_enumConstantMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::GALGAS_enumConstantMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_enumConstantMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_enumConstantMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_enumConstantMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_enumConstantMap_2D_element::objectCompare (const GALGAS_enumConstantMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_enumConstantMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_enumConstantMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_enumConstantMap_2D_element::description (C_String & ioString,
-                                                     const int32_t inIndentation) const {
-  ioString << "<struct @enumConstantMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_enumConstantMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                            @enumConstantMap-element type                                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_enumConstantMap_2D_element ("enumConstantMap-element",
-                                                   NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_enumConstantMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_enumConstantMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_enumConstantMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_enumConstantMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_enumConstantMap_2D_element result ;
-  const GALGAS_enumConstantMap_2D_element * p = (const GALGAS_enumConstantMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_enumConstantMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("enumConstantMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::~ GALGAS_documentObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_documentObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_documentObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_documentObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_documentObservablePropertyMap_2D_element::objectCompare (const GALGAS_documentObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_documentObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_documentObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_documentObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString << "<struct @documentObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_documentObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_documentObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     @documentObservablePropertyMap-element type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ("documentObservablePropertyMap-element",
-                                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_documentObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_documentObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_documentObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_documentObservablePropertyMap_2D_element result ;
-  const GALGAS_documentObservablePropertyMap_2D_element * p = (const GALGAS_documentObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_documentObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("documentObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::~ GALGAS_entityObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                              const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_entityObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                        GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_entityObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_entityObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_entityObservablePropertyMap_2D_element::objectCompare (const GALGAS_entityObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_entityObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString << "<struct @entityObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_entityObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_entityObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @entityObservablePropertyMap-element type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ("entityObservablePropertyMap-element",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_entityObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_entityObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_entityObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_entityObservablePropertyMap_2D_element result ;
-  const GALGAS_entityObservablePropertyMap_2D_element * p = (const GALGAS_entityObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_entityObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("entityObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::~ GALGAS_prefsObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_prefsObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                            const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_prefsObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_prefsObservablePropertyMap_2D_element::objectCompare (const GALGAS_prefsObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_prefsObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @prefsObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_prefsObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_prefsObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @prefsObservablePropertyMap-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ("prefsObservablePropertyMap-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_prefsObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_prefsObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_prefsObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  const GALGAS_prefsObservablePropertyMap_2D_element * p = (const GALGAS_prefsObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_prefsObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("prefsObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (void) :
-mAttribute_mUserDefined (),
-mAttribute_mOutletClassName (),
-mAttribute_mHasRunAction (),
-mAttribute_mHasEnabled () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::~ GALGAS_outletClassDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (const GALGAS_bool & inOperand0,
-                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                            const GALGAS_bool & inOperand2,
-                                                                                            const GALGAS_bool & inOperand3) :
-mAttribute_mUserDefined (inOperand0),
-mAttribute_mOutletClassName (inOperand1),
-mAttribute_mHasRunAction (inOperand2),
-mAttribute_mHasEnabled (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                                            const GALGAS_bool & inOperand2,
-                                                                                                            const GALGAS_bool & inOperand3 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare (const GALGAS_outletClassDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassName.objectCompare (inOperand.mAttribute_mOutletClassName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasRunAction.objectCompare (inOperand.mAttribute_mHasRunAction) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasEnabled.objectCompare (inOperand.mAttribute_mHasEnabled) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mUserDefined.isValid () && mAttribute_mOutletClassName.isValid () && mAttribute_mHasRunAction.isValid () && mAttribute_mHasEnabled.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
-  mAttribute_mUserDefined.drop () ;
-  mAttribute_mOutletClassName.drop () ;
-  mAttribute_mHasRunAction.drop () ;
-  mAttribute_mHasEnabled.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @outletClassDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasRunAction.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasEnabled.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mUserDefined (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mUserDefined ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassDeclarationList_2D_element::reader_mOutletClassName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasRunAction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasRunAction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasEnabled (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasEnabled ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @outletClassDeclarationList-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ("outletClassDeclarationList-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  const GALGAS_outletClassDeclarationList_2D_element * p = (const GALGAS_outletClassDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mHandlesRunAction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::~ GALGAS_outletClassMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_bool & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mHandlesRunAction (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                           GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_bool & inOperand1 
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALGAS_outletClassMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHandlesRunAction.objectCompare (inOperand.mAttribute_mHandlesRunAction) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mHandlesRunAction.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
-                                                    const int32_t inIndentation) const {
-  ioString << "<struct @outletClassMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHandlesRunAction.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mHandlesRunAction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesRunAction ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                            @outletClassMap-element type                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassMap_2D_element ("outletClassMap-element",
-                                                  NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassMap_2D_element result ;
-  const GALGAS_outletClassMap_2D_element * p = (const GALGAS_outletClassMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::GALGAS_controllerBindingOptionList_2D_element (void) :
-mAttribute_mOptionName (),
-mAttribute_mOptionTypeName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::~ GALGAS_controllerBindingOptionList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::GALGAS_controllerBindingOptionList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                              const GALGAS_lstring & inOperand1) :
-mAttribute_mOptionName (inOperand0),
-mAttribute_mOptionTypeName (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_controllerBindingOptionList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                        GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_lstring & inOperand1 
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_controllerBindingOptionList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_controllerBindingOptionList_2D_element::objectCompare (const GALGAS_controllerBindingOptionList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionName.objectCompare (inOperand.mAttribute_mOptionName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionTypeName.objectCompare (inOperand.mAttribute_mOptionTypeName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_controllerBindingOptionList_2D_element::isValid (void) const {
-  return mAttribute_mOptionName.isValid () && mAttribute_mOptionTypeName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionList_2D_element::drop (void) {
-  mAttribute_mOptionName.drop () ;
-  mAttribute_mOptionTypeName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionList_2D_element::description (C_String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString << "<struct @controllerBindingOptionList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOptionName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOptionTypeName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_controllerBindingOptionList_2D_element::reader_mOptionName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_controllerBindingOptionList_2D_element::reader_mOptionTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionTypeName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @controllerBindingOptionList-element type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ("controllerBindingOptionList-element",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_controllerBindingOptionList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_controllerBindingOptionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_controllerBindingOptionList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionList_2D_element result ;
-  const GALGAS_controllerBindingOptionList_2D_element * p = (const GALGAS_controllerBindingOptionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_controllerBindingOptionList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("controllerBindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element::GALGAS_outletClassBindingSpecificationModelList_2D_element (void) :
-mAttribute_mModelTypeName (),
-mAttribute_mModelShouldBeWritableProperty () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element::~ GALGAS_outletClassBindingSpecificationModelList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element::GALGAS_outletClassBindingSpecificationModelList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                                        const GALGAS_bool & inOperand1) :
-mAttribute_mModelTypeName (inOperand0),
-mAttribute_mModelShouldBeWritableProperty (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBindingSpecificationModelList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassBindingSpecificationModelList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                                     GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBindingSpecificationModelList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                        const GALGAS_bool & inOperand1 
-                                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassBindingSpecificationModelList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_outletClassBindingSpecificationModelList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassBindingSpecificationModelList_2D_element::objectCompare (const GALGAS_outletClassBindingSpecificationModelList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mModelTypeName.objectCompare (inOperand.mAttribute_mModelTypeName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mModelShouldBeWritableProperty.objectCompare (inOperand.mAttribute_mModelShouldBeWritableProperty) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassBindingSpecificationModelList_2D_element::isValid (void) const {
-  return mAttribute_mModelTypeName.isValid () && mAttribute_mModelShouldBeWritableProperty.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassBindingSpecificationModelList_2D_element::drop (void) {
-  mAttribute_mModelTypeName.drop () ;
-  mAttribute_mModelShouldBeWritableProperty.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassBindingSpecificationModelList_2D_element::description (C_String & ioString,
-                                                                              const int32_t inIndentation) const {
-  ioString << "<struct @outletClassBindingSpecificationModelList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mModelTypeName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mModelShouldBeWritableProperty.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassBindingSpecificationModelList_2D_element::reader_mModelTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mModelTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassBindingSpecificationModelList_2D_element::reader_mModelShouldBeWritableProperty (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mModelShouldBeWritableProperty ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               @outletClassBindingSpecificationModelList-element type                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList_2D_element ("outletClassBindingSpecificationModelList-element",
-                                                                            NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassBindingSpecificationModelList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassBindingSpecificationModelList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassBindingSpecificationModelList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBindingSpecificationModelList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                                      C_Compiler * inCompiler
-                                                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassBindingSpecificationModelList_2D_element result ;
-  const GALGAS_outletClassBindingSpecificationModelList_2D_element * p = (const GALGAS_outletClassBindingSpecificationModelList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassBindingSpecificationModelList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassBindingSpecificationModelList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element::GALGAS_outletClassBindingSpecificationList_2D_element (void) :
-mAttribute_mIsUserDefined (),
-mAttribute_mBindingName (),
-mAttribute_mOutletClassBindingSpecificationModelList (),
-mAttribute_mBindingOptionList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element::~ GALGAS_outletClassBindingSpecificationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element::GALGAS_outletClassBindingSpecificationList_2D_element (const GALGAS_bool & inOperand0,
-                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3) :
-mAttribute_mIsUserDefined (inOperand0),
-mAttribute_mBindingName (inOperand1),
-mAttribute_mOutletClassBindingSpecificationModelList (inOperand2),
-mAttribute_mBindingOptionList (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassBindingSpecificationList_2D_element (GALGAS_bool::constructor_default (HERE),
-                                                                GALGAS_lstring::constructor_default (HERE),
-                                                                GALGAS_outletClassBindingSpecificationModelList::constructor_emptyList (HERE),
-                                                                GALGAS_controllerBindingOptionList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3 
-                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassBindingSpecificationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassBindingSpecificationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassBindingSpecificationList_2D_element::objectCompare (const GALGAS_outletClassBindingSpecificationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mIsUserDefined.objectCompare (inOperand.mAttribute_mIsUserDefined) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingName.objectCompare (inOperand.mAttribute_mBindingName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassBindingSpecificationModelList.objectCompare (inOperand.mAttribute_mOutletClassBindingSpecificationModelList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingOptionList.objectCompare (inOperand.mAttribute_mBindingOptionList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassBindingSpecificationList_2D_element::isValid (void) const {
-  return mAttribute_mIsUserDefined.isValid () && mAttribute_mBindingName.isValid () && mAttribute_mOutletClassBindingSpecificationModelList.isValid () && mAttribute_mBindingOptionList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassBindingSpecificationList_2D_element::drop (void) {
-  mAttribute_mIsUserDefined.drop () ;
-  mAttribute_mBindingName.drop () ;
-  mAttribute_mOutletClassBindingSpecificationModelList.drop () ;
-  mAttribute_mBindingOptionList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassBindingSpecificationList_2D_element::description (C_String & ioString,
-                                                                         const int32_t inIndentation) const {
-  ioString << "<struct @outletClassBindingSpecificationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mIsUserDefined.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassBindingSpecificationList_2D_element::reader_mIsUserDefined (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mIsUserDefined ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassBindingSpecificationList_2D_element::reader_mBindingName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationModelList GALGAS_outletClassBindingSpecificationList_2D_element::reader_mOutletClassBindingSpecificationModelList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassBindingSpecificationModelList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList GALGAS_outletClassBindingSpecificationList_2D_element::reader_mBindingOptionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingOptionList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                  @outletClassBindingSpecificationList-element type                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassBindingSpecificationList_2D_element ("outletClassBindingSpecificationList-element",
-                                                                       NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassBindingSpecificationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassBindingSpecificationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassBindingSpecificationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassBindingSpecificationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                            C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassBindingSpecificationList_2D_element result ;
-  const GALGAS_outletClassBindingSpecificationList_2D_element * p = (const GALGAS_outletClassBindingSpecificationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassBindingSpecificationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassBindingSpecificationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element::GALGAS_bindingSpecificationMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mBindingMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element::~ GALGAS_bindingSpecificationMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element::GALGAS_bindingSpecificationMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mBindingMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_bindingSpecificationMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                    GALGAS_outletBindingSpecificationMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand1 
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_bindingSpecificationMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_bindingSpecificationMap_2D_element::objectCompare (const GALGAS_bindingSpecificationMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingMap.objectCompare (inOperand.mAttribute_mBindingMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_bindingSpecificationMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mBindingMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingSpecificationMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mBindingMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingSpecificationMap_2D_element::description (C_String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString << "<struct @bindingSpecificationMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_bindingSpecificationMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap GALGAS_bindingSpecificationMap_2D_element::reader_mBindingMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @bindingSpecificationMap-element type                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bindingSpecificationMap_2D_element ("bindingSpecificationMap-element",
-                                                           NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_bindingSpecificationMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bindingSpecificationMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_bindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bindingSpecificationMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_bindingSpecificationMap_2D_element result ;
-  const GALGAS_bindingSpecificationMap_2D_element * p = (const GALGAS_bindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingSpecificationMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList_2D_element::GALGAS_controllerBindingOptionDecoratedList_2D_element (void) :
-mAttribute_mOptionType (),
-mAttribute_mOptionName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList_2D_element::~ GALGAS_controllerBindingOptionDecoratedList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList_2D_element::GALGAS_controllerBindingOptionDecoratedList_2D_element (const GALGAS_typeKind & inOperand0,
-                                                                                                                const GALGAS_lstring & inOperand1) :
-mAttribute_mOptionType (inOperand0),
-mAttribute_mOptionName (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList_2D_element GALGAS_controllerBindingOptionDecoratedList_2D_element::constructor_new (const GALGAS_typeKind & inOperand0,
-                                                                                                                                const GALGAS_lstring & inOperand1 
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionDecoratedList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_controllerBindingOptionDecoratedList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_controllerBindingOptionDecoratedList_2D_element::objectCompare (const GALGAS_controllerBindingOptionDecoratedList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionType.objectCompare (inOperand.mAttribute_mOptionType) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionName.objectCompare (inOperand.mAttribute_mOptionName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_controllerBindingOptionDecoratedList_2D_element::isValid (void) const {
-  return mAttribute_mOptionType.isValid () && mAttribute_mOptionName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionDecoratedList_2D_element::drop (void) {
-  mAttribute_mOptionType.drop () ;
-  mAttribute_mOptionName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionDecoratedList_2D_element::description (C_String & ioString,
-                                                                          const int32_t inIndentation) const {
-  ioString << "<struct @controllerBindingOptionDecoratedList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOptionType.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOptionName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind GALGAS_controllerBindingOptionDecoratedList_2D_element::reader_mOptionType (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionType ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_controllerBindingOptionDecoratedList_2D_element::reader_mOptionName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 @controllerBindingOptionDecoratedList-element type                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ("controllerBindingOptionDecoratedList-element",
-                                                                        NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_controllerBindingOptionDecoratedList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_controllerBindingOptionDecoratedList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_controllerBindingOptionDecoratedList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList_2D_element GALGAS_controllerBindingOptionDecoratedList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                              C_Compiler * inCompiler
-                                                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionDecoratedList_2D_element result ;
-  const GALGAS_controllerBindingOptionDecoratedList_2D_element * p = (const GALGAS_controllerBindingOptionDecoratedList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_controllerBindingOptionDecoratedList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("controllerBindingOptionDecoratedList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element::GALGAS_outletBindingSpecificationMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mOutletBindingSpecificationModelList (),
-mAttribute_mControllerBindingOptionList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element::~ GALGAS_outletBindingSpecificationMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element::GALGAS_outletBindingSpecificationMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_outletBindingSpecificationModelList & inOperand1,
-                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & inOperand2) :
-mAttribute_lkey (inOperand0),
-mAttribute_mOutletBindingSpecificationModelList (inOperand1),
-mAttribute_mControllerBindingOptionList (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificationMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletBindingSpecificationMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_outletBindingSpecificationModelList::constructor_emptyList (HERE),
-                                                          GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_outletBindingSpecificationModelList & inOperand1,
-                                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & inOperand2 
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletBindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_outletBindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletBindingSpecificationMap_2D_element::objectCompare (const GALGAS_outletBindingSpecificationMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletBindingSpecificationModelList.objectCompare (inOperand.mAttribute_mOutletBindingSpecificationModelList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mControllerBindingOptionList.objectCompare (inOperand.mAttribute_mControllerBindingOptionList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletBindingSpecificationMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mOutletBindingSpecificationModelList.isValid () && mAttribute_mControllerBindingOptionList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletBindingSpecificationMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mOutletBindingSpecificationModelList.drop () ;
-  mAttribute_mControllerBindingOptionList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletBindingSpecificationMap_2D_element::description (C_String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString << "<struct @outletBindingSpecificationMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletBindingSpecificationModelList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mControllerBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletBindingSpecificationMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationModelList GALGAS_outletBindingSpecificationMap_2D_element::reader_mOutletBindingSpecificationModelList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletBindingSpecificationModelList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionDecoratedList GALGAS_outletBindingSpecificationMap_2D_element::reader_mControllerBindingOptionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mControllerBindingOptionList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     @outletBindingSpecificationMap-element type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletBindingSpecificationMap_2D_element ("outletBindingSpecificationMap-element",
-                                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletBindingSpecificationMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletBindingSpecificationMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletBindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletBindingSpecificationMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificationMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_outletBindingSpecificationMap_2D_element result ;
-  const GALGAS_outletBindingSpecificationMap_2D_element * p = (const GALGAS_outletBindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletBindingSpecificationMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletBindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList_2D_element::GALGAS_bindingOptionList_2D_element (void) :
-mAttribute_mOptionName (),
-mAttribute_mOptionValue () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList_2D_element::~ GALGAS_bindingOptionList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList_2D_element::GALGAS_bindingOptionList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                          const GALGAS_abstractDefaultValue & inOperand1) :
-mAttribute_mOptionName (inOperand0),
-mAttribute_mOptionValue (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                          const GALGAS_abstractDefaultValue & inOperand1 
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bindingOptionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_bindingOptionList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_bindingOptionList_2D_element::objectCompare (const GALGAS_bindingOptionList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionName.objectCompare (inOperand.mAttribute_mOptionName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionValue.objectCompare (inOperand.mAttribute_mOptionValue) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_bindingOptionList_2D_element::isValid (void) const {
-  return mAttribute_mOptionName.isValid () && mAttribute_mOptionValue.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingOptionList_2D_element::drop (void) {
-  mAttribute_mOptionName.drop () ;
-  mAttribute_mOptionValue.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bindingOptionList_2D_element::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "<struct @bindingOptionList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOptionName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOptionValue.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_bindingOptionList_2D_element::reader_mOptionName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_abstractDefaultValue GALGAS_bindingOptionList_2D_element::reader_mOptionValue (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionValue ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           @bindingOptionList-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bindingOptionList_2D_element ("bindingOptionList-element",
-                                                     NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_bindingOptionList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bindingOptionList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_bindingOptionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bindingOptionList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_bindingOptionList_2D_element result ;
-  const GALGAS_bindingOptionList_2D_element * p = (const GALGAS_bindingOptionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingOptionList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletDeclarationList_2D_element::GALGAS_outletDeclarationList_2D_element (void) :
-mAttribute_mOutletTypeName (),
-mAttribute_mOutletName (),
-mAttribute_mRunDescriptor (),
-mAttribute_mEnabledBindingDescriptor (),
-mAttribute_mRegularBindingList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletDeclarationList_2D_element::~ GALGAS_outletDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletDeclarationList_2D_element::GALGAS_outletDeclarationList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                  const GALGAS_runActionDescriptor & inOperand2,
-                                                                                  const GALGAS_multipleBindingDescriptor & inOperand3,
-                                                                                  const GALGAS_regularBindingList & inOperand4) :
-mAttribute_mOutletTypeName (inOperand0),
-mAttribute_mOutletName (inOperand1),
-mAttribute_mRunDescriptor (inOperand2),
-mAttribute_mEnabledBindingDescriptor (inOperand3),
-mAttribute_mRegularBindingList (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                                  const GALGAS_runActionDescriptor & inOperand2,
-                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand3,
-                                                                                                  const GALGAS_regularBindingList & inOperand4 
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_outletDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletDeclarationList_2D_element::objectCompare (const GALGAS_outletDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletTypeName.objectCompare (inOperand.mAttribute_mOutletTypeName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletName.objectCompare (inOperand.mAttribute_mOutletName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRunDescriptor.objectCompare (inOperand.mAttribute_mRunDescriptor) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEnabledBindingDescriptor.objectCompare (inOperand.mAttribute_mEnabledBindingDescriptor) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRegularBindingList.objectCompare (inOperand.mAttribute_mRegularBindingList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mOutletTypeName.isValid () && mAttribute_mOutletName.isValid () && mAttribute_mRunDescriptor.isValid () && mAttribute_mEnabledBindingDescriptor.isValid () && mAttribute_mRegularBindingList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletDeclarationList_2D_element::drop (void) {
-  mAttribute_mOutletTypeName.drop () ;
-  mAttribute_mOutletName.drop () ;
-  mAttribute_mRunDescriptor.drop () ;
-  mAttribute_mEnabledBindingDescriptor.drop () ;
-  mAttribute_mRegularBindingList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletDeclarationList_2D_element::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "<struct @outletDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOutletTypeName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRunDescriptor.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRegularBindingList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletDeclarationList_2D_element::reader_mOutletTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletDeclarationList_2D_element::reader_mOutletName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_runActionDescriptor GALGAS_outletDeclarationList_2D_element::reader_mRunDescriptor (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRunDescriptor ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList_2D_element::reader_mEnabledBindingDescriptor (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEnabledBindingDescriptor ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList GALGAS_outletDeclarationList_2D_element::reader_mRegularBindingList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRegularBindingList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         @outletDeclarationList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletDeclarationList_2D_element ("outletDeclarationList-element",
-                                                         NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_outletDeclarationList_2D_element result ;
-  const GALGAS_outletDeclarationList_2D_element * p = (const GALGAS_outletDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element::GALGAS_decoratedOutletMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mOutletTypeName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element::~ GALGAS_decoratedOutletMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element::GALGAS_decoratedOutletMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                            const GALGAS_string & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mOutletTypeName (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_decoratedOutletMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                               GALGAS_string::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_string & inOperand1 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_decoratedOutletMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_decoratedOutletMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_decoratedOutletMap_2D_element::objectCompare (const GALGAS_decoratedOutletMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletTypeName.objectCompare (inOperand.mAttribute_mOutletTypeName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_decoratedOutletMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mOutletTypeName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_decoratedOutletMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mOutletTypeName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_decoratedOutletMap_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @decoratedOutletMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletTypeName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_decoratedOutletMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_decoratedOutletMap_2D_element::reader_mOutletTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletTypeName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @decoratedOutletMap-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_decoratedOutletMap_2D_element ("decoratedOutletMap-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_decoratedOutletMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_decoratedOutletMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_decoratedOutletMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_decoratedOutletMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_decoratedOutletMap_2D_element result ;
-  const GALGAS_decoratedOutletMap_2D_element * p = (const GALGAS_decoratedOutletMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_decoratedOutletMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("decoratedOutletMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (void) :
-mAttribute_mObservableProperty () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList_2D_element::~ GALGAS_observablePropertyList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (const GALGAS_observablePropertyAST & inOperand0) :
-mAttribute_mObservableProperty (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::constructor_new (const GALGAS_observablePropertyAST & inOperand0 
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_observablePropertyList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_observablePropertyList_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_observablePropertyList_2D_element::objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservableProperty.objectCompare (inOperand.mAttribute_mObservableProperty) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_observablePropertyList_2D_element::isValid (void) const {
-  return mAttribute_mObservableProperty.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_observablePropertyList_2D_element::drop (void) {
-  mAttribute_mObservableProperty.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_observablePropertyList_2D_element::description (C_String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString << "<struct @observablePropertyList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mObservableProperty.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyAST GALGAS_observablePropertyList_2D_element::reader_mObservableProperty (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservableProperty ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @observablePropertyList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
-                                                          NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_observablePropertyList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_observablePropertyList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_observablePropertyList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_observablePropertyList_2D_element result ;
-  const GALGAS_observablePropertyList_2D_element * p = (const GALGAS_observablePropertyList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_observablePropertyList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("observablePropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::GALGAS_actionMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::~ GALGAS_actionMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element::GALGAS_actionMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_actionMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_actionMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_actionMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_actionMap_2D_element::objectCompare (const GALGAS_actionMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_actionMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_actionMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_actionMap_2D_element::description (C_String & ioString,
-                                               const int32_t inIndentation) const {
-  ioString << "<struct @actionMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_actionMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                               @actionMap-element type                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_actionMap_2D_element ("actionMap-element",
-                                             NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_actionMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_actionMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_actionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_actionMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_actionMap_2D_element result ;
-  const GALGAS_actionMap_2D_element * p = (const GALGAS_actionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_actionMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("actionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element::GALGAS_regularBindingList_2D_element (void) :
-mAttribute_mBindingName (),
-mAttribute_mObservablePropertyList (),
-mAttribute_mBindingOptionList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element::~ GALGAS_regularBindingList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element::GALGAS_regularBindingList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                            const GALGAS_observablePropertyList & inOperand1,
-                                                                            const GALGAS_bindingOptionList & inOperand2) :
-mAttribute_mBindingName (inOperand0),
-mAttribute_mObservablePropertyList (inOperand1),
-mAttribute_mBindingOptionList (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_regularBindingList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                               GALGAS_observablePropertyList::constructor_emptyList (HERE),
-                                               GALGAS_bindingOptionList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_observablePropertyList & inOperand1,
-                                                                                            const GALGAS_bindingOptionList & inOperand2 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_regularBindingList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_regularBindingList_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_regularBindingList_2D_element::objectCompare (const GALGAS_regularBindingList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingName.objectCompare (inOperand.mAttribute_mBindingName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyList.objectCompare (inOperand.mAttribute_mObservablePropertyList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingOptionList.objectCompare (inOperand.mAttribute_mBindingOptionList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_regularBindingList_2D_element::isValid (void) const {
-  return mAttribute_mBindingName.isValid () && mAttribute_mObservablePropertyList.isValid () && mAttribute_mBindingOptionList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_regularBindingList_2D_element::drop (void) {
-  mAttribute_mBindingName.drop () ;
-  mAttribute_mObservablePropertyList.drop () ;
-  mAttribute_mBindingOptionList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_regularBindingList_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @regularBindingList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mBindingName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_regularBindingList_2D_element::reader_mBindingName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList GALGAS_regularBindingList_2D_element::reader_mObservablePropertyList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList GALGAS_regularBindingList_2D_element::reader_mBindingOptionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingOptionList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @regularBindingList-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_regularBindingList_2D_element ("regularBindingList-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_regularBindingList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_regularBindingList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_regularBindingList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_regularBindingList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_regularBindingList_2D_element result ;
-  const GALGAS_regularBindingList_2D_element * p = (const GALGAS_regularBindingList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_regularBindingList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("regularBindingList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element::GALGAS_transientList_2D_element (void) :
-mAttribute_mTransientTypeName (),
-mAttribute_mTransientName (),
-mAttribute_mDependencyList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element::~ GALGAS_transientList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element::GALGAS_transientList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                  const GALGAS_lstring & inOperand1,
-                                                                  const GALGAS_observablePropertyList & inOperand2) :
-mAttribute_mTransientTypeName (inOperand0),
-mAttribute_mTransientName (inOperand1),
-mAttribute_mDependencyList (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element GALGAS_transientList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_transientList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                          GALGAS_lstring::constructor_default (HERE),
-                                          GALGAS_observablePropertyList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element GALGAS_transientList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                  const GALGAS_observablePropertyList & inOperand2 
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_transientList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_transientList_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_transientList_2D_element::objectCompare (const GALGAS_transientList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mTransientTypeName.objectCompare (inOperand.mAttribute_mTransientTypeName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mTransientName.objectCompare (inOperand.mAttribute_mTransientName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mDependencyList.objectCompare (inOperand.mAttribute_mDependencyList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_transientList_2D_element::isValid (void) const {
-  return mAttribute_mTransientTypeName.isValid () && mAttribute_mTransientName.isValid () && mAttribute_mDependencyList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList_2D_element::drop (void) {
-  mAttribute_mTransientTypeName.drop () ;
-  mAttribute_mTransientName.drop () ;
-  mAttribute_mDependencyList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList_2D_element::description (C_String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString << "<struct @transientList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mTransientTypeName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mTransientName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mDependencyList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_transientList_2D_element::reader_mTransientTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mTransientTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_transientList_2D_element::reader_mTransientName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mTransientName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList GALGAS_transientList_2D_element::reader_mDependencyList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDependencyList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             @transientList-element type                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientList_2D_element ("transientList-element",
-                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_transientList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_transientList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element GALGAS_transientList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_transientList_2D_element result ;
-  const GALGAS_transientList_2D_element * p = (const GALGAS_transientList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyListForGeneration_2D_element::GALGAS_transientDependencyListForGeneration_2D_element (void) :
-mAttribute_mDependency (),
-mAttribute_mFunctionArgumentName (),
-mAttribute_mFunctionArgumentTypeString () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyListForGeneration_2D_element::~ GALGAS_transientDependencyListForGeneration_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyListForGeneration_2D_element::GALGAS_transientDependencyListForGeneration_2D_element (const GALGAS_observablePropertyAST & inOperand0,
-                                                                                                                const GALGAS_string & inOperand1,
-                                                                                                                const GALGAS_string & inOperand2) :
-mAttribute_mDependency (inOperand0),
-mAttribute_mFunctionArgumentName (inOperand1),
-mAttribute_mFunctionArgumentTypeString (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::constructor_new (const GALGAS_observablePropertyAST & inOperand0,
-                                                                                                                                const GALGAS_string & inOperand1,
-                                                                                                                                const GALGAS_string & inOperand2 
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_transientDependencyListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_transientDependencyListForGeneration_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_transientDependencyListForGeneration_2D_element::objectCompare (const GALGAS_transientDependencyListForGeneration_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDependency.objectCompare (inOperand.mAttribute_mDependency) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mFunctionArgumentName.objectCompare (inOperand.mAttribute_mFunctionArgumentName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mFunctionArgumentTypeString.objectCompare (inOperand.mAttribute_mFunctionArgumentTypeString) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_transientDependencyListForGeneration_2D_element::isValid (void) const {
-  return mAttribute_mDependency.isValid () && mAttribute_mFunctionArgumentName.isValid () && mAttribute_mFunctionArgumentTypeString.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyListForGeneration_2D_element::drop (void) {
-  mAttribute_mDependency.drop () ;
-  mAttribute_mFunctionArgumentName.drop () ;
-  mAttribute_mFunctionArgumentTypeString.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyListForGeneration_2D_element::description (C_String & ioString,
-                                                                          const int32_t inIndentation) const {
-  ioString << "<struct @transientDependencyListForGeneration-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDependency.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mFunctionArgumentName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mFunctionArgumentTypeString.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyAST GALGAS_transientDependencyListForGeneration_2D_element::reader_mDependency (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDependency ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_transientDependencyListForGeneration_2D_element::reader_mFunctionArgumentName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mFunctionArgumentName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_transientDependencyListForGeneration_2D_element::reader_mFunctionArgumentTypeString (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mFunctionArgumentTypeString ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 @transientDependencyListForGeneration-element type                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ("transientDependencyListForGeneration-element",
-                                                                        NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_transientDependencyListForGeneration_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_transientDependencyListForGeneration_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientDependencyListForGeneration_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                              C_Compiler * inCompiler
-                                                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_transientDependencyListForGeneration_2D_element result ;
-  const GALGAS_transientDependencyListForGeneration_2D_element * p = (const GALGAS_transientDependencyListForGeneration_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDependencyListForGeneration_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientDependencyListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyList_2D_element::GALGAS_simpleStoredPropertyList_2D_element (void) :
-mAttribute_mPropertyTypeName (),
-mAttribute_mPropertyName (),
-mAttribute_mDefaultValue (),
-mAttribute_mNeedsValidation () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyList_2D_element::~ GALGAS_simpleStoredPropertyList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyList_2D_element::GALGAS_simpleStoredPropertyList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                        const GALGAS_lstring & inOperand1,
-                                                                                        const GALGAS_abstractDefaultValue & inOperand2,
-                                                                                        const GALGAS_bool & inOperand3) :
-mAttribute_mPropertyTypeName (inOperand0),
-mAttribute_mPropertyName (inOperand1),
-mAttribute_mDefaultValue (inOperand2),
-mAttribute_mNeedsValidation (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                        const GALGAS_lstring & inOperand1,
-                                                                                                        const GALGAS_abstractDefaultValue & inOperand2,
-                                                                                                        const GALGAS_bool & inOperand3 
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_simpleStoredPropertyList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_simpleStoredPropertyList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_simpleStoredPropertyList_2D_element::objectCompare (const GALGAS_simpleStoredPropertyList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mPropertyTypeName.objectCompare (inOperand.mAttribute_mPropertyTypeName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mPropertyName.objectCompare (inOperand.mAttribute_mPropertyName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mDefaultValue.objectCompare (inOperand.mAttribute_mDefaultValue) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mNeedsValidation.objectCompare (inOperand.mAttribute_mNeedsValidation) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_simpleStoredPropertyList_2D_element::isValid (void) const {
-  return mAttribute_mPropertyTypeName.isValid () && mAttribute_mPropertyName.isValid () && mAttribute_mDefaultValue.isValid () && mAttribute_mNeedsValidation.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_simpleStoredPropertyList_2D_element::drop (void) {
-  mAttribute_mPropertyTypeName.drop () ;
-  mAttribute_mPropertyName.drop () ;
-  mAttribute_mDefaultValue.drop () ;
-  mAttribute_mNeedsValidation.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_simpleStoredPropertyList_2D_element::description (C_String & ioString,
-                                                              const int32_t inIndentation) const {
-  ioString << "<struct @simpleStoredPropertyList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mPropertyTypeName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mPropertyName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mDefaultValue.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mNeedsValidation.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_simpleStoredPropertyList_2D_element::reader_mPropertyTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mPropertyTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_simpleStoredPropertyList_2D_element::reader_mPropertyName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mPropertyName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_abstractDefaultValue GALGAS_simpleStoredPropertyList_2D_element::reader_mDefaultValue (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDefaultValue ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_simpleStoredPropertyList_2D_element::reader_mNeedsValidation (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mNeedsValidation ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       @simpleStoredPropertyList-element type                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_simpleStoredPropertyList_2D_element ("simpleStoredPropertyList-element",
-                                                            NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_simpleStoredPropertyList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_simpleStoredPropertyList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_simpleStoredPropertyList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_simpleStoredPropertyList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_simpleStoredPropertyList_2D_element result ;
-  const GALGAS_simpleStoredPropertyList_2D_element * p = (const GALGAS_simpleStoredPropertyList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_simpleStoredPropertyList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("simpleStoredPropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element::GALGAS_arrayControllerBoundColumnListAST_2D_element (void) :
-mAttribute_mColumnName (),
-mAttribute_mColumnOutletTypeName (),
-mAttribute_mObservablePropertyName (),
-mAttribute_mBindingOptionList () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element::~ GALGAS_arrayControllerBoundColumnListAST_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element::GALGAS_arrayControllerBoundColumnListAST_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                          const GALGAS_lstring & inOperand1,
-                                                                                                          const GALGAS_lstring & inOperand2,
-                                                                                                          const GALGAS_bindingOptionList & inOperand3) :
-mAttribute_mColumnName (inOperand0),
-mAttribute_mColumnOutletTypeName (inOperand1),
-mAttribute_mObservablePropertyName (inOperand2),
-mAttribute_mBindingOptionList (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element GALGAS_arrayControllerBoundColumnListAST_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_arrayControllerBoundColumnListAST_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_bindingOptionList::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element GALGAS_arrayControllerBoundColumnListAST_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                          const GALGAS_lstring & inOperand1,
-                                                                                                                          const GALGAS_lstring & inOperand2,
-                                                                                                                          const GALGAS_bindingOptionList & inOperand3 
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_arrayControllerBoundColumnListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_arrayControllerBoundColumnListAST_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_arrayControllerBoundColumnListAST_2D_element::objectCompare (const GALGAS_arrayControllerBoundColumnListAST_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mColumnName.objectCompare (inOperand.mAttribute_mColumnName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mColumnOutletTypeName.objectCompare (inOperand.mAttribute_mColumnOutletTypeName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyName.objectCompare (inOperand.mAttribute_mObservablePropertyName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingOptionList.objectCompare (inOperand.mAttribute_mBindingOptionList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_arrayControllerBoundColumnListAST_2D_element::isValid (void) const {
-  return mAttribute_mColumnName.isValid () && mAttribute_mColumnOutletTypeName.isValid () && mAttribute_mObservablePropertyName.isValid () && mAttribute_mBindingOptionList.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerBoundColumnListAST_2D_element::drop (void) {
-  mAttribute_mColumnName.drop () ;
-  mAttribute_mColumnOutletTypeName.drop () ;
-  mAttribute_mObservablePropertyName.drop () ;
-  mAttribute_mBindingOptionList.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerBoundColumnListAST_2D_element::description (C_String & ioString,
-                                                                       const int32_t inIndentation) const {
-  ioString << "<struct @arrayControllerBoundColumnListAST-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mColumnName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mColumnOutletTypeName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerBoundColumnListAST_2D_element::reader_mColumnName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mColumnName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerBoundColumnListAST_2D_element::reader_mColumnOutletTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mColumnOutletTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerBoundColumnListAST_2D_element::reader_mObservablePropertyName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingOptionList GALGAS_arrayControllerBoundColumnListAST_2D_element::reader_mBindingOptionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingOptionList ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   @arrayControllerBoundColumnListAST-element type                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_arrayControllerBoundColumnListAST_2D_element ("arrayControllerBoundColumnListAST-element",
-                                                                     NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_arrayControllerBoundColumnListAST_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerBoundColumnListAST_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_arrayControllerBoundColumnListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_arrayControllerBoundColumnListAST_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST_2D_element GALGAS_arrayControllerBoundColumnListAST_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                        C_Compiler * inCompiler
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerBoundColumnListAST_2D_element result ;
-  const GALGAS_arrayControllerBoundColumnListAST_2D_element * p = (const GALGAS_arrayControllerBoundColumnListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerBoundColumnListAST_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerBoundColumnListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element::GALGAS_arrayControllerDeclarationListAST_2D_element (void) :
-mAttribute_mControllerName (),
-mAttribute_mRootRelationshipName (),
-mAttribute_mTableViewOutletName (),
-mAttribute_mFilterProperties (),
-mAttribute_mArrayControllerBoundColumnListAST () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element::~ GALGAS_arrayControllerDeclarationListAST_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element::GALGAS_arrayControllerDeclarationListAST_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                          const GALGAS_lstring & inOperand1,
-                                                                                                          const GALGAS_lstring & inOperand2,
-                                                                                                          const GALGAS_lstringlist & inOperand3,
-                                                                                                          const GALGAS_arrayControllerBoundColumnListAST & inOperand4) :
-mAttribute_mControllerName (inOperand0),
-mAttribute_mRootRelationshipName (inOperand1),
-mAttribute_mTableViewOutletName (inOperand2),
-mAttribute_mFilterProperties (inOperand3),
-mAttribute_mArrayControllerBoundColumnListAST (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element GALGAS_arrayControllerDeclarationListAST_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_arrayControllerDeclarationListAST_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_lstring::constructor_default (HERE),
-                                                              GALGAS_lstringlist::constructor_emptyList (HERE),
-                                                              GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element GALGAS_arrayControllerDeclarationListAST_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                          const GALGAS_lstring & inOperand1,
-                                                                                                                          const GALGAS_lstring & inOperand2,
-                                                                                                                          const GALGAS_lstringlist & inOperand3,
-                                                                                                                          const GALGAS_arrayControllerBoundColumnListAST & inOperand4 
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_arrayControllerDeclarationListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_arrayControllerDeclarationListAST_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_arrayControllerDeclarationListAST_2D_element::objectCompare (const GALGAS_arrayControllerDeclarationListAST_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mControllerName.objectCompare (inOperand.mAttribute_mControllerName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRootRelationshipName.objectCompare (inOperand.mAttribute_mRootRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mTableViewOutletName.objectCompare (inOperand.mAttribute_mTableViewOutletName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mFilterProperties.objectCompare (inOperand.mAttribute_mFilterProperties) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mArrayControllerBoundColumnListAST.objectCompare (inOperand.mAttribute_mArrayControllerBoundColumnListAST) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_arrayControllerDeclarationListAST_2D_element::isValid (void) const {
-  return mAttribute_mControllerName.isValid () && mAttribute_mRootRelationshipName.isValid () && mAttribute_mTableViewOutletName.isValid () && mAttribute_mFilterProperties.isValid () && mAttribute_mArrayControllerBoundColumnListAST.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerDeclarationListAST_2D_element::drop (void) {
-  mAttribute_mControllerName.drop () ;
-  mAttribute_mRootRelationshipName.drop () ;
-  mAttribute_mTableViewOutletName.drop () ;
-  mAttribute_mFilterProperties.drop () ;
-  mAttribute_mArrayControllerBoundColumnListAST.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerDeclarationListAST_2D_element::description (C_String & ioString,
-                                                                       const int32_t inIndentation) const {
-  ioString << "<struct @arrayControllerDeclarationListAST-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mControllerName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRootRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mTableViewOutletName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mFilterProperties.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mArrayControllerBoundColumnListAST.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerDeclarationListAST_2D_element::reader_mControllerName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mControllerName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerDeclarationListAST_2D_element::reader_mRootRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRootRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerDeclarationListAST_2D_element::reader_mTableViewOutletName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mTableViewOutletName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstringlist GALGAS_arrayControllerDeclarationListAST_2D_element::reader_mFilterProperties (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mFilterProperties ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerBoundColumnListAST GALGAS_arrayControllerDeclarationListAST_2D_element::reader_mArrayControllerBoundColumnListAST (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mArrayControllerBoundColumnListAST ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   @arrayControllerDeclarationListAST-element type                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_arrayControllerDeclarationListAST_2D_element ("arrayControllerDeclarationListAST-element",
-                                                                     NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_arrayControllerDeclarationListAST_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerDeclarationListAST_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_arrayControllerDeclarationListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_arrayControllerDeclarationListAST_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerDeclarationListAST_2D_element GALGAS_arrayControllerDeclarationListAST_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                        C_Compiler * inCompiler
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerDeclarationListAST_2D_element result ;
-  const GALGAS_arrayControllerDeclarationListAST_2D_element * p = (const GALGAS_arrayControllerDeclarationListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerDeclarationListAST_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerDeclarationListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element::GALGAS_arrayControllerMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element::~ GALGAS_arrayControllerMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element::GALGAS_arrayControllerMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element GALGAS_arrayControllerMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_arrayControllerMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element GALGAS_arrayControllerMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_arrayControllerMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_arrayControllerMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_arrayControllerMap_2D_element::objectCompare (const GALGAS_arrayControllerMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_arrayControllerMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @arrayControllerMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_arrayControllerMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @arrayControllerMap-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_arrayControllerMap_2D_element ("arrayControllerMap-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_arrayControllerMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_arrayControllerMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_arrayControllerMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element GALGAS_arrayControllerMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerMap_2D_element result ;
-  const GALGAS_arrayControllerMap_2D_element * p = (const GALGAS_arrayControllerMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (void) :
-mAttribute_mDestinationEntityName (),
-mAttribute_mToOneRelationshipName (),
-mAttribute_mInverseRelationshipName (),
-mAttribute_mInverseRelationMultiplicity () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::~ GALGAS_toOneRelationshipList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                  const GALGAS_propertyMultiplicity & inOperand3) :
-mAttribute_mDestinationEntityName (inOperand0),
-mAttribute_mToOneRelationshipName (inOperand1),
-mAttribute_mInverseRelationshipName (inOperand2),
-mAttribute_mInverseRelationMultiplicity (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                                  const GALGAS_propertyMultiplicity & inOperand3 
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_toOneRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_toOneRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_toOneRelationshipList_2D_element::objectCompare (const GALGAS_toOneRelationshipList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDestinationEntityName.objectCompare (inOperand.mAttribute_mDestinationEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToOneRelationshipName.objectCompare (inOperand.mAttribute_mToOneRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationMultiplicity.objectCompare (inOperand.mAttribute_mInverseRelationMultiplicity) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_toOneRelationshipList_2D_element::isValid (void) const {
-  return mAttribute_mDestinationEntityName.isValid () && mAttribute_mToOneRelationshipName.isValid () && mAttribute_mInverseRelationshipName.isValid () && mAttribute_mInverseRelationMultiplicity.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toOneRelationshipList_2D_element::drop (void) {
-  mAttribute_mDestinationEntityName.drop () ;
-  mAttribute_mToOneRelationshipName.drop () ;
-  mAttribute_mInverseRelationshipName.drop () ;
-  mAttribute_mInverseRelationMultiplicity.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toOneRelationshipList_2D_element::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "<struct @toOneRelationshipList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDestinationEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToOneRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationMultiplicity.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mDestinationEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDestinationEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mToOneRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToOneRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyMultiplicity GALGAS_toOneRelationshipList_2D_element::reader_mInverseRelationMultiplicity (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationMultiplicity ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         @toOneRelationshipList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toOneRelationshipList_2D_element ("toOneRelationshipList-element",
-                                                         NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_toOneRelationshipList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toOneRelationshipList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_toOneRelationshipList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_toOneRelationshipList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_toOneRelationshipList_2D_element result ;
-  const GALGAS_toOneRelationshipList_2D_element * p = (const GALGAS_toOneRelationshipList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOneRelationshipList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toOneRelationshipList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (void) :
-mAttribute_mDestinationEntityName (),
-mAttribute_mToManyRelationshipName (),
-mAttribute_mInverseRelationshipName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::~ GALGAS_toManyRelationshipList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                    const GALGAS_lstring & inOperand2) :
-mAttribute_mDestinationEntityName (inOperand0),
-mAttribute_mToManyRelationshipName (inOperand1),
-mAttribute_mInverseRelationshipName (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_toManyRelationshipList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                   GALGAS_lstring::constructor_default (HERE),
-                                                   GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                                    const GALGAS_lstring & inOperand2 
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_toManyRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_toManyRelationshipList_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_toManyRelationshipList_2D_element::objectCompare (const GALGAS_toManyRelationshipList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDestinationEntityName.objectCompare (inOperand.mAttribute_mDestinationEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToManyRelationshipName.objectCompare (inOperand.mAttribute_mToManyRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_toManyRelationshipList_2D_element::isValid (void) const {
-  return mAttribute_mDestinationEntityName.isValid () && mAttribute_mToManyRelationshipName.isValid () && mAttribute_mInverseRelationshipName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toManyRelationshipList_2D_element::drop (void) {
-  mAttribute_mDestinationEntityName.drop () ;
-  mAttribute_mToManyRelationshipName.drop () ;
-  mAttribute_mInverseRelationshipName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toManyRelationshipList_2D_element::description (C_String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString << "<struct @toManyRelationshipList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDestinationEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToManyRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mDestinationEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDestinationEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mToManyRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToManyRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationshipName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @toManyRelationshipList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ("toManyRelationshipList-element",
-                                                          NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_toManyRelationshipList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_toManyRelationshipList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_toManyRelationshipList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_toManyRelationshipList_2D_element result ;
-  const GALGAS_toManyRelationshipList_2D_element * p = (const GALGAS_toManyRelationshipList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toManyRelationshipList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toManyRelationshipList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap_2D_element::GALGAS_observablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mType (),
-mAttribute_mKind (),
-mAttribute_mMultiplicity (),
-mAttribute_mInverseRelationshipName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap_2D_element::~ GALGAS_observablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap_2D_element::GALGAS_observablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_typeKind & inOperand1,
-                                                                                  const GALGAS_propertyKind & inOperand2,
-                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                  const GALGAS_string & inOperand4) :
-mAttribute_lkey (inOperand0),
-mAttribute_mType (inOperand1),
-mAttribute_mKind (inOperand2),
-mAttribute_mMultiplicity (inOperand3),
-mAttribute_mInverseRelationshipName (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap_2D_element GALGAS_observablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_typeKind & inOperand1,
-                                                                                                  const GALGAS_propertyKind & inOperand2,
-                                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                                  const GALGAS_string & inOperand4 
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_observablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_observablePropertyMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_observablePropertyMap_2D_element::objectCompare (const GALGAS_observablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mType.objectCompare (inOperand.mAttribute_mType) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mKind.objectCompare (inOperand.mAttribute_mKind) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mMultiplicity.objectCompare (inOperand.mAttribute_mMultiplicity) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_observablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mType.isValid () && mAttribute_mKind.isValid () && mAttribute_mMultiplicity.isValid () && mAttribute_mInverseRelationshipName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_observablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mType.drop () ;
-  mAttribute_mKind.drop () ;
-  mAttribute_mMultiplicity.drop () ;
-  mAttribute_mInverseRelationshipName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_observablePropertyMap_2D_element::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "<struct @observablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mType.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mKind.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mMultiplicity.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_observablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind GALGAS_observablePropertyMap_2D_element::reader_mType (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mType ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyKind GALGAS_observablePropertyMap_2D_element::reader_mKind (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mKind ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyMultiplicity GALGAS_observablePropertyMap_2D_element::reader_mMultiplicity (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mMultiplicity ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_observablePropertyMap_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationshipName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         @observablePropertyMap-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_observablePropertyMap_2D_element ("observablePropertyMap-element",
-                                                         NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_observablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_observablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_observablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_observablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap_2D_element GALGAS_observablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_observablePropertyMap_2D_element result ;
-  const GALGAS_observablePropertyMap_2D_element * p = (const GALGAS_observablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_observablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("observablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (void) :
-mAttribute_mDeclarationList (),
-mAttribute_mOutletClassDeclarationList (),
-mAttribute_mBindingSpecificationListMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct::~ GALGAS_astDeclarationStruct (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_astDeclarationList & inOperand0,
-                                                          const GALGAS_outletClassDeclarationList & inOperand1,
-                                                          const GALGAS_bindingSpecificationListMap & inOperand2) :
-mAttribute_mDeclarationList (inOperand0),
-mAttribute_mOutletClassDeclarationList (inOperand1),
-mAttribute_mBindingSpecificationListMap (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_astDeclarationStruct (GALGAS_astDeclarationList::constructor_emptyList (HERE),
-                                      GALGAS_outletClassDeclarationList::constructor_emptyList (HERE),
-                                      GALGAS_bindingSpecificationListMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_new (const GALGAS_astDeclarationList & inOperand0,
-                                                                          const GALGAS_outletClassDeclarationList & inOperand1,
-                                                                          const GALGAS_bindingSpecificationListMap & inOperand2 
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astDeclarationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_astDeclarationStruct (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_astDeclarationStruct::objectCompare (const GALGAS_astDeclarationStruct & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDeclarationList.objectCompare (inOperand.mAttribute_mDeclarationList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassDeclarationList.objectCompare (inOperand.mAttribute_mOutletClassDeclarationList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingSpecificationListMap.objectCompare (inOperand.mAttribute_mBindingSpecificationListMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_astDeclarationStruct::isValid (void) const {
-  return mAttribute_mDeclarationList.isValid () && mAttribute_mOutletClassDeclarationList.isValid () && mAttribute_mBindingSpecificationListMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationStruct::drop (void) {
-  mAttribute_mDeclarationList.drop () ;
-  mAttribute_mOutletClassDeclarationList.drop () ;
-  mAttribute_mBindingSpecificationListMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationStruct::description (C_String & ioString,
-                                               const int32_t inIndentation) const {
-  ioString << "<struct @astDeclarationStruct:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDeclarationList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassDeclarationList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList GALGAS_astDeclarationStruct::reader_mDeclarationList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDeclarationList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList GALGAS_astDeclarationStruct::reader_mOutletClassDeclarationList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassDeclarationList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationListMap GALGAS_astDeclarationStruct::reader_mBindingSpecificationListMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingSpecificationListMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             @astDeclarationStruct type                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
-                                             NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_astDeclarationStruct::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_astDeclarationStruct::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astDeclarationStruct (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_astDeclarationStruct result ;
-  const GALGAS_astDeclarationStruct * p = (const GALGAS_astDeclarationStruct *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astDeclarationStruct *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astDeclarationStruct", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Overriding category method '@enumDeclaration typeInventory'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_enumDeclaration_typeInventory (const cPtr_astDeclaration * inObject,
-                                                          GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                                          GALGAS_transientDependencyGraph & /* ioArgument_ioTransientDependencyGraph */,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_enumDeclaration * object = (const cPtr_enumDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_enumDeclaration) ;
-  GALGAS_enumConstantMap var_enumConstantMap = GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 56)) ;
-  cEnumerator_lstringlist enumerator_2693 (object->mAttribute_mEnumConstantNameList, kEnumeration_up) ;
-  while (enumerator_2693.hasCurrentObject ()) {
-    {
-    var_enumConstantMap.modifier_insertKey (enumerator_2693.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 58)) ;
-    }
-    enumerator_2693.gotoNextObject () ;
-  }
-  {
-  ioArgument_ioUnifiedTypeMap.modifier_insertKey (object->mAttribute_mEnumTypeName, GALGAS_typeKind::constructor_enumType (object->mAttribute_mEnumTypeName.mAttribute_string, var_enumConstantMap  COMMA_SOURCE_FILE ("enumeration.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 60)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_enumDeclaration_typeInventory (void) {
-  enterCategoryMethod_typeInventory (kTypeDescriptor_GALGAS_enumDeclaration.mSlotID,
-                                     categoryMethod_enumDeclaration_typeInventory) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_enumDeclaration_typeInventory (defineCategoryMethod_enumDeclaration_typeInventory, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@enumDeclaration buildObservablePropertyMaps'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_enumDeclaration_buildObservablePropertyMaps (const cPtr_astDeclaration * /* inObject */,
-                                                                        const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
-                                                                        GALGAS_semanticContext & /* ioArgument_ioSemanticContext */,
-                                                                        C_Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_enumDeclaration_buildObservablePropertyMaps (void) {
-  enterCategoryMethod_buildObservablePropertyMaps (kTypeDescriptor_GALGAS_enumDeclaration.mSlotID,
-                                                   categoryMethod_enumDeclaration_buildObservablePropertyMaps) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_enumDeclaration_buildObservablePropertyMaps (defineCategoryMethod_enumDeclaration_buildObservablePropertyMaps, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Overriding category method '@enumDeclaration semanticAnalysis'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_enumDeclaration_semanticAnalysis (const cPtr_astDeclaration * inObject,
-                                                             const GALGAS_semanticContext /* constinArgument_inSemanticContext */,
-                                                             GALGAS_structForGeneration & ioArgument_ioGeneration,
-                                                             C_Compiler * /* inCompiler */
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_enumDeclaration * object = (const cPtr_enumDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_enumDeclaration) ;
-  ioArgument_ioGeneration.mAttribute_mEnumListForGeneration.addAssign_operation (object->mAttribute_mEnumTypeName.mAttribute_string, object->mAttribute_mEnumConstantNameList  COMMA_SOURCE_FILE ("enumeration.galgas", 82)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_enumDeclaration_semanticAnalysis (void) {
-  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_enumDeclaration.mSlotID,
-                                        categoryMethod_enumDeclaration_semanticAnalysis) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_enumDeclaration_semanticAnalysis (defineCategoryMethod_enumDeclaration_semanticAnalysis, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Overriding category method '@documentDeclaration typeInventory'                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_documentDeclaration_typeInventory (const cPtr_astDeclaration * inObject,
-                                                              GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                                              GALGAS_transientDependencyGraph & ioArgument_ioTransientDependencyGraph,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_documentDeclaration * object = (const cPtr_documentDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_documentDeclaration) ;
-  categoryMethod_typeInventory (object->mAttribute_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 75)) ;
-  categoryMethod_typeInventory (object->mAttribute_mTransientList, GALGAS_string ("document.").add_operation (object->mAttribute_mDocumentName.reader_string (SOURCE_FILE ("document.galgas", 77)), inCompiler COMMA_SOURCE_FILE ("document.galgas", 77)), ioArgument_ioUnifiedTypeMap, ioArgument_ioTransientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("document.galgas", 76)) ;
-  {
-  GALGAS_unifiedTypeMap_2D_proxy joker_3337 ; // Joker input parameter
-  GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mAttribute_mRootEntityName, joker_3337 COMMA_SOURCE_FILE ("document.galgas", 81)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_documentDeclaration_typeInventory (void) {
-  enterCategoryMethod_typeInventory (kTypeDescriptor_GALGAS_documentDeclaration.mSlotID,
-                                     categoryMethod_documentDeclaration_typeInventory) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_documentDeclaration_typeInventory (defineCategoryMethod_documentDeclaration_typeInventory, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Overriding category method '@documentDeclaration buildObservablePropertyMaps'                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_documentDeclaration_buildObservablePropertyMaps (const cPtr_astDeclaration * inObject,
-                                                                            const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                                            GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_documentDeclaration * object = (const cPtr_documentDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_documentDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap = GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("document.galgas", 102)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 104)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mTransientList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 109)) ;
-  {
-  ioArgument_ioSemanticContext.mAttribute_mDocumentObservablePropertyMap.modifier_insertKey (object->mAttribute_mDocumentName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 114)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_documentDeclaration_buildObservablePropertyMaps (void) {
-  enterCategoryMethod_buildObservablePropertyMaps (kTypeDescriptor_GALGAS_documentDeclaration.mSlotID,
-                                                   categoryMethod_documentDeclaration_buildObservablePropertyMaps) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_documentDeclaration_buildObservablePropertyMaps (defineCategoryMethod_documentDeclaration_buildObservablePropertyMaps, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Overriding category method '@documentDeclaration semanticAnalysis'                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_documentDeclaration_semanticAnalysis (const cPtr_astDeclaration * inObject,
-                                                                 const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                 GALGAS_structForGeneration & ioArgument_ioGeneration,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_documentDeclaration * object = (const cPtr_documentDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_documentDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap ;
-  constinArgument_inSemanticContext.mAttribute_mDocumentObservablePropertyMap.method_searchKey (object->mAttribute_mDocumentName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 126)) ;
-  GALGAS_observablePropertyMap var_rootObservablePropertyMap ;
-  constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mRootEntityName, var_rootObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 130)) ;
-  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration ;
-  categoryMethod_semanticAnalysis (object->mAttribute_mSimpleStoredAttributeList, object->mAttribute_mDocumentName.mAttribute_string, constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("document.galgas", 135)) ;
-  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration ;
-  categoryMethod_transientSemanticAnalysis (object->mAttribute_mTransientList, object->mAttribute_mDocumentName.mAttribute_string, var_rootObservablePropertyMap, constinArgument_inSemanticContext, var_observablePropertyMap, ioArgument_ioGeneration, var_transientDefinitionListForGeneration, inCompiler COMMA_SOURCE_FILE ("document.galgas", 142)) ;
-  GALGAS_actionMap var_actionMap ;
-  {
-  routine_buildActionMap (object->mAttribute_mActionDeclarationList, var_actionMap, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 151)) ;
-  }
-  cEnumerator_actionMap enumerator_6153 (var_actionMap, kEnumeration_up) ;
-  while (enumerator_6153.hasCurrentObject ()) {
-    ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (object->mAttribute_mDocumentName.mAttribute_string, enumerator_6153.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("document.galgas", 153)) ;
-    enumerator_6153.gotoNextObject () ;
-  }
-  GALGAS_arrayControllerMap var_arrayControllerMap ;
-  categoryMethod_buildArrayControllerMap (object->mAttribute_mArrayControllerDeclarationList, var_arrayControllerMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 158)) ;
-  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList ;
-  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList ;
-  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration ;
-  GALGAS_decoratedOutletMap var_outletMap ;
-  {
-  routine_analyzeOutlets (var_rootObservablePropertyMap, constinArgument_inSemanticContext, object->mAttribute_mOutletDeclarationList, var_observablePropertyMap, var_actionMap, var_arrayControllerMap, ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 162)) ;
-  }
-  GALGAS_arrayControllerForGeneration var_documentArrayControllerForGeneration ;
-  categoryMethod_arrayControllerSemanticAnalysis (object->mAttribute_mArrayControllerDeclarationList, object->mAttribute_mDocumentName.mAttribute_string, var_rootObservablePropertyMap, object->mAttribute_mRootEntityName.mAttribute_string, constinArgument_inSemanticContext, var_outletMap, var_observablePropertyMap, var_documentArrayControllerForGeneration, ioArgument_ioGeneration.mAttribute_mAllArrayControllerForGeneration, inCompiler COMMA_SOURCE_FILE ("document.galgas", 176)) ;
-  ioArgument_ioGeneration.mAttribute_mDocumentListForGeneration.addAssign_operation (object->mAttribute_mDocumentName.mAttribute_string, object->mAttribute_mRootEntityName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_outletMap, var_actionBindingListForGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_documentArrayControllerForGeneration  COMMA_SOURCE_FILE ("document.galgas", 187)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_documentDeclaration_semanticAnalysis (void) {
-  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_documentDeclaration.mSlotID,
-                                        categoryMethod_documentDeclaration_semanticAnalysis) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_documentDeclaration_semanticAnalysis (defineCategoryMethod_documentDeclaration_semanticAnalysis, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Overriding category method '@entityDeclaration typeInventory'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_entityDeclaration_typeInventory (const cPtr_astDeclaration * inObject,
-                                                            GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                                            GALGAS_transientDependencyGraph & ioArgument_ioTransientDependencyGraph,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  categoryMethod_typeInventory (object->mAttribute_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 74)) ;
-  categoryMethod_typeInventory (object->mAttribute_mTransientList, GALGAS_string ("entity.").add_operation (object->mAttribute_mEntityName.reader_string (SOURCE_FILE ("entity.galgas", 76)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 76)), ioArgument_ioUnifiedTypeMap, ioArgument_ioTransientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 75)) ;
-  categoryMethod_typeInventory (object->mAttribute_mToOneRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 80)) ;
-  categoryMethod_typeInventory (object->mAttribute_mToManyRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 81)) ;
-  {
-  ioArgument_ioUnifiedTypeMap.modifier_insertKey (object->mAttribute_mEntityName, GALGAS_typeKind::constructor_entityType (object->mAttribute_mEntityName.mAttribute_string  COMMA_SOURCE_FILE ("entity.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 82)) ;
-  }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, object->mAttribute_mSuperEntityName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3375 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mAttribute_mSuperEntityName, joker_3375 COMMA_SOURCE_FILE ("entity.galgas", 84)) ;
-    }
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_entityDeclaration_typeInventory (void) {
-  enterCategoryMethod_typeInventory (kTypeDescriptor_GALGAS_entityDeclaration.mSlotID,
-                                     categoryMethod_entityDeclaration_typeInventory) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_entityDeclaration_typeInventory (defineCategoryMethod_entityDeclaration_typeInventory, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category method '@entityDeclaration buildObservablePropertyMaps'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_entityDeclaration_buildObservablePropertyMaps (const cPtr_astDeclaration * inObject,
-                                                                          const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap = GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 107)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 109)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mTransientList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 114)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mToOneRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 119)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mToManyRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 123)) ;
-  {
-  ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.modifier_insertKey (object->mAttribute_mEntityName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 128)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_entityDeclaration_buildObservablePropertyMaps (void) {
-  enterCategoryMethod_buildObservablePropertyMaps (kTypeDescriptor_GALGAS_entityDeclaration.mSlotID,
-                                                   categoryMethod_entityDeclaration_buildObservablePropertyMaps) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_entityDeclaration_buildObservablePropertyMaps (defineCategoryMethod_entityDeclaration_buildObservablePropertyMaps, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                          Overriding category method '@entityDeclaration semanticAnalysis'                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_entityDeclaration_semanticAnalysis (const cPtr_astDeclaration * inObject,
-                                                               const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                               GALGAS_structForGeneration & ioArgument_ioGeneration,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap ;
-  constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mEntityName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 140)) ;
-  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration ;
-  categoryMethod_semanticAnalysis (object->mAttribute_mSimpleStoredAttributeList, object->mAttribute_mEntityName.mAttribute_string, constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 146)) ;
-  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration ;
-  categoryMethod_transientSemanticAnalysis (object->mAttribute_mTransientList, object->mAttribute_mEntityName.mAttribute_string, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 155)), constinArgument_inSemanticContext, var_observablePropertyMap, ioArgument_ioGeneration, var_transientDefinitionListForGeneration, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 153)) ;
-  GALGAS_toOneEntityRelationshipListForGeneration var_toOneEntityRelationshipListForGeneration ;
-  categoryMethod_semanticAnalysis (object->mAttribute_mToOneRelationshipList, constinArgument_inSemanticContext, var_toOneEntityRelationshipListForGeneration, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 162)) ;
-  GALGAS_toManyEntityRelationshipListForGeneration var_toManyEntityRelationshipListForGeneration ;
-  categoryMethod_semanticAnalysis (object->mAttribute_mToManyRelationshipList, constinArgument_inSemanticContext, var_toManyEntityRelationshipListForGeneration, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 167)) ;
-  ioArgument_ioGeneration.mAttribute_mEntityListForGeneration.addAssign_operation (object->mAttribute_mEntityName.mAttribute_string, object->mAttribute_mSuperEntityName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_toOneEntityRelationshipListForGeneration, var_toManyEntityRelationshipListForGeneration  COMMA_SOURCE_FILE ("entity.galgas", 172)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_entityDeclaration_semanticAnalysis (void) {
-  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_entityDeclaration.mSlotID,
-                                        categoryMethod_entityDeclaration_semanticAnalysis) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_entityDeclaration_semanticAnalysis (defineCategoryMethod_entityDeclaration_semanticAnalysis, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Overriding category method '@prefDeclaration typeInventory'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_prefDeclaration_typeInventory (const cPtr_astDeclaration * inObject,
-                                                          GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                                          GALGAS_transientDependencyGraph & ioArgument_ioTransientDependencyGraph,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_prefDeclaration * object = (const cPtr_prefDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_prefDeclaration) ;
-  categoryMethod_typeInventory (object->mAttribute_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 65)) ;
-  categoryMethod_typeInventory (object->mAttribute_mTransientList, GALGAS_string ("prefs.").add_operation (object->mAttribute_mPrefsName.reader_string (SOURCE_FILE ("preferences.galgas", 67)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 67)), ioArgument_ioUnifiedTypeMap, ioArgument_ioTransientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 66)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_prefDeclaration_typeInventory (void) {
-  enterCategoryMethod_typeInventory (kTypeDescriptor_GALGAS_prefDeclaration.mSlotID,
-                                     categoryMethod_prefDeclaration_typeInventory) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_prefDeclaration_typeInventory (defineCategoryMethod_prefDeclaration_typeInventory, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@prefDeclaration buildObservablePropertyMaps'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_prefDeclaration_buildObservablePropertyMaps (const cPtr_astDeclaration * inObject,
-                                                                        const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                                        GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_prefDeclaration * object = (const cPtr_prefDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_prefDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap = GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 91)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 93)) ;
-  categoryMethod_buildObservablePropertyMap (object->mAttribute_mTransientList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 98)) ;
-  {
-  ioArgument_ioSemanticContext.mAttribute_mPrefsObservablePropertyMap.modifier_insertKey (object->mAttribute_mPrefsName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 103)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_prefDeclaration_buildObservablePropertyMaps (void) {
-  enterCategoryMethod_buildObservablePropertyMaps (kTypeDescriptor_GALGAS_prefDeclaration.mSlotID,
-                                                   categoryMethod_prefDeclaration_buildObservablePropertyMaps) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_prefDeclaration_buildObservablePropertyMaps (defineCategoryMethod_prefDeclaration_buildObservablePropertyMaps, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Overriding category method '@prefDeclaration semanticAnalysis'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_prefDeclaration_semanticAnalysis (const cPtr_astDeclaration * inObject,
-                                                             const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                             GALGAS_structForGeneration & ioArgument_ioGeneration,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_prefDeclaration * object = (const cPtr_prefDeclaration *) inObject ;
-  macroValidSharedObject (object, cPtr_prefDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap ;
-  constinArgument_inSemanticContext.mAttribute_mPrefsObservablePropertyMap.method_searchKey (object->mAttribute_mPrefsName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 115)) ;
-  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration ;
-  categoryMethod_semanticAnalysis (object->mAttribute_mSimpleStoredAttributeList, object->mAttribute_mPrefsName.mAttribute_string, constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 120)) ;
-  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration ;
-  categoryMethod_transientSemanticAnalysis (object->mAttribute_mTransientList, object->mAttribute_mPrefsName.mAttribute_string, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 129)), constinArgument_inSemanticContext, var_observablePropertyMap, ioArgument_ioGeneration, var_transientDefinitionListForGeneration, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 127)) ;
-  GALGAS_actionMap var_actionMap ;
-  {
-  routine_buildActionMap (object->mAttribute_mActionDeclarationList, var_actionMap, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 136)) ;
-  }
-  cEnumerator_actionMap enumerator_5485 (var_actionMap, kEnumeration_up) ;
-  while (enumerator_5485.hasCurrentObject ()) {
-    ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (object->mAttribute_mPrefsName.mAttribute_string, enumerator_5485.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("preferences.galgas", 138)) ;
-    enumerator_5485.gotoNextObject () ;
-  }
-  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList ;
-  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList ;
-  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration ;
-  GALGAS_decoratedOutletMap var_outletMap ;
-  {
-  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 144)), constinArgument_inSemanticContext, object->mAttribute_mOutletDeclarationList, var_observablePropertyMap, var_actionMap, GALGAS_arrayControllerMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 149)), ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 143)) ;
-  }
-  ioArgument_ioGeneration.mAttribute_mPreferenceListForGeneration.addAssign_operation (object->mAttribute_mPrefsName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap  COMMA_SOURCE_FILE ("preferences.galgas", 157)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_prefDeclaration_semanticAnalysis (void) {
-  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_prefDeclaration.mSlotID,
-                                        categoryMethod_prefDeclaration_semanticAnalysis) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_prefDeclaration_semanticAnalysis (defineCategoryMethod_prefDeclaration_semanticAnalysis, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@boolAsDefaultValue analyzeDefaultValueType'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_boolAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                       const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
-                                                                       GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_boolAsDefaultValue * object = (const cPtr_boolAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_boolAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_4536 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 114)).isValidAndTrue () ;
-  if (enumerator_4536.hasCurrentObject () && bool_0) {
-    while (enumerator_4536.hasCurrentObject () && bool_0) {
-      switch (enumerator_4536.current_mType (HERE).enumValue ()) {
-      case GALGAS_typeKind::kNotBuilt:
-        break ;
-      case GALGAS_typeKind::kEnum_boolType:
-        {
-          GALGAS_string temp_1 ;
-          const enumGalgasBool test_2 = object->mAttribute_mValue.mAttribute_bool.boolEnum () ;
-          if (kBoolTrue == test_2) {
-            temp_1 = GALGAS_string ("true") ;
-          }else if (kBoolFalse == test_2) {
-            temp_1 = GALGAS_string ("false") ;
-          }
-          outArgument_outSwiftDefaultValueAsString = temp_1 ;
-          var_found = GALGAS_bool (true) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_integerType:
-      case GALGAS_typeKind::kEnum_colorType:
-      case GALGAS_typeKind::kEnum_dateType:
-      case GALGAS_typeKind::kEnum_doubleType:
-      case GALGAS_typeKind::kEnum_stringType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_entityType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_enumType:
-        {
-        }
-        break ;
-      }
-      enumerator_4536.gotoNextObject () ;
-      if (enumerator_4536.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 114)).isValidAndTrue () ;
-      }
-    }
-  }
-  const enumGalgasBool test_3 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 124)).boolEnum () ;
-  if (kBoolTrue == test_3) {
-    GALGAS_location location_4 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("only a boolean attribute can be initialized by YES or NO")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 125)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_boolAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_boolAsDefaultValue.mSlotID,
-                                               categoryMethod_boolAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_boolAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_boolAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category method '@integerAsDefaultValue analyzeDefaultValueType'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_integerAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                          const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
-                                                                          GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_integerAsDefaultValue * object = (const cPtr_integerAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_integerAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_5313 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 138)).isValidAndTrue () ;
-  if (enumerator_5313.hasCurrentObject () && bool_0) {
-    while (enumerator_5313.hasCurrentObject () && bool_0) {
-      switch (enumerator_5313.current_mType (HERE).enumValue ()) {
-      case GALGAS_typeKind::kNotBuilt:
-        break ;
-      case GALGAS_typeKind::kEnum_integerType:
-        {
-          outArgument_outSwiftDefaultValueAsString = object->mAttribute_mValue.mAttribute_uint.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 141)) ;
-          var_found = GALGAS_bool (true) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_boolType:
-      case GALGAS_typeKind::kEnum_colorType:
-      case GALGAS_typeKind::kEnum_dateType:
-      case GALGAS_typeKind::kEnum_doubleType:
-      case GALGAS_typeKind::kEnum_stringType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_entityType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_enumType:
-        {
-        }
-        break ;
-      }
-      enumerator_5313.gotoNextObject () ;
-      if (enumerator_5313.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 138)).isValidAndTrue () ;
-      }
-    }
-  }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 148)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only an integer attribute can be initialized by an integer constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 149)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_integerAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_integerAsDefaultValue.mSlotID,
-                                               categoryMethod_integerAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_integerAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_integerAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category method '@doubleAsDefaultValue analyzeDefaultValueType'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                         const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
-                                                                         GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_doubleAsDefaultValue * object = (const cPtr_doubleAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_doubleAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6077 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 162)).isValidAndTrue () ;
-  if (enumerator_6077.hasCurrentObject () && bool_0) {
-    while (enumerator_6077.hasCurrentObject () && bool_0) {
-      switch (enumerator_6077.current_mType (HERE).enumValue ()) {
-      case GALGAS_typeKind::kNotBuilt:
-        break ;
-      case GALGAS_typeKind::kEnum_doubleType:
-        {
-          outArgument_outSwiftDefaultValueAsString = object->mAttribute_mValue.mAttribute_double.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 165)) ;
-          var_found = GALGAS_bool (true) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_boolType:
-      case GALGAS_typeKind::kEnum_colorType:
-      case GALGAS_typeKind::kEnum_dateType:
-      case GALGAS_typeKind::kEnum_integerType:
-      case GALGAS_typeKind::kEnum_stringType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_entityType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_enumType:
-        {
-        }
-        break ;
-      }
-      enumerator_6077.gotoNextObject () ;
-      if (enumerator_6077.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 162)).isValidAndTrue () ;
-      }
-    }
-  }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 172)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a double attribute can be initialized by a floating point constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 173)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_doubleAsDefaultValue.mSlotID,
-                                               categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_doubleAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_doubleAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category method '@stringAsDefaultValue analyzeDefaultValueType'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_stringAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                         const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
-                                                                         GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_stringAsDefaultValue * object = (const cPtr_stringAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_stringAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6847 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 186)).isValidAndTrue () ;
-  if (enumerator_6847.hasCurrentObject () && bool_0) {
-    while (enumerator_6847.hasCurrentObject () && bool_0) {
-      switch (enumerator_6847.current_mType (HERE).enumValue ()) {
-      case GALGAS_typeKind::kNotBuilt:
-        break ;
-      case GALGAS_typeKind::kEnum_stringType:
-        {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 189)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 189)) ;
-          var_found = GALGAS_bool (true) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_boolType:
-      case GALGAS_typeKind::kEnum_colorType:
-      case GALGAS_typeKind::kEnum_dateType:
-      case GALGAS_typeKind::kEnum_integerType:
-      case GALGAS_typeKind::kEnum_doubleType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_entityType:
-        {
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_enumType:
-        {
-        }
-        break ;
-      }
-      enumerator_6847.gotoNextObject () ;
-      if (enumerator_6847.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 186)).isValidAndTrue () ;
-      }
-    }
-  }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 196)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a string attribute can be initialized by a string constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_stringAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_stringAsDefaultValue.mSlotID,
-                                               categoryMethod_stringAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_stringAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Overriding category method '@identifierAsDefaultValue analyzeDefaultValueType'                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                             const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
-                                                                             GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                             C_Compiler * inCompiler
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_identifierAsDefaultValue * object = (const cPtr_identifierAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_identifierAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_9507 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 265)).isValidAndTrue () ;
-  if (enumerator_9507.hasCurrentObject () && bool_0) {
-    while (enumerator_9507.hasCurrentObject () && bool_0) {
-      switch (enumerator_9507.current_mType (HERE).enumValue ()) {
-      case GALGAS_typeKind::kNotBuilt:
-        break ;
-      case GALGAS_typeKind::kEnum_colorType:
-        {
-          var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_1 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).boolEnum () ;
-          if (kBoolTrue == test_1) {
-            outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
-          }else if (kBoolFalse == test_1) {
-            GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_2, GALGAS_string ("unknown predefined color")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)) ;
-          }
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_dateType:
-        {
-          var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_3 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).boolEnum () ;
-          if (kBoolTrue == test_3) {
-            outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSDate ()") ;
-          }else if (kBoolFalse == test_3) {
-            GALGAS_location location_4 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_4, GALGAS_string ("unknown predefined date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 280)) ;
-          }
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_enumType:
-        {
-          const cEnumAssociatedValues_typeKind_enumType * extractPtr_10407 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9507.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_enumTypeName = extractPtr_10407->mAssociatedValue0 ;
-          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_10407->mAssociatedValue1 ;
-          var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_5 = extractedValue_constantMap.reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 284)).boolEnum () ;
-          if (kBoolTrue == test_5) {
-            outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)).add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)) ;
-          }else if (kBoolFalse == test_5) {
-            GALGAS_location location_6 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_6, GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (object->mAttribute_mValue.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 288)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 287)) ;
-            outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
-          }
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_entityType:
-        {
-          GALGAS_location location_7 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_7, GALGAS_string ("invalid entity type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_boolType:
-        {
-          GALGAS_location location_8 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_8, GALGAS_string ("invalid bool type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 294)) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_doubleType:
-        {
-          GALGAS_location location_9 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_9, GALGAS_string ("invalid double type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 296)) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_integerType:
-        {
-          GALGAS_location location_10 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_10, GALGAS_string ("invalid integer type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 298)) ;
-        }
-        break ;
-      case GALGAS_typeKind::kEnum_stringType:
-        {
-          GALGAS_location location_11 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_11, GALGAS_string ("invalid string type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 300)) ;
-        }
-        break ;
-      }
-      enumerator_9507.gotoNextObject () ;
-      if (enumerator_9507.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 265)).isValidAndTrue () ;
-      }
-    }
-  }
-  const enumGalgasBool test_12 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 303)).boolEnum () ;
-  if (kBoolTrue == test_12) {
-    GALGAS_location location_13 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_13, GALGAS_string ("unknow type for this identifier")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 304)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_identifierAsDefaultValue.mSlotID,
-                                               categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_identifierAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_identifierAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@listAsDefaultValue analyzeDefaultValueType'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_listAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
-                                                                       const GALGAS_typeKindList /* constinArgument_inAttributeActualTypeList */,
-                                                                       GALGAS_string & outArgument_outSwiftDefaultValueAsString,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_listAsDefaultValue * object = (const cPtr_listAsDefaultValue *) inObject ;
-  macroValidSharedObject (object, cPtr_listAsDefaultValue) ;
-  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found = GALGAS_bool (false) ;
-  const enumGalgasBool test_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 392)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 393)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_listAsDefaultValue_analyzeDefaultValueType (void) {
-  enterCategoryMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_listAsDefaultValue.mSlotID,
-                                               categoryMethod_listAsDefaultValue_analyzeDefaultValueType) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_listAsDefaultValue_analyzeDefaultValueType (defineCategoryMethod_listAsDefaultValue_analyzeDefaultValueType, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Overriding category method '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                       const GALGAS_observablePropertyMap /* constinArgument_inRootObservablePropertyMap */,
-                                                                                                       const GALGAS_semanticContext /* constinArgument_inSemanticContext */,
-                                                                                                       const GALGAS_observablePropertyMap /* constinArgument_inCurrentObservablePropertyMap */,
-                                                                                                       GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                       GALGAS_typeKind & outArgument_outType,
-                                                                                                       GALGAS_location & outArgument_outErrorLocation,
-                                                                                                       C_Compiler * /* inCompiler */
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_literalIntMultipleBindingExpressionAST * object = (const cPtr_literalIntMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_literalIntMultipleBindingExpressionAST) ;
-  outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration::constructor_new (object->mAttribute_mValue.mAttribute_uint  COMMA_SOURCE_FILE ("multiple-binding.galgas", 221)) ;
-  outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("multiple-binding.galgas", 222)) ;
-  outArgument_outErrorLocation = object->mAttribute_mValue.mAttribute_location ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-// Overriding category method '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                 const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
-                                                                                                                 const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                                                                 const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
-                                                                                                                 GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                                 GALGAS_typeKind & outArgument_outType,
-                                                                                                                 GALGAS_location & outArgument_outErrorLocation,
-                                                                                                                 C_Compiler * inCompiler
-                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_observablePropertyInMultipleBindingExpressionAST * object = (const cPtr_observablePropertyInMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_observablePropertyInMultipleBindingExpressionAST) ;
-  GALGAS_propertyKind var_outKind ;
-  GALGAS_propertyMultiplicity var_outMultiplicity ;
-  GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
-  categoryMethod_analyzeObservableProperty (object->mAttribute_mProperty, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, outArgument_outType, var_outKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 236)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("multiple-binding.galgas", 245)))).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 246)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 246)) ;
-  }
-  switch (outArgument_outType.enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-  case GALGAS_typeKind::kEnum_boolType:
-  case GALGAS_typeKind::kEnum_colorType:
-  case GALGAS_typeKind::kEnum_dateType:
-  case GALGAS_typeKind::kEnum_doubleType:
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)), GALGAS_string ("an entity cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)) ;
-    }
-    break ;
-  }
-  outArgument_outEnableExpression = GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (categoryReader_modelString (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 255))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 254)) ;
-  outArgument_outErrorLocation = categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 257)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_observablePropertyInMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//     Overriding category method '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                          const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
-                                                                                                          const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                                                          const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
-                                                                                                          GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                          GALGAS_typeKind & outArgument_outType,
-                                                                                                          GALGAS_location & outArgument_outErrorLocation,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_negateBooleanMultipleBindingExpressionAST * object = (const cPtr_negateBooleanMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionAST) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_expression ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_expression, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 270)) ;
-  const enumGalgasBool test_0 = outArgument_outType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 278)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 278)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (outArgument_outErrorLocation, GALGAS_string ("cannot apply negation: operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 279)) ;
-  }
-  outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingExpressionForGeneration::constructor_new (var_expression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 281)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//       Overriding category method '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                      const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
-                                                                                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                                                      const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
-                                                                                                      GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                      GALGAS_typeKind & outArgument_outType,
-                                                                                                      GALGAS_location & outArgument_outErrorLocation,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_orBooleanMultipleBindingExpressionAST * object = (const cPtr_orBooleanMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionAST) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
-  GALGAS_typeKind var_outLeftType ;
-  GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 294)) ;
-  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 302)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 302)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'or': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 303)) ;
-  }
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
-  GALGAS_typeKind var_outRightType ;
-  GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 305)) ;
-  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 313)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 313)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'or': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 314)) ;
-  }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 316)) ;
-  outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_orBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 318)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_orBooleanMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Overriding category method '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                       const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
-                                                                                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                                                       const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
-                                                                                                       GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                       GALGAS_typeKind & outArgument_outType,
-                                                                                                       GALGAS_location & outArgument_outErrorLocation,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_andBooleanMultipleBindingExpressionAST * object = (const cPtr_andBooleanMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionAST) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
-  GALGAS_typeKind var_outLeftType ;
-  GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 331)) ;
-  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 339)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 339)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'and': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 340)) ;
-  }
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
-  GALGAS_typeKind var_outRightType ;
-  GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 342)) ;
-  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 350)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 350)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'and': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 351)) ;
-  }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 353)) ;
-  outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_andBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 355)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_andBooleanMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//      Overriding category method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                       const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
-                                                                                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                                                                                       const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
-                                                                                                       GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
-                                                                                                       GALGAS_typeKind & outArgument_outType,
-                                                                                                       GALGAS_location & outArgument_outErrorLocation,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_comparisonMultipleBindingExpressionAST * object = (const cPtr_comparisonMultipleBindingExpressionAST *) inObject ;
-  macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionAST) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
-  GALGAS_typeKind var_outLeftType ;
-  GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 368)) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
-  GALGAS_typeKind var_outRightType ;
-  GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 376)) ;
-  GALGAS_bool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 384)) ;
-  if (kBoolTrue != test_0.boolEnum ()) {
-    test_0 = var_outLeftType.reader_isIntegerType (SOURCE_FILE ("multiple-binding.galgas", 384)) ;
-  }
-  const enumGalgasBool test_1 = test_0.operator_not (SOURCE_FILE ("multiple-binding.galgas", 384)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot compare: left operand is neither boolean nor integer")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 385)) ;
-  }
-  const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_outRightType.objectCompare (var_outLeftType)).boolEnum () ;
-  if (kBoolTrue == test_2) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot compare: right operand type is different than left operand type")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 388)) ;
-  }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 390)) ;
-  outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_comparisonMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, object->mAttribute_mOperator, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 392)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
-  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionAST.mSlotID,
-                                                           categoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingLiteralIntForGeneration observedModelSet'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * /* inObject */,
-                                                                                                             C_Compiler * /* inCompiler */
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  result_outObservedModelSet = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 409)) ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//  Overriding category reader '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet'   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                           C_Compiler * /* inCompiler */
-                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 417)) ;
-  temp_0.addAssign_operation (object->mAttribute_mObservedModel  COMMA_SOURCE_FILE ("multiple-binding.galgas", 417)) ;
-  result_outObservedModelSet = temp_0 ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_negateBooleanMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                             C_Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  const cPtr_negateBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_negateBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionForGeneration) ;
-  result_outObservedModelSet = callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 425)) ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_negateBooleanMultipleBindingExpressionForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingExpressionForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_negateBooleanMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@orBooleanMultipleBindingExpressionForGeneration observedModelSet'            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_orBooleanMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                         C_Compiler * inCompiler
-                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  const cPtr_orBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_orBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 433)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 433))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 433)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 433))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 433)) ;
-  result_outObservedModelSet = temp_0 ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_orBooleanMultipleBindingExpressionForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_orBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_orBooleanMultipleBindingExpressionForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_orBooleanMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_orBooleanMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@andBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_andBooleanMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  const cPtr_andBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_andBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 441)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 441))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 441)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 441))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 441)) ;
-  result_outObservedModelSet = temp_0 ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_andBooleanMultipleBindingExpressionForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_andBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_andBooleanMultipleBindingExpressionForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_andBooleanMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_andBooleanMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@comparisonMultipleBindingExpressionForGeneration observedModelSet'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringset categoryReader_comparisonMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  const cPtr_comparisonMultipleBindingExpressionForGeneration * object = (const cPtr_comparisonMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 449)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 449))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 449)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 449))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 449)) ;
-  result_outObservedModelSet = temp_0 ;
-//---
-  return result_outObservedModelSet ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_comparisonMultipleBindingExpressionForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_comparisonMultipleBindingExpressionForGeneration_observedModelSet) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_comparisonMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_comparisonMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingLiteralIntForGeneration expressionString'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                          C_Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_negateBooleanMultipleBindingLiteralIntForGeneration * object = (const cPtr_negateBooleanMultipleBindingLiteralIntForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingLiteralIntForGeneration) ;
-  result_outExpressionString = object->mAttribute_mValue.reader_string (SOURCE_FILE ("multiple-binding.galgas", 461)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//  Overriding category reader '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString'   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                        C_Compiler * inCompiler
-                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = object->mAttribute_mObservedModel.add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 468)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_expressionString, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingExpressionForGeneration expressionString'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_negateBooleanMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_negateBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_negateBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("!").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 475)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 475)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_negateBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingExpressionForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_negateBooleanMultipleBindingExpressionForGeneration_expressionString, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@orBooleanMultipleBindingExpressionForGeneration expressionString'            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_orBooleanMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_orBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_orBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (GALGAS_string (" || "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_orBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_orBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_orBooleanMultipleBindingExpressionForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_orBooleanMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_orBooleanMultipleBindingExpressionForGeneration_expressionString, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@andBooleanMultipleBindingExpressionForGeneration expressionString'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_andBooleanMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_andBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_andBooleanMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (GALGAS_string (" && "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_andBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_andBooleanMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_andBooleanMultipleBindingExpressionForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_andBooleanMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_andBooleanMultipleBindingExpressionForGeneration_expressionString, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@comparisonMultipleBindingExpressionForGeneration expressionString'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string categoryReader_comparisonMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_comparisonMultipleBindingExpressionForGeneration * object = (const cPtr_comparisonMultipleBindingExpressionForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)) ;
-  switch (object->mAttribute_mOperator.enumValue ()) {
-  case GALGAS_multipleBindingComparisonAST::kNotBuilt:
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_equal:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("==")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 498)) ;
-    }
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_notEqual:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("!=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 499)) ;
-    }
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_lower:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("<")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 500)) ;
-    }
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_lowerOrEqual:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("<=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 501)) ;
-    }
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_greater:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string (">")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 502)) ;
-    }
-    break ;
-  case GALGAS_multipleBindingComparisonAST::kEnum_greaterOrEqual:
-    {
-      result_outExpressionString.dotAssign_operation (GALGAS_string (">=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 503)) ;
-    }
-    break ;
-  }
-  result_outExpressionString.dotAssign_operation (GALGAS_string (" ").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)) ;
-//---
-  return result_outExpressionString ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_comparisonMultipleBindingExpressionForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionForGeneration.mSlotID,
-                                        categoryReader_comparisonMultipleBindingExpressionForGeneration_expressionString) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_comparisonMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_comparisonMultipleBindingExpressionForGeneration_expressionString, NULL) ;
 

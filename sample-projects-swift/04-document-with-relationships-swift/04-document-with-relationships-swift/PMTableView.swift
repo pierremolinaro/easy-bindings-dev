@@ -1,17 +1,19 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMTableView                                                                                                      *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMTableView) class PMTableView : NSTableView, PMUserClassName {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
   deinit {
     noteObjectDeallocation (self)
@@ -19,14 +21,20 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    AbstractArrayController                                                                                          *
+//    PMTableViewDataSource                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(AbstractArrayController)
-class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTableViewDelegate {
-  func setSortDescriptors (sortDescriptors : [AnyObject]) {} // Abstract method
-  func configureTableView (inTableView : PMTableView, file : String, line : Int) {} // Abstract method
-  func selectedObjectIndexSet () -> NSIndexSet { return NSIndexSet () } // Abstract method
+@objc(PMTableViewDataSource) protocol PMTableViewDataSource : NSTableViewDataSource {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    PMTableViewDataSource                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(PMTableViewDelegate) protocol PMTableViewDelegate : NSTableViewDelegate {
+  func selectedObjectIndexSet () -> NSIndexSet
+  func willReload ()
+  func didReload ()
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -35,50 +43,39 @@ class AbstractArrayController : PMAbstractProperty, NSTableViewDataSource, NSTab
 
 @objc(Controller_PMTableView_controller) class Controller_PMTableView_controller : PMOutletEvent {
 
-  private var mOutlet : PMTableView
-  private var mObject : AbstractArrayController
+  private var mDelegate : PMTableViewDelegate
+  private var mTableView : PMTableView
+  private var mDataSource : PMTableViewDataSource?
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
-  init (object:AbstractArrayController, outlet : PMTableView, file : String, line : Int) {
-    mObject = object
-    mOutlet = outlet
+  init (delegate:PMTableViewDelegate, dataSource:PMTableViewDataSource, tableView:PMTableView, file:String, line:Int) {
+    mTableView = tableView
+    mDelegate = delegate
+    mDataSource = dataSource
     super.init ()
-    mObject.configureTableView (mOutlet, file : file, line : line)
-    object.addObserver (self, postEvent:true)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  
-  func unregister () {
-    mOutlet.setDataSource (nil)
-    mOutlet.setDelegate (nil)
-    mObject.removeObserver (self, postEvent:false)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  // http://stackoverflow.com/questions/7359921/how-to-keep-the-visible-content-after-nstableview-reloaddata
+  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
   
   override func updateOutlet () {
   //---------------- So tableViewSelectionDidChange is not called
-    mOutlet.setDelegate (nil)
+    mDelegate.willReload ()
   //---------------- Reload data
-    mOutlet.reloadData ()
-  //----------------
-//    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) {
+    mTableView.reloadData ()
   //---------------- Update table view selection
-    var newTableViewSelectionIndexSet = self.mObject.selectedObjectIndexSet ()
-    self.mOutlet.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    var newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
+    // NSLog ("newTableViewSelectionIndexSet %@", newTableViewSelectionIndexSet)
+    self.mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
   //---------------- Scroll first selected row to visible
     if newTableViewSelectionIndexSet.count > 0 {
-      self.mOutlet.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
+      self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
-  //  }
-  //----------------
-    mOutlet.setDelegate (mObject)
+  //---------------- So tableViewSelectionDidChange will be called on user change
+    mDelegate.didReload ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
