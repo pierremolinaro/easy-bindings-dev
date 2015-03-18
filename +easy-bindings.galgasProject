@@ -1,0 +1,35 @@
+project (0:0:1) -> "eb" {
+  %makefile-macosx
+  %Mavericks
+  %applicationBundleBase : "fr.irccyn"
+
+#--- Source files
+  "galgas-sources/lexique.galgas"
+  "galgas-sources/options.galgas"
+  "galgas-sources/grammar-syntax.galgas"
+  "galgas-sources/easyBindings-cocoa.galgas"
+  "galgas-sources/program.galgas"
+  
+  "galgas-sources/enumeration.galgas"
+  "galgas-sources/document.galgas"
+  "galgas-sources/entity.galgas"
+  "galgas-sources/preferences.galgas"
+  "galgas-sources/outlet-class.galgas"
+  "galgas-sources/binding-specification.galgas"
+  "galgas-sources/outlet-declaration.galgas"
+  "galgas-sources/observable-property.galgas"
+  "galgas-sources/explicit-default-value.galgas"
+  "galgas-sources/run-action.galgas"
+  "galgas-sources/multiple-binding.galgas"
+  "galgas-sources/regular-binding.galgas"
+  "galgas-sources/transient-property.galgas"
+  "galgas-sources/simple-stored-property.galgas"
+  "galgas-sources/array-controller-declaration.galgas"
+  "galgas-sources/relationships.galgas"
+  "galgas-sources/unified-type.galgas"
+  "galgas-sources/semantic-analysis.galgas"
+  "galgas-sources/code-generation.galgas"
+  "galgas-sources/property-validation-stub-routine.galgas"
+}
+
+

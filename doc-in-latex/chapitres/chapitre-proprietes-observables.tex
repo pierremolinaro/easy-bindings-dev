@@ -1,0 +1,50 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+
+\chapterLabel{Propriétés observables}{chapitreProprietesObservables}
+
+
+\section{Propriétés de l'objet courant}
+
+
+\begin{ebcode}
+self.propriete
+\end{ebcode}
+
+
+
+\section{Propriétés d'un contrôleur de tableau}
+
+Le contrôleur est déclaré dans le même objet.
+
+Accès au tableau des objets filtrés et ordonnés par le contrôleur
+\begin{ebcode}
+controlleur.sortedArray
+\end{ebcode}
+
+Nombre d'objets filtrés et ordonnés par le contrôleur
+\begin{ebcode}
+controlleur.sortedArray.count
+\end{ebcode}
+
+Nombre d'objets sélectionnés par le contrôleur
+\begin{ebcode}
+controlleur.selectedArray.count
+\end{ebcode}
+
+Aucun objet sélectionné par le contrôleur
+\begin{ebcode}
+controlleur.selection.empty
+\end{ebcode}
+
+Plusieurs objets sélectionnés par le contrôleur
+\begin{ebcode}
+controlleur.selection.multiple
+\end{ebcode}
+
+Un seul objet sélectionné par le contrôleur
+\begin{ebcode}
+controlleur.selection.unique
+\end{ebcode}
+

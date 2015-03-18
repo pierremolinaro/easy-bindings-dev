@@ -1,6 +1,7 @@
 %!TEX encoding = UTF-8 Unicode
 
 \documentclass [a4paper, 10pt, openany] {book}
+\usepackage{verbatim}
 %\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 %\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
@@ -252,6 +253,127 @@
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
+%   C O D E   S O U R C E    E A S Y - B I N D I N G S                                                                  *
+%                                                                                                                       *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\usepackage{mdframed}
+
+\newcommand\idfStyleEB[1]{#1}
+
+\newcommand\keywordsStyleEB[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand\delimitersStyleEB[1]{\textcolor{brown}{\textbf{#1}}}
+\newcommand\selectorStyleEB[1]{\textcolor{orange}{#1}}
+\newcommand\terminalStyleEB[1]{\textcolor{orange}{#1}}
+\newcommand\nonTerminalStyleEB[1]{\textcolor{orange}{#1}}
+\newcommand\integerStyleEB[1]{\textcolor{brown}{#1}}
+\newcommand\floatStyleEB[1]{\textcolor{magenta}{#1}}
+\newcommand\characterStyleEB[1]{\textcolor{cyan}{#1}}
+\newcommand\stringStyleEB[1]{\textcolor{gray}{#1}}
+\newcommand\typeNameStyleEB[1]{\textcolor{gray}{#1}}
+\newcommand\attributeStyleEB[1]{\textcolor{brown}{#1}}
+\newcommand\commentStyleEB[1]{\textcolor{red}{#1}}
+
+%\newcommand\lexicalErrorEB{\textcolor{red}{\textbullet ERRLEX\textbullet}}
+
+\newcommand\idfStyleeb[1]{#1}
+
+\newcommand\keywordsStyleeb[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand\delimitersStyleeb[1]{\textcolor{brown}{\textbf{#1}}}
+\newcommand\selectorStyleeb[1]{\textcolor{orange}{#1}}
+\newcommand\terminalStyleeb[1]{\textcolor{orange}{#1}}
+\newcommand\nonTerminalStyleeb[1]{\textcolor{orange}{#1}}
+\newcommand\integerStyleeb[1]{\textcolor{brown}{#1}}
+\newcommand\floatStyleeb[1]{\textcolor{magenta}{#1}}
+\newcommand\characterStyleeb[1]{\textcolor{cyan}{#1}}
+\newcommand\stringStyleeb[1]{\textcolor{gray}{#1}}
+\newcommand\typeNameStyleeb[1]{\textcolor{gray}{#1}}
+\newcommand\attributeStyleeb[1]{\textcolor{brown}{#1}}
+\newcommand\commentStyleeb[1]{\textcolor{red}{#1}}
+
+%\newcommand\lexicalErroreb{\textcolor{red}{\textbullet ERRLEX\textbullet}}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+%  skipabove=\topsep,
+%  skipbelow=\topsep,
+  linecolor=blue!25,
+  linewidth=2pt
+]{siderules}
+
+\newwrite\tempfile
+
+\makeatletter
+\newenvironment{ebcode}{%
+  \begingroup
+  \@bsphack
+  \immediate\openout\tempfile=temp.eb%
+  \let\do\@makeother\dospecials
+  \catcode`\^^M\active
+  \verbatim@startline
+  \verbatim@addtoline
+  \verbatim@finish
+  \def\verbatim@processline{\immediate\write\tempfile{\the\verbatim@line}}%
+  \verbatim@start
+}{
+  \immediate\closeout\tempfile
+  \@esphack
+  \endgroup
+  \immediate\write18{eb --mode=latex:eb temp.eb}
+  {\begin{siderules}\ttfamily\input{temp.eb.tex}\end{siderules}}
+}
+\makeatother
+
+%-----------------------------------------------------------------------------------------------------------------------*
+% COMMANDE \eb : affichage de code en ligne eb                                                                          *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\makeatletter
+\newcommand*\eb{%
+  \@bsphack%
+  \begingroup%
+  \let\do\@makeother\dospecials%
+  \let\do\do@noligs\verbatim@nolig@list%
+  \catcode`\^^M=15\relax%
+  \@vobeyspaces%
+  \@eb{\temporary}%
+}%
+\newcommand\@eb[2]{%
+  \catcode`-=12\relax%
+  \catcode`<=12\relax%
+  \catcode`>=12\relax%
+  \catcode`,=12\relax%
+  \catcode`'=12\relax%
+  \catcode``=12\relax%
+  \catcode`#2\active%
+  \catcode`~\active%
+  \lccode`\~`#2\relax%
+  \begingroup%
+  \lowercase{%
+    \def\@tempa##1~{%
+      \expandafter\endgroup%
+      \expandafter\DeclareRobustCommand%
+      \expandafter*%
+      \expandafter#1%
+      \expandafter{\@tempa}%
+      \@esphack%
+      \immediate\openout\tempfile=temp.eb%
+      \immediate\write\tempfile{##1}%
+      \immediate\closeout\tempfile%
+      \immediate\write18{eb --mode=latex:eb temp.eb}%
+      \colorbox{gray!6}{\ttfamily\input{temp.eb.tex}\unskip}%
+    }%
+  }%
+  \ifnum`#2=`\~\else\@makeother\~\fi%
+  \expandafter\endgroup%
+  \@tempa%
+}%
+\makeatother
+
+%-----------------------------------------------------------------------------------------------------------------------*
+%                                                                                                                       *
 %   D É B U T    D U    D O C U M E N T                                                                                 *
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
@@ -310,5 +432,6 @@
 \input{chapitres/chapitre-structure-globale.tex}
 \input{chapitres/chapitre-template-controleur.tex}
 \input{chapitres/chapitre-preferences.tex}
+\input{chapitres/chapitre-proprietes-observables.tex}
 
 \end{document}
