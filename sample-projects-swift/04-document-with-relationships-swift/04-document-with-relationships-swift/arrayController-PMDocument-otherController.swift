@@ -16,7 +16,7 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self, model = unwrappedSelf.mModel {
-        return model.prop.count
+        return unwrappedSelf.prop.count
       }else{
         return 0
       }
@@ -348,7 +348,7 @@ class ArrayController_PMDocument_otherController : PMObject {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames?
 
-  private var sortedArray = DataSource_PMDocument_otherController ()
+  var sortedArray = DataSource_PMDocument_otherController ()
 
   private var mSelectedSet : Delegate_PMDocument_otherController?
 

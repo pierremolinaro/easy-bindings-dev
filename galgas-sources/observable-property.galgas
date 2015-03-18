@@ -9,6 +9,7 @@ enum @observablePropertyAST {
   case selfProperty (@lstring propertyName @lstring optionName)
   case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName)
   case controllerProperty (@lstring controllerName @lstring propertyName)
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
 }
 
 #......................................................................................................................*
@@ -58,7 +59,17 @@ syntax extension easyBindings_syntax {
       $identifier$ ?let controllerName
       $.$
       $identifier$ ?let propertyName
-      outObservablePropertyAST = .controllerProperty {!controllerName:controllerName !propertyName:propertyName}
+      select
+        outObservablePropertyAST = .controllerProperty {!controllerName:controllerName !propertyName:propertyName}
+      or
+        $.$
+        $identifier$ ?let secondaryPropertyName
+        outObservablePropertyAST = .controllerSecondaryProperty {
+          !controllerName:controllerName
+          !propertyName:propertyName
+          !secondaryPropertyName:secondaryPropertyName
+        }
+      end
     end
   }
 
@@ -104,6 +115,8 @@ getter @observablePropertyAST modelString -> @string outResult {
     end
   case controllerProperty (@lstring controllerName @lstring propertyName) :
     outResult = "self." + controllerName + "." + propertyName
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    outResult = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
   end  
 }
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -122,6 +135,8 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = propertyName.location
   case controllerProperty (* @lstring propertyName) :
     outResult = propertyName.location
+  case controllerSecondaryProperty (* * @lstring secondaryPropertyName) :
+    outResult = secondaryPropertyName.location
   end  
 }
 
@@ -154,6 +169,8 @@ method @observablePropertyAST enterInTransientDependencyGraph
     end
   case controllerProperty (@lstring controllerName @lstring propertyName) :
     masterSignature = "self." + controllerName + "." + propertyName
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    masterSignature = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
   end
   [!?ioTransientDependencyGraph addEdge
     !.new {!masterSignature ![self location]}
@@ -291,6 +308,17 @@ method @observablePropertyAST analyzeObservableProperty
     else
       error propertyName
         : "uknown option (accepted : 'selectionCount')"
+        : outMultiplicity, outKind, outType
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case controllerSecondaryProperty (* @lstring propertyName @lstring secondaryPropertyName) :
+    if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .integerType
+    else
+      error propertyName
+        : "uknown option (accepted : 'sortedArray.count')"
         : outMultiplicity, outKind, outType
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]

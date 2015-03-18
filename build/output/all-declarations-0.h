@@ -516,6 +516,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_31 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_32 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -3095,7 +3097,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_rootPropertyRelationship,
     kEnum_selfProperty,
     kEnum_prefsProperty,
-    kEnum_controllerProperty
+    kEnum_controllerProperty,
+    kEnum_controllerSecondaryProperty
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -3125,6 +3128,11 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : static GALGAS_observablePropertyAST constructor_controllerProperty (const class GALGAS_lstring & inOperand0,
                                                                                const class GALGAS_lstring & inOperand1
                                                                                COMMA_LOCATION_ARGS) ;
+
+  public : static GALGAS_observablePropertyAST constructor_controllerSecondaryProperty (const class GALGAS_lstring & inOperand0,
+                                                                                        const class GALGAS_lstring & inOperand1,
+                                                                                        const class GALGAS_lstring & inOperand2
+                                                                                        COMMA_LOCATION_ARGS) ;
 
   public : static GALGAS_observablePropertyAST constructor_prefsProperty (const class GALGAS_lstring & inOperand0,
                                                                           const class GALGAS_lstring & inOperand1,
@@ -3159,6 +3167,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isControllerProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isControllerSecondaryProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isPrefsProperty (LOCATION_ARGS) const ;
 
@@ -3291,6 +3301,26 @@ class cEnumAssociatedValues_observablePropertyAST_controllerProperty : public cE
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_observablePropertyAST_controllerProperty (void) {}
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_lstring mAssociatedValue1 ;
+  public : const GALGAS_lstring mAssociatedValue2 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty (const GALGAS_lstring & inAssociatedValue0,
+                                                                                    const GALGAS_lstring & inAssociatedValue1,
+                                                                                    const GALGAS_lstring & inAssociatedValue2
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty (void) {}
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4139,6 +4169,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_30 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_31 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_32 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

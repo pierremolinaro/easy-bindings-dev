@@ -181,6 +181,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
     outResult = controllerName.string + "." + propertyName + ".addObserver"
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addObserver"
   case selfProperty (@lstring masterName *) :
     outResult = masterName.string + ".addObserver"
   case prefsProperty (@lstring prefsName @lstring propertyName *) :
@@ -200,6 +202,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
     outResult = controllerName.string + "." + propertyName + ".removeObserver"
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeObserver"
   case selfProperty (@lstring masterName *) :
     outResult = masterName.string + ".removeObserver"
   case prefsProperty (@lstring prefsName @lstring propertyName *) :

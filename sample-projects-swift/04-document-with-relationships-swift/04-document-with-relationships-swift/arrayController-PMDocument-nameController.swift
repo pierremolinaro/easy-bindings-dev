@@ -16,7 +16,7 @@ class DataSource_PMDocument_nameController : PMAbstractProperty, PMTableViewData
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self, model = unwrappedSelf.mModel {
-        return model.prop.count
+        return unwrappedSelf.prop.count
       }else{
         return 0
       }
@@ -342,7 +342,7 @@ class ArrayController_PMDocument_nameController : PMObject {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames?
 
-  private var sortedArray = DataSource_PMDocument_nameController ()
+  var sortedArray = DataSource_PMDocument_nameController ()
 
   private var mSelectedSet : Delegate_PMDocument_nameController?
 
