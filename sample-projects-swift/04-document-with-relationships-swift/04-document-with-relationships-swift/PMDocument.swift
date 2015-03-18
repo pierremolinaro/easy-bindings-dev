@@ -14,6 +14,7 @@ import Cocoa
   @IBOutlet var countItemMessageTextField : PMReadOnlyTextField?
   @IBOutlet var countItemTextField : PMReadOnlyIntField?
   @IBOutlet var decrementButton : PMButton?
+  @IBOutlet var evenValueTextField : PMReadOnlyTextField?
   @IBOutlet var incrementButton : PMButton?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var mOtherTableView : PMTableView?
@@ -29,6 +30,7 @@ import Cocoa
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private var evenValueString = PMTransientProperty_String ()
   private var canRemoveString = PMTransientProperty_String ()
   private var countItemMessage = PMTransientProperty_String ()
   private var total = PMTransientProperty_Int ()
@@ -93,6 +95,11 @@ import Cocoa
     }else if !decrementButton!.isKindOfClass (PMButton) {
       presentErrorWindow (__FILE__, __LINE__, "the 'decrementButton' outlet is not an instance of 'PMButton'") ;
     }
+    if nil == evenValueTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'evenValueTextField' outlet is nil") ;
+    }else if !evenValueTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'evenValueTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }
     if nil == incrementButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'incrementButton' outlet is nil") ;
     }else if !incrementButton!.isKindOfClass (PMButton) {
@@ -132,14 +139,17 @@ import Cocoa
       line:__LINE__
     )
   //--- Install compute functions for transients
+    evenValueString.computeFunction = {return compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop)}
     canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectionCount.prop)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
+    otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
     nameController.selectionCount.addObserver (canRemoveString, postEvent:true)
     rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
     self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
   //--- Install regular bindings
+    evenValueTextField?.bind_readOnlyValue (self.evenValueString, file:__FILE__, line:__LINE__)
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
     countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
     countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
@@ -185,6 +195,7 @@ import Cocoa
     undoManager?.removeAllActions ()
     undoManager = nil
   //--- Unbind regular bindings
+    evenValueTextField?.unbind_readOnlyValue ()
     canRemoveTextField?.unbind_readOnlyValue ()
     countItemTextField?.unbind_readOnlyValue ()
     countItemMessageTextField?.unbind_readOnlyValue ()
@@ -194,6 +205,7 @@ import Cocoa
     incrementButton?.unbind_enabled ()
     decrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
+    evenValueString.computeFunction = nil
     canRemoveString.computeFunction = nil
     countItemMessage.computeFunction = nil
     total.computeFunction = nil
@@ -201,6 +213,7 @@ import Cocoa
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
+    otherController.sortedArray.count.removeObserver (evenValueString, postEvent:false)
     nameController.selectionCount.removeObserver (canRemoveString, postEvent:false)
     rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)
     self.rootObject.mNames.removeObserverOf_aValue (total, postEvent:false)

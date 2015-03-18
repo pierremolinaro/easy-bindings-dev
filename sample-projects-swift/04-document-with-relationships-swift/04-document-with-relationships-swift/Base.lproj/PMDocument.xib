@@ -13,6 +13,7 @@
                 <outlet property="countItemMessageTextField" destination="100099" id="100116"/>
                 <outlet property="countItemTextField" destination="100085" id="100089"/>
                 <outlet property="decrementButton" destination="gyl-DQ-bh2" id="PXg-sc-7iN"/>
+                <outlet property="evenValueTextField" destination="NiN-AW-qvE" id="Mfo-Wp-qT2"/>
                 <outlet property="incrementButton" destination="Sya-gS-Pq4" id="8y4-YL-5j4"/>
                 <outlet property="mNamesTableView" destination="100028" id="PUf-V5-r3X"/>
                 <outlet property="mOtherTableView" destination="IKK-va-ISf" id="2Ok-Iv-lmV"/>
@@ -217,10 +218,10 @@
                         </buttonCell>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="flx-2z-D2c">
-                        <rect key="frame" x="509" y="80" width="467" height="298"/>
+                        <rect key="frame" x="509" y="80" width="467" height="317"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="cb5-05-h6q">
-                            <rect key="frame" x="1" y="17" width="465" height="280"/>
+                            <rect key="frame" x="1" y="0.0" width="465" height="316"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="ja2-OZ-8PF" viewBased="YES" id="IKK-va-ISf" customClass="PMTableView">
@@ -316,12 +317,21 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <textField verticalHuggingPriority="750" id="NiN-AW-qvE" customClass="PMReadOnlyTextField">
+                        <rect key="frame" x="507" y="405" width="471" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="--- even value count ---" id="AkT-yA-auF">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
-            <point key="canvasLocation" x="384" y="163.5"/>
+            <point key="canvasLocation" x="254" y="174.5"/>
         </window>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>

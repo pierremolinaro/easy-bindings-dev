@@ -10,6 +10,128 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                              Abstract category method '@astDeclaration typeInventory'                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static TC_UniqueArray <categoryMethodSignature_astDeclaration_typeInventory> gCategoryMethodTable_astDeclaration_typeInventory ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
+                                        categoryMethodSignature_astDeclaration_typeInventory inMethod) {
+  gCategoryMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void freeCategoryMethod_astDeclaration_typeInventory (void) {
+  gCategoryMethodTable_astDeclaration_typeInventory.free () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_astDeclaration_typeInventory (NULL,
+                                                         freeCategoryMethod_astDeclaration_typeInventory) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_typeInventory (const cPtr_astDeclaration * inObject,
+                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                       GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+//--- Find method
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_astDeclaration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    categoryMethodSignature_astDeclaration_typeInventory f = NULL ;
+    if (classIndex < gCategoryMethodTable_astDeclaration_typeInventory.count ()) {
+      f = gCategoryMethodTable_astDeclaration_typeInventory (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gCategoryMethodTable_astDeclaration_typeInventory.count ()) {
+           f = gCategoryMethodTable_astDeclaration_typeInventory (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gCategoryMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, io_ioUnifiedTypeMap, io_ioTransientDependencyGraph, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Abstract category method '@astDeclaration buildObservablePropertyMaps'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static TC_UniqueArray <categoryMethodSignature_astDeclaration_buildObservablePropertyMaps> gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_buildObservablePropertyMaps (const int32_t inClassIndex,
+                                                      categoryMethodSignature_astDeclaration_buildObservablePropertyMaps inMethod) {
+  gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void freeCategoryMethod_astDeclaration_buildObservablePropertyMaps (void) {
+  gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps.free () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_astDeclaration_buildObservablePropertyMaps (NULL,
+                                                                       freeCategoryMethod_astDeclaration_buildObservablePropertyMaps) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_buildObservablePropertyMaps (const cPtr_astDeclaration * inObject,
+                                                     const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                     GALGAS_semanticContext & io_ioSemanticContext,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+//--- Find method
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_astDeclaration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    categoryMethodSignature_astDeclaration_buildObservablePropertyMaps f = NULL ;
+    if (classIndex < gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps.count ()) {
+      f = gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps.count ()) {
+           f = gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gCategoryMethodTable_astDeclaration_buildObservablePropertyMaps.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, constin_inUnifiedTypeMap, io_ioSemanticContext, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                             Abstract category method '@astDeclaration semanticAnalysis'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

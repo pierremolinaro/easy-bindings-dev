@@ -16,7 +16,7 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMAbstractProperty, PM
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self, model = unwrappedSelf.mModel {
-        return model.prop.count
+        return unwrappedSelf.prop.count
       }else{
         return 0
       }
@@ -326,7 +326,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
 
   private var mModel : ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%?
 
-  private var sortedArray = DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
+  var sortedArray = DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
 
   private var mSelectedSet : Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
 
