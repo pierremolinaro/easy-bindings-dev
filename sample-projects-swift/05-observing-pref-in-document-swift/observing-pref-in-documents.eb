@@ -1,0 +1,29 @@
+entity MyRootEntity {
+  property String docString default "doc string" ;
+  transient String transientConcatString dependsFrom self.docString, MyPrefs.myPrefString, MyPrefs.prefTransientString ;
+  transient String otherTransientConcatString dependsFrom MyPrefs.myPrefString ;
+}
+
+#--------------------------------------------------------------*
+
+prefs MyPrefs {
+  property String myPrefString default "pref string" ;
+  transient String prefTransientString dependsFrom self.myPrefString ;
+
+  outlet PMTextField myPrefStringTextField $value self.myPrefString {sendContinously : no} ;
+}
+
+#--------------------------------------------------------------*
+
+document MyDocument root MyRootEntity {
+  outlet PMTextField docStringTextField $value root.docString {sendContinously : yes} ;
+
+  outlet PMTextField prefStringTextField $value MyPrefs.myPrefString {sendContinously : no} ;
+
+  outlet PMReadOnlyTextField prefTransientStringTextField $readOnlyValue MyPrefs.prefTransientString ;
+
+  outlet PMReadOnlyTextField transientConcatStringTextField $readOnlyValue root.transientConcatString ;
+}
+
+#--------------------------------------------------------------*
+

@@ -1,5 +1,86 @@
 import Cocoa
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["ReadOnlyArrayOf_" + ENTITY_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ReadOnlyArrayOf_%!ENTITY_NAME% : PMAbstractProperty {
+
+  var prop : Array<%!ENTITY_NAME%> { get { return Array<%!ENTITY_NAME%> () } }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%  var mObserversOf_%!mStoredPropertyName% = Set<PMEvent> ()
+
+  func addObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_%!mStoredPropertyName%.insert (inObserver)
+    for managedObject in prop {
+      managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_%!mStoredPropertyName%.remove (inObserver)
+    for managedObject in prop {
+      managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+%
+end
+%}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["TransientArrayOf_" + ENTITY_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+
+  var computeFunction : Optional<() -> Array<%!ENTITY_NAME%>?>
+  
+  var count = PMTransientProperty_Int ()
+
+  private var prop_cache : Array<%!ENTITY_NAME%>?
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in self?.prop.count }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override var prop : Array<%!ENTITY_NAME%> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+        prop_cache = unwrappedComputeFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = Array<%!ENTITY_NAME%> ()
+      }
+      return prop_cache!
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override func postEvent () {
+    if prop_cache != nil {
+      prop_cache = nil
+      count.postEvent ()
+      super.postEvent ()
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -16,7 +97,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 //    %!["To many relationship: " + mToManyRelationshipName stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : PMAbstractProperty {
+class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
   weak var owner : %!ENTITY_NAME%?
 
   var explorer : NSPopUpButton? {
@@ -27,39 +108,39 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : PMAbstractP
     }
   }
 
- //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init () {
     super.init ()
     count.computeFunction = { [weak self] in return self?.prop.count }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func prepareForDeletion () {
-    prop = Array<%![mRelationshipType swiftTypeName]%> ()
+    mValue = Array<%![mRelationshipType swiftTypeName]%> ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var count = PMTransientProperty_Int ()
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
-  var prop : Array<%![mRelationshipType swiftTypeName]%> = Array<%![mRelationshipType swiftTypeName]%> () {
+  var mValue : Array<%![mRelationshipType swiftTypeName]%> = Array<%![mRelationshipType swiftTypeName]%> () {
     didSet {
-      if oldValue != prop {
-        mSet = Set (prop)
+      if oldValue != mValue {
+        mSet = Set (mValue)
       //--- Register old value in undo manager
         owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (prop, popUpButton:explorer!)
+          owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
         }
       //--- Removed object set
         var removedObjectSet : Set<%![mRelationshipType swiftTypeName]%> = Set (oldValue)
-        removedObjectSet.subtractInPlace (prop)
+        removedObjectSet.subtractInPlace (mValue)
         for managedObject : %![mRelationshipType swiftTypeName]% in removedObjectSet {
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
@@ -71,7 +152,7 @@ end
 %          managedObject.%!mOppositeRelationshipName%.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<%![mRelationshipType swiftTypeName]%> = Set (prop)
+        var addedObjectSet : Set<%![mRelationshipType swiftTypeName]%> = Set (mValue)
         addedObjectSet.subtractInPlace (oldValue)
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
 %for () in mDestinationEntityObservablePropertyMap do
@@ -92,58 +173,40 @@ end
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  override var prop :  Array<%![mRelationshipType swiftTypeName]%> { get { return mValue } }
+
+  func setProp (inValue :  Array<%![mRelationshipType swiftTypeName]%>) { mValue = inValue }
+
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func performUndo (oldValue : Array<%![mRelationshipType swiftTypeName]%>) {
-    prop = oldValue
+    mValue = oldValue
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (object : %![mRelationshipType swiftTypeName]%) {
     if mSet.contains (object) {
       var array = prop
       let idx = find (array, object)
       array.removeAtIndex (idx!)
-      prop = array
+      mValue = array
     }
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func add (object : %![mRelationshipType swiftTypeName]%) {
     if !mSet.contains (object) {
       var array = prop
       array.append (object)
-      prop = array
+      mValue = array
     }
   }
   
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-%
-for () in mDestinationEntityObservablePropertyMap do
-if not [mMultiplicity isCollection] then
-%
-  var mObserversOf_%!lkey.string% = Set<PMEvent> ()
-
-  func addObserverOf_%!lkey.string% (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_%!lkey.string%.insert (inObserver)
-    for managedObject in prop {
-      managedObject.%!lkey.string%.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_%!lkey.string% (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_%!lkey.string%.remove (inObserver)
-    for managedObject in prop {
-      managedObject.%!lkey.string%.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-%
-end
-end
-%  
 }
 %
 end
@@ -179,13 +242,13 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
             var array = unwrappedOldValue.%!mOppositeRelationshipName%.prop
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
-            unwrappedOldValue.%!mOppositeRelationshipName%.prop = array
+            unwrappedOldValue.%!mOppositeRelationshipName%.setProp (array)
           }
         }
       //--- Set new opposite relation ship
         if let unwrappedValue = prop {
           if !unwrappedValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
-            unwrappedValue.%!mOppositeRelationshipName%.prop.append (unwrappedOwner)
+            unwrappedValue.%!mOppositeRelationshipName%.mValue.append (unwrappedOwner)
           }
         }
 %    else
@@ -200,19 +263,19 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func performUndo (oldValue : %![mRelationshipType swiftTypeName]%?) {
     prop = oldValue
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func prepareForDeletion () {
     prop = nil
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (object : %![mRelationshipType swiftTypeName]%) {
     if prop === object {
@@ -220,7 +283,7 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
     }
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func add (object : %![mRelationshipType swiftTypeName]%) {
     prop = object
@@ -240,18 +303,18 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 end
 % {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
   %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% { get {return %!mStoredPropertyName%.prop } }\n\n%
 end
-%  //-------------------------------------------------------------------------------------------------------------------*
+%  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 %
 
@@ -260,9 +323,9 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 
 %
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Relationships                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
@@ -272,9 +335,9 @@ for () in TO_ONE_RELATIONSHIP_LIST do
   %  var %!mToOneRelationshipName% = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
 end
 %
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
@@ -316,9 +379,9 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //  prepareForDeletion                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
@@ -349,9 +412,9 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 %  }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
@@ -365,9 +428,9 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 %    %!mToOneRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mToOneRelationshipName%", ioRect: &ioRect, view: view)\n%
 end%  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    clearObjectExplorer                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func clearObjectExplorer () {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -382,9 +445,9 @@ end
 %    super.clearObjectExplorer ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    saveIntoDictionary                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
@@ -401,9 +464,9 @@ end
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    setUpWithDictionary                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
@@ -412,11 +475,11 @@ end
 %    %!mStoredPropertyName%.setProp (inDictionary.read%![mType swiftTypeName]% ("%!mStoredPropertyName%"))\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    %!mToManyRelationshipName%.prop = readEntityArrayFromDictionary (
-        "%!mToManyRelationshipName%",
-        inDictionary:inDictionary,
-        managedObjectArray:managedObjectArray
-      ) as! Array<%![mRelationshipType swiftTypeName]%>\n%
+%    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
+      "%!mToManyRelationshipName%",
+      inDictionary:inDictionary,
+      managedObjectArray:managedObjectArray
+    ) as! Array<%![mRelationshipType swiftTypeName]%>)\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then
@@ -429,9 +492,9 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //   accessibleObjects                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
@@ -448,7 +511,9 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

@@ -11,6 +11,192 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                             Function 'predefinedColors'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Function 'predefinedDates'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Function 'predefinedFonts'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset function_predefinedFonts (class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              Routine 'buildActionMap'                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
+                             class GALGAS_actionMap & outArgument1,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              Routine 'generateActions'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateActions (const class GALGAS_string constinArgument0,
+                              const class GALGAS_actionListForGeneration constinArgument1,
+                              class C_Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Filewrapper 'actionGenerationTemplate'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                          Filewrapper template 'actionGenerationTemplate actionGeneration'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class C_Compiler * inCompiler,
+                                                                             const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                             const class GALGAS_string & in_ACTION_5F_NAME
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                            Routine 'generateTransients'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTransients (const class GALGAS_string constinArgument0,
+                                 const class GALGAS_transientDefinitionListForGeneration constinArgument1,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Filewrapper 'transientManager'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Filewrapper template 'transientManager transientComputationFunctionFile'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
+                                                                                     const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                     const class GALGAS_string & in_TRANSIENT_5F_NAME,
+                                                                                     const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
+                                                                                     const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * gWrapperFileContent_0_collectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                                               const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                               const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                                               const class GALGAS_string & in_RELATIONSHIP_5F_NAME,
+                                                                                                               const class GALGAS_string & in_RELATIONSHIP_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_string & in_TABLE_5F_VIEW_5F_OUTLET_5F_NAME,
+                                                                                                               const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                               const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
+                                                                                                               const class GALGAS_filewrapper & in_FILE_5F_WRAPPER
+                                                                                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
+                                                                                         const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                         const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                         const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Category Reader '@typeKind transformerForTableViewAction'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForTableViewAction (const class GALGAS_typeKind & inObject,
+                                                                  const class GALGAS_string & constinArgument0,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                         Routine 'generateArrayControllers'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -802,6 +988,7 @@ void categoryMethod_transientSemanticAnalysis (const class GALGAS_transientList 
                                                const class GALGAS_observablePropertyMap constin_inRootObservableProperties,
                                                const class GALGAS_semanticContext constin_inSemanticContext,
                                                const class GALGAS_observablePropertyMap constin_inObservableProperties,
+                                               const class GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                class GALGAS_structForGeneration & io_ioGeneration,
                                                class GALGAS_transientDefinitionListForGeneration & out_outTransientDefinitionListForGeneration,
                                                class C_Compiler * inCompiler
@@ -851,6 +1038,8 @@ void categoryMethod_semanticAnalysis (const class GALGAS_simpleStoredPropertyLis
 //---------------------------------------------------------------------------------------------------------------------*
 
 void categoryMethod_buildArrayControllerMap (const class GALGAS_arrayControllerDeclarationListAST inObject,
+                                             const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
+                                             const class GALGAS_observablePropertyMap constin_inSelfObservablePropertyMap,
                                              class GALGAS_arrayControllerMap & out_outArrayControllerMap,
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;

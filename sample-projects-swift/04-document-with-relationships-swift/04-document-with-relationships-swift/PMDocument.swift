@@ -140,12 +140,12 @@ import Cocoa
     )
   //--- Install compute functions for transients
     evenValueString.computeFunction = {return compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop)}
-    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectionCount.prop)}
+    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectedArray.count.prop)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
     otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
-    nameController.selectionCount.addObserver (canRemoveString, postEvent:true)
+    nameController.selectedArray.count.addObserver (canRemoveString, postEvent:true)
     rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
     self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
   //--- Install regular bindings
@@ -156,8 +156,8 @@ import Cocoa
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
-      [self.nameController.selectionCount],
-      computeFunction:{ (self.nameController.selectionCount.prop > 0) },
+      [self.nameController.selectedArray.count],
+      computeFunction:{ (self.nameController.selectedArray.count.prop > 0) },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
@@ -214,7 +214,7 @@ import Cocoa
     otherController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
     otherController.sortedArray.count.removeObserver (evenValueString, postEvent:false)
-    nameController.selectionCount.removeObserver (canRemoveString, postEvent:false)
+    nameController.selectedArray.count.removeObserver (canRemoveString, postEvent:false)
     rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)
     self.rootObject.mNames.removeObserverOf_aValue (total, postEvent:false)
   //--------------------------- Remove targets / actions

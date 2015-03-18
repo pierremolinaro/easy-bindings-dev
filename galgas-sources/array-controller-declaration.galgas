@@ -81,6 +81,8 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 map @arrayControllerMap {
+  @typeKind mType
+  @propertyKind mKind
   insert insertKey error message "the '%K' array controller is already declared"
   search searchKey error message "the '%K' array controller is not declared"
 }
@@ -90,11 +92,30 @@ map @arrayControllerMap {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 method @arrayControllerDeclarationListAST buildArrayControllerMap
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @observablePropertyMap unused inSelfObservablePropertyMap
   !@arrayControllerMap outArrayControllerMap
 {
   outArrayControllerMap = {}
   for () in self do
-    [!?outArrayControllerMap insertKey !mControllerName]
+    [inRootObservablePropertyMap searchKey
+      !mRootRelationshipName
+      ?let @typeKind type
+      ?let @propertyKind kind
+      ?let @propertyMultiplicity multiplicity
+      ?*
+    ]
+    switch type
+    case boolType, colorType, dateType, doubleType, integerType, stringType :
+      error mRootRelationshipName : "this property should be a tomany relationship"
+    case enumType (* *) :
+      error mRootRelationshipName : "this property should be a tomany relationship"
+    case entityType (*) : #Ok
+    end
+    if multiplicity != .collection then
+      error mRootRelationshipName : "this property should be a tomany relationship"
+    end
+    [!?outArrayControllerMap insertKey !mControllerName !type !kind]
   end
 }
 

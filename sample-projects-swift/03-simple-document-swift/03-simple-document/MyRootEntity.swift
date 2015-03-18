@@ -1,6 +1,119 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    ReadOnlyArrayOf_MyRootEntity                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
+
+  var prop : Array<MyRootEntity> { get { return Array<MyRootEntity> () } }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  var mObserversOf_myString = Set<PMEvent> ()
+
+  func addObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myString.insert (inObserver)
+    for managedObject in prop {
+      managedObject.myString.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myString.remove (inObserver)
+    for managedObject in prop {
+      managedObject.myString.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  var mObserversOf_myEnumeration = Set<PMEvent> ()
+
+  func addObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myEnumeration.insert (inObserver)
+    for managedObject in prop {
+      managedObject.myEnumeration.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myEnumeration.remove (inObserver)
+    for managedObject in prop {
+      managedObject.myEnumeration.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  var mObserversOf_myColor = Set<PMEvent> ()
+
+  func addObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myColor.insert (inObserver)
+    for managedObject in prop {
+      managedObject.myColor.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_myColor.remove (inObserver)
+    for managedObject in prop {
+      managedObject.myColor.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    TransientArrayOf_MyRootEntity                                                                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
+
+  var computeFunction : Optional<() -> Array<MyRootEntity>?>
+  
+  var count = PMTransientProperty_Int ()
+
+  private var prop_cache : Array<MyRootEntity>?
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in self?.prop.count }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override var prop : Array<MyRootEntity> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+        prop_cache = unwrappedComputeFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = Array<MyRootEntity> ()
+      }
+      return prop_cache!
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override func postEvent () {
+    if prop_cache != nil {
+      prop_cache = nil
+      count.postEvent ()
+      super.postEvent ()
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_myString) protocol MyRootEntity_myString {
   var myString : PMStoredProperty_String { get }
@@ -25,9 +138,9 @@ import Cocoa
 
 @objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_myString, MyRootEntity_myEnumeration, MyRootEntity_myColor {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var myString = PMStoredProperty_String ("Hello")
   var myString_keyCodingValue : String { get {return myString.prop } }
@@ -38,22 +151,22 @@ import Cocoa
   var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
   var myColor_keyCodingValue : NSColor { get {return myColor.prop } }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var myStringMaj = PMTransientProperty_String ()
   var myStringMin = PMTransientProperty_String ()
   var myStringConcat = PMTransientProperty_String ()
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Relationships                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
@@ -73,9 +186,9 @@ import Cocoa
   //--- Install owner for relationships
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //  prepareForDeletion                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
@@ -95,9 +208,9 @@ import Cocoa
   //--- Reset relationships
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
@@ -106,9 +219,9 @@ import Cocoa
     myColor.explorer = createEntryForAttributeNamed ("myColor", ioRect:&ioRect, view:view)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    clearObjectExplorer                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func clearObjectExplorer () {
     myString.explorer = nil
@@ -117,9 +230,9 @@ import Cocoa
     super.clearObjectExplorer ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    saveIntoDictionary                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
@@ -128,9 +241,9 @@ import Cocoa
     ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.prop), forKey: "myColor")
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    setUpWithDictionary                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
@@ -140,15 +253,17 @@ import Cocoa
     myColor.setProp (inDictionary.readNSColor ("myColor"))
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //   accessibleObjects                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

@@ -186,6 +186,7 @@ method @observablePropertyAST analyzeObservableProperty
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservablePropertyMap
+  ?let @arrayControllerMap inArrayControllerMap
   !@typeKind outType
   !@propertyKind outKind
   !@propertyMultiplicity outMultiplicity
@@ -300,25 +301,47 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-  case controllerProperty (* @lstring propertyName) :
-    if propertyName.string == "selectionCount" then
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    [inArrayControllerMap searchKey !controllerName ?let @typeKind type ?*]
+    if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
+      outMultiplicity = .collection
+      outKind = .transient
+      outType = type
+    elsif propertyName.string == "selection" then
       outMultiplicity = .single
       outKind = .transient
-      outType = .integerType
+      outType = type
     else
       error propertyName
         : "uknown option (accepted : 'selectionCount')"
         : outMultiplicity, outKind, outType
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-  case controllerSecondaryProperty (* @lstring propertyName @lstring secondaryPropertyName) :
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    [inArrayControllerMap searchKey !controllerName ?* ?*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outMultiplicity = .single
       outKind = .transient
       outType = .integerType
+    elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .integerType
+    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "empty") then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .boolType
+    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "single") then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .boolType
+    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "multiple") then
+      outMultiplicity = .single
+      outKind = .transient
+      outType = .boolType
     else
       error propertyName
-        : "uknown option (accepted : 'sortedArray.count')"
+        : "uknown option"
         : outMultiplicity, outKind, outType
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]

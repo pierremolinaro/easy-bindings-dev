@@ -1,0 +1,36 @@
+
+enum MonEnumeration {premier, deuxieme, troisieme}
+
+#--------------------------------------------------------------*
+
+entity MyRootEntity {
+  property String myString default "Hello" ;
+  property MonEnumeration myEnumeration default deuxieme ;
+  property Color myColor default yellowColor ;
+  
+  transient String myStringMaj dependsFrom self.myString ;
+  transient String myStringMin dependsFrom self.myString ;
+  transient String myStringConcat dependsFrom self.myStringMaj, self.myStringMin ;
+}
+
+#--------------------------------------------------------------*
+
+document PMDocument root MyRootEntity {
+  outlet PMTextField myTextField $value root.myString {sendContinously : yes} ;
+
+  outlet PMReadOnlyTextField myTextMajField $readOnlyValue root.myStringMaj ;
+
+  outlet PMReadOnlyTextField myTextMinField $readOnlyValue root.myStringMin ;
+
+  outlet PMReadOnlyTextField myTextConcatField $readOnlyValue root.myStringConcat ;
+
+  outlet PMMatrix myMatrix $selectedIndex root.myEnumeration  ;
+
+  outlet PMColorWell myColorWell $color root.myColor {sendContinously : no} ;
+  
+  action monAction ;
+  action autreAction ;
+}
+
+#--------------------------------------------------------------*
+
