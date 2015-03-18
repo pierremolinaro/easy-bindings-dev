@@ -340,15 +340,15 @@ class ArrayController_PMDocument_nameController : PMObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
-  private var mModel : ToManyRelationship_MyRootEntity_mNames?
-
   var sortedArray = DataSource_PMDocument_nameController ()
+
+  var selectedArray = TransientArrayOf_NameEntity ()
 
   private var mSelectedSet : Delegate_PMDocument_nameController?
 
   private var mTableViewController : Controller_PMTableView_controller?
 
-  var selectionCount = PMTransientProperty_Int ()
+  private var mModel : ToManyRelationship_MyRootEntity_mNames?
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
@@ -356,8 +356,17 @@ class ArrayController_PMDocument_nameController : PMObject {
 
   override init () {
     super.init ()
-  //--- 'selectionCount' transient function
-    selectionCount.computeFunction = { self.mSelectedSet?.prop.count }
+    selectedArray.computeFunction = {
+      var result = Array<NameEntity> ()
+      if let selectedSet = self.mSelectedSet {
+        for object in self.sortedArray.prop {
+          if selectedSet.prop.contains (object) {
+            result.append (object)
+          }
+        }
+      }
+      return result
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -422,7 +431,7 @@ class ArrayController_PMDocument_nameController : PMObject {
     mModel?.addObserverOf_aValue (sortedArray, postEvent:true)
     sortedArray.addObserver (mTableViewController!, postEvent:true)
     sortedArray.addObserver (mSelectedSet!, postEvent:true)
-    mSelectedSet?.addObserver (selectionCount, postEvent:true)
+    mSelectedSet?.addObserver (selectedArray, postEvent:true)
   //--- Set table view delegate and data source
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (mSelectedSet)
@@ -437,8 +446,8 @@ class ArrayController_PMDocument_nameController : PMObject {
     mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
     sortedArray.removeObserver (mTableViewController!, postEvent:false)
     sortedArray.removeObserver (mSelectedSet!, postEvent:false)
-    mSelectedSet?.removeObserver (selectionCount, postEvent:false)
-    selectionCount.computeFunction = nil
+    mSelectedSet?.removeObserver (selectedArray, postEvent:false)
+    selectedArray.computeFunction = nil
     mTableViewController = nil
     mSelectedSet = nil
     mModel = nil
@@ -457,7 +466,7 @@ class ArrayController_PMDocument_nameController : PMObject {
       var newSelectedObjectSet = Set <NameEntity> ()
       newSelectedObjectSet.insert (newObject)
       selectedSet.setProp (newSelectedObjectSet)
-      model.prop = array
+      model.setProp (array)
     }
   }
 
@@ -523,7 +532,7 @@ class ArrayController_PMDocument_nameController : PMObject {
       }
       mSelectedSet?.setProp (newSelectionSet)
     //----------------------------------------- Set new object array
-      model.prop = newObjectArray
+      model.setProp (newObjectArray)
     }
   }
 

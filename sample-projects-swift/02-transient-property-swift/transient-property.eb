@@ -1,0 +1,13 @@
+prefs Prefs {
+  property String mName default "Amédée" ;
+  property String mFirstName default "Schmurtz" ;
+  transient String mFullName dependsFrom self.mName, self.mFirstName ;
+  transient String mUpperCaseFullName dependsFrom self.mFullName ;
+  outlet PMTextField mNameTextField $value self.mName {sendContinously:no} ;
+  outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
+  outlet PMReadOnlyTextField mFullNameTextField $readOnlyValue self.mFullName ;
+  outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;
+  
+  action monAction ;
+}
+

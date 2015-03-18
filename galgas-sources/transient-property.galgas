@@ -107,6 +107,7 @@ method @transientList transientSemanticAnalysis
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
+  ?let @arrayControllerMap inArrayControllerMap
   ?!@structForGeneration ioGeneration
   !@transientDefinitionListForGeneration outTransientDefinitionListForGeneration
 {
@@ -131,6 +132,7 @@ method @transientList transientSemanticAnalysis
         !inRootObservableProperties
         !inSemanticContext
         !inObservableProperties
+        !inArrayControllerMap
         ?let @typeKind unused dependencyType
         ?let @propertyKind unused dependencyKind
         ?@propertyMultiplicity outMultiplicity

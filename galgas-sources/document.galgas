@@ -131,6 +131,12 @@ override method @documentDeclaration semanticAnalysis
     !mRootEntityName
     ?let @observablePropertyMap rootObservablePropertyMap
   ]
+#--- Build array controller map
+  [mArrayControllerDeclarationList buildArrayControllerMap
+    !rootObservablePropertyMap
+    !observablePropertyMap
+    ?let @arrayControllerMap arrayControllerMap
+  ]
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList semanticAnalysis
     !mDocumentName.string
@@ -144,6 +150,7 @@ override method @documentDeclaration semanticAnalysis
     !rootObservablePropertyMap
     !inSemanticContext
     !observablePropertyMap
+    !arrayControllerMap
     !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]
@@ -154,10 +161,6 @@ override method @documentDeclaration semanticAnalysis
       !mDocumentName.string
       !lkey.string
   end
-#--- Build array controller map
-  [mArrayControllerDeclarationList buildArrayControllerMap
-    ?let @arrayControllerMap arrayControllerMap
-  ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !rootObservablePropertyMap

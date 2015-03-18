@@ -1,6 +1,101 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    ReadOnlyArrayOf_NameEntity                                                                                       *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
+
+  var prop : Array<NameEntity> { get { return Array<NameEntity> () } }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  var mObserversOf_name = Set<PMEvent> ()
+
+  func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_name.insert (inObserver)
+    for managedObject in prop {
+      managedObject.name.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_name.remove (inObserver)
+    for managedObject in prop {
+      managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  var mObserversOf_aValue = Set<PMEvent> ()
+
+  func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_aValue.insert (inObserver)
+    for managedObject in prop {
+      managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
+    mObserversOf_aValue.remove (inObserver)
+    for managedObject in prop {
+      managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    TransientArrayOf_NameEntity                                                                                      *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
+
+  var computeFunction : Optional<() -> Array<NameEntity>?>
+  
+  var count = PMTransientProperty_Int ()
+
+  private var prop_cache : Array<NameEntity>?
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in self?.prop.count }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override var prop : Array<NameEntity> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+        prop_cache = unwrappedComputeFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = Array<NameEntity> ()
+      }
+      return prop_cache!
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override func postEvent () {
+    if prop_cache != nil {
+      prop_cache = nil
+      count.postEvent ()
+      super.postEvent ()
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(NameEntity_name) protocol NameEntity_name {
   var name : PMStoredProperty_String { get }
@@ -41,13 +136,13 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
             var array = unwrappedOldValue.mNames.prop
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
-            unwrappedOldValue.mNames.prop = array
+            unwrappedOldValue.mNames.setProp (array)
           }
         }
       //--- Set new opposite relation ship
         if let unwrappedValue = prop {
           if !unwrappedValue.mNames.mSet.contains (unwrappedOwner) {
-            unwrappedValue.mNames.prop.append (unwrappedOwner)
+            unwrappedValue.mNames.mValue.append (unwrappedOwner)
           }
         }
       //--- Notify observers
@@ -56,19 +151,19 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func performUndo (oldValue : MyRootEntity?) {
     prop = oldValue
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func prepareForDeletion () {
     prop = nil
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (object : MyRootEntity) {
     if prop === object {
@@ -76,7 +171,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func add (object : MyRootEntity) {
     prop = object
@@ -90,9 +185,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
 @objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_name, NameEntity_aValue {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var name = PMStoredProperty_String ("Name")
   var name_keyCodingValue : String { get {return name.prop } }
@@ -100,20 +195,20 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   var aValue = PMStoredProperty_Int (100)
   var aValue_keyCodingValue : Int { get {return aValue.prop } }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Relationships                                                                                                  *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var mRoot = ToOneRelationship_NameEntity_mRoot ()
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
@@ -126,9 +221,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     mRoot.owner = self
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //  prepareForDeletion                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func prepareForDeletion () {
     super.prepareForDeletion ()
@@ -141,9 +236,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     mRoot.prepareForDeletion ()
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
@@ -152,9 +247,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    clearObjectExplorer                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func clearObjectExplorer () {
     name.explorer = nil
@@ -163,9 +258,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     super.clearObjectExplorer ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    saveIntoDictionary                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
@@ -173,9 +268,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     ioDictionary.setValue (NSNumber (integer:aValue.prop), forKey: "aValue")
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    setUpWithDictionary                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
@@ -184,9 +279,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     aValue.setProp (inDictionary.readInt ("aValue"))
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //   accessibleObjects                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
@@ -195,7 +290,9 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

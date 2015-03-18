@@ -130,7 +130,7 @@ proc analyzeOutlets
           !"self"
           !action.string
       else # It is a controller
-        [inArrayControllerMap searchKey !target]
+        [inArrayControllerMap searchKey !target ?2*]
         outTargetActionList += !outlet_mOutletName.string !target.string !action.string
       end
     end
@@ -142,6 +142,7 @@ proc analyzeOutlets
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
+        !inArrayControllerMap
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
         ?let @typeKind type
         ?let @location errorLocation
@@ -165,6 +166,7 @@ proc analyzeOutlets
           !inRootObservablePropertyMap
           !inSemanticContext
           !inObservablePropertyMap
+          !inArrayControllerMap
           ?@typeKind type
           ?@propertyKind kind
           ?@propertyMultiplicity multiplicity

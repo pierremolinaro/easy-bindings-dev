@@ -155,6 +155,7 @@ override method @entityDeclaration semanticAnalysis
     !{} # No root entity
     !inSemanticContext
     !observablePropertyMap
+    !{} # No array controller
     !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]

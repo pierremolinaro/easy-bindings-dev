@@ -129,6 +129,7 @@ override method @prefDeclaration semanticAnalysis
     !{} # No root entity
     !inSemanticContext
     !observablePropertyMap
+    !{} # No Array controller
     !?ioGeneration
     ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
   ]
