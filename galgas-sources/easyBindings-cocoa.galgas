@@ -2,7 +2,7 @@ gui cocoa {
   with option easyBindings_options
 
   with lexique easyBindings_lexique {
-    fileExtension: "easyBindings"
+    fileExtension: "eb"
     title: "Source"
     blockComment : "#"
   }

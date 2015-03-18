@@ -9,7 +9,7 @@
  <key>CFBundleIconFile</key>
  <string>application_icns</string>
  <key>CFBundleIdentifier</key>
- <string>fr.irccyn.easyBindings</string>
+ <string>fr.irccyn.eb</string>
  <key>CFBundleInfoDictionaryVersion</key>
  <string>6.0</string>
  <key>CFBundleName</key>
@@ -30,13 +30,13 @@
  <array>
   <dict>
    <key>CFBundleTypeIconFile</key>
-   <string>easyBindings_icns</string>
+   <string>eb_icns</string>
    <key>CFBundleTypeExtensions</key>
    <array>
-    <string>easyBindings</string>
+    <string>eb</string>
    </array>
    <key>CFBundleTypeName</key>
-   <string>easyBindings Source</string>
+   <string>eb Source</string>
    <key>CFBundleTypeOSTypes</key>
    <array>
     <string>TEXT</string>

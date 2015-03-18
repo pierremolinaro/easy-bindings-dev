@@ -2,7 +2,7 @@
 #   PROGRAM                                                                                                            *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-case . "easyBindings"
+case . "eb"
   message "a source text file with the .easyBindings extension"
   grammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile

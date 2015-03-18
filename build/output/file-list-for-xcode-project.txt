@@ -823,13 +823,13 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  531952D72E5847C4183E6910 /* easyBindings */ = {
+  531952D72E5847C4183E6910 /* eb */ = {
     isa = PBXBuildFile;
     fileRef = 279BE180185CAC7D243C5EB3 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  12DE6341FBA65B0AD0433500 /* easyBindings-debug */ = {
+  12DE6341FBA65B0AD0433500 /* eb-debug */ = {
     isa = PBXBuildFile;
     fileRef = 69CB0CBBF816BBB65D56947E ;
     settings = {ATTRIBUTES = (); };
@@ -3151,7 +3151,7 @@
     isa = PBXFileReference;
     explicitFileType = "compiled.mach-o.executable";
     includeInIndex = 0;
-    path = "easyBindings";
+    path = "eb";
     sourceTree = BUILT_PRODUCTS_DIR;
   };
 
@@ -3159,7 +3159,7 @@
     isa = PBXFileReference;
     explicitFileType = "compiled.mach-o.executable";
     includeInIndex = 0;
-    path = "easyBindings-debug";
+    path = "eb-debug";
     sourceTree = BUILT_PRODUCTS_DIR;
   };
 
@@ -3167,7 +3167,7 @@
     isa = PBXFileReference;
     explicitFileType = "compiled.mach-o.executable";
     includeInIndex = 0;
-    path = "CocoaEasyBindings";
+    path = "CocoaEb";
     sourceTree = BUILT_PRODUCTS_DIR;
   };
 
@@ -3679,7 +3679,7 @@
   };
 
   /*------------------------------------------------------------------ PBXNativeTarget */
-  6BCD6CF08C11A970FBE0E2A6 /* easyBindings tool */ = {
+  6BCD6CF08C11A970FBE0E2A6 /* eb tool */ = {
     isa = PBXNativeTarget;
     buildConfigurationList = 2F5A3230ABFADD476E8B04C9 ;
     buildPhases = (
@@ -3689,14 +3689,14 @@
     );
     dependencies = (
     );
-    name = "easyBindings tool";
+    name = "eb tool";
     productInstallPath = "$(HOME)/bin";
-    productName = "easyBindings tool";
+    productName = "eb tool";
     productReference = 279BE180185CAC7D243C5EB3 ;
     productType = "com.apple.product-type.tool";
   };
  
-  E68E51891440E4DA0B65A70C /* easyBindings tool debug */ = {
+  E68E51891440E4DA0B65A70C /* eb tool debug */ = {
     isa = PBXNativeTarget;
     buildConfigurationList = FFD51418EC58BD793F2D9B1B ;
     buildPhases = (
@@ -3706,14 +3706,14 @@
     );
     dependencies = (
     );
-    name = "easyBindings tool debug";
+    name = "eb tool debug";
     productInstallPath = "$(HOME)/bin";
-    productName = "easyBindings tool debug";
+    productName = "eb tool debug";
     productReference = 69CB0CBBF816BBB65D56947E ;
     productType = "com.apple.product-type.tool";
   };
  
-  263B9530DF88F7F002E78EA5 /* Cocoa easyBindings */ = {
+  263B9530DF88F7F002E78EA5 /* Cocoa eb */ = {
     isa = PBXNativeTarget;
     buildConfigurationList = 512D13DF5083790D64C4D5DD ;
     buildPhases = (
@@ -3727,9 +3727,9 @@
       D784977CACBFCBB00C48F133 ,
       51612ACF12457E4D67635A95 ,
     );
-    name = "Cocoa easyBindings";
+    name = "Cocoa eb";
     productInstallPath = "$(HOME)/bin";
-    productName = "Cocoa easyBindings";
+    productName = "Cocoa eb";
     productReference = D64FF53ECCFDD09AD10A15B3 ;
     productType = "com.apple.product-type.application";
   };
@@ -4081,7 +4081,7 @@
       GCC_OPTIMIZATION_LEVEL = 2 ;
       GCC_PREPROCESSOR_DEFINITIONS = (DO_NOT_GENERATE_CHECKINGS) ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
-      PRODUCT_NAME = "easyBindings" ;
+      PRODUCT_NAME = "eb" ;
     };
     name = Default;
   };
@@ -4093,7 +4093,7 @@
       GCC_GENERATE_DEBUGGING_SYMBOLS = YES ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
-      PRODUCT_NAME = "easyBindings-debug" ;
+      PRODUCT_NAME = "eb-debug" ;
     };
     name = Default;
   };
@@ -4104,7 +4104,7 @@
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       INFOPLIST_FILE = "Info.plist";
-      PRODUCT_NAME = "CocoaEasyBindings" ;
+      PRODUCT_NAME = "CocoaEb" ;
     };
     name = Default;
   };

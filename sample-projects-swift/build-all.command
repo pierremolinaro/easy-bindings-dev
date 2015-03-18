@@ -2,7 +2,7 @@
 set -x
 set -e
 cd `dirname $0`/.. &&
-galgas -v +easyBindings.galgasProject &&
+galgas -v +easy-bindings.galgasProject &&
 cd `dirname $0`/../makefile-macosx &&
 python build.py debug &&
 cd `dirname $0` &&
