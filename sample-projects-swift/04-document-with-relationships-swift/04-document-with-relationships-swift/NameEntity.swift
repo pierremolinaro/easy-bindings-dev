@@ -121,7 +121,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
  
-  var prop : MyRootEntity? = nil {
+  weak var prop : MyRootEntity? = nil {
     didSet {
       if let unwrappedOwner = owner where oldValue !== prop {
       //--- Register old value in undo manager
@@ -155,12 +155,6 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
   func performUndo (oldValue : MyRootEntity?) {
     prop = oldValue
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  
-  func prepareForDeletion () {
-    prop = nil
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -221,21 +215,6 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     mRoot.owner = self
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  prepareForDeletion                                                                                               *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func prepareForDeletion () {
-    super.prepareForDeletion ()
-  //--- Remove transients observers
-  //--- Uninstall compute functions for transients
-  //--- Uninstall undoers for properties
-    name.undoManager = nil
-    aValue.undoManager = nil
-  //--- Reset relationships
-    mRoot.prepareForDeletion ()
-  }
-  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

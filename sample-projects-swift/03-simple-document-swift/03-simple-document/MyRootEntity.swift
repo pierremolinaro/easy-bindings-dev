@@ -187,28 +187,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  prepareForDeletion                                                                                               *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func prepareForDeletion () {
-    super.prepareForDeletion ()
-  //--- Remove transients observers
-    myString.removeObserver (myStringMaj, postEvent:false)
-    myString.removeObserver (myStringMin, postEvent:false)
-    myStringMaj.removeObserver (myStringConcat, postEvent:false)
-    myStringMin.removeObserver (myStringConcat, postEvent:false)
-  //--- Uninstall compute functions for transients
-    myStringMaj.computeFunction = nil
-    myStringMin.computeFunction = nil
-    myStringConcat.computeFunction = nil
-  //--- Uninstall undoers for properties
-    myString.undoManager = nil
-    myEnumeration.undoManager = nil
-    myColor.undoManager = nil
-  //--- Reset relationships
-  }
-  
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
