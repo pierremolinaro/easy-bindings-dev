@@ -5,8 +5,6 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, PMTableViewDataSource {
-  var computeFunction : Optional<() -> [%!ELEMENT_TYPE_NAME%]?>
-
   private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? // %!MODEL_TYPE_NAME%?
   var count = PMTransientProperty_Int ()
 
@@ -39,20 +37,20 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
     let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
     if let model = mModel {
 %if [FILTER_PROPERTIES length] == 0 then
-  %        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)\n%
+  %      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)\n%
 else
-  %        var array = Array<%!ELEMENT_TYPE_NAME%> ()\n%
-  %        for object in model.prop {\n%
-  %          if arrayControllerFilter_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (%
+  %      var array = Array<%!ELEMENT_TYPE_NAME%> ()\n%
+  %      for object in model.prop {\n%
+  %        if arrayControllerFilter_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (%
                    for () in FILTER_PROPERTIES
                    do %object.%!mFilterPropertyName%.prop%
                    between %, %
                    end
                    %) {\n%
-  %            array.append (object)\n%
-  %          }\n%
+  %          array.append (object)\n%
   %        }\n%
-  %        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n%
+  %      }\n%
+  %      var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n%
 end
 %      currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)
       sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>
@@ -353,7 +351,6 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
     sortedArray.mModel = model
     let tableViewController = Controller_PMTableView_controller (
       delegate:selectedSet,
-      dataSource:sortedArray,
       tableView:tableView,
       file:file,
       line:line
