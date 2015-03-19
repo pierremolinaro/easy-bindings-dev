@@ -18,6 +18,8 @@ import Cocoa
   @IBOutlet var incrementButton : PMButton?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var mOtherTableView : PMTableView?
+  @IBOutlet var mSelectionCountTextField : PMReadOnlyTextField?
+  @IBOutlet var mSelectionTableView : PMTableView?
   @IBOutlet var removePathButton : PMButton?
   @IBOutlet var totalTextField : PMReadOnlyIntField?
 
@@ -30,6 +32,7 @@ import Cocoa
   //    Transient properties                                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
+  private var selectionCountString = PMTransientProperty_String ()
   private var evenValueString = PMTransientProperty_String ()
   private var canRemoveString = PMTransientProperty_String ()
   private var countItemMessage = PMTransientProperty_String ()
@@ -41,6 +44,7 @@ import Cocoa
 
   private var nameController = ArrayController_PMDocument_nameController ()
   private var otherController = ArrayController_PMDocument_otherController ()
+  private var selectionController = ArrayController_PMDocument_selectionController ()
 
   //-------------------------------------------------------------------------------------------------------------------*
   //    windowNibName                                                                                                  *
@@ -115,6 +119,16 @@ import Cocoa
     }else if !mOtherTableView!.isKindOfClass (PMTableView) {
       presentErrorWindow (__FILE__, __LINE__, "the 'mOtherTableView' outlet is not an instance of 'PMTableView'") ;
     }
+    if nil == mSelectionCountTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionCountTextField' outlet is nil") ;
+    }else if !mSelectionCountTextField!.isKindOfClass (PMReadOnlyTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionCountTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }
+    if nil == mSelectionTableView {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionTableView' outlet is nil") ;
+    }else if !mSelectionTableView!.isKindOfClass (PMTableView) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionTableView' outlet is not an instance of 'PMTableView'") ;
+    }
     if nil == removePathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'removePathButton' outlet is nil") ;
     }else if !removePathButton!.isKindOfClass (PMButton) {
@@ -133,22 +147,31 @@ import Cocoa
       line:__LINE__
     )
     otherController.bind_modelAndView (
-      nameController.selectedArray,
+      rootObject.mNames,
       tableView:mOtherTableView!,
       file:__FILE__,
       line:__LINE__
     )
+    selectionController.bind_modelAndView (
+      nameController.selectedArray,
+      tableView:mSelectionTableView!,
+      file:__FILE__,
+      line:__LINE__
+    )
   //--- Install compute functions for transients
+    selectionCountString.computeFunction = {return compute_PMDocument_selectionCountString (self.selectionController.sortedArray.count.prop)}
     evenValueString.computeFunction = {return compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop)}
     canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectedArray.count.prop)}
     countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
     total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
   //--- Install property observers for transients
+    selectionController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
     otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
     nameController.selectedArray.count.addObserver (canRemoveString, postEvent:true)
     rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
     self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
   //--- Install regular bindings
+    mSelectionCountTextField?.bind_readOnlyValue (self.selectionCountString, file:__FILE__, line:__LINE__)
     evenValueTextField?.bind_readOnlyValue (self.evenValueString, file:__FILE__, line:__LINE__)
     canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
     countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
@@ -192,6 +215,7 @@ import Cocoa
     undoManager?.removeAllActions ()
     undoManager = nil
   //--- Unbind regular bindings
+    mSelectionCountTextField?.unbind_readOnlyValue ()
     evenValueTextField?.unbind_readOnlyValue ()
     canRemoveTextField?.unbind_readOnlyValue ()
     countItemTextField?.unbind_readOnlyValue ()
@@ -202,6 +226,7 @@ import Cocoa
     incrementButton?.unbind_enabled ()
     decrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
+    selectionCountString.computeFunction = nil
     evenValueString.computeFunction = nil
     canRemoveString.computeFunction = nil
     countItemMessage.computeFunction = nil
@@ -209,7 +234,9 @@ import Cocoa
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
+    selectionController.unbind_modelAndView ()
   //--- Uninstall property observers for transients
+    selectionController.sortedArray.count.removeObserver (selectionCountString, postEvent:false)
     otherController.sortedArray.count.removeObserver (evenValueString, postEvent:false)
     nameController.selectedArray.count.removeObserver (canRemoveString, postEvent:false)
     rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)

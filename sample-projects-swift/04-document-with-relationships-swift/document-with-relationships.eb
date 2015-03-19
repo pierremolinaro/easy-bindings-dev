@@ -20,11 +20,19 @@ document PMDocument root MyRootEntity {
   ;
 
   outlet PMTableView mOtherTableView ;
-  arrayController otherController bind nameController.selectedArray to mOtherTableView filter aValue
-#  arrayController otherController bind root.mNames to mOtherTableView filter aValue
+  arrayController otherController bind root.mNames to mOtherTableView filter aValue
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
+
+  outlet PMTableView mSelectionTableView ;
+  arrayController selectionController bind nameController.selectedArray to mSelectionTableView
+     column "name" PMTextField name { sendContinously : no}
+     column "int"  PMNumberField aValue { sendContinously : no}
+  ;
+
+  transient String selectionCountString dependsFrom selectionController.sortedArray.count ;
+  outlet PMReadOnlyTextField mSelectionCountTextField $readOnlyValue self.selectionCountString ;
 
   transient String evenValueString dependsFrom otherController.sortedArray.count ;
   outlet PMReadOnlyTextField evenValueTextField $readOnlyValue self.evenValueString ;
