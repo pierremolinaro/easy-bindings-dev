@@ -86,7 +86,7 @@ end
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
-      rootObject.%!mToManyRelationshipName%,
+      %!mModelString%,
       tableView:%!mTableViewOutletName%!,
       file:__FILE__,
       line:__LINE__
@@ -131,11 +131,6 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      computeFunction:{ %![mBoundObjectExpression expressionString]% },\n%
   %      file:__FILE__, line:__LINE__\n%
   %    )\n%
-end
-%  //--------------------------- Array controller as observers
-%
-for () in ARRAY_CONTROLLER_LIST do
-% // §   rootObject.%!mToManyRelationshipName%.addObserver (%!mControllerName%, postEvent:true)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do

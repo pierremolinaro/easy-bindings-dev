@@ -86,7 +86,6 @@ import Cocoa
     prefTransientStringTextField?.bind_readOnlyValue (g_MyPrefs!.prefTransientString, file:__FILE__, line:__LINE__)
     transientConcatStringTextField?.bind_readOnlyValue (self.rootObject.transientConcatString, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
-  //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)

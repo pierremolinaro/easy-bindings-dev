@@ -379,10 +379,10 @@ class ArrayController_PMDocument_otherController : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (object:ToManyRelationship_MyRootEntity_mNames, tableView:PMTableView, file:String, line:Int) {
-    mModel = object
+  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableView:PMTableView, file:String, line:Int) {
+    mModel = model
     mSelectedSet = Delegate_PMDocument_otherController (tableView:tableView, model:sortedArray)
-    sortedArray.mModel = object
+    sortedArray.mModel = model
     mTableViewController = Controller_PMTableView_controller (
       delegate:mSelectedSet!,
       dataSource:sortedArray,
