@@ -45,14 +45,12 @@ import Cocoa
 
   private var mDelegate : PMTableViewDelegate
   private var mTableView : PMTableView
-  private var mDataSource : PMTableViewDataSource?
 
   //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
-  init (delegate:PMTableViewDelegate, dataSource:PMTableViewDataSource, tableView:PMTableView, file:String, line:Int) {
+  init (delegate:PMTableViewDelegate, tableView:PMTableView, file:String, line:Int) {
     mTableView = tableView
     mDelegate = delegate
-    mDataSource = dataSource
     super.init ()
   }
 

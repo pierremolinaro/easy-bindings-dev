@@ -5,8 +5,6 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
-  var computeFunction : Optional<() -> [NameEntity]?>
-
   private weak var mModel : ReadOnlyArrayOf_NameEntity? // ToManyRelationship_MyRootEntity_mNames?
   var count = PMTransientProperty_Int ()
 
@@ -38,7 +36,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
   private func filterAndSort () -> Array<NameEntity> {
     let sortedObjectArray : Array<NameEntity>
     if let model = mModel {
-        var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)
+      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)
       currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)
       sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<NameEntity>
     }else{
@@ -354,7 +352,6 @@ class ArrayController_PMDocument_nameController : PMObject {
     sortedArray.mModel = model
     let tableViewController = Controller_PMTableView_controller (
       delegate:selectedSet,
-      dataSource:sortedArray,
       tableView:tableView,
       file:file,
       line:line
