@@ -177,6 +177,7 @@ class DataSource_PMDocument_nameController : PMAbstractProperty, PMTableViewData
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_nameController
   private var mIgnoreTableViewSelectionDidChange = true
+  var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -185,6 +186,13 @@ class DataSource_PMDocument_nameController : PMAbstractProperty, PMTableViewData
     mSortedArray = model
     super.init ()
     mTableView.setDelegate (self)
+    count.computeFunction = { [weak self] in
+      if let unwrappedSelf = self {
+        return unwrappedSelf.prop.count
+      }else{
+        return 0
+      }
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -192,6 +200,7 @@ class DataSource_PMDocument_nameController : PMAbstractProperty, PMTableViewData
   override func postEvent () {
     if !mSetShouldBeComputed {
       mSetShouldBeComputed = true
+      count.postEvent ()
       super.postEvent ()
     }
   }
@@ -375,15 +384,17 @@ class ArrayController_PMDocument_nameController : PMObject {
 
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableView:PMTableView, file:String, line:Int) {
     mModel = model
-    mSelectedSet = Delegate_PMDocument_nameController (tableView:tableView, model:sortedArray)
+    let selectedSet = Delegate_PMDocument_nameController (tableView:tableView, model:sortedArray)
+    mSelectedSet = selectedSet
     sortedArray.mModel = model
-    mTableViewController = Controller_PMTableView_controller (
-      delegate:mSelectedSet!,
+    let tableViewController = Controller_PMTableView_controller (
+      delegate:selectedSet,
       dataSource:sortedArray,
       tableView:tableView,
       file:file,
       line:line
     )
+    mTableViewController = tableViewController
     tableView.allowsEmptySelection = mAllowsEmptySelection
     tableView.allowsMultipleSelection = mAllowsMultipleSelection
   //--- Check 'name' column
@@ -427,14 +438,15 @@ class ArrayController_PMDocument_nameController : PMObject {
       }
     }
   //--- Add observers
-    mModel?.addObserverOf_name (sortedArray, postEvent:true)
-    mModel?.addObserverOf_aValue (sortedArray, postEvent:true)
-    sortedArray.addObserver (mTableViewController!, postEvent:true)
-    sortedArray.addObserver (mSelectedSet!, postEvent:true)
-    mSelectedSet?.addObserver (selectedArray, postEvent:true)
+    model.addObserverOf_name (sortedArray, postEvent:true)
+    model.addObserverOf_aValue (sortedArray, postEvent:true)
+    model.addObserver (sortedArray, postEvent:true)
+    sortedArray.addObserver (tableViewController, postEvent:true)
+    sortedArray.addObserver (selectedSet, postEvent:true)
+    selectedSet.addObserver (selectedArray, postEvent:true)
   //--- Set table view delegate and data source
     tableView.setDataSource (sortedArray)
-    tableView.setDelegate (mSelectedSet)
+    tableView.setDelegate (selectedSet)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -444,6 +456,7 @@ class ArrayController_PMDocument_nameController : PMObject {
   func unbind_modelAndView () {
     mModel?.removeObserverOf_name (sortedArray, postEvent:false)
     mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
+    mModel?.removeObserver (sortedArray, postEvent:false)
     sortedArray.removeObserver (mTableViewController!, postEvent:false)
     sortedArray.removeObserver (mSelectedSet!, postEvent:false)
     mSelectedSet?.removeObserver (selectedArray, postEvent:false)
@@ -452,7 +465,8 @@ class ArrayController_PMDocument_nameController : PMObject {
     mSelectedSet = nil
     mModel = nil
   }
-  
+ 
+ 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    add                                                                                                            *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -470,9 +484,9 @@ class ArrayController_PMDocument_nameController : PMObject {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    remove                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (inSender : NSButton?) {
     if let model = mModel, selectedSet = mSelectedSet where selectedSet.prop.count > 0 {
