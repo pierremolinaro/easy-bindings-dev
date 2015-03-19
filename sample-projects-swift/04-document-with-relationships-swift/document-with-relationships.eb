@@ -20,7 +20,8 @@ document PMDocument root MyRootEntity {
   ;
 
   outlet PMTableView mOtherTableView ;
-  arrayController otherController bind root.mNames to mOtherTableView filter aValue
+  arrayController otherController bind nameController.selectedArray to mOtherTableView filter aValue
+#  arrayController otherController bind root.mNames to mOtherTableView filter aValue
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;

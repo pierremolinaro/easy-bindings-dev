@@ -13,6 +13,7 @@ list @arrayControllerBoundColumnListAST {
 
 enum @arrayControllerModel {
   case rootToManyRelationship (@lstring rootRelationshipName)
+  case controllerArray (@lstring controllerName @lstring propertyName)
 }
 
 #......................................................................................................................*
@@ -39,10 +40,18 @@ syntax extension easyBindings_syntax {
     $arrayController$
     $identifier$ ?let @lstring controllerName
     $bind$
-    $root$
-    $.$
-    $identifier$ ?let @lstring relationshipName
-    @arrayControllerModel arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
+    @arrayControllerModel arrayControllerModel
+    select
+      $root$
+      $.$
+      $identifier$ ?let @lstring relationshipName
+      arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
+    or
+      $identifier$ ?let @lstring controllerName
+      $.$
+      $identifier$ ?let @lstring propertyName
+      arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
+    end
     $to$
     $identifier$ ?let @lstring tableViewOutletName
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
@@ -107,7 +116,6 @@ method @arrayControllerDeclarationListAST buildArrayControllerMap
   for () in self do
     @typeKind type
     @propertyKind kind
-    @propertyMultiplicity multiplicity
     @location errorLocation
     switch mArrayControllerModel
     case rootToManyRelationship (@lstring relationshipName) :
@@ -116,8 +124,18 @@ method @arrayControllerDeclarationListAST buildArrayControllerMap
         !relationshipName
         ?type
         ?kind
-        ?multiplicity
+        ?let @propertyMultiplicity multiplicity
         ?*
+      ]
+      if multiplicity != .collection then
+        error errorLocation : "this property should be a tomany relationship"
+      end
+    case controllerArray (@lstring controllerName @lstring propertyName) :
+      errorLocation = propertyName.location
+      [outArrayControllerMap searchKey
+        !controllerName
+        ?type
+        ?kind
       ]
     end
     switch type
@@ -126,9 +144,6 @@ method @arrayControllerDeclarationListAST buildArrayControllerMap
     case enumType (* *) :
       error errorLocation : "this property should be a tomany relationship"
     case entityType (*) : #Ok
-    end
-    if multiplicity != .collection then
-      error errorLocation : "this property should be a tomany relationship"
     end
     [!?outArrayControllerMap insertKey !mControllerName !type !kind]
   end
@@ -143,6 +158,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
   ?let @semanticContext inSemanticContext
   ?let @decoratedOutletMap inOutletMap
   ?let @observablePropertyMap unused inObservablePropertyMap
+  ?let @arrayControllerMap inArrayControllerMap
   !@arrayControllerForGeneration outDocumentArrayControllerForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
 {
@@ -150,18 +166,34 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
   for () in self do
     @typeKind modelType
     @propertyKind kind
-    @propertyMultiplicity multiplicity
     @location errorLocation
+    @bool modelIsTransient
     switch mArrayControllerModel
     case rootToManyRelationship (@lstring relationshipName) :
       errorLocation = relationshipName.location
+      modelIsTransient = false
       [inRootObservablePropertyMap searchKey
         !relationshipName
         ?modelType
         ?kind
-        ?multiplicity
+        ?let @propertyMultiplicity multiplicity
         ?*
       ]
+    #--- Check bound model is a collection
+      if multiplicity != .collection then
+        error errorLocation : "the bound property should be a collection"
+      end
+    case controllerArray (@lstring controllerName @lstring propertyName) :
+      errorLocation = propertyName.location
+      modelIsTransient = true
+      [inArrayControllerMap searchKey
+        !controllerName
+        ?modelType
+        ?kind
+      ]
+      if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
+        error errorLocation : "'sortedArray' or 'selectedArray' are required here"
+      end
     end
   #--- Check bound model type is an entity
     @string entityName
@@ -172,10 +204,6 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case entityType (@string kEntityName) :
       entityName = kEntityName
-    end
-  #--- Check bound model is a collection
-    if multiplicity != .collection then
-      error errorLocation : "the bound property should be a collection"
     end
   #--- Check bound model is stored
     if kind == .transient then
@@ -239,8 +267,9 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       !arrayControllerFilterListForGeneration
       ![mArrayControllerModel modelString]
       !arrayControllerBoundColumnListForGeneration
-      ![mArrayControllerModel modelTypeName !inRootEntityName]
+      ![mArrayControllerModel modelTypeName !inRootEntityName !inArrayControllerMap]
       ![modelType swiftTypeName]
+      !modelIsTransient
       !mTableViewOutletName.string
   end%for
   ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
@@ -258,6 +287,7 @@ list @arrayControllerForGeneration {
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
   @string mModelTypeName
   @string mElementTypeName
+  @bool mModelIsTransient
   @string mTableViewOutletName
 }
 
@@ -267,6 +297,8 @@ getter @arrayControllerModel modelString -> @string outResult {
   switch self
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "rootObject." + rootRelationshipName
+  case controllerArray (@lstring controllerName @lstring propertyName) :
+    outResult = controllerName.string + "." + propertyName
   end
 }
 
@@ -274,11 +306,19 @@ getter @arrayControllerModel modelString -> @string outResult {
 
 getter @arrayControllerModel modelTypeName
   ?let @string inRootEntityName
+  ?let @arrayControllerMap inArrayControllerMap
    -> @string outResult
 {
   switch self
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
+  case controllerArray (@lstring controllerName *) :
+    [inArrayControllerMap searchKey
+      !controllerName
+      ?let modelType
+      ?*
+    ]
+    outResult = "TransientArrayOf_" + [modelType swiftTypeName]
   end
 }
 
@@ -345,6 +385,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string ARRAY_CONTROLLER_NAME
     ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
     ?@string MODEL_STRING
+    ?@bool MODEL_IS_TRANSIENT
     ?@string MODEL_TYPE_NAME
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
@@ -370,6 +411,7 @@ proc generateArrayControllers
       !mControllerName
       !mArrayControllerFilterListForGeneration
       !mModelString
+      !mModelIsTransient
       !mModelTypeName
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName

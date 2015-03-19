@@ -133,7 +133,7 @@ import Cocoa
       line:__LINE__
     )
     otherController.bind_modelAndView (
-      rootObject.mNames,
+      nameController.selectedArray,
       tableView:mOtherTableView!,
       file:__FILE__,
       line:__LINE__

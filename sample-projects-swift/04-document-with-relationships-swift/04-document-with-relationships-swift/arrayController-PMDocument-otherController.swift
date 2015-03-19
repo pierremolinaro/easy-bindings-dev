@@ -7,7 +7,7 @@ import Cocoa
 class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDataSource {
   var computeFunction : Optional<() -> [NameEntity]?>
 
-  private weak var mModel : ToManyRelationship_MyRootEntity_mNames?
+  private weak var mModel : TransientArrayOf_NameEntity?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -183,6 +183,7 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_otherController
   private var mIgnoreTableViewSelectionDidChange = true
+  var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -191,6 +192,13 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
     mSortedArray = model
     super.init ()
     mTableView.setDelegate (self)
+    count.computeFunction = { [weak self] in
+      if let unwrappedSelf = self {
+        return unwrappedSelf.prop.count
+      }else{
+        return 0
+      }
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -198,6 +206,7 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
   override func postEvent () {
     if !mSetShouldBeComputed {
       mSetShouldBeComputed = true
+      count.postEvent ()
       super.postEvent ()
     }
   }
@@ -354,7 +363,7 @@ class ArrayController_PMDocument_otherController : PMObject {
 
   private var mTableViewController : Controller_PMTableView_controller?
 
-  private var mModel : ToManyRelationship_MyRootEntity_mNames?
+  private var mModel : TransientArrayOf_NameEntity?
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
@@ -379,17 +388,19 @@ class ArrayController_PMDocument_otherController : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableView:PMTableView, file:String, line:Int) {
+  func bind_modelAndView (model:TransientArrayOf_NameEntity, tableView:PMTableView, file:String, line:Int) {
     mModel = model
-    mSelectedSet = Delegate_PMDocument_otherController (tableView:tableView, model:sortedArray)
+    let selectedSet = Delegate_PMDocument_otherController (tableView:tableView, model:sortedArray)
+    mSelectedSet = selectedSet
     sortedArray.mModel = model
-    mTableViewController = Controller_PMTableView_controller (
-      delegate:mSelectedSet!,
+    let tableViewController = Controller_PMTableView_controller (
+      delegate:selectedSet,
       dataSource:sortedArray,
       tableView:tableView,
       file:file,
       line:line
     )
+    mTableViewController = tableViewController
     tableView.allowsEmptySelection = mAllowsEmptySelection
     tableView.allowsMultipleSelection = mAllowsMultipleSelection
   //--- Check 'name' column
@@ -433,14 +444,15 @@ class ArrayController_PMDocument_otherController : PMObject {
       }
     }
   //--- Add observers
-    mModel?.addObserverOf_name (sortedArray, postEvent:true)
-    mModel?.addObserverOf_aValue (sortedArray, postEvent:true)
-    sortedArray.addObserver (mTableViewController!, postEvent:true)
-    sortedArray.addObserver (mSelectedSet!, postEvent:true)
-    mSelectedSet?.addObserver (selectedArray, postEvent:true)
+    model.addObserverOf_name (sortedArray, postEvent:true)
+    model.addObserverOf_aValue (sortedArray, postEvent:true)
+    model.addObserver (sortedArray, postEvent:true)
+    sortedArray.addObserver (tableViewController, postEvent:true)
+    sortedArray.addObserver (selectedSet, postEvent:true)
+    selectedSet.addObserver (selectedArray, postEvent:true)
   //--- Set table view delegate and data source
     tableView.setDataSource (sortedArray)
-    tableView.setDelegate (mSelectedSet)
+    tableView.setDelegate (selectedSet)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -450,6 +462,7 @@ class ArrayController_PMDocument_otherController : PMObject {
   func unbind_modelAndView () {
     mModel?.removeObserverOf_name (sortedArray, postEvent:false)
     mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
+    mModel?.removeObserver (sortedArray, postEvent:false)
     sortedArray.removeObserver (mTableViewController!, postEvent:false)
     sortedArray.removeObserver (mSelectedSet!, postEvent:false)
     mSelectedSet?.removeObserver (selectedArray, postEvent:false)
@@ -458,89 +471,7 @@ class ArrayController_PMDocument_otherController : PMObject {
     mSelectedSet = nil
     mModel = nil
   }
-  
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //    add                                                                                                            *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-   func add (inSender : NSButton?) {
-    if let model = mModel, owner = model.owner, undoManager = owner.undoManager (), selectedSet = mSelectedSet {
-      var newObject : NameEntity = NameEntity (undoManager:undoManager)
-      var array = model.prop
-      array.append (newObject)
-    //--- New object is the selection
-      var newSelectedObjectSet = Set <NameEntity> ()
-      newSelectedObjectSet.insert (newObject)
-      selectedSet.setProp (newSelectedObjectSet)
-      model.setProp (array)
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    remove                                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func remove (inSender : NSButton?) {
-    if let model = mModel, selectedSet = mSelectedSet where selectedSet.prop.count > 0 {
-    //------------- Find the object to be selected after selected object removing
-    //--- Dictionary of object sorted indexes
-      var sortedObjectDictionary = [NameEntity : Int] ()
-      for (index, object) in enumerate (sortedArray.prop) {
-        sortedObjectDictionary [object] = index
-      }
-      var indexArrayOfSelectedObjects = [Int] ()
-      for object in selectedSet.prop {
-        let index = sortedObjectDictionary [object]
-        if let idx = index {
-          indexArrayOfSelectedObjects.append (idx)
-        }
-      }
-    //--- Sort
-      indexArrayOfSelectedObjects.sort { $0 < $1 }
-    //--- Find the first index of a non selected object
-      var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
-      for index in indexArrayOfSelectedObjects {
-        if newSelectionIndex < index {
-          break
-        }else{
-          newSelectionIndex = index + 1
-        }
-      }
-      var newSelectedObject : NameEntity? = nil
-      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.count) {
-        newSelectedObject = sortedArray.prop [newSelectionIndex]
-      }
-    //----------------------------------------- Remove selected object
-    //--- Dictionary of object absolute indexes
-      var objectDictionary = [NameEntity : Int] ()
-      for (index, object) in enumerate (model.prop) {
-        objectDictionary [object] = index
-      }
-    //--- Build selected objects index array
-      var selectedObjectIndexArray = [Int] ()
-      for object in selectedSet.prop {
-        let index = objectDictionary [object]
-        if let idx = index {
-          selectedObjectIndexArray.append (idx)
-        }
-      }
-    //--- Sort in reverse order
-      selectedObjectIndexArray.sort { $1 < $0 }
-    //--- Remove objects, in reverse of order of their index
-      var newObjectArray = model.prop
-      for index in selectedObjectIndexArray {
-        newObjectArray.removeAtIndex (index)
-      }
-    //----------------------------------------- Set new selection
-      var newSelectionSet = Set <NameEntity> ()
-      if let object = newSelectedObject {
-        newSelectionSet.insert (object)
-      }
-      mSelectedSet?.setProp (newSelectionSet)
-    //----------------------------------------- Set new object array
-      model.setProp (newObjectArray)
-    }
-  }
+ 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
