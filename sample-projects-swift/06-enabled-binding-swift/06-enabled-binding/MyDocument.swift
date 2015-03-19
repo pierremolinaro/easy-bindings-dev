@@ -76,7 +76,6 @@ import Cocoa
       computeFunction:{ (!self.rootObject.docBool.prop && g_MyPrefs!.prefBoolean.prop) },
       file:__FILE__, line:__LINE__
     )
-  //--------------------------- Array controller as observers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)

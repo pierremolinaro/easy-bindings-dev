@@ -7,7 +7,7 @@ import Cocoa
 class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMAbstractProperty, PMTableViewDataSource {
   var computeFunction : Optional<() -> [%!ELEMENT_TYPE_NAME%]?>
 
-  private weak var mModel : ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%?
+  private weak var mModel : %!MODEL_TYPE_NAME%?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -332,7 +332,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
 
   private var mTableViewController : Controller_PMTableView_controller?
 
-  private var mModel : ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%?
+  private var mModel : %!MODEL_TYPE_NAME%?
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
@@ -357,10 +357,10 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (object:ToManyRelationship_%!RELATIONSHIP_TYPE_NAME%_%!RELATIONSHIP_NAME%, tableView:PMTableView, file:String, line:Int) {
-    mModel = object
+  func bind_modelAndView (model:%!MODEL_TYPE_NAME%, tableView:PMTableView, file:String, line:Int) {
+    mModel = model
     mSelectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (tableView:tableView, model:sortedArray)
-    sortedArray.mModel = object
+    sortedArray.mModel = model
     mTableViewController = Controller_PMTableView_controller (
       delegate:mSelectedSet!,
       dataSource:sortedArray,

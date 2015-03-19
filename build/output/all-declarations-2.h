@@ -154,13 +154,13 @@ extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGeneratio
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
                                                                                                                const class GALGAS_string & in_OWNER_5F_NAME,
                                                                                                                const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                               const class GALGAS_string & in_RELATIONSHIP_5F_NAME,
-                                                                                                               const class GALGAS_string & in_RELATIONSHIP_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_string & in_TABLE_5F_VIEW_5F_OUTLET_5F_NAME,
                                                                                                                const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_STRING,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                               const class GALGAS_filewrapper & in_FILE_5F_WRAPPER
+                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_filewrapper & in_FILE_5F_WRAPPER,
+                                                                                                               const class GALGAS_string & in_TABLE_5F_VIEW_5F_OUTLET_5F_NAME
                                                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1052,6 +1052,27 @@ void categoryMethod_arrayControllerSemanticAnalysis (const class GALGAS_arrayCon
                                                      class GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
                                                      class C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Category Reader '@arrayControllerModel modelString'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelString (const class GALGAS_arrayControllerModel & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@arrayControllerModel modelTypeName'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayControllerModel & inObject,
+                                                  const class GALGAS_string & constinArgument0,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

@@ -11,9 +11,15 @@ list @arrayControllerBoundColumnListAST {
 
 #......................................................................................................................*
 
+enum @arrayControllerModel {
+  case rootToManyRelationship (@lstring rootRelationshipName)
+}
+
+#......................................................................................................................*
+
 list @arrayControllerDeclarationListAST {
   @lstring mControllerName
-  @lstring mRootRelationshipName
+  @arrayControllerModel mArrayControllerModel
   @lstring mTableViewOutletName
   @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
@@ -36,6 +42,7 @@ syntax extension easyBindings_syntax {
     $root$
     $.$
     $identifier$ ?let @lstring relationshipName
+    @arrayControllerModel arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
     $to$
     $identifier$ ?let @lstring tableViewOutletName
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
@@ -66,7 +73,7 @@ syntax extension easyBindings_syntax {
     $;$
     ioArrayControllerDeclarationListAST +=
       !controllerName
-      !relationshipName
+      !arrayControllerModel
       !tableViewOutletName
       !filterProperties
       !arrayControllerBoundColumnListAST
@@ -98,22 +105,30 @@ method @arrayControllerDeclarationListAST buildArrayControllerMap
 {
   outArrayControllerMap = {}
   for () in self do
-    [inRootObservablePropertyMap searchKey
-      !mRootRelationshipName
-      ?let @typeKind type
-      ?let @propertyKind kind
-      ?let @propertyMultiplicity multiplicity
-      ?*
-    ]
+    @typeKind type
+    @propertyKind kind
+    @propertyMultiplicity multiplicity
+    @location errorLocation
+    switch mArrayControllerModel
+    case rootToManyRelationship (@lstring relationshipName) :
+      errorLocation = relationshipName.location
+      [inRootObservablePropertyMap searchKey
+        !relationshipName
+        ?type
+        ?kind
+        ?multiplicity
+        ?*
+      ]
+    end
     switch type
     case boolType, colorType, dateType, doubleType, integerType, stringType :
-      error mRootRelationshipName : "this property should be a tomany relationship"
+      error errorLocation : "this property should be a tomany relationship"
     case enumType (* *) :
-      error mRootRelationshipName : "this property should be a tomany relationship"
+      error errorLocation : "this property should be a tomany relationship"
     case entityType (*) : #Ok
     end
     if multiplicity != .collection then
-      error mRootRelationshipName : "this property should be a tomany relationship"
+      error errorLocation : "this property should be a tomany relationship"
     end
     [!?outArrayControllerMap insertKey !mControllerName !type !kind]
   end
@@ -133,31 +148,38 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
 {
   outDocumentArrayControllerForGeneration = {}
   for () in self do
-  #--- Check model is a tomany relationship
-    [inRootObservablePropertyMap searchKey
-      !mRootRelationshipName
-      ?let @typeKind modelType
-      ?let @propertyKind kind
-      ?let @propertyMultiplicity multiplicity
-      ?*
-    ]
+    @typeKind modelType
+    @propertyKind kind
+    @propertyMultiplicity multiplicity
+    @location errorLocation
+    switch mArrayControllerModel
+    case rootToManyRelationship (@lstring relationshipName) :
+      errorLocation = relationshipName.location
+      [inRootObservablePropertyMap searchKey
+        !relationshipName
+        ?modelType
+        ?kind
+        ?multiplicity
+        ?*
+      ]
+    end
   #--- Check bound model type is an entity
     @string entityName
     switch modelType
     case boolType, colorType, dateType, doubleType, integerType, stringType :
-      error mRootRelationshipName : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName
     case enumType (* *) :
-      error mRootRelationshipName : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName
     case entityType (@string kEntityName) :
       entityName = kEntityName
     end
   #--- Check bound model is a collection
     if multiplicity != .collection then
-      error mRootRelationshipName : "the bound property should be a collection"
+      error errorLocation : "the bound property should be a collection"
     end
   #--- Check bound model is stored
     if kind == .transient then
-      error mRootRelationshipName : "the bound property should be stored (not a transient)"
+      error errorLocation : "the bound property should be stored (not a transient)"
     end
   #--- Check outlet is a PMTableView
     [inOutletMap searchKey !mTableViewOutletName ?let outletTypeName]
@@ -209,18 +231,18 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
         error filterPropertyName : "the filter property should not be a collection"
       end
       arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
-    end
+    end%for
   #---
     outDocumentArrayControllerForGeneration +=
       !inOwnerName
       !mControllerName.string
-      !inRootEntityName
-      !mRootRelationshipName.string
+      !arrayControllerFilterListForGeneration
+      ![mArrayControllerModel modelString]
+      !arrayControllerBoundColumnListForGeneration
+      ![mArrayControllerModel modelTypeName !inRootEntityName]
       ![modelType swiftTypeName]
       !mTableViewOutletName.string
-      !arrayControllerFilterListForGeneration
-      !arrayControllerBoundColumnListForGeneration
-  end
+  end%for
   ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
 }
 
@@ -231,12 +253,33 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
 list @arrayControllerForGeneration {
   @string mOwnerName # document name, prefs name, ...
   @string mControllerName
-  @string mRelationshipTypeName
-  @string mToManyRelationshipName
+  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
+  @string mModelString
+  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+  @string mModelTypeName
   @string mElementTypeName
   @string mTableViewOutletName
-  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
-  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+}
+
+#......................................................................................................................*
+
+getter @arrayControllerModel modelString -> @string outResult {
+  switch self
+  case rootToManyRelationship (@lstring rootRelationshipName) :
+    outResult = "rootObject." + rootRelationshipName
+  end
+}
+
+#......................................................................................................................*
+
+getter @arrayControllerModel modelTypeName
+  ?let @string inRootEntityName
+   -> @string outResult
+{
+  switch self
+  case rootToManyRelationship (@lstring rootRelationshipName) :
+    outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
+  end
 }
 
 #......................................................................................................................*
@@ -300,13 +343,13 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string ARRAY_CONTROLLER_NAME
-    ?@string RELATIONSHIP_NAME
-    ?@string RELATIONSHIP_TYPE_NAME
-    ?@string ELEMENT_TYPE_NAME
-    ?@string TABLE_VIEW_OUTLET_NAME
     ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
+    ?@string MODEL_STRING
+    ?@string MODEL_TYPE_NAME
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@string ELEMENT_TYPE_NAME
     ?@filewrapper FILE_WRAPPER
+    ?@string TABLE_VIEW_OUTLET_NAME
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -325,13 +368,13 @@ proc generateArrayControllers
     let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
       !mOwnerName
       !mControllerName
-      !mToManyRelationshipName
-      !mRelationshipTypeName
-      !mElementTypeName
-      !mTableViewOutletName
       !mArrayControllerFilterListForGeneration
+      !mModelString
+      !mModelTypeName
       !mArrayControllerBoundColumnListForGeneration
+      !mElementTypeName
       ![filewrapper collectionControllerGenerationTemplate]
+      !mTableViewOutletName
     ]
     [@string generateFile
       !inOutputDirectory
