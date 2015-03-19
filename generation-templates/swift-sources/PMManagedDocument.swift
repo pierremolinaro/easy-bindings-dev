@@ -108,20 +108,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //   removeWindowController:                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  override func removeWindowController (inWindowController : NSWindowController) {
-    let managedObjectArray = reachableObjectsFromRootObject ()
-    for object in managedObjectArray {
-      let managedObject = object as! PMManagedObject
-      managedObject.prepareForDeletion ()
-    }
-    super.removeWindowController (inWindowController)
-  }
-
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //  S A V E    T O    D A T A                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -418,7 +404,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       NSLog ("Read: +%g s", timeTaken)
     }
   //--- Set root object
-    mRootObject?.prepareForDeletion ()
     mRootObject = objectArray [0]
   }
 

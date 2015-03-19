@@ -116,12 +116,6 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  
-  func prepareForDeletion () {
-    mValue = Array<%![mRelationshipType swiftTypeName]%> ()
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var count = PMTransientProperty_Int ()
 
@@ -226,7 +220,7 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
     }
   }
  
-  var prop : %![mRelationshipType swiftTypeName]%? = nil {
+  weak var prop : %![mRelationshipType swiftTypeName]%? = nil {
     didSet {
       if let unwrappedOwner = owner where oldValue !== prop {
       //--- Register old value in undo manager
@@ -267,12 +261,6 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
 
   func performUndo (oldValue : %![mRelationshipType swiftTypeName]%?) {
     prop = oldValue
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  
-  func prepareForDeletion () {
-    prop = nil
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -379,39 +367,6 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 %  }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  prepareForDeletion                                                                                               *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func prepareForDeletion () {
-    super.prepareForDeletion ()
-  //--- Remove transients observers
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%, postEvent:false)\n%
-  end
-end
-%  //--- Uninstall compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = nil\n%
-end
-%  //--- Uninstall undoers for properties
-%
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.undoManager = nil\n%
-end
-%  //--- Reset relationships
-%
-for () in TO_ONE_RELATIONSHIP_LIST do
-    %    %!mToOneRelationshipName%.prepareForDeletion ()\n%
-end
-for () in TO_MANY_RELATIONSHIP_LIST do
-    %    %!mToManyRelationshipName%.prepareForDeletion ()\n%
-end
-%  }
-  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    populateExplorerWindowWithRect                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

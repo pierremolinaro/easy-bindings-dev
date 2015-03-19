@@ -3232,4 +3232,13 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_structForGeneration ;
 
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Function 'predefinedColors'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
 #endif
