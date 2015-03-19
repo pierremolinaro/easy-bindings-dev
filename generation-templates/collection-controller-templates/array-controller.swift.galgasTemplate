@@ -4,10 +4,10 @@ import Cocoa
 //    %!["DataSource_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMAbstractProperty, PMTableViewDataSource {
+class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, PMTableViewDataSource {
   var computeFunction : Optional<() -> [%!ELEMENT_TYPE_NAME%]?>
 
-  private weak var mModel : %!MODEL_TYPE_NAME%?
+  private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? // %!MODEL_TYPE_NAME%?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -68,7 +68,7 @@ end
 
   var prop_cache : Optional <Array<%!ELEMENT_TYPE_NAME%> >
 
-  var prop : Array<%!ELEMENT_TYPE_NAME%> {
+  override var prop : Array<%!ELEMENT_TYPE_NAME%> {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -134,30 +134,10 @@ end
     // NSLog ("\%@ (\%ld objects)", __FUNCTION__, prop.count)
     return prop.count
   }
-%
-for () in BOUND_COLUMNS do
-%
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  var mObserversOf_%!mObservablePropertyName% = Set<PMEvent> ()
-
-  func addObserverOf_%!mObservablePropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_%!mObservablePropertyName%.insert (inObserver)
-    for managedObject in prop {
-      managedObject.%!mObservablePropertyName%.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_%!mObservablePropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_%!mObservablePropertyName%.remove (inObserver)
-    for managedObject in prop {
-      managedObject.%!mObservablePropertyName%.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-%
-end
-%}
+}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["Delegate_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
@@ -341,7 +321,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
 
   private var mTableViewController : Controller_PMTableView_controller?
 
-  private var mModel : %!MODEL_TYPE_NAME%?
+  private var mModel : %!MODEL_TYPE_NAME_2%?
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
@@ -366,7 +346,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (model:%!MODEL_TYPE_NAME%, tableView:PMTableView, file:String, line:Int) {
+  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableView:PMTableView, file:String, line:Int) {
     mModel = model
     let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (tableView:tableView, model:sortedArray)
     mSelectedSet = selectedSet

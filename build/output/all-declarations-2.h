@@ -472,6 +472,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
                                                                                                                const class GALGAS_string & in_MODEL_5F_STRING,
                                                                                                                const class GALGAS_bool & in_MODEL_5F_IS_5F_TRANSIENT,
                                                                                                                const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
                                                                                                                const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
                                                                                                                const class GALGAS_filewrapper & in_FILE_5F_WRAPPER,
@@ -1390,6 +1391,18 @@ class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayContro
                                                   const class GALGAS_arrayControllerMap & constinArgument1,
                                                   class C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category Reader '@arrayControllerModel modelTypeName2'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
+                                                      const class GALGAS_string & constinArgument0,
+                                                      const class GALGAS_arrayControllerMap & constinArgument1,
+                                                      class C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
