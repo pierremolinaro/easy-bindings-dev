@@ -4,10 +4,10 @@ import Cocoa
 //    DataSource_PMDocument_otherController                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDataSource {
+class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
   var computeFunction : Optional<() -> [NameEntity]?>
 
-  private weak var mModel : ToManyRelationship_MyRootEntity_mNames?
+  private weak var mModel : ReadOnlyArrayOf_NameEntity? // ToManyRelationship_MyRootEntity_mNames?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -59,7 +59,7 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
 
   var prop_cache : Optional <Array<NameEntity> >
 
-  var prop : Array<NameEntity> {
+  override var prop : Array<NameEntity> {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -135,41 +135,6 @@ class DataSource_PMDocument_otherController : PMAbstractProperty, PMTableViewDat
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  var mObserversOf_name = Set<PMEvent> ()
-
-  func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_name.insert (inObserver)
-    for managedObject in prop {
-      managedObject.name.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_name.remove (inObserver)
-    for managedObject in prop {
-      managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  var mObserversOf_aValue = Set<PMEvent> ()
-
-  func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_aValue.insert (inObserver)
-    for managedObject in prop {
-      managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_aValue.remove (inObserver)
-    for managedObject in prop {
-      managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
 
 }
 

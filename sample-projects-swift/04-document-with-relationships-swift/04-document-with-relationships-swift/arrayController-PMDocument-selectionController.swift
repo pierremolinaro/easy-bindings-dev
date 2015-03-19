@@ -4,10 +4,10 @@ import Cocoa
 //    DataSource_PMDocument_selectionController                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_selectionController : PMAbstractProperty, PMTableViewDataSource {
+class DataSource_PMDocument_selectionController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
   var computeFunction : Optional<() -> [NameEntity]?>
 
-  private weak var mModel : TransientArrayOf_NameEntity?
+  private weak var mModel : ReadOnlyArrayOf_NameEntity? // TransientArrayOf_NameEntity?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -53,7 +53,7 @@ class DataSource_PMDocument_selectionController : PMAbstractProperty, PMTableVie
 
   var prop_cache : Optional <Array<NameEntity> >
 
-  var prop : Array<NameEntity> {
+  override var prop : Array<NameEntity> {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -129,41 +129,6 @@ class DataSource_PMDocument_selectionController : PMAbstractProperty, PMTableVie
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  var mObserversOf_name = Set<PMEvent> ()
-
-  func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_name.insert (inObserver)
-    for managedObject in prop {
-      managedObject.name.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_name.remove (inObserver)
-    for managedObject in prop {
-      managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  var mObserversOf_aValue = Set<PMEvent> ()
-
-  func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_aValue.insert (inObserver)
-    for managedObject in prop {
-      managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
-    }
-  }
-
-  func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
-    mObserversOf_aValue.remove (inObserver)
-    for managedObject in prop {
-      managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
-    }
-  }
 
 }
 
@@ -357,7 +322,7 @@ class ArrayController_PMDocument_selectionController : PMObject {
 
   private var mTableViewController : Controller_PMTableView_controller?
 
-  private var mModel : TransientArrayOf_NameEntity?
+  private var mModel : ReadOnlyArrayOf_NameEntity?
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
@@ -382,7 +347,7 @@ class ArrayController_PMDocument_selectionController : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (model:TransientArrayOf_NameEntity, tableView:PMTableView, file:String, line:Int) {
+  func bind_modelAndView (model:ReadOnlyArrayOf_NameEntity, tableView:PMTableView, file:String, line:Int) {
     mModel = model
     let selectedSet = Delegate_PMDocument_selectionController (tableView:tableView, model:sortedArray)
     mSelectedSet = selectedSet

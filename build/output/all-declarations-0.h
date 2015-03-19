@@ -7471,8 +7471,9 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_string & in_mModelString,
                                                   const class GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
                                                   const class GALGAS_string & in_mModelTypeName,
-                                                  const class GALGAS_string & in_mElementTypeName,
+                                                  const class GALGAS_string & in_mModelTypeName_32_,
                                                   const class GALGAS_bool & in_mModelIsTransient,
+                                                  const class GALGAS_string & in_mElementTypeName,
                                                   const class GALGAS_string & in_mTableViewOutletName
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -7497,7 +7498,8 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                                                  const class GALGAS_string & inOperand5,
                                                                                  const class GALGAS_string & inOperand6,
                                                                                  const class GALGAS_bool & inOperand7,
-                                                                                 const class GALGAS_string & inOperand8
+                                                                                 const class GALGAS_string & inOperand8,
+                                                                                 const class GALGAS_string & inOperand9
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -7513,7 +7515,8 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_string & inOperand5,
                                                       const class GALGAS_string & inOperand6,
                                                       const class GALGAS_bool & inOperand7,
-                                                      const class GALGAS_string & inOperand8
+                                                      const class GALGAS_string & inOperand8,
+                                                      const class GALGAS_string & inOperand9
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration operator_concat (const GALGAS_arrayControllerForGeneration & inOperand
@@ -7535,7 +7538,8 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_string constinArgument6,
                                                          class GALGAS_bool constinArgument7,
                                                          class GALGAS_string constinArgument8,
-                                                         class GALGAS_uint constinArgument9,
+                                                         class GALGAS_string constinArgument9,
+                                                         class GALGAS_uint constinArgument10,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -7548,6 +7552,7 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                     class GALGAS_string & outArgument6,
                                                     class GALGAS_bool & outArgument7,
                                                     class GALGAS_string & outArgument8,
+                                                    class GALGAS_string & outArgument9,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -7560,6 +7565,7 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                    class GALGAS_string & outArgument6,
                                                    class GALGAS_bool & outArgument7,
                                                    class GALGAS_string & outArgument8,
+                                                   class GALGAS_string & outArgument9,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -7572,7 +7578,8 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_string & outArgument6,
                                                          class GALGAS_bool & outArgument7,
                                                          class GALGAS_string & outArgument8,
-                                                         class GALGAS_uint constinArgument9,
+                                                         class GALGAS_string & outArgument9,
+                                                         class GALGAS_uint constinArgument10,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -7587,6 +7594,7 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                class GALGAS_string & outArgument6,
                                                class GALGAS_bool & outArgument7,
                                                class GALGAS_string & outArgument8,
+                                               class GALGAS_string & outArgument9,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -7599,6 +7607,7 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                               class GALGAS_string & outArgument6,
                                               class GALGAS_bool & outArgument7,
                                               class GALGAS_string & outArgument8,
+                                              class GALGAS_string & outArgument9,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -7628,6 +7637,10 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelStringAtIndex (const class GALGAS_uint & constinOperand0,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeName_32_AtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                               C_Compiler * inCompiler
@@ -7673,8 +7686,9 @@ class cEnumerator_arrayControllerForGeneration : public cGenericAbstractEnumerat
   public : class GALGAS_string current_mModelString (LOCATION_ARGS) const ;
   public : class GALGAS_arrayControllerBoundColumnListForGeneration current_mArrayControllerBoundColumnListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mModelTypeName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mElementTypeName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mModelTypeName_32_ (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mModelIsTransient (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mElementTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mTableViewOutletName (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_arrayControllerForGeneration_2D_element current (LOCATION_ARGS) const ;
@@ -9606,8 +9620,9 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_string mAttribute_mModelString ;
   public : GALGAS_arrayControllerBoundColumnListForGeneration mAttribute_mArrayControllerBoundColumnListForGeneration ;
   public : GALGAS_string mAttribute_mModelTypeName ;
-  public : GALGAS_string mAttribute_mElementTypeName ;
+  public : GALGAS_string mAttribute_mModelTypeName_32_ ;
   public : GALGAS_bool mAttribute_mModelIsTransient ;
+  public : GALGAS_string mAttribute_mElementTypeName ;
   public : GALGAS_string mAttribute_mTableViewOutletName ;
 
 
@@ -9631,8 +9646,9 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                            const GALGAS_string & in_mModelString,
                                                            const GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
                                                            const GALGAS_string & in_mModelTypeName,
-                                                           const GALGAS_string & in_mElementTypeName,
+                                                           const GALGAS_string & in_mModelTypeName_32_,
                                                            const GALGAS_bool & in_mModelIsTransient,
+                                                           const GALGAS_string & in_mElementTypeName,
                                                            const GALGAS_string & in_mTableViewOutletName) ;
 
 //-- Start of generic part --*
@@ -9654,7 +9670,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                                                   const class GALGAS_string & inOperand5,
                                                                                   const class GALGAS_string & inOperand6,
                                                                                   const class GALGAS_bool & inOperand7,
-                                                                                  const class GALGAS_string & inOperand8
+                                                                                  const class GALGAS_string & inOperand8,
+                                                                                  const class GALGAS_string & inOperand9
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -9682,6 +9699,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelString (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeName_32_ (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mOwnerName (LOCATION_ARGS) const ;
 

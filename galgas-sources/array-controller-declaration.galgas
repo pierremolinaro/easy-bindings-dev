@@ -268,8 +268,9 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       ![mArrayControllerModel modelString]
       !arrayControllerBoundColumnListForGeneration
       ![mArrayControllerModel modelTypeName !inRootEntityName !inArrayControllerMap]
-      ![modelType swiftTypeName]
+      ![mArrayControllerModel modelTypeName2 !inRootEntityName !inArrayControllerMap]
       !modelIsTransient
+      ![modelType swiftTypeName]
       !mTableViewOutletName.string
   end%for
   ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
@@ -286,8 +287,9 @@ list @arrayControllerForGeneration {
   @string mModelString
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
   @string mModelTypeName
-  @string mElementTypeName
+  @string mModelTypeName2
   @bool mModelIsTransient
+  @string mElementTypeName
   @string mTableViewOutletName
 }
 
@@ -318,7 +320,27 @@ getter @arrayControllerModel modelTypeName
       ?let modelType
       ?*
     ]
-    outResult = "TransientArrayOf_" + [modelType swiftTypeName]
+    outResult = "TransientArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
+  end
+}
+
+#......................................................................................................................*
+
+getter @arrayControllerModel modelTypeName2
+  ?let @string inRootEntityName
+  ?let @arrayControllerMap inArrayControllerMap
+   -> @string outResult
+{
+  switch self
+  case rootToManyRelationship (@lstring rootRelationshipName) :
+    outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
+  case controllerArray (@lstring controllerName *) :
+    [inArrayControllerMap searchKey
+      !controllerName
+      ?let modelType
+      ?*
+    ]
+    outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   end
 }
 
@@ -387,6 +409,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string MODEL_STRING
     ?@bool MODEL_IS_TRANSIENT
     ?@string MODEL_TYPE_NAME
+    ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@filewrapper FILE_WRAPPER
@@ -413,6 +436,7 @@ proc generateArrayControllers
       !mModelString
       !mModelIsTransient
       !mModelTypeName
+      !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName
       ![filewrapper collectionControllerGenerationTemplate]
