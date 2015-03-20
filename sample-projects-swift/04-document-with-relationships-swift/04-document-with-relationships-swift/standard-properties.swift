@@ -1,6 +1,42 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMSelectionKind                                                                                                   *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum PMSelectionKind {
+  case noSelection
+  case singleSelection
+  case multipleSelection
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func & (left : PMSelectionKind, right : PMSelectionKind) -> PMSelectionKind {
+  switch left {
+  case .noSelection :
+    return .noSelection
+  case .singleSelection :
+    return right
+  case .multipleSelection :
+    return (right == .noSelection) ? .noSelection : .multipleSelection
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func &= (receiver : PMSelectionKind, operand : PMSelectionKind) -> PMSelectionKind {
+  switch receiver {
+  case .noSelection :
+    return .noSelection
+  case .singleSelection :
+    return operand
+  case .multipleSelection :
+    return (operand == .noSelection) ? .noSelection : .multipleSelection
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMReadOnlyEnumPropertyProtocol                                                                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -20,7 +56,6 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMEnumPropertyProtocol) protocol PMEnumPropertyProtocol : PMReadOnlyEnumPropertyProtocol {
-
   func setFromRawValue (rawValue : Int)
 }
 
@@ -58,15 +93,78 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_String : PMAbstractProperty {
+  var prop : (String, PMSelectionKind) { get { return ("", .singleSelection) } } // Abstract method
+}
 
-  var prop : String { get { return "" } } // Abstract method
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadWriteProperty_String                                                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadWriteProperty_String : PMReadOnlyProperty_String {
+  func setProp (inValue : String) { } // Abstract method
+  func validateAndSetProp (candidateValue : String, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMPropertyProxy_String                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMPropertyProxy_String : PMReadWriteProperty_String {
+  var readModelFunction : Optional < () -> (String, PMSelectionKind) >
+  var writeModelFunction : Optional < (String) -> Void >
+  var validateAndWriteModelFunction : Optional < (String, NSWindow?) -> Bool >
+  
+  private var prop_cache : (String, PMSelectionKind)?
+  
+  override init () {
+    super.init ()
+  }
+  
+  override func postEvent() {
+    if prop_cache != nil {
+      prop_cache = nil
+      super.postEvent()
+    }
+  }
+
+  override var prop : (String, PMSelectionKind) {
+    get {
+      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+        prop_cache = unReadModelFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = ("", .noSelection)
+      }
+      return prop_cache!
+    }
+  }
+
+  
+  override func setProp (inValue : String) {
+    if let unWriteModelFunction = writeModelFunction {
+      unWriteModelFunction (inValue)
+    }
+  }
+
+  override func validateAndSetProp (candidateValue : String,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = false
+    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
+      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
+    }
+    return result
+  }
+  
+  
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMStoredProperty_String                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_String : PMReadOnlyProperty_String {
+class PMStoredProperty_String : PMReadWriteProperty_String {
   weak var undoManager : NSUndoManager?
   
   var explorer : NSTextField? {
@@ -94,24 +192,25 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
     mValue = oldValue
   }
   
-  override var prop :  String { get { return mValue } }
+  override var prop : (String, PMSelectionKind) { get { return (mValue, .singleSelection) } }
 
-  func setProp (inValue : String) { mValue = inValue }
+  override func setProp (inValue : String) { mValue = inValue }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (String) -> PMValidationResult = defaultValidationFunction
 
-  func validateAndSetProp (candidateValue : String,
-                           windowForSheet inWindow:NSWindow?,
-                           discardFunction : () -> Void) {
+  override func validateAndSetProp (candidateValue : String,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
     let validationResult = validationFunction (candidateValue)
+    var result = true
     switch validationResult {
     case PMValidationResult.ok :
       setProp (candidateValue)
     case PMValidationResult.rejectWithBeep :
       NSBeep ()
     case PMValidationResult.rejectWithAlert (let informativeText) :
+      result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
       alert.informativeText = informativeText
@@ -120,16 +219,14 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
       if let window = inWindow {
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            discardFunction ()
-       //   object.name.removeObserver(self.eventModelChange, postEvent:false)
-       //   object.name.setProp (sender.stringValue)
-       //   object.name.addObserver (self.eventModelChange, postEvent:false)
+            self.postEvent ()
           }
         })
       }else{
         alert.runModal ()
       }
     }
+    return result
   }
   
 }
@@ -139,20 +236,20 @@ class PMStoredProperty_String : PMReadOnlyProperty_String {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_String : PMReadOnlyProperty_String {
-  private var mValueCache : String? = nil
-  var computeFunction : Optional<() -> String?>
+  private var mValueCache : (String, PMSelectionKind)? = nil
+  var computeFunction : Optional<() -> (String, PMSelectionKind)>
 
   override init () {
     super.init ()
   }
 
-  override var prop : String {
+  override var prop : (String, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
-        mValueCache = ""
+        mValueCache = ("", .noSelection)
       }
       return mValueCache!
     }
@@ -171,7 +268,7 @@ class PMTransientProperty_String : PMReadOnlyProperty_String {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_NSColor : PMAbstractProperty {
-  var prop : NSColor { get { return NSColor.blackColor () } } // Abstract method
+  var prop : (NSColor, PMSelectionKind) { get { return (NSColor.blackColor (), .noSelection) } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -206,7 +303,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
     mValue = oldValue
   }
 
-  override var prop :  NSColor { get { return mValue } }
+  override var prop :  (NSColor, PMSelectionKind) { get { return (mValue, .singleSelection) } }
 
   func setProp (inValue : NSColor) { mValue = inValue }
 
@@ -225,20 +322,20 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
-  private var mValueCache : NSColor? = nil
-  var computeFunction : Optional<() -> NSColor?>
+  private var mValueCache : (NSColor, PMSelectionKind)? = nil
+  var computeFunction : Optional<() -> (NSColor, PMSelectionKind)>
   
   override init () {
     super.init ()
   }
 
-  override var prop : NSColor {
+  override var prop : (NSColor, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
-        mValueCache = NSColor.blackColor ()
+        mValueCache = (NSColor.blackColor (), .noSelection)
       }
       return mValueCache!
     }
@@ -257,7 +354,7 @@ class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_NSDate : PMAbstractProperty {
-  var prop : NSDate { get { return NSDate () } } // Abstract method
+  var prop : (NSDate, PMSelectionKind) { get { return (NSDate (), .noSelection) } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -292,7 +389,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
     mValue = oldValue
   }
 
-  override var prop :  NSDate { get { return mValue } }
+  override var prop : (NSDate, PMSelectionKind) { get { return (mValue, .singleSelection) } }
 
   func setProp (inValue : NSDate) { mValue = inValue }
 
@@ -311,20 +408,20 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
-  private var mValueCache : NSDate? = nil
-  var computeFunction : Optional<() -> NSDate?>
+  private var mValueCache : (NSDate, PMSelectionKind)? = nil
+  var computeFunction : Optional<() -> (NSDate, PMSelectionKind)>
   
   override init () {
     super.init ()
   }
 
-  override var prop : NSDate {
+  override var prop : (NSDate, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
-        mValueCache = NSDate ()
+        mValueCache = (NSDate (), .noSelection)
       }
       return mValueCache!
     }
@@ -343,7 +440,7 @@ class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_Int : PMAbstractProperty {
-  var prop : Int { get { return 0 } } // Abstract method
+  var prop : (Int, PMSelectionKind) { get { return (0, .noSelection) } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -378,7 +475,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
     mValue = oldValue.integerValue
   }
 
-  override var prop :  Int { get { return mValue } }
+  override var prop : (Int, PMSelectionKind) { get { return (mValue, .singleSelection) } }
 
   func setProp (inValue : Int) { mValue = inValue }
 
@@ -387,8 +484,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
   var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction
   
   func validateAndSetProp (candidateValue : Int,
-                           windowForSheet inWindow:NSWindow?,
-                           discardFunction : () -> Void) {
+                           windowForSheet inWindow:NSWindow?) {
     let validationResult = validationFunction (candidateValue)
     switch validationResult {
     case PMValidationResult.ok :
@@ -404,10 +500,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
       if let window = inWindow {
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            discardFunction ()
-       //   object.name.removeObserver(self.eventModelChange, postEvent:false)
-       //   object.name.setProp (sender.stringValue)
-       //   object.name.addObserver (self.eventModelChange, postEvent:false)
+            self.postEvent ()
           }
         })
       }else{
@@ -423,20 +516,20 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_Int : PMReadOnlyProperty_Int {
-  private var mValueCache : Int? = nil
-  var computeFunction : Optional<() -> Int?>
+  private var mValueCache : (Int, PMSelectionKind)? = nil
+  var computeFunction : Optional<() -> (Int, PMSelectionKind)>
   
   override init () {
     super.init ()
   }
 
-  override var prop : Int {
+  override var prop : (Int, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
-        mValueCache = 0
+        mValueCache = (0, .noSelection)
       }
       return mValueCache!
     }
@@ -455,7 +548,7 @@ class PMTransientProperty_Int : PMReadOnlyProperty_Int {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_Bool : PMAbstractProperty {
-  var prop : Bool { get { return false } } // Abstract method
+  var prop : (Bool, PMSelectionKind) { get { return (false, .noSelection) } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -490,7 +583,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
     mValue = oldValue
   }
 
-  override var prop :  Bool { get { return mValue } }
+  override var prop : (Bool, PMSelectionKind) { get { return (mValue, .singleSelection) } }
 
   func setProp (inValue : Bool) { mValue = inValue }
 
@@ -509,20 +602,20 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
-  private var mValueCache : Bool? = nil
-  var computeFunction : Optional<() -> Bool?>
+  private var mValueCache : (Bool, PMSelectionKind)? = nil
+  var computeFunction : Optional<() -> (Bool, PMSelectionKind)>
   
   override init () {
     super.init ()
   }
 
-  override var prop : Bool {
+  override var prop : (Bool, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
-        mValueCache = false
+        mValueCache = (false, .noSelection)
       }
       return mValueCache!
     }

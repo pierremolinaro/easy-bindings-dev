@@ -67,14 +67,24 @@ class Controller_PMColorWell_color : PMOutletEvent {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if mOutlet.color != mObject.prop {
-      mOutlet.color = mObject.prop
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection :
+      mOutlet.enableFromValue (true)
+      mOutlet.color = mObject.prop.0
+    case .multipleSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "Multiple Selection"
     }
+    mOutlet.updateEnabledState()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -98,7 +108,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.color = self.mObject.prop
+            self.mOutlet.color = self.mObject.prop.0
           }
         })
       }

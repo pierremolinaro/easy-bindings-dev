@@ -5,7 +5,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, PMTableViewDataSource {
-  private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? // %!MODEL_TYPE_NAME%?
+  private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -14,9 +14,9 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self, model = unwrappedSelf.mModel {
-        return unwrappedSelf.prop.count
+        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)
       }else{
-        return 0
+        return (0, .noSelection)
       }
     }
   }
@@ -33,44 +33,56 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private func filterAndSort () -> Array<%!ELEMENT_TYPE_NAME%> {
+  private func filterAndSort () -> (Array<%!ELEMENT_TYPE_NAME%>, PMSelectionKind) {
     let sortedObjectArray : Array<%!ELEMENT_TYPE_NAME%>
+    var selection = PMSelectionKind.singleSelection
     if let model = mModel {
+      selection = model.prop.1
 %if [FILTER_PROPERTIES length] == 0 then
-  %      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop)\n%
+  %      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop.0)\n%
+  %      currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n%
+  %      sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>\n%
 else
   %      var array = Array<%!ELEMENT_TYPE_NAME%> ()\n%
-  %      for object in model.prop {\n%
+  %      for object in model.prop.0 {\n%
+   for () in FILTER_PROPERTIES
+   do %        selection &= object.%!mFilterPropertyName%.prop.1\n%
+   end
   %        if arrayControllerFilter_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (%
                    for () in FILTER_PROPERTIES
-                   do %object.%!mFilterPropertyName%.prop%
+                   do %object.%!mFilterPropertyName%.prop.0%
                    between %, %
                    end
                    %) {\n%
   %          array.append (object)\n%
   %        }\n%
   %      }\n%
-  %      var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n%
+  %      if selection == .singleSelection {\n%
+  %        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n%
+  %        currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n%
+  %        sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>\n%
+  %      }else{\n%
+  %        sortedObjectArray = Array<%!ELEMENT_TYPE_NAME%> ()\n%
+  %      }\n%  
 end
-%      currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)
-      sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>
-    }else{
+%    }else{
       sortedObjectArray = Array<%!ELEMENT_TYPE_NAME%> ()
+      selection = .noSelection
     }
-    return sortedObjectArray
+    return (sortedObjectArray, selection)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
 
-  var prop_cache : Optional <Array<%!ELEMENT_TYPE_NAME%> >
+  var prop_cache : Optional < (Array<%!ELEMENT_TYPE_NAME%>, PMSelectionKind) >
 
-  override var prop : Array<%!ELEMENT_TYPE_NAME%> {
+  override var prop : (Array<%!ELEMENT_TYPE_NAME%>, PMSelectionKind) {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
-        let newObjectSet = Set<%!ELEMENT_TYPE_NAME%> (prop_cache!)
+        let newObjectSet = Set<%!ELEMENT_TYPE_NAME%> (prop_cache!.0)
         if mSet != newObjectSet {
         //--- Removed object set
           var removedObjectSet = mSet
@@ -130,7 +142,7 @@ end
 
   func numberOfRowsInTableView (NSTableView) -> Int {
     // NSLog ("\%@ (\%ld objects)", __FUNCTION__, prop.count)
-    return prop.count
+    return prop.0.count
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -155,9 +167,9 @@ end
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self {
-        return unwrappedSelf.prop.count
+        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)
       }else{
-        return 0
+        return (0, .noSelection)
       }
     }
   }
@@ -174,19 +186,19 @@ end
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
-  var prop : Set<%!ELEMENT_TYPE_NAME%> {
+  var prop : (Set<%!ELEMENT_TYPE_NAME%>, PMSelectionKind) {
     get {
       if mSetShouldBeComputed {
         mSetShouldBeComputed = false
         // NSLog ("mSet \%d", mSet.count)
-        mSet.intersectInPlace (mSortedArray.prop)
+        mSet.intersectInPlace (mSortedArray.prop.0)
         // NSLog ("mSet \%d", mSet.count)
-        if (mSet.count == 0) && (mSortedArray.prop.count > 0) {
-          mSet.insert (mSortedArray.prop [0])
+        if (mSet.count == 0) && (mSortedArray.prop.0.count > 0) {
+          mSet.insert (mSortedArray.prop.0 [0])
         }
       //--- DEBUG :Dictionary of object indexes
         /* var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-        for (index, object) in enumerate (mSortedArray.prop) {
+        for (index, object) in enumerate (mSortedArray.prop.0) {
           objectDictionary [object] = index
         }
         for object in mSet {
@@ -196,7 +208,7 @@ end
         } */
       //--- DEBUG end
       }
-      return mSet
+      return (mSet, mSortedArray.prop.1)
     }
   }
 
@@ -210,15 +222,17 @@ end
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func selectedObjectIndexSet () -> NSIndexSet {
-  //--- Dictionary of object indexes
-    var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-    for (index, object) in enumerate (mSortedArray.prop) {
-      objectDictionary [object] = index
-    }
     var indexSet = NSMutableIndexSet ()
-    for object in prop {
-      if let index = objectDictionary [object] {
-        indexSet.addIndex (index)
+    if mSortedArray.prop.1 == .singleSelection {
+    //--- Dictionary of object indexes
+      var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+      for (index, object) in enumerate (mSortedArray.prop.0) {
+        objectDictionary [object] = index
+      }
+      for object in prop.0 {
+        if let index = objectDictionary [object] {
+          indexSet.addIndex (index)
+        }
       }
     }
     return indexSet
@@ -234,7 +248,7 @@ end
       let tableView = notication.object as! PMTableView
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
       for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (mSortedArray.prop.objectAtIndex (index, file: __FILE__, line: __LINE__))
+        newSelectedObjectSet.insert (mSortedArray.prop.0.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
       setProp (newSelectedObjectSet)
     }
@@ -251,23 +265,19 @@ end
     let columnIdentifier = inTableColumn!.identifier
     var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
     result.textField?.tag = inRowIndex
-    let object = mSortedArray.prop.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
-    if columnIdentifier == "name" {
-    //--- From cell-String-PMTextField.txt file
-      result.textField?.stringValue = object.name.prop
-      result.textField?.target = self
-      result.textField?.action = "set_name_Action:"
-      let tf : PMTextField = result.textField as! PMTextField
-    //--- End
-    }else if columnIdentifier == "int" {
-    //--- From cell-Int-PMNumberField.txt file
-      let tf : PMNumberField = result.textField as! PMNumberField
-      tf.myIntegerValue = object.aValue.prop
-      tf.target = self
-      tf.action = "set_aValue_Action:"
-    //--- end
-    }
-    return result
+    let object = mSortedArray.prop.0.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
+    %
+for () in BOUND_COLUMNS
+  do
+  %if columnIdentifier == "%!mColumnName%" {\n%
+  ![[FILE_WRAPPER textFileContentsAtPath !"cell-" + [mPropertyType swiftTypeName] + "-" + mColumnOutletTypeName + ".txt"]
+    stringByReplacingStringByString !"$MODEL$" !mObservablePropertyName
+   ]
+   %    %
+  between %}else %
+  after %}\n%
+end
+%    return result
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -287,12 +297,8 @@ end
 
   func set_%!mObservablePropertyName%_Action (sender : %!mColumnOutletTypeName%) {
     let row = sender.tag
-    let object = mSortedArray.prop.objectAtIndex (row, file:__FILE__, line:__LINE__)
-    object.%!mObservablePropertyName%.validateAndSetProp (
-      %![mPropertyType transformerForTableViewAction !"sender"]%,
-      windowForSheet:sender.window,
-      discardFunction: { object.%!mObservablePropertyName%.setProp (%![mPropertyType transformerForTableViewAction !"sender"]%) }
-    )
+    let object = mSortedArray.prop.0.objectAtIndex (row, file:__FILE__, line:__LINE__)
+    object.%!mObservablePropertyName%.validateAndSetProp (%![mPropertyType transformerForTableViewAction !"sender"]%, windowForSheet:sender.window)
   }
 %
 end
@@ -327,14 +333,19 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
     super.init ()
     selectedArray.computeFunction = {
       var result = Array<%!ELEMENT_TYPE_NAME%> ()
+      var selection = PMSelectionKind.singleSelection
       if let selectedSet = self.mSelectedSet {
-        for object in self.sortedArray.prop {
-          if selectedSet.prop.contains (object) {
+        selection = self.sortedArray.prop.1 & selectedSet.prop.1
+        for object in self.sortedArray.prop.0 {
+          if selectedSet.prop.0.contains (object) {
             result.append (object)
           }
         }
       }
-      return result
+      if selection != .singleSelection {
+        result = Array<%!ELEMENT_TYPE_NAME%> ()
+      }
+      return (result, selection)
     }
   }
 
@@ -426,9 +437,12 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
    func add (inSender : NSButton?) {
-    if let model = mModel, owner = model.owner, undoManager = owner.undoManager (), selectedSet = mSelectedSet {
+    if let model = mModel,
+           owner = model.owner,
+           undoManager = owner.undoManager (),
+           selectedSet = mSelectedSet where model.prop.1 == .singleSelection {
       var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:undoManager)
-      var array = model.prop
+      var array = model.prop.0
       array.append (newObject)
     //--- New object is the selection
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
@@ -443,15 +457,16 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (inSender : NSButton?) {
-    if let model = mModel, selectedSet = mSelectedSet where selectedSet.prop.count > 0 {
+    if let model = mModel,
+           selectedSet = mSelectedSet where (selectedSet.prop.0.count > 0) && (model.prop.1 == .singleSelection){
     //------------- Find the object to be selected after selected object removing
     //--- Dictionary of object sorted indexes
       var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in enumerate (sortedArray.prop) {
+      for (index, object) in enumerate (sortedArray.prop.0) {
         sortedObjectDictionary [object] = index
       }
       var indexArrayOfSelectedObjects = [Int] ()
-      for object in selectedSet.prop {
+      for object in selectedSet.prop.0 {
         let index = sortedObjectDictionary [object]
         if let idx = index {
           indexArrayOfSelectedObjects.append (idx)
@@ -469,18 +484,18 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
         }
       }
       var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
-      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.count) {
-        newSelectedObject = sortedArray.prop [newSelectionIndex]
+      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.0.count) {
+        newSelectedObject = sortedArray.prop.0 [newSelectionIndex]
       }
     //----------------------------------------- Remove selected object
     //--- Dictionary of object absolute indexes
       var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in enumerate (model.prop) {
+      for (index, object) in enumerate (model.prop.0) {
         objectDictionary [object] = index
       }
     //--- Build selected objects index array
       var selectedObjectIndexArray = [Int] ()
-      for object in selectedSet.prop {
+      for object in selectedSet.prop.0 {
         let index = objectDictionary [object]
         if let idx = index {
           selectedObjectIndexArray.append (idx)
@@ -489,7 +504,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
     //--- Sort in reverse order
       selectedObjectIndexArray.sort { $1 < $0 }
     //--- Remove objects, in reverse of order of their index
-      var newObjectArray = model.prop
+      var newObjectArray = model.prop.0
       for index in selectedObjectIndexArray {
         newObjectArray.removeAtIndex (index)
       }

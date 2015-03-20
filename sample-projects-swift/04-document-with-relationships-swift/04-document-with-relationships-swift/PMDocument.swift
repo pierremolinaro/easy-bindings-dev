@@ -20,6 +20,7 @@ import Cocoa
   @IBOutlet var mOtherTableView : PMTableView?
   @IBOutlet var mSelectionCountTextField : PMReadOnlyTextField?
   @IBOutlet var mSelectionTableView : PMTableView?
+  @IBOutlet var nameDetailTextField : PMTextField?
   @IBOutlet var removePathButton : PMButton?
   @IBOutlet var totalTextField : PMReadOnlyIntField?
 
@@ -129,6 +130,11 @@ import Cocoa
     }else if !mSelectionTableView!.isKindOfClass (PMTableView) {
       presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionTableView' outlet is not an instance of 'PMTableView'") ;
     }
+    if nil == nameDetailTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'nameDetailTextField' outlet is nil") ;
+    }else if !nameDetailTextField!.isKindOfClass (PMTextField) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'nameDetailTextField' outlet is not an instance of 'PMTextField'") ;
+    }
     if nil == removePathButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'removePathButton' outlet is nil") ;
     }else if !removePathButton!.isKindOfClass (PMButton) {
@@ -158,12 +164,46 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
-  //--- Install compute functions for transients
-    selectionCountString.computeFunction = {return compute_PMDocument_selectionCountString (self.selectionController.sortedArray.count.prop)}
-    evenValueString.computeFunction = {return compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop)}
-    canRemoveString.computeFunction = {return compute_PMDocument_canRemoveString (self.nameController.selectedArray.count.prop)}
-    countItemMessage.computeFunction = {return compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop)}
-    total.computeFunction = {return compute_PMDocument_total (self.rootObject.mNames.prop)}
+    selectionCountString.computeFunction = {
+      let selectionKind = self.selectionController.sortedArray.count.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_PMDocument_selectionCountString (self.selectionController.sortedArray.count.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    evenValueString.computeFunction = {
+      let selectionKind = self.otherController.sortedArray.count.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    canRemoveString.computeFunction = {
+      let selectionKind = self.nameController.selectedArray.count.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_PMDocument_canRemoveString (self.nameController.selectedArray.count.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    countItemMessage.computeFunction = {
+      let selectionKind = self.rootObject.mNames.count.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    total.computeFunction = {
+      let selectionKind = self.rootObject.mNames.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_PMDocument_total (self.rootObject.mNames.prop.0), .singleSelection)
+      }else{
+        return (0, selectionKind)
+      }
+    }
   //--- Install property observers for transients
     selectionController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
     otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
@@ -180,17 +220,38 @@ import Cocoa
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
-      computeFunction:{ (self.nameController.selectedArray.count.prop > 0) },
+      computeFunction:{
+        let selection = self.nameController.selectedArray.count.prop.1
+        if selection == .singleSelection {
+          return ((self.nameController.selectedArray.count.prop.0 > 0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
-      computeFunction:{ (self.rootObject.mNames.count.prop > 0) },
+      computeFunction:{
+        let selection = self.rootObject.mNames.count.prop.1
+        if selection == .singleSelection {
+          return ((self.rootObject.mNames.count.prop.0 > 0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
       file:__FILE__, line:__LINE__
     )
     decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
-      computeFunction:{ (self.rootObject.mNames.count.prop > 0) },
+      computeFunction:{
+        let selection = self.rootObject.mNames.count.prop.1
+        if selection == .singleSelection {
+          return ((self.rootObject.mNames.count.prop.0 > 0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
       file:__FILE__, line:__LINE__
     )
   //--------------------------- Set targets / actions

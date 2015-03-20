@@ -480,7 +480,7 @@ override getter @negateBooleanMultipleBindingLiteralIntForGeneration expressionS
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = mObservedModel + ".prop"
+  outExpressionString = mObservedModel + ".prop.0"
 }
 
 #......................................................................................................................*

@@ -21,30 +21,6 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var myIntegerValue : Int = 0 {
-    didSet {
-      self.integerValue = myIntegerValue
-    }
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
   //    NSTextFieldDelegate delegate function                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -81,7 +57,7 @@ import Cocoa
       alert.addButtonWithTitle ("Discard Change")
       alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
         if response == NSAlertSecondButtonReturn { // Discard Change
-          self.integerValue = self.myIntegerValue
+ //         self.integerValue = self.myIntegerValue.0
         }
       })
     }
@@ -142,22 +118,30 @@ class Controller_PMIntField_value : PMOutletEvent {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    mOutlet.myIntegerValue = mObject.prop
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection :
+      mOutlet.enableFromValue (true)
+      mOutlet.integerValue = mObject.prop.0
+    case .multipleSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "Multiple Selection"
+    }
+    mOutlet.updateEnabledState ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMIntField) {
-    mObject.validateAndSetProp (
-      mOutlet.integerValue,
-      windowForSheet:sender.window,
-      discardFunction: { self.mOutlet.myIntegerValue = self.mObject.prop }
-    )
+    mObject.validateAndSetProp (mOutlet.integerValue, windowForSheet:sender.window)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

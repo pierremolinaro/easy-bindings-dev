@@ -248,11 +248,11 @@ proc generateEntities
 
 getter @typeKind transformForSavingInDictionary ?let @string inPropertyName -> @string outResult {
   switch self
-  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop)"
-  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop)"
-  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop)"
-  case stringType : outResult = inPropertyName + ".prop"
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop)"
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop.0)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop.0)"
+  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop.0)"
+  case stringType : outResult = inPropertyName + ".prop.0"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop.0)"
   case dateType : outResult = "NSDate"
   case enumType (* *) : outResult = "NSNumber (integer:" + inPropertyName + ".prop.rawValue)"
   case entityType (*) :

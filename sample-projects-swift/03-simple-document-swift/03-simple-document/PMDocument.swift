@@ -90,7 +90,6 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
   //--------------------------- Array controller
-  //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install regular bindings
     myTextField?.bind_value (self.rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)

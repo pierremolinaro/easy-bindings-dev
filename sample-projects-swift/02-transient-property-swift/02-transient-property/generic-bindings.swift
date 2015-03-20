@@ -2,8 +2,8 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()
-var gEnabledBindingValueDictionary = [NSControl : Bool] ()
+private var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()
+private var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Enabled binding                                                                                                   *
@@ -11,7 +11,7 @@ var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
 extension NSControl {
 
-  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> Bool, file:String, line:Int) {
+  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> (Bool, PMSelectionKind), file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -22,7 +22,7 @@ extension NSControl {
     gEnabledBindingControllerDictionary [self] = controller
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func unbind_enabled () {
     if let controller = gEnabledBindingControllerDictionary [self] {
@@ -34,6 +34,39 @@ extension NSControl {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enable control                                                                                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+private var gEnabledFromValueBindingDictionary = [NSControl : Bool] ()
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extension NSControl {
+
+  func enableFromValue (inValue : Bool) {
+    gEnabledFromValueBindingDictionary [self] = inValue
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func removeFromEnabledFromValueDictionary () {
+    gEnabledFromValueBindingDictionary [self] = nil
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   updateEnabledState                                                                                                *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extension NSControl {
+
+  func updateEnabledState () {
+    var result = true
+    self.enabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Controller_NSControl_enabled                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -41,11 +74,11 @@ extension NSControl {
 
   var mObjectArray : [PMAbstractProperty]
   var mOutlet : NSControl
-  var mComputeFunction : Optional <() -> Bool>
+  var mComputeFunction : Optional <() -> (Bool, PMSelectionKind)>
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> Bool, file : String, line : Int) {
+  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> (Bool, PMSelectionKind), file : String, line : Int) {
     mObjectArray = objectArray
     mOutlet = outlet
     mComputeFunction = computeFunction
@@ -55,7 +88,7 @@ extension NSControl {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
     mComputeFunction = nil
@@ -64,20 +97,21 @@ extension NSControl {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    let result : Bool
+    let result : (Bool, PMSelectionKind)
     if let computeFunction = mComputeFunction {
       result = computeFunction ()
     }else{
-      result = false
+      result = (false, .noSelection)
     }
-    gEnabledBindingValueDictionary [mOutlet] = result
-    mOutlet.enabled = result
+    let enable = result.0 && (result.1 == .singleSelection)
+    gEnabledBindingValueDictionary [mOutlet] = enable
+    mOutlet.enabled = enable
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

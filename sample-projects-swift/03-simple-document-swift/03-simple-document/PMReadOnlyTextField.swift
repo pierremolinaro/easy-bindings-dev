@@ -84,8 +84,8 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if mOutlet.stringValue != mObject.prop {
-      mOutlet.stringValue = mObject.prop
+    if mOutlet.stringValue != mObject.prop.0 {
+      mOutlet.stringValue = mObject.prop.0
     }
   }
 

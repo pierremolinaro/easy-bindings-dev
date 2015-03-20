@@ -3092,6 +3092,16 @@ class GALGAS_string categoryReader_modelString (const class GALGAS_observablePro
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                      Category Reader '@typeKind swiftTypeName'                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3281,16 +3291,5 @@ extern const cRegularFileWrapper gWrapperFile_10_outletClassGeneration ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_outletClassGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           Routine 'generateOutletClasses'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateOutletClasses (const class GALGAS_stringset constinArgument0,
-                                    const class GALGAS_string constinArgument1,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
 
 #endif

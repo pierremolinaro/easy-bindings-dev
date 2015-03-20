@@ -58,6 +58,8 @@ document PMDocument root MyRootEntity {
   
   action decrement ;
   outlet PMButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
+  
+  outlet PMTextField nameDetailTextField ;
 }
 
 #--------------------------------------------------------------*

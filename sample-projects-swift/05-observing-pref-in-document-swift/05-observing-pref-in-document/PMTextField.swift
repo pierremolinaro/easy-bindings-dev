@@ -1,6 +1,8 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   CPMTextField                                                                                                      *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
@@ -12,36 +14,20 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //  value binding                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   private var mValueController : Controller_PMTextField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMStoredProperty_String, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:PMReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -53,7 +39,7 @@ import Cocoa
     mValueController = nil
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func controlTextDidChange (inNotification : NSNotification) {
     if mSendContinously {
@@ -61,7 +47,7 @@ import Cocoa
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -72,11 +58,11 @@ import Cocoa
 class Controller_PMTextField_value : PMOutletEvent {
 
   private var mOutlet: PMTextField
-  private var mObject : PMStoredProperty_String
+  private var mObject : PMReadWriteProperty_String
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object:PMStoredProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
+  init (object:PMReadWriteProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -88,30 +74,36 @@ class Controller_PMTextField_value : PMOutletEvent {
     object.addObserver (self, postEvent:true)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    if mOutlet.stringValue != mObject.prop {
-      mOutlet.stringValue = mObject.prop
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.stringValue = "No selection"
+      mOutlet.enabled = false
+    case .multipleSelection :
+      mOutlet.stringValue = "Multiple selection"
+      mOutlet.enabled = false
+    case .singleSelection :
+      mOutlet.stringValue = mObject.prop.0
+      mOutlet.enabled = true
     }
+    mOutlet.updateEnabledState ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func action (sender : PMTextField) {
-    mObject.validateAndSetProp (
-      mOutlet.stringValue,
-      windowForSheet:sender.window,
-      discardFunction: { self.mOutlet.stringValue = self.mObject.prop }
-    )
+    mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
 }
 

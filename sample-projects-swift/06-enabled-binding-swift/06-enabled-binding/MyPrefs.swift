@@ -76,7 +76,7 @@ var g_MyPrefs : MyPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (bool:prefBoolean.prop), forKey:"MyPrefs:prefBoolean")
+    ud.setObject (NSNumber (bool:prefBoolean.prop.0), forKey:"MyPrefs:prefBoolean")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

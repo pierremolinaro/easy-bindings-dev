@@ -89,12 +89,24 @@ import Cocoa
   
   func unregister () {
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    mOutlet.myIntegerValue = mObject.prop
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection :
+      mOutlet.enableFromValue (true)
+      mOutlet.integerValue = mObject.prop.0
+    case .multipleSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "Multiple Selection"
+    }
+    mOutlet.updateEnabledState()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -62,20 +62,30 @@ class Controller_PMDatePicker_date : PMOutletEvent {
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if !mOutlet.dateValue.isEqualToDate (mObject.prop) {
-      mOutlet.dateValue = mObject.prop
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection :
+      mOutlet.enableFromValue (true)
+      mOutlet.dateValue = mObject.prop.0
+    case .multipleSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "Multiple Selection"
     }
+    mOutlet.updateEnabledState()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if !mOutlet.dateValue.isEqualToDate (mObject.prop) {
+    if !mOutlet.dateValue.isEqualToDate (mObject.prop.0) {
       mObject.setProp (mOutlet.dateValue)
     }
   }

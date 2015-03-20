@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : Array<MyRootEntity> { get { return Array<MyRootEntity> () } }
+  var prop : (Array<MyRootEntity>, PMSelectionKind) { get { return (Array<MyRootEntity> (), .noSelection) } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -14,14 +14,14 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   func addObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.insert (inObserver)
-    for managedObject in prop {
+    for managedObject in prop.0 {
       managedObject.docBool.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
   func removeObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
-    for managedObject in prop {
+    for managedObject in prop.0 {
       managedObject.docBool.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
@@ -36,28 +36,34 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> Array<MyRootEntity>?>
+  var computeFunction : Optional<() -> (Array<MyRootEntity>, PMSelectionKind) >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : Array<MyRootEntity>?
+  private var prop_cache : (Array<MyRootEntity>, PMSelectionKind)? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in self?.prop.count }
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        return (unwSelf.prop.0.count, unwSelf.prop.1)
+      }else{
+        return (0, .noSelection)
+      }
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : Array<MyRootEntity> {
+  override var prop : (Array<MyRootEntity>, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = Array<MyRootEntity> ()
+        prop_cache = (Array<MyRootEntity> (), .noSelection)
       }
       return prop_cache!
     }
@@ -95,7 +101,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var docBool = PMStoredProperty_Bool (true)
-  var docBool_keyCodingValue : Bool { get {return docBool.prop } }
+  var docBool_keyCodingValue : Bool { get {return docBool.prop.0 } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -144,7 +150,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (NSNumber (bool:docBool.prop), forKey: "docBool")
+    ioDictionary.setValue (NSNumber (bool:docBool.prop.0), forKey: "docBool")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
