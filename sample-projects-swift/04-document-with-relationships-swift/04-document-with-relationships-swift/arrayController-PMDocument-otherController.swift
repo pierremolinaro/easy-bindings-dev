@@ -141,7 +141,6 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Delegate_PMDocument_otherController) class Delegate_PMDocument_otherController : PMAbstractProperty, PMTableViewDelegate {
-  private var mTableView : PMTableView
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_otherController
@@ -150,11 +149,9 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (tableView:PMTableView, model:DataSource_PMDocument_otherController) {
-    mTableView = tableView
+  init (model:DataSource_PMDocument_otherController) {
     mSortedArray = model
     super.init ()
-    mTableView.setDelegate (self)
     count.computeFunction = { [weak self] in
       if let unwrappedSelf = self {
         return unwrappedSelf.prop.count
@@ -233,8 +230,9 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
   func tableViewSelectionDidChange (notication : NSNotification) {
     // NSLog ("%@ %d", __FUNCTION__, mIgnoreTableViewSelectionDidChange)
     if !mIgnoreTableViewSelectionDidChange {
+      let tableView = notication.object as! PMTableView
       var newSelectedObjectSet = Set <NameEntity> ()
-      for index in mTableView.selectedRowIndexes {
+      for index in tableView.selectedRowIndexes {
         newSelectedObjectSet.insert (mSortedArray.prop.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
       setProp (newSelectedObjectSet)
@@ -324,7 +322,7 @@ class ArrayController_PMDocument_otherController : PMObject {
 
   private var mSelectedSet : Delegate_PMDocument_otherController?
 
-  private var mTableViewController : Controller_PMTableView_controller?
+  private var mTableViewControllerArray = [Controller_PMTableView_controller] ()
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames?
  
@@ -351,70 +349,73 @@ class ArrayController_PMDocument_otherController : PMObject {
   //    bind_modelAndView                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableView:PMTableView, file:String, line:Int) {
+  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[PMTableView], file:String, line:Int) {
     mModel = model
-    let selectedSet = Delegate_PMDocument_otherController (tableView:tableView, model:sortedArray)
-    mSelectedSet = selectedSet
     sortedArray.mModel = model
-    let tableViewController = Controller_PMTableView_controller (
-      delegate:selectedSet,
-      tableView:tableView,
-      file:file,
-      line:line
-    )
-    mTableViewController = tableViewController
-    tableView.allowsEmptySelection = mAllowsEmptySelection
-    tableView.allowsMultipleSelection = mAllowsMultipleSelection
-  //--- Check 'name' column
-    if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("name", owner:self) {
-      if let unwrappedTableCellView = anyObject as? NSTableCellView {
-        if !(unwrappedTableCellView.textField is PMTextField) {
-          presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
+    let selectedSet = Delegate_PMDocument_otherController (model:sortedArray)
+    mSelectedSet = selectedSet
+    for tableView in tableViewArray {
+      let tableViewController = Controller_PMTableView_controller (
+        delegate:selectedSet,
+        tableView:tableView,
+        file:file,
+        line:line
+      )
+      mTableViewControllerArray.append (tableViewController)
+      tableView.allowsEmptySelection = mAllowsEmptySelection
+      tableView.allowsMultipleSelection = mAllowsMultipleSelection
+    //--- Check 'name' column
+      if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("name", owner:self) {
+        if let unwrappedTableCellView = anyObject as? NSTableCellView {
+          if !(unwrappedTableCellView.textField is PMTextField) {
+            presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
+          }
+        }else{
+          presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
         }
       }else{
-        presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
+        presentErrorWindow (file, line, "\"name\" column view unknown")
       }
-    }else{
-      presentErrorWindow (file, line, "\"name\" column view unknown")
-    }
-    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
-    }
-  //--- Check 'int' column
-    if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
-      if let unwrappedTableCellView = anyObject as? NSTableCellView {
-        if !(unwrappedTableCellView.textField is PMNumberField) {
-          presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
+      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
+        columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
+      }
+    //--- Check 'int' column
+      if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
+        if let unwrappedTableCellView = anyObject as? NSTableCellView {
+          if !(unwrappedTableCellView.textField is PMNumberField) {
+            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
+          }
+        }else{
+          presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")
         }
       }else{
-        presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")
+        presentErrorWindow (file, line, "\"int\" column view unknown")
       }
-    }else{
-      presentErrorWindow (file, line, "\"int\" column view unknown")
-    }
-    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
-    }
-  //--- Set descriptors from first column of table view
-    let columns = tableView.tableColumns as NSArray
-    if columns.count > 0 {
-      let firstColumn = columns [0] as! NSTableColumn
-      if let sdp = firstColumn.sortDescriptorPrototype {
-        let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]
-        tableView.sortDescriptors = sortDescriptorArray
-        sortedArray.setSortDescriptors (sortDescriptorArray)
+      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
+        columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
       }
-    }
+    //--- Set descriptors from first column of table view
+      let columns = tableView.tableColumns as NSArray
+      if columns.count > 0 {
+        let firstColumn = columns [0] as! NSTableColumn
+        if let sdp = firstColumn.sortDescriptorPrototype {
+          let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]
+          tableView.sortDescriptors = sortDescriptorArray
+          sortedArray.setSortDescriptors (sortDescriptorArray)
+        }
+      }
+      sortedArray.addObserver (tableViewController, postEvent:true)
+      selectedSet.addObserver (tableViewController, postEvent:true)
+   //--- Set table view delegate and data source
+      tableView.setDataSource (sortedArray)
+      tableView.setDelegate (selectedSet)
+   }
   //--- Add observers
     model.addObserverOf_name (sortedArray, postEvent:true)
     model.addObserverOf_aValue (sortedArray, postEvent:true)
     model.addObserver (sortedArray, postEvent:true)
-    sortedArray.addObserver (tableViewController, postEvent:true)
     sortedArray.addObserver (selectedSet, postEvent:true)
     selectedSet.addObserver (selectedArray, postEvent:true)
-  //--- Set table view delegate and data source
-    tableView.setDataSource (sortedArray)
-    tableView.setDelegate (selectedSet)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -425,14 +426,19 @@ class ArrayController_PMDocument_otherController : PMObject {
     mModel?.removeObserverOf_name (sortedArray, postEvent:false)
     mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
     mModel?.removeObserver (sortedArray, postEvent:false)
-    sortedArray.removeObserver (mTableViewController!, postEvent:false)
-    sortedArray.removeObserver (mSelectedSet!, postEvent:false)
+    if let selectedSet = mSelectedSet {
+      sortedArray.removeObserver (selectedSet, postEvent:false)
+    }
     mSelectedSet?.removeObserver (selectedArray, postEvent:false)
+     for tableViewController in mTableViewControllerArray {
+      sortedArray.removeObserver (tableViewController, postEvent:false)
+      mSelectedSet?.removeObserver (tableViewController, postEvent:false)
+    }
+    mTableViewControllerArray = []
     selectedArray.computeFunction = nil
-    mTableViewController = nil
     mSelectedSet = nil
     mModel = nil
-  }
+ }
  
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

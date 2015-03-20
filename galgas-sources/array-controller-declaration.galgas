@@ -21,7 +21,7 @@ enum @arrayControllerModel {
 list @arrayControllerDeclarationListAST {
   @lstring mControllerName
   @arrayControllerModel mArrayControllerModel
-  @lstring mTableViewOutletName
+  @lstringlist mTableViewOutletNameList
   @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 }
@@ -52,8 +52,17 @@ syntax extension easyBindings_syntax {
       $identifier$ ?let @lstring propertyName
       arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
     end
-    $to$
-    $identifier$ ?let @lstring tableViewOutletName
+    @lstringlist tableViewOutletNameList = {}
+    select
+    or
+      $to$
+      repeat
+        $identifier$ ?let @lstring tableViewOutletName
+        tableViewOutletNameList += !tableViewOutletName
+      while
+        $,$
+      end
+    end
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     @lstringlist filterProperties = {}
     select
@@ -83,7 +92,7 @@ syntax extension easyBindings_syntax {
     ioArrayControllerDeclarationListAST +=
       !controllerName
       !arrayControllerModel
-      !tableViewOutletName
+      !tableViewOutletNameList
       !filterProperties
       !arrayControllerBoundColumnListAST
   }
@@ -210,9 +219,11 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       error errorLocation : "the bound property should be stored (not a transient)"
     end
   #--- Check outlet is a PMTableView
-    [inOutletMap searchKey !mTableViewOutletName ?let outletTypeName]
-    if outletTypeName != "PMTableView" then
-      error mTableViewOutletName : "this outlet is not an instance of PMTableView"
+    for (tableViewOutletName) in mTableViewOutletNameList do
+      [inOutletMap searchKey !tableViewOutletName ?let outletTypeName]
+      if outletTypeName != "PMTableView" then
+        error tableViewOutletName : "this outlet is not an instance of PMTableView"
+      end
     end
   #--- Check colum bound models (TODO : get also super entity observable property)
     [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -271,7 +282,7 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       ![mArrayControllerModel modelTypeName2 !inRootEntityName !inArrayControllerMap]
       !modelIsTransient
       ![modelType swiftTypeName]
-      !mTableViewOutletName.string
+      !mTableViewOutletNameList
   end%for
   ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
 }
@@ -290,7 +301,7 @@ list @arrayControllerForGeneration {
   @string mModelTypeName2
   @bool mModelIsTransient
   @string mElementTypeName
-  @string mTableViewOutletName
+  @lstringlist mTableViewOutletNameList
 }
 
 #......................................................................................................................*
@@ -413,7 +424,6 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@filewrapper FILE_WRAPPER
-    ?@string TABLE_VIEW_OUTLET_NAME
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -440,7 +450,6 @@ proc generateArrayControllers
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName
       ![filewrapper collectionControllerGenerationTemplate]
-      !mTableViewOutletName
     ]
     [@string generateFile
       !inOutputDirectory

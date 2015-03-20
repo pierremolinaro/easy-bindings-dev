@@ -4383,24 +4383,20 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 55)) ;
-  GALGAS_lstring var_tableViewOutletName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 56)) ;
-  GALGAS_arrayControllerBoundColumnListAST var_arrayControllerBoundColumnListAST = GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 57)) ;
-  GALGAS_lstringlist var_filterProperties = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 58)) ;
+  GALGAS_lstringlist var_tableViewOutletNameList = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 55)) ;
   switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 61)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 58)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_filterProperty = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 63)) ;
-      var_filterProperties.addAssign_operation (var_filterProperty  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 64)) ;
+      GALGAS_lstring var_tableViewOutletName = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 60)) ;
+      var_tableViewOutletNameList.addAssign_operation (var_tableViewOutletName  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 61)) ;
       switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 66)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 63)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
@@ -4411,28 +4407,53 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 70)) ;
+  GALGAS_arrayControllerBoundColumnListAST var_arrayControllerBoundColumnListAST = GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 66)) ;
+  GALGAS_lstringlist var_filterProperties = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 67)) ;
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  case 1: {
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 70)) ;
+    bool repeatFlag_1 = true ;
+    while (repeatFlag_1) {
+      GALGAS_lstring var_filterProperty = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 72)) ;
+      var_filterProperties.addAssign_operation (var_filterProperty  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 73)) ;
+      switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+      case 2: {
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 75)) ;
+      } break ;
+      default:
+        repeatFlag_1 = false ;
+        break ;
+      }
+    }
+  } break ;
+  default:
+    break ;
+  }
+  bool repeatFlag_2 = true ;
+  while (repeatFlag_2) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 79)) ;
     GALGAS_lstring var_columnName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 71)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 80)) ;
     GALGAS_lstring var_columnOutletTypeName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 72)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 81)) ;
     GALGAS_lstring var_observablePropertyName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 73)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 82)) ;
     GALGAS_bindingOptionList var_bindingOptions ;
     nt_binding_5F_option_5F_list_ (var_bindingOptions, inCompiler) ;
-    var_arrayControllerBoundColumnListAST.addAssign_operation (var_columnName, var_columnOutletTypeName, var_observablePropertyName, var_bindingOptions  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 75)) ;
-    switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+    var_arrayControllerBoundColumnListAST.addAssign_operation (var_columnName, var_columnOutletTypeName, var_observablePropertyName, var_bindingOptions  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 84)) ;
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
     } break ;
     default:
-      repeatFlag_1 = false ;
+      repeatFlag_2 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 82)) ;
-  ioArgument_ioArrayControllerDeclarationListAST.addAssign_operation (var_controllerName, var_arrayControllerModel, var_tableViewOutletName, var_filterProperties, var_arrayControllerBoundColumnListAST  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 83)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 91)) ;
+  ioArgument_ioArrayControllerDeclarationListAST.addAssign_operation (var_controllerName, var_arrayControllerModel, var_tableViewOutletNameList, var_filterProperties, var_arrayControllerBoundColumnListAST  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 92)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4455,19 +4476,17 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 55)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 56)) ;
   switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 61)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 58)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 63)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 60)) ;
       switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 66)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 63)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
@@ -4478,22 +4497,43 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 70)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 71)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 72)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 73)) ;
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  case 1: {
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 70)) ;
+    bool repeatFlag_1 = true ;
+    while (repeatFlag_1) {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 72)) ;
+      switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+      case 2: {
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 75)) ;
+      } break ;
+      default:
+        repeatFlag_1 = false ;
+        break ;
+      }
+    }
+  } break ;
+  default:
+    break ;
+  }
+  bool repeatFlag_2 = true ;
+  while (repeatFlag_2) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 79)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 80)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 81)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 82)) ;
     nt_binding_5F_option_5F_list_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
     } break ;
     default:
-      repeatFlag_1 = false ;
+      repeatFlag_2 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 82)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 91)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -4538,7 +4578,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("relationships.galgas", 51)) ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_inverse) COMMA_SOURCE_FILE ("relationships.galgas", 52)) ;
   GALGAS_propertyMultiplicity var_inverseRelationMultiplicity ;
-  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_toOne) COMMA_SOURCE_FILE ("relationships.galgas", 55)) ;
     var_inverseRelationMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 56)) ;
@@ -4563,7 +4603,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("relationships.galgas", 50)) ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("relationships.galgas", 51)) ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_inverse) COMMA_SOURCE_FILE ("relationships.galgas", 52)) ;
-  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_toOne) COMMA_SOURCE_FILE ("relationships.galgas", 55)) ;
   } break ;
@@ -7630,7 +7670,7 @@ class cCollectionElement_arrayControllerDeclarationListAST : public cCollectionE
 //--- Constructor
   public : cCollectionElement_arrayControllerDeclarationListAST (const GALGAS_lstring & in_mControllerName,
                                                                  const GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                                                 const GALGAS_lstring & in_mTableViewOutletName,
+                                                                 const GALGAS_lstringlist & in_mTableViewOutletNameList,
                                                                  const GALGAS_lstringlist & in_mFilterProperties,
                                                                  const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
                                                                  COMMA_LOCATION_ARGS) ;
@@ -7652,12 +7692,12 @@ class cCollectionElement_arrayControllerDeclarationListAST : public cCollectionE
 
 cCollectionElement_arrayControllerDeclarationListAST::cCollectionElement_arrayControllerDeclarationListAST (const GALGAS_lstring & in_mControllerName,
                                                                                                             const GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                                                                                            const GALGAS_lstring & in_mTableViewOutletName,
+                                                                                                            const GALGAS_lstringlist & in_mTableViewOutletNameList,
                                                                                                             const GALGAS_lstringlist & in_mFilterProperties,
                                                                                                             const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
                                                                                                             COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mControllerName, in_mArrayControllerModel, in_mTableViewOutletName, in_mFilterProperties, in_mArrayControllerBoundColumnListAST) {
+mObject (in_mControllerName, in_mArrayControllerModel, in_mTableViewOutletNameList, in_mFilterProperties, in_mArrayControllerBoundColumnListAST) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7670,7 +7710,7 @@ bool cCollectionElement_arrayControllerDeclarationListAST::isValid (void) const 
 
 cCollectionElement * cCollectionElement_arrayControllerDeclarationListAST::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_arrayControllerDeclarationListAST (mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerModel, mObject.mAttribute_mTableViewOutletName, mObject.mAttribute_mFilterProperties, mObject.mAttribute_mArrayControllerBoundColumnListAST COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_arrayControllerDeclarationListAST (mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerModel, mObject.mAttribute_mTableViewOutletNameList, mObject.mAttribute_mFilterProperties, mObject.mAttribute_mArrayControllerBoundColumnListAST COMMA_HERE)) ;
   return result ;
 }
 
@@ -7687,8 +7727,8 @@ void cCollectionElement_arrayControllerDeclarationListAST::description (C_String
   mObject.mAttribute_mArrayControllerModel.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTableViewOutletName" ":" ;
-  mObject.mAttribute_mTableViewOutletName.description (ioString, inIndentation) ;
+  ioString << "mTableViewOutletNameList" ":" ;
+  mObject.mAttribute_mTableViewOutletNameList.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mFilterProperties" ":" ;
@@ -7734,7 +7774,7 @@ GALGAS_arrayControllerDeclarationListAST GALGAS_arrayControllerDeclarationListAS
 
 GALGAS_arrayControllerDeclarationListAST GALGAS_arrayControllerDeclarationListAST::constructor_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                               const GALGAS_arrayControllerModel & inOperand1,
-                                                                                                              const GALGAS_lstring & inOperand2,
+                                                                                                              const GALGAS_lstringlist & inOperand2,
                                                                                                               const GALGAS_lstringlist & inOperand3,
                                                                                                               const GALGAS_arrayControllerBoundColumnListAST & inOperand4
                                                                                                               COMMA_LOCATION_ARGS) {
@@ -7753,14 +7793,14 @@ GALGAS_arrayControllerDeclarationListAST GALGAS_arrayControllerDeclarationListAS
 void GALGAS_arrayControllerDeclarationListAST::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                           const GALGAS_lstring & in_mControllerName,
                                                                           const GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                                                          const GALGAS_lstring & in_mTableViewOutletName,
+                                                                          const GALGAS_lstringlist & in_mTableViewOutletNameList,
                                                                           const GALGAS_lstringlist & in_mFilterProperties,
                                                                           const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
                                                                           COMMA_LOCATION_ARGS) {
   cCollectionElement_arrayControllerDeclarationListAST * p = NULL ;
   macroMyNew (p, cCollectionElement_arrayControllerDeclarationListAST (in_mControllerName,
                                                                        in_mArrayControllerModel,
-                                                                       in_mTableViewOutletName,
+                                                                       in_mTableViewOutletNameList,
                                                                        in_mFilterProperties,
                                                                        in_mArrayControllerBoundColumnListAST COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
@@ -7771,7 +7811,7 @@ void GALGAS_arrayControllerDeclarationListAST::makeAttributesFromObjects (capCol
 
 void GALGAS_arrayControllerDeclarationListAST::addAssign_operation (const GALGAS_lstring & inOperand0,
                                                                     const GALGAS_arrayControllerModel & inOperand1,
-                                                                    const GALGAS_lstring & inOperand2,
+                                                                    const GALGAS_lstringlist & inOperand2,
                                                                     const GALGAS_lstringlist & inOperand3,
                                                                     const GALGAS_arrayControllerBoundColumnListAST & inOperand4
                                                                     COMMA_LOCATION_ARGS) {
@@ -7789,7 +7829,7 @@ void GALGAS_arrayControllerDeclarationListAST::addAssign_operation (const GALGAS
 
 void GALGAS_arrayControllerDeclarationListAST::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
                                                                        const GALGAS_arrayControllerModel inOperand1,
-                                                                       const GALGAS_lstring inOperand2,
+                                                                       const GALGAS_lstringlist inOperand2,
                                                                        const GALGAS_lstringlist inOperand3,
                                                                        const GALGAS_arrayControllerBoundColumnListAST inOperand4,
                                                                        const GALGAS_uint inInsertionIndex,
@@ -7809,7 +7849,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_insertAtIndex (const GAL
 
 void GALGAS_arrayControllerDeclarationListAST::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
                                                                        GALGAS_arrayControllerModel & outOperand1,
-                                                                       GALGAS_lstring & outOperand2,
+                                                                       GALGAS_lstringlist & outOperand2,
                                                                        GALGAS_lstringlist & outOperand3,
                                                                        GALGAS_arrayControllerBoundColumnListAST & outOperand4,
                                                                        const GALGAS_uint inRemoveIndex,
@@ -7829,7 +7869,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_removeAtIndex (GALGAS_ls
       macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
       outOperand0 = p->mObject.mAttribute_mControllerName ;
       outOperand1 = p->mObject.mAttribute_mArrayControllerModel ;
-      outOperand2 = p->mObject.mAttribute_mTableViewOutletName ;
+      outOperand2 = p->mObject.mAttribute_mTableViewOutletNameList ;
       outOperand3 = p->mObject.mAttribute_mFilterProperties ;
       outOperand4 = p->mObject.mAttribute_mArrayControllerBoundColumnListAST ;
     }
@@ -7840,7 +7880,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_removeAtIndex (GALGAS_ls
 
 void GALGAS_arrayControllerDeclarationListAST::modifier_popFirst (GALGAS_lstring & outOperand0,
                                                                   GALGAS_arrayControllerModel & outOperand1,
-                                                                  GALGAS_lstring & outOperand2,
+                                                                  GALGAS_lstringlist & outOperand2,
                                                                   GALGAS_lstringlist & outOperand3,
                                                                   GALGAS_arrayControllerBoundColumnListAST & outOperand4,
                                                                   C_Compiler * inCompiler
@@ -7858,7 +7898,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_popFirst (GALGAS_lstring
     macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
     outOperand0 = p->mObject.mAttribute_mControllerName ;
     outOperand1 = p->mObject.mAttribute_mArrayControllerModel ;
-    outOperand2 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableViewOutletNameList ;
     outOperand3 = p->mObject.mAttribute_mFilterProperties ;
     outOperand4 = p->mObject.mAttribute_mArrayControllerBoundColumnListAST ;
   }
@@ -7868,7 +7908,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_popFirst (GALGAS_lstring
 
 void GALGAS_arrayControllerDeclarationListAST::modifier_popLast (GALGAS_lstring & outOperand0,
                                                                  GALGAS_arrayControllerModel & outOperand1,
-                                                                 GALGAS_lstring & outOperand2,
+                                                                 GALGAS_lstringlist & outOperand2,
                                                                  GALGAS_lstringlist & outOperand3,
                                                                  GALGAS_arrayControllerBoundColumnListAST & outOperand4,
                                                                  C_Compiler * inCompiler
@@ -7886,7 +7926,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_popLast (GALGAS_lstring 
     macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
     outOperand0 = p->mObject.mAttribute_mControllerName ;
     outOperand1 = p->mObject.mAttribute_mArrayControllerModel ;
-    outOperand2 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableViewOutletNameList ;
     outOperand3 = p->mObject.mAttribute_mFilterProperties ;
     outOperand4 = p->mObject.mAttribute_mArrayControllerBoundColumnListAST ;
   }
@@ -7896,7 +7936,7 @@ void GALGAS_arrayControllerDeclarationListAST::modifier_popLast (GALGAS_lstring 
 
 void GALGAS_arrayControllerDeclarationListAST::method_first (GALGAS_lstring & outOperand0,
                                                              GALGAS_arrayControllerModel & outOperand1,
-                                                             GALGAS_lstring & outOperand2,
+                                                             GALGAS_lstringlist & outOperand2,
                                                              GALGAS_lstringlist & outOperand3,
                                                              GALGAS_arrayControllerBoundColumnListAST & outOperand4,
                                                              C_Compiler * inCompiler
@@ -7914,7 +7954,7 @@ void GALGAS_arrayControllerDeclarationListAST::method_first (GALGAS_lstring & ou
     macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
     outOperand0 = p->mObject.mAttribute_mControllerName ;
     outOperand1 = p->mObject.mAttribute_mArrayControllerModel ;
-    outOperand2 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableViewOutletNameList ;
     outOperand3 = p->mObject.mAttribute_mFilterProperties ;
     outOperand4 = p->mObject.mAttribute_mArrayControllerBoundColumnListAST ;
   }
@@ -7924,7 +7964,7 @@ void GALGAS_arrayControllerDeclarationListAST::method_first (GALGAS_lstring & ou
 
 void GALGAS_arrayControllerDeclarationListAST::method_last (GALGAS_lstring & outOperand0,
                                                             GALGAS_arrayControllerModel & outOperand1,
-                                                            GALGAS_lstring & outOperand2,
+                                                            GALGAS_lstringlist & outOperand2,
                                                             GALGAS_lstringlist & outOperand3,
                                                             GALGAS_arrayControllerBoundColumnListAST & outOperand4,
                                                             C_Compiler * inCompiler
@@ -7942,7 +7982,7 @@ void GALGAS_arrayControllerDeclarationListAST::method_last (GALGAS_lstring & out
     macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
     outOperand0 = p->mObject.mAttribute_mControllerName ;
     outOperand1 = p->mObject.mAttribute_mArrayControllerModel ;
-    outOperand2 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableViewOutletNameList ;
     outOperand3 = p->mObject.mAttribute_mFilterProperties ;
     outOperand4 = p->mObject.mAttribute_mArrayControllerBoundColumnListAST ;
   }
@@ -8032,15 +8072,15 @@ GALGAS_arrayControllerModel GALGAS_arrayControllerDeclarationListAST::reader_mAr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_arrayControllerDeclarationListAST::reader_mTableViewOutletNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                             C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const {
+GALGAS_lstringlist GALGAS_arrayControllerDeclarationListAST::reader_mTableViewOutletNameListAtIndex (const GALGAS_uint & inIndex,
+                                                                                                     C_Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_arrayControllerDeclarationListAST * p = (cCollectionElement_arrayControllerDeclarationListAST *) attributes.ptr () ;
-  GALGAS_lstring result ;
+  GALGAS_lstringlist result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
-    result = p->mObject.mAttribute_mTableViewOutletName ;
+    result = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
   return result ;
 }
@@ -8112,10 +8152,10 @@ GALGAS_arrayControllerModel cEnumerator_arrayControllerDeclarationListAST::curre
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cEnumerator_arrayControllerDeclarationListAST::current_mTableViewOutletName (LOCATION_ARGS) const {
+GALGAS_lstringlist cEnumerator_arrayControllerDeclarationListAST::current_mTableViewOutletNameList (LOCATION_ARGS) const {
   const cCollectionElement_arrayControllerDeclarationListAST * p = (const cCollectionElement_arrayControllerDeclarationListAST *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerDeclarationListAST) ;
-  return p->mObject.mAttribute_mTableViewOutletName ;
+  return p->mObject.mAttribute_mTableViewOutletNameList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12382,7 +12422,7 @@ class cCollectionElement_arrayControllerForGeneration : public cCollectionElemen
                                                             const GALGAS_string & in_mModelTypeName_32_,
                                                             const GALGAS_bool & in_mModelIsTransient,
                                                             const GALGAS_string & in_mElementTypeName,
-                                                            const GALGAS_string & in_mTableViewOutletName
+                                                            const GALGAS_lstringlist & in_mTableViewOutletNameList
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -12409,10 +12449,10 @@ cCollectionElement_arrayControllerForGeneration::cCollectionElement_arrayControl
                                                                                                   const GALGAS_string & in_mModelTypeName_32_,
                                                                                                   const GALGAS_bool & in_mModelIsTransient,
                                                                                                   const GALGAS_string & in_mElementTypeName,
-                                                                                                  const GALGAS_string & in_mTableViewOutletName
+                                                                                                  const GALGAS_lstringlist & in_mTableViewOutletNameList
                                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mOwnerName, in_mControllerName, in_mArrayControllerFilterListForGeneration, in_mModelString, in_mArrayControllerBoundColumnListForGeneration, in_mModelTypeName, in_mModelTypeName_32_, in_mModelIsTransient, in_mElementTypeName, in_mTableViewOutletName) {
+mObject (in_mOwnerName, in_mControllerName, in_mArrayControllerFilterListForGeneration, in_mModelString, in_mArrayControllerBoundColumnListForGeneration, in_mModelTypeName, in_mModelTypeName_32_, in_mModelIsTransient, in_mElementTypeName, in_mTableViewOutletNameList) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12425,7 +12465,7 @@ bool cCollectionElement_arrayControllerForGeneration::isValid (void) const {
 
 cCollectionElement * cCollectionElement_arrayControllerForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_arrayControllerForGeneration (mObject.mAttribute_mOwnerName, mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerFilterListForGeneration, mObject.mAttribute_mModelString, mObject.mAttribute_mArrayControllerBoundColumnListForGeneration, mObject.mAttribute_mModelTypeName, mObject.mAttribute_mModelTypeName_32_, mObject.mAttribute_mModelIsTransient, mObject.mAttribute_mElementTypeName, mObject.mAttribute_mTableViewOutletName COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_arrayControllerForGeneration (mObject.mAttribute_mOwnerName, mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerFilterListForGeneration, mObject.mAttribute_mModelString, mObject.mAttribute_mArrayControllerBoundColumnListForGeneration, mObject.mAttribute_mModelTypeName, mObject.mAttribute_mModelTypeName_32_, mObject.mAttribute_mModelIsTransient, mObject.mAttribute_mElementTypeName, mObject.mAttribute_mTableViewOutletNameList COMMA_HERE)) ;
   return result ;
 }
 
@@ -12470,8 +12510,8 @@ void cCollectionElement_arrayControllerForGeneration::description (C_String & io
   mObject.mAttribute_mElementTypeName.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTableViewOutletName" ":" ;
-  mObject.mAttribute_mTableViewOutletName.description (ioString, inIndentation) ;
+  ioString << "mTableViewOutletNameList" ":" ;
+  mObject.mAttribute_mTableViewOutletNameList.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12516,7 +12556,7 @@ GALGAS_arrayControllerForGeneration GALGAS_arrayControllerForGeneration::constru
                                                                                                     const GALGAS_string & inOperand6,
                                                                                                     const GALGAS_bool & inOperand7,
                                                                                                     const GALGAS_string & inOperand8,
-                                                                                                    const GALGAS_string & inOperand9
+                                                                                                    const GALGAS_lstringlist & inOperand9
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerForGeneration result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
@@ -12540,7 +12580,7 @@ void GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (capCollecti
                                                                      const GALGAS_string & in_mModelTypeName_32_,
                                                                      const GALGAS_bool & in_mModelIsTransient,
                                                                      const GALGAS_string & in_mElementTypeName,
-                                                                     const GALGAS_string & in_mTableViewOutletName
+                                                                     const GALGAS_lstringlist & in_mTableViewOutletNameList
                                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement_arrayControllerForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_arrayControllerForGeneration (in_mOwnerName,
@@ -12552,7 +12592,7 @@ void GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (capCollecti
                                                                   in_mModelTypeName_32_,
                                                                   in_mModelIsTransient,
                                                                   in_mElementTypeName,
-                                                                  in_mTableViewOutletName COMMA_THERE)) ;
+                                                                  in_mTableViewOutletNameList COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -12568,7 +12608,7 @@ void GALGAS_arrayControllerForGeneration::addAssign_operation (const GALGAS_stri
                                                                const GALGAS_string & inOperand6,
                                                                const GALGAS_bool & inOperand7,
                                                                const GALGAS_string & inOperand8,
-                                                               const GALGAS_string & inOperand9
+                                                               const GALGAS_lstringlist & inOperand9
                                                                COMMA_LOCATION_ARGS) {
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
     cCollectionElement * p = NULL ;
@@ -12591,7 +12631,7 @@ void GALGAS_arrayControllerForGeneration::modifier_insertAtIndex (const GALGAS_s
                                                                   const GALGAS_string inOperand6,
                                                                   const GALGAS_bool inOperand7,
                                                                   const GALGAS_string inOperand8,
-                                                                  const GALGAS_string inOperand9,
+                                                                  const GALGAS_lstringlist inOperand9,
                                                                   const GALGAS_uint inInsertionIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
@@ -12616,7 +12656,7 @@ void GALGAS_arrayControllerForGeneration::modifier_removeAtIndex (GALGAS_string 
                                                                   GALGAS_string & outOperand6,
                                                                   GALGAS_bool & outOperand7,
                                                                   GALGAS_string & outOperand8,
-                                                                  GALGAS_string & outOperand9,
+                                                                  GALGAS_lstringlist & outOperand9,
                                                                   const GALGAS_uint inRemoveIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
@@ -12646,7 +12686,7 @@ void GALGAS_arrayControllerForGeneration::modifier_removeAtIndex (GALGAS_string 
       outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
       outOperand7 = p->mObject.mAttribute_mModelIsTransient ;
       outOperand8 = p->mObject.mAttribute_mElementTypeName ;
-      outOperand9 = p->mObject.mAttribute_mTableViewOutletName ;
+      outOperand9 = p->mObject.mAttribute_mTableViewOutletNameList ;
     }
   }
 }
@@ -12662,7 +12702,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popFirst (GALGAS_string & out
                                                              GALGAS_string & outOperand6,
                                                              GALGAS_bool & outOperand7,
                                                              GALGAS_string & outOperand8,
-                                                             GALGAS_string & outOperand9,
+                                                             GALGAS_lstringlist & outOperand9,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -12690,7 +12730,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popFirst (GALGAS_string & out
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelIsTransient ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
-    outOperand9 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand9 = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
 }
 
@@ -12705,7 +12745,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popLast (GALGAS_string & outO
                                                             GALGAS_string & outOperand6,
                                                             GALGAS_bool & outOperand7,
                                                             GALGAS_string & outOperand8,
-                                                            GALGAS_string & outOperand9,
+                                                            GALGAS_lstringlist & outOperand9,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -12733,7 +12773,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popLast (GALGAS_string & outO
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelIsTransient ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
-    outOperand9 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand9 = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
 }
 
@@ -12748,7 +12788,7 @@ void GALGAS_arrayControllerForGeneration::method_first (GALGAS_string & outOpera
                                                         GALGAS_string & outOperand6,
                                                         GALGAS_bool & outOperand7,
                                                         GALGAS_string & outOperand8,
-                                                        GALGAS_string & outOperand9,
+                                                        GALGAS_lstringlist & outOperand9,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -12776,7 +12816,7 @@ void GALGAS_arrayControllerForGeneration::method_first (GALGAS_string & outOpera
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelIsTransient ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
-    outOperand9 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand9 = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
 }
 
@@ -12791,7 +12831,7 @@ void GALGAS_arrayControllerForGeneration::method_last (GALGAS_string & outOperan
                                                        GALGAS_string & outOperand6,
                                                        GALGAS_bool & outOperand7,
                                                        GALGAS_string & outOperand8,
-                                                       GALGAS_string & outOperand9,
+                                                       GALGAS_lstringlist & outOperand9,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -12819,7 +12859,7 @@ void GALGAS_arrayControllerForGeneration::method_last (GALGAS_string & outOperan
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelIsTransient ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
-    outOperand9 = p->mObject.mAttribute_mTableViewOutletName ;
+    outOperand9 = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
 }
 
@@ -13012,15 +13052,15 @@ GALGAS_string GALGAS_arrayControllerForGeneration::reader_mElementTypeNameAtInde
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string GALGAS_arrayControllerForGeneration::reader_mTableViewOutletNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const {
+GALGAS_lstringlist GALGAS_arrayControllerForGeneration::reader_mTableViewOutletNameListAtIndex (const GALGAS_uint & inIndex,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_arrayControllerForGeneration * p = (cCollectionElement_arrayControllerForGeneration *) attributes.ptr () ;
-  GALGAS_string result ;
+  GALGAS_lstringlist result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
-    result = p->mObject.mAttribute_mTableViewOutletName ;
+    result = p->mObject.mAttribute_mTableViewOutletNameList ;
   }
   return result ;
 }
@@ -13118,10 +13158,10 @@ GALGAS_string cEnumerator_arrayControllerForGeneration::current_mElementTypeName
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string cEnumerator_arrayControllerForGeneration::current_mTableViewOutletName (LOCATION_ARGS) const {
+GALGAS_lstringlist cEnumerator_arrayControllerForGeneration::current_mTableViewOutletNameList (LOCATION_ARGS) const {
   const cCollectionElement_arrayControllerForGeneration * p = (const cCollectionElement_arrayControllerForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
-  return p->mObject.mAttribute_mTableViewOutletName ;
+  return p->mObject.mAttribute_mTableViewOutletNameList ;
 }
 
 

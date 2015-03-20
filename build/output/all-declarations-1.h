@@ -3293,16 +3293,4 @@ void routine_generateOutletClasses (const class GALGAS_stringset constinArgument
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Routine 'buildBindingSpecificationMap'                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap constinArgument0,
-                                           const class GALGAS_bindingSpecificationListMap constinArgument1,
-                                           class GALGAS_bindingSpecificationMap & outArgument2,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
 #endif

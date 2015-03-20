@@ -142,19 +142,19 @@ import Cocoa
   //--------------------------- Array controller
     nameController.bind_modelAndView (
       rootObject.mNames,
-      tableView:mNamesTableView!,
+      tableViewArray:[mNamesTableView!],
       file:__FILE__,
       line:__LINE__
     )
     otherController.bind_modelAndView (
       rootObject.mNames,
-      tableView:mOtherTableView!,
+      tableViewArray:[mOtherTableView!],
       file:__FILE__,
       line:__LINE__
     )
     selectionController.bind_modelAndView (
       nameController.selectedArray,
-      tableView:mSelectionTableView!,
+      tableViewArray:[mSelectionTableView!],
       file:__FILE__,
       line:__LINE__
     )
