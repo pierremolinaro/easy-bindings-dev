@@ -87,7 +87,12 @@ end
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
       %!mModelString%,
-      tableView:%!mTableViewOutletName%!,
+      tableViewArray:[%
+      for () in mTableViewOutletNameList
+      do !mValue.string%!%
+      between %, %
+      end
+      %],
       file:__FILE__,
       line:__LINE__
     )\n%
