@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : Array<MyRootEntity> { get { return Array<MyRootEntity> () } }
+  var prop : (Array<MyRootEntity>, PMSelectionKind) { get { return (Array<MyRootEntity> (), .noSelection) } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -14,14 +14,14 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   func addObserverOf_docString (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docString.insert (inObserver)
-    for managedObject in prop {
+    for managedObject in prop.0 {
       managedObject.docString.addObserver (inObserver, postEvent:inTrigger)
     }
   }
 
   func removeObserverOf_docString (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_docString.remove (inObserver)
-    for managedObject in prop {
+    for managedObject in prop.0 {
       managedObject.docString.removeObserver (inObserver, postEvent:inTrigger)
     }
   }
@@ -36,28 +36,34 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> Array<MyRootEntity>?>
+  var computeFunction : Optional<() -> (Array<MyRootEntity>, PMSelectionKind) >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : Array<MyRootEntity>?
+  private var prop_cache : (Array<MyRootEntity>, PMSelectionKind)? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in self?.prop.count }
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        return (unwSelf.prop.0.count, unwSelf.prop.1)
+      }else{
+        return (0, .noSelection)
+      }
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : Array<MyRootEntity> {
+  override var prop : (Array<MyRootEntity>, PMSelectionKind) {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = Array<MyRootEntity> ()
+        prop_cache = (Array<MyRootEntity> (), .noSelection)
       }
       return prop_cache!
     }
@@ -95,7 +101,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var docString = PMStoredProperty_String ("doc string")
-  var docString_keyCodingValue : String { get {return docString.prop } }
+  var docString_keyCodingValue : String { get {return docString.prop.0 } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -116,8 +122,22 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    transientConcatString.computeFunction = {return compute_MyRootEntity_transientConcatString (self.docString.prop, g_MyPrefs!.myPrefString.prop, g_MyPrefs!.prefTransientString.prop)}
-    otherTransientConcatString.computeFunction = {return compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop)}
+    transientConcatString.computeFunction = {
+      let selectionKind = self.docString.prop.1 & g_MyPrefs!.myPrefString.prop.1 & g_MyPrefs!.prefTransientString.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_MyRootEntity_transientConcatString (self.docString.prop.0, g_MyPrefs!.myPrefString.prop.0, g_MyPrefs!.prefTransientString.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    otherTransientConcatString.computeFunction = {
+      let selectionKind = g_MyPrefs!.myPrefString.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
   //--- Install property observers for transients
     docString.addObserver (transientConcatString, postEvent:true)
     g_MyPrefs?.myPrefString.addObserver (transientConcatString, postEvent:true)
@@ -152,7 +172,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (docString.prop, forKey: "docString")
+    ioDictionary.setValue (docString.prop.0, forKey: "docString")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

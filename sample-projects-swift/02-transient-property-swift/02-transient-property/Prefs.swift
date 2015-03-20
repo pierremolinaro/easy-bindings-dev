@@ -87,8 +87,22 @@ var g_Prefs : Prefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = {return compute_Prefs_mFullName (self.mName.prop, self.mFirstName.prop)}
-    mUpperCaseFullName.computeFunction = {return compute_Prefs_mUpperCaseFullName (self.mFullName.prop)}
+    mFullName.computeFunction = {
+      let selectionKind = self.mName.prop.1 & self.mFirstName.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_Prefs_mFullName (self.mName.prop.0, self.mFirstName.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+    mUpperCaseFullName.computeFunction = {
+      let selectionKind = self.mFullName.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_Prefs_mUpperCaseFullName (self.mFullName.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
   //--- Install property observers for transients
     self.mName.addObserver (mFullName, postEvent:true)
     self.mFirstName.addObserver (mFullName, postEvent:true)
@@ -106,8 +120,8 @@ var g_Prefs : Prefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mName.prop, forKey:"Prefs:mName")
-    ud.setObject (mFirstName.prop, forKey:"Prefs:mFirstName")
+    ud.setObject (mName.prop.0, forKey:"Prefs:mName")
+    ud.setObject (mFirstName.prop.0, forKey:"Prefs:mFirstName")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

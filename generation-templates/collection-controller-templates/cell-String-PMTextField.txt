@@ -1,6 +1,16 @@
     //--- From cell-String-PMTextField.txt file
-      result.textField?.stringValue = object.$MODEL$.prop
-      result.textField?.target = self
-      result.textField?.action = "set_$MODEL$_Action:"
-      let tf : PMTextField = result.textField as! PMTextField
+     let tf : PMTextField = result.textField as! PMTextField
+      switch object.$MODEL$.prop.1 {
+      case .noSelection :
+        tf.stringValue = "No Selection"
+        tf.enabled = false
+      case .singleSelection :
+        tf.stringValue = object.$MODEL$.prop.0
+        tf.enabled = true
+        tf.target = self
+        tf.action = "set_$MODEL$_Action:"
+       case .multipleSelection :
+        tf.stringValue = "Multiple Selection"
+        tf.enabled = false
+     }
     //--- End

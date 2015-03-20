@@ -188,11 +188,11 @@ getter @typeKind preferencesSwiftGetter -> @string outResult {
 getter @typeKind preferencesSwiftSetter ?let @string inPropertyName -> @string outResult
 {
   switch self
-  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop)"
-  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop)"
-  case doubleType : outResult = "à compléter preferencesSwiftSetter"
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop)"
-  case dateType, stringType : outResult = inPropertyName + ".prop"
+  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop.0)"
+  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop.0)"
+  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop.0)"
+  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop.0)"
+  case dateType, stringType : outResult = inPropertyName + ".prop.0"
   case enumType (* *) : outResult = "à compléter preferencesSwiftSetter"
   case entityType (*) :
     outResult = "<invalid entity type>"

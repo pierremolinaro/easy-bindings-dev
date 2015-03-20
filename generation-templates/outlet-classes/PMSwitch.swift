@@ -71,14 +71,24 @@ import Cocoa
     mOutlet.target = nil
     mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
+    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if (mOutlet.state == NSOnState) != mObject.prop {
-      mOutlet.state = mObject.prop ? NSOnState : NSOffState
+    switch mObject.prop.1 {
+    case .noSelection :
+      mOutlet.state = NSOffState
+      mOutlet.enabled = false
+    case .multipleSelection :
+      mOutlet.state = NSMixedState
+      mOutlet.enabled = false
+    case .singleSelection :
+      mOutlet.state = mObject.prop.0 ? NSOnState : NSOffState
+      mOutlet.enabled = true
     }
+    mOutlet.updateEnabledState ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

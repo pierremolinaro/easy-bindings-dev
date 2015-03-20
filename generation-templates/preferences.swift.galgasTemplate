@@ -98,12 +98,24 @@ end
 %  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = {return compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  %    %!mTransientName%.computeFunction = {\n%
+  %      let selectionKind = %
   for () in mDependencyList
-    do ![mDependency modelString]%.prop%
+    do ![mDependency modelString]%.prop.1%
+    between % & %
+  end
+  %\n%
+  %      if selectionKind == .singleSelection {\n%
+  %        return (compute_%!PREFERENCES_NAME%_%!mTransientName% (%
+  for () in mDependencyList
+    do ![mDependency modelString]%.prop.0%
     between %, %
   end
-  %)}\n%
+  %), .singleSelection)\n%
+  %      }else{\n%
+  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
+  %      }\n%
+  %    }\n%
 end
 %  //--- Install property observers for transients
 %

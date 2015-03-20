@@ -1,6 +1,16 @@
     //--- From cell-Int-PMNumberField.txt file
       let tf : PMNumberField = result.textField as! PMNumberField
-      tf.myIntegerValue = object.$MODEL$.prop
-      tf.target = self
-      tf.action = "set_$MODEL$_Action:"
+      switch object.$MODEL$.prop.1 {
+      case .noSelection :
+        tf.stringValue = "No Selection"
+        tf.enabled = false
+      case .singleSelection :
+        tf.integerValue = object.$MODEL$.prop.0
+        tf.enabled = true
+        tf.target = self
+        tf.action = "set_$MODEL$_Action:"
+       case .multipleSelection :
+        tf.stringValue = "Multiple Selection"
+        tf.enabled = false
+     }
     //--- end

@@ -20,7 +20,7 @@ func compute_PMDocument_total (self_2E_rootObject_2E_mNames : [NameEntity_aValue
 //--- START OF USER ZONE 2
   var total = 0
   for object in self_2E_rootObject_2E_mNames { // [NameEntity_aValue]
-    total += object.aValue.prop
+    total += object.aValue.prop.0
   }
   return total
 //--- END OF USER ZONE 2

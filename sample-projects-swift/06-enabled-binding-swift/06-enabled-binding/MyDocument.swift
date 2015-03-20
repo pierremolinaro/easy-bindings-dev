@@ -66,14 +66,20 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is not an instance of 'PMButton'") ;
     }
   //--------------------------- Array controller
-  //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
     myButton?.bind_enabled (
       [g_MyPrefs!.prefBoolean, self.rootObject.docBool],
-      computeFunction:{ (!self.rootObject.docBool.prop && g_MyPrefs!.prefBoolean.prop) },
+      computeFunction:{
+        let selection = g_MyPrefs!.prefBoolean.prop.1 & self.rootObject.docBool.prop.1
+        if selection == .singleSelection {
+          return ((!self.rootObject.docBool.prop.0 && g_MyPrefs!.prefBoolean.prop.0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
       file:__FILE__, line:__LINE__
     )
   //--------------------------- Set targets / actions

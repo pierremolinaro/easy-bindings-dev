@@ -78,7 +78,6 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
   //--------------------------- Array controller
-  //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)

@@ -140,10 +140,10 @@ var g_PMPrefs : PMPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (myString.prop, forKey:"PMPrefs:myString")
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop), forKey:"PMPrefs:mColor")
-    ud.setObject (mDate.prop, forKey:"PMPrefs:mDate")
-    ud.setObject (NSNumber (integer:mIntegerValue.prop), forKey:"PMPrefs:mIntegerValue")
+    ud.setObject (myString.prop.0, forKey:"PMPrefs:myString")
+    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop.0), forKey:"PMPrefs:mColor")
+    ud.setObject (mDate.prop.0, forKey:"PMPrefs:mDate")
+    ud.setObject (NSNumber (integer:mIntegerValue.prop.0), forKey:"PMPrefs:mIntegerValue")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

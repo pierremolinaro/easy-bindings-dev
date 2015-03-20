@@ -18,8 +18,8 @@ import Cocoa
 extension PMDocument {
   func increment (inSender : AnyObject) {
 //--- START OF USER ZONE 2
-    for object in rootObject.mNames.prop {
-      object.aValue.setProp (object.aValue.prop + 1)
+    for object in rootObject.mNames.prop.0 {
+      object.aValue.setProp (object.aValue.prop.0 + 1)
     }
 //--- END OF USER ZONE 2
 

@@ -66,7 +66,14 @@ var g_MyPrefs : MyPrefs? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    prefTransientString.computeFunction = {return compute_MyPrefs_prefTransientString (self.myPrefString.prop)}
+    prefTransientString.computeFunction = {
+      let selectionKind = self.myPrefString.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_MyPrefs_prefTransientString (self.myPrefString.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
   //--- Install property observers for transients
     self.myPrefString.addObserver (prefTransientString, postEvent:true)
   //--- Install bindings
@@ -79,7 +86,7 @@ var g_MyPrefs : MyPrefs? = nil
 
   func applicationWillTerminateAction (NSNotification) {
     var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (myPrefString.prop, forKey:"MyPrefs:myPrefString")
+    ud.setObject (myPrefString.prop.0, forKey:"MyPrefs:myPrefString")
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
