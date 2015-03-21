@@ -89,13 +89,13 @@ class Controller_PMTextField_value : PMOutletEvent {
     switch mObject.prop.1 {
     case .noSelection :
       mOutlet.stringValue = "No selection"
-      mOutlet.enabled = false
+      mOutlet.enableFromValue (false)
     case .multipleSelection :
       mOutlet.stringValue = "Multiple selection"
-      mOutlet.enabled = false
+      mOutlet.enableFromValue (false)
     case .singleSelection :
       mOutlet.stringValue = mObject.prop.0
-      mOutlet.enabled = true
+      mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()
   }
