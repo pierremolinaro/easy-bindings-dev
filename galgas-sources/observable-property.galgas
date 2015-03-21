@@ -307,13 +307,9 @@ method @observablePropertyAST analyzeObservableProperty
       outMultiplicity = .collection
       outKind = .transient
       outType = type
-    elsif propertyName.string == "selection" then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = type
     else
       error propertyName
-        : "uknown option (accepted : 'selectionCount')"
+        : "uknown option (accepted : 'sortedArray' or 'selectedArray')"
         : outMultiplicity, outKind, outType
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
@@ -327,18 +323,6 @@ method @observablePropertyAST analyzeObservableProperty
       outMultiplicity = .single
       outKind = .transient
       outType = .integerType
-    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "empty") then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = .boolType
-    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "single") then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = .boolType
-    elsif (propertyName.string == "selection") && (secondaryPropertyName.string == "multiple") then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = .boolType
     else
       error propertyName
         : "uknown option"
