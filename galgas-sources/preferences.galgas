@@ -6,8 +6,8 @@ class @prefDeclaration : @astDeclaration {
   @lstring mPrefsName
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
-  @transientList mTransientList
   @lstringlist mActionDeclarationList
+  @itemList mItemList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -27,8 +27,8 @@ syntax extension easyBindings_syntax {
     ${$
     var outletDeclarationList =@outletDeclarationList.emptyList{}
     @simpleStoredPropertyList simpleStoredPropertyList = {}
-    var transientList =@transientList.emptyList{}
     var actionDeclarationList =@lstringlist.emptyList{}
+    @itemList itemList = {}
     repeat
     while
       <action_declaration> !?actionDeclarationList
@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <transient_declaration> !?transientList
+      <transient_declaration> !?itemList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@prefDeclaration.new {
@@ -45,8 +45,8 @@ syntax extension easyBindings_syntax {
       !prefsName
       !outletDeclarationList
       !simpleStoredPropertyList
-      !transientList
       !actionDeclarationList
+      !itemList
     }
   }
 
@@ -63,11 +63,13 @@ override method @prefDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  [mTransientList typeInventory
-    !"prefs." + mPrefsName
-    !?ioUnifiedTypeMap
-    !?ioTransientDependencyGraph
-  ]
+  for (item) in mItemList do
+    [item typeInventory
+      !"prefs." + mPrefsName
+      !?ioUnifiedTypeMap
+      !?ioTransientDependencyGraph
+    ]
+  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -95,10 +97,12 @@ override method @prefDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  [mTransientList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
+  for (item) in mItemList do
+    [item buildObservablePropertyMap
+      !inUnifiedTypeMap
+      !?observablePropertyMap
+    ]
+  end
 #--- Enter in semantics context  
   [!?ioSemanticContext.mPrefsObservablePropertyMap insertKey
     !mPrefsName
@@ -124,15 +128,18 @@ override method @prefDeclaration semanticAnalysis
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
-  [mTransientList transientSemanticAnalysis
-    !mPrefsName.string
-    !{} # No root entity
-    !inSemanticContext
-    !observablePropertyMap
-    !{} # No Array controller
-    !?ioGeneration
-    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
-  ]
+  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  for (item) in mItemList do
+    [item semanticAnalysis
+      !mPrefsName.string
+      !{} # No root entity
+      !inSemanticContext
+      !observablePropertyMap
+      !{} # No Array controller
+      !?transientDefinitionListForGeneration
+    ]
+  end
+  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do

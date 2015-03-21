@@ -7,9 +7,9 @@ class @documentDeclaration : @astDeclaration {
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
-  @transientList mTransientList
   @lstringlist mActionDeclarationList
   @arrayControllerDeclarationListAST mArrayControllerDeclarationList
+  @itemList mItemList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -29,10 +29,10 @@ syntax extension easyBindings_syntax {
     $root$
     $Identifier$ ?let @lstring rootEntityName
     ${$
+    @itemList itemList = {}
     @outletDeclarationList outletDeclarationList = {}
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
-    @transientList transientList = {}
     @simpleStoredPropertyList simpleStoredPropertyList = {}
     @arrayControllerDeclarationListAST arrayControllerDeclarationListAST = {}
     repeat
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?actionDeclarationList
     while
-      <transient_declaration> !?transientList
+      <transient_declaration> !?itemList
     while
       <outlet_declaration> !?outletDeclarationList
     while
@@ -54,9 +54,9 @@ syntax extension easyBindings_syntax {
       !rootEntityName
       !outletDeclarationList
       !simpleStoredPropertyList
-      !transientList
       !actionDeclarationList
       !arrayControllerDeclarationListAST
+      !itemList
     }
   }
 
@@ -73,11 +73,13 @@ override method @documentDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  [mTransientList typeInventory
-    !"document." + mDocumentName
-    !?ioUnifiedTypeMap
-    !?ioTransientDependencyGraph
-  ]
+  for (item) in mItemList do
+    [item typeInventory
+      !"document." + mDocumentName
+      !?ioUnifiedTypeMap
+      !?ioTransientDependencyGraph
+    ]
+  end
   [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mRootEntityName ?*]
 }
 
@@ -106,10 +108,12 @@ override method @documentDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  [mTransientList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
+  for (item) in mItemList do
+    [item buildObservablePropertyMap
+      !inUnifiedTypeMap
+      !?observablePropertyMap
+    ]
+  end
 #--- Enter in semantics context  
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
@@ -145,15 +149,18 @@ override method @documentDeclaration semanticAnalysis
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
-  [mTransientList transientSemanticAnalysis
-    !mDocumentName.string
-    !rootObservablePropertyMap
-    !inSemanticContext
-    !observablePropertyMap
-    !arrayControllerMap
-    !?ioGeneration
-    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
-  ]
+  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  for (item) in mItemList do
+    [item semanticAnalysis
+      !mDocumentName.string
+      !rootObservablePropertyMap
+      !inSemanticContext
+      !observablePropertyMap
+      !arrayControllerMap
+      !?transientDefinitionListForGeneration
+    ]
+  end
+  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do

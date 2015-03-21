@@ -2,7 +2,7 @@
 #   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-list @transientList {
+class @transientAST : @abstractItem {
   @lstring mTransientTypeName
   @lstring mTransientName
   @observablePropertyList mDependencyList
@@ -17,7 +17,8 @@ syntax extension easyBindings_syntax {
   #....................................................................................................................*
   
   rule <transient_declaration>
-    ?!@transientList ioTransientList {
+    ?!@itemList ioItemList
+  {
     $transient$
     $Identifier$ ?var @lstring transientTypeName
     $identifier$ ?let @lstring transientName
@@ -30,7 +31,11 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $;$
-    ioTransientList += !transientTypeName !transientName !dependanceList
+    ioItemList += !@transientAST.new {
+      !transientTypeName
+      !transientName
+      !dependanceList
+    }
   }
 
   #....................................................................................................................*
@@ -41,33 +46,31 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY                                                                                                     *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-method @transientList typeInventory
+override method @transientAST typeInventory
   ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap ioUnifiedTypeMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
-  for () in self do
-    [@unifiedTypeMap-proxy makeProxy
-      !?ioUnifiedTypeMap
-      !mTransientTypeName
-      ?*
-    ]
-    let slaveProperty = @lstring.new {
-      !inDependencyGraphPrefix + "." + mTransientName
-      !mTransientName.location
-     }
-    [!?ioTransientDependencyGraph addNode
+  [@unifiedTypeMap-proxy makeProxy
+    !?ioUnifiedTypeMap
+    !mTransientTypeName
+    ?*
+  ]
+  let slaveProperty = @lstring.new {
+    !inDependencyGraphPrefix + "." + mTransientName
+    !mTransientName.location
+   }
+  [!?ioTransientDependencyGraph addNode
+    !slaveProperty
+    !slaveProperty.string
+    !true # Is transient
+  ]
+  for () in mDependencyList do
+    [mObservableProperty enterInTransientDependencyGraph
+      !inDependencyGraphPrefix
       !slaveProperty
-      !slaveProperty.string
-      !true # Is transient
+      !?ioTransientDependencyGraph
     ]
-    for () in mDependencyList do
-      [mObservableProperty enterInTransientDependencyGraph
-        !inDependencyGraphPrefix
-        !slaveProperty
-        !?ioTransientDependencyGraph
-      ]
-    end
   end
 }
 
@@ -75,85 +78,78 @@ method @transientList typeInventory
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-method @transientList buildObservablePropertyMap
+override method @transientAST buildObservablePropertyMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@observablePropertyMap ioObservableProperties
 {
-  for () in self do
-  #--- Property type
-    [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
-  #--- Check type
-    switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
-    case enumType (* *) : # Ok
-    case entityType (*) :
-      error mTransientName: "an entity cannot be used as simple property type"
-    end
-  #--- Enter in property map
-    [!?ioObservableProperties insertKey
-      !mTransientName
-      !type
-      !.stored
-      !.single
-      !""
-    ]
+#--- Property type
+  [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+#--- Check type
+  switch type
+  case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+  case enumType (* *) : # Ok
+  case entityType (*) :
+    error mTransientName: "an entity cannot be used as simple property type"
   end
+#--- Enter in property map
+  [!?ioObservableProperties insertKey
+    !mTransientName
+    !type
+    !.stored
+    !.single
+    !""
+  ]
 }
 
 #......................................................................................................................*
 
-method @transientList transientSemanticAnalysis
+override method @transientAST semanticAnalysis
   ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?let @arrayControllerMap inArrayControllerMap
-  ?!@structForGeneration ioGeneration
-  !@transientDefinitionListForGeneration outTransientDefinitionListForGeneration
+  ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
 {
-  outTransientDefinitionListForGeneration = {}
-  for () in self do
-  #--- Property type
-    [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
-  #--- Check type
-    @typeKindList typeList
-    switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
-      typeList = {!type}
-    case enumType (* *) : # Ok
-      typeList = {!type}
-    case entityType (*) :
-      error mTransientName: "an entity cannot be used as simple property type" : typeList
-    end
-  #--- Analyse master properties
-    @transientDependencyListForGeneration dependencies = {}
-    for () in mDependencyList do
-      [mObservableProperty analyzeObservableProperty
-        !inRootObservableProperties
-        !inSemanticContext
-        !inObservableProperties
-        !inArrayControllerMap
-        ?let @typeKind unused dependencyType
-        ?let @propertyKind unused dependencyKind
-        ?@propertyMultiplicity outMultiplicity
-        ?let @string swiftTypeStringForTransientFunctionArgument
-      ]
-      if outMultiplicity != .single then
-        error [mObservableProperty location] : "a collection cannot be observed"
-      end
-      dependencies +=
-        !mObservableProperty
-        ![[mObservableProperty modelString] nameRepresentation]
-        !swiftTypeStringForTransientFunctionArgument
-    end
-  #--- Code generation
-    outTransientDefinitionListForGeneration +=
-      !inOwnerName
-      !mTransientName.string
-      !type
-      !dependencies
+#--- Property type
+  [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+#--- Check type
+  @typeKindList typeList
+  switch type
+  case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+    typeList = {!type}
+  case enumType (* *) : # Ok
+    typeList = {!type}
+  case entityType (*) :
+    error mTransientName: "an entity cannot be used as simple property type" : typeList
   end
-  ioGeneration.mTransientListForGeneration += outTransientDefinitionListForGeneration
+#--- Analyse master properties
+  @transientDependencyListForGeneration dependencies = {}
+  for () in mDependencyList do
+    [mObservableProperty analyzeObservableProperty
+      !inRootObservableProperties
+      !inSemanticContext
+      !inObservableProperties
+      !inArrayControllerMap
+      ?let @typeKind unused dependencyType
+      ?let @propertyKind unused dependencyKind
+      ?@propertyMultiplicity outMultiplicity
+      ?let @string swiftTypeStringForTransientFunctionArgument
+    ]
+    if outMultiplicity != .single then
+      error [mObservableProperty location] : "a collection cannot be observed"
+    end
+    dependencies +=
+      !mObservableProperty
+      ![[mObservableProperty modelString] nameRepresentation]
+      !swiftTypeStringForTransientFunctionArgument
+  end
+#--- Code generation
+  ioTransientDefinitionListForGeneration +=
+    !inOwnerName
+    !mTransientName.string
+    !type
+    !dependencies
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
