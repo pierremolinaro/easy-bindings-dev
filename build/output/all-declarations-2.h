@@ -1270,6 +1270,111 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                          @arrayControllerDeclaration class                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerDeclaration : public GALGAS_abstractItem {
+//--- Constructor
+  public : GALGAS_arrayControllerDeclaration (void) ;
+
+//---
+  public : inline const class cPtr_arrayControllerDeclaration * ptr (void) const { return (const cPtr_arrayControllerDeclaration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_arrayControllerDeclaration (const cPtr_arrayControllerDeclaration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerDeclaration extractObject (const GALGAS_object & inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerDeclaration constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                     const class GALGAS_arrayControllerModel & inOperand1,
+                                                                     const class GALGAS_lstringlist & inOperand2,
+                                                                     const class GALGAS_lstringlist & inOperand3,
+                                                                     const class GALGAS_arrayControllerBoundColumnListAST & inOperand4
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerDeclaration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModel reader_mArrayControllerModel (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mControllerName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mFilterProperties (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mTableViewOutletNameList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerDeclaration class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDeclaration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Pointer class for @arrayControllerDeclaration class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_arrayControllerDeclaration : public cPtr_abstractItem {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mControllerName ;
+  public : GALGAS_arrayControllerModel mAttribute_mArrayControllerModel ;
+  public : GALGAS_lstringlist mAttribute_mTableViewOutletNameList ;
+  public : GALGAS_lstringlist mAttribute_mFilterProperties ;
+  public : GALGAS_arrayControllerBoundColumnListAST mAttribute_mArrayControllerBoundColumnListAST ;
+
+//--- Constructor
+  public : cPtr_arrayControllerDeclaration (const GALGAS_lstring & in_mControllerName,
+                                            const GALGAS_arrayControllerModel & in_mArrayControllerModel,
+                                            const GALGAS_lstringlist & in_mTableViewOutletNameList,
+                                            const GALGAS_lstringlist & in_mFilterProperties,
+                                            const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
+                                            COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mControllerName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerModel reader_mArrayControllerModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_mTableViewOutletNameList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_mFilterProperties (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                               Abstract category method '@abstractItem typeInventory'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

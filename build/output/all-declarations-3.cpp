@@ -10,6 +10,325 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_semanticContext::GALGAS_semanticContext (void) :
+mAttribute_mUnifiedTypeMap (),
+mAttribute_mOutletClassMap (),
+mAttribute_mBindingSpecificationMap (),
+mAttribute_mPrefsObservablePropertyMap (),
+mAttribute_mDocumentObservablePropertyMap (),
+mAttribute_mEntityObservablePropertyMap () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_semanticContext::~ GALGAS_semanticContext (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_semanticContext::GALGAS_semanticContext (const GALGAS_unifiedTypeMap & inOperand0,
+                                                const GALGAS_outletClassMap & inOperand1,
+                                                const GALGAS_bindingSpecificationMap & inOperand2,
+                                                const GALGAS_prefsObservablePropertyMap & inOperand3,
+                                                const GALGAS_documentObservablePropertyMap & inOperand4,
+                                                const GALGAS_entityObservablePropertyMap & inOperand5) :
+mAttribute_mUnifiedTypeMap (inOperand0),
+mAttribute_mOutletClassMap (inOperand1),
+mAttribute_mBindingSpecificationMap (inOperand2),
+mAttribute_mPrefsObservablePropertyMap (inOperand3),
+mAttribute_mDocumentObservablePropertyMap (inOperand4),
+mAttribute_mEntityObservablePropertyMap (inOperand5) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_semanticContext GALGAS_semanticContext::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_semanticContext (GALGAS_unifiedTypeMap::constructor_emptyMap (HERE),
+                                 GALGAS_outletClassMap::constructor_emptyMap (HERE),
+                                 GALGAS_bindingSpecificationMap::constructor_emptyMap (HERE),
+                                 GALGAS_prefsObservablePropertyMap::constructor_emptyMap (HERE),
+                                 GALGAS_documentObservablePropertyMap::constructor_emptyMap (HERE),
+                                 GALGAS_entityObservablePropertyMap::constructor_emptyMap (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_semanticContext GALGAS_semanticContext::constructor_new (const GALGAS_unifiedTypeMap & inOperand0,
+                                                                const GALGAS_outletClassMap & inOperand1,
+                                                                const GALGAS_bindingSpecificationMap & inOperand2,
+                                                                const GALGAS_prefsObservablePropertyMap & inOperand3,
+                                                                const GALGAS_documentObservablePropertyMap & inOperand4,
+                                                                const GALGAS_entityObservablePropertyMap & inOperand5 
+                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_semanticContext result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_semanticContext (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_semanticContext::objectCompare (const GALGAS_semanticContext & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mUnifiedTypeMap.objectCompare (inOperand.mAttribute_mUnifiedTypeMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletClassMap.objectCompare (inOperand.mAttribute_mOutletClassMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mBindingSpecificationMap.objectCompare (inOperand.mAttribute_mBindingSpecificationMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mPrefsObservablePropertyMap.objectCompare (inOperand.mAttribute_mPrefsObservablePropertyMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mDocumentObservablePropertyMap.objectCompare (inOperand.mAttribute_mDocumentObservablePropertyMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEntityObservablePropertyMap.objectCompare (inOperand.mAttribute_mEntityObservablePropertyMap) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_semanticContext::isValid (void) const {
+  return mAttribute_mUnifiedTypeMap.isValid () && mAttribute_mOutletClassMap.isValid () && mAttribute_mBindingSpecificationMap.isValid () && mAttribute_mPrefsObservablePropertyMap.isValid () && mAttribute_mDocumentObservablePropertyMap.isValid () && mAttribute_mEntityObservablePropertyMap.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_semanticContext::drop (void) {
+  mAttribute_mUnifiedTypeMap.drop () ;
+  mAttribute_mOutletClassMap.drop () ;
+  mAttribute_mBindingSpecificationMap.drop () ;
+  mAttribute_mPrefsObservablePropertyMap.drop () ;
+  mAttribute_mDocumentObservablePropertyMap.drop () ;
+  mAttribute_mEntityObservablePropertyMap.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_semanticContext::description (C_String & ioString,
+                                          const int32_t inIndentation) const {
+  ioString << "<struct @semanticContext:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mUnifiedTypeMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mOutletClassMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mBindingSpecificationMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mPrefsObservablePropertyMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mDocumentObservablePropertyMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEntityObservablePropertyMap.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_unifiedTypeMap GALGAS_semanticContext::reader_mUnifiedTypeMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mUnifiedTypeMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletClassMap GALGAS_semanticContext::reader_mOutletClassMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletClassMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bindingSpecificationMap GALGAS_semanticContext::reader_mBindingSpecificationMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBindingSpecificationMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_prefsObservablePropertyMap GALGAS_semanticContext::reader_mPrefsObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mPrefsObservablePropertyMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap GALGAS_semanticContext::reader_mDocumentObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDocumentObservablePropertyMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap GALGAS_semanticContext::reader_mEntityObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEntityObservablePropertyMap ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                                @semanticContext type                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_semanticContext ("semanticContext",
+                                        NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_semanticContext::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_semanticContext ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_semanticContext::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_semanticContext (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_semanticContext GALGAS_semanticContext::extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_semanticContext result ;
+  const GALGAS_semanticContext * p = (const GALGAS_semanticContext *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_semanticContext *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("semanticContext", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element::GALGAS_itemList_2D_element (void) :
+mAttribute_mItem () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element::~ GALGAS_itemList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element::GALGAS_itemList_2D_element (const GALGAS_abstractItem & inOperand0) :
+mAttribute_mItem (inOperand0) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element GALGAS_itemList_2D_element::constructor_new (const GALGAS_abstractItem & inOperand0 
+                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_itemList_2D_element result ;
+  if (inOperand0.isValid ()) {
+    result = GALGAS_itemList_2D_element (inOperand0) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_itemList_2D_element::objectCompare (const GALGAS_itemList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mItem.objectCompare (inOperand.mAttribute_mItem) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_itemList_2D_element::isValid (void) const {
+  return mAttribute_mItem.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList_2D_element::drop (void) {
+  mAttribute_mItem.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList_2D_element::description (C_String & ioString,
+                                              const int32_t inIndentation) const {
+  ioString << "<struct @itemList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mItem.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractItem GALGAS_itemList_2D_element::reader_mItem (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mItem ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               @itemList-element type                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_itemList_2D_element ("itemList-element",
+                                            NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_itemList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_itemList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_itemList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_itemList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element GALGAS_itemList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_itemList_2D_element result ;
+  const GALGAS_itemList_2D_element * p = (const GALGAS_itemList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_itemList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("itemList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_enumListForGeneration_2D_element::GALGAS_enumListForGeneration_2D_element (void) :
 mAttribute_mEnumName (),
 mAttribute_mEnumConstantList () {
@@ -4356,17 +4675,17 @@ GALGAS_string categoryReader_modelString (const GALGAS_arrayControllerModel & in
     break ;
   case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_12400 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_12400->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 310)) ;
+      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_14957 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_14957->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 380)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 380)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_12532 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_12532->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_12532->mAssociatedValue1 ;
-      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 312)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 312)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 312)) ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_15089 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_15089->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_15089->mAssociatedValue1 ;
+      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 382)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)) ;
     }
     break ;
   }
@@ -4395,19 +4714,19 @@ GALGAS_string categoryReader_modelTypeName (const GALGAS_arrayControllerModel & 
     break ;
   case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_12976 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_12976->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 325)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 325)).add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 325)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 325)) ;
+      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_15533 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_15533->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 395)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 395)).add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 395)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 395)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_13187 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_13187->mAssociatedValue0 ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_15744 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_15744->mAssociatedValue0 ;
       GALGAS_typeKind var_modelType ;
-      GALGAS_propertyKind joker_13116 ; // Joker input parameter
-      constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, joker_13116, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 327)) ;
-      result_outResult = GALGAS_string ("TransientArrayOf_").add_operation (categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 332)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 332)) ;
+      GALGAS_propertyKind joker_15673 ; // Joker input parameter
+      constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, joker_15673, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 397)) ;
+      result_outResult = GALGAS_string ("TransientArrayOf_").add_operation (categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 402)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 402)) ;
     }
     break ;
   }
@@ -4436,19 +4755,19 @@ GALGAS_string categoryReader_modelTypeName_32_ (const GALGAS_arrayControllerMode
     break ;
   case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_13672 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_13672->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 345)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 345)).add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 345)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 345)) ;
+      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_16229 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_16229->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 415)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 415)).add_operation (extractedValue_rootRelationshipName.reader_string (SOURCE_FILE ("array-controller-declaration.galgas", 415)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 415)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_13882 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_13882->mAssociatedValue0 ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_16439 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_16439->mAssociatedValue0 ;
       GALGAS_typeKind var_modelType ;
-      GALGAS_propertyKind joker_13812 ; // Joker input parameter
-      constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, joker_13812, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 347)) ;
-      result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 352)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 352)) ;
+      GALGAS_propertyKind joker_16369 ; // Joker input parameter
+      constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, joker_16369, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 417)) ;
+      result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 422)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 422)) ;
     }
     break ;
   }
@@ -10726,4 +11045,78 @@ static void defineCategoryMethod_transientAST_semanticAnalysis (void) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_transientAST_semanticAnalysis (defineCategoryMethod_transientAST_semanticAnalysis, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Overriding category method '@arrayControllerDeclaration typeInventory'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_arrayControllerDeclaration_typeInventory (const cPtr_abstractItem * /* inObject */,
+                                                                     GALGAS_string /* inArgument_inDependencyGraphPrefix */,
+                                                                     GALGAS_unifiedTypeMap & /* ioArgument_ioUnifiedTypeMap */,
+                                                                     GALGAS_transientDependencyGraph & /* ioArgument_ioTransientDependencyGraph */,
+                                                                     C_Compiler * /* inCompiler */
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_arrayControllerDeclaration_typeInventory (void) {
+  enterCategoryMethod_typeInventory (kTypeDescriptor_GALGAS_arrayControllerDeclaration.mSlotID,
+                                     categoryMethod_arrayControllerDeclaration_typeInventory) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_arrayControllerDeclaration_typeInventory (defineCategoryMethod_arrayControllerDeclaration_typeInventory, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                 Overriding category method '@arrayControllerDeclaration buildObservablePropertyMap'                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_arrayControllerDeclaration_buildObservablePropertyMap (const cPtr_abstractItem * /* inObject */,
+                                                                                  const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
+                                                                                  GALGAS_observablePropertyMap & /* ioArgument_ioObservableProperties */,
+                                                                                  C_Compiler * /* inCompiler */
+                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_arrayControllerDeclaration_buildObservablePropertyMap (void) {
+  enterCategoryMethod_buildObservablePropertyMap (kTypeDescriptor_GALGAS_arrayControllerDeclaration.mSlotID,
+                                                  categoryMethod_arrayControllerDeclaration_buildObservablePropertyMap) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_arrayControllerDeclaration_buildObservablePropertyMap (defineCategoryMethod_arrayControllerDeclaration_buildObservablePropertyMap, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Overriding category method '@arrayControllerDeclaration semanticAnalysis'                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_arrayControllerDeclaration_semanticAnalysis (const cPtr_abstractItem * /* inObject */,
+                                                                        const GALGAS_string /* constinArgument_inOwnerName */,
+                                                                        const GALGAS_observablePropertyMap /* constinArgument_inRootObservableProperties */,
+                                                                        const GALGAS_semanticContext /* constinArgument_inSemanticContext */,
+                                                                        const GALGAS_observablePropertyMap /* constinArgument_inObservableProperties */,
+                                                                        const GALGAS_arrayControllerMap /* constinArgument_inArrayControllerMap */,
+                                                                        GALGAS_transientDefinitionListForGeneration & /* ioArgument_ioTransientDefinitionListForGeneration */,
+                                                                        C_Compiler * /* inCompiler */
+                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_arrayControllerDeclaration_semanticAnalysis (void) {
+  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_arrayControllerDeclaration.mSlotID,
+                                        categoryMethod_arrayControllerDeclaration_semanticAnalysis) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_arrayControllerDeclaration_semanticAnalysis (defineCategoryMethod_arrayControllerDeclaration_semanticAnalysis, NULL) ;
 

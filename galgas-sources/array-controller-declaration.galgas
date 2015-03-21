@@ -26,6 +26,16 @@ list @arrayControllerDeclarationListAST {
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 }
 
+#......................................................................................................................*
+
+class @arrayControllerDeclaration: @abstractItem {
+  @lstring mControllerName
+  @arrayControllerModel mArrayControllerModel
+  @lstringlist mTableViewOutletNameList
+  @lstringlist mFilterProperties
+  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SYNTAX                                                                                                             *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -115,6 +125,66 @@ map @arrayControllerMap {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @arrayControllerDeclaration typeInventory
+  ?@string unused inDependencyGraphPrefix # i.e. prefs.preferencesName.
+  ?!@unifiedTypeMap unused ioUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+{
+}
+
+#......................................................................................................................*
+
+override method @arrayControllerDeclaration buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+#  @typeKind type
+#  @propertyKind kind
+#  @location errorLocation
+#  switch mArrayControllerModel
+#  case rootToManyRelationship (@lstring relationshipName) :
+#    errorLocation = relationshipName.location
+#    [inRootObservablePropertyMap searchKey
+#      !relationshipName
+#      ?type
+#      ?kind
+#      ?let @propertyMultiplicity multiplicity
+#      ?*
+#    ]
+#    if multiplicity != .collection then
+#      error errorLocation : "this property should be a tomany relationship"
+#    end
+#  case controllerArray (@lstring controllerName @lstring propertyName) :
+#    errorLocation = propertyName.location
+#    [outArrayControllerMap searchKey
+#      !controllerName
+#      ?type
+#      ?kind
+#    ]
+#  end
+#  switch type
+#  case boolType, colorType, dateType, doubleType, integerType, stringType :
+#    error errorLocation : "this property should be a tomany relationship"
+#  case enumType (* *) :
+#    error errorLocation : "this property should be a tomany relationship"
+#  case entityType (*) : #Ok
+#  end
+}
+
+#......................................................................................................................*
+
+override method @arrayControllerDeclaration semanticAnalysis
+  ?let @string inOwnerName
+  ?let @observablePropertyMap inRootObservableProperties
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservableProperties
+  ?let @arrayControllerMap inArrayControllerMap
+  ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+{
+}
+
+#......................................................................................................................*
 
 method @arrayControllerDeclarationListAST buildArrayControllerMap
   ?let @observablePropertyMap inRootObservablePropertyMap
