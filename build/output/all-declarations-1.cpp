@@ -8281,7 +8281,7 @@ GALGAS_validationStubRoutineListForGeneration GALGAS_validationStubRoutineListFo
 #define END_PRODUCTION  (0)
 
 static const int16_t gProductions_easyBindings_grammar [] = {
-// At index 0 : <start_symbol>, in file 'easyBindings_syntax.ggs', line 43
+// At index 0 : <start_symbol>, in file 'easyBindings_syntax.ggs', line 54
   NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
 // At index 2 : <enum_declaration>, in file 'easyBindings_syntax.ggs', line 18
@@ -8438,35 +8438,35 @@ static const int16_t gProductions_easyBindings_grammar [] = {
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) // $;$
 , END_PRODUCTION
 //---- Added productions from 'select' and 'repeat' instructions
-// At index 131 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 131 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , END_PRODUCTION
-// At index 132 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 132 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_include) // $include$
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) // $literal_string$
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) // $;$
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 137 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 137 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (1) // <enum_declaration>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 140 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 140 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (3) // <entity_declaration>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 143 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 143 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (4) // <preferences_declaration>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 146 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 146 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (2) // <document_declaration>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 149 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 149 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (5) // <outlet_class_declaration>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
-// At index 152 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+// At index 152 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (6) // <binding_specification>
 , NONTERMINAL (22) // <select_easyBindings_5F_syntax_0>
 , END_PRODUCTION
@@ -8740,9 +8740,9 @@ static const int16_t gProductions_easyBindings_grammar [] = {
 , NONTERMINAL (10) // <explicit_value>
 , NONTERMINAL (48) // <select_easyBindings_5F_syntax_26>
 , END_PRODUCTION
-// At index 353 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 26
+// At index 353 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 27
 , END_PRODUCTION
-// At index 354 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 26
+// At index 354 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 27
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) // $,$
 , NONTERMINAL (8) // <observable_property>
 , NONTERMINAL (49) // <select_easyBindings_5F_syntax_27>
@@ -8951,7 +8951,7 @@ static const cProductionNameDescriptor gProductionNames_easyBindings_grammar [12
 //---------------------------------------------------------------------------------------------------------------------*
 
 static const int16_t gProductionIndexes_easyBindings_grammar [124] = {
-0, // index 0 : <start_symbol>, in file 'easyBindings_syntax.ggs', line 43
+0, // index 0 : <start_symbol>, in file 'easyBindings_syntax.ggs', line 54
 2, // index 1 : <enum_declaration>, in file 'easyBindings_syntax.ggs', line 18
 9, // index 2 : <document_declaration>, in file 'easyBindings_syntax.ggs', line 23
 17, // index 3 : <entity_declaration>, in file 'easyBindings_syntax.ggs', line 22
@@ -8976,14 +8976,14 @@ static const int16_t gProductionIndexes_easyBindings_grammar [124] = {
 101, // index 22 : <array_controller_declaration>, in file 'easyBindings_syntax.ggs', line 37
 115, // index 23 : <toMany_relationship>, in file 'easyBindings_syntax.ggs', line 28
 123, // index 24 : <toOne_relationship>, in file 'easyBindings_syntax.ggs', line 46
-131, // index 25 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-132, // index 26 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-137, // index 27 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-140, // index 28 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-143, // index 29 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-146, // index 30 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-149, // index 31 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
-152, // index 32 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 48
+131, // index 25 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+132, // index 26 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+137, // index 27 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+140, // index 28 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+143, // index 29 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+146, // index 30 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+149, // index 31 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
+152, // index 32 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 59
 155, // index 33 : <select_easyBindings_5F_syntax_1>, in file 'easyBindings_syntax.ggs', line 25
 156, // index 34 : <select_easyBindings_5F_syntax_1>, in file 'easyBindings_syntax.ggs', line 25
 160, // index 35 : <select_easyBindings_5F_syntax_2>, in file 'easyBindings_syntax.ggs', line 38
@@ -9056,8 +9056,8 @@ static const int16_t gProductionIndexes_easyBindings_grammar [124] = {
 339, // index 102 : <select_easyBindings_5F_syntax_25>, in file 'easyBindings_syntax.ggs', line 21
 346, // index 103 : <select_easyBindings_5F_syntax_26>, in file 'easyBindings_syntax.ggs', line 24
 347, // index 104 : <select_easyBindings_5F_syntax_26>, in file 'easyBindings_syntax.ggs', line 24
-353, // index 105 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 26
-354, // index 106 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 26
+353, // index 105 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 27
+354, // index 106 : <select_easyBindings_5F_syntax_27>, in file 'easyBindings_syntax.ggs', line 27
 358, // index 107 : <select_easyBindings_5F_syntax_28>, in file 'easyBindings_syntax.ggs', line 25
 359, // index 108 : <select_easyBindings_5F_syntax_28>, in file 'easyBindings_syntax.ggs', line 25
 361, // index 109 : <select_easyBindings_5F_syntax_29>, in file 'easyBindings_syntax.ggs', line 44
@@ -9838,7 +9838,7 @@ void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_parse (C_Lexi
   rule_easyBindings_5F_syntax_transient_5F_declaration_i20_parse(inLexique) ;
 }
 
-void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_ (GALGAS_transientList & parameter_1,
+void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_ (GALGAS_itemList & parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
   rule_easyBindings_5F_syntax_transient_5F_declaration_i20_(parameter_1, inLexique) ;
 }
@@ -12521,13 +12521,13 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 const GALGAS_string constinArgument_inOutputDirectory,
                                 C_Compiler * inCompiler
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_documentListForGeneration enumerator_9967 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
-  while (enumerator_9967.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_9967.current_mDocumentName (HERE), enumerator_9967.current_mRootEntityName (HERE), enumerator_9967.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9967.current_mTransientListForGeneration (HERE), enumerator_9967.current_mOutletMap (HERE), enumerator_9967.current_mDocumentArrayControllerForGeneration (HERE), enumerator_9967.current_mTargetActionList (HERE), enumerator_9967.current_mRegularBindingsGenerationList (HERE), enumerator_9967.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 245))) ;
+  cEnumerator_documentListForGeneration enumerator_10142 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
+  while (enumerator_10142.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_10142.current_mDocumentName (HERE), enumerator_10142.current_mRootEntityName (HERE), enumerator_10142.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10142.current_mTransientListForGeneration (HERE), enumerator_10142.current_mOutletMap (HERE), enumerator_10142.current_mDocumentArrayControllerForGeneration (HERE), enumerator_10142.current_mTargetActionList (HERE), enumerator_10142.current_mRegularBindingsGenerationList (HERE), enumerator_10142.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 252))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9967.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 258)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 256)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10142.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 265)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 263)) ;
     }
-    enumerator_9967.gotoNextObject () ;
+    enumerator_10142.gotoNextObject () ;
   }
 }
 
@@ -13659,19 +13659,19 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
                                const GALGAS_string constinArgument_inOutputDirectory,
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_entityListForGeneration enumerator_9051 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
-  while (enumerator_9051.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_9051.current_mEntityName (HERE), enumerator_9051.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9051.current_mDecoratedTransientListForGeneration (HERE), enumerator_9051.current_mToOneEntityRelationshipList (HERE), enumerator_9051.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 221))) ;
+  cEnumerator_entityListForGeneration enumerator_9226 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
+  while (enumerator_9226.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_9226.current_mEntityName (HERE), enumerator_9226.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9226.current_mDecoratedTransientListForGeneration (HERE), enumerator_9226.current_mToOneEntityRelationshipList (HERE), enumerator_9226.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 228))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9051.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 230)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 228)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9226.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 237)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 235)) ;
     }
-    enumerator_9051.gotoNextObject () ;
+    enumerator_9226.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 235)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 242)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 236))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 243))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 239)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 246)) ;
     }
   }
 }
@@ -14107,13 +14107,13 @@ void routine_generatePreferences (const GALGAS_preferenceListForGeneration const
                                   const GALGAS_string constinArgument_inOutputDirectory,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_preferenceListForGeneration enumerator_9720 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
-  while (enumerator_9720.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_9720.current_mPreferenceName (HERE), enumerator_9720.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9720.current_mTransientDefinitionListForGeneration (HERE), enumerator_9720.current_mOutletMap (HERE), enumerator_9720.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 234))) ;
+  cEnumerator_preferenceListForGeneration enumerator_9883 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
+  while (enumerator_9883.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_9883.current_mPreferenceName (HERE), enumerator_9883.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9883.current_mTransientDefinitionListForGeneration (HERE), enumerator_9883.current_mOutletMap (HERE), enumerator_9883.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 241))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9720.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 243)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 241)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9883.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 250)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 248)) ;
     }
-    enumerator_9720.gotoNextObject () ;
+    enumerator_9883.gotoNextObject () ;
   }
 }
 

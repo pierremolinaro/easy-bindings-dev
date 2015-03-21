@@ -6,9 +6,9 @@ class @entityDeclaration : @astDeclaration {
   @lstring mEntityName
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredAttributeList
-  @transientList mTransientList
   @toOneRelationshipList mToOneRelationshipList
   @toManyRelationshipList mToManyRelationshipList
+  @itemList mItemList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -33,15 +33,15 @@ syntax extension easyBindings_syntax {
       $Identifier$ ? superEntityName
     end
     ${$
+    @itemList itemList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
-    @transientList transientList = {}
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
     repeat
     while
       <simple_stored_declaration> !?simpleStoredAttributeList
     while
-      <transient_declaration> !?transientList
+      <transient_declaration> !?itemList
     while
       <toMany_relationship> !?toManyRelationshipList
     while
@@ -53,9 +53,9 @@ syntax extension easyBindings_syntax {
       !entityName
       !superEntityName
       !simpleStoredAttributeList
-      !transientList
       !toOneRelationshipList
       !toManyRelationshipList
+      !itemList
     }
   }
 
@@ -72,11 +72,13 @@ override method @entityDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  [mTransientList typeInventory
-    !"entity." + mEntityName
-    !?ioUnifiedTypeMap
-    !?ioTransientDependencyGraph
-  ]
+  for (item) in mItemList do
+    [item typeInventory
+      !"entity." + mEntityName
+      !?ioUnifiedTypeMap
+      !?ioTransientDependencyGraph
+    ]
+  end
   [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
   [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
   [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string}]
@@ -111,10 +113,12 @@ override method @entityDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  [mTransientList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
+  for (item) in mItemList do
+    [item buildObservablePropertyMap
+      !inUnifiedTypeMap
+      !?observablePropertyMap
+    ]
+  end
 #--- Analyze relationships
   [mToOneRelationshipList buildObservablePropertyMap
     !inUnifiedTypeMap
@@ -150,15 +154,18 @@ override method @entityDeclaration semanticAnalysis
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
-  [mTransientList transientSemanticAnalysis
-    !mEntityName.string
-    !{} # No root entity
-    !inSemanticContext
-    !observablePropertyMap
-    !{} # No array controller
-    !?ioGeneration
-    ?let @transientDefinitionListForGeneration transientDefinitionListForGeneration
-  ]
+  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  for (item) in mItemList do
+    [item semanticAnalysis
+      !mEntityName.string
+      !{} # No root entity
+      !inSemanticContext
+      !observablePropertyMap
+      !{} # No array controller
+      !?transientDefinitionListForGeneration
+    ]
+  end
+  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
 #--- Analyze toOne relationships
   [mToOneRelationshipList semanticAnalysis
     !inSemanticContext

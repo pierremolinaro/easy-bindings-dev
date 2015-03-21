@@ -3003,13 +3003,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_0 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_include) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 50)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_include) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 61)) ;
       GALGAS_lstring var_filePath = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 51)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 52)) ;
-      GALGAS_lstring var_sourceFile = GALGAS_lstring::constructor_new (var_filePath.mAttribute_string.reader_absolutePathFromPath (GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 54)).reader_stringByDeletingLastPathComponent (SOURCE_FILE ("grammar-syntax.galgas", 54)) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 54)), var_filePath.mAttribute_location  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 53)) ;
-      GALGAS_location joker_2571 ; // Joker input parameter
-      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile, constinArgument_inIsUserDefined, ioArgument_ioDeclarationAST, joker_2571  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 57)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 62)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 63)) ;
+      GALGAS_lstring var_sourceFile = GALGAS_lstring::constructor_new (var_filePath.mAttribute_string.reader_absolutePathFromPath (GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 65)).reader_stringByDeletingLastPathComponent (SOURCE_FILE ("grammar-syntax.galgas", 65)) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 65)), var_filePath.mAttribute_location  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 64)) ;
+      GALGAS_location joker_2891 ; // Joker input parameter
+      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile, constinArgument_inIsUserDefined, ioArgument_ioDeclarationAST, joker_2891  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 68)) ;
     } break ;
     case 3: {
       nt_enum_5F_declaration_ (constinArgument_inIsUserDefined, ioArgument_ioDeclarationAST, inCompiler) ;
@@ -3034,7 +3034,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
       break ;
     }
   }
-  outArgument_outEndOfFile = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 74)) ;
+  outArgument_outEndOfFile = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.galgas", 85)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3044,9 +3044,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_0 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_include) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 50)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 51)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 52)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_include) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 61)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 62)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("grammar-syntax.galgas", 63)) ;
     } break ;
     case 3: {
       nt_enum_5F_declaration_parse (inCompiler) ;
@@ -3136,10 +3136,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   GALGAS_lstring var_rootEntityName = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("document.galgas", 30)) ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("document.galgas", 31)) ;
-  GALGAS_outletDeclarationList var_outletDeclarationList = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document.galgas", 32)) ;
-  GALGAS_regularBindingList var_bindingList = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document.galgas", 33)) ;
-  GALGAS_lstringlist var_actionDeclarationList = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document.galgas", 34)) ;
-  GALGAS_transientList var_transientList = GALGAS_transientList::constructor_emptyList (SOURCE_FILE ("document.galgas", 35)) ;
+  GALGAS_itemList var_itemList = GALGAS_itemList::constructor_emptyList (SOURCE_FILE ("document.galgas", 32)) ;
+  GALGAS_outletDeclarationList var_outletDeclarationList = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document.galgas", 33)) ;
+  GALGAS_regularBindingList var_bindingList = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document.galgas", 34)) ;
+  GALGAS_lstringlist var_actionDeclarationList = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document.galgas", 35)) ;
   GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 36)) ;
   GALGAS_arrayControllerDeclarationListAST var_arrayControllerDeclarationListAST = GALGAS_arrayControllerDeclarationListAST::constructor_emptyList (SOURCE_FILE ("document.galgas", 37)) ;
   bool repeatFlag_0 = true ;
@@ -3152,7 +3152,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
       nt_action_5F_declaration_ (var_actionDeclarationList, inCompiler) ;
     } break ;
     case 4: {
-      nt_transient_5F_declaration_ (var_transientList, inCompiler) ;
+      nt_transient_5F_declaration_ (var_itemList, inCompiler) ;
     } break ;
     case 5: {
       nt_outlet_5F_declaration_ (var_outletDeclarationList, inCompiler) ;
@@ -3166,7 +3166,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
     }
   }
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("document.galgas", 50)) ;
-  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_documentDeclaration::constructor_new (constinArgument_inIsUserDefined, var_documentName, var_rootEntityName, var_outletDeclarationList, var_simpleStoredPropertyList, var_transientList, var_actionDeclarationList, var_arrayControllerDeclarationListAST  COMMA_SOURCE_FILE ("document.galgas", 51))  COMMA_SOURCE_FILE ("document.galgas", 51)) ;
+  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_documentDeclaration::constructor_new (constinArgument_inIsUserDefined, var_documentName, var_rootEntityName, var_outletDeclarationList, var_simpleStoredPropertyList, var_actionDeclarationList, var_arrayControllerDeclarationListAST, var_itemList  COMMA_SOURCE_FILE ("document.galgas", 51))  COMMA_SOURCE_FILE ("document.galgas", 51)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3226,8 +3226,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
     break ;
   }
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("entity.galgas", 35)) ;
-  GALGAS_simpleStoredPropertyList var_simpleStoredAttributeList = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 36)) ;
-  GALGAS_transientList var_transientList = GALGAS_transientList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 37)) ;
+  GALGAS_itemList var_itemList = GALGAS_itemList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 36)) ;
+  GALGAS_simpleStoredPropertyList var_simpleStoredAttributeList = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 37)) ;
   GALGAS_toOneRelationshipList var_toOneRelationshipList = GALGAS_toOneRelationshipList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 38)) ;
   GALGAS_toManyRelationshipList var_toManyRelationshipList = GALGAS_toManyRelationshipList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 39)) ;
   bool repeatFlag_0 = true ;
@@ -3237,7 +3237,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
       nt_simple_5F_stored_5F_declaration_ (var_simpleStoredAttributeList, inCompiler) ;
     } break ;
     case 3: {
-      nt_transient_5F_declaration_ (var_transientList, inCompiler) ;
+      nt_transient_5F_declaration_ (var_itemList, inCompiler) ;
     } break ;
     case 4: {
       nt_toMany_5F_relationship_ (var_toManyRelationshipList, inCompiler) ;
@@ -3251,7 +3251,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
     }
   }
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("entity.galgas", 50)) ;
-  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_entityDeclaration::constructor_new (constinArgument_inIsUserDefined, var_entityName, var_superEntityName, var_simpleStoredAttributeList, var_transientList, var_toOneRelationshipList, var_toManyRelationshipList  COMMA_SOURCE_FILE ("entity.galgas", 51))  COMMA_SOURCE_FILE ("entity.galgas", 51)) ;
+  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_entityDeclaration::constructor_new (constinArgument_inIsUserDefined, var_entityName, var_superEntityName, var_simpleStoredAttributeList, var_toOneRelationshipList, var_toManyRelationshipList, var_itemList  COMMA_SOURCE_FILE ("entity.galgas", 51))  COMMA_SOURCE_FILE ("entity.galgas", 51)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3305,8 +3305,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("preferences.galgas", 27)) ;
   GALGAS_outletDeclarationList var_outletDeclarationList = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 28)) ;
   GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 29)) ;
-  GALGAS_transientList var_transientList = GALGAS_transientList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 30)) ;
-  GALGAS_lstringlist var_actionDeclarationList = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 31)) ;
+  GALGAS_lstringlist var_actionDeclarationList = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 30)) ;
+  GALGAS_itemList var_itemList = GALGAS_itemList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 31)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
@@ -3320,7 +3320,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       nt_outlet_5F_declaration_ (var_outletDeclarationList, inCompiler) ;
     } break ;
     case 5: {
-      nt_transient_5F_declaration_ (var_transientList, inCompiler) ;
+      nt_transient_5F_declaration_ (var_itemList, inCompiler) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -3328,7 +3328,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
     }
   }
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("preferences.galgas", 42)) ;
-  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_prefDeclaration::constructor_new (constinArgument_inIsUserDefined, var_prefsName, var_outletDeclarationList, var_simpleStoredPropertyList, var_transientList, var_actionDeclarationList  COMMA_SOURCE_FILE ("preferences.galgas", 43))  COMMA_SOURCE_FILE ("preferences.galgas", 43)) ;
+  ioArgument_ioDeclarationAST.mAttribute_mDeclarationList.addAssign_operation (GALGAS_prefDeclaration::constructor_new (constinArgument_inIsUserDefined, var_prefsName, var_outletDeclarationList, var_simpleStoredPropertyList, var_actionDeclarationList, var_itemList  COMMA_SOURCE_FILE ("preferences.galgas", 43))  COMMA_SOURCE_FILE ("preferences.galgas", 43)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4256,53 +4256,53 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i20_ (GALGAS_transientList & ioArgument_ioTransientList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i20_ (GALGAS_itemList & ioArgument_ioItemList,
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_transient) COMMA_SOURCE_FILE ("transient-property.galgas", 21)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_transient) COMMA_SOURCE_FILE ("transient-property.galgas", 22)) ;
   GALGAS_lstring var_transientTypeName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 22)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 23)) ;
   GALGAS_lstring var_transientName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 23)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom) COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
-  GALGAS_observablePropertyList var_dependanceList = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 25)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom) COMMA_SOURCE_FILE ("transient-property.galgas", 25)) ;
+  GALGAS_observablePropertyList var_dependanceList = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 26)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     GALGAS_observablePropertyAST var_observablePropertyAST ;
     nt_observable_5F_property_ (var_observablePropertyAST, inCompiler) ;
-    var_dependanceList.addAssign_operation (var_observablePropertyAST  COMMA_SOURCE_FILE ("transient-property.galgas", 28)) ;
+    var_dependanceList.addAssign_operation (var_observablePropertyAST  COMMA_SOURCE_FILE ("transient-property.galgas", 29)) ;
     switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("transient-property.galgas", 30)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("transient-property.galgas", 31)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("transient-property.galgas", 32)) ;
-  ioArgument_ioTransientList.addAssign_operation (var_transientTypeName, var_transientName, var_dependanceList  COMMA_SOURCE_FILE ("transient-property.galgas", 33)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("transient-property.galgas", 33)) ;
+  ioArgument_ioItemList.addAssign_operation (GALGAS_transientAST::constructor_new (var_transientTypeName, var_transientName, var_dependanceList  COMMA_SOURCE_FILE ("transient-property.galgas", 34))  COMMA_SOURCE_FILE ("transient-property.galgas", 34)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i20_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_transient) COMMA_SOURCE_FILE ("transient-property.galgas", 21)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 22)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 23)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom) COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_transient) COMMA_SOURCE_FILE ("transient-property.galgas", 22)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 23)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom) COMMA_SOURCE_FILE ("transient-property.galgas", 25)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     nt_observable_5F_property_parse (inCompiler) ;
     switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("transient-property.galgas", 30)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("transient-property.galgas", 31)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("transient-property.galgas", 32)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("transient-property.galgas", 33)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -5492,6 +5492,372 @@ GALGAS_outletClassDeclarationList GALGAS_outletClassDeclarationList::extractObje
       result = *p ;
     }else{
       inCompiler->castError ("outletClassDeclarationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        Class for element of '@itemList' list                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cCollectionElement_itemList : public cCollectionElement {
+  public : GALGAS_itemList_2D_element mObject ;
+
+//--- Constructor
+  public : cCollectionElement_itemList (const GALGAS_abstractItem & in_mItem
+                                        COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+ public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement_itemList::cCollectionElement_itemList (const GALGAS_abstractItem & in_mItem
+                                                          COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mItem) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cCollectionElement_itemList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement * cCollectionElement_itemList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_itemList (mObject.mAttribute_mItem COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cCollectionElement_itemList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mItem" ":" ;
+  mObject.mAttribute_mItem.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cCollectionElement_itemList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_itemList * operand = (cCollectionElement_itemList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_itemList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList::GALGAS_itemList (void) :
+AC_GALGAS_list () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList::GALGAS_itemList (cSharedList * inSharedListPtr) :
+AC_GALGAS_list (inSharedListPtr) {
+  if (NULL == inSharedListPtr) {
+    createNewEmptyList (HERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::constructor_emptyList (LOCATION_ARGS) {
+  GALGAS_itemList result ;
+  result.createNewEmptyList (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::constructor_listWithValue (const GALGAS_abstractItem & inOperand0
+                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_itemList result ;
+  if (inOperand0.isValid ()) {
+    result.createNewEmptyList (THERE) ;
+    capCollectionElement attributes ;
+    GALGAS_itemList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    result.addObject (attributes) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                 const GALGAS_abstractItem & in_mItem
+                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement_itemList * p = NULL ;
+  macroMyNew (p, cCollectionElement_itemList (in_mItem COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::addAssign_operation (const GALGAS_abstractItem & inOperand0
+                                           COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_itemList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObject (attributes) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::modifier_insertAtIndex (const GALGAS_abstractItem inOperand0,
+                                              const GALGAS_uint inInsertionIndex,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_itemList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::modifier_removeAtIndex (GALGAS_abstractItem & outOperand0,
+                                              const GALGAS_uint inRemoveIndex,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_itemList) ;
+      outOperand0 = p->mObject.mAttribute_mItem ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::modifier_popFirst (GALGAS_abstractItem & outOperand0,
+                                         C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_itemList) ;
+    outOperand0 = p->mObject.mAttribute_mItem ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::modifier_popLast (GALGAS_abstractItem & outOperand0,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_itemList) ;
+    outOperand0 = p->mObject.mAttribute_mItem ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::method_first (GALGAS_abstractItem & outOperand0,
+                                    C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_itemList) ;
+    outOperand0 = p->mObject.mAttribute_mItem ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::method_last (GALGAS_abstractItem & outOperand0,
+                                   C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_itemList) ;
+    outOperand0 = p->mObject.mAttribute_mItem ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::operator_concat (const GALGAS_itemList & inOperand
+                                                  COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_itemList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::add_operation (const GALGAS_itemList & inOperand,
+                                                C_Compiler * /* inCompiler */
+                                                COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_itemList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::reader_subListWithRange (const GALGAS_range & inRange,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_itemList result = GALGAS_itemList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_itemList result = GALGAS_itemList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_itemList::dotAssign_operation (const GALGAS_itemList inOperand
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractItem GALGAS_itemList::reader_mItemAtIndex (const GALGAS_uint & inIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_itemList * p = (cCollectionElement_itemList *) attributes.ptr () ;
+  GALGAS_abstractItem result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_itemList) ;
+    result = p->mObject.mAttribute_mItem ;
+  }
+  return result ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_itemList::cEnumerator_itemList (const GALGAS_itemList & inEnumeratedObject,
+                                            const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList_2D_element cEnumerator_itemList::current (LOCATION_ARGS) const {
+  const cCollectionElement_itemList * p = (const cCollectionElement_itemList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_itemList) ;
+  return p->mObject ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractItem cEnumerator_itemList::current_mItem (LOCATION_ARGS) const {
+  const cCollectionElement_itemList * p = (const cCollectionElement_itemList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_itemList) ;
+  return p->mObject.mAttribute_mItem ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                                   @itemList type                                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_itemList ("itemList",
+                                 NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_itemList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_itemList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_itemList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_itemList (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_itemList GALGAS_itemList::extractObject (const GALGAS_object & inObject,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
+  GALGAS_itemList result ;
+  const GALGAS_itemList * p = (const GALGAS_itemList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_itemList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("itemList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -7189,470 +7555,6 @@ GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::extractObject (
       result = *p ;
     }else{
       inCompiler->castError ("simpleStoredPropertyList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     Class for element of '@transientList' list                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cCollectionElement_transientList : public cCollectionElement {
-  public : GALGAS_transientList_2D_element mObject ;
-
-//--- Constructor
-  public : cCollectionElement_transientList (const GALGAS_lstring & in_mTransientTypeName,
-                                             const GALGAS_lstring & in_mTransientName,
-                                             const GALGAS_observablePropertyList & in_mDependencyList
-                                             COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement_transientList::cCollectionElement_transientList (const GALGAS_lstring & in_mTransientTypeName,
-                                                                    const GALGAS_lstring & in_mTransientName,
-                                                                    const GALGAS_observablePropertyList & in_mDependencyList
-                                                                    COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mTransientTypeName, in_mTransientName, in_mDependencyList) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cCollectionElement_transientList::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement * cCollectionElement_transientList::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_transientList (mObject.mAttribute_mTransientTypeName, mObject.mAttribute_mTransientName, mObject.mAttribute_mDependencyList COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cCollectionElement_transientList::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTransientTypeName" ":" ;
-  mObject.mAttribute_mTransientTypeName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTransientName" ":" ;
-  mObject.mAttribute_mTransientName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mDependencyList" ":" ;
-  mObject.mAttribute_mDependencyList.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cCollectionElement_transientList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_transientList * operand = (cCollectionElement_transientList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_transientList) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList::GALGAS_transientList (void) :
-AC_GALGAS_list () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList::GALGAS_transientList (cSharedList * inSharedListPtr) :
-AC_GALGAS_list (inSharedListPtr) {
-  if (NULL == inSharedListPtr) {
-    createNewEmptyList (HERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::constructor_emptyList (LOCATION_ARGS) {
-  GALGAS_transientList result ;
-  result.createNewEmptyList (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::constructor_listWithValue (const GALGAS_lstring & inOperand0,
-                                                                      const GALGAS_lstring & inOperand1,
-                                                                      const GALGAS_observablePropertyList & inOperand2
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_transientList result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result.createNewEmptyList (THERE) ;
-    capCollectionElement attributes ;
-    GALGAS_transientList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2 COMMA_THERE) ;
-    result.addObject (attributes) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                      const GALGAS_lstring & in_mTransientTypeName,
-                                                      const GALGAS_lstring & in_mTransientName,
-                                                      const GALGAS_observablePropertyList & in_mDependencyList
-                                                      COMMA_LOCATION_ARGS) {
-  cCollectionElement_transientList * p = NULL ;
-  macroMyNew (p, cCollectionElement_transientList (in_mTransientTypeName,
-                                                   in_mTransientName,
-                                                   in_mDependencyList COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::addAssign_operation (const GALGAS_lstring & inOperand0,
-                                                const GALGAS_lstring & inOperand1,
-                                                const GALGAS_observablePropertyList & inOperand2
-                                                COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObject (attributes) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                   const GALGAS_lstring inOperand1,
-                                                   const GALGAS_observablePropertyList inOperand2,
-                                                   const GALGAS_uint inInsertionIndex,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                   GALGAS_lstring & outOperand1,
-                                                   GALGAS_observablePropertyList & outOperand2,
-                                                   const GALGAS_uint inRemoveIndex,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-      outOperand2.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_transientList) ;
-      outOperand0 = p->mObject.mAttribute_mTransientTypeName ;
-      outOperand1 = p->mObject.mAttribute_mTransientName ;
-      outOperand2 = p->mObject.mAttribute_mDependencyList ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                              GALGAS_lstring & outOperand1,
-                                              GALGAS_observablePropertyList & outOperand2,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    outOperand0 = p->mObject.mAttribute_mTransientTypeName ;
-    outOperand1 = p->mObject.mAttribute_mTransientName ;
-    outOperand2 = p->mObject.mAttribute_mDependencyList ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                             GALGAS_lstring & outOperand1,
-                                             GALGAS_observablePropertyList & outOperand2,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    outOperand0 = p->mObject.mAttribute_mTransientTypeName ;
-    outOperand1 = p->mObject.mAttribute_mTransientName ;
-    outOperand2 = p->mObject.mAttribute_mDependencyList ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::method_first (GALGAS_lstring & outOperand0,
-                                         GALGAS_lstring & outOperand1,
-                                         GALGAS_observablePropertyList & outOperand2,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    outOperand0 = p->mObject.mAttribute_mTransientTypeName ;
-    outOperand1 = p->mObject.mAttribute_mTransientName ;
-    outOperand2 = p->mObject.mAttribute_mDependencyList ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::method_last (GALGAS_lstring & outOperand0,
-                                        GALGAS_lstring & outOperand1,
-                                        GALGAS_observablePropertyList & outOperand2,
-                                        C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    outOperand0 = p->mObject.mAttribute_mTransientTypeName ;
-    outOperand1 = p->mObject.mAttribute_mTransientName ;
-    outOperand2 = p->mObject.mAttribute_mDependencyList ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::operator_concat (const GALGAS_transientList & inOperand
-                                                            COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::add_operation (const GALGAS_transientList & inOperand,
-                                                          C_Compiler * /* inCompiler */
-                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::reader_subListWithRange (const GALGAS_range & inRange,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const {
-  GALGAS_transientList result = GALGAS_transientList::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::reader_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const {
-  GALGAS_transientList result = GALGAS_transientList::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientList::dotAssign_operation (const GALGAS_transientList inOperand
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_transientList::reader_mTransientTypeNameAtIndex (const GALGAS_uint & inIndex,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  GALGAS_lstring result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    result = p->mObject.mAttribute_mTransientTypeName ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_transientList::reader_mTransientNameAtIndex (const GALGAS_uint & inIndex,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  GALGAS_lstring result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    result = p->mObject.mAttribute_mTransientName ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList GALGAS_transientList::reader_mDependencyListAtIndex (const GALGAS_uint & inIndex,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientList * p = (cCollectionElement_transientList *) attributes.ptr () ;
-  GALGAS_observablePropertyList result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientList) ;
-    result = p->mObject.mAttribute_mDependencyList ;
-  }
-  return result ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_transientList::cEnumerator_transientList (const GALGAS_transientList & inEnumeratedObject,
-                                                      const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList_2D_element cEnumerator_transientList::current (LOCATION_ARGS) const {
-  const cCollectionElement_transientList * p = (const cCollectionElement_transientList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientList) ;
-  return p->mObject ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cEnumerator_transientList::current_mTransientTypeName (LOCATION_ARGS) const {
-  const cCollectionElement_transientList * p = (const cCollectionElement_transientList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientList) ;
-  return p->mObject.mAttribute_mTransientTypeName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cEnumerator_transientList::current_mTransientName (LOCATION_ARGS) const {
-  const cCollectionElement_transientList * p = (const cCollectionElement_transientList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientList) ;
-  return p->mObject.mAttribute_mTransientName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyList cEnumerator_transientList::current_mDependencyList (LOCATION_ARGS) const {
-  const cCollectionElement_transientList * p = (const cCollectionElement_transientList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientList) ;
-  return p->mObject.mAttribute_mDependencyList ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                                 @transientList type                                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientList ("transientList",
-                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_transientList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_transientList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientList (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientList GALGAS_transientList::extractObject (const GALGAS_object & inObject,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_transientList result ;
-  const GALGAS_transientList * p = (const GALGAS_transientList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

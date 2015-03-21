@@ -1270,58 +1270,88 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Category method '@transientList typeInventory'                                    *
+//                               Abstract category method '@abstractItem typeInventory'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_transientList inObject,
-                                   class GALGAS_string in_inDependencyGraphPrefix,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+typedef void (*categoryMethodSignature_abstractItem_typeInventory) (const class cPtr_abstractItem * inObject,
+                                                                    class GALGAS_string inArgument0,
+                                                                    class GALGAS_unifiedTypeMap & ioArgument1,
+                                                                    class GALGAS_transientDependencyGraph & ioArgument2,
+                                                                    class C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
+                                        categoryMethodSignature_abstractItem_typeInventory inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_typeInventory (const class cPtr_abstractItem * inObject,
+                                       GALGAS_string in_inDependencyGraphPrefix,
+                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                       GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@observablePropertyAST enterInTransientDependencyGraph'                       *
+//                         Abstract category method '@abstractItem buildObservablePropertyMap'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_enterInTransientDependencyGraph (const class GALGAS_observablePropertyAST inObject,
-                                                     class GALGAS_string in_inDependencyGraphPrefix,
-                                                     class GALGAS_lstring in_inSlavePropertySignature,
-                                                     class GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
-                                                     class C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+typedef void (*categoryMethodSignature_abstractItem_buildObservablePropertyMap) (const class cPtr_abstractItem * inObject,
+                                                                                 const class GALGAS_unifiedTypeMap constinArgument0,
+                                                                                 class GALGAS_observablePropertyMap & ioArgument1,
+                                                                                 class C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_buildObservablePropertyMap (const int32_t inClassIndex,
+                                                     categoryMethodSignature_abstractItem_buildObservablePropertyMap inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_buildObservablePropertyMap (const class cPtr_abstractItem * inObject,
+                                                    const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                    GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@transientList buildObservablePropertyMap'                             *
+//                              Abstract category method '@abstractItem semanticAnalysis'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_transientList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+typedef void (*categoryMethodSignature_abstractItem_semanticAnalysis) (const class cPtr_abstractItem * inObject,
+                                                                       const class GALGAS_string constinArgument0,
+                                                                       const class GALGAS_observablePropertyMap constinArgument1,
+                                                                       const class GALGAS_semanticContext constinArgument2,
+                                                                       const class GALGAS_observablePropertyMap constinArgument3,
+                                                                       const class GALGAS_arrayControllerMap constinArgument4,
+                                                                       class GALGAS_transientDefinitionListForGeneration & ioArgument5,
+                                                                       class C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@transientList transientSemanticAnalysis'                              *
-//                                                                                                                     *
+
+void enterCategoryMethod_semanticAnalysis (const int32_t inClassIndex,
+                                           categoryMethodSignature_abstractItem_semanticAnalysis inMethod) ;
+
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_transientSemanticAnalysis (const class GALGAS_transientList inObject,
-                                               const class GALGAS_string constin_inOwnerName,
-                                               const class GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                               const class GALGAS_semanticContext constin_inSemanticContext,
-                                               const class GALGAS_observablePropertyMap constin_inObservableProperties,
-                                               const class GALGAS_arrayControllerMap constin_inArrayControllerMap,
-                                               class GALGAS_structForGeneration & io_ioGeneration,
-                                               class GALGAS_transientDefinitionListForGeneration & out_outTransientDefinitionListForGeneration,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void callCategoryMethod_semanticAnalysis (const class cPtr_abstractItem * inObject,
+                                          const GALGAS_string constin_inOwnerName,
+                                          const GALGAS_observablePropertyMap constin_inRootObservableProperties,
+                                          const GALGAS_semanticContext constin_inSemanticContext,
+                                          const GALGAS_observablePropertyMap constin_inObservableProperties,
+                                          const GALGAS_arrayControllerMap constin_inArrayControllerMap,
+                                          GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
