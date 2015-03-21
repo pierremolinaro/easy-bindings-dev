@@ -169,7 +169,6 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
   ?let @observablePropertyMap unused inObservablePropertyMap
   ?let @arrayControllerMap inArrayControllerMap
   !@arrayControllerForGeneration outDocumentArrayControllerForGeneration
-  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
 {
   outDocumentArrayControllerForGeneration = {}
   for () in self do
@@ -284,7 +283,6 @@ method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
       ![modelType swiftTypeName]
       !mTableViewOutletNameList
   end%for
-  ioArrayControllerForGeneration += outDocumentArrayControllerForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

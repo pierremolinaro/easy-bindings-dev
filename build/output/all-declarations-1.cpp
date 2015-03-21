@@ -12521,13 +12521,13 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 const GALGAS_string constinArgument_inOutputDirectory,
                                 C_Compiler * inCompiler
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_documentListForGeneration enumerator_9931 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
-  while (enumerator_9931.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_9931.current_mDocumentName (HERE), enumerator_9931.current_mRootEntityName (HERE), enumerator_9931.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9931.current_mTransientListForGeneration (HERE), enumerator_9931.current_mOutletMap (HERE), enumerator_9931.current_mDocumentArrayControllerForGeneration (HERE), enumerator_9931.current_mTargetActionList (HERE), enumerator_9931.current_mRegularBindingsGenerationList (HERE), enumerator_9931.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 245))) ;
+  cEnumerator_documentListForGeneration enumerator_9967 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
+  while (enumerator_9967.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_9967.current_mDocumentName (HERE), enumerator_9967.current_mRootEntityName (HERE), enumerator_9967.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9967.current_mTransientListForGeneration (HERE), enumerator_9967.current_mOutletMap (HERE), enumerator_9967.current_mDocumentArrayControllerForGeneration (HERE), enumerator_9967.current_mTargetActionList (HERE), enumerator_9967.current_mRegularBindingsGenerationList (HERE), enumerator_9967.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 245))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9931.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 258)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 256)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9967.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 258)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 256)) ;
     }
-    enumerator_9931.gotoNextObject () ;
+    enumerator_9967.gotoNextObject () ;
   }
 }
 
