@@ -1388,7 +1388,6 @@ void categoryMethod_arrayControllerSemanticAnalysis (const class GALGAS_arrayCon
                                                      const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
                                                      const class GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                      class GALGAS_arrayControllerForGeneration & out_outDocumentArrayControllerForGeneration,
-                                                     class GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
                                                      class C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 

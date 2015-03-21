@@ -185,8 +185,8 @@ override method @documentDeclaration semanticAnalysis
     !observablePropertyMap
     !arrayControllerMap
     ?let @arrayControllerForGeneration documentArrayControllerForGeneration
-    !?ioGeneration.mAllArrayControllerForGeneration
   ]
+  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerForGeneration
 #--- Code generation
   ioGeneration.mDocumentListForGeneration +=
     !mDocumentName.string

@@ -1761,24 +1761,24 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
                                        const GALGAS_string constinArgument_inOutputDirectory,
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_arrayControllerForGeneration enumerator_17584 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_17584.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_17584.current_mOwnerName (HERE), enumerator_17584.current_mControllerName (HERE), enumerator_17584.current_mArrayControllerFilterListForGeneration (HERE), enumerator_17584.current_mModelString (HERE), enumerator_17584.current_mModelIsTransient (HERE), enumerator_17584.current_mModelTypeName (HERE), enumerator_17584.current_mModelTypeName_32_ (HERE), enumerator_17584.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_17584.current_mElementTypeName (HERE), GALGAS_filewrapper (gWrapperDirectory_0_collectionControllerGenerationTemplate) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 442))) ;
+  cEnumerator_arrayControllerForGeneration enumerator_17443 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_17443.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_17443.current_mOwnerName (HERE), enumerator_17443.current_mControllerName (HERE), enumerator_17443.current_mArrayControllerFilterListForGeneration (HERE), enumerator_17443.current_mModelString (HERE), enumerator_17443.current_mModelIsTransient (HERE), enumerator_17443.current_mModelTypeName (HERE), enumerator_17443.current_mModelTypeName_32_ (HERE), enumerator_17443.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_17443.current_mElementTypeName (HERE), GALGAS_filewrapper (gWrapperDirectory_0_collectionControllerGenerationTemplate) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 440))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_17584.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (enumerator_17584.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_17443.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)).add_operation (enumerator_17443.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 452)) ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_17584.current_mArrayControllerFilterListForGeneration (HERE).reader_length (SOURCE_FILE ("array-controller-declaration.galgas", 459)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_17443.current_mArrayControllerFilterListForGeneration (HERE).reader_length (SOURCE_FILE ("array-controller-declaration.galgas", 457)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_17584.current_mOwnerName (HERE), enumerator_17584.current_mControllerName (HERE), enumerator_17584.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 460))) ;
-      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_17584.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (enumerator_17584.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_17443.current_mOwnerName (HERE), enumerator_17443.current_mControllerName (HERE), enumerator_17443.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 458))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_17443.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 463)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 463)).add_operation (enumerator_17443.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 463)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 463)) ;
       {
       GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
         "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 466)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 471)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 471)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 471)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 464)) ;
       }
     }
-    enumerator_17584.gotoNextObject () ;
+    enumerator_17443.gotoNextObject () ;
   }
 }
 
@@ -12511,51 +12511,50 @@ void categoryMethod_arrayControllerSemanticAnalysis (const GALGAS_arrayControlle
                                                      const GALGAS_observablePropertyMap /* constinArgument_inObservablePropertyMap */,
                                                      const GALGAS_arrayControllerMap constinArgument_inArrayControllerMap,
                                                      GALGAS_arrayControllerForGeneration & outArgument_outDocumentArrayControllerForGeneration,
-                                                     GALGAS_arrayControllerForGeneration & ioArgument_ioArrayControllerForGeneration,
                                                      C_Compiler * inCompiler
                                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outDocumentArrayControllerForGeneration.drop () ; // Release 'out' argument
-  outArgument_outDocumentArrayControllerForGeneration = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 174)) ;
+  outArgument_outDocumentArrayControllerForGeneration = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 173)) ;
   const GALGAS_arrayControllerDeclarationListAST temp_0 = inObject ;
-  cEnumerator_arrayControllerDeclarationListAST enumerator_6695 (temp_0, kEnumeration_up) ;
-  while (enumerator_6695.hasCurrentObject ()) {
+  cEnumerator_arrayControllerDeclarationListAST enumerator_6630 (temp_0, kEnumeration_up) ;
+  while (enumerator_6630.hasCurrentObject ()) {
     GALGAS_typeKind var_modelType ;
     GALGAS_propertyKind var_kind ;
     GALGAS_location var_errorLocation ;
     GALGAS_bool var_modelIsTransient ;
-    switch (enumerator_6695.current_mArrayControllerModel (HERE).enumValue ()) {
+    switch (enumerator_6630.current_mArrayControllerModel (HERE).enumValue ()) {
     case GALGAS_arrayControllerModel::kNotBuilt:
       break ;
     case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
       {
-        const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_7314 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (enumerator_6695.current_mArrayControllerModel (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_relationshipName = extractPtr_7314->mAssociatedValue0 ;
+        const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_7249 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (enumerator_6630.current_mArrayControllerModel (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_relationshipName = extractPtr_7249->mAssociatedValue0 ;
         var_errorLocation = extractedValue_relationshipName.mAttribute_location ;
         var_modelIsTransient = GALGAS_bool (false) ;
         GALGAS_propertyMultiplicity var_multiplicity ;
-        GALGAS_string joker_7136 ; // Joker input parameter
-        constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_relationshipName, var_modelType, var_kind, var_multiplicity, joker_7136, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 184)) ;
-        const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 192)))).boolEnum () ;
+        GALGAS_string joker_7071 ; // Joker input parameter
+        constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_relationshipName, var_modelType, var_kind, var_multiplicity, joker_7071, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 183)) ;
+        const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 191)))).boolEnum () ;
         if (kBoolTrue == test_1) {
-          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the bound property should be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 193)) ;
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the bound property should be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 192)) ;
         }
       }
       break ;
     case GALGAS_arrayControllerModel::kEnum_controllerArray:
       {
-        const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_7756 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (enumerator_6695.current_mArrayControllerModel (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_controllerName = extractPtr_7756->mAssociatedValue0 ;
-        const GALGAS_lstring extractedValue_propertyName = extractPtr_7756->mAssociatedValue1 ;
+        const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_7691 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (enumerator_6630.current_mArrayControllerModel (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_7691->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_propertyName = extractPtr_7691->mAssociatedValue1 ;
         var_errorLocation = extractedValue_propertyName.mAttribute_location ;
         var_modelIsTransient = GALGAS_bool (true) ;
-        constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, var_kind, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 198)) ;
+        constinArgument_inArrayControllerMap.method_searchKey (extractedValue_controllerName, var_modelType, var_kind, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 197)) ;
         GALGAS_bool test_2 = GALGAS_bool (kIsNotEqual, extractedValue_propertyName.mAttribute_string.objectCompare (GALGAS_string ("sortedArray"))) ;
         if (kBoolTrue == test_2.boolEnum ()) {
           test_2 = GALGAS_bool (kIsNotEqual, extractedValue_propertyName.mAttribute_string.objectCompare (GALGAS_string ("selectedArray"))) ;
         }
         const enumGalgasBool test_3 = test_2.boolEnum () ;
         if (kBoolTrue == test_3) {
-          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("'sortedArray' or 'selectedArray' are required here")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 204)) ;
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("'sortedArray' or 'selectedArray' are required here")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 203)) ;
         }
       }
       break ;
@@ -12571,49 +12570,49 @@ void categoryMethod_arrayControllerSemanticAnalysis (const GALGAS_arrayControlle
     case GALGAS_typeKind::kEnum_integerType:
     case GALGAS_typeKind::kEnum_stringType:
       {
-        inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the model should be a tomany relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 211)) ;
+        inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the model should be a tomany relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 210)) ;
         var_entityName.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the model should be a tomany relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 213)) ;
+        inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the model should be a tomany relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 212)) ;
         var_entityName.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
-        const cEnumAssociatedValues_typeKind_entityType * extractPtr_8200 = (const cEnumAssociatedValues_typeKind_entityType *) (var_modelType.unsafePointer ()) ;
-        const GALGAS_string extractedValue_kEntityName = extractPtr_8200->mAssociatedValue0 ;
+        const cEnumAssociatedValues_typeKind_entityType * extractPtr_8135 = (const cEnumAssociatedValues_typeKind_entityType *) (var_modelType.unsafePointer ()) ;
+        const GALGAS_string extractedValue_kEntityName = extractPtr_8135->mAssociatedValue0 ;
         var_entityName = extractedValue_kEntityName ;
       }
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("array-controller-declaration.galgas", 218)))).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("array-controller-declaration.galgas", 217)))).boolEnum () ;
     if (kBoolTrue == test_4) {
-      inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the bound property should be stored (not a transient)")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 219)) ;
+      inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the bound property should be stored (not a transient)")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 218)) ;
     }
-    cEnumerator_lstringlist enumerator_8461 (enumerator_6695.current_mTableViewOutletNameList (HERE), kEnumeration_up) ;
-    while (enumerator_8461.hasCurrentObject ()) {
+    cEnumerator_lstringlist enumerator_8396 (enumerator_6630.current_mTableViewOutletNameList (HERE), kEnumeration_up) ;
+    while (enumerator_8396.hasCurrentObject ()) {
       GALGAS_string var_outletTypeName ;
-      constinArgument_inOutletMap.method_searchKey (enumerator_8461.current_mValue (HERE), var_outletTypeName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 223)) ;
+      constinArgument_inOutletMap.method_searchKey (enumerator_8396.current_mValue (HERE), var_outletTypeName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 222)) ;
       const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_outletTypeName.objectCompare (GALGAS_string ("PMTableView"))).boolEnum () ;
       if (kBoolTrue == test_5) {
-        GALGAS_location location_6 (enumerator_8461.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_6, GALGAS_string ("this outlet is not an instance of PMTableView")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 225)) ;
+        GALGAS_location location_6 (enumerator_8396.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_6, GALGAS_string ("this outlet is not an instance of PMTableView")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 224)) ;
       }
-      enumerator_8461.gotoNextObject () ;
+      enumerator_8396.gotoNextObject () ;
     }
     GALGAS_observablePropertyMap var_boundModelObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (var_entityName.reader_nowhere (SOURCE_FILE ("array-controller-declaration.galgas", 230)), var_boundModelObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 229)) ;
-    GALGAS_arrayControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration = GALGAS_arrayControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 233)) ;
-    cEnumerator_arrayControllerBoundColumnListAST enumerator_9075 (enumerator_6695.current_mArrayControllerBoundColumnListAST (HERE), kEnumeration_up) ;
-    while (enumerator_9075.hasCurrentObject ()) {
+    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (var_entityName.reader_nowhere (SOURCE_FILE ("array-controller-declaration.galgas", 229)), var_boundModelObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 228)) ;
+    GALGAS_arrayControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration = GALGAS_arrayControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 232)) ;
+    cEnumerator_arrayControllerBoundColumnListAST enumerator_9010 (enumerator_6630.current_mArrayControllerBoundColumnListAST (HERE), kEnumeration_up) ;
+    while (enumerator_9010.hasCurrentObject ()) {
       GALGAS_typeKind var_columnType ;
       GALGAS_propertyKind var_columnKind ;
       GALGAS_propertyMultiplicity var_columnMultiplicity ;
       GALGAS_string var_inverseRelationshipName ;
-      var_boundModelObservablePropertyMap.method_searchKey (enumerator_9075.current_mObservablePropertyName (HERE), var_columnType, var_columnKind, var_columnMultiplicity, var_inverseRelationshipName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 235)) ;
+      var_boundModelObservablePropertyMap.method_searchKey (enumerator_9010.current_mObservablePropertyName (HERE), var_columnType, var_columnKind, var_columnMultiplicity, var_inverseRelationshipName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 234)) ;
       switch (var_columnType.enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
@@ -12632,40 +12631,39 @@ void categoryMethod_arrayControllerSemanticAnalysis (const GALGAS_arrayControlle
         break ;
       case GALGAS_typeKind::kEnum_entityType:
         {
-          const cEnumAssociatedValues_typeKind_entityType * extractPtr_9719 = (const cEnumAssociatedValues_typeKind_entityType *) (var_columnType.unsafePointer ()) ;
-          const GALGAS_string extractedValue_entityTypeName = extractPtr_9719->mAssociatedValue0 ;
-          inCompiler->emitSemanticError (enumerator_9075.current_mObservablePropertyName (HERE).reader_location (SOURCE_FILE ("array-controller-declaration.galgas", 247)), GALGAS_string ("the model should not be a relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 247)) ;
+          const cEnumAssociatedValues_typeKind_entityType * extractPtr_9654 = (const cEnumAssociatedValues_typeKind_entityType *) (var_columnType.unsafePointer ()) ;
+          const GALGAS_string extractedValue_entityTypeName = extractPtr_9654->mAssociatedValue0 ;
+          inCompiler->emitSemanticError (enumerator_9010.current_mObservablePropertyName (HERE).reader_location (SOURCE_FILE ("array-controller-declaration.galgas", 246)), GALGAS_string ("the model should not be a relationship")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 246)) ;
         }
         break ;
       }
-      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, var_columnMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 249)))).boolEnum () ;
+      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, var_columnMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 248)))).boolEnum () ;
       if (kBoolTrue == test_7) {
-        GALGAS_location location_8 (enumerator_9075.current_mObservablePropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_8, GALGAS_string ("the bound column property should not be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 250)) ;
+        GALGAS_location location_8 (enumerator_9010.current_mObservablePropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_8, GALGAS_string ("the bound column property should not be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 249)) ;
       }
-      var_arrayControllerBoundColumnListForGeneration.addAssign_operation (enumerator_9075.current_mColumnName (HERE).mAttribute_string, enumerator_9075.current_mColumnOutletTypeName (HERE).mAttribute_string, enumerator_9075.current_mObservablePropertyName (HERE).mAttribute_string, var_columnType, enumerator_9075.current_mBindingOptionList (HERE)  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 252)) ;
-      enumerator_9075.gotoNextObject () ;
+      var_arrayControllerBoundColumnListForGeneration.addAssign_operation (enumerator_9010.current_mColumnName (HERE).mAttribute_string, enumerator_9010.current_mColumnOutletTypeName (HERE).mAttribute_string, enumerator_9010.current_mObservablePropertyName (HERE).mAttribute_string, var_columnType, enumerator_9010.current_mBindingOptionList (HERE)  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 251)) ;
+      enumerator_9010.gotoNextObject () ;
     }
-    GALGAS_arrayControllerFilterListForGeneration var_arrayControllerFilterListForGeneration = GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 260)) ;
-    cEnumerator_lstringlist enumerator_10266 (enumerator_6695.current_mFilterProperties (HERE), kEnumeration_up) ;
-    while (enumerator_10266.hasCurrentObject ()) {
+    GALGAS_arrayControllerFilterListForGeneration var_arrayControllerFilterListForGeneration = GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller-declaration.galgas", 259)) ;
+    cEnumerator_lstringlist enumerator_10201 (enumerator_6630.current_mFilterProperties (HERE), kEnumeration_up) ;
+    while (enumerator_10201.hasCurrentObject ()) {
       GALGAS_typeKind var_filterType ;
       GALGAS_propertyKind var_columnKind ;
       GALGAS_propertyMultiplicity var_filterMultiplicity ;
       GALGAS_string var_inverseRelationshipName ;
-      var_boundModelObservablePropertyMap.method_searchKey (enumerator_10266.current_mValue (HERE), var_filterType, var_columnKind, var_filterMultiplicity, var_inverseRelationshipName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 262)) ;
-      const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, var_filterMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 269)))).boolEnum () ;
+      var_boundModelObservablePropertyMap.method_searchKey (enumerator_10201.current_mValue (HERE), var_filterType, var_columnKind, var_filterMultiplicity, var_inverseRelationshipName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 261)) ;
+      const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, var_filterMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller-declaration.galgas", 268)))).boolEnum () ;
       if (kBoolTrue == test_9) {
-        GALGAS_location location_10 (enumerator_10266.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_10, GALGAS_string ("the filter property should not be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 270)) ;
+        GALGAS_location location_10 (enumerator_10201.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_10, GALGAS_string ("the filter property should not be a collection")  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 269)) ;
       }
-      var_arrayControllerFilterListForGeneration.addAssign_operation (enumerator_10266.current_mValue (HERE).mAttribute_string, var_filterType  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 272)) ;
-      enumerator_10266.gotoNextObject () ;
+      var_arrayControllerFilterListForGeneration.addAssign_operation (enumerator_10201.current_mValue (HERE).mAttribute_string, var_filterType  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 271)) ;
+      enumerator_10201.gotoNextObject () ;
     }
-    outArgument_outDocumentArrayControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, enumerator_6695.current_mControllerName (HERE).mAttribute_string, var_arrayControllerFilterListForGeneration, categoryReader_modelString (enumerator_6695.current_mArrayControllerModel (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 279)), var_arrayControllerBoundColumnListForGeneration, categoryReader_modelTypeName (enumerator_6695.current_mArrayControllerModel (HERE), constinArgument_inRootEntityName, constinArgument_inArrayControllerMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 281)), categoryReader_modelTypeName_32_ (enumerator_6695.current_mArrayControllerModel (HERE), constinArgument_inRootEntityName, constinArgument_inArrayControllerMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 282)), var_modelIsTransient, categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 284)), enumerator_6695.current_mTableViewOutletNameList (HERE)  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 275)) ;
-    enumerator_6695.gotoNextObject () ;
+    outArgument_outDocumentArrayControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, enumerator_6630.current_mControllerName (HERE).mAttribute_string, var_arrayControllerFilterListForGeneration, categoryReader_modelString (enumerator_6630.current_mArrayControllerModel (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 278)), var_arrayControllerBoundColumnListForGeneration, categoryReader_modelTypeName (enumerator_6630.current_mArrayControllerModel (HERE), constinArgument_inRootEntityName, constinArgument_inArrayControllerMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 280)), categoryReader_modelTypeName_32_ (enumerator_6630.current_mArrayControllerModel (HERE), constinArgument_inRootEntityName, constinArgument_inArrayControllerMap, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 281)), var_modelIsTransient, categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 283)), enumerator_6630.current_mTableViewOutletNameList (HERE)  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 274)) ;
+    enumerator_6630.gotoNextObject () ;
   }
-  ioArgument_ioArrayControllerForGeneration.dotAssign_operation (outArgument_outDocumentArrayControllerForGeneration  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 287)) ;
 }
 
 
@@ -12686,27 +12684,27 @@ GALGAS_string categoryReader_transformerForTableViewAction (const GALGAS_typeKin
     break ;
   case GALGAS_typeKind::kEnum_stringType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 379)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 377)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_integerType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 380)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 378)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_boolType:
     {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)) ;
+      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 380)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 380)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_doubleType:
     {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 383)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 383)) ;
+      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 381)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 381)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_colorType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 384)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_dateType:
