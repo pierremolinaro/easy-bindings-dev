@@ -67,10 +67,29 @@ override method @enumDeclaration typeInventory
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @enumDeclaration buildObservablePropertyMaps
+override method @enumDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?!@semanticContext unused ioSemanticContext
 {
+}
+
+#......................................................................................................................*
+
+override method @enumDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
+  ?!@uint unused ioSecondaryDeclarationCount 
+{
+}
+
+#......................................................................................................................*
+
+override method @enumDeclaration solveSecondaryProperty
+  ?!@semanticContext unused ioSemanticContext
+  ?let @unifiedTypeMap unused mUnifiedTypeMap
+  ?let @secondaryPropertyList unused inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+{
+  outUnsolvedProperties = {}
 }
 
 #......................................................................................................................*

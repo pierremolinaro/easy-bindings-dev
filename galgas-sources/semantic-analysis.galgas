@@ -2,7 +2,7 @@
 #   SEMANTIC TYPES                                                                                                     *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-abstract method @astDeclaration buildObservablePropertyMaps
+abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 
@@ -11,6 +11,35 @@ abstract method @astDeclaration buildObservablePropertyMaps
 abstract method @astDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
+
+#......................................................................................................................*
+
+list @secondaryDeclarationListWorkingList {
+  @astDeclaration mDeclaration
+  @secondaryPropertyList mSecondaryPropertyList
+}
+
+#......................................................................................................................*
+
+abstract method @astDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
+  ?!@uint ioSecondaryDeclarationCount
+
+#......................................................................................................................*
+
+abstract method @astDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @secondaryPropertyList inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+
+#......................................................................................................................*
+
+abstract method @abstractSecondaryProperty tryToSolveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @observablePropertyMap inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
 
 #......................................................................................................................*
 
@@ -50,12 +79,34 @@ proc semanticAnalysis
     !{}
     !{}
   }
-#--- Build obsevable property maps
+#--- Build observable property maps from stored properties
   for () in inAstDeclarationStruct.mDeclarationList do
-    [mDeclaration buildObservablePropertyMaps
+    [mDeclaration buildObservablePropertyMapsFromStoredProperties
       !inUnifiedTypeMap
       !?semanticContext
     ]  
+  end
+#--- Building initial secondary property maps
+  @secondaryDeclarationListWorkingList secondaryDeclarationListWorkingList = {}
+  @uint secondaryDeclarationCount = 1 ;
+  for () in inAstDeclarationStruct.mDeclarationList do
+    [mDeclaration buildInitialSecondaryPropertyListMap !?secondaryDeclarationListWorkingList !?secondaryDeclarationCount]
+  end
+#--- Iterate for building observable property maps
+  @bool continue = true
+  loop (secondaryDeclarationCount) while continue do
+    @secondaryDeclarationListWorkingList newSecondaryDeclarationListWorkingList = {}
+    for (declaration aList) in secondaryDeclarationListWorkingList do
+      [declaration solveSecondaryProperty
+        !?semanticContext
+        !inUnifiedTypeMap
+        !aList
+        ?@secondaryPropertyList unsolvedProperties
+      ]
+      newSecondaryDeclarationListWorkingList += !declaration !unsolvedProperties
+    end
+    continue = newSecondaryDeclarationListWorkingList != secondaryDeclarationListWorkingList
+    secondaryDeclarationListWorkingList = newSecondaryDeclarationListWorkingList
   end
 #--- Semantic analysis of declarations
   outGeneration = .default

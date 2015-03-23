@@ -91,6 +91,36 @@ syntax extension easyBindings_syntax {
 
 }
    
+#......................................................................................................................*
+
+getter @observablePropertyAST isPropertyDefined
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inRootObservableProperties
+  ?let @observablePropertyMap inObservableProperties
+  -> @bool outResult
+{
+  switch self
+  case rootProperty (@lstring propertyName) :
+    outResult = [inRootObservableProperties hasKey !propertyName.string]
+  case rootPropertyWithOption (@lstring propertyName @lstring unused optionName) :
+    outResult = [inRootObservableProperties hasKey !propertyName.string]
+  case rootPropertyRelationship (@lstring relationshipName *) :
+    outResult = [inRootObservableProperties hasKey !relationshipName.string]
+  case selfProperty (@lstring propertyName @lstring unused optionName) :
+    outResult = [inObservableProperties hasKey !propertyName.string]
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring unused optionName) :
+    [inSemanticContext.mPrefsObservablePropertyMap searchKey
+      !prefsName
+      ?@observablePropertyMap prefsObservablePropertyMap
+    ]
+    outResult = [prefsObservablePropertyMap hasKey !propertyName.string]
+  case controllerProperty (@lstring unused controllerName @lstring unused propertyName) :
+    outResult = false
+  case controllerSecondaryProperty (@lstring unused controllerName @lstring unused propertyName @lstring unused secondaryPropertyName) :
+    outResult = false
+  end  
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #  SEMANTICS                                                                                                           *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -2,7 +2,7 @@
 #   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class @transientAST : @abstractItem {
+class @transientAST : @abstractSecondaryProperty {
   @lstring mTransientTypeName
   @lstring mTransientName
   @observablePropertyList mDependencyList
@@ -17,7 +17,7 @@ syntax extension easyBindings_syntax {
   #....................................................................................................................*
   
   rule <transient_declaration>
-    ?!@itemList ioItemList
+    ?!@secondaryPropertyList ioSecondaryPropertyList
   {
     $transient$
     $Identifier$ ?var @lstring transientTypeName
@@ -31,7 +31,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $;$
-    ioItemList += !@transientAST.new {
+    ioSecondaryPropertyList += !@transientAST.new {
       !transientTypeName
       !transientName
       !dependanceList
@@ -82,28 +82,59 @@ override method @transientAST buildObservablePropertyMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@observablePropertyMap ioObservableProperties
 {
-#--- Property type
-  [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
-#--- Check type
-  switch type
-  case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
-  case enumType (* *) : # Ok
-  case entityType (*) :
-    error mTransientName: "an entity cannot be used as simple property type"
-  end
-#--- Enter in property map
-  [!?ioObservableProperties insertKey
-    !mTransientName
-    !type
-    !.stored
-    !.single
-    !""
-  ]
+##--- Property type
+#  [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+##--- Check type
+#  switch type
+#  case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
+#  case enumType (* *) : # Ok
+#  case entityType (*) :
+#    error mTransientName: "an entity cannot be used as simple property type"
+#  end
+##--- Enter in property map
+#  [!?ioObservableProperties insertKey
+#    !mTransientName
+#    !type
+#    !.stored
+#    !.single
+#    !""
+#  ]
 }
 
 #......................................................................................................................*
 
-override method @transientAST semanticAnalysis
+override method @transientAST tryToSolveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @observablePropertyMap inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
+{
+  @bool solved = true
+  for () in mDependencyList while solved do
+    solved = [mObservableProperty isPropertyDefined
+      !ioSemanticContext
+      !inRootObservableProperties
+      !ioObservableProperties
+    ]
+  end
+  if solved then
+    message "SOLVED " + mTransientName + "\n"
+    [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+    [!?ioObservableProperties insertKey
+      !mTransientName
+      !type
+      !.transient
+      !.single
+      !""
+    ]
+  else
+    ioUnsolvedProperties += !self
+  end
+}
+
+#......................................................................................................................*
+
+override method @transientAST secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext

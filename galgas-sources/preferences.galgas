@@ -7,7 +7,7 @@ class @prefDeclaration : @astDeclaration {
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
-  @itemList mItemList
+  @secondaryPropertyList mSecondaryPropertyList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -25,10 +25,10 @@ syntax extension easyBindings_syntax {
     $prefs$
     $Identifier$ ?let @lstring prefsName
     ${$
-    var outletDeclarationList =@outletDeclarationList.emptyList{}
+    var outletDeclarationList = @outletDeclarationList.emptyList{}
     @simpleStoredPropertyList simpleStoredPropertyList = {}
-    var actionDeclarationList =@lstringlist.emptyList{}
-    @itemList itemList = {}
+    var actionDeclarationList = @lstringlist.emptyList{}
+    @secondaryPropertyList secondaryPropertyList = {}
     repeat
     while
       <action_declaration> !?actionDeclarationList
@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <transient_declaration> !?itemList
+      <transient_declaration> !?secondaryPropertyList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@prefDeclaration.new {
@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
       !outletDeclarationList
       !simpleStoredPropertyList
       !actionDeclarationList
-      !itemList
+      !secondaryPropertyList
     }
   }
 
@@ -63,13 +63,50 @@ override method @prefDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item typeInventory
       !"prefs." + mPrefsName
       !?ioUnifiedTypeMap
       !?ioTransientDependencyGraph
     ]
   end
+}
+
+#......................................................................................................................*
+
+override method @prefDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
+  ?!@uint ioSecondaryDeclarationCount
+{
+  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
+  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
+}
+
+#......................................................................................................................*
+
+override method @prefDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @unifiedTypeMap mUnifiedTypeMap
+  ?let @secondaryPropertyList inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+{
+  outUnsolvedProperties = {}
+  [ioSemanticContext.mPrefsObservablePropertyMap searchKey
+    !mPrefsName
+    ?@observablePropertyMap observablePropertyMap
+  ]
+  for (property) in inPropertiesToSolve do
+    [property tryToSolveSecondaryProperty
+      !?ioSemanticContext
+      !{} # No root entity
+      !?observablePropertyMap
+      !?outUnsolvedProperties
+    ]
+  end
+  [!?ioSemanticContext.mPrefsObservablePropertyMap setMObservablePropertyMapForKey
+    !observablePropertyMap
+    !mPrefsName.string
+  ]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -86,7 +123,7 @@ map @prefsObservablePropertyMap {
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @prefDeclaration buildObservablePropertyMaps
+override method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
@@ -97,7 +134,7 @@ override method @prefDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item buildObservablePropertyMap
       !inUnifiedTypeMap
       !?observablePropertyMap
@@ -129,8 +166,8 @@ override method @prefDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  for (item) in mItemList do
-    [item semanticAnalysis
+  for (item) in mSecondaryPropertyList do
+    [item secondaryPropertySemanticAnalysis
       !mPrefsName.string
       !{} # No root entity
       !inSemanticContext
