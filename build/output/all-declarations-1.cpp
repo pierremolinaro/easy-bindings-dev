@@ -7798,6 +7798,421 @@ GALGAS_transientDependencyGraph GALGAS_transientDependencyGraph::extractObject (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                          Class for element of '@secondaryDeclarationListWorkingList' list                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cCollectionElement_secondaryDeclarationListWorkingList : public cCollectionElement {
+  public : GALGAS_secondaryDeclarationListWorkingList_2D_element mObject ;
+
+//--- Constructor
+  public : cCollectionElement_secondaryDeclarationListWorkingList (const GALGAS_astDeclaration & in_mDeclaration,
+                                                                   const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+ public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement_secondaryDeclarationListWorkingList::cCollectionElement_secondaryDeclarationListWorkingList (const GALGAS_astDeclaration & in_mDeclaration,
+                                                                                                                const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
+                                                                                                                COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mDeclaration, in_mSecondaryPropertyList) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cCollectionElement_secondaryDeclarationListWorkingList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement * cCollectionElement_secondaryDeclarationListWorkingList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_secondaryDeclarationListWorkingList (mObject.mAttribute_mDeclaration, mObject.mAttribute_mSecondaryPropertyList COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cCollectionElement_secondaryDeclarationListWorkingList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mDeclaration" ":" ;
+  mObject.mAttribute_mDeclaration.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mSecondaryPropertyList" ":" ;
+  mObject.mAttribute_mSecondaryPropertyList.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cCollectionElement_secondaryDeclarationListWorkingList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_secondaryDeclarationListWorkingList * operand = (cCollectionElement_secondaryDeclarationListWorkingList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_secondaryDeclarationListWorkingList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList::GALGAS_secondaryDeclarationListWorkingList (void) :
+AC_GALGAS_list () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList::GALGAS_secondaryDeclarationListWorkingList (cSharedList * inSharedListPtr) :
+AC_GALGAS_list (inSharedListPtr) {
+  if (NULL == inSharedListPtr) {
+    createNewEmptyList (HERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::constructor_emptyList (LOCATION_ARGS) {
+  GALGAS_secondaryDeclarationListWorkingList result ;
+  result.createNewEmptyList (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::constructor_listWithValue (const GALGAS_astDeclaration & inOperand0,
+                                                                                                                  const GALGAS_secondaryPropertyList & inOperand1
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_secondaryDeclarationListWorkingList result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result.createNewEmptyList (THERE) ;
+    capCollectionElement attributes ;
+    GALGAS_secondaryDeclarationListWorkingList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    result.addObject (attributes) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                            const GALGAS_astDeclaration & in_mDeclaration,
+                                                                            const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
+                                                                            COMMA_LOCATION_ARGS) {
+  cCollectionElement_secondaryDeclarationListWorkingList * p = NULL ;
+  macroMyNew (p, cCollectionElement_secondaryDeclarationListWorkingList (in_mDeclaration,
+                                                                         in_mSecondaryPropertyList COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::addAssign_operation (const GALGAS_astDeclaration & inOperand0,
+                                                                      const GALGAS_secondaryPropertyList & inOperand1
+                                                                      COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_secondaryDeclarationListWorkingList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObject (attributes) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::modifier_insertAtIndex (const GALGAS_astDeclaration inOperand0,
+                                                                         const GALGAS_secondaryPropertyList inOperand1,
+                                                                         const GALGAS_uint inInsertionIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_secondaryDeclarationListWorkingList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::modifier_removeAtIndex (GALGAS_astDeclaration & outOperand0,
+                                                                         GALGAS_secondaryPropertyList & outOperand1,
+                                                                         const GALGAS_uint inRemoveIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+      outOperand0 = p->mObject.mAttribute_mDeclaration ;
+      outOperand1 = p->mObject.mAttribute_mSecondaryPropertyList ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::modifier_popFirst (GALGAS_astDeclaration & outOperand0,
+                                                                    GALGAS_secondaryPropertyList & outOperand1,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    outOperand0 = p->mObject.mAttribute_mDeclaration ;
+    outOperand1 = p->mObject.mAttribute_mSecondaryPropertyList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::modifier_popLast (GALGAS_astDeclaration & outOperand0,
+                                                                   GALGAS_secondaryPropertyList & outOperand1,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    outOperand0 = p->mObject.mAttribute_mDeclaration ;
+    outOperand1 = p->mObject.mAttribute_mSecondaryPropertyList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::method_first (GALGAS_astDeclaration & outOperand0,
+                                                               GALGAS_secondaryPropertyList & outOperand1,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    outOperand0 = p->mObject.mAttribute_mDeclaration ;
+    outOperand1 = p->mObject.mAttribute_mSecondaryPropertyList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::method_last (GALGAS_astDeclaration & outOperand0,
+                                                              GALGAS_secondaryPropertyList & outOperand1,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    outOperand0 = p->mObject.mAttribute_mDeclaration ;
+    outOperand1 = p->mObject.mAttribute_mSecondaryPropertyList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::operator_concat (const GALGAS_secondaryDeclarationListWorkingList & inOperand
+                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_secondaryDeclarationListWorkingList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::add_operation (const GALGAS_secondaryDeclarationListWorkingList & inOperand,
+                                                                                                      C_Compiler * /* inCompiler */
+                                                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_secondaryDeclarationListWorkingList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::reader_subListWithRange (const GALGAS_range & inRange,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_secondaryDeclarationListWorkingList result = GALGAS_secondaryDeclarationListWorkingList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_secondaryDeclarationListWorkingList result = GALGAS_secondaryDeclarationListWorkingList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_secondaryDeclarationListWorkingList::dotAssign_operation (const GALGAS_secondaryDeclarationListWorkingList inOperand
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclaration GALGAS_secondaryDeclarationListWorkingList::reader_mDeclarationAtIndex (const GALGAS_uint & inIndex,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  GALGAS_astDeclaration result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    result = p->mObject.mAttribute_mDeclaration ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryPropertyList GALGAS_secondaryDeclarationListWorkingList::reader_mSecondaryPropertyListAtIndex (const GALGAS_uint & inIndex,
+                                                                                                               C_Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_secondaryDeclarationListWorkingList * p = (cCollectionElement_secondaryDeclarationListWorkingList *) attributes.ptr () ;
+  GALGAS_secondaryPropertyList result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+    result = p->mObject.mAttribute_mSecondaryPropertyList ;
+  }
+  return result ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_secondaryDeclarationListWorkingList::cEnumerator_secondaryDeclarationListWorkingList (const GALGAS_secondaryDeclarationListWorkingList & inEnumeratedObject,
+                                                                                                  const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList_2D_element cEnumerator_secondaryDeclarationListWorkingList::current (LOCATION_ARGS) const {
+  const cCollectionElement_secondaryDeclarationListWorkingList * p = (const cCollectionElement_secondaryDeclarationListWorkingList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+  return p->mObject ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclaration cEnumerator_secondaryDeclarationListWorkingList::current_mDeclaration (LOCATION_ARGS) const {
+  const cCollectionElement_secondaryDeclarationListWorkingList * p = (const cCollectionElement_secondaryDeclarationListWorkingList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+  return p->mObject.mAttribute_mDeclaration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryPropertyList cEnumerator_secondaryDeclarationListWorkingList::current_mSecondaryPropertyList (LOCATION_ARGS) const {
+  const cCollectionElement_secondaryDeclarationListWorkingList * p = (const cCollectionElement_secondaryDeclarationListWorkingList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_secondaryDeclarationListWorkingList) ;
+  return p->mObject.mAttribute_mSecondaryPropertyList ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @secondaryDeclarationListWorkingList type                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_secondaryDeclarationListWorkingList ("secondaryDeclarationListWorkingList",
+                                                            NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_secondaryDeclarationListWorkingList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_secondaryDeclarationListWorkingList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_secondaryDeclarationListWorkingList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_secondaryDeclarationListWorkingList (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_secondaryDeclarationListWorkingList GALGAS_secondaryDeclarationListWorkingList::extractObject (const GALGAS_object & inObject,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_secondaryDeclarationListWorkingList result ;
+  const GALGAS_secondaryDeclarationListWorkingList * p = (const GALGAS_secondaryDeclarationListWorkingList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_secondaryDeclarationListWorkingList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("secondaryDeclarationListWorkingList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                         Class for element of '@validationStubRoutineListForGeneration' list                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9838,7 +10253,7 @@ void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_parse (C_Lexi
   rule_easyBindings_5F_syntax_transient_5F_declaration_i20_parse(inLexique) ;
 }
 
-void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_ (GALGAS_itemList & parameter_1,
+void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_ (GALGAS_secondaryPropertyList & parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
   rule_easyBindings_5F_syntax_transient_5F_declaration_i20_(parameter_1, inLexique) ;
 }
@@ -11912,16 +12327,16 @@ void routine_generateEnums (const GALGAS_enumListForGeneration constinArgument_i
                             const GALGAS_string constinArgument_inOutputDirectory,
                             C_Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_enumListForGeneration enumerator_5060 (constinArgument_inEnumListForGeneration, kEnumeration_up) ;
-  while (enumerator_5060.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5060.current_mEnumConstantList (HERE).reader_length (SOURCE_FILE ("enumeration.galgas", 114)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  cEnumerator_enumListForGeneration enumerator_5818 (constinArgument_inEnumListForGeneration, kEnumeration_up) ;
+  while (enumerator_5818.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5818.current_mEnumConstantList (HERE).reader_length (SOURCE_FILE ("enumeration.galgas", 133)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_5060.current_mEnumName (HERE), enumerator_5060.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 115))) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_5818.current_mEnumName (HERE), enumerator_5818.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 134))) ;
       {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_5060.current_mEnumName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 121)), var_s, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 119)) ;
+      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_5818.current_mEnumName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 140)), var_s, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 138)) ;
       }
     }
-    enumerator_5060.gotoNextObject () ;
+    enumerator_5818.gotoNextObject () ;
   }
 }
 
@@ -12521,13 +12936,13 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 const GALGAS_string constinArgument_inOutputDirectory,
                                 C_Compiler * inCompiler
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_documentListForGeneration enumerator_10142 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
-  while (enumerator_10142.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_10142.current_mDocumentName (HERE), enumerator_10142.current_mRootEntityName (HERE), enumerator_10142.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10142.current_mTransientListForGeneration (HERE), enumerator_10142.current_mOutletMap (HERE), enumerator_10142.current_mDocumentArrayControllerForGeneration (HERE), enumerator_10142.current_mTargetActionList (HERE), enumerator_10142.current_mRegularBindingsGenerationList (HERE), enumerator_10142.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 252))) ;
+  cEnumerator_documentListForGeneration enumerator_11807 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
+  while (enumerator_11807.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_11807.current_mDocumentName (HERE), enumerator_11807.current_mRootEntityName (HERE), enumerator_11807.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11807.current_mTransientListForGeneration (HERE), enumerator_11807.current_mOutletMap (HERE), enumerator_11807.current_mDocumentArrayControllerForGeneration (HERE), enumerator_11807.current_mTargetActionList (HERE), enumerator_11807.current_mRegularBindingsGenerationList (HERE), enumerator_11807.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 293))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10142.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 265)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 263)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11807.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 306)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 304)) ;
     }
-    enumerator_10142.gotoNextObject () ;
+    enumerator_11807.gotoNextObject () ;
   }
 }
 
@@ -13659,19 +14074,19 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
                                const GALGAS_string constinArgument_inOutputDirectory,
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_entityListForGeneration enumerator_9226 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
-  while (enumerator_9226.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_9226.current_mEntityName (HERE), enumerator_9226.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9226.current_mDecoratedTransientListForGeneration (HERE), enumerator_9226.current_mToOneEntityRelationshipList (HERE), enumerator_9226.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 228))) ;
+  cEnumerator_entityListForGeneration enumerator_10734 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
+  while (enumerator_10734.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_10734.current_mEntityName (HERE), enumerator_10734.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10734.current_mDecoratedTransientListForGeneration (HERE), enumerator_10734.current_mToOneEntityRelationshipList (HERE), enumerator_10734.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 265))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9226.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 237)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 235)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10734.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 274)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 272)) ;
     }
-    enumerator_9226.gotoNextObject () ;
+    enumerator_10734.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 242)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 279)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 243))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 280))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 246)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 283)) ;
     }
   }
 }
@@ -14107,13 +14522,13 @@ void routine_generatePreferences (const GALGAS_preferenceListForGeneration const
                                   const GALGAS_string constinArgument_inOutputDirectory,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_preferenceListForGeneration enumerator_9883 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
-  while (enumerator_9883.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_9883.current_mPreferenceName (HERE), enumerator_9883.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_9883.current_mTransientDefinitionListForGeneration (HERE), enumerator_9883.current_mOutletMap (HERE), enumerator_9883.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 241))) ;
+  cEnumerator_preferenceListForGeneration enumerator_11384 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
+  while (enumerator_11384.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_11384.current_mPreferenceName (HERE), enumerator_11384.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11384.current_mTransientDefinitionListForGeneration (HERE), enumerator_11384.current_mOutletMap (HERE), enumerator_11384.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 278))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_9883.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 250)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 248)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11384.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 287)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 285)) ;
     }
-    enumerator_9883.gotoNextObject () ;
+    enumerator_11384.gotoNextObject () ;
   }
 }
 

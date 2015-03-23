@@ -28,7 +28,7 @@ list @arrayControllerDeclarationListAST {
 
 #......................................................................................................................*
 
-class @arrayControllerDeclaration: @abstractItem {
+class @arrayControllerDeclaration: @abstractSecondaryProperty {
   @lstring mControllerName
   @arrayControllerModel mArrayControllerModel
   @lstringlist mTableViewOutletNameList
@@ -174,7 +174,43 @@ override method @arrayControllerDeclaration buildObservablePropertyMap
 
 #......................................................................................................................*
 
-override method @arrayControllerDeclaration semanticAnalysis
+override method @arrayControllerDeclaration tryToSolveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @observablePropertyMap inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
+{
+  @bool solved
+  switch mArrayControllerModel
+  case rootToManyRelationship (@lstring relationshipName) :
+    solved = [inRootObservableProperties hasKey !relationshipName.string]
+    if solved then
+      [inRootObservableProperties searchKey
+        !relationshipName
+        ?let type
+        ?let kind
+        ?let multiplicity
+        ?*
+      ]
+      [!?ioObservableProperties insertKey
+        !relationshipName
+        !type
+        !.transient
+        !multiplicity
+        !""
+      ]
+    end
+  case controllerArray (@lstring controllerName @lstring propertyName) :
+    solved = [ioObservableProperties hasKey !controllerName.string]
+  end
+  if not solved then
+    ioUnsolvedProperties += !self
+  end
+}
+
+#......................................................................................................................*
+
+override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext

@@ -9,7 +9,7 @@ class @documentDeclaration : @astDeclaration {
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
   @arrayControllerDeclarationListAST mArrayControllerDeclarationList
-  @itemList mItemList
+  @secondaryPropertyList mSecondaryPropertyList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -29,7 +29,7 @@ syntax extension easyBindings_syntax {
     $root$
     $Identifier$ ?let @lstring rootEntityName
     ${$
-    @itemList itemList = {}
+    @secondaryPropertyList secondaryPropertyList = {}
     @outletDeclarationList outletDeclarationList = {}
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?actionDeclarationList
     while
-      <transient_declaration> !?itemList
+      <transient_declaration> !?secondaryPropertyList
     while
       <outlet_declaration> !?outletDeclarationList
     while
@@ -56,7 +56,7 @@ syntax extension easyBindings_syntax {
       !simpleStoredPropertyList
       !actionDeclarationList
       !arrayControllerDeclarationListAST
-      !itemList
+      !secondaryPropertyList
     }
   }
 
@@ -73,7 +73,7 @@ override method @documentDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item typeInventory
       !"document." + mDocumentName
       !?ioUnifiedTypeMap
@@ -93,11 +93,21 @@ map @documentObservablePropertyMap {
   search searchKey error message "there is no '%K' document"
 }
 
+#......................................................................................................................*
+
+override method @documentDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
+  ?!@uint ioSecondaryDeclarationCount
+{
+  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
+  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @documentDeclaration buildObservablePropertyMaps
+override method @documentDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
@@ -108,7 +118,7 @@ override method @documentDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item buildObservablePropertyMap
       !inUnifiedTypeMap
       !?observablePropertyMap
@@ -118,6 +128,37 @@ override method @documentDeclaration buildObservablePropertyMaps
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
     !observablePropertyMap
+  ]
+}
+
+#......................................................................................................................*
+
+override method @documentDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @secondaryPropertyList inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+{
+  outUnsolvedProperties = {}
+  [ioSemanticContext.mDocumentObservablePropertyMap searchKey
+    !mDocumentName
+    ?@observablePropertyMap observablePropertyMap
+  ]
+  [ioSemanticContext.mEntityObservablePropertyMap searchKey
+    !mRootEntityName
+    ?@observablePropertyMap rootObservablePropertyMap
+  ]
+  for (property) in inPropertiesToSolve do
+    [property tryToSolveSecondaryProperty
+      !?ioSemanticContext
+      !rootObservablePropertyMap
+      !?observablePropertyMap
+      !?outUnsolvedProperties
+    ]
+  end
+  [!?ioSemanticContext.mDocumentObservablePropertyMap setMObservablePropertyMapForKey
+    !observablePropertyMap
+    !mDocumentName.string
   ]
 }
 
@@ -150,8 +191,8 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  for (item) in mItemList do
-    [item semanticAnalysis
+  for (item) in mSecondaryPropertyList do
+    [item secondaryPropertySemanticAnalysis
       !mDocumentName.string
       !rootObservablePropertyMap
       !inSemanticContext

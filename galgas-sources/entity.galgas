@@ -8,7 +8,7 @@ class @entityDeclaration : @astDeclaration {
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @toOneRelationshipList mToOneRelationshipList
   @toManyRelationshipList mToManyRelationshipList
-  @itemList mItemList
+  @secondaryPropertyList mSecondaryPropertyList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -33,7 +33,7 @@ syntax extension easyBindings_syntax {
       $Identifier$ ? superEntityName
     end
     ${$
-    @itemList itemList = {}
+    @secondaryPropertyList secondaryPropertyList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
     while
       <simple_stored_declaration> !?simpleStoredAttributeList
     while
-      <transient_declaration> !?itemList
+      <transient_declaration> !?secondaryPropertyList
     while
       <toMany_relationship> !?toManyRelationshipList
     while
@@ -55,7 +55,7 @@ syntax extension easyBindings_syntax {
       !simpleStoredAttributeList
       !toOneRelationshipList
       !toManyRelationshipList
-      !itemList
+      !secondaryPropertyList
     }
   }
 
@@ -72,7 +72,7 @@ override method @entityDeclaration typeInventory
   ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item typeInventory
       !"entity." + mEntityName
       !?ioUnifiedTypeMap
@@ -102,7 +102,7 @@ map @entityObservablePropertyMap {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 # Only get current entity observable properties, do not collect in super entities
-override method @entityDeclaration buildObservablePropertyMaps
+override method @entityDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
@@ -113,7 +113,7 @@ override method @entityDeclaration buildObservablePropertyMaps
     !?observablePropertyMap
   ]
 #--- Analyze transients
-  for (item) in mItemList do
+  for (item) in mSecondaryPropertyList do
     [item buildObservablePropertyMap
       !inUnifiedTypeMap
       !?observablePropertyMap
@@ -137,6 +137,43 @@ override method @entityDeclaration buildObservablePropertyMaps
 
 #......................................................................................................................*
 
+override method @entityDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
+  ?!@uint ioSecondaryDeclarationCount
+{
+  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
+  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
+}
+
+#......................................................................................................................*
+
+override method @entityDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @secondaryPropertyList inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+{
+  outUnsolvedProperties = {}
+  [ioSemanticContext.mEntityObservablePropertyMap searchKey
+    !mEntityName
+    ?@observablePropertyMap observablePropertyMap
+  ]
+  for (property) in inPropertiesToSolve do
+    [property tryToSolveSecondaryProperty
+      !?ioSemanticContext
+      !{} # No root entity
+      !?observablePropertyMap
+      !?outUnsolvedProperties
+    ]
+  end
+  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
+    !observablePropertyMap
+    !mEntityName.string
+  ]
+}
+
+#......................................................................................................................*
+
 override method @entityDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
@@ -155,8 +192,8 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  for (item) in mItemList do
-    [item semanticAnalysis
+  for (item) in mSecondaryPropertyList do
+    [item secondaryPropertySemanticAnalysis
       !mEntityName.string
       !{} # No root entity
       !inSemanticContext

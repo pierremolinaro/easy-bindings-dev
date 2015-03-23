@@ -34,13 +34,13 @@ struct @astDeclarationStruct {
 
 #......................................................................................................................*
 
-abstract class @abstractItem {
+abstract class @abstractSecondaryProperty {
 }
 
 #......................................................................................................................*
 
-list @itemList {
-  @abstractItem mItem
+list @secondaryPropertyList {
+  @abstractSecondaryProperty mSecondaryProperty
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -93,7 +93,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
 #    TYPE INVENTORY                                                                                                    *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-abstract method @abstractItem typeInventory
+abstract method @abstractSecondaryProperty typeInventory
   ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap ioUnifiedTypeMap
   ?!@transientDependencyGraph ioTransientDependencyGraph
@@ -102,13 +102,13 @@ abstract method @abstractItem typeInventory
 #    SEMANTIC ANALYSIS                                                                                                 *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-abstract method @abstractItem buildObservablePropertyMap
+abstract method @abstractSecondaryProperty buildObservablePropertyMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@observablePropertyMap ioObservableProperties
 
 #......................................................................................................................*
 
-abstract method @abstractItem semanticAnalysis
+abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
