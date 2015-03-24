@@ -1101,14 +1101,14 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "func noteObjectAllocation (inObject : PMUserClassName) {\n"
   "  installDebugMenu ()\n"
-  "  let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "  let className = _stdlib_getDemangledTypeName (inObject).pathExtension\n"
   "  gDebugObject\?.pmNoteObjectAllocation (className)\n"
   "}\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "func noteObjectDeallocation (inObject : PMUserClassName) {\n"
-  "  let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "  let className = _stdlib_getDemangledTypeName (inObject).pathExtension\n"
   "  gDebugObject\?.pmNoteObjectDeallocation (className)\n"
   "}\n"
   "\n"
@@ -1473,7 +1473,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "PMAllocationDebug.swift",
   "swift",
   true, // Text file
-  17565, // Text length
+  17593, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
