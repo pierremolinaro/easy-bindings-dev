@@ -73,7 +73,6 @@ override method @entityDeclaration typeInventory
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
-      !"entity." + mEntityName
       !?ioUnifiedTypeMap
     ]
   end

@@ -74,7 +74,6 @@ override method @documentDeclaration typeInventory
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
-      !"document." + mDocumentName
       !?ioUnifiedTypeMap
     ]
   end
