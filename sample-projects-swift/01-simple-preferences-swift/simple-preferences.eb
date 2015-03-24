@@ -1,4 +1,4 @@
-prefs PMPrefs {
+prefs {
 #--- String
   property String myString default "hello" ;
   outlet PMTextField myTextField $value self.myString {sendContinously : no} ;

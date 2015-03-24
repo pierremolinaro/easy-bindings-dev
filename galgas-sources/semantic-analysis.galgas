@@ -47,7 +47,7 @@ struct @semanticContext {
   @unifiedTypeMap mUnifiedTypeMap
   @outletClassMap mOutletClassMap
   @bindingSpecificationMap mBindingSpecificationMap
-  @prefsObservablePropertyMap mPrefsObservablePropertyMap
+  @observablePropertyMap mPreferencesObservablePropertyMap
   @documentObservablePropertyMap mDocumentObservablePropertyMap
   @entityObservablePropertyMap mEntityObservablePropertyMap
 }
@@ -86,15 +86,26 @@ proc semanticAnalysis
       !?semanticContext
     ]  
   end
+  [inAstDeclarationStruct.mPreferences buildObservablePropertyMapsFromStoredProperties
+    !inUnifiedTypeMap
+    !?semanticContext
+  ]
 #--- Building initial secondary property maps
+  @secondaryPropertyList preferencesSecondaryPropertyList = inAstDeclarationStruct.mPreferences.mSecondaryPropertyList
   @secondaryDeclarationListWorkingList secondaryDeclarationListWorkingList = {}
-  @uint secondaryDeclarationCount = 1 ;
+  @uint secondaryDeclarationCount = [preferencesSecondaryPropertyList length] + 1 ;
   for () in inAstDeclarationStruct.mDeclarationList do
     [mDeclaration buildInitialSecondaryPropertyListMap !?secondaryDeclarationListWorkingList !?secondaryDeclarationCount]
   end
 #--- Iterate for building observable property maps
   @bool continue = true
   loop (secondaryDeclarationCount) while continue do
+    [inAstDeclarationStruct.mPreferences solveSecondaryProperty
+      !?semanticContext
+      !inUnifiedTypeMap
+      !preferencesSecondaryPropertyList
+      ?let @secondaryPropertyList newPreferencesSecondaryPropertyList
+    ]
     @secondaryDeclarationListWorkingList newSecondaryDeclarationListWorkingList = {}
     for (declaration aList) in secondaryDeclarationListWorkingList do
       [declaration solveSecondaryProperty
@@ -105,8 +116,12 @@ proc semanticAnalysis
       ]
       newSecondaryDeclarationListWorkingList += !declaration !unsolvedProperties
     end
-    continue = newSecondaryDeclarationListWorkingList != secondaryDeclarationListWorkingList
+    continue = 
+      (newSecondaryDeclarationListWorkingList != secondaryDeclarationListWorkingList)
+    ||
+      (preferencesSecondaryPropertyList != newPreferencesSecondaryPropertyList)
     secondaryDeclarationListWorkingList = newSecondaryDeclarationListWorkingList
+    preferencesSecondaryPropertyList = newPreferencesSecondaryPropertyList
   end
 #--- Semantic analysis of declarations
   outGeneration = .default
@@ -116,23 +131,10 @@ proc semanticAnalysis
       !?outGeneration
     ]  
   end
-#--- Build controller template map
-#  buildControllerTemplateMap (
-#    !inUnifiedTypeMap
-#    !inAstDeclarationStruct.mControllerTemplateList
-#    ?let @bindingSpecificationMap templateControllerMap
-#  )
-##--- Type analysis
-#  if @uint. errorCount == 0 then
-#    typeAnalysis (
-#      !inUnifiedTypeMap
-#      !outletClassMap
-#      !templateControllerMap
-#      ?outGeneration
-#    )
-#  else
-#    outGeneration = @structForGeneration.default
-#  end
+  [inAstDeclarationStruct.mPreferences semanticAnalysis
+    !semanticContext
+    !?outGeneration
+  ]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

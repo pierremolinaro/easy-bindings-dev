@@ -87,8 +87,8 @@ import Cocoa
   //--- Install property observers for transients
   //--- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)
-    prefStringTextField?.bind_value (g_MyPrefs!.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
-    prefTransientStringTextField?.bind_readOnlyValue (g_MyPrefs!.prefTransientString, file:__FILE__, line:__LINE__)
+    prefStringTextField?.bind_value (g_Preferences!.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
+    prefTransientStringTextField?.bind_readOnlyValue (g_Preferences!.prefTransientString, file:__FILE__, line:__LINE__)
     transientConcatStringTextField?.bind_readOnlyValue (self.rootObject.transientConcatString, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions

@@ -148,7 +148,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
   public : GALGAS_unifiedTypeMap mAttribute_mUnifiedTypeMap ;
   public : GALGAS_outletClassMap mAttribute_mOutletClassMap ;
   public : GALGAS_bindingSpecificationMap mAttribute_mBindingSpecificationMap ;
-  public : GALGAS_prefsObservablePropertyMap mAttribute_mPrefsObservablePropertyMap ;
+  public : GALGAS_observablePropertyMap mAttribute_mPreferencesObservablePropertyMap ;
   public : GALGAS_documentObservablePropertyMap mAttribute_mDocumentObservablePropertyMap ;
   public : GALGAS_entityObservablePropertyMap mAttribute_mEntityObservablePropertyMap ;
 
@@ -170,7 +170,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
   public : GALGAS_semanticContext (const GALGAS_unifiedTypeMap & in_mUnifiedTypeMap,
                                    const GALGAS_outletClassMap & in_mOutletClassMap,
                                    const GALGAS_bindingSpecificationMap & in_mBindingSpecificationMap,
-                                   const GALGAS_prefsObservablePropertyMap & in_mPrefsObservablePropertyMap,
+                                   const GALGAS_observablePropertyMap & in_mPreferencesObservablePropertyMap,
                                    const GALGAS_documentObservablePropertyMap & in_mDocumentObservablePropertyMap,
                                    const GALGAS_entityObservablePropertyMap & in_mEntityObservablePropertyMap) ;
 
@@ -188,7 +188,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
   public : static GALGAS_semanticContext constructor_new (const class GALGAS_unifiedTypeMap & inOperand0,
                                                           const class GALGAS_outletClassMap & inOperand1,
                                                           const class GALGAS_bindingSpecificationMap & inOperand2,
-                                                          const class GALGAS_prefsObservablePropertyMap & inOperand3,
+                                                          const class GALGAS_observablePropertyMap & inOperand3,
                                                           const class GALGAS_documentObservablePropertyMap & inOperand4,
                                                           const class GALGAS_entityObservablePropertyMap & inOperand5
                                                           COMMA_LOCATION_ARGS) ;
@@ -213,7 +213,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletClassMap reader_mOutletClassMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_prefsObservablePropertyMap reader_mPrefsObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap reader_mPreferencesObservablePropertyMap (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap reader_mUnifiedTypeMap (LOCATION_ARGS) const ;
 
@@ -238,7 +238,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_transientDefinitionListForGeneration mAttribute_mTransientListForGeneration ;
   public : GALGAS_actionListForGeneration mAttribute_mActionListForGeneration ;
-  public : GALGAS_preferenceListForGeneration mAttribute_mPreferenceListForGeneration ;
+  public : GALGAS_preferencesForGeneration mAttribute_mPreferencesForGeneration ;
   public : GALGAS_documentListForGeneration mAttribute_mDocumentListForGeneration ;
   public : GALGAS_entityListForGeneration mAttribute_mEntityListForGeneration ;
   public : GALGAS_enumListForGeneration mAttribute_mEnumListForGeneration ;
@@ -264,7 +264,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_structForGeneration (const GALGAS_transientDefinitionListForGeneration & in_mTransientListForGeneration,
                                        const GALGAS_actionListForGeneration & in_mActionListForGeneration,
-                                       const GALGAS_preferenceListForGeneration & in_mPreferenceListForGeneration,
+                                       const GALGAS_preferencesForGeneration & in_mPreferencesForGeneration,
                                        const GALGAS_documentListForGeneration & in_mDocumentListForGeneration,
                                        const GALGAS_entityListForGeneration & in_mEntityListForGeneration,
                                        const GALGAS_enumListForGeneration & in_mEnumListForGeneration,
@@ -286,7 +286,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public : static GALGAS_structForGeneration constructor_new (const class GALGAS_transientDefinitionListForGeneration & inOperand0,
                                                               const class GALGAS_actionListForGeneration & inOperand1,
-                                                              const class GALGAS_preferenceListForGeneration & inOperand2,
+                                                              const class GALGAS_preferencesForGeneration & inOperand2,
                                                               const class GALGAS_documentListForGeneration & inOperand3,
                                                               const class GALGAS_entityListForGeneration & inOperand4,
                                                               const class GALGAS_enumListForGeneration & inOperand5,
@@ -320,7 +320,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mNeededOutletClasses (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_preferenceListForGeneration reader_mPreferenceListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_preferencesForGeneration reader_mPreferencesForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration reader_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 
@@ -625,6 +625,44 @@ void categoryMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarati
                                          class GALGAS_outletClassMap & out_outOutletClassMap,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                 Category method '@prefDeclaration buildObservablePropertyMapsFromStoredProperties'                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const class GALGAS_prefDeclaration inObject,
+                                                                     const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                                     class GALGAS_semanticContext & io_ioSemanticContext,
+                                                                     class C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Category method '@prefDeclaration semanticAnalysis'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObject,
+                                      const class GALGAS_semanticContext constin_inSemanticContext,
+                                      class GALGAS_structForGeneration & io_ioGeneration,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Category method '@prefDeclaration solveSecondaryProperty'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration inObject,
+                                            class GALGAS_semanticContext & io_ioSemanticContext,
+                                            const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                            const class GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
+                                            class GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1429,5 +1467,42 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
                                                            GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Category method '@simpleStoredPropertyList typeInventory'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
+                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
+                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Category method '@simpleStoredPropertyList simpleStoredPropertySemanticAnalysis'                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
+                                                          const class GALGAS_string constin_inSwiftClassName,
+                                                          const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                          class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
+                                                          class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
+                                                          class C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 #endif

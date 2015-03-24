@@ -11,43 +11,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@simpleStoredPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category method '@simpleStoredPropertyList semanticAnalysis'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
-                                      const class GALGAS_string constin_inSwiftClassName,
-                                      const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                      class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
-                                      class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                               Category method '@toOneRelationshipList typeInventory'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -154,6 +117,17 @@ void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSe
 class GALGAS_string categoryReader_formatterStringForFormatPrinting (const class GALGAS_typeKind & inObject,
                                                                      class C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                  Category method '@prefDeclaration typeInventory'                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
+                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

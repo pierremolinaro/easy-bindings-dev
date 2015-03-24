@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		CF1AE0C1168F0CBE0031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0C0168F0CBE0031840E /* libz.dylib */; };
 		CF1AE0C3168F0CC70031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0C2168F0CC70031840E /* libbz2.dylib */; };
+		CF1D1EE51AC1E0430060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EE31AC1E0430060431A /* Preferences.swift */; };
+		CF1D1EE61AC1E0430060431A /* Preferences+transient+prefTransientString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EE41AC1E0430060431A /* Preferences+transient+prefTransientString.swift */; };
 		CF34AD3819866C8500E89971 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3119866C8500E89971 /* easy-bindings-utilities.swift */; };
-		CF34AD3919866C8500E89971 /* MyPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3219866C8500E89971 /* MyPrefs.swift */; };
-		CF34AD3A19866C8500E89971 /* MyPrefs+transient+prefTransientString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3319866C8500E89971 /* MyPrefs+transient+prefTransientString.swift */; };
 		CF34AD3B19866C8500E89971 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34AD3419866C8500E89971 /* PMAllocationDebug.swift */; };
 		CF4627A71595B53B00BF70CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4627A61595B53B00BF70CD /* Cocoa.framework */; };
 		CF4627B11595B53B00BF70CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF4627AF1595B53B00BF70CD /* InfoPlist.strings */; };
@@ -39,9 +39,9 @@
 /* Begin PBXFileReference section */
 		CF1AE0C0168F0CBE0031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CF1AE0C2168F0CC70031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		CF1D1EE31AC1E0430060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CF1D1EE41AC1E0430060431A /* Preferences+transient+prefTransientString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+prefTransientString.swift"; sourceTree = "<group>"; };
 		CF34AD3119866C8500E89971 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
-		CF34AD3219866C8500E89971 /* MyPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrefs.swift; sourceTree = "<group>"; };
-		CF34AD3319866C8500E89971 /* MyPrefs+transient+prefTransientString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyPrefs+transient+prefTransientString.swift"; sourceTree = "<group>"; };
 		CF34AD3419866C8500E89971 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CF4627A21595B53B00BF70CD /* 05-observing-pref-in-document-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "05-observing-pref-in-document-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4627A61595B53B00BF70CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -133,8 +133,6 @@
 				CFDA0FAA1782CF500034D5C7 /* MainMenu.xib */,
 				CFB6B3FD19866E35005024BB /* MyDocument.swift */,
 				CFDA0FAC1782CF500034D5C7 /* MyDocument.xib */,
-				CF34AD3219866C8500E89971 /* MyPrefs.swift */,
-				CF34AD3319866C8500E89971 /* MyPrefs+transient+prefTransientString.swift */,
 				CFB6B3FE19866E35005024BB /* MyRootEntity.swift */,
 				CFB6B3FF19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift */,
 				CFB6B40019866E35005024BB /* MyRootEntity+transient+transientConcatString.swift */,
@@ -147,6 +145,8 @@
 				CF7EFF0D1AB0977A00E53BB8 /* PMReadOnlyTextField.swift */,
 				CF9ACC2C19BA10FA0001A06F /* PMTextField.swift */,
 				CFB6B40919866E35005024BB /* PMUndoManager.swift */,
+				CF1D1EE31AC1E0430060431A /* Preferences.swift */,
+				CF1D1EE41AC1E0430060431A /* Preferences+transient+prefTransientString.swift */,
 				CF7EFF0E1AB0977A00E53BB8 /* standard-properties.swift */,
 				CF4627AD1595B53B00BF70CD /* Supporting Files */,
 			);
@@ -231,17 +231,17 @@
 			files = (
 				CF7EFF0F1AB0977A00E53BB8 /* application.swift in Sources */,
 				CF7EFF111AB0977A00E53BB8 /* standard-properties.swift in Sources */,
+				CF1D1EE51AC1E0430060431A /* Preferences.swift in Sources */,
 				CFB6B40C19866E35005024BB /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */,
 				CF5B9F761986794C00A26AD6 /* main.swift in Sources */,
+				CF1D1EE61AC1E0430060431A /* Preferences+transient+prefTransientString.swift in Sources */,
 				CFB6B41319866E35005024BB /* PMManagedObject.swift in Sources */,
 				CFB6B40D19866E35005024BB /* MyRootEntity+transient+transientConcatString.swift in Sources */,
 				CFB6B40A19866E35005024BB /* MyDocument.swift in Sources */,
 				CFB6B41619866E35005024BB /* PMUndoManager.swift in Sources */,
 				CF9ACC2F19BA10FA0001A06F /* PMTextField.swift in Sources */,
 				CF34AD3819866C8500E89971 /* easy-bindings-utilities.swift in Sources */,
-				CF34AD3919866C8500E89971 /* MyPrefs.swift in Sources */,
 				CFABCF6B1AB0CC3E0024372A /* generic-bindings.swift in Sources */,
-				CF34AD3A19866C8500E89971 /* MyPrefs+transient+prefTransientString.swift in Sources */,
 				CF34AD3B19866C8500E89971 /* PMAllocationDebug.swift in Sources */,
 				CF7EFF101AB0977A00E53BB8 /* PMReadOnlyTextField.swift in Sources */,
 				CFB6B40F19866E35005024BB /* PMDataScanner.swift in Sources */,

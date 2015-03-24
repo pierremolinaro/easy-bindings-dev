@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1D1EDB1AC1DF6D0060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED71AC1DF6D0060431A /* Preferences.swift */; };
+		CF1D1EDC1AC1DF6D0060431A /* Preferences+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED81AC1DF6D0060431A /* Preferences+action+monAction.swift */; };
+		CF1D1EDD1AC1DF6D0060431A /* Preferences+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED91AC1DF6D0060431A /* Preferences+transient+mFullName.swift */; };
+		CF1D1EDE1AC1DF6D0060431A /* Preferences+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EDA1AC1DF6D0060431A /* Preferences+transient+mUpperCaseFullName.swift */; };
 		CF2854461AAB0C0700F3F95D /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2854451AAB0C0700F3F95D /* PMReadOnlyTextField.swift */; };
 		CF713F461944C1CC000826E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F451944C1CC000826E7 /* main.swift */; };
 		CF713F4D1944C1CC000826E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F4B1944C1CC000826E7 /* MainMenu.xib */; };
 		CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F621944C608000826E7 /* easy-bindings-utilities.swift */; };
 		CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F631944C608000826E7 /* PMAllocationDebug.swift */; };
 		CF713F691944C608000826E7 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF713F641944C608000826E7 /* PMAllocationDebug.xib */; };
-		CF713F6B1944C608000826E7 /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F661944C608000826E7 /* Prefs.swift */; };
-		CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */; };
-		CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */; };
-		CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F741944D887000826E7 /* Prefs+action+monAction.swift */; };
 		CFA946571AACA7AC001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA946561AACA7AC001C5C57 /* application.swift */; };
 		CFABCF651AB0CBA10024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF641AB0CBA10024372A /* generic-bindings.swift */; };
 		CFAD6CBD1AAC58DC00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBC1AAC58DC00958004 /* standard-properties.swift */; };
@@ -24,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1D1ED71AC1DF6D0060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CF1D1ED81AC1DF6D0060431A /* Preferences+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+action+monAction.swift"; sourceTree = "<group>"; };
+		CF1D1ED91AC1DF6D0060431A /* Preferences+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+mFullName.swift"; sourceTree = "<group>"; };
+		CF1D1EDA1AC1DF6D0060431A /* Preferences+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
 		CF2854451AAB0C0700F3F95D /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
 		CF713F401944C1CC000826E7 /* 02-transient-property-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "02-transient-property-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF713F441944C1CC000826E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,10 +36,6 @@
 		CF713F621944C608000826E7 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CF713F631944C608000826E7 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CF713F641944C608000826E7 /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		CF713F661944C608000826E7 /* Prefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
-		CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mFullName.swift"; sourceTree = "<group>"; };
-		CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
-		CF713F741944D887000826E7 /* Prefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prefs+action+monAction.swift"; sourceTree = "<group>"; };
 		CFA946561AACA7AC001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFABCF641AB0CBA10024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFAD6CBC1AAC58DC00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
@@ -80,10 +80,10 @@
 				CF713F641944C608000826E7 /* PMAllocationDebug.xib */,
 				CF2854451AAB0C0700F3F95D /* PMReadOnlyTextField.swift */,
 				CFC4B9D119B255CE0008BE21 /* PMTextField.swift */,
-				CF713F661944C608000826E7 /* Prefs.swift */,
-				CF713F741944D887000826E7 /* Prefs+action+monAction.swift */,
-				CF713F701944D21F000826E7 /* Prefs+transient+mFullName.swift */,
-				CF713F711944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift */,
+				CF1D1ED71AC1DF6D0060431A /* Preferences.swift */,
+				CF1D1ED81AC1DF6D0060431A /* Preferences+action+monAction.swift */,
+				CF1D1ED91AC1DF6D0060431A /* Preferences+transient+mFullName.swift */,
+				CF1D1EDA1AC1DF6D0060431A /* Preferences+transient+mUpperCaseFullName.swift */,
 				CFAD6CBC1AAC58DC00958004 /* standard-properties.swift */,
 				CF713F431944C1CC000826E7 /* Supporting Files */,
 			);
@@ -169,16 +169,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF713F681944C608000826E7 /* PMAllocationDebug.swift in Sources */,
+				CF1D1EDC1AC1DF6D0060431A /* Preferences+action+monAction.swift in Sources */,
+				CF1D1EDE1AC1DF6D0060431A /* Preferences+transient+mUpperCaseFullName.swift in Sources */,
 				CFABCF651AB0CBA10024372A /* generic-bindings.swift in Sources */,
 				CFA946571AACA7AC001C5C57 /* application.swift in Sources */,
 				CF713F671944C608000826E7 /* easy-bindings-utilities.swift in Sources */,
-				CF713F6B1944C608000826E7 /* Prefs.swift in Sources */,
-				CF713F751944D887000826E7 /* Prefs+action+monAction.swift in Sources */,
-				CF713F721944D21F000826E7 /* Prefs+transient+mFullName.swift in Sources */,
 				CFC4B9D219B255CE0008BE21 /* PMTextField.swift in Sources */,
 				CFAD6CBD1AAC58DC00958004 /* standard-properties.swift in Sources */,
+				CF1D1EDB1AC1DF6D0060431A /* Preferences.swift in Sources */,
+				CF1D1EDD1AC1DF6D0060431A /* Preferences+transient+mFullName.swift in Sources */,
 				CF713F461944C1CC000826E7 /* main.swift in Sources */,
-				CF713F731944D21F000826E7 /* Prefs+transient+mUpperCaseFullName.swift in Sources */,
 				CF2854461AAB0C0700F3F95D /* PMReadOnlyTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

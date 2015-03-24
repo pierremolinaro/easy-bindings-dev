@@ -172,8 +172,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addObserver"
   case selfProperty (@lstring masterName *) :
     outResult = masterName.string + ".addObserver"
-  case prefsProperty (@lstring prefsName @lstring propertyName *) :
-    outResult = "g_" + prefsName + "?."  + propertyName + ".addObserver"
+  case prefsProperty (@lstring propertyName *) :
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addObserver"
   case rootProperty (@lstring masterName) :
     outResult = "rootObject." + masterName + ".addObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
@@ -193,8 +193,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeObserver"
   case selfProperty (@lstring masterName *) :
     outResult = masterName.string + ".removeObserver"
-  case prefsProperty (@lstring prefsName @lstring propertyName *) :
-    outResult = "g_" + prefsName + "?."  + propertyName + ".removeObserver"
+  case prefsProperty (@lstring propertyName *) :
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeObserver"
   case rootProperty (@lstring masterName) :
     outResult = "rootObject." + masterName + ".removeObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
