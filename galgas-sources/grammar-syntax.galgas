@@ -94,7 +94,6 @@ syntax easyBindings_syntax (easyBindings_lexique) {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 abstract method @abstractSecondaryProperty typeInventory
-  ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap ioUnifiedTypeMap
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

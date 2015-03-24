@@ -104,7 +104,6 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 override method @arrayControllerDeclaration typeInventory
-  ?@string unused inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap unused ioUnifiedTypeMap
 {
 }

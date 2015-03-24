@@ -64,7 +64,6 @@ override method @prefDeclaration typeInventory
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
-      !"prefs." + mPrefsName
       !?ioUnifiedTypeMap
     ]
   end

@@ -1377,8 +1377,7 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_abstractSecondaryProperty_typeInventory) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                 class GALGAS_string inArgument0,
-                                                                                 class GALGAS_unifiedTypeMap & ioArgument1,
+                                                                                 class GALGAS_unifiedTypeMap & ioArgument0,
                                                                                  class C_Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
@@ -1390,7 +1389,6 @@ void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryProperty * inObject,
-                                       GALGAS_string in_inDependencyGraphPrefix,
                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;

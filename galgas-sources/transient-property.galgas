@@ -47,7 +47,6 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 override method @transientAST typeInventory
-  ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   [@unifiedTypeMap-proxy makeProxy
