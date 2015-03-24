@@ -77,11 +77,11 @@ import Cocoa
     docBoolCheckBox?.bind_value (self.rootObject.docBool, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
     myButton?.bind_enabled (
-      [g_MyPrefs!.prefBoolean, self.rootObject.docBool],
+      [g_Preferences!.prefBoolean, self.rootObject.docBool],
       computeFunction:{
-        let selection = g_MyPrefs!.prefBoolean.prop.1 & self.rootObject.docBool.prop.1
+        let selection = g_Preferences!.prefBoolean.prop.1 & self.rootObject.docBool.prop.1
         if selection == .singleSelection {
-          return ((!self.rootObject.docBool.prop.0 && g_MyPrefs!.prefBoolean.prop.0), .singleSelection)
+          return ((!self.rootObject.docBool.prop.0 && g_Preferences!.prefBoolean.prop.0), .singleSelection)
         }else{
           return (false, selection)
         }

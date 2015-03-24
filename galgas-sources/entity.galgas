@@ -174,7 +174,7 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList semanticAnalysis
+  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
     !mEntityName.string
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration

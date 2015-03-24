@@ -7,7 +7,7 @@ enum @observablePropertyAST {
   case rootPropertyWithOption (@lstring propertyName @lstring optionName)
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
   case selfProperty (@lstring propertyName @lstring optionName)
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName)
+  case prefsProperty (@lstring propertyName @lstring optionName)
   case controllerProperty (@lstring controllerName @lstring propertyName)
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
 }
@@ -52,9 +52,9 @@ syntax extension easyBindings_syntax {
       <observable_property_extension> ?let propertyName ?let optionName
       outObservablePropertyAST = .selfProperty {!propertyName:propertyName !optionName:optionName}
     or
-      $Identifier$ ?let preferenceName
+      $prefs$
       <observable_property_extension> ?let propertyName ?let optionName
-      outObservablePropertyAST = .prefsProperty {!prefsName:preferenceName!propertyName:propertyName !optionName:optionName}
+      outObservablePropertyAST = .prefsProperty {!propertyName:propertyName !optionName:optionName}
     or
       $identifier$ ?let controllerName
       $.$
@@ -108,8 +108,8 @@ getter @observablePropertyAST modelString -> @string outResult {
     if optionName.string != "" then
       outResult += "." + optionName
     end
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
-    outResult = "g_" + prefsName + "!." + propertyName
+  case prefsProperty (@lstring propertyName @lstring optionName) :
+    outResult = "g_" + preferencesName () + "!." + propertyName
     if optionName.string != "" then
       outResult += "." + optionName
     end
@@ -137,12 +137,8 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inRootObservableProperties hasKey !relationshipName.string]
   case selfProperty (@lstring propertyName @lstring unused optionName) :
     outResult = [inObservableProperties hasKey !propertyName.string]
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring unused optionName) :
-    [inSemanticContext.mPrefsObservablePropertyMap searchKey
-      !prefsName
-      ?@observablePropertyMap prefsObservablePropertyMap
-    ]
-    outResult = [prefsObservablePropertyMap hasKey !propertyName.string]
+  case prefsProperty (@lstring propertyName @lstring unused optionName) :
+    outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
   case controllerProperty (@lstring controllerName @lstring unused propertyName) :
     outResult = [inObservableProperties hasKey !controllerName.string]
   case controllerSecondaryProperty (@lstring controllerName @lstring unused propertyName @lstring unused secondaryPropertyName) :
@@ -162,7 +158,7 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = propertyName.location
   case selfProperty (@lstring propertyName *) :
     outResult = propertyName.location
-  case prefsProperty (* @lstring propertyName *) :
+  case prefsProperty (@lstring propertyName *) :
     outResult = propertyName.location
   case controllerProperty (* @lstring propertyName) :
     outResult = propertyName.location
@@ -269,12 +265,8 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
-    [inSemanticContext.mPrefsObservablePropertyMap searchKey
-      !prefsName
-      ?let @observablePropertyMap observablePropertyMap
-    ]
-    [observablePropertyMap searchKey
+  case prefsProperty (@lstring propertyName @lstring optionName) :
+    [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName
       ?outType
       ?outKind

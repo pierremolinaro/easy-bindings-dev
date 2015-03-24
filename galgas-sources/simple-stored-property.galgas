@@ -95,7 +95,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
 
 #......................................................................................................................*
 
-method @simpleStoredPropertyList semanticAnalysis
+method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
   ?let @string inSwiftClassName
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@validationStubRoutineListForGeneration ioValidationStubRoutineListForGeneration

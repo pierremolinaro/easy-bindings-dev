@@ -167,7 +167,7 @@ override method @documentDeclaration semanticAnalysis
     ?let @observablePropertyMap rootObservablePropertyMap
   ]
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList semanticAnalysis
+  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
     !mDocumentName.string
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration

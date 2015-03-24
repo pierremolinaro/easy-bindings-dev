@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CF1AE0E8168F0D240031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E7168F0D240031840E /* libz.dylib */; };
 		CF1AE0EA168F0D2E0031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0E9168F0D2E0031840E /* libbz2.dylib */; };
+		CF1D1EE81AC1E0AB0060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EE71AC1E0AB0060431A /* Preferences.swift */; };
 		CF2F833519D9F19C000DB8EF /* PMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F833419D9F19C000DB8EF /* PMButton.swift */; };
 		CF5CD2581AB064A7005262B7 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CD2561AB064A7005262B7 /* application.swift */; };
 		CF5CD2591AB064A7005262B7 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CD2571AB064A7005262B7 /* standard-properties.swift */; };
@@ -19,7 +20,6 @@
 		CF6D239619D9EE3B0065875D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF6D237E19D9EE3B0065875D /* MainMenu.xib */; };
 		CF6D239719D9EE3B0065875D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D237F19D9EE3B0065875D /* MyDocument.swift */; };
 		CF6D239819D9EE3B0065875D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF6D238019D9EE3B0065875D /* MyDocument.xib */; };
-		CF6D239919D9EE3B0065875D /* MyPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D238119D9EE3B0065875D /* MyPrefs.swift */; };
 		CF6D239A19D9EE3B0065875D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D238219D9EE3B0065875D /* MyRootEntity.swift */; };
 		CF6D239B19D9EE3B0065875D /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D238319D9EE3B0065875D /* PMAllocationDebug.swift */; };
 		CF6D239C19D9EE3B0065875D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF6D238419D9EE3B0065875D /* PMAllocationDebug.xib */; };
@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		CF1AE0E7168F0D240031840E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CF1AE0E9168F0D2E0031840E /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		CF1D1EE71AC1E0AB0060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = "06-enabled-binding/Preferences.swift"; sourceTree = "<group>"; };
 		CF2F833419D9F19C000DB8EF /* PMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMButton.swift; path = "06-enabled-binding/PMButton.swift"; sourceTree = "<group>"; };
 		CF5CD2561AB064A7005262B7 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = application.swift; path = "06-enabled-binding/application.swift"; sourceTree = "<group>"; };
 		CF5CD2571AB064A7005262B7 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "standard-properties.swift"; path = "06-enabled-binding/standard-properties.swift"; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		CF6D237E19D9EE3B0065875D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = "06-enabled-binding/MainMenu.xib"; sourceTree = "<group>"; };
 		CF6D237F19D9EE3B0065875D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyDocument.swift; path = "06-enabled-binding/MyDocument.swift"; sourceTree = "<group>"; };
 		CF6D238019D9EE3B0065875D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyDocument.xib; path = "06-enabled-binding/MyDocument.xib"; sourceTree = "<group>"; };
-		CF6D238119D9EE3B0065875D /* MyPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPrefs.swift; path = "06-enabled-binding/MyPrefs.swift"; sourceTree = "<group>"; };
 		CF6D238219D9EE3B0065875D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRootEntity.swift; path = "06-enabled-binding/MyRootEntity.swift"; sourceTree = "<group>"; };
 		CF6D238319D9EE3B0065875D /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMAllocationDebug.swift; path = "06-enabled-binding/PMAllocationDebug.swift"; sourceTree = "<group>"; };
 		CF6D238419D9EE3B0065875D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PMAllocationDebug.xib; path = "06-enabled-binding/PMAllocationDebug.xib"; sourceTree = "<group>"; };
@@ -90,13 +90,13 @@
 		CF86CC92159725BE00F6B52D = {
 			isa = PBXGroup;
 			children = (
-				CFABCE8C1AB0C9350024372A /* generic-bindings.swift */,
 				CF6D237719D9EE3B0065875D /* 06-enabled-binding-Info.plist */,
 				CF5CD2561AB064A7005262B7 /* application.swift */,
 				CF6D237919D9EE3B0065875D /* Credits.rtf */,
 				CF6D237A19D9EE3B0065875D /* easy-bindings-utilities.swift */,
 				CF6D237B19D9EE3B0065875D /* en.lproj */,
 				CF86CCA0159725BF00F6B52D /* Frameworks */,
+				CFABCE8C1AB0C9350024372A /* generic-bindings.swift */,
 				CF6D237C19D9EE3B0065875D /* InfoPlist.strings */,
 				CF1AE0E9168F0D2E0031840E /* libbz2.dylib */,
 				CF1AE0E7168F0D240031840E /* libz.dylib */,
@@ -104,7 +104,6 @@
 				CF6D237E19D9EE3B0065875D /* MainMenu.xib */,
 				CF6D237F19D9EE3B0065875D /* MyDocument.swift */,
 				CF6D238019D9EE3B0065875D /* MyDocument.xib */,
-				CF6D238119D9EE3B0065875D /* MyPrefs.swift */,
 				CF6D238219D9EE3B0065875D /* MyRootEntity.swift */,
 				CF6D238319D9EE3B0065875D /* PMAllocationDebug.swift */,
 				CF6D238419D9EE3B0065875D /* PMAllocationDebug.xib */,
@@ -115,6 +114,7 @@
 				CF6D238B19D9EE3B0065875D /* PMManagedObject.swift */,
 				CF6D238E19D9EE3B0065875D /* PMSwitch.swift */,
 				CF6D238F19D9EE3B0065875D /* PMUndoManager.swift */,
+				CF1D1EE71AC1E0AB0060431A /* Preferences.swift */,
 				CF86CC9E159725BF00F6B52D /* Products */,
 				CF5CD2571AB064A7005262B7 /* standard-properties.swift */,
 			);
@@ -219,12 +219,12 @@
 				CF6D23A319D9EE3B0065875D /* PMManagedObject.swift in Sources */,
 				CF6D239719D9EE3B0065875D /* MyDocument.swift in Sources */,
 				CF6D23A719D9EE3B0065875D /* PMUndoManager.swift in Sources */,
+				CF1D1EE81AC1E0AB0060431A /* Preferences.swift in Sources */,
 				CF6D23A119D9EE3B0065875D /* PMManagedDocument.swift in Sources */,
 				CF6D23A619D9EE3B0065875D /* PMSwitch.swift in Sources */,
 				CF5CD2591AB064A7005262B7 /* standard-properties.swift in Sources */,
 				CFABCE8D1AB0C9350024372A /* generic-bindings.swift in Sources */,
 				CF6D239319D9EE3B0065875D /* easy-bindings-utilities.swift in Sources */,
-				CF6D239919D9EE3B0065875D /* MyPrefs.swift in Sources */,
 				CF6D239E19D9EE3B0065875D /* PMDataScanner.swift in Sources */,
 				CF6D239B19D9EE3B0065875D /* PMAllocationDebug.swift in Sources */,
 				CF6D239519D9EE3B0065875D /* main.swift in Sources */,

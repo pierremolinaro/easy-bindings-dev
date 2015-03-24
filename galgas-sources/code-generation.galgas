@@ -4,7 +4,7 @@
 struct @structForGeneration {
   @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
-  @preferenceListForGeneration mPreferenceListForGeneration
+  @preferencesForGeneration mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
   @enumListForGeneration mEnumListForGeneration
@@ -32,7 +32,7 @@ proc generateCode
   )
   let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
   generatePreferences (
-    !inGeneration.mPreferenceListForGeneration
+    !inGeneration.mPreferencesForGeneration
     !outputDirectory
   )
   generateOutletClasses (

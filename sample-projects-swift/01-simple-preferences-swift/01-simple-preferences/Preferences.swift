@@ -2,48 +2,44 @@ import Cocoa
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-var g_%!preferencesName ()% : %!preferencesName ()%? = nil
+var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!preferencesName ()%) class %!preferencesName ()% : PMObject {
+@objc(Preferences) class Preferences : PMObject {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
-for () in OUTLET_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
-end
-% 
+  @IBOutlet var mColorWell : PMColorWell? = nil
+  @IBOutlet var mContinousColorWell : PMColorWell? = nil
+  @IBOutlet var mDatePicker : PMDatePicker? = nil
+  @IBOutlet var mInteger32ObserverTextField : PMReadOnlyIntField? = nil
+  @IBOutlet var mInteger32TextField : PMIntField? = nil
+  @IBOutlet var mObserverColorWell : PMColorWell? = nil
+  @IBOutlet var myObserverTextField : PMTextField? = nil
+  @IBOutlet var myOtherTextField : PMTextField? = nil
+  @IBOutlet var myTextField : PMTextField? = nil
+ 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-end
-%
+  var myString = PMStoredProperty_String ("hello")
+  var mColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
+  var mDate = PMStoredProperty_NSDate (NSDate ())
+  var mIntegerValue = PMStoredProperty_Int (123)
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
 
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
-end
-
-%
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Arraies                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-%
 
-
-%
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Init                                                                                                           *
@@ -51,29 +47,29 @@ end
 
   override init () {
     super.init ()
-    g_%!preferencesName ()% = self ;
-%
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length] ) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-  %  //---\n%
-end
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
-  before
-    %    var value : AnyObject?\n%
-  do
-    %    value = ud.objectForKey ("%!preferencesName ()%:%!mStoredPropertyName%")\n%
-    %    if value != nil {\n%
-    %      %!mStoredPropertyName%.setProp (%![mType preferencesSwiftGetter]%)\n%
-    %    }\n%
-end
-%  //--- Property validation function
-%
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  if mNeedsValidation then
-%    %!mStoredPropertyName%.validationFunction = self.validate_%!mStoredPropertyName%\n%
-  end
-end
-%  //---
+    g_Preferences = self ;
+    var ud = NSUserDefaults.standardUserDefaults ()
+  //---
+    var value : AnyObject?
+    value = ud.objectForKey ("Preferences:myString")
+    if value != nil {
+      myString.setProp (value as! String)
+    }
+    value = ud.objectForKey ("Preferences:mColor")
+    if value != nil {
+      mColor.setProp (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
+    }
+    value = ud.objectForKey ("Preferences:mDate")
+    if value != nil {
+      mDate.setProp (value as! NSDate)
+    }
+    value = ud.objectForKey ("Preferences:mIntegerValue")
+    if value != nil {
+      mIntegerValue.setProp ((value as! NSNumber).integerValue)
+    }
+  //--- Property validation function
+    mIntegerValue.validationFunction = self.validate_mIntegerValue
+  //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
      name:NSApplicationWillTerminateNotification,
@@ -86,66 +82,67 @@ end
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func awakeFromNib () {
-%
-for () in OUTLET_MAP do
-   %  //--- Check %!lkey.string%' outlet not nil\n%
-   %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
-   %    }\n%
-end
-%  //--- Install compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = {\n%
-  %      let selectionKind = %
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.1%
-    between % & %
-  end
-  %\n%
-  %      if selectionKind == .singleSelection {\n%
-  %        return (compute_%!preferencesName ()%_%!mTransientName% (%
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.0%
-    between %, %
-  end
-  %), .singleSelection)\n%
-  %      }else{\n%
-  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
-  %      }\n%
-  %    }\n%
-end
-%  //--- Install property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency modelString]%.addObserver (%!mTransientName%, postEvent:true)\n%
-  end
-end
-%  //--- Install bindings
-%
-for () in REGULAR_BINDINGS_GENERATION_LIST do
-  %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectStringList do
-    !mValue%, %
-  end
-  %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
-end
-%  }
+  //--- Check mColorWell' outlet not nil
+    if nil == mColorWell {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mColorWell' outlet is nil")
+    }
+  //--- Check mContinousColorWell' outlet not nil
+    if nil == mContinousColorWell {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mContinousColorWell' outlet is nil")
+    }
+  //--- Check mDatePicker' outlet not nil
+    if nil == mDatePicker {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mDatePicker' outlet is nil")
+    }
+  //--- Check mInteger32ObserverTextField' outlet not nil
+    if nil == mInteger32ObserverTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32ObserverTextField' outlet is nil")
+    }
+  //--- Check mInteger32TextField' outlet not nil
+    if nil == mInteger32TextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32TextField' outlet is nil")
+    }
+  //--- Check mObserverColorWell' outlet not nil
+    if nil == mObserverColorWell {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mObserverColorWell' outlet is nil")
+    }
+  //--- Check myObserverTextField' outlet not nil
+    if nil == myObserverTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myObserverTextField' outlet is nil")
+    }
+  //--- Check myOtherTextField' outlet not nil
+    if nil == myOtherTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myOtherTextField' outlet is nil")
+    }
+  //--- Check myTextField' outlet not nil
+    if nil == myTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil")
+    }
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install bindings
+    myTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
+    myOtherTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:true)
+    myObserverTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
+    mContinousColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:true)
+    mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    mObserverColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
+    mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
+    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
+    mInteger32ObserverTextField?.bind_readOnlyValue (self.mIntegerValue, file:__FILE__, line:__LINE__)
+  }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-%
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length]) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-end
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    ud.setObject (%![mType preferencesSwiftSetter !mStoredPropertyName]%, forKey:"%!preferencesName ()%:%!mStoredPropertyName%")\n%
-end
-%  }
+    var ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (myString.prop.0, forKey:"Preferences:myString")
+    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop.0), forKey:"Preferences:mColor")
+    ud.setObject (mDate.prop.0, forKey:"Preferences:mDate")
+    ud.setObject (NSNumber (integer:mIntegerValue.prop.0), forKey:"Preferences:mIntegerValue")
+  }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 

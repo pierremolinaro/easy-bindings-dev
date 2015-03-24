@@ -2,8 +2,7 @@
 #   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class @prefDeclaration : @astDeclaration {
-  @lstring mPrefsName
+struct @prefDeclaration {
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
@@ -19,35 +18,22 @@ syntax extension easyBindings_syntax {
   #....................................................................................................................*
   
   rule <preferences_declaration>
-    ?let @bool inIsUserDefined
+    ?let @bool unused inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $prefs$
-    $Identifier$ ?let @lstring prefsName
     ${$
-    var outletDeclarationList = @outletDeclarationList.emptyList{}
-    @simpleStoredPropertyList simpleStoredPropertyList = {}
-    var actionDeclarationList = @lstringlist.emptyList{}
-    @secondaryPropertyList secondaryPropertyList = {}
     repeat
     while
-      <action_declaration> !?actionDeclarationList
+      <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
     while
-      <simple_stored_declaration> !?simpleStoredPropertyList
+      <simple_stored_declaration> !?ioDeclarationAST.mPreferences.mSimpleStoredAttributeList
     while
-      <outlet_declaration> !?outletDeclarationList
+      <outlet_declaration> !?ioDeclarationAST.mPreferences.mOutletDeclarationList
     while
-      <transient_declaration> !?secondaryPropertyList
+      <transient_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@prefDeclaration.new {
-      !inIsUserDefined
-      !prefsName
-      !outletDeclarationList
-      !simpleStoredPropertyList
-      !actionDeclarationList
-      !secondaryPropertyList
-    }
   }
 
   #....................................................................................................................*
@@ -58,7 +44,7 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY                                                                                                     *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @prefDeclaration typeInventory
+method @prefDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
@@ -71,39 +57,23 @@ override method @prefDeclaration typeInventory
 
 #......................................................................................................................*
 
-override method @prefDeclaration buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
-  ?!@uint ioSecondaryDeclarationCount
-{
-  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
-  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
-}
-
-#......................................................................................................................*
-
-override method @prefDeclaration solveSecondaryProperty
+method @prefDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
   outUnsolvedProperties = {}
-  [ioSemanticContext.mPrefsObservablePropertyMap searchKey
-    !mPrefsName
-    ?@observablePropertyMap observablePropertyMap
-  ]
+  var preferencesObservablePropertyMap = ioSemanticContext.mPreferencesObservablePropertyMap
   for (property) in inPropertiesToSolve do
     [property tryToSolveSecondaryProperty
       !?ioSemanticContext
       !{} # No root entity
-      !?observablePropertyMap
+      !?preferencesObservablePropertyMap
       !?outUnsolvedProperties
     ]
   end
-  [!?ioSemanticContext.mPrefsObservablePropertyMap setMObservablePropertyMapForKey
-    !observablePropertyMap
-    !mPrefsName.string
-  ]
+  ioSemanticContext.mPreferencesObservablePropertyMap = preferencesObservablePropertyMap
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -120,36 +90,26 @@ map @prefsObservablePropertyMap {
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
+method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
-  @observablePropertyMap observablePropertyMap = {}
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList buildObservablePropertyMap
     !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
-#--- Enter in semantics context  
-  [!?ioSemanticContext.mPrefsObservablePropertyMap insertKey
-    !mPrefsName
-    !observablePropertyMap
+    !?ioSemanticContext.mPreferencesObservablePropertyMap
   ]
 }
 
 #......................................................................................................................*
 
-override method @prefDeclaration semanticAnalysis
+method @prefDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
 {
-  [inSemanticContext.mPrefsObservablePropertyMap searchKey
-    !mPrefsName
-    ?let @observablePropertyMap observablePropertyMap
-  ]
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList semanticAnalysis
-    !mPrefsName.string
+  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
+    !preferencesName ()
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
@@ -158,11 +118,11 @@ override method @prefDeclaration semanticAnalysis
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
-      !mPrefsName.string
+      !preferencesName ()
       !"" # No root entity name
       !{} # No root entity
       !inSemanticContext
-      !observablePropertyMap
+      !inSemanticContext.mPreferencesObservablePropertyMap
       !?transientDefinitionListForGeneration
       !?* # No Array controller
       !?* # No selection controller
@@ -173,7 +133,7 @@ override method @prefDeclaration semanticAnalysis
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
     ioGeneration.mActionListForGeneration +=
-      !mPrefsName.string
+      !preferencesName ()
       !lkey.string
   end
 #--- Analyze outlets and bindings
@@ -181,7 +141,7 @@ override method @prefDeclaration semanticAnalysis
     !{} # No root entity
     !inSemanticContext
     !mOutletDeclarationList
-    !observablePropertyMap
+    !inSemanticContext.mPreferencesObservablePropertyMap
     !actionMap
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
@@ -191,14 +151,12 @@ override method @prefDeclaration semanticAnalysis
     ?let @tableViewBindingGenerationList unused tableViewBindingGenerationList
   )
 #--- Code generation
-  ioGeneration.mPreferenceListForGeneration +=
-    !mPrefsName.string
-    !simpleStoredPropertyListForGeneration
-    !transientDefinitionListForGeneration
-    !regularBindingsGenerationList
-    !multipleBindingGenerationList
-    !actionBindingListForGeneration
-    !outletMap
+  ioGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
+  ioGeneration.mPreferencesForGeneration.mTransientDefinitionListForGeneration = transientDefinitionListForGeneration
+  ioGeneration.mPreferencesForGeneration.mRegularBindingsGenerationList = regularBindingsGenerationList
+  ioGeneration.mPreferencesForGeneration.mActionBindingListForGeneration = actionBindingListForGeneration
+  ioGeneration.mPreferencesForGeneration.mMultipleBindingGenerationList = multipleBindingGenerationList
+  ioGeneration.mPreferencesForGeneration.mOutletMap = outletMap
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -237,8 +195,7 @@ getter @typeKind preferencesSwiftSetter ?let @string inPropertyName -> @string o
 
 #......................................................................................................................*
 
-list @preferenceListForGeneration {
-  @string mPreferenceName
+struct @preferencesForGeneration {
   @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
   @regularBindingsGenerationList mRegularBindingsGenerationList
@@ -247,11 +204,12 @@ list @preferenceListForGeneration {
   @decoratedOutletMap mOutletMap
 }
 
+#......................................................................................................................*
+
 private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
   template preferencesInSwift "preferences.swift.galgasTemplate"
-    ?@string PREFERENCES_NAME
     ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
@@ -263,22 +221,26 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 proc generatePreferences
-  ?let @preferenceListForGeneration inPreferenceListForGeneration
+  ?let @preferencesForGeneration inPreferenceListForGeneration
   ?let @string inOutputDirectory
 {
-  for () in inPreferenceListForGeneration do
-    let s = [filewrapper prefsGenerationTemplate.preferencesInSwift
-      !mPreferenceName
-      !mSimpleStoredPropertyListForGeneration
-      !mTransientDefinitionListForGeneration
-      !mOutletMap
-      !mRegularBindingsGenerationList
-    ]
-    [@string generateFile
-      !inOutputDirectory
-      !mPreferenceName + ".swift"
-      !s
-    ]
-  end
+  let s = [filewrapper prefsGenerationTemplate.preferencesInSwift
+    !inPreferenceListForGeneration.mSimpleStoredPropertyListForGeneration
+    !inPreferenceListForGeneration.mTransientDefinitionListForGeneration
+    !inPreferenceListForGeneration.mOutletMap
+    !inPreferenceListForGeneration.mRegularBindingsGenerationList
+  ]
+  [@string generateFile
+    !inOutputDirectory
+    !preferencesName () + ".swift"
+    !s
+  ]
 }
+
+#......................................................................................................................*
+
+func %once preferencesName -> @string outResult {
+  outResult = "Preferences"
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

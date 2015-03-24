@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */; };
-		CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */; };
+		CF1D1ED01AC1DC200060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ECF1AC1DC200060431A /* Preferences.swift */; };
+		CF1D1ED41AC1DE1B0060431A /* Preferences+action+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED11AC1DE1B0060431A /* Preferences+action+autreAction.swift */; };
+		CF1D1ED51AC1DE1B0060431A /* Preferences+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED21AC1DE1B0060431A /* Preferences+action+monAction.swift */; };
+		CF1D1ED61AC1DE1B0060431A /* Preferences+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1ED31AC1DE1B0060431A /* Preferences+validation+mIntegerValue.swift */; };
 		CF71E6571940938500021EDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71E6561940938500021EDF /* main.swift */; };
 		CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */; };
-		CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA38987194094CF00F20FFB /* PMPrefs.swift */; };
 		CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA389891940981D00F20FFB /* PMAllocationDebug.swift */; };
 		CFA3898C1940981D00F20FFB /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */; };
-		CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */; };
 		CFA946591AACA979001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA946581AACA979001C5C57 /* application.swift */; };
 		CFABCF631AB0CB790024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF621AB0CB790024372A /* generic-bindings.swift */; };
 		CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBA1AAC533D00958004 /* standard-properties.swift */; };
@@ -28,16 +28,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+autreAction.swift"; sourceTree = "<group>"; };
-		CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+action+monAction.swift"; sourceTree = "<group>"; };
+		CF1D1ECF1AC1DC200060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CF1D1ED11AC1DE1B0060431A /* Preferences+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+action+autreAction.swift"; sourceTree = "<group>"; };
+		CF1D1ED21AC1DE1B0060431A /* Preferences+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+action+monAction.swift"; sourceTree = "<group>"; };
+		CF1D1ED31AC1DE1B0060431A /* Preferences+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
 		CF71E6511940938500021EDF /* 01-simple-preferences-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-simple-preferences-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF71E6551940938500021EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF71E6561940938500021EDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFA38983194094BA00F20FFB /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
-		CFA38987194094CF00F20FFB /* PMPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMPrefs.swift; sourceTree = "<group>"; };
 		CFA389891940981D00F20FFB /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
 		CFA3898A1940981D00F20FFB /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMPrefs+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
 		CFA946581AACA979001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFABCF621AB0CB790024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFAD6CBA1AAC533D00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
@@ -89,13 +89,13 @@
 				CFFBB838199E87B10044D8B0 /* PMColorWell.swift */,
 				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
 				CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */,
-				CFA38987194094CF00F20FFB /* PMPrefs.swift */,
-				CF713F6C1944CDC1000826E7 /* PMPrefs+action+autreAction.swift */,
-				CF713F6D1944CDC1000826E7 /* PMPrefs+action+monAction.swift */,
-				CFA645F919C7570200606210 /* PMPrefs+validation+mIntegerValue.swift */,
 				CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */,
 				CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
+				CF1D1ECF1AC1DC200060431A /* Preferences.swift */,
+				CF1D1ED11AC1DE1B0060431A /* Preferences+action+autreAction.swift */,
+				CF1D1ED21AC1DE1B0060431A /* Preferences+action+monAction.swift */,
+				CF1D1ED31AC1DE1B0060431A /* Preferences+validation+mIntegerValue.swift */,
 				CFAD6CBA1AAC533D00958004 /* standard-properties.swift */,
 				CF71E6541940938500021EDF /* Supporting Files */,
 			);
@@ -179,12 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFA38988194094CF00F20FFB /* PMPrefs.swift in Sources */,
 				CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */,
+				CF1D1ED51AC1DE1B0060431A /* Preferences+action+monAction.swift in Sources */,
 				CFEA713F1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
 				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
-				CF713F6E1944CDC1000826E7 /* PMPrefs+action+autreAction.swift in Sources */,
 				CFBE8C0719C47F91001F0735 /* PMReadOnlyNumberField.swift in Sources */,
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
 				CFEA713E1AAAFF4B00302BC0 /* PMIntField.swift in Sources */,
@@ -192,8 +191,9 @@
 				CFFBB83B199E87B10044D8B0 /* PMColorWell.swift in Sources */,
 				CFA946591AACA979001C5C57 /* application.swift in Sources */,
 				CFFBB83C199E87B10044D8B0 /* PMDatePicker.swift in Sources */,
-				CF713F6F1944CDC1000826E7 /* PMPrefs+action+monAction.swift in Sources */,
-				CFA645FA19C7570200606210 /* PMPrefs+validation+mIntegerValue.swift in Sources */,
+				CF1D1ED61AC1DE1B0060431A /* Preferences+validation+mIntegerValue.swift in Sources */,
+				CF1D1ED41AC1DE1B0060431A /* Preferences+action+autreAction.swift in Sources */,
+				CF1D1ED01AC1DC200060431A /* Preferences.swift in Sources */,
 				CFA3898B1940981D00F20FFB /* PMAllocationDebug.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@
 		CF0086B719B89089000573AC /* PMMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0086B419B89089000573AC /* PMMatrix.swift */; };
 		CF0086B819B89089000573AC /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0086B519B89089000573AC /* PMTextField.swift */; };
 		CF0E5D38194F22AB003BF146 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9492551945BCC90068A86C /* MainMenu.xib */; };
+		CF1D1EE01AC1DFC50060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EDF1AC1DFC50060431A /* Preferences.swift */; };
 		CF41C18219B9BF0400CBFDB3 /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41C18119B9BF0400CBFDB3 /* PMManagedDocument.swift */; };
 		CF4DDA4F1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */; };
 		CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */; };
@@ -39,6 +40,7 @@
 		CF0086B319B89089000573AC /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
 		CF0086B419B89089000573AC /* PMMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMMatrix.swift; sourceTree = "<group>"; };
 		CF0086B519B89089000573AC /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
+		CF1D1EDF1AC1DFC50060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CF41C18119B9BF0400CBFDB3 /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMManagedDocument.swift; sourceTree = "<group>"; };
 		CF4DDA4E1955EC8200B610C0 /* MyRootEntity+transient+myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMaj.swift"; sourceTree = "<group>"; };
 		CF4DDA501955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMin.swift"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				CFCB249D1AAB189F000466B8 /* PMReadOnlyTextField.swift */,
 				CF0086B519B89089000573AC /* PMTextField.swift */,
 				CFD714291955DC7C00BC89A7 /* PMUndoManager.swift */,
+				CF1D1EDF1AC1DFC50060431A /* Preferences.swift */,
 				CF88DE961AAC325F005466BF /* standard-properties.swift */,
 				CF94924A1945BCC90068A86C /* Supporting Files */,
 			);
@@ -219,6 +222,7 @@
 				CF88DE971AAC325F005466BF /* standard-properties.swift in Sources */,
 				CFA9465B1AACAB09001C5C57 /* application.swift in Sources */,
 				CF9492721945C81F0068A86C /* easy-bindings-utilities.swift in Sources */,
+				CF1D1EE01AC1DFC50060431A /* Preferences.swift in Sources */,
 				CF4DDA511955ED7E00B610C0 /* MyRootEntity+transient+myStringMin.swift in Sources */,
 				CFD713F81955D96700BC89A7 /* PMDocument.swift in Sources */,
 				CF57B22D199531D000FE0724 /* PMDocument+action+monAction.swift in Sources */,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1D1EE21AC1DFF90060431A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D1EE11AC1DFF90060431A /* Preferences.swift */; };
 		CF2AAF661AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2AAF651AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift */; };
 		CF2D9F971AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D9F961AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift */; };
 		CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1D1EE11AC1DFF90060431A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CF2AAF651AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-selController.swift"; sourceTree = "<group>"; };
 		CF2D9F961AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-otherController.swift"; sourceTree = "<group>"; };
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				CF793CB019BA3AB4005DBEAF /* PMTableView.swift */,
 				CF793CB119BA3AB4005DBEAF /* PMTextField.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
+				CF1D1EE11AC1DFF90060431A /* Preferences.swift */,
 				CF9F911B1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift */,
 				CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */,
 				CF7C6400196060D800BE14DF /* Supporting Files */,
@@ -269,6 +272,7 @@
 				CF7C6403196060D800BE14DF /* main.swift in Sources */,
 				CF7C64381960619500BE14DF /* PMManagedObject.swift in Sources */,
 				CF7C64371960619500BE14DF /* PMManagedDocument.swift in Sources */,
+				CF1D1EE21AC1DFF90060431A /* Preferences.swift in Sources */,
 				CF7C64331960619500BE14DF /* PMDataScanner.swift in Sources */,
 				CF7C64341960619500BE14DF /* PMDocument.swift in Sources */,
 				CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */,

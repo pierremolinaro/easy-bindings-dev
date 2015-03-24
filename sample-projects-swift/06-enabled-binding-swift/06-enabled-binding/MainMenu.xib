@@ -1316,7 +1316,7 @@
 				<string key="NSClassName">NSFontManager</string>
 			</object>
 			<object class="NSCustomObject" id="772815057">
-				<string key="NSClassName">MyPrefs</string>
+				<string key="NSClassName">Preferences</string>
 			</object>
 			<object class="NSWindowTemplate" id="414635329">
 				<int key="NSWindowStyleMask">15</int>

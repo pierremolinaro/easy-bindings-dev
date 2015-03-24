@@ -123,26 +123,26 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
     transientConcatString.computeFunction = {
-      let selectionKind = self.docString.prop.1 & g_MyPrefs!.myPrefString.prop.1 & g_MyPrefs!.prefTransientString.prop.1
+      let selectionKind = self.docString.prop.1 & g_Preferences!.myPrefString.prop.1 & g_Preferences!.prefTransientString.prop.1
       if selectionKind == .singleSelection {
-        return (compute_MyRootEntity_transientConcatString (self.docString.prop.0, g_MyPrefs!.myPrefString.prop.0, g_MyPrefs!.prefTransientString.prop.0), .singleSelection)
+        return (compute_MyRootEntity_transientConcatString (self.docString.prop.0, g_Preferences!.myPrefString.prop.0, g_Preferences!.prefTransientString.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
     }
     otherTransientConcatString.computeFunction = {
-      let selectionKind = g_MyPrefs!.myPrefString.prop.1
+      let selectionKind = g_Preferences!.myPrefString.prop.1
       if selectionKind == .singleSelection {
-        return (compute_MyRootEntity_otherTransientConcatString (g_MyPrefs!.myPrefString.prop.0), .singleSelection)
+        return (compute_MyRootEntity_otherTransientConcatString (g_Preferences!.myPrefString.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
     }
   //--- Install property observers for transients
     docString.addObserver (transientConcatString, postEvent:true)
-    g_MyPrefs?.myPrefString.addObserver (transientConcatString, postEvent:true)
-    g_MyPrefs?.prefTransientString.addObserver (transientConcatString, postEvent:true)
-    g_MyPrefs?.myPrefString.addObserver (otherTransientConcatString, postEvent:true)
+    g_Preferences?.myPrefString.addObserver (transientConcatString, postEvent:true)
+    g_Preferences?.prefTransientString.addObserver (transientConcatString, postEvent:true)
+    g_Preferences?.myPrefString.addObserver (otherTransientConcatString, postEvent:true)
   //--- Install undoers for properties
     docString.undoManager = undoManager
   //--- Install owner for relationships

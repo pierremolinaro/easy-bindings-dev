@@ -2,48 +2,34 @@ import Cocoa
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-var g_%!preferencesName ()% : %!preferencesName ()%? = nil
+var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!preferencesName ()%) class %!preferencesName ()% : PMObject {
+@objc(Preferences) class Preferences : PMObject {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
-for () in OUTLET_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
-end
-% 
+  @IBOutlet var myPrefStringTextField : PMTextField? = nil
+ 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-end
-%
+  var myPrefString = PMStoredProperty_String ("pref string")
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-%
+  var prefTransientString = PMTransientProperty_String ()
 
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
-end
-
-%
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Arraies                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-%
 
-
-%
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Init                                                                                                           *
@@ -51,29 +37,16 @@ end
 
   override init () {
     super.init ()
-    g_%!preferencesName ()% = self ;
-%
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length] ) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-  %  //---\n%
-end
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
-  before
-    %    var value : AnyObject?\n%
-  do
-    %    value = ud.objectForKey ("%!preferencesName ()%:%!mStoredPropertyName%")\n%
-    %    if value != nil {\n%
-    %      %!mStoredPropertyName%.setProp (%![mType preferencesSwiftGetter]%)\n%
-    %    }\n%
-end
-%  //--- Property validation function
-%
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  if mNeedsValidation then
-%    %!mStoredPropertyName%.validationFunction = self.validate_%!mStoredPropertyName%\n%
-  end
-end
-%  //---
+    g_Preferences = self ;
+    var ud = NSUserDefaults.standardUserDefaults ()
+  //---
+    var value : AnyObject?
+    value = ud.objectForKey ("Preferences:myPrefString")
+    if value != nil {
+      myPrefString.setProp (value as! String)
+    }
+  //--- Property validation function
+  //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
      selector:"applicationWillTerminateAction:",
      name:NSApplicationWillTerminateNotification,
@@ -86,66 +59,33 @@ end
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func awakeFromNib () {
-%
-for () in OUTLET_MAP do
-   %  //--- Check %!lkey.string%' outlet not nil\n%
-   %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
-   %    }\n%
-end
-%  //--- Install compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = {\n%
-  %      let selectionKind = %
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.1%
-    between % & %
-  end
-  %\n%
-  %      if selectionKind == .singleSelection {\n%
-  %        return (compute_%!preferencesName ()%_%!mTransientName% (%
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.0%
-    between %, %
-  end
-  %), .singleSelection)\n%
-  %      }else{\n%
-  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
-  %      }\n%
-  %    }\n%
-end
-%  //--- Install property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency modelString]%.addObserver (%!mTransientName%, postEvent:true)\n%
-  end
-end
-%  //--- Install bindings
-%
-for () in REGULAR_BINDINGS_GENERATION_LIST do
-  %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectStringList do
-    !mValue%, %
-  end
-  %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
-end
-%  }
+  //--- Check myPrefStringTextField' outlet not nil
+    if nil == myPrefStringTextField {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
+    }
+  //--- Install compute functions for transients
+    prefTransientString.computeFunction = {
+      let selectionKind = self.myPrefString.prop.1
+      if selectionKind == .singleSelection {
+        return (compute_Preferences_prefTransientString (self.myPrefString.prop.0), .singleSelection)
+      }else{
+        return ("", selectionKind)
+      }
+    }
+  //--- Install property observers for transients
+    self.myPrefString.addObserver (prefTransientString, postEvent:true)
+  //--- Install bindings
+    myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
+  }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-%
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length]) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-end
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    ud.setObject (%![mType preferencesSwiftSetter !mStoredPropertyName]%, forKey:"%!preferencesName ()%:%!mStoredPropertyName%")\n%
-end
-%  }
+    var ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (myPrefString.prop.0, forKey:"Preferences:myPrefString")
+  }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
