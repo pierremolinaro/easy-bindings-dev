@@ -176,8 +176,8 @@ proc analyzeOutlets
           ?let multiplicity
           ?2*
         ]
-        if kind != .controller then
-          error controllerName : "the bound model should be a controller"
+        if kind != .arrayController then
+          error controllerName : "the bound model should be an array controller"
         end
         if multiplicity != .collection then
           error controllerName : "the controller is not bound to a collection"

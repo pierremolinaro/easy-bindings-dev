@@ -110,5 +110,6 @@ abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysis
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
+  ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

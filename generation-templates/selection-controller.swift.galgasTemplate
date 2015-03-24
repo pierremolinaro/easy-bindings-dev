@@ -1,0 +1,93 @@
+import Cocoa
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["SelectionController_" + OWNER_NAME + "_" + SELECTION_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : PMObject {
+  private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //   SELECTION OBSERVABLE PROPERTIES                                                                                 *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+if not [mType isEntityType] then
+%  var %!lkey.string% = PMPropertyProxy_%![mType swiftTypeName]% () \n%
+end
+end%
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //   BIND SELECTION                                                                                                  *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
+    mModel = model
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+if not [mType isEntityType] then
+%    %!lkey.string%.readModelFunction = {\n%
+%      if let model = self.mModel where model.prop.1 == .singleSelection {\n%
+%        var s = Set<%![mType swiftTypeName]%> ()\n%
+%        var selection = PMSelectionKind.singleSelection\n%
+%        for object in model.prop.0 {\n%
+%          selection &= object.%!lkey.string%.prop.1\n%
+%          s.insert (object.%!lkey.string%.prop.0)\n%
+%        }\n%
+%        if selection == .singleSelection {\n%
+%          if s.count == 0 {\n%
+%            return (%![mType defaultSwiftTypeValueAsString]%, .noSelection)\n%
+%          }else if s.count == 1 {\n%
+%            return (s.first!, .singleSelection)\n%
+%          }else{\n%
+%            return (%![mType defaultSwiftTypeValueAsString]%, .multipleSelection)\n%
+%          }\n%
+%        }else{\n%
+%          return (%![mType defaultSwiftTypeValueAsString]%, selection)\n%
+%        }\n%
+%      }else{\n%
+%        return (%![mType defaultSwiftTypeValueAsString]%, .noSelection)\n%
+%      }\n%
+%    }\n%
+%    %!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
+%      if let model = self.mModel {\n%
+%        for object in model.prop.0 {\n%
+%          object.%!lkey.string%.setProp (inValue)\n%
+%        }\n%
+%      }\n%
+%    }\n%
+%    %!lkey.string%.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+%      if let model = self.mModel {\n%
+%        for object in model.prop.0 {\n%
+%          let result = object.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
+%          if !result {\n%
+%            return false\n%
+%          }\n%
+%        }\n%
+%        return true\n%
+%      }else{\n%
+%        return false\n%
+%      }\n%
+%    }\n%
+%    model.addObserver (%!lkey.string%, postEvent:true)\n%
+end
+end%  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //   UNBIND SELECTION                                                                                                *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func unbind_selection () {
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+if not [mType isEntityType] then
+%    %!lkey.string%.readModelFunction = nil \n%
+%    %!lkey.string%.writeModelFunction = nil \n%
+%    mModel?.removeObserver (%!lkey.string%, postEvent:false)\n%
+end
+end%    mModel = nil    
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

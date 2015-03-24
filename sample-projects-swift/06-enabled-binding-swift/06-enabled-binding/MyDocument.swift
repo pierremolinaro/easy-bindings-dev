@@ -28,6 +28,11 @@ import Cocoa
 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //    Selection Controllers                                                                                          *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    windowNibName                                                                                                  *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -66,6 +71,7 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is not an instance of 'PMButton'") ;
     }
   //--------------------------- Array controller
+  //--------------------------- Selection controller
   //--- Install property observers for transients
   //--- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool, file:__FILE__, line:__LINE__)
@@ -101,6 +107,7 @@ import Cocoa
     myButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
+  //--------------------------- Unbind selection controllers
   //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   }

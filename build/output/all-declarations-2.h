@@ -245,6 +245,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : GALGAS_stringset mAttribute_mNeededOutletClasses ;
   public : GALGAS_arrayControllerForGeneration mAttribute_mAllArrayControllerForGeneration ;
   public : GALGAS_validationStubRoutineListForGeneration mAttribute_mValidationStubRoutineListForGeneration ;
+  public : GALGAS_selectionControllerForGeneration mAttribute_mSelectionControllerListForGeneration ;
 
 
 //--------------------------------- Accessors
@@ -269,7 +270,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_enumListForGeneration & in_mEnumListForGeneration,
                                        const GALGAS_stringset & in_mNeededOutletClasses,
                                        const GALGAS_arrayControllerForGeneration & in_mAllArrayControllerForGeneration,
-                                       const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration) ;
+                                       const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
+                                       const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration) ;
 
 //-- Start of generic part --*
 
@@ -290,7 +292,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                               const class GALGAS_enumListForGeneration & inOperand5,
                                                               const class GALGAS_stringset & inOperand6,
                                                               const class GALGAS_arrayControllerForGeneration & inOperand7,
-                                                              const class GALGAS_validationStubRoutineListForGeneration & inOperand8
+                                                              const class GALGAS_validationStubRoutineListForGeneration & inOperand8,
+                                                              const class GALGAS_selectionControllerForGeneration & inOperand9
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -318,6 +321,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mNeededOutletClasses (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_preferenceListForGeneration reader_mPreferenceListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration reader_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mTransientListForGeneration (LOCATION_ARGS) const ;
 
@@ -457,80 +462,6 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const char * gWrapperFileContent_0_collectionControllerGenerationTemplate ;
-extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate ;
-extern const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                               const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                               const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                               const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_STRING,
-                                                                                                               const class GALGAS_bool & in_MODEL_5F_IS_5F_TRANSIENT,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
-                                                                                                               const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_filewrapper & in_FILE_5F_WRAPPER
-                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
-                                                                                         const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                         const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                         const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category Reader '@typeKind transformerForTableViewAction'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_transformerForTableViewAction (const class GALGAS_typeKind & inObject,
-                                                                  const class GALGAS_string & constinArgument0,
-                                                                  class C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         Routine 'generateArrayControllers'                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateArrayControllers (const class GALGAS_arrayControllerForGeneration constinArgument0,
-                                       const class GALGAS_string constinArgument1,
-                                       class C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -710,6 +641,28 @@ void routine_generateCode (const class GALGAS_structForGeneration constinArgumen
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                         Routine 'generateArrayControllers'                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateArrayControllers (const class GALGAS_arrayControllerForGeneration constinArgument0,
+                                       const class GALGAS_string constinArgument1,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'generateSelectionControllers'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
+                                           const class GALGAS_string constinArgument1,
+                                           class C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                       Routine 'generateSwiftApplicationFiles'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -802,6 +755,106 @@ GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (clas
                                                                             const class GALGAS_string & in_MODEL_5F_NAME,
                                                                             const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
                                                                             COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * gWrapperFileContent_0_collectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                                               const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                               const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                                               const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_STRING,
+                                                                                                               const class GALGAS_bool & in_MODEL_5F_IS_5F_TRANSIENT,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
+                                                                                                               const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
+                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_filewrapper & in_FILE_5F_WRAPPER
+                                                                                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
+                                                                                         const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                         const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                         const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Category Reader '@typeKind transformerForTableViewAction'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForTableViewAction (const class GALGAS_typeKind & inObject,
+                                                                  const class GALGAS_string & constinArgument0,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * gWrapperFileContent_0_selectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_1_selectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_selectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (class C_Compiler * inCompiler,
+                                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                           const class GALGAS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
+                                                                                                           const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                           const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
+                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1360,6 +1413,7 @@ typedef void (*categoryMethodSignature_abstractSecondaryProperty_secondaryProper
                                                                                                      const class GALGAS_observablePropertyMap constinArgument4,
                                                                                                      class GALGAS_transientDefinitionListForGeneration & ioArgument5,
                                                                                                      class GALGAS_arrayControllerForGeneration & ioArgument6,
+                                                                                                     class GALGAS_selectionControllerForGeneration & ioArgument7,
                                                                                                      class C_Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
 
@@ -1378,153 +1432,8 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
                                                            const GALGAS_observablePropertyMap constin_inObservableProperties,
                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
                                                            GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
+                                                           GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@simpleStoredPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category method '@simpleStoredPropertyList semanticAnalysis'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
-                                      const class GALGAS_string constin_inSwiftClassName,
-                                      const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                      class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
-                                      class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category Reader '@typeKind formatterStringForFormatPrinting'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_formatterStringForFormatPrinting (const class GALGAS_typeKind & inObject,
-                                                                     class C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@toOneRelationshipList typeInventory'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const class GALGAS_toOneRelationshipList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@toManyRelationshipList typeInventory'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const class GALGAS_toManyRelationshipList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Category method '@toOneRelationshipList buildObservablePropertyMap'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_toOneRelationshipList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Category method '@toManyRelationshipList buildObservablePropertyMap'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_toManyRelationshipList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toOneEntityRelationshipListForGeneration & out_outToOneEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toManyEntityRelationshipListForGeneration & out_outToManyEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                               class GALGAS_semanticContext & ioArgument0,
-                                                                                               const class GALGAS_observablePropertyMap constinArgument1,
-                                                                                               class GALGAS_observablePropertyMap & ioArgument2,
-                                                                                               class GALGAS_secondaryPropertyList & ioArgument3,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
-                                                      categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
-                                                     GALGAS_semanticContext & io_ioSemanticContext,
-                                                     const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                     GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                     GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
 
 #endif

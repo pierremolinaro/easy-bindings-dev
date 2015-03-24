@@ -25,13 +25,13 @@ document PMDocument root MyRootEntity {
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
-  outlet PMTableView mSelectionTableView $tableValue selectionController ;
-  arrayController selectionController : nameController.selectedArray
+  outlet PMTableView mSelectionTableView $tableValue selController ;
+  arrayController selController : nameController.selectedArray
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
-  transient String selectionCountString dependsFrom selectionController.sortedArray.count ;
+  transient String selectionCountString dependsFrom selController.sortedArray.count ;
   outlet PMReadOnlyTextField mSelectionCountTextField $readOnlyValue self.selectionCountString ;
 
   transient String evenValueString dependsFrom otherController.sortedArray.count ;
@@ -59,7 +59,8 @@ document PMDocument root MyRootEntity {
   action decrement ;
   outlet PMButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
   
-  outlet PMTextField nameDetailTextField ;
+  selectionController detailController : nameController.selectedArray ;
+  outlet PMTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
 }
 
 #--------------------------------------------------------------*

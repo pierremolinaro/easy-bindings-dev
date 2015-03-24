@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF2AAF661AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2AAF651AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift */; };
 		CF2D9F971AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D9F961AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift */; };
 		CF31B7851960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */; };
 		CF31B7861960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */; };
-		CF3629721ABAFE6600FD1359 /* arrayController-PMDocument-selectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3629711ABAFE6600FD1359 /* arrayController-PMDocument-selectionController.swift */; };
 		CF3629741ABAFEB100FD1359 /* PMDocument+transient+selectionCountString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3629731ABAFEB100FD1359 /* PMDocument+transient+selectionCountString.swift */; };
 		CF53E7C71AB0E14100CBA079 /* PMDocument+action+decrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53E7C51AB0E14100CBA079 /* PMDocument+action+decrement.swift */; };
 		CF53E7C81AB0E14100CBA079 /* PMDocument+action+increment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53E7C61AB0E14100CBA079 /* PMDocument+action+increment.swift */; };
@@ -33,6 +33,7 @@
 		CF7C643E196061A300BE14DF /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643A196061A300BE14DF /* PMAllocationDebug.xib */; };
 		CF7C643F196061A300BE14DF /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7C643C196061A300BE14DF /* PMDocument.xib */; };
 		CF8BC2291AB9D1560079BA2E /* PMDocument+transient+evenValueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8BC2281AB9D1560079BA2E /* PMDocument+transient+evenValueString.swift */; };
+		CF9F911C1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9F911B1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift */; };
 		CFABCF691AB0CC070024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF681AB0CC070024372A /* generic-bindings.swift */; };
 		CFB43C3E1AAC5B1F003FF870 /* PMReadOnlyIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */; };
 		CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */; };
@@ -46,10 +47,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF2AAF651AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-selController.swift"; sourceTree = "<group>"; };
 		CF2D9F961AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-otherController.swift"; sourceTree = "<group>"; };
 		CF31B7831960B1CE0050CD95 /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
 		CF31B7841960B1CE0050CD95 /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
-		CF3629711ABAFE6600FD1359 /* arrayController-PMDocument-selectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayController-PMDocument-selectionController.swift"; sourceTree = "<group>"; };
 		CF3629731ABAFEB100FD1359 /* PMDocument+transient+selectionCountString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+selectionCountString.swift"; sourceTree = "<group>"; };
 		CF53E7C51AB0E14100CBA079 /* PMDocument+action+decrement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+decrement.swift"; sourceTree = "<group>"; };
 		CF53E7C61AB0E14100CBA079 /* PMDocument+action+increment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+increment.swift"; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		CF7C643B196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMAllocationDebug.xib; sourceTree = "<group>"; };
 		CF7C643D196061A300BE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PMDocument.xib; sourceTree = "<group>"; };
 		CF8BC2281AB9D1560079BA2E /* PMDocument+transient+evenValueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+evenValueString.swift"; sourceTree = "<group>"; };
+		CF9F911B1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "selectionController-PMDocument-detailController.swift"; sourceTree = "<group>"; };
 		CFABCF681AB0CC070024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFB43C3B1AAC5B1F003FF870 /* PMReadOnlyIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyIntField.swift; sourceTree = "<group>"; };
 		CFB43C3C1AAC5B1F003FF870 /* PMReadOnlyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyTextField.swift; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 				CF5999B21AACB165008E1909 /* application.swift */,
 				CFF952F21AB4D75A00278CD7 /* arrayController-PMDocument-nameController.swift */,
 				CF2D9F961AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift */,
-				CF3629711ABAFE6600FD1359 /* arrayController-PMDocument-selectionController.swift */,
+				CF2AAF651AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift */,
 				CF5D61FF1AB5C7FB00774124 /* arrayControllerFilter-PMDocument-otherController.swift */,
 				CF7C64221960618800BE14DF /* easy-bindings-utilities.swift */,
 				CFABCF681AB0CC070024372A /* generic-bindings.swift */,
@@ -152,6 +154,7 @@
 				CF793CB019BA3AB4005DBEAF /* PMTableView.swift */,
 				CF793CB119BA3AB4005DBEAF /* PMTextField.swift */,
 				CF7C642F1960619500BE14DF /* PMUndoManager.swift */,
+				CF9F911B1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift */,
 				CFB43C3D1AAC5B1F003FF870 /* standard-properties.swift */,
 				CF7C6400196060D800BE14DF /* Supporting Files */,
 			);
@@ -244,9 +247,10 @@
 				CFB43C3F1AAC5B1F003FF870 /* PMReadOnlyTextField.swift in Sources */,
 				CF7C64301960619500BE14DF /* NameEntity.swift in Sources */,
 				CFD650C51991761A000E3E05 /* MyRootEntity.swift in Sources */,
+				CF9F911C1AC1BA6A00DCCC86 /* selectionController-PMDocument-detailController.swift in Sources */,
 				CF793CAA19BA2040005DBEAF /* PMManagedDocument+extension+factory.swift in Sources */,
-				CF3629721ABAFE6600FD1359 /* arrayController-PMDocument-selectionController.swift in Sources */,
 				CFBE8C0919C484CF001F0735 /* PMNumberField.swift in Sources */,
+				CF2AAF661AC1A50D0046AAB3 /* arrayController-PMDocument-selController.swift in Sources */,
 				CF7C64241960618800BE14DF /* easy-bindings-utilities.swift in Sources */,
 				CF2D9F971AB8347A00D1DAE8 /* arrayController-PMDocument-otherController.swift in Sources */,
 				CF8BC2291AB9D1560079BA2E /* PMDocument+transient+evenValueString.swift in Sources */,

@@ -168,6 +168,7 @@ override method @prefDeclaration semanticAnalysis
       !observablePropertyMap
       !?transientDefinitionListForGeneration
       !?* # No Array controller
+      !?* # No selection controller
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration

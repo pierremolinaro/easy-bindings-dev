@@ -11,6 +11,7 @@ struct @structForGeneration {
   @stringset mNeededOutletClasses
   @arrayControllerForGeneration mAllArrayControllerForGeneration
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
+  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -52,6 +53,10 @@ proc generateCode
   )
   generateArrayControllers (
     !inGeneration.mAllArrayControllerForGeneration
+    !outputDirectory
+  )
+  generateSelectionControllers (
+    !inGeneration.mSelectionControllerListForGeneration
     !outputDirectory
   )
   generateSwiftApplicationFiles (
