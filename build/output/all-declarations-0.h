@@ -7160,7 +7160,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public : typedef enum {
     kNotBuilt,
     kEnum_stored,
-    kEnum_transient
+    kEnum_transient,
+    kEnum_controller
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -7182,6 +7183,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
+  public : static GALGAS_propertyKind constructor_controller (LOCATION_ARGS) ;
+
   public : static GALGAS_propertyKind constructor_stored (LOCATION_ARGS) ;
 
   public : static GALGAS_propertyKind constructor_transient (LOCATION_ARGS) ;
@@ -7198,6 +7201,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isController (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isStored (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isTransient (LOCATION_ARGS) const ;

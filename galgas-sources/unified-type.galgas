@@ -69,6 +69,7 @@ graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
 enum @propertyKind {
   case stored
   case transient
+  case controller
 }
 
 #......................................................................................................................*

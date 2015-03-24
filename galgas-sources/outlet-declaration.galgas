@@ -172,10 +172,13 @@ proc analyzeOutlets
         [inObservablePropertyMap searchKey
           !controllerName
           ?let unused type
-          ?let kind
+          ?let @propertyKind kind
           ?let multiplicity
           ?2*
         ]
+        if kind != .controller then
+          error controllerName : "the bound model should be a controller"
+        end
         if multiplicity != .collection then
           error controllerName : "the controller is not bound to a collection"
         end
