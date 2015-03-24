@@ -80,6 +80,7 @@ end%  }
 if not [mType isEntityType] then
 %    %!lkey.string%.readModelFunction = nil \n%
 %    %!lkey.string%.writeModelFunction = nil \n%
+%    %!lkey.string%.validateAndWriteModelFunction = nil \n%
 %    mModel?.removeObserver (%!lkey.string%, postEvent:false)\n%
 end
 end%    mModel = nil    

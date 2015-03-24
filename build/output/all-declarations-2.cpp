@@ -7508,6 +7508,9 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "    " ;
         result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = nil \n"
+          "    " ;
+        result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeObserver (" ;
         result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n" ;
