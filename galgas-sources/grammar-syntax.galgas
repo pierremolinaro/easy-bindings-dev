@@ -102,18 +102,13 @@ abstract method @abstractSecondaryProperty typeInventory
 #    SEMANTIC ANALYSIS                                                                                                 *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-abstract method @abstractSecondaryProperty buildObservablePropertyMap
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMap ioObservableProperties
-
-#......................................................................................................................*
-
 abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
+  ?let @string inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?let @arrayControllerMap inArrayControllerMap
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

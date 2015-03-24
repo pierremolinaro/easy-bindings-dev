@@ -88,6 +88,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
       !.stored
       !.single
       !""
+      !{} # No action
     ]
   end
 }

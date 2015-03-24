@@ -3158,7 +3158,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
       nt_outlet_5F_declaration_ (var_outletDeclarationList, inCompiler) ;
     } break ;
     case 6: {
-      nt_array_5F_controller_5F_declaration_ (var_arrayControllerDeclarationListAST, inCompiler) ;
+      nt_array_5F_controller_5F_declaration_ (var_secondaryPropertyList, inCompiler) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -4357,7 +4357,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i22_ (GALGAS_arrayControllerDeclarationListAST & ioArgument_ioArrayControllerDeclarationListAST,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i22_ (GALGAS_secondaryPropertyList & ioArgument_ioSecondaryPropertyList,
                                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_arrayController) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 50)) ;
   GALGAS_lstring var_controllerName = inCompiler->synthetizedAttribute_tokenString () ;
@@ -4453,7 +4453,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     }
   }
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 101)) ;
-  ioArgument_ioArrayControllerDeclarationListAST.addAssign_operation (var_controllerName, var_arrayControllerModel, var_tableViewOutletNameList, var_filterProperties, var_arrayControllerBoundColumnListAST  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 102)) ;
+  ioArgument_ioSecondaryPropertyList.addAssign_operation (GALGAS_arrayControllerDeclaration::constructor_new (var_controllerName, var_arrayControllerModel, var_tableViewOutletNameList, var_filterProperties, var_arrayControllerBoundColumnListAST  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 102))  COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 102)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8386,26 +8386,28 @@ cMapElement_observablePropertyMap::cMapElement_observablePropertyMap (const GALG
                                                                       const GALGAS_typeKind & in_mType,
                                                                       const GALGAS_propertyKind & in_mKind,
                                                                       const GALGAS_propertyMultiplicity & in_mMultiplicity,
-                                                                      const GALGAS_string & in_mInverseRelationshipName
+                                                                      const GALGAS_string & in_mInverseRelationshipName,
+                                                                      const GALGAS_actionMap & in_mActionMap
                                                                       COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
 mAttribute_mType (in_mType),
 mAttribute_mKind (in_mKind),
 mAttribute_mMultiplicity (in_mMultiplicity),
-mAttribute_mInverseRelationshipName (in_mInverseRelationshipName) {
+mAttribute_mInverseRelationshipName (in_mInverseRelationshipName),
+mAttribute_mActionMap (in_mActionMap) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool cMapElement_observablePropertyMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mType.isValid () && mAttribute_mKind.isValid () && mAttribute_mMultiplicity.isValid () && mAttribute_mInverseRelationshipName.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mType.isValid () && mAttribute_mKind.isValid () && mAttribute_mMultiplicity.isValid () && mAttribute_mInverseRelationshipName.isValid () && mAttribute_mActionMap.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement * cMapElement_observablePropertyMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_observablePropertyMap (mAttribute_lkey, mAttribute_mType, mAttribute_mKind, mAttribute_mMultiplicity, mAttribute_mInverseRelationshipName COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_observablePropertyMap (mAttribute_lkey, mAttribute_mType, mAttribute_mKind, mAttribute_mMultiplicity, mAttribute_mInverseRelationshipName, mAttribute_mActionMap COMMA_HERE)) ;
   return result ;
 }
 
@@ -8428,6 +8430,10 @@ void cMapElement_observablePropertyMap::description (C_String & ioString, const 
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mInverseRelationshipName" ":" ;
   mAttribute_mInverseRelationshipName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mActionMap" ":" ;
+  mAttribute_mActionMap.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8446,6 +8452,9 @@ typeComparisonResult cMapElement_observablePropertyMap::compare (const cCollecti
   }
   if (kOperandEqual == result) {
     result = mAttribute_mInverseRelationshipName.objectCompare (operand->mAttribute_mInverseRelationshipName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mActionMap.objectCompare (operand->mAttribute_mActionMap) ;
   }
   return result ;
 }
@@ -8502,10 +8511,11 @@ void GALGAS_observablePropertyMap::addAssign_operation (const GALGAS_lstring & i
                                                         const GALGAS_propertyKind & inArgument1,
                                                         const GALGAS_propertyMultiplicity & inArgument2,
                                                         const GALGAS_string & inArgument3,
+                                                        const GALGAS_actionMap & inArgument4,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) {
   cMapElement_observablePropertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -8521,10 +8531,11 @@ void GALGAS_observablePropertyMap::modifier_insertKey (GALGAS_lstring inKey,
                                                        GALGAS_propertyKind inArgument1,
                                                        GALGAS_propertyMultiplicity inArgument2,
                                                        GALGAS_string inArgument3,
+                                                       GALGAS_actionMap inArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) {
   cMapElement_observablePropertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -8544,6 +8555,7 @@ void GALGAS_observablePropertyMap::method_searchKey (GALGAS_lstring inKey,
                                                      GALGAS_propertyKind & outArgument1,
                                                      GALGAS_propertyMultiplicity & outArgument2,
                                                      GALGAS_string & outArgument3,
+                                                     GALGAS_actionMap & outArgument4,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) const {
   const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) performSearch (inKey,
@@ -8555,12 +8567,14 @@ void GALGAS_observablePropertyMap::method_searchKey (GALGAS_lstring inKey,
     outArgument1.drop () ;
     outArgument2.drop () ;
     outArgument3.drop () ;
+    outArgument4.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
     outArgument0 = p->mAttribute_mType ;
     outArgument1 = p->mAttribute_mKind ;
     outArgument2 = p->mAttribute_mMultiplicity ;
     outArgument3 = p->mAttribute_mInverseRelationshipName ;
+    outArgument4 = p->mAttribute_mActionMap ;
   }
 }
 
@@ -8575,6 +8589,7 @@ void GALGAS_observablePropertyMap::method_searchForInverseRelationship (GALGAS_l
                                                                         GALGAS_propertyKind & outArgument1,
                                                                         GALGAS_propertyMultiplicity & outArgument2,
                                                                         GALGAS_string & outArgument3,
+                                                                        GALGAS_actionMap & outArgument4,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const {
   const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) performSearch (inKey,
@@ -8586,12 +8601,14 @@ void GALGAS_observablePropertyMap::method_searchForInverseRelationship (GALGAS_l
     outArgument1.drop () ;
     outArgument2.drop () ;
     outArgument3.drop () ;
+    outArgument4.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
     outArgument0 = p->mAttribute_mType ;
     outArgument1 = p->mAttribute_mKind ;
     outArgument2 = p->mAttribute_mMultiplicity ;
     outArgument3 = p->mAttribute_mInverseRelationshipName ;
+    outArgument4 = p->mAttribute_mActionMap ;
   }
 }
 
@@ -8657,6 +8674,21 @@ GALGAS_string GALGAS_observablePropertyMap::reader_mInverseRelationshipNameForKe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_actionMap GALGAS_observablePropertyMap::reader_mActionMapForKey (const GALGAS_string & inKey,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) attributes ;
+  GALGAS_actionMap result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    result = p->mAttribute_mActionMap ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_observablePropertyMap::modifier_setMTypeForKey (GALGAS_typeKind inAttributeValue,
                                                             GALGAS_string inKey,
                                                             C_Compiler * inCompiler
@@ -8713,6 +8745,20 @@ void GALGAS_observablePropertyMap::modifier_setMInverseRelationshipNameForKey (G
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+void GALGAS_observablePropertyMap::modifier_setMActionMapForKey (GALGAS_actionMap inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    p->mAttribute_mActionMap = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 cMapElement_observablePropertyMap * GALGAS_observablePropertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                      const GALGAS_string & inKey
                                                                                                      COMMA_LOCATION_ARGS) {
@@ -8734,7 +8780,7 @@ cGenericAbstractEnumerator () {
 GALGAS_observablePropertyMap_2D_element cEnumerator_observablePropertyMap::current (LOCATION_ARGS) const {
   const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
-  return GALGAS_observablePropertyMap_2D_element (p->mAttribute_lkey, p->mAttribute_mType, p->mAttribute_mKind, p->mAttribute_mMultiplicity, p->mAttribute_mInverseRelationshipName) ;
+  return GALGAS_observablePropertyMap_2D_element (p->mAttribute_lkey, p->mAttribute_mType, p->mAttribute_mKind, p->mAttribute_mMultiplicity, p->mAttribute_mInverseRelationshipName, p->mAttribute_mActionMap) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8775,6 +8821,14 @@ GALGAS_string cEnumerator_observablePropertyMap::current_mInverseRelationshipNam
   const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
   return p->mAttribute_mInverseRelationshipName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_actionMap cEnumerator_observablePropertyMap::current_mActionMap (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return p->mAttribute_mActionMap ;
 }
 
 

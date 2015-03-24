@@ -133,13 +133,6 @@ override method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
     !inUnifiedTypeMap
     !?observablePropertyMap
   ]
-#--- Analyze transients
-  for (item) in mSecondaryPropertyList do
-    [item buildObservablePropertyMap
-      !inUnifiedTypeMap
-      !?observablePropertyMap
-    ]
-  end
 #--- Enter in semantics context  
   [!?ioSemanticContext.mPrefsObservablePropertyMap insertKey
     !mPrefsName
@@ -169,11 +162,12 @@ override method @prefDeclaration semanticAnalysis
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mPrefsName.string
+      !"" # No root entity name
       !{} # No root entity
       !inSemanticContext
       !observablePropertyMap
-      !{} # No Array controller
       !?transientDefinitionListForGeneration
+      !?* # No Array controller
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
@@ -191,7 +185,6 @@ override method @prefDeclaration semanticAnalysis
     !mOutletDeclarationList
     !observablePropertyMap
     !actionMap
-    !{} # Array controller map
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?let @multipleBindingGenerationList multipleBindingGenerationList

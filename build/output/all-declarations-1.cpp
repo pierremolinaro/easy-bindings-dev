@@ -5100,315 +5100,6 @@ GALGAS_arrayControllerBoundColumnListAST GALGAS_arrayControllerBoundColumnListAS
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_arrayControllerMap::cMapElement_arrayControllerMap (const GALGAS_lstring & inKey,
-                                                                const GALGAS_typeKind & in_mType,
-                                                                const GALGAS_propertyKind & in_mKind
-                                                                COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mAttribute_mType (in_mType),
-mAttribute_mKind (in_mKind) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cMapElement_arrayControllerMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mType.isValid () && mAttribute_mKind.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement * cMapElement_arrayControllerMap::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_arrayControllerMap (mAttribute_lkey, mAttribute_mType, mAttribute_mKind COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cMapElement_arrayControllerMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mType" ":" ;
-  mAttribute_mType.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mKind" ":" ;
-  mAttribute_mKind.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cMapElement_arrayControllerMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_arrayControllerMap * operand = (cMapElement_arrayControllerMap *) inOperand ;
-  typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mType.objectCompare (operand->mAttribute_mType) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mKind.objectCompare (operand->mAttribute_mKind) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap::GALGAS_arrayControllerMap (void) :
-AC_GALGAS_map () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap::GALGAS_arrayControllerMap (const GALGAS_arrayControllerMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap & GALGAS_arrayControllerMap::operator = (const GALGAS_arrayControllerMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap GALGAS_arrayControllerMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_arrayControllerMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap GALGAS_arrayControllerMap::constructor_mapWithMapToOverride (const GALGAS_arrayControllerMap & inMapToOverride
-                                                                                       COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap GALGAS_arrayControllerMap::reader_overriddenMap (C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_arrayControllerMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                     const GALGAS_typeKind & inArgument0,
-                                                     const GALGAS_propertyKind & inArgument1,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cMapElement_arrayControllerMap * p = NULL ;
-  macroMyNew (p, cMapElement_arrayControllerMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@arrayControllerMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                    GALGAS_typeKind inArgument0,
-                                                    GALGAS_propertyKind inArgument1,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  cMapElement_arrayControllerMap * p = NULL ;
-  macroMyNew (p, cMapElement_arrayControllerMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' array controller is already declared" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const char * kSearchErrorMessage_arrayControllerMap_searchKey = "the '%K' array controller is not declared" ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap::method_searchKey (GALGAS_lstring inKey,
-                                                  GALGAS_typeKind & outArgument0,
-                                                  GALGAS_propertyKind & outArgument1,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const {
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) performSearch (inKey,
-                                                                                                       inCompiler,
-                                                                                                       kSearchErrorMessage_arrayControllerMap_searchKey
-                                                                                                       COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-    outArgument0 = p->mAttribute_mType ;
-    outArgument1 = p->mAttribute_mKind ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind GALGAS_arrayControllerMap::reader_mTypeForKey (const GALGAS_string & inKey,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) attributes ;
-  GALGAS_typeKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-    result = p->mAttribute_mType ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyKind GALGAS_arrayControllerMap::reader_mKindForKey (const GALGAS_string & inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) attributes ;
-  GALGAS_propertyKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-    result = p->mAttribute_mKind ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap::modifier_setMTypeForKey (GALGAS_typeKind inAttributeValue,
-                                                         GALGAS_string inKey,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_arrayControllerMap * p = (cMapElement_arrayControllerMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-    p->mAttribute_mType = inAttributeValue ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerMap::modifier_setMKindForKey (GALGAS_propertyKind inAttributeValue,
-                                                         GALGAS_string inKey,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_arrayControllerMap * p = (cMapElement_arrayControllerMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-    p->mAttribute_mKind = inAttributeValue ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_arrayControllerMap * GALGAS_arrayControllerMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                               const GALGAS_string & inKey
-                                                                                               COMMA_LOCATION_ARGS) {
-  cMapElement_arrayControllerMap * result = (cMapElement_arrayControllerMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_arrayControllerMap) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_arrayControllerMap::cEnumerator_arrayControllerMap (const GALGAS_arrayControllerMap & inEnumeratedObject,
-                                                                const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap_2D_element cEnumerator_arrayControllerMap::current (LOCATION_ARGS) const {
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-  return GALGAS_arrayControllerMap_2D_element (p->mAttribute_lkey, p->mAttribute_mType, p->mAttribute_mKind) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cEnumerator_arrayControllerMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind cEnumerator_arrayControllerMap::current_mType (LOCATION_ARGS) const {
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-  return p->mAttribute_mType ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyKind cEnumerator_arrayControllerMap::current_mKind (LOCATION_ARGS) const {
-  const cMapElement_arrayControllerMap * p = (const cMapElement_arrayControllerMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_arrayControllerMap) ;
-  return p->mAttribute_mKind ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                              @arrayControllerMap type                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_arrayControllerMap ("arrayControllerMap",
-                                           NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_arrayControllerMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_arrayControllerMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_arrayControllerMap (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerMap GALGAS_arrayControllerMap::extractObject (const GALGAS_object & inObject,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerMap result ;
-  const GALGAS_arrayControllerMap * p = (const GALGAS_arrayControllerMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Class for element of '@arrayControllerFilterListForGeneration' list                         *
 //                                                                                                                     *
@@ -10283,7 +9974,7 @@ void cGrammar_easyBindings_5F_grammar::nt_array_5F_controller_5F_declaration_par
   rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i22_parse(inLexique) ;
 }
 
-void cGrammar_easyBindings_5F_grammar::nt_array_5F_controller_5F_declaration_ (GALGAS_arrayControllerDeclarationListAST & parameter_1,
+void cGrammar_easyBindings_5F_grammar::nt_array_5F_controller_5F_declaration_ (GALGAS_secondaryPropertyList & parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
   rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i22_(parameter_1, inLexique) ;
 }
@@ -12936,13 +12627,13 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 const GALGAS_string constinArgument_inOutputDirectory,
                                 C_Compiler * inCompiler
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_documentListForGeneration enumerator_11807 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
-  while (enumerator_11807.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_11807.current_mDocumentName (HERE), enumerator_11807.current_mRootEntityName (HERE), enumerator_11807.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11807.current_mTransientListForGeneration (HERE), enumerator_11807.current_mOutletMap (HERE), enumerator_11807.current_mDocumentArrayControllerForGeneration (HERE), enumerator_11807.current_mTargetActionList (HERE), enumerator_11807.current_mRegularBindingsGenerationList (HERE), enumerator_11807.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 293))) ;
+  cEnumerator_documentListForGeneration enumerator_11378 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
+  while (enumerator_11378.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_11378.current_mDocumentName (HERE), enumerator_11378.current_mRootEntityName (HERE), enumerator_11378.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11378.current_mTransientListForGeneration (HERE), enumerator_11378.current_mOutletMap (HERE), enumerator_11378.current_mDocumentArrayControllerForGeneration (HERE), enumerator_11378.current_mTargetActionList (HERE), enumerator_11378.current_mRegularBindingsGenerationList (HERE), enumerator_11378.current_multipleBindingGenerationList (HERE) COMMA_SOURCE_FILE ("document.galgas", 276))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11807.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 306)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 304)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11378.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 289)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 287)) ;
     }
-    enumerator_11807.gotoNextObject () ;
+    enumerator_11378.gotoNextObject () ;
   }
 }
 
@@ -14074,19 +13765,19 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
                                const GALGAS_string constinArgument_inOutputDirectory,
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_entityListForGeneration enumerator_10734 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
-  while (enumerator_10734.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_10734.current_mEntityName (HERE), enumerator_10734.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10734.current_mDecoratedTransientListForGeneration (HERE), enumerator_10734.current_mToOneEntityRelationshipList (HERE), enumerator_10734.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 265))) ;
+  cEnumerator_entityListForGeneration enumerator_10597 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
+  while (enumerator_10597.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_10597.current_mEntityName (HERE), enumerator_10597.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10597.current_mDecoratedTransientListForGeneration (HERE), enumerator_10597.current_mToOneEntityRelationshipList (HERE), enumerator_10597.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 259))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10734.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 274)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 272)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10597.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 268)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 266)) ;
     }
-    enumerator_10734.gotoNextObject () ;
+    enumerator_10597.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 279)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 273)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 280))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 274))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 283)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 277)) ;
     }
   }
 }
@@ -14522,13 +14213,13 @@ void routine_generatePreferences (const GALGAS_preferenceListForGeneration const
                                   const GALGAS_string constinArgument_inOutputDirectory,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_preferenceListForGeneration enumerator_11384 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
-  while (enumerator_11384.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_11384.current_mPreferenceName (HERE), enumerator_11384.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11384.current_mTransientDefinitionListForGeneration (HERE), enumerator_11384.current_mOutletMap (HERE), enumerator_11384.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 278))) ;
+  cEnumerator_preferenceListForGeneration enumerator_11216 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
+  while (enumerator_11216.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_11216.current_mPreferenceName (HERE), enumerator_11216.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11216.current_mTransientDefinitionListForGeneration (HERE), enumerator_11216.current_mOutletMap (HERE), enumerator_11216.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 271))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11384.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 287)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 285)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11216.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 280)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 278)) ;
     }
-    enumerator_11384.gotoNextObject () ;
+    enumerator_11216.gotoNextObject () ;
   }
 }
 

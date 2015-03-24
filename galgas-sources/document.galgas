@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <array_controller_declaration> !?arrayControllerDeclarationListAST
+      <array_controller_declaration> !?secondaryPropertyList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@documentDeclaration.new {
@@ -117,13 +117,6 @@ override method @documentDeclaration buildObservablePropertyMapsFromStoredProper
     !inUnifiedTypeMap
     !?observablePropertyMap
   ]
-#--- Analyze transients
-  for (item) in mSecondaryPropertyList do
-    [item buildObservablePropertyMap
-      !inUnifiedTypeMap
-      !?observablePropertyMap
-    ]
-  end
 #--- Enter in semantics context  
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
@@ -177,11 +170,11 @@ override method @documentDeclaration semanticAnalysis
     ?let @observablePropertyMap rootObservablePropertyMap
   ]
 #--- Build array controller map
-  [mArrayControllerDeclarationList buildArrayControllerMap
-    !rootObservablePropertyMap
-    !observablePropertyMap
-    ?let @arrayControllerMap arrayControllerMap
-  ]
+#  [mArrayControllerDeclarationList buildArrayControllerMap
+#    !rootObservablePropertyMap
+#    !observablePropertyMap
+#    ?let @arrayControllerMap arrayControllerMap
+#  ]
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList semanticAnalysis
     !mDocumentName.string
@@ -191,17 +184,20 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  @arrayControllerForGeneration documentArrayControllerForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mDocumentName.string
+      !mRootEntityName.string
       !rootObservablePropertyMap
       !inSemanticContext
       !observablePropertyMap
-      !arrayControllerMap
       !?transientDefinitionListForGeneration
+      !?documentArrayControllerForGeneration
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
@@ -216,25 +212,12 @@ override method @documentDeclaration semanticAnalysis
     !mOutletDeclarationList
     !observablePropertyMap
     !actionMap
-    !arrayControllerMap
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?let @multipleBindingGenerationList multipleBindingGenerationList
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
   )
-#--- Analyze array controllers
-  [mArrayControllerDeclarationList arrayControllerSemanticAnalysis
-    !mDocumentName.string
-    !rootObservablePropertyMap
-    !mRootEntityName.string
-    !inSemanticContext
-    !outletMap
-    !observablePropertyMap
-    !arrayControllerMap
-    ?let @arrayControllerForGeneration documentArrayControllerForGeneration
-  ]
-  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerForGeneration
 #--- Code generation
   ioGeneration.mDocumentListForGeneration +=
     !mDocumentName.string

@@ -112,13 +112,6 @@ override method @entityDeclaration buildObservablePropertyMapsFromStoredProperti
     !inUnifiedTypeMap
     !?observablePropertyMap
   ]
-#--- Analyze transients
-  for (item) in mSecondaryPropertyList do
-    [item buildObservablePropertyMap
-      !inUnifiedTypeMap
-      !?observablePropertyMap
-    ]
-  end
 #--- Analyze relationships
   [mToOneRelationshipList buildObservablePropertyMap
     !inUnifiedTypeMap
@@ -195,11 +188,12 @@ override method @entityDeclaration semanticAnalysis
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mEntityName.string
+      !"" # No root entity name
       !{} # No root entity
       !inSemanticContext
       !observablePropertyMap
-      !{} # No array controller
       !?transientDefinitionListForGeneration
+      !?* # no array controller
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration

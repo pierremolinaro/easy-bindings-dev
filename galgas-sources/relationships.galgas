@@ -127,6 +127,7 @@ method @toOneRelationshipList buildObservablePropertyMap
       !.stored
       !.single
       !mInverseRelationshipName.string
+      !{} # No action map
     ]
   end
 }
@@ -155,6 +156,7 @@ method @toManyRelationshipList buildObservablePropertyMap
       !.stored
       !.collection
       !mInverseRelationshipName.string
+      !{} # No action map
     ]
   end
 }
@@ -187,6 +189,7 @@ method @toOneRelationshipList semanticAnalysis
        ?let @propertyKind oppositeKind
        ?let @propertyMultiplicity oppositeMultiplicity
        ?let @string oppositeOfOpposite
+       ?*
      ]
    #--- Check opposite type
      switch oppositeType
@@ -234,6 +237,7 @@ method @toManyRelationshipList semanticAnalysis
        ?let @propertyKind oppositeKind
        ?let @propertyMultiplicity oppositeMultiplicity
        ?let @string oppositeOfOpposite
+       ?*
      ]
      switch oppositeType
      case boolType, integerType, stringType, colorType, dateType, doubleType :

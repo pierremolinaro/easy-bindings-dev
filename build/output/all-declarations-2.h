@@ -43,12 +43,11 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
                              const class GALGAS_outletDeclarationList constinArgument2,
                              const class GALGAS_observablePropertyMap constinArgument3,
                              const class GALGAS_actionMap constinArgument4,
-                             const class GALGAS_arrayControllerMap constinArgument5,
-                             class GALGAS_structForGeneration & ioArgument6,
-                             class GALGAS_regularBindingsGenerationList & outArgument7,
-                             class GALGAS_multipleBindingGenerationList & outArgument8,
-                             class GALGAS_actionBindingListForGeneration & outArgument9,
-                             class GALGAS_decoratedOutletMap & outArgument10,
+                             class GALGAS_structForGeneration & ioArgument5,
+                             class GALGAS_regularBindingsGenerationList & outArgument6,
+                             class GALGAS_multipleBindingGenerationList & outArgument7,
+                             class GALGAS_actionBindingListForGeneration & outArgument8,
+                             class GALGAS_decoratedOutletMap & outArgument9,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 
@@ -72,10 +71,9 @@ typedef void (*categoryMethodSignature_abstractBooleanMultipleBindingExpressionA
                                                                                                                          const class GALGAS_observablePropertyMap constinArgument0,
                                                                                                                          const class GALGAS_semanticContext constinArgument1,
                                                                                                                          const class GALGAS_observablePropertyMap constinArgument2,
-                                                                                                                         const class GALGAS_arrayControllerMap constinArgument3,
-                                                                                                                         class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument4,
-                                                                                                                         class GALGAS_typeKind & outArgument5,
-                                                                                                                         class GALGAS_location & outArgument6,
+                                                                                                                         class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
+                                                                                                                         class GALGAS_typeKind & outArgument4,
+                                                                                                                         class GALGAS_location & outArgument5,
                                                                                                                          class C_Compiler * inCompiler
                                                                                                                          COMMA_LOCATION_ARGS) ;
 
@@ -90,7 +88,6 @@ void callCategoryMethod_analyzeExpressionForMultipleBinding (const class cPtr_ab
                                                              const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
                                                              const GALGAS_semanticContext constin_inSemanticContext,
                                                              const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
-                                                             const GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
                                                              GALGAS_typeKind & out_outType,
                                                              GALGAS_location & out_outErrorLocation,
@@ -132,7 +129,6 @@ void categoryMethod_analyzeObservableProperty (const class GALGAS_observableProp
                                                const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
                                                const class GALGAS_semanticContext constin_inSemanticContext,
                                                const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
-                                               const class GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                class GALGAS_typeKind & out_outType,
                                                class GALGAS_propertyKind & out_outKind,
                                                class GALGAS_propertyMultiplicity & out_outMultiplicity,
@@ -1324,111 +1320,6 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                          @arrayControllerDeclaration class                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_arrayControllerDeclaration : public GALGAS_abstractSecondaryProperty {
-//--- Constructor
-  public : GALGAS_arrayControllerDeclaration (void) ;
-
-//---
-  public : inline const class cPtr_arrayControllerDeclaration * ptr (void) const { return (const cPtr_arrayControllerDeclaration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_arrayControllerDeclaration (const cPtr_arrayControllerDeclaration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerDeclaration extractObject (const GALGAS_object & inObject,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static GALGAS_arrayControllerDeclaration constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                     const class GALGAS_arrayControllerModel & inOperand1,
-                                                                     const class GALGAS_lstringlist & inOperand2,
-                                                                     const class GALGAS_lstringlist & inOperand3,
-                                                                     const class GALGAS_arrayControllerBoundColumnListAST & inOperand4
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerDeclaration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModel reader_mArrayControllerModel (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mControllerName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mFilterProperties (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mTableViewOutletNameList (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_arrayControllerDeclaration class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDeclaration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Pointer class for @arrayControllerDeclaration class                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cPtr_arrayControllerDeclaration : public cPtr_abstractSecondaryProperty {
-//--- Attributes
-  public : GALGAS_lstring mAttribute_mControllerName ;
-  public : GALGAS_arrayControllerModel mAttribute_mArrayControllerModel ;
-  public : GALGAS_lstringlist mAttribute_mTableViewOutletNameList ;
-  public : GALGAS_lstringlist mAttribute_mFilterProperties ;
-  public : GALGAS_arrayControllerBoundColumnListAST mAttribute_mArrayControllerBoundColumnListAST ;
-
-//--- Constructor
-  public : cPtr_arrayControllerDeclaration (const GALGAS_lstring & in_mControllerName,
-                                            const GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                            const GALGAS_lstringlist & in_mTableViewOutletNameList,
-                                            const GALGAS_lstringlist & in_mFilterProperties,
-                                            const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
-                                            COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mControllerName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerModel reader_mArrayControllerModel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_mTableViewOutletNameList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_mFilterProperties (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                         Abstract category method '@abstractSecondaryProperty typeInventory'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1456,42 +1347,18 @@ void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryPropert
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Abstract category method '@abstractSecondaryProperty buildObservablePropertyMap'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_buildObservablePropertyMap) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                              const class GALGAS_unifiedTypeMap constinArgument0,
-                                                                                              class GALGAS_observablePropertyMap & ioArgument1,
-                                                                                              class C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_buildObservablePropertyMap (const int32_t inClassIndex,
-                                                     categoryMethodSignature_abstractSecondaryProperty_buildObservablePropertyMap inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_buildObservablePropertyMap (const class cPtr_abstractSecondaryProperty * inObject,
-                                                    const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                    GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //               Abstract category method '@abstractSecondaryProperty secondaryPropertySemanticAnalysis'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis) (const class cPtr_abstractSecondaryProperty * inObject,
                                                                                                      const class GALGAS_string constinArgument0,
-                                                                                                     const class GALGAS_observablePropertyMap constinArgument1,
-                                                                                                     const class GALGAS_semanticContext constinArgument2,
-                                                                                                     const class GALGAS_observablePropertyMap constinArgument3,
-                                                                                                     const class GALGAS_arrayControllerMap constinArgument4,
+                                                                                                     const class GALGAS_string constinArgument1,
+                                                                                                     const class GALGAS_observablePropertyMap constinArgument2,
+                                                                                                     const class GALGAS_semanticContext constinArgument3,
+                                                                                                     const class GALGAS_observablePropertyMap constinArgument4,
                                                                                                      class GALGAS_transientDefinitionListForGeneration & ioArgument5,
+                                                                                                     class GALGAS_arrayControllerForGeneration & ioArgument6,
                                                                                                      class C_Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
 
@@ -1504,11 +1371,12 @@ void enterCategoryMethod_secondaryPropertySemanticAnalysis (const int32_t inClas
 
 void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abstractSecondaryProperty * inObject,
                                                            const GALGAS_string constin_inOwnerName,
+                                                           const GALGAS_string constin_inRootEntityName,
                                                            const GALGAS_observablePropertyMap constin_inRootObservableProperties,
                                                            const GALGAS_semanticContext constin_inSemanticContext,
                                                            const GALGAS_observablePropertyMap constin_inObservableProperties,
-                                                           const GALGAS_arrayControllerMap constin_inArrayControllerMap,
                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
+                                                           GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -1548,71 +1416,6 @@ void categoryMethod_semanticAnalysis (const class GALGAS_simpleStoredPropertyLis
                                       class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Category method '@arrayControllerDeclarationListAST buildArrayControllerMap'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildArrayControllerMap (const class GALGAS_arrayControllerDeclarationListAST inObject,
-                                             const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                             const class GALGAS_observablePropertyMap constin_inSelfObservablePropertyMap,
-                                             class GALGAS_arrayControllerMap & out_outArrayControllerMap,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Category method '@arrayControllerDeclarationListAST arrayControllerSemanticAnalysis'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_arrayControllerSemanticAnalysis (const class GALGAS_arrayControllerDeclarationListAST inObject,
-                                                     const class GALGAS_string constin_inOwnerName,
-                                                     const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                                     const class GALGAS_string constin_inRootEntityName,
-                                                     const class GALGAS_semanticContext constin_inSemanticContext,
-                                                     const class GALGAS_decoratedOutletMap constin_inOutletMap,
-                                                     const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
-                                                     const class GALGAS_arrayControllerMap constin_inArrayControllerMap,
-                                                     class GALGAS_arrayControllerForGeneration & out_outDocumentArrayControllerForGeneration,
-                                                     class C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category Reader '@arrayControllerModel modelString'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_modelString (const class GALGAS_arrayControllerModel & inObject,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category Reader '@arrayControllerModel modelTypeName'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayControllerModel & inObject,
-                                                  const class GALGAS_string & constinArgument0,
-                                                  const class GALGAS_arrayControllerMap & constinArgument1,
-                                                  class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category Reader '@arrayControllerModel modelTypeName2'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
-                                                      const class GALGAS_string & constinArgument0,
-                                                      const class GALGAS_arrayControllerMap & constinArgument1,
-                                                      class C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1693,5 +1496,34 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList 
                                       class GALGAS_toManyEntityRelationshipListForGeneration & out_outToManyEntityRelationshipListForGeneration,
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
+                                                                                               class GALGAS_semanticContext & ioArgument0,
+                                                                                               const class GALGAS_observablePropertyMap constinArgument1,
+                                                                                               class GALGAS_observablePropertyMap & ioArgument2,
+                                                                                               class GALGAS_secondaryPropertyList & ioArgument3,
+                                                                                               class C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
+                                                      categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
+                                                     GALGAS_semanticContext & io_ioSemanticContext,
+                                                     const GALGAS_observablePropertyMap constin_inRootObservableProperties,
+                                                     GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                     GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 #endif
