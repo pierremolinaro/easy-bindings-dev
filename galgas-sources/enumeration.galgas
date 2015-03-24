@@ -51,7 +51,6 @@ map @enumConstantMap {
 
 override method @enumDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
-  ?!@transientDependencyGraph unused ioTransientDependencyGraph
 {
   @enumConstantMap enumConstantMap = {}
   for (s) in mEnumConstantNameList do

@@ -48,21 +48,6 @@ list @typeKindList {
 
 abstract method @astDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
-
-
-#......................................................................................................................*
-
-list @transientDependencyGraphNodeInfoList {
-  @string mSignature
-  @bool mIsTransient
-}
-
-#......................................................................................................................*
-
-graph @transientDependencyGraph (@transientDependencyGraphNodeInfoList) {
-  insert addNode error message "the '%K' property is already declared at %L"
-}
 
 #......................................................................................................................*
 
@@ -103,7 +88,6 @@ proc typeInventory
   !@unifiedTypeMap outUnifiedTypeMap
 {
   outUnifiedTypeMap = .emptyMap
-  @transientDependencyGraph transientDependencyGraph = .emptyGraph
 #------------------------ Add predefined types
   [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType]
   [!?outUnifiedTypeMap insertKey !["Color" nowhere] !.colorType]
@@ -113,18 +97,12 @@ proc typeInventory
   [!?outUnifiedTypeMap insertKey !["enum" nowhere] !.enumType {!enumTypeName:"" !constantMap:{}}]
 #------------------------ Add user defined types and compute transient dependancy graph
   for () in inDeclarationList do
-    [mDeclaration typeInventory !?outUnifiedTypeMap !?transientDependencyGraph]
+    [mDeclaration typeInventory !?outUnifiedTypeMap]
   end
 #------------------------ dot files
   if [option easyBindings_options.outputClassDependencyGraph value] then
     let s = [outUnifiedTypeMap edgeGraphvizRepresentation]
     let path = inSourceFile.string + ".typeDependancy.dot"
-    [s writeToFileWhenDifferentContents !path ?*]
-  end
-#------------------------ Output graphviz file ?
-  if (@uint.errorCount == 0) && [option easyBindings_options.outputTransientDependencyGraph value] then
-    let s = [transientDependencyGraph graphviz]
-    let path = inSourceFile.string + ".transientDependancy.dot"
     [s writeToFileWhenDifferentContents !path ?*]
   end
 }

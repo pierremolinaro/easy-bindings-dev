@@ -49,29 +49,12 @@ syntax extension easyBindings_syntax {
 override method @transientAST typeInventory
   ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
   ?!@unifiedTypeMap ioUnifiedTypeMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [@unifiedTypeMap-proxy makeProxy
     !?ioUnifiedTypeMap
     !mTransientTypeName
     ?*
   ]
-  let slaveProperty = @lstring.new {
-    !inDependencyGraphPrefix + "." + mTransientName
-    !mTransientName.location
-   }
-  [!?ioTransientDependencyGraph addNode
-    !slaveProperty
-    !slaveProperty.string
-    !true # Is transient
-  ]
-  for () in mDependencyList do
-    [mObservableProperty enterInTransientDependencyGraph
-      !inDependencyGraphPrefix
-      !slaveProperty
-      !?ioTransientDependencyGraph
-    ]
-  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
