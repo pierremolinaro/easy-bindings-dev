@@ -44,7 +44,7 @@ case . "eb"
         !declarationStruct
         ?let @structForGeneration generation
       )
-      if @uint. errorCount == 0 then
+      if @uint.errorCount == 0 then
         generateCode (
           !generation
           !inSourceFile.string
@@ -61,7 +61,7 @@ case . "eb"
 filewrapper predefinedOutletClasses in "../generation-templates" {
 }{
 }{
-  template sourceFile "predefinedOutletClasses.easyBindings"
+  template sourceFile "predefinedOutletClasses.eb"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

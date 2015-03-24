@@ -7,6 +7,7 @@ list @outletClassDeclarationList {
   @lstring mOutletClassName
   @bool mHasRunAction
   @bool mHasEnabled
+  @bool mHandlesTableViewBinding
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -25,7 +26,11 @@ syntax extension easyBindings_syntax {
     $Identifier$ ?let @lstring outletClassName
     @bool hasRunAction = false
     @bool hasEnabled = false
+    @bool handlesTableViewBinding = false
     repeat
+    while
+      $tableValue$
+      handlesTableViewBinding = true
     while
       $run$
       hasRunAction = true
@@ -39,6 +44,7 @@ syntax extension easyBindings_syntax {
       !outletClassName
       !hasRunAction
       !hasEnabled
+      !handlesTableViewBinding
   }
 
   #....................................................................................................................*
@@ -51,6 +57,7 @@ syntax extension easyBindings_syntax {
 
 map @outletClassMap {
   @bool mHandlesRunAction
+  @bool mHandlesTableViewBinding
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }
@@ -64,7 +71,7 @@ method @outletClassDeclarationList buildOutletClassMap
 {
   outOutletClassMap = {}
   for () in self do
-    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction]
+    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction !mHandlesTableViewBinding]
   end
 }
 

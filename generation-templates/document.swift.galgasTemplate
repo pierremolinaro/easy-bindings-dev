@@ -88,10 +88,7 @@ for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
       %!mModelString%,
       tableViewArray:[%
-      for () in mTableViewOutletNameList
-      do !mValue.string%!%
-      between %, %
-      end
+      ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
       %],
       file:__FILE__,
       line:__LINE__

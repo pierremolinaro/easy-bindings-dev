@@ -31,7 +31,6 @@ list @arrayControllerDeclarationListAST {
 class @arrayControllerDeclaration : @abstractSecondaryProperty {
   @lstring mControllerName
   @arrayControllerModel mArrayControllerModel
-  @lstringlist mTableViewOutletNameList
   @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 }
@@ -49,7 +48,7 @@ syntax extension easyBindings_syntax {
   {
     $arrayController$
     $identifier$ ?let @lstring controllerName
-    $bind$
+    $:$
     @arrayControllerModel arrayControllerModel
     select
       $root$
@@ -61,17 +60,6 @@ syntax extension easyBindings_syntax {
       $.$
       $identifier$ ?let @lstring propertyName
       arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
-    end
-    @lstringlist tableViewOutletNameList = {}
-    select
-    or
-      $to$
-      repeat
-        $identifier$ ?let @lstring tableViewOutletName
-        tableViewOutletNameList += !tableViewOutletName
-      while
-        $,$
-      end
     end
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     @lstringlist filterProperties = {}
@@ -102,7 +90,6 @@ syntax extension easyBindings_syntax {
     ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
       !controllerName
       !arrayControllerModel
-      !tableViewOutletNameList
       !filterProperties
       !arrayControllerBoundColumnListAST
     }
@@ -126,7 +113,7 @@ override method @arrayControllerDeclaration typeInventory
 #......................................................................................................................*
 
 override method @arrayControllerDeclaration tryToSolveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContext unused ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
@@ -136,7 +123,6 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   case rootToManyRelationship (@lstring relationshipName) :
     solved = [inRootObservableProperties hasKey !relationshipName.string]
     if solved then
-      message "SOLVED CONTROLLER " + mControllerName + " FROM RELATIONSHIP\n"
       [inRootObservableProperties searchKey
         !relationshipName
         ?let type
@@ -158,10 +144,9 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !controllerActions
       ]
     end
-  case controllerArray (@lstring controllerName @lstring propertyName) :
+  case controllerArray (@lstring controllerName @lstring unused propertyName) :
     solved = [ioObservableProperties hasKey !controllerName.string]
     if solved then
-      message "SOLVED CONTROLLER " + mControllerName + " FROM CONTROLLER\n"
       [ioObservableProperties searchKey
         !controllerName
         ?let type
@@ -242,17 +227,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   case entityType (@string kEntityName) :
     entityName = kEntityName
   end
-#--- Check bound model is stored
-#  if kind == .transient then
-#    error errorLocation : "the bound property should be stored (not a transient)"
-#  end
-#--- Check outlet is a PMTableView
-  for (tableViewOutletName) in mTableViewOutletNameList do
-#    [inOutletMap searchKey !tableViewOutletName ?let outletTypeName]
-#    if outletTypeName != "PMTableView" then
-#      error tableViewOutletName : "this outlet is not an instance of PMTableView"
-#    end
-  end
 #--- Check colum bound models (TODO : get also super entity observable property)
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     ![entityName nowhere]
@@ -312,7 +286,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
     !modelIsTransient
     ![modelType swiftTypeName]
-    !mTableViewOutletNameList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -329,7 +302,6 @@ list @arrayControllerForGeneration {
   @string mModelTypeName2
   @bool mModelIsTransient
   @string mElementTypeName
-  @lstringlist mTableViewOutletNameList
 }
 
 #......................................................................................................................*

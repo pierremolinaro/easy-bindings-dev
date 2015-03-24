@@ -128,7 +128,7 @@ override method @documentDeclaration buildObservablePropertyMapsFromStoredProper
 
 override method @documentDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
-  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
@@ -169,12 +169,6 @@ override method @documentDeclaration semanticAnalysis
     !mRootEntityName
     ?let @observablePropertyMap rootObservablePropertyMap
   ]
-#--- Build array controller map
-#  [mArrayControllerDeclarationList buildArrayControllerMap
-#    !rootObservablePropertyMap
-#    !observablePropertyMap
-#    ?let @arrayControllerMap arrayControllerMap
-#  ]
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList semanticAnalysis
     !mDocumentName.string
@@ -217,6 +211,7 @@ override method @documentDeclaration semanticAnalysis
     ?let @multipleBindingGenerationList multipleBindingGenerationList
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
   )
 #--- Code generation
   ioGeneration.mDocumentListForGeneration +=
@@ -229,6 +224,7 @@ override method @documentDeclaration semanticAnalysis
     !regularBindingsGenerationList
     !multipleBindingGenerationList
     !documentArrayControllerForGeneration
+    !tableViewBindingGenerationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -245,6 +241,7 @@ list @documentListForGeneration {
   @regularBindingsGenerationList mRegularBindingsGenerationList 
   @multipleBindingGenerationList multipleBindingGenerationList
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration
+  @tableViewBindingGenerationList mTableViewBindingGenerationList
 }
 
 #......................................................................................................................*
@@ -262,6 +259,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
+    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -283,6 +281,7 @@ proc generateDocuments
       !mTargetActionList
       !mRegularBindingsGenerationList
       !multipleBindingGenerationList
+      !mTableViewBindingGenerationList
     ]
     [@string generateFile
       !inOutputDirectory

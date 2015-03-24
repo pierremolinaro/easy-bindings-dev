@@ -93,7 +93,6 @@ override method @transientAST tryToSolveSecondaryProperty
     ]
   end
   if solved then
-    message "SOLVED " + mTransientName + "\n"
     [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
     [!?ioObservableProperties insertKey
       !mTransientName
