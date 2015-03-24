@@ -11,35 +11,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                               class GALGAS_semanticContext & ioArgument0,
-                                                                                               const class GALGAS_observablePropertyMap constinArgument1,
-                                                                                               class GALGAS_observablePropertyMap & ioArgument2,
-                                                                                               class GALGAS_secondaryPropertyList & ioArgument3,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
-                                                      categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
-                                                     GALGAS_semanticContext & io_ioSemanticContext,
-                                                     const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                     GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                     GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                             Category Reader '@observablePropertyAST isPropertyDefined'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -63,5 +34,39 @@ void categoryMethod_enterInTransientDependencyGraph (const class GALGAS_observab
                                                      class GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
                                                      class C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Category Reader '@arrayControllerModel modelString'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelString (const class GALGAS_arrayControllerModel & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@arrayControllerModel modelTypeName'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayControllerModel & inObject,
+                                                  const class GALGAS_string & constinArgument0,
+                                                  const class GALGAS_observablePropertyMap & constinArgument1,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category Reader '@arrayControllerModel modelTypeName2'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
+                                                      const class GALGAS_string & constinArgument0,
+                                                      const class GALGAS_observablePropertyMap & constinArgument1,
+                                                      class C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 #endif

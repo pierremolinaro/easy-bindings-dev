@@ -78,31 +78,6 @@ override method @transientAST typeInventory
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @transientAST buildObservablePropertyMap
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMap ioObservableProperties
-{
-##--- Property type
-#  [inUnifiedTypeMap searchKey !mTransientTypeName ?let type]
-##--- Check type
-#  switch type
-#  case boolType, integerType, stringType, colorType, dateType, doubleType : # Ok
-#  case enumType (* *) : # Ok
-#  case entityType (*) :
-#    error mTransientName: "an entity cannot be used as simple property type"
-#  end
-##--- Enter in property map
-#  [!?ioObservableProperties insertKey
-#    !mTransientName
-#    !type
-#    !.stored
-#    !.single
-#    !""
-#  ]
-}
-
-#......................................................................................................................*
-
 override method @transientAST tryToSolveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
@@ -126,6 +101,7 @@ override method @transientAST tryToSolveSecondaryProperty
       !.transient
       !.single
       !""
+      !{} # No action map
     ]
   else
     ioUnsolvedProperties += !self
@@ -136,11 +112,12 @@ override method @transientAST tryToSolveSecondaryProperty
 
 override method @transientAST secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
+  ?let @string unused inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?let @arrayControllerMap inArrayControllerMap
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
 {
 #--- Property type
   [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
@@ -161,7 +138,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
       !inRootObservableProperties
       !inSemanticContext
       !inObservableProperties
-      !inArrayControllerMap
       ?let @typeKind unused dependencyType
       ?let @propertyKind unused dependencyKind
       ?@propertyMultiplicity outMultiplicity

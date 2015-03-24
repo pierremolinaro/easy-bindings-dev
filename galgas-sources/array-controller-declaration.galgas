@@ -28,7 +28,7 @@ list @arrayControllerDeclarationListAST {
 
 #......................................................................................................................*
 
-class @arrayControllerDeclaration: @abstractSecondaryProperty {
+class @arrayControllerDeclaration : @abstractSecondaryProperty {
   @lstring mControllerName
   @arrayControllerModel mArrayControllerModel
   @lstringlist mTableViewOutletNameList
@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
   #....................................................................................................................*
   
   rule <array_controller_declaration>
-    ?!@arrayControllerDeclarationListAST ioArrayControllerDeclarationListAST
+    ?!@secondaryPropertyList ioSecondaryPropertyList
   {
     $arrayController$
     $identifier$ ?let @lstring controllerName
@@ -99,27 +99,17 @@ syntax extension easyBindings_syntax {
     while
     end
     $;$
-    ioArrayControllerDeclarationListAST +=
+    ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
       !controllerName
       !arrayControllerModel
       !tableViewOutletNameList
       !filterProperties
       !arrayControllerBoundColumnListAST
+    }
   }
 
   #....................................................................................................................*
 
-}
-
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC TYPE                                                                                                      *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-map @arrayControllerMap {
-  @typeKind mType
-  @propertyKind mKind
-  insert insertKey error message "the '%K' array controller is already declared"
-  search searchKey error message "the '%K' array controller is not declared"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -135,45 +125,6 @@ override method @arrayControllerDeclaration typeInventory
 
 #......................................................................................................................*
 
-override method @arrayControllerDeclaration buildObservablePropertyMap
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMap ioObservableProperties
-{
-#  @typeKind type
-#  @propertyKind kind
-#  @location errorLocation
-#  switch mArrayControllerModel
-#  case rootToManyRelationship (@lstring relationshipName) :
-#    errorLocation = relationshipName.location
-#    [inRootObservablePropertyMap searchKey
-#      !relationshipName
-#      ?type
-#      ?kind
-#      ?let @propertyMultiplicity multiplicity
-#      ?*
-#    ]
-#    if multiplicity != .collection then
-#      error errorLocation : "this property should be a tomany relationship"
-#    end
-#  case controllerArray (@lstring controllerName @lstring propertyName) :
-#    errorLocation = propertyName.location
-#    [outArrayControllerMap searchKey
-#      !controllerName
-#      ?type
-#      ?kind
-#    ]
-#  end
-#  switch type
-#  case boolType, colorType, dateType, doubleType, integerType, stringType :
-#    error errorLocation : "this property should be a tomany relationship"
-#  case enumType (* *) :
-#    error errorLocation : "this property should be a tomany relationship"
-#  case entityType (*) : #Ok
-#  end
-}
-
-#......................................................................................................................*
-
 override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
@@ -185,23 +136,53 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   case rootToManyRelationship (@lstring relationshipName) :
     solved = [inRootObservableProperties hasKey !relationshipName.string]
     if solved then
+      message "SOLVED CONTROLLER " + mControllerName + " FROM RELATIONSHIP\n"
       [inRootObservableProperties searchKey
         !relationshipName
         ?let type
         ?let kind
         ?let multiplicity
-        ?*
+        ?2*
       ]
+      @actionMap controllerActions = {}
+      if kind == .stored then
+        [!?controllerActions insertKey !["add" nowhere]]
+        [!?controllerActions insertKey !["remove" nowhere]]
+      end
       [!?ioObservableProperties insertKey
-        !relationshipName
+        !mControllerName
         !type
         !.transient
         !multiplicity
         !""
+        !controllerActions
       ]
     end
   case controllerArray (@lstring controllerName @lstring propertyName) :
     solved = [ioObservableProperties hasKey !controllerName.string]
+    if solved then
+      message "SOLVED CONTROLLER " + mControllerName + " FROM CONTROLLER\n"
+      [ioObservableProperties searchKey
+        !controllerName
+        ?let type
+        ?let kind
+        ?let multiplicity
+        ?2*
+      ]
+      @actionMap controllerActions = {}
+      if kind == .stored then
+        [!?controllerActions insertKey !["add" nowhere]]
+        [!?controllerActions insertKey !["remove" nowhere]]
+      end
+      [!?ioObservableProperties insertKey
+        !mControllerName
+        !type
+        !.transient
+        !multiplicity
+        !""
+        !controllerActions
+      ]
+    end
   end
   if not solved then
     ioUnsolvedProperties += !self
@@ -212,183 +193,126 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 
 override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
+  ?let @string inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?let @arrayControllerMap inArrayControllerMap
-  ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+  ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
 {
-}
-
-#......................................................................................................................*
-
-method @arrayControllerDeclarationListAST buildArrayControllerMap
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @observablePropertyMap unused inSelfObservablePropertyMap
-  !@arrayControllerMap outArrayControllerMap
-{
-  outArrayControllerMap = {}
-  for () in self do
-    @typeKind type
-    @propertyKind kind
-    @location errorLocation
-    switch mArrayControllerModel
-    case rootToManyRelationship (@lstring relationshipName) :
-      errorLocation = relationshipName.location
-      [inRootObservablePropertyMap searchKey
-        !relationshipName
-        ?type
-        ?kind
-        ?let @propertyMultiplicity multiplicity
-        ?*
-      ]
-      if multiplicity != .collection then
-        error errorLocation : "this property should be a tomany relationship"
-      end
-    case controllerArray (@lstring controllerName @lstring propertyName) :
-      errorLocation = propertyName.location
-      [outArrayControllerMap searchKey
-        !controllerName
-        ?type
-        ?kind
-      ]
-    end
-    switch type
-    case boolType, colorType, dateType, doubleType, integerType, stringType :
-      error errorLocation : "this property should be a tomany relationship"
-    case enumType (* *) :
-      error errorLocation : "this property should be a tomany relationship"
-    case entityType (*) : #Ok
-    end
-    [!?outArrayControllerMap insertKey !mControllerName !type !kind]
-  end
-}
-
-#......................................................................................................................*
-
-method @arrayControllerDeclarationListAST arrayControllerSemanticAnalysis
-  ?let @string inOwnerName
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @string inRootEntityName
-  ?let @semanticContext inSemanticContext
-  ?let @decoratedOutletMap inOutletMap
-  ?let @observablePropertyMap unused inObservablePropertyMap
-  ?let @arrayControllerMap inArrayControllerMap
-  !@arrayControllerForGeneration outDocumentArrayControllerForGeneration
-{
-  outDocumentArrayControllerForGeneration = {}
-  for () in self do
-    @typeKind modelType
-    @propertyKind kind
-    @location errorLocation
-    @bool modelIsTransient
-    switch mArrayControllerModel
-    case rootToManyRelationship (@lstring relationshipName) :
-      errorLocation = relationshipName.location
-      modelIsTransient = false
-      [inRootObservablePropertyMap searchKey
-        !relationshipName
-        ?modelType
-        ?kind
-        ?let @propertyMultiplicity multiplicity
-        ?*
-      ]
-    #--- Check bound model is a collection
-      if multiplicity != .collection then
-        error errorLocation : "the bound property should be a collection"
-      end
-    case controllerArray (@lstring controllerName @lstring propertyName) :
-      errorLocation = propertyName.location
-      modelIsTransient = true
-      [inArrayControllerMap searchKey
-        !controllerName
-        ?modelType
-        ?kind
-      ]
-      if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
-        error errorLocation : "'sortedArray' or 'selectedArray' are required here"
-      end
-    end
-  #--- Check bound model type is an entity
-    @string entityName
-    switch modelType
-    case boolType, colorType, dateType, doubleType, integerType, stringType :
-      error errorLocation : "the model should be a tomany relationship" : entityName
-    case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
-    case entityType (@string kEntityName) :
-      entityName = kEntityName
-    end
-  #--- Check bound model is stored
-    if kind == .transient then
-      error errorLocation : "the bound property should be stored (not a transient)"
-    end
-  #--- Check outlet is a PMTableView
-    for (tableViewOutletName) in mTableViewOutletNameList do
-      [inOutletMap searchKey !tableViewOutletName ?let outletTypeName]
-      if outletTypeName != "PMTableView" then
-        error tableViewOutletName : "this outlet is not an instance of PMTableView"
-      end
-    end
-  #--- Check colum bound models (TODO : get also super entity observable property)
-    [inSemanticContext.mEntityObservablePropertyMap searchKey
-      ![entityName nowhere]
-      ?let @observablePropertyMap boundModelObservablePropertyMap
+  @typeKind modelType
+  @propertyKind kind
+  @location errorLocation
+  @bool modelIsTransient
+  switch mArrayControllerModel
+  case rootToManyRelationship (@lstring relationshipName) :
+    errorLocation = relationshipName.location
+    modelIsTransient = false
+    [inRootObservableProperties searchKey
+      !relationshipName
+      ?modelType
+      ?kind
+      ?let @propertyMultiplicity multiplicity
+      ?2*
     ]
-    @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-    for () in mArrayControllerBoundColumnListAST do
-      [boundModelObservablePropertyMap searchKey
-        !mObservablePropertyName
-        ?let @typeKind columnType
-        ?let @propertyKind unused columnKind
-        ?let @propertyMultiplicity columnMultiplicity
-        ?let @string unused inverseRelationshipName # "" if not a relationship
-      ]
-    #--- Check bound model type is a simple type
-      switch columnType
-      case boolType, colorType, dateType, doubleType, integerType, stringType : # Ok
-      case enumType (* *) : # Ok
-      case entityType (@string unused entityTypeName) :
-        error [mObservablePropertyName location] : "the model should not be a relationship"
-      end
-      if columnMultiplicity == .collection then
-        error mObservablePropertyName : "the bound column property should not be a collection"
-      end
-      arrayControllerBoundColumnListForGeneration +=
-        !mColumnName.string
-        !mColumnOutletTypeName.string
-        !mObservablePropertyName.string
-        !columnType
-        !mBindingOptionList
+  #--- Check bound model is a collection
+    if multiplicity != .collection then
+      error errorLocation : "the bound property should be a collection"
     end
-  #--- Check filter properties
-    @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
-    for (filterPropertyName) in mFilterProperties do
-      [boundModelObservablePropertyMap searchKey
-        !filterPropertyName
-        ?let @typeKind filterType
-        ?let @propertyKind unused columnKind
-        ?let @propertyMultiplicity filterMultiplicity
-        ?let @string unused inverseRelationshipName # "" if not a relationship
-      ]
-      if filterMultiplicity == .collection then
-        error filterPropertyName : "the filter property should not be a collection"
-      end
-      arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
-    end%for
-  #---
-    outDocumentArrayControllerForGeneration +=
-      !inOwnerName
-      !mControllerName.string
-      !arrayControllerFilterListForGeneration
-      ![mArrayControllerModel modelString]
-      !arrayControllerBoundColumnListForGeneration
-      ![mArrayControllerModel modelTypeName !inRootEntityName !inArrayControllerMap]
-      ![mArrayControllerModel modelTypeName2 !inRootEntityName !inArrayControllerMap]
-      !modelIsTransient
-      ![modelType swiftTypeName]
-      !mTableViewOutletNameList
+  case controllerArray (@lstring controllerName @lstring propertyName) :
+    errorLocation = propertyName.location
+    modelIsTransient = true
+    [inObservableProperties searchKey
+      !controllerName
+      ?modelType
+      ?kind
+      ?3*
+    ]
+    if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
+      error errorLocation : "'sortedArray' or 'selectedArray' are required here"
+    end
+  end
+#--- Check bound model type is an entity
+  @string entityName
+  switch modelType
+  case boolType, colorType, dateType, doubleType, integerType, stringType :
+    error errorLocation : "the model should be a tomany relationship" : entityName
+  case enumType (* *) :
+    error errorLocation : "the model should be a tomany relationship" : entityName
+  case entityType (@string kEntityName) :
+    entityName = kEntityName
+  end
+#--- Check bound model is stored
+#  if kind == .transient then
+#    error errorLocation : "the bound property should be stored (not a transient)"
+#  end
+#--- Check outlet is a PMTableView
+  for (tableViewOutletName) in mTableViewOutletNameList do
+#    [inOutletMap searchKey !tableViewOutletName ?let outletTypeName]
+#    if outletTypeName != "PMTableView" then
+#      error tableViewOutletName : "this outlet is not an instance of PMTableView"
+#    end
+  end
+#--- Check colum bound models (TODO : get also super entity observable property)
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    ![entityName nowhere]
+    ?let @observablePropertyMap boundModelObservablePropertyMap
+  ]
+  @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  for () in mArrayControllerBoundColumnListAST do
+    [boundModelObservablePropertyMap searchKey
+      !mObservablePropertyName
+      ?let @typeKind columnType
+      ?let @propertyKind unused columnKind
+      ?let @propertyMultiplicity columnMultiplicity
+      ?let @string unused inverseRelationshipName # "" if not a relationship
+      ?*
+    ]
+  #--- Check bound model type is a simple type
+    switch columnType
+    case boolType, colorType, dateType, doubleType, integerType, stringType : # Ok
+    case enumType (* *) : # Ok
+    case entityType (@string unused entityTypeName) :
+      error [mObservablePropertyName location] : "the model should not be a relationship"
+    end
+    if columnMultiplicity == .collection then
+      error mObservablePropertyName : "the bound column property should not be a collection"
+    end
+    arrayControllerBoundColumnListForGeneration +=
+      !mColumnName.string
+      !mColumnOutletTypeName.string
+      !mObservablePropertyName.string
+      !columnType
+      !mBindingOptionList
+  end
+#--- Check filter properties
+  @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
+  for (filterPropertyName) in mFilterProperties do
+    [boundModelObservablePropertyMap searchKey
+      !filterPropertyName
+      ?let @typeKind filterType
+      ?let @propertyKind unused columnKind
+      ?let @propertyMultiplicity filterMultiplicity
+      ?let @string unused inverseRelationshipName # "" if not a relationship
+      ?*
+    ]
+    if filterMultiplicity == .collection then
+      error filterPropertyName : "the filter property should not be a collection"
+    end
+    arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
   end%for
+#---
+  ioArrayControllerForGeneration +=
+    !inOwnerName
+    !mControllerName.string
+    !arrayControllerFilterListForGeneration
+    ![mArrayControllerModel modelString]
+    !arrayControllerBoundColumnListForGeneration
+    ![mArrayControllerModel modelTypeName !inRootEntityName !inObservableProperties]
+    ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
+    !modelIsTransient
+    ![modelType swiftTypeName]
+    !mTableViewOutletNameList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -423,17 +347,17 @@ getter @arrayControllerModel modelString -> @string outResult {
 
 getter @arrayControllerModel modelTypeName
   ?let @string inRootEntityName
-  ?let @arrayControllerMap inArrayControllerMap
+  ?let @observablePropertyMap inObservablePropertyMap
    -> @string outResult
 {
   switch self
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
-    [inArrayControllerMap searchKey
+    [inObservablePropertyMap searchKey
       !controllerName
       ?let modelType
-      ?*
+      ?4*
     ]
     outResult = "TransientArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   end
@@ -443,17 +367,17 @@ getter @arrayControllerModel modelTypeName
 
 getter @arrayControllerModel modelTypeName2
   ?let @string inRootEntityName
-  ?let @arrayControllerMap inArrayControllerMap
+  ?let @observablePropertyMap inObservablePropertyMap
    -> @string outResult
 {
   switch self
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
-    [inArrayControllerMap searchKey
+    [inObservablePropertyMap searchKey
       !controllerName
       ?let modelType
-      ?*
+      ?4*
     ]
     outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   end
