@@ -2772,10 +2772,19 @@ GALGAS_propertyKind GALGAS_propertyKind::constructor_transient (UNUSED_LOCATION_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const char * gEnumNameArrayFor_propertyKind [3] = {
+GALGAS_propertyKind GALGAS_propertyKind::constructor_controller (UNUSED_LOCATION_ARGS) {
+  GALGAS_propertyKind result ;
+  result.mEnum = kEnum_controller ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static const char * gEnumNameArrayFor_propertyKind [4] = {
   "(not built)",
   "stored",
-  "transient"
+  "transient",
+  "controller"
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2788,6 +2797,12 @@ GALGAS_bool GALGAS_propertyKind::reader_isStored (UNUSED_LOCATION_ARGS) const {
 
 GALGAS_bool GALGAS_propertyKind::reader_isTransient (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_transient == mEnum) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_propertyKind::reader_isController (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_controller == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

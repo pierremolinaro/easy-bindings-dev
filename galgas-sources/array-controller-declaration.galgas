@@ -138,7 +138,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
       [!?ioObservableProperties insertKey
         !mControllerName
         !type
-        !.transient
+        !.controller
         !multiplicity
         !""
         !controllerActions
@@ -162,7 +162,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
       [!?ioObservableProperties insertKey
         !mControllerName
         !type
-        !.transient
+        !.controller
         !multiplicity
         !""
         !controllerActions
