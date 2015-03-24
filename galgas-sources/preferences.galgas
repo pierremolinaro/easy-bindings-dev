@@ -60,14 +60,12 @@ syntax extension easyBindings_syntax {
 
 override method @prefDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
       !"prefs." + mPrefsName
       !?ioUnifiedTypeMap
-      !?ioTransientDependencyGraph
     ]
   end
 }

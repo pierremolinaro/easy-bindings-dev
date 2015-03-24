@@ -6631,590 +6631,6 @@ GALGAS_typeKindList GALGAS_typeKindList::extractObject (const GALGAS_object & in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Class for element of '@transientDependencyGraphNodeInfoList' list                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cCollectionElement_transientDependencyGraphNodeInfoList : public cCollectionElement {
-  public : GALGAS_transientDependencyGraphNodeInfoList_2D_element mObject ;
-
-//--- Constructor
-  public : cCollectionElement_transientDependencyGraphNodeInfoList (const GALGAS_string & in_mSignature,
-                                                                    const GALGAS_bool & in_mIsTransient
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement_transientDependencyGraphNodeInfoList::cCollectionElement_transientDependencyGraphNodeInfoList (const GALGAS_string & in_mSignature,
-                                                                                                                  const GALGAS_bool & in_mIsTransient
-                                                                                                                  COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mSignature, in_mIsTransient) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cCollectionElement_transientDependencyGraphNodeInfoList::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement * cCollectionElement_transientDependencyGraphNodeInfoList::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_transientDependencyGraphNodeInfoList (mObject.mAttribute_mSignature, mObject.mAttribute_mIsTransient COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cCollectionElement_transientDependencyGraphNodeInfoList::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mSignature" ":" ;
-  mObject.mAttribute_mSignature.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mIsTransient" ":" ;
-  mObject.mAttribute_mIsTransient.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cCollectionElement_transientDependencyGraphNodeInfoList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_transientDependencyGraphNodeInfoList * operand = (cCollectionElement_transientDependencyGraphNodeInfoList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList::GALGAS_transientDependencyGraphNodeInfoList (void) :
-AC_GALGAS_list () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList::GALGAS_transientDependencyGraphNodeInfoList (cSharedList * inSharedListPtr) :
-AC_GALGAS_list (inSharedListPtr) {
-  if (NULL == inSharedListPtr) {
-    createNewEmptyList (HERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::constructor_emptyList (LOCATION_ARGS) {
-  GALGAS_transientDependencyGraphNodeInfoList result ;
-  result.createNewEmptyList (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                    const GALGAS_bool & inOperand1
-                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_transientDependencyGraphNodeInfoList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result.createNewEmptyList (THERE) ;
-    capCollectionElement attributes ;
-    GALGAS_transientDependencyGraphNodeInfoList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.addObject (attributes) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                             const GALGAS_string & in_mSignature,
-                                                                             const GALGAS_bool & in_mIsTransient
-                                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = NULL ;
-  macroMyNew (p, cCollectionElement_transientDependencyGraphNodeInfoList (in_mSignature,
-                                                                          in_mIsTransient COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                       const GALGAS_bool & inOperand1
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDependencyGraphNodeInfoList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObject (attributes) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                          const GALGAS_bool inOperand1,
-                                                                          const GALGAS_uint inInsertionIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDependencyGraphNodeInfoList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                          GALGAS_bool & outOperand1,
-                                                                          const GALGAS_uint inRemoveIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-      outOperand0 = p->mObject.mAttribute_mSignature ;
-      outOperand1 = p->mObject.mAttribute_mIsTransient ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                     GALGAS_bool & outOperand1,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    outOperand0 = p->mObject.mAttribute_mSignature ;
-    outOperand1 = p->mObject.mAttribute_mIsTransient ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::modifier_popLast (GALGAS_string & outOperand0,
-                                                                    GALGAS_bool & outOperand1,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    outOperand0 = p->mObject.mAttribute_mSignature ;
-    outOperand1 = p->mObject.mAttribute_mIsTransient ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::method_first (GALGAS_string & outOperand0,
-                                                                GALGAS_bool & outOperand1,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    outOperand0 = p->mObject.mAttribute_mSignature ;
-    outOperand1 = p->mObject.mAttribute_mIsTransient ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::method_last (GALGAS_string & outOperand0,
-                                                               GALGAS_bool & outOperand1,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    outOperand0 = p->mObject.mAttribute_mSignature ;
-    outOperand1 = p->mObject.mAttribute_mIsTransient ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::operator_concat (const GALGAS_transientDependencyGraphNodeInfoList & inOperand
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraphNodeInfoList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::add_operation (const GALGAS_transientDependencyGraphNodeInfoList & inOperand,
-                                                                                                        C_Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraphNodeInfoList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::reader_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraphNodeInfoList result = GALGAS_transientDependencyGraphNodeInfoList::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::reader_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraphNodeInfoList result = GALGAS_transientDependencyGraphNodeInfoList::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraphNodeInfoList::dotAssign_operation (const GALGAS_transientDependencyGraphNodeInfoList inOperand
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_transientDependencyGraphNodeInfoList::reader_mSignatureAtIndex (const GALGAS_uint & inIndex,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    result = p->mObject.mAttribute_mSignature ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_transientDependencyGraphNodeInfoList::reader_mIsTransientAtIndex (const GALGAS_uint & inIndex,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDependencyGraphNodeInfoList * p = (cCollectionElement_transientDependencyGraphNodeInfoList *) attributes.ptr () ;
-  GALGAS_bool result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-    result = p->mObject.mAttribute_mIsTransient ;
-  }
-  return result ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_transientDependencyGraphNodeInfoList::cEnumerator_transientDependencyGraphNodeInfoList (const GALGAS_transientDependencyGraphNodeInfoList & inEnumeratedObject,
-                                                                                                    const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList_2D_element cEnumerator_transientDependencyGraphNodeInfoList::current (LOCATION_ARGS) const {
-  const cCollectionElement_transientDependencyGraphNodeInfoList * p = (const cCollectionElement_transientDependencyGraphNodeInfoList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-  return p->mObject ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string cEnumerator_transientDependencyGraphNodeInfoList::current_mSignature (LOCATION_ARGS) const {
-  const cCollectionElement_transientDependencyGraphNodeInfoList * p = (const cCollectionElement_transientDependencyGraphNodeInfoList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-  return p->mObject.mAttribute_mSignature ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool cEnumerator_transientDependencyGraphNodeInfoList::current_mIsTransient (LOCATION_ARGS) const {
-  const cCollectionElement_transientDependencyGraphNodeInfoList * p = (const cCollectionElement_transientDependencyGraphNodeInfoList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDependencyGraphNodeInfoList) ;
-  return p->mObject.mAttribute_mIsTransient ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     @transientDependencyGraphNodeInfoList type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDependencyGraphNodeInfoList ("transientDependencyGraphNodeInfoList",
-                                                             NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_transientDependencyGraphNodeInfoList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDependencyGraphNodeInfoList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_transientDependencyGraphNodeInfoList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientDependencyGraphNodeInfoList (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraphNodeInfoList GALGAS_transientDependencyGraphNodeInfoList::extractObject (const GALGAS_object & inObject,
-                                                                                                        C_Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_transientDependencyGraphNodeInfoList result ;
-  const GALGAS_transientDependencyGraphNodeInfoList * p = (const GALGAS_transientDependencyGraphNodeInfoList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDependencyGraphNodeInfoList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientDependencyGraphNodeInfoList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          '@transientDependencyGraph' graph                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraph::GALGAS_transientDependencyGraph (void) :
-AC_GALGAS_graph () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraph GALGAS_transientDependencyGraph::constructor_emptyGraph (LOCATION_ARGS) {
-  GALGAS_transientDependencyGraph result ;
-  result.makeNewEmptyGraph (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraph::modifier_addNode (GALGAS_lstring inKey,
-                                                        GALGAS_string inArgument_0,
-                                                        GALGAS_bool inArgument_1,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  GALGAS_transientDependencyGraphNodeInfoList::makeAttributesFromObjects (attributes, inArgument_0, inArgument_1 COMMA_THERE) ;
-  const char * kErrorMessage = "the '%K' property is already declared at %L" ;
-  internalAddNode (inKey, kErrorMessage, attributes, inCompiler COMMA_THERE) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraph::method_topologicalSort (GALGAS_transientDependencyGraphNodeInfoList & outSortedList,
-                                                              GALGAS_lstringlist & outSortedKeyList,
-                                                              GALGAS_transientDependencyGraphNodeInfoList & outUnsortedList,
-                                                              GALGAS_lstringlist & outUnsortedKeyList,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  cSharedList * sortedList = NULL ;
-  cSharedList * unsortedList = NULL ;
-  internalTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_transientDependencyGraphNodeInfoList (sortedList) ;
-  outUnsortedList = GALGAS_transientDependencyGraphNodeInfoList (unsortedList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (sortedList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (unsortedList) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraph::method_depthFirstTopologicalSort (GALGAS_transientDependencyGraphNodeInfoList & outSortedList,
-                                                                        GALGAS_lstringlist & outSortedKeyList,
-                                                                        GALGAS_transientDependencyGraphNodeInfoList & outUnsortedList,
-                                                                        GALGAS_lstringlist & outUnsortedKeyList,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const {
-  cSharedList * sortedList = NULL ;
-  cSharedList * unsortedList = NULL ;
-  internalDepthFirstTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_transientDependencyGraphNodeInfoList (sortedList) ;
-  outUnsortedList = GALGAS_transientDependencyGraphNodeInfoList (unsortedList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (sortedList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (unsortedList) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraph GALGAS_transientDependencyGraph::reader_reversedGraph (LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraph result ;
-  result.reversedGraphFromGraph (*this COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraph::method_nodesWithNoSuccessor (GALGAS_transientDependencyGraphNodeInfoList & outInfoList,
-                                                                   GALGAS_lstringlist & outKeyList
-                                                                   COMMA_LOCATION_ARGS) const {
-  cSharedList * infoList = NULL ;
-  internalNodesWithNoSuccessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_transientDependencyGraphNodeInfoList (infoList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (infoList) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_transientDependencyGraph::method_nodesWithNoPredecessor (GALGAS_transientDependencyGraphNodeInfoList & outInfoList,
-                                                                     GALGAS_lstringlist & outKeyList
-                                                                     COMMA_LOCATION_ARGS) const {
-  cSharedList * infoList = NULL ;
-  internalNodesWithNoPredecessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_transientDependencyGraphNodeInfoList (infoList) ;
-  GALGAS_transientDependencyGraphNodeInfoList::detachSharedList (infoList) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraph GALGAS_transientDependencyGraph::reader_subgraphFromNodes (const GALGAS_lstringlist & inStartKeyList,
-                                                                                           const GALGAS_stringset & inKeysToExclude,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDependencyGraph result ;
-  subGraph (result, inStartKeyList, inKeysToExclude, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstringlist GALGAS_transientDependencyGraph::reader_accessibleNodesFromNodes (const GALGAS_lstringlist & inStartKeyList,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_lstringlist result ;
-  GALGAS_transientDependencyGraph resultingGraph ;
-  subGraph (resultingGraph,
-            inStartKeyList,
-            GALGAS_stringset::constructor_emptySet (HERE),
-            inCompiler
-            COMMA_THERE) ;
-  if (resultingGraph.isValid ()) {
-    result = resultingGraph.reader_lkeyList (THERE) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           @transientDependencyGraph type                                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDependencyGraph ("transientDependencyGraph",
-                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_transientDependencyGraph::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDependencyGraph ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_transientDependencyGraph::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientDependencyGraph (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDependencyGraph GALGAS_transientDependencyGraph::extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_transientDependencyGraph result ;
-  const GALGAS_transientDependencyGraph * p = (const GALGAS_transientDependencyGraph *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDependencyGraph *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientDependencyGraph", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                          Class for element of '@secondaryDeclarationListWorkingList' list                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12833,12 +12249,6 @@ C_BoolCommandLineOption gOption_easyBindings_5F_options_outputClassDependencyGra
                                          "output-class-graph",
                                          "Output a class dependancy graph graphviz file") ;
 
-C_BoolCommandLineOption gOption_easyBindings_5F_options_outputTransientDependencyGraph ("easyBindings_options",
-                                         "outputTransientDependencyGraph",
-                                         116,
-                                         "output-transient-graph",
-                                         "Output a transient dependancy graph graphviz file") ;
-
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               UInt options                                                                          *
@@ -13372,16 +12782,16 @@ void routine_generateEnums (const GALGAS_enumListForGeneration constinArgument_i
                             const GALGAS_string constinArgument_inOutputDirectory,
                             C_Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_enumListForGeneration enumerator_5818 (constinArgument_inEnumListForGeneration, kEnumeration_up) ;
-  while (enumerator_5818.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5818.current_mEnumConstantList (HERE).reader_length (SOURCE_FILE ("enumeration.galgas", 133)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  cEnumerator_enumListForGeneration enumerator_5754 (constinArgument_inEnumListForGeneration, kEnumeration_up) ;
+  while (enumerator_5754.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5754.current_mEnumConstantList (HERE).reader_length (SOURCE_FILE ("enumeration.galgas", 132)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_5818.current_mEnumName (HERE), enumerator_5818.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 134))) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_5754.current_mEnumName (HERE), enumerator_5754.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 133))) ;
       {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_5818.current_mEnumName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 140)), var_s, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 138)) ;
+      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_5754.current_mEnumName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 139)), var_s, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 137)) ;
       }
     }
-    enumerator_5818.gotoNextObject () ;
+    enumerator_5754.gotoNextObject () ;
   }
 }
 
@@ -14023,13 +13433,13 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 const GALGAS_string constinArgument_inOutputDirectory,
                                 C_Compiler * inCompiler
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_documentListForGeneration enumerator_11839 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
-  while (enumerator_11839.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_11839.current_mDocumentName (HERE), enumerator_11839.current_mRootEntityName (HERE), enumerator_11839.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11839.current_mTransientListForGeneration (HERE), enumerator_11839.current_mOutletMap (HERE), enumerator_11839.current_mDocumentArrayControllerForGeneration (HERE), enumerator_11839.current_mTargetActionList (HERE), enumerator_11839.current_mRegularBindingsGenerationList (HERE), enumerator_11839.current_multipleBindingGenerationList (HERE), enumerator_11839.current_mTableViewBindingGenerationList (HERE), enumerator_11839.current_mSelectionControllerListForGeneration (HERE) COMMA_SOURCE_FILE ("document.galgas", 280))) ;
+  cEnumerator_documentListForGeneration enumerator_11747 (constinArgument_inDocumentListForGeneration, kEnumeration_up) ;
+  while (enumerator_11747.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_11747.current_mDocumentName (HERE), enumerator_11747.current_mRootEntityName (HERE), enumerator_11747.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11747.current_mTransientListForGeneration (HERE), enumerator_11747.current_mOutletMap (HERE), enumerator_11747.current_mDocumentArrayControllerForGeneration (HERE), enumerator_11747.current_mTargetActionList (HERE), enumerator_11747.current_mRegularBindingsGenerationList (HERE), enumerator_11747.current_multipleBindingGenerationList (HERE), enumerator_11747.current_mTableViewBindingGenerationList (HERE), enumerator_11747.current_mSelectionControllerListForGeneration (HERE) COMMA_SOURCE_FILE ("document.galgas", 278))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11839.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 295)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 293)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11747.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 293)), var_s, inCompiler COMMA_SOURCE_FILE ("document.galgas", 291)) ;
     }
-    enumerator_11839.gotoNextObject () ;
+    enumerator_11747.gotoNextObject () ;
   }
 }
 
@@ -15161,19 +14571,19 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
                                const GALGAS_string constinArgument_inOutputDirectory,
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_entityListForGeneration enumerator_10640 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
-  while (enumerator_10640.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_10640.current_mEntityName (HERE), enumerator_10640.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10640.current_mDecoratedTransientListForGeneration (HERE), enumerator_10640.current_mToOneEntityRelationshipList (HERE), enumerator_10640.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 260))) ;
+  cEnumerator_entityListForGeneration enumerator_10548 (constinArgument_inEntityListForGeneration, kEnumeration_up) ;
+  while (enumerator_10548.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_10548.current_mEntityName (HERE), enumerator_10548.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_10548.current_mDecoratedTransientListForGeneration (HERE), enumerator_10548.current_mToOneEntityRelationshipList (HERE), enumerator_10548.current_mToManyEntityRelationshipList (HERE) COMMA_SOURCE_FILE ("entity.galgas", 258))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10640.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 269)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 267)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_10548.current_mEntityName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 267)), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 265)) ;
     }
-    enumerator_10640.gotoNextObject () ;
+    enumerator_10548.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 274)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 272)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 275))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 273))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 278)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 276)) ;
     }
   }
 }
@@ -15609,13 +15019,13 @@ void routine_generatePreferences (const GALGAS_preferenceListForGeneration const
                                   const GALGAS_string constinArgument_inOutputDirectory,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_preferenceListForGeneration enumerator_11339 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
-  while (enumerator_11339.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_11339.current_mPreferenceName (HERE), enumerator_11339.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11339.current_mTransientDefinitionListForGeneration (HERE), enumerator_11339.current_mOutletMap (HERE), enumerator_11339.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 273))) ;
+  cEnumerator_preferenceListForGeneration enumerator_11247 (constinArgument_inPreferenceListForGeneration, kEnumeration_up) ;
+  while (enumerator_11247.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (inCompiler, enumerator_11247.current_mPreferenceName (HERE), enumerator_11247.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11247.current_mTransientDefinitionListForGeneration (HERE), enumerator_11247.current_mOutletMap (HERE), enumerator_11247.current_mRegularBindingsGenerationList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 271))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11339.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 282)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 280)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_11247.current_mPreferenceName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 280)), var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 278)) ;
     }
-    enumerator_11339.gotoNextObject () ;
+    enumerator_11247.gotoNextObject () ;
   }
 }
 

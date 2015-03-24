@@ -170,19 +170,6 @@ class GALGAS_bool categoryReader_isPropertyDefined (const class GALGAS_observabl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@observablePropertyAST enterInTransientDependencyGraph'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_enterInTransientDependencyGraph (const class GALGAS_observablePropertyAST inObject,
-                                                     class GALGAS_string in_inDependencyGraphPrefix,
-                                                     class GALGAS_lstring in_inSlavePropertySignature,
-                                                     class GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
-                                                     class C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                 Category Reader '@arrayControllerModel modelString'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

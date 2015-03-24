@@ -1,6 +1,5 @@
 option easyBindings_options {
 
-  @bool outputTransientDependencyGraph: 't', "output-transient-graph" -> "Output a transient dependancy graph graphviz file"
   @bool outputClassDependencyGraph: 'c', "output-class-graph" -> "Output a class dependancy graph graphviz file"
 
 }

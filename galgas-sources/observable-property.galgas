@@ -91,6 +91,35 @@ syntax extension easyBindings_syntax {
 
 }
    
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SEMANTICS                                                                                                           *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @observablePropertyAST modelString -> @string outResult {
+  switch self
+  case rootProperty (@lstring propertyName) :
+    outResult = "self.rootObject." + propertyName
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "self.rootObject." + propertyName + "." + optionName
+  case rootPropertyRelationship (@lstring relationshipName *) :
+    outResult = "self.rootObject." + relationshipName
+  case selfProperty (@lstring propertyName @lstring optionName) :
+    outResult = "self." + propertyName
+    if optionName.string != "" then
+      outResult += "." + optionName
+    end
+  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
+    outResult = "g_" + prefsName + "!." + propertyName
+    if optionName.string != "" then
+      outResult += "." + optionName
+    end
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    outResult = "self." + controllerName + "." + propertyName
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    outResult = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
+  end  
+}
+
 #......................................................................................................................*
 
 getter @observablePropertyAST isPropertyDefined
@@ -121,35 +150,7 @@ getter @observablePropertyAST isPropertyDefined
   end  
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  SEMANTICS                                                                                                           *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-getter @observablePropertyAST modelString -> @string outResult {
-  switch self
-  case rootProperty (@lstring propertyName) :
-    outResult = "self.rootObject." + propertyName
-  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "self.rootObject." + propertyName + "." + optionName
-  case rootPropertyRelationship (@lstring relationshipName *) :
-    outResult = "self.rootObject." + relationshipName
-  case selfProperty (@lstring propertyName @lstring optionName) :
-    outResult = "self." + propertyName
-    if optionName.string != "" then
-      outResult += "." + optionName
-    end
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
-    outResult = "g_" + prefsName + "!." + propertyName
-    if optionName.string != "" then
-      outResult += "." + optionName
-    end
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
-    outResult = "self." + controllerName + "." + propertyName
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    outResult = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
-  end  
-}
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#......................................................................................................................*
 
 getter @observablePropertyAST location -> @location outResult {
   switch self
@@ -168,44 +169,6 @@ getter @observablePropertyAST location -> @location outResult {
   case controllerSecondaryProperty (* * @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
   end  
-}
-
-#----------------------------------------------------------------------------------------------------------------------*
-#   TRANSIENT DEPENDENCY GRAPH                                                                                         *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-method @observablePropertyAST enterInTransientDependencyGraph
-  ?@string inDependencyGraphPrefix # i.e. prefs.preferencesName.
-  ?@lstring inSlavePropertySignature
-  ?!@transientDependencyGraph ioTransientDependencyGraph
-{
-  @string masterSignature
-  switch self
-  case rootProperty (@lstring propertyName) :
-    masterSignature = inDependencyGraphPrefix + ".root." + propertyName
-  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    masterSignature = inDependencyGraphPrefix + ".root." + propertyName + "." + optionName
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    masterSignature = inDependencyGraphPrefix + ".root." + relationshipName + "." + propertyName
-  case selfProperty (@lstring propertyName @lstring optionName) :
-    masterSignature = inDependencyGraphPrefix + "." + propertyName
-    if optionName.string != "" then
-      masterSignature += "." + optionName
-    end
-  case prefsProperty (@lstring prefsName @lstring propertyName @lstring optionName) :
-    masterSignature = "prefs." + prefsName + "." + propertyName
-    if optionName.string != "" then
-      masterSignature += "." + optionName
-    end
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
-    masterSignature = "self." + controllerName + "." + propertyName
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    masterSignature = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
-  end
-  [!?ioTransientDependencyGraph addEdge
-    !.new {!masterSignature ![self location]}
-    !inSlavePropertySignature
-  ]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

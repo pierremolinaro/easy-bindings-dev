@@ -69,14 +69,12 @@ syntax extension easyBindings_syntax {
 
 override method @entityDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
-  ?!@transientDependencyGraph ioTransientDependencyGraph
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
       !"entity." + mEntityName
       !?ioUnifiedTypeMap
-      !?ioTransientDependencyGraph
     ]
   end
   [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]

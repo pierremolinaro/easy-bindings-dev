@@ -483,7 +483,6 @@ void routine_typeInventory (const class GALGAS_lstring constinArgument0,
 
 typedef void (*categoryMethodSignature_astDeclaration_typeInventory) (const class cPtr_astDeclaration * inObject,
                                                                       class GALGAS_unifiedTypeMap & ioArgument0,
-                                                                      class GALGAS_transientDependencyGraph & ioArgument1,
                                                                       class C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -496,7 +495,6 @@ void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
 
 void callCategoryMethod_typeInventory (const class cPtr_astDeclaration * inObject,
                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -1381,7 +1379,6 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 typedef void (*categoryMethodSignature_abstractSecondaryProperty_typeInventory) (const class cPtr_abstractSecondaryProperty * inObject,
                                                                                  class GALGAS_string inArgument0,
                                                                                  class GALGAS_unifiedTypeMap & ioArgument1,
-                                                                                 class GALGAS_transientDependencyGraph & ioArgument2,
                                                                                  class C_Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
@@ -1395,7 +1392,6 @@ void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
 void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryProperty * inObject,
                                        GALGAS_string in_inDependencyGraphPrefix,
                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       GALGAS_transientDependencyGraph & io_ioTransientDependencyGraph,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
