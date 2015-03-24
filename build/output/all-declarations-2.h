@@ -48,6 +48,7 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
                              class GALGAS_multipleBindingGenerationList & outArgument7,
                              class GALGAS_actionBindingListForGeneration & outArgument8,
                              class GALGAS_decoratedOutletMap & outArgument9,
+                             class GALGAS_tableViewBindingGenerationList & outArgument10,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 

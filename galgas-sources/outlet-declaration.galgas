@@ -9,9 +9,17 @@ list @bindingOptionList {
 
 #......................................................................................................................*
 
+enum @tableValueBinding {
+  case noTableValueBinding
+  case tableValueBinding (@lstring controllerName)
+}
+
+#......................................................................................................................*
+
 list @outletDeclarationList {
   @lstring mOutletTypeName
   @lstring mOutletName
+  @tableValueBinding mTableValueBindingDescriptor
   @runActionDescriptor mRunDescriptor
   @multipleBindingDescriptor mEnabledBindingDescriptor
   @regularBindingList mRegularBindingList
@@ -29,14 +37,21 @@ syntax extension easyBindings_syntax {
     $outlet$
     $Identifier$ ?let outletTypeName
     $identifier$ ?let outletName
-  #--- Run
+    var tableValueBinding = @tableValueBinding.noTableValueBinding 
     var runActionDescriptor = @runActionDescriptor.noAction 
     var enabledBindingDescriptor = @multipleBindingDescriptor.noEnabledBinding
     @regularBindingList regularBindingList = {}
     repeat
     while
+      $tableValue$
+      if tableValueBinding != .noTableValueBinding then
+        error @location.here : "duplicated $tableValue binding"
+      end
+      $identifier$ ?let @lstring controllerName
+      tableValueBinding = .tableValueBinding {!controllerName:controllerName}
+    while
       $run$
-      if runActionDescriptor != @runActionDescriptor.noAction then
+      if runActionDescriptor != .noAction then
         error @location.here : "duplicated $run binding"
       end
       @lstring runTargetName
@@ -48,7 +63,7 @@ syntax extension easyBindings_syntax {
       end
       $.$
       $identifier$ ?let @lstring runActionName
-      runActionDescriptor = @runActionDescriptor.action { !target:runTargetName !action:runActionName}
+      runActionDescriptor = .action {!target:runTargetName !action:runActionName}
   #--- Enabled
     while
       $enabled$
@@ -78,6 +93,7 @@ syntax extension easyBindings_syntax {
     ioOutletDeclarationList +=
       !outletTypeName
       !outletName
+      !tableValueBinding
       !runActionDescriptor
       !enabledBindingDescriptor
       !regularBindingList
@@ -96,6 +112,30 @@ list @outletBindingModelList {
 
 #......................................................................................................................*
 
+list @tableViewBindingGenerationList {
+  @string mTableValueBindingOutletName
+  @string mTableValueBindingControllerName
+}
+
+#......................................................................................................................*
+
+getter @tableViewBindingGenerationList outletNameListForController ?let @string inControllerName -> @string outResult {
+  outResult = ""
+  @bool first = true
+  for (outlet controller) in self do
+    if controller == inControllerName then
+      if first then
+        first = false
+      else
+        outResult += ", "
+      end
+      outResult += outlet + "!"
+    end
+  end
+}
+
+#......................................................................................................................*
+
 proc analyzeOutlets
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContext inSemanticContext
@@ -107,16 +147,42 @@ proc analyzeOutlets
   !@multipleBindingGenerationList outMultipleBindingGenerationList
   !@actionBindingListForGeneration outTargetActionList
   !@decoratedOutletMap outletMap
+  !@tableViewBindingGenerationList outTableViewBindingGenerationList
 {
   outRegularBindingsGenerationList = {}
   outTargetActionList = {}
   outMultipleBindingGenerationList = {}
   outletMap = {}
+  outTableViewBindingGenerationList = {}
   for () outlet_ in inOutletDeclarationList do
     [!?outletMap insertKey !outlet_mOutletName !outlet_mOutletTypeName.string]
-    [inSemanticContext.mOutletClassMap searchKey !outlet_mOutletTypeName ?let @bool handlesRunAction]
+    [inSemanticContext.mOutletClassMap searchKey
+      !outlet_mOutletTypeName
+      ?let @bool handlesRunAction
+      ?let @bool handlesTableViewBinding
+    ]
     ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
-  #--- run
+  #--- $tableView
+    switch outlet_mTableValueBindingDescriptor
+    case noTableValueBinding :
+    case tableValueBinding (@lstring controllerName) :
+      if not handlesTableViewBinding then
+        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding"
+      else
+        [inObservablePropertyMap searchKey
+          !controllerName
+          ?let unused type
+          ?let kind
+          ?let multiplicity
+          ?2*
+        ]
+        if multiplicity != .collection then
+          error controllerName : "the controller is not bound to a collection"
+        end
+        outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
+      end
+    end
+  #--- $run
     switch outlet_mRunDescriptor
     case noAction :
     case action (@lstring target @lstring action) :

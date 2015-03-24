@@ -86,7 +86,7 @@ override method @prefDeclaration buildInitialSecondaryPropertyListMap
 
 override method @prefDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
-  ?let @unifiedTypeMap mUnifiedTypeMap
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
@@ -190,6 +190,7 @@ override method @prefDeclaration semanticAnalysis
     ?let @multipleBindingGenerationList multipleBindingGenerationList
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList unused tableViewBindingGenerationList
   )
 #--- Code generation
   ioGeneration.mPreferenceListForGeneration +=

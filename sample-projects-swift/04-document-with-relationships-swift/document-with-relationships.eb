@@ -13,20 +13,20 @@ entity NameEntity {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  outlet PMTableView mNamesTableView ;
-  arrayController nameController bind root.mNames to mNamesTableView
+  outlet PMTableView mNamesTableView $tableValue nameController ;
+  arrayController nameController : root.mNames
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
-  outlet PMTableView mOtherTableView ;
-  arrayController otherController bind root.mNames to mOtherTableView filter aValue
+  outlet PMTableView mOtherTableView $tableValue otherController ;
+  arrayController otherController : root.mNames filter aValue
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;
 
-  outlet PMTableView mSelectionTableView ;
-  arrayController selectionController bind nameController.selectedArray to mSelectionTableView
+  outlet PMTableView mSelectionTableView $tableValue selectionController ;
+  arrayController selectionController : nameController.selectedArray
      column "name" PMTextField name { sendContinously : no}
      column "int"  PMNumberField aValue { sendContinously : no}
   ;

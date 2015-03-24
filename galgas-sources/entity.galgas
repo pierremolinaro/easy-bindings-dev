@@ -142,7 +142,7 @@ override method @entityDeclaration buildInitialSecondaryPropertyListMap
 
 override method @entityDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
-  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
