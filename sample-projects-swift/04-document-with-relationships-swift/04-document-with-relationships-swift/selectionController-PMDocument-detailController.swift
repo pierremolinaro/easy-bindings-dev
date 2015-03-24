@@ -117,9 +117,11 @@ class SelectionController_PMDocument_detailController : PMObject {
   func unbind_selection () {
     aValue.readModelFunction = nil 
     aValue.writeModelFunction = nil 
+    aValue.validateAndWriteModelFunction = nil 
     mModel?.removeObserver (aValue, postEvent:false)
     name.readModelFunction = nil 
     name.writeModelFunction = nil 
+    name.validateAndWriteModelFunction = nil 
     mModel?.removeObserver (name, postEvent:false)
     mModel = nil    
   }
